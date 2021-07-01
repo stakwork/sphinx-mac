@@ -59,7 +59,7 @@ public class Chat: NSManagedObject {
     }
     
     static func insertChat(chat: JSON, referenceDate: Date? = nil) -> Chat? {
-        if let id = getChatId(chat: chat) {
+        if let id = chat.getJSONId() {
             let name = chat["name"].string ?? ""
             let photoUrl = chat["photo_url"].string ?? ""
             let uuid = chat["uuid"].stringValue
@@ -109,16 +109,6 @@ public class Chat: NSManagedObject {
             return chat
         }
         return nil
-    }
-    
-    static func getChatId(chat: JSON) -> Int? {
-        var id : Int?
-        if let idInt = chat["id"].int {
-            id = idInt
-        } else if let idString = chat["id"].string, let idInt = Int(idString) {
-            id = idInt
-        }
-        return id
     }
     
     static func createObject(id: Int,

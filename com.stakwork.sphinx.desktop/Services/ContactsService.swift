@@ -61,12 +61,13 @@ public final class ContactsService {
         UserDefaults.Keys.appVersion.set(appVersion)
     }
     
-    public func insertObjects(contacts: [JSON], chats: [JSON], subscriptions: [JSON]) {
+    public func insertObjects(contacts: [JSON], chats: [JSON], subscriptions: [JSON], invites: [JSON]) {
         resetContactsUpdateDateIfNeeded()
         
         insertContacts(contacts: contacts)
         insertChats(chats: chats)
         insertSubscriptions(subscriptions: subscriptions)
+        insertInvites(invites: invites)
         
         if contacts.count > 0 || chats.count > 0 {
             lastContactsUpdateDate = Date()
@@ -79,57 +80,59 @@ public final class ContactsService {
         c?.saveContact()
     }
     
-    public func insertContacts(contacts: [JSON], shouldSyncDeleted: Bool = true) {
+    public func insertContacts(contacts: [JSON]) {
         if contacts.count > 0 {
-            var contactIds = [Int]()
+            var didDeleteContacts = false
             
             for contact: JSON in contacts {
-                if let contactId = UserContact.insertContact(contact: contact, referenceDate: lastContactsUpdateDate).1 {
-                    contactIds.append(contactId)
+                if let id = contact.getJSONId(), contact["deleted"].boolValue || contact["from_group"].boolValue {
+                    if let contact = UserContact.getContactWith(id: id) {
+                        didDeleteContacts = true
+                        CoreDataManager.sharedManager.deleteContactObjectsFor(contact)
+                    }
+                } else {
+                    let _ = UserContact.insertContact(contact: contact, referenceDate: lastContactsUpdateDate)
                 }
             }
-            if shouldSyncDeleted {
-                removeDeletedContacts(existingContactIds: contactIds)
+            
+            if didDeleteContacts {
+                NotificationCenter.default.post(name: .shouldResetChat, object: nil)
             }
         }
     }
     
-    func removeDeletedContacts(existingContactIds: [Int]) {
-        let contactsToDelete = UserContact.getAllExcluding(ids: existingContactIds)
-        for contact in contactsToDelete {
-            if !contact.isOwner {
-                CoreDataManager.sharedManager.deleteContactObjectsFor(contact)
+    public func insertInvites(invites: [JSON]) {
+        if invites.count > 0 {
+            
+            for invite: JSON in invites {
+                let _ = UserInvite.insertInvite(invite: invite)
             }
         }
-        if contactsToDelete.count > 0 { NotificationCenter.default.post(name: .shouldResetChat, object: nil) }
     }
     
     public func insertChats(chats: [JSON]) {
         if chats.count > 0 {
-            var chatIds = [Int]()
+            var didDeleteChats = false
             
             for chat: JSON in chats {
-                if let chatId = Chat.getChatId(chat: chat) {
-                    chatIds.append(chatId)
-                }
-                
-                if let chat = Chat.insertChat(chat: chat, referenceDate: lastContactsUpdateDate) {
-                    if chat.seen {
-                        chat.setChatMessagesAsSeen(shouldSync: false, shouldSave: false)
+                if let id = chat.getJSONId(), chat["deleted"].boolValue {
+                    if let chat = Chat.getChatWith(id: id) {
+                        didDeleteChats = true
+                        CoreDataManager.sharedManager.deleteChatObjectsFor(chat)
+                    }
+                } else {
+                    if let chat = Chat.insertChat(chat: chat, referenceDate: lastContactsUpdateDate) {
+                        if chat.seen {
+                            chat.setChatMessagesAsSeen(shouldSync: false, shouldSave: false)
+                        }
                     }
                 }
             }
             
-            removeDeletedChats(existingChatIds: chatIds)
+            if didDeleteChats {
+                NotificationCenter.default.post(name: .shouldResetChat, object: nil)
+            }
         }
-    }
-    
-    func removeDeletedChats(existingChatIds: [Int]) {
-        let chatsToDelete = Chat.getAllExcluding(ids: existingChatIds)
-        for chat in chatsToDelete {
-            CoreDataManager.sharedManager.deleteChatObjectsFor(chat)
-        }
-        if chatsToDelete.count > 0 { NotificationCenter.default.post(name: .shouldResetChat, object: nil) }
     }
     
     public func insertSubscriptions(subscriptions: [JSON]) {

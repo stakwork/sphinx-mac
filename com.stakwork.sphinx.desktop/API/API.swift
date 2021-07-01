@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-typealias ContactsResultsCallback = (([JSON], [JSON], [JSON]) -> ())
+typealias ContactsResultsCallback = (([JSON], [JSON], [JSON], [JSON]) -> ())
 typealias SphinxMessagesResultsCallback = ((JSON) -> ())
 typealias SphinxHistoryResultsCallback = (([JSON]) -> ())
 typealias DirectPaymentResultsCallback = ((JSON?) -> ())

@@ -434,7 +434,7 @@
 		47E7713F2472F0BA00C9CFEB /* EmptyChatCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47E7713D2472F0BA00C9CFEB /* EmptyChatCollectionViewItem.xib */; };
 		47E77141247326EE00C9CFEB /* NSCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E77140247326EE00C9CFEB /* NSCollectionView.swift */; };
 		47F258DB2541E54000122A5A /* PodcastPaymentsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F258DA2541E53F00122A5A /* PodcastPaymentsHelper.swift */; };
-		47F58A80268E4A5700B223E0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 47F58A7F268E4A5700B223E0 /* README.md */; };
+		47F58A82268E4CAC00B223E0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 47F58A81268E4CAC00B223E0 /* README.md */; };
 		47F8824725656CB0002A7E71 /* SocketStringReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F8822925656CB0002A7E71 /* SocketStringReader.swift */; };
 		47F8824825656CB0002A7E71 /* SocketLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F8822A25656CB0002A7E71 /* SocketLogger.swift */; };
 		47F8824925656CB0002A7E71 /* SocketExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F8822B25656CB0002A7E71 /* SocketExtensions.swift */; };
@@ -1031,7 +1031,7 @@
 		47E7713D2472F0BA00C9CFEB /* EmptyChatCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyChatCollectionViewItem.xib; sourceTree = "<group>"; };
 		47E77140247326EE00C9CFEB /* NSCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSCollectionView.swift; sourceTree = "<group>"; };
 		47F258DA2541E53F00122A5A /* PodcastPaymentsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastPaymentsHelper.swift; sourceTree = "<group>"; };
-		47F58A7F268E4A5700B223E0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		47F58A81268E4CAC00B223E0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		47F8822925656CB0002A7E71 /* SocketStringReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketStringReader.swift; sourceTree = "<group>"; };
 		47F8822A25656CB0002A7E71 /* SocketLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketLogger.swift; sourceTree = "<group>"; };
 		47F8822B25656CB0002A7E71 /* SocketExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketExtensions.swift; sourceTree = "<group>"; };
@@ -1325,7 +1325,7 @@
 		4734D3892417E3D400D6957E = {
 			isa = PBXGroup;
 			children = (
-				47F58A7F268E4A5700B223E0 /* README.md */,
+				47F58A81268E4CAC00B223E0 /* README.md */,
 				4734D3942417E3D400D6957E /* com.stakwork.sphinx.desktop */,
 				4734D3AA2417E3D500D6957E /* com.stakwork.sphinx.desktopTests */,
 				4734D3B52417E3D600D6957E /* com.stakwork.sphinx.desktopUITests */,
@@ -2591,7 +2591,7 @@
 				47B550B1248C23E7000514BF /* TemplateCollectionViewItem.xib in Resources */,
 				478ED5B725D6FBD600940132 /* Signup.storyboard in Resources */,
 				474567FE251507F500D66268 /* FileSentCollectionViewItem.xib in Resources */,
-				47F58A80268E4A5700B223E0 /* README.md in Resources */,
+				47F58A82268E4CAC00B223E0 /* README.md in Resources */,
 				478ED57D25D41B0700940132 /* SignupFieldView.xib in Resources */,
 				479A04002588E7CD0093DB30 /* ContactLinkPreviewView.xib in Resources */,
 				4703F04E2481A24F00282186 /* LinkPreviewView.xib in Resources */,
@@ -3570,7 +3570,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 189;
+				CURRENT_PROJECT_VERSION = 190;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -3599,7 +3599,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 189;
+				CURRENT_PROJECT_VERSION = 190;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";

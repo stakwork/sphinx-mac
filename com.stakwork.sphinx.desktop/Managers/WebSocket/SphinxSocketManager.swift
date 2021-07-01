@@ -308,7 +308,7 @@ extension SphinxSocketManager {
     func didSeenChat(chatJson: JSON) {
         let seen = chatJson["seen"].boolValue
 
-        if let id = Chat.getChatId(chat: chatJson), let chatToUpdate = Chat.getChatWith(id: id), seen == chatToUpdate.seen {
+        if let id = chatJson.getJSONId(), let chatToUpdate = Chat.getChatWith(id: id), seen == chatToUpdate.seen {
             return
         }
         

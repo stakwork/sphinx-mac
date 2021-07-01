@@ -11,9 +11,19 @@ import Alamofire
 import SwiftyJSON
 
 extension API {
+    
+    var lastSeenContactsDate: Date? {
+        get {
+            return UserDefaults.Keys.lastSeenContactsDate.get(defaultValue: nil)
+        }
+        set {
+            UserDefaults.Keys.lastSeenContactsDate.set(newValue)
+        }
+    }
+    
     func getContacts(callback: @escaping ContactsResultsCallback){
         guard let request = getURLRequest(route: "/contacts?from_group=false", method: "GET") else {
-            callback([], [], [])
+            callback([], [], [], [])
             return
         }
         
@@ -29,16 +39,61 @@ extension API {
                         
                         if contactsArray.count > 0 || chatsArray.count > 0 {
                             self.cancellableRequest = nil
-                            callback(contactsArray, chatsArray, subscriptionsArray)
+                            callback(contactsArray, chatsArray, subscriptionsArray, [])
                             return
                         }
                     }
                 }
                 self.cancellableRequest = nil
-                callback([], [], [])
+                callback([], [], [], [])
             case .failure(_):
                 self.cancellableRequest = nil
-                callback([], [], [])
+                callback([], [], [], [])
+            }
+        }
+    }
+    
+    func getLatestContacts(date: Date, callback: @escaping ContactsResultsCallback){
+        var route = "/latest_contacts"
+        
+        let lastSeenDate = (lastSeenContactsDate ?? Date().changeDays(by: -1))
+        if let dateString = lastSeenDate.getStringFromDate(format:"yyyy-MM-dd HH:mm:ss").percentEscaped {
+            route = "\(route)?date=\(dateString)"
+        }
+        
+        guard let request = getURLRequest(route: route, method: "GET") else {
+            callback([], [], [], [])
+            return
+        }
+        
+        cancellableRequest(request, type: .contacts) { response in
+            switch response.result {
+            case .success(let data):
+                if let json = data as? NSDictionary {
+                    if let success = json["success"] as? Bool, let response = json["response"], success {
+                        let jsonResponse = JSON(response)
+                        
+                        let contactsArray = JSON(jsonResponse["contacts"]).arrayValue
+                        let invitesArray = JSON(jsonResponse["invites"]).arrayValue
+                        let chatsArray = JSON(jsonResponse["chats"]).arrayValue
+                        let subscriptionsArray = JSON(jsonResponse["subscriptions"]).arrayValue
+                        
+                        if contactsArray.count > 0 || chatsArray.count > 0 || invitesArray.count > 0 || subscriptionsArray.count > 0 {
+                            
+                            self.cancellableRequest = nil
+                            self.lastSeenContactsDate = date
+                            
+                            callback(contactsArray, chatsArray, subscriptionsArray, invitesArray)
+                            
+                            return
+                        }
+                    }
+                }
+                self.cancellableRequest = nil
+                callback([], [], [], [])
+            case .failure(_):
+                self.cancellableRequest = nil
+                callback([], [], [], [])
             }
         }
     }

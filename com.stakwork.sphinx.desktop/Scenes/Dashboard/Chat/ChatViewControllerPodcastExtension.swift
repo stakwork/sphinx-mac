@@ -13,6 +13,7 @@ extension ChatViewController {
         if let chat = chat, let podcastPlayerHelper = podcastPlayerHelper {
             podcastContainerWidth.constant = DashboardViewController.kPodcastPlayerWidth
             podcastVCContainer.superview?.layoutSubtreeIfNeeded()
+            
             podcastPlayerVC = NewPodcastPlayerViewController.instantiate(chat: chat, playerHelper: podcastPlayerHelper, delegate: self)
             addChildVC(vc: podcastPlayerVC!)
         }

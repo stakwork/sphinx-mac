@@ -89,7 +89,7 @@ extension NamePinView : SignupButtonViewDelegate {
         if !nameField.getFieldValue().isEmpty {
             loading = true
             
-            API.sharedInstance.getContacts(callback: {(contacts, _, _) -> () in
+            API.sharedInstance.getContacts(callback: {(contacts, _, _, _) -> () in
                 self.insertAndUpdateOwner(contacts: contacts)
             })
         } else {
@@ -100,7 +100,7 @@ extension NamePinView : SignupButtonViewDelegate {
     func insertAndUpdateOwner(contacts: [JSON]) {
         let nickname = nameField.getFieldValue()
         
-        contactsService.insertContacts(contacts: contacts, shouldSyncDeleted: false)
+        contactsService.insertContacts(contacts: contacts)
         UserData.sharedInstance.saveNewNodeOnKeychain()
         
         let id = UserData.sharedInstance.getUserId()
