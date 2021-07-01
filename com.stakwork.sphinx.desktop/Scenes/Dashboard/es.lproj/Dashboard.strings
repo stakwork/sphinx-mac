@@ -1,0 +1,10 @@
+/* Class = "NSTextFieldCell"; title = "Price:"; ObjectID = "RPU-hH-hHs"; */
+"RPU-hH-hHs.title" = "Precio:";
+
+/* Class = "NSButtonCell"; title = "Open a conversation to start messaging"; ObjectID = "b26-JN-1eG"; */
+"b26-JN-1eG.title" = "Abre una conversación para comenzar a usar Sphinx";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Search"; ObjectID = "rha-Yr-Htc"; */
+"rha-Yr-Htc.placeholderString" = "Buscar";
+
+"6dY-Cn-C9x.title" = "ACTUALIZAR";

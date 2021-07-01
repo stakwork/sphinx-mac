@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Enter Pin View Controller-->
+        <scene sceneID="bEB-1a-5V7">
+            <objects>
+                <viewController storyboardIdentifier="EnterPinViewController" id="DQT-7b-hp0" customClass="EnterPinViewController" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="DD4-2q-QCQ">
+                        <rect key="frame" x="0.0" y="0.0" width="586" height="419"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="OCl-ha-bZQ" customClass="PinView" customModule="Sphinx" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="586" height="419"/>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="OCl-ha-bZQ" firstAttribute="top" secondItem="DD4-2q-QCQ" secondAttribute="top" id="Dgj-TD-95K"/>
+                            <constraint firstAttribute="bottom" secondItem="OCl-ha-bZQ" secondAttribute="bottom" id="E3H-yD-mIb"/>
+                            <constraint firstItem="OCl-ha-bZQ" firstAttribute="leading" secondItem="DD4-2q-QCQ" secondAttribute="leading" id="KkV-Bw-K2G"/>
+                            <constraint firstAttribute="trailing" secondItem="OCl-ha-bZQ" secondAttribute="trailing" id="XVc-HG-PXK"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="pinView" destination="OCl-ha-bZQ" id="pxa-iP-2pk"/>
+                    </connections>
+                </viewController>
+                <customObject id="AuA-Ka-rhe" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="168" y="836.5"/>
+        </scene>
+        <!--Change Pin View Controller-->
+        <scene sceneID="eiG-5f-qZJ">
+            <objects>
+                <viewController storyboardIdentifier="ChangePinViewController" id="AMx-EE-5GD" customClass="ChangePinViewController" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="SmA-WD-xLR">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="500"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="l05-t2-G6F" customClass="ChangePinView" customModule="Sphinx" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="500"/>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="l05-t2-G6F" secondAttribute="trailing" id="Aos-PC-hDq"/>
+                            <constraint firstItem="l05-t2-G6F" firstAttribute="top" secondItem="SmA-WD-xLR" secondAttribute="top" id="kAr-8x-8zA"/>
+                            <constraint firstAttribute="bottom" secondItem="l05-t2-G6F" secondAttribute="bottom" id="l8N-0m-inE"/>
+                            <constraint firstItem="l05-t2-G6F" firstAttribute="leading" secondItem="SmA-WD-xLR" secondAttribute="leading" id="pTu-U6-3lG"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="changePinView" destination="l05-t2-G6F" id="zQb-GM-PKI"/>
+                    </connections>
+                </viewController>
+                <customObject id="T08-ja-apV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="75" y="1384"/>
+        </scene>
+    </scenes>
+</document>

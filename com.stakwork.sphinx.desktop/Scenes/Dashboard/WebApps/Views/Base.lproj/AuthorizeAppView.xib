@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="AuthorizeAppView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="amountTextField" destination="gje-wP-RJN" id="4fY-HD-wUY"/>
+                <outlet property="appNameLabel" destination="0Zc-1V-VjA" id="7E6-DD-qfA"/>
+                <outlet property="confirmButton" destination="OB9-sZ-5y2" id="TfF-Tz-zrI"/>
+                <outlet property="confirmButtonContainer" destination="jNq-gT-jRB" id="VQY-vQ-IOb"/>
+                <outlet property="confirmButtonLabel" destination="wPt-Hh-uvG" id="T2O-S0-cTv"/>
+                <outlet property="contentView" destination="c22-O7-iKe" id="pYX-aB-N17"/>
+                <outlet property="fieldBottomLabel" destination="dd8-RG-Caz" id="0AP-jc-Z2P"/>
+                <outlet property="fieldContainer" destination="28a-Df-4lN" id="VA3-M6-e3Y"/>
+                <outlet property="fieldTopLabel" destination="Rc7-5k-2FA" id="6QI-3H-mNo"/>
+                <outlet property="loadingWheel" destination="rh8-ZU-2GP" id="IV9-RC-6yf"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="500"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="10" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="df8-Tn-SAn">
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="500"/>
+                    <view key="contentView" id="h7I-jo-F1L">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="500"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="G4l-r3-cV5">
+                                <rect key="frame" x="240" y="440" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="7Rw-eA-X8h"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="cgk-b0-AGL"/>
+                                </constraints>
+                                <buttonCell key="cell" type="bevel" title="close" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="Lgi-ir-8RX">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="18" name="MaterialIcons-Regular"/>
+                                </buttonCell>
+                                <color key="contentTintColor" name="PrimaryRed"/>
+                                <connections>
+                                    <action selector="closeButtonClicked:" target="-2" id="HnG-f3-EwE"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bAc-9p-itn">
+                                <rect key="frame" x="121" y="395" width="59" height="55"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="verified_user" id="Fjm-Vd-VK2">
+                                    <font key="font" size="55" name="MaterialIcons-Regular"/>
+                                    <color key="textColor" name="PrimaryBlue"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uF4-Ob-MZg">
+                                <rect key="frame" x="84" y="345" width="133" height="35"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Authorize" id="S8f-3c-6I7">
+                                    <font key="font" size="30" name="Roboto-Regular"/>
+                                    <color key="textColor" name="MainBottomIcons"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0Zc-1V-VjA">
+                                <rect key="frame" x="141" y="283" width="19" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="280" id="8uu-Jl-H3m"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" id="Qhz-qg-oht"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="truncatingMiddle" title="..." id="G75-HE-tSL">
+                                    <font key="font" size="17" name="Roboto-Medium"/>
+                                    <color key="textColor" name="Text"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rc7-5k-2FA">
+                                <rect key="frame" x="89" y="250" width="122" height="18"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="to withdraw up to" id="qZH-uF-qTf">
+                                    <font key="font" size="15" name="Roboto-Regular"/>
+                                    <color key="textColor" name="MainBottomIcons"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <box boxType="custom" borderType="line" cornerRadius="25" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="28a-Df-4lN">
+                                <rect key="frame" x="20" y="185" width="250" height="50"/>
+                                <view key="contentView" id="S0W-N6-0th">
+                                    <rect key="frame" x="1" y="1" width="248" height="48"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gje-wP-RJN">
+                                            <rect key="frame" x="10" y="12" width="228" height="24"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" alignment="center" placeholderString="0" drawsBackground="YES" id="AFp-GI-5K7">
+                                                <font key="font" size="20" name="Roboto-Regular"/>
+                                                <color key="textColor" name="Text"/>
+                                                <color key="backgroundColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="gje-wP-RJN" firstAttribute="leading" secondItem="S0W-N6-0th" secondAttribute="leading" constant="10" id="5CH-cH-97J"/>
+                                        <constraint firstAttribute="trailing" secondItem="gje-wP-RJN" secondAttribute="trailing" constant="10" id="UUv-rT-ePZ"/>
+                                        <constraint firstItem="gje-wP-RJN" firstAttribute="centerY" secondItem="S0W-N6-0th" secondAttribute="centerY" id="qs6-VU-2V3"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Pzg-HM-AxS"/>
+                                </constraints>
+                                <color key="borderColor" name="LightDivider"/>
+                            </box>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dd8-RG-Caz">
+                                <rect key="frame" x="64" y="152" width="173" height="18"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="sats before reauthorizing" id="QF9-Re-Eh4">
+                                    <font key="font" size="15" name="Roboto-Regular"/>
+                                    <color key="textColor" name="MainBottomIcons"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="jNq-gT-jRB">
+                                <rect key="frame" x="30" y="30" width="240" height="50"/>
+                                <view key="contentView" id="Cmt-0S-qwV">
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wPt-Hh-uvG">
+                                            <rect key="frame" x="76" y="16" width="89" height="18"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="AUTHORIZE" id="Cjt-5d-UoB">
+                                                <font key="font" size="14" name="Montserrat-SemiBold"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OB9-sZ-5y2">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
+                                            <buttonCell key="cell" type="bevel" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="57X-uI-phy">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="confirmButtonClicked:" target="-2" id="hgx-OS-QG3"/>
+                                            </connections>
+                                        </button>
+                                        <progressIndicator wantsLayer="YES" maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="rh8-ZU-2GP">
+                                            <rect key="frame" x="211" y="17" width="16" height="16"/>
+                                        </progressIndicator>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="OB9-sZ-5y2" secondAttribute="bottom" id="BU1-wD-znk"/>
+                                        <constraint firstItem="wPt-Hh-uvG" firstAttribute="centerX" secondItem="Cmt-0S-qwV" secondAttribute="centerX" id="Bib-33-hig"/>
+                                        <constraint firstItem="wPt-Hh-uvG" firstAttribute="centerY" secondItem="Cmt-0S-qwV" secondAttribute="centerY" id="DNL-xV-hmu"/>
+                                        <constraint firstItem="rh8-ZU-2GP" firstAttribute="centerY" secondItem="Cmt-0S-qwV" secondAttribute="centerY" id="M5U-TY-xKo"/>
+                                        <constraint firstItem="OB9-sZ-5y2" firstAttribute="top" secondItem="Cmt-0S-qwV" secondAttribute="top" id="PRI-qM-ghe"/>
+                                        <constraint firstAttribute="trailing" secondItem="rh8-ZU-2GP" secondAttribute="trailing" constant="13" id="ZBj-GZ-Es3"/>
+                                        <constraint firstItem="OB9-sZ-5y2" firstAttribute="leading" secondItem="Cmt-0S-qwV" secondAttribute="leading" id="cpd-fW-Cuh"/>
+                                        <constraint firstAttribute="trailing" secondItem="OB9-sZ-5y2" secondAttribute="trailing" id="qWU-yo-DH1"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="34s-q7-swt"/>
+                                </constraints>
+                                <color key="fillColor" name="PrimaryBlue"/>
+                            </box>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="28a-Df-4lN" secondAttribute="trailing" constant="30" id="1Js-Vp-QlJ"/>
+                            <constraint firstAttribute="trailing" secondItem="jNq-gT-jRB" secondAttribute="trailing" constant="30" id="1cE-Pz-Ml3"/>
+                            <constraint firstItem="Rc7-5k-2FA" firstAttribute="top" secondItem="0Zc-1V-VjA" secondAttribute="bottom" constant="15" id="3Y8-1e-IXI"/>
+                            <constraint firstItem="0Zc-1V-VjA" firstAttribute="centerX" secondItem="h7I-jo-F1L" secondAttribute="centerX" id="3rk-HJ-dGX"/>
+                            <constraint firstAttribute="trailing" secondItem="G4l-r3-cV5" secondAttribute="trailing" id="8gp-oC-syc"/>
+                            <constraint firstItem="dd8-RG-Caz" firstAttribute="top" secondItem="28a-Df-4lN" secondAttribute="bottom" constant="15" id="EPN-n0-jkT"/>
+                            <constraint firstItem="28a-Df-4lN" firstAttribute="top" secondItem="Rc7-5k-2FA" secondAttribute="bottom" constant="15" id="IJ2-mW-wPL"/>
+                            <constraint firstItem="bAc-9p-itn" firstAttribute="top" secondItem="h7I-jo-F1L" secondAttribute="top" constant="50" id="KNM-mU-Ron"/>
+                            <constraint firstItem="jNq-gT-jRB" firstAttribute="leading" secondItem="h7I-jo-F1L" secondAttribute="leading" constant="30" id="Nbm-3I-iBc"/>
+                            <constraint firstItem="uF4-Ob-MZg" firstAttribute="top" secondItem="bAc-9p-itn" secondAttribute="bottom" constant="15" id="OKC-wQ-TRR"/>
+                            <constraint firstItem="G4l-r3-cV5" firstAttribute="top" secondItem="h7I-jo-F1L" secondAttribute="top" id="Q2O-A9-7mN"/>
+                            <constraint firstItem="G4l-r3-cV5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bAc-9p-itn" secondAttribute="trailing" constant="8" symbolic="YES" id="ZCW-vl-518"/>
+                            <constraint firstItem="bAc-9p-itn" firstAttribute="centerX" secondItem="h7I-jo-F1L" secondAttribute="centerX" id="byC-VK-IDg"/>
+                            <constraint firstItem="Rc7-5k-2FA" firstAttribute="centerX" secondItem="h7I-jo-F1L" secondAttribute="centerX" id="gRw-nM-EHE"/>
+                            <constraint firstAttribute="bottom" secondItem="jNq-gT-jRB" secondAttribute="bottom" constant="30" id="h7w-PU-f7L"/>
+                            <constraint firstItem="dd8-RG-Caz" firstAttribute="centerX" secondItem="h7I-jo-F1L" secondAttribute="centerX" id="hjc-jq-DWn"/>
+                            <constraint firstItem="uF4-Ob-MZg" firstAttribute="centerX" secondItem="bAc-9p-itn" secondAttribute="centerX" id="mOF-pT-Vc1"/>
+                            <constraint firstItem="0Zc-1V-VjA" firstAttribute="top" secondItem="uF4-Ob-MZg" secondAttribute="bottom" constant="42" id="tAD-PY-TlO"/>
+                            <constraint firstItem="28a-Df-4lN" firstAttribute="leading" secondItem="h7I-jo-F1L" secondAttribute="leading" constant="20" id="yV7-Me-XtE"/>
+                        </constraints>
+                    </view>
+                    <color key="fillColor" name="Body"/>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstItem="df8-Tn-SAn" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="GYg-fY-1D7"/>
+                <constraint firstAttribute="bottom" secondItem="df8-Tn-SAn" secondAttribute="bottom" id="ImL-vw-sQK"/>
+                <constraint firstItem="df8-Tn-SAn" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="m8f-Vb-nXN"/>
+                <constraint firstAttribute="trailing" secondItem="df8-Tn-SAn" secondAttribute="trailing" id="pJ7-gp-u50"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+    </objects>
+    <resources>
+        <namedColor name="Body">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightDivider">
+            <color red="0.86274509803921573" green="0.8784313725490196" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="MainBottomIcons">
+            <color red="0.37254901960784315" green="0.38823529411764707" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PrimaryBlue">
+            <color red="0.38039215686274508" green="0.54117647058823526" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PrimaryRed">
+            <color red="0.92941176470588238" green="0.45490196078431372" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text">
+            <color red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

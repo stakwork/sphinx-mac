@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="PaidAttachmentView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="c22-O7-iKe" id="hwj-ue-3BL"/>
+                <outlet property="paidAttachmentBubble" destination="NO3-Py-YF9" id="FlC-GK-3sO"/>
+                <outlet property="payAttachmentContainer" destination="ObU-yl-8ak" id="MWU-Pr-oQa"/>
+                <outlet property="payButton" destination="ze9-oM-e3j" id="74l-qz-B0t"/>
+                <outlet property="processingPaymentContainer" destination="E6q-23-YXd" id="xvS-6O-pYZ"/>
+                <outlet property="purchaseAmountLabel" destination="DRF-b2-4up" id="qtv-yM-jl8"/>
+                <outlet property="purchaseDeniedContainer" destination="Kyn-JX-20X" id="xie-SN-SCI"/>
+                <outlet property="purchaseLoadingWheel" destination="nWw-2b-XWs" id="MYR-rQ-TED"/>
+                <outlet property="purchaseSucceedContainer" destination="xh3-yq-dbb" id="EDc-cD-JrK"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="NO3-Py-YF9" customClass="PaidAttachmentBubbleView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
+                </customView>
+                <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="ObU-yl-8ak">
+                    <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
+                    <view key="contentView" id="HTW-XW-Ti3">
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="3JJ-EY-hKq">
+                                <rect key="frame" x="4" y="0.0" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="wZF-yL-fig"/>
+                                </constraints>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="invoicePayIcon" imagePosition="only" alignment="center" inset="2" id="TBh-kf-cIg">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <color key="contentTintColor" name="sphinxWhite"/>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1BL-RL-zjy">
+                                <rect key="frame" x="52" y="17" width="30" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="PAY" id="8Yq-1f-Z3W">
+                                    <font key="font" size="13" name="Montserrat-SemiBold"/>
+                                    <color key="textColor" name="sphinxWhite"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DRF-b2-4up">
+                                <rect key="frame" x="198" y="19" width="39" height="13"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="10 SAT" id="1e7-wx-iCz">
+                                    <font key="font" size="11" name="Roboto-Medium"/>
+                                    <color key="textColor" name="sphinxWhite"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ze9-oM-e3j" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="qGA-qK-jA2"/>
+                                </constraints>
+                                <buttonCell key="cell" type="bevel" bezelStyle="rounded" alignment="center" transparent="YES" imageScaling="proportionallyDown" inset="2" id="2mO-BI-fsa">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="payButtonClicked:" target="-2" id="Xlj-Z0-8B8"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="1BL-RL-zjy" firstAttribute="leading" secondItem="3JJ-EY-hKq" secondAttribute="trailing" id="KsK-EJ-0DD"/>
+                            <constraint firstItem="DRF-b2-4up" firstAttribute="centerY" secondItem="1BL-RL-zjy" secondAttribute="centerY" id="ZtX-hD-pwe"/>
+                            <constraint firstItem="ze9-oM-e3j" firstAttribute="leading" secondItem="HTW-XW-Ti3" secondAttribute="leading" id="aCk-Ju-yz1"/>
+                            <constraint firstAttribute="trailing" secondItem="DRF-b2-4up" secondAttribute="trailing" constant="15" id="aDB-VI-sUq"/>
+                            <constraint firstItem="3JJ-EY-hKq" firstAttribute="leading" secondItem="HTW-XW-Ti3" secondAttribute="leading" constant="4" id="aiO-E3-Dd8"/>
+                            <constraint firstItem="DRF-b2-4up" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1BL-RL-zjy" secondAttribute="trailing" constant="8" symbolic="YES" id="dFW-A7-Iea"/>
+                            <constraint firstAttribute="bottom" secondItem="3JJ-EY-hKq" secondAttribute="bottom" id="gxd-NM-Sw9"/>
+                            <constraint firstItem="3JJ-EY-hKq" firstAttribute="top" secondItem="HTW-XW-Ti3" secondAttribute="top" id="hrk-MR-tPm"/>
+                            <constraint firstItem="1BL-RL-zjy" firstAttribute="centerY" secondItem="HTW-XW-Ti3" secondAttribute="centerY" id="j01-1s-0m0"/>
+                            <constraint firstItem="ze9-oM-e3j" firstAttribute="top" secondItem="HTW-XW-Ti3" secondAttribute="top" id="rKw-Cd-8JH"/>
+                            <constraint firstAttribute="trailing" secondItem="ze9-oM-e3j" secondAttribute="trailing" id="sBs-Ya-xev"/>
+                        </constraints>
+                    </view>
+                    <color key="fillColor" red="0.46274509803921571" green="0.792156862745098" blue="0.57647058823529407" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <font key="titleFont" metaFont="system"/>
+                </box>
+                <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="E6q-23-YXd">
+                    <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
+                    <view key="contentView" id="Ya9-7w-XML">
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="CQh-Xq-Csw">
+                                <rect key="frame" x="4" y="0.0" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="2WE-Yz-i06"/>
+                                </constraints>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="invoicePayIcon" imagePosition="only" alignment="center" inset="2" id="Nqv-Pv-mll">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <color key="contentTintColor" name="sphinxWhite"/>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="32A-9Y-7g8">
+                                <rect key="frame" x="52" y="19" width="115" height="13"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Processing payment..." id="knI-3M-PRw">
+                                    <font key="font" size="11" name="Roboto-Medium"/>
+                                    <color key="textColor" name="sphinxWhite"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <progressIndicator wantsLayer="YES" maxValue="100" displayedWhenStopped="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="nWw-2b-XWs">
+                                <rect key="frame" x="219" y="17" width="16" height="16"/>
+                            </progressIndicator>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="32A-9Y-7g8" firstAttribute="centerY" secondItem="Ya9-7w-XML" secondAttribute="centerY" id="8dF-KI-28c"/>
+                            <constraint firstItem="CQh-Xq-Csw" firstAttribute="top" secondItem="Ya9-7w-XML" secondAttribute="top" id="W3e-MG-FHH"/>
+                            <constraint firstItem="32A-9Y-7g8" firstAttribute="leading" secondItem="CQh-Xq-Csw" secondAttribute="trailing" id="Ygc-ch-ycR"/>
+                            <constraint firstAttribute="trailing" secondItem="nWw-2b-XWs" secondAttribute="trailing" constant="15" id="gQU-b4-Lc9"/>
+                            <constraint firstAttribute="bottom" secondItem="CQh-Xq-Csw" secondAttribute="bottom" id="jf4-Xp-C8B"/>
+                            <constraint firstItem="CQh-Xq-Csw" firstAttribute="leading" secondItem="Ya9-7w-XML" secondAttribute="leading" constant="4" id="lq3-fu-KES"/>
+                            <constraint firstItem="nWw-2b-XWs" firstAttribute="centerY" secondItem="Ya9-7w-XML" secondAttribute="centerY" id="pwA-Bg-fKa"/>
+                            <constraint firstItem="nWw-2b-XWs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="32A-9Y-7g8" secondAttribute="trailing" constant="8" symbolic="YES" id="wYq-1O-VdI"/>
+                        </constraints>
+                    </view>
+                    <color key="fillColor" red="0.46274509803921571" green="0.792156862745098" blue="0.57647058823529407" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                </box>
+                <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="xh3-yq-dbb">
+                    <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
+                    <view key="contentView" id="5qK-e2-JX9">
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PSX-QD-Ryo">
+                                <rect key="frame" x="2" y="15" width="54" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="KnS-At-9yK"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="check" id="cWe-yQ-ec9">
+                                    <font key="font" size="20" name="MaterialIcons-Regular"/>
+                                    <color key="textColor" name="sphinxWhite"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qJR-eT-wGk">
+                                <rect key="frame" x="52" y="19" width="108" height="13"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Purchase Succeeded" id="u1y-Hn-Jr4">
+                                    <font key="font" size="11" name="Roboto-Medium"/>
+                                    <color key="textColor" name="sphinxWhite"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="PSX-QD-Ryo" firstAttribute="centerY" secondItem="5qK-e2-JX9" secondAttribute="centerY" id="Cr9-mW-aZV"/>
+                            <constraint firstItem="PSX-QD-Ryo" firstAttribute="leading" secondItem="5qK-e2-JX9" secondAttribute="leading" constant="4" id="FFy-LL-OxO"/>
+                            <constraint firstItem="qJR-eT-wGk" firstAttribute="leading" secondItem="PSX-QD-Ryo" secondAttribute="trailing" id="HZe-cY-asz"/>
+                            <constraint firstItem="qJR-eT-wGk" firstAttribute="centerY" secondItem="5qK-e2-JX9" secondAttribute="centerY" id="Lfq-Ga-VgD"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qJR-eT-wGk" secondAttribute="trailing" constant="20" symbolic="YES" id="Pgc-JY-rlg"/>
+                        </constraints>
+                    </view>
+                    <color key="fillColor" red="1" green="0.32156862745098042" blue="0.32156862745098042" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                </box>
+                <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Kyn-JX-20X">
+                    <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
+                    <view key="contentView" id="7vl-la-cvk">
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QG5-1Y-nMs">
+                                <rect key="frame" x="2" y="15" width="54" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="gj4-ha-9Vs"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="error_outline" id="aUy-2T-WhD">
+                                    <font key="font" size="20" name="MaterialIcons-Regular"/>
+                                    <color key="textColor" name="sphinxWhite"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nIq-pT-MoK">
+                                <rect key="frame" x="52" y="19" width="87" height="13"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Purchase denied" id="KTI-HW-Wqb">
+                                    <font key="font" size="11" name="Roboto-Medium"/>
+                                    <color key="textColor" name="sphinxWhite"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="nIq-pT-MoK" firstAttribute="centerY" secondItem="7vl-la-cvk" secondAttribute="centerY" id="6bo-IA-2Ls"/>
+                            <constraint firstItem="nIq-pT-MoK" firstAttribute="leading" secondItem="QG5-1Y-nMs" secondAttribute="trailing" id="Ack-wY-FWc"/>
+                            <constraint firstItem="QG5-1Y-nMs" firstAttribute="leading" secondItem="7vl-la-cvk" secondAttribute="leading" constant="4" id="BLE-NR-lY3"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nIq-pT-MoK" secondAttribute="trailing" constant="20" symbolic="YES" id="cfs-gZ-0Oi"/>
+                            <constraint firstItem="QG5-1Y-nMs" firstAttribute="centerY" secondItem="7vl-la-cvk" secondAttribute="centerY" id="xMX-9L-ejU"/>
+                        </constraints>
+                    </view>
+                    <color key="fillColor" red="0.46274509803921571" green="0.792156862745098" blue="0.57647058823529407" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Kyn-JX-20X" secondAttribute="bottom" id="AV8-GQ-cDG"/>
+                <constraint firstAttribute="trailing" secondItem="E6q-23-YXd" secondAttribute="trailing" id="Bml-01-uUX"/>
+                <constraint firstItem="xh3-yq-dbb" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="Dno-sN-7UX"/>
+                <constraint firstAttribute="trailing" secondItem="xh3-yq-dbb" secondAttribute="trailing" id="FFB-rO-KZH"/>
+                <constraint firstAttribute="bottom" secondItem="E6q-23-YXd" secondAttribute="bottom" id="GhG-AN-oB1"/>
+                <constraint firstAttribute="bottom" secondItem="NO3-Py-YF9" secondAttribute="bottom" id="GpQ-sz-Ugs"/>
+                <constraint firstItem="Kyn-JX-20X" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="J0T-dW-N8c"/>
+                <constraint firstAttribute="trailing" secondItem="Kyn-JX-20X" secondAttribute="trailing" id="JLc-Yz-uG0"/>
+                <constraint firstItem="E6q-23-YXd" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="K7H-zG-8a5"/>
+                <constraint firstItem="ObU-yl-8ak" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="NYw-Ka-Qq8"/>
+                <constraint firstItem="xh3-yq-dbb" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="Txq-Fy-pq6"/>
+                <constraint firstAttribute="trailing" secondItem="NO3-Py-YF9" secondAttribute="trailing" id="U5q-mX-ndk"/>
+                <constraint firstItem="ObU-yl-8ak" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="a6D-o5-1ip"/>
+                <constraint firstItem="NO3-Py-YF9" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="eCf-vp-v8s"/>
+                <constraint firstItem="Kyn-JX-20X" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="f25-NC-HKL"/>
+                <constraint firstItem="NO3-Py-YF9" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="oQO-9y-aoJ"/>
+                <constraint firstAttribute="trailing" secondItem="ObU-yl-8ak" secondAttribute="trailing" id="qpJ-xQ-YOJ"/>
+                <constraint firstAttribute="bottom" secondItem="xh3-yq-dbb" secondAttribute="bottom" id="rBU-wS-ihQ"/>
+                <constraint firstItem="E6q-23-YXd" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="uBe-yg-ZcR"/>
+                <constraint firstAttribute="bottom" secondItem="ObU-yl-8ak" secondAttribute="bottom" id="vC2-8g-HMD"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="invoicePayIcon" width="19" height="19"/>
+        <namedColor name="sphinxWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

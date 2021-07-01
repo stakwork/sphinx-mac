@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner">
+            <connections>
+                <outlet property="attachmentPriceView" destination="haD-e9-t4z" id="EKn-He-hGo"/>
+                <outlet property="bubbleView" destination="eMU-TT-jtR" id="Jht-7K-MQ7"/>
+                <outlet property="dateLabel" destination="JvX-Na-5wM" id="sZv-An-G6B"/>
+                <outlet property="errorSign" destination="1qC-rD-VVk" id="YjR-l0-TGi"/>
+                <outlet property="headerView" destination="nyk-44-yLu" id="Vrb-3s-2WU"/>
+                <outlet property="imageLoadingView" destination="Ta7-zD-70e" id="fX0-el-2Nc"/>
+                <outlet property="imagePreloader" destination="w59-3S-ncE" id="C2S-GF-8vs"/>
+                <outlet property="leftLineContainer" destination="l3A-2j-goc" id="J6q-a4-442"/>
+                <outlet property="lockSign" destination="icb-Wd-H1T" id="rTK-Bj-ewL"/>
+                <outlet property="messageBubbleView" destination="XOI-9w-s95" id="POr-vO-wod"/>
+                <outlet property="optionsButton" destination="qSH-JV-Wna" id="HgM-HO-14z"/>
+                <outlet property="playButton" destination="jGv-pE-VUA" id="909-L9-gPk"/>
+                <outlet property="playButtonContainer" destination="oTF-rB-m2e" id="Mkt-rb-haL"/>
+                <outlet property="rightLineContainer" destination="wxs-uS-Cu0" id="Xax-Vi-Xt4"/>
+                <outlet property="seenSign" destination="7Qt-VT-AWt" id="anF-BL-UC4"/>
+                <outlet property="topMarginConstraint" destination="TYC-Py-6fd" id="kKZ-su-rpv"/>
+                <outlet property="uploadCancelButton" destination="d5Z-K9-V2F" id="mQv-83-ybi"/>
+                <outlet property="videoBubbleWidth" destination="tT2-rf-d8M" id="B9a-Hl-c1w"/>
+                <outlet property="videoNotAvailableContainer" destination="Kfy-e2-o8n" id="yAq-Z8-FB7"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="470"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="l3A-2j-goc">
+                    <rect key="frame" x="76" y="0.0" width="3" height="470"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="3" id="b0r-CM-Vso"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="wxs-uS-Cu0">
+                    <rect key="frame" x="449" y="0.0" width="3" height="470"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="3" id="UOV-zd-h5f"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="nyk-44-yLu">
+                    <rect key="frame" x="221" y="449" width="259" height="17"/>
+                    <subviews>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JvX-Na-5wM">
+                            <rect key="frame" x="199" y="4" width="47" height="11"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="06:05 AM" id="w52-u4-82B">
+                                <font key="font" size="10" name="Roboto-Regular"/>
+                                <color key="textColor" name="WashedOutReceivedText"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="icb-Wd-H1T">
+                            <rect key="frame" x="184" y="5" width="16" height="12"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="lock" id="HCr-82-s0q">
+                                <font key="font" size="12" name="MaterialIcons-Regular"/>
+                                <color key="textColor" name="WashedOutReceivedText"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7Qt-VT-AWt">
+                            <rect key="frame" x="172" y="5" width="16" height="12"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="flash_on" id="Mt8-iw-SKk">
+                                <font key="font" size="12" name="MaterialIcons-Regular"/>
+                                <color key="textColor" name="PrimaryGreen"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1qC-rD-VVk">
+                            <rect key="frame" x="-2" y="5" width="16" height="12"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="error" id="hAu-sT-p4h">
+                                <font key="font" size="12" name="MaterialIcons-Regular"/>
+                                <color key="textColor" name="PrimaryRed"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="17" id="3sY-bS-OQi"/>
+                        <constraint firstItem="1qC-rD-VVk" firstAttribute="leading" secondItem="nyk-44-yLu" secondAttribute="leading" id="Mhz-tY-prq"/>
+                        <constraint firstItem="JvX-Na-5wM" firstAttribute="top" secondItem="nyk-44-yLu" secondAttribute="top" constant="2" id="aGJ-8R-lpa"/>
+                        <constraint firstItem="1qC-rD-VVk" firstAttribute="centerY" secondItem="7Qt-VT-AWt" secondAttribute="centerY" id="cUH-eI-mnH"/>
+                        <constraint firstItem="7Qt-VT-AWt" firstAttribute="centerY" secondItem="icb-Wd-H1T" secondAttribute="centerY" id="hkz-yP-oXQ"/>
+                        <constraint firstAttribute="trailing" secondItem="JvX-Na-5wM" secondAttribute="trailing" constant="15" id="teR-6i-9in"/>
+                        <constraint firstItem="icb-Wd-H1T" firstAttribute="centerY" secondItem="JvX-Na-5wM" secondAttribute="centerY" constant="-1" id="y4X-Il-L5b"/>
+                        <constraint firstItem="icb-Wd-H1T" firstAttribute="leading" secondItem="7Qt-VT-AWt" secondAttribute="trailing" id="zl0-9i-PJd"/>
+                        <constraint firstItem="JvX-Na-5wM" firstAttribute="leading" secondItem="icb-Wd-H1T" secondAttribute="trailing" constant="3" id="zwH-7r-irs"/>
+                    </constraints>
+                </customView>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qSH-JV-Wna" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="202" y="431" width="22" height="18"/>
+                    <buttonCell key="cell" type="bevel" title="" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="AEv-7f-qOp" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="18" name="MaterialIcons-Regular"/>
+                    </buttonCell>
+                    <color key="contentTintColor" name="WashedOutReceivedText"/>
+                    <connections>
+                        <action selector="optionsButtonClicked:" target="-2" id="262-9r-Kgb"/>
+                    </connections>
+                </button>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="eMU-TT-jtR" customClass="PictureBubbleView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="221" y="199" width="250" height="250"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="eMU-TT-jtR" secondAttribute="height" id="Ich-Y4-heb"/>
+                        <constraint firstAttribute="width" constant="250" id="tT2-rf-d8M"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Kfy-e2-o8n">
+                    <rect key="frame" x="221" y="199" width="244" height="250"/>
+                    <subviews>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AV1-Be-TWp">
+                            <rect key="frame" x="100" y="105" width="44" height="40"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="videocam" id="bNt-TC-UDQ">
+                                <font key="font" size="40" name="MaterialIcons-Regular"/>
+                                <color key="textColor" name="MainBottomIcons"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="AV1-Be-TWp" firstAttribute="centerY" secondItem="Kfy-e2-o8n" secondAttribute="centerY" id="TG5-gc-nVA"/>
+                        <constraint firstItem="AV1-Be-TWp" firstAttribute="centerX" secondItem="Kfy-e2-o8n" secondAttribute="centerX" id="Z6i-OV-aoz"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="oTF-rB-m2e">
+                    <rect key="frame" x="221" y="199" width="250" height="250"/>
+                    <subviews>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jGv-pE-VUA" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                            <rect key="frame" x="85" y="85" width="80" height="80"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="e2S-jH-U8f"/>
+                                <constraint firstAttribute="height" constant="80" id="iVc-Ei-YyP"/>
+                            </constraints>
+                            <buttonCell key="cell" type="bevel" title="play_circle_outline" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="wej-e5-UpW">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" size="60" name="MaterialIcons-Regular"/>
+                            </buttonCell>
+                            <color key="contentTintColor" name="sphinxWhite"/>
+                            <connections>
+                                <action selector="playButtonClicked:" target="-2" id="iqf-Qj-VdV"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="jGv-pE-VUA" firstAttribute="centerX" secondItem="oTF-rB-m2e" secondAttribute="centerX" id="1mR-jy-mNz"/>
+                        <constraint firstItem="jGv-pE-VUA" firstAttribute="centerY" secondItem="oTF-rB-m2e" secondAttribute="centerY" id="Y6p-1f-SbU"/>
+                    </constraints>
+                </customView>
+                <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Ta7-zD-70e">
+                    <rect key="frame" x="221" y="199" width="250" height="250"/>
+                    <view key="contentView" id="L8w-0u-OTp">
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="w59-3S-ncE">
+                                <rect key="frame" x="96" y="96" width="58" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="58" id="I29-Ks-XaC"/>
+                                    <constraint firstAttribute="width" constant="58" id="nEx-qr-SeI"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="imagePreloader" id="daK-iH-pbX"/>
+                            </imageView>
+                            <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d5Z-K9-V2F">
+                                <rect key="frame" x="96" y="96" width="58" height="58"/>
+                                <buttonCell key="cell" type="square" title="" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="ZuH-uQ-Oiq">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="21" name="MaterialIcons-Regular"/>
+                                </buttonCell>
+                                <color key="contentTintColor" name="sphinxWhite"/>
+                                <connections>
+                                    <action selector="cancelUploadButtonClicked:" target="-2" id="CtZ-J3-gBu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="d5Z-K9-V2F" firstAttribute="trailing" secondItem="w59-3S-ncE" secondAttribute="trailing" id="LLo-Cq-hmK"/>
+                            <constraint firstItem="d5Z-K9-V2F" firstAttribute="bottom" secondItem="w59-3S-ncE" secondAttribute="bottom" id="dts-4w-bWo"/>
+                            <constraint firstItem="d5Z-K9-V2F" firstAttribute="top" secondItem="w59-3S-ncE" secondAttribute="top" id="gAp-Op-nfB"/>
+                            <constraint firstItem="w59-3S-ncE" firstAttribute="centerX" secondItem="L8w-0u-OTp" secondAttribute="centerX" id="oyn-bm-ro7"/>
+                            <constraint firstItem="w59-3S-ncE" firstAttribute="centerY" secondItem="L8w-0u-OTp" secondAttribute="centerY" id="qyB-Rd-lqA"/>
+                            <constraint firstItem="d5Z-K9-V2F" firstAttribute="leading" secondItem="w59-3S-ncE" secondAttribute="leading" id="yYK-el-CYO"/>
+                        </constraints>
+                    </view>
+                    <color key="fillColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </box>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="haD-e9-t4z" customClass="AttachmentPriceView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="221" y="409" width="250" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="BRb-DP-hr0"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="XOI-9w-s95" customClass="MessageBubbleView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="221" y="4" width="250" height="195"/>
+                </customView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="XOI-9w-s95" firstAttribute="top" secondItem="eMU-TT-jtR" secondAttribute="bottom" id="03s-QD-RlI"/>
+                <constraint firstItem="oTF-rB-m2e" firstAttribute="trailing" secondItem="eMU-TT-jtR" secondAttribute="trailing" id="2qW-Wa-hQ1"/>
+                <constraint firstAttribute="trailing" secondItem="eMU-TT-jtR" secondAttribute="trailing" constant="9" id="2yp-W2-iCS"/>
+                <constraint firstItem="nyk-44-yLu" firstAttribute="leading" secondItem="eMU-TT-jtR" secondAttribute="leading" id="5Wv-lS-EOm"/>
+                <constraint firstItem="Kfy-e2-o8n" firstAttribute="bottom" secondItem="eMU-TT-jtR" secondAttribute="bottom" id="7gA-SB-EoJ"/>
+                <constraint firstItem="Ta7-zD-70e" firstAttribute="trailing" secondItem="eMU-TT-jtR" secondAttribute="trailing" id="8GV-A4-Hpm"/>
+                <constraint firstAttribute="bottom" secondItem="l3A-2j-goc" secondAttribute="bottom" id="DTL-DL-CYg"/>
+                <constraint firstAttribute="bottom" secondItem="XOI-9w-s95" secondAttribute="bottom" constant="4" id="Dfz-DK-bOj"/>
+                <constraint firstItem="wxs-uS-Cu0" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="FFA-ZO-ONc"/>
+                <constraint firstItem="l3A-2j-goc" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="75.5" id="Fdx-N5-Lju"/>
+                <constraint firstItem="Ta7-zD-70e" firstAttribute="top" secondItem="eMU-TT-jtR" secondAttribute="top" id="GB2-uF-zlR"/>
+                <constraint firstItem="oTF-rB-m2e" firstAttribute="leading" secondItem="eMU-TT-jtR" secondAttribute="leading" id="K5E-2k-G85"/>
+                <constraint firstItem="qSH-JV-Wna" firstAttribute="top" secondItem="eMU-TT-jtR" secondAttribute="top" id="Mkl-gm-cbM"/>
+                <constraint firstItem="haD-e9-t4z" firstAttribute="leading" secondItem="eMU-TT-jtR" secondAttribute="leading" id="O3O-3Q-z4J"/>
+                <constraint firstItem="l3A-2j-goc" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="PcN-DI-y0W"/>
+                <constraint firstItem="Ta7-zD-70e" firstAttribute="bottom" secondItem="eMU-TT-jtR" secondAttribute="bottom" id="QVw-GJ-P8V"/>
+                <constraint firstItem="XOI-9w-s95" firstAttribute="trailing" secondItem="eMU-TT-jtR" secondAttribute="trailing" id="QgR-R2-pUm"/>
+                <constraint firstItem="Ta7-zD-70e" firstAttribute="leading" secondItem="eMU-TT-jtR" secondAttribute="leading" id="TBt-2y-2Yq"/>
+                <constraint firstItem="eMU-TT-jtR" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="21" id="TYC-Py-6fd"/>
+                <constraint firstItem="XOI-9w-s95" firstAttribute="leading" secondItem="eMU-TT-jtR" secondAttribute="leading" id="TiZ-CW-Kxz"/>
+                <constraint firstAttribute="bottom" secondItem="wxs-uS-Cu0" secondAttribute="bottom" id="aEe-xU-e1O"/>
+                <constraint firstItem="haD-e9-t4z" firstAttribute="top" secondItem="eMU-TT-jtR" secondAttribute="top" id="dGk-e5-QAk"/>
+                <constraint firstAttribute="trailing" secondItem="nyk-44-yLu" secondAttribute="trailing" id="dll-Ko-bje"/>
+                <constraint firstItem="haD-e9-t4z" firstAttribute="trailing" secondItem="eMU-TT-jtR" secondAttribute="trailing" id="hL5-DD-FDb"/>
+                <constraint firstItem="oTF-rB-m2e" firstAttribute="bottom" secondItem="eMU-TT-jtR" secondAttribute="bottom" id="hQI-4L-rWo"/>
+                <constraint firstItem="Kfy-e2-o8n" firstAttribute="trailing" secondItem="eMU-TT-jtR" secondAttribute="trailing" constant="-6" id="jBi-yn-QT6"/>
+                <constraint firstItem="Kfy-e2-o8n" firstAttribute="leading" secondItem="eMU-TT-jtR" secondAttribute="leading" id="qEA-Yq-p4n"/>
+                <constraint firstItem="eMU-TT-jtR" firstAttribute="leading" secondItem="qSH-JV-Wna" secondAttribute="trailing" constant="-3" id="qZ4-UN-aOO"/>
+                <constraint firstAttribute="trailing" secondItem="wxs-uS-Cu0" secondAttribute="trailing" constant="28" id="qcs-4a-Rsa"/>
+                <constraint firstItem="Kfy-e2-o8n" firstAttribute="top" secondItem="eMU-TT-jtR" secondAttribute="top" id="qrd-Vf-Q8V"/>
+                <constraint firstItem="nyk-44-yLu" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="4" id="r8q-wP-lMM"/>
+                <constraint firstItem="oTF-rB-m2e" firstAttribute="top" secondItem="eMU-TT-jtR" secondAttribute="top" id="rq3-pa-PPE"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+        <customObject id="Oyf-AR-UiC" customClass="VideoSentCollectionViewItem" customModule="Sphinx" customModuleProvider="target"/>
+    </objects>
+    <resources>
+        <image name="imagePreloader" width="58" height="58"/>
+        <namedColor name="MainBottomIcons">
+            <color red="0.37254901960784315" green="0.38823529411764707" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PrimaryGreen">
+            <color red="0.28627450980392155" green="0.78823529411764703" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PrimaryRed">
+            <color red="0.92941176470588238" green="0.45490196078431372" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="WashedOutReceivedText">
+            <color red="0.69019607843137254" green="0.71764705882352942" blue="0.73725490196078436" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sphinxWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

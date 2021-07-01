@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner">
+            <connections>
+                <outlet property="loadingWheel" destination="N22-Yv-H0W" id="n49-gJ-sFS"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="cWv-xT-YOl">
+                    <rect key="frame" x="147" y="0.0" width="186" height="50"/>
+                    <subviews>
+                        <progressIndicator wantsLayer="YES" maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="N22-Yv-H0W">
+                            <rect key="frame" x="12" y="17" width="16" height="16"/>
+                        </progressIndicator>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Ho-2W-K40">
+                            <rect key="frame" x="38" y="19" width="135" height="13"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Loading more messages..." id="8Aq-qR-heL">
+                                <font key="font" size="11" name="Roboto-Regular"/>
+                                <color key="textColor" name="SecondaryText"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="N22-Yv-H0W" firstAttribute="centerY" secondItem="cWv-xT-YOl" secondAttribute="centerY" id="BCD-04-w1G"/>
+                        <constraint firstItem="N22-Yv-H0W" firstAttribute="leading" secondItem="cWv-xT-YOl" secondAttribute="leading" constant="12" id="Cjb-GR-BHa"/>
+                        <constraint firstAttribute="trailing" secondItem="5Ho-2W-K40" secondAttribute="trailing" constant="15" id="DjY-5S-bW4"/>
+                        <constraint firstItem="5Ho-2W-K40" firstAttribute="centerY" secondItem="cWv-xT-YOl" secondAttribute="centerY" id="L5R-BH-QHg"/>
+                        <constraint firstItem="5Ho-2W-K40" firstAttribute="leading" secondItem="N22-Yv-H0W" secondAttribute="trailing" constant="12" id="s8F-5I-djJ"/>
+                    </constraints>
+                </customView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="cWv-xT-YOl" secondAttribute="bottom" id="0GA-on-wvT"/>
+                <constraint firstItem="cWv-xT-YOl" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="Efh-65-M23"/>
+                <constraint firstItem="cWv-xT-YOl" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="RYp-Yd-qpQ"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+        <customObject id="Vvf-d2-f7E" customClass="LoadingMoreCollectionViewItem" customModule="Sphinx" customModuleProvider="target"/>
+    </objects>
+    <resources>
+        <namedColor name="SecondaryText">
+            <color red="0.55686274509803924" green="0.58823529411764708" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

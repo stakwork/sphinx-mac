@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="TemplateCollectionViewItem" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="templateImageBack" destination="EQ3-p3-EH5" id="aBO-7I-off"/>
+                <outlet property="templateImageView" destination="qNI-hK-Xlp" id="mVS-Jy-TZi"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="68" height="75"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="EQ3-p3-EH5">
+                    <rect key="frame" x="10" y="14" width="48" height="48"/>
+                    <view key="contentView" id="aU3-J8-p5Y">
+                        <rect key="frame" x="1" y="1" width="46" height="46"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <color key="borderColor" red="0.85882352939999995" green="0.33333333329999998" blue="0.33333333329999998" alpha="0.0" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <color key="fillColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                </box>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qNI-hK-Xlp" customClass="AspectFillNSImageView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="10" y="14" width="48" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="48" id="WbE-MG-lC4"/>
+                        <constraint firstAttribute="height" constant="48" id="ecV-Rt-slc"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="x2q-gN-IDB"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="qNI-hK-Xlp" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="12I-gW-Jsf"/>
+                <constraint firstItem="EQ3-p3-EH5" firstAttribute="leading" secondItem="qNI-hK-Xlp" secondAttribute="leading" id="1ES-ju-rZa"/>
+                <constraint firstItem="EQ3-p3-EH5" firstAttribute="top" secondItem="qNI-hK-Xlp" secondAttribute="top" id="3BW-60-sq1"/>
+                <constraint firstItem="EQ3-p3-EH5" firstAttribute="trailing" secondItem="qNI-hK-Xlp" secondAttribute="trailing" id="oE0-gu-2zt"/>
+                <constraint firstItem="qNI-hK-Xlp" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="qAv-Iv-4Ng"/>
+                <constraint firstItem="EQ3-p3-EH5" firstAttribute="bottom" secondItem="qNI-hK-Xlp" secondAttribute="bottom" id="qXX-fg-CHi"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+        <customObject id="ZGp-hA-I2r" customClass="TemplateCollectionViewItem" customModule="Sphinx" customModuleProvider="target"/>
+    </objects>
+</document>

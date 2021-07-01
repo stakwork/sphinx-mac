@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--New Podcast Player View Controller-->
+        <scene sceneID="oec-Yn-DUc">
+            <objects>
+                <viewController storyboardIdentifier="NewPodcastPlayerViewController" id="6me-Wc-tnD" customClass="NewPodcastPlayerViewController" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="up8-4S-0Xs">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="680"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <box boxType="custom" borderType="none" cornerRadius="4" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="5Xg-Fy-Ztb">
+                                <rect key="frame" x="0.0" y="0.0" width="2" height="680"/>
+                                <view key="contentView" id="rN8-R8-wwA">
+                                    <rect key="frame" x="0.0" y="0.0" width="2" height="680"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="2" id="vxf-77-bmr"/>
+                                </constraints>
+                                <color key="fillColor" name="LightDivider"/>
+                            </box>
+                            <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YXw-uw-c3m">
+                                <rect key="frame" x="2" y="0.0" width="398" height="680"/>
+                                <clipView key="contentView" drawsBackground="NO" id="V0B-nt-jlq">
+                                    <rect key="frame" x="0.0" y="0.0" width="398" height="680"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <collectionView selectable="YES" id="NST-HE-Awn">
+                                            <rect key="frame" x="0.0" y="0.0" width="398" height="680"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="lFV-wZ-ecP">
+                                                <size key="itemSize" width="50" height="50"/>
+                                            </collectionViewFlowLayout>
+                                            <color key="primaryBackgroundColor" name="HeaderBG"/>
+                                        </collectionView>
+                                    </subviews>
+                                    <color key="backgroundColor" name="HeaderBG"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="1hm-Hm-I9g">
+                                    <rect key="frame" x="-100" y="-100" width="233" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="52K-DU-xgR">
+                                    <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="YXw-uw-c3m" secondAttribute="trailing" id="01o-kU-ph6"/>
+                            <constraint firstItem="YXw-uw-c3m" firstAttribute="top" secondItem="up8-4S-0Xs" secondAttribute="top" id="88B-xo-3hO"/>
+                            <constraint firstItem="YXw-uw-c3m" firstAttribute="leading" secondItem="5Xg-Fy-Ztb" secondAttribute="trailing" id="A59-Tb-ril"/>
+                            <constraint firstItem="5Xg-Fy-Ztb" firstAttribute="top" secondItem="up8-4S-0Xs" secondAttribute="top" id="CoK-i4-n7J"/>
+                            <constraint firstAttribute="bottom" secondItem="5Xg-Fy-Ztb" secondAttribute="bottom" id="FbY-N9-ZKC"/>
+                            <constraint firstAttribute="bottom" secondItem="YXw-uw-c3m" secondAttribute="bottom" id="nux-ya-XmZ"/>
+                            <constraint firstItem="5Xg-Fy-Ztb" firstAttribute="leading" secondItem="up8-4S-0Xs" secondAttribute="leading" id="pE5-Ct-Uz5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="playerCollectionView" destination="NST-HE-Awn" id="IWe-O7-BLa"/>
+                    </connections>
+                </viewController>
+                <customObject id="pWG-dx-9uK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="509" y="241"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="HeaderBG">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightDivider">
+            <color red="0.86274509803921573" green="0.8784313725490196" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

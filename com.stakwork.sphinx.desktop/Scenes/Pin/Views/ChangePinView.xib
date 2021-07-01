@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="ChangePinView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="confirmButtonView" destination="4K8-jw-ANK" id="l1a-dH-2TQ"/>
+                <outlet property="confirmNewPinFieldView" destination="pg7-2a-McK" id="JZh-Jb-gde"/>
+                <outlet property="contentView" destination="c22-O7-iKe" id="3ru-FG-Ufu"/>
+                <outlet property="newPinFieldView" destination="skN-XY-mo5" id="Mad-yO-Jj5"/>
+                <outlet property="oldPinFieldView" destination="cYB-xa-Xkf" id="Svo-7M-8Mn"/>
+                <outlet property="titleLabel" destination="AEO-xQ-NSm" id="Ajo-U9-aI7"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="500"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="i10-Qx-Ibo">
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="500"/>
+                    <view key="contentView" id="Sa1-Hm-5R9">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="500"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <color key="fillColor" name="Body"/>
+                </box>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AEO-xQ-NSm">
+                    <rect key="frame" x="133" y="430" width="134" height="24"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="CHANGE PIN" id="Wtt-Uh-uUH">
+                        <font key="font" size="20" name="Montserrat-Regular"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="cYB-xa-Xkf" customClass="SignupSecureFieldView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="70" y="316" width="260" height="68"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="68" id="rNH-96-SFH"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="skN-XY-mo5" customClass="SignupSecureFieldView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="70" y="236" width="260" height="68"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="68" id="cJ4-oM-1ol"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="pg7-2a-McK" customClass="SignupSecureFieldView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="70" y="156" width="260" height="68"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="68" id="fNU-rB-Mog"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="4K8-jw-ANK" customClass="SignupButtonView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="70" y="55" width="260" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="NFY-M6-24x"/>
+                    </constraints>
+                </customView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="4K8-jw-ANK" secondAttribute="trailing" constant="70" id="1rX-VB-8AF"/>
+                <constraint firstAttribute="trailing" secondItem="i10-Qx-Ibo" secondAttribute="trailing" id="2at-Nw-lKV"/>
+                <constraint firstItem="skN-XY-mo5" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" constant="-20" id="8H9-Cl-S5x"/>
+                <constraint firstItem="skN-XY-mo5" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="70" id="BUD-rB-1l6"/>
+                <constraint firstItem="AEO-xQ-NSm" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="46" id="IKo-ud-oNf"/>
+                <constraint firstItem="i10-Qx-Ibo" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="Nm0-qH-Ody"/>
+                <constraint firstAttribute="bottom" secondItem="i10-Qx-Ibo" secondAttribute="bottom" id="Nvn-Rn-TJh"/>
+                <constraint firstItem="skN-XY-mo5" firstAttribute="top" secondItem="cYB-xa-Xkf" secondAttribute="bottom" constant="12" id="Rum-2h-Rj3"/>
+                <constraint firstItem="i10-Qx-Ibo" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="cHq-oW-a8w"/>
+                <constraint firstItem="AEO-xQ-NSm" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="eRR-Xd-YDG"/>
+                <constraint firstItem="pg7-2a-McK" firstAttribute="top" secondItem="skN-XY-mo5" secondAttribute="bottom" constant="12" id="gnU-Sk-gDF"/>
+                <constraint firstAttribute="trailing" secondItem="cYB-xa-Xkf" secondAttribute="trailing" constant="70" id="hMr-Ft-PY3"/>
+                <constraint firstAttribute="trailing" secondItem="skN-XY-mo5" secondAttribute="trailing" constant="70" id="ncT-Hk-WYZ"/>
+                <constraint firstAttribute="bottom" secondItem="4K8-jw-ANK" secondAttribute="bottom" constant="55" id="vIn-6X-vgI"/>
+                <constraint firstItem="4K8-jw-ANK" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="70" id="wCH-2t-CUh"/>
+                <constraint firstItem="pg7-2a-McK" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="70" id="wSH-4K-XSY"/>
+                <constraint firstAttribute="trailing" secondItem="pg7-2a-McK" secondAttribute="trailing" constant="70" id="z9x-H2-K8M"/>
+                <constraint firstItem="cYB-xa-Xkf" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="70" id="zTt-Sc-5o9"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+    </objects>
+    <resources>
+        <namedColor name="Body">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

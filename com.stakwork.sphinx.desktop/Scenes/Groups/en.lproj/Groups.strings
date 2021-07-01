@@ -1,0 +1,22 @@
+
+/* Class = "NSTextFieldCell"; title = "Time to stake: (hours)"; ObjectID = "5Mx-Tg-RiK"; */
+"5Mx-Tg-RiK.title" = "Time to stake: (hours)";
+
+/* Class = "NSTextFieldCell"; title = "Price per message:"; ObjectID = "IDt-GP-9ir"; */
+"IDt-GP-9ir.title" = "Price per message:";
+
+/* Class = "NSButtonCell"; title = "JOIN TRIBE"; ObjectID = "PnB-qY-PbV"; */
+"PnB-qY-PbV.title" = "JOIN TRIBE";
+
+/* Class = "NSTextFieldCell"; title = "Amount to stake:"; ObjectID = "RlC-nx-gKp"; */
+"RlC-nx-gKp.title" = "Amount to stake:";
+
+/* Class = "NSTextFieldCell"; title = "Price to join:"; ObjectID = "fC4-f3-yQO"; */
+"fC4-f3-yQO.title" = "Price to join:";
+
+/* Class = "NSTextFieldCell"; title = "Loading Tribe info..."; ObjectID = "ubU-9I-jji"; */
+"ubU-9I-jji.title" = "Loading Tribe info...";
+
+"uGH-BU-eSo.title" = "SAVE";
+
+"vz1-9I-udo.title" = "Loading info..."

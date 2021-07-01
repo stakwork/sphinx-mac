@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NamePinView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="confirmPinField" destination="Brd-px-Agx" id="n08-xy-HTW"/>
+                <outlet property="contentView" destination="c22-O7-iKe" id="rlO-Tk-AOB"/>
+                <outlet property="continueButton" destination="MDU-D1-F5N" id="Apg-gJ-3VV"/>
+                <outlet property="loadingWheel" destination="v0q-kd-wj2" id="YlA-ka-Sop"/>
+                <outlet property="nameField" destination="guA-Qg-Q8P" id="Juk-en-fKK"/>
+                <outlet property="pinField" destination="ct8-8X-MgX" id="5Fe-G1-cBK"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="500"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="T1r-Rn-bbY">
+                    <rect key="frame" x="129" y="416" width="142" height="24"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="GET STARTED" id="Lgi-ps-p10">
+                        <font key="font" size="20" name="Montserrat-Regular"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="eEp-Bn-bhP">
+                    <rect key="frame" x="70" y="146" width="260" height="228"/>
+                    <subviews>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="guA-Qg-Q8P" customClass="SignupFieldView" customModule="Sphinx" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="160" width="260" height="68"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="68" id="rmc-xO-dyQ"/>
+                            </constraints>
+                        </customView>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="ct8-8X-MgX" customClass="SignupSecureFieldView" customModule="Sphinx" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="80" width="260" height="68"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="68" id="pov-Y1-V47"/>
+                            </constraints>
+                        </customView>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="Brd-px-Agx" customClass="SignupSecureFieldView" customModule="Sphinx" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="260" height="68"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="68" id="vq0-Iy-XaF"/>
+                            </constraints>
+                        </customView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="ct8-8X-MgX" secondAttribute="trailing" id="16H-EF-jDL"/>
+                        <constraint firstAttribute="trailing" secondItem="guA-Qg-Q8P" secondAttribute="trailing" id="BAg-qQ-m9A"/>
+                        <constraint firstItem="Brd-px-Agx" firstAttribute="leading" secondItem="eEp-Bn-bhP" secondAttribute="leading" id="JfU-4W-C8u"/>
+                        <constraint firstItem="ct8-8X-MgX" firstAttribute="top" secondItem="guA-Qg-Q8P" secondAttribute="bottom" constant="12" id="KL6-zu-eCk"/>
+                        <constraint firstAttribute="bottom" secondItem="Brd-px-Agx" secondAttribute="bottom" id="Lxr-BF-n5c"/>
+                        <constraint firstAttribute="trailing" secondItem="Brd-px-Agx" secondAttribute="trailing" id="UEu-6w-VdL"/>
+                        <constraint firstItem="Brd-px-Agx" firstAttribute="top" secondItem="ct8-8X-MgX" secondAttribute="bottom" constant="12" id="fCg-5f-hjk"/>
+                        <constraint firstAttribute="height" constant="228" id="gqD-Sm-9K7"/>
+                        <constraint firstItem="ct8-8X-MgX" firstAttribute="leading" secondItem="eEp-Bn-bhP" secondAttribute="leading" id="hx2-SF-gWs"/>
+                        <constraint firstItem="guA-Qg-Q8P" firstAttribute="top" secondItem="eEp-Bn-bhP" secondAttribute="top" id="kJ4-kG-1pV"/>
+                        <constraint firstItem="guA-Qg-Q8P" firstAttribute="leading" secondItem="eEp-Bn-bhP" secondAttribute="leading" id="mFb-XC-XVj"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="MDU-D1-F5N" customClass="SignupButtonView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="70" y="55" width="260" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="N42-fI-WDw"/>
+                    </constraints>
+                </customView>
+                <progressIndicator hidden="YES" wantsLayer="YES" maxValue="100" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="v0q-kd-wj2">
+                    <rect key="frame" x="85" y="63" width="32" height="32"/>
+                </progressIndicator>
+            </subviews>
+            <constraints>
+                <constraint firstItem="v0q-kd-wj2" firstAttribute="centerY" secondItem="MDU-D1-F5N" secondAttribute="centerY" id="4rV-Pc-PPT"/>
+                <constraint firstAttribute="bottom" secondItem="MDU-D1-F5N" secondAttribute="bottom" constant="55" id="K9Q-Vt-SXy"/>
+                <constraint firstItem="eEp-Bn-bhP" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" constant="-10" id="W4Z-HU-Gn9"/>
+                <constraint firstAttribute="trailing" secondItem="MDU-D1-F5N" secondAttribute="trailing" constant="70" id="X0M-KD-0Hr"/>
+                <constraint firstItem="T1r-Rn-bbY" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="60" id="XBv-Lo-1zN"/>
+                <constraint firstItem="eEp-Bn-bhP" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="70" id="dlW-LC-szK"/>
+                <constraint firstItem="v0q-kd-wj2" firstAttribute="leading" secondItem="MDU-D1-F5N" secondAttribute="leading" constant="15" id="ibb-oR-3c9"/>
+                <constraint firstAttribute="trailing" secondItem="eEp-Bn-bhP" secondAttribute="trailing" constant="70" id="k5E-hv-ZI2"/>
+                <constraint firstItem="MDU-D1-F5N" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="70" id="k5Z-WV-eCU"/>
+                <constraint firstItem="T1r-Rn-bbY" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="p7v-JL-qv9"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+    </objects>
+</document>

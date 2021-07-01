@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="PodcastSatsView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="amountLabel" destination="2bp-RA-bo2" id="518-WP-7ar"/>
+                <outlet property="amountSlider" destination="32c-KP-aib" id="0gO-P3-1CJ"/>
+                <outlet property="contentView" destination="c22-O7-iKe" id="Ado-O9-3Jt"/>
+                <outlet property="suggestedAmountOutOfRangeLabel" destination="pZw-4N-hMT" id="XqH-oq-1g4"/>
+                <outlet property="titleLabel" destination="LWP-Mt-Uu1" id="5fX-58-LlT"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="76"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="bS9-p4-ABZ">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="76"/>
+                    <view key="contentView" id="Ujy-Id-hCX">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="76"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LWP-Mt-Uu1">
+                                <rect key="frame" x="18" y="50" width="150" height="15"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Podcast: sats per minute" id="ThO-Dd-uzX">
+                                    <font key="font" size="13" name="Roboto-Regular"/>
+                                    <color key="textColor" name="Text"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2bp-RA-bo2">
+                                <rect key="frame" x="449" y="47" width="13" height="18"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="0" id="YBp-4v-t3E">
+                                    <font key="font" size="15" name="Roboto-Medium"/>
+                                    <color key="textColor" name="Text"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="32c-KP-aib">
+                                <rect key="frame" x="18" y="24" width="444" height="19"/>
+                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="15" tickMarkPosition="above" sliderType="linear" id="d1G-za-RJ5" customClass="CustomSliderCell" customModule="Sphinx" customModuleProvider="target"/>
+                                <connections>
+                                    <action selector="sliderValueChanged:" target="-2" id="Lse-LQ-pbj"/>
+                                </connections>
+                            </slider>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pZw-4N-hMT">
+                                <rect key="frame" x="139" y="11" width="203" height="10"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Suggested amount (500 sats) is above maximum" id="1w8-QJ-kZh">
+                                    <font key="font" size="9" name="Roboto-Regular"/>
+                                    <color key="textColor" name="SecondaryText"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="2bp-RA-bo2" secondAttribute="trailing" constant="20" id="9r9-5y-btQ"/>
+                            <constraint firstItem="LWP-Mt-Uu1" firstAttribute="top" secondItem="Ujy-Id-hCX" secondAttribute="top" constant="11" id="BKg-wb-JPz"/>
+                            <constraint firstItem="pZw-4N-hMT" firstAttribute="centerX" secondItem="Ujy-Id-hCX" secondAttribute="centerX" id="ItN-tv-Bdi"/>
+                            <constraint firstItem="LWP-Mt-Uu1" firstAttribute="leading" secondItem="Ujy-Id-hCX" secondAttribute="leading" constant="20" id="LiB-Ff-2Dv"/>
+                            <constraint firstItem="2bp-RA-bo2" firstAttribute="top" secondItem="Ujy-Id-hCX" secondAttribute="top" constant="11" id="Uja-h7-KEr"/>
+                            <constraint firstAttribute="bottom" secondItem="pZw-4N-hMT" secondAttribute="bottom" constant="11" id="V4p-eZ-2gP"/>
+                            <constraint firstItem="32c-KP-aib" firstAttribute="leading" secondItem="Ujy-Id-hCX" secondAttribute="leading" constant="20" id="ZEH-BJ-wgV"/>
+                            <constraint firstItem="32c-KP-aib" firstAttribute="top" secondItem="Ujy-Id-hCX" secondAttribute="top" constant="35" id="kKC-rH-pah"/>
+                            <constraint firstAttribute="trailing" secondItem="32c-KP-aib" secondAttribute="trailing" constant="20" id="vgu-sX-CeJ"/>
+                        </constraints>
+                    </view>
+                    <color key="fillColor" name="Body"/>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="bS9-p4-ABZ" secondAttribute="bottom" id="EwP-jG-NrL"/>
+                <constraint firstAttribute="trailing" secondItem="bS9-p4-ABZ" secondAttribute="trailing" id="Lx2-sz-qhr"/>
+                <constraint firstItem="bS9-p4-ABZ" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="XJ2-ZQ-74S"/>
+                <constraint firstItem="bS9-p4-ABZ" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="el7-l2-2Jz"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+    </objects>
+    <resources>
+        <namedColor name="Body">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SecondaryText">
+            <color red="0.55686274509803924" green="0.58823529411764708" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text">
+            <color red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

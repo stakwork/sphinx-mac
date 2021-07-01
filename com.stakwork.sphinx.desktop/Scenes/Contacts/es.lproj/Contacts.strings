@@ -1,0 +1,25 @@
+
+/* Class = "NSTextFieldCell"; title = "Address"; ObjectID = "Jsc-Su-47q"; */
+"Jsc-Su-47q.title" = "Dirección *";
+
+/* Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "bfZ-y3-PQn"; */
+"bfZ-y3-PQn.title" = "Alias *";
+
+"aRB-lU-d5K.title" = "Pista de Ruta";
+
+/* Class = "NSButtonCell"; title = "SAVE TO CONTACTS"; ObjectID = "qpE-NU-eH4"; */
+"qpE-NU-eH4.title" = "GUARDAR CONTACTO";
+
+"7G5-aj-aaF.title" = "Nuevo en Sphinx";
+
+"ocm-ie-0pU.title" = "Usuario de Sphinx";
+
+"OeN-5Y-GaV.text" = "ALIAS";
+
+"YQe-Lu-Lzg.text" = "INCLUYE UN MENSAJE";
+
+"I6B-p7-hv8.text" = "COSTO ESTIMADO";
+
+"NsH-mO-gPm.text" = "sat";
+
+"MQf-ub-eCW.title" = "Crear Invitación";

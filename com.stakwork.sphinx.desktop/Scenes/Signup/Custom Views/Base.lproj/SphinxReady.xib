@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="SphinxReady" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="centerLabel" destination="wNm-6r-Hj2" id="iFC-dD-3Dp"/>
+                <outlet property="contentView" destination="c22-O7-iKe" id="zvd-U9-d6p"/>
+                <outlet property="continueButton" destination="XoO-Gi-PLR" id="VV9-5p-ZBF"/>
+                <outlet property="loadingWheel" destination="Mzv-vU-vkm" id="Okp-4m-yXz"/>
+                <outlet property="topLabel" destination="uZP-Zi-GdH" id="qqi-DC-K3o"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wNm-6r-Hj2">
+                    <rect key="frame" x="135" y="272" width="211" height="57"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" id="5fu-XB-mbg">
+                        <font key="font" size="16" name="Roboto-Regular"/>
+                        <string key="title">You can send messages,
+spend 1000 sats,
+or receive up to 10 000 sats.</string>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uZP-Zi-GdH">
+                    <rect key="frame" x="155" y="418" width="170" height="48"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" id="SsX-VS-VQ6">
+                        <font key="font" size="20" name="Montserrat-Regular"/>
+                        <string key="title">YOU'RE READY
+TO USE SPHINX!</string>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="XoO-Gi-PLR" customClass="SignupButtonView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="70" y="55" width="340" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="OOC-U4-EBk"/>
+                    </constraints>
+                </customView>
+                <progressIndicator hidden="YES" wantsLayer="YES" maxValue="100" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="Mzv-vU-vkm">
+                    <rect key="frame" x="85" y="63" width="32" height="32"/>
+                </progressIndicator>
+            </subviews>
+            <constraints>
+                <constraint firstItem="wNm-6r-Hj2" firstAttribute="top" secondItem="uZP-Zi-GdH" secondAttribute="bottom" constant="89" id="32o-aZ-OHS"/>
+                <constraint firstItem="Mzv-vU-vkm" firstAttribute="centerY" secondItem="XoO-Gi-PLR" secondAttribute="centerY" id="64Y-XI-tob"/>
+                <constraint firstItem="XoO-Gi-PLR" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="70" id="83E-J6-yqP"/>
+                <constraint firstItem="uZP-Zi-GdH" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="AFC-Lj-yFp"/>
+                <constraint firstItem="wNm-6r-Hj2" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="IRK-hU-mIY"/>
+                <constraint firstAttribute="bottom" secondItem="XoO-Gi-PLR" secondAttribute="bottom" constant="55" id="Psg-W7-FTz"/>
+                <constraint firstItem="Mzv-vU-vkm" firstAttribute="leading" secondItem="XoO-Gi-PLR" secondAttribute="leading" constant="15" id="chp-0X-fCl"/>
+                <constraint firstItem="wNm-6r-Hj2" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="edB-d1-gfT"/>
+                <constraint firstAttribute="trailing" secondItem="XoO-Gi-PLR" secondAttribute="trailing" constant="70" id="ucH-BJ-RUG"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+    </objects>
+</document>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner">
+            <connections>
+                <outlet property="pubKeyLabel" destination="7P4-QC-ICf" id="bU5-a4-xFW"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <collectionViewItem id="tm2-nQ-Ml5" customClass="KeychainRestoreCollectionViewItem" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="pubKeyLabel" destination="7P4-QC-ICf" id="dAl-cR-B9V"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="2ky-iS-VzT"/>
+            </connections>
+        </collectionViewItem>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7P4-QC-ICf">
+                    <rect key="frame" x="14" y="23" width="34" height="14"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingMiddle" title="Label" id="H1w-AM-jQP">
+                        <font key="font" size="12" name="Roboto-Medium"/>
+                        <color key="textColor" name="Text"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="70Y-uN-2VV">
+                    <rect key="frame" x="359" y="19" width="27" height="23"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="" id="L5n-So-TK3">
+                        <font key="font" size="23" name="MaterialIcons-Regular"/>
+                        <color key="textColor" name="PrimaryBlue"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="pHP-Fk-yKT">
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="1"/>
+                    <view key="contentView" id="H4c-Mb-SVe">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="1"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="8Z8-2T-kav"/>
+                    </constraints>
+                    <color key="fillColor" name="LightDivider"/>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstItem="7P4-QC-ICf" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="5gL-rL-iU9"/>
+                <constraint firstItem="70Y-uN-2VV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7P4-QC-ICf" secondAttribute="trailing" constant="10" id="Fk7-Gw-qWL"/>
+                <constraint firstAttribute="trailing" secondItem="70Y-uN-2VV" secondAttribute="trailing" constant="16" id="N0X-RV-SNt"/>
+                <constraint firstItem="pHP-Fk-yKT" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="NKV-nA-xwB"/>
+                <constraint firstAttribute="trailing" secondItem="pHP-Fk-yKT" secondAttribute="trailing" id="Q9h-lq-RAy"/>
+                <constraint firstItem="70Y-uN-2VV" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="U9y-VS-K2L"/>
+                <constraint firstItem="7P4-QC-ICf" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="16" id="eM5-mu-qbD"/>
+                <constraint firstAttribute="bottom" secondItem="pHP-Fk-yKT" secondAttribute="bottom" id="nHq-2K-5fX"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+    </objects>
+    <resources>
+        <namedColor name="LightDivider">
+            <color red="0.86274509803921573" green="0.8784313725490196" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PrimaryBlue">
+            <color red="0.38039215686274508" green="0.54117647058823526" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text">
+            <color red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

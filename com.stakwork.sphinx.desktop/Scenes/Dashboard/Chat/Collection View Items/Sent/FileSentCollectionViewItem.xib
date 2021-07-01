@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner">
+            <connections>
+                <outlet property="attachmentPriceView" destination="SdJ-uG-i76" id="zb1-Gr-On2"/>
+                <outlet property="bubbleView" destination="Eel-yf-Ipe" id="avN-H4-Vqf"/>
+                <outlet property="bubbleViewHeight" destination="rxi-AG-beX" id="pwa-um-KCM"/>
+                <outlet property="dateLabel" destination="Z28-np-sCm" id="YXc-BT-WZA"/>
+                <outlet property="downloadButton" destination="Wyu-z9-EsL" id="aY1-Tg-GwP"/>
+                <outlet property="fileInfoContainer" destination="mH5-TL-gVZ" id="laQ-fQ-4pq"/>
+                <outlet property="fileNameLabel" destination="qYG-9c-avC" id="VSp-Af-yFY"/>
+                <outlet property="fileSizeLabel" destination="Cnd-Ls-9fb" id="wHi-tQ-U9I"/>
+                <outlet property="headerView" destination="Idb-kH-Ujn" id="BvK-h8-TDK"/>
+                <outlet property="leftLineContainer" destination="thK-tV-cTn" id="U9s-jw-YVX"/>
+                <outlet property="loadingWheel" destination="DWN-r5-9ds" id="SCz-dJ-whN"/>
+                <outlet property="lockSign" destination="bea-ld-4wt" id="2wI-3K-60o"/>
+                <outlet property="messageBubbleView" destination="9Kb-PI-gy5" id="gn7-XA-K76"/>
+                <outlet property="rightLineContainer" destination="Lco-2c-5pj" id="amH-dU-sks"/>
+                <outlet property="seenSign" destination="Et4-60-3iR" id="Njr-7R-54f"/>
+                <outlet property="topMarginConstraint" destination="JBd-wN-By5" id="hBJ-GP-Bo1"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="371" height="300"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="thK-tV-cTn">
+                    <rect key="frame" x="76" y="0.0" width="3" height="300"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="3" id="yEE-ew-Uvo"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Lco-2c-5pj">
+                    <rect key="frame" x="340" y="0.0" width="3" height="300"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="3" id="Uym-is-hSq"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Idb-kH-Ujn">
+                    <rect key="frame" x="112" y="279" width="259" height="17"/>
+                    <subviews>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z28-np-sCm">
+                            <rect key="frame" x="199" y="4" width="47" height="11"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="06:05 AM" id="l9j-o3-oNm">
+                                <font key="font" size="10" name="Roboto-Regular"/>
+                                <color key="textColor" name="WashedOutReceivedText"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bea-ld-4wt">
+                            <rect key="frame" x="184" y="5" width="16" height="12"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="lock" id="4hz-Pt-xnm">
+                                <font key="font" size="12" name="MaterialIcons-Regular"/>
+                                <color key="textColor" name="WashedOutReceivedText"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Et4-60-3iR">
+                            <rect key="frame" x="172" y="5" width="16" height="12"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="flash_on" id="N1L-Wm-Iuj">
+                                <font key="font" size="12" name="MaterialIcons-Regular"/>
+                                <color key="textColor" name="PrimaryGreen"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="Et4-60-3iR" firstAttribute="centerY" secondItem="bea-ld-4wt" secondAttribute="centerY" id="YIW-rN-L92"/>
+                        <constraint firstItem="bea-ld-4wt" firstAttribute="leading" secondItem="Et4-60-3iR" secondAttribute="trailing" id="Yii-P8-Yi8"/>
+                        <constraint firstItem="Z28-np-sCm" firstAttribute="leading" secondItem="bea-ld-4wt" secondAttribute="trailing" constant="3" id="eMp-Z1-7X8"/>
+                        <constraint firstAttribute="trailing" secondItem="Z28-np-sCm" secondAttribute="trailing" constant="15" id="l0m-Mj-O8E"/>
+                        <constraint firstItem="bea-ld-4wt" firstAttribute="centerY" secondItem="Z28-np-sCm" secondAttribute="centerY" constant="-1" id="mRu-xK-30D"/>
+                        <constraint firstAttribute="height" constant="17" id="oK9-tx-QhI"/>
+                        <constraint firstItem="Z28-np-sCm" firstAttribute="top" secondItem="Idb-kH-Ujn" secondAttribute="top" constant="2" id="yje-sO-qh1"/>
+                    </constraints>
+                </customView>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rLa-Uv-kgC" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="93" y="261" width="22" height="18"/>
+                    <buttonCell key="cell" type="bevel" title="" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="0aL-gU-IdG" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="18" name="MaterialIcons-Regular"/>
+                    </buttonCell>
+                    <color key="contentTintColor" name="WashedOutReceivedText"/>
+                    <connections>
+                        <action selector="optionsButtonClicked:" target="-2" id="eUW-QZ-4aS"/>
+                    </connections>
+                </button>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Eel-yf-Ipe" customClass="FileBubbleView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="112" y="219" width="250" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="250" id="VA7-qI-bem"/>
+                        <constraint firstAttribute="height" constant="60" id="rxi-AG-beX"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="mH5-TL-gVZ">
+                    <rect key="frame" x="112" y="219" width="244" height="60"/>
+                    <subviews>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="s8i-Uq-dRe">
+                            <rect key="frame" x="18" y="15" width="34" height="30"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="insert_drive_file" id="UQc-im-Gqq">
+                                <font key="font" size="30" name="MaterialIcons-Regular"/>
+                                <color key="textColor" name="Text"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qYG-9c-avC">
+                            <rect key="frame" x="58" y="30" width="10" height="15"/>
+                            <textFieldCell key="cell" lineBreakMode="truncatingMiddle" title="-" id="USo-4F-QSk">
+                                <font key="font" size="13" name="Roboto-Medium"/>
+                                <color key="textColor" name="Text"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cnd-Ls-9fb">
+                            <rect key="frame" x="58" y="15" width="25" height="13"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="0 kb" id="P6q-4O-cxh">
+                                <font key="font" size="11" name="Roboto-Regular"/>
+                                <color key="textColor" name="Text"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wyu-z9-EsL" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                            <rect key="frame" x="205" y="18" width="29" height="25"/>
+                            <buttonCell key="cell" type="square" title="" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="3s8-vc-cLe">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" size="25" name="MaterialIcons-Regular"/>
+                            </buttonCell>
+                            <color key="contentTintColor" name="Text"/>
+                            <connections>
+                                <action selector="downloadButtonClicked:" target="-2" id="WkG-Qa-RhN"/>
+                            </connections>
+                        </button>
+                        <progressIndicator wantsLayer="YES" maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="DWN-r5-9ds">
+                            <rect key="frame" x="212" y="22" width="16" height="16"/>
+                        </progressIndicator>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="DWN-r5-9ds" firstAttribute="centerY" secondItem="Wyu-z9-EsL" secondAttribute="centerY" id="6cA-Wg-igP"/>
+                        <constraint firstItem="qYG-9c-avC" firstAttribute="leading" secondItem="s8i-Uq-dRe" secondAttribute="trailing" constant="10" id="An1-tQ-UaK"/>
+                        <constraint firstItem="Cnd-Ls-9fb" firstAttribute="centerY" secondItem="mH5-TL-gVZ" secondAttribute="centerY" constant="9" id="Mn8-XK-Ag3"/>
+                        <constraint firstItem="s8i-Uq-dRe" firstAttribute="leading" secondItem="mH5-TL-gVZ" secondAttribute="leading" constant="20" id="Pdk-sv-OgE"/>
+                        <constraint firstItem="Wyu-z9-EsL" firstAttribute="centerY" secondItem="mH5-TL-gVZ" secondAttribute="centerY" id="cbN-Mz-2RK"/>
+                        <constraint firstItem="DWN-r5-9ds" firstAttribute="centerX" secondItem="Wyu-z9-EsL" secondAttribute="centerX" id="dfC-Pl-CWZ"/>
+                        <constraint firstItem="s8i-Uq-dRe" firstAttribute="centerY" secondItem="mH5-TL-gVZ" secondAttribute="centerY" id="eBj-rj-T3h"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qYG-9c-avC" secondAttribute="trailing" constant="40" id="j4B-ug-JUp"/>
+                        <constraint firstAttribute="trailing" secondItem="Wyu-z9-EsL" secondAttribute="trailing" constant="10" id="jAw-oJ-Lvz"/>
+                        <constraint firstItem="qYG-9c-avC" firstAttribute="centerY" secondItem="mH5-TL-gVZ" secondAttribute="centerY" constant="-7" id="lGc-gY-YVd"/>
+                        <constraint firstItem="Cnd-Ls-9fb" firstAttribute="leading" secondItem="s8i-Uq-dRe" secondAttribute="trailing" constant="10" id="rAc-aS-Tlq"/>
+                        <constraint firstAttribute="height" constant="60" id="zeL-mK-O54"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="9Kb-PI-gy5" customClass="MessageBubbleView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="112" y="4" width="250" height="213"/>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="SdJ-uG-i76" customClass="AttachmentPriceView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="112" y="239" width="244" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="EqY-do-Bki"/>
+                    </constraints>
+                </customView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="mH5-TL-gVZ" firstAttribute="bottom" secondItem="Eel-yf-Ipe" secondAttribute="bottom" id="9fp-iX-5N8"/>
+                <constraint firstItem="thK-tV-cTn" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="75.5" id="APw-SI-Rg1"/>
+                <constraint firstItem="thK-tV-cTn" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="BBc-zt-a98"/>
+                <constraint firstItem="Idb-kH-Ujn" firstAttribute="leading" secondItem="Eel-yf-Ipe" secondAttribute="leading" id="BPF-LI-IHK"/>
+                <constraint firstAttribute="bottom" secondItem="9Kb-PI-gy5" secondAttribute="bottom" constant="4" id="DL2-cr-ueg"/>
+                <constraint firstItem="rLa-Uv-kgC" firstAttribute="top" secondItem="Eel-yf-Ipe" secondAttribute="top" id="Dq8-mk-tcV"/>
+                <constraint firstItem="mH5-TL-gVZ" firstAttribute="leading" secondItem="Eel-yf-Ipe" secondAttribute="leading" id="Gdg-Yz-YYY"/>
+                <constraint firstItem="Idb-kH-Ujn" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="4" id="HDE-MU-UwT"/>
+                <constraint firstItem="Eel-yf-Ipe" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="21" id="JBd-wN-By5"/>
+                <constraint firstItem="9Kb-PI-gy5" firstAttribute="leading" secondItem="Eel-yf-Ipe" secondAttribute="leading" id="Jad-KV-K1Y"/>
+                <constraint firstItem="mH5-TL-gVZ" firstAttribute="trailing" secondItem="Eel-yf-Ipe" secondAttribute="trailing" constant="-6" id="NLq-Y8-c6A"/>
+                <constraint firstAttribute="trailing" secondItem="Lco-2c-5pj" secondAttribute="trailing" constant="28" id="STJ-TU-B9X"/>
+                <constraint firstAttribute="bottom" secondItem="Lco-2c-5pj" secondAttribute="bottom" id="ShA-R0-pde"/>
+                <constraint firstItem="9Kb-PI-gy5" firstAttribute="trailing" secondItem="Eel-yf-Ipe" secondAttribute="trailing" id="WXe-Ck-W41"/>
+                <constraint firstAttribute="trailing" secondItem="Idb-kH-Ujn" secondAttribute="trailing" id="ePu-sR-5p2"/>
+                <constraint firstItem="Idb-kH-Ujn" firstAttribute="leading" secondItem="rLa-Uv-kgC" secondAttribute="trailing" constant="-3" id="gbx-Ph-BFG"/>
+                <constraint firstAttribute="bottom" secondItem="thK-tV-cTn" secondAttribute="bottom" id="iVp-Jg-mnx"/>
+                <constraint firstItem="SdJ-uG-i76" firstAttribute="trailing" secondItem="Eel-yf-Ipe" secondAttribute="trailing" constant="-6" id="jpw-kL-A8K"/>
+                <constraint firstItem="SdJ-uG-i76" firstAttribute="leading" secondItem="Eel-yf-Ipe" secondAttribute="leading" id="lAc-xe-HqO"/>
+                <constraint firstItem="9Kb-PI-gy5" firstAttribute="top" secondItem="Eel-yf-Ipe" secondAttribute="bottom" constant="2" id="mdw-xV-5OS"/>
+                <constraint firstItem="Lco-2c-5pj" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="rRF-5G-2zV"/>
+                <constraint firstAttribute="trailing" secondItem="Eel-yf-Ipe" secondAttribute="trailing" constant="9" id="sxA-KL-90a"/>
+                <constraint firstItem="SdJ-uG-i76" firstAttribute="top" secondItem="Eel-yf-Ipe" secondAttribute="top" id="v1w-f6-Pg1"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+        <customObject id="U0k-Cf-2u0" customClass="FileSentCollectionViewItem" customModule="Sphinx" customModuleProvider="target"/>
+    </objects>
+    <resources>
+        <namedColor name="PrimaryGreen">
+            <color red="0.28627450980392155" green="0.78823529411764703" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text">
+            <color red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="WashedOutReceivedText">
+            <color red="0.69019607843137254" green="0.71764705882352942" blue="0.73725490196078436" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

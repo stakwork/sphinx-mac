@@ -1,0 +1,29 @@
+
+/* Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "3Qv-80-S8i"; */
+"3Qv-80-S8i.title" = "Nombre de Usuario";
+
+/* Class = "NSTextFieldCell"; title = "Meeting Server"; ObjectID = "Tci-hQ-YkV"; */
+"Tci-hQ-YkV.title" = "Servidor de Llamadas";
+
+/* Class = "NSTextFieldCell"; title = "Address"; ObjectID = "gvM-01-89w"; */
+"gvM-01-89w.title" = "Dirección";
+
+"lhX-D8-z6l.title" = "Pista de Ruta";
+
+/* Class = "NSTextFieldCell"; title = "Share my profile photo\nwith contacts"; ObjectID = "pmw-w3-a0T"; */
+"pmw-w3-a0T.title" = "Compartir mi foto de perfil con mis contactos";
+
+"RnC-xs-5Nh.title" = "Sincronizar otros dispositivos";
+
+"hwD-l5-buT.title" = "Guardar sus claves";
+
+/* Class = "NSButtonCell"; title = "SAVE CHANGES"; ObjectID = "qhk-bW-FZv"; */
+"qhk-bW-FZv.title" = "Guardar cambios";
+
+/* Class = "NSButtonCell"; title = "Want to switch to a new device? Export Keys"; ObjectID = "tTV-fP-FrT"; */
+"tTV-fP-FrT.title" = "¿Deseas cambiar de dispositivo? Exportar Claves";
+
+/* Class = "NSTextFieldCell"; title = "Server URL"; ObjectID = "wRd-MN-U8t"; */
+"wRd-MN-U8t.title" = "URL del servidor";
+
+"0cE-Ar-9CG.title" = "Cambiar PIN";

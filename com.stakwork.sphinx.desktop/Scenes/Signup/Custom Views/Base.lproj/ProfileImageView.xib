@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="ProfileImageView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="backButton" destination="SUe-1w-6uj" id="g6S-uE-EcZ"/>
+                <outlet property="contentView" destination="c22-O7-iKe" id="WjQ-uh-CPB"/>
+                <outlet property="continueButton" destination="xbe-Vz-j2j" id="e8O-I2-gxS"/>
+                <outlet property="draggingView" destination="hwb-Nh-8tx" id="zqT-xy-uc2"/>
+                <outlet property="loadingWheel" destination="DYA-Vc-AHK" id="Y84-t2-qq3"/>
+                <outlet property="nameLabel" destination="FmV-3o-eeD" id="oA0-hD-hZy"/>
+                <outlet property="profileImageView" destination="KGl-KO-a1g" id="NdQ-yg-Q0f"/>
+                <outlet property="selectImageButtonView" destination="6Xh-o3-Qhb" id="AZ2-bi-rEc"/>
+                <outlet property="uploadingLabel" destination="zMz-Wt-b4T" id="66X-cZ-pj0"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="500"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cbw-Ma-fEL">
+                    <rect key="frame" x="54" y="452" width="40" height="19"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Back" id="T6D-wp-DCt">
+                        <font key="font" size="16" name="Roboto-Regular"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KlB-tP-yL7">
+                    <rect key="frame" x="18" y="451" width="25" height="21"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="" id="I76-8s-S1P">
+                        <font key="font" size="21" name="MaterialIcons-Regular"/>
+                        <color key="textColor" name="SecondaryText"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SUe-1w-6uj" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="5" y="436" width="102" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="G5I-pO-zjn"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="YLk-9E-Erj">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="21" name="MaterialIcons-Regular"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="backButtonClicked:" target="-2" id="AHL-6U-Hj2"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FmV-3o-eeD">
+                    <rect key="frame" x="79" y="391" width="243" height="35"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Tomas Timinskas" id="SND-qi-gnu">
+                        <font key="font" size="30" name="Roboto-Regular"/>
+                        <color key="textColor" red="0.41960784313725491" green="0.47843137254901957" blue="0.55294117647058827" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KGl-KO-a1g" customClass="AspectFillNSImageView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="136" y="236" width="128" height="128"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="128" id="Vn3-82-N1R"/>
+                        <constraint firstAttribute="width" constant="128" id="d8O-Nt-mrX"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="userAvatar" id="bMs-rZ-alM"/>
+                    <color key="contentTintColor" red="0.33333333333333331" green="0.38039215686274508" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                            <real key="value" value="64"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="xbe-Vz-j2j" customClass="SignupButtonView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="70" y="55" width="260" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="YZf-ll-FaE"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="6Xh-o3-Qhb" customClass="SignupButtonView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="70" y="118" width="260" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="WoH-7f-3jz"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="hwb-Nh-8tx" customClass="DraggingDestinationView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="128" y="228" width="144" height="144"/>
+                </customView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CXz-yl-N0k">
+                    <rect key="frame" x="123" y="202" width="155" height="19"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Drag and drop Image" id="tso-SX-REb">
+                        <font key="font" size="16" name="Roboto-Regular"/>
+                        <color key="textColor" red="0.33333333333333331" green="0.38039215686274508" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zMz-Wt-b4T">
+                    <rect key="frame" x="198" y="176" width="4" height="13"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" id="6VN-SQ-qG8">
+                        <font key="font" size="11" name="Roboto-Regular"/>
+                        <color key="textColor" name="WashedOutReceivedText"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <progressIndicator hidden="YES" wantsLayer="YES" maxValue="100" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="DYA-Vc-AHK">
+                    <rect key="frame" x="85" y="63" width="32" height="32"/>
+                </progressIndicator>
+            </subviews>
+            <constraints>
+                <constraint firstItem="SUe-1w-6uj" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="5" id="154-Hu-h3m"/>
+                <constraint firstItem="hwb-Nh-8tx" firstAttribute="top" secondItem="FmV-3o-eeD" secondAttribute="bottom" constant="19" id="5xZ-MM-cV2"/>
+                <constraint firstItem="hwb-Nh-8tx" firstAttribute="bottom" secondItem="KGl-KO-a1g" secondAttribute="bottom" constant="8" id="7rm-sz-kNG"/>
+                <constraint firstItem="DYA-Vc-AHK" firstAttribute="leading" secondItem="xbe-Vz-j2j" secondAttribute="leading" constant="15" id="8av-yR-WKh"/>
+                <constraint firstItem="CXz-yl-N0k" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="9Ai-ky-72f"/>
+                <constraint firstItem="DYA-Vc-AHK" firstAttribute="centerY" secondItem="xbe-Vz-j2j" secondAttribute="centerY" id="G5F-Br-ztB"/>
+                <constraint firstItem="Cbw-Ma-fEL" firstAttribute="leading" secondItem="KlB-tP-yL7" secondAttribute="trailing" constant="15" id="GJm-5l-oT2"/>
+                <constraint firstItem="FmV-3o-eeD" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="GpC-O3-5xF"/>
+                <constraint firstItem="SUe-1w-6uj" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="14" id="TEB-Ed-h5Z"/>
+                <constraint firstItem="SUe-1w-6uj" firstAttribute="trailing" secondItem="Cbw-Ma-fEL" secondAttribute="trailing" constant="15" id="TRd-zv-qD3"/>
+                <constraint firstItem="6Xh-o3-Qhb" firstAttribute="top" secondItem="zMz-Wt-b4T" secondAttribute="bottom" constant="10" id="WOm-kf-Ra8"/>
+                <constraint firstItem="SUe-1w-6uj" firstAttribute="centerY" secondItem="KlB-tP-yL7" secondAttribute="centerY" id="aeL-hv-YGG"/>
+                <constraint firstItem="SUe-1w-6uj" firstAttribute="leading" secondItem="KlB-tP-yL7" secondAttribute="leading" constant="-15" id="ajk-bd-TF1"/>
+                <constraint firstAttribute="bottom" secondItem="xbe-Vz-j2j" secondAttribute="bottom" constant="55" id="bJ4-Dd-XW3"/>
+                <constraint firstItem="xbe-Vz-j2j" firstAttribute="top" secondItem="6Xh-o3-Qhb" secondAttribute="bottom" constant="15" id="ieP-t2-oxG"/>
+                <constraint firstItem="6Xh-o3-Qhb" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="70" id="je3-CD-c8e"/>
+                <constraint firstAttribute="trailing" secondItem="xbe-Vz-j2j" secondAttribute="trailing" constant="70" id="kOM-iE-xFC"/>
+                <constraint firstItem="Cbw-Ma-fEL" firstAttribute="centerY" secondItem="KlB-tP-yL7" secondAttribute="centerY" id="mDz-2I-cGK"/>
+                <constraint firstAttribute="trailing" secondItem="6Xh-o3-Qhb" secondAttribute="trailing" constant="70" id="nHJ-x3-40A"/>
+                <constraint firstItem="zMz-Wt-b4T" firstAttribute="centerX" secondItem="xbe-Vz-j2j" secondAttribute="centerX" id="ndp-Pl-gb1"/>
+                <constraint firstItem="KGl-KO-a1g" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="oAB-61-4A7"/>
+                <constraint firstItem="xbe-Vz-j2j" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="70" id="pFj-q6-buH"/>
+                <constraint firstItem="hwb-Nh-8tx" firstAttribute="trailing" secondItem="KGl-KO-a1g" secondAttribute="trailing" constant="8" id="pIB-af-pga"/>
+                <constraint firstItem="hwb-Nh-8tx" firstAttribute="leading" secondItem="KGl-KO-a1g" secondAttribute="leading" constant="-8" id="sGm-sR-B0p"/>
+                <constraint firstItem="hwb-Nh-8tx" firstAttribute="top" secondItem="KGl-KO-a1g" secondAttribute="top" constant="-8" id="u7k-sb-wve"/>
+                <constraint firstItem="CXz-yl-N0k" firstAttribute="top" secondItem="hwb-Nh-8tx" secondAttribute="bottom" constant="7" id="vpS-hf-RQq"/>
+                <constraint firstItem="KGl-KO-a1g" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" constant="-50" id="yJj-fD-Lel"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="userAvatar" width="128" height="128"/>
+        <namedColor name="SecondaryText">
+            <color red="0.55686274509803924" green="0.58823529411764708" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="WashedOutReceivedText">
+            <color red="0.69019607843137254" green="0.71764705882352942" blue="0.73725490196078436" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

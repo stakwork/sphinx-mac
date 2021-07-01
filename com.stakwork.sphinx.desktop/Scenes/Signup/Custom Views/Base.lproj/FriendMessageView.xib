@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="FriendMessageView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="c22-O7-iKe" id="Gth-mu-nHN"/>
+                <outlet property="continueButtonView" destination="pDa-bm-l7s" id="Dh3-Th-31B"/>
+                <outlet property="friendMessage" destination="aaY-jS-C7q" id="DbM-7e-66N"/>
+                <outlet property="friendName" destination="vfy-sk-Ddu" id="Qde-ft-lhH"/>
+                <outlet property="initialsCircle" destination="1eM-bH-ggt" id="Ksg-jK-ASI"/>
+                <outlet property="initialsLabel" destination="aKK-8e-7dx" id="sUw-eS-lQL"/>
+                <outlet property="loadingWheel" destination="TaN-sy-KDW" id="aLv-j4-i9e"/>
+                <outlet property="titleLabel" destination="fYR-Ua-8zL" id="vO8-Yf-1Qr"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="800" height="500"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fYR-Ua-8zL">
+                    <rect key="frame" x="202" y="388" width="396" height="39"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="A message from your friend..." id="Gt2-97-fdI">
+                        <font key="font" size="30" name="Roboto-Light"/>
+                        <color key="textColor" red="0.41960784313725491" green="0.47843137254901957" blue="0.55294117647058827" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <box boxType="custom" borderType="none" cornerRadius="56" translatesAutoresizingMaskIntoConstraints="NO" id="1eM-bH-ggt">
+                    <rect key="frame" x="344" y="236" width="112" height="112"/>
+                    <view key="contentView" id="10e-qO-xSG">
+                        <rect key="frame" x="0.0" y="0.0" width="112" height="112"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aKK-8e-7dx">
+                                <rect key="frame" x="28" y="32" width="57" height="55"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="TT" id="kLe-Hp-pAO">
+                                    <font key="font" size="45" name="Montserrat-Regular"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="aKK-8e-7dx" firstAttribute="centerX" secondItem="10e-qO-xSG" secondAttribute="centerX" id="HA1-Qj-CYT"/>
+                            <constraint firstItem="aKK-8e-7dx" firstAttribute="centerY" secondItem="10e-qO-xSG" secondAttribute="centerY" constant="-3" id="g6S-VB-RdH"/>
+                        </constraints>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="112" id="3EZ-rE-OQW"/>
+                        <constraint firstAttribute="width" constant="112" id="Ycs-c2-32e"/>
+                    </constraints>
+                    <color key="fillColor" red="1" green="0.32156862749999998" blue="0.32156862749999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </box>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vfy-sk-Ddu">
+                    <rect key="frame" x="328" y="182" width="144" height="24"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Susan Johnson" id="HiF-wN-XLl">
+                        <font key="font" size="20" name="Roboto-Medium"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aaY-jS-C7q">
+                    <rect key="frame" x="323" y="154" width="155" height="20"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Welcome to Sphinx!" id="MCO-GD-uZt">
+                        <font key="font" size="17" name="Roboto-Regular"/>
+                        <color key="textColor" name="SecondaryText"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="pDa-bm-l7s" customClass="SignupButtonView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="270" y="55" width="260" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="gVQ-fn-mqi"/>
+                        <constraint firstAttribute="width" constant="260" id="oGQ-o9-5ym"/>
+                    </constraints>
+                </customView>
+                <progressIndicator hidden="YES" wantsLayer="YES" maxValue="100" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="TaN-sy-KDW">
+                    <rect key="frame" x="285" y="63" width="32" height="32"/>
+                </progressIndicator>
+            </subviews>
+            <constraints>
+                <constraint firstItem="TaN-sy-KDW" firstAttribute="leading" secondItem="pDa-bm-l7s" secondAttribute="leading" constant="15" id="8VR-7e-T7W"/>
+                <constraint firstItem="1eM-bH-ggt" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="BtL-tA-6e8"/>
+                <constraint firstItem="1eM-bH-ggt" firstAttribute="top" secondItem="fYR-Ua-8zL" secondAttribute="bottom" constant="40" id="Bxa-Y5-ZDN"/>
+                <constraint firstItem="vfy-sk-Ddu" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="T9h-i2-nuO"/>
+                <constraint firstItem="aaY-jS-C7q" firstAttribute="top" secondItem="vfy-sk-Ddu" secondAttribute="bottom" constant="8" id="Vb6-ku-Sji"/>
+                <constraint firstItem="TaN-sy-KDW" firstAttribute="centerY" secondItem="pDa-bm-l7s" secondAttribute="centerY" id="XsE-ne-fgi"/>
+                <constraint firstItem="pDa-bm-l7s" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="eG7-By-Vfl"/>
+                <constraint firstItem="1eM-bH-ggt" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" constant="-42" id="gHY-2u-AA4"/>
+                <constraint firstItem="vfy-sk-Ddu" firstAttribute="top" secondItem="1eM-bH-ggt" secondAttribute="bottom" constant="30" id="mly-5D-Afp"/>
+                <constraint firstAttribute="bottom" secondItem="pDa-bm-l7s" secondAttribute="bottom" constant="55" id="npC-pP-fwf"/>
+                <constraint firstItem="aaY-jS-C7q" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="rOK-Gc-AIU"/>
+                <constraint firstItem="fYR-Ua-8zL" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="yZf-iy-rFl"/>
+            </constraints>
+            <point key="canvasLocation" x="191" y="274.5"/>
+        </customView>
+    </objects>
+    <resources>
+        <namedColor name="SecondaryText">
+            <color red="0.55686274509803924" green="0.58823529411764708" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

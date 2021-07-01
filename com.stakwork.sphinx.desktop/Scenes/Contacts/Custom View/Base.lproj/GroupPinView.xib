@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="GroupPinView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="c22-O7-iKe" id="Z87-Hc-jNY"/>
+                <outlet property="toggle" destination="q7q-Xs-woc" id="bWd-qm-hf3"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="354" height="75"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XfL-bQ-won">
+                    <rect key="frame" x="-2" y="46" width="86" height="14"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Privacy Setting" id="ur0-rT-nUp">
+                        <font key="font" size="12" name="Roboto-Regular"/>
+                        <color key="textColor" name="SecondaryText"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nMS-4y-SLj">
+                    <rect key="frame" x="77" y="40" width="33" height="27"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="33" id="t1S-l1-KMW"/>
+                        <constraint firstAttribute="height" constant="27" id="vqx-BC-kJo"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" title="help_outline" bezelStyle="shadowlessSquare" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="I3u-wq-Nuh">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="15" name="MaterialIcons-Regular"/>
+                    </buttonCell>
+                    <color key="contentTintColor" name="SecondaryText"/>
+                    <connections>
+                        <action selector="helpButtonClicked:" target="-2" id="aNL-WI-Np4"/>
+                    </connections>
+                </button>
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lpy-9m-gav">
+                    <rect key="frame" x="-2" y="3" width="83" height="20"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Select PIN" id="lGG-7r-gki">
+                        <font key="font" size="17" name="Roboto-Regular"/>
+                        <color key="textColor" name="Text"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="q7q-Xs-woc">
+                    <rect key="frame" x="221" y="-2" width="135" height="24"/>
+                    <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="pHJ-om-snn">
+                        <font key="font" metaFont="system"/>
+                        <segments>
+                            <segment label="Standard" width="64" selected="YES"/>
+                            <segment label="Private" width="64" tag="1"/>
+                        </segments>
+                    </segmentedCell>
+                    <connections>
+                        <action selector="toggleValueChanged:" target="-2" id="rb3-Wk-H31"/>
+                    </connections>
+                </segmentedControl>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="q7q-Xs-woc" secondAttribute="trailing" id="8av-WQ-CJt"/>
+                <constraint firstItem="lpy-9m-gav" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="H2y-lq-sX3"/>
+                <constraint firstItem="XfL-bQ-won" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="15" id="KRH-Qs-ZYW"/>
+                <constraint firstItem="nMS-4y-SLj" firstAttribute="leading" secondItem="XfL-bQ-won" secondAttribute="trailing" constant="-5" id="L8W-aR-z3Z"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nMS-4y-SLj" secondAttribute="trailing" constant="20" symbolic="YES" id="VJn-gR-arK"/>
+                <constraint firstAttribute="bottom" secondItem="lpy-9m-gav" secondAttribute="bottom" constant="2.5" id="gvU-Is-qlu"/>
+                <constraint firstItem="q7q-Xs-woc" firstAttribute="centerY" secondItem="lpy-9m-gav" secondAttribute="centerY" constant="2" id="l6D-e5-s1t"/>
+                <constraint firstItem="nMS-4y-SLj" firstAttribute="centerY" secondItem="XfL-bQ-won" secondAttribute="centerY" id="sGC-Xu-3c2"/>
+                <constraint firstItem="q7q-Xs-woc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lpy-9m-gav" secondAttribute="trailing" constant="8" symbolic="YES" id="vao-lC-FHq"/>
+                <constraint firstItem="XfL-bQ-won" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="z8N-r9-NYk"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="153.5"/>
+        </customView>
+    </objects>
+    <resources>
+        <namedColor name="SecondaryText">
+            <color red="0.55686274509803924" green="0.58823529411764708" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text">
+            <color red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

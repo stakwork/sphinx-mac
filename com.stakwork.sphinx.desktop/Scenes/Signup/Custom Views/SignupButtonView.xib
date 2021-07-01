@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="SignupButtonView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="backgroundColorBox" destination="cSP-jL-pJZ" id="2bR-Tr-yNz"/>
+                <outlet property="contentView" destination="c22-O7-iKe" id="1m1-Bw-wY6"/>
+                <outlet property="iconImageView" destination="tnO-OK-q3I" id="Ta2-L8-wWD"/>
+                <outlet property="iconLabel" destination="3gd-Xf-AHG" id="bhR-B0-u18"/>
+                <outlet property="titleLabel" destination="47r-7L-rd9" id="RMo-uH-3rJ"/>
+                <outlet property="viewButton" destination="Wnz-lM-UgY" id="vdO-ie-cNP"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="49"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" borderType="line" cornerRadius="24" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="cSP-jL-pJZ">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="49"/>
+                    <view key="contentView" id="lOa-vp-E2c">
+                        <rect key="frame" x="1" y="1" width="478" height="47"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="47r-7L-rd9">
+                                <rect key="frame" x="211" y="16" width="56" height="19"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Submit" id="c3H-zK-pun">
+                                    <font key="font" size="16" name="Roboto-Regular"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3gd-Xf-AHG">
+                                <rect key="frame" x="445" y="18" width="20" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="" id="syr-Zk-Gfh">
+                                    <font key="font" size="16" name="MaterialIcons-Regular"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tnO-OK-q3I">
+                                <rect key="frame" x="428" y="0.0" width="50" height="47"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="5bd-by-aoS"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="cameraIcon" id="XIT-yM-7pz"/>
+                                <color key="contentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="47r-7L-rd9" firstAttribute="centerX" secondItem="lOa-vp-E2c" secondAttribute="centerX" id="07U-ml-GT6"/>
+                            <constraint firstAttribute="trailing" secondItem="3gd-Xf-AHG" secondAttribute="trailing" constant="15" id="8UB-jx-HFj"/>
+                            <constraint firstItem="3gd-Xf-AHG" firstAttribute="centerY" secondItem="lOa-vp-E2c" secondAttribute="centerY" constant="-2" id="LMl-Wz-0Rs"/>
+                            <constraint firstAttribute="bottom" secondItem="tnO-OK-q3I" secondAttribute="bottom" id="PfI-ar-e0X"/>
+                            <constraint firstAttribute="trailing" secondItem="tnO-OK-q3I" secondAttribute="trailing" id="R3j-b1-TPn"/>
+                            <constraint firstItem="tnO-OK-q3I" firstAttribute="top" secondItem="lOa-vp-E2c" secondAttribute="top" id="lqT-e1-G1w"/>
+                            <constraint firstItem="47r-7L-rd9" firstAttribute="centerY" secondItem="lOa-vp-E2c" secondAttribute="centerY" constant="-2" id="qO6-VH-0tQ"/>
+                        </constraints>
+                    </view>
+                    <color key="borderColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="fillColor" name="PrimaryBlue"/>
+                </box>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wnz-lM-UgY" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="1" width="480" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="QDA-wp-dpL"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" transparent="YES" imageScaling="proportionallyDown" inset="2" id="Cpj-pu-L77">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="buttonClicked:" target="-2" id="Qxv-jH-oin"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Wnz-lM-UgY" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="9oH-Zn-Ifw"/>
+                <constraint firstAttribute="trailing" secondItem="Wnz-lM-UgY" secondAttribute="trailing" id="EN5-Gg-8X0"/>
+                <constraint firstAttribute="trailing" secondItem="cSP-jL-pJZ" secondAttribute="trailing" id="EXO-Pq-a6J"/>
+                <constraint firstItem="Wnz-lM-UgY" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="ZHn-qX-TtZ"/>
+                <constraint firstItem="cSP-jL-pJZ" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="w9m-Mr-2hJ"/>
+                <constraint firstAttribute="bottom" secondItem="cSP-jL-pJZ" secondAttribute="bottom" id="wa3-Or-3GS"/>
+                <constraint firstItem="cSP-jL-pJZ" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="wfg-6s-v4i"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="cameraIcon" width="18.5" height="15"/>
+        <namedColor name="PrimaryBlue">
+            <color red="0.38039215686274508" green="0.54117647058823526" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

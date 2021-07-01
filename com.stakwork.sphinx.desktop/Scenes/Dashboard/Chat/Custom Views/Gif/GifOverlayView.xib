@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="GifOverlayView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="c22-O7-iKe" id="sce-LF-Aug"/>
+                <outlet property="gifIconContainer" destination="Pwn-UF-LYS" id="2RM-2c-te8"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Pwn-UF-LYS">
+                    <rect key="frame" x="105" y="105" width="40" height="40"/>
+                    <view key="contentView" id="kvh-A5-PRH">
+                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IoP-VV-jRh">
+                                <rect key="frame" x="2" y="4" width="36" height="32"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="gif" id="xBc-wU-9NJ">
+                                    <font key="font" size="32" name="MaterialIcons-Regular"/>
+                                    <color key="textColor" name="sphinxWhite"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="IoP-VV-jRh" firstAttribute="centerY" secondItem="kvh-A5-PRH" secondAttribute="centerY" id="Pcm-5j-Oyh"/>
+                            <constraint firstItem="IoP-VV-jRh" firstAttribute="centerX" secondItem="kvh-A5-PRH" secondAttribute="centerX" id="YaG-Ax-KsJ"/>
+                        </constraints>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="GRH-UY-r0P"/>
+                        <constraint firstAttribute="width" constant="40" id="nkT-Vy-R2O"/>
+                    </constraints>
+                    <color key="fillColor" red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </box>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="t6D-IX-8in">
+                    <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="250" id="BRK-z0-LAE"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" transparent="YES" imageScaling="proportionallyDown" inset="2" id="hwT-YY-JA2">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="buttonClicked:" target="-2" id="Rpp-6D-ouP"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Pwn-UF-LYS" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="4eD-bK-g80"/>
+                <constraint firstItem="t6D-IX-8in" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="9Ve-Xf-Pp6"/>
+                <constraint firstAttribute="trailing" secondItem="t6D-IX-8in" secondAttribute="trailing" id="IEQ-0N-sS5"/>
+                <constraint firstItem="t6D-IX-8in" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="NVz-ES-D9b"/>
+                <constraint firstItem="t6D-IX-8in" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="WjA-0U-sLK"/>
+                <constraint firstItem="Pwn-UF-LYS" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="l2K-Cx-KM4"/>
+                <constraint firstAttribute="trailing" secondItem="t6D-IX-8in" secondAttribute="trailing" id="qLH-bW-0t0"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+    </objects>
+    <resources>
+        <namedColor name="sphinxWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

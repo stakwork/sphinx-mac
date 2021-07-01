@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner">
+            <connections>
+                <outlet property="amountLabel" destination="YG5-pH-fhL" id="E6W-ev-75K"/>
+                <outlet property="bottomRightLineContainer" destination="BP0-4h-YJJ" id="khS-v8-TjX"/>
+                <outlet property="bubbleView" destination="sCy-rS-hVp" id="9tx-Gn-dpR"/>
+                <outlet property="dateLabel" destination="YLx-wC-6L4" id="UnZ-oa-NRd"/>
+                <outlet property="headerView" destination="pyG-0l-Led" id="mC4-t2-22f"/>
+                <outlet property="leftLineContainer" destination="E8F-65-K0b" id="vb8-cI-5Cw"/>
+                <outlet property="memoLabel" destination="WIV-Tn-OMJ" id="3lh-vu-GWN"/>
+                <outlet property="requestPaidIcon" destination="WhI-gk-CR7" id="9wc-tu-VVS"/>
+                <outlet property="rightLineContainer" destination="fAN-Bj-gnp" id="KrB-66-oxL"/>
+                <outlet property="topMarginConstraint" destination="7rA-XX-2WJ" id="cCB-PG-OiU"/>
+                <outlet property="unitLabel" destination="SPb-kL-CoV" id="JYx-de-e5a"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="374" height="275"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="E8F-65-K0b">
+                    <rect key="frame" x="76" y="0.0" width="3" height="275"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="3" id="mfz-8q-76Q"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="fAN-Bj-gnp">
+                    <rect key="frame" x="343" y="0.0" width="3" height="275"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="3" id="Tw9-yO-hIf"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="BP0-4h-YJJ">
+                    <rect key="frame" x="343" y="0.0" width="3" height="5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="3" id="Jqc-8D-uYV"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="pyG-0l-Led">
+                    <rect key="frame" x="115" y="254" width="259" height="17"/>
+                    <subviews>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YLx-wC-6L4">
+                            <rect key="frame" x="199" y="4" width="47" height="11"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="06:05 AM" id="oPa-2s-9ct">
+                                <font key="font" size="10" name="Roboto-Regular"/>
+                                <color key="textColor" name="WashedOutReceivedText"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bOL-5x-v6o">
+                            <rect key="frame" x="184" y="5" width="16" height="12"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="lock" id="Bju-Vh-6LO">
+                                <font key="font" size="12" name="MaterialIcons-Regular"/>
+                                <color key="textColor" name="WashedOutReceivedText"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="u3a-NX-3Vs">
+                            <rect key="frame" x="172" y="5" width="16" height="12"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="flash_on" id="ola-JV-3jE">
+                                <font key="font" size="12" name="MaterialIcons-Regular"/>
+                                <color key="textColor" name="PrimaryGreen"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="17" id="BOX-jG-8kP"/>
+                        <constraint firstItem="bOL-5x-v6o" firstAttribute="centerY" secondItem="YLx-wC-6L4" secondAttribute="centerY" constant="-1" id="ZA3-CZ-ORu"/>
+                        <constraint firstItem="bOL-5x-v6o" firstAttribute="leading" secondItem="u3a-NX-3Vs" secondAttribute="trailing" id="c6u-N6-pwG"/>
+                        <constraint firstItem="YLx-wC-6L4" firstAttribute="top" secondItem="pyG-0l-Led" secondAttribute="top" constant="2" id="jKN-h3-hUl"/>
+                        <constraint firstAttribute="trailing" secondItem="YLx-wC-6L4" secondAttribute="trailing" constant="15" id="kl4-v2-Rhn"/>
+                        <constraint firstItem="u3a-NX-3Vs" firstAttribute="centerY" secondItem="bOL-5x-v6o" secondAttribute="centerY" id="mea-Kv-roV"/>
+                        <constraint firstItem="YLx-wC-6L4" firstAttribute="leading" secondItem="bOL-5x-v6o" secondAttribute="trailing" constant="3" id="q7f-mV-CnA"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="sCy-rS-hVp" customClass="PaymentInvoiceBubbleView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="115" y="4" width="250" height="250"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="250" id="5EU-Fs-Wol"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="ZhY-dS-G5O">
+                    <rect key="frame" x="115" y="4" width="250" height="250"/>
+                    <subviews>
+                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WhI-gk-CR7">
+                            <rect key="frame" x="21" y="210" width="19" height="19"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="19" id="BsY-Cg-M2C"/>
+                                <constraint firstAttribute="width" constant="19" id="K1S-M0-c3G"/>
+                            </constraints>
+                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="invoicePayIcon" id="hhm-vB-PjS"/>
+                            <color key="contentTintColor" name="Text"/>
+                        </imageView>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YG5-pH-fhL">
+                            <rect key="frame" x="58" y="210" width="41" height="19"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="2500" id="OVf-f8-eXB">
+                                <font key="font" size="16" name="Roboto-Bold"/>
+                                <color key="textColor" name="Text"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SPb-kL-CoV">
+                            <rect key="frame" x="101" y="210" width="27" height="19"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="sat" id="FcX-ty-Vuk">
+                                <font key="font" size="16" name="Roboto-Regular"/>
+                                <color key="textColor" name="WashedOutSentText"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WIV-Tn-OMJ">
+                            <rect key="frame" x="18" y="174" width="208" height="19"/>
+                            <textFieldCell key="cell" alignment="left" title="Message field" id="PlU-tw-fBZ">
+                                <font key="font" size="16" name="Roboto-Regular"/>
+                                <color key="textColor" name="PrimaryText"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="YG5-pH-fhL" firstAttribute="leading" secondItem="WhI-gk-CR7" secondAttribute="trailing" constant="20" id="BWk-X1-sJT"/>
+                        <constraint firstItem="SPb-kL-CoV" firstAttribute="leading" secondItem="YG5-pH-fhL" secondAttribute="trailing" constant="6" id="a2z-KS-1CP"/>
+                        <constraint firstItem="WIV-Tn-OMJ" firstAttribute="leading" secondItem="ZhY-dS-G5O" secondAttribute="leading" constant="20" id="cFX-5v-tfB"/>
+                        <constraint firstItem="WhI-gk-CR7" firstAttribute="top" secondItem="ZhY-dS-G5O" secondAttribute="top" constant="21" id="e6s-0b-WeT"/>
+                        <constraint firstAttribute="trailing" secondItem="WIV-Tn-OMJ" secondAttribute="trailing" constant="26" id="eKT-c6-kaZ"/>
+                        <constraint firstItem="WhI-gk-CR7" firstAttribute="leading" secondItem="ZhY-dS-G5O" secondAttribute="leading" constant="21" id="o5U-B7-ba9"/>
+                        <constraint firstItem="WIV-Tn-OMJ" firstAttribute="top" secondItem="YG5-pH-fhL" secondAttribute="bottom" constant="17" id="qdz-fm-Hqo"/>
+                        <constraint firstItem="YG5-pH-fhL" firstAttribute="centerY" secondItem="SPb-kL-CoV" secondAttribute="centerY" id="sgq-Ze-Zwv"/>
+                        <constraint firstItem="SPb-kL-CoV" firstAttribute="centerY" secondItem="WhI-gk-CR7" secondAttribute="centerY" id="uIt-0Q-sj4"/>
+                    </constraints>
+                </customView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="BP0-4h-YJJ" firstAttribute="top" secondItem="sCy-rS-hVp" secondAttribute="bottom" constant="-1" id="4hN-QX-0RP"/>
+                <constraint firstItem="ZhY-dS-G5O" firstAttribute="bottom" secondItem="sCy-rS-hVp" secondAttribute="bottom" id="77v-6C-nbq"/>
+                <constraint firstItem="sCy-rS-hVp" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="21" id="7rA-XX-2WJ"/>
+                <constraint firstAttribute="bottom" secondItem="sCy-rS-hVp" secondAttribute="bottom" constant="4" id="ExP-bc-jxF"/>
+                <constraint firstAttribute="trailing" secondItem="BP0-4h-YJJ" secondAttribute="trailing" constant="28" id="Gli-ZY-Wkf"/>
+                <constraint firstItem="E8F-65-K0b" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="75.5" id="KWZ-Zb-l3t"/>
+                <constraint firstAttribute="trailing" secondItem="pyG-0l-Led" secondAttribute="trailing" id="T3B-QC-0Kr"/>
+                <constraint firstAttribute="trailing" secondItem="fAN-Bj-gnp" secondAttribute="trailing" constant="28" id="Vt8-fO-oqz"/>
+                <constraint firstItem="sCy-rS-hVp" firstAttribute="top" secondItem="pyG-0l-Led" secondAttribute="bottom" id="Wat-n9-pyV"/>
+                <constraint firstItem="pyG-0l-Led" firstAttribute="leading" secondItem="sCy-rS-hVp" secondAttribute="leading" id="XJT-e7-eir"/>
+                <constraint firstAttribute="bottom" secondItem="fAN-Bj-gnp" secondAttribute="bottom" id="ab0-SK-iQI"/>
+                <constraint firstAttribute="trailing" secondItem="sCy-rS-hVp" secondAttribute="trailing" constant="9" id="ezb-LH-BVJ"/>
+                <constraint firstItem="ZhY-dS-G5O" firstAttribute="leading" secondItem="sCy-rS-hVp" secondAttribute="leading" id="hBl-vu-bqq"/>
+                <constraint firstItem="fAN-Bj-gnp" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="hb6-Ll-PIR"/>
+                <constraint firstAttribute="bottom" secondItem="BP0-4h-YJJ" secondAttribute="bottom" id="lgl-xu-igZ"/>
+                <constraint firstItem="ZhY-dS-G5O" firstAttribute="top" secondItem="sCy-rS-hVp" secondAttribute="top" id="mzJ-tr-cgs"/>
+                <constraint firstItem="E8F-65-K0b" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="uiX-6g-Plm"/>
+                <constraint firstItem="ZhY-dS-G5O" firstAttribute="trailing" secondItem="sCy-rS-hVp" secondAttribute="trailing" id="wW9-oW-sFZ"/>
+                <constraint firstAttribute="bottom" secondItem="E8F-65-K0b" secondAttribute="bottom" id="wg7-Vn-qsy"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+        <customObject id="swi-xt-5ma" customClass="PaidInvoiceReceivedCollectionViewItem" customModule="Sphinx" customModuleProvider="target"/>
+    </objects>
+    <resources>
+        <image name="invoicePayIcon" width="19" height="19"/>
+        <namedColor name="PrimaryGreen">
+            <color red="0.28627450980392155" green="0.78823529411764703" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PrimaryText">
+            <color red="0.16078431372549021" green="0.17254901960784313" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text">
+            <color red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="WashedOutReceivedText">
+            <color red="0.69019607843137254" green="0.71764705882352942" blue="0.73725490196078436" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="WashedOutSentText">
+            <color red="0.69019607843137254" green="0.71764705882352942" blue="0.73725490196078436" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

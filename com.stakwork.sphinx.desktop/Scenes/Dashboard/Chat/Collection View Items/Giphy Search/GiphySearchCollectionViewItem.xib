@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner">
+            <connections>
+                <outlet property="gifView" destination="oqm-kp-Va6" id="pT5-hb-rdg"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="oqm-kp-Va6">
+                    <rect key="frame" x="1" y="1" width="148" height="148"/>
+                </customView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="oqm-kp-Va6" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="1" id="3WT-Jh-JYU"/>
+                <constraint firstItem="oqm-kp-Va6" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="1" id="7dq-MO-NZH"/>
+                <constraint firstAttribute="bottom" secondItem="oqm-kp-Va6" secondAttribute="bottom" constant="1" id="ftI-fP-cWv"/>
+                <constraint firstAttribute="trailing" secondItem="oqm-kp-Va6" secondAttribute="trailing" constant="1" id="iwA-0Z-csz"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+        <customObject id="H1R-Ya-H9U" customClass="GiphySearchCollectionViewItem" customModule="Sphinx" customModuleProvider="target"/>
+    </objects>
+</document>

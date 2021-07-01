@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner">
+            <connections>
+                <outlet property="amountLabel" destination="0zT-K9-4y6" id="cbi-lE-ZHr"/>
+                <outlet property="bottomLeftLineContainer" destination="O5d-ZM-cUX" id="QoL-Wf-fmd"/>
+                <outlet property="bubbleView" destination="PEO-rD-E3i" id="sGi-kh-yeb"/>
+                <outlet property="chatAvatarView" destination="ayx-Zx-Zzx" id="Ncj-Xb-bBM"/>
+                <outlet property="dateLabel" destination="Kqi-cr-XMP" id="vpw-YA-fiw"/>
+                <outlet property="headerView" destination="BdP-wU-oZF" id="Uxd-sW-UhN"/>
+                <outlet property="leftLineContainer" destination="GNX-LX-eTi" id="Ibe-hf-00E"/>
+                <outlet property="memoLabel" destination="VWb-JK-QRF" id="PRY-Vr-i4m"/>
+                <outlet property="requestPaidIcon" destination="c5B-fY-ANq" id="s8I-ci-1RW"/>
+                <outlet property="rightLineContainer" destination="VEs-2H-6va" id="LfV-OM-aLR"/>
+                <outlet property="senderLabel" destination="2PG-fq-T5p" id="o2h-ns-QwE"/>
+                <outlet property="topMarginConstraint" destination="CDT-5B-BKV" id="riy-nn-CeR"/>
+                <outlet property="unitLabel" destination="jdC-Dt-dYO" id="keF-tl-MX0"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="300"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="GNX-LX-eTi">
+                    <rect key="frame" x="76" y="0.0" width="3" height="300"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="3" id="mhF-Yb-kTU"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="O5d-ZM-cUX">
+                    <rect key="frame" x="76" y="0.0" width="3" height="5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="3" id="pnh-YH-cck"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="VEs-2H-6va">
+                    <rect key="frame" x="449" y="0.0" width="3" height="300"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="3" id="iPN-ex-P5Z"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="ayx-Zx-Zzx" customClass="ChatSmallAvatarView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="244" width="56" height="56"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="B1K-od-TMw"/>
+                        <constraint firstAttribute="width" constant="56" id="bKY-pZ-2J6"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="BdP-wU-oZF">
+                    <rect key="frame" x="56" y="279" width="250" height="17"/>
+                    <subviews>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2PG-fq-T5p">
+                            <rect key="frame" x="2" y="4" width="4" height="11"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" id="clZ-j7-3ss">
+                                <font key="font" size="10" name="Roboto-Regular"/>
+                                <color key="textColor" name="WashedOutReceivedText"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kqi-cr-XMP">
+                            <rect key="frame" x="2" y="4" width="41" height="11"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="6:05 AM" id="uET-cl-1Kd">
+                                <font key="font" size="10" name="Roboto-Regular"/>
+                                <color key="textColor" name="WashedOutReceivedText"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Ew-fP-QOs">
+                            <rect key="frame" x="42" y="4" width="17" height="13"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="lock" id="fXN-nQ-Evg">
+                                <font key="font" size="13" name="MaterialIcons-Regular"/>
+                                <color key="textColor" name="WashedOutReceivedText"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="2PG-fq-T5p" firstAttribute="leading" secondItem="BdP-wU-oZF" secondAttribute="leading" constant="4" id="3a5-U4-St9"/>
+                        <constraint firstItem="Kqi-cr-XMP" firstAttribute="leading" secondItem="2PG-fq-T5p" secondAttribute="trailing" id="45E-EP-EaO"/>
+                        <constraint firstAttribute="height" constant="17" id="9CC-LN-Xol"/>
+                        <constraint firstItem="2PG-fq-T5p" firstAttribute="top" secondItem="BdP-wU-oZF" secondAttribute="top" constant="2" id="DPi-J4-i75"/>
+                        <constraint firstItem="8Ew-fP-QOs" firstAttribute="leading" secondItem="Kqi-cr-XMP" secondAttribute="trailing" constant="3" id="F4V-dN-Cjl"/>
+                        <constraint firstItem="8Ew-fP-QOs" firstAttribute="centerY" secondItem="Kqi-cr-XMP" secondAttribute="centerY" constant="-1" id="TN7-QQ-JnE"/>
+                        <constraint firstItem="Kqi-cr-XMP" firstAttribute="top" secondItem="BdP-wU-oZF" secondAttribute="top" constant="2" id="z0B-y1-Ssu"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="PEO-rD-E3i" customClass="PaymentInvoiceBubbleView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="56" y="4" width="250" height="275"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="250" id="ytf-7O-pJb"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="45q-o6-a7E">
+                    <rect key="frame" x="56" y="4" width="250" height="275"/>
+                    <subviews>
+                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c5B-fY-ANq">
+                            <rect key="frame" x="24" y="235" width="19" height="19"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="19" id="LBF-5A-VRN"/>
+                                <constraint firstAttribute="width" constant="19" id="RVw-c9-U8g"/>
+                            </constraints>
+                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="invoiceReceiveIcon" id="6aW-UP-KTP"/>
+                            <color key="contentTintColor" name="ReceivedIcon"/>
+                        </imageView>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0zT-K9-4y6">
+                            <rect key="frame" x="61" y="235" width="41" height="19"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="2500" id="WCh-I6-MNi">
+                                <font key="font" size="16" name="Roboto-Bold"/>
+                                <color key="textColor" name="Text"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jdC-Dt-dYO">
+                            <rect key="frame" x="104" y="235" width="27" height="19"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="sat" id="4bo-QI-0OW">
+                                <font key="font" size="16" name="Roboto-Regular"/>
+                                <color key="textColor" name="WashedOutReceivedText"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VWb-JK-QRF">
+                            <rect key="frame" x="22" y="199" width="208" height="19"/>
+                            <textFieldCell key="cell" alignment="left" title="Message field" id="fQT-4U-UvP">
+                                <font key="font" size="16" name="Roboto-Regular"/>
+                                <color key="textColor" name="PrimaryText"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="c5B-fY-ANq" firstAttribute="top" secondItem="45q-o6-a7E" secondAttribute="top" constant="21" id="8y7-1b-ERn"/>
+                        <constraint firstAttribute="trailing" secondItem="VWb-JK-QRF" secondAttribute="trailing" constant="22" id="A5T-Gy-61z"/>
+                        <constraint firstItem="jdC-Dt-dYO" firstAttribute="centerY" secondItem="0zT-K9-4y6" secondAttribute="centerY" id="EN7-CJ-eoz"/>
+                        <constraint firstItem="0zT-K9-4y6" firstAttribute="centerY" secondItem="c5B-fY-ANq" secondAttribute="centerY" id="L4I-R9-alX"/>
+                        <constraint firstItem="VWb-JK-QRF" firstAttribute="leading" secondItem="45q-o6-a7E" secondAttribute="leading" constant="24" id="WSf-3T-KYi"/>
+                        <constraint firstItem="0zT-K9-4y6" firstAttribute="leading" secondItem="c5B-fY-ANq" secondAttribute="trailing" constant="20" id="ek4-nH-itD"/>
+                        <constraint firstItem="c5B-fY-ANq" firstAttribute="leading" secondItem="45q-o6-a7E" secondAttribute="leading" constant="24" id="s7E-Rq-dOh"/>
+                        <constraint firstItem="jdC-Dt-dYO" firstAttribute="leading" secondItem="0zT-K9-4y6" secondAttribute="trailing" constant="6" id="zZ0-B0-el9"/>
+                        <constraint firstItem="VWb-JK-QRF" firstAttribute="top" secondItem="0zT-K9-4y6" secondAttribute="bottom" constant="17" id="zyW-ka-tQg"/>
+                    </constraints>
+                </customView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="VEs-2H-6va" secondAttribute="bottom" id="4yx-m0-kIB"/>
+                <constraint firstItem="45q-o6-a7E" firstAttribute="bottom" secondItem="PEO-rD-E3i" secondAttribute="bottom" id="6Nl-Mn-ok9"/>
+                <constraint firstItem="PEO-rD-E3i" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="21" id="CDT-5B-BKV"/>
+                <constraint firstItem="45q-o6-a7E" firstAttribute="leading" secondItem="PEO-rD-E3i" secondAttribute="leading" id="CPB-dI-v0d"/>
+                <constraint firstItem="ayx-Zx-Zzx" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="ESf-qH-10r"/>
+                <constraint firstItem="VEs-2H-6va" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="Hnb-af-ccZ"/>
+                <constraint firstItem="PEO-rD-E3i" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="56" id="K1p-cF-9Ta"/>
+                <constraint firstItem="GNX-LX-eTi" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="LPN-6E-g7D"/>
+                <constraint firstItem="45q-o6-a7E" firstAttribute="trailing" secondItem="PEO-rD-E3i" secondAttribute="trailing" id="PoI-zj-wzv"/>
+                <constraint firstAttribute="trailing" secondItem="VEs-2H-6va" secondAttribute="trailing" constant="28" id="RKL-0F-O38"/>
+                <constraint firstItem="GNX-LX-eTi" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="75.5" id="UKS-GS-C31"/>
+                <constraint firstItem="PEO-rD-E3i" firstAttribute="top" secondItem="BdP-wU-oZF" secondAttribute="bottom" id="V8E-kT-RSR"/>
+                <constraint firstItem="O5d-ZM-cUX" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="76" id="YFw-qm-F6Z"/>
+                <constraint firstAttribute="bottom" secondItem="O5d-ZM-cUX" secondAttribute="bottom" id="Zae-8t-4Hp"/>
+                <constraint firstAttribute="bottom" secondItem="GNX-LX-eTi" secondAttribute="bottom" id="jDo-bU-4lE"/>
+                <constraint firstItem="ayx-Zx-Zzx" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="jT1-Wf-rrr"/>
+                <constraint firstItem="O5d-ZM-cUX" firstAttribute="top" secondItem="PEO-rD-E3i" secondAttribute="bottom" constant="-1" id="kQe-ot-6ID"/>
+                <constraint firstAttribute="bottom" secondItem="PEO-rD-E3i" secondAttribute="bottom" constant="4" id="rSv-Vu-34b"/>
+                <constraint firstItem="45q-o6-a7E" firstAttribute="top" secondItem="PEO-rD-E3i" secondAttribute="top" id="sJR-SW-PY7"/>
+                <constraint firstItem="BdP-wU-oZF" firstAttribute="leading" secondItem="PEO-rD-E3i" secondAttribute="leading" id="x2e-Od-PVb"/>
+                <constraint firstItem="BdP-wU-oZF" firstAttribute="trailing" secondItem="PEO-rD-E3i" secondAttribute="trailing" id="xNt-yz-ew2"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+        <customObject id="LDq-me-fXo" customClass="PaidInvoiceSentCollectionViewItem" customModule="Sphinx" customModuleProvider="target"/>
+    </objects>
+    <resources>
+        <image name="invoiceReceiveIcon" width="19" height="19"/>
+        <namedColor name="PrimaryText">
+            <color red="0.16078431372549021" green="0.17254901960784313" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ReceivedIcon">
+            <color red="0.50980392156862742" green="0.70588235294117652" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text">
+            <color red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="WashedOutReceivedText">
+            <color red="0.69019607843137254" green="0.71764705882352942" blue="0.73725490196078436" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

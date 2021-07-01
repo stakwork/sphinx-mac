@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="AttachmentPriceView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="c22-O7-iKe" id="2Ms-lR-39d"/>
+                <outlet property="priceLabel" destination="ev5-9D-aCf" id="8j5-oA-VWl"/>
+                <outlet property="priceLabelContainer" destination="X3p-du-Cey" id="HO1-kQ-1xR"/>
+                <outlet property="statusLabel" destination="mTi-7w-tYF" id="X8y-Sy-dwc"/>
+                <outlet property="statusLabelContainer" destination="VCX-7D-a0O" id="9BB-N9-Yqi"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="40"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="X3p-du-Cey">
+                    <rect key="frame" x="10" y="10" width="39" height="20"/>
+                    <view key="contentView" id="k8r-pO-dzV">
+                        <rect key="frame" x="0.0" y="0.0" width="39" height="20"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ev5-9D-aCf">
+                                <rect key="frame" x="6" y="5" width="27" height="11"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="5 sat" id="lda-Tg-FFi">
+                                    <font key="font" size="10" name="Roboto-Bold"/>
+                                    <color key="textColor" name="sphinxWhite"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="ev5-9D-aCf" firstAttribute="leading" secondItem="k8r-pO-dzV" secondAttribute="leading" constant="8" id="M5z-md-HQS"/>
+                            <constraint firstAttribute="trailing" secondItem="ev5-9D-aCf" secondAttribute="trailing" constant="8" id="Pw6-9q-DU3"/>
+                            <constraint firstItem="ev5-9D-aCf" firstAttribute="centerY" secondItem="k8r-pO-dzV" secondAttribute="centerY" id="bZ0-Gm-Myz"/>
+                        </constraints>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="n6I-ew-NBS"/>
+                    </constraints>
+                    <color key="fillColor" name="PrimaryGreen"/>
+                </box>
+                <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="VCX-7D-a0O">
+                    <rect key="frame" x="223" y="10" width="67" height="20"/>
+                    <view key="contentView" id="06W-GD-wBb">
+                        <rect key="frame" x="0.0" y="0.0" width="67" height="20"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mTi-7w-tYF">
+                                <rect key="frame" x="6" y="5" width="55" height="11"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Processing" id="Aed-KU-Cni">
+                                    <font key="font" size="10" name="Roboto-Bold"/>
+                                    <color key="textColor" name="sphinxWhite"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="mTi-7w-tYF" firstAttribute="leading" secondItem="06W-GD-wBb" secondAttribute="leading" constant="8" id="37y-1X-Xle"/>
+                            <constraint firstAttribute="trailing" secondItem="mTi-7w-tYF" secondAttribute="trailing" constant="8" id="XPj-GC-JZI"/>
+                            <constraint firstItem="mTi-7w-tYF" firstAttribute="centerY" secondItem="06W-GD-wBb" secondAttribute="centerY" id="wZa-Yb-Aex"/>
+                        </constraints>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="vaK-Go-XRI"/>
+                    </constraints>
+                    <color key="fillColor" name="PrimaryGreen"/>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstItem="X3p-du-Cey" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="10" id="1eF-Pm-7No"/>
+                <constraint firstItem="VCX-7D-a0O" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="10" id="51X-ET-JXR"/>
+                <constraint firstAttribute="trailing" secondItem="VCX-7D-a0O" secondAttribute="trailing" constant="10" id="Ofh-bu-e1Y"/>
+                <constraint firstItem="X3p-du-Cey" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="10" id="zJ9-HW-RCB"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+    </objects>
+    <resources>
+        <namedColor name="PrimaryGreen">
+            <color red="0.28627450980392155" green="0.78823529411764703" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sphinxWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

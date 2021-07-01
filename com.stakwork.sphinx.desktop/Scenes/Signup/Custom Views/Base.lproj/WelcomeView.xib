@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="WelcomeView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="c22-O7-iKe" id="cWv-tP-CzK"/>
+                <outlet property="continueButtonView" destination="tOV-PR-KId" id="6dM-4E-LWC"/>
+                <outlet property="welcomeImageView" destination="nh4-YM-C2U" id="u8K-xK-aXV"/>
+                <outlet property="welcomeSubtitle" destination="JqK-aC-Dez" id="f5R-gj-bY8"/>
+                <outlet property="welcomeTitle" destination="n0J-bV-7s9" id="Srg-4V-gHy"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="800" height="500"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="n0J-bV-7s9">
+                    <rect key="frame" x="315" y="237" width="170" height="37"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="WELCOME!" id="0Jn-w8-tav">
+                        <font key="font" size="30" name="Montserrat-Regular"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JqK-aC-Dez">
+                    <rect key="frame" x="262" y="202" width="277" height="25"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Your app is now connected." id="iCx-7I-VX4">
+                        <font key="font" size="22" name="Roboto-Regular"/>
+                        <color key="textColor" red="0.41960784313725491" green="0.47843137254901957" blue="0.55294117647058827" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nh4-YM-C2U">
+                    <rect key="frame" x="367" y="324" width="67" height="67"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="67" id="FsR-p0-OSM"/>
+                        <constraint firstAttribute="height" constant="67" id="MsE-42-4aH"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="confirmedIcon" id="aXC-PP-W31"/>
+                </imageView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="tOV-PR-KId" customClass="SignupButtonView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="270" y="109" width="260" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="CN0-uo-hpu"/>
+                        <constraint firstAttribute="width" constant="260" id="QeD-7q-z3X"/>
+                    </constraints>
+                </customView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="JqK-aC-Dez" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="IVs-pz-cP7"/>
+                <constraint firstItem="n0J-bV-7s9" firstAttribute="top" secondItem="nh4-YM-C2U" secondAttribute="bottom" constant="50" id="Qm4-vb-DmH"/>
+                <constraint firstItem="tOV-PR-KId" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="VCZ-48-jbt"/>
+                <constraint firstItem="JqK-aC-Dez" firstAttribute="top" secondItem="n0J-bV-7s9" secondAttribute="bottom" constant="10" id="mw9-Ut-QI4"/>
+                <constraint firstItem="tOV-PR-KId" firstAttribute="top" secondItem="JqK-aC-Dez" secondAttribute="bottom" constant="45" id="t8H-3e-SNM"/>
+                <constraint firstItem="n0J-bV-7s9" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="t9e-mO-Qnp"/>
+                <constraint firstItem="n0J-bV-7s9" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" constant="-5" id="xHr-po-VDm"/>
+                <constraint firstItem="nh4-YM-C2U" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="z6U-Pm-h7A"/>
+            </constraints>
+            <point key="canvasLocation" x="189.5" y="216.5"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="confirmedIcon" width="67" height="67"/>
+    </resources>
+</document>

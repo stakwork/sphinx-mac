@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner">
+            <connections>
+                <outlet property="bubbleView" destination="qwC-Sy-dgF" id="2uY-vk-Omk"/>
+                <outlet property="bubbleViewWidthConstraint" destination="zhd-cx-MFJ" id="Nmk-uf-xeT"/>
+                <outlet property="dateLabel" destination="P6w-nM-piJ" id="FtF-V7-JUP"/>
+                <outlet property="errorContainer" destination="jLd-2G-ckX" id="t2m-Qa-Z81"/>
+                <outlet property="errorContainerRight" destination="uu8-ls-qH1" id="Hps-G0-zbe"/>
+                <outlet property="errorMessageLabel" destination="ow5-11-hte" id="1zK-ea-7YB"/>
+                <outlet property="headerView" destination="W6y-fa-ggk" id="FCo-PM-2vl"/>
+                <outlet property="leftLineContainer" destination="iUX-qo-QfE" id="dYY-Hu-BhQ"/>
+                <outlet property="lockSign" destination="yFL-k9-u4Y" id="UZ6-F0-Hd5"/>
+                <outlet property="optionsButton" destination="gu2-D9-iGP" id="Y6f-Qp-No7"/>
+                <outlet property="rightLineContainer" destination="lAh-p4-2zz" id="eju-0S-AuR"/>
+                <outlet property="seenSign" destination="kvZ-B8-6fW" id="PpG-jv-edh"/>
+                <outlet property="topMarginConstraint" destination="w0J-PD-Y6I" id="clu-fa-Ic5"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="482" height="323"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="iUX-qo-QfE">
+                    <rect key="frame" x="76" y="0.0" width="3" height="323"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="3" id="iKl-NX-TAD"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="lAh-p4-2zz">
+                    <rect key="frame" x="451" y="0.0" width="3" height="323"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="3" id="Dsk-Lj-RcB"/>
+                    </constraints>
+                </customView>
+                <customView identifier="MessageBubbleView" translatesAutoresizingMaskIntoConstraints="NO" id="qwC-Sy-dgF" customClass="MessageBubbleView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="90" y="4" width="383" height="298"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="383" id="zhd-cx-MFJ"/>
+                    </constraints>
+                </customView>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gu2-D9-iGP" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="71" y="284" width="22" height="18"/>
+                    <buttonCell key="cell" type="bevel" title="" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="y9a-L2-joa" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="18" name="MaterialIcons-Regular"/>
+                    </buttonCell>
+                    <color key="contentTintColor" name="WashedOutReceivedText"/>
+                    <connections>
+                        <action selector="optionsButtonClicked:" target="-2" id="Tpe-ji-e1m"/>
+                    </connections>
+                </button>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="W6y-fa-ggk">
+                    <rect key="frame" x="90" y="302" width="392" height="17"/>
+                    <subviews>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="P6w-nM-piJ">
+                            <rect key="frame" x="332" y="4" width="47" height="11"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="06:05 AM" id="WIT-4p-oc4">
+                                <font key="font" size="10" name="Roboto-Regular"/>
+                                <color key="textColor" name="WashedOutReceivedText"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yFL-k9-u4Y">
+                            <rect key="frame" x="317" y="5" width="16" height="12"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="lock" id="99Z-ay-nWG">
+                                <font key="font" size="12" name="MaterialIcons-Regular"/>
+                                <color key="textColor" name="WashedOutReceivedText"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kvZ-B8-6fW">
+                            <rect key="frame" x="305" y="5" width="16" height="12"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="flash_on" id="F5R-bM-awo">
+                                <font key="font" size="12" name="MaterialIcons-Regular"/>
+                                <color key="textColor" name="PrimaryGreen"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="jLd-2G-ckX">
+                            <rect key="frame" x="0.0" y="0.0" width="94" height="17"/>
+                            <subviews>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5fg-cA-6QA">
+                                    <rect key="frame" x="-2" y="4" width="16" height="12"/>
+                                    <textFieldCell key="cell" lineBreakMode="clipping" title="error" id="jWs-hm-xK7">
+                                        <font key="font" size="12" name="MaterialIcons-Regular"/>
+                                        <color key="textColor" name="PrimaryRed"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ow5-11-hte">
+                                    <rect key="frame" x="13" y="4" width="75" height="11"/>
+                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Message Failed" id="3AQ-91-9Rk">
+                                        <font key="font" size="10" name="Roboto-Regular"/>
+                                        <color key="textColor" name="WashedOutReceivedText"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="ow5-11-hte" firstAttribute="leading" secondItem="5fg-cA-6QA" secondAttribute="trailing" constant="3" id="8BK-vY-tNn"/>
+                                <constraint firstItem="5fg-cA-6QA" firstAttribute="leading" secondItem="jLd-2G-ckX" secondAttribute="leading" id="LEh-KW-hRX"/>
+                                <constraint firstItem="ow5-11-hte" firstAttribute="top" secondItem="jLd-2G-ckX" secondAttribute="top" constant="2" id="cEz-Hv-Xcl"/>
+                                <constraint firstItem="ow5-11-hte" firstAttribute="centerY" secondItem="5fg-cA-6QA" secondAttribute="centerY" id="qQs-zk-Slp"/>
+                                <constraint firstAttribute="trailing" secondItem="ow5-11-hte" secondAttribute="trailing" constant="8" id="ve2-VI-2GH"/>
+                            </constraints>
+                        </customView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="P6w-nM-piJ" secondAttribute="trailing" constant="15" id="2fe-Fr-w2b"/>
+                        <constraint firstItem="yFL-k9-u4Y" firstAttribute="leading" secondItem="kvZ-B8-6fW" secondAttribute="trailing" id="59A-aI-FRU"/>
+                        <constraint firstItem="P6w-nM-piJ" firstAttribute="leading" secondItem="yFL-k9-u4Y" secondAttribute="trailing" constant="3" id="7Ip-Sz-OFo"/>
+                        <constraint firstAttribute="bottom" secondItem="jLd-2G-ckX" secondAttribute="bottom" id="9S5-W9-6CY"/>
+                        <constraint firstItem="jLd-2G-ckX" firstAttribute="top" secondItem="W6y-fa-ggk" secondAttribute="top" id="Ihp-SM-QtT"/>
+                        <constraint firstItem="P6w-nM-piJ" firstAttribute="top" secondItem="W6y-fa-ggk" secondAttribute="top" constant="2" id="RGR-sp-SPX"/>
+                        <constraint firstItem="yFL-k9-u4Y" firstAttribute="centerY" secondItem="P6w-nM-piJ" secondAttribute="centerY" constant="-1" id="bwj-5D-2HH"/>
+                        <constraint firstAttribute="height" constant="17" id="gQa-b3-D7s"/>
+                        <constraint firstItem="jLd-2G-ckX" firstAttribute="leading" secondItem="W6y-fa-ggk" secondAttribute="leading" id="ng9-GR-ACE"/>
+                        <constraint firstAttribute="trailing" secondItem="jLd-2G-ckX" secondAttribute="trailing" constant="298" id="uu8-ls-qH1"/>
+                        <constraint firstItem="kvZ-B8-6fW" firstAttribute="centerY" secondItem="yFL-k9-u4Y" secondAttribute="centerY" id="w6m-aW-AY5"/>
+                    </constraints>
+                </customView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="qwC-Sy-dgF" secondAttribute="trailing" constant="9" id="7Pa-Zh-Yrv"/>
+                <constraint firstAttribute="trailing" secondItem="W6y-fa-ggk" secondAttribute="trailing" id="AJR-NY-a0d"/>
+                <constraint firstItem="gu2-D9-iGP" firstAttribute="top" secondItem="qwC-Sy-dgF" secondAttribute="top" id="JAP-YD-b1j"/>
+                <constraint firstAttribute="bottom" secondItem="iUX-qo-QfE" secondAttribute="bottom" id="TnB-iX-a7J"/>
+                <constraint firstItem="iUX-qo-QfE" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="Y9K-zZ-eQw"/>
+                <constraint firstAttribute="trailing" secondItem="lAh-p4-2zz" secondAttribute="trailing" constant="28" id="akz-Ai-EqJ"/>
+                <constraint firstAttribute="bottom" secondItem="lAh-p4-2zz" secondAttribute="bottom" id="fC2-JQ-RDy"/>
+                <constraint firstItem="lAh-p4-2zz" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="kkK-lj-2Xe"/>
+                <constraint firstItem="iUX-qo-QfE" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="75.5" id="mCN-z1-6oy"/>
+                <constraint firstItem="qwC-Sy-dgF" firstAttribute="leading" secondItem="gu2-D9-iGP" secondAttribute="trailing" constant="-3" id="tUH-s0-Qsi"/>
+                <constraint firstItem="qwC-Sy-dgF" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="21" id="w0J-PD-Y6I"/>
+                <constraint firstItem="W6y-fa-ggk" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="4" id="yVA-bX-nal"/>
+                <constraint firstAttribute="bottom" secondItem="qwC-Sy-dgF" secondAttribute="bottom" constant="4" id="zPU-7g-7D2"/>
+            </constraints>
+            <point key="canvasLocation" x="140" y="179.5"/>
+        </customView>
+        <customObject id="Lpl-kV-QOv" customClass="MessageSentCollectionViewItem" customModule="Sphinx" customModuleProvider="target"/>
+    </objects>
+    <resources>
+        <namedColor name="PrimaryGreen">
+            <color red="0.28627450980392155" green="0.78823529411764703" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PrimaryRed">
+            <color red="0.92941176470588238" green="0.45490196078431372" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="WashedOutReceivedText">
+            <color red="0.69019607843137254" green="0.71764705882352942" blue="0.73725490196078436" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
