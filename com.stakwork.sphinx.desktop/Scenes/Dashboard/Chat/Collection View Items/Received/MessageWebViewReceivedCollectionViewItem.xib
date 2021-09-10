@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
-        <plugIn identifier="com.apple.WebKit2IBPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="18122"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -98,6 +98,17 @@
                         <constraint firstAttribute="width" constant="410" id="Pfz-48-tE4"/>
                     </constraints>
                 </customView>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gRk-um-OlV" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="463" y="311" width="22" height="18"/>
+                    <buttonCell key="cell" type="bevel" title="" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="pBt-dO-vjJ" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="18" name="MaterialIcons-Regular"/>
+                    </buttonCell>
+                    <color key="contentTintColor" name="WashedOutReceivedText"/>
+                    <connections>
+                        <action selector="optionsButtonClicked:" target="cgb-Eo-Ong" id="h8f-ga-U2c"/>
+                    </connections>
+                </button>
                 <wkWebView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kjb-mI-CgG" customClass="BotWebView" customModule="Sphinx" customModuleProvider="target">
                     <rect key="frame" x="68" y="12" width="390" height="309"/>
                     <wkWebViewConfiguration key="configuration">
@@ -114,6 +125,7 @@
                 <constraint firstItem="Kjb-mI-CgG" firstAttribute="top" secondItem="hmY-uH-TbQ" secondAttribute="top" constant="8" id="410-kz-8Pl"/>
                 <constraint firstItem="zmm-yf-48i" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="5Vr-eP-rGX"/>
                 <constraint firstItem="lEX-FE-ZXy" firstAttribute="leading" secondItem="hmY-uH-TbQ" secondAttribute="leading" id="C9v-yZ-oqh"/>
+                <constraint firstItem="gRk-um-OlV" firstAttribute="top" secondItem="hmY-uH-TbQ" secondAttribute="top" id="E4d-76-5gP"/>
                 <constraint firstItem="lEX-FE-ZXy" firstAttribute="trailing" secondItem="hmY-uH-TbQ" secondAttribute="trailing" id="Em2-C6-WKp"/>
                 <constraint firstItem="hmY-uH-TbQ" firstAttribute="trailing" secondItem="Kjb-mI-CgG" secondAttribute="trailing" constant="8" id="Erl-g0-cKe"/>
                 <constraint firstItem="hmY-uH-TbQ" firstAttribute="leading" secondItem="1q9-Ap-MAk" secondAttribute="trailing" id="IM6-wy-XAw"/>
@@ -127,13 +139,18 @@
                 <constraint firstAttribute="bottom" secondItem="zmm-yf-48i" secondAttribute="bottom" id="bxg-RJ-qUw"/>
                 <constraint firstAttribute="trailing" secondItem="tbE-T4-erm" secondAttribute="trailing" constant="28" id="cy9-1H-F6n"/>
                 <constraint firstItem="tbE-T4-erm" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="fsn-C2-6xf"/>
+                <constraint firstItem="gRk-um-OlV" firstAttribute="leading" secondItem="hmY-uH-TbQ" secondAttribute="trailing" constant="-3" id="lKw-3o-7DV"/>
                 <constraint firstAttribute="bottom" secondItem="hmY-uH-TbQ" secondAttribute="bottom" constant="4" id="sjY-Sc-myC"/>
                 <constraint firstItem="zmm-yf-48i" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="75.5" id="vX1-21-t2m"/>
                 <constraint firstAttribute="bottom" secondItem="tbE-T4-erm" secondAttribute="bottom" id="xu8-cf-jgw"/>
             </constraints>
             <point key="canvasLocation" x="139" y="154"/>
         </customView>
-        <customObject id="cgb-Eo-Ong" customClass="MessageWebViewReceivedCollectionViewItem" customModule="Sphinx" customModuleProvider="target"/>
+        <customObject id="cgb-Eo-Ong" customClass="MessageWebViewReceivedCollectionViewItem" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="optionsButton" destination="gRk-um-OlV" id="Hcl-FO-yH6"/>
+            </connections>
+        </customObject>
     </objects>
     <resources>
         <namedColor name="Text">

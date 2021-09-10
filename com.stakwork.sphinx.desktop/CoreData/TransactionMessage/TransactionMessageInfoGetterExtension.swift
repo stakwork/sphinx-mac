@@ -340,6 +340,10 @@ extension TransactionMessage {
         return type == TransactionMessageType.attachment.rawValue
     }
     
+    func isBotResponse() -> Bool {
+        return type == TransactionMessageType.botResponse.rawValue
+    }
+    
     func isVideo() -> Bool {
         return getMediaType() == TransactionMessage.TransactionMessageType.videoAttachment.rawValue
     }
@@ -481,7 +485,7 @@ extension TransactionMessage {
             }
         }
         
-        if (isTextMessage() || isAttachment()) && !(uuid ?? "").isEmpty {
+        if (isTextMessage() || isAttachment() || isBotResponse()) && !(uuid ?? "").isEmpty {
             options.append((MessageActionsItem.Reply, "", nil, "reply".localized))
         }
         
