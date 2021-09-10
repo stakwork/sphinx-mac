@@ -426,6 +426,13 @@ extension String {
         }
     }
     
+    var isValidHTML: Bool {
+        if self.isEmpty {
+            return false
+        }
+        return (self.range(of: "<(\"[^\"]*\"|'[^']*'|[^'\">])*>", options: .regularExpression) != nil)
+    }
+    
     var abbreviatedLink : String {
         if self.length > 30 {
             let first25 = String(self.prefix(20))
