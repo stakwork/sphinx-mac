@@ -9,7 +9,7 @@
 import Cocoa
 import WebKit
 
-class MessageWebViewReceivedCollectionViewItem: CommonChatCollectionViewItem {
+class MessageWebViewReceivedCollectionViewItem: CommonReplyCollectionViewItem {
     
     @IBOutlet weak var bubbleView: MessageBubbleView!
     @IBOutlet weak var lockSign: NSTextField!
@@ -57,6 +57,7 @@ class MessageWebViewReceivedCollectionViewItem: CommonChatCollectionViewItem {
         
         let size = bubbleView.showIncomingMessageWebViewBubble(messageRow: messageRow)
         setBubbleWidth(bubbleSize: size)
+        configureReplyBubble(bubbleView: bubbleView, bubbleSize: size, incoming: true)
         
         commonConfigurationForMessages()
         lockSign.stringValue = messageRow.transactionMessage.encrypted ? "lock" : ""
@@ -116,7 +117,8 @@ class MessageWebViewReceivedCollectionViewItem: CommonChatCollectionViewItem {
     
     public static func getRowHeight(messageRow: TransactionMessageRow) -> CGFloat {
         let webViewHeight = messageRow.transactionMessage.getWebViewHeight() ?? kMessageWebViewRowHeight
-        return webViewHeight + (Constants.kLabelMargins * 2) + Constants.kBubbleTopMargin + Constants.kBubbleBottomMargin
+        let replyTopPadding = CommonChatCollectionViewItem.getReplyTopPadding(message: messageRow.transactionMessage)
+        return webViewHeight + replyTopPadding + (Constants.kLabelMargins * 2) + Constants.kBubbleTopMargin + Constants.kBubbleBottomMargin
     }
 }
 
