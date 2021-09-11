@@ -293,6 +293,7 @@
 "amount.too.low" = "Importe demasiado bajo";
 "amount.too.high" = "Importe demasiado alto";
 "link.not.supported" = "Enlace no válido";
+"bot.response.preview" = "Respuesta de Bot";
 
 "users" = "users";
 "optional.message.placeholder" = "Mensaje opcional...";
