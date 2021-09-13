@@ -295,6 +295,7 @@
 "amount.too.low" = "Amount too low";
 "amount.too.high" = "Amount too high";
 "link.not.supported" = "Link not supported";
+"bot.response.preview" = "Bot response";
 
 "users" = "users";
 "optional.message.placeholder" = "Optional Message...";

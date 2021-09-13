@@ -213,7 +213,8 @@ extension TransactionMessage {
     
     func getReplyMessageContent() -> String {
         if hasMessageContent() {
-            return getMessageContent()
+            let messageContent = getMessageContent()
+            return messageContent.isValidHTML ? "bot.response.preview".localized : messageContent
         }
         if let fileName = self.mediaFileName {
             return fileName
@@ -338,6 +339,10 @@ extension TransactionMessage {
     
     func isAttachment() -> Bool {
         return type == TransactionMessageType.attachment.rawValue
+    }
+    
+    func isBotResponse() -> Bool {
+        return type == TransactionMessageType.botResponse.rawValue
     }
     
     func isVideo() -> Bool {
@@ -481,7 +486,7 @@ extension TransactionMessage {
             }
         }
         
-        if (isTextMessage() || isAttachment()) && !(uuid ?? "").isEmpty {
+        if (isTextMessage() || isAttachment() || isBotResponse()) && !(uuid ?? "").isEmpty {
             options.append((MessageActionsItem.Reply, "", nil, "reply".localized))
         }
         

@@ -231,7 +231,11 @@ class ChatHelper {
             cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "GroupRequestCollectionViewItem"), for: indexPath)
             break
         case TransactionMessage.TransactionMessageType.botResponse:
-            cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MessageWebViewReceivedCollectionViewItem"), for: indexPath)
+            if (message.messageContent?.isValidHTML ?? true) {
+                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MessageWebViewReceivedCollectionViewItem"), for: indexPath)
+            } else {
+                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MessageReceivedCollectionViewItem"), for: indexPath)
+            }
             break
         default:
             break
@@ -354,7 +358,11 @@ class ChatHelper {
             height = GroupRequestCollectionViewItem.getRowHeight()
             break
         case TransactionMessage.TransactionMessageType.botResponse:
-            height = MessageWebViewReceivedCollectionViewItem.getRowHeight(messageRow: messageRow)
+            if (message.messageContent?.isValidHTML ?? true) {
+                height = MessageWebViewReceivedCollectionViewItem.getRowHeight(messageRow: messageRow)
+            } else {
+                height = MessageReceivedCollectionViewItem.getRowHeight(messageRow: messageRow)
+            }
             break
         default:
             break
