@@ -122,6 +122,7 @@
 
 //ADDRESS BOOK
 "new.contact" = "New Contact";
+"new.contact.error.alreadyExists" = "A contact with this public key already exists in your Address Book.";
 "save.to.contacts.upper" = "SAVE TO CONTACTS";
 "edit.contact.upper" = "EDIT CONTACT";
 "subscribed.upper" = "SUBSCRIBED";

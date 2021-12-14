@@ -181,6 +181,8 @@ class NewContactViewController: NSViewController {
             showErrorAlert(message: "invalid.pubkey".localized)
         } else if nickname.isEmpty || pubkey.isEmpty {
             showErrorAlert(message: "nickname.address.required".localized)
+        } else if contactsService.contacts.contains(where: { $0.publicKey == pubkey }) {
+            showErrorAlert(message: "new.contact.error.alreadyExists".localized)
         } else {
             contactsService.createContact(nickname: nickname, pubKey: pubkey, routeHint: routeHint, pin: pin, callback: { success in
                 self.loading = false
