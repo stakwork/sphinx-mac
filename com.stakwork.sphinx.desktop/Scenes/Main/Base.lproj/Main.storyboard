@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -866,9 +866,13 @@
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Sphinx" customModuleProvider="target">
                     <connections>
                         <outlet property="appearanceMenu" destination="feM-82-G70" id="uBW-9D-s4T"/>
+                        <outlet property="logoutMenuItem" destination="E2p-8a-8x1" id="x8M-Zm-PYT"/>
                         <outlet property="messagesSizeMenu" destination="16a-nc-PWW" id="2ri-ea-Q1R"/>
+                        <outlet property="newContactMenuItem" destination="RHC-tx-zTM" id="Peo-GS-n8s"/>
                         <outlet property="notificationSoundMenu" destination="XW4-xG-UAh" id="Hvf-Nu-qUy"/>
                         <outlet property="notificationTypeMenu" destination="hLH-rD-Zt1" id="mNY-GK-8t5"/>
+                        <outlet property="profileMenuItem" destination="tFr-rO-lm5" id="Gb2-Qs-Qar"/>
+                        <outlet property="removeAccountMenuItem" destination="i8q-0O-PQm" id="WoY-xZ-VzF"/>
                     </connections>
                 </customObject>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
