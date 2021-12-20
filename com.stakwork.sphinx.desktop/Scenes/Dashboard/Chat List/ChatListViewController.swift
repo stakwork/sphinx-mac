@@ -119,7 +119,15 @@ class ChatListViewController : DashboardSplittedViewController {
     func updateContactsAndReload() {
         updateBalance()
         chatListViewModel.updateContactsAndChats()
-        chatListObjectsArray = contactsService.getChatListObjects()
+
+        if searchField.stringValue.isEmpty {
+            chatListObjectsArray = contactsService.getChatListObjects()
+        } else {
+            chatListObjectsArray = contactsService.getObjectsWith(
+                searchString: searchField.stringValue as String
+            )
+        }
+        
         loadDataSource()
         shouldCheckAppVersions()
     }

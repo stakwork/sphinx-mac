@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -48,9 +48,9 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="p59-3x-2uO">
-                    <rect key="frame" x="135" y="551" width="130" height="18"/>
+                    <rect key="frame" x="139" y="552" width="122" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="GROUP PAYMENT" id="egw-dG-KeU">
-                        <font key="font" size="14" name="Montserrat-SemiBold"/>
+                        <font key="font" metaFont="system" size="14"/>
                         <color key="textColor" name="Text"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -62,9 +62,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ccy-bj-GSR">
-                                <rect key="frame" x="22" y="10" width="32" height="13"/>
+                                <rect key="frame" x="22" y="10" width="31" height="13"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="NEXT" id="meo-cf-LVB">
-                                    <font key="font" size="10" name="Montserrat-Regular"/>
+                                    <font key="font" metaFont="system" size="10"/>
                                     <color key="textColor" name="sphinxWhite"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -125,7 +125,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jc8-kz-Hrk">
-                                        <rect key="frame" x="338" y="4" width="30" height="30"/>
+                                        <rect key="frame" x="338" y="1" width="30" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="0bW-Sj-oNd"/>
                                             <constraint firstAttribute="width" constant="30" id="eLX-wT-FbV"/>
@@ -191,7 +191,7 @@
                     <rect key="frame" x="0.0" y="348" width="400" height="30"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FdI-os-ded">
-                            <rect key="frame" x="14" y="7" width="121" height="16"/>
+                            <rect key="frame" x="14" y="7" width="120" height="16"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="GROUP MEMBERS" id="wLK-aH-PyB">
                                 <font key="font" size="14" name="Roboto-Medium"/>
                                 <color key="textColor" name="SecondaryText"/>
@@ -271,7 +271,7 @@
         </customView>
     </objects>
     <resources>
-        <image name="NSStopProgressFreestandingTemplate" width="14" height="14"/>
+        <image name="NSStopProgressFreestandingTemplate" width="15" height="15"/>
         <namedColor name="ListBG">
             <color red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
