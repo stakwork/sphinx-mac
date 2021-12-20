@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class SignupSecureFieldView: SignupCommonFieldView {
+class SignupSecureFieldView: SignupCommonSecureFieldView {
     
     let pinLength = 6
     
@@ -18,8 +18,8 @@ class SignupSecureFieldView: SignupCommonFieldView {
                        color: NSColor = NSColor.white,
                        placeHolderColor: NSColor = NSColor(hex: "#3B4755"),
                        field: NamePinView.Fields,
-                       delegate: SignupFieldViewDelegate) {
-        
+                       delegate: SignupFieldViewDelegate
+    ) {
         self.field = field
         self.delegate = delegate
         
@@ -39,6 +39,7 @@ class SignupSecureFieldView: SignupCommonFieldView {
 }
 
 extension SignupSecureFieldView {
+    
     override func controlTextDidChange(_ obj: Notification) {
         topLabel.alphaValue = textField.stringValue.isEmpty ? 0.0 : 1.0
         
