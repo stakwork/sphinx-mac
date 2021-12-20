@@ -27,6 +27,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var notificationSoundMenu: NSMenu!
     @IBOutlet weak var messagesSizeMenu: NSMenu!
     
+    @IBOutlet weak var profileMenuItem: NSMenuItem!
+    @IBOutlet weak var newContactMenuItem: NSMenuItem!
+    @IBOutlet weak var logoutMenuItem: NSMenuItem!
+    @IBOutlet weak var removeAccountMenuItem: NSMenuItem!
+    
+    
     public enum SphinxMenuButton: Int {
         case Profile = 0
         case NewContact = 1
@@ -98,6 +104,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let messagesSize = UserDefaults.Keys.messagesSize.get(defaultValue: 0)
         setMessagesSizeFrom(value: messagesSize)
     }
+    
+    
+    func setAppMenuVisibility(shouldEnableItems: Bool) {
+        [
+            profileMenuItem,
+            newContactMenuItem,
+            logoutMenuItem,
+            removeAccountMenuItem,
+        ]
+        .forEach { $0?.isHidden = shouldEnableItems == false }
+    }
+    
     
     func setInitialVC() {
         if let mainWindow = getDashboardWindow() {
@@ -177,12 +195,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func presentPIN() {
+        setAppMenuVisibility(shouldEnableItems: false)
         CoreDataManager.sharedManager.resetContext()
         SDImageCache.shared.clearMemory()
         
         let pinVC = EnterPinViewController.instantiate(mode: .Launch)
         pinVC.doneCompletion = { pin in
             UserDefaults.Keys.lastPinDate.set(Date())
+            self.setAppMenuVisibility(shouldEnableItems: true)
             self.loadDashboard()
         }
         createKeyWindowWith(vc: pinVC, windowState: WindowsManager.sharedInstance.getWindowState(), closeOther: true, hideBar: true)
