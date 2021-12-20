@@ -128,6 +128,7 @@
 "subscribe.upper" = "SUBSCRIBE";
 "nickname.address.required" = "Nickname and Address are required.";
 "invalid.pubkey" = "Invalid Public Key";
+"new.contact.error.alreadyExists" = "A contact with this public key already exists in your Address Book.";
 
 //INVITE
 "add.people" = "Add People";

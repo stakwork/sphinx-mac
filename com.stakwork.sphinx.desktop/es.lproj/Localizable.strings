@@ -126,6 +126,7 @@
 "subscribe.upper" = "SUSCRIBIRSE";
 "nickname.address.required" = "Alias y dirección son obligatorios";
 "invalid.pubkey" = "Clave Pública inválida";
+"new.contact.error.alreadyExists" = "Ya existe un contacto con esta clave pública en tu lista de contactos.";
 
 //INVITE
 "group.details" = "Detalles del Grupo";
