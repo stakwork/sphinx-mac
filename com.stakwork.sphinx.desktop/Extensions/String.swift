@@ -564,6 +564,20 @@ extension String {
     var emojis: [Character] { filter { $0.isEmoji } }
 
     var emojiScalars: [UnicodeScalar] { filter { $0.isEmoji }.flatMap { $0.unicodeScalars } }
+    
+    func getLinkAction() -> String? {
+        let components = self.components(separatedBy: "&")
+        
+        for component in components {
+            if component.contains("action") {
+                let elements = component.components(separatedBy: "=")
+                if elements.count > 1 {
+                    return elements[1]
+                }
+            }
+        }
+        return nil
+    }
 }
 
 extension Character {

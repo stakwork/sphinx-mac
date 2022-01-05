@@ -62,17 +62,28 @@
                                     <real value="250"/>
                                 </holdingPriorities>
                             </splitView>
+                            <containerView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dbw-3D-RbV">
+                                <rect key="frame" x="0.0" y="0.0" width="1000" height="400"/>
+                                <connections>
+                                    <segue destination="QAD-ym-i0Y" kind="embed" id="l3S-tb-0wV"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="PrF-LO-tpi" secondAttribute="bottom" id="1s2-ZT-Mng"/>
+                            <constraint firstItem="dbw-3D-RbV" firstAttribute="top" secondItem="hFQ-Ab-J3C" secondAttribute="top" id="5tD-Lb-VC4"/>
+                            <constraint firstAttribute="bottom" secondItem="dbw-3D-RbV" secondAttribute="bottom" id="6ml-7y-Y04"/>
                             <constraint firstItem="PrF-LO-tpi" firstAttribute="top" secondItem="hFQ-Ab-J3C" secondAttribute="top" id="K6W-le-LYp"/>
                             <constraint firstItem="PrF-LO-tpi" firstAttribute="leading" secondItem="hFQ-Ab-J3C" secondAttribute="leading" id="X5M-A4-iY6"/>
                             <constraint firstAttribute="trailing" secondItem="PrF-LO-tpi" secondAttribute="trailing" id="fgH-IK-Ee4"/>
+                            <constraint firstAttribute="trailing" secondItem="dbw-3D-RbV" secondAttribute="trailing" id="mtd-2c-rNd"/>
+                            <constraint firstItem="dbw-3D-RbV" firstAttribute="leading" secondItem="hFQ-Ab-J3C" secondAttribute="leading" id="u3E-zp-d19"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="dashboardSplitView" destination="PrF-LO-tpi" id="Mc9-G7-SVA"/>
                         <outlet property="leftSplittedView" destination="TtT-Yv-CaJ" id="1we-Fa-PVs"/>
+                        <outlet property="modalsContainerView" destination="dbw-3D-RbV" id="UXb-da-QeH"/>
                         <outlet property="rightSplittedView" destination="pXC-Wm-9tR" id="QM1-VT-C9Q"/>
                     </connections>
                 </viewController>
@@ -1532,6 +1543,74 @@
                 <customObject id="sgF-HH-hJe" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1967" y="888"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="LDN-nY-EzK">
+            <objects>
+                <viewController id="lRT-Vg-z18" sceneMemberID="viewController">
+                    <view key="view" id="MYE-Qx-ezO">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="dGf-HG-nxM" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-176" y="-325"/>
+        </scene>
+        <!--People Modals View Controller-->
+        <scene sceneID="1PJ-nr-MS0">
+            <objects>
+                <viewController storyboardIdentifier="PeopleModalsViewController" id="QAD-ym-i0Y" customClass="PeopleModalsViewController" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="sw1-cm-4av">
+                        <rect key="frame" x="0.0" y="0.0" width="589" height="400"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <box boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="YOg-n0-8Yf">
+                                <rect key="frame" x="0.0" y="0.0" width="589" height="400"/>
+                                <view key="contentView" id="zug-hn-Eft">
+                                    <rect key="frame" x="1" y="1" width="587" height="398"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="6cJ-eE-R77" customClass="AuthExternalView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="144" y="24" width="300" height="350"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="350" id="5sX-v7-mKX"/>
+                                                <constraint firstAttribute="width" constant="300" id="Lvo-fl-55q"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="gQK-Rv-0V3" customClass="PersonModalView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="144" y="-51" width="300" height="500"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="500" id="rXa-ny-qVK"/>
+                                                <constraint firstAttribute="width" constant="300" id="uhz-xx-lBS"/>
+                                            </constraints>
+                                        </customView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="6cJ-eE-R77" firstAttribute="centerY" secondItem="zug-hn-Eft" secondAttribute="centerY" id="EeE-8S-Wbx"/>
+                                        <constraint firstItem="gQK-Rv-0V3" firstAttribute="centerX" secondItem="zug-hn-Eft" secondAttribute="centerX" id="I1T-M5-cgC"/>
+                                        <constraint firstItem="gQK-Rv-0V3" firstAttribute="centerY" secondItem="zug-hn-Eft" secondAttribute="centerY" id="Obl-jS-HHG"/>
+                                        <constraint firstItem="6cJ-eE-R77" firstAttribute="centerX" secondItem="zug-hn-Eft" secondAttribute="centerX" id="aac-b6-sSV"/>
+                                    </constraints>
+                                </view>
+                                <color key="fillColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </box>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="YOg-n0-8Yf" secondAttribute="trailing" id="Eqz-hu-92I"/>
+                            <constraint firstItem="YOg-n0-8Yf" firstAttribute="top" secondItem="sw1-cm-4av" secondAttribute="top" id="NPn-fy-fTY"/>
+                            <constraint firstAttribute="bottom" secondItem="YOg-n0-8Yf" secondAttribute="bottom" id="kCl-S0-oG5"/>
+                            <constraint firstItem="YOg-n0-8Yf" firstAttribute="leading" secondItem="sw1-cm-4av" secondAttribute="leading" id="s3c-cn-qFV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="authExternalView" destination="6cJ-eE-R77" id="7QX-YQ-Rvu"/>
+                        <outlet property="personModalView" destination="gQK-Rv-0V3" id="Cjb-AY-I8U"/>
+                    </connections>
+                </viewController>
+                <customObject id="867-LG-u5Q" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-817.5" y="133"/>
         </scene>
     </scenes>
     <resources>

@@ -23,4 +23,7 @@ extension Notification.Name {
     static let screenIsUnlocked = Notification.Name.init("com.apple.screenIsUnlocked")
     static let onTribeImageChanged = Notification.Name("onTribeImageChanged")
     static let onInterfaceThemeChanged = Notification.Name("AppleInterfaceThemeChangedNotification")
+    
+    static let onAuthDeepLink = Notification.Name("onAuthDeepLink")
+    static let onPersonDeepLink = Notification.Name("onPersonDeepLink")
 }

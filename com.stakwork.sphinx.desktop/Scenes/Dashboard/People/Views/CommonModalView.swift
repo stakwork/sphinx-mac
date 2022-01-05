@@ -10,7 +10,7 @@ import Cocoa
 import SwiftyJSON
 
 protocol ModalViewDelegate: AnyObject {
-    func shouldDismissVC()
+    func shouldDismissModals()
     func shouldGoToContactChat(contactId: Int)
 }
 
@@ -101,7 +101,7 @@ class CommonModalView: NSView, ModalViewInterface {
     }
     
     @IBAction func closeButtonTouched(_ sender: Any) {
-        delegate?.shouldDismissVC()
+        delegate?.shouldDismissModals()
     }
     
     @IBAction func confirmButtonTouched(_ sender: Any) {

@@ -312,6 +312,7 @@
 		4797E7512785D2610080B966 /* PersonModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4797E7502785D2610080B966 /* PersonModalView.xib */; };
 		4797E7532785D2750080B966 /* CommonModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E7522785D2750080B966 /* CommonModalView.swift */; };
 		4797E7552785E1240080B966 /* APIPeopleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E7542785E1240080B966 /* APIPeopleExtension.swift */; };
+		4797E7582785F3AD0080B966 /* PeopleModalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E7572785F3AD0080B966 /* PeopleModalsViewController.swift */; };
 		4797E82424BCC0DA00D13270 /* Groups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4797E82624BCC0DA00D13270 /* Groups.storyboard */; };
 		4797E82B24BCC0F200D13270 /* Invite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4797E82D24BCC0F200D13270 /* Invite.storyboard */; };
 		4797E83224BCC10000D13270 /* Pin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4797E83424BCC10000D13270 /* Pin.storyboard */; };
@@ -865,6 +866,7 @@
 		4797E7502785D2610080B966 /* PersonModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonModalView.xib; sourceTree = "<group>"; };
 		4797E7522785D2750080B966 /* CommonModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonModalView.swift; sourceTree = "<group>"; };
 		4797E7542785E1240080B966 /* APIPeopleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPeopleExtension.swift; sourceTree = "<group>"; };
+		4797E7572785F3AD0080B966 /* PeopleModalsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleModalsViewController.swift; sourceTree = "<group>"; };
 		4797E82124BCC0CA00D13270 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		4797E82324BCC0CF00D13270 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		4797E82524BCC0DA00D13270 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Groups.storyboard; sourceTree = "<group>"; };
@@ -1896,6 +1898,7 @@
 		4797E7482785D1560080B966 /* People */ = {
 			isa = PBXGroup;
 			children = (
+				4797E7562785F3980080B966 /* View Controllers */,
 				4797E7492785D15E0080B966 /* Views */,
 			);
 			path = People;
@@ -1911,6 +1914,14 @@
 				4797E7522785D2750080B966 /* CommonModalView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		4797E7562785F3980080B966 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4797E7572785F3AD0080B966 /* PeopleModalsViewController.swift */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		479C792C24EAD1FB009BA1CD /* Tor */ = {
@@ -2923,6 +2934,7 @@
 				479751FA246DE61A00D2106B /* ContactsService.swift in Sources */,
 				479751FE246EE0AE00D2106B /* DashboardSplittedViewController.swift in Sources */,
 				47E771252472C27200C9CFEB /* MessageSentCollectionViewItem.swift in Sources */,
+				4797E7582785F3AD0080B966 /* PeopleModalsViewController.swift in Sources */,
 				478ED58825D47C7900940132 /* WelcomeView.swift in Sources */,
 				47C1F1D3248130AA00A71610 /* CommonVideoCollectionViewItem.swift in Sources */,
 				4744FA7C2469C99600C5FD94 /* NSManagedObjectContext.swift in Sources */,

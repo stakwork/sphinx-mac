@@ -82,6 +82,6 @@ class AuthExternalView: CommonModalView, LoadableNib {
         } else {
             messageBubbleHelper.showGenericMessageView(text: "authorization.failed".localized, delay: 5, textColor: NSColor.white, backColor: NSColor.Sphinx.BadgeRed, backAlpha: 1.0)
         }
-        delegate?.shouldDismissVC()
+        delegate?.shouldDismissModals()
     }
 }

@@ -53,7 +53,7 @@ class PersonModalView: CommonModalView, LoadableNib {
                 if let person = person {
                     self.showPersonInfo(person: person)
                 } else {
-                    self.delegate?.shouldDismissVC()
+                    self.delegate?.shouldDismissModals()
                 }
             })
         }

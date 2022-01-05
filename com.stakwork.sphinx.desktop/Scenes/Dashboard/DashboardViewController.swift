@@ -13,6 +13,7 @@ class DashboardViewController: NSViewController {
     @IBOutlet weak var dashboardSplitView: NSSplitView!
     @IBOutlet weak var leftSplittedView: NSView!
     @IBOutlet weak var rightSplittedView: NSView!
+    @IBOutlet weak var modalsContainerView: NSView!
     
     var mediaFullScreenView: MediaFullScreenView? = nil
     
@@ -76,6 +77,8 @@ class DashboardViewController: NSViewController {
         NotificationCenter.default.removeObserver(self, name: .shouldResetChat, object: nil)
         NotificationCenter.default.removeObserver(self, name: .shouldReloadChatsList, object: nil)
         NotificationCenter.default.removeObserver(self, name: .chatNotificationClicked, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .onAuthDeepLink, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .onPersonDeepLink, object: nil)
     }
     
     @objc func themeChangedNotification(notification: Notification) {
@@ -140,6 +143,33 @@ class DashboardViewController: NSViewController {
                 }
             }
         }
+        
+        NotificationCenter.default.addObserver(forName: .onAuthDeepLink, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
+            guard let vc = self else { return }
+            
+            if let query = n.userInfo?["query"] as? String {
+                for childVC in vc.children {
+                    if let childVC = childVC as? PeopleModalsViewController {
+                        vc.modalsContainerView.isHidden = false
+                        childVC.showWithQuery(query, and: vc)
+                    }
+                }
+            }
+        }
+        
+        NotificationCenter.default.addObserver(forName: .onPersonDeepLink, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
+            guard let vc = self else { return }
+            
+            if let query = n.userInfo?["query"] as? String {
+                for childVC in vc.children {
+                    if let childVC = childVC as? PeopleModalsViewController {
+                        vc.modalsContainerView.isHidden = false
+                        childVC.showWithQuery(query, and: vc)
+                    }
+                }
+            }
+        }
+        
     }
     
     func shouldGoToChat(chat: Chat) {
@@ -344,5 +374,11 @@ extension DashboardViewController : MediaFullScreenDelegate {
             mediaFullScreenView.removeFromSuperview()
             self.mediaFullScreenView = nil
         }
+    }
+}
+
+extension DashboardViewController : ModalsViewControllerDelegate {
+    func shouldHideContainer() {
+        self.modalsContainerView.isHidden = true
     }
 }
