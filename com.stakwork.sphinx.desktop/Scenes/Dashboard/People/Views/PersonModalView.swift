@@ -35,6 +35,8 @@ class PersonModalView: CommonModalView, LoadableNib {
     
     var loading = false {
         didSet {
+            loadingWheelContainer.isHidden = !loading
+            
             LoadingWheelHelper.toggleLoadingWheel(loading: loading, loadingWheel: loadingWheel, color: NSColor.white, controls: [])
         }
     }
@@ -81,10 +83,11 @@ class PersonModalView: CommonModalView, LoadableNib {
         super.modalDidShow()
     }
     
-    @IBAction func connectButtonTouched(_ sender: Any) {
-        buttonLoading = true
-        
+    override func didTapConfirmButton() {
         if let pubkey = authInfo?.pubkey {
+            
+            buttonLoading = true
+            
             if let _ = UserContact.getContactWith(pubkey: pubkey) {
                 showMessage(message: "already.connected".localized, color: NSColor.Sphinx.PrimaryGreen)
                 return

@@ -313,6 +313,8 @@
 		4797E7532785D2750080B966 /* CommonModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E7522785D2750080B966 /* CommonModalView.swift */; };
 		4797E7552785E1240080B966 /* APIPeopleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E7542785E1240080B966 /* APIPeopleExtension.swift */; };
 		4797E7582785F3AD0080B966 /* PeopleModalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E7572785F3AD0080B966 /* PeopleModalsViewController.swift */; };
+		4797E75A278607960080B966 /* SavePeopleProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E759278607960080B966 /* SavePeopleProfileView.swift */; };
+		4797E75C278607A40080B966 /* SavePeopleProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4797E75B278607A40080B966 /* SavePeopleProfileView.xib */; };
 		4797E82424BCC0DA00D13270 /* Groups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4797E82624BCC0DA00D13270 /* Groups.storyboard */; };
 		4797E82B24BCC0F200D13270 /* Invite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4797E82D24BCC0F200D13270 /* Invite.storyboard */; };
 		4797E83224BCC10000D13270 /* Pin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4797E83424BCC10000D13270 /* Pin.storyboard */; };
@@ -867,6 +869,8 @@
 		4797E7522785D2750080B966 /* CommonModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonModalView.swift; sourceTree = "<group>"; };
 		4797E7542785E1240080B966 /* APIPeopleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPeopleExtension.swift; sourceTree = "<group>"; };
 		4797E7572785F3AD0080B966 /* PeopleModalsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleModalsViewController.swift; sourceTree = "<group>"; };
+		4797E759278607960080B966 /* SavePeopleProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePeopleProfileView.swift; sourceTree = "<group>"; };
+		4797E75B278607A40080B966 /* SavePeopleProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavePeopleProfileView.xib; sourceTree = "<group>"; };
 		4797E82124BCC0CA00D13270 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		4797E82324BCC0CF00D13270 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		4797E82524BCC0DA00D13270 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Groups.storyboard; sourceTree = "<group>"; };
@@ -1907,11 +1911,13 @@
 		4797E7492785D15E0080B966 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4797E7522785D2750080B966 /* CommonModalView.swift */,
 				4797E74A2785D2420080B966 /* AuthExternalView.swift */,
 				4797E74E2785D2580080B966 /* AuthExternalView.xib */,
 				4797E74C2785D24D0080B966 /* PersonModalView.swift */,
 				4797E7502785D2610080B966 /* PersonModalView.xib */,
-				4797E7522785D2750080B966 /* CommonModalView.swift */,
+				4797E759278607960080B966 /* SavePeopleProfileView.swift */,
+				4797E75B278607A40080B966 /* SavePeopleProfileView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2594,6 +2600,7 @@
 				474F67532486779D00CE6016 /* JoinVideoCallView.xib in Resources */,
 				478ED5CC25D6FD3400940132 /* FriendMessageView.xib in Resources */,
 				47C1F1D7248130F900A71610 /* VideoReceivedCollectionViewItem.xib in Resources */,
+				4797E75C278607A40080B966 /* SavePeopleProfileView.xib in Resources */,
 				474A668D24990193002C2D10 /* MessageOptionView.xib in Resources */,
 				474F674A2486775900CE6016 /* VideoCallSentCollectionViewItem.xib in Resources */,
 				47AF0D4225508FC900C98398 /* PodcastBoostSentCollectionViewItem.xib in Resources */,
@@ -2854,6 +2861,7 @@
 				479751DA246C9A7E00D2106B /* AlertHelper.swift in Sources */,
 				479F657B2487D31C0015A16A /* ChatViewControllerMediaExtension.swift in Sources */,
 				47A4EFFE24B6321700117AE6 /* ConnectivityHelper.swift in Sources */,
+				4797E75A278607960080B966 /* SavePeopleProfileView.swift in Sources */,
 				4744FA642469A43600C5FD94 /* APISubscriptionsExtension.swift in Sources */,
 				47B6F529258BC40600D64A41 /* PodcastLiveDataSource.swift in Sources */,
 				475F0BA224F7D97D0032EDC4 /* NewContactViewController.swift in Sources */,

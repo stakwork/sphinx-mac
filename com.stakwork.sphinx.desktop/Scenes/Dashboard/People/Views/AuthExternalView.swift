@@ -34,7 +34,7 @@ class AuthExternalView: CommonModalView, LoadableNib {
         super.modalDidShow()
     }
     
-    @IBAction func authorizeButtonTouched(_ sender: Any) {
+    override func didTapConfirmButton() {
         buttonLoading = true
         verifyExternal()
     }

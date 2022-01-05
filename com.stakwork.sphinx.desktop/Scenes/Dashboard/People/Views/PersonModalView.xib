@@ -34,7 +34,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="300" height="500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="bgL-gS-ZRb">
+                            <box boxType="custom" borderType="none" cornerRadius="25" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="bgL-gS-ZRb">
                                 <rect key="frame" x="29" y="29" width="242" height="50"/>
                                 <view key="contentView" id="jNF-uY-22t">
                                     <rect key="frame" x="0.0" y="0.0" width="242" height="50"/>
@@ -54,6 +54,9 @@
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="confirmButtonTouched:" target="-2" id="atX-15-dnn"/>
+                                            </connections>
                                         </button>
                                         <progressIndicator wantsLayer="YES" maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="5U2-Ce-0f9">
                                             <rect key="frame" x="213" y="17" width="16" height="16"/>
@@ -86,6 +89,9 @@
                                     <font key="font" size="18" name="MaterialIcons-Regular"/>
                                 </buttonCell>
                                 <color key="contentTintColor" name="PrimaryRed"/>
+                                <connections>
+                                    <action selector="closeButtonTouched:" target="-2" id="DOw-lv-Rkz"/>
+                                </connections>
                             </button>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PJe-X3-b7u">
                                 <rect key="frame" x="100" y="350" width="100" height="100"/>

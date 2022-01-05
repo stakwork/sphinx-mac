@@ -14,7 +14,9 @@ extension API {
     
     typealias VerifyExternalCallback = ((Bool, NSDictionary?) -> ())
     typealias SignVerifyCallback = ((String?) -> ())
-    typealias GetPersonInoCallback = ((Bool, JSON?) -> ())
+    typealias GetPersonInfoCallback = ((Bool, JSON?) -> ())
+    typealias GetProfileByKeyCallback = ((Bool, JSON?) -> ())
+    typealias SavePeopleProfileCallback = ((Bool) -> ())
     
     public func verifyExternal(callback: @escaping VerifyExternalCallback) {
         guard let request = getURLRequest(route: "/verify_external", method: "POST") else {
@@ -87,7 +89,7 @@ extension API {
     
     public func getPersonInfo(host: String,
                               pubkey: String,
-                              callback: @escaping GetPersonInoCallback) {
+                              callback: @escaping GetPersonInfoCallback) {
         
         let url = "https://\(host)/person/\(pubkey)"
         
@@ -106,6 +108,75 @@ extension API {
                 callback(false, nil)
             case .failure(_):
                 callback(false, nil)
+            }
+        }
+    }
+    
+    public func getProfileByKey(host: String,
+                                key: String,
+                                callback: @escaping GetProfileByKeyCallback) {
+        
+        let url = "https://\(host)/save/\(key)"
+        
+        guard let request = createRequest(url, params: nil, method: "GET") else {
+            callback(false, nil)
+            return
+        }
+        
+        AF.request(request).responseJSON { (response) in
+            switch response.result {
+            case .success(let data):
+                if let json = data as? NSDictionary {
+                    callback(true, JSON(json))
+                    return
+                }
+                callback(false, nil)
+            case .failure(_):
+                callback(false, nil)
+            }
+        }
+    }
+    
+    public func savePeopleProfile(params: [String: AnyObject],
+                                  callback: @escaping SavePeopleProfileCallback) {
+        
+        guard let request = getURLRequest(route: "/profile", params: params as NSDictionary, method: "POST") else {
+            callback(false)
+            return
+        }
+        
+        sphinxRequest(request) { response in
+            switch response.result {
+            case .success(let data):
+                if let json = data as? NSDictionary {
+                    if let success = json["success"] as? Bool, let _ = json["response"] as? NSDictionary, success {
+                        callback(true)
+                    }
+                }
+            case .failure(_):
+                callback(false)
+            }
+        }
+    }
+    
+    public func deletePeopleProfile(params: [String: AnyObject],
+                                    callback: @escaping SavePeopleProfileCallback) {
+        
+        guard let request = getURLRequest(route: "/profile", params: params as NSDictionary, method: "DELETE") else {
+            callback(false)
+            return
+        }
+        
+        sphinxRequest(request) { response in
+            switch response.result {
+            case .success(let data):
+                if let json = data as? NSDictionary {
+                    if let success = json["success"] as? Bool, let _ = json["response"] as? NSDictionary, success {
+                        callback(true)
+                    }
+                }
+            case .failure(_):
+                callback(false)
             }
         }
     }
