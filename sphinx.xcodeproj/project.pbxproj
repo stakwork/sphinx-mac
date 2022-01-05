@@ -305,7 +305,13 @@
 		47975205246F186B00D2106B /* PlaceHolderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47975204246F186B00D2106B /* PlaceHolderTextView.swift */; };
 		47975207246F1A0F00D2106B /* ChatViewControllerDelegatesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47975206246F1A0F00D2106B /* ChatViewControllerDelegatesExtension.swift */; };
 		4797520B246F3FA000D2106B /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797520A246F3FA000D2106B /* ChatViewModel.swift */; };
+		4797E74B2785D2420080B966 /* AuthExternalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E74A2785D2420080B966 /* AuthExternalView.swift */; };
 		4797E74C24B8B40F00D13270 /* VideoCallHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E74B24B8B40F00D13270 /* VideoCallHelper.swift */; };
+		4797E74D2785D24D0080B966 /* PersonModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E74C2785D24D0080B966 /* PersonModalView.swift */; };
+		4797E74F2785D2580080B966 /* AuthExternalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4797E74E2785D2580080B966 /* AuthExternalView.xib */; };
+		4797E7512785D2610080B966 /* PersonModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4797E7502785D2610080B966 /* PersonModalView.xib */; };
+		4797E7532785D2750080B966 /* CommonModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E7522785D2750080B966 /* CommonModalView.swift */; };
+		4797E7552785E1240080B966 /* APIPeopleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E7542785E1240080B966 /* APIPeopleExtension.swift */; };
 		4797E82424BCC0DA00D13270 /* Groups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4797E82624BCC0DA00D13270 /* Groups.storyboard */; };
 		4797E82B24BCC0F200D13270 /* Invite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4797E82D24BCC0F200D13270 /* Invite.storyboard */; };
 		4797E83224BCC10000D13270 /* Pin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4797E83424BCC10000D13270 /* Pin.storyboard */; };
@@ -852,7 +858,13 @@
 		47975204246F186B00D2106B /* PlaceHolderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolderTextView.swift; sourceTree = "<group>"; };
 		47975206246F1A0F00D2106B /* ChatViewControllerDelegatesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewControllerDelegatesExtension.swift; sourceTree = "<group>"; };
 		4797520A246F3FA000D2106B /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		4797E74A2785D2420080B966 /* AuthExternalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthExternalView.swift; sourceTree = "<group>"; };
 		4797E74B24B8B40F00D13270 /* VideoCallHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCallHelper.swift; sourceTree = "<group>"; };
+		4797E74C2785D24D0080B966 /* PersonModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonModalView.swift; sourceTree = "<group>"; };
+		4797E74E2785D2580080B966 /* AuthExternalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthExternalView.xib; sourceTree = "<group>"; };
+		4797E7502785D2610080B966 /* PersonModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonModalView.xib; sourceTree = "<group>"; };
+		4797E7522785D2750080B966 /* CommonModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonModalView.swift; sourceTree = "<group>"; };
+		4797E7542785E1240080B966 /* APIPeopleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPeopleExtension.swift; sourceTree = "<group>"; };
 		4797E82124BCC0CA00D13270 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		4797E82324BCC0CF00D13270 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		4797E82524BCC0DA00D13270 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Groups.storyboard; sourceTree = "<group>"; };
@@ -1504,6 +1516,7 @@
 				47308E2225083FCF00FFAC6F /* APIGiphyExtension.swift */,
 				470396E8253721D7007F9C23 /* APIPodcastExtension.swift */,
 				479E7D8025AC99480092595B /* APIVersionsExtension.swift */,
+				4797E7542785E1240080B966 /* APIPeopleExtension.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1760,6 +1773,7 @@
 		479751C2246C72C100D2106B /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				4797E7482785D1560080B966 /* People */,
 				4797E83B24BCC10D00D13270 /* Dashboard.storyboard */,
 				479751C9246C732C00D2106B /* DashboardViewController.swift */,
 				479751FD246EE0AE00D2106B /* DashboardSplittedViewController.swift */,
@@ -1877,6 +1891,26 @@
 				4726A41224C0D173005A66B4 /* HealthCheckView.xib */,
 			);
 			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		4797E7482785D1560080B966 /* People */ = {
+			isa = PBXGroup;
+			children = (
+				4797E7492785D15E0080B966 /* Views */,
+			);
+			path = People;
+			sourceTree = "<group>";
+		};
+		4797E7492785D15E0080B966 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4797E74A2785D2420080B966 /* AuthExternalView.swift */,
+				4797E74E2785D2580080B966 /* AuthExternalView.xib */,
+				4797E74C2785D24D0080B966 /* PersonModalView.swift */,
+				4797E7502785D2610080B966 /* PersonModalView.xib */,
+				4797E7522785D2750080B966 /* CommonModalView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		479C792C24EAD1FB009BA1CD /* Tor */ = {
@@ -2566,6 +2600,7 @@
 				478ED5B225D59E1400940132 /* ellipse.gif in Resources */,
 				478ED5E825D6FDD800940132 /* PinView.xib in Resources */,
 				47C1F1DF2481530000A71610 /* GroupActionMessageCollectionViewItem.xib in Resources */,
+				4797E74F2785D2580080B966 /* AuthExternalView.xib in Resources */,
 				473633E325548E4B007405F2 /* BoostButtonView.xib in Resources */,
 				478ED5D325D6FD5300940132 /* NamePinView.xib in Resources */,
 				479A04042588E7F00093DB30 /* TribeLinkPreviewView.xib in Resources */,
@@ -2625,6 +2660,7 @@
 				478ED5E125D6FDAC00940132 /* SphinxReady.xib in Resources */,
 				478ED57925D41ADF00940132 /* SignupButtonView.xib in Resources */,
 				47A93EF725DD79F70030DF14 /* lightningNetwork.gif in Resources */,
+				4797E7512785D2610080B966 /* PersonModalView.xib in Resources */,
 				479C793F24ED6A6C009BA1CD /* AuthorizeAppView.xib in Resources */,
 				474E334C248000AA00F7F603 /* AttachmentPriceView.xib in Resources */,
 				47F88265256D398B002A7E71 /* MessageBoostView.xib in Resources */,
@@ -2786,6 +2822,7 @@
 				470396EC2537293E007F9C23 /* PodcastEpisodesDataSource.swift in Sources */,
 				47949C0224AA8F4C000D697B /* CommonDeletedMessageCollectionViewItem.swift in Sources */,
 				474A66812497C4C1002C2D10 /* CommonReplyCollectionViewItem.swift in Sources */,
+				4797E74B2785D2420080B966 /* AuthExternalView.swift in Sources */,
 				47F258DB2541E54000122A5A /* PodcastPaymentsHelper.swift in Sources */,
 				47C1D5FA248EA71E00718B28 /* GroupMembersView.swift in Sources */,
 				474F6759248685AE00CE6016 /* ClipboardHelper.swift in Sources */,
@@ -2819,6 +2856,7 @@
 				474F67512486779200CE6016 /* JoinVideoCallView.swift in Sources */,
 				470396F625377653007F9C23 /* CommonPodcastCommentCollectionViewItem.swift in Sources */,
 				479751DC246D815500D2106B /* PlayAudioHelper.swift in Sources */,
+				4797E7532785D2750080B966 /* CommonModalView.swift in Sources */,
 				47E771212472C26200C9CFEB /* MessageReceivedCollectionViewItem.swift in Sources */,
 				475723AF247ED3C0001ADC7E /* CustomAudioPlayer.swift in Sources */,
 				475723A2247E96DF001ADC7E /* LoadingWheelHelper.swift in Sources */,
@@ -2896,6 +2934,7 @@
 				4744FA742469A4BA00C5FD94 /* DelayPerformerHelper.swift in Sources */,
 				4731BE1A2485303600BCCA9E /* DirectPaymentReceivedCollectionViewItem.swift in Sources */,
 				47C6236125091C02005D265C /* GiphySearchCollectionViewItem.swift in Sources */,
+				4797E7552785E1240080B966 /* APIPeopleExtension.swift in Sources */,
 				4734D3C52417E48600D6957E /* EncryptionManager.swift in Sources */,
 				47F8825A25656CB0002A7E71 /* SocketEventHandler.swift in Sources */,
 				47180EDD25E02E2B00C1CA05 /* CommonWelcomeViewController.swift in Sources */,
@@ -2939,6 +2978,7 @@
 				47F8824E25656CB0002A7E71 /* SocketManagerSpec.swift in Sources */,
 				479751E9246D91B000D2106B /* ChatListViewControllerExtension.swift in Sources */,
 				479F65792487D0F40015A16A /* IntermitentAlphaAnimatedView.swift in Sources */,
+				4797E74D2785D24D0080B966 /* PersonModalView.swift in Sources */,
 				47D03DEA250FDCBA0077A968 /* PdfInfoView.swift in Sources */,
 				AA1C7BC427657C4800A5B959 /* SignupCommonSecureFieldView.swift in Sources */,
 				47C1D604248EABEA00718B28 /* GroupAddedContactCollectionViewItem.swift in Sources */,
@@ -3571,11 +3611,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_SECURITY_KEYCHAIN_API = YES;
 				CODE_SIGN_ENTITLEMENTS = com.stakwork.sphinx.desktop/com_stakwork_sphinx_desktop.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 193;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8297M44YTW;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = com.stakwork.sphinx.desktop/Info.plist;
@@ -3587,7 +3627,7 @@
 				MARKETING_VERSION = 1.0.24;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gl.sphinx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Mac Private Testing";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -3600,11 +3640,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_SECURITY_KEYCHAIN_API = YES;
 				CODE_SIGN_ENTITLEMENTS = com.stakwork.sphinx.desktop/com_stakwork_sphinx_desktop.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 193;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8297M44YTW;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = com.stakwork.sphinx.desktop/Info.plist;
@@ -3616,7 +3656,7 @@
 				MARKETING_VERSION = 1.0.24;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gl.sphinx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Mac Private Testing";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
