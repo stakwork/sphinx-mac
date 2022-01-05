@@ -25,6 +25,10 @@ class DeepLinksHandlerHelper {
                     let userInfo: [String: Any] = ["query" : query]
                     NotificationCenter.default.post(name: .onPersonDeepLink, object: nil, userInfo: userInfo)
                     break
+                case "save":
+                    let userInfo: [String: Any] = ["query" : query]
+                    NotificationCenter.default.post(name: .onSaveProfileDeepLink, object: nil, userInfo: userInfo)
+                    break
                 default:
                     break
                 }

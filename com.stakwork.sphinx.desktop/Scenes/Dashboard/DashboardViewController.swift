@@ -79,6 +79,7 @@ class DashboardViewController: NSViewController {
         NotificationCenter.default.removeObserver(self, name: .chatNotificationClicked, object: nil)
         NotificationCenter.default.removeObserver(self, name: .onAuthDeepLink, object: nil)
         NotificationCenter.default.removeObserver(self, name: .onPersonDeepLink, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .onSaveProfileDeepLink, object: nil)
     }
     
     @objc func themeChangedNotification(notification: Notification) {
@@ -164,6 +165,20 @@ class DashboardViewController: NSViewController {
                 for childVC in vc.children {
                     if let childVC = childVC as? PeopleModalsViewController {
                         vc.modalsContainerView.isHidden = false
+                        childVC.showWithQuery(query, and: vc)
+                    }
+                }
+            }
+        }
+        
+        NotificationCenter.default.addObserver(forName: .onSaveProfileDeepLink, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
+            guard let vc = self else { return }
+            
+            if let query = n.userInfo?["query"] as? String {
+                for childVC in vc.children {
+                    if let childVC = childVC as? PeopleModalsViewController {
+                        vc.modalsContainerView.isHidden = false
+                        
                         childVC.showWithQuery(query, and: vc)
                     }
                 }

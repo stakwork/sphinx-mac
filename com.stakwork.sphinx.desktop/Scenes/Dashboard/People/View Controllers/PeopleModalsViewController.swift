@@ -16,6 +16,7 @@ class PeopleModalsViewController: NSViewController {
 
     @IBOutlet weak var authExternalView: AuthExternalView!
     @IBOutlet weak var personModalView: PersonModalView!
+    @IBOutlet weak var savePeopleProfileView: SavePeopleProfileView!
     
     var query: String? = nil
     
@@ -63,6 +64,8 @@ class PeopleModalsViewController: NSViewController {
                 return authExternalView
             case "person":
                 return personModalView
+            case "save":
+                return savePeopleProfileView
             default:
                 break
             }

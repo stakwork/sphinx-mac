@@ -1578,6 +1578,13 @@
                                                 <constraint firstAttribute="width" constant="300" id="Lvo-fl-55q"/>
                                             </constraints>
                                         </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="QpE-Vy-kkv" customClass="SavePeopleProfileView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="144" y="24" width="300" height="350"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="350" id="6R9-fW-DOa"/>
+                                                <constraint firstAttribute="width" constant="300" id="dyq-yr-KwJ"/>
+                                            </constraints>
+                                        </customView>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="gQK-Rv-0V3" customClass="PersonModalView" customModule="Sphinx" customModuleProvider="target">
                                             <rect key="frame" x="144" y="-51" width="300" height="500"/>
                                             <constraints>
@@ -1587,9 +1594,11 @@
                                         </customView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="QpE-Vy-kkv" firstAttribute="centerX" secondItem="zug-hn-Eft" secondAttribute="centerX" id="CyE-yK-Qri"/>
                                         <constraint firstItem="6cJ-eE-R77" firstAttribute="centerY" secondItem="zug-hn-Eft" secondAttribute="centerY" id="EeE-8S-Wbx"/>
                                         <constraint firstItem="gQK-Rv-0V3" firstAttribute="centerX" secondItem="zug-hn-Eft" secondAttribute="centerX" id="I1T-M5-cgC"/>
                                         <constraint firstItem="gQK-Rv-0V3" firstAttribute="centerY" secondItem="zug-hn-Eft" secondAttribute="centerY" id="Obl-jS-HHG"/>
+                                        <constraint firstItem="QpE-Vy-kkv" firstAttribute="centerY" secondItem="zug-hn-Eft" secondAttribute="centerY" id="Vow-mQ-Ks7"/>
                                         <constraint firstItem="6cJ-eE-R77" firstAttribute="centerX" secondItem="zug-hn-Eft" secondAttribute="centerX" id="aac-b6-sSV"/>
                                     </constraints>
                                 </view>
@@ -1606,6 +1615,7 @@
                     <connections>
                         <outlet property="authExternalView" destination="6cJ-eE-R77" id="7QX-YQ-Rvu"/>
                         <outlet property="personModalView" destination="gQK-Rv-0V3" id="Cjb-AY-I8U"/>
+                        <outlet property="savePeopleProfileView" destination="QpE-Vy-kkv" id="scl-5D-qbM"/>
                     </connections>
                 </viewController>
                 <customObject id="867-LG-u5Q" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
