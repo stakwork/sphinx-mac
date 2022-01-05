@@ -9,6 +9,9 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PersonModalView" customModule="Sphinx" customModuleProvider="target">
             <connections>
+                <outlet property="buttonLoadingWheel" destination="5U2-Ce-0f9" id="Gwf-1q-ifb"/>
+                <outlet property="confirmButton" destination="GiE-Sn-08u" id="t5I-NS-cFH"/>
+                <outlet property="confirmButtonContainer" destination="bgL-gS-ZRb" id="PdX-eJ-JEz"/>
                 <outlet property="contentView" destination="c22-O7-iKe" id="Pdo-gX-Kz0"/>
                 <outlet property="imageView" destination="PJe-X3-b7u" id="rUp-eK-Djd"/>
                 <outlet property="initialMessageField" destination="aC6-ku-9WL" id="HgE-bZ-oqf"/>
