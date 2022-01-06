@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,6 +20,7 @@
                 <outlet property="loadingWheel" destination="OEl-n7-37P" id="UCi-lg-lDE"/>
                 <outlet property="previewContainer" destination="jrP-9R-k30" id="La7-ML-fkE"/>
                 <outlet property="titleLabel" destination="3GV-F5-hxL" id="AXT-fp-Jnh"/>
+                <outlet property="viewButton" destination="Jwq-uR-Wat" id="MOk-H0-ffK"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -104,6 +105,20 @@
                                 <autoresizingMask key="autoresizingMask"/>
                             </scroller>
                         </scrollView>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jwq-uR-Wat" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="100" id="47C-qu-qKk"/>
+                            </constraints>
+                            <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="icA-yv-um9">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <color key="contentTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="previewButtonClicked:" target="-2" id="62R-yo-qHo"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstItem="3GV-F5-hxL" firstAttribute="centerY" secondItem="SR5-Kp-vZF" secondAttribute="centerY" id="4Rq-qG-tPr"/>
@@ -112,6 +127,7 @@
                         <constraint firstItem="LXj-A5-4d8" firstAttribute="leading" secondItem="3GV-F5-hxL" secondAttribute="trailing" constant="10" id="F9V-Tt-qdv"/>
                         <constraint firstItem="qfT-JA-eVm" firstAttribute="leading" secondItem="LXj-A5-4d8" secondAttribute="leading" constant="5" id="FL3-Xh-nbw"/>
                         <constraint firstItem="LXj-A5-4d8" firstAttribute="top" secondItem="jrP-9R-k30" secondAttribute="top" id="GZe-tv-pgN"/>
+                        <constraint firstItem="Jwq-uR-Wat" firstAttribute="leading" secondItem="jrP-9R-k30" secondAttribute="leading" id="Gko-GY-SAk"/>
                         <constraint firstAttribute="trailing" secondItem="LXj-A5-4d8" secondAttribute="trailing" id="HhX-eY-zS8"/>
                         <constraint firstItem="ogR-kf-i2I" firstAttribute="top" secondItem="3GV-F5-hxL" secondAttribute="bottom" constant="15" id="SZ4-kQ-qJn"/>
                         <constraint firstItem="LXj-A5-4d8" firstAttribute="leading" secondItem="ogR-kf-i2I" secondAttribute="trailing" constant="10" id="VN4-Ps-6Kc"/>
@@ -119,10 +135,12 @@
                         <constraint firstItem="qfT-JA-eVm" firstAttribute="top" secondItem="LXj-A5-4d8" secondAttribute="top" constant="10" id="ZFD-Ib-qh4"/>
                         <constraint firstItem="qfT-JA-eVm" firstAttribute="trailing" secondItem="LXj-A5-4d8" secondAttribute="trailing" constant="-10" id="Zjg-TA-a6h"/>
                         <constraint firstItem="8Kp-cj-Xm0" firstAttribute="leading" secondItem="jrP-9R-k30" secondAttribute="leading" id="b08-8J-ucX"/>
+                        <constraint firstAttribute="trailing" secondItem="Jwq-uR-Wat" secondAttribute="trailing" id="dkK-gZ-L5L"/>
                         <constraint firstItem="SR5-Kp-vZF" firstAttribute="leading" secondItem="jrP-9R-k30" secondAttribute="leading" constant="15" id="iaZ-2b-jNa"/>
                         <constraint firstItem="ogR-kf-i2I" firstAttribute="leading" secondItem="jrP-9R-k30" secondAttribute="leading" constant="10" id="idg-s0-8Jc"/>
                         <constraint firstItem="qfT-JA-eVm" firstAttribute="bottom" secondItem="LXj-A5-4d8" secondAttribute="bottom" constant="-10" id="jFy-dg-Jzc"/>
                         <constraint firstItem="3GV-F5-hxL" firstAttribute="leading" secondItem="SR5-Kp-vZF" secondAttribute="trailing" constant="8" id="qJV-fD-qWx"/>
+                        <constraint firstItem="Jwq-uR-Wat" firstAttribute="top" secondItem="jrP-9R-k30" secondAttribute="top" id="qfl-uN-2qd"/>
                         <constraint firstItem="8Kp-cj-Xm0" firstAttribute="top" secondItem="jrP-9R-k30" secondAttribute="top" id="val-vg-3Yq"/>
                         <constraint firstAttribute="bottom" secondItem="LXj-A5-4d8" secondAttribute="bottom" id="xTJ-wD-wxj"/>
                     </constraints>

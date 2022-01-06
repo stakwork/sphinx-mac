@@ -25,6 +25,7 @@ class LinkPreviewView: NSView, LoadableNib {
     @IBOutlet weak var loadingWheel: NSProgressIndicator!
     @IBOutlet weak var loadingLabel: NSTextField!
     @IBOutlet weak var imageWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var viewButton: CustomButton!
     
     public static let kViewHeight: CGFloat = 100
     public static let kImageContainerWidth: CGFloat = 90
@@ -42,7 +43,7 @@ class LinkPreviewView: NSView, LoadableNib {
     var lpMetadataProvider: NSObject?
     var slp = CustomSwiftLinkPreview.sharedInstance
     
-    var messageId: Int = -1
+    var message: TransactionMessage? = nil
     var doneCompletion: ((Int) -> ())? = nil
 
     override func draw(_ dirtyRect: NSRect) {
@@ -62,6 +63,8 @@ class LinkPreviewView: NSView, LoadableNib {
     }
     
     func setup() {
+        viewButton.cursor = .pointingHand
+        
         imageViewBack.wantsLayer = true
         descriptionLabel.font = NSFont(name: "Roboto-Regular", size: 10.0)!
     }
@@ -71,7 +74,7 @@ class LinkPreviewView: NSView, LoadableNib {
     }
     
     func configurePreview(messageRow: TransactionMessageRow, doneCompletion: ((Int) -> ())? = nil) {
-        self.messageId = messageRow.transactionMessage?.id ?? -1
+        self.message = messageRow.transactionMessage
         self.doneCompletion = doneCompletion
         
         loadingLabel.stringValue = "loading.preview".localized
@@ -141,7 +144,9 @@ class LinkPreviewView: NSView, LoadableNib {
             }
         }
         
-        doneCompletion?(messageId)
+        if let messageId = message?.id {
+            doneCompletion?(messageId)
+        }
     }
     
     func resetImages() {
@@ -267,5 +272,13 @@ class LinkPreviewView: NSView, LoadableNib {
         NSLayoutConstraint(item: self, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: bubbleView, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1.0, constant: leftMargin).isActive = true
         NSLayoutConstraint(item: self, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: bubbleView, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1.0, constant: -rightMargin).isActive = true
         NSLayoutConstraint(item: self, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: Constants.kLinkPreviewHeight).isActive = true
+    }
+    
+    @IBAction func previewButtonClicked(_ sender: Any) {
+        if let link = message?.getMessageContent().stringFirstLink, !link.isEmpty && link.isValidURL {
+            if let url = CustomSwiftLinkPreview.sharedInstance.extractURL(text: link) {
+                NSWorkspace.shared.open(url)
+            }
+        }
     }
 }
