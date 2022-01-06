@@ -338,6 +338,20 @@
 "camera" = "Camera";
 "photo.library" = "Photo Library";
 "no.camera.available" = "No camera available in this device";
+"redeem.sats.from" = "Redeem %d sats from:";
+"keysend.received" = "You have received a payment of %d sats";
+"people.message.placeholder" = "Initial message to ";
+"authorization.succeeded" = "Authorization Succeeded. Please go back to the website to complete your profile.";
+"authorization.failed" = "Authorization Failed";
+"already.connected" = "You are already connected with this person";
+"price.to.meet" = "Price to meet: ";
+
+"people.save-profile" = "Save Profile from:";
+"people.delete-profile" = "Delete Profile from:";
+"people.save-failed" = "Save Profile failed";
+"people.delete-failed" = "Delete Profile failed";
+"people.save-succeed" = "Profile saved successfully";
+"people.delete-succeed" = "Profile deleted successfully";
 
 //TRANSACTION MESSAGE
 "purchase.succeeded" = "Purchase Succeeded";

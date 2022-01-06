@@ -308,13 +308,10 @@
 		4797E74B2785D2420080B966 /* AuthExternalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E74A2785D2420080B966 /* AuthExternalView.swift */; };
 		4797E74C24B8B40F00D13270 /* VideoCallHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E74B24B8B40F00D13270 /* VideoCallHelper.swift */; };
 		4797E74D2785D24D0080B966 /* PersonModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E74C2785D24D0080B966 /* PersonModalView.swift */; };
-		4797E74F2785D2580080B966 /* AuthExternalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4797E74E2785D2580080B966 /* AuthExternalView.xib */; };
-		4797E7512785D2610080B966 /* PersonModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4797E7502785D2610080B966 /* PersonModalView.xib */; };
 		4797E7532785D2750080B966 /* CommonModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E7522785D2750080B966 /* CommonModalView.swift */; };
 		4797E7552785E1240080B966 /* APIPeopleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E7542785E1240080B966 /* APIPeopleExtension.swift */; };
 		4797E7582785F3AD0080B966 /* PeopleModalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E7572785F3AD0080B966 /* PeopleModalsViewController.swift */; };
 		4797E75A278607960080B966 /* SavePeopleProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E759278607960080B966 /* SavePeopleProfileView.swift */; };
-		4797E75C278607A40080B966 /* SavePeopleProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4797E75B278607A40080B966 /* SavePeopleProfileView.xib */; };
 		4797E82424BCC0DA00D13270 /* Groups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4797E82624BCC0DA00D13270 /* Groups.storyboard */; };
 		4797E82B24BCC0F200D13270 /* Invite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4797E82D24BCC0F200D13270 /* Invite.storyboard */; };
 		4797E83224BCC10000D13270 /* Pin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4797E83424BCC10000D13270 /* Pin.storyboard */; };
@@ -419,6 +416,9 @@
 		47C6236125091C02005D265C /* GiphySearchCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C6235F25091C02005D265C /* GiphySearchCollectionViewItem.swift */; };
 		47C6236225091C02005D265C /* GiphySearchCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47C6236025091C02005D265C /* GiphySearchCollectionViewItem.xib */; };
 		47C6236525091E6B005D265C /* GiphySearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C6236425091E6B005D265C /* GiphySearchDataSource.swift */; };
+		47C7D71127874A12006D2809 /* AuthExternalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47C7D71327874A12006D2809 /* AuthExternalView.xib */; };
+		47C7D71B27874A44006D2809 /* PersonModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47C7D71D27874A44006D2809 /* PersonModalView.xib */; };
+		47C7D72527874A67006D2809 /* SavePeopleProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47C7D72727874A67006D2809 /* SavePeopleProfileView.xib */; };
 		47D03DE2250BB2810077A968 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D03DE1250BB2810077A968 /* AddFriendViewController.swift */; };
 		47D03DE4250BB9F40077A968 /* NewInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D03DE3250BB9F40077A968 /* NewInviteViewController.swift */; };
 		47D03DE7250FC8B90077A968 /* PDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47D03DE6250FC8B90077A968 /* PDFKit.framework */; };
@@ -864,13 +864,10 @@
 		4797E74A2785D2420080B966 /* AuthExternalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthExternalView.swift; sourceTree = "<group>"; };
 		4797E74B24B8B40F00D13270 /* VideoCallHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCallHelper.swift; sourceTree = "<group>"; };
 		4797E74C2785D24D0080B966 /* PersonModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonModalView.swift; sourceTree = "<group>"; };
-		4797E74E2785D2580080B966 /* AuthExternalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthExternalView.xib; sourceTree = "<group>"; };
-		4797E7502785D2610080B966 /* PersonModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonModalView.xib; sourceTree = "<group>"; };
 		4797E7522785D2750080B966 /* CommonModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonModalView.swift; sourceTree = "<group>"; };
 		4797E7542785E1240080B966 /* APIPeopleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPeopleExtension.swift; sourceTree = "<group>"; };
 		4797E7572785F3AD0080B966 /* PeopleModalsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleModalsViewController.swift; sourceTree = "<group>"; };
 		4797E759278607960080B966 /* SavePeopleProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePeopleProfileView.swift; sourceTree = "<group>"; };
-		4797E75B278607A40080B966 /* SavePeopleProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavePeopleProfileView.xib; sourceTree = "<group>"; };
 		4797E82124BCC0CA00D13270 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		4797E82324BCC0CF00D13270 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		4797E82524BCC0DA00D13270 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Groups.storyboard; sourceTree = "<group>"; };
@@ -1023,6 +1020,15 @@
 		47C6235F25091C02005D265C /* GiphySearchCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphySearchCollectionViewItem.swift; sourceTree = "<group>"; };
 		47C6236025091C02005D265C /* GiphySearchCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GiphySearchCollectionViewItem.xib; sourceTree = "<group>"; };
 		47C6236425091E6B005D265C /* GiphySearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphySearchDataSource.swift; sourceTree = "<group>"; };
+		47C7D71227874A12006D2809 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AuthExternalView.xib; sourceTree = "<group>"; };
+		47C7D71827874A17006D2809 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AuthExternalView.strings; sourceTree = "<group>"; };
+		47C7D71A27874A18006D2809 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/AuthExternalView.strings; sourceTree = "<group>"; };
+		47C7D71C27874A44006D2809 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PersonModalView.xib; sourceTree = "<group>"; };
+		47C7D72227874A47006D2809 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PersonModalView.strings; sourceTree = "<group>"; };
+		47C7D72427874A48006D2809 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PersonModalView.strings; sourceTree = "<group>"; };
+		47C7D72627874A67006D2809 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SavePeopleProfileView.xib; sourceTree = "<group>"; };
+		47C7D72C27874A6A006D2809 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SavePeopleProfileView.strings; sourceTree = "<group>"; };
+		47C7D72E27874A6C006D2809 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/SavePeopleProfileView.strings; sourceTree = "<group>"; };
 		47D0045D25E6BA8100E74063 /* com_stakwork_sphinx_desktop 15.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "com_stakwork_sphinx_desktop 15.xcdatamodel"; sourceTree = "<group>"; };
 		47D03DE0250BAB460077A968 /* com_stakwork_sphinx_desktop 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "com_stakwork_sphinx_desktop 9.xcdatamodel"; sourceTree = "<group>"; };
 		47D03DE1250BB2810077A968 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
@@ -1913,11 +1919,11 @@
 			children = (
 				4797E7522785D2750080B966 /* CommonModalView.swift */,
 				4797E74A2785D2420080B966 /* AuthExternalView.swift */,
-				4797E74E2785D2580080B966 /* AuthExternalView.xib */,
+				47C7D71327874A12006D2809 /* AuthExternalView.xib */,
 				4797E74C2785D24D0080B966 /* PersonModalView.swift */,
-				4797E7502785D2610080B966 /* PersonModalView.xib */,
+				47C7D71D27874A44006D2809 /* PersonModalView.xib */,
 				4797E759278607960080B966 /* SavePeopleProfileView.swift */,
-				4797E75B278607A40080B966 /* SavePeopleProfileView.xib */,
+				47C7D72727874A67006D2809 /* SavePeopleProfileView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2600,7 +2606,7 @@
 				474F67532486779D00CE6016 /* JoinVideoCallView.xib in Resources */,
 				478ED5CC25D6FD3400940132 /* FriendMessageView.xib in Resources */,
 				47C1F1D7248130F900A71610 /* VideoReceivedCollectionViewItem.xib in Resources */,
-				4797E75C278607A40080B966 /* SavePeopleProfileView.xib in Resources */,
+				47C7D72527874A67006D2809 /* SavePeopleProfileView.xib in Resources */,
 				474A668D24990193002C2D10 /* MessageOptionView.xib in Resources */,
 				474F674A2486775900CE6016 /* VideoCallSentCollectionViewItem.xib in Resources */,
 				47AF0D4225508FC900C98398 /* PodcastBoostSentCollectionViewItem.xib in Resources */,
@@ -2618,7 +2624,7 @@
 				478ED5B225D59E1400940132 /* ellipse.gif in Resources */,
 				478ED5E825D6FDD800940132 /* PinView.xib in Resources */,
 				47C1F1DF2481530000A71610 /* GroupActionMessageCollectionViewItem.xib in Resources */,
-				4797E74F2785D2580080B966 /* AuthExternalView.xib in Resources */,
+				47C7D71127874A12006D2809 /* AuthExternalView.xib in Resources */,
 				473633E325548E4B007405F2 /* BoostButtonView.xib in Resources */,
 				478ED5D325D6FD5300940132 /* NamePinView.xib in Resources */,
 				479A04042588E7F00093DB30 /* TribeLinkPreviewView.xib in Resources */,
@@ -2678,7 +2684,7 @@
 				478ED5E125D6FDAC00940132 /* SphinxReady.xib in Resources */,
 				478ED57925D41ADF00940132 /* SignupButtonView.xib in Resources */,
 				47A93EF725DD79F70030DF14 /* lightningNetwork.gif in Resources */,
-				4797E7512785D2610080B966 /* PersonModalView.xib in Resources */,
+				47C7D71B27874A44006D2809 /* PersonModalView.xib in Resources */,
 				479C793F24ED6A6C009BA1CD /* AuthorizeAppView.xib in Resources */,
 				474E334C248000AA00F7F603 /* AttachmentPriceView.xib in Resources */,
 				47F88265256D398B002A7E71 /* MessageBoostView.xib in Resources */,
@@ -3502,6 +3508,36 @@
 				47BDEE0824F6A2CF001688F3 /* es */,
 			);
 			name = SettingsTabsView.xib;
+			sourceTree = "<group>";
+		};
+		47C7D71327874A12006D2809 /* AuthExternalView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				47C7D71227874A12006D2809 /* Base */,
+				47C7D71827874A17006D2809 /* en */,
+				47C7D71A27874A18006D2809 /* es */,
+			);
+			name = AuthExternalView.xib;
+			sourceTree = "<group>";
+		};
+		47C7D71D27874A44006D2809 /* PersonModalView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				47C7D71C27874A44006D2809 /* Base */,
+				47C7D72227874A47006D2809 /* en */,
+				47C7D72427874A48006D2809 /* es */,
+			);
+			name = PersonModalView.xib;
+			sourceTree = "<group>";
+		};
+		47C7D72727874A67006D2809 /* SavePeopleProfileView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				47C7D72627874A67006D2809 /* Base */,
+				47C7D72C27874A6A006D2809 /* en */,
+				47C7D72E27874A6C006D2809 /* es */,
+			);
+			name = SavePeopleProfileView.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

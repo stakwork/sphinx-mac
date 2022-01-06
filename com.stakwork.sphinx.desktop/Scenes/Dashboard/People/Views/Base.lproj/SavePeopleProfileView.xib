@@ -107,14 +107,14 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <box hidden="YES" boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="3Mn-LM-Pqb">
+                            <box hidden="YES" boxType="custom" borderType="none" cornerRadius="10" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="3Mn-LM-Pqb">
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="350"/>
                                 <view key="contentView" id="r4t-UB-WBv">
-                                    <rect key="frame" x="1" y="1" width="298" height="348"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="350"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <progressIndicator wantsLayer="YES" maxValue="100" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="JcD-mb-290">
-                                            <rect key="frame" x="133" y="158" width="32" height="32"/>
+                                            <rect key="frame" x="134" y="159" width="32" height="32"/>
                                         </progressIndicator>
                                     </subviews>
                                     <constraints>

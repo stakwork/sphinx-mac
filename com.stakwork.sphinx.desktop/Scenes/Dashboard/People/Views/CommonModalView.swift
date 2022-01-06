@@ -11,7 +11,6 @@ import SwiftyJSON
 
 protocol ModalViewDelegate: AnyObject {
     func shouldDismissModals()
-    func shouldGoToContactChat(contactId: Int)
 }
 
 protocol ModalViewInterface: AnyObject {

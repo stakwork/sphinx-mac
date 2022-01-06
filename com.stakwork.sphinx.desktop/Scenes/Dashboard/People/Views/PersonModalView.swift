@@ -131,18 +131,16 @@ class PersonModalView: CommonModalView, LoadableNib {
                 return
             }
             
-            API.sharedInstance.sendMessage(params: params, callback: { _ in
-                self.goToChat(contactId: contact.id)
+            API.sharedInstance.sendMessage(params: params, callback: { m in
+                if let _ = TransactionMessage.insertMessage(m: m).0 {
+                    self.delegate?.shouldDismissModals()
+                }
             }, errorCallback: {
                 self.showErrorMessage()
             })
         } else {
             showErrorMessage()
         }
-    }
-    
-    func goToChat(contactId: Int) {
-        delegate?.shouldGoToContactChat(contactId: contactId)
     }
     
     func showErrorMessage() {

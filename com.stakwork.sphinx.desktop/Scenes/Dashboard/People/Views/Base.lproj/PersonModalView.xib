@@ -100,7 +100,7 @@
                                     <constraint firstAttribute="height" constant="100" id="5i8-Hb-eVz"/>
                                     <constraint firstAttribute="width" constant="100" id="uNV-XX-vJn"/>
                                 </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="profileAvatar" id="2nv-c4-bez"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="profileAvatar" id="2nv-c4-bez"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wdf-Dp-39v">
                                 <rect key="frame" x="14" y="290" width="272" height="21"/>
@@ -168,14 +168,14 @@ test</string>
                                 </constraints>
                                 <color key="borderColor" name="LightDivider"/>
                             </box>
-                            <box hidden="YES" boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="P4d-BF-byL">
+                            <box hidden="YES" boxType="custom" borderType="none" cornerRadius="10" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="P4d-BF-byL">
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="500"/>
                                 <view key="contentView" id="ntG-PT-Pim">
-                                    <rect key="frame" x="1" y="1" width="298" height="498"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="500"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <progressIndicator wantsLayer="YES" maxValue="100" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="zFo-70-T0H">
-                                            <rect key="frame" x="133" y="233" width="32" height="32"/>
+                                            <rect key="frame" x="134" y="234" width="32" height="32"/>
                                         </progressIndicator>
                                     </subviews>
                                     <constraints>

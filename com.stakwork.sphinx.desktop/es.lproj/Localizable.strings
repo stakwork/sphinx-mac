@@ -336,6 +336,20 @@
 "camera" = "Cámara";
 "photo.library" = "Librería de Fotos";
 "no.camera.available" = "No hay cámara disponible en este dispositivo";
+"redeem.sats.from" = "Canjear %d sats de:";
+"keysend.received" = "Has receibido un pago de %d sats";
+"people.message.placeholder" = "Mensaje inicial para ";
+"authorization.succeeded" = "Autorización exitosa. Por favor vuelve a la página web para completar tu pérfil.";
+"authorization.failed" = "Fallo en la autorización";
+"already.connected" = "Ya estas conectado con esta persona";
+"price.to.meet" = "Precio para conectar: ";
+
+"people.save-profile" = "Guardar Perfil de:";
+"people.delete-profile" = "Borrar Perfil de:";
+"people.save-failed" = "No se ha podido guardar el Perfil";
+"people.delete-failed" = "No se ha podido eliminar el Perfil";
+"people.save-succeed" = "Perfil guardado con éxito";
+"people.delete-succeed" = "Perfil borrado con éxito";
 
 //TRANSACTION MESSAGE
 "purchase.succeeded" = "Compra exitosa";

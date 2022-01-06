@@ -124,6 +124,7 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
         backgroundColorBox.fillColor = NSColor.Sphinx.HeaderBG
         
         let inviteString = String(format: "invite.name".localized, contact.nickname ?? "")
+        nameLabel.font = Constants.kChatNameFont
         nameLabel.stringValue = inviteString
         messageLabel.stringValue = contact.invite?.welcomeMessage ?? "welcome.to.sphinx".localized
         dateLabel.stringValue = ""

@@ -87,10 +87,4 @@ extension PeopleModalsViewController : ModalViewDelegate {
             self.delegate.shouldHideContainer()
         })
     }
-    
-    func shouldGoToContactChat(contactId: Int) {
-        //Post notification
-        
-        shouldDismissModals()
-    }
 }
