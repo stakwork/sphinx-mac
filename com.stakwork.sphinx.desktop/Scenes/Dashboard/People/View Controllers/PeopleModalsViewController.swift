@@ -29,9 +29,6 @@ class PeopleModalsViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        authExternalView.alphaValue = 0
-        personModalView.alphaValue = 0
     }
     
     func showWithQuery(
@@ -41,10 +38,14 @@ class PeopleModalsViewController: NSViewController {
         self.delegate = delegate
         self.query = query
         
+        self.authExternalView.isHidden = true
+        self.personModalView.isHidden = true
+        self.savePeopleProfileView.isHidden = true
+        
         self.view.alphaValue = 0.0
         
         if let modal = getModal() {
-            modal.alphaValue = 1.0
+            modal.isHidden = false
             modal.modalWillShowWith(query: query, delegate: self)
             
             AnimationHelper.animateViewWith(duration: 0.3, animationsBlock: {
@@ -79,8 +80,9 @@ extension PeopleModalsViewController : ModalViewDelegate {
         AnimationHelper.animateViewWith(duration: 0.3, animationsBlock: {
             self.view.alphaValue = 0.0
         }, completion: {
-            self.authExternalView.alphaValue = 0.0
-            self.personModalView.alphaValue = 0.0
+            self.authExternalView.isHidden = true
+            self.personModalView.isHidden = true
+            self.savePeopleProfileView.isHidden = true
             
             self.delegate.shouldHideContainer()
         })

@@ -35,7 +35,8 @@ class AuthExternalView: CommonModalView, LoadableNib {
     }
     
     override func didTapConfirmButton() {
-        buttonLoading = true
+        super.didTapConfirmButton()
+        
         verifyExternal()
     }
     

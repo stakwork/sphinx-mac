@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -10,6 +10,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="AuthExternalView" customModule="Sphinx" customModuleProvider="target">
             <connections>
                 <outlet property="buttonLoadingWheel" destination="Wba-Fk-fi3" id="DB1-U3-qNs"/>
+                <outlet property="closeButton" destination="GSu-0N-Thr" id="8XA-b3-CC9"/>
                 <outlet property="confirmButton" destination="RGl-LP-ad6" id="RnU-mr-e12"/>
                 <outlet property="confirmButtonContainer" destination="PZK-Gs-AL1" id="WHX-ks-FSy"/>
                 <outlet property="contentView" destination="c22-O7-iKe" id="xmB-mY-WSE"/>
@@ -42,7 +43,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RGl-LP-ad6">
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RGl-LP-ad6" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="242" height="50"/>
                                             <buttonCell key="cell" type="bevel" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="NW1-BX-Ibi">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -72,7 +73,7 @@
                                 </constraints>
                                 <color key="fillColor" name="PrimaryBlue"/>
                             </box>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GSu-0N-Thr">
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GSu-0N-Thr" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                                 <rect key="frame" x="240" y="290" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Cm3-So-KhV"/>

@@ -84,10 +84,9 @@ class PersonModalView: CommonModalView, LoadableNib {
     }
     
     override func didTapConfirmButton() {
+        super.didTapConfirmButton()
+        
         if let pubkey = authInfo?.pubkey {
-            
-            buttonLoading = true
-            
             if let _ = UserContact.getContactWith(pubkey: pubkey) {
                 showMessage(message: "already.connected".localized, color: NSColor.Sphinx.PrimaryGreen)
                 return

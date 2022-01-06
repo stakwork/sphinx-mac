@@ -15,7 +15,7 @@ protocol ModalViewDelegate: AnyObject {
 }
 
 protocol ModalViewInterface: AnyObject {
-    var alphaValue: CGFloat { get set }
+    var isHidden: Bool { get set }
     
     func modalWillShowWith(query: String, delegate: ModalViewDelegate)
     func modalDidShow()
@@ -26,7 +26,8 @@ class CommonModalView: NSView, ModalViewInterface {
     
     weak var delegate: ModalViewDelegate?
     
-    @IBOutlet weak var confirmButton: NSButton!
+    @IBOutlet weak var closeButton: CustomButton!
+    @IBOutlet weak var confirmButton: CustomButton!
     @IBOutlet weak var confirmButtonContainer: NSBox!
     @IBOutlet weak var buttonLoadingWheel: NSProgressIndicator!
     
@@ -57,6 +58,9 @@ class CommonModalView: NSView, ModalViewInterface {
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
         
+        closeButton.cursor = .pointingHand
+        confirmButton.cursor = .pointingHand
+        
         confirmButtonContainer.wantsLayer = true
         confirmButtonContainer.layer?.cornerRadius = confirmButtonContainer.frame.height / 2
     }
@@ -64,6 +68,8 @@ class CommonModalView: NSView, ModalViewInterface {
     func modalWillShowWith(query: String, delegate: ModalViewDelegate) {
         self.query = query
         self.delegate = delegate
+        
+        buttonLoading = false
     }
     
     func modalDidShow() {
@@ -71,7 +77,7 @@ class CommonModalView: NSView, ModalViewInterface {
     }
     
     func didTapConfirmButton() {
-        //Will be override in subclass
+        buttonLoading = true
     }
     
     func processQuery() {

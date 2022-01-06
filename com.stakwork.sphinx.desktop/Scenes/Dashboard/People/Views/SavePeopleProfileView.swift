@@ -167,11 +167,9 @@ class SavePeopleProfileView: CommonModalView, LoadableNib {
     }
     
     override func didTapConfirmButton() {
-        buttonLoading = true
+        super.didTapConfirmButton()
         
         if let method = authInfo?.updateMethod {
-            buttonLoading = true
-            
             switch (method) {
             case kSaveRequestMethod:
                 self.saveProfile()
