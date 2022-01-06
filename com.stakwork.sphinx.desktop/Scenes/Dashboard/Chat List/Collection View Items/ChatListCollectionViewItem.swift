@@ -136,6 +136,9 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
         
         separatorLine.isHidden = isLastRow
         
+        messageLabel.font = Constants.kNewMessagePreviewFont
+        messageLabel.textColor = NSColor.Sphinx.TextMessages
+        
         messageLabel.isHidden = false
         dateLabel.isHidden = false
         setNameTopConstraint(value: Constants.kChatListNamePosition)
