@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import SDWebImage
 
 class ChatSmallAvatarView: NSView, LoadableNib {
 
@@ -44,31 +45,27 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         profileImageView.layer?.borderWidth = 0
         
         if !message.consecutiveMessages.previousMessage {
+            
             let senderAvatarURL = message.getMessageSenderProfilePic(chat: chat, contact: contact)
             let senderNickname = message.getMessageSenderNickname()
             let senderColor = ChatHelper.getSenderColorFor(message: message)
-            let isTribe = (chat?.isPublicGroup() ?? false)
             
-            if let image = contact?.objectPicture, senderAvatarURL != nil && !isTribe {
-                self.setImage(image: image)
-            } else {
-                showInitials(senderColor: senderColor, senderNickname: senderNickname)
+            showInitials(senderColor: senderColor, senderNickname: senderNickname)
+            
+            profileImageView.sd_cancelCurrentImageLoad()
+
+            if let senderAvatarURL = senderAvatarURL,
+               let url = URL(string: senderAvatarURL) {
                 
-                if let imageUrl = senderAvatarURL?.trim() {
-                    let contactId = contact?.id ?? -1
-                    
-                    DispatchQueue.global().async {
-                        MediaLoader.loadAvatarImage(url: imageUrl, objectId: contactId, completion: { (image, id) in
-                            guard let image = image, id == contactId else {
-                                return
-                            }
-                            if !isTribe { contact?.objectPicture = image }
-                            DispatchQueue.main.async {
-                                self.setImage(image: image)
-                            }
-                        })
-                    }
-                }
+                profileImageView.sd_setImage(
+                    with: url,
+                    placeholderImage: NSImage(named: "profile_avatar"),
+                    options: [SDWebImageOptions.progressiveLoad, SDWebImageOptions.retryFailed],
+                    completed: { (image, error, _, _) in
+                        if let image = image, error == nil {
+                            self.setImage(image: image)
+                        }
+                })
             }
         }
     }

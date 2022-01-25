@@ -16,7 +16,6 @@ public class Chat: NSManagedObject {
     public var lastMessage : TransactionMessage? = nil
     public var conversationContact : UserContact? = nil
     
-    public var objectPicture : NSImage? = nil
     public var ongoingMessage : String? = nil
     var tribesInfo: GroupsManager.TribeInfo? = nil
     
@@ -424,7 +423,6 @@ public class Chat: NSManagedObject {
         
         if self.photoUrl != tribeImage {
             self.photoUrl = tribeImage
-            self.objectPicture = nil
             
             NotificationCenter.default.post(name: .onTribeImageChanged, object: nil, userInfo: nil)
         }
