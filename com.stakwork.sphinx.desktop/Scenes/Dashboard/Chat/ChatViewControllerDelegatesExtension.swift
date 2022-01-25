@@ -128,7 +128,7 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
     
     func sendMessage(provisionalMessage: TransactionMessage?, params: [String: AnyObject]) {
         API.sharedInstance.sendMessage(params: params, callback: { m in
-            if let message = TransactionMessage.insertMessage(m: m).0 {
+            if let message = TransactionMessage.insertMessage(m: m, existingMessage: provisionalMessage).0 {
                 message.setPaymentInvoiceAsPaid()
                 self.insertSentMessage(message: message)
             }

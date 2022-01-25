@@ -24,20 +24,25 @@ class CoreDataManager {
                 print("Unresolved error \(error), \(error.userInfo)")
             }
         })
+        
+        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        container.viewContext.shouldDeleteInaccessibleFaults = true
+        
+        // 🔑 Ensures that the `mainContext` is aware of any changes that were made
+        // to the persistent container.
+        //
+        // For example, when we save a background context,
+        // the persistent container is automatically informed of the changes that
+        // were made. And since the `mainContext` is considered to be a child of
+        // the persistent container, it will receive those updates -- merging
+        // any changes, as the name suggests, automatically.
+        container.viewContext.automaticallyMergesChangesFromParent = true
+        
         return container
     }()
     
     func saveContext() {
-        let context = CoreDataManager.sharedManager.persistentContainer.viewContext
-        
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                let nserror = error as NSError
-                print("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
+        CoreDataManager.sharedManager.persistentContainer.viewContext.saveContext()
     }
     
     func clearCoreDataStore() {
@@ -87,7 +92,7 @@ class CoreDataManager {
         }
 
         deleteObject(object: contact)
-        CoreDataManager.sharedManager.saveContext()
+        saveContext()
     }
     
     func deleteChatObjectsFor(_ chat: Chat) {
@@ -203,5 +208,18 @@ class CoreDataManager {
         let managedContext = persistentContainer.viewContext
         managedContext.delete(object)
         saveContext()
+    }
+}
+
+extension NSManagedObjectContext {
+    func saveContext() {
+        if self.hasChanges {
+            do {
+                try self.save()
+            } catch {
+                let nserror = error as NSError
+                print("Unresolved error \(nserror)")
+            }
+        }
     }
 }

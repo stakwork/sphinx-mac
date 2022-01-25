@@ -200,6 +200,7 @@ class ProfileViewController: NSViewController {
     
     @IBAction func exportKeysButtonClicked(_ sender: Any) {
         let subtitle = "pin.keys.encryption".localized
+        
         let pinCodeVC = EnterPinViewController.instantiate(mode: .Export, subtitle: subtitle)
         pinCodeVC.doneCompletion = { pin in
             if let keyJSONString = UserData.sharedInstance.exportKeysJSON(pin: pin) {

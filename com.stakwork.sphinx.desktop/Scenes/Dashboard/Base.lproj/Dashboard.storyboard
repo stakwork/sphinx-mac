@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1557,10 +1557,10 @@
             </objects>
             <point key="canvasLocation" x="-176" y="-325"/>
         </scene>
-        <!--People Modals View Controller-->
+        <!--Dashboard Modals View Controller-->
         <scene sceneID="1PJ-nr-MS0">
             <objects>
-                <viewController storyboardIdentifier="PeopleModalsViewController" id="QAD-ym-i0Y" customClass="PeopleModalsViewController" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DashboardModalsViewController" id="QAD-ym-i0Y" customClass="DashboardModalsViewController" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="sw1-cm-4av">
                         <rect key="frame" x="0.0" y="0.0" width="589" height="400"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1571,25 +1571,32 @@
                                     <rect key="frame" x="0.0" y="0.0" width="589" height="400"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="6cJ-eE-R77" customClass="AuthExternalView" customModule="Sphinx" customModuleProvider="target">
-                                            <rect key="frame" x="144" y="26" width="300" height="350"/>
+                                        <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6cJ-eE-R77" customClass="AuthExternalView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="145" y="25" width="300" height="350"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="350" id="5sX-v7-mKX"/>
                                                 <constraint firstAttribute="width" constant="300" id="Lvo-fl-55q"/>
                                             </constraints>
                                         </customView>
-                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="QpE-Vy-kkv" customClass="SavePeopleProfileView" customModule="Sphinx" customModuleProvider="target">
-                                            <rect key="frame" x="144" y="26" width="300" height="350"/>
+                                        <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QpE-Vy-kkv" customClass="SavePeopleProfileView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="145" y="25" width="300" height="350"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="350" id="6R9-fW-DOa"/>
                                                 <constraint firstAttribute="width" constant="300" id="dyq-yr-KwJ"/>
                                             </constraints>
                                         </customView>
-                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="gQK-Rv-0V3" customClass="PersonModalView" customModule="Sphinx" customModuleProvider="target">
-                                            <rect key="frame" x="144" y="-49" width="300" height="500"/>
+                                        <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gQK-Rv-0V3" customClass="PersonModalView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="145" y="-50" width="300" height="500"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="500" id="rXa-ny-qVK"/>
                                                 <constraint firstAttribute="width" constant="300" id="uhz-xx-lBS"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="urb-a9-06C" customClass="RestoreProgressView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="145" y="100" width="300" height="200"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="200" id="FFn-Zk-pCB"/>
+                                                <constraint firstAttribute="width" constant="300" id="I7b-VO-Clf"/>
                                             </constraints>
                                         </customView>
                                     </subviews>
@@ -1597,8 +1604,10 @@
                                         <constraint firstItem="QpE-Vy-kkv" firstAttribute="centerX" secondItem="zug-hn-Eft" secondAttribute="centerX" id="CyE-yK-Qri"/>
                                         <constraint firstItem="6cJ-eE-R77" firstAttribute="centerY" secondItem="zug-hn-Eft" secondAttribute="centerY" id="EeE-8S-Wbx"/>
                                         <constraint firstItem="gQK-Rv-0V3" firstAttribute="centerX" secondItem="zug-hn-Eft" secondAttribute="centerX" id="I1T-M5-cgC"/>
+                                        <constraint firstItem="urb-a9-06C" firstAttribute="centerX" secondItem="zug-hn-Eft" secondAttribute="centerX" id="J8I-rj-hJW"/>
                                         <constraint firstItem="gQK-Rv-0V3" firstAttribute="centerY" secondItem="zug-hn-Eft" secondAttribute="centerY" id="Obl-jS-HHG"/>
                                         <constraint firstItem="QpE-Vy-kkv" firstAttribute="centerY" secondItem="zug-hn-Eft" secondAttribute="centerY" id="Vow-mQ-Ks7"/>
+                                        <constraint firstItem="urb-a9-06C" firstAttribute="centerY" secondItem="zug-hn-Eft" secondAttribute="centerY" id="aBD-3N-8fI"/>
                                         <constraint firstItem="6cJ-eE-R77" firstAttribute="centerX" secondItem="zug-hn-Eft" secondAttribute="centerX" id="aac-b6-sSV"/>
                                     </constraints>
                                 </view>
@@ -1615,6 +1624,7 @@
                     <connections>
                         <outlet property="authExternalView" destination="6cJ-eE-R77" id="7QX-YQ-Rvu"/>
                         <outlet property="personModalView" destination="gQK-Rv-0V3" id="Cjb-AY-I8U"/>
+                        <outlet property="restoreProgressView" destination="urb-a9-06C" id="zkr-le-Vig"/>
                         <outlet property="savePeopleProfileView" destination="QpE-Vy-kkv" id="scl-5D-qbM"/>
                     </connections>
                 </viewController>

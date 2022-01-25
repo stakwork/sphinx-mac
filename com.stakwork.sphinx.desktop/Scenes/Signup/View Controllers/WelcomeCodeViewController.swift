@@ -189,7 +189,6 @@ extension WelcomeCodeViewController : SignupButtonViewDelegate {
             if EncryptionManager.sharedInstance.insertKeys(privateKey: keys[0], publicKey: keys[1]) {
                 userData.save(ip: keys[2], token: keys[3], andPin: pin)
 
-                UserDefaults.Keys.didJustRestore.set(true)
                 continueToConnectingView(mode: .ExistingUser)
                 return
             }

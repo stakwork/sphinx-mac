@@ -30,6 +30,8 @@
 		4703F04C2481A24400282186 /* LinkPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703F04B2481A24400282186 /* LinkPreviewView.swift */; };
 		4703F04E2481A24F00282186 /* LinkPreviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4703F04D2481A24F00282186 /* LinkPreviewView.xib */; };
 		4703F0502481A70200282186 /* CustomSwiftLinkPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703F04F2481A70200282186 /* CustomSwiftLinkPreview.swift */; };
+		4705D3A127A06597009C0729 /* RestoreProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4705D3A027A06597009C0729 /* RestoreProgressView.swift */; };
+		4705D3A427A0707E009C0729 /* RestoreProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4705D3A627A0707E009C0729 /* RestoreProgressView.xib */; };
 		4707089A24AE657700A98DCA /* MediaDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4707089924AE657700A98DCA /* MediaDownloader.swift */; };
 		4707089E24AE65CB00A98DCA /* UserContactChatListExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4707089D24AE65CB00A98DCA /* UserContactChatListExtension.swift */; };
 		470708A024AE65D600A98DCA /* ChatChatListExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4707089F24AE65D600A98DCA /* ChatChatListExtension.swift */; };
@@ -310,7 +312,7 @@
 		4797E74D2785D24D0080B966 /* PersonModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E74C2785D24D0080B966 /* PersonModalView.swift */; };
 		4797E7532785D2750080B966 /* CommonModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E7522785D2750080B966 /* CommonModalView.swift */; };
 		4797E7552785E1240080B966 /* APIPeopleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E7542785E1240080B966 /* APIPeopleExtension.swift */; };
-		4797E7582785F3AD0080B966 /* PeopleModalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E7572785F3AD0080B966 /* PeopleModalsViewController.swift */; };
+		4797E7582785F3AD0080B966 /* DashboardModalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E7572785F3AD0080B966 /* DashboardModalsViewController.swift */; };
 		4797E75A278607960080B966 /* SavePeopleProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E759278607960080B966 /* SavePeopleProfileView.swift */; };
 		4797E82424BCC0DA00D13270 /* Groups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4797E82624BCC0DA00D13270 /* Groups.storyboard */; };
 		4797E82B24BCC0F200D13270 /* Invite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4797E82D24BCC0F200D13270 /* Invite.storyboard */; };
@@ -553,6 +555,10 @@
 		4703F05E2481C61B00282186 /* MyriadPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-Regular.otf"; sourceTree = "<group>"; };
 		4703F0602481C61B00282186 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		4703F0612481C61B00282186 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		4705D3A027A06597009C0729 /* RestoreProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreProgressView.swift; sourceTree = "<group>"; };
+		4705D3A527A0707E009C0729 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RestoreProgressView.xib; sourceTree = "<group>"; };
+		4705D3A827A07082009C0729 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RestoreProgressView.strings; sourceTree = "<group>"; };
+		4705D3AA27A07085009C0729 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/RestoreProgressView.strings; sourceTree = "<group>"; };
 		4707089924AE657700A98DCA /* MediaDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDownloader.swift; sourceTree = "<group>"; };
 		4707089D24AE65CB00A98DCA /* UserContactChatListExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContactChatListExtension.swift; sourceTree = "<group>"; };
 		4707089F24AE65D600A98DCA /* ChatChatListExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatChatListExtension.swift; sourceTree = "<group>"; };
@@ -866,7 +872,7 @@
 		4797E74C2785D24D0080B966 /* PersonModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonModalView.swift; sourceTree = "<group>"; };
 		4797E7522785D2750080B966 /* CommonModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonModalView.swift; sourceTree = "<group>"; };
 		4797E7542785E1240080B966 /* APIPeopleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPeopleExtension.swift; sourceTree = "<group>"; };
-		4797E7572785F3AD0080B966 /* PeopleModalsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleModalsViewController.swift; sourceTree = "<group>"; };
+		4797E7572785F3AD0080B966 /* DashboardModalsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardModalsViewController.swift; sourceTree = "<group>"; };
 		4797E759278607960080B966 /* SavePeopleProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePeopleProfileView.swift; sourceTree = "<group>"; };
 		4797E82124BCC0CA00D13270 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		4797E82324BCC0CF00D13270 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
@@ -1924,6 +1930,8 @@
 				47C7D71D27874A44006D2809 /* PersonModalView.xib */,
 				4797E759278607960080B966 /* SavePeopleProfileView.swift */,
 				47C7D72727874A67006D2809 /* SavePeopleProfileView.xib */,
+				4705D3A027A06597009C0729 /* RestoreProgressView.swift */,
+				4705D3A627A0707E009C0729 /* RestoreProgressView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1931,7 +1939,7 @@
 		4797E7562785F3980080B966 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4797E7572785F3AD0080B966 /* PeopleModalsViewController.swift */,
+				4797E7572785F3AD0080B966 /* DashboardModalsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -2666,6 +2674,7 @@
 				4726A43B24C628DA005A66B4 /* glass.caf in Resources */,
 				47BDEE0224F6A2CA001688F3 /* SettingsTabsView.xib in Resources */,
 				474F675D2486928500CE6016 /* PaidMessageSentCollectionViewItem.xib in Resources */,
+				4705D3A427A0707E009C0729 /* RestoreProgressView.xib in Resources */,
 				47B6F52D258BCF0A00D64A41 /* PodcastLiveHeaderCollectionViewItem.xib in Resources */,
 				4731BE212485309C00BCCA9E /* DirectPaymentSentCollectionViewItem.xib in Resources */,
 				4726A43C24C628DA005A66B4 /* bells.caf in Resources */,
@@ -2948,7 +2957,7 @@
 				479751FA246DE61A00D2106B /* ContactsService.swift in Sources */,
 				479751FE246EE0AE00D2106B /* DashboardSplittedViewController.swift in Sources */,
 				47E771252472C27200C9CFEB /* MessageSentCollectionViewItem.swift in Sources */,
-				4797E7582785F3AD0080B966 /* PeopleModalsViewController.swift in Sources */,
+				4797E7582785F3AD0080B966 /* DashboardModalsViewController.swift in Sources */,
 				478ED58825D47C7900940132 /* WelcomeView.swift in Sources */,
 				47C1F1D3248130AA00A71610 /* CommonVideoCollectionViewItem.swift in Sources */,
 				4744FA7C2469C99600C5FD94 /* NSManagedObjectContext.swift in Sources */,
@@ -3079,6 +3088,7 @@
 				475723AB247ED3AC001ADC7E /* AudioPlayerHelper.swift in Sources */,
 				474568002515148A00D66268 /* URL.swift in Sources */,
 				47E7713E2472F0BA00C9CFEB /* EmptyChatCollectionViewItem.swift in Sources */,
+				4705D3A127A06597009C0729 /* RestoreProgressView.swift in Sources */,
 				47F8825025656CB0002A7E71 /* SocketEngineClient.swift in Sources */,
 				47B55095248A9A9D000514BF /* GroupsManager.swift in Sources */,
 				47B550B3248C46E8000514BF /* CustomScrollView.swift in Sources */,
@@ -3141,6 +3151,16 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		4705D3A627A0707E009C0729 /* RestoreProgressView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4705D3A527A0707E009C0729 /* Base */,
+				4705D3A827A07082009C0729 /* en */,
+				4705D3AA27A07085009C0729 /* es */,
+			);
+			name = RestoreProgressView.xib;
+			sourceTree = "<group>";
+		};
 		4724BC1C25474BE70012BD76 /* Podcast.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

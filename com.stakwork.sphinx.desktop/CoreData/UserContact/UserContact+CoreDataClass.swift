@@ -130,15 +130,8 @@ public class UserContact: NSManagedObject {
             contact.tipAmount = tipAmount
             UserDefaults.Keys.tipAmount.set(tipAmount)
         }
-
-        managedContext.mergePolicy = NSMergePolicy.overwrite
         
-        do {
-            try managedContext.save()
-            return contact
-        } catch {
-            return nil
-        }
+        return contact
     }
 
     public static func getAll() -> [UserContact] {

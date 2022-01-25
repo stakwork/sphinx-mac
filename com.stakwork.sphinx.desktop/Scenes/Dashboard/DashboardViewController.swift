@@ -150,7 +150,7 @@ class DashboardViewController: NSViewController {
             
             if let query = n.userInfo?["query"] as? String {
                 for childVC in vc.children {
-                    if let childVC = childVC as? PeopleModalsViewController {
+                    if let childVC = childVC as? DashboardModalsViewController {
                         vc.modalsContainerView.isHidden = false
                         childVC.showWithQuery(query, and: vc)
                     }
@@ -163,7 +163,7 @@ class DashboardViewController: NSViewController {
             
             if let query = n.userInfo?["query"] as? String {
                 for childVC in vc.children {
-                    if let childVC = childVC as? PeopleModalsViewController {
+                    if let childVC = childVC as? DashboardModalsViewController {
                         vc.modalsContainerView.isHidden = false
                         childVC.showWithQuery(query, and: vc)
                     }
@@ -176,7 +176,7 @@ class DashboardViewController: NSViewController {
             
             if let query = n.userInfo?["query"] as? String {
                 for childVC in vc.children {
-                    if let childVC = childVC as? PeopleModalsViewController {
+                    if let childVC = childVC as? DashboardModalsViewController {
                         vc.modalsContainerView.isHidden = false
                         
                         childVC.showWithQuery(query, and: vc)
@@ -212,7 +212,7 @@ class DashboardViewController: NSViewController {
         
         self.chatListViewModel.loadFriends {
             let chatId = self.detailViewController?.chat?.id
-            self.chatListViewModel.syncMessages(chatId: chatId, progressCallback: { _ in }) { (_, count) in
+            self.chatListViewModel.syncMessages(chatId: chatId, progressCallback: { (_, _) in }) { (_, count) in
                 if count > 0 {
                     self.detailViewController?.initialLoad()
                 }
@@ -342,6 +342,16 @@ extension DashboardViewController : DashboardVCDelegate {
         let minWidth: CGFloat = leftColumnVisible ? kWindowMinWidthWithoutLeftColumn + leftPanelWidth : kWindowMinWidthWithoutLeftColumn
         return (minWidth + podcastPlayerWidth, leftPanelWidth)
     }
+    
+    func shouldShowRestoreModal(progress: Int) {
+        for childVC in self.children {
+            if let childVC = childVC as? DashboardModalsViewController {
+                modalsContainerView.isHidden = false
+                
+                childVC.showProgressViewWith(progress: progress, delegate: self)
+            }
+        }
+    }
 }
 
 extension DashboardViewController : SocketManagerDelegate {
@@ -392,8 +402,23 @@ extension DashboardViewController : MediaFullScreenDelegate {
     }
 }
 
-extension DashboardViewController : ModalsViewControllerDelegate {
+extension DashboardViewController : PeopleModalsViewControllerDelegate {
     func shouldHideContainer() {
-        self.modalsContainerView.isHidden = true
+        modalsContainerView.isHidden = true
+    }
+}
+
+extension DashboardViewController : RestoreModalViewControllerDelegate {
+    func didFinishRestoreManually() {
+        chatListViewModel.finishRestoring()
+        listViewController?.finishLoading()
+        
+        modalsContainerView.isHidden = true
+    }
+    
+    func didFinishRestoring() {
+        listViewController?.finishLoading()
+        
+        modalsContainerView.isHidden = true
     }
 }

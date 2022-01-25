@@ -39,8 +39,8 @@ extension UserDefaults {
         public static let signupStep = DefaultKey<Int>("signupStep")
         public static let didShowDeleteMessageConfirmation = DefaultKey<Bool>("didShowDeleteMessageConfirmation")
         public static let paymentProcessedInvites = DefaultKey<[String]>("paymentProcessedInvites")
-        public static let didJustRestore = DefaultKey<Bool>("didJustRestore")
         public static let isRestoring = DefaultKey<Bool>("isRestoring")
+        public static let messagesFetchPage = DefaultKey<Int>("messagesFetchPage")
         
         public static let defaultPIN = DefaultKey<String>("currentPin")
         public static let privacyPIN = DefaultKey<String>("privacyPIN")

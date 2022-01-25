@@ -93,17 +93,25 @@ class ChatListViewController : DashboardSplittedViewController {
     func loadMessages() {        
         updateContactsAndReload()
         
-        self.chatListViewModel.syncMessages(progressCallback: { message in
-            DispatchQueue.main.async {
-                self.loading = false
-                self.newMessageBubbleHelper.showLoadingWheel(text: message)
+        self.chatListViewModel.syncMessages(
+            progressCallback: { (progress, restoring) in
+                
+                DispatchQueue.main.async {
+                    self.loading = false
+                    
+                    if (restoring) {
+                        self.delegate?.shouldShowRestoreModal(progress: progress)
+                    }
+                }
+                
+            }) { (_, _) in
+            
+                DispatchQueue.main.async {
+                    self.updateContactsAndReload()
+                    self.finishLoading()
+                }
+            
             }
-        }) { (_, _) in
-            DispatchQueue.main.async {
-                self.updateContactsAndReload()
-                self.finishLoading()
-            }
-        }
     }
     
     func loadFriendAndReload() {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -144,6 +144,7 @@
                             <constraint firstItem="use-Xx-3Wk" firstAttribute="centerX" secondItem="Qza-bN-uQg" secondAttribute="centerX" id="Sqq-I8-p2x"/>
                             <constraint firstItem="3Mn-LM-Pqb" firstAttribute="top" secondItem="Qza-bN-uQg" secondAttribute="top" id="Sx9-0R-gnN"/>
                             <constraint firstAttribute="trailing" secondItem="fUq-6d-4Le" secondAttribute="trailing" constant="29" id="fMb-Ev-2Ho"/>
+                            <constraint firstItem="lxL-Bt-CEi" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Qza-bN-uQg" secondAttribute="leading" constant="240" id="j0Z-A6-0Ri"/>
                             <constraint firstItem="lxL-Bt-CEi" firstAttribute="top" secondItem="Qza-bN-uQg" secondAttribute="top" id="ooq-W1-gK7"/>
                             <constraint firstItem="use-Xx-3Wk" firstAttribute="centerY" secondItem="Qza-bN-uQg" secondAttribute="centerY" constant="30" id="s9h-D7-0rD"/>
                             <constraint firstItem="YmW-Mz-BW3" firstAttribute="top" secondItem="Qza-bN-uQg" secondAttribute="top" constant="50" id="toc-lt-QiF"/>

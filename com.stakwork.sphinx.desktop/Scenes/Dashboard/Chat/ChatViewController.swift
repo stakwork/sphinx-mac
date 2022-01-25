@@ -286,7 +286,7 @@ class ChatViewController: DashboardSplittedViewController {
     
     func reload() {
         DispatchQueue.global().async {
-            self.chatListViewModel.syncMessages(chatId: self.chat?.id, progressCallback: { _ in }) { (newChatMessageCount, _) in
+            self.chatListViewModel.syncMessages(chatId: self.chat?.id, progressCallback: { (_, _) in }) { (newChatMessageCount, _) in
                 DispatchQueue.main.async {
                     self.reloadMessages(newMessageCount: newChatMessageCount)
                 }

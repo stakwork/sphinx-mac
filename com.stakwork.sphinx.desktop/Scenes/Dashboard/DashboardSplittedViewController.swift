@@ -12,6 +12,7 @@ protocol DashboardVCDelegate: AnyObject {
     func didClickOnChatRow(object: ChatListCommonObject)
     func didReloadDashboard()
     func shouldReloadChatList()
+    func shouldShowRestoreModal(progress: Int)
     func shouldShowFullMediaFor(message: TransactionMessage)
     func shouldToggleLeftView(show: Bool?)
 }

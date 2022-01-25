@@ -11,7 +11,12 @@ import Alamofire
 import SwiftyJSON
 
 extension API {
-    func sendMessage(params: [String: AnyObject], callback:@escaping MessageObjectCallback, errorCallback:@escaping EmptyCallback) {
+    func sendMessage(
+        params: [String: AnyObject],
+        callback:@escaping MessageObjectCallback,
+        errorCallback:@escaping EmptyCallback
+    ) {
+        
         guard let request = getURLRequest(route: "/messages", params: params as NSDictionary?, method: "POST") else {
             errorCallback()
             return
@@ -33,36 +38,13 @@ extension API {
         }
     }
     
-    public func getAllMessages(page: Int, date: Date, callback: @escaping GetAllMessagesCallback, errorCallback: @escaping EmptyCallback) {
-        let itemsPerPage = ChatListViewModel.kMessagesPerPage
-        let offset = (page - 1) * itemsPerPage
+    func getMessagesPaginated(
+        page: Int,
+        date: Date,
+        callback: @escaping GetMessagesPaginatedCallback,
+        errorCallback: @escaping EmptyCallback
+    ){
         
-        guard let request = getURLRequest(route: "/allmessages?offset=\(offset)&limit=\(itemsPerPage)", method: "GET") else {
-            errorCallback()
-            return
-        }
-        
-        sphinxRequest(request) { response in
-            switch response.result {
-            case .success(let data):
-                if let json = data as? NSDictionary {
-                    if let success = json["success"] as? Bool, let response = json["response"] as? NSDictionary, success {
-                        if let newMessages = response["new_messages"] {
-                            let messages = JSON(newMessages).arrayValue
-                            self.lastSeenMessagesDate = ((messages.count > 0 || page > 1) && messages.count < itemsPerPage) ? date : self.lastSeenMessagesDate
-                            callback(messages)
-                            return
-                        }
-                    }
-                }
-                errorCallback()
-            case .failure(_):
-                errorCallback()
-            }
-        }
-    }
-    
-    func getMessagesPaginated(page: Int, date: Date, callback: @escaping GetMessagesPaginatedCallback, errorCallback: @escaping EmptyCallback){
         if !ConnectivityHelper.isConnectedToInternet {
             networksConnectionLost()
             return
@@ -70,7 +52,7 @@ extension API {
         
         let itemsPerPage = ChatListViewModel.kMessagesPerPage
         let offset = (page - 1) * itemsPerPage
-        var route = "/msgs?offset=\(offset)&limit=\(itemsPerPage)"
+        var route = "/msgs?offset=\(offset)&limit=\(itemsPerPage)&order=desc"
         
         let dateString = (lastSeenMessagesDate ?? Date(timeIntervalSince1970: 0))
         if let dateString = dateString.getStringFromDate(format:"yyyy-MM-dd HH:mm:ss").percentEscaped {
@@ -87,11 +69,16 @@ extension API {
             case .success(let data):
                 if let json = data as? NSDictionary {
                     if let success = json["success"] as? Bool, let response = json["response"] as? NSDictionary, success {
-                        let messages = JSON(response["new_messages"] ?? []).arrayValue
+                        let newMessages = JSON(response["new_messages"] ?? []).arrayValue
+                        let messagesTotal = JSON(response["new_messages_total"] ?? -1).intValue
                         
-                        self.lastSeenMessagesDate = ((messages.count > 0 || page > 1) && messages.count < itemsPerPage) ? date : self.lastSeenMessagesDate
+                        if ((newMessages.count > 0 || page > 1) && newMessages.count < itemsPerPage) {
+                            //is last page. Date should be tracked
+                            self.lastSeenMessagesDate = date
+                        }
+                        
                         self.cancellableRequest = nil
-                        callback(messages)
+                        callback(messagesTotal, newMessages)
                         return
                     }
                 }
@@ -104,7 +91,11 @@ extension API {
         }
     }
     
-    func deleteMessage(messageId: Int, callback:@escaping DeleteMessageCallback) {
+    func deleteMessage(
+        messageId: Int,
+        callback:@escaping DeleteMessageCallback
+    ) {
+        
         guard let request = getURLRequest(route: "/message/\(messageId)", method: "DELETE") else {
             callback(false, JSON())
             return
@@ -126,7 +117,12 @@ extension API {
         }
     }
     
-    func sendDirectPayment(params: [String: AnyObject], callback:@escaping DirectPaymentResultsCallback, errorCallback:@escaping EmptyCallback) {
+    func sendDirectPayment(
+        params: [String: AnyObject],
+        callback:@escaping DirectPaymentResultsCallback,
+        errorCallback:@escaping EmptyCallback
+    ) {
+        
         guard let request = getURLRequest(route: "/payment", params: params as NSDictionary?, method: "POST") else {
             callback(false)
             return
@@ -154,7 +150,12 @@ extension API {
         }
     }
     
-    public func createInvoice(parameters: [String : AnyObject], callback: @escaping CreateInvoiceCallback, errorCallback: @escaping EmptyCallback) {
+    public func createInvoice(
+        parameters: [String : AnyObject],
+        callback: @escaping CreateInvoiceCallback,
+        errorCallback: @escaping EmptyCallback
+    ) {
+        
         guard let request = getURLRequest(route: "/invoices", params: parameters as NSDictionary?, method: "POST") else {
             errorCallback()
             return
@@ -180,7 +181,12 @@ extension API {
         }
     }
     
-    public func payInvoice(parameters: [String : AnyObject], callback: @escaping PayInvoiceCallback, errorCallback: @escaping EmptyCallback) {
+    public func payInvoice(
+        parameters: [String : AnyObject],
+        callback: @escaping PayInvoiceCallback,
+        errorCallback: @escaping EmptyCallback
+    ) {
+        
         guard let request = getURLRequest(route: "/invoices", params: parameters as NSDictionary?, method: "PUT") else {
             errorCallback()
             return
@@ -202,7 +208,11 @@ extension API {
         }
     }
     
-    public func setChatMessagesAsSeen(chatId: Int, callback: @escaping SuccessCallback) {
+    public func setChatMessagesAsSeen(
+        chatId: Int,
+        callback: @escaping SuccessCallback
+    ) {
+        
         guard let request = getURLRequest(route: "/messages/\(chatId)/read", method: "POST") else {
             callback(false)
             return

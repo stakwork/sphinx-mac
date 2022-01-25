@@ -49,15 +49,6 @@ class SignupHelper {
         }
     }
     
-    public static var isRestoring: Bool {
-        get {
-            return UserDefaults.Keys.isRestoring.get(defaultValue: false)
-        }
-        set {
-            UserDefaults.Keys.isRestoring.set(newValue)
-        }
-    }
-    
     public static func isLogged() -> Bool {
         return step == SignupHelper.SignupStep.SignupComplete.rawValue || step == SignupHelper.SignupStep.SphinxReady.rawValue
     }

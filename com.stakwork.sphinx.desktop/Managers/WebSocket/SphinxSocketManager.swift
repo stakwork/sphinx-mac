@@ -119,11 +119,6 @@ class SphinxSocketManager {
     }
     
     func connectWebsocket(forceConnect: Bool = false) {
-        let didJustRestore = UserDefaults.Keys.didJustRestore.get(defaultValue: false)
-        if didJustRestore {
-            return
-        }
-        
         let connected = isConnected()
         let connecting = isConnecting()
         let connectedToInternet = ConnectivityHelper.isConnectedToInternet

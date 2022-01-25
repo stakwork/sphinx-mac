@@ -159,14 +159,7 @@ public class Chat: NSManagedObject {
             chat.escrowAmount = NSDecimalNumber(integerLiteral: escrowAmount)
         }
         
-        managedContext.mergePolicy = NSMergePolicy.overwrite
-        
-        do {
-            try managedContext.save()
-            return chat
-        } catch {
-            return nil
-        }
+        return chat
     }
     
     func getContactIdsArray() -> [Int] {
@@ -298,6 +291,7 @@ public class Chat: NSManagedObject {
     func setChatMessagesAsSeen(shouldSync: Bool = true, shouldSave: Bool = true, forceSeen: Bool = false) {
         if NSApplication.shared.isActive || forceSeen {
             self.seen = true
+            self.unseenMessagesCount = 0
             
             let receivedUnseenMessages = self.getReceivedUnseenMessages()
             if receivedUnseenMessages.count > 0 {
@@ -337,11 +331,19 @@ public class Chat: NSManagedObject {
         return messages
     }
     
+    var unseenMessagesCount: Int = 0
+    
     func getReceivedUnseenMessagesCount() -> Int {
+        if unseenMessagesCount == 0 {
+            calculateUnseenMessagesCount()
+        }
+        return unseenMessagesCount
+    }
+    
+    func calculateUnseenMessagesCount() {
         let userId = UserData.sharedInstance.getUserId()
         let predicate = NSPredicate(format: "senderId != %d AND chat == %@ AND seen == %@ && chat.seen == %@", userId, self, NSNumber(booleanLiteral: false), NSNumber(booleanLiteral: false))
-        let messagesCount = CoreDataManager.sharedManager.getObjectsCountOfTypeWith(predicate: predicate, entityName: "TransactionMessage")
-        return messagesCount
+        unseenMessagesCount = CoreDataManager.sharedManager.getObjectsCountOfTypeWith(predicate: predicate, entityName: "TransactionMessage")
     }
     
     func getLastMessageToShow() -> TransactionMessage? {
@@ -351,8 +353,30 @@ public class Chat: NSManagedObject {
         return messages.first
     }
     
+    public static func updateLastMessageForChats(_ chatIds: [Int]) {
+        for id in chatIds {
+            if let chat = Chat.getChatWith(id: id) {
+                chat.calculateUnseenMessagesCount()
+            }
+        }
+    }
+    
     public func updateLastMessage() {
-        self.lastMessage = self.getLastMessageToShow()
+        lastMessage = getLastMessageToShow()
+        calculateUnseenMessagesCount()
+    }
+    
+    public func setLastMessage(_ message: TransactionMessage) {
+        guard let lastM = lastMessage else {
+            lastMessage = message
+            calculateUnseenMessagesCount()
+            return
+        }
+        
+        if (lastM.date < message.date) {
+            lastMessage = message
+            calculateUnseenMessagesCount()
+        }
     }
     
     func getContact() -> UserContact? {
