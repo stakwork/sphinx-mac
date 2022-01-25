@@ -411,12 +411,15 @@ extension DashboardViewController : PeopleModalsViewControllerDelegate {
 extension DashboardViewController : RestoreModalViewControllerDelegate {
     func didFinishRestoreManually() {
         chatListViewModel.finishRestoring()
-        listViewController?.finishLoading()
-        
-        modalsContainerView.isHidden = true
+        restoreDidFinish()
     }
     
     func didFinishRestoring() {
+        restoreDidFinish()
+    }
+    
+    private func restoreDidFinish() {
+        listViewController?.updateContactsAndReload()
         listViewController?.finishLoading()
         
         modalsContainerView.isHidden = true
