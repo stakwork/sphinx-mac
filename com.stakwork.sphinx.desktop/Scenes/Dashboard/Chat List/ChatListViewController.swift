@@ -97,9 +97,8 @@ class ChatListViewController : DashboardSplittedViewController {
             progressCallback: { (progress, restoring) in
                 
                 DispatchQueue.main.async {
-                    self.loading = false
-                    
                     if (restoring) {
+                        self.loading = false
                         self.delegate?.shouldShowRestoreModal(progress: progress)
                     }
                 }

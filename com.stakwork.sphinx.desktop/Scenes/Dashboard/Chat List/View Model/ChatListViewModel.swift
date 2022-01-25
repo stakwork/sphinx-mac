@@ -61,7 +61,7 @@ final class ChatListViewModel: NSObject {
     }
     
     func isRestoring() -> Bool {
-        return API.sharedInstance.lastSeenMessagesDate == nil && TransactionMessage.getAllMesagesCount() == 0
+        return API.sharedInstance.lastSeenMessagesDate == nil
     }
     
     var syncMessagesTask: DispatchWorkItem? = nil
@@ -74,7 +74,7 @@ final class ChatListViewModel: NSObject {
         completion: @escaping (Int, Int) -> ()
     ) {
         
-        var restoring = self.isRestoring()
+        let restoring = self.isRestoring()
         
         if syncMessagesTask != nil {
             return
