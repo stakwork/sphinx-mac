@@ -80,7 +80,7 @@ extension TransactionMessage {
         }
         
         if let image = image, !image.isEmpty {
-            return image + "?thumb=true"
+            return image
         }
         return nil
     }

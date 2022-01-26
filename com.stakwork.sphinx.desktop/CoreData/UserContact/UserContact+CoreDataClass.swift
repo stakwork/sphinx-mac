@@ -19,7 +19,6 @@ public class UserContact: NSManagedObject {
     }
     
     public var lastMessage : TransactionMessage? = nil
-    public var objectPicture : NSImage? = nil
     
     public static func getContactInstance(id: Int, managedContext: NSManagedObjectContext) -> UserContact {
         if let c = UserContact.getContactWith(id: id) {

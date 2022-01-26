@@ -79,7 +79,7 @@ extension Chat : ChatListCommonObject {
         if let url = getPhotoUrl(), let cachedImage = MediaLoader.getImageFromCachedUrl(url: url) {
             return cachedImage
         }
-        return objectPicture
+        return nil
     }
     
     public func getChatContacts() -> [UserContact] {

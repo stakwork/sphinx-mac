@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import SDWebImage
 
 class ChatAvatarView: NSView, LoadableNib {
     
@@ -58,6 +59,7 @@ class ChatAvatarView: NSView, LoadableNib {
         profileImageContainer.isHidden = false
         profileImageView.isHidden = false
 
+        profileImageView.sd_cancelCurrentImageLoad()
         profileImageView.rounded = false
         profileImageView.image = NSImage(named: "inviteQrCode")?.sd_tintedImage(with: NSColor.Sphinx.TextMessages)
     }
@@ -121,25 +123,24 @@ class ChatAvatarView: NSView, LoadableNib {
     }
     
     func loadImageFor(_ object: ChatListCommonObject?, in imageView: AspectFillNSImageView, and container: NSView) {
-        if let profileImage = object?.objectPicture {
-            setImage(image: profileImage, in: imageView, initialsContainer: container)
-        } else {
-            showInitialsFor(object, in: imageView, and: container)
+        showInitialsFor(object, in: imageView, and: container)
 
-            if let objectId = object?.getObjectId(), let urlString = object?.getPhotoUrl()?.removeDuplicatedProtocol() {
-                DispatchQueue.global().async {
-                    MediaLoader.loadAvatarImage(url: urlString, objectId: objectId, completion: { (image, id) in
-                        guard let image = image, id == objectId else {
-                            return
-                        }
-                        object?.objectPicture = image
-                        
-                        DispatchQueue.main.async {
-                            self.setImage(image: image, in: imageView, initialsContainer: container)
-                        }
-                    })
-                }
-            }
+        imageView.sd_cancelCurrentImageLoad()
+
+        if let urlString = object?.getPhotoUrl()?.removeDuplicatedProtocol(),
+           let url = URL(string: urlString) {
+            
+            print("CHAT AVATAR: \(urlString)")
+
+            imageView.sd_setImage(
+                with: url,
+                placeholderImage: NSImage(named: "profile_avatar"),
+                options: [SDWebImageOptions.progressiveLoad, SDWebImageOptions.retryFailed],
+                completed: { (image, error, _, _) in
+                    if let image = image, error == nil {
+                        self.setImage(image: image, in: imageView, initialsContainer: container)
+                    }
+            })
         }
     }
     

@@ -65,7 +65,6 @@ class ChatListDataSource : NSObject {
         guard let contact = object as? UserContact else {
             return
         }
-        contact.objectPicture = nil
 
         for (index, o) in  chatListObjects.enumerated() {
             let c = (o as? UserContact) ?? (o as? Chat)?.getContact()

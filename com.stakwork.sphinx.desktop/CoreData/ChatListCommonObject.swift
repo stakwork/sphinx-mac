@@ -29,5 +29,4 @@ public protocol ChatListCommonObject: AnyObject {
     func updateLastMessage()
     
     var lastMessage : TransactionMessage? { get set }
-    var objectPicture : NSImage? { get set }
 }
