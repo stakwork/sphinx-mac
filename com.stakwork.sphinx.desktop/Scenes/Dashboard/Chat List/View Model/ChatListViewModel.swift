@@ -94,6 +94,9 @@ final class ChatListViewModel: NSObject {
                 progressCallback: progressCallback,
                 completion: { chatNewMessagesCount, newMessagesCount in
                     
+                    self.syncMessagesTask?.cancel()
+                    self.syncMessagesTask = nil
+                    
                     Chat.updateLastMessageForChats(
                         self.newMessagesChatIds
                     )
