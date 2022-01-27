@@ -94,8 +94,7 @@ final class ChatListViewModel: NSObject {
                 progressCallback: progressCallback,
                 completion: { chatNewMessagesCount, newMessagesCount in
                     
-                    self.syncMessagesTask?.cancel()
-                    self.syncMessagesTask = nil
+                    self.cancelAndResetSyncMessagesTask()
                     
                     Chat.updateLastMessageForChats(
                         self.newMessagesChatIds
@@ -110,11 +109,16 @@ final class ChatListViewModel: NSObject {
     }
     
     func finishRestoring() {
-        syncMessagesTask?.cancel()
+        cancelAndResetSyncMessagesTask()
         
         SignupHelper.completeSignup()
         UserDefaults.Keys.messagesFetchPage.removeValue()
         API.sharedInstance.lastSeenMessagesDate = syncMessagesDate
+    }
+    
+    func cancelAndResetSyncMessagesTask() {
+        syncMessagesTask?.cancel()
+        syncMessagesTask = nil
     }
     
     func getMessagesPaginated(
