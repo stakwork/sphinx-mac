@@ -99,7 +99,12 @@ class ChatListViewController : DashboardSplittedViewController {
                 DispatchQueue.main.async {
                     if (restoring) {
                         self.loading = false
-                        self.delegate?.shouldShowRestoreModal(progress: progress)
+                        
+                        if (progress >= 0) {
+                            self.delegate?.shouldShowRestoreModal(progress: progress)
+                        } else {
+                            self.newMessageBubbleHelper.showLoadingWheel(text: "fetching.old.messages".localized)
+                        }
                     }
                 }
                 
