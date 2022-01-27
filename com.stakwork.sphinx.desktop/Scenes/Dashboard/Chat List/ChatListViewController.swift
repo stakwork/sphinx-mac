@@ -109,7 +109,6 @@ class ChatListViewController : DashboardSplittedViewController {
                 }
                 
             }) { (_, _) in
-            
                 DispatchQueue.main.async {
                     self.updateContactsAndReload()
                     self.finishLoading()
