@@ -73,11 +73,14 @@ final class ChatListViewModel: NSObject {
         progressCallback: @escaping (Int, Bool) -> (),
         completion: @escaping (Int, Int) -> ()
     ) {
+        if syncMessagesTask != nil {
+            return
+        }
         
         let restoring = self.isRestoring()
         
-        if syncMessagesTask != nil {
-            return
+        if !restoring {
+            UserDefaults.Keys.messagesFetchPage.removeValue()
         }
         
         syncMessagesTask = DispatchWorkItem { [weak self] in
@@ -93,6 +96,8 @@ final class ChatListViewModel: NSObject {
                 date: self.syncMessagesDate,
                 progressCallback: progressCallback,
                 completion: { chatNewMessagesCount, newMessagesCount in
+                    
+                    UserDefaults.Keys.messagesFetchPage.removeValue()
                     
                     self.cancelAndResetSyncMessagesTask()
                     
@@ -155,9 +160,13 @@ final class ChatListViewModel: NSObject {
                         chatId: chatId,
                         completion: { (newChatMessagesCount, newMessagesCount) in
                             
+                            if self.syncMessagesTask?.isCancelled == true {
+                                return
+                            }
+                            
                             if newMessages.count < ChatListViewModel.kMessagesPerPage {
                                 
-                                UserDefaults.Keys.messagesFetchPage.removeValue()
+                                CoreDataManager.sharedManager.saveContext()
                                 
                                 if restoring {
                                     SphinxSocketManager.sharedInstance.connectWebsocket()
@@ -165,7 +174,6 @@ final class ChatListViewModel: NSObject {
                                 }
                                 
                                 completion(newChatMessagesCount, newMessagesCount)
-                                CoreDataManager.sharedManager.saveContext()
                                 
                             } else {
                                 
