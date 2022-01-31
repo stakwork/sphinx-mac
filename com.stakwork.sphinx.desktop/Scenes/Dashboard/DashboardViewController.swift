@@ -419,9 +419,9 @@ extension DashboardViewController : RestoreModalViewControllerDelegate {
     }
     
     private func restoreDidFinish() {
+        modalsContainerView.isHidden = true
+        
         listViewController?.updateContactsAndReload()
         listViewController?.finishLoading()
-        
-        modalsContainerView.isHidden = true
     }
 }

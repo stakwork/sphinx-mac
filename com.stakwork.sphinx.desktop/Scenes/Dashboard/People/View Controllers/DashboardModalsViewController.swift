@@ -66,6 +66,10 @@ class DashboardModalsViewController: NSViewController {
             return
         }
         
+        showProgressModalAnimated()
+    }
+    
+    func showProgressModalAnimated() {
         hideAllModals()
         
         self.view.alphaValue = 0.0
@@ -84,6 +88,12 @@ class DashboardModalsViewController: NSViewController {
         self.peopleModalsDelegate = delegate
         self.query = query
         
+        showPeopleModalAnimatedWith(query)
+    }
+    
+    func showPeopleModalAnimatedWith(
+        _ query: String
+    ) {
         hideAllModals()
         
         self.view.alphaValue = 0.0

@@ -142,7 +142,7 @@ final class ChatListViewModel: NSObject {
             date: date,
             callback: {(newMessagesTotal, newMessages) -> () in
                 
-                if self.syncMessagesTask?.isCancelled == true {
+                if self.syncMessagesTask == nil || self.syncMessagesTask?.isCancelled == true {
                     return
                 }
                 
@@ -160,7 +160,7 @@ final class ChatListViewModel: NSObject {
                         chatId: chatId,
                         completion: { (newChatMessagesCount, newMessagesCount) in
                             
-                            if self.syncMessagesTask?.isCancelled == true {
+                            if self.syncMessagesTask == nil || self.syncMessagesTask?.isCancelled == true {
                                 return
                             }
                             
