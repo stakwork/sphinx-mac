@@ -194,7 +194,7 @@ class AttachmentsManager {
     }
     
     func createLocalMessage(message: JSON, attachmentObject: AttachmentObject) {
-        if let message = TransactionMessage.insertMessage(m: message).0 {
+        if let message = TransactionMessage.insertMessage(m: message, existingMessage: provisionalMessage).0 {
             delegate?.didUpdateUploadProgress?(progress: 100)
             cacheImageAndMediaData(message: message, attachmentObject: attachmentObject)
             uploadSucceed(message: message)
