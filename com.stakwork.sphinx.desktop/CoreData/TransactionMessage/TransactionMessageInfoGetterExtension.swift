@@ -550,10 +550,6 @@ extension TransactionMessage {
         if isDeleted() {
             return String(format: "message.x.deleted".localized, directionString)
         }
-        
-        if let purchaseItem = getPurchaseItems(includeAttachment: true).last, let purchaseDecription = purchaseItem.getPurchaseDescription(directionString) {
-            return purchaseDecription
-        }
 
         switch (self.getType()) {
         case TransactionMessage.TransactionMessageType.message.rawValue:
@@ -608,22 +604,6 @@ extension TransactionMessage {
         default: break
         }
         return "\("message.not.supported".localized) \(directionString)"
-    }
-    
-    func getPurchaseDescription(_ directionString: String) -> String? {
-        let (purchaseItem, _) = getPurchaseStateItem()
-        if let purchaseItem = purchaseItem {
-            switch (purchaseItem.getType()) {
-            case TransactionMessage.TransactionMessageType.purchase.rawValue:
-                return String(format: "purchase.item.description".localized, directionString)
-            case TransactionMessage.TransactionMessageType.purchaseAccept.rawValue:
-                return "item.purchased".localized
-            case TransactionMessage.TransactionMessageType.purchaseDeny.rawValue:
-                return "item.purchase.denied".localized
-            default: break
-            }
-        }
-        return nil
     }
     
     func processPodcastComment() {
