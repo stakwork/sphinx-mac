@@ -124,18 +124,16 @@ class ChatAvatarView: NSView, LoadableNib {
     
     func loadImageFor(_ object: ChatListCommonObject?, in imageView: AspectFillNSImageView, and container: NSView) {
         showInitialsFor(object, in: imageView, and: container)
-
+        
         imageView.sd_cancelCurrentImageLoad()
 
         if let urlString = object?.getPhotoUrl()?.removeDuplicatedProtocol(),
            let url = URL(string: urlString) {
-            
-            print("CHAT AVATAR: \(urlString)")
 
             imageView.sd_setImage(
                 with: url,
                 placeholderImage: NSImage(named: "profile_avatar"),
-                options: [SDWebImageOptions.progressiveLoad, SDWebImageOptions.retryFailed],
+                options: [SDWebImageOptions.retryFailed],
                 completed: { (image, error, _, _) in
                     if let image = image, error == nil {
                         self.setImage(image: image, in: imageView, initialsContainer: container)

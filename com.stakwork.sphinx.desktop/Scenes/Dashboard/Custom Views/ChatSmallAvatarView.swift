@@ -60,7 +60,7 @@ class ChatSmallAvatarView: NSView, LoadableNib {
                 profileImageView.sd_setImage(
                     with: url,
                     placeholderImage: NSImage(named: "profile_avatar"),
-                    options: [SDWebImageOptions.progressiveLoad, SDWebImageOptions.retryFailed],
+                    options: [SDWebImageOptions.retryFailed],
                     completed: { (image, error, _, _) in
                         if let image = image, error == nil {
                             self.setImage(image: image)
