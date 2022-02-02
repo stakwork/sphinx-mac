@@ -402,7 +402,7 @@ class ChatHelper {
                 continue
             }
             
-            if referenceMessageDate!.getMinutesDifference(from: message.date) > 5 {
+            if referenceMessageDate!.getMinutesDifference(from: message.messageDate) > 5 {
                referenceMessageDate = message.date
             }
             
@@ -411,7 +411,7 @@ class ChatHelper {
                     referenceMessageDate = message.date
                     message.consecutiveMessages.nextMessage = false
                     nextMessage!.consecutiveMessages.previousMessage = false
-                } else if referenceMessageDate!.getMinutesDifference(from: nextMessage!.date) <= 5 {
+                } else if referenceMessageDate!.getMinutesDifference(from: nextMessage!.messageDate) <= 5 {
                     if message.hasSameSenderThan(message: nextMessage) {
                         message.consecutiveMessages.nextMessage = true
                         nextMessage!.consecutiveMessages.previousMessage = true
@@ -434,12 +434,12 @@ class ChatHelper {
             return
         }
         
-        if referenceMessageDate!.getMinutesDifference(from: message.date) > 5 {
+        if referenceMessageDate!.getMinutesDifference(from: message.messageDate) > 5 {
             referenceMessageDate = message.date
             return
         }
         
-        if previousMessage != nil && referenceMessageDate!.getMinutesDifference(from: message.date) <= 5 {
+        if previousMessage != nil && referenceMessageDate!.getMinutesDifference(from: message.messageDate) <= 5 {
             if previousMessage!.failed() {
                 referenceMessageDate = message.date
                 message.consecutiveMessages.previousMessage = false

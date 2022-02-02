@@ -91,7 +91,7 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
             messageLabel.font = newMessage ? Constants.kNewMessagePreviewFont : Constants.kMessagePreviewFont
             messageLabel.textColor = newMessage ? NSColor.Sphinx.TextMessages : NSColor.Sphinx.SecondaryText
 
-            dateLabel.stringValue = lastMessage.date.getLastMessageDateFormat()
+            dateLabel.stringValue = lastMessage.messageDate.getLastMessageDateFormat()
             messageLabel.stringValue = lastMessage.getMessageDescription()
             setNameTopConstraint(value: Constants.kChatListNamePosition)
         } else {
