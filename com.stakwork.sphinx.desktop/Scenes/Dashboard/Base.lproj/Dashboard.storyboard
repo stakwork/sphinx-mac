@@ -1578,7 +1578,7 @@
                                                 <constraint firstAttribute="width" constant="300" id="Lvo-fl-55q"/>
                                             </constraints>
                                         </customView>
-                                        <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QpE-Vy-kkv" customClass="SavePeopleProfileView" customModule="Sphinx" customModuleProvider="target">
+                                        <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QpE-Vy-kkv" customClass="PeopleTorActionsView" customModule="Sphinx" customModuleProvider="target">
                                             <rect key="frame" x="145" y="25" width="300" height="350"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="350" id="6R9-fW-DOa"/>
@@ -1623,9 +1623,9 @@
                     </view>
                     <connections>
                         <outlet property="authExternalView" destination="6cJ-eE-R77" id="7QX-YQ-Rvu"/>
+                        <outlet property="peopleTorActionsView" destination="QpE-Vy-kkv" id="PPT-S5-sAC"/>
                         <outlet property="personModalView" destination="gQK-Rv-0V3" id="Cjb-AY-I8U"/>
                         <outlet property="restoreProgressView" destination="urb-a9-06C" id="zkr-le-Vig"/>
-                        <outlet property="savePeopleProfileView" destination="QpE-Vy-kkv" id="scl-5D-qbM"/>
                     </connections>
                 </viewController>
                 <customObject id="867-LG-u5Q" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

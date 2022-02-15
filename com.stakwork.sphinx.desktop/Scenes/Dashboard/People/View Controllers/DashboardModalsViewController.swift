@@ -21,7 +21,7 @@ class DashboardModalsViewController: NSViewController {
 
     @IBOutlet weak var authExternalView: AuthExternalView!
     @IBOutlet weak var personModalView: PersonModalView!
-    @IBOutlet weak var savePeopleProfileView: SavePeopleProfileView!
+    @IBOutlet weak var peopleTorActionsView: PeopleTorActionsView!
     @IBOutlet weak var restoreProgressView: RestoreProgressView!
     
     var query: String? = nil
@@ -41,7 +41,7 @@ class DashboardModalsViewController: NSViewController {
     private func hideAllModals() {
         authExternalView.isHidden = true
         personModalView.isHidden = true
-        savePeopleProfileView.isHidden = true
+        peopleTorActionsView.isHidden = true
         
         restoreProgressView.isHidden = true
     }
@@ -120,7 +120,7 @@ class DashboardModalsViewController: NSViewController {
             case "person":
                 return personModalView
             case "save":
-                return savePeopleProfileView
+                return peopleTorActionsView
             default:
                 break
             }
@@ -136,7 +136,7 @@ extension DashboardModalsViewController : ModalViewDelegate {
         }, completion: {
             self.authExternalView.isHidden = true
             self.personModalView.isHidden = true
-            self.savePeopleProfileView.isHidden = true
+            self.peopleTorActionsView.isHidden = true
             self.restoreProgressView.isHidden = true
             
             self.peopleModalsDelegate?.shouldHideContainer()

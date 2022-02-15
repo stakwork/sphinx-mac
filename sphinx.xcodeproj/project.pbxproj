@@ -313,7 +313,7 @@
 		4797E7532785D2750080B966 /* CommonModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E7522785D2750080B966 /* CommonModalView.swift */; };
 		4797E7552785E1240080B966 /* APIPeopleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E7542785E1240080B966 /* APIPeopleExtension.swift */; };
 		4797E7582785F3AD0080B966 /* DashboardModalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E7572785F3AD0080B966 /* DashboardModalsViewController.swift */; };
-		4797E75A278607960080B966 /* SavePeopleProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E759278607960080B966 /* SavePeopleProfileView.swift */; };
+		4797E75A278607960080B966 /* PeopleTorActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797E759278607960080B966 /* PeopleTorActionsView.swift */; };
 		4797E82424BCC0DA00D13270 /* Groups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4797E82624BCC0DA00D13270 /* Groups.storyboard */; };
 		4797E82B24BCC0F200D13270 /* Invite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4797E82D24BCC0F200D13270 /* Invite.storyboard */; };
 		4797E83224BCC10000D13270 /* Pin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4797E83424BCC10000D13270 /* Pin.storyboard */; };
@@ -420,7 +420,7 @@
 		47C6236525091E6B005D265C /* GiphySearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C6236425091E6B005D265C /* GiphySearchDataSource.swift */; };
 		47C7D71127874A12006D2809 /* AuthExternalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47C7D71327874A12006D2809 /* AuthExternalView.xib */; };
 		47C7D71B27874A44006D2809 /* PersonModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47C7D71D27874A44006D2809 /* PersonModalView.xib */; };
-		47C7D72527874A67006D2809 /* SavePeopleProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47C7D72727874A67006D2809 /* SavePeopleProfileView.xib */; };
+		47C7D72527874A67006D2809 /* PeopleTorActionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47C7D72727874A67006D2809 /* PeopleTorActionsView.xib */; };
 		47D03DE2250BB2810077A968 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D03DE1250BB2810077A968 /* AddFriendViewController.swift */; };
 		47D03DE4250BB9F40077A968 /* NewInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D03DE3250BB9F40077A968 /* NewInviteViewController.swift */; };
 		47D03DE7250FC8B90077A968 /* PDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47D03DE6250FC8B90077A968 /* PDFKit.framework */; };
@@ -873,7 +873,7 @@
 		4797E7522785D2750080B966 /* CommonModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonModalView.swift; sourceTree = "<group>"; };
 		4797E7542785E1240080B966 /* APIPeopleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPeopleExtension.swift; sourceTree = "<group>"; };
 		4797E7572785F3AD0080B966 /* DashboardModalsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardModalsViewController.swift; sourceTree = "<group>"; };
-		4797E759278607960080B966 /* SavePeopleProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePeopleProfileView.swift; sourceTree = "<group>"; };
+		4797E759278607960080B966 /* PeopleTorActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTorActionsView.swift; sourceTree = "<group>"; };
 		4797E82124BCC0CA00D13270 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		4797E82324BCC0CF00D13270 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		4797E82524BCC0DA00D13270 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Groups.storyboard; sourceTree = "<group>"; };
@@ -1032,9 +1032,9 @@
 		47C7D71C27874A44006D2809 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PersonModalView.xib; sourceTree = "<group>"; };
 		47C7D72227874A47006D2809 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PersonModalView.strings; sourceTree = "<group>"; };
 		47C7D72427874A48006D2809 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PersonModalView.strings; sourceTree = "<group>"; };
-		47C7D72627874A67006D2809 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SavePeopleProfileView.xib; sourceTree = "<group>"; };
-		47C7D72C27874A6A006D2809 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SavePeopleProfileView.strings; sourceTree = "<group>"; };
-		47C7D72E27874A6C006D2809 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/SavePeopleProfileView.strings; sourceTree = "<group>"; };
+		47C7D72627874A67006D2809 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PeopleTorActionsView.xib; sourceTree = "<group>"; };
+		47C7D72C27874A6A006D2809 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PeopleTorActionsView.strings; sourceTree = "<group>"; };
+		47C7D72E27874A6C006D2809 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PeopleTorActionsView.strings; sourceTree = "<group>"; };
 		47D0045D25E6BA8100E74063 /* com_stakwork_sphinx_desktop 15.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "com_stakwork_sphinx_desktop 15.xcdatamodel"; sourceTree = "<group>"; };
 		47D03DE0250BAB460077A968 /* com_stakwork_sphinx_desktop 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "com_stakwork_sphinx_desktop 9.xcdatamodel"; sourceTree = "<group>"; };
 		47D03DE1250BB2810077A968 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
@@ -1928,8 +1928,8 @@
 				47C7D71327874A12006D2809 /* AuthExternalView.xib */,
 				4797E74C2785D24D0080B966 /* PersonModalView.swift */,
 				47C7D71D27874A44006D2809 /* PersonModalView.xib */,
-				4797E759278607960080B966 /* SavePeopleProfileView.swift */,
-				47C7D72727874A67006D2809 /* SavePeopleProfileView.xib */,
+				4797E759278607960080B966 /* PeopleTorActionsView.swift */,
+				47C7D72727874A67006D2809 /* PeopleTorActionsView.xib */,
 				4705D3A027A06597009C0729 /* RestoreProgressView.swift */,
 				4705D3A627A0707E009C0729 /* RestoreProgressView.xib */,
 			);
@@ -2614,7 +2614,7 @@
 				474F67532486779D00CE6016 /* JoinVideoCallView.xib in Resources */,
 				478ED5CC25D6FD3400940132 /* FriendMessageView.xib in Resources */,
 				47C1F1D7248130F900A71610 /* VideoReceivedCollectionViewItem.xib in Resources */,
-				47C7D72527874A67006D2809 /* SavePeopleProfileView.xib in Resources */,
+				47C7D72527874A67006D2809 /* PeopleTorActionsView.xib in Resources */,
 				474A668D24990193002C2D10 /* MessageOptionView.xib in Resources */,
 				474F674A2486775900CE6016 /* VideoCallSentCollectionViewItem.xib in Resources */,
 				47AF0D4225508FC900C98398 /* PodcastBoostSentCollectionViewItem.xib in Resources */,
@@ -2876,7 +2876,7 @@
 				479751DA246C9A7E00D2106B /* AlertHelper.swift in Sources */,
 				479F657B2487D31C0015A16A /* ChatViewControllerMediaExtension.swift in Sources */,
 				47A4EFFE24B6321700117AE6 /* ConnectivityHelper.swift in Sources */,
-				4797E75A278607960080B966 /* SavePeopleProfileView.swift in Sources */,
+				4797E75A278607960080B966 /* PeopleTorActionsView.swift in Sources */,
 				4744FA642469A43600C5FD94 /* APISubscriptionsExtension.swift in Sources */,
 				47B6F529258BC40600D64A41 /* PodcastLiveDataSource.swift in Sources */,
 				475F0BA224F7D97D0032EDC4 /* NewContactViewController.swift in Sources */,
@@ -3550,14 +3550,14 @@
 			name = PersonModalView.xib;
 			sourceTree = "<group>";
 		};
-		47C7D72727874A67006D2809 /* SavePeopleProfileView.xib */ = {
+		47C7D72727874A67006D2809 /* PeopleTorActionsView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				47C7D72627874A67006D2809 /* Base */,
 				47C7D72C27874A6A006D2809 /* en */,
 				47C7D72E27874A6C006D2809 /* es */,
 			);
-			name = SavePeopleProfileView.xib;
+			name = PeopleTorActionsView.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
