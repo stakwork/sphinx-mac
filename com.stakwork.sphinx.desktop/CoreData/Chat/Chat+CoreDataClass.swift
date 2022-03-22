@@ -361,8 +361,10 @@ public class Chat: NSManagedObject {
     }
     
     public func updateLastMessage() {
-        lastMessage = getLastMessageToShow()
-        calculateUnseenMessagesCount()
+        if lastMessage?.id ?? 0 <= 0 {
+            lastMessage = getLastMessageToShow()
+            calculateUnseenMessagesCount()
+        }
     }
     
     public func setLastMessage(_ message: TransactionMessage) {

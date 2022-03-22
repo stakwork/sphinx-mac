@@ -145,12 +145,6 @@ public final class ContactsService {
     
     public func getChatListObjects() -> [ChatListCommonObject] {
         let filteredContacts =  contacts.filter { !$0.isOwner && !$0.shouldBeExcluded()}
-        let chatListObjectsCount = filteredContacts.count + chats.count
-        
-        if chatListObjectsCount == chatListObjects.count && chatsCount == chats.count && chatListObjectsCount > 0 {
-            chatListObjects = orderChatListObjects(objects: chatListObjects)
-            return chatListObjects
-        }
         
         chatsCount = chats.count
         
