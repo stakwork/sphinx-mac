@@ -36,6 +36,7 @@ typealias CreateGroupCallback = ((JSON) -> ())
 //typealias GetTransactionsCallback = (([PaymentTransaction]) -> ())
 typealias LogsCallback = ((String) -> ())
 typealias TemplatesCallback = (([ImageTemplate]) -> ())
+typealias TransportKeyCallback = ((String) -> ())
 
 //HUB calls
 typealias SignupWithCodeCallback = ((JSON, String, String) -> ())
@@ -160,7 +161,12 @@ class API {
         }
     }
     
-    func getURLRequest(route: String, params: NSDictionary? = nil, method: String, authenticated: Bool = true) -> URLRequest? {
+    func getURLRequest(
+        route: String,
+        params: NSDictionary? = nil,
+        method: String,
+        additionalHeaders: [String: String] = [:]
+    ) -> URLRequest? {
         let ip = UserData.sharedInstance.getNodeIP()
         
         if ip.isEmpty {
@@ -169,19 +175,34 @@ class API {
         }
         
         let url = API.getUrl(route: "\(ip)\(route)")
-        var request : URLRequest? = nil
         
-        if authenticated {
-            request = createAuthenticatedRequest(url, params: params, method: method)
-        } else {
-            request = createRequest(url, params: params, method: method)
-        }
+        return createAuthenticatedRequest(
+            url,
+            params: params,
+            method: method,
+            additionalHeaders: additionalHeaders
+        )
+    }
+    
+    func getUnauthenticatedURLRequest(
+        route: String,
+        params: NSDictionary? = nil,
+        method: String
+    ) -> URLRequest? {
+        let ip = UserData.sharedInstance.getNodeIP()
         
-        guard let _ = request else {
+        if ip.isEmpty {
+            messageBubbleHelper.showGenericMessageView(text: "contact.support".localized, delay: 7)
             return nil
         }
         
-        return request
+        let url = API.getUrl(route: "\(ip)\(route)")
+        
+        return createRequest(
+            url,
+            params: params,
+            method: method
+        )
     }
     
     var errorCounter = 0
@@ -354,7 +375,13 @@ class API {
         }
     }
     
-    func createAuthenticatedRequest(_ url:String, params:NSDictionary?, method:String, oldEmail: String? = nil) -> URLRequest? {
+    func createAuthenticatedRequest(
+        _ url:String,
+        params:NSDictionary?,
+        method:String,
+        additionalHeaders: [String: String] = [:]
+    ) -> URLRequest? {
+        
         if !ConnectivityHelper.isConnectedToInternet {
             networksConnectionLost()
             return nil
@@ -365,11 +392,24 @@ class API {
         }
         
         if let nsURL = NSURL(string: url) {
+            let headers = EncryptionManager.sharedInstance.getAuthenticationHeader()
+            
             var request = URLRequest(url: nsURL as URL)
             request.httpMethod = method
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.setValue(UserData.sharedInstance.getAuthToken(), forHTTPHeaderField: "X-User-Token")
             request.setValue("no-cache", forHTTPHeaderField: "Cache-Control")
+            
+            for (key, value) in headers {
+                request.setValue(value, forHTTPHeaderField: key)
+
+                print("HEADER KEY: \(key) FOR VALUE: \(value)")
+            }
+
+            for (key, value) in additionalHeaders {
+                request.setValue(value, forHTTPHeaderField: key)
+
+                print("HEADER KEY: \(key) FOR VALUE: \(value)")
+            }
             
             if let p = params {
                 do {

@@ -24,6 +24,61 @@ class UserData {
         return (getAppPin() != "" && getNodeIP() != "" && getAuthToken() != "" && SignupHelper.isLogged())
     }
     
+    func getAndSaveTransportKey(
+        completion: ((String?) ->())? = nil
+    ) {
+        if let transportKey = getTransportKey(), !transportKey.isEmpty {
+            completion?(transportKey)
+            return
+        }
+
+        API.sharedInstance.getTransportKey(callback: { transportKey in
+            self.save(transportKey: transportKey)
+            completion?(transportKey)
+        }, errorCallback: {
+            completion?(nil)
+        })
+    }
+
+    func generateToken(
+        token: String,
+        pubkey: String,
+        password: String? = nil,
+        completion: @escaping () -> (),
+        errorCompletion: @escaping () -> ()
+    ) {
+        getAndSaveTransportKey(completion: { transportKey in
+            let authenticatedHeader = EncryptionManager.sharedInstance.getAuthenticationHeader(
+                token: token,
+                transportKey: transportKey
+            )
+
+            API.sharedInstance.generateToken(
+                pubkey: pubkey,
+                password: password,
+                additionalHeaders: authenticatedHeader,
+                callback: { [weak self] success in
+                    guard let self = self else { return }
+
+                    if success {
+                        self.save(authToken: token)
+
+                        if let transportKey = transportKey {
+                            self.save(transportKey: transportKey)
+                        }
+
+                        completion()
+                    } else {
+                        errorCompletion()
+                    }
+                },
+                errorCallback: {
+                    errorCompletion()
+                }
+            )
+        })
+    }
+    
     func getPINHours() -> Int {
         if GroupsPinManager.sharedInstance.isStandardPIN {
             return UserDefaults.Keys.pinHours.get(defaultValue: 12)
@@ -67,7 +122,11 @@ class UserData {
         return ownerPubKey
     }
     
-    func save(ip: String, token: String, andPin pin: String) {
+    func save(
+        ip: String,
+        token: String,
+        pin pin: String
+    ) {
         save(ip: ip)
         save(authToken: token)
         save(pin: pin)
@@ -104,6 +163,10 @@ class UserData {
     
     func save(authToken: String) {
         saveValueFor(value: authToken, for: KeychainManager.KeychainKeys.authToken, userDefaultKey: UserDefaults.Keys.authToken)
+    }
+    
+    func save(transportKey: String) {
+        saveValueFor(value: transportKey, for: KeychainManager.KeychainKeys.transportKey, userDefaultKey: UserDefaults.Keys.transportKey)
     }
     
     func save(password: String) {
@@ -151,6 +214,18 @@ class UserData {
             return storedToken
         }
         return EncryptionManager.randomString(length: 20)
+    }
+    
+    func getTransportKey() -> String? {
+        let transportKey = getValueFor(
+            keychainKey: KeychainManager.KeychainKeys.transportKey,
+            userDefaultKey: UserDefaults.Keys.transportKey
+        )
+        
+        if !transportKey.isEmpty {
+            return transportKey
+        }
+        return nil
     }
     
     func getEncryptionKeys() -> (String?, String?) {

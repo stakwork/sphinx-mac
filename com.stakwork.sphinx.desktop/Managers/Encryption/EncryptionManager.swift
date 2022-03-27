@@ -274,6 +274,14 @@ class EncryptionManager {
         return false
     }
     
+    func encryptToken(token: String, key: CryptorRSA.PublicKey) -> String? {
+        let (encrypted, encryptedToken) = encryptMessage(message: token, key: key)
+        if encrypted {
+            return encryptedToken
+        }
+        return nil
+    }
+    
     //Encrypting messages
     func encryptMessageForOwner(message: String) -> String {
         if let owner = UserContact.getOwner() {
@@ -371,6 +379,31 @@ class EncryptionManager {
         }
         
         return decrypt(message: message, with: privateKeyReference)
+    }
+    
+    func getAuthenticationHeader(
+        token: String? = nil,
+        transportKey: String? = nil
+    ) -> [String: String] {
+
+        let t = token ?? userData.getAuthToken()
+
+        if t.isEmpty {
+            return [:]
+        }
+
+        if let transportK = transportKey ?? userData.getTransportKey(),
+           let transportEncryptionKey = getPublicKeyFromBase64String(base64String: transportK) {
+
+            let time = Int(NSDate().timeIntervalSince1970)
+            let tokenAndTime = "\(t)|\(time)"
+
+            if let encryptedToken = encryptToken(token: tokenAndTime, key: transportEncryptionKey) {
+                return ["x-transport-token": encryptedToken]
+            }
+
+        }
+        return ["X-User-Token": t]
     }
     
     public static func randomString(length: Int) -> String {

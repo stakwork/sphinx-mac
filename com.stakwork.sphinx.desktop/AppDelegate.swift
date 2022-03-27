@@ -57,8 +57,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         addStatusBarItem()
         listenToSleepEvents()
-        setInitialVC()
         connectTor()
+        getTransportKey()
+        
+        setInitialVC()
+    }
+    
+    func getTransportKey() {
+        if UserData.sharedInstance.isUserLogged() {
+            UserData.sharedInstance.getAndSaveTransportKey()
+        }
     }
     
     func application(_ application: NSApplication, open urls: [URL]) {

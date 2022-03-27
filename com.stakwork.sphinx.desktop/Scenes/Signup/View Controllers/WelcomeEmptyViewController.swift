@@ -97,22 +97,25 @@ class WelcomeEmptyViewController: WelcomeTorConnectionViewController {
         generateTokenAndProceed(token: token, pubkey: pubkey, password: password)
     }
     
-    func generateTokenAndProceed(token: String, pubkey: String, password: String? = nil) {
+    func generateTokenAndProceed(
+        token: String,
+        pubkey: String,
+        password: String? = nil
+    ) {
         loadingLabel.stringValue = "wait.tor.request".localized
-        
         generateTokenRetries = generateTokenRetries + 1
         
-        API.sharedInstance.generateToken(token: token, pubkey: pubkey, password: password, callback: { success in
-            if success {
-                self.userData.save(authToken: token)
+        userData.generateToken(
+            token: token,
+            pubkey: pubkey,
+            password: password,
+            completion: {
                 SignupHelper.step = SignupHelper.SignupStep.IPAndTokenSet.rawValue
                 self.shouldContinueTo(mode: WelcomeViewMode.FriendMessage.rawValue)
-            } else {
+            }, errorCompletion: {
                 self.generateTokenError(token: token, pubkey: pubkey, password: password)
             }
-        }, errorCallback: {
-            self.generateTokenError(token: token, pubkey: pubkey, password: password)
-        })
+        )
     }
     
     func generateTokenError(token: String, pubkey: String, password: String? = nil) {
