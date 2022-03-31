@@ -58,14 +58,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         addStatusBarItem()
         listenToSleepEvents()
         connectTor()
-        getTransportKey()
+        getRelayKeys()
         
         setInitialVC()
     }
     
-    func getTransportKey() {
+    func getRelayKeys() {
         if UserData.sharedInstance.isUserLogged() {
             UserData.sharedInstance.getAndSaveTransportKey()
+            UserData.sharedInstance.getOrCreateHMACKey()
         }
     }
     

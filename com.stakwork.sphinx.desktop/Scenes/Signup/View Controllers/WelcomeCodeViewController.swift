@@ -191,7 +191,12 @@ extension WelcomeCodeViewController : SignupButtonViewDelegate {
 
                 userData.getAndSaveTransportKey(completion: { [weak self] _ in
                     guard let self = self else { return }
-                    self.continueToConnectingView(mode: .ExistingUser)
+                    
+                    self.userData.getOrCreateHMACKey() { [weak self] in
+                        guard let self = self else { return }
+                        
+                        self.continueToConnectingView(mode: .ExistingUser)
+                    }
                 })
                 return
             }

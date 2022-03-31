@@ -415,6 +415,7 @@
 		47C1F1DF2481530000A71610 /* GroupActionMessageCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47C1F1DD2481530000A71610 /* GroupActionMessageCollectionViewItem.xib */; };
 		47C1F1E1248158E700A71610 /* MediaFullScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F1E0248158E700A71610 /* MediaFullScreenView.swift */; };
 		47C1F1E3248158F600A71610 /* MediaFullScreenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47C1F1E2248158F600A71610 /* MediaFullScreenView.xib */; };
+		47C52C4827F61ADF007B43E2 /* HMACSigningManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C52C4727F61ADF007B43E2 /* HMACSigningManager.swift */; };
 		47C6236125091C02005D265C /* GiphySearchCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C6235F25091C02005D265C /* GiphySearchCollectionViewItem.swift */; };
 		47C6236225091C02005D265C /* GiphySearchCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47C6236025091C02005D265C /* GiphySearchCollectionViewItem.xib */; };
 		47C6236525091E6B005D265C /* GiphySearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C6236425091E6B005D265C /* GiphySearchDataSource.swift */; };
@@ -1024,6 +1025,7 @@
 		47C1F1DD2481530000A71610 /* GroupActionMessageCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupActionMessageCollectionViewItem.xib; sourceTree = "<group>"; };
 		47C1F1E0248158E700A71610 /* MediaFullScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaFullScreenView.swift; sourceTree = "<group>"; };
 		47C1F1E2248158F600A71610 /* MediaFullScreenView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaFullScreenView.xib; sourceTree = "<group>"; };
+		47C52C4727F61ADF007B43E2 /* HMACSigningManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMACSigningManager.swift; sourceTree = "<group>"; };
 		47C6235F25091C02005D265C /* GiphySearchCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphySearchCollectionViewItem.swift; sourceTree = "<group>"; };
 		47C6236025091C02005D265C /* GiphySearchCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GiphySearchCollectionViewItem.xib; sourceTree = "<group>"; };
 		47C6236425091E6B005D265C /* GiphySearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphySearchDataSource.swift; sourceTree = "<group>"; };
@@ -1426,6 +1428,7 @@
 		47393E4A2461A8DD00E6F93E /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				47C52C4627F61ACF007B43E2 /* Requests Signing */,
 				479C792C24EAD1FB009BA1CD /* Tor */,
 				47B55093248A9A91000514BF /* Groups */,
 				4744FAD8246B397700C5FD94 /* Windows */,
@@ -2147,6 +2150,14 @@
 				47C1D60D248EB4E800718B28 /* GroupAddedContactsDataSource.swift */,
 			);
 			path = "Data Sources";
+			sourceTree = "<group>";
+		};
+		47C52C4627F61ACF007B43E2 /* Requests Signing */ = {
+			isa = PBXGroup;
+			children = (
+				47C52C4727F61ADF007B43E2 /* HMACSigningManager.swift */,
+			);
+			path = "Requests Signing";
 			sourceTree = "<group>";
 		};
 		47C6235E25091BE6005D265C /* Giphy Search */ = {
@@ -3091,6 +3102,7 @@
 				478ED58425D47C4900940132 /* ConnectingView.swift in Sources */,
 				475723AB247ED3AC001ADC7E /* AudioPlayerHelper.swift in Sources */,
 				474568002515148A00D66268 /* URL.swift in Sources */,
+				47C52C4827F61ADF007B43E2 /* HMACSigningManager.swift in Sources */,
 				47E7713E2472F0BA00C9CFEB /* EmptyChatCollectionViewItem.swift in Sources */,
 				4705D3A127A06597009C0729 /* RestoreProgressView.swift in Sources */,
 				47F8825025656CB0002A7E71 /* SocketEngineClient.swift in Sources */,
