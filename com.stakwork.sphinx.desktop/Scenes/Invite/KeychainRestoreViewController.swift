@@ -68,17 +68,9 @@ class KeychainRestoreViewController: NSViewController {
         if let credentials = userData.getAllValuesFor(pubKey: pubKey) {
             if EncryptionManager.sharedInstance.insertKeys(privateKey: credentials[3], publicKey: credentials[4]) {
                 UserData.sharedInstance.save(ip: credentials[0], token: credentials[1], pin: credentials[2])
-
-                userData.getAndSaveTransportKey(completion: { [weak self] _ in
-                    guard let self = self else { return }
-                    
-                    self.userData.getOrCreateHMACKey() { [weak self] in
-                        guard let self = self else { return }
-                        
-                        self.delegate?.didRestoreNode(node: pubKey)
-                        self.view.window?.close()
-                    }
-                })
+                
+                self.delegate?.didRestoreNode(node: pubKey)
+                self.view.window?.close()
             } else {
                 dismissAndShowError()
             }

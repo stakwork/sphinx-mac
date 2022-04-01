@@ -64,14 +64,14 @@ extension WelcomeInitialViewController : SignupButtonViewDelegate {
 
 extension WelcomeInitialViewController : KeychainRestoreDelegate {
     func didRestoreNode(node: String?) {
-        goToApp()
+        goToConnectingView()
     }
 
     func shouldShowError() {
         NewMessageBubbleHelper().showGenericMessageView(text: "generic.error.message".localized, in: self.view)
     }
     
-    func goToApp() {
+    func goToConnectingView() {
         GroupsPinManager.sharedInstance.loginPin()
         SignupHelper.completeSignup()
         SphinxSocketManager.sharedInstance.connectWebsocket()
