@@ -21,22 +21,12 @@ final class ChatListViewModel: NSObject {
     
     func loadFriends(completion: @escaping () -> ()) {
         if let contactsService = contactsService {
-            if contactsService.chats.count == 0 {
-                API.sharedInstance.getContacts(callback: {(contacts, chats, subscriptions, _) -> () in
-                    contactsService.insertObjects(contacts: contacts, chats: chats, subscriptions: subscriptions, invites: [])
-                    self.forceKeychainSync()
-                    completion()
-                })
-            } else {
-                API.sharedInstance.getLatestContacts(date: Date(), callback: {(contacts, chats, subscriptions, invites) -> () in
-                    contactsService.insertObjects(contacts: contacts, chats: chats, subscriptions: subscriptions, invites: invites)
-                    self.forceKeychainSync()
-                    completion()
-                })
-            }
-            return
+            API.sharedInstance.getLatestContacts(date: Date(), callback: {(contacts, chats, subscriptions, invites) -> () in
+                contactsService.insertObjects(contacts: contacts, chats: chats, subscriptions: subscriptions, invites: invites)
+                self.forceKeychainSync()
+                completion()
+            })
         }
-        completion()
     }
     
     func getChatListObjectsCount() -> Int {

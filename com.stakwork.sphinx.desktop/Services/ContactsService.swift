@@ -23,15 +23,6 @@ public final class ContactsService {
         reload()
     }
     
-    var lastContactsUpdateDate: Date? {
-        get {
-            return UserDefaults.Keys.lastContactsUpdateDate.get(defaultValue: nil)
-        }
-        set {
-            UserDefaults.Keys.lastContactsUpdateDate.set(newValue)
-        }
-    }
-    
     public func reload() {
         updateContacts()
         updateChats()
@@ -51,27 +42,11 @@ public final class ContactsService {
         self.subscriptions = Subscription.getAll()
     }
     
-    func resetContactsUpdateDateIfNeeded() {
-        let savedAppVersion: Int? = UserDefaults.Keys.appVersion.get()
-        let appVersion = Int(Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "0") ?? 0
-        
-        if savedAppVersion == nil || savedAppVersion! < appVersion {
-            lastContactsUpdateDate = nil
-        }
-        UserDefaults.Keys.appVersion.set(appVersion)
-    }
-    
     public func insertObjects(contacts: [JSON], chats: [JSON], subscriptions: [JSON], invites: [JSON]) {
-        resetContactsUpdateDateIfNeeded()
-        
         insertContacts(contacts: contacts)
         insertChats(chats: chats)
         insertSubscriptions(subscriptions: subscriptions)
         insertInvites(invites: invites)
-        
-        if contacts.count > 0 || chats.count > 0 {
-            lastContactsUpdateDate = Date()
-        }
     }
     
     public func insertContact(contact: JSON, pin: String? = nil) {
@@ -91,7 +66,7 @@ public final class ContactsService {
                         CoreDataManager.sharedManager.deleteContactObjectsFor(contact)
                     }
                 } else {
-                    let _ = UserContact.insertContact(contact: contact, referenceDate: lastContactsUpdateDate)
+                    let _ = UserContact.insertContact(contact: contact)
                 }
             }
             
@@ -121,7 +96,7 @@ public final class ContactsService {
                         CoreDataManager.sharedManager.deleteChatObjectsFor(chat)
                     }
                 } else {
-                    if let chat = Chat.insertChat(chat: chat, referenceDate: lastContactsUpdateDate) {
+                    if let chat = Chat.insertChat(chat: chat) {
                         if chat.seen {
                             chat.setChatMessagesAsSeen(shouldSync: false, shouldSave: false)
                         }

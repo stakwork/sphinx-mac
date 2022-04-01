@@ -57,7 +57,7 @@ public class Chat: NSManagedObject {
         }
     }
     
-    static func insertChat(chat: JSON, referenceDate: Date? = nil) -> Chat? {
+    static func insertChat(chat: JSON) -> Chat? {
         if let id = chat.getJSONId() {
             let name = chat["name"].string ?? ""
             let photoUrl = chat["photo_url"].string ?? ""
@@ -75,12 +75,6 @@ public class Chat: NSManagedObject {
             let metaData = chat["meta"].string
             let status = chat["status"].intValue
             let date = Date.getDateFromString(dateString: chat["created_at"].stringValue) ?? Date()
-            let updatedAtDate = Date.getDateFromString(dateString: chat["updated_at"].stringValue)
-            let isTribe = chat["type"].intValue == Chat.ChatType.publicGroup.rawValue
-
-            if let referenceDate = referenceDate, let updatedAtDate = updatedAtDate, updatedAtDate < referenceDate && !isTribe {
-                return nil
-            }
             
             let contactIds = chat["contact_ids"].arrayObject as? [NSNumber] ?? []
             let pendingContactIds = chat["pending_contact_ids"].arrayObject as? [NSNumber] ?? []

@@ -28,7 +28,7 @@ public class UserContact: NSManagedObject {
         }
     }
     
-    public static func insertContact(contact: JSON, referenceDate: Date? = nil) -> (UserContact?, Int?) {
+    public static func insertContact(contact: JSON) -> (UserContact?, Int?) {
         let id: Int? = contact.getJSONId()
         
         if let id = id {
@@ -43,12 +43,7 @@ public class UserContact: NSManagedObject {
             let privatePhoto = contact["private_photo"].boolValue
             let tipAmount = contact["tip_amount"].int
             let routeHint = contact["route_hint"].string
-            let updatedAtDate = Date.getDateFromString(dateString: contact["updated_at"].stringValue)
             let date = Date.getDateFromString(dateString: contact["created_at"].stringValue) ?? Date()
-            
-            if let referenceDate = referenceDate, let updatedAtDate = updatedAtDate, updatedAtDate < referenceDate {
-                return (nil, id)
-            }
             
             var inviteString: String?
             var welcomeMessage: String?
