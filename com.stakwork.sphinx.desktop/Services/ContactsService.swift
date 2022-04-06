@@ -120,11 +120,10 @@ public final class ContactsService {
     
     public func getChatListObjects() -> [ChatListCommonObject] {
         let filteredContacts =  contacts.filter { !$0.isOwner && !$0.shouldBeExcluded()}
-        let filteredChats =  chats.filter { $0.getContact() != nil }
         
-        chatsCount = filteredChats.count
+        chatsCount = chats.count
         
-        let chatsWithLastMessages = filteredChats.map{ (chat) -> Chat in
+        let chatsWithLastMessages = chats.map{ (chat) -> Chat in
             chat.updateLastMessage()
             return chat
         }
