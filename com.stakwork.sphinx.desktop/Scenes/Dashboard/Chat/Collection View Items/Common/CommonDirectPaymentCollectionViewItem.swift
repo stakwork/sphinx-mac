@@ -70,7 +70,7 @@ class CommonDirectPaymentCollectionViewItem : CommonChatCollectionViewItem {
         let encrypted = messageRow.encrypted
         lockSign.stringValue = encrypted ? "lock" : ""
         
-        configureRecipientInfoWith()
+        configureRecipientInfo()
         setAmountAndTextLabels()
         tryLoadingImage()
 
@@ -112,7 +112,7 @@ class CommonDirectPaymentCollectionViewItem : CommonChatCollectionViewItem {
         messageLabel.stringValue = text
     }
     
-    func configureRecipientInfoWith() {
+    func configureRecipientInfo() {
         guard let message = messageRow?.transactionMessage, (self.chat?.isPublicGroup() ?? false) else {
             recipientAvatarView.isHidden = true
             return
