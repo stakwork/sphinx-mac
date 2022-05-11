@@ -601,6 +601,7 @@
 		4726A43724C628DA005A66B4 /* horn.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = horn.caf; sourceTree = "<group>"; };
 		4726A44424C8735E005A66B4 /* com_stakwork_sphinx_desktop 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "com_stakwork_sphinx_desktop 6.xcdatamodel"; sourceTree = "<group>"; };
 		4726F0A32577C2C900E20EA9 /* com_stakwork_sphinx_desktop 13.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "com_stakwork_sphinx_desktop 13.xcdatamodel"; sourceTree = "<group>"; };
+		47285DDE282BFCF900420067 /* com_stakwork_sphinx_desktop 17.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "com_stakwork_sphinx_desktop 17.xcdatamodel"; sourceTree = "<group>"; };
 		472B4E8E268BAF4E00E8D0FC /* OnionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnionManager.swift; sourceTree = "<group>"; };
 		47308E1E2507F3AC00FFAC6F /* GiphySearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphySearchView.swift; sourceTree = "<group>"; };
 		47308E2225083FCF00FFAC6F /* API+GiphyExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+GiphyExtension.swift"; sourceTree = "<group>"; };
@@ -3875,6 +3876,7 @@
 		4734D3992417E3D400D6957E /* com_stakwork_sphinx_desktop.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				47285DDE282BFCF900420067 /* com_stakwork_sphinx_desktop 17.xcdatamodel */,
 				473BC89E260284500070E519 /* com_stakwork_sphinx_desktop 16.xcdatamodel */,
 				47D0045D25E6BA8100E74063 /* com_stakwork_sphinx_desktop 15.xcdatamodel */,
 				479E7D9225ADEA940092595B /* com_stakwork_sphinx_desktop 14.xcdatamodel */,
@@ -3892,7 +3894,7 @@
 				4787F89C247C0C2300CCE8B9 /* com_stakwork_sphinx_desktop 2.xcdatamodel */,
 				4734D39A2417E3D400D6957E /* com_stakwork_sphinx_desktop.xcdatamodel */,
 			);
-			currentVersion = 473BC89E260284500070E519 /* com_stakwork_sphinx_desktop 16.xcdatamodel */;
+			currentVersion = 47285DDE282BFCF900420067 /* com_stakwork_sphinx_desktop 17.xcdatamodel */;
 			path = com_stakwork_sphinx_desktop.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

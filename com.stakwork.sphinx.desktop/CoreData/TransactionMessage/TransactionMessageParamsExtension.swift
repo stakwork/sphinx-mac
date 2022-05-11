@@ -53,10 +53,10 @@ extension TransactionMessage {
             parameters["reply_uuid"] = replyUUID as AnyObject?
         }
         
-        let success = addTextParams(parameters: &parameters, chat: chat, contacts: contacts, text: text)
-        if !success {
+        if !addTextParams(parameters: &parameters, chat: chat, contacts: contacts, text: text) {
             return nil
         }
+        
         addMediaParams(parameters: &parameters, chat: chat, contacts: contacts, mediaKey: mediaKey, file: file, price: price)
         
         return parameters
@@ -191,4 +191,34 @@ extension TransactionMessage {
         }
         return nil
     }
+    
+    static func getTribePaymentParams(
+            chat: Chat? = nil,
+            messageUUID: String,
+            amount: Int,
+            text: String
+        ) -> [String: AnyObject]? {
+
+            var parameters = [String : AnyObject]()
+
+            parameters["pay"] = true as AnyObject?
+            parameters["reply_uuid"] = messageUUID as AnyObject?
+
+            if let chat = chat {
+                parameters["chat_id"] = chat.id as AnyObject?
+            }
+
+            let pricePerMessage = (chat?.pricePerMessage?.intValue ?? 0)
+            let escrowAmount = (chat?.escrowAmount?.intValue ?? 0)
+
+            parameters["amount"] = pricePerMessage + escrowAmount + amount as AnyObject?
+            parameters["message_price"] = pricePerMessage + escrowAmount as AnyObject?
+
+
+            if !addTextParams(parameters: &parameters, chat: chat, contacts: [], text: text) {
+                return nil
+            }
+
+            return parameters
+        }
 }
