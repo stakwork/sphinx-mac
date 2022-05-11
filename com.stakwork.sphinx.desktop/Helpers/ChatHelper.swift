@@ -17,13 +17,21 @@ class ChatHelper {
         }
         
         if let senderAlias = message.senderAlias, !senderAlias.isEmpty {
-            key = "\(message.senderId)-\(senderAlias.trim())-color"
+            key = "\(senderAlias.trim())-color"
         }
 
         if let key = key {
             return NSColor.getColorFor(key: key)
         }
         return NSColor.Sphinx.Text
+    }
+    
+    public static func getRecipientColor(
+        adminId: Int,
+        recipientAlias: String
+    ) -> NSColor {
+        let key:String = "\(recipientAlias.trim())-color"
+        return NSColor.getColorFor(key: key)
     }
     
     func registerCellsForChat(collectionView: NSCollectionView) {

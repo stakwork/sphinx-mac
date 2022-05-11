@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner">
+        <customObject id="-2" userLabel="File's Owner" customClass="DirectPaymentReceivedCollectionViewItem" customModule="Sphinx" customModuleProvider="target">
             <connections>
                 <outlet property="amountLabel" destination="AHp-c9-Y5E" id="xP9-bv-81y"/>
                 <outlet property="bubbleView" destination="ofG-fV-xxP" id="eRq-YH-3La"/>
@@ -26,6 +26,7 @@
                 <outlet property="paymentIcon" destination="0rk-mt-gnY" id="4gq-8g-DDz"/>
                 <outlet property="pictureBubbleView" destination="cFX-QS-Nv3" id="ndK-Q0-65R"/>
                 <outlet property="pictureBubbleViewHeight" destination="rFP-bt-vkg" id="wXR-RD-Hg1"/>
+                <outlet property="recipientAvatarView" destination="Ueg-H8-vGG" id="KbS-Ub-Mej"/>
                 <outlet property="rightLineContainer" destination="8Fc-Fg-q5q" id="QgQ-oe-vAY"/>
                 <outlet property="seenSign" destination="MQu-FL-kmJ" id="1CB-ey-qjB"/>
                 <outlet property="separatorLine" destination="tB9-5U-BbL" id="V7T-W9-8Ju"/>
@@ -120,17 +121,24 @@
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="hbk-VH-amX">
                     <rect key="frame" x="221" y="199" width="250" height="250"/>
                     <subviews>
-                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0rk-mt-gnY">
-                            <rect key="frame" x="205" y="210" width="19" height="19"/>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="Ueg-H8-vGG" customClass="ChatSmallAvatarView" customModule="Sphinx" customModuleProvider="target">
+                            <rect key="frame" x="20" y="202" width="36" height="36"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="19" id="8td-Ff-lDb"/>
-                                <constraint firstAttribute="height" constant="19" id="Sdi-lW-hk5"/>
+                                <constraint firstAttribute="height" constant="36" id="rCP-X2-KOk"/>
+                                <constraint firstAttribute="width" constant="36" id="ve0-Qd-uKF"/>
+                            </constraints>
+                        </customView>
+                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0rk-mt-gnY">
+                            <rect key="frame" x="207" y="211" width="17" height="17"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="17" id="8td-Ff-lDb"/>
+                                <constraint firstAttribute="height" constant="17" id="Sdi-lW-hk5"/>
                             </constraints>
                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="invoicePayIcon" id="PGt-5J-uah"/>
                             <color key="contentTintColor" name="Text"/>
                         </imageView>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3MG-LU-Scs">
-                            <rect key="frame" x="160" y="210" width="27" height="19"/>
+                            <rect key="frame" x="166" y="210" width="27" height="19"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="sat" id="d2U-tr-WqI">
                                 <font key="font" size="16" name="Roboto-Regular"/>
                                 <color key="textColor" name="WashedOutSentText"/>
@@ -138,7 +146,7 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AHp-c9-Y5E">
-                            <rect key="frame" x="117" y="210" width="41" height="19"/>
+                            <rect key="frame" x="123" y="210" width="41" height="19"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="2500" id="gph-kd-HIu">
                                 <font key="font" size="16" name="Roboto-Bold"/>
                                 <color key="textColor" name="Text"/>
@@ -146,7 +154,7 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LkA-OQ-YWn">
-                            <rect key="frame" x="18" y="174" width="208" height="19"/>
+                            <rect key="frame" x="18" y="171" width="208" height="19"/>
                             <textFieldCell key="cell" alignment="left" title="Message field" id="6Ou-MA-Hdj">
                                 <font key="font" size="16" name="Roboto-Regular"/>
                                 <color key="textColor" name="PrimaryText"/>
@@ -155,15 +163,17 @@
                         </textField>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="LkA-OQ-YWn" firstAttribute="top" secondItem="hbk-VH-amX" secondAttribute="top" constant="60" id="0kF-zM-xMw"/>
                         <constraint firstItem="LkA-OQ-YWn" firstAttribute="leading" secondItem="hbk-VH-amX" secondAttribute="leading" constant="20" id="Ii8-Vg-t6T"/>
                         <constraint firstItem="AHp-c9-Y5E" firstAttribute="centerY" secondItem="3MG-LU-Scs" secondAttribute="centerY" id="Jfg-vJ-Apw"/>
                         <constraint firstItem="3MG-LU-Scs" firstAttribute="centerY" secondItem="0rk-mt-gnY" secondAttribute="centerY" id="Nxm-p5-P16"/>
-                        <constraint firstItem="LkA-OQ-YWn" firstAttribute="top" secondItem="AHp-c9-Y5E" secondAttribute="bottom" constant="17" id="W6A-cK-ZmB"/>
+                        <constraint firstItem="LkA-OQ-YWn" firstAttribute="top" secondItem="AHp-c9-Y5E" secondAttribute="bottom" constant="20" id="W6A-cK-ZmB"/>
                         <constraint firstAttribute="trailing" secondItem="0rk-mt-gnY" secondAttribute="trailing" constant="26" id="hni-HC-zxA"/>
-                        <constraint firstItem="0rk-mt-gnY" firstAttribute="top" secondItem="hbk-VH-amX" secondAttribute="top" constant="21" id="leY-2v-xC4"/>
-                        <constraint firstItem="0rk-mt-gnY" firstAttribute="leading" secondItem="3MG-LU-Scs" secondAttribute="trailing" constant="20" id="oXq-7D-Z9J"/>
+                        <constraint firstItem="0rk-mt-gnY" firstAttribute="leading" secondItem="3MG-LU-Scs" secondAttribute="trailing" constant="16" id="oXq-7D-Z9J"/>
+                        <constraint firstItem="Ueg-H8-vGG" firstAttribute="centerY" secondItem="0rk-mt-gnY" secondAttribute="centerY" id="qRw-KL-RdM"/>
                         <constraint firstAttribute="trailing" secondItem="LkA-OQ-YWn" secondAttribute="trailing" constant="26" id="rzE-Iu-6QJ"/>
                         <constraint firstItem="3MG-LU-Scs" firstAttribute="leading" secondItem="AHp-c9-Y5E" secondAttribute="trailing" constant="6" id="vQJ-HC-Rd9"/>
+                        <constraint firstItem="Ueg-H8-vGG" firstAttribute="leading" secondItem="hbk-VH-amX" secondAttribute="leading" constant="20" id="wht-Ws-Iyq"/>
                     </constraints>
                 </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="cFX-QS-Nv3" customClass="PictureBubbleView" customModule="Sphinx" customModuleProvider="target">

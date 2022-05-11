@@ -39,7 +39,11 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         profileInitialContainer.isHidden = true
     }
     
-    func configureFor(message: TransactionMessage, contact: UserContact?, and chat: Chat?) {
+    func configureFor(
+        message: TransactionMessage,
+        contact: UserContact?,
+        and chat: Chat?
+    ) {
         profileImageView.isHidden = true
         profileInitialContainer.isHidden = true
         profileImageView.layer?.borderWidth = 0
@@ -57,17 +61,46 @@ class ChatSmallAvatarView: NSView, LoadableNib {
             if let senderAvatarURL = senderAvatarURL,
                let url = URL(string: senderAvatarURL) {
                 
-                profileImageView.sd_setImage(
-                    with: url,
-                    placeholderImage: NSImage(named: "profile_avatar"),
-                    options: [SDWebImageOptions.retryFailed],
-                    completed: { (image, error, _, _) in
-                        if let image = image, error == nil {
-                            self.setImage(image: image)
-                        }
-                })
+                showImageWith(url: url)
             }
         }
+    }
+    
+    func configureFor(
+        alias: String?,
+        picture: String?,
+        senderId: Int
+    ) {
+        profileImageView.sd_cancelCurrentImageLoad()
+        
+        profileImageView.isHidden = true
+        profileInitialContainer.isHidden = true
+        profileImageView.layer?.borderWidth = 0
+        
+        showInitials(
+            senderColor: ChatHelper.getRecipientColor(adminId: senderId, recipientAlias: alias ?? "Unknown"),
+            senderNickname: alias ?? "Unknown"
+        )
+        
+        if let recipientPic = picture, let url = URL(string: recipientPic) {
+            showImageWith(url: url)
+        }
+    }
+    
+    func showImageWith(
+        url: URL
+    ) {
+        profileImageView.sd_setImage(
+            with: url,
+            placeholderImage: NSImage(named: "profile_avatar"),
+            options: [.retryFailed],
+            progress: nil,
+            completed: { (image, error, _, _) in
+                if let image = image, error == nil {
+                    self.setImage(image: image)
+                }
+            }
+        )
     }
     
     func setImage(image: NSImage) {
