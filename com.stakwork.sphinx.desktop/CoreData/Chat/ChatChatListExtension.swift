@@ -37,13 +37,6 @@ extension Chat : ChatListCommonObject {
         return conversationContact
     }
     
-    func getTribeAdmin() -> UserContact? {
-        if let ownerPubKey = self.ownerPubkey, tribeAdmin == nil {
-            tribeAdmin = UserContact.getContactWith(pubkey: ownerPubKey)
-        }
-        return tribeAdmin
-    }
-    
     public func getName() -> String {
         if isConversation() {
             return getConversationContact()?.getName() ?? ""

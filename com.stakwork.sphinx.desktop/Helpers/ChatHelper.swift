@@ -27,7 +27,6 @@ class ChatHelper {
     }
     
     public static func getRecipientColor(
-        adminId: Int,
         recipientAlias: String
     ) -> NSColor {
         let key:String = "\(recipientAlias.trim())-color"

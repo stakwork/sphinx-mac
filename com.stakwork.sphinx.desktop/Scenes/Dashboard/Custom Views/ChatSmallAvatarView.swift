@@ -85,8 +85,7 @@ class ChatSmallAvatarView: NSView, LoadableNib {
     
     func configureFor(
         alias: String?,
-        picture: String?,
-        senderId: Int
+        picture: String?
     ) {
         profileImageView.sd_cancelCurrentImageLoad()
         
@@ -95,7 +94,7 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         profileImageView.layer?.borderWidth = 0
         
         showInitials(
-            senderColor: ChatHelper.getRecipientColor(adminId: senderId, recipientAlias: alias ?? "Unknown"),
+            senderColor: ChatHelper.getRecipientColor(recipientAlias: alias ?? "Unknown"),
             senderNickname: alias ?? "Unknown"
         )
         

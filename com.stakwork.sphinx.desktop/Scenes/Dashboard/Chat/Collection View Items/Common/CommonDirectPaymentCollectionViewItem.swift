@@ -122,8 +122,7 @@ class CommonDirectPaymentCollectionViewItem : CommonChatCollectionViewItem {
         
         recipientAvatarView.configureFor(
             alias: message.recipientAlias,
-            picture: message.recipientPic,
-            senderId: self.chat?.tribeAdmin?.id ?? -1
+            picture: message.recipientPic
         )
     }
     
