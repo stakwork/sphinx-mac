@@ -229,6 +229,8 @@
 		475F0BA224F7D97D0032EDC4 /* NewContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475F0BA124F7D97D0032EDC4 /* NewContactViewController.swift */; };
 		475F0BA324F7EBCD0032EDC4 /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 475F0BA524F7EBCD0032EDC4 /* Contacts.storyboard */; };
 		4767AE942509BA8C00C82E5B /* GiphySearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4767AE962509BA8C00C82E5B /* GiphySearchView.xib */; };
+		476A6C42282C2F2000CA213D /* TribeMemberPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 476A6C41282C2F2000CA213D /* TribeMemberPopupView.xib */; };
+		476A6C44282C2F3000CA213D /* TribeMemberPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476A6C43282C2F3000CA213D /* TribeMemberPopupView.swift */; };
 		4785C11224D992D3004E2D6C /* GroupRequestCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4785C11024D992D3004E2D6C /* GroupRequestCollectionViewItem.swift */; };
 		4785C11324D992D3004E2D6C /* GroupRequestCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4785C11124D992D3004E2D6C /* GroupRequestCollectionViewItem.xib */; };
 		4787F89E247C14FD00CCE8B9 /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4787F89D247C14FD00CCE8B9 /* CGFloat.swift */; };
@@ -770,6 +772,8 @@
 		4767AE952509BA8C00C82E5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GiphySearchView.xib; sourceTree = "<group>"; };
 		4767AE982509BA9100C82E5B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GiphySearchView.strings; sourceTree = "<group>"; };
 		4767AE9A2509BA9200C82E5B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/GiphySearchView.strings; sourceTree = "<group>"; };
+		476A6C41282C2F2000CA213D /* TribeMemberPopupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TribeMemberPopupView.xib; sourceTree = "<group>"; };
+		476A6C43282C2F3000CA213D /* TribeMemberPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TribeMemberPopupView.swift; sourceTree = "<group>"; };
 		4785C10F24D98AAB004E2D6C /* com_stakwork_sphinx_desktop 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "com_stakwork_sphinx_desktop 7.xcdatamodel"; sourceTree = "<group>"; };
 		4785C11024D992D3004E2D6C /* GroupRequestCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRequestCollectionViewItem.swift; sourceTree = "<group>"; };
 		4785C11124D992D3004E2D6C /* GroupRequestCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupRequestCollectionViewItem.xib; sourceTree = "<group>"; };
@@ -1727,6 +1731,15 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
+		476A6C45282C2F3600CA213D /* MemberInfo */ = {
+			isa = PBXGroup;
+			children = (
+				476A6C41282C2F2000CA213D /* TribeMemberPopupView.xib */,
+				476A6C43282C2F3000CA213D /* TribeMemberPopupView.swift */,
+			);
+			path = MemberInfo;
+			sourceTree = "<group>";
+		};
 		4789E26F24F42132003991BE /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -2373,6 +2386,7 @@
 				474E3344247FFAA300F7F603 /* Gif */,
 				4703F0492481A21900282186 /* Bubble Views */,
 				474E3343247FFA9900F7F603 /* Paid Attachments */,
+				476A6C45282C2F3600CA213D /* MemberInfo */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -2692,6 +2706,7 @@
 				474567F22513A03D00D66268 /* MessageWebViewReceivedCollectionViewItem.xib in Resources */,
 				47BDEDE924F46585001688F3 /* Profile.storyboard in Resources */,
 				4731BE1B2485303600BCCA9E /* DirectPaymentReceivedCollectionViewItem.xib in Resources */,
+				476A6C42282C2F2000CA213D /* TribeMemberPopupView.xib in Resources */,
 				470396F125372994007F9C23 /* PodcastEpisodeCollectionViewItem.xib in Resources */,
 				47E7713F2472F0BA00C9CFEB /* EmptyChatCollectionViewItem.xib in Resources */,
 				478ED5E125D6FDAC00940132 /* SphinxReady.xib in Resources */,
@@ -2890,6 +2905,7 @@
 				470396E9253721D7007F9C23 /* API+PodcastExtension.swift in Sources */,
 				4731BE322485817000BCCA9E /* ExpiredInvoiceSentCollectionViewItem.swift in Sources */,
 				4787F89E247C14FD00CCE8B9 /* CGFloat.swift in Sources */,
+				476A6C44282C2F3000CA213D /* TribeMemberPopupView.swift in Sources */,
 				473633EE2555BBAD007405F2 /* PodcastModels.swift in Sources */,
 				474E334A2480009E00F7F603 /* AttachmentPriceView.swift in Sources */,
 				474F67512486779200CE6016 /* JoinVideoCallView.swift in Sources */,

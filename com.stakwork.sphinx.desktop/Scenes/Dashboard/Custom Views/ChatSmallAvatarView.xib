@@ -45,15 +45,29 @@
                         <constraint firstItem="CAX-gQ-IWg" firstAttribute="centerY" secondItem="YYh-BM-9Dh" secondAttribute="centerY" constant="-2" id="pUP-0o-GGt"/>
                     </constraints>
                 </customView>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="b8h-ag-L0G">
+                    <rect key="frame" x="0.0" y="0.0" width="68" height="68"/>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="nnK-cS-ioG">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="buttonClicked:" target="-2" id="O6b-mW-SK0"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="YYh-BM-9Dh" secondAttribute="trailing" id="2hc-9u-ovz"/>
                 <constraint firstAttribute="bottom" secondItem="8QU-qL-8Ku" secondAttribute="bottom" id="6H1-AM-8gc"/>
+                <constraint firstItem="b8h-ag-L0G" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="IQs-Me-mCz"/>
                 <constraint firstItem="YYh-BM-9Dh" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="LcI-4R-fk9"/>
                 <constraint firstAttribute="trailing" secondItem="8QU-qL-8Ku" secondAttribute="trailing" id="QKC-Kf-6eO"/>
+                <constraint firstAttribute="trailing" secondItem="b8h-ag-L0G" secondAttribute="trailing" id="Qlf-YF-SUG"/>
                 <constraint firstAttribute="bottom" secondItem="YYh-BM-9Dh" secondAttribute="bottom" id="WGP-cn-qAD"/>
+                <constraint firstAttribute="bottom" secondItem="b8h-ag-L0G" secondAttribute="bottom" id="YgJ-cd-8Io"/>
                 <constraint firstItem="8QU-qL-8Ku" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="amt-X9-cpk"/>
                 <constraint firstItem="8QU-qL-8Ku" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="b4f-fK-J3w"/>
+                <constraint firstItem="b8h-ag-L0G" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="go0-F4-fEC"/>
                 <constraint firstItem="YYh-BM-9Dh" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="heR-Wp-XWN"/>
             </constraints>
             <point key="canvasLocation" x="139" y="154"/>

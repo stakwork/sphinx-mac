@@ -42,7 +42,17 @@ class SendPaymentViewController : PaymentInvoiceFormViewController {
     override func performConfirmAction() {
         super.performConfirmAction()
         
-        goToPaymentTemplates()
+        if paymentViewModel.isTribePayment() {
+            sendTribePayment()
+        } else {
+            goToPaymentTemplates()
+        }
+    }
+    
+    private func sendTribePayment() {
+        if let _ = paymentViewModel.currentPayment.transactionMessage {
+            childVCDelegate?.shouldSendPaymentFor(paymentObject: paymentViewModel.currentPayment)
+        }
     }
     
     private func goToPaymentTemplates() {

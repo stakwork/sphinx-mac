@@ -9,7 +9,13 @@
 import Cocoa
 import SDWebImage
 
+protocol ChatSmallAvatarViewDelegate: AnyObject {
+    func didClickAvatarView()
+}
+
 class ChatSmallAvatarView: NSView, LoadableNib {
+    
+    weak var delegate: ChatSmallAvatarViewDelegate?
 
     @IBOutlet var contentView: NSView!
     @IBOutlet weak var profileImageView: AspectFillNSImageView!
@@ -34,6 +40,14 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         profileInitialContainer.layer?.masksToBounds = true
     }
     
+    func setInitialLabelSize(size: Double) {
+        initialsLabel.font = NSFont(name: "Montserrat-Regular", size: size)!
+    }
+    
+    @IBAction func buttonClicked(_ sender: NSButton) {
+        delegate?.didClickAvatarView()
+    }
+    
     func hideAllElements() {
         profileImageView.isHidden = true
         profileInitialContainer.isHidden = true
@@ -42,8 +56,11 @@ class ChatSmallAvatarView: NSView, LoadableNib {
     func configureFor(
         message: TransactionMessage,
         contact: UserContact?,
-        and chat: Chat?
+        chat: Chat?,
+        with delegate: ChatSmallAvatarViewDelegate? = nil
     ) {
+        self.delegate = delegate
+        
         profileImageView.isHidden = true
         profileInitialContainer.isHidden = true
         profileImageView.layer?.borderWidth = 0
