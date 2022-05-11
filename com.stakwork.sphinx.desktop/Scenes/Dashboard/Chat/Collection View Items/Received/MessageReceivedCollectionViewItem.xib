@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -42,10 +42,10 @@
                     </constraints>
                 </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="csw-iQ-M8K" customClass="ChatSmallAvatarView" customModule="Sphinx" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="294" width="56" height="56"/>
+                    <rect key="frame" x="15" y="313" width="33" height="33"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="56" id="Ylf-0U-nPh"/>
-                        <constraint firstAttribute="height" constant="56" id="vUF-od-FiD"/>
+                        <constraint firstAttribute="width" constant="33" id="Ylf-0U-nPh"/>
+                        <constraint firstAttribute="height" constant="33" id="vUF-od-FiD"/>
                     </constraints>
                 </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="DTC-E9-8Dq">
@@ -110,9 +110,9 @@
                 <constraint firstItem="DTC-E9-8Dq" firstAttribute="trailing" secondItem="j8J-ie-6f3" secondAttribute="trailing" id="FX7-N4-bsr"/>
                 <constraint firstItem="DTC-E9-8Dq" firstAttribute="leading" secondItem="j8J-ie-6f3" secondAttribute="leading" id="GpL-Ti-pPQ"/>
                 <constraint firstItem="j8J-ie-6f3" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="21" id="NFo-DL-E3O"/>
-                <constraint firstItem="csw-iQ-M8K" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="QGd-n4-107"/>
+                <constraint firstItem="csw-iQ-M8K" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="15" id="QGd-n4-107"/>
                 <constraint firstItem="j8J-ie-6f3" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="56" id="R6Y-9n-1dq"/>
-                <constraint firstItem="csw-iQ-M8K" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="Rjy-CI-AZu"/>
+                <constraint firstItem="csw-iQ-M8K" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="4" id="Rjy-CI-AZu"/>
                 <constraint firstAttribute="trailing" secondItem="2D9-fs-qgf" secondAttribute="trailing" constant="28" id="UIU-Gb-jF8"/>
                 <constraint firstAttribute="bottom" secondItem="CiN-4z-WmF" secondAttribute="bottom" id="csR-Tg-Vx2"/>
                 <constraint firstItem="CiN-4z-WmF" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="75.5" id="isD-kY-TDI"/>

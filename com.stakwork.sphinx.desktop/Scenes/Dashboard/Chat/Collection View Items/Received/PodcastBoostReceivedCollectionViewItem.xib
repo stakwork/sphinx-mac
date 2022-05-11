@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -41,10 +41,10 @@
                     </constraints>
                 </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="qzR-Wq-umf" customClass="ChatSmallAvatarView" customModule="Sphinx" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="9" width="56" height="56"/>
+                    <rect key="frame" x="15" y="28" width="33" height="33"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="56" id="HIU-8o-Gfv"/>
-                        <constraint firstAttribute="width" constant="56" id="ZES-Qw-cMN"/>
+                        <constraint firstAttribute="height" constant="33" id="HIU-8o-Gfv"/>
+                        <constraint firstAttribute="width" constant="33" id="ZES-Qw-cMN"/>
                     </constraints>
                 </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="ZzA-A9-WPg">
@@ -151,11 +151,11 @@
             </subviews>
             <constraints>
                 <constraint firstItem="XSG-xf-ZCb" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="09h-rW-8Av"/>
-                <constraint firstItem="qzR-Wq-umf" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="6ns-0v-MTj"/>
+                <constraint firstItem="qzR-Wq-umf" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="15" id="6ns-0v-MTj"/>
                 <constraint firstItem="bZ1-bH-r0t" firstAttribute="top" secondItem="6oW-lC-bFu" secondAttribute="top" id="Cmz-nw-QB3"/>
                 <constraint firstItem="ZzA-A9-WPg" firstAttribute="trailing" secondItem="6oW-lC-bFu" secondAttribute="trailing" id="Frx-2q-PF9"/>
                 <constraint firstItem="R9k-6s-i0B" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="Gt4-j0-xtp"/>
-                <constraint firstItem="qzR-Wq-umf" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="ICh-Ct-M4H"/>
+                <constraint firstItem="qzR-Wq-umf" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="4" id="ICh-Ct-M4H"/>
                 <constraint firstAttribute="bottom" secondItem="XSG-xf-ZCb" secondAttribute="bottom" id="QIA-Xa-l8Q"/>
                 <constraint firstItem="6oW-lC-bFu" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="21" id="QLh-oN-dWE"/>
                 <constraint firstItem="XSG-xf-ZCb" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="75.5" id="T7h-OO-jhO"/>

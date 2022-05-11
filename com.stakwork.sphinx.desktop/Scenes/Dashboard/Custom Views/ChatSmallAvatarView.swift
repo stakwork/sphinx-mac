@@ -30,7 +30,7 @@ class ChatSmallAvatarView: NSView, LoadableNib {
     
     private func setup() {
         profileInitialContainer.wantsLayer = true
-        profileInitialContainer.layer?.cornerRadius = profileInitialContainer.frame.size.height/2
+        profileInitialContainer.layer?.cornerRadius = self.bounds.height/2
         profileInitialContainer.layer?.masksToBounds = true
     }
     
