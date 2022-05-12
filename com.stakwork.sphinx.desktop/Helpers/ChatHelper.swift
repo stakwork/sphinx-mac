@@ -26,11 +26,16 @@ class ChatHelper {
         return NSColor.Sphinx.Text
     }
     
-    public static func getRecipientColor(
-        recipientAlias: String
+    public static func getRecipientColorFor(
+        message: TransactionMessage
     ) -> NSColor {
-        let key:String = "\(recipientAlias.trim())-color"
-        return NSColor.getColorFor(key: key)
+        
+        if let recipientAlias = message.recipientAlias, !recipientAlias.isEmpty {
+            return NSColor.getColorFor(
+                key: "\(recipientAlias.trim())-color"
+            )
+        }
+        return NSColor.Sphinx.Text
     }
     
     func registerCellsForChat(collectionView: NSCollectionView) {
