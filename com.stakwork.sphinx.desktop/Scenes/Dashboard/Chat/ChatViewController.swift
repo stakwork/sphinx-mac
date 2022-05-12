@@ -241,6 +241,7 @@ class ChatViewController: DashboardSplittedViewController {
             chatDataSource = ChatDataSource(collectionView: chatCollectionView, delegate: self, cellDelegate: self)
         }
         initialLoad()
+        updateTribeInfo()
         checkRoute()
     }
     
@@ -280,7 +281,6 @@ class ChatViewController: DashboardSplittedViewController {
         hideGiphySearchView()
         chatDataSource?.setDataAndReload(contact: contact, chat: chat, forceReload: forceReload)
         chatCollectionView.scrollToBottom(animated: false)
-        updateTribeInfo()
         setMessagesAsSeen()
     }
     
