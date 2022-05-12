@@ -49,8 +49,8 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SRo-9p-dY1">
-                                            <rect key="frame" x="72" y="15" width="77" height="19"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Send Sats" id="BPh-V5-wOl">
+                                            <rect key="frame" x="70" y="17" width="81" height="19"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Send Sats" id="BPh-V5-wOl">
                                                 <font key="font" size="16" name="Roboto-Medium"/>
                                                 <color key="textColor" name="Text"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -69,7 +69,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="9Ad-gD-taf" firstAttribute="leading" secondItem="Qwd-S4-hln" secondAttribute="leading" id="Fah-eI-p6y"/>
-                                        <constraint firstItem="SRo-9p-dY1" firstAttribute="centerY" secondItem="Qwd-S4-hln" secondAttribute="centerY" id="Rb2-pB-RzF"/>
+                                        <constraint firstItem="SRo-9p-dY1" firstAttribute="centerY" secondItem="Qwd-S4-hln" secondAttribute="centerY" constant="-2" id="Rb2-pB-RzF"/>
                                         <constraint firstAttribute="bottom" secondItem="9Ad-gD-taf" secondAttribute="bottom" id="Ws9-zl-STl"/>
                                         <constraint firstAttribute="trailing" secondItem="9Ad-gD-taf" secondAttribute="trailing" id="ZdJ-bB-1Wn"/>
                                         <constraint firstItem="9Ad-gD-taf" firstAttribute="top" secondItem="Qwd-S4-hln" secondAttribute="top" id="suB-Ql-6sf"/>

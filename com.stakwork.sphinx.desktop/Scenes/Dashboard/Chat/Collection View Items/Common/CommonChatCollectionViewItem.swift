@@ -381,7 +381,7 @@ extension CommonChatCollectionViewItem : LinkPreviewDelegate {
 
 extension CommonChatCollectionViewItem : ChatSmallAvatarViewDelegate {
     func didClickAvatarView() {
-        guard let message = messageRow?.transactionMessage else {
+        guard let message = messageRow?.transactionMessage, (chat?.isPublicGroup() ?? false) else {
             return
         }
         delegate?.didTapAvatarView(message: message)
