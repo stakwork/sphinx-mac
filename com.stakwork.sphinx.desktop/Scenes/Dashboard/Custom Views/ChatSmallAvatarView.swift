@@ -83,8 +83,30 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         }
     }
     
+    func configureForSenderWith(
+        message: TransactionMessage
+    ) {
+        configureForUserWith(
+            color: ChatHelper.getSenderColorFor(message: message),
+            alias: message.senderAlias,
+            picture: message.senderPic
+        )
+    }
+    
     func configureForRecipientWith(
         message: TransactionMessage
+    ) {
+        configureForUserWith(
+            color: ChatHelper.getRecipientColorFor(message: message),
+            alias: message.recipientAlias,
+            picture: message.recipientPic
+        )
+    }
+    
+    func configureForUserWith(
+        color: NSColor,
+        alias: String?,
+        picture: String?
     ) {
         profileImageView.sd_cancelCurrentImageLoad()
         
@@ -93,11 +115,11 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         profileImageView.layer?.borderWidth = 0
         
         showInitials(
-            senderColor: ChatHelper.getRecipientColorFor(message: message),
-            senderNickname: message.recipientAlias ?? "Unknown"
+            senderColor: color,
+            senderNickname: alias ?? "Unknown"
         )
         
-        if let recipientPic = message.recipientPic, let url = URL(string: recipientPic) {
+        if let pic = picture, let url = URL(string: pic) {
             showImageWith(url: url)
         }
     }

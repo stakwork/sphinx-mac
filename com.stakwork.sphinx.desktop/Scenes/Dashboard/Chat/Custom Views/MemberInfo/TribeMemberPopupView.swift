@@ -40,7 +40,7 @@ class TribeMemberPopupView: NSView, LoadableNib {
         
         memberAliasLabel.stringValue = message.senderAlias ?? "Unknown"
         
-        memberPicture.configureForRecipientWith(message: message)
+        memberPicture.configureForSenderWith(message: message)
     }
     
     @IBAction func closeButtonClicked(_ sender: Any) {
