@@ -188,11 +188,8 @@ extension WelcomeCodeViewController : SignupButtonViewDelegate {
         if let keys = SymmetricEncryptionManager.sharedInstance.decryptRestoreKeys(encryptedKeys: encryptedKeys.fixedRestoreCode, pin: pin) {
             if EncryptionManager.sharedInstance.insertKeys(privateKey: keys[0], publicKey: keys[1]) {
                 userData.save(ip: keys[2], token: keys[3], pin: pin)
-
-                userData.getAndSaveTransportKey(completion: { [weak self] _ in
-                    guard let self = self else { return }
-                    self.continueToConnectingView(mode: .ExistingUser)
-                })
+                
+                self.continueToConnectingView(mode: .ExistingUser)
                 return
             }
         }

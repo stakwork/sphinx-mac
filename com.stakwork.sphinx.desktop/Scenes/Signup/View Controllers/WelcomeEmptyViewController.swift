@@ -79,8 +79,14 @@ class WelcomeEmptyViewController: WelcomeTorConnectionViewController {
     }
     
     func continueRestore() {
-        DelayPerformedHelper.performAfterDelay(seconds: 1.5, completion: {
-            self.shouldContinueTo(mode: WelcomeEmptyViewController.WelcomeViewMode.Welcome.rawValue)
+        userData.getAndSaveTransportKey(completion: { [weak self] _ in
+            guard let self = self else { return }
+            
+            self.userData.getOrCreateHMACKey() { [weak self] in
+                guard let self = self else { return }
+                
+                self.shouldContinueTo(mode: WelcomeEmptyViewController.WelcomeViewMode.Welcome.rawValue)
+            }
         })
     }
     
