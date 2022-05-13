@@ -9,12 +9,6 @@
 import Cocoa
 import SwiftyJSON
 
-protocol ActionsDelegate: AnyObject {
-    func didCreateMessage(message: TransactionMessage)
-    func didFailInvoiceOrPayment()
-    func shouldCreateCall(mode: VideoCallHelper.CallMode)
-}
-
 class PaymentInvoiceFormViewController: NSViewController {
     
     weak var childVCDelegate: ChildVCDelegate?

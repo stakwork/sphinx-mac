@@ -22,14 +22,16 @@ class CommonDirectPaymentCollectionViewItem : CommonChatCollectionViewItem {
     @IBOutlet weak var imagePreloader: NSImageView!
     @IBOutlet weak var imageNotAvailableContainer: NSView!
     @IBOutlet weak var imageNotAvailable: NSImageView!
+    @IBOutlet weak var recipientAvatarView: ChatSmallAvatarView!
     @IBOutlet weak var pictureBubbleViewHeight: NSLayoutConstraint!
     @IBOutlet weak var bubbleViewWidth: NSLayoutConstraint!
     
     static let kLabelSideMargins: CGFloat = 46
     static let kBubbleMaximumWidth: CGFloat = 210
-    static let kAmountLabelSideMargins: CGFloat = 116
-    static let kLabelTopMargin: CGFloat = 57
+    static let kAmountLabelSideMargins: CGFloat = 100
+    static let kLabelTopMargin: CGFloat = 60
     static let kLabelBottomMargin: CGFloat = 20
+    static let kRecipientViewWidth: CGFloat = 56
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +42,13 @@ class CommonDirectPaymentCollectionViewItem : CommonChatCollectionViewItem {
         imagePreloader.setAnchorPoint(anchorPoint: CGPoint(x: 0.5, y: 0.5))
     }
     
-    func configureMessageRow(messageRow: TransactionMessageRow, contact: UserContact?, chat: Chat?, incoming: Bool, chatWidth: CGFloat) {
+    func configureMessageRow(
+        messageRow: TransactionMessageRow,
+        contact: UserContact?,
+        chat: Chat?,
+        incoming: Bool,
+        chatWidth: CGFloat
+    ) {
         super.configureMessageRow(messageRow: messageRow, contact: contact, chat: chat, chatWidth: chatWidth)
 
         commonConfigurationForMessages()
@@ -62,8 +70,9 @@ class CommonDirectPaymentCollectionViewItem : CommonChatCollectionViewItem {
         let encrypted = messageRow.encrypted
         lockSign.stringValue = encrypted ? "lock" : ""
         
-        setAmountAndTextLabels(messageRow: messageRow)
-        tryLoadingImage(messageRow: messageRow)
+        configureRecipientInfo()
+        setAmountAndTextLabels()
+        tryLoadingImage()
 
         if messageRow.shouldShowRightLine {
             addRightLine()
@@ -75,7 +84,8 @@ class CommonDirectPaymentCollectionViewItem : CommonChatCollectionViewItem {
     }
     
     public static func getBubbleAndLabelWidth(messageRow: TransactionMessageRow) -> (CGFloat, CGFloat) {
-        let amountBubbleWidth = getAmountLabelWidth(messageRow: messageRow) + kAmountLabelSideMargins
+        let recipientViewWidth = (messageRow.transactionMessage?.chat?.isPublicGroup() ?? false) ? kRecipientViewWidth : 0
+        let amountBubbleWidth = getAmountLabelWidth(messageRow: messageRow) + kAmountLabelSideMargins + recipientViewWidth
         var labelBubbleWidth = getLabelSize(messageRow: messageRow).width + kLabelSideMargins
         if labelBubbleWidth > kBubbleMaximumWidth {
             let labelHeight = getLabelHeight(messageRow: messageRow, width: kBubbleMaximumWidth - kLabelSideMargins)
@@ -89,7 +99,11 @@ class CommonDirectPaymentCollectionViewItem : CommonChatCollectionViewItem {
         return (bubbleWidth, labelWidth)
     }
     
-    func setAmountAndTextLabels(messageRow: TransactionMessageRow) {
+    func setAmountAndTextLabels() {
+        guard let messageRow = messageRow else {
+            return
+        }
+        
         messageLabel.font = Constants.kMessageFont
         
         let text = messageRow.transactionMessage.messageContent ?? ""
@@ -98,7 +112,22 @@ class CommonDirectPaymentCollectionViewItem : CommonChatCollectionViewItem {
         messageLabel.stringValue = text
     }
     
-    func tryLoadingImage(messageRow: TransactionMessageRow) {
+    func configureRecipientInfo() {
+        guard let message = messageRow?.transactionMessage, (self.chat?.isPublicGroup() ?? false) else {
+            recipientAvatarView.isHidden = true
+            return
+        }
+
+        recipientAvatarView.isHidden = false
+        
+        recipientAvatarView.configureForRecipientWith(message: message)
+    }
+    
+    func tryLoadingImage() {
+        guard let messageRow = messageRow else {
+            return
+        }
+        
         let hasImage = messageRow.isPaymentWithImage()
         separatorLine.alphaValue = hasImage ? 1.0 : 0.0
         pictureBubbleView.clearBubbleView()

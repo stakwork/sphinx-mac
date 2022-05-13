@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -44,14 +44,14 @@
                     </constraints>
                 </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="dl9-Tn-mL0" customClass="ChatSmallAvatarView" customModule="Sphinx" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="344" width="56" height="56"/>
+                    <rect key="frame" x="15" y="363" width="33" height="33"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="56" id="5Yo-Xl-b9B"/>
-                        <constraint firstAttribute="height" constant="56" id="kB1-KD-pUe"/>
+                        <constraint firstAttribute="width" constant="33" id="5Yo-Xl-b9B"/>
+                        <constraint firstAttribute="height" constant="33" id="kB1-KD-pUe"/>
                     </constraints>
                 </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="2JY-Xx-F7E">
-                    <rect key="frame" x="56" y="379" width="400" height="17"/>
+                    <rect key="frame" x="48" y="379" width="408" height="17"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZhU-e6-m44">
                             <rect key="frame" x="2" y="4" width="4" height="11"/>
@@ -122,10 +122,10 @@
                 <constraint firstItem="1E1-pt-4Xo" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="56" id="N5q-BK-3uY"/>
                 <constraint firstAttribute="bottom" secondItem="1E1-pt-4Xo" secondAttribute="bottom" constant="4" id="QMI-x8-WBm"/>
                 <constraint firstAttribute="trailing" secondItem="Gfp-Dd-HgL" secondAttribute="trailing" constant="28" id="UKy-oN-uwB"/>
-                <constraint firstItem="dl9-Tn-mL0" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="Vhk-oa-Lzq"/>
+                <constraint firstItem="dl9-Tn-mL0" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="4" id="Vhk-oa-Lzq"/>
                 <constraint firstAttribute="bottom" secondItem="7Nt-SS-Bym" secondAttribute="bottom" constant="4" id="Ym8-sn-oRP"/>
                 <constraint firstItem="pgy-uK-gyn" firstAttribute="leading" secondItem="1E1-pt-4Xo" secondAttribute="trailing" constant="-3" id="ZN9-je-SqR"/>
-                <constraint firstItem="dl9-Tn-mL0" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="dht-Lr-PPU"/>
+                <constraint firstItem="dl9-Tn-mL0" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="15" id="dht-Lr-PPU"/>
                 <constraint firstItem="2JY-Xx-F7E" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="4" id="h4X-Nv-6zv"/>
                 <constraint firstItem="2JY-Xx-F7E" firstAttribute="leading" secondItem="dl9-Tn-mL0" secondAttribute="trailing" id="kgD-i1-xQO"/>
                 <constraint firstItem="1E1-pt-4Xo" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="21" id="pI2-Ec-pTq"/>

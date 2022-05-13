@@ -22,6 +22,7 @@ class PaymentViewModel : NSObject {
         var remoteEncryptedMessage: String?
         var muid: String?
         var dim: String?
+        var transactionMessage: TransactionMessage?
         var chat: Chat?
         var contacts = [UserContact]()
         var mode: PaymentMode?
@@ -34,11 +35,17 @@ class PaymentViewModel : NSObject {
     
     var currentPayment : PaymentObject!
     
-    init(chat: Chat? = nil, contact: UserContact? = nil, mode: PaymentMode) {
+    init(
+        chat: Chat? = nil,
+        contact: UserContact? = nil,
+        message: TransactionMessage? = nil,
+        mode: PaymentMode
+    ) {
         super.init()
         
         self.currentPayment = PaymentObject()
         self.currentPayment.chat = chat
+        self.currentPayment.transactionMessage = message
         self.currentPayment.mode = mode
         
         if let contact = contact {
@@ -54,6 +61,10 @@ class PaymentViewModel : NSObject {
         } else if let chat = currentPayment.chat, let contact = chat.getContact() {
             self.currentPayment.contacts = [contact]
         }
+    }
+    
+    func isTribePayment() -> Bool {
+        return currentPayment.transactionMessage != nil
     }
     
     func validateInvoice() -> Bool {
@@ -83,6 +94,10 @@ class PaymentViewModel : NSObject {
     }
     
     func validatePayment() -> Bool {
+        guard let _ = currentPayment.transactionMessage else {
+            return true
+        }
+        
         guard let _ = currentPayment.message else {
             return true
         }

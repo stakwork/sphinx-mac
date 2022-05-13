@@ -15,11 +15,12 @@ import Cocoa
     
     func didTapPayButton(transactionMessage: TransactionMessage, item: NSCollectionViewItem)
     func didTapAttachmentRow(message: TransactionMessage)
+    func didTapAvatarView(message: TransactionMessage)
     func shouldStartCall(link: String, audioOnly: Bool)
     func didTapPayAttachment(transactionMessage: TransactionMessage)
+    func shouldShowOptionsFor(message: TransactionMessage, from button: NSButton)
     func shouldScrollTo(message: TransactionMessage)
     func shouldScrollToBottom()
-    func shouldShowOptionsFor(message: TransactionMessage, from button: NSButton)
 }
 
 class CommonChatCollectionViewItem: NSCollectionViewItem, MessageRowProtocol {
@@ -107,7 +108,7 @@ class CommonChatCollectionViewItem: NSCollectionViewItem, MessageRowProtocol {
         dateLabel.stringValue = (messageRow.date ?? Date()).getStringDate(format: "hh:mm a")
         dateLabel.font = NSFont(name: "Roboto-Regular", size: 10.0)!
 
-        chatAvatarView?.configureFor(message: message, contact: contact, and: chat)
+        chatAvatarView?.configureFor(message: message, contact: contact, chat: chat, with: self)
 
         rightLineContainer?.wantsLayer = true
         leftLineContainer?.wantsLayer = true
@@ -375,5 +376,14 @@ extension CommonChatCollectionViewItem : LinkPreviewDelegate {
             let userInfo: [String: Any] = ["pub-key" : pubKey]
             NotificationCenter.default.post(name: .onPubKeyClick, object: nil, userInfo: userInfo)
         }
+    }
+}
+
+extension CommonChatCollectionViewItem : ChatSmallAvatarViewDelegate {
+    func didClickAvatarView() {
+        guard let message = messageRow?.transactionMessage, (chat?.isPublicGroup() ?? false) else {
+            return
+        }
+        delegate?.didTapAvatarView(message: message)
     }
 }
