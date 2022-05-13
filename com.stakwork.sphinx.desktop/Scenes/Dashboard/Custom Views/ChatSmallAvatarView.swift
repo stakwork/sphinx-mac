@@ -21,7 +21,8 @@ class ChatSmallAvatarView: NSView, LoadableNib {
     @IBOutlet weak var profileImageView: AspectFillNSImageView!
     @IBOutlet weak var profileInitialContainer: NSView!
     @IBOutlet weak var initialsLabel: NSTextField!
-
+    @IBOutlet weak var avatarButton: CustomButton!
+    
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
         
@@ -38,6 +39,8 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         profileInitialContainer.wantsLayer = true
         profileInitialContainer.layer?.cornerRadius = self.bounds.height/2
         profileInitialContainer.layer?.masksToBounds = true
+        
+        avatarButton.cursor = .pointingHand
     }
     
     func setInitialLabelSize(size: Double) {

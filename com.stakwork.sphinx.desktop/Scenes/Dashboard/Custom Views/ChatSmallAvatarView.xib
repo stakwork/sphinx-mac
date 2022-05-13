@@ -9,6 +9,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ChatSmallAvatarView" customModule="Sphinx" customModuleProvider="target">
             <connections>
+                <outlet property="avatarButton" destination="b8h-ag-L0G" id="sFM-7X-t2Y"/>
                 <outlet property="contentView" destination="c22-O7-iKe" id="xo2-W3-7HU"/>
                 <outlet property="initialsLabel" destination="CAX-gQ-IWg" id="g7u-WQ-cVY"/>
                 <outlet property="profileImageView" destination="8QU-qL-8Ku" id="vms-eX-ZXl"/>
@@ -45,7 +46,7 @@
                         <constraint firstItem="CAX-gQ-IWg" firstAttribute="centerY" secondItem="YYh-BM-9Dh" secondAttribute="centerY" constant="-2" id="pUP-0o-GGt"/>
                     </constraints>
                 </customView>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="b8h-ag-L0G">
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="b8h-ag-L0G" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="68" height="68"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="nnK-cS-ioG">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
