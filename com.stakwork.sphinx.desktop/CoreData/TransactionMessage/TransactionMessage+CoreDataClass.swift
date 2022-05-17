@@ -30,16 +30,16 @@ public class TransactionMessage: NSManagedObject {
         var boosted: Bool = false
         var totalSats: Int? = nil
         var messageIds: [Int] = []
-        var users: [String: (NSColor, NSImage?)] = [:]
+        var users: [String: (NSColor, String?)] = [:]
        
-        init(totalSats: Int, users: [String: (NSColor, NSImage?)], boosted: Bool, id: Int) {
+        init(totalSats: Int, users: [String: (NSColor, String?)], boosted: Bool, id: Int) {
             self.totalSats = totalSats
             self.users = users
             self.boosted = boosted
             self.messageIds = [id]
         }
        
-        mutating func add(sats: Int, user: (String, NSColor, NSImage?)?, id: Int) {
+        mutating func add(sats: Int, user: (String, NSColor, String?)?, id: Int) {
             if !self.messageIds.contains(id) {
                 self.messageIds.append(id)
                 

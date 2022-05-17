@@ -92,7 +92,7 @@ class MessageBoostView: NSView, LoadableNib {
         }
     }
     
-    func showInitialsFor(_ name: String, color: NSColor, and image: NSImage?, in container: NSView, incoming: Bool) {
+    func showInitialsFor(_ name: String, color: NSColor, and imageUrl: String?, in container: NSView, incoming: Bool) {
         container.isHidden = false
         container.wantsLayer = true
         container.layer?.cornerRadius = container.frame.size.height / 2
@@ -107,13 +107,24 @@ class MessageBoostView: NSView, LoadableNib {
             }
             
             if let circle = view as? NSBox {
-                circle.fillColor = (image != nil) ? NSColor.clear : color
+                circle.fillColor = (imageUrl != nil) ? NSColor.clear : color
             }
             
             if let imageView = view as? AspectFillNSImageView {
-                if let image = image {
-                    imageView.image = image
-                } else {
+                if let imageUrl = imageUrl {
+                    if let image = MediaLoader.getImageFromCachedUrl(url: imageUrl) {
+                        if let staticData = image.sd_imageData(as: .JPEG, compressionQuality: 1, firstFrameOnly: true) {
+                            imageView.image = NSImage(data: staticData)
+                        }
+                    } else if let url = URL(string: imageUrl) {
+                        imageView.sd_setImage(
+                            with: url,
+                            placeholderImage: NSImage(named: "profile_avatar"),
+                            options: [.highPriority, .decodeFirstFrameOnly],
+                            progress: nil
+                        )
+                    }
+                }  else {
                     imageView.image = nil
                 }
             }
