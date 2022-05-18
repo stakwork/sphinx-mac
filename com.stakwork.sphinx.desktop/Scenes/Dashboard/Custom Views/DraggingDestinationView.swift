@@ -309,6 +309,8 @@ class DraggingDestinationView: NSView, LoadableNib {
                 return true
             }
         }
+        isReceivingDrag = false
+        resetView()
         return false
     }
     
