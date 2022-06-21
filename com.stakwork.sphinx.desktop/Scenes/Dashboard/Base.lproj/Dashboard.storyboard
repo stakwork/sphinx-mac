@@ -1246,6 +1246,20 @@
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
+                                            <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J0W-Yf-gz5" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                                                <rect key="frame" x="715" y="2" width="40" height="58"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="40" id="sgd-m1-Zdu"/>
+                                                </constraints>
+                                                <buttonCell key="cell" type="square" title="apps" bezelStyle="shadowlessSquare" alignment="center" inset="2" id="Oux-j3-ALM">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" size="25" name="MaterialIcons-Regular"/>
+                                                </buttonCell>
+                                                <color key="contentTintColor" name="SecondaryText"/>
+                                                <connections>
+                                                    <action selector="webAppButtonClicked:" target="TPZ-IL-9NC" id="a6e-U6-k6g"/>
+                                                </connections>
+                                            </button>
                                             <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tgU-wH-N0J" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                                                 <rect key="frame" x="755" y="0.0" width="40" height="60"/>
                                                 <constraints>
@@ -1280,6 +1294,7 @@
                                             <constraint firstItem="tgU-wH-N0J" firstAttribute="top" secondItem="DtP-U1-1iT" secondAttribute="top" id="2G6-re-SLD"/>
                                             <constraint firstItem="tgU-wH-N0J" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="oOa-kC-pzn" secondAttribute="trailing" constant="8" symbolic="YES" id="6JN-ph-5de"/>
                                             <constraint firstItem="LtY-pI-a4x" firstAttribute="leading" secondItem="DtP-U1-1iT" secondAttribute="leading" id="8Zk-Dh-Ism"/>
+                                            <constraint firstAttribute="bottom" secondItem="J0W-Yf-gz5" secondAttribute="bottom" constant="2" id="B7v-Oo-lzG"/>
                                             <constraint firstAttribute="height" constant="60" id="B9B-qz-cE8"/>
                                             <constraint firstAttribute="bottom" secondItem="ytu-bC-C4z" secondAttribute="bottom" constant="2" id="Bi4-1O-EHG"/>
                                             <constraint firstItem="ucj-2Z-9Fp" firstAttribute="leading" secondItem="Uyl-oe-7nG" secondAttribute="trailing" constant="10" id="BpT-ZQ-Y5u"/>
@@ -1291,10 +1306,12 @@
                                             <constraint firstItem="3xo-JI-aRc" firstAttribute="centerY" secondItem="DtP-U1-1iT" secondAttribute="centerY" id="QLO-FN-il0"/>
                                             <constraint firstItem="ytu-bC-C4z" firstAttribute="top" secondItem="DtP-U1-1iT" secondAttribute="top" id="Qsu-Kw-2Gy"/>
                                             <constraint firstAttribute="bottom" secondItem="tgU-wH-N0J" secondAttribute="bottom" id="RgP-1h-OZ7"/>
+                                            <constraint firstItem="J0W-Yf-gz5" firstAttribute="top" secondItem="DtP-U1-1iT" secondAttribute="top" id="VEm-97-kzM"/>
                                             <constraint firstItem="tgU-wH-N0J" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Cbc-gG-qvB" secondAttribute="trailing" constant="8" symbolic="YES" id="W1h-A2-LtB"/>
                                             <constraint firstItem="LtY-pI-a4x" firstAttribute="top" secondItem="DtP-U1-1iT" secondAttribute="top" id="abS-21-QkM"/>
                                             <constraint firstAttribute="trailing" secondItem="ytu-bC-C4z" secondAttribute="trailing" id="and-al-CyJ"/>
                                             <constraint firstItem="XZC-6W-7hr" firstAttribute="centerY" secondItem="3xo-JI-aRc" secondAttribute="centerY" id="arR-q3-Fe9"/>
+                                            <constraint firstItem="tgU-wH-N0J" firstAttribute="leading" secondItem="J0W-Yf-gz5" secondAttribute="trailing" id="bth-al-iBV"/>
                                             <constraint firstItem="ytu-bC-C4z" firstAttribute="leading" secondItem="tgU-wH-N0J" secondAttribute="trailing" id="dvw-bm-vBu"/>
                                             <constraint firstItem="oOa-kC-pzn" firstAttribute="leading" secondItem="XZC-6W-7hr" secondAttribute="trailing" constant="4" id="etf-Lf-9Rg"/>
                                             <constraint firstItem="SpR-T0-gey" firstAttribute="leading" secondItem="DtP-U1-1iT" secondAttribute="leading" id="fp3-Py-xJ3"/>
@@ -1398,6 +1415,7 @@
                         <outlet property="sendButton" destination="IpZ-DW-bn1" id="7PO-tR-nKa"/>
                         <outlet property="videoCallButton" destination="ytu-bC-C4z" id="xmk-gz-sR1"/>
                         <outlet property="volumeButton" destination="tgU-wH-N0J" id="CnX-kB-C3g"/>
+                        <outlet property="webAppButton" destination="J0W-Yf-gz5" id="OJv-sT-ueH"/>
                     </connections>
                 </viewController>
                 <customObject id="LE6-n7-RA8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
