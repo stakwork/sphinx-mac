@@ -68,15 +68,28 @@ extension FriendMessageView : SignupButtonViewDelegate {
     }
     
     func createInviterContact() {
-        if let inviter = SignupHelper.getInviter(), SignupHelper.step == SignupHelper.SignupStep.IPAndTokenSet.rawValue {
-            contactsService.createContact(nickname: inviter.nickname, pubKey: inviter.pubkey, routeHint: inviter.routeHint, callback: { success in
-                if success {
-                    SignupHelper.step = SignupHelper.SignupStep.InviterContactCreated.rawValue
-                    self.delegate?.shouldContinueTo?(mode: -1)
-                } else {
-                    self.didFailCreatingContact()
-                }
-            })
+        if let inviter = SignupHelper.getInviter(),
+            SignupHelper.step == SignupHelper.SignupStep.IPAndTokenSet.rawValue {
+            
+            if let pubkey = inviter.pubkey {
+                
+                contactsService.createContact(
+                    nickname: inviter.nickname,
+                    pubKey: pubkey,
+                    routeHint: inviter.routeHint,
+                    callback: { success in
+                        
+                    if success {
+                        SignupHelper.step = SignupHelper.SignupStep.InviterContactCreated.rawValue
+                        self.delegate?.shouldContinueTo?(mode: -1)
+                    } else {
+                        self.didFailCreatingContact()
+                    }
+                })
+            } else {
+                SignupHelper.step = SignupHelper.SignupStep.InviterContactCreated.rawValue
+                self.delegate?.shouldContinueTo?(mode: -1)
+            }
         } else {
             delegate?.shouldContinueTo?(mode: -1)
         }

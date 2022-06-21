@@ -136,7 +136,7 @@ extension WelcomeCodeViewController : SignupButtonViewDelegate {
     func connectToNode(ip: String, password: String) {
         save(ip: ip, pubkey: "", and: password)
 
-        let invite = SignupHelper.getDefaultInviter()
+        let invite = SignupHelper.getSupportContact()
         SignupHelper.saveInviterInfo(invite: invite)
         continueToConnectingView(mode: .NewUser)
     }
