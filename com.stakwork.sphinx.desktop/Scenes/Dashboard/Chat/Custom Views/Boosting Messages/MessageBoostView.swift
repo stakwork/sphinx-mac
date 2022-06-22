@@ -107,7 +107,7 @@ class MessageBoostView: NSView, LoadableNib {
             }
             
             if let circle = view as? NSBox {
-                circle.fillColor = (imageUrl != nil) ? NSColor.clear : color
+                circle.fillColor = color
             }
             
             if let imageView = view as? AspectFillNSImageView {
