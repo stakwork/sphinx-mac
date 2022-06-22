@@ -484,6 +484,10 @@ public class Chat: NSManagedObject {
         NotificationCenter.default.post(name: .shouldReloadChatsList, object: nil)
     }
     
+    func hasWebApp() -> Bool {
+        return tribesInfo?.appUrl != nil && tribesInfo?.appUrl?.isEmpty == false
+    }
+    
     func syncTribeWithServer() {
         DispatchQueue.global().async {
             let params: [String: AnyObject] = ["name" : self.name as AnyObject, "img": self.photoUrl as AnyObject]

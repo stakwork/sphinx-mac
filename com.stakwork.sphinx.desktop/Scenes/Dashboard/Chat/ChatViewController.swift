@@ -310,7 +310,7 @@ class ChatViewController: DashboardSplittedViewController {
             self.setChatInfo()
             self.loadPodcastFeed()
             
-            self.webAppButton.isHidden = self.chat?.tribesInfo?.appUrl == nil
+            self.webAppButton.isHidden = !(self.chat?.hasWebApp() ?? false)
         }
     }
     
