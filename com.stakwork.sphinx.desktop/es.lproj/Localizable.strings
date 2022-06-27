@@ -276,6 +276,8 @@
 "sent" = "enviado/a";
 "message.x.deleted" = "Mensaje eliminado";
 "payment" = "Pago";
+"tribe.payment.sent" = "Pago de %@ enviado a %@";
+"tribe.payment.received" = "%@ ha enviado un pago de %@ a %@";
 "picture.capitalize" = "Imagen";
 "gif.capitalize" = "Gif";
 "video.capitalize" = "Video";
