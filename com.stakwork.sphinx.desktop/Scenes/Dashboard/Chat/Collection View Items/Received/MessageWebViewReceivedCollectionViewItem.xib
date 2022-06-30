@@ -56,7 +56,7 @@
                     </constraints>
                 </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="lEX-FE-ZXy">
-                    <rect key="frame" x="48" y="329" width="410" height="17"/>
+                    <rect key="frame" x="56" y="329" width="410" height="17"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QKI-MQ-t5S">
                             <rect key="frame" x="2" y="4" width="4" height="11"/>
@@ -94,13 +94,13 @@
                     </constraints>
                 </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="hmY-uH-TbQ" customClass="MessageBubbleView" customModule="Sphinx" customModuleProvider="target">
-                    <rect key="frame" x="48" y="4" width="410" height="325"/>
+                    <rect key="frame" x="56" y="4" width="410" height="325"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="410" id="Pfz-48-tE4"/>
                     </constraints>
                 </customView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HGN-gR-91f" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                    <rect key="frame" x="455" y="311" width="22" height="18"/>
+                    <rect key="frame" x="463" y="311" width="22" height="18"/>
                     <buttonCell key="cell" type="bevel" title="" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="25w-1Z-egu" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" size="18" name="MaterialIcons-Regular"/>
@@ -111,14 +111,14 @@
                     </connections>
                 </button>
                 <wkWebView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kjb-mI-CgG" customClass="BotWebView" customModule="Sphinx" customModuleProvider="target">
-                    <rect key="frame" x="60" y="12" width="390" height="309"/>
+                    <rect key="frame" x="68" y="12" width="390" height="309"/>
                     <wkWebViewConfiguration key="configuration">
                         <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                         <wkPreferences key="preferences"/>
                     </wkWebViewConfiguration>
                 </wkWebView>
                 <progressIndicator wantsLayer="YES" maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="ZrG-aQ-xIF">
-                    <rect key="frame" x="245" y="159" width="16" height="16"/>
+                    <rect key="frame" x="253" y="159" width="16" height="16"/>
                 </progressIndicator>
             </subviews>
             <constraints>
@@ -128,7 +128,6 @@
                 <constraint firstItem="lEX-FE-ZXy" firstAttribute="leading" secondItem="hmY-uH-TbQ" secondAttribute="leading" id="C9v-yZ-oqh"/>
                 <constraint firstItem="lEX-FE-ZXy" firstAttribute="trailing" secondItem="hmY-uH-TbQ" secondAttribute="trailing" id="Em2-C6-WKp"/>
                 <constraint firstItem="hmY-uH-TbQ" firstAttribute="trailing" secondItem="Kjb-mI-CgG" secondAttribute="trailing" constant="8" id="Erl-g0-cKe"/>
-                <constraint firstItem="hmY-uH-TbQ" firstAttribute="leading" secondItem="1q9-Ap-MAk" secondAttribute="trailing" id="IM6-wy-XAw"/>
                 <constraint firstItem="lEX-FE-ZXy" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="4" id="Jpf-He-Fj5"/>
                 <constraint firstItem="hmY-uH-TbQ" firstAttribute="bottom" secondItem="Kjb-mI-CgG" secondAttribute="bottom" constant="8" id="KzO-IW-lck"/>
                 <constraint firstItem="1q9-Ap-MAk" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="15" id="LsM-0n-cQj"/>
@@ -137,6 +136,7 @@
                 <constraint firstItem="Kjb-mI-CgG" firstAttribute="leading" secondItem="hmY-uH-TbQ" secondAttribute="leading" constant="12" id="MB5-xH-DuG"/>
                 <constraint firstItem="hmY-uH-TbQ" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="21" id="NjG-qh-ppx"/>
                 <constraint firstItem="HGN-gR-91f" firstAttribute="top" secondItem="hmY-uH-TbQ" secondAttribute="top" id="WGl-OI-wxz"/>
+                <constraint firstItem="hmY-uH-TbQ" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="56" id="bDI-2S-wir"/>
                 <constraint firstAttribute="bottom" secondItem="zmm-yf-48i" secondAttribute="bottom" id="bxg-RJ-qUw"/>
                 <constraint firstAttribute="trailing" secondItem="tbE-T4-erm" secondAttribute="trailing" constant="28" id="cy9-1H-F6n"/>
                 <constraint firstItem="tbE-T4-erm" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="fsn-C2-6xf"/>
