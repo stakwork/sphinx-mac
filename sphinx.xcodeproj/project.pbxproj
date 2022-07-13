@@ -364,6 +364,7 @@
 		47A4EFFE24B6321700117AE6 /* ConnectivityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A4EFFD24B6321700117AE6 /* ConnectivityHelper.swift */; };
 		47A93EF725DD79F70030DF14 /* lightningNetwork.gif in Resources */ = {isa = PBXBuildFile; fileRef = 47A93EF625DD79F70030DF14 /* lightningNetwork.gif */; };
 		47A93EF925DD7C4B0030DF14 /* NSImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A93EF825DD7C4B0030DF14 /* NSImageView.swift */; };
+		47AE2468287F1F4700EF42BD /* API+RedeemSatsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AE2467287F1F4700EF42BD /* API+RedeemSatsExtension.swift */; };
 		47AF0D4125508FC900C98398 /* PodcastBoostSentCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AF0D3F25508FC900C98398 /* PodcastBoostSentCollectionViewItem.swift */; };
 		47AF0D4225508FC900C98398 /* PodcastBoostSentCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47AF0D4025508FC900C98398 /* PodcastBoostSentCollectionViewItem.xib */; };
 		47AF0D4525508FDF00C98398 /* PodcastBoostReceivedCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AF0D4325508FDF00C98398 /* PodcastBoostReceivedCollectionViewItem.swift */; };
@@ -975,6 +976,7 @@
 		47A4EFFD24B6321700117AE6 /* ConnectivityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityHelper.swift; sourceTree = "<group>"; };
 		47A93EF625DD79F70030DF14 /* lightningNetwork.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lightningNetwork.gif; sourceTree = "<group>"; };
 		47A93EF825DD7C4B0030DF14 /* NSImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImageView.swift; sourceTree = "<group>"; };
+		47AE2467287F1F4700EF42BD /* API+RedeemSatsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+RedeemSatsExtension.swift"; sourceTree = "<group>"; };
 		47AF0D3F25508FC900C98398 /* PodcastBoostSentCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastBoostSentCollectionViewItem.swift; sourceTree = "<group>"; };
 		47AF0D4025508FC900C98398 /* PodcastBoostSentCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodcastBoostSentCollectionViewItem.xib; sourceTree = "<group>"; };
 		47AF0D4325508FDF00C98398 /* PodcastBoostReceivedCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastBoostReceivedCollectionViewItem.swift; sourceTree = "<group>"; };
@@ -1546,6 +1548,7 @@
 				479E7D8025AC99480092595B /* API+VersionsExtension.swift */,
 				4797E7542785E1240080B966 /* API+PeopleExtension.swift */,
 				47D76E6A27F12B1C000DC021 /* API+AuthenticationExtension.swift */,
+				47AE2467287F1F4700EF42BD /* API+RedeemSatsExtension.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -2853,6 +2856,7 @@
 				4707089E24AE65CB00A98DCA /* UserContactChatListExtension.swift in Sources */,
 				474E333C247FF4AD00F7F603 /* CommonPictureCollectionViewItem.swift in Sources */,
 				47F8825125656CB0002A7E71 /* SocketEngineWebsocket.swift in Sources */,
+				47AE2468287F1F4700EF42BD /* API+RedeemSatsExtension.swift in Sources */,
 				478ED57725D41ACB00940132 /* SignupButtonView.swift in Sources */,
 				47C1F1E1248158E700A71610 /* MediaFullScreenView.swift in Sources */,
 				47F8825E25656CB0002A7E71 /* SocketAckManager.swift in Sources */,

@@ -12,6 +12,7 @@
 "generic.error.message" = "There was an error. Please try again later.";
 "generic.message.error" = "The message could not be sent due to an encryption error.";
 "confirm" = "Confirm";
+"authorize" = "Authorize";
 "warning" = "Warning";
 "done.upper" = "DONE";
 "next.upper" = "NEXT";
@@ -258,6 +259,7 @@
 "call.link.copied.clipboard" = "Call Link copied to clipboard";
 "pubkey.copied.clipboard" = "Public Key copied to clipboard";
 "route.hint.copied.clipboard" = "Route Hint copied to clipboard";
+"invoice.copied.clipboard" = "Invoice copied to clipboard";
 "fetching.old.messages" = "Fetching old messages\nPlease wait...";
 "fetching.new.messages" = "Fetching new messages\nPlease wait...";
 "group.price.text" = "Price per Message: %@ sat - Amount to Stake: %@ sat";
@@ -340,13 +342,14 @@
 "camera" = "Camera";
 "photo.library" = "Photo Library";
 "no.camera.available" = "No camera available in this device";
-"redeem.sats.from" = "Redeem %d sats from:";
 "keysend.received" = "You have received a payment of %d sats";
 "people.message.placeholder" = "Initial message to ";
 "authorization.succeeded" = "Authorization Succeeded. Please go back to the website to complete your profile.";
 "authorization.failed" = "Authorization Failed";
 "already.connected" = "You are already connected with this person";
 "price.to.meet" = "Price to meet: ";
+"popup.authorize-with" = "Do you want to authorize with:";
+"popup.redeem-sats" = "Redeem %d sats from:";
 
 "people.save-profile" = "Save Profile from:";
 "people.delete-profile" = "Delete Profile from:";

@@ -27,4 +27,7 @@ extension Notification.Name {
     static let onAuthDeepLink = Notification.Name("onAuthDeepLink")
     static let onPersonDeepLink = Notification.Name("onPersonDeepLink")
     static let onSaveProfileDeepLink = Notification.Name("onSaveProfileDeepLink")
+    static let onStakworkAuthDeepLink = Notification.Name("onStakworkAuthDeepLink")
+    static let onRedeemSatsDeepLink = Notification.Name("onRedeemSatsDeepLink")
+    static let onInvoiceDeepLink = Notification.Name("onInvoiceDeepLink")
 }

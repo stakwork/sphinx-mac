@@ -115,7 +115,7 @@ class DashboardModalsViewController: NSViewController {
     func getModal() -> ModalViewInterface? {
         if let query = query, let action = query.getLinkAction() {
             switch(action) {
-            case "auth":
+            case "auth", "challenge", "redeem_sats":
                 return authExternalView
             case "person":
                 return personModalView

@@ -379,7 +379,13 @@ class API {
         NotificationCenter.default.post(name: .shouldUpdateDashboard, object: nil)
     }
     
-    func createRequest(_ url:String, params:NSDictionary?, method:String, contentType: String = "application/json", token: String? = nil) -> URLRequest? {
+    func createRequest(
+        _ url:String,
+        params:NSDictionary?,
+        method:String,
+        contentType: String = "application/json",
+        token: String? = nil
+    ) -> URLRequest? {
         if !ConnectivityHelper.isConnectedToInternet {
             networksConnectionLost()
             return nil
