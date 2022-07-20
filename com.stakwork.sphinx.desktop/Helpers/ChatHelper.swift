@@ -17,13 +17,25 @@ class ChatHelper {
         }
         
         if let senderAlias = message.senderAlias, !senderAlias.isEmpty {
-            key = "\(message.senderId)-\(senderAlias.trim())-color"
+            key = "\(senderAlias.trim())-color"
         }
 
         if let key = key {
             return NSColor.getColorFor(key: key)
         }
-        return NSColor.Sphinx.Text
+        return NSColor.Sphinx.SecondaryText
+    }
+    
+    public static func getRecipientColorFor(
+        message: TransactionMessage
+    ) -> NSColor {
+        
+        if let recipientAlias = message.recipientAlias, !recipientAlias.isEmpty {
+            return NSColor.getColorFor(
+                key: "\(recipientAlias.trim())-color"
+            )
+        }
+        return NSColor.Sphinx.SecondaryText
     }
     
     func registerCellsForChat(collectionView: NSCollectionView) {
@@ -479,7 +491,11 @@ class ChatHelper {
         }
     }
     
-    func processMessagesReactionsFor(chat: Chat?, messagesArray: [TransactionMessage], boosts: inout [String: TransactionMessage.Reactions]) {
+    func processMessagesReactionsFor(
+        chat: Chat?,
+        messagesArray: [TransactionMessage],
+        boosts: inout [String: TransactionMessage.Reactions]
+    ) {
         guard let chat = chat else {
             return
         }
@@ -487,18 +503,26 @@ class ChatHelper {
         let emptyFilteredUUIDs = messagesUUIDs.filter { !$0.isEmpty }
         
         for message in TransactionMessage.getReactionsOn(chat: chat, for: emptyFilteredUUIDs) {
-            processMessageReaction(message: message, boosts: &boosts)
+            processMessageReaction(
+                message: message,
+                owner: UserContact.getOwner(),
+                contact: chat.getContact(),
+                boosts: &boosts
+            )
         }
     }
     
-    func processMessageReaction(message: TransactionMessage, boosts: inout [String: TransactionMessage.Reactions]) {
+    func processMessageReaction(
+        message: TransactionMessage,
+        owner: UserContact?,
+        contact: UserContact?,
+        boosts: inout [String: TransactionMessage.Reactions]
+    ) {
         if let replyUUID = message.replyUUID {
             let outgoing = message.isOutgoing()
-            let isPublicGroup = message.chat?.isPublicGroup() ?? false
+            let senderImageUrl: String? = message.getMessageSenderImageUrl(owner: owner, contact: contact)
             
-            let image = (outgoing || !isPublicGroup) ? message.getMessageSender()?.getCachedImage() : nil
-            
-            let user: (String, NSColor, NSImage?) = (message.getMessageSenderNickname(forceNickname: true), ChatHelper.getSenderColorFor(message: message), image)
+            let user: (String, NSColor, String?) = (message.getMessageSenderNickname(forceNickname: true), ChatHelper.getSenderColorFor(message: message), senderImageUrl)
             let amount = message.amount?.intValue ?? 0
             
             if var reaction = boosts[replyUUID] {

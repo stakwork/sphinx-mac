@@ -29,6 +29,15 @@ class DeepLinksHandlerHelper {
                     let userInfo: [String: Any] = ["query" : query]
                     NotificationCenter.default.post(name: .onSaveProfileDeepLink, object: nil, userInfo: userInfo)
                     break
+                case "challenge":
+                    let userInfo: [String: Any] = ["query" : query]
+                    NotificationCenter.default.post(name: .onStakworkAuthDeepLink, object: nil, userInfo: userInfo)
+                case "redeem_sats":
+                    let userInfo: [String: Any] = ["query" : query]
+                    NotificationCenter.default.post(name: .onRedeemSatsDeepLink, object: nil, userInfo: userInfo)
+                case "invoice":
+                    let userInfo: [String: Any] = ["query" : query]
+                    NotificationCenter.default.post(name: .onInvoiceDeepLink, object: nil, userInfo: userInfo)
                 default:
                     break
                 }

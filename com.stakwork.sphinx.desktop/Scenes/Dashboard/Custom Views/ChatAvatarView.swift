@@ -129,7 +129,6 @@ class ChatAvatarView: NSView, LoadableNib {
 
         if let urlString = object?.getPhotoUrl()?.removeDuplicatedProtocol(),
            let url = URL(string: urlString) {
-
             imageView.sd_setImage(
                 with: url,
                 placeholderImage: NSImage(named: "profile_avatar"),
@@ -138,7 +137,8 @@ class ChatAvatarView: NSView, LoadableNib {
                     if let image = image, error == nil {
                         self.setImage(image: image, in: imageView, initialsContainer: container)
                     }
-            })
+                }
+            )
         }
     }
     

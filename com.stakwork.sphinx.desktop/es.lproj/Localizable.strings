@@ -12,6 +12,7 @@
 "generic.error.message" = "Ha habido un problema. Por favor vuelva a intentarlo más tarde.";
 "generic.message.error" = "El mensaje no pudo ser encriptado correctamente por lo cual no puede ser enviado.";
 "confirm" = "Confirmar";
+"authorize" = "Autorizar";
 "warning" = "Atención";
 "done.upper" = "LISTO";
 "next.upper" = "SIGUIENTE";
@@ -256,6 +257,7 @@
 "call.link.copied.clipboard" = "Enlace de llamada copiado al portapapeles";
 "pubkey.copied.clipboard" = "Clave Pública copiada al portapapeles";
 "route.hint.copied.clipboard" = "Pista de Ruta copiada al portapapeles";
+"invoice.copied.clipboard" = "Invoice copiado al portapapeles";
 "fetching.old.messages" = "Cargando mensajes antiguos\nEspera, por favor...";
 "fetching.new.messages" = "Cargando mensajes nuevos\nEspera, por favor ...";
 "group.price.text" = "Precio por mensaje: %@ sat - Cantidad a retener: %@ sat";
@@ -276,6 +278,8 @@
 "sent" = "enviado/a";
 "message.x.deleted" = "Mensaje eliminado";
 "payment" = "Pago";
+"tribe.payment.sent" = "Pago de %@ enviado a %@";
+"tribe.payment.received" = "%@ ha enviado un pago de %@ a %@";
 "picture.capitalize" = "Imagen";
 "gif.capitalize" = "Gif";
 "video.capitalize" = "Video";
@@ -343,6 +347,8 @@
 "authorization.failed" = "Fallo en la autorización";
 "already.connected" = "Ya estas conectado con esta persona";
 "price.to.meet" = "Precio para conectar: ";
+"popup.authorize-with" = "¿Quieres autorizar a:";
+"popup.redeem-sats" = "Canjear %d sats de:";
 
 "people.save-profile" = "Guardar Perfil de:";
 "people.delete-profile" = "Borrar Perfil de:";

@@ -20,6 +20,7 @@ class ChatViewController: DashboardSplittedViewController {
     @IBOutlet weak var contributedSatsIcon: NSTextField!
     @IBOutlet weak var healthCheckSign: NSTextField!
     @IBOutlet weak var lockSign: NSTextField!
+    @IBOutlet weak var webAppButton: CustomButton!
     @IBOutlet weak var volumeButton: CustomButton!
     @IBOutlet weak var videoCallButton: CustomButton!
     @IBOutlet weak var expandMenuButton: NSButton!
@@ -144,6 +145,7 @@ class ChatViewController: DashboardSplittedViewController {
         volumeButton.cursor = .pointingHand
         videoCallButton.cursor = .pointingHand
         attachmentsButton.cursor = .pointingHand
+        webAppButton.cursor = .pointingHand
         
         bottomBar.addShadow(location: VerticalLocation.top, color: NSColor.black, opacity: 0.3, radius: 5.0)
         searchTopView.addShadow(location: VerticalLocation.top, color: NSColor.black, opacity: 0.3, radius: 5.0)
@@ -195,6 +197,7 @@ class ChatViewController: DashboardSplittedViewController {
         
         healthCheckSign.isHidden = true
         volumeButton.isHidden = true
+        webAppButton.isHidden = true
         videoCallButton.isHidden = true
         contributedSatsIcon.isHidden = true
         contributedSatsLabel.isHidden = true
@@ -241,6 +244,7 @@ class ChatViewController: DashboardSplittedViewController {
             chatDataSource = ChatDataSource(collectionView: chatCollectionView, delegate: self, cellDelegate: self)
         }
         initialLoad()
+        updateTribeInfo()
         checkRoute()
     }
     
@@ -280,7 +284,6 @@ class ChatViewController: DashboardSplittedViewController {
         hideGiphySearchView()
         chatDataSource?.setDataAndReload(contact: contact, chat: chat, forceReload: forceReload)
         chatCollectionView.scrollToBottom(animated: false)
-        updateTribeInfo()
         setMessagesAsSeen()
     }
     
@@ -307,7 +310,7 @@ class ChatViewController: DashboardSplittedViewController {
             self.setChatInfo()
             self.loadPodcastFeed()
             
-            WindowsManager.sharedInstance.showWebAppWindow(chat: self.chat, view: self.view)
+            self.webAppButton.isHidden = !(self.chat?.hasWebApp() ?? false)
         }
     }
     
@@ -423,6 +426,10 @@ class ChatViewController: DashboardSplittedViewController {
         bottomBar.removeShadow()
         giphySearchView.loadGiphySearch(delegate: self)
         toggleGiphySearchView()
+    }
+    
+    @IBAction func webAppButtonClicked(_ sender: Any) {
+        WindowsManager.sharedInstance.showWebAppWindow(chat: self.chat, view: self.view)
     }
     
     @IBAction func volumeButtonClicked(_ sender: Any) {

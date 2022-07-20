@@ -41,6 +41,7 @@ class CommonPaymentView: NSView, LoadableNib {
     let kAmountFieldPadding: CGFloat = 20
     
     let kCharacterLimit = 200
+    let kMaximumAmount = 9999999
     
     var loading = false {
         didSet {
@@ -133,7 +134,7 @@ extension CommonPaymentView : NSTextFieldDelegate {
             return
         }
         
-        if amount > 100000 {
+        if amount > kMaximumAmount {
             amountField.stringValue = String(currentString.dropLast())
             return
         }

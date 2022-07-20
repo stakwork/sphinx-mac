@@ -229,6 +229,8 @@
 		475F0BA224F7D97D0032EDC4 /* NewContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475F0BA124F7D97D0032EDC4 /* NewContactViewController.swift */; };
 		475F0BA324F7EBCD0032EDC4 /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 475F0BA524F7EBCD0032EDC4 /* Contacts.storyboard */; };
 		4767AE942509BA8C00C82E5B /* GiphySearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4767AE962509BA8C00C82E5B /* GiphySearchView.xib */; };
+		476A6C42282C2F2000CA213D /* TribeMemberPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 476A6C41282C2F2000CA213D /* TribeMemberPopupView.xib */; };
+		476A6C44282C2F3000CA213D /* TribeMemberPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476A6C43282C2F3000CA213D /* TribeMemberPopupView.swift */; };
 		4785C11224D992D3004E2D6C /* GroupRequestCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4785C11024D992D3004E2D6C /* GroupRequestCollectionViewItem.swift */; };
 		4785C11324D992D3004E2D6C /* GroupRequestCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4785C11124D992D3004E2D6C /* GroupRequestCollectionViewItem.xib */; };
 		4787F89E247C14FD00CCE8B9 /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4787F89D247C14FD00CCE8B9 /* CGFloat.swift */; };
@@ -362,6 +364,7 @@
 		47A4EFFE24B6321700117AE6 /* ConnectivityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A4EFFD24B6321700117AE6 /* ConnectivityHelper.swift */; };
 		47A93EF725DD79F70030DF14 /* lightningNetwork.gif in Resources */ = {isa = PBXBuildFile; fileRef = 47A93EF625DD79F70030DF14 /* lightningNetwork.gif */; };
 		47A93EF925DD7C4B0030DF14 /* NSImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A93EF825DD7C4B0030DF14 /* NSImageView.swift */; };
+		47AE2468287F1F4700EF42BD /* API+RedeemSatsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AE2467287F1F4700EF42BD /* API+RedeemSatsExtension.swift */; };
 		47AF0D4125508FC900C98398 /* PodcastBoostSentCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AF0D3F25508FC900C98398 /* PodcastBoostSentCollectionViewItem.swift */; };
 		47AF0D4225508FC900C98398 /* PodcastBoostSentCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47AF0D4025508FC900C98398 /* PodcastBoostSentCollectionViewItem.xib */; };
 		47AF0D4525508FDF00C98398 /* PodcastBoostReceivedCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AF0D4325508FDF00C98398 /* PodcastBoostReceivedCollectionViewItem.swift */; };
@@ -415,6 +418,7 @@
 		47C1F1DF2481530000A71610 /* GroupActionMessageCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47C1F1DD2481530000A71610 /* GroupActionMessageCollectionViewItem.xib */; };
 		47C1F1E1248158E700A71610 /* MediaFullScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C1F1E0248158E700A71610 /* MediaFullScreenView.swift */; };
 		47C1F1E3248158F600A71610 /* MediaFullScreenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47C1F1E2248158F600A71610 /* MediaFullScreenView.xib */; };
+		47C52C4827F61ADF007B43E2 /* HMACSigningManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C52C4727F61ADF007B43E2 /* HMACSigningManager.swift */; };
 		47C6236125091C02005D265C /* GiphySearchCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C6235F25091C02005D265C /* GiphySearchCollectionViewItem.swift */; };
 		47C6236225091C02005D265C /* GiphySearchCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47C6236025091C02005D265C /* GiphySearchCollectionViewItem.xib */; };
 		47C6236525091E6B005D265C /* GiphySearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C6236425091E6B005D265C /* GiphySearchDataSource.swift */; };
@@ -601,6 +605,7 @@
 		4726A43724C628DA005A66B4 /* horn.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = horn.caf; sourceTree = "<group>"; };
 		4726A44424C8735E005A66B4 /* com_stakwork_sphinx_desktop 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "com_stakwork_sphinx_desktop 6.xcdatamodel"; sourceTree = "<group>"; };
 		4726F0A32577C2C900E20EA9 /* com_stakwork_sphinx_desktop 13.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "com_stakwork_sphinx_desktop 13.xcdatamodel"; sourceTree = "<group>"; };
+		47285DDE282BFCF900420067 /* com_stakwork_sphinx_desktop 17.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "com_stakwork_sphinx_desktop 17.xcdatamodel"; sourceTree = "<group>"; };
 		472B4E8E268BAF4E00E8D0FC /* OnionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnionManager.swift; sourceTree = "<group>"; };
 		47308E1E2507F3AC00FFAC6F /* GiphySearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphySearchView.swift; sourceTree = "<group>"; };
 		47308E2225083FCF00FFAC6F /* API+GiphyExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+GiphyExtension.swift"; sourceTree = "<group>"; };
@@ -769,6 +774,8 @@
 		4767AE952509BA8C00C82E5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GiphySearchView.xib; sourceTree = "<group>"; };
 		4767AE982509BA9100C82E5B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GiphySearchView.strings; sourceTree = "<group>"; };
 		4767AE9A2509BA9200C82E5B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/GiphySearchView.strings; sourceTree = "<group>"; };
+		476A6C41282C2F2000CA213D /* TribeMemberPopupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TribeMemberPopupView.xib; sourceTree = "<group>"; };
+		476A6C43282C2F3000CA213D /* TribeMemberPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TribeMemberPopupView.swift; sourceTree = "<group>"; };
 		4785C10F24D98AAB004E2D6C /* com_stakwork_sphinx_desktop 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "com_stakwork_sphinx_desktop 7.xcdatamodel"; sourceTree = "<group>"; };
 		4785C11024D992D3004E2D6C /* GroupRequestCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRequestCollectionViewItem.swift; sourceTree = "<group>"; };
 		4785C11124D992D3004E2D6C /* GroupRequestCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupRequestCollectionViewItem.xib; sourceTree = "<group>"; };
@@ -969,6 +976,7 @@
 		47A4EFFD24B6321700117AE6 /* ConnectivityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityHelper.swift; sourceTree = "<group>"; };
 		47A93EF625DD79F70030DF14 /* lightningNetwork.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lightningNetwork.gif; sourceTree = "<group>"; };
 		47A93EF825DD7C4B0030DF14 /* NSImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImageView.swift; sourceTree = "<group>"; };
+		47AE2467287F1F4700EF42BD /* API+RedeemSatsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+RedeemSatsExtension.swift"; sourceTree = "<group>"; };
 		47AF0D3F25508FC900C98398 /* PodcastBoostSentCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastBoostSentCollectionViewItem.swift; sourceTree = "<group>"; };
 		47AF0D4025508FC900C98398 /* PodcastBoostSentCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodcastBoostSentCollectionViewItem.xib; sourceTree = "<group>"; };
 		47AF0D4325508FDF00C98398 /* PodcastBoostReceivedCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastBoostReceivedCollectionViewItem.swift; sourceTree = "<group>"; };
@@ -1024,6 +1032,7 @@
 		47C1F1DD2481530000A71610 /* GroupActionMessageCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupActionMessageCollectionViewItem.xib; sourceTree = "<group>"; };
 		47C1F1E0248158E700A71610 /* MediaFullScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaFullScreenView.swift; sourceTree = "<group>"; };
 		47C1F1E2248158F600A71610 /* MediaFullScreenView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaFullScreenView.xib; sourceTree = "<group>"; };
+		47C52C4727F61ADF007B43E2 /* HMACSigningManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMACSigningManager.swift; sourceTree = "<group>"; };
 		47C6235F25091C02005D265C /* GiphySearchCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphySearchCollectionViewItem.swift; sourceTree = "<group>"; };
 		47C6236025091C02005D265C /* GiphySearchCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GiphySearchCollectionViewItem.xib; sourceTree = "<group>"; };
 		47C6236425091E6B005D265C /* GiphySearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphySearchDataSource.swift; sourceTree = "<group>"; };
@@ -1426,6 +1435,7 @@
 		47393E4A2461A8DD00E6F93E /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				47C52C4627F61ACF007B43E2 /* Requests Signing */,
 				479C792C24EAD1FB009BA1CD /* Tor */,
 				47B55093248A9A91000514BF /* Groups */,
 				4744FAD8246B397700C5FD94 /* Windows */,
@@ -1538,6 +1548,7 @@
 				479E7D8025AC99480092595B /* API+VersionsExtension.swift */,
 				4797E7542785E1240080B966 /* API+PeopleExtension.swift */,
 				47D76E6A27F12B1C000DC021 /* API+AuthenticationExtension.swift */,
+				47AE2467287F1F4700EF42BD /* API+RedeemSatsExtension.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1724,6 +1735,15 @@
 				47D03DE3250BB9F40077A968 /* NewInviteViewController.swift */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		476A6C45282C2F3600CA213D /* MemberInfo */ = {
+			isa = PBXGroup;
+			children = (
+				476A6C41282C2F2000CA213D /* TribeMemberPopupView.xib */,
+				476A6C43282C2F3000CA213D /* TribeMemberPopupView.swift */,
+			);
+			path = MemberInfo;
 			sourceTree = "<group>";
 		};
 		4789E26F24F42132003991BE /* Profile */ = {
@@ -2149,6 +2169,14 @@
 			path = "Data Sources";
 			sourceTree = "<group>";
 		};
+		47C52C4627F61ACF007B43E2 /* Requests Signing */ = {
+			isa = PBXGroup;
+			children = (
+				47C52C4727F61ADF007B43E2 /* HMACSigningManager.swift */,
+			);
+			path = "Requests Signing";
+			sourceTree = "<group>";
+		};
 		47C6235E25091BE6005D265C /* Giphy Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -2372,6 +2400,7 @@
 				474E3344247FFAA300F7F603 /* Gif */,
 				4703F0492481A21900282186 /* Bubble Views */,
 				474E3343247FFA9900F7F603 /* Paid Attachments */,
+				476A6C45282C2F3600CA213D /* MemberInfo */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -2691,6 +2720,7 @@
 				474567F22513A03D00D66268 /* MessageWebViewReceivedCollectionViewItem.xib in Resources */,
 				47BDEDE924F46585001688F3 /* Profile.storyboard in Resources */,
 				4731BE1B2485303600BCCA9E /* DirectPaymentReceivedCollectionViewItem.xib in Resources */,
+				476A6C42282C2F2000CA213D /* TribeMemberPopupView.xib in Resources */,
 				470396F125372994007F9C23 /* PodcastEpisodeCollectionViewItem.xib in Resources */,
 				47E7713F2472F0BA00C9CFEB /* EmptyChatCollectionViewItem.xib in Resources */,
 				478ED5E125D6FDAC00940132 /* SphinxReady.xib in Resources */,
@@ -2826,6 +2856,7 @@
 				4707089E24AE65CB00A98DCA /* UserContactChatListExtension.swift in Sources */,
 				474E333C247FF4AD00F7F603 /* CommonPictureCollectionViewItem.swift in Sources */,
 				47F8825125656CB0002A7E71 /* SocketEngineWebsocket.swift in Sources */,
+				47AE2468287F1F4700EF42BD /* API+RedeemSatsExtension.swift in Sources */,
 				478ED57725D41ACB00940132 /* SignupButtonView.swift in Sources */,
 				47C1F1E1248158E700A71610 /* MediaFullScreenView.swift in Sources */,
 				47F8825E25656CB0002A7E71 /* SocketAckManager.swift in Sources */,
@@ -2889,6 +2920,7 @@
 				470396E9253721D7007F9C23 /* API+PodcastExtension.swift in Sources */,
 				4731BE322485817000BCCA9E /* ExpiredInvoiceSentCollectionViewItem.swift in Sources */,
 				4787F89E247C14FD00CCE8B9 /* CGFloat.swift in Sources */,
+				476A6C44282C2F3000CA213D /* TribeMemberPopupView.swift in Sources */,
 				473633EE2555BBAD007405F2 /* PodcastModels.swift in Sources */,
 				474E334A2480009E00F7F603 /* AttachmentPriceView.swift in Sources */,
 				474F67512486779200CE6016 /* JoinVideoCallView.swift in Sources */,
@@ -3091,6 +3123,7 @@
 				478ED58425D47C4900940132 /* ConnectingView.swift in Sources */,
 				475723AB247ED3AC001ADC7E /* AudioPlayerHelper.swift in Sources */,
 				474568002515148A00D66268 /* URL.swift in Sources */,
+				47C52C4827F61ADF007B43E2 /* HMACSigningManager.swift in Sources */,
 				47E7713E2472F0BA00C9CFEB /* EmptyChatCollectionViewItem.swift in Sources */,
 				4705D3A127A06597009C0729 /* RestoreProgressView.swift in Sources */,
 				47F8825025656CB0002A7E71 /* SocketEngineClient.swift in Sources */,
@@ -3694,8 +3727,8 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 205;
-				DEVELOPMENT_TEAM = 48UCMC6XX3;
+				CURRENT_PROJECT_VERSION = 212;
+				DEVELOPMENT_TEAM = 8297M44YTW;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = com.stakwork.sphinx.desktop/Info.plist;
@@ -3723,8 +3756,8 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 205;
-				DEVELOPMENT_TEAM = 48UCMC6XX3;
+				CURRENT_PROJECT_VERSION = 212;
+				DEVELOPMENT_TEAM = 8297M44YTW;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = com.stakwork.sphinx.desktop/Info.plist;
@@ -3875,6 +3908,7 @@
 		4734D3992417E3D400D6957E /* com_stakwork_sphinx_desktop.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				47285DDE282BFCF900420067 /* com_stakwork_sphinx_desktop 17.xcdatamodel */,
 				473BC89E260284500070E519 /* com_stakwork_sphinx_desktop 16.xcdatamodel */,
 				47D0045D25E6BA8100E74063 /* com_stakwork_sphinx_desktop 15.xcdatamodel */,
 				479E7D9225ADEA940092595B /* com_stakwork_sphinx_desktop 14.xcdatamodel */,
@@ -3892,7 +3926,7 @@
 				4787F89C247C0C2300CCE8B9 /* com_stakwork_sphinx_desktop 2.xcdatamodel */,
 				4734D39A2417E3D400D6957E /* com_stakwork_sphinx_desktop.xcdatamodel */,
 			);
-			currentVersion = 473BC89E260284500070E519 /* com_stakwork_sphinx_desktop 16.xcdatamodel */;
+			currentVersion = 47285DDE282BFCF900420067 /* com_stakwork_sphinx_desktop 17.xcdatamodel */;
 			path = com_stakwork_sphinx_desktop.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

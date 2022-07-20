@@ -115,7 +115,11 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
         return provisionalMessage
     }
     
-    func sendMessage(provisionalMessage: TransactionMessage?, text: String, botAmount: Int = 0) {
+    func sendMessage(
+        provisionalMessage: TransactionMessage?,
+        text: String,
+        botAmount: Int = 0
+    ) {
         let messageType = TransactionMessage.TransactionMessageType(fromRawValue: provisionalMessage?.type ?? 0)
         guard let params = TransactionMessage.getMessageParams(contact: contact, chat: chat, type: messageType, text: text, botAmount: botAmount, replyingMessage: messageReplyView.getReplyingMessage()) else {
             DelayPerformedHelper.performAfterDelay(seconds: 0.5, completion: {
@@ -126,18 +130,24 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
         sendMessage(provisionalMessage: provisionalMessage, params: params)
     }
     
-    func sendMessage(provisionalMessage: TransactionMessage?, params: [String: AnyObject]) {
+    func sendMessage(
+        provisionalMessage: TransactionMessage?,
+        params: [String: AnyObject],
+        completion: ((Bool) -> ())? = nil
+    ) {
         API.sharedInstance.sendMessage(params: params, callback: { m in
             if let message = TransactionMessage.insertMessage(m: m, existingMessage: provisionalMessage).0 {
                 message.setPaymentInvoiceAsPaid()
                 self.insertSentMessage(message: message)
             }
+            completion?(true)
         }, errorCallback: {
              if let provisionalMessage = provisionalMessage {
                 provisionalMessage.status = TransactionMessage.TransactionMessageStatus.failed.rawValue
                 provisionalMessage.saveMessage()
                 self.insertSentMessage(message: provisionalMessage)
              }
+            completion?(false)
         })
     }
     
@@ -262,6 +272,10 @@ extension ChatViewController : MessageCellDelegate {
         AttachmentsManager.sharedInstance.cancelUpload()
         chatDataSource?.deleteCellFor(m: transactionMessage)
         CoreDataManager.sharedManager.deleteObject(object: transactionMessage)
+    }
+    
+    func didTapAvatarView(message: TransactionMessage) {
+        childVCContainer.showTribeMemberPopupViewOn(parentVC: self, with: message, delegate: self)
     }
     
     func shouldShowFullMediaFor(message: TransactionMessage? = nil) {

@@ -15,6 +15,7 @@ public class Chat: NSManagedObject {
     
     public var lastMessage : TransactionMessage? = nil
     public var conversationContact : UserContact? = nil
+    public var tribeAdmin: UserContact? = nil
     
     public var ongoingMessage : String? = nil
     var tribesInfo: GroupsManager.TribeInfo? = nil
@@ -481,6 +482,10 @@ public class Chat: NSManagedObject {
     func updateWebAppLastDate() {
         self.webAppLastDate = Date()
         NotificationCenter.default.post(name: .shouldReloadChatsList, object: nil)
+    }
+    
+    func hasWebApp() -> Bool {
+        return tribesInfo?.appUrl != nil && tribesInfo?.appUrl?.isEmpty == false
     }
     
     func syncTribeWithServer() {

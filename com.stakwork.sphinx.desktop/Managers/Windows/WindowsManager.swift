@@ -165,6 +165,15 @@ class WindowsManager {
                       contentVC: vc)
     }
     
+    func showInvoiceWindow(vc: NSViewController, window: NSWindow?) {
+        showNewWindow(with: "invoice".localized,
+                      size: CGSize(width: 400, height: 600),
+                      centeredIn: window,
+                      identifier: "invoice-window",
+                      contentVC: vc,
+                      shouldClose: true)
+    }
+    
     func showWebAppWindow(chat: Chat?, view: NSView) {
         if let chat = chat, let tribeInfo = chat.tribesInfo, let gameURL = tribeInfo.appUrl, !gameURL.isEmpty && gameURL.isValidURL {            
             let appTitle = chat.name ?? ""

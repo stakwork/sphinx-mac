@@ -191,4 +191,30 @@ extension ChatViewController : ActionsDelegate {
         let room = VideoCallHelper.createCallMessage(mode: mode)
         sendMessageWith(text: room)
     }
+    
+    func shouldSendPaymentFor(
+        paymentObject: PaymentViewModel.PaymentObject,
+        callback: ((Bool) -> ())?
+    ) {
+        guard let messageUUID = paymentObject.transactionMessage?.uuid else {
+            return
+        }
+        
+        guard let amount = paymentObject.amount, amount > 0 else {
+            return
+        }
+        
+        guard let params = TransactionMessage.getTribePaymentParams(
+            chat: chat,
+            messageUUID: messageUUID,
+            amount: amount,
+            text: paymentObject.message ?? ""
+        ) else {
+            callback?(false)
+            return
+        }
+        sendMessage(provisionalMessage: nil, params: params, completion: { success in
+            callback?(success)
+        })
+    }
 }

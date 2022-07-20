@@ -578,6 +578,20 @@ extension String {
         }
         return nil
     }
+    
+    func getLinkValueFor(key: String) -> String? {
+        for component in self.components(separatedBy: "&") {
+            let elements = component.components(separatedBy: "=")
+            if elements.count > 1 {
+                let itemKey = elements[0]
+                
+                if itemKey == key {
+                    return component.replacingOccurrences(of: "\(itemKey)=", with: "")
+                }
+            }
+        }
+        return nil
+    }
 }
 
 extension Character {

@@ -220,7 +220,7 @@ class ChatListViewController : DashboardSplittedViewController {
     }
     
     @IBAction func upgradeButtonClicked(_ sender: Any) {
-        if let url = URL(string: "itms-apps://itunes.apple.com/app/apple-store/id1483956418?mt=8") {
+        if let url = URL(string: "https://testflight.apple.com/join/QoaCkJn6") {
             NSWorkspace.shared.open(url)
         }
     }

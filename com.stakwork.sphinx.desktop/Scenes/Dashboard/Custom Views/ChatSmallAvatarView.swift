@@ -9,13 +9,20 @@
 import Cocoa
 import SDWebImage
 
+protocol ChatSmallAvatarViewDelegate: AnyObject {
+    func didClickAvatarView()
+}
+
 class ChatSmallAvatarView: NSView, LoadableNib {
+    
+    weak var delegate: ChatSmallAvatarViewDelegate?
 
     @IBOutlet var contentView: NSView!
     @IBOutlet weak var profileImageView: AspectFillNSImageView!
     @IBOutlet weak var profileInitialContainer: NSView!
     @IBOutlet weak var initialsLabel: NSTextField!
-
+    @IBOutlet weak var avatarButton: CustomButton!
+    
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
         
@@ -30,8 +37,18 @@ class ChatSmallAvatarView: NSView, LoadableNib {
     
     private func setup() {
         profileInitialContainer.wantsLayer = true
-        profileInitialContainer.layer?.cornerRadius = profileInitialContainer.frame.size.height/2
+        profileInitialContainer.layer?.cornerRadius = self.bounds.height/2
         profileInitialContainer.layer?.masksToBounds = true
+        
+        avatarButton.cursor = .pointingHand
+    }
+    
+    func setInitialLabelSize(size: Double) {
+        initialsLabel.font = NSFont(name: "Montserrat-Regular", size: size)!
+    }
+    
+    @IBAction func buttonClicked(_ sender: NSButton) {
+        delegate?.didClickAvatarView()
     }
     
     func hideAllElements() {
@@ -39,7 +56,14 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         profileInitialContainer.isHidden = true
     }
     
-    func configureFor(message: TransactionMessage, contact: UserContact?, and chat: Chat?) {
+    func configureFor(
+        message: TransactionMessage,
+        contact: UserContact?,
+        chat: Chat?,
+        with delegate: ChatSmallAvatarViewDelegate? = nil
+    ) {
+        self.delegate = delegate
+        
         profileImageView.isHidden = true
         profileInitialContainer.isHidden = true
         profileImageView.layer?.borderWidth = 0
@@ -57,17 +81,66 @@ class ChatSmallAvatarView: NSView, LoadableNib {
             if let senderAvatarURL = senderAvatarURL,
                let url = URL(string: senderAvatarURL) {
                 
-                profileImageView.sd_setImage(
-                    with: url,
-                    placeholderImage: NSImage(named: "profile_avatar"),
-                    options: [SDWebImageOptions.retryFailed],
-                    completed: { (image, error, _, _) in
-                        if let image = image, error == nil {
-                            self.setImage(image: image)
-                        }
-                })
+                showImageWith(url: url)
             }
         }
+    }
+    
+    func configureForSenderWith(
+        message: TransactionMessage
+    ) {
+        configureForUserWith(
+            color: ChatHelper.getSenderColorFor(message: message),
+            alias: message.senderAlias,
+            picture: message.senderPic
+        )
+    }
+    
+    func configureForRecipientWith(
+        message: TransactionMessage
+    ) {
+        configureForUserWith(
+            color: ChatHelper.getRecipientColorFor(message: message),
+            alias: message.recipientAlias,
+            picture: message.recipientPic
+        )
+    }
+    
+    func configureForUserWith(
+        color: NSColor,
+        alias: String?,
+        picture: String?
+    ) {
+        profileImageView.sd_cancelCurrentImageLoad()
+        
+        profileImageView.isHidden = true
+        profileInitialContainer.isHidden = true
+        profileImageView.layer?.borderWidth = 0
+        
+        showInitials(
+            senderColor: color,
+            senderNickname: alias ?? "Unknown"
+        )
+        
+        if let pic = picture, let url = URL(string: pic) {
+            showImageWith(url: url)
+        }
+    }
+    
+    func showImageWith(
+        url: URL
+    ) {
+        profileImageView.sd_setImage(
+            with: url,
+            placeholderImage: NSImage(named: "profile_avatar"),
+            options: [.retryFailed],
+            progress: nil,
+            completed: { (image, error, _, _) in
+                if let image = image, error == nil {
+                    self.setImage(image: image)
+                }
+            }
+        )
     }
     
     func setImage(image: NSImage) {

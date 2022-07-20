@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -50,10 +50,10 @@
                     </constraints>
                 </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="YWO-iI-AHu" customClass="ChatSmallAvatarView" customModule="Sphinx" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="444" width="56" height="56"/>
+                    <rect key="frame" x="15" y="463" width="33" height="33"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="56" id="NzS-Nd-3bh"/>
-                        <constraint firstAttribute="width" constant="56" id="vEt-fw-is2"/>
+                        <constraint firstAttribute="height" constant="33" id="NzS-Nd-3bh"/>
+                        <constraint firstAttribute="width" constant="33" id="vEt-fw-is2"/>
                     </constraints>
                 </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="0Kk-fe-TeT">
@@ -167,7 +167,7 @@
                 <constraint firstItem="hy2-8g-zUf" firstAttribute="trailing" secondItem="2Cw-p5-Cf4" secondAttribute="trailing" id="Ejn-4Q-Z3h"/>
                 <constraint firstItem="AlM-Zh-8v2" firstAttribute="top" secondItem="2Cw-p5-Cf4" secondAttribute="top" id="Fwz-yf-le7"/>
                 <constraint firstItem="AlM-Zh-8v2" firstAttribute="bottom" secondItem="2Cw-p5-Cf4" secondAttribute="bottom" id="GIM-cw-Wkf"/>
-                <constraint firstItem="YWO-iI-AHu" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="IB7-ym-pMo"/>
+                <constraint firstItem="YWO-iI-AHu" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="4" id="IB7-ym-pMo"/>
                 <constraint firstItem="z68-Bg-Vmu" firstAttribute="trailing" secondItem="2Cw-p5-Cf4" secondAttribute="trailing" constant="0.5" id="Jmw-iF-onM"/>
                 <constraint firstItem="hy2-8g-zUf" firstAttribute="leading" secondItem="2Cw-p5-Cf4" secondAttribute="leading" id="KCD-Wp-6j6"/>
                 <constraint firstItem="uwo-Nz-iFw" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="Mrw-Fq-J88"/>
@@ -194,7 +194,7 @@
                 <constraint firstAttribute="trailing" secondItem="uwo-Nz-iFw" secondAttribute="trailing" constant="28" id="rbr-x1-Wpl"/>
                 <constraint firstItem="rCh-Jt-Ft0" firstAttribute="bottom" secondItem="2Cw-p5-Cf4" secondAttribute="bottom" id="sbo-rn-GD8"/>
                 <constraint firstItem="2Cw-p5-Cf4" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="56" id="so0-Za-DEr"/>
-                <constraint firstItem="YWO-iI-AHu" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="z0A-ND-vLJ"/>
+                <constraint firstItem="YWO-iI-AHu" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="15" id="z0A-ND-vLJ"/>
                 <constraint firstItem="0Kk-fe-TeT" firstAttribute="leading" secondItem="2Cw-p5-Cf4" secondAttribute="leading" id="zXa-FS-443"/>
             </constraints>
             <point key="canvasLocation" x="139" y="154"/>

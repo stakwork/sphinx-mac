@@ -70,6 +70,19 @@ extension TransactionMessage {
         return alias
     }
     
+    func getMessageSenderImageUrl(
+        owner: UserContact?,
+        contact: UserContact?
+    ) -> String? {
+        let outgoing = self.isOutgoing()
+        
+        if (outgoing) {
+            return self.chat?.myPhotoUrl ?? owner?.getPhotoUrl()
+        } else {
+            return self.senderPic ?? contact?.getPhotoUrl()
+        }
+    }
+    
     func hasSameSenderThan(message: TransactionMessage?) -> Bool {
         let hasSameSenderId = senderId == (message?.senderId ?? -1)
         let hasSameSenderAlias = (senderAlias ?? "") == (message?.senderAlias ?? "")
@@ -570,14 +583,18 @@ extension TransactionMessage {
             let invoiceAmount = getInvoicePaidAmountString()
             return  "\("payment".localized) \(directionString): \(invoiceAmount) sat"
         case TransactionMessage.TransactionMessageType.directPayment.rawValue:
-            if self.chat?.isGroup() ?? false {
+            let isTribe = self.chat?.isPublicGroup() ?? false
+            let senderAlias = self.senderAlias ?? "Unknown".localized
+            let recipientAlias = self.recipientAlias ?? "Unknown".localized
+            
+            if isTribe {
                 if incoming {
-                    return  "\("payment".localized) \(directionString) from \(self.getMessageSenderNickname()): \(amountString) sat"
+                    return String(format: "tribe.payment.received".localized, senderAlias, "\(amountString) sats" , recipientAlias)
                 } else {
-                    return  "\("payment".localized) \(directionString): \(amountString) sat"
+                    return String(format: "tribe.payment.sent".localized, "\(amountString) sats", recipientAlias)
                 }
             } else {
-                return  "\("payment".localized) \(directionString): \(amountString) sat"
+                return "\("payment".localized) \(directionString): \(amountString) sats"
             }
         case TransactionMessage.TransactionMessageType.imageAttachment.rawValue:
             if self.isGif() {

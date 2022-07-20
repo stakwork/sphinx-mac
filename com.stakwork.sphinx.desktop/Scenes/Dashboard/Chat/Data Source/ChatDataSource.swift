@@ -321,7 +321,12 @@ class ChatDataSource : NSObject {
     }
     
     func processBoost(message: TransactionMessage) {
-        chatHelper.processMessageReaction(message: message, boosts: &boosts)
+        chatHelper.processMessageReaction(
+            message: message,
+            owner: UserContact.getOwner(),
+            contact: self.chat?.getContact(),
+            boosts: &boosts
+        )
         
         if let boostedMessage = message.getReplyingTo() {
             boostedMessage.reactions = boosts[message.replyUUID ?? ""]

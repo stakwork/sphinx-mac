@@ -147,44 +147,59 @@ class DashboardViewController: NSViewController {
         
         NotificationCenter.default.addObserver(forName: .onAuthDeepLink, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
             guard let vc = self else { return }
-            
-            if let query = n.userInfo?["query"] as? String {
-                for childVC in vc.children {
-                    if let childVC = childVC as? DashboardModalsViewController {
-                        vc.modalsContainerView.isHidden = false
-                        childVC.showWithQuery(query, and: vc)
-                    }
-                }
-            }
+            vc.showDashboardModalsVC(n: n)
         }
         
         NotificationCenter.default.addObserver(forName: .onPersonDeepLink, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
             guard let vc = self else { return }
-            
-            if let query = n.userInfo?["query"] as? String {
-                for childVC in vc.children {
-                    if let childVC = childVC as? DashboardModalsViewController {
-                        vc.modalsContainerView.isHidden = false
-                        childVC.showWithQuery(query, and: vc)
-                    }
-                }
-            }
+            vc.showDashboardModalsVC(n: n)
         }
         
         NotificationCenter.default.addObserver(forName: .onSaveProfileDeepLink, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
             guard let vc = self else { return }
-            
-            if let query = n.userInfo?["query"] as? String {
-                for childVC in vc.children {
-                    if let childVC = childVC as? DashboardModalsViewController {
-                        vc.modalsContainerView.isHidden = false
-                        
-                        childVC.showWithQuery(query, and: vc)
+            vc.showDashboardModalsVC(n: n)
+        }
+        
+        NotificationCenter.default.addObserver(forName: .onStakworkAuthDeepLink, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
+            guard let vc = self else { return }
+            vc.showDashboardModalsVC(n: n)
+        }
+        
+        NotificationCenter.default.addObserver(forName: .onRedeemSatsDeepLink, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
+            guard let vc = self else { return }
+            vc.showDashboardModalsVC(n: n)
+        }
+        
+        NotificationCenter.default.addObserver(forName: .onInvoiceDeepLink, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
+            guard let vc = self else { return }
+            vc.createInvoice(n: n)
+        }
+    }
+    
+    func createInvoice(n: Notification) {
+        if let query = n.userInfo?["query"] as? String {
+            if let amountString = query.getLinkValueFor(key: "amount"), let amount = Int(amountString) {
+                let params = ["amount" : amount as AnyObject]
+                
+                API.sharedInstance.createInvoice(parameters: params, callback: { (_, invoice) in
+                    if let invoice = invoice, !invoice.isEmpty {
+                        let invoiceVC = ShareInviteCodeViewController.instantiate(qrCodeString: invoice, viewMode: .Invoice)
+                        WindowsManager.sharedInstance.showInvoiceWindow(vc: invoiceVC, window: self.view.window)
                     }
+                }, errorCallback: {})
+            }
+        }
+    }
+    
+    func showDashboardModalsVC(n: Notification) {
+        if let query = n.userInfo?["query"] as? String {
+            for childVC in self.children {
+                if let childVC = childVC as? DashboardModalsViewController {
+                    self.modalsContainerView.isHidden = false
+                    childVC.showWithQuery(query, and: self)
                 }
             }
         }
-        
     }
     
     func shouldGoToChat(chat: Chat) {

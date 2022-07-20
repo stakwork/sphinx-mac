@@ -12,7 +12,9 @@ class AuthExternalView: CommonModalView, LoadableNib {
     
     @IBOutlet var contentView: NSView!
     @IBOutlet weak var hostLabel: NSTextField!
-
+    @IBOutlet weak var buttonLabel: NSTextField!
+    @IBOutlet weak var authorizeLabel: NSTextField!
+    
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
     }
@@ -28,6 +30,14 @@ class AuthExternalView: CommonModalView, LoadableNib {
         processQuery()
         
         hostLabel.stringValue = "\(authInfo?.host ?? "...")?"
+        
+        if (authInfo?.action == "redeem_sats") {
+            buttonLabel.stringValue = "confirm".localized.uppercased()
+            authorizeLabel.stringValue = String(format: "popup.redeem-sats".localized, authInfo?.amount ?? 0)
+        } else {
+            buttonLabel.stringValue = "authorize".localized.uppercased()
+            authorizeLabel.stringValue = "popup.authorize-with".localized
+        }
     }
     
     override func modalDidShow() {
@@ -37,7 +47,53 @@ class AuthExternalView: CommonModalView, LoadableNib {
     override func didTapConfirmButton() {
         super.didTapConfirmButton()
         
-        verifyExternal()
+        let action = authInfo?.action ?? ""
+        switch (action) {
+        case "auth":
+            verifyExternal()
+            break
+        case "challenge":
+            authorizeStakwork()
+            break
+        case "redeem_sats":
+            redeemSats()
+            break
+        default:
+            buttonLoading = false
+            break
+        }
+    }
+    
+    func authorizeStakwork() {
+        authInfo?.pubkey = UserData.sharedInstance.getUserPubKey()
+        
+        guard let authInfo = authInfo, let challenge = authInfo.challenge else {
+            showErrorAlert()
+            return
+        }
+        
+        API.sharedInstance.signChallenge(challenge: challenge, callback: { sig in
+            if let sig = sig {
+                self.authInfo?.sig = sig
+                self.takeUserToAuth()
+            } else {
+                self.showErrorAlert()
+            }
+        })
+    }
+    
+    func redeemSats() {
+        guard let authInfo = authInfo, let host = authInfo.host, let token = authInfo.token, let pubkey = authInfo.pubkey else {
+            showErrorAlert()
+            return
+        }
+        let params: [String: AnyObject] = ["token": token as AnyObject, "pubkey": pubkey as AnyObject]
+        API.sharedInstance.redeemSats(url: host, params: params, callback: {
+            NotificationCenter.default.post(name: .onBalanceDidChange, object: nil)
+            self.delegate?.shouldDismissModals()
+        }, errorCallback: {
+            self.showErrorAlert()
+        })
     }
     
     func verifyExternal() {
@@ -48,6 +104,19 @@ class AuthExternalView: CommonModalView, LoadableNib {
                 self.signBase64()
             }
         })
+    }
+    
+    func takeUserToAuth() {
+        guard let authInfo = authInfo, let id = authInfo.id, let sig = authInfo.sig, let pubkey = authInfo.pubkey else {
+            showErrorAlert()
+            return
+        }
+        
+        let urlString = "https://auth.sphinx.chat/oauth_verify?id=\(id)&sig=\(sig)&pubkey=\(pubkey)"
+        if let url = URL(string: urlString) {
+            delegate?.shouldDismissModals()
+            NSWorkspace.shared.open(url)
+        }
     }
     
     func signBase64() {
@@ -83,6 +152,14 @@ class AuthExternalView: CommonModalView, LoadableNib {
         } else {
             messageBubbleHelper.showGenericMessageView(text: "authorization.failed".localized, delay: 5, textColor: NSColor.white, backColor: NSColor.Sphinx.BadgeRed, backAlpha: 1.0)
         }
+        delegate?.shouldDismissModals()
+    }
+    
+    func showErrorAlert() {
+        buttonLoading = false
+        
+        messageBubbleHelper.showGenericMessageView(text: "authorization.failed".localized, delay: 5, textColor: NSColor.white, backColor: NSColor.Sphinx.BadgeRed, backAlpha: 1.0)
+        
         delegate?.shouldDismissModals()
     }
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -50,10 +50,10 @@
                     </constraints>
                 </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="ayx-Zx-Zzx" customClass="ChatSmallAvatarView" customModule="Sphinx" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="244" width="56" height="56"/>
+                    <rect key="frame" x="15" y="263" width="33" height="33"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="56" id="B1K-od-TMw"/>
-                        <constraint firstAttribute="width" constant="56" id="bKY-pZ-2J6"/>
+                        <constraint firstAttribute="height" constant="33" id="B1K-od-TMw"/>
+                        <constraint firstAttribute="width" constant="33" id="bKY-pZ-2J6"/>
                     </constraints>
                 </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="BdP-wU-oZF">
@@ -155,7 +155,7 @@
                 <constraint firstItem="45q-o6-a7E" firstAttribute="bottom" secondItem="PEO-rD-E3i" secondAttribute="bottom" id="6Nl-Mn-ok9"/>
                 <constraint firstItem="PEO-rD-E3i" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="21" id="CDT-5B-BKV"/>
                 <constraint firstItem="45q-o6-a7E" firstAttribute="leading" secondItem="PEO-rD-E3i" secondAttribute="leading" id="CPB-dI-v0d"/>
-                <constraint firstItem="ayx-Zx-Zzx" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="ESf-qH-10r"/>
+                <constraint firstItem="ayx-Zx-Zzx" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="15" id="ESf-qH-10r"/>
                 <constraint firstItem="VEs-2H-6va" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="Hnb-af-ccZ"/>
                 <constraint firstItem="PEO-rD-E3i" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="56" id="K1p-cF-9Ta"/>
                 <constraint firstItem="GNX-LX-eTi" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="LPN-6E-g7D"/>
@@ -166,7 +166,7 @@
                 <constraint firstItem="O5d-ZM-cUX" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="76" id="YFw-qm-F6Z"/>
                 <constraint firstAttribute="bottom" secondItem="O5d-ZM-cUX" secondAttribute="bottom" id="Zae-8t-4Hp"/>
                 <constraint firstAttribute="bottom" secondItem="GNX-LX-eTi" secondAttribute="bottom" id="jDo-bU-4lE"/>
-                <constraint firstItem="ayx-Zx-Zzx" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="jT1-Wf-rrr"/>
+                <constraint firstItem="ayx-Zx-Zzx" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="4" id="jT1-Wf-rrr"/>
                 <constraint firstItem="O5d-ZM-cUX" firstAttribute="top" secondItem="PEO-rD-E3i" secondAttribute="bottom" constant="-1" id="kQe-ot-6ID"/>
                 <constraint firstAttribute="bottom" secondItem="PEO-rD-E3i" secondAttribute="bottom" constant="4" id="rSv-Vu-34b"/>
                 <constraint firstItem="45q-o6-a7E" firstAttribute="top" secondItem="PEO-rD-E3i" secondAttribute="top" id="sJR-SW-PY7"/>
