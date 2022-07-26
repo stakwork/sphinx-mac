@@ -11,6 +11,7 @@ import WebKit
 
 class WebAppHelper : NSObject {
     
+    
     public let messageHandler = "sphinx"
     
     var webView : WKWebView! = nil
@@ -45,6 +46,12 @@ extension WebAppHelper : WKScriptMessageHandler {
                     break
                 case "RELOAD":
                     sendReloadMessage(dict)
+                    break
+                case "PAYMENT":
+                    sendPayment(dict)
+                    break
+                case "LSAT":
+                    saveLSAT(dict)
                     break
                 default:
                     break
@@ -171,11 +178,58 @@ extension WebAppHelper : WKScriptMessageHandler {
         }
     }
     
+    //Payment
+    func sendPaymentResponse(dict: [String: AnyObject], success: Bool) {
+        var params: [String: AnyObject] = [:]
+        setTypeApplicationAndPassword(params: &params, dict: dict)
+        params["success"] = success as AnyObject
+        
+        sendMessage(dict: params)
+    }
+    
+    func sendPayment(_ dict: [String: AnyObject]) {
+        if let paymentRequest = dict["paymentRequest"] as? String {
+            let params = ["payment_request": paymentRequest as AnyObject]
+            API.sharedInstance.payInvoice(parameters: params, callback: { payment in
+                self.sendPaymentResponse(dict: dict, success: true)
+            }, errorCallback: {
+                self.sendPaymentResponse(dict: dict, success: false)
+            })
+        }
+    }
+    
+    //Payment
+    func sendLsatResponse(dict: [String: AnyObject], success: Bool) {
+        var params: [String: AnyObject] = [:]
+        setTypeApplicationAndPassword(params: &params, dict: dict)
+        params["lsat"] = dict["lsat"] as AnyObject
+        params["success"] = success as AnyObject
+        
+        sendMessage(dict: params)
+    }
+    
+    func saveLSAT(_ dict: [String: AnyObject]) {
+
+        if let paymentRequest = dict["paymentRequest"] as? String, let macaroon = dict["macaroon"] as? String, let issuer = dict["issuer"] as? String {
+            let params = ["paymentRequest": paymentRequest as AnyObject, "macaroon": macaroon as AnyObject, "issuer": issuer as AnyObject]
+            API.sharedInstance.payLsat(parameters: params, callback: { payment in
+                var newDict = dict
+                if let lsat = payment["lsat"].string {
+                    newDict["lsat"] = lsat as AnyObject
+                }
+                
+                self.sendLsatResponse(dict: newDict, success: true)
+            }, errorCallback: {
+                self.sendLsatResponse(dict: dict, success: false)
+            })
+        }
+    }
+    
     func getParams(pubKey: String, amount: Int) -> [String: AnyObject] {
         var parameters = [String : AnyObject]()
         parameters["amount"] = amount as AnyObject?
         parameters["destination_key"] = pubKey as AnyObject?
-        
+            
         return parameters
     }
     
