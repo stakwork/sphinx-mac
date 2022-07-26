@@ -213,7 +213,6 @@ extension API {
         callback: @escaping PayInvoiceCallback,
         errorCallback: @escaping EmptyCallback
     ) {
-        print("DID WE GET HERE:2")
 
         guard let request = getURLRequest(route: "/lsats", params: parameters as NSDictionary?, method: "POST") else {
             errorCallback()

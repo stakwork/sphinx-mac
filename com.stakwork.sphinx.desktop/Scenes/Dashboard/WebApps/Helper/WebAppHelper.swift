@@ -209,17 +209,14 @@ extension WebAppHelper : WKScriptMessageHandler {
     }
     
     func saveLSAT(_ dict: [String: AnyObject]) {
-        print("DID WE GET HERE: ", dict)
 
         if let paymentRequest = dict["paymentRequest"] as? String, let macaroon = dict["macaroon"] as? String, let issuer = dict["issuer"] as? String {
             let params = ["paymentRequest": paymentRequest as AnyObject, "macaroon": macaroon as AnyObject, "issuer": issuer as AnyObject]
             API.sharedInstance.payLsat(parameters: params, callback: { payment in
-                //print("PREIMAGE: ", payment)
                 var newDict = dict
                 if let lsat = payment["lsat"].string {
                     newDict["lsat"] = lsat as AnyObject
                 }
-                print("LOOKIE HERE", newDict)
                 
                 self.sendLsatResponse(dict: newDict, success: true)
             }, errorCallback: {
