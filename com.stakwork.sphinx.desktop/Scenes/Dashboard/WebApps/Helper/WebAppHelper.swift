@@ -31,7 +31,7 @@ extension WebAppHelper : WKScriptMessageHandler {
             guard let dict = message.body as? [String: AnyObject] else {
                 return
             }
-            
+
             if let type = dict["type"] as? String {
                 switch(type) {
                 case "AUTHORIZE":
@@ -204,7 +204,6 @@ extension WebAppHelper : WKScriptMessageHandler {
         setTypeApplicationAndPassword(params: &params, dict: dict)
         params["lsat"] = dict["lsat"] as AnyObject
         params["success"] = success as AnyObject
-        
         sendMessage(dict: params)
     }
     
@@ -212,6 +211,15 @@ extension WebAppHelper : WKScriptMessageHandler {
 
         if let paymentRequest = dict["paymentRequest"] as? String, let macaroon = dict["macaroon"] as? String, let issuer = dict["issuer"] as? String {
             let params = ["paymentRequest": paymentRequest as AnyObject, "macaroon": macaroon as AnyObject, "issuer": issuer as AnyObject]
+            let savedBudget: Int? = getValue(withKey: "budget")
+            let amount: Int = getInvoiceAmount(invoice: paymentRequest)
+            if(savedBudget! < amount || amount == -1){
+                self.sendLsatResponse(dict: dict, success: false)
+                return
+            }
+            let newBudget = savedBudget! - amount
+            saveValue(newBudget as AnyObject, for: "budget")
+
             API.sharedInstance.payLsat(parameters: params, callback: { payment in
                 var newDict = dict
                 if let lsat = payment["lsat"].string {
@@ -242,5 +250,44 @@ extension WebAppHelper : WKScriptMessageHandler {
             return value
         }
         return nil
+    }
+    
+    func getInvoiceAmount(invoice: String) -> Int {
+        var amount: Int = 0
+        let network: String = invoice[0 ..< 4]
+        if(network != "lnbc"){
+            //fail here
+            return -1
+        }
+        
+        let invoiceMinusNetwork: String = invoice[4 ..< invoice.length]
+        var splitInvoice: Array<String> = []
+        outer: for letter in invoiceMinusNetwork {
+            switch letter {
+                case "m":
+                    splitInvoice = invoiceMinusNetwork.components(separatedBy: "m")
+                    let theAmount = splitInvoice[0]
+                    amount = Int(theAmount)! * 100000
+                    break outer;
+                case "u":
+                    splitInvoice = invoiceMinusNetwork.components(separatedBy: "u")
+                    let theAmount = splitInvoice[0]
+                    amount = Int(theAmount)! * 100
+                    break outer;
+                case "n":
+                    splitInvoice = invoiceMinusNetwork.components(separatedBy: "n")
+                    let theAmount = splitInvoice[0]
+                    amount = Int(theAmount)! / 10
+                    break outer;
+                case "p":
+                    splitInvoice = invoiceMinusNetwork.components(separatedBy: "p")
+                    let theAmount = splitInvoice[0]
+                    amount = Int(theAmount)! / 10000
+                    break outer;
+                default:
+                    continue
+            }
+        }
+        return amount
     }
 }
