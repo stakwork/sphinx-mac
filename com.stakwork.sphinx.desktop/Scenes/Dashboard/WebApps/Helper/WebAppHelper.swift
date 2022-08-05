@@ -170,6 +170,11 @@ extension WebAppHelper : WKScriptMessageHandler {
     func sendKeySend(_ dict: [String: AnyObject]) {
         if let dest = dict["dest"] as? String, let amt = dict["amt"] as? Int {
             let params = getParams(pubKey: dest, amount: amt)
+            let canPay: DarwinBoolean = checkCanPay(amount: amt)
+            if(canPay == false){
+                self.sendKeySendResponse(dict: dict, success: false)
+                return
+            }
             API.sharedInstance.sendDirectPayment(params: params, callback: { payment in
                 self.sendKeySendResponse(dict: dict, success: true)
             }, errorCallback: {
@@ -190,6 +195,12 @@ extension WebAppHelper : WKScriptMessageHandler {
     func sendPayment(_ dict: [String: AnyObject]) {
         if let paymentRequest = dict["paymentRequest"] as? String {
             let params = ["payment_request": paymentRequest as AnyObject]
+            let amount: Int = getInvoiceAmount(invoice: paymentRequest)
+            let canPay: DarwinBoolean = checkCanPay(amount: amount)
+            if(canPay == false){
+                self.sendLsatResponse(dict: dict, success: false)
+                return
+            }
             API.sharedInstance.payInvoice(parameters: params, callback: { payment in
                 self.sendPaymentResponse(dict: dict, success: true)
             }, errorCallback: {
@@ -211,15 +222,13 @@ extension WebAppHelper : WKScriptMessageHandler {
 
         if let paymentRequest = dict["paymentRequest"] as? String, let macaroon = dict["macaroon"] as? String, let issuer = dict["issuer"] as? String {
             let params = ["paymentRequest": paymentRequest as AnyObject, "macaroon": macaroon as AnyObject, "issuer": issuer as AnyObject]
-            let savedBudget: Int? = getValue(withKey: "budget")
+            
             let amount: Int = getInvoiceAmount(invoice: paymentRequest)
-            if(savedBudget! < amount || amount == -1){
+            let canPay: DarwinBoolean = checkCanPay(amount: amount)
+            if(canPay == false){
                 self.sendLsatResponse(dict: dict, success: false)
                 return
             }
-            let newBudget = savedBudget! - amount
-            saveValue(newBudget as AnyObject, for: "budget")
-
             API.sharedInstance.payLsat(parameters: params, callback: { payment in
                 var newDict = dict
                 if let lsat = payment["lsat"].string {
@@ -289,5 +298,18 @@ extension WebAppHelper : WKScriptMessageHandler {
             }
         }
         return amount
+    }
+    
+    func checkCanPay(amount: Int) -> DarwinBoolean {
+        let savedBudget: Int? = getValue(withKey: "budget")
+        if((savedBudget ?? 0) < amount || amount == -1){
+            return false
+        }
+        if let savedBudget = savedBudget {
+            let newBudget = savedBudget - amount
+            saveValue(newBudget as AnyObject, for: "budget")
+            return true
+        }
+        return false
     }
 }
