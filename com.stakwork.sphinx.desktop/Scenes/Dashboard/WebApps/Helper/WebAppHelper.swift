@@ -276,23 +276,35 @@ extension WebAppHelper : WKScriptMessageHandler {
                 case "m":
                     splitInvoice = invoiceMinusNetwork.components(separatedBy: "m")
                     let theAmount = splitInvoice[0]
-                    amount = Int(theAmount)! * 100000
-                    break outer;
+                    if let thisAmount = Int(theAmount) {
+                        amount = thisAmount * 100000
+                        break outer;
+                    }
+                    return -1
                 case "u":
                     splitInvoice = invoiceMinusNetwork.components(separatedBy: "u")
                     let theAmount = splitInvoice[0]
-                    amount = Int(theAmount)! * 100
-                    break outer;
+                    if let thisAmount = Int(theAmount) {
+                        amount = thisAmount * 100
+                        break outer;
+                    }
+                    return -1
                 case "n":
                     splitInvoice = invoiceMinusNetwork.components(separatedBy: "n")
                     let theAmount = splitInvoice[0]
-                    amount = Int(theAmount)! / 10
-                    break outer;
+                    if let thisAmount = Int(theAmount) {
+                        amount = thisAmount / 10
+                        break outer;
+                    }
+                    return -1
                 case "p":
                     splitInvoice = invoiceMinusNetwork.components(separatedBy: "p")
                     let theAmount = splitInvoice[0]
-                    amount = Int(theAmount)! / 10000
-                    break outer;
+                    if let thisAmount = Int(theAmount) {
+                       amount = thisAmount / 10000
+                       break outer;
+                   }
+                   return -1
                 default:
                     continue
             }
