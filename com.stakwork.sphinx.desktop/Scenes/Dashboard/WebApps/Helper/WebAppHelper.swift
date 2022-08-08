@@ -35,6 +35,7 @@ extension WebAppHelper : WKScriptMessageHandler {
             if let type = dict["type"] as? String {
                 switch(type) {
                 case "AUTHORIZE":
+                    saveValue(dict["amount"] as AnyObject, for: "budget")
                     authorizeHandler(dict)
                     break
                 case "KEYSEND":
@@ -195,17 +196,23 @@ extension WebAppHelper : WKScriptMessageHandler {
     func sendPayment(_ dict: [String: AnyObject]) {
         if let paymentRequest = dict["paymentRequest"] as? String {
             let params = ["payment_request": paymentRequest as AnyObject]
-            let amount: Int = getInvoiceAmount(invoice: paymentRequest)
-            let canPay: DarwinBoolean = checkCanPay(amount: amount)
-            if(canPay == false){
-                self.sendLsatResponse(dict: dict, success: false)
-                return
-            }
-            API.sharedInstance.payInvoice(parameters: params, callback: { payment in
-                self.sendPaymentResponse(dict: dict, success: true)
-            }, errorCallback: {
+            let prDecoder = PaymentRequestDecoder()
+            prDecoder.decodePaymentRequest(paymentRequest: paymentRequest)
+            let amount = prDecoder.getAmount()
+            if let amount = amount {
+                let canPay: DarwinBoolean = checkCanPay(amount: amount)
+                if(canPay == false){
+                    self.sendPaymentResponse(dict: dict, success: false)
+                    return
+                }
+                API.sharedInstance.payInvoice(parameters: params, callback: { payment in
+                    self.sendPaymentResponse(dict: dict, success: true)
+                }, errorCallback: {
+                    self.sendPaymentResponse(dict: dict, success: false)
+                })
+            } else {
                 self.sendPaymentResponse(dict: dict, success: false)
-            })
+            }
         }
     }
     
@@ -215,6 +222,10 @@ extension WebAppHelper : WKScriptMessageHandler {
         setTypeApplicationAndPassword(params: &params, dict: dict)
         params["lsat"] = dict["lsat"] as AnyObject
         params["success"] = success as AnyObject
+        let savedBudget: Int? = getValue(withKey: "budget")
+        if let budget = savedBudget {
+            params["budget"] = budget as AnyObject
+        }
         sendMessage(dict: params)
     }
     
@@ -223,22 +234,28 @@ extension WebAppHelper : WKScriptMessageHandler {
         if let paymentRequest = dict["paymentRequest"] as? String, let macaroon = dict["macaroon"] as? String, let issuer = dict["issuer"] as? String {
             let params = ["paymentRequest": paymentRequest as AnyObject, "macaroon": macaroon as AnyObject, "issuer": issuer as AnyObject]
             
-            let amount: Int = getInvoiceAmount(invoice: paymentRequest)
-            let canPay: DarwinBoolean = checkCanPay(amount: amount)
-            if(canPay == false){
-                self.sendLsatResponse(dict: dict, success: false)
-                return
-            }
-            API.sharedInstance.payLsat(parameters: params, callback: { payment in
-                var newDict = dict
-                if let lsat = payment["lsat"].string {
-                    newDict["lsat"] = lsat as AnyObject
+            let prDecoder = PaymentRequestDecoder()
+            prDecoder.decodePaymentRequest(paymentRequest: paymentRequest)
+            let amount = prDecoder.getAmount()
+            if let amount = amount {
+                let canPay: DarwinBoolean = checkCanPay(amount: amount)
+                if(canPay == false){
+                    self.sendLsatResponse(dict: dict, success: false)
+                    return
                 }
-                
-                self.sendLsatResponse(dict: newDict, success: true)
-            }, errorCallback: {
+                API.sharedInstance.payLsat(parameters: params, callback: { payment in
+                    var newDict = dict
+                    if let lsat = payment["lsat"].string {
+                        newDict["lsat"] = lsat as AnyObject
+                    }
+                    
+                    self.sendLsatResponse(dict: newDict, success: true)
+                }, errorCallback: {
+                    self.sendLsatResponse(dict: dict, success: false)
+                })
+            }else{
                 self.sendLsatResponse(dict: dict, success: false)
-            })
+            }
         }
     }
     
@@ -261,56 +278,6 @@ extension WebAppHelper : WKScriptMessageHandler {
         return nil
     }
     
-    func getInvoiceAmount(invoice: String) -> Int {
-        var amount: Int = 0
-        let network: String = invoice[0 ..< 4]
-        if(network != "lnbc"){
-            //fail here
-            return -1
-        }
-        
-        let invoiceMinusNetwork: String = invoice[4 ..< invoice.length]
-        var splitInvoice: Array<String> = []
-        outer: for letter in invoiceMinusNetwork {
-            switch letter {
-                case "m":
-                    splitInvoice = invoiceMinusNetwork.components(separatedBy: "m")
-                    let theAmount = splitInvoice[0]
-                    if let thisAmount = Int(theAmount) {
-                        amount = thisAmount * 100000
-                        break outer;
-                    }
-                    return -1
-                case "u":
-                    splitInvoice = invoiceMinusNetwork.components(separatedBy: "u")
-                    let theAmount = splitInvoice[0]
-                    if let thisAmount = Int(theAmount) {
-                        amount = thisAmount * 100
-                        break outer;
-                    }
-                    return -1
-                case "n":
-                    splitInvoice = invoiceMinusNetwork.components(separatedBy: "n")
-                    let theAmount = splitInvoice[0]
-                    if let thisAmount = Int(theAmount) {
-                        amount = thisAmount / 10
-                        break outer;
-                    }
-                    return -1
-                case "p":
-                    splitInvoice = invoiceMinusNetwork.components(separatedBy: "p")
-                    let theAmount = splitInvoice[0]
-                    if let thisAmount = Int(theAmount) {
-                       amount = thisAmount / 10000
-                       break outer;
-                   }
-                   return -1
-                default:
-                    continue
-            }
-        }
-        return amount
-    }
     
     func checkCanPay(amount: Int) -> DarwinBoolean {
         let savedBudget: Int? = getValue(withKey: "budget")
@@ -324,4 +291,5 @@ extension WebAppHelper : WKScriptMessageHandler {
         }
         return false
     }
+
 }
