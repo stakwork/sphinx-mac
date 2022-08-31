@@ -3,9 +3,9 @@ PODS:
   - KeychainAccess (4.2.2)
   - ReachabilitySwift (5.0.0)
   - RNCryptor (5.1.0)
-  - SDWebImage (5.11.1):
-    - SDWebImage/Core (= 5.11.1)
-  - SDWebImage/Core (5.11.1)
+  - SDWebImage (5.12.5):
+    - SDWebImage/Core (= 5.12.5)
+  - SDWebImage/Core (5.12.5)
   - Starscream (3.1.1)
   - SwiftLinkPreview (3.1.0)
   - SwiftyJSON (5.0.1)
@@ -42,7 +42,7 @@ SPEC CHECKSUMS:
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   RNCryptor: a369134686cd2ad391323cc856b62e591193ba79
-  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
+  SDWebImage: 0905f1b7760fc8ac4198cae0036600d67478751e
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SwiftLinkPreview: 3d924eeaae8d17410a827a4b37675713af1a0a8a
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
