@@ -54,7 +54,7 @@ extension WebAppHelper : WKScriptMessageHandler {
                 case "LSAT":
                     saveLSAT(dict)
                     break
-                case "GRAPH_DATA":
+                case "SAVEDATA":
                     saveGraphData(dict)
                 default:
                     break
