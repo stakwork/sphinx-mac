@@ -235,6 +235,33 @@ extension API {
         }
     }
     
+    public func saveGraphData(
+        parameters: [String : AnyObject],
+        callback: @escaping PayInvoiceCallback,
+        errorCallback: @escaping EmptyCallback
+    ) {
+
+        guard let request = getURLRequest(route: "/save_media", params: parameters as NSDictionary?, method: "POST") else {
+            errorCallback()
+            return
+        }
+        
+        sphinxRequest(request) { response in
+            switch response.result {
+            case .success(let data):
+                if let json = data as? NSDictionary {
+                    if let success = json["success"] as? Bool, let response = json["response"] as? NSDictionary, success {
+                        callback(JSON(response))
+                    } else {
+                        errorCallback()
+                    }
+                }
+            case .failure(_):
+                errorCallback()
+            }
+        }
+    }
+    
     public func setChatMessagesAsSeen(
         chatId: Int,
         callback: @escaping SuccessCallback

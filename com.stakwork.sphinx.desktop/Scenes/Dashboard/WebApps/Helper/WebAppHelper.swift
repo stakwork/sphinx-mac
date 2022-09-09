@@ -54,6 +54,8 @@ extension WebAppHelper : WKScriptMessageHandler {
                 case "LSAT":
                     saveLSAT(dict)
                     break
+                case "GRAPH_DATA":
+                    saveGraphData(dict)
                 default:
                     break
                 }
@@ -258,6 +260,67 @@ extension WebAppHelper : WKScriptMessageHandler {
             }
         }
     }
+    
+    func sendSaveGraphResponse(dict: [String: AnyObject], success: Bool) {
+        var params: [String: AnyObject] = [:]
+        setTypeApplicationAndPassword(params: &params, dict: dict)
+        params["lsat"] = dict["lsat"] as AnyObject
+        params["success"] = success as AnyObject
+        let savedBudget: Int? = getValue(withKey: "budget")
+        if let budget = savedBudget {
+            params["budget"] = budget as AnyObject
+        }
+        sendMessage(dict: params)
+    }
+    
+    func saveGraphData(_ dict: [String: AnyObject]) {
+        if let boost = dict["boost"] as? Int,
+           let date = dict["date"] as? Int,
+           let description = dict["description"] as? Int,
+           let episode_title = dict["episode_title"] as? Int,
+           let guest = dict["guest"] as? Int,
+           let image_url = dict["image_url"] as? Int,
+           let keyword = dict["keyword"] as? Int,
+           let link = dict["link"] as? Int,
+           let node_type = dict["node_type"] as? String,
+           let ref_id = dict["ref_id"] as? String,
+           let show_title = dict["show_title"] as? String,
+           let text = dict["text"] as? String,
+           let timestamp = dict["timestamp"] as? String,
+           let topics = dict["topics"] as? String,
+           let type = dict["type"] as? String,
+           let weight = dict["weight"] as? String {
+            
+            let params = ["boost": boost as AnyObject,
+                          "date": date as AnyObject,
+                          "description": description as AnyObject,
+                          "episode_title": episode_title as AnyObject,
+                          "guest": guest as AnyObject,
+                          "image_url": image_url as AnyObject,
+                          "keyword": keyword as AnyObject,
+                          "link": link as AnyObject,
+                          "node_type": node_type as AnyObject,
+                          "ref_id": ref_id as AnyObject,
+                          "show_title": show_title as AnyObject,
+                          "text": text as AnyObject,
+                          "timestamp": timestamp as AnyObject,
+                          "topics": topics as AnyObject,
+                          "type": type as AnyObject,
+                          "weight": weight as AnyObject,
+            ]
+           
+            API.sharedInstance.saveGraphData(parameters: params, callback: { graphData in
+                let newDict = dict
+                
+                
+                self.sendLsatResponse(dict: newDict, success: true)
+            }, errorCallback: {
+                self.sendLsatResponse(dict: dict, success: false)
+            })
+           
+        }
+    }
+
     
     func getParams(pubKey: String, amount: Int) -> [String: AnyObject] {
         var parameters = [String : AnyObject]()
