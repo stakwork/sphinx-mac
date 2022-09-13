@@ -31,7 +31,7 @@ extension WebAppHelper : WKScriptMessageHandler {
             guard let dict = message.body as? [String: AnyObject] else {
                 return
             }
-
+    
             if let type = dict["type"] as? String {
                 switch(type) {
                 case "AUTHORIZE":
@@ -274,14 +274,17 @@ extension WebAppHelper : WKScriptMessageHandler {
     }
     
     func saveGraphData(_ dict: [String: AnyObject]) {
-        if let type = dict["type"] as? String,
-           let metaData = dict["metaData"] as? String {
+      
+
+        if let data = dict["data"] {
+            
+            if let type = data["type"] as? String, let metaData = data["metaData"] as? AnyObject {
+                
             
             let params = ["type": type as AnyObject,
-                          "metaData": metaData as AnyObject
+                          "meta_data": metaData as AnyObject
             ]
-           
-            API.sharedInstance.saveGraphData(parameters: params, callback: { graphData in
+                            API.sharedInstance.saveGraphData(parameters: params, callback: { graphData in
                 let newDict = dict
                 
                 
@@ -290,6 +293,7 @@ extension WebAppHelper : WKScriptMessageHandler {
                 self.sendLsatResponse(dict: dict, success: false)
             })
            
+        }
         }
     }
 
