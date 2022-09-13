@@ -240,8 +240,8 @@ extension API {
         callback: @escaping PayInvoiceCallback,
         errorCallback: @escaping EmptyCallback
     ) {
-
-        guard let request = getURLRequest(route: "/save_media", params: parameters as NSDictionary?, method: "POST") else {
+        print("requesting data")
+        guard let request = getURLRequest(route: "/action_history", params: parameters as NSDictionary?, method: "POST") else {
             errorCallback()
             return
         }
