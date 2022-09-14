@@ -27,7 +27,7 @@ extension NSTextField {
         let pubKeyMatches = text.pubKeyMatches
         let mentionMatches = text.mentionMatches
         
-        if (linkMatches.count + pubKeyMatches.count) > 0 {
+        if (linkMatches.count + pubKeyMatches.count + mentionMatches.count) > 0 {
             let attributedString = NSMutableAttributedString(string: text)
             
             if let font = self.font, let color = self.textColor {
