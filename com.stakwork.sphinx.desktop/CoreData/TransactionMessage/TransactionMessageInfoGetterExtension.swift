@@ -708,4 +708,18 @@ extension TransactionMessage {
         
         return true
     }
+    
+    func containsMention() -> Bool {
+        guard let chat = self.chat else {
+            return false
+        }
+        
+        if let alias = chat.myAlias, !alias.isEmpty {
+            return self.messageContent?.lowercased().contains("@\(alias.lowercased())") == true
+        } else if let nickname = UserContact.getOwner()?.nickname, !nickname.isEmpty {
+            return self.messageContent?.lowercased().contains("@\(nickname.lowercased())") == true
+        }
+        
+        return false
+    }
 }

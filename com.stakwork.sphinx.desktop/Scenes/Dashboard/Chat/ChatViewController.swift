@@ -212,6 +212,8 @@ class ChatViewController: DashboardSplittedViewController {
             return
         }
         
+        resetHeader()
+        
         messageTextView.string = ""
         chatCollectionView.alphaValue = 0.0
         let _ = updateBottomBarHeight()
@@ -222,7 +224,6 @@ class ChatViewController: DashboardSplittedViewController {
         
         if chat == nil && contact == nil {
             childVCContainer.resetAllViews()
-            resetHeader()
             return
         }
         
@@ -437,18 +438,22 @@ class ChatViewController: DashboardSplittedViewController {
             return
         }
         
-        volumeButton.image = NSImage(named: !chat.isMuted() ? "muteOnIcon" : "muteOffIcon")
-        
-        chatViewModel.toggleVolumeOn(chat: chat, completion: { chat in
-            if let chat = chat {
-                if chat.isMuted() {
-                    self.messageBubbleHelper.showGenericMessageView(text: "chat.muted.message".localized, in: self.view, delay: 2.5)
+        if chat.isPublicGroup() {
+            childVCContainer.showNotificaionLevelViewOn(parentVC: self, with: chat, delegate: self)
+        } else {
+            volumeButton.image = NSImage(named: !chat.isMuted() ? "muteOnIcon" : "muteOffIcon")
+            
+            chatViewModel.toggleVolumeOn(chat: chat, completion: { chat in
+                if let chat = chat {
+                    if chat.isMuted() {
+                        self.messageBubbleHelper.showGenericMessageView(text: "chat.muted.message".localized, in: self.view, delay: 2.5)
+                    }
                 }
-            }
-            self.setChatInfo()
-            self.setVolumeState()
-            self.delegate?.shouldReloadChatList()
-        })
+                self.setChatInfo()
+                self.setVolumeState()
+                self.delegate?.shouldReloadChatList()
+            })
+        }
     }
     
     func exitAndDeleteGroup(completion: @escaping () -> ()) {

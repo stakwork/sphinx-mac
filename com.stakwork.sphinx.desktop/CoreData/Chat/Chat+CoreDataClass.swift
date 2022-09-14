@@ -50,6 +50,16 @@ public class Chat: NSManagedObject {
         }
     }
     
+    public enum NotificationLevel: Int {
+        case SeeAll = 0
+        case OnlyMentions = 1
+        case MuteChat = 2
+        
+        public init(fromRawValue: Int){
+            self = NotificationLevel(rawValue: fromRawValue) ?? .SeeAll
+        }
+    }
+    
     static func getChatInstance(id: Int, managedContext: NSManagedObjectContext) -> Chat {
         if let ch = Chat.getChatWith(id: id) {
             return ch
@@ -75,6 +85,7 @@ public class Chat: NSManagedObject {
             let myPhotoUrl = chat["my_photo_url"].string
             let metaData = chat["meta"].string
             let status = chat["status"].intValue
+            let notify = chat["notify"].intValue
             let date = Date.getDateFromString(dateString: chat["created_at"].stringValue) ?? Date()
             
             let contactIds = chat["contact_ids"].arrayObject as? [NSNumber] ?? []
@@ -95,6 +106,7 @@ public class Chat: NSManagedObject {
                                          escrowAmount: escrowAmount,
                                          myAlias: myAlias,
                                          myPhotoUrl: myPhotoUrl,
+                                         notify: notify,
                                          contactIds: contactIds,
                                          pendingContactIds: pendingContactIds,
                                          date: date,
@@ -120,6 +132,7 @@ public class Chat: NSManagedObject {
                              escrowAmount: Int,
                              myAlias: String?,
                              myPhotoUrl: String?,
+                             notify: Int,
                              contactIds: [NSNumber],
                              pendingContactIds: [NSNumber],
                              date: Date,
@@ -142,6 +155,7 @@ public class Chat: NSManagedObject {
         chat.createdAt = date
         chat.myAlias = myAlias
         chat.myPhotoUrl = myPhotoUrl
+        chat.notify = notify
         chat.contactIds = contactIds
         chat.pendingContactIds = pendingContactIds
         chat.subscription = chat.getContact()?.getCurrentSubscription()
@@ -173,7 +187,11 @@ public class Chat: NSManagedObject {
     }
     
     func isMuted() -> Bool {
-        return self.muted
+        return self.notify == NotificationLevel.MuteChat.rawValue
+    }
+    
+    func willNotifyOnlyMentions() -> Bool {
+        return self.notify == NotificationLevel.OnlyMentions.rawValue
     }
     
     func isStatusPending() -> Bool {

@@ -20,6 +20,7 @@ protocol ActionsDelegate: AnyObject {
     func didFailInvoiceOrPayment()
     func shouldCreateCall(mode: VideoCallHelper.CallMode)
     func shouldSendPaymentFor(paymentObject: PaymentViewModel.PaymentObject, callback: ((Bool) -> ())?)
+    func shouldReloadMuteState()
 }
 
 class ChildVCContainer: NSView, LoadableNib {
@@ -34,6 +35,7 @@ class ChildVCContainer: NSView, LoadableNib {
     @IBOutlet weak var tribeMemberPopupView: TribeMemberPopupView!
     @IBOutlet weak var childVCContainer: NSView!
     @IBOutlet weak var requestOptionContainer: NSView!
+    @IBOutlet weak var notificationLevelView: NotificationLevelView!
     
     @IBOutlet weak var containerHeight: NSLayoutConstraint!
     @IBOutlet weak var containerWidth: NSLayoutConstraint!
@@ -44,6 +46,7 @@ class ChildVCContainer: NSView, LoadableNib {
     let groupMembersSize = CGSize(width: 380, height: 620)
     let paymentTemplatesSize = CGSize(width: 560, height: 620)
     let tribeMemberPopupSize = CGSize(width: 280, height: 350)
+    let notificationLevelPopupSize = CGSize(width: 280, height: 202)
     
     var parentVC : NSViewController? = nil
     var childVC : NSViewController? = nil
@@ -86,6 +89,7 @@ class ChildVCContainer: NSView, LoadableNib {
         callOptionsContainer.isHidden = true
         childVCContainer.isHidden = true
         tribeMemberPopupView.isHidden = true
+        notificationLevelView.isHidden = true
         
         alphaValue = 0.0
         isHidden = true
@@ -103,6 +107,13 @@ class ChildVCContainer: NSView, LoadableNib {
     func prepareTribeMemberPopupSize() {
         containerWidth.constant = tribeMemberPopupSize.width
         containerHeight.constant = tribeMemberPopupSize.height
+        
+        layoutSubtreeIfNeeded()
+    }
+    
+    func prepareNotificationLevelPopupSize() {
+        containerWidth.constant = notificationLevelPopupSize.width
+        containerHeight.constant = notificationLevelPopupSize.height
         
         layoutSubtreeIfNeeded()
     }
@@ -141,6 +152,19 @@ class ChildVCContainer: NSView, LoadableNib {
         
         tribeMemberPopupView.configureFor(message: message, with: self)
         tribeMemberPopupView.isHidden = false
+        
+        showView()
+    }
+    
+    func showNotificaionLevelViewOn(parentVC: NSViewController, with chat: Chat, delegate: ActionsDelegate) {
+        prepareNotificationLevelPopupSize()
+        preparePopupOn(parentVC: parentVC, with: chat, and: message, delegate: delegate)
+        
+        notificationLevelView.configureWith(chat: chat) {
+            self.shouldDimiss()
+            self.delegate?.shouldReloadMuteState()
+        }
+        notificationLevelView.isHidden = false
         
         showView()
     }

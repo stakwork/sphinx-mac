@@ -338,8 +338,18 @@ extension SphinxSocketManager {
                 return
             }
             
-            if let chat = message.chat, chat.isMuted() {
+            guard let chat = message.chat else {
                 return
+            }
+            
+            if chat.isMuted() {
+                return
+            }
+            
+            if chat.willNotifyOnlyMentions() {
+                if !message.containsMention() {
+                    return
+                }
             }
             
             appDelegate.sendNotification(message: message)
