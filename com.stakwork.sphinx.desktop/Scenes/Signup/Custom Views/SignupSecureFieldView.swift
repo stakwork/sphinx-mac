@@ -28,12 +28,12 @@ class SignupSecureFieldView: SignupCommonSecureFieldView {
         topLabel.stringValue = label
         topLabel.alphaValue = 0.0
         textField.setPlaceHolder(color: placeHolderColor, font: NSFont(name: "Roboto-Regular", size: 14.0)!, string: placeHolder)
-        textField.color = color
+//        textField.color = color
         textField.textColor = color
         textField.delegate = self
-        textField.onFocusChange = { active in
-            super.toggleActiveState(active)
-        }
+//        textField.onFocusChange = { active in
+//            super.toggleActiveState(active)
+//        }
         textField.window?.makeFirstResponder(textField)
     }
 }
