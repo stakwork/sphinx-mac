@@ -37,7 +37,7 @@
                         <subviews>
                             <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lie-kx-qN7">
                                 <rect key="frame" x="17" y="12" width="446" height="24"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" alignment="left" id="clA-l5-UwF" customClass="NSSecureTextFieldCell">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" alignment="left" id="clA-l5-UwF">
                                     <font key="font" size="20" name="Roboto-Regular"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
