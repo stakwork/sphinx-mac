@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class CCSecureTextField: NSSecureTextField {
+class CCSecureTextField: NSTextField {
     
     var onFocusChange: (Bool) -> Void = { _ in }
     
