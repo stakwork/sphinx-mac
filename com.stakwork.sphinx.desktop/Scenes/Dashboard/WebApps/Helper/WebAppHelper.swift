@@ -56,6 +56,9 @@ extension WebAppHelper : WKScriptMessageHandler {
                     break
                 case "SAVEDATA":
                     saveGraphData(dict)
+                case "GETLSAT":
+                    getActiveLsat(dict)
+                    break
                 default:
                     break
                 }
@@ -295,6 +298,18 @@ extension WebAppHelper : WKScriptMessageHandler {
            
         }
         }
+    }
+    
+    func getActiveLsat(_ dict: [String: AnyObject]) {
+        
+                            API.sharedInstance.getActiveLsat(callback: { lsat in
+                let newDict = dict
+                self.sendLsatResponse(dict: newDict, success: true)
+            }, errorCallback: {
+                self.sendLsatResponse(dict: dict, success: false)
+            })
+           
+        
     }
 
     
