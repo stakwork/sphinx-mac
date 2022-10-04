@@ -129,6 +129,10 @@
 		473BC8922600FB320070E519 /* NewEpisodeAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473BC8942600FB320070E519 /* NewEpisodeAlertView.xib */; };
 		473BC89D260284160070E519 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473BC89C260284160070E519 /* JSON.swift */; };
 		474274A328EB7616000C3D51 /* CreateTribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474274A228EB7616000C3D51 /* CreateTribeViewController.swift */; };
+		474274A528EC7275000C3D51 /* TribeTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474274A428EC7275000C3D51 /* TribeTagsView.swift */; };
+		474274A728EC7289000C3D51 /* TribeTagsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 474274A628EC7289000C3D51 /* TribeTagsView.xib */; };
+		474274A928EC77A5000C3D51 /* TribeTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474274A828EC77A5000C3D51 /* TribeTagView.swift */; };
+		474274AB28EC77AE000C3D51 /* TribeTagView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 474274AA28EC77AE000C3D51 /* TribeTagView.xib */; };
 		4744FA5324698FEC00C5FD94 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4744FA5224698FEC00C5FD94 /* UserData.swift */; };
 		4744FA552469900800C5FD94 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4744FA542469900800C5FD94 /* UserDefaults.swift */; };
 		4744FA582469905100C5FD94 /* SignupHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4744FA572469905100C5FD94 /* SignupHelper.swift */; };
@@ -670,6 +674,10 @@
 		473BC89E260284500070E519 /* com_stakwork_sphinx_desktop 16.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "com_stakwork_sphinx_desktop 16.xcdatamodel"; sourceTree = "<group>"; };
 		473FC42C2481CE52000096C3 /* MaterialIcons-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaterialIcons-Regular.ttf"; sourceTree = "<group>"; };
 		474274A228EB7616000C3D51 /* CreateTribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTribeViewController.swift; sourceTree = "<group>"; };
+		474274A428EC7275000C3D51 /* TribeTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TribeTagsView.swift; sourceTree = "<group>"; };
+		474274A628EC7289000C3D51 /* TribeTagsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TribeTagsView.xib; sourceTree = "<group>"; };
+		474274A828EC77A5000C3D51 /* TribeTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TribeTagView.swift; sourceTree = "<group>"; };
+		474274AA28EC77AE000C3D51 /* TribeTagView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TribeTagView.xib; sourceTree = "<group>"; };
 		4744FA5224698FEC00C5FD94 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		4744FA542469900800C5FD94 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		4744FA572469905100C5FD94 /* SignupHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupHelper.swift; sourceTree = "<group>"; };
@@ -2164,6 +2172,10 @@
 				4797E86424BCD4D000D13270 /* GroupMembersView.xib */,
 				479A03EC2587ACE10093DB30 /* TribeMemberInfoView.swift */,
 				479A03F22587E73A0093DB30 /* TribeMemberInfoView.xib */,
+				474274A428EC7275000C3D51 /* TribeTagsView.swift */,
+				474274A628EC7289000C3D51 /* TribeTagsView.xib */,
+				474274A828EC77A5000C3D51 /* TribeTagView.swift */,
+				474274AA28EC77AE000C3D51 /* TribeTagView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2686,6 +2698,7 @@
 				47C1F1DF2481530000A71610 /* GroupActionMessageCollectionViewItem.xib in Resources */,
 				47C7D71127874A12006D2809 /* AuthExternalView.xib in Resources */,
 				473633E325548E4B007405F2 /* BoostButtonView.xib in Resources */,
+				474274A728EC7289000C3D51 /* TribeTagsView.xib in Resources */,
 				478ED5D325D6FD5300940132 /* NamePinView.xib in Resources */,
 				479A04042588E7F00093DB30 /* TribeLinkPreviewView.xib in Resources */,
 				4797E82B24BCC0F200D13270 /* Invite.storyboard in Resources */,
@@ -2721,6 +2734,7 @@
 				4797E88524BCD6D700D13270 /* PaymentTemplatesView.xib in Resources */,
 				474E3348247FFAC000F7F603 /* GifOverlayView.xib in Resources */,
 				4726A43A24C628DA005A66B4 /* bamboo.caf in Resources */,
+				474274AB28EC77AE000C3D51 /* TribeTagView.xib in Resources */,
 				4731BE4924859BB800BCCA9E /* PaymentReceivedCollectionViewItem.xib in Resources */,
 				4726A43F24C628DA005A66B4 /* tri-tone.caf in Resources */,
 				478ED5BE25D6FCF000940132 /* ConnectingView.xib in Resources */,
@@ -2845,6 +2859,7 @@
 				47308E2325083FCF00FFAC6F /* API+GiphyExtension.swift in Sources */,
 				470396F92537766F007F9C23 /* PodcastCommentReceivedCollectionViewItem.swift in Sources */,
 				4744FACF246AF6A400C5FD94 /* AspectFillNSImageView.swift in Sources */,
+				474274A528EC7275000C3D51 /* TribeTagsView.swift in Sources */,
 				47B550A5248BEB0E000514BF /* PaymentTemplatesView.swift in Sources */,
 				47F8824A25656CB0002A7E71 /* SSLSecurity.swift in Sources */,
 				470E0B3B247D672900177D8A /* AudioSentCollectionViewItem.swift in Sources */,
@@ -2975,6 +2990,7 @@
 				4744FAC92469DFDB00C5FD94 /* StoryboardScenes.swift in Sources */,
 				479E7DA125AF2D0D0092595B /* GroupDetailsViewController.swift in Sources */,
 				47E771372472E48700C9CFEB /* MessageBubbleView.swift in Sources */,
+				474274A928EC77A5000C3D51 /* TribeTagView.swift in Sources */,
 				4707089A24AE657700A98DCA /* MediaDownloader.swift in Sources */,
 				474E333E247FF5EA00F7F603 /* PictureBubbleView.swift in Sources */,
 				47C1D60C248EB4DD00718B28 /* GroupAllContactsDataSource.swift in Sources */,

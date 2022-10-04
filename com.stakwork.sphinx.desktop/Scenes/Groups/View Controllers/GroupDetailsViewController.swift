@@ -184,18 +184,22 @@ extension GroupDetailsViewController : MessageOptionsDelegate {
     func shouldReplyToMessage(message: TransactionMessage) {}
     func shouldBoostMessage(message: TransactionMessage) {}
     
-    func shouldPerformChatAction(action: TransactionMessage.MessageActionsItem) {
-        switch(action) {
-        case .Share:
-            goToTribeQRCode()
-            break
-        case .Delete, .Exit:
-            delegate?.shouldExitTribeOrGroup(completion: {
-                self.view.window?.close()
-            })
-            break
-        default:
-            break
+    func shouldPerformChatAction(action: Int) {
+        if let action = MessageOptionsHelper.ChatActionsItem(rawValue: action) {
+            switch(action) {
+            case .Share:
+                goToTribeQRCode()
+                break
+            case .Delete, .Exit:
+                delegate?.shouldExitTribeOrGroup(completion: {
+                    self.view.window?.close()
+                })
+                break
+            case .Edit:
+                break
+            default:
+                break
+            }
         }
     }
     

@@ -609,25 +609,25 @@ public class Chat: NSManagedObject {
         return messagesCount > 0
     }
     
-    func getActionsMenuOptions() -> [(tag: TransactionMessage.MessageActionsItem, icon: String?, iconImage: String?, label: String)] {
-        var options = [(tag: TransactionMessage.MessageActionsItem, icon: String?, iconImage: String?, label: String)]()
+    func getActionsMenuOptions() -> [(tag: Int, icon: String?, iconImage: String?, label: String)] {
+        var options = [(tag: Int, icon: String?, iconImage: String?, label: String)]()
         
         let isPublicGroup = self.isPublicGroup()
         let isMyPublicGroup = self.isMyPublicGroup()
         
         if isPublicGroup {
             if isMyPublicGroup {
-                options.append((TransactionMessage.MessageActionsItem.Share, "share", nil, "share.group".localized))
-                options.append((TransactionMessage.MessageActionsItem.Delete, "delete", nil, "delete.tribe".localized))
+                options.append((MessageOptionsHelper.ChatActionsItem.Share.rawValue, "share", nil, "share.group".localized))
+                options.append((MessageOptionsHelper.ChatActionsItem.Delete.rawValue, "delete", nil, "delete.tribe".localized))
             } else {
                 if self.removedFromGroup() {
-                    options.append((TransactionMessage.MessageActionsItem.Delete, "delete", nil, "delete.tribe".localized))
+                    options.append((MessageOptionsHelper.ChatActionsItem.Delete.rawValue, "delete", nil, "delete.tribe".localized))
                 } else {
-                    options.append((TransactionMessage.MessageActionsItem.Exit, nil, "exitTribeIcon", "exit.tribe".localized))
+                    options.append((MessageOptionsHelper.ChatActionsItem.Exit.rawValue, nil, "exitTribeIcon", "exit.tribe".localized))
                 }
             }
         } else {
-            options.append((TransactionMessage.MessageActionsItem.Exit, nil, "exitTribeIcon", "exit.group".localized))
+            options.append((MessageOptionsHelper.ChatActionsItem.Exit.rawValue, nil, "exitTribeIcon", "exit.group".localized))
         }
         
         return options
