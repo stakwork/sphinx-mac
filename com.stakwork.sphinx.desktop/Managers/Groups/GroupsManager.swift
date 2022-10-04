@@ -91,19 +91,34 @@ class GroupsManager {
         newGroupInfo.tags = getGroupTags()
     }
     
-    func setInfo(name: String? = nil,
-                 description: String? = nil,
-                 img: String? = nil,
-                 tags: [Tag]? = nil,
-                 priceToJoin: Int? = nil,
-                 pricePerMessage: Int? = nil) {
-     
+    func setInfo(
+        name: String? = nil,
+        description: String? = nil,
+        img: String? = nil,
+        tags: [Tag]? = nil,
+        priceToJoin: Int? = nil,
+        pricePerMessage: Int? = nil,
+        amountToStake: Int? = nil,
+        timeToStake: Int? = nil,
+        appUrl: String? = nil,
+        feedUrl: String? = nil,
+        feedType: FeedContentType? = nil,
+        listInTribes: Bool,
+        privateTribe: Bool
+    ) {
         newGroupInfo.name = name ?? newGroupInfo.name
         newGroupInfo.description = description ?? newGroupInfo.description
         newGroupInfo.img = img ?? newGroupInfo.img
         newGroupInfo.tags = tags ?? newGroupInfo.tags
         newGroupInfo.priceToJoin = priceToJoin ?? newGroupInfo.priceToJoin
         newGroupInfo.pricePerMessage = pricePerMessage ?? newGroupInfo.pricePerMessage
+        newGroupInfo.amountToStake = amountToStake ?? newGroupInfo.amountToStake
+        newGroupInfo.timeToStake = timeToStake ?? newGroupInfo.timeToStake
+        newGroupInfo.appUrl = appUrl ?? newGroupInfo.appUrl
+        newGroupInfo.feedUrl = appUrl ?? newGroupInfo.feedUrl
+        newGroupInfo.feedContentType = feedType ?? newGroupInfo.feedContentType
+        newGroupInfo.unlisted = !listInTribes
+        newGroupInfo.privateTribe = privateTribe
     }
     
     func isGroupInfoValid() -> Bool {
@@ -129,6 +144,7 @@ class GroupsManager {
         var deleted : Bool = false
         var appUrl : String? = nil
         var feedUrl : String? = nil
+        var feedContentType : FeedContentType? = nil
         var ownerRouteHint : String? = nil
         var bots : [Bot] = []
     }
@@ -191,8 +207,9 @@ class GroupsManager {
         let techTag = Tag(image: "techTagIcon", description: "Tech")
         let altcoinsTag = Tag(image: "altcoinsTagIcon", description: "Altcoins")
         let musicTag = Tag(image: "musicTagIcon", description: "Music")
+        let podcastTag = Tag(image: "podcastTagIcon", description: "Podcast")
         
-        return [bitcoingTag, lightningTag, sphinxTag, cryptoTag, techTag, altcoinsTag, musicTag]
+        return [bitcoingTag, lightningTag, sphinxTag, cryptoTag, techTag, altcoinsTag, musicTag, podcastTag]
     }
     
     func getGroupInfo(query: String) -> TribeInfo? {
@@ -250,7 +267,14 @@ class GroupsManager {
         
         parameters["tags"] = tagsParams as AnyObject
         parameters["is_tribe"] = true as AnyObject
-        parameters["is_listed"] = true as AnyObject
+        parameters["unlisted"] = newGroupInfo.unlisted as AnyObject
+        parameters["private"] = newGroupInfo.privateTribe as AnyObject
+        parameters["app_url"] = newGroupInfo.appUrl as AnyObject
+        parameters["feed_url"] = newGroupInfo.feedUrl as AnyObject
+        
+        if let feedContentType = newGroupInfo.feedContentType {
+            parameters["feed_type"] = feedContentType.id as AnyObject
+        }
         
         return parameters
     }
@@ -350,14 +374,14 @@ class GroupsManager {
     }
     
     func calculateBotPrice(chat: Chat?, text: String) -> (Int, String?) {
-        guard let tribesInfo = chat?.tribesInfo, text.starts(with: "/") else {
+        guard let tribeInfo = chat?.tribeInfo, text.starts(with: "/") else {
             return (0, nil)
         }
         
         var price = 0
         var failureMessage: String? = nil
     
-        for b in tribesInfo.bots {
+        for b in tribeInfo.bots {
             if !text.starts(with: b.prefix) { continue }
             if b.price > 0 {
                 price = b.price
@@ -429,5 +453,54 @@ class GroupsManager {
         }, errorCallback: {
             completion()
         })
+    }
+}
+
+public enum FeedType: Int16 {
+    case Podcast
+    case Video
+    case Newsletter
+}
+
+public struct FeedContentType {
+    
+    let id: Int16
+    var description: String
+    
+    static var podcast: Self = .init(
+        id: FeedType.Podcast.rawValue,
+        description: "Podcast"
+    )
+    static var video: Self = .init(
+        id: FeedType.Video.rawValue,
+        description: "Video"
+    )
+    static var newsletter: Self = .init(
+        id: FeedType.Newsletter.rawValue,
+        description: "Newsletter"
+    )
+    
+    static var allCases: [Self] {
+        [
+            .podcast,
+            .video,
+            .newsletter,
+        ]
+    }
+    
+    static var defaultValue: Self {
+        .podcast
+    }
+    
+    var isPodcast: Bool {
+        return self.id == FeedType.Podcast.rawValue
+    }
+    
+    var isVideo: Bool {
+        return self.id == FeedType.Video.rawValue
+    }
+    
+    var isNewsletter: Bool {
+        return self.id == FeedType.Newsletter.rawValue
     }
 }

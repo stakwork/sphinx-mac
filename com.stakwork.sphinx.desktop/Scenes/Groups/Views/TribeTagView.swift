@@ -8,8 +8,14 @@
 
 import Cocoa
 
+protocol TribeTagViewDelegate: AnyObject {
+    func didTapOnTag(tag: Int, selected: Bool)
+}
+
 @IBDesignable
 class TribeTagView: NSView, LoadableNib {
+    
+    weak var delegate: TribeTagViewDelegate?
     
     @IBOutlet var contentView: NSView!
     @IBOutlet weak var tagBox: NSBox!
@@ -30,7 +36,7 @@ class TribeTagView: NSView, LoadableNib {
         }
     }
     
-    @IBInspectable var tagIdentifier: String = ""
+    @IBInspectable var tagIdentifier: Int = 0
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
@@ -43,9 +49,14 @@ class TribeTagView: NSView, LoadableNib {
         loadViewFromNib()
     }
     
+    func configure(selectedValue: Bool) {
+        tagBox.fillColor = selectedValue ? NSColor.Sphinx.ReceivedMsgBG : NSColor.Sphinx.Body
+    }
+    
     @IBAction func tagButtonClicked(_ sender: Any) {
         selected = !selected
+        configure(selectedValue: selected)
         
-        tagBox.fillColor = selected ? NSColor.Sphinx.ReceivedMsgBG : NSColor.Sphinx.Body
+        delegate?.didTapOnTag(tag: self.tagIdentifier, selected: selected)
     }
 }

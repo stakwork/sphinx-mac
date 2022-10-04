@@ -10,7 +10,10 @@ import Cocoa
 
 class TribeTagsView: NSView, LoadableNib {
     
+    weak var delegate: TribeTagViewDelegate?
+    
     @IBOutlet var contentView: NSView!
+    @IBOutlet weak var tagsContainerView: NSView!
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
@@ -19,6 +22,26 @@ class TribeTagsView: NSView, LoadableNib {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         loadViewFromNib()
+    }
+    
+    func configureWith(tags: [GroupsManager.Tag]) {
+        for tagView in tagsContainerView.subviews {
+            if let tagView = tagView as? TribeTagView {
+                let tag = tags[tagView.tagIdentifier]
+                
+                tagView.configure(selectedValue: tag.selected)
+            }
+        }
+    }
+    
+    func setDelegate(delegate: TribeTagViewDelegate?) {
+        self.delegate = delegate
+        
+        for tagView in tagsContainerView.subviews {
+            if let tagView = tagView as? TribeTagView {
+                tagView.delegate = delegate
+            }
+        }
     }
     
     override func mouseDown(with event: NSEvent) {

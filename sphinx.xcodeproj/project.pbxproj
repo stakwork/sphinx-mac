@@ -233,6 +233,7 @@
 		475723AB247ED3AC001ADC7E /* AudioPlayerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475723AA247ED3AC001ADC7E /* AudioPlayerHelper.swift */; };
 		475723AD247ED3B7001ADC7E /* AudioRecorderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475723AC247ED3B7001ADC7E /* AudioRecorderHelper.swift */; };
 		475723AF247ED3C0001ADC7E /* CustomAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475723AE247ED3C0001ADC7E /* CustomAudioPlayer.swift */; };
+		4758189E28ECA956006F32A2 /* CreateTribeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4758189D28ECA956006F32A2 /* CreateTribeViewModel.swift */; };
 		475F0BA224F7D97D0032EDC4 /* NewContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475F0BA124F7D97D0032EDC4 /* NewContactViewController.swift */; };
 		475F0BA324F7EBCD0032EDC4 /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 475F0BA524F7EBCD0032EDC4 /* Contacts.storyboard */; };
 		4767AE942509BA8C00C82E5B /* GiphySearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4767AE962509BA8C00C82E5B /* GiphySearchView.xib */; };
@@ -784,6 +785,7 @@
 		475723AA247ED3AC001ADC7E /* AudioPlayerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerHelper.swift; sourceTree = "<group>"; };
 		475723AC247ED3B7001ADC7E /* AudioRecorderHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderHelper.swift; sourceTree = "<group>"; };
 		475723AE247ED3C0001ADC7E /* CustomAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAudioPlayer.swift; sourceTree = "<group>"; };
+		4758189D28ECA956006F32A2 /* CreateTribeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTribeViewModel.swift; sourceTree = "<group>"; };
 		475F0BA124F7D97D0032EDC4 /* NewContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactViewController.swift; sourceTree = "<group>"; };
 		475F0BA424F7EBCD0032EDC4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Contacts.storyboard; sourceTree = "<group>"; };
 		475F0BA724F7EBD20032EDC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Contacts.strings; sourceTree = "<group>"; };
@@ -1743,6 +1745,14 @@
 			path = "Video Call";
 			sourceTree = "<group>";
 		};
+		4758189C28ECA938006F32A2 /* CreateTribeViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4758189D28ECA956006F32A2 /* CreateTribeViewModel.swift */,
+			);
+			path = CreateTribeViewModel;
+			sourceTree = "<group>";
+		};
 		475F0B9D24F7D9330032EDC4 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
@@ -2156,6 +2166,7 @@
 		47C1D5F3248EA6C800718B28 /* Groups */ = {
 			isa = PBXGroup;
 			children = (
+				4758189C28ECA938006F32A2 /* CreateTribeViewModel */,
 				4797E82624BCC0DA00D13270 /* Groups.storyboard */,
 				47C1D60A248EB4CB00718B28 /* Data Sources */,
 				47C1D5FD248EAB9E00718B28 /* Collection View Items */,
@@ -3144,6 +3155,7 @@
 				4726A41124C0D165005A66B4 /* HealthCheckView.swift in Sources */,
 				47E7713B2472E76500C9CFEB /* NSBezierPath.swift in Sources */,
 				473633F02555DCEE007405F2 /* PodcastSatsView.swift in Sources */,
+				4758189E28ECA956006F32A2 /* CreateTribeViewModel.swift in Sources */,
 				47F8824C25656CB0002A7E71 /* SocketParsable.swift in Sources */,
 				474567FD251507F500D66268 /* FileSentCollectionViewItem.swift in Sources */,
 				47AF0D4125508FC900C98398 /* PodcastBoostSentCollectionViewItem.swift in Sources */,

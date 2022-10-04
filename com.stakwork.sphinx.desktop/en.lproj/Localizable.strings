@@ -100,6 +100,7 @@
 "confirm.exit.tribe" = "Are you sure you want to exit tribe?";
 "share.group" = "Share tribe QR code";
 "delete.tribe" = "Delete Tribe";
+"edit.tribe" = "Edit Tribe";
 
 //SUBSCRIPTIONS
 "leave.lose.unsaved.changed" = "Are you sure you want to leave and lose any unsaved changes?";

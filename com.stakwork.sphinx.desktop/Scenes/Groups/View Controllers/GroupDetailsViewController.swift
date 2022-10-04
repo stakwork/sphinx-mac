@@ -196,8 +196,8 @@ extension GroupDetailsViewController : MessageOptionsDelegate {
                 })
                 break
             case .Edit:
-                break
-            default:
+                let createTribeVC = CreateTribeViewController.instantiate(chat: chat)
+                WindowsManager.sharedInstance.showCreateTribeWindow(title: "Create Tribe", vc: createTribeVC, window: NSApplication.shared.keyWindow)
                 break
             }
         }

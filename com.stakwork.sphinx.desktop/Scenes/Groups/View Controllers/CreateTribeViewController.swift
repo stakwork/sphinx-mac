@@ -11,10 +11,9 @@ import Cocoa
 class CreateTribeViewController: NSViewController {
     
     @IBOutlet weak var formScrollView: NSScrollView!
-    
     @IBOutlet weak var nameField: NSTextField!
     @IBOutlet weak var imageField: NSTextField!
-    @IBOutlet weak var tribeImageView: NSImageView!
+    @IBOutlet weak var tribeImageView: AspectFillNSImageView!
     @IBOutlet weak var imageDraggingView: DraggingDestinationView!
     @IBOutlet weak var descriptionField: NSTextField!
     @IBOutlet weak var tagsField: NSTextField!
@@ -30,20 +29,32 @@ class CreateTribeViewController: NSViewController {
     @IBOutlet weak var approveRequestSwitch: NSSwitch!
     @IBOutlet weak var saveButtonContainer: NSView!
     @IBOutlet weak var saveButtonLoadingWheel: NSProgressIndicator!
-    
+    @IBOutlet weak var saveButtonLabel: CustomButton!
     @IBOutlet weak var tribeTagsView: TribeTagsView!
     
     var imageSelected = false
     
-    static func instantiate() -> CreateTribeViewController {
+    var chat: Chat? = nil
+    
+    var viewModel: CreateTribeViewModel! = nil
+    
+    static func instantiate(
+        chat: Chat? = nil
+    ) -> CreateTribeViewController {
         let viewController = StoryboardScene.Groups.createTribeViewController.instantiate()
+        viewController.chat = chat
         return viewController
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.viewModel = CreateTribeViewModel(chat: chat, successCallback: {
+            self.view.window?.close()
+        })
+        
         configureFields()
+        completeEditView()
     }
     
     func configureFields() {
@@ -56,6 +67,76 @@ class CreateTribeViewController: NSViewController {
         pricePerMessageField.formatter = numberFormatter
         amountToStakeField.formatter = numberFormatter
         timeToStakeField.formatter = numberFormatter
+        
+        nameField.delegate = self
+        descriptionField.delegate = self
+        feedUrlField.delegate = self
+        
+        tribeImageView.layer?.cornerRadius = tribeImageView.frame.size.height / 2
+        
+        tribeTagsView.setDelegate(delegate: self)
+    }
+    
+    func completeEditView() {
+        if let _ = chat, let chatTribeInfo = viewModel.tribeInfo() {
+            nameField.stringValue = chatTribeInfo.name ?? ""
+            descriptionField.stringValue = chatTribeInfo.description ?? ""
+            imageField.stringValue = chatTribeInfo.img ?? ""
+            completeUrlAndLoadImage()
+            
+            let priceToJoin = chatTribeInfo.priceToJoin ?? 0
+            priceToJoinField.stringValue = priceToJoin > 0 ? "\(priceToJoin)" : ""
+            
+            let pricePerMessage = chatTribeInfo.pricePerMessage ?? 0
+            pricePerMessageField.stringValue = pricePerMessage > 0 ? "\(pricePerMessage)" : ""
+            
+            let amountToStake = chatTribeInfo.amountToStake ?? 0
+            amountToStakeField.stringValue = amountToStake > 0 ? "\(amountToStake)" : ""
+            
+            let timeToStake = chatTribeInfo.timeToStake ?? 0
+            timeToStakeField.stringValue = timeToStake > 0 ? "\(timeToStake)" : ""
+            
+            appUrlField.stringValue = chatTribeInfo.appUrl ?? ""
+            feedUrlField.stringValue = chatTribeInfo.feedUrl ?? ""
+            
+            let feedUrl = chatTribeInfo.feedUrl ?? ""
+            let feedType = (chatTribeInfo.feedContentType ?? FeedContentType.defaultValue).description
+            feedTypeField.stringValue = (feedUrl.isEmpty) ? "" : feedType
+            
+            listSwitch.state = !chatTribeInfo.unlisted ? NSControl.StateValue.on : NSControl.StateValue.off
+            approveRequestSwitch.state = chatTribeInfo.privateTribe ? NSControl.StateValue.on : NSControl.StateValue.off
+            
+            tribeTagsView.configureWith(tags: chatTribeInfo.tags)
+            
+            completeTagsField()
+            
+            saveButtonContainer.isHidden = false
+        }
+    }
+    
+    func completeTagsField() {
+        if let chatTribeInfo = viewModel.tribeInfo() {
+            let tagsArray = chatTribeInfo.tags.filter { $0.selected }
+            let tagsStringt = tagsArray.map { $0.description }.joined(separator: ", ")
+            tagsField.stringValue = tagsStringt
+        }
+    }
+    
+    func completeUrlAndLoadImage() {
+        let imgUrl = imageField.stringValue
+        if imgUrl.isValidURL {
+            if let nsUrl = URL(string: imgUrl) {
+                MediaLoader.asyncLoadImage(imageView: tribeImageView, nsUrl: nsUrl, placeHolderImage: NSImage(named: "tribePlaceHolder"))
+            }
+        }
+    }
+    
+    func validateForm() {
+        let isNameCompleted = !nameField.stringValue.isEmpty
+        let isDescriptionCompleted = !descriptionField.stringValue.isEmpty
+        let isFeedValid = (feedUrlField.stringValue.isEmpty || !feedTypeField.stringValue.isEmpty)
+        
+        saveButtonContainer.isHidden = !isNameCompleted || !isDescriptionCompleted || !isFeedValid
     }
     
     @IBAction func tagsButtonClicked(_ sender: Any) {
@@ -63,16 +144,26 @@ class CreateTribeViewController: NSViewController {
     }
     
     @IBAction func feedTypeButtonClicked(_ sender: Any) {
-        MessageOptionsHelper.sharedInstance.showMenuForFeedContent(in: self.view, from: feedTypeField, with: self)
-    }
-    
-    @IBAction func listSwitchChanged(_ sender: Any) {
-    }
-    
-    @IBAction func approveSwitchChanged(_ sender: Any) {
+        if !feedUrlField.stringValue.isEmpty {
+            MessageOptionsHelper.sharedInstance.showMenuForFeedContent(in: self.view, from: feedTypeField, with: self)
+        }
     }
     
     @IBAction func saveButtonClicked(_ sender: Any) {
+        viewModel.setInfo(
+            name: nameField.stringValue,
+            description: descriptionField.stringValue,
+            img: imageSelected ? nil : imageField.stringValue,
+            priceToJoin: Int(priceToJoinField.stringValue),
+            pricePerMessage: Int(pricePerMessageField.stringValue),
+            amountToStake: Int(amountToStakeField.stringValue),
+            timeToStake: Int(timeToStakeField.stringValue),
+            appUrl: appUrlField.stringValue,
+            feedUrl: feedUrlField.stringValue,
+            listInTribes: listSwitch.state == NSControl.StateValue.on,
+            privateTribe: approveRequestSwitch.state == NSControl.StateValue.on
+        )
+        viewModel.saveChanges()
     }
 }
 
@@ -86,7 +177,45 @@ extension CreateTribeViewController : DraggingViewDelegate {
 
 extension CreateTribeViewController : MessageOptionsDelegate {
     func shouldSetFeedType(type: Int) {
-        
+        if let feedTypeItem = MessageOptionsHelper.FeedTypeItem(rawValue: type) {
+            switch (feedTypeItem) {
+            case .Podcast:
+                viewModel.updateFeedType(type: FeedContentType.podcast)
+                feedTypeField.stringValue = "Podcast"
+                break
+            case .Video:
+                viewModel.updateFeedType(type: FeedContentType.video)
+                feedTypeField.stringValue = "Video"
+                break
+            case .Newsletter:
+                viewModel.updateFeedType(type: FeedContentType.newsletter)
+                feedTypeField.stringValue = "Newsletter"
+                break
+            }
+        }
+    }
+    
+    func willHideMenu() {
+        validateForm()
+    }
+}
+
+extension CreateTribeViewController : TribeTagViewDelegate {
+    func didTapOnTag(tag: Int, selected: Bool) {
+        viewModel.updateTag(index: tag, selected: selected)
+        completeTagsField()
+    }
+}
+
+extension CreateTribeViewController : NSTextFieldDelegate {
+    func controlTextDidChange(_ obj: Notification) {
+        validateForm()
+    }
+    
+    func controlTextDidEndEditing(_ obj: Notification) {
+        if let textField = obj.object as? NSTextField, textField == feedUrlField {
+            feedTypeButtonClicked(textField)
+        }
     }
 }
 

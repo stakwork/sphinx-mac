@@ -18,7 +18,7 @@ public class Chat: NSManagedObject {
     public var tribeAdmin: UserContact? = nil
     
     public var ongoingMessage : String? = nil
-    var tribesInfo: GroupsManager.TribeInfo? = nil
+    var tribeInfo: GroupsManager.TribeInfo? = nil
     
     var podcastPlayer: PodcastPlayerHelper? = nil
     
@@ -442,7 +442,7 @@ public class Chat: NSManagedObject {
     func updateTribeInfo(completion: @escaping () -> ()) {
         if let host = host, let uuid = uuid, !host.isEmpty {
             API.sharedInstance.getTribeInfo(host: host, uuid: uuid, callback: { chatJson in
-                self.tribesInfo = GroupsManager.sharedInstance.getTribesInfoFrom(json: chatJson)
+                self.tribeInfo = GroupsManager.sharedInstance.getTribesInfoFrom(json: chatJson)
                 self.updateChatFromTribesInfo(chatJson: chatJson)
                 completion()
             }, errorCallback: {})
@@ -454,11 +454,11 @@ public class Chat: NSManagedObject {
             return
         }
         
-        self.escrowAmount = NSDecimalNumber(integerLiteral: self.tribesInfo?.amountToStake ?? (self.escrowAmount?.intValue ?? 0))
-        self.pricePerMessage = NSDecimalNumber(integerLiteral: self.tribesInfo?.pricePerMessage ?? (self.pricePerMessage?.intValue ?? 0))
-        self.name = (self.tribesInfo?.name?.isEmpty ?? true) ? self.name : self.tribesInfo!.name
+        self.escrowAmount = NSDecimalNumber(integerLiteral: self.tribeInfo?.amountToStake ?? (self.escrowAmount?.intValue ?? 0))
+        self.pricePerMessage = NSDecimalNumber(integerLiteral: self.tribeInfo?.pricePerMessage ?? (self.pricePerMessage?.intValue ?? 0))
+        self.name = (self.tribeInfo?.name?.isEmpty ?? true) ? self.name : self.tribeInfo!.name
         
-        let tribeImage = self.tribesInfo?.img ?? self.photoUrl
+        let tribeImage = self.tribeInfo?.img ?? self.photoUrl
         
         if self.photoUrl != tribeImage {
             self.photoUrl = tribeImage
@@ -472,7 +472,7 @@ public class Chat: NSManagedObject {
     }
     
     func checkForDeletedTribe() {
-        if let tribesInfo = self.tribesInfo, tribesInfo.deleted {
+        if let tribeInfo = self.tribeInfo, tribeInfo.deleted {
             if let lastMessage = self.getAllMessages(limit: 1).last, lastMessage.type != TransactionMessage.TransactionMessageType.groupDelete.rawValue {
                 AlertHelper.showAlert(title: "deleted.tribe.title".localized, message: "deleted.tribe.description".localized)
             }
@@ -480,14 +480,14 @@ public class Chat: NSManagedObject {
     }
     
     func getAppUrl() -> String? {
-        if let tribeInfo = self.tribesInfo, let appUrl = tribeInfo.appUrl, !appUrl.isEmpty {
+        if let tribeInfo = self.tribeInfo, let appUrl = tribeInfo.appUrl, !appUrl.isEmpty {
             return appUrl
         }
         return nil
     }
     
     func getFeedUrl() -> String? {
-        if let tribeInfo = self.tribesInfo, let feedUrl = tribeInfo.feedUrl, !feedUrl.isEmpty {
+        if let tribeInfo = self.tribeInfo, let feedUrl = tribeInfo.feedUrl, !feedUrl.isEmpty {
             return feedUrl
         }
         return nil
@@ -503,7 +503,7 @@ public class Chat: NSManagedObject {
     }
     
     func hasWebApp() -> Bool {
-        return tribesInfo?.appUrl != nil && tribesInfo?.appUrl?.isEmpty == false
+        return tribeInfo?.appUrl != nil && tribeInfo?.appUrl?.isEmpty == false
     }
     
     func syncTribeWithServer() {
@@ -618,6 +618,7 @@ public class Chat: NSManagedObject {
         if isPublicGroup {
             if isMyPublicGroup {
                 options.append((MessageOptionsHelper.ChatActionsItem.Share.rawValue, "share", nil, "share.group".localized))
+                options.append((MessageOptionsHelper.ChatActionsItem.Edit.rawValue, "edit", nil, "edit.tribe".localized))
                 options.append((MessageOptionsHelper.ChatActionsItem.Delete.rawValue, "delete", nil, "delete.tribe".localized))
             } else {
                 if self.removedFromGroup() {

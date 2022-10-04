@@ -365,7 +365,7 @@ class ChatViewController: DashboardSplittedViewController {
     }
     
     func loadPodcastFeed() {
-        guard let chat = self.chat, let feedUrl = chat.tribesInfo?.feedUrl, !feedUrl.isEmpty else {
+        guard let chat = self.chat, let feedUrl = chat.tribeInfo?.feedUrl, !feedUrl.isEmpty else {
             return
         }
         if podcastPlayerHelper == nil {

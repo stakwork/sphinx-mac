@@ -14,6 +14,7 @@ import Cocoa
     @objc optional func shouldBoostMessage(message: TransactionMessage)
     @objc optional func shouldPerformChatAction(action: Int)
     @objc optional func shouldSetFeedType(type: Int)
+    @objc optional func willHideMenu()
 }
 
 class MessageOptionsHelper {
@@ -344,6 +345,7 @@ extension MessageOptionsHelper : MessageOptionViewDelegate {
             delegate?.shouldSetFeedType?(type: feedType.rawValue)
         }
         
+        delegate?.willHideMenu?()
         hideMenu()
     }
     
