@@ -88,6 +88,7 @@ class WindowsManager {
                                      backing: .buffered,
                                      defer: false)
         
+        newWindow.title = title
         newWindow.minSize = minSize ?? size
         newWindow.isOpaque = false
         newWindow.isMovableByWindowBackground = false
@@ -172,6 +173,19 @@ class WindowsManager {
                       identifier: "invoice-window",
                       contentVC: vc,
                       shouldClose: true)
+    }
+    
+    func showCreateTribeWindow(
+        title: String,
+        vc: NSViewController,
+        window: NSWindow?
+    ) {
+        showNewWindow(with: title,
+                      size: CGSize(width: 400, height: 700),
+                      centeredIn: window,
+                      identifier: "create-tribe-window",
+                      styleMask: [.closable, .titled],
+                      contentVC: vc)
     }
     
     func showWebAppWindow(chat: Chat?, view: NSView) {

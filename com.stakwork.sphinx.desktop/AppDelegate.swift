@@ -29,6 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet weak var profileMenuItem: NSMenuItem!
     @IBOutlet weak var newContactMenuItem: NSMenuItem!
+    @IBOutlet weak var createTribeMenuItem: NSMenuItem!
     @IBOutlet weak var logoutMenuItem: NSMenuItem!
     @IBOutlet weak var removeAccountMenuItem: NSMenuItem!
     
@@ -38,6 +39,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         case NewContact = 1
         case Logout = 2
         case RemoveAccount = 3
+        case CreateTribe = 4
     }
     
     var lastClearSDMemoryDate: Date? {
@@ -121,6 +123,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             newContactMenuItem,
             logoutMenuItem,
             removeAccountMenuItem,
+            createTribeMenuItem
         ]
         .forEach { $0?.isHidden = shouldEnableItems == false }
     }
@@ -274,6 +277,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             profileButtonClicked()
         case SphinxMenuButton.NewContact.rawValue:
             newContactButtonClicked()
+        case SphinxMenuButton.CreateTribe.rawValue:
+            createTribeButtonClicked()
         case SphinxMenuButton.Logout.rawValue:
             logoutButtonClicked()
         case SphinxMenuButton.RemoveAccount.rawValue:
@@ -315,6 +320,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let profile = UserContact.getOwner(), profile.id > 0 {
             WindowsManager.sharedInstance.showProfileWindow(vc: ProfileViewController.instantiate(), window: NSApplication.shared.keyWindow)
         }
+    }
+    
+    func createTribeButtonClicked() {
+        let createTribeVC = CreateTribeViewController.instantiate()
+        WindowsManager.sharedInstance.showCreateTribeWindow(title: "Create Tribe", vc: createTribeVC, window: NSApplication.shared.keyWindow)
     }
     
     func selectItemWith(tag: Int, in menu: NSMenu) {

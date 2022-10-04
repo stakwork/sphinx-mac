@@ -128,6 +128,7 @@
 		473BC88F2600EEFF0070E519 /* NewEpisodeAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473BC88E2600EEFE0070E519 /* NewEpisodeAlertView.swift */; };
 		473BC8922600FB320070E519 /* NewEpisodeAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473BC8942600FB320070E519 /* NewEpisodeAlertView.xib */; };
 		473BC89D260284160070E519 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473BC89C260284160070E519 /* JSON.swift */; };
+		474274A328EB7616000C3D51 /* CreateTribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474274A228EB7616000C3D51 /* CreateTribeViewController.swift */; };
 		4744FA5324698FEC00C5FD94 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4744FA5224698FEC00C5FD94 /* UserData.swift */; };
 		4744FA552469900800C5FD94 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4744FA542469900800C5FD94 /* UserDefaults.swift */; };
 		4744FA582469905100C5FD94 /* SignupHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4744FA572469905100C5FD94 /* SignupHelper.swift */; };
@@ -668,6 +669,7 @@
 		473BC89C260284160070E519 /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		473BC89E260284500070E519 /* com_stakwork_sphinx_desktop 16.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "com_stakwork_sphinx_desktop 16.xcdatamodel"; sourceTree = "<group>"; };
 		473FC42C2481CE52000096C3 /* MaterialIcons-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaterialIcons-Regular.ttf"; sourceTree = "<group>"; };
+		474274A228EB7616000C3D51 /* CreateTribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTribeViewController.swift; sourceTree = "<group>"; };
 		4744FA5224698FEC00C5FD94 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		4744FA542469900800C5FD94 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		4744FA572469905100C5FD94 /* SignupHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupHelper.swift; sourceTree = "<group>"; };
@@ -2034,6 +2036,7 @@
 				47C1D5F7248EA6F600718B28 /* GroupMembersViewController.swift */,
 				479A03EA2583D2290093DB30 /* JoinTribeViewController.swift */,
 				479E7DA025AF2D0D0092595B /* GroupDetailsViewController.swift */,
+				474274A228EB7616000C3D51 /* CreateTribeViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -2884,6 +2887,7 @@
 				4731BE4B2485AC9000BCCA9E /* CommonPaidInvoiceCollectionViewItem.swift in Sources */,
 				479E7D8125AC99480092595B /* API+VersionsExtension.swift in Sources */,
 				4797520B246F3FA000D2106B /* ChatViewModel.swift in Sources */,
+				474274A328EB7616000C3D51 /* CreateTribeViewController.swift in Sources */,
 				479751BF246C552500D2106B /* NSView.swift in Sources */,
 				47B5508A24898331000514BF /* IntegerValueFormatter.swift in Sources */,
 				4731BE4024859AE700BCCA9E /* PaidInvoiceReceivedCollectionViewItem.swift in Sources */,
@@ -3765,7 +3769,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 1.0.24;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gl.sphinx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3794,7 +3798,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 1.0.24;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gl.sphinx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
