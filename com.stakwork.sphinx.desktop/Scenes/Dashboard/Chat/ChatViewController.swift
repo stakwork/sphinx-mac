@@ -100,6 +100,8 @@ class ChatViewController: DashboardSplittedViewController {
         
         chatDataSource?.setDelegates(self)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.setChatInfo), name: .shouldReloadTribeData, object: nil)
+        
         NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification, object: chatCollectionView.enclosingScrollView?.contentView, queue: OperationQueue.main) { [weak self] (n: Notification) in
             self?.chatDataSource?.scrollViewDidScroll()
         }
@@ -108,6 +110,7 @@ class ChatViewController: DashboardSplittedViewController {
     override func viewWillDisappear() {
         super.viewWillDisappear()
         
+        NotificationCenter.default.removeObserver(self, name: .shouldReloadTribeData, object: nil)
         NotificationCenter.default.removeObserver(self, name: NSView.boundsDidChangeNotification, object: nil)
         chatDataSource?.setDelegates(nil)
     }
@@ -249,7 +252,7 @@ class ChatViewController: DashboardSplittedViewController {
         checkRoute()
     }
     
-    func setChatInfo() {
+    @objc func setChatInfo() {
         avatarWidthConstraint.constant = 75
         headerView.layoutSubtreeIfNeeded()
         

@@ -38,6 +38,12 @@ class CreateTribeViewController: NSViewController {
     
     var viewModel: CreateTribeViewModel! = nil
     
+    var loading = false {
+        didSet {
+            LoadingWheelHelper.toggleLoadingWheel(loading: loading, loadingWheel: saveButtonLoadingWheel, color: NSColor.white, controls: [saveButtonLabel])
+        }
+    }
+    
     static func instantiate(
         chat: Chat? = nil
     ) -> CreateTribeViewController {
@@ -51,6 +57,8 @@ class CreateTribeViewController: NSViewController {
         
         self.viewModel = CreateTribeViewModel(chat: chat, successCallback: {
             self.view.window?.close()
+        }, errorCallback: {
+            self.loading = false
         })
         
         configureFields()
@@ -111,6 +119,8 @@ class CreateTribeViewController: NSViewController {
             completeTagsField()
             
             saveButtonContainer.isHidden = false
+            
+            nameField.becomeFirstResponder()
         }
     }
     
@@ -150,10 +160,12 @@ class CreateTribeViewController: NSViewController {
     }
     
     @IBAction func saveButtonClicked(_ sender: Any) {
+        loading = true
+        
         viewModel.setInfo(
             name: nameField.stringValue,
             description: descriptionField.stringValue,
-            img: imageSelected ? nil : imageField.stringValue,
+            img: imageField.stringValue,
             priceToJoin: Int(priceToJoinField.stringValue),
             pricePerMessage: Int(pricePerMessageField.stringValue),
             amountToStake: Int(amountToStakeField.stringValue),
@@ -163,7 +175,9 @@ class CreateTribeViewController: NSViewController {
             listInTribes: listSwitch.state == NSControl.StateValue.on,
             privateTribe: approveRequestSwitch.state == NSControl.StateValue.on
         )
-        viewModel.saveChanges()
+        
+        let image = imageSelected ? tribeImageView.image : nil
+        viewModel.saveChanges(image)
     }
 }
 

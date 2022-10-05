@@ -338,6 +338,7 @@ class GroupsManager {
         tribeInfo.deleted = json["deleted"].boolValue
         tribeInfo.appUrl = json["app_url"].string ?? tribeInfo.appUrl
         tribeInfo.feedUrl = json["feed_url"].string ?? tribeInfo.feedUrl
+        tribeInfo.feedContentType = json["feed_type"].int?.toFeedContentType ?? tribeInfo.feedContentType
         tribeInfo.ownerRouteHint = json["owner_route_hint"].string ?? tribeInfo.ownerRouteHint
         
         var tags = getGroupTags()
@@ -502,5 +503,11 @@ public struct FeedContentType {
     
     var isNewsletter: Bool {
         return self.id == FeedType.Newsletter.rawValue
+    }
+}
+
+extension Int {
+    var toFeedContentType: FeedContentType? {
+        return FeedContentType.allCases.filter { $0.id == self }.first
     }
 }

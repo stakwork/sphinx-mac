@@ -77,7 +77,19 @@ class GroupDetailsViewController: NSViewController {
         })
     }
     
-    func setGroupInfo() {
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.setGroupInfo), name: .shouldReloadTribeData, object: nil)
+    }
+    
+    override func viewWillDisappear() {
+        super.viewWillDisappear()
+        
+        NotificationCenter.default.removeObserver(self, name: .shouldReloadTribeData, object: nil)
+    }
+    
+    @objc func setGroupInfo() {
         groupPinView.configureWith(view: view, chat: chat)
         
         let placeHolderImage = NSImage(named: chat.isPublicGroup() ? "tribePlaceHolder" : "profileAvatar")?.image(withTintColor: NSColor.Sphinx.SecondaryText)

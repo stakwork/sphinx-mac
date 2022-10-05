@@ -15,15 +15,17 @@ class CreateTribeViewModel {
     let messageBubbleHelper = NewMessageBubbleHelper()
     
     var chat: Chat? = nil
-    var errorCallback: ((String) -> ())? = nil
+    var errorCallback: (() -> ())? = nil
     var successCallback: (() -> ())? = nil
     
     init(
         chat: Chat? = nil,
-        successCallback: @escaping () -> ()
+        successCallback: @escaping () -> (),
+        errorCallback: @escaping () -> ()
     ) {
         self.chat = chat
         self.successCallback = successCallback
+        self.errorCallback = errorCallback
         
         groupsManager.resetNewGroupInfo()
         
@@ -69,7 +71,7 @@ class CreateTribeViewModel {
         return chat?.id != nil
     }
     
-    func saveChanges(image: NSImage? = nil) {
+    func saveChanges(_ image: NSImage? = nil) {
         if let image = image, let imgData = image.sd_imageData(as: .JPEG, compressionQuality: 0.5) {
 
             let attachmentsManager = AttachmentsManager.sharedInstance
@@ -95,12 +97,12 @@ class CreateTribeViewModel {
     func createGroup(params: [String: AnyObject]) {
         API.sharedInstance.createGroup(params: params, callback: { chatJson in
             if let _ = Chat.insertChat(chat: chatJson) {
-                self.successCallback?()
+                self.didSuccessSavingTribe()
             } else {
-                self.messageBubbleHelper.showGenericMessageView(text: "generic.error.message".localized, delay: 3, textColor: NSColor.white, backColor: NSColor.Sphinx.BadgeRed, backAlpha: 1.0)
+                self.didFailSavingTribe()
             }
         }, errorCallback: {
-            self.messageBubbleHelper.showGenericMessageView(text: "generic.error.message".localized, delay: 3, textColor: NSColor.white, backColor: NSColor.Sphinx.BadgeRed, backAlpha: 1.0)
+            self.didFailSavingTribe()
         })
     }
     
@@ -108,13 +110,24 @@ class CreateTribeViewModel {
         API.sharedInstance.editGroup(id: id, params: params, callback: { chatJson in
             if let chat = Chat.insertChat(chat: chatJson) {
                 chat.tribeInfo = self.groupsManager.newGroupInfo
-                self.successCallback?()
+                self.didSuccessSavingTribe()
             } else {
-                self.messageBubbleHelper.showGenericMessageView(text: "generic.error.message".localized, delay: 3, textColor: NSColor.white, backColor: NSColor.Sphinx.BadgeRed, backAlpha: 1.0)
+                self.didFailSavingTribe()
             }
         }, errorCallback: {
-            self.messageBubbleHelper.showGenericMessageView(text: "generic.error.message".localized, delay: 3, textColor: NSColor.white, backColor: NSColor.Sphinx.BadgeRed, backAlpha: 1.0)
+            self.didFailSavingTribe()
         })
+    }
+    
+    func didFailSavingTribe() {
+        self.errorCallback?()
+        self.messageBubbleHelper.showGenericMessageView(text: "generic.error.message".localized, delay: 3, textColor: NSColor.white, backColor: NSColor.Sphinx.BadgeRed, backAlpha: 1.0)
+    }
+    
+    func didSuccessSavingTribe() {
+        NotificationCenter.default.post(name: .shouldReloadTribeData, object: nil)
+        NotificationCenter.default.post(name: .shouldReloadChatsList, object: nil)
+        self.successCallback?()
     }
     
 }

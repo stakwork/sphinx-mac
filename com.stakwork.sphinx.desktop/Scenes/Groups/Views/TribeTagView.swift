@@ -50,13 +50,12 @@ class TribeTagView: NSView, LoadableNib {
     }
     
     func configure(selectedValue: Bool) {
+        selected = selectedValue
         tagBox.fillColor = selectedValue ? NSColor.Sphinx.ReceivedMsgBG : NSColor.Sphinx.Body
     }
     
     @IBAction func tagButtonClicked(_ sender: Any) {
-        selected = !selected
-        configure(selectedValue: selected)
-        
+        configure(selectedValue: !selected)
         delegate?.didTapOnTag(tag: self.tagIdentifier, selected: selected)
     }
 }
