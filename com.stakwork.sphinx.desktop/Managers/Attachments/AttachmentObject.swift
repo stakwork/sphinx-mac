@@ -93,7 +93,7 @@ public struct AttachmentObject {
             case .Photo:
                 return ("image.jpg", "image/jpg")
             case .Audio:
-                return ("audio.m4a", "audio/m4a")
+                return ("audio.wav", "audio/wav")
             case .Text:
                 return ("message.txt", "sphinx/text")
             case .Gif:
