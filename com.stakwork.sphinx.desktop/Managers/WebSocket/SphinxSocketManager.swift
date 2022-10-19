@@ -346,6 +346,10 @@ extension SphinxSocketManager {
                 return
             }
             
+            if chat.isOnlyMentions() && !message.push {
+                return
+            }
+            
             if chat.willNotifyOnlyMentions() {
                 if !message.containsMention() {
                     return

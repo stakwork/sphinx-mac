@@ -190,6 +190,10 @@ public class Chat: NSManagedObject {
         return self.notify == NotificationLevel.MuteChat.rawValue
     }
     
+    public func isOnlyMentions() -> Bool {
+        return self.notify == NotificationLevel.OnlyMentions.rawValue
+    }
+    
     func willNotifyOnlyMentions() -> Bool {
         return self.notify == NotificationLevel.OnlyMentions.rawValue
     }
@@ -304,6 +308,7 @@ public class Chat: NSManagedObject {
         if NSApplication.shared.isActive || forceSeen {
             self.seen = true
             self.unseenMessagesCount = 0
+            self.unseenMentionsCount = 0
             
             let receivedUnseenMessages = self.getReceivedUnseenMessages()
             if receivedUnseenMessages.count > 0 {
@@ -352,10 +357,34 @@ public class Chat: NSManagedObject {
         return unseenMessagesCount
     }
     
+    var unseenMentionsCount: Int = 0
+    
+    func getReceivedUnseenMentionsCount() -> Int {
+        if !isOnlyMentions() {
+            return 0
+        }
+        if unseenMentionsCount == 0 {
+            calculateUnseenMentionsCount()
+        }
+        return unseenMentionsCount
+    }
+    
     func calculateUnseenMessagesCount() {
         let userId = UserData.sharedInstance.getUserId()
         let predicate = NSPredicate(format: "senderId != %d AND chat == %@ AND seen == %@ && chat.seen == %@", userId, self, NSNumber(booleanLiteral: false), NSNumber(booleanLiteral: false))
         unseenMessagesCount = CoreDataManager.sharedManager.getObjectsCountOfTypeWith(predicate: predicate, entityName: "TransactionMessage")
+    }
+    
+    func calculateUnseenMentionsCount() {
+        let userId = UserData.sharedInstance.getUserId()
+        let predicate = NSPredicate(
+            format: "senderId != %d AND chat == %@ AND seen == %@ && push == %@ && chat.seen == %@",
+            userId, self,
+            NSNumber(booleanLiteral: false),
+            NSNumber(booleanLiteral: true),
+            NSNumber(booleanLiteral: false)
+        )
+        unseenMentionsCount = CoreDataManager.sharedManager.getObjectsCountOfTypeWith(predicate: predicate, entityName: "TransactionMessage")
     }
     
     func getLastMessageToShow() -> TransactionMessage? {
