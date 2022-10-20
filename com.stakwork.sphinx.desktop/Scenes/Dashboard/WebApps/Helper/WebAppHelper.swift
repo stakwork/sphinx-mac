@@ -354,7 +354,7 @@ extension WebAppHelper : WKScriptMessageHandler {
                         }
                 self.getLsatResponse(dict: newDict, success: true)
             }, errorCallback: {
-                print("an error")
+                print("failed to retrieve and active LSAT")
                 self.getLsatResponse(dict: dict, success: false)
             })
            
