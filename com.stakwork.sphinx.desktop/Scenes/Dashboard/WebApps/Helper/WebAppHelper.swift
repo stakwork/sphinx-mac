@@ -312,7 +312,7 @@ extension WebAppHelper : WKScriptMessageHandler {
             let params = ["type": type as AnyObject,
                           "meta_data": metaData as AnyObject
             ]
-                            API.sharedInstance.saveGraphData(parameters: params, callback: { lsat in
+                            API.sharedInstance.saveGraphData(parameters: params, callback: { graphData in
                 let newDict = dict
                 
                 
