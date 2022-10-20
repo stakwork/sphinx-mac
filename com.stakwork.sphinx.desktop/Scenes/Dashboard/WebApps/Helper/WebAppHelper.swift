@@ -248,7 +248,6 @@ extension WebAppHelper : WKScriptMessageHandler {
         params["issuer"] = dict["issuer"] as AnyObject
         params["success"] = success as AnyObject
         params["status"] = dict["status"] as AnyObject
-        print(params)
         sendMessage(dict: params)
     }
     
@@ -333,10 +332,8 @@ extension WebAppHelper : WKScriptMessageHandler {
                     if let lsat = lsat["lsat"].string {
                         newDict["lsat"] = lsat as AnyObject
                     }
-                    print("success")
                 self.updateLsatResponse(dict: newDict, success: true)
             }, errorCallback: {
-                print("error")
                 self.updateLsatResponse(dict: dict, success: false)
             })
            
@@ -346,7 +343,6 @@ extension WebAppHelper : WKScriptMessageHandler {
         
             API.sharedInstance.getActiveLsat(callback: { lsat in
             var newDict = dict
-                print(lsat)
                 if let macaroon = lsat["macaroon"].string, let  identifier = lsat["identifier"].string, let preimage = lsat["preimage"].string, let paymentRequest = lsat["paymentRequest"].string, let issuer = lsat["issuer"].string, let status = lsat["status"].number {
                    
                 newDict["macaroon"] = macaroon as AnyObject
@@ -356,7 +352,6 @@ extension WebAppHelper : WKScriptMessageHandler {
                 newDict["issuer"] = issuer as AnyObject
                 newDict["status"] = status as AnyObject
                         }
-                print(newDict)
                 self.getLsatResponse(dict: newDict, success: true)
             }, errorCallback: {
                 print("an error")
