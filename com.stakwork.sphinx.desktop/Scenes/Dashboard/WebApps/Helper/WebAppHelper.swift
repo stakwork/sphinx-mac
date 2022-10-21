@@ -8,6 +8,7 @@
 
 import Foundation
 import WebKit
+import SwiftyJSON
 
 class WebAppHelper : NSObject {
     
@@ -56,6 +57,12 @@ extension WebAppHelper : WKScriptMessageHandler {
                     break
                 case "SAVEDATA":
                     saveGraphData(dict)
+                case "GETLSAT":
+                    getActiveLsat(dict)
+                    break
+                case "UPDATELSAT":
+                    updateLsat(dict)
+                    break
                 default:
                     break
                 }
@@ -231,6 +238,28 @@ extension WebAppHelper : WKScriptMessageHandler {
         sendMessage(dict: params)
     }
     
+    func getLsatResponse(dict: [String: AnyObject], success: Bool) {
+        var params: [String: AnyObject] = [:]
+        setTypeApplicationAndPassword(params: &params, dict: dict)
+        params["macaroon"] = dict["macaroon"] as AnyObject
+        params["paymentRequest"] = dict["paymentRequest"] as AnyObject
+        params["preimage"] = dict["preimage"] as AnyObject
+        params["identifier"] = dict["identifier"] as AnyObject
+        params["issuer"] = dict["issuer"] as AnyObject
+        params["success"] = success as AnyObject
+        params["status"] = dict["status"] as AnyObject
+        params["paths"] = dict["paths"] as AnyObject
+        sendMessage(dict: params)
+    }
+    
+    func updateLsatResponse(dict: [String: AnyObject], success: Bool) {
+        var params: [String: AnyObject] = [:]
+        setTypeApplicationAndPassword(params: &params, dict: dict)
+        params["lsat"] = dict["lsat"] as AnyObject
+        params["success"] = success as AnyObject
+        sendMessage(dict: params)
+    }
+    
     func saveLSAT(_ dict: [String: AnyObject]) {
 
         if let paymentRequest = dict["paymentRequest"] as? String, let macaroon = dict["macaroon"] as? String, let issuer = dict["issuer"] as? String {
@@ -295,6 +324,48 @@ extension WebAppHelper : WKScriptMessageHandler {
            
         }
         }
+    }
+    func updateLsat(_ dict: [String: AnyObject]) {
+            if let identifier = dict["identifier"] as? String, let status = dict["status"] as? String {
+            let params = ["status": status as AnyObject]
+                API.sharedInstance.updateLsat(identifier:identifier, parameters: params, callback: { lsat in
+                var newDict = dict
+                    if let lsat = lsat["lsat"].string {
+                        newDict["lsat"] = lsat as AnyObject
+                    }
+                self.updateLsatResponse(dict: newDict, success: true)
+            }, errorCallback: {
+                self.updateLsatResponse(dict: dict, success: false)
+            })
+           
+        }
+    }
+    func getActiveLsat(_ dict: [String: AnyObject]) {
+        
+            API.sharedInstance.getActiveLsat(callback: { lsat in
+            var newDict = dict
+                if let macaroon = lsat["macaroon"].string, let  identifier = lsat["identifier"].string, let preimage = lsat["preimage"].string, let paymentRequest = lsat["paymentRequest"].string, let issuer = lsat["issuer"].string, let status = lsat["status"].number{
+                   
+                newDict["macaroon"] = macaroon as AnyObject
+                newDict["identifier"] = identifier as AnyObject
+                newDict["preimage"] = preimage as AnyObject
+                newDict["paymentRequest"] = paymentRequest as AnyObject
+                newDict["issuer"] = issuer as AnyObject
+                newDict["status"] = status as AnyObject
+                    if let paths = lsat["paths"].string {
+                        newDict["paths"] = paths as AnyObject
+                    }
+                    else {
+                        newDict["paths"] = "" as AnyObject
+                    }
+                    }
+                self.getLsatResponse(dict: newDict, success: true)
+            }, errorCallback: {
+                print("failed to retrieve and active LSAT")
+                self.getLsatResponse(dict: dict, success: false)
+            })
+           
+        
     }
 
     
