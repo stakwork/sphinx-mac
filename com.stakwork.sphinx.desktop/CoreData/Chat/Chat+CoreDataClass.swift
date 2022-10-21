@@ -369,6 +369,11 @@ public class Chat: NSManagedObject {
         return unseenMentionsCount
     }
     
+    func calculateBadge() {
+        calculateUnseenMessagesCount()
+        calculateUnseenMentionsCount()
+    }
+    
     func calculateUnseenMessagesCount() {
         let userId = UserData.sharedInstance.getUserId()
         let predicate = NSPredicate(format: "senderId != %d AND chat == %@ AND seen == %@ && chat.seen == %@", userId, self, NSNumber(booleanLiteral: false), NSNumber(booleanLiteral: false))
@@ -397,7 +402,7 @@ public class Chat: NSManagedObject {
     public static func updateLastMessageForChats(_ chatIds: [Int]) {
         for id in chatIds {
             if let chat = Chat.getChatWith(id: id) {
-                chat.calculateUnseenMessagesCount()
+                chat.calculateBadge()
             }
         }
     }
@@ -405,20 +410,20 @@ public class Chat: NSManagedObject {
     public func updateLastMessage() {
         if lastMessage?.id ?? 0 <= 0 {
             lastMessage = getLastMessageToShow()
-            calculateUnseenMessagesCount()
+            calculateBadge()
         }
     }
     
     public func setLastMessage(_ message: TransactionMessage) {
         guard let lastM = lastMessage else {
             lastMessage = message
-            calculateUnseenMessagesCount()
+            calculateBadge()
             return
         }
         
         if (lastM.messageDate < message.messageDate) {
             lastMessage = message
-            calculateUnseenMessagesCount()
+            calculateBadge()
         }
     }
     
