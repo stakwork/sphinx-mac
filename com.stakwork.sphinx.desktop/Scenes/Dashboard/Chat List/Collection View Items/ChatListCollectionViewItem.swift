@@ -14,6 +14,8 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
     @IBOutlet weak var chatAvatarView: ChatAvatarView!
     @IBOutlet weak var badgeView: NSBox!
     @IBOutlet weak var badgeLabel: NSTextField!
+    @IBOutlet weak var mentionsView: NSBox!
+    @IBOutlet weak var mentionsLabel: NSTextField!
     @IBOutlet weak var nameLabel: NSTextField!
     @IBOutlet weak var messageLabel: NSTextField!
     @IBOutlet weak var dateLabel: NSTextField!
@@ -50,8 +52,17 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
         configureLastMessage(object: object)
         
         configureBadge(count: object.getConversation()?.getReceivedUnseenMessagesCount() ?? 0)
+        configureMentions(count: object.getConversation()?.getReceivedUnseenMentionsCount() ?? 0)
 
         muteImageView.isHidden = !(object.getConversation()?.isMuted() ?? false)
+        
+        if (object.getConversation()?.isMuted() ?? false) || (object.getConversation()?.isOnlyMentions() ?? false) {
+            badgeView.alphaValue = 0.2
+            badgeView.fillColor = .Sphinx.WashedOutReceivedText
+        } else {
+            badgeView.alphaValue = 1.0
+            badgeView.fillColor = .Sphinx.PrimaryBlue
+        }
 
         resetPriceLayouts()
     }
@@ -67,6 +78,13 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
         badgeView.layer?.cornerRadius = badgeView.frame.size.height / 2
         badgeView.isHidden = count <= 0
         badgeLabel.stringValue = count > 99 ? "99+" : "\(count)"
+    }
+    
+    func configureMentions(count: Int) {
+        mentionsView.wantsLayer = true
+        mentionsView.layer?.cornerRadius = mentionsView.frame.size.height / 2
+        mentionsView.isHidden = count <= 0
+        mentionsLabel.stringValue = count > 99 ? "@ 99+" : "@ \(count)"
     }
         
     func resetPriceLayouts() {
