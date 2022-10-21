@@ -27,8 +27,6 @@ extension TransactionMessage {
         case Reply
         case Save
         case Boost
-        case Share
-        case Exit
     }
     
     //Sender and Receiver info
@@ -484,41 +482,41 @@ extension TransactionMessage {
         return invoice?.getAmountString() ?? "0"
     }
     
-    func getActionsMenuOptions() -> [(tag: MessageActionsItem, icon: String?, iconImage: String?, label: String)] {
-        var options = [(tag: MessageActionsItem, icon: String?, iconImage: String?, label: String)]()
+    func getActionsMenuOptions() -> [(tag: Int, icon: String?, iconImage: String?, label: String)] {
+        var options = [(tag: Int, icon: String?, iconImage: String?, label: String)]()
         
         if let messageContent = messageContent, messageContent != "" && !isGiphy() {
             if !messageContent.isVideoCallLink && !messageContent.isEncryptedString() {
-                options.append((MessageActionsItem.Copy, "", nil, "copy.text".localized))
+                options.append((MessageActionsItem.Copy.rawValue, "", nil, "copy.text".localized))
             }
             
             if !messageContent.isVideoCallLink && messageContent.stringLinks.count > 0 {
-                options.append((MessageActionsItem.CopyLink, "link", nil, "copy.link".localized))
+                options.append((MessageActionsItem.CopyLink.rawValue, "link", nil, "copy.link".localized))
             }
             
             if messageContent.pubKeyMatches.count > 0 {
-                options.append((MessageActionsItem.CopyPubKey, "supervisor_account", nil, "copy.pub.key".localized))
+                options.append((MessageActionsItem.CopyPubKey.rawValue, "supervisor_account", nil, "copy.pub.key".localized))
             }
             
             if messageContent.isVideoCallLink {
-                options.append((MessageActionsItem.CopyCallLink, "link", nil, "copy.call.link".localized))
+                options.append((MessageActionsItem.CopyCallLink.rawValue, "link", nil, "copy.call.link".localized))
             }
         }
         
         if (isTextMessage() || isAttachment() || isBotResponse()) && !(uuid ?? "").isEmpty {
-            options.append((MessageActionsItem.Reply, "", nil, "reply".localized))
+            options.append((MessageActionsItem.Reply.rawValue, "", nil, "reply".localized))
         }
         
         if canBeDownloaded() {
-            options.append((MessageActionsItem.Save, "", nil, "save.file".localized))
+            options.append((MessageActionsItem.Save.rawValue, "", nil, "save.file".localized))
         }
         
         if (!isInvoice() || (isInvoice() && !isPaid())) && canBeDeleted() {
-            options.append((MessageActionsItem.Delete, "delete", nil, "delete.message".localized))
+            options.append((MessageActionsItem.Delete.rawValue, "delete", nil, "delete.message".localized))
         }
         
         if shouldAllowBoost() {
-            options.append((MessageActionsItem.Boost, nil, "boostIconGreen", "Boost"))
+            options.append((MessageActionsItem.Boost.rawValue, nil, "boostIconGreen", "Boost"))
         }
         
         return options
@@ -707,5 +705,19 @@ extension TransactionMessage {
         }
         
         return true
+    }
+    
+    func containsMention() -> Bool {
+        guard let chat = self.chat else {
+            return false
+        }
+        
+        if let alias = chat.myAlias, !alias.isEmpty {
+            return self.messageContent?.lowercased().contains("@\(alias.lowercased())") == true
+        } else if let nickname = UserContact.getOwner()?.nickname, !nickname.isEmpty {
+            return self.messageContent?.lowercased().contains("@\(nickname.lowercased())") == true
+        }
+        
+        return false
     }
 }

@@ -217,4 +217,9 @@ extension ChatViewController : ActionsDelegate {
             callback?(success)
         })
     }
+    
+    func shouldReloadMuteState() {
+        setVolumeState()
+        NotificationCenter.default.post(name: .shouldReloadChatsList, object: nil)
+    }
 }

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="TribeTagsView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="c22-O7-iKe" id="r3s-Jm-i9I"/>
+                <outlet property="tagsContainerView" destination="roT-cp-kJE" id="yEk-tI-CVT"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="700"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" borderType="none" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="Zz9-1V-feD">
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="700"/>
+                    <view key="contentView" id="QZ7-zj-736">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="700"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <box boxType="custom" borderType="none" cornerRadius="10" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="OBM-HO-EN7">
+                                <rect key="frame" x="50" y="145" width="300" height="410"/>
+                                <view key="contentView" id="roT-cp-kJE">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="410"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="s0O-9j-Oxz" customClass="TribeTagView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="355" width="300" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="6w4-bk-yZQ"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Bitcoin"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagNameString" value="Bitcoin"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagImageName" value="bitcoinTagIcon"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="tagIdentifier">
+                                                    <integer key="value" value="0"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="87o-aE-YaV" customClass="TribeTagView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="305" width="300" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="ZY8-aa-ouO"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Bitcoin"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagNameString" value="Lightning"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagImageName" value="lightningTagIcon"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="tagIdentifier">
+                                                    <integer key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="VKo-zt-i64" customClass="TribeTagView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="255" width="300" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="hf5-Kc-bKV"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Bitcoin"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagNameString" value="Sphinx"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagImageName" value="sphinxTagIcon"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="tagIdentifier">
+                                                    <integer key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="LM7-QF-77H" customClass="TribeTagView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="205" width="300" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="Kd4-TL-UQJ"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Bitcoin"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagNameString" value="Crypto"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagImageName" value="cryptoTagIcon"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="tagIdentifier">
+                                                    <integer key="value" value="3"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="jbS-iO-2fw" customClass="TribeTagView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="155" width="300" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="6d5-1H-J2c"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Bitcoin"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagNameString" value="Tech"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagImageName" value="techTagIcon"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="tagIdentifier">
+                                                    <integer key="value" value="4"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="DJ3-zG-mJ4" customClass="TribeTagView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="105" width="300" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="rAl-AX-ujX"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Bitcoin"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagNameString" value="Altcoins"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagImageName" value="altcoinsTagIcon"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="tagIdentifier">
+                                                    <integer key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="gT0-rd-sZi" customClass="TribeTagView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="55" width="300" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="zRE-dB-ejL"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Bitcoin"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagNameString" value="Music"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagImageName" value="musicTagIcon"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="tagIdentifier">
+                                                    <integer key="value" value="6"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="psF-LB-LeP" customClass="TribeTagView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="5" width="300" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="hd6-OI-z4I"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Bitcoin"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagNameString" value="Podcast"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagImageName" value="podcastTagIcon"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="tagIdentifier">
+                                                    <integer key="value" value="7"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </customView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="gT0-rd-sZi" firstAttribute="top" secondItem="DJ3-zG-mJ4" secondAttribute="bottom" id="0Xy-Im-vsK"/>
+                                        <constraint firstAttribute="trailing" secondItem="VKo-zt-i64" secondAttribute="trailing" id="2CS-X3-rY1"/>
+                                        <constraint firstItem="jbS-iO-2fw" firstAttribute="leading" secondItem="roT-cp-kJE" secondAttribute="leading" id="3Vm-fu-RZw"/>
+                                        <constraint firstAttribute="trailing" secondItem="jbS-iO-2fw" secondAttribute="trailing" id="56L-Su-gna"/>
+                                        <constraint firstItem="LM7-QF-77H" firstAttribute="leading" secondItem="roT-cp-kJE" secondAttribute="leading" id="86o-rw-YhE"/>
+                                        <constraint firstAttribute="trailing" secondItem="psF-LB-LeP" secondAttribute="trailing" id="8zw-Ir-seE"/>
+                                        <constraint firstItem="jbS-iO-2fw" firstAttribute="top" secondItem="LM7-QF-77H" secondAttribute="bottom" id="DAy-1N-yAg"/>
+                                        <constraint firstItem="psF-LB-LeP" firstAttribute="leading" secondItem="roT-cp-kJE" secondAttribute="leading" id="Jv3-MS-ha4"/>
+                                        <constraint firstAttribute="trailing" secondItem="87o-aE-YaV" secondAttribute="trailing" id="NnF-Mb-ZmQ"/>
+                                        <constraint firstItem="psF-LB-LeP" firstAttribute="top" secondItem="gT0-rd-sZi" secondAttribute="bottom" id="PbY-N5-SyV"/>
+                                        <constraint firstItem="VKo-zt-i64" firstAttribute="leading" secondItem="roT-cp-kJE" secondAttribute="leading" id="QcK-ov-iZW"/>
+                                        <constraint firstItem="s0O-9j-Oxz" firstAttribute="top" secondItem="roT-cp-kJE" secondAttribute="top" constant="5" id="Tc9-Hm-kHs"/>
+                                        <constraint firstAttribute="trailing" secondItem="s0O-9j-Oxz" secondAttribute="trailing" id="UxH-iD-EFH"/>
+                                        <constraint firstItem="LM7-QF-77H" firstAttribute="top" secondItem="VKo-zt-i64" secondAttribute="bottom" id="Vdq-z8-6CJ"/>
+                                        <constraint firstItem="gT0-rd-sZi" firstAttribute="leading" secondItem="roT-cp-kJE" secondAttribute="leading" id="WdE-N0-9hl"/>
+                                        <constraint firstAttribute="trailing" secondItem="LM7-QF-77H" secondAttribute="trailing" id="fg4-Bp-9xu"/>
+                                        <constraint firstItem="87o-aE-YaV" firstAttribute="leading" secondItem="roT-cp-kJE" secondAttribute="leading" id="ngq-fT-22n"/>
+                                        <constraint firstItem="DJ3-zG-mJ4" firstAttribute="leading" secondItem="roT-cp-kJE" secondAttribute="leading" id="ocM-Dv-G4T"/>
+                                        <constraint firstAttribute="trailing" secondItem="DJ3-zG-mJ4" secondAttribute="trailing" id="r90-oO-oX3"/>
+                                        <constraint firstAttribute="trailing" secondItem="gT0-rd-sZi" secondAttribute="trailing" id="rkS-Fy-1qc"/>
+                                        <constraint firstItem="VKo-zt-i64" firstAttribute="top" secondItem="87o-aE-YaV" secondAttribute="bottom" id="sBd-h5-6ui"/>
+                                        <constraint firstItem="s0O-9j-Oxz" firstAttribute="leading" secondItem="roT-cp-kJE" secondAttribute="leading" id="u7y-DH-ltJ"/>
+                                        <constraint firstItem="87o-aE-YaV" firstAttribute="top" secondItem="s0O-9j-Oxz" secondAttribute="bottom" id="x8g-9t-XOD"/>
+                                        <constraint firstItem="DJ3-zG-mJ4" firstAttribute="top" secondItem="jbS-iO-2fw" secondAttribute="bottom" id="yX4-dk-paD"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="410" id="0Zv-PN-f7g"/>
+                                    <constraint firstAttribute="width" constant="300" id="Zgv-K7-UPi"/>
+                                </constraints>
+                                <color key="fillColor" name="Body"/>
+                            </box>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="OBM-HO-EN7" firstAttribute="centerX" secondItem="QZ7-zj-736" secondAttribute="centerX" id="AY2-Le-jJb"/>
+                            <constraint firstItem="OBM-HO-EN7" firstAttribute="centerY" secondItem="QZ7-zj-736" secondAttribute="centerY" id="fMx-uj-8Qz"/>
+                        </constraints>
+                    </view>
+                    <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Zz9-1V-feD" secondAttribute="bottom" id="GDu-XG-PJN"/>
+                <constraint firstItem="Zz9-1V-feD" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="Gs8-mW-bbo"/>
+                <constraint firstItem="Zz9-1V-feD" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="e0A-8x-sIG"/>
+                <constraint firstAttribute="trailing" secondItem="Zz9-1V-feD" secondAttribute="trailing" id="jK8-P7-T1X"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+    </objects>
+    <resources>
+        <namedColor name="Body">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

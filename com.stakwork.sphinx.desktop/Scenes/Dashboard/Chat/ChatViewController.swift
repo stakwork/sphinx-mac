@@ -100,6 +100,8 @@ class ChatViewController: DashboardSplittedViewController {
         
         chatDataSource?.setDelegates(self)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.setChatInfo), name: .shouldReloadTribeData, object: nil)
+        
         NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification, object: chatCollectionView.enclosingScrollView?.contentView, queue: OperationQueue.main) { [weak self] (n: Notification) in
             self?.chatDataSource?.scrollViewDidScroll()
         }
@@ -108,6 +110,7 @@ class ChatViewController: DashboardSplittedViewController {
     override func viewWillDisappear() {
         super.viewWillDisappear()
         
+        NotificationCenter.default.removeObserver(self, name: .shouldReloadTribeData, object: nil)
         NotificationCenter.default.removeObserver(self, name: NSView.boundsDidChangeNotification, object: nil)
         chatDataSource?.setDelegates(nil)
     }
@@ -212,6 +215,8 @@ class ChatViewController: DashboardSplittedViewController {
             return
         }
         
+        resetHeader()
+        
         messageTextView.string = ""
         chatCollectionView.alphaValue = 0.0
         let _ = updateBottomBarHeight()
@@ -222,7 +227,6 @@ class ChatViewController: DashboardSplittedViewController {
         
         if chat == nil && contact == nil {
             childVCContainer.resetAllViews()
-            resetHeader()
             return
         }
         
@@ -248,7 +252,7 @@ class ChatViewController: DashboardSplittedViewController {
         checkRoute()
     }
     
-    func setChatInfo() {
+    @objc func setChatInfo() {
         avatarWidthConstraint.constant = 75
         headerView.layoutSubtreeIfNeeded()
         
@@ -364,7 +368,7 @@ class ChatViewController: DashboardSplittedViewController {
     }
     
     func loadPodcastFeed() {
-        guard let chat = self.chat, let feedUrl = chat.tribesInfo?.feedUrl, !feedUrl.isEmpty else {
+        guard let chat = self.chat, let feedUrl = chat.tribeInfo?.feedUrl, !feedUrl.isEmpty else {
             return
         }
         if podcastPlayerHelper == nil {
@@ -437,18 +441,22 @@ class ChatViewController: DashboardSplittedViewController {
             return
         }
         
-        volumeButton.image = NSImage(named: !chat.isMuted() ? "muteOnIcon" : "muteOffIcon")
-        
-        chatViewModel.toggleVolumeOn(chat: chat, completion: { chat in
-            if let chat = chat {
-                if chat.isMuted() {
-                    self.messageBubbleHelper.showGenericMessageView(text: "chat.muted.message".localized, in: self.view, delay: 2.5)
+        if chat.isPublicGroup() {
+            childVCContainer.showNotificaionLevelViewOn(parentVC: self, with: chat, delegate: self)
+        } else {
+            volumeButton.image = NSImage(named: !chat.isMuted() ? "muteOnIcon" : "muteOffIcon")
+            
+            chatViewModel.toggleVolumeOn(chat: chat, completion: { chat in
+                if let chat = chat {
+                    if chat.isMuted() {
+                        self.messageBubbleHelper.showGenericMessageView(text: "chat.muted.message".localized, in: self.view, delay: 2.5)
+                    }
                 }
-            }
-            self.setChatInfo()
-            self.setVolumeState()
-            self.delegate?.shouldReloadChatList()
-        })
+                self.setChatInfo()
+                self.setVolumeState()
+                self.delegate?.shouldReloadChatList()
+            })
+        }
     }
     
     func exitAndDeleteGroup(completion: @escaping () -> ()) {

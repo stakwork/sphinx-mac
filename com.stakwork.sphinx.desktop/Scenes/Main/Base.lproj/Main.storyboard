@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -58,6 +58,12 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="sphinxMenuButtonClicked:" target="Voe-Tx-rLC" id="nZF-rD-nsK"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Create Tribe" tag="4" id="bio-m7-1xh">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="sphinxMenuButtonClicked:" target="Voe-Tx-rLC" id="6yY-It-0Ca"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="FhQ-Da-Fje"/>
@@ -866,6 +872,7 @@
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Sphinx" customModuleProvider="target">
                     <connections>
                         <outlet property="appearanceMenu" destination="feM-82-G70" id="uBW-9D-s4T"/>
+                        <outlet property="createTribeMenuItem" destination="bio-m7-1xh" id="jZc-6C-Ncr"/>
                         <outlet property="logoutMenuItem" destination="E2p-8a-8x1" id="x8M-Zm-PYT"/>
                         <outlet property="messagesSizeMenu" destination="16a-nc-PWW" id="2ri-ea-Q1R"/>
                         <outlet property="newContactMenuItem" destination="RHC-tx-zTM" id="Peo-GS-n8s"/>

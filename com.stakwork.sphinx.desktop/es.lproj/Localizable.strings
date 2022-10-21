@@ -98,6 +98,7 @@
 "confirm.exit.tribe" = "¿Estás seguro que deseas abadonar esta tribu?";
 "share.group" = "Compartir código QR";
 "delete.tribe" = "Eliminar Tribu";
+"edit.tribe" = "Modificar Tribu";
 
 //SUBSCRIPTIONS
 "leave.lose.unsaved.changed" = "¿Estás seguro que deseas salir? Los cambios no guardado se perderán";

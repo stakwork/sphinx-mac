@@ -77,7 +77,19 @@ class GroupDetailsViewController: NSViewController {
         })
     }
     
-    func setGroupInfo() {
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.setGroupInfo), name: .shouldReloadTribeData, object: nil)
+    }
+    
+    override func viewWillDisappear() {
+        super.viewWillDisappear()
+        
+        NotificationCenter.default.removeObserver(self, name: .shouldReloadTribeData, object: nil)
+    }
+    
+    @objc func setGroupInfo() {
         groupPinView.configureWith(view: view, chat: chat)
         
         let placeHolderImage = NSImage(named: chat.isPublicGroup() ? "tribePlaceHolder" : "profileAvatar")?.image(withTintColor: NSColor.Sphinx.SecondaryText)
@@ -184,18 +196,22 @@ extension GroupDetailsViewController : MessageOptionsDelegate {
     func shouldReplyToMessage(message: TransactionMessage) {}
     func shouldBoostMessage(message: TransactionMessage) {}
     
-    func shouldPerformChatAction(action: TransactionMessage.MessageActionsItem) {
-        switch(action) {
-        case .Share:
-            goToTribeQRCode()
-            break
-        case .Delete, .Exit:
-            delegate?.shouldExitTribeOrGroup(completion: {
-                self.view.window?.close()
-            })
-            break
-        default:
-            break
+    func shouldPerformChatAction(action: Int) {
+        if let action = MessageOptionsHelper.ChatActionsItem(rawValue: action) {
+            switch(action) {
+            case .Share:
+                goToTribeQRCode()
+                break
+            case .Delete, .Exit:
+                delegate?.shouldExitTribeOrGroup(completion: {
+                    self.view.window?.close()
+                })
+                break
+            case .Edit:
+                let createTribeVC = CreateTribeViewController.instantiate(chat: chat)
+                WindowsManager.sharedInstance.showCreateTribeWindow(title: "Create Tribe", vc: createTribeVC, window: NSApplication.shared.keyWindow)
+                break
+            }
         }
     }
     

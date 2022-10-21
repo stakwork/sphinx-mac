@@ -21,14 +21,6 @@ class PlayAudioHelper {
         NSSound.pop?.play()
     }
     
-    public static func playReceivedMessageSound(chat: Chat?) {
-        if let chat = chat, chat.isMuted() {
-            return
-        }
-        
-        AudioServicesPlaySystemSound(PlayAudioHelper.MessageReceivedSoundID)
-    }
-    
     var player : AVAudioPlayer? = nil
     
     func playSound(name: String) {
