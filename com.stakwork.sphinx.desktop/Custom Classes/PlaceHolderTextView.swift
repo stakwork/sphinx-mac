@@ -22,7 +22,7 @@ final class PlaceHolderTextView: NSTextView {
     var lineBreakEnable: Bool = false
     
     private var placeholderAttributedString: NSAttributedString? = NSAttributedString(string: "")
-    private var placeholderInsets = NSEdgeInsets(top: -2.0, left: 4.0, bottom: 0.0, right: 4.0)
+    private var placeholderInsets = NSEdgeInsets(top: 0.0, left: 4.0, bottom: 0.0, right: 4.0)
 
     override func becomeFirstResponder() -> Bool {
         self.needsDisplay = true
