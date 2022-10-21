@@ -235,6 +235,88 @@ extension API {
         }
     }
     
+    public func saveGraphData(
+        parameters: [String : AnyObject],
+        callback: @escaping PayInvoiceCallback,
+        errorCallback: @escaping EmptyCallback
+    ) {
+        print("requesting data")
+        guard let request = getURLRequest(route: "/action_history", params: parameters as NSDictionary?, method: "POST") else {
+            errorCallback()
+            return
+        }
+        
+        sphinxRequest(request) { response in
+            switch response.result {
+            case .success(let data):
+                if let json = data as? NSDictionary {
+                    if let success = json["success"] as? Bool, let response = json["response"] as? NSDictionary, success {
+                        callback(JSON(response))
+                    } else {
+                        errorCallback()
+                    }
+                }
+            case .failure(_):
+                errorCallback()
+            }
+        }
+    }
+    
+    public func getActiveLsat(
+        callback: @escaping PayInvoiceCallback,
+        errorCallback: @escaping EmptyCallback
+    ) {
+        print("requesting Lsat")
+        guard let request = getURLRequest(route: "/active_lsat", method: "GET") else {
+            errorCallback()
+            return
+        }
+        
+        sphinxRequest(request) { response in
+            switch response.result {
+            case .success(let data):
+                if let json = data as? NSDictionary {
+                    if let success = json["success"] as? Bool, let response = json["response"] as? NSDictionary, success {
+                        callback(JSON(response))
+                    } else {
+                        print()
+                        errorCallback()
+                    }
+                }
+            case .failure(_):
+                errorCallback()
+            }
+        }
+    }
+    
+    public func updateLsat(
+        identifier: String,
+        parameters: [String : AnyObject],
+        callback: @escaping PayInvoiceCallback,
+        errorCallback: @escaping EmptyCallback
+    ) {
+        print(parameters)
+        guard let request = getURLRequest(route: "/lsats/\(identifier)",params: parameters as NSDictionary?, method: "PUT") else {
+            errorCallback()
+            return
+        }
+        
+        sphinxRequest(request) { response in
+            switch response.result {
+            case .success(let data):
+                if let json = data as? NSDictionary {
+                    if let success = json["success"] as? Bool, let response = json["response"] as? String, success {
+                        callback(JSON(response))
+                    } else {
+                        errorCallback()
+                    }
+                }
+            case .failure(_):
+                errorCallback()
+            }
+        }
+    }
+    
     public func setChatMessagesAsSeen(
         chatId: Int,
         callback: @escaping SuccessCallback
