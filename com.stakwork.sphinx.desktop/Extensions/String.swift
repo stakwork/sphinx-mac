@@ -189,6 +189,19 @@ extension String {
         return NSString(string: self).removingPercentEncoding
     }
     
+    var fixedAlias: String {
+        let ACCEPTABLE_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_."
+        var fixedAlias = ""
+        
+        for ch in self.replacingOccurrences(of: " ", with: "_") {
+            if (!ACCEPTABLE_CHARACTERS.contains(ch) && !ch.isEmoji) {
+                continue
+            }
+            fixedAlias.append(ch)
+        }
+        return fixedAlias
+    }
+    
     var stringLinks: [NSTextCheckingResult] {
         if !self.contains(".") {
             return []

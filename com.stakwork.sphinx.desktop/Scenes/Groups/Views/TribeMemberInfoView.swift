@@ -40,12 +40,17 @@ class TribeMemberInfoView: NSView, LoadableNib {
         draggingDestinationView.setup()
     }
     
-    func configureWith(vc: NSViewController, alias: String?, picture: String? = nil) {
+    func configureWith(
+        vc: NSViewController,
+        alias: String?,
+        picture: String? = nil,
+        shouldFixAlias: Bool = false
+    ) {
         if let vc = vc as? TribeMemberInfoDelegate {
             self.delegate = vc
         }
         
-        aliasTextField.stringValue = alias ?? ""
+        aliasTextField.stringValue = (shouldFixAlias ? alias?.fixedAlias : alias) ?? ""
         pictureTextField.stringValue = picture ?? ""
         
         aliasTextField.delegate = self
@@ -96,7 +101,15 @@ class TribeMemberInfoView: NSView, LoadableNib {
 extension TribeMemberInfoView : NSTextFieldDelegate {
     func controlTextDidChange(_ notification: Notification) {
         if let textField = notification.object as? NSTextField, textField == aliasTextField {
-            delegate?.didChangeName?(newValue: textField.stringValue)
+            let fixedAlias = textField.stringValue.fixedAlias
+            aliasTextField.stringValue = textField.stringValue.fixedAlias
+            delegate?.didChangeName?(newValue: fixedAlias)
+        }
+    }
+    
+    func controlTextDidEndEditing(_ notification: Notification) {
+        if let textField = notification.object as? NSTextField, textField == aliasTextField {
+            aliasTextField.stringValue = textField.stringValue.fixedAlias
         }
     }
 }

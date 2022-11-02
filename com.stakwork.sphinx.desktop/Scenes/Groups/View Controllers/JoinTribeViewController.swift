@@ -104,9 +104,12 @@ class JoinTribeViewController: NSViewController {
             tribeImageView.image = NSImage(named: "tribePlaceHolder")?.image(withTintColor: NSColor.Sphinx.SecondaryText)
         }
         
-        let alias = owner?.nickname
-        let photoUrl = owner?.getPhotoUrl()
-        tribeMemberInfoView.configureWith(vc: self, alias: alias, picture: photoUrl)
+        tribeMemberInfoView.configureWith(
+            vc: self,
+            alias: owner?.nickname,
+            picture: owner?.getPhotoUrl(),
+            shouldFixAlias: true
+        )
         
         loadingGroup = false
     }
