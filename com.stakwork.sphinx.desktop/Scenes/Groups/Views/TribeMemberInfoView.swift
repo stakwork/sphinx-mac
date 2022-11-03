@@ -101,16 +101,26 @@ class TribeMemberInfoView: NSView, LoadableNib {
 extension TribeMemberInfoView : NSTextFieldDelegate {
     func controlTextDidChange(_ notification: Notification) {
         if let textField = notification.object as? NSTextField, textField == aliasTextField {
+            
             let fixedAlias = textField.stringValue.fixedAlias
+            allowedCharactersToast(fixedAlias != textField.stringValue)
+            
             aliasTextField.stringValue = textField.stringValue.fixedAlias
             delegate?.didChangeName?(newValue: fixedAlias)
         }
     }
     
-    func controlTextDidEndEditing(_ notification: Notification) {
+    func controlTextDidBeginEditing(_ notification: Notification) {
         if let textField = notification.object as? NSTextField, textField == aliasTextField {
             aliasTextField.stringValue = textField.stringValue.fixedAlias
         }
+    }
+    
+    func allowedCharactersToast(_ show: Bool) {
+        guard show else {
+            return
+        }
+        NewMessageBubbleHelper().showGenericMessageView(text: "alias.allowed-characters".localized)
     }
 }
 

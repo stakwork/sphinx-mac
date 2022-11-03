@@ -20,7 +20,7 @@ class NewMessageBubbleHelper {
     let windowSize = NSApplication.shared.keyWindow?.frame.size
     let loadingWheelContainerSize: CGFloat = 40.0
     let loadingWheelSize: CGFloat = 20.0
-    var genericMessageY: CGFloat = 90.0
+    var genericMessageY: CGFloat = 100.0
     
     var link: String? = nil
     

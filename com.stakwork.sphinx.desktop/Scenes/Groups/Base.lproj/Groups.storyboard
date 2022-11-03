@@ -818,7 +818,7 @@
                                                 <rect key="frame" x="-100" y="-100" width="400" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
-                                            <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.20380434782608692" horizontal="NO" id="uQO-dW-PVl">
+                                            <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="uQO-dW-PVl">
                                                 <rect key="frame" x="384" y="0.0" width="16" height="727"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
@@ -1388,7 +1388,7 @@
                                             </constraints>
                                         </customView>
                                         <box hidden="YES" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="25" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="sZo-gO-gYo">
-                                            <rect key="frame" x="132" y="50" width="150" height="50"/>
+                                            <rect key="frame" x="132" y="40" width="150" height="50"/>
                                             <view key="contentView" id="62k-ME-CMI">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1399,7 +1399,7 @@
                                                             <constraint firstAttribute="height" constant="50" id="a3u-ZU-BCj"/>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="vLo-Ou-aQX"/>
                                                         </constraints>
-                                                        <buttonCell key="cell" type="square" title="SAVE" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="uGH-BU-eSo" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
+                                                        <buttonCell key="cell" type="square" title="SAVE" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="uGH-BU-eSo" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" size="14" name="Montserrat-Bold"/>
                                                         </buttonCell>
@@ -1428,7 +1428,7 @@
                                             <color key="fillColor" name="PrimaryBlue"/>
                                         </box>
                                         <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fhA-TS-JQN">
-                                            <rect key="frame" x="164" y="24" width="86" height="16"/>
+                                            <rect key="frame" x="164" y="14" width="86" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Uploaded 0%" id="Td6-nF-374">
                                                 <font key="font" size="14" name="Roboto-Regular"/>
                                                 <color key="textColor" name="SecondaryText"/>
@@ -1439,7 +1439,7 @@
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="C70-zX-0vt" secondAttribute="trailing" id="20G-4n-a3y"/>
                                         <constraint firstItem="fhA-TS-JQN" firstAttribute="centerX" secondItem="sZo-gO-gYo" secondAttribute="centerX" id="5T7-Qs-Guv"/>
-                                        <constraint firstAttribute="bottom" secondItem="sZo-gO-gYo" secondAttribute="bottom" constant="50" id="98o-mu-mDk"/>
+                                        <constraint firstAttribute="bottom" secondItem="sZo-gO-gYo" secondAttribute="bottom" constant="40" id="98o-mu-mDk"/>
                                         <constraint firstItem="DFj-7T-bIo" firstAttribute="top" secondItem="BmW-hY-63S" secondAttribute="bottom" id="HK4-mP-1g4"/>
                                         <constraint firstItem="BmW-hY-63S" firstAttribute="top" secondItem="C70-zX-0vt" secondAttribute="bottom" id="QkP-Fb-pRf"/>
                                         <constraint firstItem="BmW-hY-63S" firstAttribute="leading" secondItem="PAz-66-15l" secondAttribute="leading" id="ahY-Z2-cAi"/>
