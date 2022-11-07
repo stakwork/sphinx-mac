@@ -12,35 +12,13 @@ import Alamofire
 
 extension API {    
     public func toggleChatSound(chatId: Int, muted: Bool, callback: @escaping MuteChatCallback, errorCallback: @escaping EmptyCallback) {
-        let route = muted ? "mute" : "unmute"
-        guard let request = getURLRequest(route: "/chats/\(chatId)/\(route)", method: "POST") else {
-            errorCallback()
-            return
-        }
-        
-        sphinxRequest(request) { response in
-            switch response.result {
-            case .success(let data):
-                if let json = data as? NSDictionary {
-                    if let success = json["success"] as? Bool, let response = json["response"] as? NSDictionary, success {
-                        callback(JSON(response))
-                    } else {
-                        errorCallback()
-                    }
-                }
-            case .failure(_):
-                errorCallback()
-            }
-        }
+        let level = muted ? Chat.NotificationLevel.MuteChat.rawValue : Chat.NotificationLevel.SeeAll.rawValue
 
-        
-//        let level = muted ? Chat.NotificationLevel.MuteChat.rawValue : Chat.NotificationLevel.SeeAll.rawValue
-//
-//        setNotificationLevel(chatId: chatId, level: level) { json in
-//            callback(json)
-//        } errorCallback: {
-//            errorCallback()
-//        }
+        setNotificationLevel(chatId: chatId, level: level) { json in
+            callback(json)
+        } errorCallback: {
+            errorCallback()
+        }
     }
     
     public func setNotificationLevel(chatId: Int, level: Int, callback: @escaping NotificationLevelCallback, errorCallback: @escaping EmptyCallback) {
