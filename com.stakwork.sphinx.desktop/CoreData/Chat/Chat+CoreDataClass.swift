@@ -85,8 +85,13 @@ public class Chat: NSManagedObject {
             let myPhotoUrl = chat["my_photo_url"].string
             let metaData = chat["meta"].string
             let status = chat["status"].intValue
-            let notify = chat["notify"].intValue
             let date = Date.getDateFromString(dateString: chat["created_at"].stringValue) ?? Date()
+            
+            var notify = muted ? NotificationLevel.MuteChat.rawValue : NotificationLevel.SeeAll.rawValue
+            
+            if let n = chat["notify"].int {
+                notify = n
+            }
             
             let contactIds = chat["contact_ids"].arrayObject as? [NSNumber] ?? []
             let pendingContactIds = chat["pending_contact_ids"].arrayObject as? [NSNumber] ?? []
