@@ -38,6 +38,7 @@ typealias LogsCallback = ((String) -> ())
 typealias TemplatesCallback = (([ImageTemplate]) -> ())
 typealias TransportKeyCallback = ((String) -> ())
 typealias HMACKeyCallback = ((String) -> ())
+typealias GetPersonDataCallback = ((JSON) -> ())
 
 //HUB calls
 typealias SignupWithCodeCallback = ((JSON, String, String) -> ())

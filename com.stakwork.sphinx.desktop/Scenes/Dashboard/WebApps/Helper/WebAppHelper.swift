@@ -63,6 +63,9 @@ extension WebAppHelper : WKScriptMessageHandler {
                 case "UPDATELSAT":
                     updateLsat(dict)
                     break
+                case "GETPERSONDATA":
+                    getPersonData(dict)
+                    break
                 default:
                     break
                 }
@@ -252,6 +255,16 @@ extension WebAppHelper : WKScriptMessageHandler {
         sendMessage(dict: params)
     }
     
+    func getPersonDataResponse(dict: [String: AnyObject], success: Bool) {
+        var params: [String: AnyObject] = [:]
+        setTypeApplicationAndPassword(params: &params, dict: dict)
+        params["alias"] = dict["alias"] as AnyObject
+        params["photoUrl"] = dict["photoUrl"] as AnyObject
+        params["publicKey"] = dict["publicKey"] as AnyObject
+    
+        sendMessage(dict: params)
+    }
+    
     func updateLsatResponse(dict: [String: AnyObject], success: Bool) {
         var params: [String: AnyObject] = [:]
         setTypeApplicationAndPassword(params: &params, dict: dict)
@@ -366,6 +379,21 @@ extension WebAppHelper : WKScriptMessageHandler {
             })
            
         
+    }
+    
+    func getPersonData(_ dict: [String: AnyObject]) {
+            API.sharedInstance.getPersonData(callback: { person in
+            var newDict = dict
+                if let alias = person["alias"].string, let  photoUrl = person["photoUrl"].string, let publicKey = person["publicKey"].string{
+                   
+                newDict["alias"] = alias as AnyObject
+                newDict["photoUrl"] = photoUrl as AnyObject
+                newDict["publicKey"] = publicKey as AnyObject
+                    }
+                self.getPersonDataResponse(dict: newDict, success: true)
+            }, errorCallback: {
+                self.getPersonDataResponse(dict: dict, success: false)
+            })
     }
 
     
