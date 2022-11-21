@@ -67,6 +67,7 @@ extension WebAppHelper : WKScriptMessageHandler {
                     getPersonData(dict)
                     break
                 default:
+                    defaultAction(dict)
                     break
                 }
             }
@@ -201,6 +202,14 @@ extension WebAppHelper : WKScriptMessageHandler {
         var params: [String: AnyObject] = [:]
         setTypeApplicationAndPassword(params: &params, dict: dict)
         params["success"] = success as AnyObject
+        
+        sendMessage(dict: params)
+    }
+    
+    func defaultActionResponse(dict: [String: AnyObject]) {
+        var params: [String: AnyObject] = [:]
+        setTypeApplicationAndPassword(params: &params, dict: dict)
+        params["msg"] = "Invalid Action" as AnyObject
         
         sendMessage(dict: params)
     }
@@ -358,20 +367,20 @@ extension WebAppHelper : WKScriptMessageHandler {
             API.sharedInstance.getActiveLsat(callback: { lsat in
             var newDict = dict
                 if let macaroon = lsat["macaroon"].string, let  identifier = lsat["identifier"].string, let preimage = lsat["preimage"].string, let paymentRequest = lsat["paymentRequest"].string, let issuer = lsat["issuer"].string, let status = lsat["status"].number{
-                   
-                newDict["macaroon"] = macaroon as AnyObject
-                newDict["identifier"] = identifier as AnyObject
-                newDict["preimage"] = preimage as AnyObject
-                newDict["paymentRequest"] = paymentRequest as AnyObject
-                newDict["issuer"] = issuer as AnyObject
-                newDict["status"] = status as AnyObject
-                    if let paths = lsat["paths"].string {
-                        newDict["paths"] = paths as AnyObject
-                    }
-                    else {
-                        newDict["paths"] = "" as AnyObject
-                    }
-                    }
+                    
+                    newDict["macaroon"] = macaroon as AnyObject
+                    newDict["identifier"] = identifier as AnyObject
+                    newDict["preimage"] = preimage as AnyObject
+                    newDict["paymentRequest"] = paymentRequest as AnyObject
+                    newDict["issuer"] = issuer as AnyObject
+                    newDict["status"] = status as AnyObject
+                        if let paths = lsat["paths"].string {
+                            newDict["paths"] = paths as AnyObject
+                        }
+                        else {
+                            newDict["paths"] = "" as AnyObject
+                        }
+                        }
                 self.getLsatResponse(dict: newDict, success: true)
             }, errorCallback: {
                 print("failed to retrieve and active LSAT")
@@ -384,16 +393,26 @@ extension WebAppHelper : WKScriptMessageHandler {
     func getPersonData(_ dict: [String: AnyObject]) {
             API.sharedInstance.getPersonData(callback: { person in
             var newDict = dict
-                if let alias = person["alias"].string, let  photoUrl = person["photoUrl"].string, let publicKey = person["publicKey"].string{
+                if let alias = person["alias"].string, let publicKey = person["publicKey"].string{
                    
                 newDict["alias"] = alias as AnyObject
-                newDict["photoUrl"] = photoUrl as AnyObject
                 newDict["publicKey"] = publicKey as AnyObject
+                    if let photoUrl = person["photoUrl"].string {
+                        newDict["photoUrl"] = photoUrl as AnyObject
                     }
+                    else {
+                        newDict["photoUrl"] = "" as AnyObject
+                    }
+                }
                 self.getPersonDataResponse(dict: newDict, success: true)
             }, errorCallback: {
                 self.getPersonDataResponse(dict: dict, success: false)
             })
+    }
+    
+    func defaultAction(_ dict: [String: AnyObject]){
+       
+        self.defaultActionResponse(dict: dict)
     }
 
     
