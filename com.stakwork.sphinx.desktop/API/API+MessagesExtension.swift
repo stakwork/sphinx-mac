@@ -288,6 +288,30 @@ extension API {
             }
         }
     }
+    public func getPersonData(
+        callback: @escaping GetPersonDataCallback,
+        errorCallback: @escaping EmptyCallback
+    ) {
+        guard let request = getURLRequest(route: "/person_data", method: "GET") else {
+            errorCallback()
+            return
+        }
+        
+        sphinxRequest(request) { response in
+            switch response.result {
+            case .success(let data):
+                if let json = data as? NSDictionary {
+                    if let success = json["success"] as? Bool, let response = json["response"] as? NSDictionary, success {
+                        callback(JSON(response))
+                    } else {
+                        errorCallback()
+                    }
+                }
+            case .failure(_):
+                errorCallback()
+            }
+        }
+    }
     
     public func updateLsat(
         identifier: String,

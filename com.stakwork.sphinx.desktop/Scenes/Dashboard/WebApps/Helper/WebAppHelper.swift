@@ -63,7 +63,11 @@ extension WebAppHelper : WKScriptMessageHandler {
                 case "UPDATELSAT":
                     updateLsat(dict)
                     break
+                case "GETPERSONDATA":
+                    getPersonData(dict)
+                    break
                 default:
+                    defaultAction(dict)
                     break
                 }
             }
@@ -202,6 +206,14 @@ extension WebAppHelper : WKScriptMessageHandler {
         sendMessage(dict: params)
     }
     
+    func defaultActionResponse(dict: [String: AnyObject]) {
+        var params: [String: AnyObject] = [:]
+        setTypeApplicationAndPassword(params: &params, dict: dict)
+        params["msg"] = "Invalid Action" as AnyObject
+        
+        sendMessage(dict: params)
+    }
+    
     func sendPayment(_ dict: [String: AnyObject]) {
         if let paymentRequest = dict["paymentRequest"] as? String {
             let params = ["payment_request": paymentRequest as AnyObject]
@@ -249,6 +261,16 @@ extension WebAppHelper : WKScriptMessageHandler {
         params["success"] = success as AnyObject
         params["status"] = dict["status"] as AnyObject
         params["paths"] = dict["paths"] as AnyObject
+        sendMessage(dict: params)
+    }
+    
+    func getPersonDataResponse(dict: [String: AnyObject], success: Bool) {
+        var params: [String: AnyObject] = [:]
+        setTypeApplicationAndPassword(params: &params, dict: dict)
+        params["alias"] = dict["alias"] as AnyObject
+        params["photoUrl"] = dict["photoUrl"] as AnyObject
+        params["publicKey"] = dict["publicKey"] as AnyObject
+    
         sendMessage(dict: params)
     }
     
@@ -345,20 +367,20 @@ extension WebAppHelper : WKScriptMessageHandler {
             API.sharedInstance.getActiveLsat(callback: { lsat in
             var newDict = dict
                 if let macaroon = lsat["macaroon"].string, let  identifier = lsat["identifier"].string, let preimage = lsat["preimage"].string, let paymentRequest = lsat["paymentRequest"].string, let issuer = lsat["issuer"].string, let status = lsat["status"].number{
-                   
-                newDict["macaroon"] = macaroon as AnyObject
-                newDict["identifier"] = identifier as AnyObject
-                newDict["preimage"] = preimage as AnyObject
-                newDict["paymentRequest"] = paymentRequest as AnyObject
-                newDict["issuer"] = issuer as AnyObject
-                newDict["status"] = status as AnyObject
-                    if let paths = lsat["paths"].string {
-                        newDict["paths"] = paths as AnyObject
-                    }
-                    else {
-                        newDict["paths"] = "" as AnyObject
-                    }
-                    }
+                    
+                    newDict["macaroon"] = macaroon as AnyObject
+                    newDict["identifier"] = identifier as AnyObject
+                    newDict["preimage"] = preimage as AnyObject
+                    newDict["paymentRequest"] = paymentRequest as AnyObject
+                    newDict["issuer"] = issuer as AnyObject
+                    newDict["status"] = status as AnyObject
+                        if let paths = lsat["paths"].string {
+                            newDict["paths"] = paths as AnyObject
+                        }
+                        else {
+                            newDict["paths"] = "" as AnyObject
+                        }
+                        }
                 self.getLsatResponse(dict: newDict, success: true)
             }, errorCallback: {
                 print("failed to retrieve and active LSAT")
@@ -366,6 +388,31 @@ extension WebAppHelper : WKScriptMessageHandler {
             })
            
         
+    }
+    
+    func getPersonData(_ dict: [String: AnyObject]) {
+            API.sharedInstance.getPersonData(callback: { person in
+            var newDict = dict
+                if let alias = person["alias"].string, let publicKey = person["publicKey"].string{
+                   
+                newDict["alias"] = alias as AnyObject
+                newDict["publicKey"] = publicKey as AnyObject
+                    if let photoUrl = person["photoUrl"].string {
+                        newDict["photoUrl"] = photoUrl as AnyObject
+                    }
+                    else {
+                        newDict["photoUrl"] = "" as AnyObject
+                    }
+                }
+                self.getPersonDataResponse(dict: newDict, success: true)
+            }, errorCallback: {
+                self.getPersonDataResponse(dict: dict, success: false)
+            })
+    }
+    
+    func defaultAction(_ dict: [String: AnyObject]){
+       
+        self.defaultActionResponse(dict: dict)
     }
 
     
