@@ -100,12 +100,12 @@ class AudioRecorderHelper : NSObject {
     }
     
     func getAudioData() -> Data? {
-        let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.m4a")
+        let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.wav")
         return MediaLoader.getDataFromUrl(videoURL: audioFilename)
     }
     
     func prepare() throws {
-        let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.m4a")
+        let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.wav")
 
         do {
             try FileManager.default.removeItem(at: audioFilename)
@@ -114,7 +114,7 @@ class AudioRecorderHelper : NSObject {
         }
 
         let settings = [
-            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+            AVFormatIDKey: Int(kAudioFormatLinearPCM),
             AVEncoderBitRateKey: bitRate,
             AVNumberOfChannelsKey: channels,
             AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue,

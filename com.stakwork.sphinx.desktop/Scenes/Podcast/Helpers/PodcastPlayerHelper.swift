@@ -114,7 +114,7 @@ class PodcastPlayerHelper {
     }
     
     func loadPodcastFeed(chat: Chat?, callback: @escaping (Bool, Int?) -> ()) {
-        guard let url = chat?.tribesInfo?.feedUrl else {
+        guard let url = chat?.tribeInfo?.feedUrl else {
             callback(false, chat?.id)
             return
         }

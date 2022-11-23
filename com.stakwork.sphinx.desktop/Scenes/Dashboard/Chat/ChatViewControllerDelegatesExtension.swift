@@ -411,7 +411,7 @@ extension ChatViewController : MessageOptionsDelegate {
         view.window?.makeFirstResponder(messageTextView)
     }
     
-    func shouldPerformChatAction(action: TransactionMessage.MessageActionsItem) {}
+    func shouldPerformChatAction(action: MessageOptionsHelper.ChatActionsItem) {}
 }
 
 extension ChatViewController : GroupDetailsDelegate {

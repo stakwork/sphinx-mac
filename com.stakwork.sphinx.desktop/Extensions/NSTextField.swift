@@ -25,8 +25,9 @@ extension NSTextField {
         
         let linkMatches = text.stringLinks
         let pubKeyMatches = text.pubKeyMatches
+        let mentionMatches = text.mentionMatches
         
-        if (linkMatches.count + pubKeyMatches.count) > 0 {
+        if (linkMatches.count + pubKeyMatches.count + mentionMatches.count) > 0 {
             let attributedString = NSMutableAttributedString(string: text)
             
             if let font = self.font, let color = self.textColor {
@@ -52,6 +53,10 @@ extension NSTextField {
                         
                         attributedString.addAttributes([NSAttributedString.Key.foregroundColor: linkColor, NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.init("user_pub_key") : pubkey], range: match.range)
                     }
+                }
+                
+                for match in mentionMatches {
+                    attributedString.addAttributes([NSAttributedString.Key.foregroundColor: linkColor], range: match.range)
                 }
                 
                 attributedString.endEditing()
