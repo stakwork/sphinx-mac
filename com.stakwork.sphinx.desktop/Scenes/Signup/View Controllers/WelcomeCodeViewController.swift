@@ -100,12 +100,13 @@ class WelcomeCodeViewController: NSViewController {
 extension WelcomeCodeViewController : SignupButtonViewDelegate {
     func didClickButton(tag: Int) {
         let code = codeField.getFieldValue()
+        
         if validateCode(code: code) {
             loading = true
             
             if code.isRelayQRCode || code.isInviteCode {
                 startSignup(code: code)
-            } else if code.isRestoreKeysString || code.fixedRestoreCode.isRestoreKeysString {
+            } else {
                 showPINView(encryptedKeys: code)
             }
         }
@@ -151,12 +152,16 @@ extension WelcomeCodeViewController : SignupButtonViewDelegate {
     func showPINView(encryptedKeys: String) {
         UserDefaults.Keys.defaultPIN.removeValue()
         pinView.doneCompletion = { pin in
-            if let keys = encryptedKeys.getRestoreKeys() {
+            if let keys = self.getRestoreKeys(code: encryptedKeys) {
                 self.restore(encryptedKeys: keys, with: pin)
             }
         }
         pinView.isHidden = false
         animatePinContainer(expanded: true)
+    }
+    
+    private func getRestoreKeys(code: String) -> String? {
+        return code.getRestoreKeys() ?? code.fixedRestoreCode.getRestoreKeys()
     }
     
     func animatePinContainer(expanded: Bool, completion: (() -> ())? = nil) {
