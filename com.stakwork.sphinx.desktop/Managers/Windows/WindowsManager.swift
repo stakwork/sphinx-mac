@@ -193,10 +193,10 @@ class WindowsManager {
             let appTitle = chat.name ?? ""
             let webGameVC = WebAppViewController.instantiate(chat: chat)
             
-            let screen = NSScreen.main
+            let screen = NSApplication.shared.keyWindow
             let frame : CGRect = screen?.frame ?? view.frame
 
-            let position = CGPoint(x: 0.0, y: 0.0)
+            let position = (screen?.frame.origin) ?? CGPoint(x: 0.0, y: 0.0)
             
             showNewWindow(with: appTitle,
                           size: CGSize(width: frame.width, height: frame.height),
