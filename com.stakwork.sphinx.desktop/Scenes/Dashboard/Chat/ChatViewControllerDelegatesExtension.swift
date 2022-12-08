@@ -40,9 +40,6 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
             if let lastWord = text.split(separator: " ").last,
                let firstLetter = lastWord.first,
             firstLetter == "@"{
-                print("processing mention!")
-                let mentionValue = String(lastWord).replacingOccurrences(of: "@", with: "").lowercased()
-                //print("processing mention!")
                 return String(lastWord)
             }
             return nil
@@ -50,13 +47,23 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
     
     func processMention(text:String){
             if let mention = getAtMention(text: text){
-                let mentionValue = String(mention).replacingOccurrences(of: "@", with: "").lowercased()
-                print(mentionValue)
-                //self.delegate?.didDetectPossibleMention(mentionText: mentionValue)
-                //let possibleMentions = chat?.aliases.filter({$0.lowercased().contains(mentionValue)})
-                //print("possible mentions:\(possibleMentions)")
-                //if(possibleMentions?.isEmpty == false){self.chatMentionsTableView.isHidden = false}else{self.chatMentionsTableView.isHidden = true}
-                //NotificationCenter.default.addObserver(self, selector: #selector(populateMentionAutocomplete), name:NSNotification.Name.autocompleteMention, object: nil)
+                let mentionText = String(mention).replacingOccurrences(of: "@", with: "").lowercased()
+                print(mentionText)
+                let possibleMentions = self.chat?.aliases.filter(
+                    {
+                        if(mentionText.count > $0.count){
+                            return false
+                        }
+                        let substring = $0.substring(range: NSRange(location: 0, length: mentionText.count))
+                        return (substring.lowercased() == mentionText && mentionText != "")
+                    }).sorted()
+                print(possibleMentions)
+                /*
+                if let datasource = chatMentionAutocompleteDataSource,
+                let mentions = possibleMentions{
+                    datasource.updateMentionSuggestions(suggestions: mentions)
+                }
+                */
             }
             else{
                 //NotificationCenter.default.removeObserver(self, name: NSNotification.Name.autocompleteMention, object: nil)
@@ -447,4 +454,20 @@ extension ChatViewController : GroupDetailsDelegate {
             completion()
         })
     }
+}
+
+extension ChatViewController : ChatMentionAutocompleteDelegate{
+    func processAutocomplete(text: String) {
+        print(text)
+    }
+    
+    
+}
+
+extension String {
+    func substring(range: NSRange) -> String {
+        let botIndex = self.index(self.startIndex, offsetBy: range.location)
+        let newRange = botIndex..<self.index(botIndex, offsetBy: range.length)
+        return String(self[newRange])
+   }
 }

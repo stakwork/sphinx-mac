@@ -19,7 +19,7 @@ public class Chat: NSManagedObject {
     
     public var ongoingMessage : String? = nil
     var tribeInfo: GroupsManager.TribeInfo? = nil
-    var aliases : [String]?
+    var aliases : [String] = [String]()
 
     var podcastPlayer: PodcastPlayerHelper? = nil
     

@@ -62,6 +62,9 @@ class ChatViewController: DashboardSplittedViewController {
     @IBOutlet weak var avatarWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomBarHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var mentionAutoCompleteTableView: NSTableView!
+    var chatMentionAutocompleteDataSource : ChatMentionAutocompleteDataSource? = nil
+    
     var currentMessageString = ""
     var unseenMessagesCount = 0
     
@@ -83,6 +86,7 @@ class ChatViewController: DashboardSplittedViewController {
     var podcastPlayerHelper: PodcastPlayerHelper? = nil
     var podcastPlayerVC: NewPodcastPlayerViewController? = nil
     
+    
     public enum RecordingButton: Int {
         case Confirm
         case Cancel
@@ -92,6 +96,7 @@ class ChatViewController: DashboardSplittedViewController {
         super.viewDidLoad()
         
         configureView()
+        configureMentionAutocompleteTableView()
         prepareRecordingView()
     }
     
@@ -184,6 +189,13 @@ class ChatViewController: DashboardSplittedViewController {
         messageTextView.fieldDelegate = self
         
         chatCollectionView.enclosingScrollView?.contentView.postsBoundsChangedNotifications = true
+    }
+    
+    func configureMentionAutocompleteTableView(){
+        mentionAutoCompleteTableView.isHidden = true
+        chatMentionAutocompleteDataSource = ChatMentionAutocompleteDataSource(tableView: mentionAutoCompleteTableView,delegate:self)
+        mentionAutoCompleteTableView.delegate = chatMentionAutocompleteDataSource
+        mentionAutoCompleteTableView.dataSource = chatMentionAutocompleteDataSource
     }
     
     func resetHeader() {
