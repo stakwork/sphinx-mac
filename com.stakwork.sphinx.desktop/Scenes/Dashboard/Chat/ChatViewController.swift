@@ -223,6 +223,8 @@ class ChatViewController: DashboardSplittedViewController {
         
         self.contact = contact
         self.chat = chat
+        self.chat?.loadAllAliases()
+        
         self.contactsService = contactsService
         
         if chat == nil && contact == nil {

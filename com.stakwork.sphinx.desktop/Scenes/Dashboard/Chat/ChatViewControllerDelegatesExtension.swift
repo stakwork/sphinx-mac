@@ -25,7 +25,7 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
     
     func textDidChange(_ notification: Notification) {
         chat?.setOngoingMessage(text: messageTextView.string)
-        
+        processMention(text: messageTextView.string)
         let didUpdateHeight = updateBottomBarHeight()
         if !didUpdateHeight {
             return
@@ -35,6 +35,33 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
             chatCollectionView.scrollToBottom(animated: false)
         }
     }
+    
+    func getAtMention(text:String)->String?{
+            if let lastWord = text.split(separator: " ").last,
+               let firstLetter = lastWord.first,
+            firstLetter == "@"{
+                print("processing mention!")
+                let mentionValue = String(lastWord).replacingOccurrences(of: "@", with: "").lowercased()
+                //print("processing mention!")
+                return String(lastWord)
+            }
+            return nil
+        }
+    
+    func processMention(text:String){
+            if let mention = getAtMention(text: text){
+                let mentionValue = String(mention).replacingOccurrences(of: "@", with: "").lowercased()
+                print(mentionValue)
+                //self.delegate?.didDetectPossibleMention(mentionText: mentionValue)
+                //let possibleMentions = chat?.aliases.filter({$0.lowercased().contains(mentionValue)})
+                //print("possible mentions:\(possibleMentions)")
+                //if(possibleMentions?.isEmpty == false){self.chatMentionsTableView.isHidden = false}else{self.chatMentionsTableView.isHidden = true}
+                //NotificationCenter.default.addObserver(self, selector: #selector(populateMentionAutocomplete), name:NSNotification.Name.autocompleteMention, object: nil)
+            }
+            else{
+                //NotificationCenter.default.removeObserver(self, name: NSNotification.Name.autocompleteMention, object: nil)
+            }
+        }
     
     func updateBottomBarHeight() -> Bool {
         let messageFieldContentHeight = messageTextView.contentSize.height
