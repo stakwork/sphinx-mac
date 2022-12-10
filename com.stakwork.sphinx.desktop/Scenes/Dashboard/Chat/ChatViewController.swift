@@ -62,6 +62,8 @@ class ChatViewController: DashboardSplittedViewController {
     @IBOutlet weak var avatarWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomBarHeightConstraint: NSLayoutConstraint!
     
+    
+    @IBOutlet weak var mentionAutoCompleteEnclosingScrollView: NSScrollView!
     @IBOutlet weak var mentionAutoCompleteTableView: NSTableView!
     var chatMentionAutocompleteDataSource : ChatMentionAutocompleteDataSource? = nil
     
@@ -95,14 +97,13 @@ class ChatViewController: DashboardSplittedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.mentionAutoCompleteEnclosingScrollView.isHidden = true
         configureView()
-        configureMentionAutocompleteTableView()
         prepareRecordingView()
     }
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        
         chatDataSource?.setDelegates(self)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.setChatInfo), name: .shouldReloadTribeData, object: nil)
@@ -193,9 +194,11 @@ class ChatViewController: DashboardSplittedViewController {
     
     func configureMentionAutocompleteTableView(){
         mentionAutoCompleteTableView.isHidden = true
-        chatMentionAutocompleteDataSource = ChatMentionAutocompleteDataSource(tableView: mentionAutoCompleteTableView,delegate:self)
+        chatMentionAutocompleteDataSource = ChatMentionAutocompleteDataSource(tableView: mentionAutoCompleteTableView, scrollView: mentionAutoCompleteEnclosingScrollView,delegate:self)
         mentionAutoCompleteTableView.delegate = chatMentionAutocompleteDataSource
         mentionAutoCompleteTableView.dataSource = chatMentionAutocompleteDataSource
+        mentionAutoCompleteTableView.target = self
+        chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: [])
     }
     
     func resetHeader() {

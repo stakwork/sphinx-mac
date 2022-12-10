@@ -46,6 +46,7 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
         }
     
     func processMention(text:String){
+        var suggestions : [String] = []
             if let mention = getAtMention(text: text){
                 let mentionText = String(mention).replacingOccurrences(of: "@", with: "").lowercased()
                 print(mentionText)
@@ -58,16 +59,9 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
                         return (substring.lowercased() == mentionText && mentionText != "")
                     }).sorted()
                 print(possibleMentions)
-                /*
-                if let datasource = chatMentionAutocompleteDataSource,
-                let mentions = possibleMentions{
-                    datasource.updateMentionSuggestions(suggestions: mentions)
-                }
-                */
+                suggestions = possibleMentions ?? []
             }
-            else{
-                //NotificationCenter.default.removeObserver(self, name: NSNotification.Name.autocompleteMention, object: nil)
-            }
+        chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: suggestions)
         }
     
     func updateBottomBarHeight() -> Bool {
