@@ -26,6 +26,8 @@ final class ChatListViewModel: NSObject {
                 self.forceKeychainSync()
                 completion()
             })
+        } else {
+            completion()
         }
     }
     
