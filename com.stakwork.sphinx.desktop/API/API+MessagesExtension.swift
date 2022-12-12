@@ -45,11 +45,6 @@ extension API {
         errorCallback: @escaping EmptyCallback
     ){
         
-        if !ConnectivityHelper.isConnectedToInternet {
-            networksConnectionLost()
-            return
-        }
-        
         let itemsPerPage = ChatListViewModel.kMessagesPerPage
         let offset = (page - 1) * itemsPerPage
         var route = "/msgs?offset=\(offset)&limit=\(itemsPerPage)&order=desc"

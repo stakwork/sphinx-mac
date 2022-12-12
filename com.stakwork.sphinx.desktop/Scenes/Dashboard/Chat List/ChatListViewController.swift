@@ -113,7 +113,6 @@ class ChatListViewController : DashboardSplittedViewController {
                     self.updateContactsAndReload()
                     self.finishLoading()
                 }
-            
             }
     }
     

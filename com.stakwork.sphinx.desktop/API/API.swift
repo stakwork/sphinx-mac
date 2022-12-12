@@ -387,6 +387,7 @@ class API {
         contentType: String = "application/json",
         token: String? = nil
     ) -> URLRequest? {
+        
         if !ConnectivityHelper.isConnectedToInternet {
             networksConnectionLost()
             return nil
