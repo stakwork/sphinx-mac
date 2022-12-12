@@ -404,6 +404,7 @@ class ChatHelper {
             }
             
             message.resetNextConsecutiveMessages()
+            
             if message.isUniqueOnChat() { message.resetPreviousConsecutiveMessages() }
             nextMessage?.resetPreviousConsecutiveMessages()
             
@@ -419,7 +420,7 @@ class ChatHelper {
             }
             
             if nextMessage != nil {
-                if message.failed() {
+                if message.failed() || !message.isConfirmedAsReceived() {
                     referenceMessageDate = message.date
                     message.consecutiveMessages.nextMessage = false
                     nextMessage!.consecutiveMessages.previousMessage = false
@@ -452,7 +453,7 @@ class ChatHelper {
         }
         
         if previousMessage != nil && referenceMessageDate!.getMinutesDifference(from: message.messageDate) <= 5 {
-            if previousMessage!.failed() {
+            if previousMessage!.failed() || !previousMessage!.isConfirmedAsReceived() {
                 referenceMessageDate = message.date
                 message.consecutiveMessages.previousMessage = false
                 previousMessage!.consecutiveMessages.nextMessage = false
