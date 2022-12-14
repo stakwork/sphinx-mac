@@ -19,21 +19,19 @@ fileprivate enum CellIdentifiers {
 
 class ChatMentionAutocompleteDataSource : NSObject {
     var mentionSuggestions : [String] = [String]()
-    var tableView : NSTableView!
+    var tableView : NSCollectionView!
     var scrollView: NSScrollView!
     var delegate: ChatMentionAutocompleteDelegate!
     let mentionCellHeight :CGFloat = 50.0
     
-    init(tableView:NSTableView,scrollView:NSScrollView,delegate:ChatMentionAutocompleteDelegate){
+    init(tableView:NSCollectionView,scrollView:NSScrollView,delegate:ChatMentionAutocompleteDelegate){
         super.init()
         self.tableView = tableView
         self.delegate = delegate
         
         let tableColumn = NSTableColumn()
         tableColumn.identifier = NSUserInterfaceItemIdentifier("mentionsTableColumn")
-        tableView.addTableColumn(tableColumn)
         
-        tableView.backgroundColor = .clear
         
         self.scrollView = scrollView
         //tableView.separatorColor = UIColor.Sphinx.Divider
@@ -58,7 +56,37 @@ class ChatMentionAutocompleteDataSource : NSObject {
     
 }
 
+extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate,NSCollectionViewDataSource{
+    func numberOfSections(in collectionView: NSCollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
+        //
+        return mentionSuggestions.count
+    }
+    
+    func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
+        let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ChatMentionAutocompleteCell"), for: indexPath)
+        
+        guard let mentionItem = item as? ChatMentionAutocompleteCell else {return item}
+        
+        //mentionItem.textField.value
+        
+        return mentionItem
+    }
+    
+    func collectionView(_ collectionView: NSCollectionView, willDisplay item: NSCollectionViewItem, forRepresentedObjectAt indexPath: IndexPath) {
+        if let collectionViewItem = item as? ChatMentionAutocompleteCell{
+            collectionViewItem.configureWith(alias: mentionSuggestions[indexPath.item])
+        }
+        
+    }
+    
+    
+}
 
+/*
 extension ChatMentionAutocompleteDataSource : NSTableViewDelegate,NSTableViewDataSource{
     func numberOfRows(in tableView: NSTableView) -> Int {
         return mentionSuggestions.count
@@ -87,3 +115,4 @@ extension ChatMentionAutocompleteDataSource : NSTableViewDelegate,NSTableViewDat
         print(notification)
     }
 }
+*/

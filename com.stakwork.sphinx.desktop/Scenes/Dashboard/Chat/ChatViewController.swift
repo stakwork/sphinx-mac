@@ -63,8 +63,10 @@ class ChatViewController: DashboardSplittedViewController {
     @IBOutlet weak var bottomBarHeightConstraint: NSLayoutConstraint!
     
     
+    
+    
     @IBOutlet weak var mentionAutoCompleteEnclosingScrollView: NSScrollView!
-    @IBOutlet weak var mentionAutoCompleteTableView: NSTableView!
+    @IBOutlet weak var mentionAutoCompleteTableView: NSCollectionView!
     var chatMentionAutocompleteDataSource : ChatMentionAutocompleteDataSource? = nil
     
     var currentMessageString = ""
@@ -197,7 +199,7 @@ class ChatViewController: DashboardSplittedViewController {
         chatMentionAutocompleteDataSource = ChatMentionAutocompleteDataSource(tableView: mentionAutoCompleteTableView, scrollView: mentionAutoCompleteEnclosingScrollView,delegate:self)
         mentionAutoCompleteTableView.delegate = chatMentionAutocompleteDataSource
         mentionAutoCompleteTableView.dataSource = chatMentionAutocompleteDataSource
-        mentionAutoCompleteTableView.target = self
+       
         chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: [])
     }
     
