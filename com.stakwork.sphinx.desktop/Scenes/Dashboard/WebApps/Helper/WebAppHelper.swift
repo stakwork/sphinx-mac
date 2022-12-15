@@ -329,7 +329,7 @@ extension WebAppHelper : WKScriptMessageHandler {
 
         if let data = dict["data"] {
             
-            if let type = data["type"] as? String, let metaData = data["metaData"] as? AnyObject {
+            if let type = data["type"] as? Int, let metaData = data["metaData"] as? AnyObject {
                 
             
             let params = ["type": type as AnyObject,
