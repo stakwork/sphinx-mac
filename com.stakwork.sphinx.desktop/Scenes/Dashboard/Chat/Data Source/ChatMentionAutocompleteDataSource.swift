@@ -28,12 +28,9 @@ class ChatMentionAutocompleteDataSource : NSObject {
         super.init()
         self.tableView = tableView
         self.delegate = delegate
-        
-        let tableColumn = NSTableColumn()
-        tableColumn.identifier = NSUserInterfaceItemIdentifier("mentionsTableColumn")
-        
-        
         self.scrollView = scrollView
+        
+        configureCollectionView()
         //tableView.separatorColor = UIColor.Sphinx.Divider
         //tableView.estimatedRowHeight = mentionCellHeight
         //tableView.rowHeight = UITableView.automaticDimension
@@ -52,6 +49,16 @@ class ChatMentionAutocompleteDataSource : NSObject {
             tableView.scrollToRow(at: bottom, at: .bottom, animated: true)
         }
         */
+    }
+    
+    fileprivate func configureCollectionView() {
+      let flowLayout = NSCollectionViewFlowLayout()
+      flowLayout.itemSize = NSSize(width: 160.0, height: 140.0)
+        flowLayout.sectionInset = NSEdgeInsets(top: 30.0, left: 20.0, bottom: 30.0, right: 20.0)
+      flowLayout.minimumInteritemSpacing = 20.0
+      flowLayout.minimumLineSpacing = 20.0
+      flowLayout.sectionHeadersPinToVisibleBounds = true
+        tableView.collectionViewLayout = flowLayout
     }
     
 }
@@ -79,12 +86,21 @@ extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate,NSCollect
     func collectionView(_ collectionView: NSCollectionView, willDisplay item: NSCollectionViewItem, forRepresentedObjectAt indexPath: IndexPath) {
         if let collectionViewItem = item as? ChatMentionAutocompleteCell{
             collectionViewItem.configureWith(alias: mentionSuggestions[indexPath.item])
+            collectionViewItem.view.setBackgroundColor(color: .red)
         }
         
     }
     
     
+    
 }
+
+extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> NSSize {
+      return NSSize(width: 1000, height: 40)
+    }
+  }
+
 
 /*
 extension ChatMentionAutocompleteDataSource : NSTableViewDelegate,NSTableViewDataSource{

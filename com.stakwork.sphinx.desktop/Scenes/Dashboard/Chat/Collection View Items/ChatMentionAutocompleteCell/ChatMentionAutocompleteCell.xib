@@ -8,7 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ChatMentionAutocompleteCell" customModule="Sphinx" customModuleProvider="target">
             <connections>
-                <outlet property="mentionText" destination="lJu-m6-Qwx" id="FzY-Fg-aPd"/>
+                <outlet property="mentionTextField" destination="rBd-mY-EUl" id="w4z-qT-sdZ"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -23,7 +23,7 @@
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Hello World!" id="lJu-m6-Qwx">
                         <font key="font" usesAppearanceFont="YES"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" red="0.92941176469999998" green="0.039215686270000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                     </textFieldCell>
                 </textField>
             </subviews>
@@ -34,11 +34,6 @@
             </constraints>
             <point key="canvasLocation" x="130" y="114"/>
         </customView>
-        <collectionViewItem id="RPU-7d-sen" customClass="ChatMentionAutocompleteCell" customModule="Sphinx" customModuleProvider="target">
-            <connections>
-                <outlet property="textField" destination="rBd-mY-EUl" id="bme-aX-El1"/>
-                <outlet property="view" destination="Hz6-mo-xeY" id="kgP-cX-l7s"/>
-            </connections>
-        </collectionViewItem>
+        <collectionViewItem id="RPU-7d-sen" customClass="ChatMentionAutocompleteCell" customModule="Sphinx" customModuleProvider="target"/>
     </objects>
 </document>

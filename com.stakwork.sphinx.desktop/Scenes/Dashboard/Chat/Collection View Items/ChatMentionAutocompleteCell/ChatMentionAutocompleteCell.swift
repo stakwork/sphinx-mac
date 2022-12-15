@@ -10,6 +10,7 @@ import Cocoa
 
 class ChatMentionAutocompleteCell: NSCollectionViewItem {
 
+    @IBOutlet weak var mentionTextField: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +20,7 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
     }
     
     func configureWith(alias:String){
-        self.textField?.stringValue = alias
+        self.mentionTextField.stringValue = alias
     }
     
 }
