@@ -195,7 +195,7 @@ class ChatViewController: DashboardSplittedViewController {
     }
     
     func configureMentionAutocompleteTableView(){
-        mentionAutoCompleteTableView.isHidden = true
+        mentionAutoCompleteTableView.isHidden = false
         chatMentionAutocompleteDataSource = ChatMentionAutocompleteDataSource(tableView: mentionAutoCompleteTableView, scrollView: mentionAutoCompleteEnclosingScrollView,delegate:self)
         mentionAutoCompleteTableView.delegate = chatMentionAutocompleteDataSource
         mentionAutoCompleteTableView.dataSource = chatMentionAutocompleteDataSource

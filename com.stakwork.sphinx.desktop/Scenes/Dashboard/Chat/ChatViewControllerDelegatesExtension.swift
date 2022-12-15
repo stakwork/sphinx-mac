@@ -36,6 +36,14 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
         }
     }
     
+    func didSeeUpArrow() {
+        chatMentionAutocompleteDataSource?.moveSelectionUp()
+    }
+    
+    func didSeeDownArrow() {
+        chatMentionAutocompleteDataSource?.moveSelectionDown()
+    }
+    
     func getAtMention(text:String)->String?{
             if let lastWord = text.split(separator: " ").last,
                let firstLetter = lastWord.first,

@@ -22,33 +22,26 @@ class ChatMentionAutocompleteDataSource : NSObject {
     var tableView : NSCollectionView!
     var scrollView: NSScrollView!
     var delegate: ChatMentionAutocompleteDelegate!
-    let mentionCellHeight :CGFloat = 50.0
+    var mentionCellHeight :CGFloat = 50.0
+    var selectedRow : Int = 0
     
     init(tableView:NSCollectionView,scrollView:NSScrollView,delegate:ChatMentionAutocompleteDelegate){
         super.init()
+        mentionCellHeight = tableView.frame.height * 0.1
         self.tableView = tableView
         self.delegate = delegate
         self.scrollView = scrollView
         
+        updateMentionSuggestions(suggestions: [])
         configureCollectionView()
-        //tableView.separatorColor = UIColor.Sphinx.Divider
-        //tableView.estimatedRowHeight = mentionCellHeight
-        //tableView.rowHeight = UITableView.automaticDimension
-        //tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
     }
     
     func updateMentionSuggestions(suggestions:[String]){
         self.scrollView.isHidden = (suggestions.isEmpty == true)
         self.mentionSuggestions = suggestions
         tableView.reloadData()
-        /*
-        if(suggestions.isEmpty == false){
-            let bottom = IndexPath(
-                row: 0,
-                section: 0)
-            tableView.scrollToRow(at: bottom, at: .bottom, animated: true)
-        }
-        */
+        //tableView.selectItems(at: [IndexPath(item: 0, section: 0)], scrollPosition: NSCollectionView.ScrollPosition.top)
+
     }
     
     fileprivate func configureCollectionView() {
@@ -59,6 +52,20 @@ class ChatMentionAutocompleteDataSource : NSObject {
       flowLayout.minimumLineSpacing = 20.0
       flowLayout.sectionHeadersPinToVisibleBounds = true
         tableView.collectionViewLayout = flowLayout
+    }
+    
+    func moveSelectionDown(){
+        if(selectedRow < mentionSuggestions.count){
+            selectedRow+=1
+            tableView.reloadData()
+        }
+    }
+    
+    func moveSelectionUp(){
+        if(selectedRow > 0){
+            selectedRow-=1
+            tableView.reloadData()
+        }
     }
     
 }
@@ -86,49 +93,26 @@ extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate,NSCollect
     func collectionView(_ collectionView: NSCollectionView, willDisplay item: NSCollectionViewItem, forRepresentedObjectAt indexPath: IndexPath) {
         if let collectionViewItem = item as? ChatMentionAutocompleteCell{
             collectionViewItem.configureWith(alias: mentionSuggestions[indexPath.item])
-            collectionViewItem.view.setBackgroundColor(color: .red)
+            if(indexPath.item == selectedRow){collectionViewItem.view.layer?.backgroundColor = NSColor.lightGray.cgColor}
         }
         
     }
     
+    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
+        return NSSize(width: collectionView.frame.width, height: mentionCellHeight)
+    }
     
+    func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
+        if let path = indexPaths.first{
+            selectedRow = path.item
+            tableView.reloadData()
+        }
+    }
     
 }
 
 extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> NSSize {
-      return NSSize(width: 1000, height: 40)
+      return NSSize(width: 1000, height: 0)
     }
   }
-
-
-/*
-extension ChatMentionAutocompleteDataSource : NSTableViewDelegate,NSTableViewDataSource{
-    func numberOfRows(in tableView: NSTableView) -> Int {
-        return mentionSuggestions.count
-    }
-    
-    func tableView(_ tableView: NSTableView,
-        viewFor tableColumn: NSTableColumn?,
-        row: Int) -> NSView? {
-     
-        let cellIdentifier = CellIdentifiers.MentionCell
-        
-        let cellID = NSUserInterfaceItemIdentifier(cellIdentifier)
-        if let cell = tableView.makeView(withIdentifier: cellID, owner: nil) as? NSTableCellView {
-            cell.textField?.stringValue = mentionSuggestions[row]
-            return cell
-        }
-
-        return nil
-    }
-    
-    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        return mentionSuggestions[row]
-    }
-    
-    func tableViewSelectionDidChange(_ notification: Notification) {
-        print(notification)
-    }
-}
-*/

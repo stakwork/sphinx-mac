@@ -16,7 +16,6 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
         super.viewDidLoad()
         // Do view setup here.
         view.wantsLayer = true
-        view.layer?.backgroundColor = NSColor.purple.cgColor
     }
     
     func configureWith(alias:String){
