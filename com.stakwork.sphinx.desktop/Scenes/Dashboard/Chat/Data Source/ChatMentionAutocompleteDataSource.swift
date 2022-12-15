@@ -39,6 +39,7 @@ class ChatMentionAutocompleteDataSource : NSObject {
     func updateMentionSuggestions(suggestions:[String]){
         self.scrollView.isHidden = (suggestions.isEmpty == true)
         self.mentionSuggestions = suggestions
+        selectedRow = 0
         tableView.reloadData()
         //tableView.selectItems(at: [IndexPath(item: 0, section: 0)], scrollPosition: NSCollectionView.ScrollPosition.top)
 
@@ -54,8 +55,15 @@ class ChatMentionAutocompleteDataSource : NSObject {
         tableView.collectionViewLayout = flowLayout
     }
     
+    func getSelectedValue()->String?{
+        if(!mentionSuggestions.isEmpty && selectedRow < mentionSuggestions.count){
+            return mentionSuggestions[selectedRow]
+        }
+        return nil
+    }
+    
     func moveSelectionDown(){
-        if(selectedRow < mentionSuggestions.count){
+        if(selectedRow < mentionSuggestions.count - 1){
             selectedRow+=1
             tableView.reloadData()
         }
@@ -84,7 +92,9 @@ extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate,NSCollect
         let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ChatMentionAutocompleteCell"), for: indexPath)
         
         guard let mentionItem = item as? ChatMentionAutocompleteCell else {return item}
-        
+        if(indexPath.item == selectedRow){
+            mentionItem.view.layer?.backgroundColor = NSColor.lightGray.cgColor
+        }
         //mentionItem.textField.value
         
         return mentionItem
@@ -93,7 +103,7 @@ extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate,NSCollect
     func collectionView(_ collectionView: NSCollectionView, willDisplay item: NSCollectionViewItem, forRepresentedObjectAt indexPath: IndexPath) {
         if let collectionViewItem = item as? ChatMentionAutocompleteCell{
             collectionViewItem.configureWith(alias: mentionSuggestions[indexPath.item])
-            if(indexPath.item == selectedRow){collectionViewItem.view.layer?.backgroundColor = NSColor.lightGray.cgColor}
+            
         }
         
     }
@@ -108,6 +118,7 @@ extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate,NSCollect
             tableView.reloadData()
         }
     }
+    
     
 }
 

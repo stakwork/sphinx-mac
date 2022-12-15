@@ -22,4 +22,8 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
         self.mentionTextField.stringValue = alias
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        view.layer?.backgroundColor = .clear
+    }
 }

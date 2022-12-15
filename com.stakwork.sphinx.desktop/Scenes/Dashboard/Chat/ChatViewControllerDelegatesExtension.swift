@@ -36,6 +36,21 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
         }
     }
     
+    func didSeeTab(){
+        if let selectedMention = chatMentionAutocompleteDataSource?.getSelectedValue(){
+            populateMentionAutocomplete(autocompleteText: selectedMention)
+        }
+    }
+    func populateMentionAutocomplete(autocompleteText:String){
+        let text = messageTextView.string
+        if let typedMentionText = self.getAtMention(text: text){
+            messageTextView.string = text.replacingOccurrences(of: typedMentionText, with: "@\(autocompleteText)")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
+                self.messageTextView.string = self.messageTextView.string.replacingOccurrences(of: "\t", with: " ")
+            })
+        }
+    }
+    
     func didSeeUpArrow() {
         chatMentionAutocompleteDataSource?.moveSelectionUp()
     }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1324,13 +1324,13 @@
                                         </constraints>
                                     </customView>
                                     <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPS-2s-ytn">
-                                        <rect key="frame" x="107" y="55" width="497" height="361"/>
+                                        <rect key="frame" x="107" y="60" width="497" height="356"/>
                                         <clipView key="contentView" id="BSs-86-tOJ">
-                                            <rect key="frame" x="1" y="1" width="495" height="359"/>
+                                            <rect key="frame" x="1" y="1" width="495" height="354"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <collectionView id="dqF-n9-Yry">
-                                                    <rect key="frame" x="0.0" y="0.0" width="495" height="359"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="495" height="354"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="ulK-SZ-ow5">
                                                         <size key="itemSize" width="200" height="50"/>
@@ -1343,7 +1343,7 @@
                                             <rect key="frame" x="-100" y="-100" width="233" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="5VD-wF-gCG">
+                                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="5VD-wF-gCG">
                                             <rect key="frame" x="234" y="1" width="15" height="143"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
@@ -1355,6 +1355,7 @@
                                     <constraint firstItem="hwe-uJ-mHT" firstAttribute="top" secondItem="Vyu-wn-T1v" secondAttribute="top" id="64P-jl-OTi"/>
                                     <constraint firstAttribute="bottom" secondItem="xdH-X6-5PP" secondAttribute="bottom" id="6Cg-VS-UiW"/>
                                     <constraint firstAttribute="bottom" secondItem="hwe-uJ-mHT" secondAttribute="bottom" id="6Xp-5M-5PJ"/>
+                                    <constraint firstItem="14P-rj-E0n" firstAttribute="top" secondItem="cPS-2s-ytn" secondAttribute="bottom" id="7C9-Jd-xl4"/>
                                     <constraint firstItem="GoM-QU-nDk" firstAttribute="trailing" secondItem="um1-Mb-zd8" secondAttribute="trailing" id="JDi-mT-eOq"/>
                                     <constraint firstItem="xdH-X6-5PP" firstAttribute="leading" secondItem="Vyu-wn-T1v" secondAttribute="leading" id="JdS-sP-6oO"/>
                                     <constraint firstItem="GoM-QU-nDk" firstAttribute="leading" secondItem="um1-Mb-zd8" secondAttribute="leading" id="L6R-a2-R3p"/>
@@ -1383,7 +1384,6 @@
                                     <constraint firstAttribute="trailing" secondItem="USL-Ca-asX" secondAttribute="trailing" constant="-10" id="s4e-Cd-EAe"/>
                                     <constraint firstItem="GoM-QU-nDk" firstAttribute="bottom" secondItem="um1-Mb-zd8" secondAttribute="bottom" id="tFs-aO-VpL"/>
                                     <constraint firstItem="um1-Mb-zd8" firstAttribute="bottom" secondItem="TCK-by-aGy" secondAttribute="top" id="xKc-o0-A29"/>
-                                    <constraint firstItem="fav-ye-bku" firstAttribute="top" secondItem="cPS-2s-ytn" secondAttribute="bottom" constant="5" id="xsV-Ti-vAI"/>
                                 </constraints>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="r8h-oI-AGJ">
@@ -1683,7 +1683,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NSStopProgressFreestandingTemplate" width="15" height="15"/>
+        <image name="NSStopProgressFreestandingTemplate" width="20" height="20"/>
         <image name="bottomBar1" width="25" height="25"/>
         <image name="bottomBar2" width="25" height="25"/>
         <image name="bottomBar3" width="25" height="25"/>

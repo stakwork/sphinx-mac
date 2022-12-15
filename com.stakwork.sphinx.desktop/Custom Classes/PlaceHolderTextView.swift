@@ -12,6 +12,7 @@ protocol MessageFieldDelegate: AnyObject {
     func textDidChange(_ notification: Notification)
     func didSeeUpArrow()
     func didSeeDownArrow()
+    func didSeeTab()
 }
 
 final class PlaceHolderTextView: NSTextView {
@@ -19,6 +20,7 @@ final class PlaceHolderTextView: NSTextView {
     weak var fieldDelegate: MessageFieldDelegate?
     
     let enterKeyCodes: [UInt16] = [76, 36]
+    let tabKey : UInt16 = 48
     let downArrow : UInt16 = 125
     let upArrow : UInt16 = 126
     
@@ -73,6 +75,10 @@ final class PlaceHolderTextView: NSTextView {
         else if(event.keyCode == downArrow){
             fieldDelegate?.didSeeDownArrow()
         }
+        else if(event.keyCode == tabKey){
+            fieldDelegate?.didSeeTab()
+        }
+        print(event.keyCode)
         super.keyDown(with: event)
     }
     
