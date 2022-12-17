@@ -19,8 +19,8 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rBd-mY-EUl">
-                    <rect key="frame" x="10" y="128" width="220" height="16"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Hello World!" id="lJu-m6-Qwx">
+                    <rect key="frame" x="10" y="128" width="460" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Hello World!" id="lJu-m6-Qwx">
                         <font key="font" usesAppearanceFont="YES"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" red="0.92941176469999998" green="0.039215686270000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -28,7 +28,7 @@
                 </textField>
             </subviews>
             <constraints>
-                <constraint firstItem="rBd-mY-EUl" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" multiplier="0.5" id="WsV-2b-7H5"/>
+                <constraint firstItem="rBd-mY-EUl" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="WsV-2b-7H5"/>
                 <constraint firstItem="rBd-mY-EUl" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="h7f-B7-uaa"/>
                 <constraint firstItem="rBd-mY-EUl" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="12" id="pAJ-HC-tNd"/>
             </constraints>

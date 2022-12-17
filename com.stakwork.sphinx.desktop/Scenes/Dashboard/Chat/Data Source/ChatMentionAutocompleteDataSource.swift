@@ -24,9 +24,11 @@ class ChatMentionAutocompleteDataSource : NSObject {
     var delegate: ChatMentionAutocompleteDelegate!
     var mentionCellHeight :CGFloat = 50.0
     var selectedRow : Int = 0
+    var vc : ChatViewController? = nil
     
-    init(tableView:NSCollectionView,scrollView:NSScrollView,delegate:ChatMentionAutocompleteDelegate){
+    init(tableView:NSCollectionView,scrollView:NSScrollView,delegate:ChatMentionAutocompleteDelegate,vc:ChatViewController){
         super.init()
+        self.vc = vc
         mentionCellHeight = tableView.frame.height * 0.1
         self.tableView = tableView
         self.delegate = delegate
@@ -38,11 +40,9 @@ class ChatMentionAutocompleteDataSource : NSObject {
     
     func updateMentionSuggestions(suggestions:[String]){
         self.scrollView.isHidden = (suggestions.isEmpty == true)
-        self.mentionSuggestions = suggestions
-        selectedRow = 0
+        self.mentionSuggestions = suggestions.reversed()
+        selectedRow = mentionSuggestions.count - 1
         tableView.reloadData()
-        //tableView.selectItems(at: [IndexPath(item: 0, section: 0)], scrollPosition: NSCollectionView.ScrollPosition.top)
-
     }
     
     fileprivate func configureCollectionView() {
@@ -95,14 +95,14 @@ extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate,NSCollect
         if(indexPath.item == selectedRow){
             mentionItem.view.layer?.backgroundColor = NSColor.lightGray.cgColor
         }
-        //mentionItem.textField.value
         
         return mentionItem
     }
     
     func collectionView(_ collectionView: NSCollectionView, willDisplay item: NSCollectionViewItem, forRepresentedObjectAt indexPath: IndexPath) {
-        if let collectionViewItem = item as? ChatMentionAutocompleteCell{
-            collectionViewItem.configureWith(alias: mentionSuggestions[indexPath.item])
+        if let collectionViewItem = item as? ChatMentionAutocompleteCell,
+        let valid_vc = vc{
+            collectionViewItem.configureWith(alias: mentionSuggestions[indexPath.item], delegate: valid_vc)
             
         }
         
@@ -126,4 +126,4 @@ extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> NSSize {
       return NSSize(width: 1000, height: 0)
     }
-  }
+}

@@ -475,10 +475,9 @@ extension ChatViewController : GroupDetailsDelegate {
 
 extension ChatViewController : ChatMentionAutocompleteDelegate{
     func processAutocomplete(text: String) {
-        print(text)
+        populateMentionAutocomplete(autocompleteText: text)
+        self.chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: [])
     }
-    
-    
 }
 
 extension String {
