@@ -34,7 +34,7 @@ class ChatMentionAutocompleteDataSource : NSObject {
         self.tableView = tableView
         self.delegate = delegate
         self.scrollView = scrollView
-        //self.tableView.backgroundColors = [.clear]
+        self.tableView.backgroundColors = [NSColor.Sphinx.HeaderBG]
         
         updateMentionSuggestions(suggestions: [])
         configureCollectionView()
