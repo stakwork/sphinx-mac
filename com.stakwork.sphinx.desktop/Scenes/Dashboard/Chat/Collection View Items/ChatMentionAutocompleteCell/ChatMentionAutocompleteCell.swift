@@ -11,6 +11,8 @@ import Cocoa
 class ChatMentionAutocompleteCell: NSCollectionViewItem {
 
     @IBOutlet weak var mentionTextField: NSTextField!
+    @IBOutlet weak var dividerLine: NSBox!
+    
     var delegate : ChatMentionAutocompleteDelegate? = nil
     var alias : String? = nil
 
@@ -18,6 +20,7 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
         super.viewDidLoad()
         // Do view setup here.
         view.wantsLayer = true
+        dividerLine.layer?.borderColor = NSColor.Sphinx.LightDivider.cgColor
     }
     
     func configureWith(alias:String,delegate:ChatMentionAutocompleteDelegate){

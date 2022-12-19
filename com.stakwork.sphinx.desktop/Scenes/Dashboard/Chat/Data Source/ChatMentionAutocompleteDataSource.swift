@@ -50,7 +50,7 @@ class ChatMentionAutocompleteDataSource : NSObject {
     
     func updateMentionTableHeight(){
         if let heightConstraint = self.delegate.getTableHeightConstraint(){
-            let height = min(4 * mentionCellHeight * 1.5,mentionCellHeight * 1.5 * CGFloat(mentionSuggestions.count))
+            let height = min(4 * mentionCellHeight,mentionCellHeight * CGFloat(mentionSuggestions.count))
             heightConstraint.isActive = false
             heightConstraint.constant = height
             heightConstraint.isActive = true
@@ -59,12 +59,12 @@ class ChatMentionAutocompleteDataSource : NSObject {
     }
     
     fileprivate func configureCollectionView() {
-      let flowLayout = NSCollectionViewFlowLayout()
-      flowLayout.itemSize = NSSize(width: 160.0, height: 140.0)
-        flowLayout.sectionInset = NSEdgeInsets(top: 30.0, left: 20.0, bottom: 30.0, right: 20.0)
-      flowLayout.minimumInteritemSpacing = 20.0
-      flowLayout.minimumLineSpacing = 20.0
-      flowLayout.sectionHeadersPinToVisibleBounds = true
+        let flowLayout = NSCollectionViewFlowLayout()
+        flowLayout.itemSize = NSSize(width: 160.0, height: 140.0)
+        flowLayout.sectionInset = NSEdgeInsets(top: 0.0, left: 20.0, bottom: 0.0, right: 20.0)
+        flowLayout.minimumInteritemSpacing = 0.0
+        flowLayout.minimumLineSpacing = 0.0
+        flowLayout.sectionHeadersPinToVisibleBounds = true
         tableView.collectionViewLayout = flowLayout
     }
     
@@ -79,6 +79,7 @@ class ChatMentionAutocompleteDataSource : NSObject {
         if(selectedRow < mentionSuggestions.count - 1){
             selectedRow+=1
             tableView.reloadData()
+            tableView.animator().scrollToItems(at: [IndexPath(item: selectedRow, section: 0)], scrollPosition: .bottom)
         }
     }
     
@@ -86,6 +87,7 @@ class ChatMentionAutocompleteDataSource : NSObject {
         if(selectedRow > 0){
             selectedRow-=1
             tableView.reloadData()
+            tableView.animator().scrollToItems(at: [IndexPath(item: selectedRow, section: 0)], scrollPosition: .top)
         }
     }
     
@@ -101,26 +103,17 @@ extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate,NSCollect
         return mentionSuggestions.count
     }
     
-    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    
-    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, minimumLineSpacingForRowAt section: Int) -> CGFloat {
-        return 0
-    }
-    
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
         let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ChatMentionAutocompleteCell"), for: indexPath)
         
         guard let mentionItem = item as? ChatMentionAutocompleteCell else {return item}
+        
         if(indexPath.item == selectedRow){
             mentionItem.view.layer?.backgroundColor = NSColor.Sphinx.ChatListSelected.cgColor
         }
         else{
             mentionItem.view.layer?.backgroundColor = NSColor.Sphinx.HeaderBG.cgColor
         }
-        
-        mentionItem.view.layer?.addBorder(edge: .maxY, color: NSColor.Sphinx.LightDivider, thickness: 1.0)
         
         return mentionItem
     }
@@ -129,9 +122,7 @@ extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate,NSCollect
         if let collectionViewItem = item as? ChatMentionAutocompleteCell,
         let valid_vc = vc{
             collectionViewItem.configureWith(alias: mentionSuggestions[indexPath.item], delegate: valid_vc)
-            
         }
-        
     }
     
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
@@ -149,31 +140,8 @@ extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate,NSCollect
 }
 
 extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> NSSize {
-      return NSSize(width: 1000, height: 0)
+    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout:NSCollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> NSSize {
+        return NSSize(width: 1000, height: 0)
     }
 }
 
-
-extension CALayer {
-
-func addBorder(edge: NSRectEdge, color: NSColor, thickness: CGFloat) {
-
-    let border = CALayer()
-
-    switch edge {
-    case .minY:
-        border.frame = CGRect(x: 0, y: 0, width: frame.width, height: thickness)
-    case .maxY:
-        border.frame = CGRect(x: 0, y: frame.height - thickness, width: frame.width, height: thickness)
-    case .minX:
-        border.frame = CGRect(x: 0, y: 0, width: thickness, height: frame.height)
-    case .minY:
-        border.frame = CGRect(x: frame.width - thickness, y: 0, width: thickness, height: frame.height)
-    default:
-        break
-    }
-    border.backgroundColor = color.cgColor
-    addSublayer(border)
-    }
-}
