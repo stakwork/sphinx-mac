@@ -26,17 +26,15 @@ class ChatMentionAutocompleteDataSource : NSObject {
     var mentionCellHeight :CGFloat = 50.0
     var selectedRow : Int = 0
     var vc : ChatViewController? = nil
-    //var tableHeightConstraint : NSLayoutConstraint!
     
     init(tableView:NSCollectionView,scrollView:NSScrollView,delegate:ChatMentionAutocompleteDelegate,vc:ChatViewController){
-        //tableHeightConstraint:NSLayoutConstraint
         super.init()
         self.vc = vc
         
         self.tableView = tableView
         self.delegate = delegate
         self.scrollView = scrollView
-        //self.tableHeightConstraint = tableHeightConstraint
+        //self.tableView.backgroundColors = [.clear]
         
         updateMentionSuggestions(suggestions: [])
         configureCollectionView()
@@ -51,24 +49,6 @@ class ChatMentionAutocompleteDataSource : NSObject {
     }
     
     func updateMentionTableHeight(){
-        /*
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        let height = min(4 * mentionCellHeight,mentionCellHeight * CGFloat(mentionSuggestions.count))
-        print("height:\(height)")
-        scrollView.heightAnchor.constraint(equalToConstant: height).isActive = true
-        tableView.heightAnchor.constraint(equalToConstant: height).isActive = true
-        scrollView.translatesAutoresizingMaskIntoConstraints = true
-        tableView.translatesAutoresizingMaskIntoConstraints = true
-        
-         
-         
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        tableHeightConstraint.isActive = false
-        let height = min(4 * mentionCellHeight,mentionCellHeight * CGFloat(mentionSuggestions.count))
-        tableHeightConstraint = scrollView.heightAnchor.constraint(equalToConstant: height)
-        tableHeightConstraint.isActive = true
-         */
         if let heightConstraint = self.delegate.getTableHeightConstraint(){
             let height = min(4 * mentionCellHeight * 1.5,mentionCellHeight * 1.5 * CGFloat(mentionSuggestions.count))
             heightConstraint.isActive = false
@@ -127,6 +107,9 @@ extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate,NSCollect
         guard let mentionItem = item as? ChatMentionAutocompleteCell else {return item}
         if(indexPath.item == selectedRow){
             mentionItem.view.layer?.backgroundColor = NSColor.lightGray.cgColor
+        }
+        else{
+            mentionItem.view.layer?.backgroundColor = NSColor.Sphinx.HeaderBG.cgColor
         }
         
         return mentionItem
