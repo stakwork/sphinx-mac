@@ -478,6 +478,10 @@ extension ChatViewController : ChatMentionAutocompleteDelegate{
         populateMentionAutocomplete(autocompleteText: text)
         self.chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: [])
     }
+    
+    func getTableHeightConstraint() -> NSLayoutConstraint?{
+        return mentionScrollViewHeight
+    }
 }
 
 extension String {

@@ -63,6 +63,7 @@ class ChatViewController: DashboardSplittedViewController {
     @IBOutlet weak var bottomBarHeightConstraint: NSLayoutConstraint!
     
     
+    @IBOutlet weak var mentionScrollViewHeight: NSLayoutConstraint!
     
     
     @IBOutlet weak var mentionAutoCompleteEnclosingScrollView: NSScrollView!
