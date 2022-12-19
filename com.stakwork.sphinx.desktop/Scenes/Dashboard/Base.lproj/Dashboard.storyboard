@@ -1324,13 +1324,13 @@
                                         </constraints>
                                     </customView>
                                     <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPS-2s-ytn">
-                                        <rect key="frame" x="107" y="55" width="497" height="240"/>
+                                        <rect key="frame" x="0.0" y="60" width="835" height="240"/>
                                         <clipView key="contentView" id="BSs-86-tOJ">
-                                            <rect key="frame" x="1" y="1" width="495" height="238"/>
+                                            <rect key="frame" x="1" y="1" width="833" height="238"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <collectionView id="dqF-n9-Yry">
-                                                    <rect key="frame" x="0.0" y="0.0" width="495" height="238"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="833" height="238"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" id="ulK-SZ-ow5">
                                                         <size key="itemSize" width="200" height="50"/>
@@ -1364,11 +1364,10 @@
                                     <constraint firstAttribute="bottom" secondItem="14P-rj-E0n" secondAttribute="bottom" id="LIk-it-oCp"/>
                                     <constraint firstItem="DtP-U1-1iT" firstAttribute="leading" secondItem="Vyu-wn-T1v" secondAttribute="leading" id="MN4-en-NNu"/>
                                     <constraint firstAttribute="trailing" secondItem="xdH-X6-5PP" secondAttribute="trailing" id="Odu-zV-ktW"/>
+                                    <constraint firstAttribute="trailing" secondItem="cPS-2s-ytn" secondAttribute="trailing" id="Q7T-FT-0sX"/>
                                     <constraint firstItem="TCK-by-aGy" firstAttribute="top" secondItem="USL-Ca-asX" secondAttribute="bottom" constant="20" id="QwA-Do-byB"/>
                                     <constraint firstItem="Ghc-rF-3vi" firstAttribute="top" secondItem="Vyu-wn-T1v" secondAttribute="top" constant="80" id="RJ5-F0-3ge"/>
-                                    <constraint firstItem="fav-ye-bku" firstAttribute="trailing" secondItem="cPS-2s-ytn" secondAttribute="trailing" id="SPD-nE-Q9V"/>
                                     <constraint firstItem="hwe-uJ-mHT" firstAttribute="leading" secondItem="Vyu-wn-T1v" secondAttribute="leading" id="Svg-fn-ODQ"/>
-                                    <constraint firstItem="cPS-2s-ytn" firstAttribute="leading" secondItem="Mab-6M-t8t" secondAttribute="trailing" id="T2P-EO-WWz"/>
                                     <constraint firstItem="GoM-QU-nDk" firstAttribute="top" secondItem="um1-Mb-zd8" secondAttribute="top" id="X0K-Nu-ohU"/>
                                     <constraint firstItem="14P-rj-E0n" firstAttribute="leading" secondItem="Vyu-wn-T1v" secondAttribute="leading" id="YSK-Wn-WbB"/>
                                     <constraint firstItem="um1-Mb-zd8" firstAttribute="top" secondItem="DtP-U1-1iT" secondAttribute="bottom" id="c6f-ZN-xqC"/>
@@ -1384,8 +1383,9 @@
                                     <constraint firstAttribute="trailing" secondItem="TCK-by-aGy" secondAttribute="trailing" id="qiu-bO-ou6"/>
                                     <constraint firstAttribute="trailing" secondItem="USL-Ca-asX" secondAttribute="trailing" constant="-10" id="s4e-Cd-EAe"/>
                                     <constraint firstItem="GoM-QU-nDk" firstAttribute="bottom" secondItem="um1-Mb-zd8" secondAttribute="bottom" id="tFs-aO-VpL"/>
+                                    <constraint firstItem="14P-rj-E0n" firstAttribute="top" secondItem="cPS-2s-ytn" secondAttribute="bottom" id="x9M-YJ-SLb"/>
                                     <constraint firstItem="um1-Mb-zd8" firstAttribute="bottom" secondItem="TCK-by-aGy" secondAttribute="top" id="xKc-o0-A29"/>
-                                    <constraint firstItem="fav-ye-bku" firstAttribute="top" secondItem="cPS-2s-ytn" secondAttribute="bottom" constant="5" id="xsV-Ti-vAI"/>
+                                    <constraint firstItem="cPS-2s-ytn" firstAttribute="leading" secondItem="Vyu-wn-T1v" secondAttribute="leading" id="yiS-JP-VcG"/>
                                 </constraints>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="r8h-oI-AGJ">
