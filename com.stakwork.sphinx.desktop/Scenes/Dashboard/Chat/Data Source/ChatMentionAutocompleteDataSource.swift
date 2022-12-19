@@ -106,11 +106,13 @@ extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate,NSCollect
         
         guard let mentionItem = item as? ChatMentionAutocompleteCell else {return item}
         if(indexPath.item == selectedRow){
-            mentionItem.view.layer?.backgroundColor = NSColor.lightGray.cgColor
+            mentionItem.view.layer?.backgroundColor = NSColor.Sphinx.ChatListSelected.cgColor
         }
         else{
             mentionItem.view.layer?.backgroundColor = NSColor.Sphinx.HeaderBG.cgColor
         }
+        
+        mentionItem.view.layer?.addBorder(edge: .maxY, color: NSColor.Sphinx.LightDivider, thickness: 1.0)
         
         return mentionItem
     }
@@ -141,5 +143,29 @@ extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate,NSCollect
 extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> NSSize {
       return NSSize(width: 1000, height: 0)
+    }
+}
+
+
+extension CALayer {
+
+func addBorder(edge: NSRectEdge, color: NSColor, thickness: CGFloat) {
+
+    let border = CALayer()
+
+    switch edge {
+    case .minY:
+        border.frame = CGRect(x: 0, y: 0, width: frame.width, height: thickness)
+    case .maxY:
+        border.frame = CGRect(x: 0, y: frame.height - thickness, width: frame.width, height: thickness)
+    case .minX:
+        border.frame = CGRect(x: 0, y: 0, width: thickness, height: frame.height)
+    case .minY:
+        border.frame = CGRect(x: frame.width - thickness, y: 0, width: thickness, height: frame.height)
+    default:
+        break
+    }
+    border.backgroundColor = color.cgColor
+    addSublayer(border)
     }
 }
