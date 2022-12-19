@@ -28,9 +28,9 @@
                     </textFieldCell>
                 </textField>
                 <box boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="Yum-LE-6f5">
-                    <rect key="frame" x="12" y="0.0" width="456" height="1"/>
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="1"/>
                     <view key="contentView" id="b9M-k4-lwp">
-                        <rect key="frame" x="1" y="1" width="454" height="0.0"/>
+                        <rect key="frame" x="1" y="1" width="478" height="0.0"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
                     <constraints>
@@ -40,9 +40,9 @@
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Yum-LE-6f5" secondAttribute="bottom" id="AZM-W3-BxH"/>
-                <constraint firstItem="Yum-LE-6f5" firstAttribute="trailing" secondItem="rBd-mY-EUl" secondAttribute="trailing" id="LJq-mD-eSP"/>
+                <constraint firstItem="Yum-LE-6f5" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="JB5-mc-aV9"/>
                 <constraint firstItem="rBd-mY-EUl" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="WsV-2b-7H5"/>
-                <constraint firstItem="Yum-LE-6f5" firstAttribute="leading" secondItem="rBd-mY-EUl" secondAttribute="leading" id="YUV-7k-hgW"/>
+                <constraint firstItem="Yum-LE-6f5" firstAttribute="width" secondItem="Hz6-mo-xeY" secondAttribute="width" id="fWq-i9-ebl"/>
                 <constraint firstItem="rBd-mY-EUl" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="h7f-B7-uaa"/>
                 <constraint firstItem="rBd-mY-EUl" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="12" id="pAJ-HC-tNd"/>
             </constraints>
