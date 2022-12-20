@@ -78,8 +78,9 @@ final class PlaceHolderTextView: NSTextView {
         else if(event.keyCode == tabKey){
             fieldDelegate?.didSeeTab()
         }
-        print(event.keyCode)
-        super.keyDown(with: event)
+        else{
+            super.keyDown(with: event)
+        }
     }
     
     func addingBreakLine(event: NSEvent) -> Bool {
