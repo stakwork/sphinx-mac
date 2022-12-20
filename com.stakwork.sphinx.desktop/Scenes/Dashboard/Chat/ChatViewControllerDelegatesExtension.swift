@@ -25,7 +25,7 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
     
     func textDidChange(_ notification: Notification) {
         chat?.setOngoingMessage(text: messageTextView.string)
-        processMention(text: messageTextView.string)
+        processMention(text: messageTextView.string,cursorPosition: messageTextView.cursorPosition)
         let didUpdateHeight = updateBottomBarHeight()
         if !didUpdateHeight {
             return
@@ -43,12 +43,18 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
     }
     func populateMentionAutocomplete(autocompleteText:String){
         let text = messageTextView.string
-        if let typedMentionText = self.getAtMention(text: text){
+        if let typedMentionText = self.getAtMention(text: text,cursorPosition: messageTextView.cursorPosition){
+            let initialPosition = messageTextView.cursorPosition
             messageTextView.string = text.replacingOccurrences(of: typedMentionText, with: "@\(autocompleteText)")
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
                 self.messageTextView.string = self.messageTextView.string.replacingOccurrences(of: "\t", with: " ")
+                if var position = initialPosition{
+                    position += autocompleteText.count
+                    self.messageTextView.setSelectedRange(NSRange(location: position, length: 0))
+                }
             })
         }
+        chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: [])
     }
     
     func didSeeUpArrow() {
@@ -59,33 +65,37 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
         chatMentionAutocompleteDataSource?.moveSelectionDown()
     }
     
-    func getAtMention(text:String)->String?{
-            if let lastWord = text.split(separator: " ").last,
-               let firstLetter = lastWord.first,
-            firstLetter == "@"{
-                return String(lastWord)
-            }
+    func getAtMention(text:String,cursorPosition:Int?)->String?{
+        if let lastLetter = text.last,
+           lastLetter == " "{
             return nil
         }
+        let relevantText = text[0..<(cursorPosition ?? text.count)]
+        if let lastWord = relevantText.split(separator: " ").last,
+        let firstLetter = lastWord.first,
+        firstLetter == "@"{
+            return String(lastWord)
+        }
+        return nil
+    }
     
-    func processMention(text:String){
+    func processMention(text:String,cursorPosition:Int?){
         var suggestions : [String] = []
-            if let mention = getAtMention(text: text){
+        if let mention = getAtMention(text: text,cursorPosition:cursorPosition){
                 let mentionText = String(mention).replacingOccurrences(of: "@", with: "").lowercased()
-                print(mentionText)
                 let possibleMentions = self.chat?.aliases.filter(
-                    {
-                        if(mentionText.count > $0.count){
-                            return false
-                        }
-                        let substring = $0.substring(range: NSRange(location: 0, length: mentionText.count))
-                        return (substring.lowercased() == mentionText && mentionText != "")
-                    }).sorted()
+                {
+                    if(mentionText.count > $0.count){
+                        return false
+                    }
+                    let substring = $0.substring(range: NSRange(location: 0, length: mentionText.count))
+                    return (substring.lowercased() == mentionText && mentionText != "")
+                }).sorted()
                 print(possibleMentions)
                 suggestions = possibleMentions ?? []
-            }
-        chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: suggestions)
         }
+        chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: suggestions)
+    }
     
     func updateBottomBarHeight() -> Bool {
         let messageFieldContentHeight = messageTextView.contentSize.height
