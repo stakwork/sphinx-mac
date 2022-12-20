@@ -1323,14 +1323,14 @@
                                             <constraint firstItem="SpR-T0-gey" firstAttribute="top" secondItem="DtP-U1-1iT" secondAttribute="top" id="xon-rf-u0p"/>
                                         </constraints>
                                     </customView>
-                                    <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPS-2s-ytn">
+                                    <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPS-2s-ytn">
                                         <rect key="frame" x="0.0" y="60" width="835" height="240"/>
                                         <clipView key="contentView" id="BSs-86-tOJ">
-                                            <rect key="frame" x="1" y="1" width="833" height="238"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="835" height="240"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <collectionView id="dqF-n9-Yry">
-                                                    <rect key="frame" x="0.0" y="0.0" width="833" height="238"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="835" height="240"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" id="ulK-SZ-ow5">
                                                         <size key="itemSize" width="200" height="50"/>
