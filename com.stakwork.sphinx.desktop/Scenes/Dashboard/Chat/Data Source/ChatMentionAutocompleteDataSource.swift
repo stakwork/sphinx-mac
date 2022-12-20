@@ -65,6 +65,8 @@ class ChatMentionAutocompleteDataSource : NSObject {
         flowLayout.minimumInteritemSpacing = 0.0
         flowLayout.minimumLineSpacing = 0.0
         flowLayout.sectionHeadersPinToVisibleBounds = true
+        flowLayout.itemSize = NSSize(width: tableView.frame.width, height: mentionCellHeight)
+        flowLayout.headerReferenceSize = NSSize(width: tableView.frame.width, height: 0)
         tableView.collectionViewLayout = flowLayout
     }
     
@@ -125,10 +127,6 @@ extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate,NSCollect
         }
     }
     
-    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
-        return NSSize(width: collectionView.frame.width, height: mentionCellHeight)
-    }
-    
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
         if let path = indexPaths.first{
             selectedRow = path.item
@@ -137,11 +135,5 @@ extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate,NSCollect
     }
     
     
-}
-
-extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout:NSCollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> NSSize {
-        return NSSize(width: 1000, height: 0)
-    }
 }
 
