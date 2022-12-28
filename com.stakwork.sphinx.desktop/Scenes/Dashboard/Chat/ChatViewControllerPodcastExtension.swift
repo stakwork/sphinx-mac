@@ -27,7 +27,9 @@ extension ChatViewController {
         
         podcastVCContainer.isHidden = false
         delegate?.shouldToggleLeftView(show: nil)
+        
         let _ = updateBottomBarHeight()
+        chatMentionAutocompleteDataSource?.configureCollectionView()
     }
     
     func addConstraintTo(podcastVCView: NSView) {

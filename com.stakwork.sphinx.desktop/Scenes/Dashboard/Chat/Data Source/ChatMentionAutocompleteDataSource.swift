@@ -27,7 +27,12 @@ class ChatMentionAutocompleteDataSource : NSObject {
     var selectedRow : Int = 0
     var vc : ChatViewController? = nil
     
-    init(tableView:NSCollectionView,scrollView:NSScrollView,delegate:ChatMentionAutocompleteDelegate,vc:ChatViewController){
+    init(
+        tableView: NSCollectionView,
+        scrollView: NSScrollView,
+        delegate: ChatMentionAutocompleteDelegate,
+        vc: ChatViewController
+    ){
         super.init()
         self.vc = vc
         
@@ -40,7 +45,7 @@ class ChatMentionAutocompleteDataSource : NSObject {
         configureCollectionView()
     }
     
-    func updateMentionSuggestions(suggestions:[String]){
+    func updateMentionSuggestions(suggestions: [String]) {
         self.scrollView.isHidden = (suggestions.isEmpty == true)
         self.mentionSuggestions = suggestions.reversed()
         selectedRow = mentionSuggestions.count - 1
@@ -48,8 +53,8 @@ class ChatMentionAutocompleteDataSource : NSObject {
         tableView.reloadData()
     }
     
-    func updateMentionTableHeight(){
-        if let heightConstraint = self.delegate.getTableHeightConstraint(){
+    func updateMentionTableHeight() {
+        if let heightConstraint = self.delegate.getTableHeightConstraint() {
             let height = min(4 * mentionCellHeight,mentionCellHeight * CGFloat(mentionSuggestions.count))
             heightConstraint.isActive = false
             heightConstraint.constant = height
@@ -58,10 +63,9 @@ class ChatMentionAutocompleteDataSource : NSObject {
         }
     }
     
-    fileprivate func configureCollectionView() {
+    func configureCollectionView() {
         let flowLayout = NSCollectionViewFlowLayout()
-        flowLayout.itemSize = NSSize(width: 160.0, height: 140.0)
-        flowLayout.sectionInset = NSEdgeInsets(top: 0.0, left: 20.0, bottom: 0.0, right: 20.0)
+        flowLayout.sectionInset = NSEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
         flowLayout.minimumInteritemSpacing = 0.0
         flowLayout.minimumLineSpacing = 0.0
         flowLayout.sectionHeadersPinToVisibleBounds = true
@@ -70,14 +74,14 @@ class ChatMentionAutocompleteDataSource : NSObject {
         tableView.collectionViewLayout = flowLayout
     }
     
-    func getSelectedValue()->String?{
-        if(!mentionSuggestions.isEmpty && selectedRow < mentionSuggestions.count){
+    func getSelectedValue() -> String? {
+        if (!mentionSuggestions.isEmpty && selectedRow < mentionSuggestions.count) {
             return mentionSuggestions[selectedRow]
         }
         return nil
     }
     
-    func moveSelectionDown(){
+    func moveSelectionDown() {
         if(selectedRow < mentionSuggestions.count - 1){
             selectedRow+=1
             tableView.reloadData()
@@ -85,7 +89,7 @@ class ChatMentionAutocompleteDataSource : NSObject {
         }
     }
     
-    func moveSelectionUp(){
+    func moveSelectionUp() {
         if(selectedRow > 0){
             selectedRow-=1
             tableView.reloadData()
@@ -95,13 +99,12 @@ class ChatMentionAutocompleteDataSource : NSObject {
     
 }
 
-extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate,NSCollectionViewDataSource{
+extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate, NSCollectionViewDataSource{
     func numberOfSections(in collectionView: NSCollectionView) -> Int {
         return 1
     }
     
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-        //
         return mentionSuggestions.count
     }
     
@@ -110,10 +113,9 @@ extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate,NSCollect
         
         guard let mentionItem = item as? ChatMentionAutocompleteCell else {return item}
         
-        if(indexPath.item == selectedRow){
+        if (indexPath.item == selectedRow) {
             mentionItem.view.layer?.backgroundColor = NSColor.Sphinx.ChatListSelected.cgColor
-        }
-        else{
+        } else{
             mentionItem.view.layer?.backgroundColor = NSColor.Sphinx.HeaderBG.cgColor
         }
         
@@ -122,7 +124,7 @@ extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate,NSCollect
     
     func collectionView(_ collectionView: NSCollectionView, willDisplay item: NSCollectionViewItem, forRepresentedObjectAt indexPath: IndexPath) {
         if let collectionViewItem = item as? ChatMentionAutocompleteCell,
-        let valid_vc = vc{
+           let valid_vc = vc {
             collectionViewItem.configureWith(alias: mentionSuggestions[indexPath.item], delegate: valid_vc)
         }
     }
@@ -133,7 +135,5 @@ extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate,NSCollect
             tableView.reloadData()
         }
     }
-    
-    
 }
 

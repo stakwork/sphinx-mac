@@ -91,7 +91,6 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
                     let substring = $0.substring(range: NSRange(location: 0, length: mentionText.count))
                     return (substring.lowercased() == mentionText && mentionText != "")
                 }).sorted()
-                print(possibleMentions)
                 suggestions = possibleMentions ?? []
         }
         chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: suggestions)
