@@ -311,6 +311,7 @@ extension DashboardViewController : DashboardVCDelegate {
         let chat = (object as? Chat) ?? ((object as? UserContact)?.getConversation())
         let contact = (object as? UserContact) ?? (object as? Chat)?.getContact()
         detailViewController?.loadChatFor(contact: contact, chat: chat, contactsService: contactsService)
+        detailViewController?.configureMentionAutocompleteTableView()
     }
     
     func shouldShowFullMediaFor(message: TransactionMessage) {

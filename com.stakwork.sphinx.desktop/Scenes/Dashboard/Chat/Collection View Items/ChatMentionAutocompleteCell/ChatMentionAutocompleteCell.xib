@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="ChatMentionAutocompleteCell" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="dividerLine" destination="Yum-LE-6f5" id="SUC-N6-6Wp"/>
+                <outlet property="mentionTextField" destination="rBd-mY-EUl" id="w4z-qT-sdZ"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rBd-mY-EUl">
+                    <rect key="frame" x="10" y="128" width="460" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Hello World!" id="lJu-m6-Qwx">
+                        <font key="font" usesAppearanceFont="YES"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" red="0.92941176469999998" green="0.039215686270000001" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </textFieldCell>
+                </textField>
+                <box boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="Yum-LE-6f5">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="1"/>
+                    <view key="contentView" id="b9M-k4-lwp">
+                        <rect key="frame" x="1" y="1" width="478" height="0.0"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="qR4-wP-u5J"/>
+                    </constraints>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Yum-LE-6f5" secondAttribute="bottom" id="AZM-W3-BxH"/>
+                <constraint firstItem="Yum-LE-6f5" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="JB5-mc-aV9"/>
+                <constraint firstItem="rBd-mY-EUl" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="WsV-2b-7H5"/>
+                <constraint firstItem="Yum-LE-6f5" firstAttribute="width" secondItem="Hz6-mo-xeY" secondAttribute="width" id="fWq-i9-ebl"/>
+                <constraint firstItem="rBd-mY-EUl" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="h7f-B7-uaa"/>
+                <constraint firstItem="rBd-mY-EUl" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="12" id="pAJ-HC-tNd"/>
+            </constraints>
+            <point key="canvasLocation" x="130" y="114"/>
+        </customView>
+        <collectionViewItem id="RPU-7d-sen" customClass="ChatMentionAutocompleteCell" customModule="Sphinx" customModuleProvider="target"/>
+    </objects>
+</document>

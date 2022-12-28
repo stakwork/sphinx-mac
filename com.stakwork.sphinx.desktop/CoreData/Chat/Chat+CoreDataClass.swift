@@ -19,7 +19,8 @@ public class Chat: NSManagedObject {
     
     public var ongoingMessage : String? = nil
     var tribeInfo: GroupsManager.TribeInfo? = nil
-    
+    var aliases : [String] = [String]()
+
     var podcastPlayer: PodcastPlayerHelper? = nil
     
     func getPodcastPlayer() -> PodcastPlayerHelper {
@@ -292,6 +293,10 @@ public class Chat: NSManagedObject {
         let chat: Chat? = CoreDataManager.sharedManager.getObjectOfTypeWith(predicate: predicate, sortDescriptors: sortDescriptors, entityName: "Chat")
         
         return chat
+    }
+    
+    func loadAllAliases(){
+        self.aliases = Array(Set(self.getAllMessages().compactMap({$0.senderAlias})))
     }
     
     func getAllMessages(limit: Int? = 100, messagesIdsToExclude: [Int] = [], lastMessage: TransactionMessage? = nil) -> [TransactionMessage] {

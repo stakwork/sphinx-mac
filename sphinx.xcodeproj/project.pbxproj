@@ -488,6 +488,9 @@
 		47F88263256D397E002A7E71 /* MessageBoostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F88262256D397E002A7E71 /* MessageBoostView.swift */; };
 		47F88265256D398B002A7E71 /* MessageBoostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47F88264256D398B002A7E71 /* MessageBoostView.xib */; };
 		AA1C7BC427657C4800A5B959 /* SignupCommonSecureFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1C7BC327657C4800A5B959 /* SignupCommonSecureFieldView.swift */; };
+		CE326B4B294295C600821A53 /* ChatMentionAutocompleteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE326B4A294295C600821A53 /* ChatMentionAutocompleteDataSource.swift */; };
+		CE326B51294A179200821A53 /* ChatMentionAutocompleteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE326B4F294A179200821A53 /* ChatMentionAutocompleteCell.swift */; };
+		CE326B52294A179200821A53 /* ChatMentionAutocompleteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE326B50294A179200821A53 /* ChatMentionAutocompleteCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1125,6 +1128,9 @@
 		82C242433501D81263FED4C2 /* Pods_Sphinx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sphinx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97A6F8CB5E1D14A28D7C7A67 /* Pods-com.stakwork.sphinx.desktop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-com.stakwork.sphinx.desktop.release.xcconfig"; path = "Target Support Files/Pods-com.stakwork.sphinx.desktop/Pods-com.stakwork.sphinx.desktop.release.xcconfig"; sourceTree = "<group>"; };
 		AA1C7BC327657C4800A5B959 /* SignupCommonSecureFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupCommonSecureFieldView.swift; sourceTree = "<group>"; };
+		CE326B4A294295C600821A53 /* ChatMentionAutocompleteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMentionAutocompleteDataSource.swift; sourceTree = "<group>"; };
+		CE326B4F294A179200821A53 /* ChatMentionAutocompleteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMentionAutocompleteCell.swift; sourceTree = "<group>"; };
+		CE326B50294A179200821A53 /* ChatMentionAutocompleteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatMentionAutocompleteCell.xib; sourceTree = "<group>"; };
 		F90398F47E0448445B11E3B5 /* Pods-com.stakwork.sphinx.desktop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-com.stakwork.sphinx.desktop.debug.xcconfig"; path = "Target Support Files/Pods-com.stakwork.sphinx.desktop/Pods-com.stakwork.sphinx.desktop.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2258,6 +2264,7 @@
 			isa = PBXGroup;
 			children = (
 				47E771162472C1B500C9CFEB /* ChatDataSource.swift */,
+				CE326B4A294295C600821A53 /* ChatMentionAutocompleteDataSource.swift */,
 			);
 			path = "Data Source";
 			sourceTree = "<group>";
@@ -2273,6 +2280,7 @@
 		47E771192472C1E200C9CFEB /* Collection View Items */ = {
 			isa = PBXGroup;
 			children = (
+				CE326B4C294A174700821A53 /* ChatMentionAutocompleteCell */,
 				47C6235E25091BE6005D265C /* Giphy Search */,
 				47E7711E2472C24C00C9CFEB /* Groups */,
 				47E7711D2472C24300C9CFEB /* Headers */,
@@ -2549,6 +2557,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		CE326B4C294A174700821A53 /* ChatMentionAutocompleteCell */ = {
+			isa = PBXGroup;
+			children = (
+				CE326B4F294A179200821A53 /* ChatMentionAutocompleteCell.swift */,
+				CE326B50294A179200821A53 /* ChatMentionAutocompleteCell.xib */,
+			);
+			path = ChatMentionAutocompleteCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2670,6 +2687,7 @@
 				479A03F02587E73A0093DB30 /* TribeMemberInfoView.xib in Resources */,
 				470396FA2537766F007F9C23 /* PodcastCommentReceivedCollectionViewItem.xib in Resources */,
 				475F0BA324F7EBCD0032EDC4 /* Contacts.storyboard in Resources */,
+				CE326B52294A179200821A53 /* ChatMentionAutocompleteCell.xib in Resources */,
 				4797E83224BCC10000D13270 /* Pin.storyboard in Resources */,
 				47E771262472C27200C9CFEB /* MessageSentCollectionViewItem.xib in Resources */,
 				4731BE3D24859AD300BCCA9E /* PaidInvoiceSentCollectionViewItem.xib in Resources */,
@@ -3054,6 +3072,7 @@
 				47B55099248BCDD7000514BF /* CreateInvoiceViewController.swift in Sources */,
 				4744FA742469A4BA00C5FD94 /* DelayPerformerHelper.swift in Sources */,
 				4731BE1A2485303600BCCA9E /* DirectPaymentReceivedCollectionViewItem.swift in Sources */,
+				CE326B51294A179200821A53 /* ChatMentionAutocompleteCell.swift in Sources */,
 				47C6236125091C02005D265C /* GiphySearchCollectionViewItem.swift in Sources */,
 				4797E7552785E1240080B966 /* API+PeopleExtension.swift in Sources */,
 				4734D3C52417E48600D6957E /* EncryptionManager.swift in Sources */,
@@ -3085,6 +3104,7 @@
 				470396FD25377683007F9C23 /* PodcastCommentSentCollectionViewItem.swift in Sources */,
 				47B550AC248C20EE000514BF /* PaymentTemplatesDataSource.swift in Sources */,
 				4731BE3C24859AD300BCCA9E /* PaidInvoiceSentCollectionViewItem.swift in Sources */,
+				CE326B4B294295C600821A53 /* ChatMentionAutocompleteDataSource.swift in Sources */,
 				479A03FC258814240093DB30 /* DeepLinksHandlerHelper.swift in Sources */,
 				47C1D60E248EB4E800718B28 /* GroupAddedContactsDataSource.swift in Sources */,
 				47C1F1D6248130F900A71610 /* VideoReceivedCollectionViewItem.swift in Sources */,
