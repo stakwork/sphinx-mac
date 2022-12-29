@@ -68,7 +68,7 @@ extension API {
                         let messagesTotal = JSON(response["new_messages_total"] ?? -1).intValue
                         
                         if ((newMessages.count > 0 || page > 1) && newMessages.count < itemsPerPage) {
-                            //is last page. Date should be tracked
+                            //If is last page date should be tracked
                             self.lastSeenMessagesDate = date
                         }
                         

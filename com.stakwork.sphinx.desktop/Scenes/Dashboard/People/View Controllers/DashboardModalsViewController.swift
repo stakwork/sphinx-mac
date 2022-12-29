@@ -47,18 +47,18 @@ class DashboardModalsViewController: NSViewController {
     }
     
     func showProgressViewWith(
-        progress: Int,
+        progress: Double,
         delegate: RestoreModalViewControllerDelegate?
     ) {
         restoreModalsDelegate = delegate
         
-        if (progress == 100) {
+        if (progress >= 100) {
             delegate?.didFinishRestoring()
             return
         }
         
         restoreProgressView.setProgress(
-            progress: progress,
+            progress: Int(ceil(progress)),
             delegate: delegate
         )
         
@@ -67,6 +67,10 @@ class DashboardModalsViewController: NSViewController {
         }
         
         showProgressModalAnimated()
+    }
+    
+    func setFinishingRestore() {
+        restoreProgressView.setFinishingRestore()
     }
     
     func showProgressModalAnimated() {

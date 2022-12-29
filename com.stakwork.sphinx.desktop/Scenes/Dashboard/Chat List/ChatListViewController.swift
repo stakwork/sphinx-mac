@@ -95,7 +95,7 @@ class ChatListViewController : DashboardSplittedViewController {
         
         self.chatListViewModel.syncMessages(
             progressCallback: { (progress, restoring) in
-                
+
                 DispatchQueue.main.async {
                     if (restoring) {
                         self.loading = false
@@ -105,6 +105,8 @@ class ChatListViewController : DashboardSplittedViewController {
                         } else {
                             self.newMessageBubbleHelper.showLoadingWheel(text: "fetching.old.messages".localized)
                         }
+                    } else {
+                        self.delegate?.shouldHideRetoreModal()
                     }
                 }
                 
@@ -171,11 +173,12 @@ class ChatListViewController : DashboardSplittedViewController {
         chatListCollectionView.reloadData()
     }
     
-    @IBAction func refreshButtonClicked(_ sender: Any) {        
+    @IBAction func refreshButtonClicked(_ sender: Any) {
         loading = true
         updateBalance()
         chatListDataSource.resetSelection()
         loadFriendAndReload()
+        
         delegate?.didReloadDashboard()
     }
     
