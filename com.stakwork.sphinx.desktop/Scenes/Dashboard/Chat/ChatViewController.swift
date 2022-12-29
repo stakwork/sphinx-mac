@@ -62,6 +62,14 @@ class ChatViewController: DashboardSplittedViewController {
     @IBOutlet weak var avatarWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomBarHeightConstraint: NSLayoutConstraint!
     
+    
+    @IBOutlet weak var mentionScrollViewHeight: NSLayoutConstraint!
+    
+    
+    @IBOutlet weak var mentionAutoCompleteEnclosingScrollView: NSScrollView!
+    @IBOutlet weak var mentionAutoCompleteTableView: NSCollectionView!
+    var chatMentionAutocompleteDataSource : ChatMentionAutocompleteDataSource? = nil
+    
     var currentMessageString = ""
     var unseenMessagesCount = 0
     
@@ -83,6 +91,7 @@ class ChatViewController: DashboardSplittedViewController {
     var podcastPlayerHelper: PodcastPlayerHelper? = nil
     var podcastPlayerVC: NewPodcastPlayerViewController? = nil
     
+    
     public enum RecordingButton: Int {
         case Confirm
         case Cancel
@@ -91,13 +100,13 @@ class ChatViewController: DashboardSplittedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.mentionAutoCompleteEnclosingScrollView.isHidden = true
         configureView()
         prepareRecordingView()
     }
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        
         chatDataSource?.setDelegates(self)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.setChatInfo), name: .shouldReloadTribeData, object: nil)
@@ -186,6 +195,15 @@ class ChatViewController: DashboardSplittedViewController {
         chatCollectionView.enclosingScrollView?.contentView.postsBoundsChangedNotifications = true
     }
     
+    func configureMentionAutocompleteTableView(){
+        mentionAutoCompleteTableView.isHidden = false
+        chatMentionAutocompleteDataSource = ChatMentionAutocompleteDataSource(tableView: mentionAutoCompleteTableView, scrollView: mentionAutoCompleteEnclosingScrollView,delegate:self, vc: self)
+        mentionAutoCompleteTableView.delegate = chatMentionAutocompleteDataSource
+        mentionAutoCompleteTableView.dataSource = chatMentionAutocompleteDataSource
+       
+        chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: [])
+    }
+    
     func resetHeader() {
         toggleRecordButton(enable: false)
         toggleControls(enable: false)
@@ -223,6 +241,8 @@ class ChatViewController: DashboardSplittedViewController {
         
         self.contact = contact
         self.chat = chat
+        self.chat?.loadAllAliases()
+        
         self.contactsService = contactsService
         
         if chat == nil && contact == nil {
