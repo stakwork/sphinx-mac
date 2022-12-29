@@ -52,6 +52,16 @@ final class ChatListViewModel: NSObject {
         EncryptionManager.sharedInstance.saveKeysOnKeychain()
     }
     
+    func isRestoreRunning() -> Bool {
+        let restorRunning = API.sharedInstance.lastSeenMessagesDate == nil && UserDefaults.Keys.messagesFetchPage.get(defaultValue: -1) > 0
+        
+        if !restorRunning {
+            UserDefaults.Keys.messagesFetchPage.removeValue()
+        }
+        
+        return restorRunning
+    }
+    
     func isRestoring() -> Bool {
         return API.sharedInstance.lastSeenMessagesDate == nil
     }
@@ -62,60 +72,41 @@ final class ChatListViewModel: NSObject {
     
     func syncMessages(
         chatId: Int? = nil,
-        progressCallback: @escaping (Int, Bool) -> (),
+        progressCallback: @escaping (Double, Bool) -> (),
         completion: @escaping (Int, Int) -> ()
     ) {
-        if syncMessagesTask != nil {
+        if (isRestoreRunning()) {
             return
         }
         
-        let restoring = self.isRestoring()
+        UserDefaults.Keys.messagesFetchPage.set(1)
         
-        if !restoring {
-            UserDefaults.Keys.messagesFetchPage.removeValue()
-        }
-        
-        syncMessagesTask = DispatchWorkItem { [weak self] in
-            guard let self = self else { return }
-            
-            self.newMessagesChatIds = []
-            self.syncMessagesDate = Date()
-        
-            self.getMessagesPaginated(
-                restoring: restoring,
-                prevPageNewMessages: 0,
-                chatId: chatId,
-                date: self.syncMessagesDate,
-                progressCallback: progressCallback,
-                completion: { chatNewMessagesCount, newMessagesCount in
-                    
-                    UserDefaults.Keys.messagesFetchPage.removeValue()
-                    
-                    self.cancelAndResetSyncMessagesTask()
-                    
-                    Chat.updateLastMessageForChats(
-                        self.newMessagesChatIds
-                    )
-                    
-                    completion(chatNewMessagesCount, newMessagesCount)
-                }
-            )
-        }
-        
-        syncMessagesTask?.perform()
+        self.newMessagesChatIds = []
+        self.syncMessagesDate = Date()
+    
+        self.getMessagesPaginated(
+            restoring: isRestoring(),
+            prevPageNewMessages: 0,
+            chatId: chatId,
+            date: self.syncMessagesDate,
+            progressCallback: progressCallback,
+            completion: { chatNewMessagesCount, newMessagesCount in
+                
+                UserDefaults.Keys.messagesFetchPage.removeValue()
+                
+                Chat.updateLastMessageForChats(
+                    self.newMessagesChatIds
+                )
+                
+                completion(chatNewMessagesCount, newMessagesCount)
+            }
+        )
     }
     
     func finishRestoring() {
-        cancelAndResetSyncMessagesTask()
-        
         SignupHelper.completeSignup()
         UserDefaults.Keys.messagesFetchPage.removeValue()
         API.sharedInstance.lastSeenMessagesDate = syncMessagesDate
-    }
-    
-    func cancelAndResetSyncMessagesTask() {
-        syncMessagesTask?.cancel()
-        syncMessagesTask = nil
     }
     
     func getMessagesPaginated(
@@ -123,20 +114,16 @@ final class ChatListViewModel: NSObject {
         prevPageNewMessages: Int,
         chatId: Int? = nil,
         date: Date,
-        progressCallback: @escaping (Int, Bool) -> (),
+        progressCallback: @escaping (Double, Bool) -> (),
         completion: @escaping (Int, Int) -> ()
     ) {
         
         let page = UserDefaults.Keys.messagesFetchPage.get(defaultValue: 1)
-        
+
         API.sharedInstance.getMessagesPaginated(
             page: page,
             date: date,
             callback: {(newMessagesTotal, newMessages) -> () in
-                
-                if self.syncMessagesTask == nil || self.syncMessagesTask?.isCancelled == true {
-                    return
-                }
                 
                 progressCallback(
                     self.getRestoreProgress(
@@ -152,7 +139,14 @@ final class ChatListViewModel: NSObject {
                         chatId: chatId,
                         completion: { (newChatMessagesCount, newMessagesCount) in
                             
-                            if self.syncMessagesTask == nil || self.syncMessagesTask?.isCancelled == true {
+                            if !self.isRestoring() {
+                                progressCallback(
+                                    self.getRestoreProgress(
+                                        currentPage: page,
+                                        newMessagesTotal: newMessagesTotal,
+                                        itemsPerPage: ChatListViewModel.kMessagesPerPage
+                                    ), false
+                                )
                                 return
                             }
                             
@@ -194,14 +188,14 @@ final class ChatListViewModel: NSObject {
         currentPage: Int,
         newMessagesTotal: Int,
         itemsPerPage: Int
-    ) -> Int {
+    ) -> Double {
         
         if (newMessagesTotal <= 0) {
             return -1
         }
         
-        let pages = (newMessagesTotal <= itemsPerPage) ? 1 : (newMessagesTotal / itemsPerPage)
-        let progress: Int = currentPage * 100 / pages
+        let pages = (newMessagesTotal <= itemsPerPage) ? 1 : (Double(newMessagesTotal) / Double(itemsPerPage))
+        let progress = Double(currentPage) * 100 / pages
 
         return progress
     }

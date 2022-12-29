@@ -358,12 +358,26 @@ extension DashboardViewController : DashboardVCDelegate {
         return (minWidth + podcastPlayerWidth, leftPanelWidth)
     }
     
-    func shouldShowRestoreModal(progress: Int) {
+    func shouldShowRestoreModal(progress: Double) {
         for childVC in self.children {
             if let childVC = childVC as? DashboardModalsViewController {
                 modalsContainerView.isHidden = false
                 
                 childVC.showProgressViewWith(progress: progress, delegate: self)
+            }
+        }
+    }
+    
+    func shouldHideRetoreModal() {
+        didFinishRestoring()
+    }
+    
+    func showFinishingRestore() {
+        for childVC in self.children {
+            if let childVC = childVC as? DashboardModalsViewController {
+                modalsContainerView.isHidden = false
+                
+                childVC.setFinishingRestore()
             }
         }
     }
@@ -426,14 +440,10 @@ extension DashboardViewController : PeopleModalsViewControllerDelegate {
 extension DashboardViewController : RestoreModalViewControllerDelegate {
     func didFinishRestoreManually() {
         chatListViewModel.finishRestoring()
-        restoreDidFinish()
+        showFinishingRestore()
     }
     
     func didFinishRestoring() {
-        restoreDidFinish()
-    }
-    
-    private func restoreDidFinish() {
         modalsContainerView.isHidden = true
         
         listViewController?.updateContactsAndReload()

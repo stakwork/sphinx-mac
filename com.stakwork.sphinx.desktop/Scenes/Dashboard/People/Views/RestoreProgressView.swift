@@ -29,6 +29,8 @@ class RestoreProgressView: NSView, LoadableNib {
         
         restoreProgressBar.minValue = 0
         restoreProgressBar.maxValue = 100
+        
+        continueLaterButton.isEnabled = true
     }
     
     func setProgress(
@@ -40,6 +42,11 @@ class RestoreProgressView: NSView, LoadableNib {
         restoreProgressBar.doubleValue = Double(progress)
         
         restoreProgressLabel.stringValue = "Restoring: \(progress)%"
+    }
+    
+    func setFinishingRestore() {
+        restoreProgressLabel.stringValue = "Finishing restore..."
+        continueLaterButton.isEnabled = false
     }
     
     @IBAction func finishRestoreButtonClicked(_ sender: Any) {
