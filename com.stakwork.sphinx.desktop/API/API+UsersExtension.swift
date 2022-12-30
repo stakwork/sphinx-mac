@@ -38,16 +38,13 @@ extension API {
                         let subscriptionsArray = JSON(jsonResponse["subscriptions"]).arrayValue
                         
                         if contactsArray.count > 0 || chatsArray.count > 0 {
-                            self.cancellableRequest = nil
                             callback(contactsArray, chatsArray, subscriptionsArray, [])
                             return
                         }
                     }
                 }
-                self.cancellableRequest = nil
                 callback([], [], [], [])
             case .failure(_):
-                self.cancellableRequest = nil
                 callback([], [], [], [])
             }
         }
@@ -80,7 +77,6 @@ extension API {
                         
                         if contactsArray.count > 0 || chatsArray.count > 0 || invitesArray.count > 0 || subscriptionsArray.count > 0 {
                             
-                            self.cancellableRequest = nil
                             self.lastSeenContactsDate = date
                             
                             callback(contactsArray, chatsArray, subscriptionsArray, invitesArray)
@@ -89,10 +85,8 @@ extension API {
                         }
                     }
                 }
-                self.cancellableRequest = nil
                 callback([], [], [], [])
             case .failure(_):
-                self.cancellableRequest = nil
                 callback([], [], [], [])
             }
         }

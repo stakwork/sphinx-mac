@@ -72,15 +72,12 @@ extension API {
                             self.lastSeenMessagesDate = date
                         }
                         
-                        self.cancellableRequest = nil
                         callback(messagesTotal, newMessages)
                         return
                     }
                 }
-                self.cancellableRequest = nil
                 errorCallback()
             case .failure(_):
-                self.cancellableRequest = nil
                 errorCallback()
             }
         }

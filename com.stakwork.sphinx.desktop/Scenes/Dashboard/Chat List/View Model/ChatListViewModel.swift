@@ -19,6 +19,16 @@ final class ChatListViewModel: NSObject {
         self.contactsService = contactsService
     }
     
+    public static func isRestoreRunning() -> Bool {
+        let restorRunning = API.sharedInstance.lastSeenMessagesDate == nil && UserDefaults.Keys.messagesFetchPage.get(defaultValue: -1) > 0
+        
+        if !restorRunning {
+            UserDefaults.Keys.messagesFetchPage.removeValue()
+        }
+        
+        return restorRunning
+    }
+    
     func loadFriends(completion: @escaping () -> ()) {
         if let contactsService = contactsService {
             API.sharedInstance.getLatestContacts(date: Date(), callback: {(contacts, chats, subscriptions, invites) -> () in
@@ -52,16 +62,6 @@ final class ChatListViewModel: NSObject {
         EncryptionManager.sharedInstance.saveKeysOnKeychain()
     }
     
-    func isRestoreRunning() -> Bool {
-        let restorRunning = API.sharedInstance.lastSeenMessagesDate == nil && UserDefaults.Keys.messagesFetchPage.get(defaultValue: -1) > 0
-        
-        if !restorRunning {
-            UserDefaults.Keys.messagesFetchPage.removeValue()
-        }
-        
-        return restorRunning
-    }
-    
     func isRestoring() -> Bool {
         return API.sharedInstance.lastSeenMessagesDate == nil
     }
@@ -75,11 +75,10 @@ final class ChatListViewModel: NSObject {
         progressCallback: @escaping (Double, Bool) -> (),
         completion: @escaping (Int, Int) -> ()
     ) {
-        if (isRestoreRunning()) {
-            return
-        }
         
-        UserDefaults.Keys.messagesFetchPage.set(1)
+        UserDefaults.Keys.messagesFetchPage.set(
+            UserDefaults.Keys.messagesFetchPage.get(defaultValue: 1)
+        )
         
         self.newMessagesChatIds = []
         self.syncMessagesDate = Date()
