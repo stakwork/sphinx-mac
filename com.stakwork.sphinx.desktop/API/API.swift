@@ -241,12 +241,8 @@ class API {
         queue.async {
             self.dispatchSemaphore.wait()
             
-            print("SPHINX REQUEST: BEFORE")
-            
             let _ = self.unauthorizedHandledRequest(urlRequest) { (response) in
                 self.postConnectionStatusChange()
-                
-                print("SPHINX REQUEST: AFTER")
                 
                 self.dispatchSemaphore.signal()
                 

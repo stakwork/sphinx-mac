@@ -201,7 +201,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         
-        if UserData.sharedInstance.isUserLogged() {
+        if UserData.sharedInstance.isUserLogged() && !ChatListViewModel.isRestoreRunning() {
             reloadDataAndConnectSocket()
         }
     }
