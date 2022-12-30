@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -155,7 +155,7 @@
                                                                     <constraint firstAttribute="height" constant="21" id="moz-5M-C2i"/>
                                                                 </constraints>
                                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="" id="yeu-kc-mDH">
-                                                                    <font key="font" metaFont="system" size="21"/>
+                                                                    <font key="font" size="21" name="MaterialIcons-Regular"/>
                                                                     <color key="textColor" name="PlaceholderText"/>
                                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                 </textFieldCell>
@@ -163,7 +163,7 @@
                                                             <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FCC-PE-Y6e">
                                                                 <rect key="frame" x="41" y="11" width="1" height="17"/>
                                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" alignment="left" placeholderString="Search" drawsBackground="YES" id="rha-Yr-Htc">
-                                                                    <font key="font" metaFont="system" size="14"/>
+                                                                    <font key="font" size="14" name="Roboto-Regular"/>
                                                                     <color key="textColor" name="Text"/>
                                                                     <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </textFieldCell>
@@ -203,7 +203,7 @@
                                                     </constraints>
                                                     <buttonCell key="cell" type="bevel" title="person_add" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="KYe-xy-Rdn" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system" size="23"/>
+                                                        <font key="font" size="23" name="MaterialIcons-Regular"/>
                                                     </buttonCell>
                                                     <color key="contentTintColor" name="MainBottomIcons"/>
                                                     <connections>
@@ -214,7 +214,7 @@
                                                     <rect key="frame" x="197" y="0.0" width="212" height="50"/>
                                                     <buttonCell key="cell" type="bevel" title="navigate_before" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="z2J-2S-9ia" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system" size="30"/>
+                                                        <font key="font" size="30" name="MaterialIcons-Regular"/>
                                                     </buttonCell>
                                                     <color key="contentTintColor" name="PrimaryBlue"/>
                                                     <connections>
@@ -287,7 +287,7 @@
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i5W-ab-qEX">
                                                     <rect key="frame" x="197" y="20" width="15" height="20"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="0" id="SRe-nU-MEm">
-                                                        <font key="font" metaFont="system" size="17"/>
+                                                        <font key="font" size="17" name="Roboto-Regular"/>
                                                         <color key="textColor" name="sphinxWhite"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -295,7 +295,7 @@
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RkR-tA-a4e">
                                                     <rect key="frame" x="218" y="22" width="28" height="20"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="sat" id="NHE-h7-M3R">
-                                                        <font key="font" metaFont="system" size="17"/>
+                                                        <font key="font" size="17" name="Roboto-Regular"/>
                                                         <color key="textColor" name="DashboardWashedOutText"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -307,7 +307,7 @@
                                                     </constraints>
                                                     <buttonCell key="cell" type="square" title="cached" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" inset="2" id="2uK-co-z7u">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system" size="19"/>
+                                                        <font key="font" size="19" name="MaterialIcons-Regular"/>
                                                     </buttonCell>
                                                     <color key="contentTintColor" name="sphinxWhite"/>
                                                     <connections>
@@ -523,7 +523,7 @@
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aNk-mv-UTA">
                                             <rect key="frame" x="146" y="134" width="109" height="19"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Contact Name" id="Jwy-W5-tXa">
-                                                <font key="font" metaFont="system" size="16"/>
+                                                <font key="font" size="16" name="Roboto-Medium"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -534,7 +534,7 @@
                                                 <constraint firstAttribute="width" constant="320" id="ky2-3i-CUb"/>
                                             </constraints>
                                             <textFieldCell key="cell" lineBreakMode="truncatingMiddle" alignment="center" title="asdjhasdkjh128376123gsdjaksdjhh3271623gasdjhasdkjh128" id="O7m-Pk-COY">
-                                                <font key="font" metaFont="system" size="14"/>
+                                                <font key="font" size="14" name="Roboto-Light"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -689,7 +689,7 @@
                                         </constraints>
                                         <buttonCell key="cell" type="bevel" title="navigate_next" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="Cne-Qc-ynW">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system" size="25"/>
+                                            <font key="font" size="25" name="MaterialIcons-Regular"/>
                                         </buttonCell>
                                         <color key="contentTintColor" name="sphinxWhite"/>
                                         <connections>
@@ -702,7 +702,7 @@
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VNc-WG-Xnl">
                                                 <rect key="frame" x="4" y="3" width="152" height="29"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="expand_more" id="Qp1-yM-2Rv">
-                                                    <font key="font" metaFont="system" size="25"/>
+                                                    <font key="font" size="25" name="MaterialIcons-Regular"/>
                                                     <color key="textColor" name="sphinxWhite"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
@@ -710,7 +710,7 @@
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vfg-BE-zcT">
                                                 <rect key="frame" x="152" y="9" width="20" height="17"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="+1" id="nH5-8e-Fz2">
-                                                    <font key="font" metaFont="system" size="14"/>
+                                                    <font key="font" size="14" name="Roboto-Medium"/>
                                                     <color key="textColor" name="sphinxWhite"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
@@ -803,7 +803,7 @@
                                                         </constraints>
                                                         <buttonCell key="cell" type="bevel" title="" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="OZM-L6-Shb" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system" size="21"/>
+                                                            <font key="font" size="21" name="MaterialIcons-Regular"/>
                                                         </buttonCell>
                                                         <color key="contentTintColor" name="sphinxWhite"/>
                                                         <connections>
@@ -828,7 +828,7 @@
                                                         </constraints>
                                                         <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="giphyIcon" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="nFE-Bv-ZRb">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system" size="25"/>
+                                                            <font key="font" size="25" name="MaterialIcons-Regular"/>
                                                         </buttonCell>
                                                         <color key="contentTintColor" name="MainBottomIcons"/>
                                                         <connections>
@@ -853,7 +853,7 @@
                                                         </constraints>
                                                         <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="emojiIcon" imagePosition="only" alignment="center" imageScaling="axesIndependently" inset="2" id="E2E-b1-IyX">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system" size="25"/>
+                                                            <font key="font" size="25" name="MaterialIcons-Regular"/>
                                                         </buttonCell>
                                                         <color key="contentTintColor" name="MainBottomIcons"/>
                                                         <connections>
@@ -932,7 +932,7 @@
                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pCx-RQ-lpA">
                                                             <rect key="frame" x="8" y="12" width="39" height="16"/>
                                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Price:" id="RPU-hH-hHs">
-                                                                <font key="font" metaFont="system"/>
+                                                                <font key="font" size="13" name="Roboto-Medium"/>
                                                                 <color key="textColor" name="sphinxWhite"/>
                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
@@ -990,7 +990,7 @@
                                                         </constraints>
                                                         <buttonCell key="cell" type="bevel" title="" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="gfN-ya-qg9" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system" size="19"/>
+                                                            <font key="font" size="19" name="MaterialIcons-Regular"/>
                                                         </buttonCell>
                                                         <color key="contentTintColor" name="sphinxWhite"/>
                                                         <connections>
@@ -1005,7 +1005,7 @@
                                                         </constraints>
                                                         <buttonCell key="cell" type="bevel" title="mic" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="8J8-1w-ER7" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system" size="27"/>
+                                                            <font key="font" size="27" name="MaterialIcons-Regular"/>
                                                         </buttonCell>
                                                         <color key="contentTintColor" name="MainBottomIcons"/>
                                                         <connections>
@@ -1048,7 +1048,7 @@
                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EF3-Z7-WTn">
                                                             <rect key="frame" x="631" y="18" width="46" height="24"/>
                                                             <textFieldCell key="cell" lineBreakMode="clipping" title="0:00" id="ZCu-gF-Npk">
-                                                                <font key="font" metaFont="system" size="20"/>
+                                                                <font key="font" size="20" name="Roboto-Regular"/>
                                                                 <color key="textColor" name="Text"/>
                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
@@ -1066,7 +1066,7 @@
                                                                                 <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                                                                 <buttonCell key="cell" type="bevel" title="done" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="QAM-yi-425" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
                                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                                    <font key="font" metaFont="system" size="25"/>
+                                                                                    <font key="font" size="25" name="MaterialIcons-Regular"/>
                                                                                 </buttonCell>
                                                                                 <color key="contentTintColor" name="sphinxWhite"/>
                                                                                 <connections>
@@ -1097,7 +1097,7 @@
                                                                                 <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                                                                 <buttonCell key="cell" type="bevel" title="close" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="kVV-VB-S6K" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
                                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                                    <font key="font" metaFont="system" size="25"/>
+                                                                                    <font key="font" size="25" name="MaterialIcons-Regular"/>
                                                                                 </buttonCell>
                                                                                 <color key="contentTintColor" name="sphinxWhite"/>
                                                                                 <connections>
@@ -1199,7 +1199,7 @@
                                                 <rect key="frame" x="20" y="20" width="307" height="20"/>
                                                 <buttonCell key="cell" type="bevel" title="Open a conversation to start messaging" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="b26-JN-1eG">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system" size="17"/>
+                                                    <font key="font" size="17" name="Roboto-Medium"/>
                                                 </buttonCell>
                                                 <color key="contentTintColor" name="Text"/>
                                                 <connections>
@@ -1209,7 +1209,7 @@
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uyl-oe-7nG">
                                                 <rect key="frame" x="21" y="7" width="4" height="14"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" id="nnT-vi-mH4" customClass="VerticallyCenteredTextFieldCell" customModule="Sphinx" customModuleProvider="target">
-                                                    <font key="font" metaFont="smallSystem"/>
+                                                    <font key="font" size="11" name="Roboto-Medium"/>
                                                     <color key="textColor" name="Text"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </textFieldCell>
@@ -1217,7 +1217,7 @@
                                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ucj-2Z-9Fp">
                                                 <rect key="frame" x="31" y="7" width="4" height="14"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" id="LML-F6-DoD">
-                                                    <font key="font" metaFont="smallSystem"/>
+                                                    <font key="font" size="11" name="Roboto-Medium"/>
                                                     <color key="textColor" name="SecondaryText"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
@@ -1225,7 +1225,7 @@
                                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cbc-gG-qvB">
                                                 <rect key="frame" x="36" y="5" width="94" height="19"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="verified_user" id="ohD-y7-8Ad">
-                                                    <font key="font" metaFont="system" size="15"/>
+                                                    <font key="font" name="MaterialIcons-Regular" size="15"/>
                                                     <color key="textColor" name="SecondaryText"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
@@ -1233,7 +1233,7 @@
                                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XZC-6W-7hr">
                                                 <rect key="frame" x="332" y="21" width="33" height="19"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="lock" id="yKE-c5-U1V">
-                                                    <font key="font" metaFont="system" size="15"/>
+                                                    <font key="font" name="MaterialIcons-Regular" size="15"/>
                                                     <color key="textColor" name="SecondaryText"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
@@ -1241,7 +1241,7 @@
                                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oOa-kC-pzn">
                                                 <rect key="frame" x="365" y="21" width="63" height="19"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="flash_on" id="TTp-Zc-yDN">
-                                                    <font key="font" metaFont="system" size="15"/>
+                                                    <font key="font" name="MaterialIcons-Regular" size="15"/>
                                                     <color key="textColor" name="SecondaryText"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
@@ -1281,7 +1281,7 @@
                                                 </constraints>
                                                 <buttonCell key="cell" type="square" title="" bezelStyle="shadowlessSquare" alignment="center" inset="2" id="Kdb-NI-ZMi">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system" size="25"/>
+                                                    <font key="font" name="MaterialIcons-Regular" size="25"/>
                                                 </buttonCell>
                                                 <color key="contentTintColor" name="SecondaryText"/>
                                                 <connections>
@@ -1686,7 +1686,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NSStopProgressFreestandingTemplate" width="20" height="20"/>
+        <image name="NSStopProgressFreestandingTemplate" width="15" height="15"/>
         <image name="bottomBar1" width="25" height="25"/>
         <image name="bottomBar2" width="25" height="25"/>
         <image name="bottomBar3" width="25" height="25"/>
