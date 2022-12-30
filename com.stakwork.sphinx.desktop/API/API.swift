@@ -64,8 +64,6 @@ class API {
     }
     
     var onionConnector = SphinxOnionConnector.sharedInstance
-    var cancellableRequest: DataRequest?
-    var currentRequestType : API.CancellableRequestType = API.CancellableRequestType.messages
     
     var uploadRequest: UploadRequest?
     
@@ -223,51 +221,42 @@ class API {
         case NoNetwork
     }
     
+    let queue = DispatchQueue(label: "chat.sphinx.request")
+    let dispatchSemaphore = DispatchSemaphore(value: 1)
+    
     var connectionStatus = ConnectionStatus.Connecting
     
     func sphinxRequest(
-        _ urlRequest: URLRequestConvertible,
+        _ urlRequest: URLRequest,
         completionHandler: @escaping (AFDataResponse<Any>) -> Void
     ) {
-        let _ = unauthorizedHandledRequest(urlRequest, completionHandler: completionHandler)
+        let _ = self.unauthorizedHandledRequest(urlRequest, completionHandler: completionHandler)
     }
     
-    let dispatchSemaphore = DispatchSemaphore(value: 1)
-    
     func cancellableRequest(
-        _ urlRequest: URLRequestConvertible,
+        _ urlRequest: URLRequest,
         type: CancellableRequestType,
         completionHandler: @escaping (AFDataResponse<Any>) -> Void
     ) {
-        if let cancellableRequest = cancellableRequest, currentRequestType == type {
-            cancellableRequest.cancel()
-        }
-        
-        let queue = DispatchQueue(label: "chat.sphinx.request")
-        
         queue.async {
             self.dispatchSemaphore.wait()
             
-            let request = self.unauthorizedHandledRequest(urlRequest) { (response) in
+            print("SPHINX REQUEST: BEFORE")
+            
+            let _ = self.unauthorizedHandledRequest(urlRequest) { (response) in
                 self.postConnectionStatusChange()
+                
+                print("SPHINX REQUEST: AFTER")
                 
                 self.dispatchSemaphore.signal()
                 
                 completionHandler(response)
             }
-            
-            self.currentRequestType = type
-            self.cancellableRequest = request
         }
     }
     
-    func cleanMessagesRequest() {
-        cancellableRequest?.cancel()
-        cancellableRequest = nil
-    }
-    
     func unauthorizedHandledRequest(
-        _ urlRequest: URLRequestConvertible,
+        _ urlRequest: URLRequest,
         completionHandler: @escaping (AFDataResponse<Any>) -> Void
     ) -> DataRequest? {
         
@@ -276,7 +265,13 @@ class API {
             return nil
         }
         
-        let request = session()?.request(urlRequest).responseJSON { (response) in
+        var mutableUrlRequest = urlRequest
+        
+        for (key, value) in UserData.sharedInstance.getAuthenticationHeader() {
+            mutableUrlRequest.setValue(value, forHTTPHeaderField: key)
+        }
+        
+        let request = session()?.request(mutableUrlRequest).responseJSON { (response) in
             let statusCode = (response.response?.statusCode ?? -1)
             
             switch statusCode {
@@ -451,10 +446,6 @@ class API {
             request.httpMethod = method
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             request.setValue("no-cache", forHTTPHeaderField: "Cache-Control")
-            
-            for (key, value) in UserData.sharedInstance.getAuthenticationHeader() {
-                request.setValue(value, forHTTPHeaderField: key)
-            }
 
             for (key, value) in additionalHeaders {
                 request.setValue(value, forHTTPHeaderField: key)
