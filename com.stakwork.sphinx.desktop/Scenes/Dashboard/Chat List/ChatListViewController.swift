@@ -106,6 +106,9 @@ class ChatListViewController : DashboardSplittedViewController {
                             self.newMessageBubbleHelper.showLoadingWheel(text: "fetching.old.messages".localized)
                         }
                     } else {
+                        self.chatListViewModel.calculateBadges()
+                        self.updateContactsAndReload()
+                        
                         self.delegate?.shouldHideRetoreModal()
                     }
                 }

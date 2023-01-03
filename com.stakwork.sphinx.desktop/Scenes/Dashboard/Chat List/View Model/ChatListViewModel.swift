@@ -102,6 +102,10 @@ final class ChatListViewModel: NSObject {
         )
     }
     
+    func calculateBadges() {
+        contactsService.calculateBadges()
+    }
+    
     func finishRestoring() {
         SignupHelper.completeSignup()
         UserDefaults.Keys.messagesFetchPage.removeValue()

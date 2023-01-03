@@ -252,4 +252,12 @@ public final class ContactsService {
             callback(false)
         })
     }
+    
+    func calculateBadges() {
+        for chat in self.chats {
+            if (chat.lastMessage?.seen == false) {
+                chat.calculateBadge()
+            }
+        }
+    }
 }
