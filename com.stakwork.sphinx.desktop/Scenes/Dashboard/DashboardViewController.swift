@@ -227,7 +227,10 @@ class DashboardViewController: NSViewController {
         
         self.chatListViewModel.loadFriends {
             let chatId = self.detailViewController?.chat?.id
-            self.chatListViewModel.syncMessages(chatId: chatId, progressCallback: { (_, _) in }) { (_, count) in
+            self.chatListViewModel.syncMessages(chatId: chatId, progressCallback: { (_, restoring) in
+                self.chatListViewModel.calculateBadges()
+                self.listViewController?.updateContactsAndReload()
+            }) { (_, count) in
                 if count > 0 {
                     self.detailViewController?.initialLoad()
                 }

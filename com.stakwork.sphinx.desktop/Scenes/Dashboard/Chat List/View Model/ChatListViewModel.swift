@@ -20,13 +20,13 @@ final class ChatListViewModel: NSObject {
     }
     
     public static func isRestoreRunning() -> Bool {
-        let restorRunning = API.sharedInstance.lastSeenMessagesDate == nil && UserDefaults.Keys.messagesFetchPage.get(defaultValue: -1) > 0
+        let restoreRunning = API.sharedInstance.lastSeenMessagesDate == nil && UserDefaults.Keys.messagesFetchPage.get(defaultValue: -1) > 0
         
-        if !restorRunning {
+        if !restoreRunning {
             UserDefaults.Keys.messagesFetchPage.removeValue()
         }
         
-        return restorRunning
+        return restoreRunning
     }
     
     func loadFriends(completion: @escaping () -> ()) {

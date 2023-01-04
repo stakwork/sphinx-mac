@@ -97,6 +97,10 @@ class ChatListViewController : DashboardSplittedViewController {
             progressCallback: { (progress, restoring) in
 
                 DispatchQueue.main.async {
+                    
+                    self.chatListViewModel.calculateBadges()
+                    self.updateContactsAndReload()
+                    
                     if (restoring) {
                         self.loading = false
                         
@@ -106,9 +110,6 @@ class ChatListViewController : DashboardSplittedViewController {
                             self.newMessageBubbleHelper.showLoadingWheel(text: "fetching.old.messages".localized)
                         }
                     } else {
-                        self.chatListViewModel.calculateBadges()
-                        self.updateContactsAndReload()
-                        
                         self.delegate?.shouldHideRetoreModal()
                     }
                 }
