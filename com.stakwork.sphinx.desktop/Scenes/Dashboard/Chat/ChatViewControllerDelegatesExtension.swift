@@ -25,7 +25,9 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
     
     func textDidChange(_ notification: Notification) {
         chat?.setOngoingMessage(text: messageTextView.string)
-        processMention(text: messageTextView.string,cursorPosition: messageTextView.cursorPosition)
+        
+        processMention(text: messageTextView.string, cursorPosition: messageTextView.cursorPosition)
+        
         let didUpdateHeight = updateBottomBarHeight()
         if !didUpdateHeight {
             return
@@ -36,20 +38,22 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
         }
     }
     
-    func didSeeTab(){
-        if let selectedMention = chatMentionAutocompleteDataSource?.getSelectedValue(){
+    func didTapTab(){
+        if let selectedMention = chatMentionAutocompleteDataSource?.getSelectedValue() {
             populateMentionAutocomplete(autocompleteText: selectedMention)
         }
     }
-    func populateMentionAutocomplete(autocompleteText:String){
+    func populateMentionAutocomplete(autocompleteText: String) {
         let text = messageTextView.string
-        if let typedMentionText = self.getAtMention(text: text,cursorPosition: messageTextView.cursorPosition){
+        if let typedMentionText = self.getAtMention(text: text, cursorPosition: messageTextView.cursorPosition){
             let initialPosition = messageTextView.cursorPosition
-            messageTextView.string = text.replacingOccurrences(of: typedMentionText, with: "@\(autocompleteText)")
+            messageTextView.string = text
+                .replacingOccurrences(of: typedMentionText, with: "@\(autocompleteText) ")
+                .replacingOccurrences(of: "\t", with: "")
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
-                self.messageTextView.string = self.messageTextView.string.replacingOccurrences(of: "\t", with: " ")
-                if var position = initialPosition{
-                    position += autocompleteText.count
+                if var position = initialPosition {
+                    position += ("@\(autocompleteText) ".count - typedMentionText.count)
                     self.messageTextView.setSelectedRange(NSRange(location: position, length: 0))
                 }
             })
@@ -57,41 +61,44 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
         chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: [])
     }
     
-    func didSeeUpArrow() {
+    func didTapUpArrow() -> Bool {
         chatMentionAutocompleteDataSource?.moveSelectionUp()
+        
+        return chatMentionAutocompleteDataSource?.isTableVisible() ?? false
     }
     
-    func didSeeDownArrow() {
+    func didTapDownArrow() -> Bool  {
         chatMentionAutocompleteDataSource?.moveSelectionDown()
+        
+        return chatMentionAutocompleteDataSource?.isTableVisible() ?? false
     }
     
     func getAtMention(text:String,cursorPosition:Int?)->String?{
-        if let lastLetter = text.last,
-           lastLetter == " "{
+        let relevantText = text[0..<(cursorPosition ?? text.count)]
+        if let lastLetter = relevantText.last, lastLetter == " " {
             return nil
         }
-        let relevantText = text[0..<(cursorPosition ?? text.count)]
-        if let lastWord = relevantText.split(separator: " ").last,
-        let firstLetter = lastWord.first,
-        firstLetter == "@"{
-            return String(lastWord)
+        if let lastWord = relevantText.split(separator: " ").last {
+            if let firstLetter = lastWord.first, firstLetter == "@" {
+                return String(lastWord)
+            }
         }
         return nil
     }
     
     func processMention(text:String,cursorPosition:Int?){
         var suggestions : [String] = []
-        if let mention = getAtMention(text: text,cursorPosition:cursorPosition){
-                let mentionText = String(mention).replacingOccurrences(of: "@", with: "").lowercased()
-                let possibleMentions = self.chat?.aliases.filter(
-                {
-                    if(mentionText.count > $0.count){
-                        return false
-                    }
-                    let substring = $0.substring(range: NSRange(location: 0, length: mentionText.count))
-                    return (substring.lowercased() == mentionText && mentionText != "")
-                }).sorted()
-                suggestions = possibleMentions ?? []
+        if let mention = getAtMention(text: text, cursorPosition:cursorPosition){
+            let mentionText = String(mention).replacingOccurrences(of: "@", with: "").lowercased()
+            let possibleMentions = self.chat?.aliases.filter(
+            {
+                if(mentionText.count > $0.count){
+                    return false
+                }
+                let substring = $0.substring(range: NSRange(location: 0, length: mentionText.count))
+                return (substring.lowercased() == mentionText && mentionText != "")
+            }).sorted()
+            suggestions = possibleMentions ?? []
         }
         chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: suggestions)
     }

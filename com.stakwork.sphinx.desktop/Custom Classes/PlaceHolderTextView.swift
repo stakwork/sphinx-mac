@@ -10,9 +10,9 @@ import Cocoa
 
 protocol MessageFieldDelegate: AnyObject {
     func textDidChange(_ notification: Notification)
-    func didSeeUpArrow()
-    func didSeeDownArrow()
-    func didSeeTab()
+    func didTapUpArrow() -> Bool
+    func didTapDownArrow() -> Bool
+    func didTapTab()
 }
 
 final class PlaceHolderTextView: NSTextView {
@@ -70,17 +70,19 @@ final class PlaceHolderTextView: NSTextView {
             return
         }
         else if(event.keyCode == upArrow){
-            fieldDelegate?.didSeeUpArrow()
+            if (fieldDelegate?.didTapUpArrow() ?? false) {
+                return
+            }
         }
         else if(event.keyCode == downArrow){
-            fieldDelegate?.didSeeDownArrow()
+            if (fieldDelegate?.didTapDownArrow() ?? false) {
+                return
+            }
         }
         else if(event.keyCode == tabKey){
-            fieldDelegate?.didSeeTab()
+            fieldDelegate?.didTapTab()
         }
-        else{
-            super.keyDown(with: event)
-        }
+        super.keyDown(with: event)
     }
     
     func addingBreakLine(event: NSEvent) -> Bool {

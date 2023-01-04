@@ -53,6 +53,10 @@ class ChatMentionAutocompleteDataSource : NSObject {
         tableView.reloadData()
     }
     
+    func isTableVisible() -> Bool {
+        return mentionSuggestions.count > 0
+    }
+    
     func updateMentionTableHeight() {
         if let heightConstraint = self.delegate.getTableHeightConstraint() {
             let height = min(4 * mentionCellHeight,mentionCellHeight * CGFloat(mentionSuggestions.count))
