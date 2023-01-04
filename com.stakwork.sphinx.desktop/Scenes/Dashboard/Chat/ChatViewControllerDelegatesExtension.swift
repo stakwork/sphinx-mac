@@ -47,9 +47,10 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
         let text = messageTextView.string
         if let typedMentionText = self.getAtMention(text: text, cursorPosition: messageTextView.cursorPosition){
             let initialPosition = messageTextView.cursorPosition
+            
             messageTextView.string = text
                 .replacingOccurrences(of: typedMentionText, with: "@\(autocompleteText) ")
-                .replacingOccurrences(of: "\t", with: "")
+                .replacingOccurrences(of: "\t", with: "").trim()
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
                 if var position = initialPosition {
