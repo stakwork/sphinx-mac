@@ -143,9 +143,9 @@
                                                     <color key="fillColor" name="LightBG"/>
                                                 </box>
                                                 <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="PJc-d3-aV6">
-                                                    <rect key="frame" x="6" y="6" width="72" height="38"/>
+                                                    <rect key="frame" x="6" y="6" width="343" height="38"/>
                                                     <view key="contentView" id="0QU-ll-t8P">
-                                                        <rect key="frame" x="0.0" y="0.0" width="72" height="38"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="38"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HyQ-y9-I5U">
@@ -161,7 +161,7 @@
                                                                 </textFieldCell>
                                                             </textField>
                                                             <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FCC-PE-Y6e">
-                                                                <rect key="frame" x="41" y="11" width="1" height="17"/>
+                                                                <rect key="frame" x="41" y="11" width="272" height="16"/>
                                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" alignment="left" placeholderString="Search" drawsBackground="YES" id="rha-Yr-Htc">
                                                                     <font key="font" size="14" name="Roboto-Regular"/>
                                                                     <color key="textColor" name="Text"/>
@@ -169,7 +169,7 @@
                                                                 </textFieldCell>
                                                             </textField>
                                                             <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8fT-Un-yZs">
-                                                                <rect key="frame" x="42" y="1" width="30" height="36"/>
+                                                                <rect key="frame" x="313" y="1" width="30" height="36"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="30" id="cGi-gX-NiX"/>
                                                                     <constraint firstAttribute="height" constant="30" id="pDw-RI-QvL"/>
@@ -197,7 +197,7 @@
                                                     <color key="fillColor" name="DashboardSearch"/>
                                                 </box>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fyJ-RN-cJF">
-                                                    <rect key="frame" x="81" y="0.0" width="123" height="50"/>
+                                                    <rect key="frame" x="352" y="0.0" width="30" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="Yio-B9-2EI"/>
                                                     </constraints>
@@ -211,7 +211,7 @@
                                                     </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="frd-ic-dqH">
-                                                    <rect key="frame" x="197" y="0.0" width="212" height="50"/>
+                                                    <rect key="frame" x="375" y="0.0" width="34" height="50"/>
                                                     <buttonCell key="cell" type="bevel" title="navigate_before" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="z2J-2S-9ia" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" size="30" name="MaterialIcons-Regular"/>
@@ -285,7 +285,7 @@
                                                     </constraints>
                                                 </customView>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i5W-ab-qEX">
-                                                    <rect key="frame" x="197" y="20" width="15" height="20"/>
+                                                    <rect key="frame" x="198" y="20" width="14" height="20"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="0" id="SRe-nU-MEm">
                                                         <font key="font" size="17" name="Roboto-Regular"/>
                                                         <color key="textColor" name="sphinxWhite"/>
@@ -301,7 +301,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="fpX-PL-iGr">
-                                                    <rect key="frame" x="0.0" y="0.0" width="67" height="60"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="fW1-0U-j7A"/>
                                                     </constraints>
@@ -315,7 +315,7 @@
                                                     </connections>
                                                 </button>
                                                 <box hidden="YES" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="11" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="yLB-ZN-ABh">
-                                                    <rect key="frame" x="67" y="17" width="65" height="22"/>
+                                                    <rect key="frame" x="50" y="17" width="65" height="22"/>
                                                     <view key="contentView" id="Tic-7F-w4U">
                                                         <rect key="frame" x="0.0" y="0.0" width="65" height="22"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -323,7 +323,7 @@
                                                     <color key="fillColor" name="SphinxOrange"/>
                                                 </box>
                                                 <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hmP-u4-HXv">
-                                                    <rect key="frame" x="67" y="17" width="65" height="22"/>
+                                                    <rect key="frame" x="50" y="17" width="65" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="65" id="QoN-j7-mCx"/>
                                                         <constraint firstAttribute="height" constant="22" id="xk3-Ei-p81"/>
@@ -514,14 +514,14 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="GTM-5e-6jW" customClass="ChatAvatarView" customModule="Sphinx" customModuleProvider="target">
-                                            <rect key="frame" x="150" y="183" width="100" height="100"/>
+                                            <rect key="frame" x="150" y="184" width="100" height="100"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="2q6-WF-7KQ"/>
                                                 <constraint firstAttribute="height" constant="100" id="rh4-st-D5y"/>
                                             </constraints>
                                         </customView>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aNk-mv-UTA">
-                                            <rect key="frame" x="146" y="134" width="109" height="19"/>
+                                            <rect key="frame" x="147" y="135" width="107" height="19"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Contact Name" id="Jwy-W5-tXa">
                                                 <font key="font" size="16" name="Roboto-Medium"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -529,7 +529,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Yp-Ei-wYU">
-                                            <rect key="frame" x="18" y="92" width="324" height="17"/>
+                                            <rect key="frame" x="18" y="91" width="324" height="19"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="320" id="ky2-3i-CUb"/>
                                             </constraints>
@@ -540,7 +540,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="yLY-oN-qAB">
-                                            <rect key="frame" x="148" y="22" width="105" height="40"/>
+                                            <rect key="frame" x="148" y="21" width="105" height="40"/>
                                             <subviews>
                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bVh-QR-8zW">
                                                     <rect key="frame" x="0.0" y="0.0" width="19" height="40"/>
@@ -682,7 +682,7 @@
                                         </scroller>
                                     </scrollView>
                                     <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ghc-rF-3vi">
-                                        <rect key="frame" x="-5" y="351" width="155" height="45"/>
+                                        <rect key="frame" x="-5" y="351" width="30" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="4sg-8c-ZtV"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="qTx-3x-bby"/>
@@ -697,10 +697,10 @@
                                         </connections>
                                     </button>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="USL-Ca-asX">
-                                        <rect key="frame" x="655" y="80" width="190" height="35"/>
+                                        <rect key="frame" x="778" y="80" width="67" height="35"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VNc-WG-Xnl">
-                                                <rect key="frame" x="4" y="3" width="152" height="29"/>
+                                                <rect key="frame" x="4" y="5" width="29" height="25"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="expand_more" id="Qp1-yM-2Rv">
                                                     <font key="font" size="25" name="MaterialIcons-Regular"/>
                                                     <color key="textColor" name="sphinxWhite"/>
@@ -708,7 +708,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vfg-BE-zcT">
-                                                <rect key="frame" x="152" y="9" width="20" height="17"/>
+                                                <rect key="frame" x="29" y="10" width="20" height="16"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="+1" id="nH5-8e-Fz2">
                                                     <font key="font" size="14" name="Roboto-Medium"/>
                                                     <color key="textColor" name="sphinxWhite"/>
@@ -716,7 +716,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1aS-ID-uma">
-                                                <rect key="frame" x="0.0" y="0.0" width="190" height="35"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="67" height="35"/>
                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="nDe-Ue-wjs">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -868,26 +868,26 @@
                                                 </constraints>
                                             </customView>
                                             <customView autoresizesSubviews="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fav-ye-bku">
-                                                <rect key="frame" x="115" y="10" width="489" height="40"/>
+                                                <rect key="frame" x="115" y="10" width="490" height="40"/>
                                                 <subviews>
                                                     <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="yGH-cJ-7KV">
-                                                        <rect key="frame" x="0.0" y="0.0" width="489" height="40"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="490" height="40"/>
                                                         <view key="contentView" id="1iU-nq-uFg">
-                                                            <rect key="frame" x="0.0" y="0.0" width="489" height="40"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="490" height="40"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="vI5-Bn-fx2">
-                                                                    <rect key="frame" x="10" y="11" width="469" height="19"/>
+                                                                    <rect key="frame" x="10" y="11" width="470" height="19"/>
                                                                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="nyS-Kg-Mr0">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="469" height="19"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="470" height="19"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
                                                                             <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" smartInsertDelete="YES" id="Sgo-5x-1ut" customClass="PlaceHolderTextView" customModule="Sphinx" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="469" height="19"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="470" height="19"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                <size key="minSize" width="469" height="19"/>
+                                                                                <size key="minSize" width="470" height="19"/>
                                                                                 <size key="maxSize" width="3000" height="500"/>
                                                                                 <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                                 <userDefinedRuntimeAttributes>
@@ -924,13 +924,13 @@
                                                 </constraints>
                                             </customView>
                                             <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="xtJ-CZ-Aie">
-                                                <rect key="frame" x="612" y="10" width="115" height="40"/>
+                                                <rect key="frame" x="613" y="10" width="114" height="40"/>
                                                 <view key="contentView" id="OUT-i1-2f3">
-                                                    <rect key="frame" x="0.0" y="0.0" width="115" height="40"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="114" height="40"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pCx-RQ-lpA">
-                                                            <rect key="frame" x="8" y="12" width="39" height="16"/>
+                                                            <rect key="frame" x="8" y="13" width="38" height="15"/>
                                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Price:" id="RPU-hH-hHs">
                                                                 <font key="font" size="13" name="Roboto-Medium"/>
                                                                 <color key="textColor" name="sphinxWhite"/>
@@ -938,7 +938,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <box boxType="custom" borderType="none" cornerRadius="13" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="6qX-sx-Cuz">
-                                                            <rect key="frame" x="55" y="7" width="50" height="26"/>
+                                                            <rect key="frame" x="54" y="7" width="50" height="26"/>
                                                             <view key="contentView" id="Puk-m1-lGm">
                                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="26"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -946,7 +946,7 @@
                                                             <color key="fillColor" white="1" alpha="0.25" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </box>
                                                         <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UBA-DH-xCr" customClass="CCTextField" customModule="Sphinx" customModuleProvider="target">
-                                                            <rect key="frame" x="53" y="11" width="54" height="19"/>
+                                                            <rect key="frame" x="52" y="11" width="54" height="19"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="3Gf-ax-uhe"/>
                                                             </constraints>
@@ -998,7 +998,7 @@
                                                         </connections>
                                                     </button>
                                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YBK-VT-y5o" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                                                        <rect key="frame" x="53" y="11" width="37" height="39"/>
+                                                        <rect key="frame" x="54" y="11" width="36" height="39"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="39" id="Eyv-Tk-Gl8"/>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="36" id="YlH-xX-gXD"/>
@@ -1029,7 +1029,7 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="mdY-mf-Lmp">
-                                                            <rect key="frame" x="554" y="0.0" width="59" height="59"/>
+                                                            <rect key="frame" x="557" y="0.0" width="59" height="59"/>
                                                             <subviews>
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="RzN-Z6-v0x" customClass="IntermitentAlphaAnimatedView" customModule="Sphinx" customModuleProvider="target">
                                                                     <rect key="frame" x="20" y="20" width="20" height="20"/>
@@ -1046,7 +1046,7 @@
                                                             </constraints>
                                                         </customView>
                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EF3-Z7-WTn">
-                                                            <rect key="frame" x="631" y="18" width="46" height="24"/>
+                                                            <rect key="frame" x="634" y="18" width="43" height="24"/>
                                                             <textFieldCell key="cell" lineBreakMode="clipping" title="0:00" id="ZCu-gF-Npk">
                                                                 <font key="font" size="20" name="Roboto-Regular"/>
                                                                 <color key="textColor" name="Text"/>
@@ -1196,7 +1196,7 @@
                                                 </constraints>
                                             </customView>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3xo-JI-aRc">
-                                                <rect key="frame" x="20" y="20" width="307" height="20"/>
+                                                <rect key="frame" x="20" y="20" width="309" height="20"/>
                                                 <buttonCell key="cell" type="bevel" title="Open a conversation to start messaging" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="b26-JN-1eG">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" size="17" name="Roboto-Medium"/>
@@ -1207,7 +1207,7 @@
                                                 </connections>
                                             </button>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uyl-oe-7nG">
-                                                <rect key="frame" x="21" y="7" width="4" height="14"/>
+                                                <rect key="frame" x="21" y="8" width="4" height="13"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" id="nnT-vi-mH4" customClass="VerticallyCenteredTextFieldCell" customModule="Sphinx" customModuleProvider="target">
                                                     <font key="font" size="11" name="Roboto-Medium"/>
                                                     <color key="textColor" name="Text"/>
@@ -1215,7 +1215,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ucj-2Z-9Fp">
-                                                <rect key="frame" x="31" y="7" width="4" height="14"/>
+                                                <rect key="frame" x="31" y="8" width="4" height="13"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" id="LML-F6-DoD">
                                                     <font key="font" size="11" name="Roboto-Medium"/>
                                                     <color key="textColor" name="SecondaryText"/>
@@ -1223,25 +1223,25 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cbc-gG-qvB">
-                                                <rect key="frame" x="36" y="5" width="94" height="19"/>
+                                                <rect key="frame" x="36" y="7" width="19" height="15"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="verified_user" id="ohD-y7-8Ad">
-                                                    <font key="font" name="MaterialIcons-Regular" size="15"/>
+                                                    <font key="font" size="15" name="MaterialIcons-Regular"/>
                                                     <color key="textColor" name="SecondaryText"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
                                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XZC-6W-7hr">
-                                                <rect key="frame" x="332" y="21" width="33" height="19"/>
+                                                <rect key="frame" x="334" y="23" width="19" height="15"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="lock" id="yKE-c5-U1V">
-                                                    <font key="font" name="MaterialIcons-Regular" size="15"/>
+                                                    <font key="font" size="15" name="MaterialIcons-Regular"/>
                                                     <color key="textColor" name="SecondaryText"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
                                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oOa-kC-pzn">
-                                                <rect key="frame" x="365" y="21" width="63" height="19"/>
+                                                <rect key="frame" x="353" y="23" width="19" height="15"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="flash_on" id="TTp-Zc-yDN">
-                                                    <font key="font" name="MaterialIcons-Regular" size="15"/>
+                                                    <font key="font" size="15" name="MaterialIcons-Regular"/>
                                                     <color key="textColor" name="SecondaryText"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
@@ -1253,7 +1253,7 @@
                                                 </constraints>
                                                 <buttonCell key="cell" type="square" title="apps" bezelStyle="shadowlessSquare" alignment="center" inset="2" id="Oux-j3-ALM">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system" size="25"/>
+                                                    <font key="font" size="25" name="MaterialIcons-Regular"/>
                                                 </buttonCell>
                                                 <color key="contentTintColor" name="SecondaryText"/>
                                                 <connections>
@@ -1281,7 +1281,7 @@
                                                 </constraints>
                                                 <buttonCell key="cell" type="square" title="" bezelStyle="shadowlessSquare" alignment="center" inset="2" id="Kdb-NI-ZMi">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" name="MaterialIcons-Regular" size="25"/>
+                                                    <font key="font" size="25" name="MaterialIcons-Regular"/>
                                                 </buttonCell>
                                                 <color key="contentTintColor" name="SecondaryText"/>
                                                 <connections>
