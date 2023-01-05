@@ -38,13 +38,16 @@ extension API {
                         let subscriptionsArray = JSON(jsonResponse["subscriptions"]).arrayValue
                         
                         if contactsArray.count > 0 || chatsArray.count > 0 {
+                            self.cleanCancellableRequest()
                             callback(contactsArray, chatsArray, subscriptionsArray, [])
                             return
                         }
                     }
                 }
+                self.cleanCancellableRequest()
                 callback([], [], [], [])
             case .failure(_):
+                self.cleanCancellableRequest()
                 callback([], [], [], [])
             }
         }
@@ -79,14 +82,18 @@ extension API {
                             
                             self.lastSeenContactsDate = date
                             
+                            self.cleanCancellableRequest()
+                            
                             callback(contactsArray, chatsArray, subscriptionsArray, invitesArray)
                             
                             return
                         }
                     }
                 }
+                self.cleanCancellableRequest()
                 callback([], [], [], [])
             case .failure(_):
+                self.cleanCancellableRequest()
                 callback([], [], [], [])
             }
         }
