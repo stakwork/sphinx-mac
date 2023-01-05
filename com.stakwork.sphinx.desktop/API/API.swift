@@ -221,10 +221,10 @@ class API {
         case NoNetwork
     }
     
-    let queue = DispatchQueue(label: "chat.sphinx.request")
-    let dispatchSemaphore = DispatchSemaphore(value: 1)
-    
     var connectionStatus = ConnectionStatus.Connecting
+    
+    var cancellableRequest: DataRequest?
+    var currentRequestType : API.CancellableRequestType = API.CancellableRequestType.messages
     
     func sphinxRequest(
         _ urlRequest: URLRequest,
@@ -238,17 +238,23 @@ class API {
         type: CancellableRequestType,
         completionHandler: @escaping (AFDataResponse<Any>) -> Void
     ) {
-        queue.async {
-            self.dispatchSemaphore.wait()
-            
-            let _ = self.unauthorizedHandledRequest(urlRequest) { (response) in
-                self.postConnectionStatusChange()
-                
-                self.dispatchSemaphore.signal()
-                
-                completionHandler(response)
-            }
+        if let cancellableRequest = cancellableRequest, currentRequestType == type {
+            cancellableRequest.cancel()
         }
+        
+        let request = self.unauthorizedHandledRequest(urlRequest) { (response) in
+            self.postConnectionStatusChange()
+            
+            completionHandler(response)
+        }
+        
+        self.currentRequestType = type
+        self.cancellableRequest = request
+    }
+    
+    func cleanCancellableRequest() {
+        cancellableRequest?.cancel()
+        cancellableRequest = nil
     }
     
     func unauthorizedHandledRequest(
