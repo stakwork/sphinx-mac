@@ -144,7 +144,13 @@ public class TransactionMessage: NSManagedObject {
         case outgoing = 1
     }
     
-    static let typesToExcludeFromChat = [TransactionMessageType.purchase.rawValue, TransactionMessageType.purchaseAccept.rawValue, TransactionMessageType.purchaseDeny.rawValue, TransactionMessageType.repayment.rawValue]
+    static let typesToExcludeFromChat = [
+        TransactionMessageType.purchase.rawValue,
+        TransactionMessageType.purchaseAccept.rawValue,
+        TransactionMessageType.purchaseDeny.rawValue,
+        TransactionMessageType.repayment.rawValue,
+        TransactionMessageType.boost.rawValue
+    ]
     
     static let kCallRoomName = "/sphinx.call"
     
