@@ -84,7 +84,6 @@ final class ChatListViewModel: NSObject {
         self.syncMessagesDate = Date()
     
         self.getMessagesPaginated(
-            restoring: isRestoring(),
             prevPageNewMessages: 0,
             chatId: chatId,
             date: self.syncMessagesDate,
@@ -113,7 +112,6 @@ final class ChatListViewModel: NSObject {
     }
     
     func getMessagesPaginated(
-        restoring: Bool,
         prevPageNewMessages: Int,
         chatId: Int? = nil,
         date: Date,
@@ -128,6 +126,8 @@ final class ChatListViewModel: NSObject {
             date: date,
             callback: {(newMessagesTotal, newMessages) -> () in
                 
+                let restoring = self.isRestoring()
+                
                 progressCallback(
                     self.getRestoreProgress(
                         currentPage: page,
@@ -141,17 +141,6 @@ final class ChatListViewModel: NSObject {
                         messages: newMessages,
                         chatId: chatId,
                         completion: { (newChatMessagesCount, newMessagesCount) in
-                            
-                            if !self.isRestoring() {
-                                progressCallback(
-                                    self.getRestoreProgress(
-                                        currentPage: page,
-                                        newMessagesTotal: newMessagesTotal,
-                                        itemsPerPage: ChatListViewModel.kMessagesPerPage
-                                    ), false
-                                )
-                                return
-                            }
                             
                             if newMessages.count < ChatListViewModel.kMessagesPerPage {
                                 
@@ -170,7 +159,6 @@ final class ChatListViewModel: NSObject {
                                 UserDefaults.Keys.messagesFetchPage.set(page + 1)
                                 
                                 self.getMessagesPaginated(
-                                    restoring: restoring,
                                     prevPageNewMessages: newMessagesCount + prevPageNewMessages,
                                     chatId: chatId,
                                     date: date,

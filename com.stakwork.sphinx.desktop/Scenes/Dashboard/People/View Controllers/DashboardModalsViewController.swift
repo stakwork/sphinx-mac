@@ -131,6 +131,9 @@ class DashboardModalsViewController: NSViewController {
         }
         return nil
     }
+    
+    override func mouseDown(with event: NSEvent) {}
+    override func scrollWheel(with event: NSEvent) {}
 }
 
 extension DashboardModalsViewController : ModalViewDelegate {
