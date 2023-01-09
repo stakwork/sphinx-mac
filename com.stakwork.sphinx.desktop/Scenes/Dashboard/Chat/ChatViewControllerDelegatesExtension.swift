@@ -50,9 +50,10 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
             
             messageTextView.string = text
                 .replacingOccurrences(of: typedMentionText, with: "@\(autocompleteText) ")
-                .replacingOccurrences(of: "\t", with: "").trim()
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
+                self.messageTextView.string = self.messageTextView.string.replacingOccurrences(of: "\t", with: "")
+                
                 if var position = initialPosition {
                     position += ("@\(autocompleteText) ".count - typedMentionText.count)
                     self.messageTextView.setSelectedRange(NSRange(location: position, length: 0))

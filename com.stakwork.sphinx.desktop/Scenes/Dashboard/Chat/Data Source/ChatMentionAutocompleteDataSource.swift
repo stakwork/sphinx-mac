@@ -51,6 +51,12 @@ class ChatMentionAutocompleteDataSource : NSObject {
         selectedRow = mentionSuggestions.count - 1
         updateMentionTableHeight()
         tableView.reloadData()
+        
+        if suggestions.isEmpty { return }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
+            self.tableView.animator().scrollToItems(at: [IndexPath(item: self.selectedRow, section: 0)], scrollPosition: .bottom)
+        })
     }
     
     func isTableVisible() -> Bool {
@@ -59,7 +65,7 @@ class ChatMentionAutocompleteDataSource : NSObject {
     
     func updateMentionTableHeight() {
         if let heightConstraint = self.delegate.getTableHeightConstraint() {
-            let height = min(4 * mentionCellHeight,mentionCellHeight * CGFloat(mentionSuggestions.count))
+            let height = min(4 * mentionCellHeight, mentionCellHeight * CGFloat(mentionSuggestions.count))
             heightConstraint.isActive = false
             heightConstraint.constant = height
             heightConstraint.isActive = true
