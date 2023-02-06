@@ -46,7 +46,7 @@ class PodcastSatsView: NSView, LoadableNib {
     func configureWith(chat: Chat) {
         self.chat = chat
         
-        if let podcast = chat.podcastPlayer?.podcast {
+        if let podcast = chat.getPodcastFeed() {
             if let storedAmount = UserDefaults.standard.value(forKey: "podcast-sats-\(chat.id)") as? Int {
                 setSliderValue(value: storedAmount)
             } else {
@@ -87,7 +87,7 @@ class PodcastSatsView: NSView, LoadableNib {
     }
     
     @objc func didFinishDragging() {
-        chat.updateMetaData()
+//        chat.updateMetaData()
     }
     
     func configureSlider() {

@@ -45,24 +45,24 @@ class NewEpisodeAlertView: NSView, LoadableNib {
     }
     
     static func checkForNewEpisode(chat: Chat, view: NSView) -> NewEpisodeAlertView? {
-        if (chat.podcastPlayer?.podcast?.episodes ?? []).count == 0 {
-            return nil
-        }
-
-        let lastStoredEpisodeId = (chat.podcastPlayer?.lastEpisodeId ?? chat.podcastPlayer?.currentEpisodeId) ?? -1
-
-        if let lastEpisode = chat.podcastPlayer?.podcast?.episodes[0], let lastEpisodeId = lastEpisode.id {
-
-            chat.podcastPlayer?.lastEpisodeId = lastEpisodeId
-
-            if lastStoredEpisodeId > 0 && lastStoredEpisodeId != lastEpisodeId {
-                let newEpisodeView = NewEpisodeAlertView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height))
-                newEpisodeView.episode = lastEpisode
-                newEpisodeView.configureView() 
-                view.addSubview(newEpisodeView)
-                return newEpisodeView
-            }
-        }
+//        if (chat.podcastPlayer?.podcast?.episodes ?? []).count == 0 {
+//            return nil
+//        }
+//
+//        let lastStoredEpisodeId = (chat.podcastPlayer?.lastEpisodeId ?? chat.podcastPlayer?.currentEpisodeId) ?? -1
+//
+//        if let lastEpisode = chat.podcastPlayer?.podcast?.episodes[0], let lastEpisodeId = lastEpisode.id {
+//
+//            chat.podcastPlayer?.lastEpisodeId = lastEpisodeId
+//
+//            if lastStoredEpisodeId > 0 && lastStoredEpisodeId != lastEpisodeId {
+//                let newEpisodeView = NewEpisodeAlertView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height))
+//                newEpisodeView.episode = lastEpisode
+//                newEpisodeView.configureView() 
+//                view.addSubview(newEpisodeView)
+//                return newEpisodeView
+//            }
+//        }
         return nil
     }
     

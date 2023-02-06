@@ -24,7 +24,10 @@ class PodcastCommentReceivedCollectionViewItem: CommonPodcastCommentCollectionVi
         audioBubbleView.showIncomingPodcastCommentBubble(messageRow: messageRow, size: bubbleSize)
         configureReplyBubble(bubbleView: audioBubbleView, bubbleSize: bubbleSize, incoming: true)
 
-        tryLoadingAudio(messageRow: messageRow, podcast: chat?.podcastPlayer?.podcast, bubbleSize: bubbleSize)
+        if let contentFeed = chat?.contentFeed {
+            let podcastFeed = PodcastFeed.convertFrom(contentFeed: contentFeed)
+            tryLoadingAudio(messageRow: messageRow, podcast: podcastFeed, bubbleSize: bubbleSize)
+        }
 
         if messageRow.shouldShowRightLine {
             addRightLine()
@@ -52,7 +55,7 @@ class PodcastCommentReceivedCollectionViewItem: CommonPodcastCommentCollectionVi
 //        errorContainer.alpha = expired ? 1.0 : 0.0
     }
     
-    func tryLoadingAudio(messageRow: TransactionMessageRow, podcast: OldPodcastFeed?, bubbleSize: CGSize) {
+    func tryLoadingAudio(messageRow: TransactionMessageRow, podcast: PodcastFeed?, bubbleSize: CGSize) {
         if let podcastComment = messageRow.transactionMessage.podcastComment, let _ = podcastComment.url {
             loadAudio(podcastComment: podcastComment, podcast: podcast, messageRow: messageRow, bubbleSize: bubbleSize)
         } else {

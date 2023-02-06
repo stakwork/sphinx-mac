@@ -9,7 +9,7 @@
 import Cocoa
 import AVFoundation
 
-class PlayAudioHelper {
+class SoundsPlayer {
     
     static let PaymentSent: SystemSoundID = 1008
     static let keySoundID: SystemSoundID = 1123
@@ -21,9 +21,7 @@ class PlayAudioHelper {
         NSSound.pop?.play()
     }
     
-    var player : AVAudioPlayer? = nil
-    
-    func playSound(name: String) {
+    public static func playSound(name: String) {
         let components = name.components(separatedBy: ".")
 
         if components.count < 2 {

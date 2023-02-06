@@ -17,7 +17,6 @@ class NewPodcastPlayerViewController: NSViewController {
     var newEpisodeView: NewEpisodeAlertView? = nil
     
     var chat: Chat! = nil
-    var playerHelper: PodcastPlayerHelper! = nil
     var collectionViewDS: PodcastEpisodesDataSource! = nil
 
     override func viewDidLoad() {
@@ -47,21 +46,20 @@ class NewPodcastPlayerViewController: NSViewController {
         NotificationCenter.default.removeObserver(self, name: NSView.boundsDidChangeNotification, object: nil)
     }
     
-    static func instantiate(chat: Chat, playerHelper: PodcastPlayerHelper, delegate: PodcastPlayerViewDelegate) -> NewPodcastPlayerViewController {
+    static func instantiate(chat: Chat, delegate: PodcastPlayerViewDelegate) -> NewPodcastPlayerViewController {
         let viewController = StoryboardScene.Podcast.newPodcastPlayerViewController.instantiate()
         viewController.chat = chat
         viewController.delegate = delegate
-        viewController.playerHelper = playerHelper
         
         return viewController
     }
     
     func showEpisodesTable() {
-        collectionViewDS = PodcastEpisodesDataSource(collectionView: playerCollectionView,
-                                                     chat: chat,
-                                                     episodes: playerHelper.getEpisodes(),
-                                                     playerHelper: playerHelper,
-                                                     delegate: self)
+        guard let contentFeed = chat.contentFeed else {
+            return
+        }
+        let podcast = PodcastFeed.convertFrom(contentFeed: contentFeed)
+        collectionViewDS = PodcastEpisodesDataSource(collectionView: playerCollectionView, chat: chat, podcastFeed: podcast, delegate: self)
     }
 }
 

@@ -24,24 +24,24 @@ class PodcastEpisodesDataSource : NSObject {
     let kHeaderHeight: CGFloat = 60
     
     var collectionView: NSCollectionView! = nil
-    var playerHelper: PodcastPlayerHelper! = nil
-    var episodes: [OldPodcastEpisode] = []
-    var chat: Chat! = nil
     
-    init(collectionView: NSCollectionView,
-         chat: Chat,
-         episodes: [OldPodcastEpisode],
-         playerHelper: PodcastPlayerHelper,
-         delegate: PodcastEpisodesDSDelegate) {
+    var chat: Chat! = nil
+    var podcast: PodcastFeed! = nil
+    
+    let podcastPlayerController = PodcastPlayerController.sharedInstance
+    
+    init(
+        collectionView: NSCollectionView,
+        chat: Chat,
+        podcastFeed: PodcastFeed,
+        delegate: PodcastEpisodesDSDelegate
+    ) {
         
         super.init()
         
-        PodcastEpisodeCollectionViewItem.podcastImage = nil
-        
         self.chat = chat
-        self.playerHelper = playerHelper
+        self.podcast = podcastFeed
         self.collectionView = collectionView
-        self.episodes = episodes
         self.delegate = delegate
         
         let flowLayout = NSCollectionViewFlowLayout()
@@ -67,7 +67,7 @@ extension PodcastEpisodesDataSource : NSCollectionViewDataSource {
         if section == 0 {
             return 1
         }
-        return episodes.count
+        return podcast.episodesArray.count
     }
   
     func collectionView(_ itemForRepresentedObjectAtcollectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
@@ -81,12 +81,16 @@ extension PodcastEpisodesDataSource : NSCollectionViewDataSource {
     
     func collectionView(_ collectionView: NSCollectionView, willDisplay item: NSCollectionViewItem, forRepresentedObjectAt indexPath: IndexPath) {
         if let collectionViewItem = item as? PodcastEpisodeCollectionViewItem {
-            let episode = episodes[indexPath.item]
-            let isLastRow = indexPath.item == episodes.count - 1
-            let isPlaying = (playerHelper.currentEpisode == indexPath.item && playerHelper.isPlaying())
-            collectionViewItem.configureWidth(podcast: playerHelper.podcast, and: episode, isLastRow: isLastRow, playing: isPlaying)
+            
+            let episode = podcast.episodesArray[indexPath.item]
+            let isLastRow = indexPath.item == podcast.episodesArray.count - 1
+            let isPlaying = podcastPlayerController.isPlaying(episodeId: episode.itemID)
+            
+            collectionViewItem.configureWidth(podcast: podcast, and: episode, isLastRow: isLastRow, playing: isPlaying)
+            
         } else if let collectionViewItem = item as? PodcastPlayerCollectionViewItem {
-            collectionViewItem.configureWith(playerHelper: playerHelper, chat: chat, delegate: self)
+            
+            collectionViewItem.configureWith(chat: chat, podcast: podcast, delegate: self)
         }
     }
 }
@@ -107,9 +111,15 @@ extension PodcastEpisodesDataSource : NSCollectionViewDelegate, NSCollectionView
     }
     
     func collectionView(_ collectionView: NSCollectionView, viewForSupplementaryElementOfKind kind: NSCollectionView.SupplementaryElementKind, at indexPath: IndexPath) -> NSView {
-        let view = collectionView.makeSupplementaryView(ofKind: NSCollectionView.elementKindSectionHeader, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PodcastEpisodesHeaderView"), for: indexPath) as! PodcastEpisodesHeaderView
-        view.configureWith(count: episodes.count)
+        let view = collectionView.makeSupplementaryView(
+            ofKind: NSCollectionView.elementKindSectionHeader,
+            withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PodcastEpisodesHeaderView"),
+            for: indexPath
+        ) as! PodcastEpisodesHeaderView
+        
+        view.configureWith(count: podcast.episodesArray.count)
         view.addShadow(location: VerticalLocation.bottom, color: NSColor.black, opacity: 0.2, radius: 3.0)
+        
         return view
     }
     
@@ -138,6 +148,6 @@ extension PodcastEpisodesDataSource : PodcastPlayerViewDelegate {
     }
     
     func shouldSyncPodcast() {
-        chat?.updateMetaData()
+//        chat?.updateMetaData()
     }
 }

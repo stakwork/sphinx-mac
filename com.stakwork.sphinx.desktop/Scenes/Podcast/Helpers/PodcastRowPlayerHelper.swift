@@ -9,6 +9,15 @@
 import Foundation
 import AVKit
 
+@objc protocol PodcastPlayerDelegate : AnyObject {
+    func shouldUpdateLabels(duration: Int, currentTime: Int)
+    func shouldToggleLoadingWheel(loading: Bool)
+    @objc optional func shouldUpdatePlayButton()
+    @objc optional func shouldUpdateEpisodeInfo()
+    @objc optional func shouldInsertMessagesFor(currentTime: Int)
+}
+
+
 class PodcastRowPlayerHelper {
     
     weak var delegate: PodcastPlayerDelegate?
@@ -29,12 +38,14 @@ class PodcastRowPlayerHelper {
     var messageId : Int? = nil
     var podcastComment: PodcastComment? = nil
     var podcastPaymentsHelper = PodcastPaymentsHelper()
-    var podcast: OldPodcastFeed? = nil
+    var podcast: PodcastFeed? = nil
     
     let customAudioPlayer = PodcastRowAudioPlayer.sharedInstance
     
+    public static let kSecondsBeforePMT = 60
+    
     func createPlayerItemWith(podcastComment: PodcastComment,
-                              podcast: OldPodcastFeed?,
+                              podcast: PodcastFeed?,
                               delegate: PodcastPlayerDelegate,
                               for messageId: Int,
                               completion: @escaping (Int) -> ()) {
@@ -179,7 +190,7 @@ class PodcastRowPlayerHelper {
         
         playedSeconds = playedSeconds + 1
         
-        if playedSeconds > 0 && playedSeconds % PodcastPlayerHelper.kSecondsBeforePMT == 0 {
+        if playedSeconds > 0 && playedSeconds % PodcastRowPlayerHelper.kSecondsBeforePMT == 0 {
             DispatchQueue.global().async {
                 self.processPayment()
             }

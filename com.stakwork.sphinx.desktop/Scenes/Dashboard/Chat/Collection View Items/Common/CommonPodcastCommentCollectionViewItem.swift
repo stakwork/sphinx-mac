@@ -73,7 +73,7 @@ class CommonPodcastCommentCollectionViewItem: CommonReplyCollectionViewItem, Aud
         resetPlayer()
     }
     
-    func loadAudio(podcastComment: PodcastComment, podcast: OldPodcastFeed?, messageRow: TransactionMessageRow, bubbleSize: CGSize) {
+    func loadAudio(podcastComment: PodcastComment, podcast: PodcastFeed?, messageRow: TransactionMessageRow, bubbleSize: CGSize) {
         toggleLoadingAudio(loading: true)
 
         let messageId = messageRow.transactionMessage.id

@@ -21,7 +21,7 @@ class PodcastCommentSentCollectionViewItem: CommonPodcastCommentCollectionViewIt
         super.configureMessageRow(messageRow: messageRow, contact: contact, chat: chat, chatWidth: chatWidth)
 
         commonConfigurationForMessages()
-        configureAudio(podcast: chat?.podcastPlayer?.podcast)
+        configureAudio(podcast: chat?.getPodcastFeed())
         configureMessageStatus()
 
         if messageRow.shouldShowRightLine {
@@ -39,7 +39,7 @@ class PodcastCommentSentCollectionViewItem: CommonPodcastCommentCollectionViewIt
         }
     }
     
-    func configureAudio(podcast: OldPodcastFeed?) {
+    func configureAudio(podcast: PodcastFeed?) {
         guard let messageRow = messageRow else {
            return
         }
@@ -51,7 +51,7 @@ class PodcastCommentSentCollectionViewItem: CommonPodcastCommentCollectionViewIt
         tryLoadingAudio(messageRow: messageRow, podcast: podcast, bubbleSize: bubbleSize)
     }
 
-    func tryLoadingAudio(messageRow: TransactionMessageRow, podcast: OldPodcastFeed?, bubbleSize: CGSize) {
+    func tryLoadingAudio(messageRow: TransactionMessageRow, podcast: PodcastFeed?, bubbleSize: CGSize) {
         if let podcastComment = messageRow.transactionMessage.podcastComment, let _ = podcastComment.url {
             loadAudio(podcastComment: podcastComment, podcast: podcast, messageRow: messageRow, bubbleSize: bubbleSize)
         } else {

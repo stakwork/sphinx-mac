@@ -16,19 +16,17 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
     @IBOutlet weak var divider: NSBox!
     @IBOutlet weak var itemButton: CustomButton!
     
-    var episode: OldPodcastEpisode! = nil
-    
-    public static var podcastImage: NSImage? = nil
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         itemButton.cursor = .pointingHand
     }
     
-    func configureWidth(podcast: OldPodcastFeed?, and episode: OldPodcastEpisode, isLastRow: Bool, playing: Bool) {
-        self.episode = episode
-        
+    func configureWidth(
+        podcast: PodcastFeed?,
+        and episode: PodcastEpisode,
+        isLastRow: Bool,
+        playing: Bool
+    ) {
         episodeNameLabel.stringValue = episode.title ?? "No title"
         divider.isHidden = isLastRow
         
@@ -36,32 +34,17 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
         self.view.layer?.backgroundColor = (playing ? NSColor.Sphinx.ChatListSelected : NSColor.clear).cgColor
         playArrow.isHidden = !playing
         
-        if let img = PodcastEpisodeCollectionViewItem.podcastImage {
-            loadEpisodeImage(episode: episode, with: img)
-        } else if let image = podcast?.image, let url = URL(string: image) {
-            MediaLoader.asyncLoadImage(imageView: episodeImageView, nsUrl: url, placeHolderImage: nil, completion: { img in
-                PodcastEpisodeCollectionViewItem.podcastImage = img
-                self.loadEpisodeImage(episode: episode, with: img)
-            }, errorCompletion: { _ in
-                self.loadEpisodeImage(episode: episode, with: NSImage(named: "profileAvatar")!)
-            })
+        episodeImageView.sd_cancelCurrentImageLoad()
+        
+        let imageUrl = episode.imageURLPath ?? podcast?.imageURLPath
+        
+        if let episodeURLPath = imageUrl, let url = URL(string: episodeURLPath) {
+            episodeImageView.sd_setImage(
+                with: url,
+                placeholderImage: NSImage(named: "podcastPlaceholder"),
+                options: [.highPriority],
+                progress: nil
+            )
         }
-    }
-    
-    func loadEpisodeImage(episode: OldPodcastEpisode, with defaultImg: NSImage) {
-        if let image = episode.image, let url = URL(string: image) {
-            MediaLoader.asyncLoadImage(imageView: episodeImageView, nsUrl: url, placeHolderImage: nil, id: episode.id ?? -1, completion: { (img, id) in
-                if self.isDifferentEpisode(episodeId: id) { return }
-                self.episodeImageView.image = img
-            }, errorCompletion: { _ in
-                self.episodeImageView.image = defaultImg
-            })
-        } else {
-            self.episodeImageView.image = defaultImg
-        }
-    }
-    
-    func isDifferentEpisode(episodeId: Int) -> Bool {
-        return episodeId != self.episode.id
     }
 }

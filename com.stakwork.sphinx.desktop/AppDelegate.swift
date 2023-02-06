@@ -263,7 +263,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func notificationSoundButtonClicked(_ sender: NSMenuItem) {
         notificationsHelper.setNotificationSound(tag: sender.tag)
         selectItemWith(tag: sender.tag, in: notificationSoundMenu)
-        PlayAudioHelper().playSound(name: notificationsHelper.getNotificationSoundFile())
+        SoundsPlayer.playSound(name: notificationsHelper.getNotificationSoundFile())
     }
     
     @IBAction func messagesSizeButtonClicked(_ sender: NSMenuItem) {

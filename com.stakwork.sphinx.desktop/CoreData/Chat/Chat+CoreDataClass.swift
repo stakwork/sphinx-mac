@@ -20,16 +20,6 @@ public class Chat: NSManagedObject {
     public var ongoingMessage : String? = nil
     var tribeInfo: GroupsManager.TribeInfo? = nil
     var aliases : [String] = [String]()
-
-    var podcastPlayer: PodcastPlayerHelper? = nil
-    
-    func getPodcastPlayer() -> PodcastPlayerHelper {
-        if podcastPlayer == nil {
-            podcastPlayer = PodcastPlayerHelper()
-        }
-        return podcastPlayer!
-    }
-
     
     public enum ChatType: Int {
         case conversation = 0
@@ -166,8 +156,6 @@ public class Chat: NSManagedObject {
         chat.pendingContactIds = pendingContactIds
         chat.subscription = chat.getContact()?.getCurrentSubscription()
         
-        chat.setMetaData(metaData)
-        
         if chat.isMyPublicGroup() {
             chat.pricePerMessage = NSDecimalNumber(integerLiteral: pricePerMessage)
             chat.escrowAmount = NSDecimalNumber(integerLiteral: escrowAmount)
@@ -280,10 +268,10 @@ public class Chat: NSManagedObject {
         return Chat.insertChat(chat: chat)
     }
     
-    static func getChatWith(id: Int) -> Chat? {
+    static func getChatWith(id: Int, managedContext: NSManagedObjectContext? = nil) -> Chat? {
         let predicate = NSPredicate(format: "id == %d", id)
         let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
-        let chat:Chat? = CoreDataManager.sharedManager.getObjectOfTypeWith(predicate: predicate, sortDescriptors: sortDescriptors, entityName: "Chat")
+        let chat:Chat? = CoreDataManager.sharedManager.getObjectOfTypeWith(predicate: predicate, sortDescriptors: sortDescriptors, entityName: "Chat", managedContext: managedContext)
         return chat
     }
     
@@ -484,16 +472,35 @@ public class Chat: NSManagedObject {
     }
     
     func updateTribeInfo(completion: @escaping () -> ()) {
-        if let host = host, let uuid = uuid, !host.isEmpty {
-            API.sharedInstance.getTribeInfo(host: host, uuid: uuid, callback: { chatJson in
-                self.tribeInfo = GroupsManager.sharedInstance.getTribesInfoFrom(json: chatJson)
-                self.updateChatFromTribesInfo(chatJson: chatJson)
-                completion()
-            }, errorCallback: {})
+        if
+            let host = host,
+            let uuid = uuid,
+            host.isEmpty == false,
+            isPublicGroup()
+        {
+            API.sharedInstance.getTribeInfo(
+                host: host,
+                uuid: uuid,
+                callback: { chatJson in
+                    self.tribeInfo = GroupsManager.sharedInstance.getTribesInfoFrom(json: chatJson)
+                    self.updateChatFromTribesInfo()
+                    
+                    if let feedUrl = self.tribeInfo?.feedUrl, !feedUrl.isEmpty {
+                        ContentFeed.fetchChatFeedContentInBackground(feedUrl: feedUrl, chatObjectID: self.objectID, completion: completion)
+                    } else if let existingFeed = self.contentFeed {
+                        ContentFeed.deleteFeedWith(feedId: existingFeed.feedID)
+                    }
+                },
+                errorCallback: {
+                    completion()
+                }
+            )
         }
     }
     
-    func updateChatFromTribesInfo(chatJson: JSON) {
+    
+    
+    func updateChatFromTribesInfo() {
         if self.isMyPublicGroup() {
             return
         }
@@ -569,46 +576,6 @@ public class Chat: NSManagedObject {
         return isPublicGroup()
     }
     
-    func setMetaData(_ meta: String?) {
-        if let meta = meta, !meta.isEmpty {
-            if (self.podcastPlayer?.isPlaying() ?? false) {
-                return
-            }
-            
-            if let data = meta.data(using: .utf8) {
-                if let jsonObject = try? JSON(data: data) {
-                    if let currentTime = jsonObject["ts"].int {
-                        UserDefaults.standard.set(currentTime, forKey: "current-time-\(self.id)")
-                    }
-                    
-                    if let episode = jsonObject["itemID"].int {
-                        UserDefaults.standard.set(episode, forKey: "current-episode-id-\(self.id)")
-                    }
-                    
-                    if let satsPerMinute = jsonObject["sats_per_minute"].int {
-                        UserDefaults.standard.set(satsPerMinute, forKey: "podcast-sats-\(self.id)")
-                    }
-                    
-                    if let speed = jsonObject["speed"].float {
-                        UserDefaults.standard.set(speed, forKey: "player-speed-\(self.id)")
-                    }
-                    
-                    UserDefaults.standard.synchronize()
-                }
-            }
-        }
-    }
-    
-    func updateMetaData() {
-        let stasPerMinute = (UserDefaults.standard.value(forKey: "podcast-sats-\(self.id)") as? Int) ?? 0
-        let currentTime = (UserDefaults.standard.value(forKey: "current-time-\(self.id)") as? Int) ?? 0
-        let currentEpisode = ((UserDefaults.standard.value(forKey: "current-episode-id-\(self.id)") as? Int) ?? self.podcastPlayer?.currentEpisodeId) ?? -1
-        let speed = ((UserDefaults.standard.value(forKey: "player-speed-\(self.id)") as? Float) ?? 0).speedDescription
-        
-        let params: [String: AnyObject] = ["meta" :"{\"itemID\":\(currentEpisode),\"sats_per_minute\":\(stasPerMinute),\"ts\":\(currentTime), \"speed\":\(speed)}" as AnyObject]
-        API.sharedInstance.updateMetaData(chatId: id, params: params, callback: {}, errorCallback: {})
-    }
-    
     func getTribePrices() -> (Int, Int) {
         return (self.pricePerMessage?.intValue ?? 0, self.escrowAmount?.intValue ?? 0)
     }
@@ -680,6 +647,13 @@ public class Chat: NSManagedObject {
     
     func getJoinChatLink() -> String {
         return "sphinx.chat://?action=tribe&uuid=\(self.uuid ?? "")&host=\(self.host ?? "")"
+    }
+    
+    func getPodcastFeed() -> PodcastFeed? {
+        if let contentFeed = self.contentFeed {
+            return PodcastFeed.convertFrom(contentFeed: contentFeed)
+        }
+        return nil
     }
     
     func saveChat() {

@@ -41,6 +41,14 @@ extension Int {
     var millisFromHours : Int {
         return self * 60 * 60 * 1000
     }
+    
+    func getPodcastTimeString() -> String {
+        let hours = Int((self % 86400) / 3600).timeString
+        let minutes = Int((self % 3600) / 60).timeString
+        let seconds = Int((self % 3600) % 60).timeString
+        
+        return "\(hours):\(minutes):\(seconds)"
+    }
 }
 
 extension Formatter {

@@ -635,7 +635,7 @@ extension TransactionMessage {
         let messageC = (messageContent ?? "")
         
         if messageC.isPodcastComment {
-            let stringWithoutPrefix = messageC.replacingOccurrences(of: PodcastPlayerHelper.kClipPrefix, with: "")
+            let stringWithoutPrefix = messageC.replacingOccurrences(of: PodcastFeed.kClipPrefix, with: "")
             if let data = stringWithoutPrefix.data(using: .utf8) {
                 if let jsonObject = try? JSON(data: data) {
                     var podcastComment = PodcastComment()
@@ -658,7 +658,7 @@ extension TransactionMessage {
     func getBoostAmount() -> Int {
         let messageC = (messageContent ?? "")
         
-        let stringWithoutPrefix = messageC.replacingOccurrences(of: PodcastPlayerHelper.kBoostPrefix, with: "")
+        let stringWithoutPrefix = messageC.replacingOccurrences(of: PodcastFeed.kBoostPrefix, with: "")
         if let data = stringWithoutPrefix.data(using: .utf8) {
             if let jsonObject = try? JSON(data: data) {
                 return jsonObject["amount"].intValue
@@ -670,8 +670,8 @@ extension TransactionMessage {
     func getTimeStamp() -> Int? {
         let messageC = (messageContent ?? "")
         
-        var stringWithoutPrefix = messageC.replacingOccurrences(of: PodcastPlayerHelper.kBoostPrefix, with: "")
-        stringWithoutPrefix = stringWithoutPrefix.replacingOccurrences(of: PodcastPlayerHelper.kClipPrefix, with: "")
+        var stringWithoutPrefix = messageC.replacingOccurrences(of: PodcastFeed.kBoostPrefix, with: "")
+        stringWithoutPrefix = stringWithoutPrefix.replacingOccurrences(of: PodcastFeed.kClipPrefix, with: "")
         
         if let data = stringWithoutPrefix.data(using: .utf8) {
             if let jsonObject = try? JSON(data: data) {

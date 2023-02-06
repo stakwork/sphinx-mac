@@ -10,11 +10,11 @@ import Cocoa
 
 extension ChatViewController {
     func addPodcastVC() {
-        if let chat = chat, let podcastPlayerHelper = podcastPlayerHelper {
+        if let chat = chat, let _ = chat.contentFeed {
             podcastContainerWidth.constant = DashboardViewController.kPodcastPlayerWidth
             podcastVCContainer.superview?.layoutSubtreeIfNeeded()
             
-            podcastPlayerVC = NewPodcastPlayerViewController.instantiate(chat: chat, playerHelper: podcastPlayerHelper, delegate: self)
+            podcastPlayerVC = NewPodcastPlayerViewController.instantiate(chat: chat, delegate: self)
             addChildVC(vc: podcastPlayerVC!)
         }
     }
@@ -52,15 +52,15 @@ extension ChatViewController {
     }
     
     func updateSatsEarned() {
-        if let podcast = chat?.podcastPlayer?.podcast, let feedID = podcast.id, feedID > 0 {
-            let isMyTribe = (chat?.isMyPublicGroup() ?? false)
-            let label = isMyTribe ? "earned.sats".localized : "contributed.sats".localized
-            let sats = PodcastPaymentsHelper.getSatsEarnedFor(feedID)
-            contributedSatsIcon.isHidden = false
-            contributedSatsLabel.isHidden = false
-        
-            contributedSatsLabel.stringValue = String(format: label, sats)
-        }
+//        if let podcast = chat?.podcastPlayer?.podcast, let feedID = podcast.id, feedID > 0 {
+//            let isMyTribe = (chat?.isMyPublicGroup() ?? false)
+//            let label = isMyTribe ? "earned.sats".localized : "contributed.sats".localized
+//            let sats = PodcastPaymentsHelper.getSatsEarnedFor(feedID)
+//            contributedSatsIcon.isHidden = false
+//            contributedSatsLabel.isHidden = false
+//        
+//            contributedSatsLabel.stringValue = String(format: label, sats)
+//        }
     }
 }
 

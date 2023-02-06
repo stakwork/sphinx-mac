@@ -88,7 +88,6 @@ class ChatViewController: DashboardSplittedViewController {
     var messageOptionsHelper = MessageOptionsHelper.sharedInstance
     let messageBubbleHelper = NewMessageBubbleHelper()
     
-    var podcastPlayerHelper: PodcastPlayerHelper? = nil
     var podcastPlayerVC: NewPodcastPlayerViewController? = nil
     
     
@@ -250,8 +249,6 @@ class ChatViewController: DashboardSplittedViewController {
             return
         }
         
-        podcastPlayerHelper = nil
-        
         contributedSatsIcon.isHidden = true
         contributedSatsLabel.isHidden = true
         healthCheckSign.isHidden = false
@@ -269,6 +266,7 @@ class ChatViewController: DashboardSplittedViewController {
         }
         initialLoad()
         updateTribeInfo()
+        checkActiveTribe()
         checkRoute()
     }
     
@@ -327,14 +325,17 @@ class ChatViewController: DashboardSplittedViewController {
     }
     
     func updateTribeInfo() {
-        checkActiveTribe()
         removePodcastVC()
+        
+        if let feedId = chat?.contentFeed?.feedID, PodcastPlayerController.sharedInstance.isPlaying(podcastId: feedId) {
+            self.addPodcastVC()
+            return
+        }
         
         chat?.updateTribeInfo() {
             self.setChatInfo()
-            self.loadPodcastFeed()
-            
             self.webAppButton.isHidden = !(self.chat?.hasWebApp() ?? false)
+            self.addPodcastVC()
         }
     }
     
@@ -385,21 +386,6 @@ class ChatViewController: DashboardSplittedViewController {
     
     func setVolumeState() {
         volumeButton.image = NSImage(named: chat?.isMuted() ?? false ? "muteOnIcon" : "muteOffIcon")
-    }
-    
-    func loadPodcastFeed() {
-        guard let chat = self.chat, let feedUrl = chat.tribeInfo?.feedUrl, !feedUrl.isEmpty else {
-            return
-        }
-        if podcastPlayerHelper == nil {
-            podcastPlayerHelper = chat.getPodcastPlayer()
-        }
-        podcastPlayerHelper?.loadPodcastFeed(chat: self.chat, callback: { (success, chatId) in
-            if let _ = chat.podcastPlayer?.podcast, success && chatId == self.chat?.id {
-                self.addPodcastVC()
-                self.updateSatsEarned()
-            }
-        })
     }
     
     func checkRoute() {

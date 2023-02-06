@@ -104,7 +104,7 @@ class NotificationsHelper : NSObject {
         }
         
         if shouldPlaySound() {
-            PlayAudioHelper().playSound(name: getNotificationSoundFile())
+            SoundsPlayer.playSound(name: getNotificationSoundFile())
         }
     }
     
