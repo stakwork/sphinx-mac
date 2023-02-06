@@ -127,3 +127,7 @@ class Constants {
         }
     }
 }
+
+extension Constants {
+    static let satoshisInBTC = 100_000_000
+}

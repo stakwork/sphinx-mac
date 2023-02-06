@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-struct PodcastFeed {
+struct OldPodcastFeed {
     var chatId:Int? = nil
     var id:Int? = nil
     var title: String? = nil
@@ -17,12 +17,12 @@ struct PodcastFeed {
     var author: String? = nil
     var image: String? = nil
     
-    var model: PodcastModel? = nil
-    var episodes: [PodcastEpisode] = []
-    var destinations: [PodcastDestination] = []
+    var model: OldPodcastModel? = nil
+    var episodes: [OldPodcastEpisode] = []
+    var destinations: [OldPodcastDestination] = []
 }
 
-struct PodcastEpisode {
+struct OldPodcastEpisode {
     var id:Int? = nil
     var title: String? = nil
     var description: String? = nil
@@ -31,21 +31,22 @@ struct PodcastEpisode {
     var link: String? = nil
 }
 
-struct PodcastDestination {
+struct OldPodcastDestination {
     var address: String? = nil
     var split: Double? = nil
     var type: String? = nil
 }
 
-struct PodcastModel {
+struct OldPodcastModel {
     var type: String? = nil
     var suggested: Double? = nil
     var suggestedSats: Int? = nil
 }
 
 struct PodcastComment {
-    var feedId:Int? = nil
-    var itemId:Int? = nil
+    var feedId:String? = nil
+    var itemId:String? = nil
+    var feedItemObjectId: NSManagedObjectID? = nil
     var timestamp:Int? = nil
     var title: String? = nil
     var text: String? = nil

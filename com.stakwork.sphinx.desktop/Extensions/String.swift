@@ -408,6 +408,10 @@ extension String {
         }
     }
     
+    var isYouTubeRSSFeed: Bool {
+        contains("www.youtube.com")
+    }
+    
     var podcastId: Int {
         get {
             let components = self.components(separatedBy: ":")
@@ -653,3 +657,66 @@ extension StringProtocol {
         return result
     }
 }
+
+extension String {
+    
+    var attributedStringFromHTML: NSAttributedString? {
+        guard let data = data(using: .utf8) else {
+            return nil
+        }
+        
+        do {
+            return try NSAttributedString(
+                data: data,
+                options: [
+                    .documentType: NSAttributedString.DocumentType.html,
+                    .characterEncoding:String.Encoding.utf8.rawValue,
+                ],
+                documentAttributes: nil
+            )
+        } catch {
+            return nil
+        }
+    }
+    
+    var nonHtmlRawString: String {
+        return self.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+    }
+    
+    func removingPunctuation() -> String {
+        var filteredString = self
+        while true {
+            if let forbiddenCharRange = filteredString.rangeOfCharacter(from: CharacterSet.punctuationCharacters)  {
+                filteredString.removeSubrange(forbiddenCharRange)
+            } else {
+                break
+            }
+        }
+        return filteredString
+    }
+    
+    var personHost: String? {
+        let elements = self.split(separator: "/")
+        if let last = elements.last {
+            return self.replacingOccurrences(of: "/\(String(last))", with: "")
+        }
+        return nil
+    }
+    
+    var personUUID: String? {
+        let elements = self.split(separator: "/")
+        if let last = elements.last {
+            return String(last)
+        }
+        return nil
+    }
+    
+    var tribeMemberProfileValue : String {
+        if self.trim().isEmpty {
+            return "-"
+        }
+        return self
+    }
+}
+
+

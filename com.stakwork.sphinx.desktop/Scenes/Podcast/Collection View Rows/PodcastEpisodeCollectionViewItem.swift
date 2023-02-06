@@ -16,7 +16,7 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
     @IBOutlet weak var divider: NSBox!
     @IBOutlet weak var itemButton: CustomButton!
     
-    var episode: PodcastEpisode! = nil
+    var episode: OldPodcastEpisode! = nil
     
     public static var podcastImage: NSImage? = nil
     
@@ -26,7 +26,7 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
         itemButton.cursor = .pointingHand
     }
     
-    func configureWidth(podcast: PodcastFeed?, and episode: PodcastEpisode, isLastRow: Bool, playing: Bool) {
+    func configureWidth(podcast: OldPodcastFeed?, and episode: OldPodcastEpisode, isLastRow: Bool, playing: Bool) {
         self.episode = episode
         
         episodeNameLabel.stringValue = episode.title ?? "No title"
@@ -48,7 +48,7 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
         }
     }
     
-    func loadEpisodeImage(episode: PodcastEpisode, with defaultImg: NSImage) {
+    func loadEpisodeImage(episode: OldPodcastEpisode, with defaultImg: NSImage) {
         if let image = episode.image, let url = URL(string: image) {
             MediaLoader.asyncLoadImage(imageView: episodeImageView, nsUrl: url, placeHolderImage: nil, id: episode.id ?? -1, completion: { (img, id) in
                 if self.isDifferentEpisode(episodeId: id) { return }

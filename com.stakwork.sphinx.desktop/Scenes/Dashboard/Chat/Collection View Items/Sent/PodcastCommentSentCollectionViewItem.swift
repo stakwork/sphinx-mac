@@ -39,7 +39,7 @@ class PodcastCommentSentCollectionViewItem: CommonPodcastCommentCollectionViewIt
         }
     }
     
-    func configureAudio(podcast: PodcastFeed?) {
+    func configureAudio(podcast: OldPodcastFeed?) {
         guard let messageRow = messageRow else {
            return
         }
@@ -51,7 +51,7 @@ class PodcastCommentSentCollectionViewItem: CommonPodcastCommentCollectionViewIt
         tryLoadingAudio(messageRow: messageRow, podcast: podcast, bubbleSize: bubbleSize)
     }
 
-    func tryLoadingAudio(messageRow: TransactionMessageRow, podcast: PodcastFeed?, bubbleSize: CGSize) {
+    func tryLoadingAudio(messageRow: TransactionMessageRow, podcast: OldPodcastFeed?, bubbleSize: CGSize) {
         if let podcastComment = messageRow.transactionMessage.podcastComment, let _ = podcastComment.url {
             loadAudio(podcastComment: podcastComment, podcast: podcast, messageRow: messageRow, bubbleSize: bubbleSize)
         } else {

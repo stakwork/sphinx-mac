@@ -90,7 +90,7 @@ class PodcastPlayerHelper {
     public static let kBoostPrefix = "boost::"
     public static let kSecondsBeforePMT = 60
     
-    var podcast: PodcastFeed? = nil
+    var podcast: OldPodcastFeed? = nil
     var podcastPaymentsHelper = PodcastPaymentsHelper()
     
     var isConfigured : Bool {
@@ -128,7 +128,7 @@ class PodcastPlayerHelper {
         
         resetPodcast()
         
-        let tribesServerURL = "https://tribes.sphinx.chat/podcast?url=\(url)"
+        let tribesServerURL = "\(API.kTribesServerBaseURL)/podcast?url=\(url)"
         
         API.sharedInstance.getPodcastFeed(url: tribesServerURL, callback: { json in
             DispatchQueue.main.async {
@@ -146,7 +146,7 @@ class PodcastPlayerHelper {
         }
         self.chat = chat
         
-        var podcastFeed = PodcastFeed()
+        var podcastFeed = OldPodcastFeed()
         podcastFeed.chatId = chat?.id
         podcastFeed.id = json["id"].intValue
         podcastFeed.title = json["title"].stringValue
@@ -154,10 +154,10 @@ class PodcastPlayerHelper {
         podcastFeed.author = json["author"].stringValue
         podcastFeed.image = json["image"].stringValue
         
-        var episodes = [PodcastEpisode]()
+        var episodes = [OldPodcastEpisode]()
         
         for e in json["episodes"].arrayValue {
-            var episode = PodcastEpisode()
+            var episode = OldPodcastEpisode()
             episode.id = e["id"].intValue
             episode.title = e["title"].stringValue
             episode.description = e["description"].stringValue
@@ -171,17 +171,17 @@ class PodcastPlayerHelper {
         let value = JSON(json["value"])
         let model = JSON(value["model"])
         
-        var podcastModel = PodcastModel()
+        var podcastModel = OldPodcastModel()
         podcastModel.type = model["type"].stringValue
         let suggestedAmount = model["suggested"].doubleValue
         podcastModel.suggested = suggestedAmount
         podcastModel.suggestedSats = Int(round(suggestedAmount * 100000000))
         podcastFeed.model = podcastModel
         
-        var destinations = [PodcastDestination]()
+        var destinations = [OldPodcastDestination]()
         
         for d in value["destinations"].arrayValue {
-            var destination = PodcastDestination()
+            var destination = OldPodcastDestination()
             destination.address = d["address"].stringValue
             destination.type = d["type"].stringValue
             destination.split = d["split"].doubleValue
@@ -215,11 +215,11 @@ class PodcastPlayerHelper {
         return "{\"feedID\":\(feedID),\"itemID\":\(itemID),\"ts\":\(currentTime),\"amount\":\(amount)}"
     }
     
-    func getEpisodes() -> [PodcastEpisode] {
+    func getEpisodes() -> [OldPodcastEpisode] {
         return self.podcast?.episodes ?? []
     }
     
-    func getCurrentEpisode() -> PodcastEpisode? {
+    func getCurrentEpisode() -> OldPodcastEpisode? {
         let currentEpisodeIndex = getCurrentEpisodeIndex()
         let podcastFeed = self.podcast
         let episodesCount = (podcastFeed?.episodes ?? []).count
@@ -264,8 +264,8 @@ class PodcastPlayerHelper {
         let episode = getCurrentEpisode()
         
         var comment = PodcastComment()
-        comment.feedId = podcastFeed?.id
-        comment.itemId = episode?.id
+        comment.feedId = String(podcastFeed?.id ?? -1)
+        comment.itemId = String(episode?.id ?? -1)
         comment.title = episode?.title
         comment.url = episode?.url
         comment.timestamp = self.currentTime
@@ -426,7 +426,7 @@ class PodcastPlayerHelper {
     }
     
     func processPayment(amount: Int? = nil) {
-        let itemId = getCurrentEpisode()?.id ?? 0
+        let itemId = String(getCurrentEpisode()?.id ?? 0)
         self.podcastPaymentsHelper.processPaymentsFor(podcastFeed: self.podcast, boostAmount: amount, itemId: itemId, currentTime: self.currentTime)
     }
     

@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (5.0.5)
   - KeychainAccess (4.2.2)
+  - ObjectMapper (4.2.0)
   - ReachabilitySwift (5.0.0)
   - RNCryptor (5.1.0)
   - SDWebImage (5.12.5):
@@ -14,6 +15,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 5.0.0-rc.3)
   - KeychainAccess
+  - ObjectMapper
   - ReachabilitySwift
   - RNCryptor (~> 5.0)
   - SDWebImage (~> 5.0)
@@ -26,6 +28,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - KeychainAccess
+    - ObjectMapper
     - ReachabilitySwift
     - RNCryptor
     - SDWebImage
@@ -40,6 +43,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
+  ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   RNCryptor: a369134686cd2ad391323cc856b62e591193ba79
   SDWebImage: 0905f1b7760fc8ac4198cae0036600d67478751e
@@ -48,6 +52,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   Tor: fad2cec0e7ef5f889fecdaf69e5edd6df0438326
 
-PODFILE CHECKSUM: d1414800df3de699934e720cc72a7f4595ca79f8
+PODFILE CHECKSUM: 235be9c1c5701faa64cd98a8e0c43d4698973926
 
 COCOAPODS: 1.11.3

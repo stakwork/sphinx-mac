@@ -65,6 +65,8 @@ extension UserDefaults {
 
         public static let giphyUserId = DefaultKey<String>("giphyUserId")
         public static let webViewsHeight = DefaultKey<Int>("webViewsHeight")
+        
+        public static let shouldTrackActions = DefaultKey<Bool>("shouldTrackActions")
     }
 
     class func resetUserDefaults() {

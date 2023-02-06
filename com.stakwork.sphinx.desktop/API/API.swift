@@ -54,6 +54,11 @@ typealias GiphySearchCallback = (([GiphyObject]) -> ())
 typealias GiphySearchErrorCallback = (() -> ())
 typealias MediaInfoCallback = ((Int, String?, Int?) -> ())
 
+//Feed
+typealias SyncActionsCallback = ((Bool) -> ())
+typealias ContentFeedCallback = ((JSON) -> ())
+typealias AllContentFeedStatusCallback = (([ContentFeedStatus]) -> ())
+
 class API {
     
     class var sharedInstance : API {
@@ -85,6 +90,8 @@ class API {
             UserDefaults.Keys.lastSeenMessagesDate.set(newValue)
         }
     }
+    
+    public static let kTribesServerBaseURL = "https://tribes.sphinx.chat"
     
     public static var kAttachmentsServerUrl : String {
         get {

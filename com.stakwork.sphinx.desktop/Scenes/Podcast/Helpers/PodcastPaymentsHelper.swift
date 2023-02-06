@@ -19,9 +19,9 @@ class PodcastPaymentsHelper {
         return satsEarned
     }
     
-    func processPaymentsFor(podcastFeed: PodcastFeed?,
+    func processPaymentsFor(podcastFeed: OldPodcastFeed?,
                             boostAmount: Int? = nil,
-                            itemId: Int,
+                            itemId: String,
                             currentTime: Int,
                             clipSenderPubKey: String? = nil,
                             uuid: String? = nil) {
@@ -35,7 +35,7 @@ class PodcastPaymentsHelper {
         
         if let clipSenderPubKey = clipSenderPubKey, clipSenderPubKey != myPubKey {
             shouldUpdateMeta = false
-            let clipSenderDestination = PodcastDestination(address: clipSenderPubKey, split: 1, type: "node")
+            let clipSenderDestination = OldPodcastDestination(address: clipSenderPubKey, split: 1, type: "node")
             destinations.append(clipSenderDestination)
         }
         
@@ -48,7 +48,7 @@ class PodcastPaymentsHelper {
         }
     }
     
-    func getPodcastAmount(_ podcastFeed: PodcastFeed?) -> Int {
+    func getPodcastAmount(_ podcastFeed: OldPodcastFeed?) -> Int {
         var suggestedAmount = (podcastFeed?.model?.suggestedSats) ?? 5
         
         if let chatId = podcastFeed?.chatId, let savedAmount = UserDefaults.standard.value(forKey: "podcast-sats-\(chatId)") as? Int, chatId > 0 {
@@ -69,11 +69,11 @@ class PodcastPaymentsHelper {
     }
     
     func streamSats(podcastId: Int,
-                    podcatsDestinations: [PodcastDestination],
+                    podcatsDestinations: [OldPodcastDestination],
                     updateMeta: Bool,
                     amount: Int,
                     chatId: Int,
-                    itemId: Int,
+                    itemId: String,
                     currentTime: Int,
                     uuid: String? = nil) {
         

@@ -25,12 +25,12 @@ class PodcastEpisodesDataSource : NSObject {
     
     var collectionView: NSCollectionView! = nil
     var playerHelper: PodcastPlayerHelper! = nil
-    var episodes: [PodcastEpisode] = []
+    var episodes: [OldPodcastEpisode] = []
     var chat: Chat! = nil
     
     init(collectionView: NSCollectionView,
          chat: Chat,
-         episodes: [PodcastEpisode],
+         episodes: [OldPodcastEpisode],
          playerHelper: PodcastPlayerHelper,
          delegate: PodcastEpisodesDSDelegate) {
         

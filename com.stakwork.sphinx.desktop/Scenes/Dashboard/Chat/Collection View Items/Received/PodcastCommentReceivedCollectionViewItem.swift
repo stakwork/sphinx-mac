@@ -52,7 +52,7 @@ class PodcastCommentReceivedCollectionViewItem: CommonPodcastCommentCollectionVi
 //        errorContainer.alpha = expired ? 1.0 : 0.0
     }
     
-    func tryLoadingAudio(messageRow: TransactionMessageRow, podcast: PodcastFeed?, bubbleSize: CGSize) {
+    func tryLoadingAudio(messageRow: TransactionMessageRow, podcast: OldPodcastFeed?, bubbleSize: CGSize) {
         if let podcastComment = messageRow.transactionMessage.podcastComment, let _ = podcastComment.url {
             loadAudio(podcastComment: podcastComment, podcast: podcast, messageRow: messageRow, bubbleSize: bubbleSize)
         } else {

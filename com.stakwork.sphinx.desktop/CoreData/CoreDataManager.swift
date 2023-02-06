@@ -45,6 +45,15 @@ class CoreDataManager {
         CoreDataManager.sharedManager.persistentContainer.viewContext.saveContext()
     }
     
+    func getBackgroundContext() -> NSManagedObjectContext {
+        let backgroundContext = CoreDataManager.sharedManager.persistentContainer.newBackgroundContext()
+        backgroundContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        backgroundContext.shouldDeleteInaccessibleFaults = true
+        backgroundContext.automaticallyMergesChangesFromParent = true
+        
+        return backgroundContext
+    }
+    
     func clearCoreDataStore() {
         let context = CoreDataManager.sharedManager.persistentContainer.viewContext
         context.performAndWait {
@@ -104,6 +113,11 @@ class CoreDataManager {
         }
         deleteObject(object: chat)
         saveContext()
+    }
+    
+    func getObjectWith<T>(objectId: NSManagedObjectID) -> T? {
+        let managedContext = persistentContainer.viewContext
+        return managedContext.object(with:objectId) as? T
     }
     
     func getAllOfType<T>(entityName: String, sortDescriptors: [NSSortDescriptor]? = nil) -> [T] {
@@ -183,7 +197,12 @@ class CoreDataManager {
         return count
     }
     
-    func getObjectOfTypeWith<T>(predicate: NSPredicate, sortDescriptors: [NSSortDescriptor], entityName: String) -> T? {
+    func getObjectOfTypeWith<T>(
+        predicate: NSPredicate,
+        sortDescriptors: [NSSortDescriptor],
+        entityName: String,
+        managedContext: NSManagedObjectContext? = nil
+    ) -> T? {
         let managedContext = persistentContainer.viewContext
         var objects:[T] = [T]()
         

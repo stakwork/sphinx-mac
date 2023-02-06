@@ -12,4 +12,5 @@ target 'Sphinx' do
    pod 'KeychainAccess'
    pod 'Starscream', '~> 3.1'
    pod 'Tor', podspec: 'https://raw.githubusercontent.com/iCepa/Tor.framework/v405.8.1/Tor.podspec'
+   pod 'ObjectMapper'
 end

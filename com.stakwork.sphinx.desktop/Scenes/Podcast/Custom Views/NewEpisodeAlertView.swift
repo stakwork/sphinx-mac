@@ -17,7 +17,7 @@ class NewEpisodeAlertView: NSView, LoadableNib {
     @IBOutlet weak var imageView: AspectFillNSImageView!
     @IBOutlet weak var episodeTitleLabel: NSTextField!
     
-    var episode: PodcastEpisode! = nil
+    var episode: OldPodcastEpisode! = nil
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)

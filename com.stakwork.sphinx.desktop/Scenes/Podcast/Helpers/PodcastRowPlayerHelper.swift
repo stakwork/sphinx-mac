@@ -29,12 +29,12 @@ class PodcastRowPlayerHelper {
     var messageId : Int? = nil
     var podcastComment: PodcastComment? = nil
     var podcastPaymentsHelper = PodcastPaymentsHelper()
-    var podcast: PodcastFeed? = nil
+    var podcast: OldPodcastFeed? = nil
     
     let customAudioPlayer = PodcastRowAudioPlayer.sharedInstance
     
     func createPlayerItemWith(podcastComment: PodcastComment,
-                              podcast: PodcastFeed?,
+                              podcast: OldPodcastFeed?,
                               delegate: PodcastPlayerDelegate,
                               for messageId: Int,
                               completion: @escaping (Int) -> ()) {
@@ -187,10 +187,17 @@ class PodcastRowPlayerHelper {
     }
     
     func processPayment() {
-        let itemId = self.podcastComment?.itemId ?? 0
+        let itemId = self.podcastComment?.itemId ?? ""
         let clipSenderPK = self.podcastComment?.pubkey
         let uuid = self.podcastComment?.uuid
-        self.podcastPaymentsHelper.processPaymentsFor(podcastFeed: self.podcast, itemId: itemId, currentTime: Int(self.currentTime), clipSenderPubKey: clipSenderPK, uuid: uuid)
+        
+        self.podcastPaymentsHelper.processPaymentsFor(
+            podcastFeed: self.podcast,
+            itemId: itemId,
+            currentTime: Int(self.currentTime),
+            clipSenderPubKey: clipSenderPK,
+            uuid: uuid
+        )
     }
     
     func audioDidFinishPlaying() {
