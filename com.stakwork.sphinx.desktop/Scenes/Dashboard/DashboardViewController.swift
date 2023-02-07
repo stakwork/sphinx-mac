@@ -362,12 +362,19 @@ extension DashboardViewController : DashboardVCDelegate {
         return (minWidth + podcastPlayerWidth, leftPanelWidth)
     }
     
-    func shouldShowRestoreModal(progress: Double) {
+    func shouldShowRestoreModal(
+        with progress: Int,
+        messagesStartProgress: Int
+    ) {
         for childVC in self.children {
             if let childVC = childVC as? DashboardModalsViewController {
                 modalsContainerView.isHidden = false
                 
-                childVC.showProgressViewWith(progress: progress, delegate: self)
+                childVC.showProgressViewWith(
+                    with: progress,
+                    messagesStartProgress: messagesStartProgress,
+                    delegate: self
+                )
             }
         }
     }

@@ -164,23 +164,24 @@ class FeedsManager : NSObject {
         let context = CoreDataManager.sharedManager.getBackgroundContext()
         
         context.perform {
-            let feeds = self.fetchFeeds(context: context)
+//            let feeds = self.fetchFeeds(context: context)
+//
+//            let localIDs = feeds.compactMap({ $0.feedID })
+//            let remoteIDs = contentFeedStatuses.compactMap({ $0.feedID })
+//
+//            ///Delete feeds not present on remote data
+//            for idToRemove in localIDs.filter({ remoteIDs.contains($0) }) {
+//                if let feedToRemove = feeds.filter({ $0.feedID == idToRemove }).first {
+//                    feedToRemove.subscribed = false
+//                    feedToRemove.chat = nil
+//                }
+//            }
             
-            let localIDs = feeds.compactMap({ $0.feedID })
-            let remoteIDs = contentFeedStatuses.compactMap({ $0.feedID })
-            
-            ///Delete feeds not present on remote data
-            for idToRemove in localIDs.filter({ remoteIDs.contains($0) }) {
-                if let feedToRemove = feeds.filter({ $0.feedID == idToRemove }).first {
-                    feedToRemove.subscribed = false
-                    feedToRemove.chat = nil
-                }
-            }
-            
+            let feedsToRestore = contentFeedStatuses.filter({ $0.chatID != nil })
             let dispatchSemaphore = DispatchSemaphore(value: 1)
             
             ///Update feeds present in remote data
-            for (index, contentFeedStatus) in contentFeedStatuses.enumerated() {
+            for (index, contentFeedStatus) in feedsToRestore.enumerated() {
                 
                 dispatchSemaphore.wait()
                 
@@ -209,10 +210,10 @@ class FeedsManager : NSObject {
                     }
                     
                     progressCallback?(
-                        self.getRestoreProgress(totalFeeds: contentFeedStatuses.count, syncedFeeds: index + 1)
+                        self.getRestoreProgress(totalFeeds: feedsToRestore.count, syncedFeeds: index + 1)
                     )
                     
-                    if (index + 1 == contentFeedStatuses.count) {
+                    if (index + 1 == feedsToRestore.count) {
                         context.saveContext()
                         completionCallback?()
                     }
@@ -274,7 +275,7 @@ class FeedsManager : NSObject {
             )
         }
         
-        downloadLastEpisodeFor(feed: localFeed)
+//        downloadLastEpisodeFor(feed: localFeed)
         loadEpisodesDurationFor(feed: localFeed)
     }
     

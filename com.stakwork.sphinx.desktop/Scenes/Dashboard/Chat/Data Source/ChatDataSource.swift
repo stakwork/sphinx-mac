@@ -164,6 +164,12 @@ class ChatDataSource : NSObject {
             
             if message.isUnknownType() || message.isMessageReaction() {
                 addLoadingMoreAndFirstDateRows(x: x, limit: limit, date: message.date)
+                
+                let previousMessage = x - 1 >= limit ? messagesArray[x - 1] : nil
+                
+                if TransactionMessage.isDifferentDayMessage(lastMessage: message, newMessage: previousMessage) {
+                    messageRowsArray.insert(getDayHeaderRow(date: message.date), at: 0)
+                }
                 continue
             }
             
@@ -237,6 +243,7 @@ class ChatDataSource : NSObject {
     
     func showMoreMessages() {
         itemsPerPage = 50
+        
         let newMessages = chat?.getAllMessages(limit: itemsPerPage, lastMessage: messagesArray[0]) ?? [TransactionMessage]()
         
         if newMessages.count > 0 {

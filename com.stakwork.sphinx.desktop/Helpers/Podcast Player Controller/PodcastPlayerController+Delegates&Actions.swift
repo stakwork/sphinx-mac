@@ -126,6 +126,8 @@ extension PodcastPlayerController {
             duration: duration
         )
         
+        shouldSyncPodcast()
+        
         if (duration > 0) {
             self.runPlayingStateUpdate()
             self.configureTimer()
@@ -197,7 +199,6 @@ extension PodcastPlayerController {
         if let player = player,
            let _ = player.currentItem {
             
-//            configurePlayingInfoCenter()
             invalidateTime()
             
             player.seek(to: CMTime(seconds: Double(currentTime), preferredTimescale: 1)) { _ in

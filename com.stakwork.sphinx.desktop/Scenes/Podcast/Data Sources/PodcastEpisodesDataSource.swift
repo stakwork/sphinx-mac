@@ -29,6 +29,7 @@ class PodcastEpisodesDataSource : NSObject {
     var podcast: PodcastFeed! = nil
     
     let podcastPlayerController = PodcastPlayerController.sharedInstance
+    let feedsManager = FeedsManager.sharedInstance
     
     init(
         collectionView: NSCollectionView,
@@ -148,6 +149,6 @@ extension PodcastEpisodesDataSource : PodcastPlayerViewDelegate {
     }
     
     func shouldSyncPodcast() {
-//        chat?.updateMetaData()
+        feedsManager.saveContentFeedStatus(for: podcast.feedID)
     }
 }

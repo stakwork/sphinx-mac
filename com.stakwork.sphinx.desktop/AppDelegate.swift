@@ -203,6 +203,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         if UserData.sharedInstance.isUserLogged() && !ChatListViewModel.isRestoreRunning() {
             reloadDataAndConnectSocket()
+            FeedsManager.sharedInstance.restoreContentFeedStatusInBackground()
         }
     }
     

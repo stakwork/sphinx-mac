@@ -416,8 +416,7 @@ extension TransactionMessage {
     }
     
     func isMessageReaction() -> Bool {
-        return type == TransactionMessageType.boost.rawValue &&
-               (!(replyUUID ?? "").isEmpty || (messageContent?.isEmpty ?? true))
+        return type == TransactionMessageType.boost.rawValue && (!(replyUUID ?? "").isEmpty || (messageContent?.isEmpty ?? true))
     }
     
     func isApprovedRequest() -> Bool {

@@ -402,6 +402,10 @@
 "open.conversation" = "Open a conversation to start using Sphinx";
 "drag.attachment" = "Drag image or video in the chat view to send. Sending and Receiving payments are not supported in groups yet";
 "audio.too.short" = "Audio too short";
+"resume-restoring" = "Resuming Restore...";
+"restoring-progress" = "Restoring:";
+"restoring-content" = "Restoring content:";
+"restoring-messages" = "Restoring messages:";
 
 //PODCAST
 "episodes" = "episodes";

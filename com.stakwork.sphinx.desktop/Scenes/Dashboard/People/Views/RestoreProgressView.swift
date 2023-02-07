@@ -15,6 +15,7 @@ class RestoreProgressView: NSView, LoadableNib {
     @IBOutlet var contentView: NSView!
     @IBOutlet weak var restoreProgressLabel: NSTextField!
     @IBOutlet weak var restoreProgressBar: NSProgressIndicator!
+    @IBOutlet weak var continueLaterButtonContainer: NSBox!
     @IBOutlet weak var continueLaterButton: CustomButton!
     
     override func draw(_ dirtyRect: NSRect) {
@@ -34,14 +35,19 @@ class RestoreProgressView: NSView, LoadableNib {
     }
     
     func setProgress(
-        progress: Int,
+        with progress: Int,
+        messagesStartProgress: Int,
         delegate: RestoreModalViewControllerDelegate?
     ) {
+        let restoringMessages = (progress >= messagesStartProgress)
+        let restoreLabel = (restoringMessages ? "restoring-messages" : "restoring-content").localized
+        restoreProgressLabel.stringValue = (progress == 0) ? "resume-restoring".localized : "\(restoreLabel) \(progress)%"
+        restoreProgressBar.doubleValue = Double(progress) / 100
+        
+        continueLaterButton.isEnabled = restoringMessages
+        continueLaterButtonContainer.alphaValue = restoringMessages ? 1.0 : 0.5
+        
         restoreModalsDelegate = delegate
-        
-        restoreProgressBar.doubleValue = Double(progress)
-        
-        restoreProgressLabel.stringValue = "Restoring: \(progress)%"
     }
     
     func setFinishingRestore() {

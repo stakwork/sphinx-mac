@@ -25,6 +25,8 @@ class ChatListViewController : DashboardSplittedViewController {
     @IBOutlet weak var upgradeBox: NSBox!
     @IBOutlet weak var upgradeButton: NSButton!
     
+    let feedsManager = FeedsManager.sharedInstance
+    
     let newMessageBubbleHelper = NewMessageBubbleHelper()
     var walletBalanceService = WalletBalanceService()
     
@@ -93,33 +95,79 @@ class ChatListViewController : DashboardSplittedViewController {
     func loadMessages() {        
         updateContactsAndReload()
         
-        self.chatListViewModel.syncMessages(
-            progressCallback: { (progress, restoring) in
-
-                DispatchQueue.main.async {
-                    
-                    self.chatListViewModel.calculateBadges()
-                    self.updateContactsAndReload()
-                    
-                    if (restoring) {
-                        self.loading = false
-                        
-                        if (progress >= 0) {
-                            self.delegate?.shouldShowRestoreModal(progress: progress)
-                        } else {
-                            self.newMessageBubbleHelper.showLoadingWheel(text: "fetching.old.messages".localized)
-                        }
-                    } else {
-                        self.delegate?.shouldHideRetoreModal()
+        let restoring = chatListViewModel.isRestoring()
+        var contentProgressShare : Float = 0.0
+        
+        self.syncContentFeedStatus(
+            restoring: restoring,
+            progressCallback:  { contentProgress in
+                contentProgressShare = 0.05
+                
+                if (contentProgress >= 0 && restoring) {
+                    DispatchQueue.main.async {
+                        self.delegate?.shouldShowRestoreModal(
+                            with: Int(contentProgressShare * Float(contentProgress)),
+                            messagesStartProgress: Int(contentProgressShare * Float(100))
+                        )
                     }
                 }
-                
-            }) { (_, _) in
-                DispatchQueue.main.async {
-                    self.updateContactsAndReload()
-                    self.finishLoading()
-                }
+            },
+            completionCallback: {
+                self.chatListViewModel.syncMessages(
+                    progressCallback: { (progress, restoring) in
+
+                        DispatchQueue.main.async {
+                            
+                            self.chatListViewModel.calculateBadges()
+                            self.updateContactsAndReload()
+                            
+                            if (restoring) {
+                                self.loading = false
+                                let messagesProgress : Int = Int(Float(progress) * (1.0 - contentProgressShare))
+                                
+                                if (progress >= 0) {
+                                    self.delegate?.shouldShowRestoreModal(
+                                        with: messagesProgress + Int(contentProgressShare * 100),
+                                        messagesStartProgress: Int(contentProgressShare * Float(100))
+                                    )
+                                } else {
+                                    self.newMessageBubbleHelper.showLoadingWheel(text: "fetching.old.messages".localized)
+                                }
+                            } else {
+                                self.delegate?.shouldHideRetoreModal()
+                            }
+                        }
+                        
+                    }) { (_, _) in
+                        DispatchQueue.main.async {
+                            self.updateContactsAndReload()
+                            self.finishLoading()
+                        }
+                    }
             }
+        )
+    }
+    
+    internal func syncContentFeedStatus(
+        restoring: Bool,
+        progressCallback: @escaping (Int) -> (),
+        completionCallback: @escaping () -> ()
+    ) {
+        if !restoring {
+            completionCallback()
+            return
+        }
+        
+        CoreDataManager.sharedManager.saveContext()
+        
+        feedsManager.restoreContentFeedStatus(
+            progressCallback: { contentProgress in
+                progressCallback(contentProgress)
+            },
+            completionCallback: {
+                completionCallback()
+            }
+        )
     }
     
     func loadFriendAndReload() {

@@ -144,7 +144,7 @@ extension TransactionMessage {
         return messages
     }
     
-    static func getPaymentsFor(feedId: Int) -> [TransactionMessage] {
+    static func getPaymentsFor(feedId: String) -> [TransactionMessage] {
         let feedIDString1 = "{\"feedID\":\"\(feedId)"
         let feedIDString2 = "{\"feedID\":\(feedId)"
         let predicate = NSPredicate(format: "chat == nil && (messageContent BEGINSWITH[c] %@ OR messageContent BEGINSWITH[c] %@)", feedIDString1, feedIDString2)

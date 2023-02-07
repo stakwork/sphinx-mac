@@ -153,6 +153,25 @@ extension PodcastPlayerController {
         
         runEndedStateUpdate()
     }
+    
+    func loadEpisodeImage() {
+        self.playingEpisodeImage = nil
+        
+        if let urlString = podcast?.getCurrentEpisode()?.imageURLPath, let url = URL(string: urlString) {
+            MediaLoader.loadDataFrom(
+                URL: url,
+                includeToken: false,
+                completion: { (data, fileName) in
+                    
+                    if let img = NSImage(data: data) {
+                        self.playingEpisodeImage = img
+                    }
+                }, errorCompletion: {
+                    self.playingEpisodeImage = nil
+                }
+            )
+        }
+    }
 }
 
 extension PodcastPlayerController {

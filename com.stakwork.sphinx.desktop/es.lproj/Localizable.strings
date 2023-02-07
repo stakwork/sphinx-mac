@@ -401,6 +401,10 @@
 "open.conversation" = "Abre una conversación para comenzar a usar Sphinx";
 "drag.attachment" = "Arrastra una imagen o video en la conversación para enviar. Enviar y recibir pagos no esta permitido en los grupos por el momento";
 "audio.too.short" = "Audio demasiado corto";
+"resume-restoring" = "Resumiendo Restauración...";
+"restoring-progress" = "Restaurando:";
+"restoring-content" = "Restaurando contenido:";
+"restoring-messages" = "Restaurando mensajes:";
 
 //PODCAST
 "episodes" = "episodios";

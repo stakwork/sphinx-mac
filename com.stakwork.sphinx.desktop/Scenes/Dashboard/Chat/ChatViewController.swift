@@ -340,6 +340,7 @@ class ChatViewController: DashboardSplittedViewController {
             self.setChatInfo()
             self.webAppButton.isHidden = !(self.chat?.hasWebApp() ?? false)
             self.addPodcastVC()
+            self.updateSatsEarned()
         }
     }
     

@@ -52,15 +52,15 @@ extension ChatViewController {
     }
     
     func updateSatsEarned() {
-//        if let podcast = chat?.podcastPlayer?.podcast, let feedID = podcast.id, feedID > 0 {
-//            let isMyTribe = (chat?.isMyPublicGroup() ?? false)
-//            let label = isMyTribe ? "earned.sats".localized : "contributed.sats".localized
-//            let sats = PodcastPaymentsHelper.getSatsEarnedFor(feedID)
-//            contributedSatsIcon.isHidden = false
-//            contributedSatsLabel.isHidden = false
-//        
-//            contributedSatsLabel.stringValue = String(format: label, sats)
-//        }
+        if let contentFeed = chat?.contentFeed, !contentFeed.feedID.isEmpty {
+            let isMyTribe = (chat?.isMyPublicGroup() ?? false)
+            let label = isMyTribe ? "earned.sats".localized : "contributed.sats".localized
+            let sats = PodcastPaymentsHelper.getSatsEarnedFor(contentFeed.feedID)
+            contributedSatsIcon.isHidden = false
+            contributedSatsLabel.isHidden = false
+        
+            contributedSatsLabel.stringValue = String(format: label, sats)
+        }
     }
 }
 

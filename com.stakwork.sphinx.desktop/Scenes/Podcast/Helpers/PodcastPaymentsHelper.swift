@@ -9,7 +9,7 @@
 import Foundation
 
 class PodcastPaymentsHelper {
-    public static func getSatsEarnedFor(_ feedId: Int) -> Int {
+    public static func getSatsEarnedFor(_ feedId: String) -> Int {
         let pmts = TransactionMessage.getPaymentsFor(feedId: feedId)
         var satsEarned = 0
         
