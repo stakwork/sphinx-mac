@@ -204,10 +204,15 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
         params: [String: AnyObject],
         completion: ((Bool) -> ())? = nil
     ) {
+        let podcastComment = messageReplyView.getReplyingPodcast()
+        
         API.sharedInstance.sendMessage(params: params, callback: { m in
             if let message = TransactionMessage.insertMessage(m: m, existingMessage: provisionalMessage).0 {
                 message.setPaymentInvoiceAsPaid()
                 self.insertSentMessage(message: message)
+            }
+            if let podcastComment = podcastComment {
+                ActionsManager.sharedInstance.trackClipComment(podcastComment: podcastComment)
             }
             completion?(true)
         }, errorCallback: {

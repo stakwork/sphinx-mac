@@ -32,10 +32,17 @@ class ProfileViewController: NSViewController {
     @IBOutlet weak var addressField: NSTextField!
     @IBOutlet weak var routeHintField: NSTextField!
     @IBOutlet weak var qrButton: CustomButton!
+    
     @IBOutlet weak var sharePhotoSwitchContainer: NSBox!
     @IBOutlet weak var sharePhotoSwitchCircle: NSBox!
     @IBOutlet weak var sharePhotoSwitchCircleLeading: NSLayoutConstraint!
     @IBOutlet weak var sharePhotoSwitchButton: CustomButton!
+    
+    @IBOutlet weak var trackActionsSwitchContainer: NSBox!
+    @IBOutlet weak var trackActionsSwitchCircle: NSBox!
+    @IBOutlet weak var trackActionsSwitchCircleLeading: NSLayoutConstraint!
+    @IBOutlet weak var trackActionsSwitchButton: CustomButton!
+    
     @IBOutlet weak var meetingServerField: NSTextField!
     @IBOutlet weak var serverURLField: NSTextField!
     @IBOutlet weak var exportKeysButton: CustomButton!
@@ -46,8 +53,8 @@ class ProfileViewController: NSViewController {
     @IBOutlet weak var saveButton: CustomButton!
     @IBOutlet weak var loadingWheel: NSProgressIndicator!
     
-    let kPhotoSwitchOnLeading: CGFloat = 25
-    let kPhotoSwitchOffLeading: CGFloat = 2
+    let kSwitchOnLeading: CGFloat = 25
+    let kSwitchOffLeading: CGFloat = 2
     
     var contactsService = ContactsService()
     var walletBalanceService = WalletBalanceService()
@@ -107,7 +114,13 @@ class ProfileViewController: NSViewController {
         sharePhotoSwitchContainer.layer?.cornerRadius = sharePhotoSwitchContainer.frame.size.height / 2
         sharePhotoSwitchCircle.layer?.cornerRadius = sharePhotoSwitchCircle.frame.size.height / 2
         
+        trackActionsSwitchContainer.wantsLayer = true
+        trackActionsSwitchCircle.wantsLayer = true
+        trackActionsSwitchContainer.layer?.cornerRadius = trackActionsSwitchContainer.frame.size.height / 2
+        trackActionsSwitchCircle.layer?.cornerRadius = trackActionsSwitchCircle.frame.size.height / 2
+        
         sharePhotoSwitchButton.cursor = .pointingHand
+        trackActionsSwitchButton.cursor = .pointingHand
         exportKeysButton.cursor = .pointingHand
         saveButton.cursor = .pointingHand
         privacyPinButton.cursor = .pointingHand
@@ -136,7 +149,8 @@ class ProfileViewController: NSViewController {
                 profileImageView.image = NSImage(named: "profileAvatar")
             }
             
-            toggleSwitch(on: !profile.privatePhoto)
+            toggleSharePhotoSwitch(on: !profile.privatePhoto)
+            toggleActionsTrackingSwitch(on: UserDefaults.Keys.shouldTrackActions.get(defaultValue: false))
             
             let nickname = profile.nickname ?? ""
             nameLabel.stringValue = nickname.getNameStyleString()
@@ -164,26 +178,8 @@ class ProfileViewController: NSViewController {
         self.view.window?.makeFirstResponder(nil)
     }
     
-    func toggleSwitch(on: Bool) {
-        sharePhotoSwitchCircleLeading.constant = on ? kPhotoSwitchOnLeading : kPhotoSwitchOffLeading
-        sharePhotoSwitchContainer.fillColor = on ? NSColor.Sphinx.PrimaryBlue : NSColor.Sphinx.MainBottomIcons
-    }
-    
-    func isPhotoSwitchOn() -> Bool {
-        return sharePhotoSwitchCircleLeading.constant == kPhotoSwitchOnLeading
-    }
-    
     func shouldEnableSaveButton() -> Bool {
-        if let profile = UserContact.getOwner() {
-            let nameUpdated = userNameField.stringValue != profile.nickname
-            let meetingServerUpdated = meetingServerField.stringValue != API.kVideoCallServer
-            let serverUrlUpdated = serverURLField.stringValue != UserData.sharedInstance.getNodeIP()
-            let photoSharingUpdated = isPhotoSwitchOn() != !profile.privatePhoto
-            let profilePic = profileImage != nil
-            
-            return nameUpdated || meetingServerUpdated || serverUrlUpdated || photoSharingUpdated || profilePic
-        }
-        return false
+        return didUpdateProfile()
     }
     
     @IBAction func qrCodeButtonClicked(_ sender: Any) {
@@ -194,8 +190,31 @@ class ProfileViewController: NSViewController {
     }
     
     @IBAction func sharePhotoSwitchButtonClicked(_ sender: Any) {
-        toggleSwitch(on: !isPhotoSwitchOn())
+        toggleSharePhotoSwitch(on: !isPhotoSwitchOn())
         saveEnabled = shouldEnableSaveButton()
+    }
+    
+    func toggleSharePhotoSwitch(on: Bool) {
+        sharePhotoSwitchCircleLeading.constant = on ? kSwitchOnLeading : kSwitchOffLeading
+        sharePhotoSwitchContainer.fillColor = on ? NSColor.Sphinx.PrimaryBlue : NSColor.Sphinx.MainBottomIcons
+    }
+    
+    func isPhotoSwitchOn() -> Bool {
+        return sharePhotoSwitchCircleLeading.constant == kSwitchOnLeading
+    }
+    
+    @IBAction func trackActionsSwitchButtonClicked(_ sender: Any) {
+        toggleActionsTrackingSwitch(on: !isTrackActionsSwitchOn())
+        saveEnabled = shouldEnableSaveButton()
+    }
+    
+    func toggleActionsTrackingSwitch(on: Bool) {
+        trackActionsSwitchCircleLeading.constant = on ? kSwitchOnLeading : kSwitchOffLeading
+        trackActionsSwitchContainer.fillColor = on ? NSColor.Sphinx.PrimaryBlue : NSColor.Sphinx.MainBottomIcons
+    }
+    
+    func isTrackActionsSwitchOn() -> Bool {
+        return trackActionsSwitchCircleLeading.constant == kSwitchOnLeading
     }
     
     @IBAction func exportKeysButtonClicked(_ sender: Any) {
@@ -261,12 +280,13 @@ class ProfileViewController: NSViewController {
             return
         }
         
-        if !shouldUpdateProfile() {
+        if !didUpdateProfile() {
             configureProfile()
             return
         }
         
         UserData.sharedInstance.setPINHours(hours: pinTimeoutView.getPinHours())
+        UserDefaults.Keys.shouldTrackActions.set(isTrackActionsSwitchOn())
         
         var parameters = [String : AnyObject]()
         parameters["alias"] = userNameField.stringValue as AnyObject?
@@ -286,14 +306,15 @@ class ProfileViewController: NSViewController {
         })
     }
     
-    func shouldUpdateProfile() -> Bool {
+    func didUpdateProfile() -> Bool {
         let didChangeName = userNameField.stringValue != (profile?.nickname ?? "")
         let didChangeRouteHint = routeHintField.stringValue != (profile?.routeHint ?? "")
         let didUpdatePrivatePhoto = !isPhotoSwitchOn() != profile?.privatePhoto
         let didUpdatePhoto = profileImageUrl != nil
         let didChangePinTimeout = UserData.sharedInstance.getPINHours() != pinTimeoutView.getPinHours()
+        let actionsTrackingUpdated = isTrackActionsSwitchOn() != UserDefaults.Keys.shouldTrackActions.get(defaultValue: false)
         
-        return didChangeName || didChangeRouteHint || didUpdatePrivatePhoto || didUpdatePhoto || didChangePinTimeout
+        return didChangeName || didChangeRouteHint || didUpdatePrivatePhoto || didUpdatePhoto || didChangePinTimeout || actionsTrackingUpdated
     }
     
     func saveFinished(success: Bool) {
