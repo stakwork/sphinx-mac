@@ -34,15 +34,19 @@ class NewPodcastPlayerViewController: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         
-        newEpisodeView = NewEpisodeAlertView.checkForNewEpisode(chat: chat, view: self.view)
-        
-        NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification, object: playerCollectionView.enclosingScrollView?.contentView, queue: OperationQueue.main) { [weak self] (n: Notification) in
+        NotificationCenter.default.addObserver(
+            forName: NSView.boundsDidChangeNotification,
+            object: playerCollectionView.enclosingScrollView?.contentView,
+            queue: OperationQueue.main
+        ) { [weak self] (n: Notification) in
+            
             self?.newEpisodeView?.hideView()
         }
     }
     
     override func viewWillDisappear() {
         super.viewWillDisappear()
+        
         NotificationCenter.default.removeObserver(self, name: NSView.boundsDidChangeNotification, object: nil)
     }
     
@@ -59,7 +63,18 @@ class NewPodcastPlayerViewController: NSViewController {
             return
         }
         let podcast = PodcastFeed.convertFrom(contentFeed: contentFeed)
-        collectionViewDS = PodcastEpisodesDataSource(collectionView: playerCollectionView, chat: chat, podcastFeed: podcast, delegate: self)
+        
+        collectionViewDS = PodcastEpisodesDataSource(
+            collectionView: playerCollectionView,
+            chat: chat,
+            podcastFeed: podcast,
+            delegate: self
+        )
+        
+        newEpisodeView = NewEpisodeAlertView.checkForNewEpisode(
+            podcast: podcast,
+            view: self.view
+        )
     }
 }
 

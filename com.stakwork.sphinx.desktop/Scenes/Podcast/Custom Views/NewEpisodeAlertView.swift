@@ -17,7 +17,7 @@ class NewEpisodeAlertView: NSView, LoadableNib {
     @IBOutlet weak var imageView: AspectFillNSImageView!
     @IBOutlet weak var episodeTitleLabel: NSTextField!
     
-    var episode: OldPodcastEpisode! = nil
+    var episode: PodcastEpisode! = nil
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
@@ -44,25 +44,26 @@ class NewEpisodeAlertView: NSView, LoadableNib {
         })
     }
     
-    static func checkForNewEpisode(chat: Chat, view: NSView) -> NewEpisodeAlertView? {
-//        if (chat.podcastPlayer?.podcast?.episodes ?? []).count == 0 {
-//            return nil
-//        }
-//
-//        let lastStoredEpisodeId = (chat.podcastPlayer?.lastEpisodeId ?? chat.podcastPlayer?.currentEpisodeId) ?? -1
-//
-//        if let lastEpisode = chat.podcastPlayer?.podcast?.episodes[0], let lastEpisodeId = lastEpisode.id {
-//
-//            chat.podcastPlayer?.lastEpisodeId = lastEpisodeId
-//
-//            if lastStoredEpisodeId > 0 && lastStoredEpisodeId != lastEpisodeId {
-//                let newEpisodeView = NewEpisodeAlertView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height))
-//                newEpisodeView.episode = lastEpisode
-//                newEpisodeView.configureView() 
-//                view.addSubview(newEpisodeView)
-//                return newEpisodeView
-//            }
-//        }
+    static func checkForNewEpisode(podcast: PodcastFeed, view: NSView) -> NewEpisodeAlertView? {
+        if podcast.episodesArray.isEmpty {
+            return nil
+        }
+
+        let lastStoredEpisodeId = podcast.lastEpisodeId ?? ""
+        let lastEpisode = podcast.episodesArray[0]
+        let lastEpisodeId = lastEpisode.itemID
+
+        podcast.lastEpisodeId = lastEpisodeId
+
+        if !lastStoredEpisodeId.isEmpty && lastStoredEpisodeId != lastEpisodeId {
+            
+            let newEpisodeView = NewEpisodeAlertView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height))
+            newEpisodeView.episode = lastEpisode
+            newEpisodeView.configureView()
+            view.addSubview(newEpisodeView)
+            
+            return newEpisodeView
+        }
         return nil
     }
     
@@ -92,12 +93,13 @@ class NewEpisodeAlertView: NSView, LoadableNib {
             episodeTitleLabel.font = NSFont(name: "Roboto-Medium", size: 14.0)!
         }
         
-        if let image = episode.image, let url = URL(string: image) {
-            MediaLoader.asyncLoadImage(imageView: imageView, nsUrl: url, placeHolderImage: NSImage(named: "profile_avatar"), completion: { img in
-                self.imageView.image = img
-            }, errorCompletion: { _ in
-                self.imageView.image = nil
-            })
+        if let image = episode.imageURLPath, let url = URL(string: image) {
+            imageView.sd_setImage(
+                with: url,
+                placeholderImage: NSImage(named: "podcastPlaceholder"),
+                options: [.highPriority],
+                progress: nil
+            )
         }
     }
 }

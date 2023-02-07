@@ -90,13 +90,13 @@ public class ContentFeed: NSManagedObject {
     
     public static func fetchChatFeedContentInBackground(
         feedUrl: String,
-        chatObjectID: NSManagedObjectID,
-        completion: @escaping () -> ()
+        chatId: Int,
+        completion: @escaping (String?) -> ()
     ) {
         let backgroundContext = CoreDataManager.sharedManager.getBackgroundContext()
         
         backgroundContext.perform {
-            let backgroundChat: Chat? = backgroundContext.object(with: chatObjectID) as? Chat
+            let backgroundChat: Chat? = Chat.getChatWith(id: chatId, managedContext: backgroundContext)
             
             fetchContentFeed(
                 at: feedUrl,
@@ -104,13 +104,18 @@ public class ContentFeed: NSManagedObject {
                 persistingIn: backgroundContext
             ) { result in
                 
-                if case .success(_) = result {
+                if case .success(let contentFeed) = result {
+                    let feedId = contentFeed.feedID
+                    
                     backgroundContext.saveContext()
+                    
+                    DispatchQueue.main.async {
+                        completion(feedId)
+                    }
+                    return
                 }
-
-                DispatchQueue.main.async {
-                    completion()
-                }
+                
+                completion(nil)
             }
         }
     }
@@ -135,7 +140,7 @@ public class ContentFeed: NSManagedObject {
                     searchResultImageUrl: searchResultImageUrl,
                     context: managedObjectContext
                 ) {
-                    chat?.contentFeed = contentFeed
+                    contentFeed.chat = chat
                     
                     completionHandler?(.success(contentFeed))
                 } else {

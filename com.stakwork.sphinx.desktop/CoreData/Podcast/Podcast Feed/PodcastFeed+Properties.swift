@@ -20,7 +20,7 @@ public class PodcastFeed: NSObject {
     public var generator: String?
     public var imageURLPath: String?
     public var feedURLPath: String?
-    public var isSubscribedToFromSearch: Bool
+    public var subscribed: Bool
     public var chat: Chat?
     public var model: PodcastModel?
     public var episodes: Array<PodcastEpisode>?
@@ -30,11 +30,11 @@ public class PodcastFeed: NSObject {
     init(
         _ objectID: NSManagedObjectID?,
         _ feedID: String,
-        _ isSubscribedToFromSearch: Bool) {
+        _ subscribed: Bool) {
         
         self.objectID = objectID
         self.feedID = feedID
-        self.isSubscribedToFromSearch = isSubscribedToFromSearch
+        self.subscribed = subscribed
     }
 }
 
@@ -48,7 +48,7 @@ extension PodcastFeed {
         let podcastFeed = PodcastFeed(
             contentFeed.objectID,
             contentFeed.feedID,
-            contentFeed.isSubscribedToFromSearch
+            contentFeed.subscribed
         )
         
         podcastFeed.title = contentFeed.title

@@ -203,7 +203,7 @@ class CoreDataManager {
         entityName: String,
         managedContext: NSManagedObjectContext? = nil
     ) -> T? {
-        let managedContext = persistentContainer.viewContext
+        let managedContext = managedContext ?? persistentContainer.viewContext
         var objects:[T] = [T]()
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"\(entityName)")

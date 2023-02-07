@@ -82,7 +82,7 @@ class FeedsManager : NSObject {
         let status = ContentFeedStatus()
         status.feedID = contentFeed.feedID
         status.feedURL = contentFeed.feedURL?.absoluteString ?? ""
-        status.subscriptionStatus = contentFeed.isSubscribedToFromSearch
+        status.subscriptionStatus = contentFeed.subscribed
         status.chatID = contentFeed.chat?.id
         
         if contentFeed.isPodcast {
@@ -172,7 +172,7 @@ class FeedsManager : NSObject {
             ///Delete feeds not present on remote data
             for idToRemove in localIDs.filter({ remoteIDs.contains($0) }) {
                 if let feedToRemove = feeds.filter({ $0.feedID == idToRemove }).first {
-                    feedToRemove.isSubscribedToFromSearch = false
+                    feedToRemove.subscribed = false
                     feedToRemove.chat = nil
                 }
             }
@@ -252,7 +252,7 @@ class FeedsManager : NSObject {
         localFeed: ContentFeed,
         chat: Chat?
     ) {
-        localFeed.isSubscribedToFromSearch = remoteContentStatus.subscriptionStatus
+        localFeed.subscribed = remoteContentStatus.subscriptionStatus
         localFeed.chat = chat
         
         if !localFeed.isPodcast {

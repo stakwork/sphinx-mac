@@ -50,7 +50,7 @@ extension ContentFeedItem {
     public var contentFeed: ContentFeed?
     
     @NSManaged
-    public var isSubscribedToFromSearch: Bool
+    public var subscribed: Bool
 }
 
 

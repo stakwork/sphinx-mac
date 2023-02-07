@@ -332,7 +332,11 @@ class ChatViewController: DashboardSplittedViewController {
             return
         }
         
-        chat?.updateTribeInfo() {
+        guard let chat = chat else {
+            return
+        }
+        
+        chat.updateTribeInfo() {
             self.setChatInfo()
             self.webAppButton.isHidden = !(self.chat?.hasWebApp() ?? false)
             self.addPodcastVC()
