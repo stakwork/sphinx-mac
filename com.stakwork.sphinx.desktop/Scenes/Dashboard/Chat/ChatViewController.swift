@@ -329,6 +329,9 @@ class ChatViewController: DashboardSplittedViewController {
         
         if let feedId = chat?.contentFeed?.feedID, PodcastPlayerController.sharedInstance.isPlaying(podcastId: feedId) {
             self.addPodcastVC()
+            
+            FeedsManager.sharedInstance.restoreContentFeedStatusInBackgroundFor(feedId: feedId)
+            
             return
         }
         

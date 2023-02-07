@@ -490,6 +490,11 @@ public class Chat: NSManagedObject {
                             if let feedId = feedId {
                                 self.contentFeed = ContentFeed.getFeedWith(feedId: feedId)
                                 self.saveChat()
+                                
+                                FeedsManager.sharedInstance.restoreContentFeedStatusFor(feedId: feedId, completionCallback: {
+                                    completion()
+                                })
+                                return
                             }
                             completion()
                         }

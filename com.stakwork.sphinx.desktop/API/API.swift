@@ -58,6 +58,7 @@ typealias MediaInfoCallback = ((Int, String?, Int?) -> ())
 typealias SyncActionsCallback = ((Bool) -> ())
 typealias ContentFeedCallback = ((JSON) -> ())
 typealias AllContentFeedStatusCallback = (([ContentFeedStatus]) -> ())
+typealias ContentFeedStatusCallback = ((ContentFeedStatus) -> ())
 
 class API {
     
