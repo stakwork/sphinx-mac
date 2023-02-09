@@ -327,24 +327,26 @@ class ChatViewController: DashboardSplittedViewController {
     func updateTribeInfo() {
         removePodcastVC()
         
-        if let feedId = chat?.contentFeed?.feedID, PodcastPlayerController.sharedInstance.isPlaying(podcastId: feedId) {
-            self.addPodcastVC()
-            
-            FeedsManager.sharedInstance.restoreContentFeedStatusInBackgroundFor(feedId: feedId)
-            
-            return
-        }
-        
         guard let chat = chat else {
             return
         }
         
-        chat.updateTribeInfo() {
-            self.setChatInfo()
-            self.webAppButton.isHidden = !(self.chat?.hasWebApp() ?? false)
-            self.addPodcastVC()
-            self.updateSatsEarned()
+        if let feedId = chat.contentFeed?.feedID, PodcastPlayerController.sharedInstance.isPlaying(podcastId: feedId) {
+            self.onTribeInfoUpdated()
+            FeedsManager.sharedInstance.restoreContentFeedStatusInBackgroundFor(feedId: feedId)
+            return
         }
+        
+        chat.updateTribeInfo() {
+            self.onTribeInfoUpdated()
+        }
+    }
+    
+    private func onTribeInfoUpdated() {
+        setChatInfo()
+        webAppButton.isHidden = !(chat?.hasWebApp() ?? false)
+        addPodcastVC()
+        updateSatsEarned()
     }
     
     func updateTribePrices() {
