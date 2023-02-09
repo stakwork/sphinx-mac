@@ -10,7 +10,7 @@ import Cocoa
 
 extension ChatViewController {
     func addPodcastVC() {
-        if let chat = chat, let _ = chat.contentFeed {
+        if let chat = chat, let contentFeed = chat.contentFeed, contentFeed.isPodcast {
             podcastContainerWidth.constant = DashboardViewController.kPodcastPlayerWidth
             podcastVCContainer.superview?.layoutSubtreeIfNeeded()
             
