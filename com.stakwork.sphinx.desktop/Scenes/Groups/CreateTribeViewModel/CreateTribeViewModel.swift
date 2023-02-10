@@ -48,7 +48,20 @@ class CreateTribeViewModel {
         listInTribes: Bool,
         privateTribe: Bool
     ) {
-        groupsManager.setInfo(name: name, description: description, img: img, priceToJoin: priceToJoin, pricePerMessage: pricePerMessage, amountToStake: amountToStake, timeToStake: timeToStake, appUrl: appUrl, feedUrl: feedUrl, feedType: feedType, listInTribes: listInTribes, privateTribe: privateTribe)
+        groupsManager.setInfo(
+            name: name,
+            description: description,
+            img: img,
+            priceToJoin: priceToJoin,
+            pricePerMessage: pricePerMessage,
+            amountToStake: amountToStake,
+            timeToStake: timeToStake,
+            appUrl: appUrl,
+            feedUrl: feedUrl,
+            feedType: feedType,
+            listInTribes: listInTribes,
+            privateTribe: privateTribe
+        )
     }
     
     func updateTag(index: Int, selected: Bool) {

@@ -115,7 +115,7 @@ class GroupsManager {
         newGroupInfo.amountToStake = amountToStake ?? newGroupInfo.amountToStake
         newGroupInfo.timeToStake = timeToStake ?? newGroupInfo.timeToStake
         newGroupInfo.appUrl = appUrl ?? newGroupInfo.appUrl
-        newGroupInfo.feedUrl = appUrl ?? newGroupInfo.feedUrl
+        newGroupInfo.feedUrl = feedUrl ?? newGroupInfo.feedUrl
         newGroupInfo.feedContentType = feedType ?? newGroupInfo.feedContentType
         newGroupInfo.unlisted = !listInTribes
         newGroupInfo.privateTribe = privateTribe
