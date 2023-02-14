@@ -42,6 +42,8 @@ extension ChatViewController {
 
     func removePodcastVC() {
         if let podcastPlayerVC = podcastPlayerVC {
+            PodcastPlayerController.sharedInstance.finishAndSaveContentConsumed()
+            
             podcastPlayerVC.view.removeFromSuperview()
             podcastPlayerVC.removeFromParent()
             self.podcastPlayerVC = nil

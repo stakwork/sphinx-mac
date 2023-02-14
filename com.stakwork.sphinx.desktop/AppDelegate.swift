@@ -33,6 +33,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var logoutMenuItem: NSMenuItem!
     @IBOutlet weak var removeAccountMenuItem: NSMenuItem!
     
+    let actionsManager = ActionsManager.sharedInstance
+    let feedsManager = FeedsManager.sharedInstance
+    let podcastPlayerController = PodcastPlayerController.sharedInstance
     
     public enum SphinxMenuButton: Int {
         case Profile = 0
@@ -203,7 +206,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         if UserData.sharedInstance.isUserLogged() && !ChatListViewModel.isRestoreRunning() {
             reloadDataAndConnectSocket()
-            FeedsManager.sharedInstance.restoreContentFeedStatusInBackground()
+            feedsManager.restoreContentFeedStatusInBackground()
         }
     }
     
@@ -218,13 +221,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.setAppMenuVisibility(shouldEnableItems: true)
             self.loadDashboard()
         }
-        createKeyWindowWith(vc: pinVC, windowState: WindowsManager.sharedInstance.getWindowState(), closeOther: true, hideBar: true)
+        
+        createKeyWindowWith(
+            vc: pinVC,
+            windowState: WindowsManager.sharedInstance.getWindowState(),
+            closeOther: true,
+            hideBar: true
+        )
     }
     
     func loadDashboard() {
         SplashViewController.runBackgroundProcesses()
         SphinxSocketManager.sharedInstance.connectWebsocket()
-        createKeyWindowWith(vc: DashboardViewController.instantiate(), windowState: WindowsManager.sharedInstance.getWindowState(), closeOther: true)
+        
+        createKeyWindowWith(
+            vc: DashboardViewController.instantiate(),
+            windowState: WindowsManager.sharedInstance.getWindowState(),
+            closeOther: true
+        )
     }
     
     func applicationWillResignActive(_ notification: Notification) {
@@ -232,7 +246,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             NotificationCenter.default.post(name: .shouldReadChat, object: nil)
             
             setBadge(count: TransactionMessage.getReceivedUnseenMessagesCount())
-            ActionsManager.sharedInstance.syncActionsInBackground()
+            
+            podcastPlayerController.finishAndSaveContentConsumed()
+            actionsManager.syncActionsInBackground()
+            
             CoreDataManager.sharedManager.saveContext()
         }
     }

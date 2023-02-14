@@ -60,13 +60,7 @@ class PodcastPaymentsHelper {
     }
     
     func getPodcastAmount(_ podcastFeed: PodcastFeed?) -> Int {
-        var suggestedAmount = (podcastFeed?.model?.suggestedSats) ?? 5
-        
-        if let chatId = podcastFeed?.chat?.id, let savedAmount = UserDefaults.standard.value(forKey: "podcast-sats-\(chatId)") as? Int, chatId > 0 {
-            suggestedAmount = savedAmount
-        }
-        
-        return suggestedAmount
+        return podcastFeed?.satsPerMinute ?? podcastFeed?.model?.suggestedSats ?? 5
     }
     
     func getAmountFrom(sats: Double, split: Double) -> Int {

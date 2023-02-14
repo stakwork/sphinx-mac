@@ -126,8 +126,6 @@ extension PodcastPlayerController {
             duration: duration
         )
         
-        shouldSyncPodcast()
-        
         if (duration > 0) {
             self.runPlayingStateUpdate()
             self.configureTimer()
