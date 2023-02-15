@@ -11,9 +11,11 @@ import AVKit
 
 extension PodcastPlayerCollectionViewItem {
     func setupView() {
+        audioLoading = podcastPlayerController.isPlaying(podcastId: podcast.feedID)
+        
         podcastSatsView.configureWith(chat: chat)
         showInfo()
-        configureControls(playing: podcastPlayerController.isPlaying(podcastId: podcast.feedID))
+        configureControls()
     }
     
     func addMessagesFor(ts: Int) {
