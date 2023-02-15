@@ -179,7 +179,8 @@ extension PodcastPlayerController {
     var isPlaying: Bool {
         get {
             return player?.timeControlStatus == AVPlayer.TimeControlStatus.playing ||
-                   player?.timeControlStatus == AVPlayer.TimeControlStatus.waitingToPlayAtSpecifiedRate
+                   player?.timeControlStatus == AVPlayer.TimeControlStatus.waitingToPlayAtSpecifiedRate ||
+                   isLoadingOrPlaying
         }
     }
     
