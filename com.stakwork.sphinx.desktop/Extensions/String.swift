@@ -127,6 +127,12 @@ extension String {
         }
     }
     
+    var isSwarmConnectCode : Bool {
+        get {
+            return self.contains("connect::")
+        }
+    }
+    
     func getIPAndPassword() -> (String?, String?) {
         if let decodedString = self.base64Decoded, decodedString.starts(with: "ip::") {
             let stringWithoutPrefix = decodedString.replacingOccurrences(of: "ip::", with: "")

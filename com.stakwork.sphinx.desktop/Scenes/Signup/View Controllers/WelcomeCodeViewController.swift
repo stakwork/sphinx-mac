@@ -104,9 +104,10 @@ extension WelcomeCodeViewController : SignupButtonViewDelegate {
         if validateCode(code: code) {
             loading = true
             
-            if code.isRelayQRCode || code.isInviteCode {
+            if code.isRelayQRCode || code.isInviteCode || code.isSwarmConnectCode {
                 startSignup(code: code)
-            } else {
+            }
+            else {
                 showPINView(encryptedKeys: code)
             }
         }
@@ -121,6 +122,18 @@ extension WelcomeCodeViewController : SignupButtonViewDelegate {
         } else if code.isInviteCode {
             signupWith(code: code)
         }
+        else if code.isSwarmConnectCode{
+            signupWith(swarmConnectCode: code)
+        }
+    }
+    
+    func signupWith(swarmConnectCode:String){
+        let splitString = swarmConnectCode.components(separatedBy: "::")
+        if splitString.count > 2{
+            let ip = splitString[1]
+            let pubKey = splitString[2]
+            self.connectToNode(ip: ip, pubKey: pubKey)
+        }
     }
     
     func signupWith(code: String) {
@@ -134,8 +147,8 @@ extension WelcomeCodeViewController : SignupButtonViewDelegate {
         })
     }
     
-    func connectToNode(ip: String, password: String) {
-        save(ip: ip, pubkey: "", and: password)
+    func connectToNode(ip: String, password: String="", pubKey:String="") {
+        save(ip: ip, pubkey: pubKey, and: password)
 
         let invite = SignupHelper.getSupportContact()
         SignupHelper.saveInviterInfo(invite: invite)
@@ -224,6 +237,9 @@ extension WelcomeCodeViewController : SignupFieldViewDelegate {
         } else if code.isRestoreKeysString || code.fixedRestoreCode.isRestoreKeysString {
             return true
         } else if code.isInviteCode {
+            return true
+        }
+        else if code.isSwarmConnectCode{
             return true
         }
         
