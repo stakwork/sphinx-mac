@@ -108,8 +108,11 @@ class WelcomeEmptyViewController: WelcomeTorConnectionViewController {
     }
     
     func bypassTokenRecreation(){
-        SignupHelper.step = SignupHelper.SignupStep.IPAndTokenSet.rawValue
-        view.window?.replaceContentBy(vc: WelcomeLightningViewController.instantiate(contactsService: contactsService))
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+            SignupHelper.step = SignupHelper.SignupStep.IPAndTokenSet.rawValue
+            self.view.window?.replaceContentBy(vc: WelcomeLightningViewController.instantiate(contactsService: self.contactsService))
+        })
+        
     }
     
     func generateTokenAndProceed(password: String? = nil) {
