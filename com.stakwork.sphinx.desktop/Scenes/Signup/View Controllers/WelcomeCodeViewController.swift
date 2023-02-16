@@ -104,7 +104,7 @@ extension WelcomeCodeViewController : SignupButtonViewDelegate {
         if validateCode(code: code) {
             loading = true
             
-            if code.isRelayQRCode || code.isInviteCode || code.isSwarmConnectCode {
+            if code.isRelayQRCode || code.isInviteCode || code.isSwarmConnectCode || code.isSwarmClaimCode {
                 startSignup(code: code)
             }
             else {
@@ -125,6 +125,9 @@ extension WelcomeCodeViewController : SignupButtonViewDelegate {
         else if code.isSwarmConnectCode{
             signupWith(swarmConnectCode: code)
         }
+        else if code.isSwarmClaimCode{
+            signupWith(withSwarmClaimCode: code)
+        }
     }
     
     func signupWith(swarmConnectCode:String){
@@ -133,6 +136,31 @@ extension WelcomeCodeViewController : SignupButtonViewDelegate {
             let ip = splitString[1]
             let pubKey = splitString[2]
             self.connectToNode(ip: ip, pubKey: pubKey)
+        }
+    }
+    
+    func signupWith(withSwarmClaimCode connectionCode:String){
+        let splitString = connectionCode.components(separatedBy: "::")
+        if splitString.count > 2,
+         let token = splitString[2].base64Decoded{
+            let ip = splitString[1]
+            self.userData.save(ip: ip)
+            userData.continueWithToken(
+                token: token,
+                completion: { [weak self] in
+                    guard let self = self else { return }
+                    self.continueToConnectingView(mode: .SwarmClaimUser)
+                },
+                errorCompletion: { [weak self] in
+                    guard let self = self else { return }
+                    let errorMessage = ("invalid.code.claim").localized
+                    self.messageBubbleHelper.showGenericMessageView(text: errorMessage, position: .Bottom, delay: 7, textColor: NSColor.white, backColor: NSColor.Sphinx.BadgeRed, backAlpha: 1.0, withLink: "https://sphinx.chat")
+                }
+            )
+        }
+        else{
+            let errorMessage = ("invalid.code.claim").localized
+            self.messageBubbleHelper.showGenericMessageView(text: errorMessage, position: .Bottom, delay: 7, textColor: NSColor.white, backColor: NSColor.Sphinx.BadgeRed, backAlpha: 1.0, withLink: "https://sphinx.chat")
         }
     }
     
@@ -240,6 +268,9 @@ extension WelcomeCodeViewController : SignupFieldViewDelegate {
             return true
         }
         else if code.isSwarmConnectCode{
+            return true
+        }
+        else if code.isSwarmClaimCode{
             return true
         }
         

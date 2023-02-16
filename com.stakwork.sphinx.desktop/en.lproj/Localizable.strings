@@ -167,6 +167,7 @@
 "invalid.code.pubkey" = "This looks like a pubkey, to sign up you'll need an invite code from https://sphinx.chat";
 "invalid.code.invoice" = "This looks like an invoice, to sign up you'll need an invite code from https://sphinx.chat";
 "invalid.code" = "We don't recognize this code, to sign up you'll need an invite code from https://sphinx.chat";
+"invalid.code.claim" = "There was an error claiming this QR code. Please try again.";
 "invalid.restore.code" = "We don't recognize this code, to restore you'll need to copy your keys from mobile app and paste it here";
 "tor.connection.failed" = "Tor connection error";
 "establishing.tor.circuit" = "Establishing Tor circuit...";
