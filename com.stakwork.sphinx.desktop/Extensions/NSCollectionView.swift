@@ -17,10 +17,16 @@ extension NSCollectionView {
 
     func scrollToBottom(animated: Bool = true) {
         let sections = self.numberOfSections
+        let targetIndex = self.numberOfItems(inSection: sections - 1)
+        scrollToIndex(targetIndex: targetIndex, animated: animated)
+    }
+    
+    func scrollToIndex(targetIndex:Int,animated:Bool){
+        let sections = self.numberOfSections
         if sections > 0 {
             let items = self.numberOfItems(inSection: sections - 1)
             if items > 0 {
-                let last = IndexPath(item: items - 1, section: sections - 1)
+                let targetIndexPath = IndexPath(item: targetIndex - 1, section: sections - 1)
                 DispatchQueue.main.async {
                     if animated {
                         let ctx = NSAnimationContext.current
@@ -28,8 +34,8 @@ extension NSCollectionView {
                         ctx.allowsImplicitAnimation = true
                     }
                     
-                    if self.numberOfItems(inSection: sections - 1) > last.item {
-                        self.animator().scrollToItems(at: [last], scrollPosition: .bottom)
+                    if self.numberOfItems(inSection: sections - 1) > targetIndexPath.item {
+                        self.animator().scrollToItems(at: [targetIndexPath], scrollPosition: .bottom)
                     }
                 }
             }
@@ -37,6 +43,7 @@ extension NSCollectionView {
     }
     
     func shouldScrollToBottom() -> Bool {
+        return false
         let y = (enclosingScrollView?.contentView.bounds.origin.y ?? 0)
         let contentHeight = (bounds.height - (enclosingScrollView?.frame.size.height ?? 0))
         let difference = contentHeight - y

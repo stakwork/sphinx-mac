@@ -431,7 +431,13 @@ extension ChatViewController : MessageCellDelegate {
         if (viewHeight == 0) { bottomBar.addShadow(location: VerticalLocation.top, color: NSColor.black, opacity: 0.3, radius: 5.0) }
         self.searchTopViewHeight.constant = viewHeight
         self.searchTopView.layoutSubtreeIfNeeded()
-        if self.chatCollectionView.shouldScrollToBottom() { self.chatCollectionView.scrollToBottom(animated: false) }
+        if self.chatCollectionView.shouldScrollToBottom() { self.chatCollectionView.scrollToBottom(animated: false)
+            
+        }
+        else{
+            UserDefaults.Keys.messagesFetchPage.get(defaultValue: -1) > 0
+            self.chatCollectionView.scrollToIndex(targetIndex: 24, animated: true)
+        }
     }
 }
 
