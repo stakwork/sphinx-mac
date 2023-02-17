@@ -14,6 +14,7 @@ class SignupHelper {
     public enum SignupMode: Int {
         case NewUser
         case ExistingUser
+        case SwarmClaimUser
     }
     
     public enum SignupStep: Int {

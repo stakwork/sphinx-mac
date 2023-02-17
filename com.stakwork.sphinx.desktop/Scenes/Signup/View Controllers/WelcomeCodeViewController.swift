@@ -104,9 +104,10 @@ extension WelcomeCodeViewController : SignupButtonViewDelegate {
         if validateCode(code: code) {
             loading = true
             
-            if code.isRelayQRCode || code.isInviteCode {
+            if code.isRelayQRCode || code.isInviteCode || code.isSwarmConnectCode || code.isSwarmClaimCode {
                 startSignup(code: code)
-            } else {
+            }
+            else {
                 showPINView(encryptedKeys: code)
             }
         }
@@ -121,6 +122,37 @@ extension WelcomeCodeViewController : SignupButtonViewDelegate {
         } else if code.isInviteCode {
             signupWith(code: code)
         }
+        else if code.isSwarmConnectCode{
+            signupWith(swarmConnectCode: code)
+        }
+        else if code.isSwarmClaimCode{
+            signupWith(withSwarmClaimCode: code)
+        }
+    }
+    
+    func signupWith(swarmConnectCode:String) {
+        let splitString = swarmConnectCode.components(separatedBy: "::")
+        if splitString.count > 2 {
+            let ip = splitString[1]
+            let pubKey = splitString[2]
+            self.connectToNode(ip: ip, pubKey: pubKey)
+        }
+    }
+    
+    func signupWith(withSwarmClaimCode connectionCode:String){
+        let splitString = connectionCode.components(separatedBy: "::")
+        
+        if splitString.count > 2, let token = splitString[2].base64Decoded {
+            
+            let ip = splitString[1]
+            userData.save(ip: ip)
+            
+            continueToConnectingView(mode: .SwarmClaimUser, token: token)
+        }
+        else{
+            let errorMessage = ("invalid.code.claim").localized
+            self.messageBubbleHelper.showGenericMessageView(text: errorMessage, position: .Bottom, delay: 7, textColor: NSColor.white, backColor: NSColor.Sphinx.BadgeRed, backAlpha: 1.0, withLink: "https://sphinx.chat")
+        }
     }
     
     func signupWith(code: String) {
@@ -134,8 +166,8 @@ extension WelcomeCodeViewController : SignupButtonViewDelegate {
         })
     }
     
-    func connectToNode(ip: String, password: String) {
-        save(ip: ip, pubkey: "", and: password)
+    func connectToNode(ip: String, password: String="", pubKey:String="") {
+        save(ip: ip, pubkey: pubKey, and: password)
 
         let invite = SignupHelper.getSupportContact()
         SignupHelper.saveInviterInfo(invite: invite)
@@ -202,9 +234,12 @@ extension WelcomeCodeViewController : SignupButtonViewDelegate {
         self.loading = false
     }
     
-    func continueToConnectingView(mode: SignupHelper.SignupMode) {
+    func continueToConnectingView(
+        mode: SignupHelper.SignupMode,
+        token: String? = nil
+    ) {
         UserDefaults.Keys.lastPinDate.set(Date())
-        view.window?.replaceContentBy(vc: WelcomeEmptyViewController.instantiate(mode: mode, viewMode: .Connecting))
+        view.window?.replaceContentBy(vc: WelcomeEmptyViewController.instantiate(mode: mode, viewMode: .Connecting, token: token))
     }
 }
 
@@ -224,6 +259,12 @@ extension WelcomeCodeViewController : SignupFieldViewDelegate {
         } else if code.isRestoreKeysString || code.fixedRestoreCode.isRestoreKeysString {
             return true
         } else if code.isInviteCode {
+            return true
+        }
+        else if code.isSwarmConnectCode{
+            return true
+        }
+        else if code.isSwarmClaimCode{
             return true
         }
         

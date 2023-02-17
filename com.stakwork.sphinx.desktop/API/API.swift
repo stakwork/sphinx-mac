@@ -131,15 +131,11 @@ class API {
     }
     
     class func getUrl(route: String) -> String {
-        if route.contains("://") {
-            return route
+        if let url = URL(string: route), let _ = url.scheme {
+            return url.absoluteString
         }
+        return "https://\(route)"
         
-        if route.contains("nodl.it") {
-            return "https://\(route)"
-        } else {
-            return "http://\(route)"
-        }
     }
     
     class func getWebsocketUrl(route: String) -> String {
