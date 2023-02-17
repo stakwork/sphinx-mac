@@ -117,7 +117,6 @@ class ChatViewController: DashboardSplittedViewController {
     
     override func viewWillDisappear() {
         super.viewWillDisappear()
-        
         NotificationCenter.default.removeObserver(self, name: .shouldReloadTribeData, object: nil)
         NotificationCenter.default.removeObserver(self, name: NSView.boundsDidChangeNotification, object: nil)
         chatDataSource?.setDelegates(nil)
@@ -307,6 +306,22 @@ class ChatViewController: DashboardSplittedViewController {
         chatDataSource?.setDataAndReload(contact: contact, chat: chat, forceReload: forceReload)
         chatCollectionView.scrollToBottom(animated: false)
         setMessagesAsSeen()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+            self.goToLastRead()
+        })
+    }
+    
+    func goToLastRead(){
+        if let valid_chat = chat,
+                let id = GroupsManager.sharedInstance.getChatLastRead(chat: valid_chat),
+                let message = chatDataSource?.messagesArray.first(where: {$0.id == id}),
+                let messageIndex = chatDataSource?.messagesArray.firstIndex(where: {$0.id == id})
+        {
+            print(message.messageContent)
+            print(messageIndex)
+            print(id)
+            self.chatCollectionView.scrollToIndex(targetIndex: messageIndex, animated: true)
+        }
     }
     
     func reload() {

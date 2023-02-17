@@ -20,6 +20,7 @@ class GroupsManager {
     
     var contactIds : [Int] = []
     var name : String? = nil
+    private var chatLastReadLookup : [Int:Int] = [:]
     
     func resetData() {
         contactIds = [Int]()
@@ -32,6 +33,17 @@ class GroupsManager {
     
     func setContactIds(contactIds: [Int]) {
         self.contactIds = contactIds
+    }
+    
+    func setChatLastRead(chat:Chat,messageId:Int){
+        chatLastReadLookup[chat.id] = messageId
+    }
+    
+    func getChatLastRead(chat:Chat)->Int?{
+        if let result = chatLastReadLookup[chat.id]{
+            return result
+        }
+        return nil
     }
     
     func getGroupParams() -> (Bool, [String: AnyObject]) {

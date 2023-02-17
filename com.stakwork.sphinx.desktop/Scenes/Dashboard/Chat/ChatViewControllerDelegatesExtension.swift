@@ -411,9 +411,28 @@ extension ChatViewController : MessageCellDelegate {
         toggleSearchTopView()
     }
     
+    func getLastReadMessage()->Int?{
+        if let valid_chat = chat,
+           let id = GroupsManager.sharedInstance.getChatLastRead(chat: valid_chat){
+            return id
+        }
+        return nil
+    }
+    
+    func setLastReadMessage(){
+        if let dataSource = chatDataSource,
+           let lastMessageID = dataSource.lastViewedMessageID,
+           let valid_chat = chat
+        {
+            GroupsManager.sharedInstance.setChatLastRead(chat: valid_chat, messageId: lastMessageID)
+            //UserDefaults.Keys.lastViewedMessageID.set(lastMessageID)
+        }
+    }
+    
     func hideMessageReplyView() {
         messageReplyView.resetObjects()
         messageReplyView.isHidden = true
+        setLastReadMessage()
         toggleMessageReplyView()
     }
     
@@ -431,13 +450,21 @@ extension ChatViewController : MessageCellDelegate {
         if (viewHeight == 0) { bottomBar.addShadow(location: VerticalLocation.top, color: NSColor.black, opacity: 0.3, radius: 5.0) }
         self.searchTopViewHeight.constant = viewHeight
         self.searchTopView.layoutSubtreeIfNeeded()
+        /*
         if self.chatCollectionView.shouldScrollToBottom() { self.chatCollectionView.scrollToBottom(animated: false)
             
         }
-        else{
-            UserDefaults.Keys.messagesFetchPage.get(defaultValue: -1) > 0
-            self.chatCollectionView.scrollToIndex(targetIndex: 24, animated: true)
+        else if let valid_chat = chat,
+                let id = GroupsManager.sharedInstance.getChatLastRead(chat: valid_chat),
+                let message = chatDataSource?.messagesArray.first(where: {$0.id == id}),
+                let messageIndex = chatDataSource?.messagesArray.firstIndex(where: {$0.id == id})
+        {
+            print(message.messageContent)
+            print(messageIndex)
+            print(id)
+            self.chatCollectionView.scrollToIndex(targetIndex: messageIndex, animated: true)
         }
+        */
     }
 }
 

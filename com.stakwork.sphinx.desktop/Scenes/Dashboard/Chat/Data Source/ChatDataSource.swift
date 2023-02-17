@@ -30,6 +30,7 @@ class ChatDataSource : NSObject {
     var messageIdsArray = [Int]()
     var boosts: [String: TransactionMessage.Reactions] = [String: TransactionMessage.Reactions]()
     var collectionView : NSCollectionView!
+    var lastViewedMessageID : Int?
     
     var indexesToInsert = [IndexPath]()
     var indexesToUpdate = [IndexPath]()
@@ -603,7 +604,7 @@ extension ChatDataSource : NSCollectionViewDataSource {
         
         let messageRow = messageRowsArray[indexPath.item]
         let sender = getContactFor(messageRow: messageRow)
-
+        self.lastViewedMessageID = messageRow.getMessageId()
         if let item = item as? DayHeaderCollectionViewItem {
             item.configureCell(messageRow: messageRow)
         } else if let item = item as? MessageRowProtocol {
