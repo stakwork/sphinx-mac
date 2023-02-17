@@ -38,6 +38,12 @@ class WelcomeEmptyViewController: WelcomeTorConnectionViewController {
         }
     }
     
+    var isSwarmClaimUser : Bool{
+        get {
+            return mode == .SwarmClaimUser
+        }
+    }
+    
     var subView: NSView? = nil
     var doneCompletion: ((String?) -> ())? = nil
     
@@ -72,7 +78,11 @@ class WelcomeEmptyViewController: WelcomeTorConnectionViewController {
         if viewMode == .Connecting {
             if isNewUser {
                 continueSignup()
-            } else {
+            }
+            else if isSwarmClaimUser{
+                bypassTokenRecreation()
+            }
+            else {
                 continueRestore()
             }
         }
@@ -95,6 +105,14 @@ class WelcomeEmptyViewController: WelcomeTorConnectionViewController {
             return
         }
         generateTokenAndProceed(password: userData.getPassword())
+    }
+    
+    func bypassTokenRecreation(){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+            SignupHelper.step = SignupHelper.SignupStep.IPAndTokenSet.rawValue
+            self.view.window?.replaceContentBy(vc: WelcomeLightningViewController.instantiate(contactsService: self.contactsService))
+        })
+        
     }
     
     func generateTokenAndProceed(password: String? = nil) {

@@ -167,6 +167,7 @@
 "invalid.code.pubkey" = "Parece que has ingresado una clave pública, para registrarte necesitarás un código de invitación. Obtenlo en https://sphinx.chat";
 "invalid.code.invoice" = "Parece que has ingresado una solicitud de pago, para registrarte necesitarás un código de invitación. Obtenlo en https://sphinx.chat";
 "invalid.code" = "El código ingresado no es válido, para registrarte necesitarás un código de invitación. Obtenlo en https://sphinx.chat";
+"invalid.code.claim" = "There was an error claiming this QR code. Please try again.";
 "tor.connection.failed" = "Error conectando a Tor";
 "establishing.tor.circuit" = "Estableciendo circuito con Tor...";
 "wait.tor.request" = "Por favor espera. Este proceso puede tardar algunos minutos...";
