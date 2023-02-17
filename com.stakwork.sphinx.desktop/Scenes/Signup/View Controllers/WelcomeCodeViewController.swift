@@ -130,9 +130,9 @@ extension WelcomeCodeViewController : SignupButtonViewDelegate {
         }
     }
     
-    func signupWith(swarmConnectCode:String){
+    func signupWith(swarmConnectCode:String) {
         let splitString = swarmConnectCode.components(separatedBy: "::")
-        if splitString.count > 2{
+        if splitString.count > 2 {
             let ip = splitString[1]
             let pubKey = splitString[2]
             self.connectToNode(ip: ip, pubKey: pubKey)
@@ -141,22 +141,13 @@ extension WelcomeCodeViewController : SignupButtonViewDelegate {
     
     func signupWith(withSwarmClaimCode connectionCode:String){
         let splitString = connectionCode.components(separatedBy: "::")
-        if splitString.count > 2,
-         let token = splitString[2].base64Decoded{
+        
+        if splitString.count > 2, let token = splitString[2].base64Decoded {
+            
             let ip = splitString[1]
-            self.userData.save(ip: ip)
-            userData.continueWithToken(
-                token: token,
-                completion: { [weak self] in
-                    guard let self = self else { return }
-                    self.continueToConnectingView(mode: .SwarmClaimUser)
-                },
-                errorCompletion: { [weak self] in
-                    guard let self = self else { return }
-                    let errorMessage = ("invalid.code.claim").localized
-                    self.messageBubbleHelper.showGenericMessageView(text: errorMessage, position: .Bottom, delay: 7, textColor: NSColor.white, backColor: NSColor.Sphinx.BadgeRed, backAlpha: 1.0, withLink: "https://sphinx.chat")
-                }
-            )
+            userData.save(ip: ip)
+            
+            continueToConnectingView(mode: .SwarmClaimUser, token: token)
         }
         else{
             let errorMessage = ("invalid.code.claim").localized
@@ -243,9 +234,12 @@ extension WelcomeCodeViewController : SignupButtonViewDelegate {
         self.loading = false
     }
     
-    func continueToConnectingView(mode: SignupHelper.SignupMode) {
+    func continueToConnectingView(
+        mode: SignupHelper.SignupMode,
+        token: String? = nil
+    ) {
         UserDefaults.Keys.lastPinDate.set(Date())
-        view.window?.replaceContentBy(vc: WelcomeEmptyViewController.instantiate(mode: mode, viewMode: .Connecting))
+        view.window?.replaceContentBy(vc: WelcomeEmptyViewController.instantiate(mode: mode, viewMode: .Connecting, token: token))
     }
 }
 

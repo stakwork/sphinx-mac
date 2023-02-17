@@ -44,13 +44,20 @@ class WelcomeEmptyViewController: WelcomeTorConnectionViewController {
         }
     }
     
+    var token: String? = nil
+    
     var subView: NSView? = nil
     var doneCompletion: ((String?) -> ())? = nil
     
-    static func instantiate(mode: SignupHelper.SignupMode, viewMode: WelcomeViewMode) -> WelcomeEmptyViewController {
+    static func instantiate(
+        mode: SignupHelper.SignupMode,
+        viewMode: WelcomeViewMode,
+        token: String? = nil
+    ) -> WelcomeEmptyViewController {
         let viewController = StoryboardScene.Signup.welcomeEmptyViewController.instantiate()
         viewController.mode = mode
         viewController.viewMode = viewMode
+        viewController.token = token
         return viewController
     }
 
@@ -79,8 +86,8 @@ class WelcomeEmptyViewController: WelcomeTorConnectionViewController {
             if isNewUser {
                 continueSignup()
             }
-            else if isSwarmClaimUser{
-                bypassTokenRecreation()
+            else if isSwarmClaimUser {
+                continueWithToken()
             }
             else {
                 continueRestore()
@@ -107,12 +114,37 @@ class WelcomeEmptyViewController: WelcomeTorConnectionViewController {
         generateTokenAndProceed(password: userData.getPassword())
     }
     
-    func bypassTokenRecreation(){
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-            SignupHelper.step = SignupHelper.SignupStep.IPAndTokenSet.rawValue
-            self.view.window?.replaceContentBy(vc: WelcomeLightningViewController.instantiate(contactsService: self.contactsService))
-        })
+    func continueWithToken() {
+        if let token = self.token {
+            userData.continueWithToken(
+                token: token,
+                completion: { [weak self] in
+                    guard let self = self else { return }
+                    
+                    SignupHelper.step = SignupHelper.SignupStep.IPAndTokenSet.rawValue
+                    self.shouldContinueTo(mode: WelcomeViewMode.FriendMessage.rawValue)
+                },
+                errorCompletion: {
+                    claimQRError()
+                }
+            )
+        } else {
+            claimQRError()
+        }
         
+        func claimQRError() {
+            let errorMessage = ("invalid.code.claim").localized
+            
+            self.messageBubbleHelper.showGenericMessageView(
+                text: errorMessage,
+                position: .Bottom,
+                delay: 7,
+                textColor: NSColor.white,
+                backColor: NSColor.Sphinx.BadgeRed,
+                backAlpha: 1.0,
+                withLink: "https://sphinx.chat"
+            )
+        }
     }
     
     func generateTokenAndProceed(password: String? = nil) {
