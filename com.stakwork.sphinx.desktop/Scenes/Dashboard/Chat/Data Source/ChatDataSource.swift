@@ -605,6 +605,7 @@ extension ChatDataSource : NSCollectionViewDataSource {
         let messageRow = messageRowsArray[indexPath.item]
         let sender = getContactFor(messageRow: messageRow)
         self.lastViewedMessageID = messageRow.getMessageId()
+        print("lastViewedMessageID:\(lastViewedMessageID) - \(messageRow.getMessageContent())")
         if let item = item as? DayHeaderCollectionViewItem {
             item.configureCell(messageRow: messageRow)
         } else if let item = item as? MessageRowProtocol {

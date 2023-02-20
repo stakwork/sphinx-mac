@@ -80,7 +80,17 @@ class ChatViewController: DashboardSplittedViewController {
     let kPriceFieldPadding: CGFloat = 10
     
     var contact: UserContact?
-    var chat: Chat?
+    var chat: Chat? = nil {
+        willSet{
+            setLastReadMessage()
+        }
+        didSet{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+                self.goToLastRead()
+            })
+            
+        }
+    }
     var chatDataSource : ChatDataSource? = nil
     
     var audioRecorderHelper = AudioRecorderHelper()
@@ -306,15 +316,16 @@ class ChatViewController: DashboardSplittedViewController {
         chatDataSource?.setDataAndReload(contact: contact, chat: chat, forceReload: forceReload)
         chatCollectionView.scrollToBottom(animated: false)
         setMessagesAsSeen()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
-            self.goToLastRead()
-        })
     }
     
     func goToLastRead(){
         if let valid_chat = chat,
-                let id = GroupsManager.sharedInstance.getChatLastRead(chat: valid_chat),
-                let message = chatDataSource?.messagesArray.first(where: {$0.id == id}),
+           let id = GroupsManager.sharedInstance.getChatLastRead(chatID: valid_chat.id),
+                let message = chatDataSource?.messagesArray.first(where: {
+                    print($0.id)
+                    print($0.messageContent)
+                    return $0.id == id
+                }),
                 let messageIndex = chatDataSource?.messagesArray.firstIndex(where: {$0.id == id})
         {
             print(message.messageContent)

@@ -413,7 +413,7 @@ extension ChatViewController : MessageCellDelegate {
     
     func getLastReadMessage()->Int?{
         if let valid_chat = chat,
-           let id = GroupsManager.sharedInstance.getChatLastRead(chat: valid_chat){
+           let id = GroupsManager.sharedInstance.getChatLastRead(chatID: valid_chat.id){
             return id
         }
         return nil
@@ -424,7 +424,7 @@ extension ChatViewController : MessageCellDelegate {
            let lastMessageID = dataSource.lastViewedMessageID,
            let valid_chat = chat
         {
-            GroupsManager.sharedInstance.setChatLastRead(chat: valid_chat, messageId: lastMessageID)
+            GroupsManager.sharedInstance.setChatLastRead(chatID: valid_chat.id, messageId: lastMessageID)
             //UserDefaults.Keys.lastViewedMessageID.set(lastMessageID)
         }
     }
@@ -432,7 +432,6 @@ extension ChatViewController : MessageCellDelegate {
     func hideMessageReplyView() {
         messageReplyView.resetObjects()
         messageReplyView.isHidden = true
-        setLastReadMessage()
         toggleMessageReplyView()
     }
     

@@ -35,12 +35,12 @@ class GroupsManager {
         self.contactIds = contactIds
     }
     
-    func setChatLastRead(chat:Chat,messageId:Int){
-        chatLastReadLookup[chat.id] = messageId
+    func setChatLastRead(chatID:Int,messageId:Int){
+        chatLastReadLookup[chatID] = messageId
     }
     
-    func getChatLastRead(chat:Chat)->Int?{
-        if let result = chatLastReadLookup[chat.id]{
+    func getChatLastRead(chatID:Int)->Int?{
+        if let result = chatLastReadLookup[chatID]{
             return result
         }
         return nil
