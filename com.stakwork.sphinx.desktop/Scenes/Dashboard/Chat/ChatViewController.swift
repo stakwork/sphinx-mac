@@ -314,7 +314,13 @@ class ChatViewController: DashboardSplittedViewController {
         hideMessageReplyView()
         hideGiphySearchView()
         chatDataSource?.setDataAndReload(contact: contact, chat: chat, forceReload: forceReload)
-        chatCollectionView.scrollToBottom(animated: false)
+        if let _ = getLastReadMessage(){
+            goToLastRead()
+        }
+        else{
+            chatCollectionView.scrollToBottom(animated: false)
+        }
+        
         setMessagesAsSeen()
     }
     
@@ -331,7 +337,7 @@ class ChatViewController: DashboardSplittedViewController {
             print(message.messageContent)
             print(messageIndex)
             print(id)
-            self.chatCollectionView.scrollToIndex(targetIndex: messageIndex, animated: true)
+            self.chatCollectionView.scrollToIndex(targetIndex: messageIndex, animated: true,position: .top)
         }
     }
     

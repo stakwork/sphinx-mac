@@ -449,12 +449,12 @@ extension ChatViewController : MessageCellDelegate {
         if (viewHeight == 0) { bottomBar.addShadow(location: VerticalLocation.top, color: NSColor.black, opacity: 0.3, radius: 5.0) }
         self.searchTopViewHeight.constant = viewHeight
         self.searchTopView.layoutSubtreeIfNeeded()
-        /*
-        if self.chatCollectionView.shouldScrollToBottom() { self.chatCollectionView.scrollToBottom(animated: false)
-            
+        
+        if self.chatCollectionView.shouldScrollToBottom() {
+            //self.chatCollectionView.scrollToBottom(animated: false)
         }
         else if let valid_chat = chat,
-                let id = GroupsManager.sharedInstance.getChatLastRead(chat: valid_chat),
+                let id = GroupsManager.sharedInstance.getChatLastRead(chatID: valid_chat.id),
                 let message = chatDataSource?.messagesArray.first(where: {$0.id == id}),
                 let messageIndex = chatDataSource?.messagesArray.firstIndex(where: {$0.id == id})
         {
@@ -463,7 +463,6 @@ extension ChatViewController : MessageCellDelegate {
             print(id)
             self.chatCollectionView.scrollToIndex(targetIndex: messageIndex, animated: true)
         }
-        */
     }
 }
 
