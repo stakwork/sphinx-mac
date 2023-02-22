@@ -339,7 +339,7 @@ class ChatViewController: DashboardSplittedViewController {
             print(message.messageContent)
             print(messageIndex)
             print(id)
-            let targetIndex = max(messageIndex - 2, 0)
+            let targetIndex = max(messageIndex - 2, 1)
             self.chatCollectionView.scrollToIndex(targetIndex: targetIndex, animated: true,position: .top)
         }
     }
