@@ -421,7 +421,7 @@ extension ChatViewController : MessageCellDelegate {
     
     func setLastReadMessage(){
         if let dataSource = chatDataSource,
-           let lastMessageID = dataSource.lastViewedMessageID,
+           let lastMessageID = dataSource.getTopVisibleMessageID(),
            let valid_chat = chat
         {
             GroupsManager.sharedInstance.setChatLastRead(chatID: valid_chat.id, messageId: lastMessageID)

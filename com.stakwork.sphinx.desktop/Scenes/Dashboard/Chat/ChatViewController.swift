@@ -82,10 +82,12 @@ class ChatViewController: DashboardSplittedViewController {
     var contact: UserContact?
     var chat: Chat? = nil {
         willSet{
-            setLastReadMessage()
+            if(chat?.id != newValue?.id){
+                setLastReadMessage()
+            }
         }
         didSet{
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
                 self.goToLastRead()
             })
             
@@ -337,7 +339,8 @@ class ChatViewController: DashboardSplittedViewController {
             print(message.messageContent)
             print(messageIndex)
             print(id)
-            self.chatCollectionView.scrollToIndex(targetIndex: messageIndex, animated: true,position: .top)
+            let targetIndex = max(messageIndex - 2, 0)
+            self.chatCollectionView.scrollToIndex(targetIndex: targetIndex, animated: true,position: .top)
         }
     }
     

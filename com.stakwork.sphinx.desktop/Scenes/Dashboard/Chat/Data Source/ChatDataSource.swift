@@ -600,12 +600,23 @@ extension ChatDataSource : NSCollectionViewDataSource {
         return messageRowsArray.count
     }
     
+    func getTopVisibleMessageID()->Int?{
+        let visibleIndicies = collectionView.indexPathsForVisibleItems()
+        if let selectedIndexPath = visibleIndicies.first{
+            let selectedIndex = selectedIndexPath.item
+            let messageRow = messageRowsArray[selectedIndex]
+            let messageID = messageRow.getMessageId()
+            print("topVisibleMessageID:\(messageID) - \(messageRow.getMessageContent())")
+
+            return messageID
+        }
+           return nil
+    }
+    
     func collectionView(_ collectionView: NSCollectionView, willDisplay item: NSCollectionViewItem, forRepresentedObjectAt indexPath: IndexPath) {
         
         let messageRow = messageRowsArray[indexPath.item]
         let sender = getContactFor(messageRow: messageRow)
-        self.lastViewedMessageID = messageRow.getMessageId()
-        print("lastViewedMessageID:\(lastViewedMessageID) - \(messageRow.getMessageContent())")
         if let item = item as? DayHeaderCollectionViewItem {
             item.configureCell(messageRow: messageRow)
         } else if let item = item as? MessageRowProtocol {
