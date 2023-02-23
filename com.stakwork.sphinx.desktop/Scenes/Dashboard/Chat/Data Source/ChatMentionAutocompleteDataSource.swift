@@ -153,8 +153,13 @@ extension NSScrollView {
         set { documentView?.setFrameSize(newValue) }
         get { documentView?.frame.size ?? NSSize.zero }
     }
-    var documentOffset: NSPoint {
-        set { documentView?.scroll(newValue) }
-        get { documentVisibleRect.origin }
+    
+    var documentYOffset: CGFloat {
+        set {
+            self.contentView.bounds.origin.y = newValue
+        }
+        get {
+            self.contentView.bounds.origin.y
+        }
     }
 }

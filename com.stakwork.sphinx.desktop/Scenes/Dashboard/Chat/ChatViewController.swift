@@ -82,12 +82,9 @@ class ChatViewController: DashboardSplittedViewController {
     var contact: UserContact?
     var chat: Chat? = nil {
         willSet{
-            if(chat?.id != newValue?.id){//detect change and pop variables onto stack
-                setLastReadMessage()
+            if (chat?.id != newValue?.id) {
+                trackChatScrollPosition()
             }
-        }
-        didSet{
-
         }
     }
     var chatDataSource : ChatDataSource? = nil
@@ -313,8 +310,20 @@ class ChatViewController: DashboardSplittedViewController {
         hideMessageReplyView()
         hideGiphySearchView()
         chatDataSource?.setDataAndReload(contact: contact, chat: chat, forceReload: forceReload)
-        
+        scrollToPreviuosPosition()
         setMessagesAsSeen()
+    }
+    
+    func scrollToPreviuosPosition() {
+        DelayPerformedHelper.performAfterDelay(seconds: 0.2, completion: {
+            if let chat = self.chat, let tablePosition = GroupsManager.sharedInstance.getChatLastRead(chatID: chat.id) {
+                self.chatCollectionView.scrollToOffset(yPosition: tablePosition.1)
+                self.didFinishLoading()
+            } else {
+                self.chatCollectionView.scrollToBottom(animated: false)
+                self.didFinishLoading()
+            }
+        })
     }
     
     func reload() {

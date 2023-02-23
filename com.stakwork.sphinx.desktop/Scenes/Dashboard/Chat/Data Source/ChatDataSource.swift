@@ -115,7 +115,7 @@ class ChatDataSource : NSObject {
     
     func getTableViewPosition() -> (Int, CGFloat)? {
         if let firstMessageId = messagesArray.first?.id,
-           let offSet = collectionView.enclosingScrollView?.documentOffset.y{
+           let offSet = collectionView.enclosingScrollView?.documentYOffset {
             return (firstMessageId, offSet)
         }
        return nil
@@ -609,21 +609,7 @@ extension ChatDataSource : NSCollectionViewDataSource {
         return messageRowsArray.count
     }
     
-    func getTopVisibleMessageID()->Int?{
-        let visibleIndicies = collectionView.indexPathsForVisibleItems()
-        if let selectedIndexPath = visibleIndicies.first{
-            let selectedIndex = selectedIndexPath.item
-            let messageRow = messageRowsArray[selectedIndex]
-            let messageID = messageRow.getMessageId()
-            print("topVisibleMessageID:\(messageID) - \(messageRow.getMessageContent())")
-
-            return messageID
-        }
-           return nil
-    }
-    
     func collectionView(_ collectionView: NSCollectionView, willDisplay item: NSCollectionViewItem, forRepresentedObjectAt indexPath: IndexPath) {
-        
         let messageRow = messageRowsArray[indexPath.item]
         let sender = getContactFor(messageRow: messageRow)
         if let item = item as? DayHeaderCollectionViewItem {
@@ -635,10 +621,6 @@ extension ChatDataSource : NSCollectionViewDataSource {
         } else if let item = item as? GroupActionRowProtocol {
             item.configureMessage(message: messageRow.transactionMessage)
             item.delegate = self
-        }
-        
-        if indexPath.item == collectionView.numberOfItems(inSection: 0) - 1 && page == 1 {
-            delegate?.didFinishLoading()
         }
     }
  

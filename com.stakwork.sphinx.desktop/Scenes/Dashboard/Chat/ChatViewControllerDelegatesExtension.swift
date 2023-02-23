@@ -300,9 +300,7 @@ extension ChatViewController : ChatDataSourceDelegate {
     }
     
     func didFinishLoading() {
-        DelayPerformedHelper.performAfterDelay(seconds: 0.1, completion: {
-            self.chatCollectionView.alphaValue = 1.0
-        })
+        chatCollectionView.alphaValue = 1.0
     }
     
     func didDeleteGroup() {
@@ -411,7 +409,7 @@ extension ChatViewController : MessageCellDelegate {
         toggleSearchTopView()
     }
     
-    func setLastReadMessage(){
+    func trackChatScrollPosition(){
         if let dataSource = chatDataSource,
            let tablePosition = dataSource.getTableViewPosition(),
            let valid_chat = chat
@@ -440,13 +438,7 @@ extension ChatViewController : MessageCellDelegate {
         if (viewHeight == 0) { bottomBar.addShadow(location: VerticalLocation.top, color: NSColor.black, opacity: 0.3, radius: 5.0) }
         self.searchTopViewHeight.constant = viewHeight
         self.searchTopView.layoutSubtreeIfNeeded()
-        
-        if let chat = chat,
-           let tablePosition = GroupsManager.sharedInstance.getChatLastRead(chatID: chat.id) {
-            chatCollectionView.scrollToOffset(yPosition: tablePosition.1)
-        } else{
-            self.chatCollectionView.scrollToBottom(animated: false)
-        }
+        if self.chatCollectionView.shouldScrollToBottom() { self.chatCollectionView.scrollToBottom(animated: false) }
     }
 }
 
