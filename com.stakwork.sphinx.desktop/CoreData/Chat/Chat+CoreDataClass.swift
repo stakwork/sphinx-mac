@@ -287,8 +287,19 @@ public class Chat: NSManagedObject {
         self.aliases = Array(Set(self.getAllMessages().compactMap({$0.senderAlias})))
     }
     
-    func getAllMessages(limit: Int? = 100, messagesIdsToExclude: [Int] = [], lastMessage: TransactionMessage? = nil) -> [TransactionMessage] {
-        return TransactionMessage.getAllMessagesFor(chat: self, limit: limit, messagesIdsToExclude: messagesIdsToExclude, lastMessage: lastMessage)
+    func getAllMessages(
+        limit: Int? = 100,
+        messagesIdsToExclude: [Int] = [],
+        lastMessage: TransactionMessage? = nil,
+        firstMessage: TransactionMessage? = nil
+    ) -> [TransactionMessage] {
+        return TransactionMessage.getAllMessagesFor(
+            chat: self,
+            limit: limit,
+            messagesIdsToExclude: messagesIdsToExclude,
+            lastMessage: lastMessage,
+            firstMessage: firstMessage
+        )
     }
     
     func getAllMessagesCount() -> Int {

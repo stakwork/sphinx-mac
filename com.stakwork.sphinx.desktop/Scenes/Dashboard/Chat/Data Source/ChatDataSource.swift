@@ -89,7 +89,8 @@ class ChatDataSource : NSObject {
         resetPrevChatValues()
         
         chatMessagesCount = chat?.getAllMessagesCount() ?? 0
-        messagesArray = chat?.getAllMessages(limit: itemsPerPage) ?? [TransactionMessage]()
+        let tablePosition = GroupsManager.sharedInstance.getChatLastRead(chatID: chat?.id)
+        messagesArray = chat?.getAllMessages(limit: itemsPerPage, firstMessage: tablePosition?.0) ?? [TransactionMessage]()
         messageIdsArray = []
         messageRowsArray = []
         boosts = [:]
@@ -110,6 +111,14 @@ class ChatDataSource : NSObject {
             return messagesArray.count
         }
         return itemsPerPage
+    }
+    
+    func getTableViewPosition() -> (Int, CGFloat)? {
+        if let firstMessageId = messagesArray.first?.id,
+           let offSet = collectionView.enclosingScrollView?.documentOffset.y{
+            return (firstMessageId, offSet)
+        }
+       return nil
     }
     
     func createContactIdsDictionary() {

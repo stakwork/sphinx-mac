@@ -21,6 +21,13 @@ extension NSCollectionView {
         scrollToIndex(targetIndex: targetIndex, animated: animated)
     }
     
+    func scrollToOffset(yPosition: CGFloat) {
+        if let scrollView = self.enclosingScrollView{
+            let startingPoint = scrollView.documentOffset
+            scrollView.documentOffset = NSPoint(x: startingPoint.x, y: yPosition)
+        }
+    }
+    
     func scrollToIndex(targetIndex:Int,animated:Bool,position:NSCollectionView.ScrollPosition = .bottom){
         let sections = self.numberOfSections
         if sections > 0 {

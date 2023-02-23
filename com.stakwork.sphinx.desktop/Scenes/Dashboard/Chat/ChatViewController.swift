@@ -82,15 +82,12 @@ class ChatViewController: DashboardSplittedViewController {
     var contact: UserContact?
     var chat: Chat? = nil {
         willSet{
-            if(chat?.id != newValue?.id){
+            if(chat?.id != newValue?.id){//detect change and pop variables onto stack
                 setLastReadMessage()
             }
         }
         didSet{
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-                self.goToLastRead()
-            })
-            
+
         }
     }
     var chatDataSource : ChatDataSource? = nil
@@ -316,32 +313,8 @@ class ChatViewController: DashboardSplittedViewController {
         hideMessageReplyView()
         hideGiphySearchView()
         chatDataSource?.setDataAndReload(contact: contact, chat: chat, forceReload: forceReload)
-        if let _ = getLastReadMessage(){
-            goToLastRead()
-        }
-        else{
-            chatCollectionView.scrollToBottom(animated: false)
-        }
         
         setMessagesAsSeen()
-    }
-    
-    func goToLastRead(){
-        if let valid_chat = chat,
-           let id = GroupsManager.sharedInstance.getChatLastRead(chatID: valid_chat.id),
-                let message = chatDataSource?.messagesArray.first(where: {
-                    print($0.id)
-                    print($0.messageContent)
-                    return $0.id == id
-                }),
-                let messageIndex = chatDataSource?.messagesArray.firstIndex(where: {$0.id == id})
-        {
-            print(message.messageContent)
-            print(messageIndex)
-            print(id)
-            let targetIndex = max(messageIndex - 2, 1)
-            self.chatCollectionView.scrollToIndex(targetIndex: targetIndex, animated: true,position: .top)
-        }
     }
     
     func reload() {

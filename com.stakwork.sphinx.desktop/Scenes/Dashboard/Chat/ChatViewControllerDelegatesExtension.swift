@@ -411,21 +411,12 @@ extension ChatViewController : MessageCellDelegate {
         toggleSearchTopView()
     }
     
-    func getLastReadMessage()->Int?{
-        if let valid_chat = chat,
-           let id = GroupsManager.sharedInstance.getChatLastRead(chatID: valid_chat.id){
-            return id
-        }
-        return nil
-    }
-    
     func setLastReadMessage(){
         if let dataSource = chatDataSource,
-           let lastMessageID = dataSource.getTopVisibleMessageID(),
+           let tablePosition = dataSource.getTableViewPosition(),
            let valid_chat = chat
         {
-            GroupsManager.sharedInstance.setChatLastRead(chatID: valid_chat.id, messageId: lastMessageID)
-            //UserDefaults.Keys.lastViewedMessageID.set(lastMessageID)
+            GroupsManager.sharedInstance.setChatLastRead(chatID: valid_chat.id, tablePosition: tablePosition)
         }
     }
     
@@ -450,18 +441,11 @@ extension ChatViewController : MessageCellDelegate {
         self.searchTopViewHeight.constant = viewHeight
         self.searchTopView.layoutSubtreeIfNeeded()
         
-        if self.chatCollectionView.shouldScrollToBottom() {
-            //self.chatCollectionView.scrollToBottom(animated: false)
-        }
-        else if let valid_chat = chat,
-                let id = GroupsManager.sharedInstance.getChatLastRead(chatID: valid_chat.id),
-                let message = chatDataSource?.messagesArray.first(where: {$0.id == id}),
-                let messageIndex = chatDataSource?.messagesArray.firstIndex(where: {$0.id == id})
-        {
-            print(message.messageContent)
-            print(messageIndex)
-            print(id)
-            self.chatCollectionView.scrollToIndex(targetIndex: messageIndex, animated: true)
+        if let chat = chat,
+           let tablePosition = GroupsManager.sharedInstance.getChatLastRead(chatID: chat.id) {
+            chatCollectionView.scrollToOffset(yPosition: tablePosition.1)
+        } else{
+            self.chatCollectionView.scrollToBottom(animated: false)
         }
     }
 }
