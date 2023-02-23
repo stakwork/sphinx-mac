@@ -317,7 +317,11 @@ class ChatViewController: DashboardSplittedViewController {
     func scrollToPreviuosPosition() {
         DelayPerformedHelper.performAfterDelay(seconds: 0.2, completion: {
             if let chat = self.chat, let tablePosition = GroupsManager.sharedInstance.getChatLastRead(chatID: chat.id) {
-                self.chatCollectionView.scrollToOffset(yPosition: tablePosition.1)
+                if self.chatCollectionView.isClosedToBottom(yPosition: tablePosition.1) {
+                    self.chatCollectionView.scrollToBottom(animated: false)
+                } else {
+                    self.chatCollectionView.scrollToOffset(yPosition: tablePosition.1)
+                }
                 self.didFinishLoading()
             } else {
                 self.chatCollectionView.scrollToBottom(animated: false)

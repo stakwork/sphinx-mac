@@ -53,7 +53,17 @@ extension NSCollectionView {
         let contentHeight = (bounds.height - (enclosingScrollView?.frame.size.height ?? 0))
         let difference = contentHeight - y
         
-        if difference <= 600 {
+        if difference <= enclosingScrollView?.frame.size.height ?? 0 {
+            return true
+        }
+        return false
+    }
+    
+    func isClosedToBottom(yPosition: CGFloat) -> Bool {
+        let contentHeight = (bounds.height - (enclosingScrollView?.frame.size.height ?? 0))
+        let difference = contentHeight - yPosition
+        
+        if difference <= enclosingScrollView?.frame.size.height ?? 0 {
             return true
         }
         return false
