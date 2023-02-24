@@ -30,6 +30,7 @@ class ChatDataSource : NSObject {
     var messageIdsArray = [Int]()
     var boosts: [String: TransactionMessage.Reactions] = [String: TransactionMessage.Reactions]()
     var collectionView : NSCollectionView!
+    var lastViewedMessageID : Int?
     
     var indexesToInsert = [IndexPath]()
     var indexesToUpdate = [IndexPath]()
@@ -88,7 +89,8 @@ class ChatDataSource : NSObject {
         resetPrevChatValues()
         
         chatMessagesCount = chat?.getAllMessagesCount() ?? 0
-        messagesArray = chat?.getAllMessages(limit: itemsPerPage) ?? [TransactionMessage]()
+        let tablePosition = GroupsManager.sharedInstance.getChatLastRead(chatID: chat?.id)
+        messagesArray = chat?.getAllMessages(limit: itemsPerPage, firstMessage: tablePosition?.0) ?? [TransactionMessage]()
         messageIdsArray = []
         messageRowsArray = []
         boosts = [:]
@@ -109,6 +111,14 @@ class ChatDataSource : NSObject {
             return messagesArray.count
         }
         return itemsPerPage
+    }
+    
+    func getTableViewPosition() -> (Int, CGFloat)? {
+        if let firstMessageId = messagesArray.first?.id,
+           let offSet = collectionView.enclosingScrollView?.documentYOffset {
+            return (firstMessageId, offSet)
+        }
+       return nil
     }
     
     func createContactIdsDictionary() {
@@ -600,10 +610,8 @@ extension ChatDataSource : NSCollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: NSCollectionView, willDisplay item: NSCollectionViewItem, forRepresentedObjectAt indexPath: IndexPath) {
-        
         let messageRow = messageRowsArray[indexPath.item]
         let sender = getContactFor(messageRow: messageRow)
-
         if let item = item as? DayHeaderCollectionViewItem {
             item.configureCell(messageRow: messageRow)
         } else if let item = item as? MessageRowProtocol {
@@ -613,10 +621,6 @@ extension ChatDataSource : NSCollectionViewDataSource {
         } else if let item = item as? GroupActionRowProtocol {
             item.configureMessage(message: messageRow.transactionMessage)
             item.delegate = self
-        }
-        
-        if indexPath.item == collectionView.numberOfItems(inSection: 0) - 1 && page == 1 {
-            delegate?.didFinishLoading()
         }
     }
  

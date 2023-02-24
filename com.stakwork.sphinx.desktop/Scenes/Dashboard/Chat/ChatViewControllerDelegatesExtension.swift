@@ -300,9 +300,7 @@ extension ChatViewController : ChatDataSourceDelegate {
     }
     
     func didFinishLoading() {
-        DelayPerformedHelper.performAfterDelay(seconds: 0.1, completion: {
-            self.chatCollectionView.alphaValue = 1.0
-        })
+        chatCollectionView.alphaValue = 1.0
     }
     
     func didDeleteGroup() {
@@ -409,6 +407,15 @@ extension ChatViewController : MessageCellDelegate {
     func toggleMessageReplyView() {
         messageReplyViewHeight.constant = messageReplyView.getViewHeight()
         toggleSearchTopView()
+    }
+    
+    func trackChatScrollPosition(){
+        if let dataSource = chatDataSource,
+           let tablePosition = dataSource.getTableViewPosition(),
+           let valid_chat = chat
+        {
+            GroupsManager.sharedInstance.setChatLastRead(chatID: valid_chat.id, tablePosition: tablePosition)
+        }
     }
     
     func hideMessageReplyView() {

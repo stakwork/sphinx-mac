@@ -122,6 +122,7 @@ class DashboardViewController: NSViewController {
         }
         
         NotificationCenter.default.addObserver(forName: .shouldReadChat, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
+            self?.detailViewController?.trackChatScrollPosition()
             self?.detailViewController?.setMessagesAsSeen()
         }
         

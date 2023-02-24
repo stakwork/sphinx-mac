@@ -42,6 +42,7 @@ extension UserDefaults {
         public static let paymentProcessedInvites = DefaultKey<[String]>("paymentProcessedInvites")
         public static let isRestoring = DefaultKey<Bool>("isRestoring")
         public static let messagesFetchPage = DefaultKey<Int>("messagesFetchPage")
+        public static let lastViewedMessageID = DefaultKey<Int>("lastViewedMessageID")
         
         public static let defaultPIN = DefaultKey<String>("currentPin")
         public static let privacyPIN = DefaultKey<String>("privacyPIN")

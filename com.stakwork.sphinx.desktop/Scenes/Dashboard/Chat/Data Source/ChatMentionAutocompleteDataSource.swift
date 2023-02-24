@@ -147,3 +147,19 @@ extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate, NSCollec
     }
 }
 
+
+extension NSScrollView {
+    var documentSize: NSSize {
+        set { documentView?.setFrameSize(newValue) }
+        get { documentView?.frame.size ?? NSSize.zero }
+    }
+    
+    var documentYOffset: CGFloat {
+        set {
+            self.contentView.bounds.origin.y = newValue
+        }
+        get {
+            self.contentView.bounds.origin.y
+        }
+    }
+}

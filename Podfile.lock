@@ -18,7 +18,7 @@ DEPENDENCIES:
   - ObjectMapper
   - ReachabilitySwift
   - RNCryptor (~> 5.0)
-  - SDWebImage (~> 5.0)
+  - SDWebImage (~> 5.12)
   - Starscream (~> 3.1)
   - SwiftLinkPreview (~> 3.1.0)
   - SwiftyJSON
@@ -52,6 +52,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   Tor: fad2cec0e7ef5f889fecdaf69e5edd6df0438326
 
-PODFILE CHECKSUM: 235be9c1c5701faa64cd98a8e0c43d4698973926
+PODFILE CHECKSUM: 17918e85216b11b28a5b0554ac2fb41bbaa9e54b
 
 COCOAPODS: 1.11.3

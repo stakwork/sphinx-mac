@@ -80,7 +80,13 @@ class ChatViewController: DashboardSplittedViewController {
     let kPriceFieldPadding: CGFloat = 10
     
     var contact: UserContact?
-    var chat: Chat?
+    var chat: Chat? = nil {
+        willSet{
+            if (chat?.id != newValue?.id) {
+                trackChatScrollPosition()
+            }
+        }
+    }
     var chatDataSource : ChatDataSource? = nil
     
     var audioRecorderHelper = AudioRecorderHelper()
@@ -117,7 +123,6 @@ class ChatViewController: DashboardSplittedViewController {
     
     override func viewWillDisappear() {
         super.viewWillDisappear()
-        
         NotificationCenter.default.removeObserver(self, name: .shouldReloadTribeData, object: nil)
         NotificationCenter.default.removeObserver(self, name: NSView.boundsDidChangeNotification, object: nil)
         chatDataSource?.setDelegates(nil)
@@ -305,8 +310,24 @@ class ChatViewController: DashboardSplittedViewController {
         hideMessageReplyView()
         hideGiphySearchView()
         chatDataSource?.setDataAndReload(contact: contact, chat: chat, forceReload: forceReload)
-        chatCollectionView.scrollToBottom(animated: false)
+        scrollToPreviuosPosition()
         setMessagesAsSeen()
+    }
+    
+    func scrollToPreviuosPosition() {
+        DelayPerformedHelper.performAfterDelay(seconds: 0.2, completion: {
+            if let chat = self.chat, let tablePosition = GroupsManager.sharedInstance.getChatLastRead(chatID: chat.id) {
+                if self.chatCollectionView.isClosedToBottom(yPosition: tablePosition.1) {
+                    self.chatCollectionView.scrollToBottom(animated: false)
+                } else {
+                    self.chatCollectionView.scrollToOffset(yPosition: tablePosition.1)
+                }
+                self.didFinishLoading()
+            } else {
+                self.chatCollectionView.scrollToBottom(animated: false)
+                self.didFinishLoading()
+            }
+        })
     }
     
     func reload() {
