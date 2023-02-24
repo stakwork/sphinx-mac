@@ -41,6 +41,7 @@ class CommonModalView: NSView, ModalViewInterface {
         var sig : String? = nil
         var token : String? = nil
         var pubkey : String? = nil
+        var routeHint : String? = nil
         var name : String? = nil
         var amount : Int? = nil
         var verificationSignature : String? = nil

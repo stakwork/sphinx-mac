@@ -65,7 +65,10 @@ class AuthExternalView: CommonModalView, LoadableNib {
     }
     
     func authorizeStakwork() {
-        authInfo?.pubkey = UserData.sharedInstance.getUserPubKey()
+        let owner = UserContact.getOwner()
+        
+        authInfo?.pubkey = owner?.publicKey
+        authInfo?.routeHint = owner?.routeHint
         
         guard let authInfo = authInfo, let challenge = authInfo.challenge else {
             showErrorAlert()
@@ -112,7 +115,12 @@ class AuthExternalView: CommonModalView, LoadableNib {
             return
         }
         
-        let urlString = "https://auth.sphinx.chat/oauth_verify?id=\(id)&sig=\(sig)&pubkey=\(pubkey)"
+        var urlString = "https://auth.sphinx.chat/oauth_verify?id=\(id)&sig=\(sig)&pubkey=\(pubkey)"
+        
+        if let routeHint = authInfo.routeHint, !routeHint.isEmpty {
+            urlString = urlString + "&route_hint=\(routeHint)"
+        }
+        
         if let url = URL(string: urlString) {
             delegate?.shouldDismissModals()
             NSWorkspace.shared.open(url)
