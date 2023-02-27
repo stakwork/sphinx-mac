@@ -21,10 +21,17 @@ extension NSCollectionView {
         scrollToIndex(targetIndex: targetIndex, animated: animated)
     }
     
-    func scrollToOffset(yPosition: CGFloat) {
+    func shouldScrollToOffset(yPosition: CGFloat) -> Bool {
+        let y = (enclosingScrollView?.contentView.bounds.origin.y ?? 0)
+        if (isClosedToBottom(yPosition: y)) {
+            return false
+        }
+        
         if let scrollView = self.enclosingScrollView {
             scrollView.documentYOffset = yPosition
         }
+        
+        return true
     }
     
     func scrollToIndex(targetIndex:Int, animated:Bool, position:NSCollectionView.ScrollPosition = .bottom){
@@ -63,7 +70,7 @@ extension NSCollectionView {
         let contentHeight = (bounds.height - (enclosingScrollView?.frame.size.height ?? 0))
         let difference = contentHeight - yPosition
         
-        if difference <= enclosingScrollView?.frame.size.height ?? 0 {
+        if difference <= 10 {
             return true
         }
         return false
