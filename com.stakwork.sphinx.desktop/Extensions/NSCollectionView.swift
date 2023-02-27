@@ -27,6 +27,10 @@ extension NSCollectionView {
             return false
         }
         
+        if (yPosition == y) {
+            return false
+        }
+        
         if let scrollView = self.enclosingScrollView {
             scrollView.documentYOffset = yPosition
         }
