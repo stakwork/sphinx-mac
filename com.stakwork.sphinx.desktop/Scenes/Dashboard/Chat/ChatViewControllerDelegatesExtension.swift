@@ -295,6 +295,7 @@ extension ChatViewController : NSTextFieldDelegate {
 extension ChatViewController : ChatDataSourceDelegate {
     func didScrollToBottom() {
         setMessagesAsSeen()
+        trackChatScrollPosition()
     }
     
     func didFinishLoading() {
