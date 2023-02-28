@@ -343,12 +343,13 @@ class ChatViewController: DashboardSplittedViewController {
                 self.scrollDownLabel.stringValue = self.unseenMessagesCountLabel
                 self.scrollDownContainer.isHidden = isPositionAtBottom
                 
-                self.didFinishLoading()
+                if isPositionAtBottom { self.setMessagesAsSeen() }
             } else {
                 self.chatCollectionView.scrollToBottom(animated: false)
-                self.didFinishLoading()
                 self.setMessagesAsSeen()
             }
+            
+            self.didFinishLoading()
         })
     }
     
