@@ -10,7 +10,7 @@ import Cocoa
 
 protocol ChatDataSourceDelegate: AnyObject {
     func didScrollToBottom()
-    func shouldScrollToBottom(provisional: Bool)
+    func shouldScrollToBottom(force: Bool)
     func didFinishLoading()
     func didDeleteGroup()
     func chatUpdated(chat: Chat)
@@ -40,6 +40,7 @@ class ChatDataSource : NSObject {
     var itemsPerPage = 25
     var insertedRowsCount = 0
     var insertingRows = false
+    var yPosition: CGFloat? = nil
     
     var paymentForInvoiceReceived: Bool = false
     var paymentForInvoiceSent: Bool = false
@@ -79,6 +80,9 @@ class ChatDataSource : NSObject {
             return
         }
         
+        yPosition = nil
+        NotificationCenter.default.removeObserver(self, name: NSView.boundsDidChangeNotification, object: nil)
+        
         if isOtherChat {
             itemsPerPage = 25
         } else {
@@ -104,6 +108,18 @@ class ChatDataSource : NSObject {
         collectionView.reloadData()
         
         collectionView.collectionViewLayout?.invalidateLayout()
+
+        NotificationCenter.default.addObserver(
+            forName: NSView.boundsDidChangeNotification,
+            object: collectionView.enclosingScrollView?.contentView,
+            queue: OperationQueue.main
+        ) { [weak self] (n: Notification) in
+            self?.scrollViewDidScroll()
+        }
+    }
+    
+    func getUnseenMessagesCount() -> Int {
+        return messagesArray.filter({ !$0.seen && $0.isIncoming(ownerId: UserData.sharedInstance.getUserId()) }).count
     }
     
     func getInitialItemsPerPage() -> Int {
@@ -355,7 +371,11 @@ class ChatDataSource : NSObject {
         })
     }
     
-    func addMessageAndReload(message: TransactionMessage, provisional: Bool = false, confirmation: Bool = false) {
+    func addMessageAndReload(
+        message: TransactionMessage,
+        provisional: Bool = false,
+        confirmation: Bool = false
+    ) {
         if isDifferentChat(message: message, vcChat: self.chat) {
             return
         }
@@ -436,6 +456,8 @@ class ChatDataSource : NSObject {
     }
     
     func insertAndUpdateRows(provisional: Bool) {
+        let isAtBottom = collectionView.isAtBottom()
+        
         if indexesToInsert.count > 0 {
             if shouldInsertRows() {
                 insertedRowsCount = insertedRowsCount + indexesToInsert.count
@@ -445,7 +467,7 @@ class ChatDataSource : NSObject {
             }
             
             indexesToInsert = [IndexPath]()
-            delegate?.shouldScrollToBottom(provisional: provisional)
+            delegate?.shouldScrollToBottom(force: provisional || isAtBottom)
         }
         
         if indexesToUpdate.count > 0 {
@@ -638,9 +660,13 @@ extension ChatDataSource {
         
         MessageOptionsHelper.sharedInstance.hideMenu()
         
-        if scrollView.contentView.bounds.origin.y >= (collectionView.bounds.height - scrollView.frame.size.height) {
-            delegate?.didScrollToBottom()
+        if let yPosition = yPosition, yPosition != scrollView.contentView.bounds.origin.y {
+            if scrollView.contentView.bounds.origin.y >= (collectionView.bounds.height - scrollView.frame.size.height + scrollView.contentInsets.bottom) {
+                delegate?.didScrollToBottom()
+            }
         }
+        
+        yPosition = scrollView.contentView.bounds.origin.y
 
         if scrollView.contentView.bounds.origin.y <= LoadingMoreCollectionViewItem.kLoadingHeight && !insertingRows {
             if chatMessagesCount <= messagesArray.count {

@@ -71,7 +71,18 @@ class ChatViewController: DashboardSplittedViewController {
     var chatMentionAutocompleteDataSource : ChatMentionAutocompleteDataSource? = nil
     
     var currentMessageString = ""
+    
     var unseenMessagesCount = 0
+    
+    var unseenMessagesCountLabel: String {
+        get {
+            if unseenMessagesCount > 0 {
+                return "+\(unseenMessagesCount)"
+            } else {
+                return ""
+            }
+        }
+    }
     
     let kCharacterLimit = 500
     let kBottomBarMargins:CGFloat = 41
@@ -80,6 +91,7 @@ class ChatViewController: DashboardSplittedViewController {
     let kPriceFieldPadding: CGFloat = 10
     
     var contact: UserContact?
+    
     var chat: Chat? = nil {
         willSet{
             if (chat?.id != newValue?.id) {
@@ -87,6 +99,7 @@ class ChatViewController: DashboardSplittedViewController {
             }
         }
     }
+    
     var chatDataSource : ChatDataSource? = nil
     
     var audioRecorderHelper = AudioRecorderHelper()
@@ -115,16 +128,11 @@ class ChatViewController: DashboardSplittedViewController {
         chatDataSource?.setDelegates(self)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.setChatInfo), name: .shouldReloadTribeData, object: nil)
-        
-        NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification, object: chatCollectionView.enclosingScrollView?.contentView, queue: OperationQueue.main) { [weak self] (n: Notification) in
-            self?.chatDataSource?.scrollViewDidScroll()
-        }
     }
     
     override func viewWillDisappear() {
         super.viewWillDisappear()
         NotificationCenter.default.removeObserver(self, name: .shouldReloadTribeData, object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSView.boundsDidChangeNotification, object: nil)
         chatDataSource?.setDelegates(nil)
     }
     
@@ -309,29 +317,37 @@ class ChatViewController: DashboardSplittedViewController {
     func initialLoad(forceReload: Bool = false) {
         hideMessageReplyView()
         hideGiphySearchView()
-        chatDataSource?.setDataAndReload(contact: contact, chat: chat, forceReload: forceReload)
+        
+        chatDataSource?.setDataAndReload(
+            contact: contact,
+            chat: chat,
+            forceReload: forceReload
+        )
+        
+        unseenMessagesCount = chatDataSource?.getUnseenMessagesCount() ?? 0
+        
         scrollToPreviuosPosition()
-        setMessagesAsSeen()
     }
     
     func scrollToPreviuosPosition() {
+        scrollDownContainer.isHidden = true
+        
         DelayPerformedHelper.performAfterDelay(seconds: 0.2, completion: {
             if let chat = self.chat,
                let tablePosition = GroupsManager.sharedInstance.getChatLastRead(chatID: chat.id) {
                 
-                let didScrollToOffset = self.chatCollectionView.shouldScrollToOffset(yPosition: tablePosition.1)
+                self.chatCollectionView.scrollToOffset(yPosition: tablePosition.1)
+                
                 let isPositionAtBottom = self.chatCollectionView.isClosedToBottom(yPosition: tablePosition.1)
                 
-                if didScrollToOffset && !isPositionAtBottom {
-                    self.scrollDownLabel.stringValue = ""
-                    self.scrollDownContainer.isHidden = false
-                }
+                self.scrollDownLabel.stringValue = self.unseenMessagesCountLabel
+                self.scrollDownContainer.isHidden = isPositionAtBottom
                 
                 self.didFinishLoading()
-                
             } else {
                 self.chatCollectionView.scrollToBottom(animated: false)
                 self.didFinishLoading()
+                self.setMessagesAsSeen()
             }
         })
     }
@@ -347,7 +363,6 @@ class ChatViewController: DashboardSplittedViewController {
     }
     
     func reloadMessages(newMessageCount: Int = 0) {
-        setMessagesAsSeen()
         reloadAndScroll(newMessageCount: newMessageCount)
     }
     
@@ -402,6 +417,12 @@ class ChatViewController: DashboardSplittedViewController {
     
     func setMessagesAsSeen(forceSeen: Bool = false) {
         chat?.setChatMessagesAsSeen(forceSeen: forceSeen)
+        
+        unseenMessagesCount = 0
+        scrollDownLabel.stringValue = unseenMessagesCountLabel
+        scrollDownContainer.isHidden = true
+        
+        NotificationCenter.default.post(name: .shouldReloadChatsList, object: nil)
     }
     
     func reloadAndScroll(newMessageCount: Int = 0) {
@@ -411,12 +432,12 @@ class ChatViewController: DashboardSplittedViewController {
         }
     }
     
-    func shouldScrollToBottom(provisional: Bool = false) {
-        if chatCollectionView.shouldScrollToBottom() || provisional {
-            chatCollectionView.scrollToBottom(animated: !provisional)
+    func shouldScrollToBottom(force: Bool = false) {
+        if chatCollectionView.shouldScrollToBottom() || force {
+            chatCollectionView.scrollToBottom(animated: !force)
         } else {
             unseenMessagesCount = unseenMessagesCount + 1
-            scrollDownLabel.stringValue = "+\(unseenMessagesCount)"
+            scrollDownLabel.stringValue = unseenMessagesCountLabel
             scrollDownContainer.isHidden = false
         }
     }

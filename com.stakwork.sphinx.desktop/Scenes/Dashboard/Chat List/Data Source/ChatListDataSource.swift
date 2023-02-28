@@ -210,8 +210,6 @@ extension ChatListDataSource : NSCollectionViewDelegate, NSCollectionViewDelegat
         let previouslySelectedIndexPath = getIndexPathOfSelectedRow()
         
         if let chat = (chatListObject as? Chat) ?? (chatListObject as? UserContact)?.getConversation() {
-            chat.setChatMessagesAsSeen(shouldSync: false, shouldSave: false)
-            
             selectedChatId = chat.id
             selectedContactId = nil
         } else if let contact = (chatListObject as? UserContact), contact.isConfirmed() {
@@ -220,7 +218,6 @@ extension ChatListDataSource : NSCollectionViewDelegate, NSCollectionViewDelegat
         }
         
         if let previouslySelectedIndexPath = previouslySelectedIndexPath {
-            getPreviouslySelectedChat(index: previouslySelectedIndexPath.item)?.setChatMessagesAsSeen(shouldSave: false)
             collectionView.reloadItems(at: [previouslySelectedIndexPath, indexPath])
         } else {
             collectionView.reloadItems(at: [indexPath])

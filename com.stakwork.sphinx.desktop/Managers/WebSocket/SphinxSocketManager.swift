@@ -250,7 +250,6 @@ extension SphinxSocketManager {
     
     func didReceivePurchaseMessage(type: String, messageJson: JSON) {
         if let message = TransactionMessage.insertMessage(m: messageJson).0 {
-            markAsSeenIfNeeded(message: message)
             delegate?.didReceivePurchaseUpdate?(message: message)
         }
     }
@@ -272,7 +271,7 @@ extension SphinxSocketManager {
 
         if let message = TransactionMessage.insertMessage(m: messageJson, existingMessage: existingMessage).0 {
             message.setPaymentInvoiceAsPaid()
-            markAsSeenIfNeeded(message: message)
+            setSeen(message: message, value: false)
             
             updateBalanceIfNeeded(type: type)
 
@@ -482,43 +481,13 @@ extension SphinxSocketManager {
         }
     }
     
-    func markAsSeenIfNeeded(message: TransactionMessage) {
-        let outgoing = message.isOutgoing()
-        
-        if outgoing {
-            setChatSeen(message: message, value: true)
-            return
-        }
-        
-        let isSeen = shouldMarkAsSeen(message: message)
-        
-        if isSeen {
-            message.setAsSeen()
-        }
-        
-        setChatSeen(message: message, value: isSeen)
-    }
-    
-    func setChatSeen(message: TransactionMessage, value: Bool) {
+    func setSeen(
+        message: TransactionMessage,
+        value: Bool
+    ) {
+        message.seen = value
         message.chat?.seen = value
         message.saveMessage()
-    }
-    
-    func shouldMarkAsSeen(message: TransactionMessage) -> Bool {
-        if !NSApplication.shared.isActive {
-            return false
-        }
-
-        if let del = delegate as? DashboardViewController, let vc = del.detailViewController {
-            if let chat = vc.chat, let messageChatId = message.chat?.id {
-                if chat.id == messageChatId {
-                    return true
-                }
-            } else if let contact = vc.contact, message.senderId == contact.id {
-                return true
-            }
-        }
-        return false
     }
     
     func setAppBadgeCount() {
