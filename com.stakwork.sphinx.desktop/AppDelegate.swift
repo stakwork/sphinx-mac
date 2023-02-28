@@ -243,7 +243,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationWillResignActive(_ notification: Notification) {
         if UserData.sharedInstance.isUserLogged() {
-            NotificationCenter.default.post(name: .shouldReadChat, object: nil)
+            NotificationCenter.default.post(name: .shouldTrackPosition, object: nil)
             
             setBadge(count: TransactionMessage.getReceivedUnseenMessagesCount())
             

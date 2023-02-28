@@ -72,7 +72,7 @@ class DashboardViewController: NSViewController {
         detailViewController?.delegate = nil
         
         NotificationCenter.default.removeObserver(self, name: .shouldUpdateDashboard, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .shouldReadChat, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .shouldTrackPosition, object: nil)
         NotificationCenter.default.removeObserver(self, name: .shouldReloadViews, object: nil)
         NotificationCenter.default.removeObserver(self, name: .shouldResetChat, object: nil)
         NotificationCenter.default.removeObserver(self, name: .shouldReloadChatsList, object: nil)
@@ -121,9 +121,8 @@ class DashboardViewController: NSViewController {
             self?.reloadView()
         }
         
-        NotificationCenter.default.addObserver(forName: .shouldReadChat, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
+        NotificationCenter.default.addObserver(forName: .shouldTrackPosition, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
             self?.detailViewController?.trackChatScrollPosition()
-            self?.detailViewController?.setMessagesAsSeen()
         }
         
         NotificationCenter.default.addObserver(forName: .shouldResetChat, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
@@ -223,7 +222,6 @@ class DashboardViewController: NSViewController {
     }
     
     func reloadData() {
-        self.detailViewController?.setMessagesAsSeen(forceSeen: true)
         self.listViewController?.chatListDataSource.reloadSelectedRow()
         
         self.chatListViewModel.loadFriends {

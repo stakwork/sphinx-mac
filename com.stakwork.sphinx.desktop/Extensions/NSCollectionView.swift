@@ -21,21 +21,16 @@ extension NSCollectionView {
         scrollToIndex(targetIndex: targetIndex, animated: animated)
     }
     
-    func shouldScrollToOffset(yPosition: CGFloat) -> Bool {
+    func scrollToOffset(yPosition: CGFloat) {
         let y = (enclosingScrollView?.contentView.bounds.origin.y ?? 0)
-        if (isClosedToBottom(yPosition: y)) {
-            return false
-        }
         
         if (yPosition == y) {
-            return false
+            return
         }
         
         if let scrollView = self.enclosingScrollView {
             scrollView.documentYOffset = yPosition
         }
-        
-        return true
     }
     
     func scrollToIndex(targetIndex:Int, animated:Bool, position:NSCollectionView.ScrollPosition = .bottom){
@@ -59,19 +54,27 @@ extension NSCollectionView {
         }
     }
     
-    func shouldScrollToBottom() -> Bool {
+    func isAtBottom() -> Bool {
         let y = (enclosingScrollView?.contentView.bounds.origin.y ?? 0)
-        let contentHeight = (bounds.height - (enclosingScrollView?.frame.size.height ?? 0))
+        let contentHeight = (bounds.height - (enclosingScrollView?.frame.size.height ?? 0)) + (enclosingScrollView?.contentInsets.bottom ?? 0)
         let difference = contentHeight - y
         
-        if difference <= enclosingScrollView?.frame.size.height ?? 0 {
+        return difference == 0
+    }
+    
+    func shouldScrollToBottom() -> Bool {
+        let y = (enclosingScrollView?.contentView.bounds.origin.y ?? 0)
+        let contentHeight = (bounds.height - (enclosingScrollView?.frame.size.height ?? 0)) + (enclosingScrollView?.contentInsets.bottom ?? 0)
+        let difference = contentHeight - y
+        
+        if difference <= 50 {
             return true
         }
         return false
     }
     
     func isClosedToBottom(yPosition: CGFloat) -> Bool {
-        let contentHeight = (bounds.height - (enclosingScrollView?.frame.size.height ?? 0))
+        let contentHeight = (bounds.height - (enclosingScrollView?.frame.size.height ?? 0)) + (enclosingScrollView?.contentInsets.bottom ?? 0)
         let difference = contentHeight - yPosition
         
         if difference <= 10 {

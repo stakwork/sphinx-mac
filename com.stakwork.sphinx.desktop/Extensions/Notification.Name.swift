@@ -11,7 +11,7 @@ import Foundation
 extension Notification.Name {
     static let onBalanceDidChange = Notification.Name("onBalanceDidChange")
     static let shouldUpdateDashboard = Notification.Name("shouldUpdateDashboard")
-    static let shouldReadChat = Notification.Name("shouldReadChat")
+    static let shouldTrackPosition = Notification.Name("shouldTrackPosition")
     static let shouldResetChat = Notification.Name("shouldResetChat")
     static let shouldReloadViews = Notification.Name("shouldReloadViews")
     static let shouldReloadTribeData = Notification.Name("shouldReloadTribeData")

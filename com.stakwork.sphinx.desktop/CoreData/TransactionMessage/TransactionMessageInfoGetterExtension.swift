@@ -278,12 +278,16 @@ extension TransactionMessage {
         }
     }
     
-    func isIncoming() -> Bool {
-        return getDirection(id: UserData.sharedInstance.getUserId()) == TransactionMessageDirection.incoming
+    func isIncoming(
+        ownerId: Int? = nil
+    ) -> Bool {
+        return getDirection(id: ownerId ?? UserData.sharedInstance.getUserId()) == TransactionMessageDirection.incoming
     }
     
-    func isOutgoing() -> Bool {
-        return getDirection(id: UserData.sharedInstance.getUserId()) == TransactionMessageDirection.outgoing
+    func isOutgoing(
+        ownerId: Int? = nil
+    ) -> Bool {
+        return getDirection(id: ownerId ?? UserData.sharedInstance.getUserId()) == TransactionMessageDirection.outgoing
     }
     
     //Statues

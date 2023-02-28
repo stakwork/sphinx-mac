@@ -294,9 +294,7 @@ extension ChatViewController : NSTextFieldDelegate {
 
 extension ChatViewController : ChatDataSourceDelegate {
     func didScrollToBottom() {
-        unseenMessagesCount = 0
-        scrollDownLabel.stringValue = "+1"
-        scrollDownContainer.isHidden = true
+        setMessagesAsSeen()
     }
     
     func didFinishLoading() {
@@ -438,7 +436,6 @@ extension ChatViewController : MessageCellDelegate {
         if (viewHeight == 0) { bottomBar.addShadow(location: VerticalLocation.top, color: NSColor.black, opacity: 0.3, radius: 5.0) }
         self.searchTopViewHeight.constant = viewHeight
         self.searchTopView.layoutSubtreeIfNeeded()
-        if self.chatCollectionView.shouldScrollToBottom() { self.chatCollectionView.scrollToBottom(animated: false) }
     }
 }
 
@@ -491,8 +488,6 @@ extension ChatViewController : MessageOptionsDelegate {
         if chatCollectionView.shouldScrollToBottom() { chatCollectionView.scrollToBottom(animated: false) }
         view.window?.makeFirstResponder(messageTextView)
     }
-    
-    func shouldPerformChatAction(action: MessageOptionsHelper.ChatActionsItem) {}
 }
 
 extension ChatViewController : GroupDetailsDelegate {
