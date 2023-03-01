@@ -330,7 +330,7 @@ public class Chat: NSManagedObject {
                 CoreDataManager.sharedManager.saveContext()
             }
             
-            if shouldSync {
+            if shouldSync && receivedUnseenMessages.count > 0 {
                 API.sharedInstance.setChatMessagesAsSeen(chatId: self.id, callback: { _ in })
             }
         }
