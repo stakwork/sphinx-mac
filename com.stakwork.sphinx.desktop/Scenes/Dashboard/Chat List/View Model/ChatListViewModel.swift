@@ -128,15 +128,16 @@ final class ChatListViewModel: NSObject {
                 
                 let restoring = self.isRestoring()
                 
-                progressCallback(
-                    self.getRestoreProgress(
-                        currentPage: page,
-                        newMessagesTotal: newMessagesTotal,
-                        itemsPerPage: ChatListViewModel.kMessagesPerPage
-                    ), restoring
-                )
-                
                 if newMessages.count > 0 {
+                    
+                    progressCallback(
+                        self.getRestoreProgress(
+                            currentPage: page,
+                            newMessagesTotal: newMessagesTotal,
+                            itemsPerPage: ChatListViewModel.kMessagesPerPage
+                        ), restoring
+                    )
+                    
                     self.addMessages(
                         messages: newMessages,
                         chatId: chatId,
