@@ -56,6 +56,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         setAppSettings()
+        clearWebkitCache()
         
         SDImageCache.shared.clearMemory()
         SDImageCache.shared.config.maxMemoryCount = 50
@@ -66,6 +67,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         getRelayKeys()
         
         setInitialVC()
+    }
+    
+    func clearWebkitCache() {
+        URLCache.shared.removeAllCachedResponses()
+
+        if let cookies = HTTPCookieStorage.shared.cookies {
+            for cookie in cookies {
+                HTTPCookieStorage.shared.deleteCookie(cookie)
+            }
+        }
     }
     
     func getRelayKeys() {
