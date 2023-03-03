@@ -248,7 +248,7 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
     func joinIfCallMessage(message: TransactionMessage) {
         if message.type == TransactionMessage.TransactionMessageType.call.rawValue {
             if let link = message.messageContent {
-                let linkUrl = VoIPRequestMessage(JSONString: link)?.link ?? link
+                let linkUrl = VoIPRequestMessage.getFromString(link)?.link ?? link
                 
                 if let url = URL(string: linkUrl) {
                     NSWorkspace.shared.open(url)
@@ -376,7 +376,7 @@ extension ChatViewController : MessageCellDelegate {
     }
     
     func shouldStartCall(link: String, audioOnly: Bool) {
-        var linkUrl = VoIPRequestMessage(JSONString: link)?.link ?? link
+        var linkUrl = VoIPRequestMessage.getFromString(link)?.link ?? link
         
         if audioOnly && !linkUrl.contains("startAudioOnly") {
             linkUrl = "\(linkUrl)#config.startAudioOnly=true"

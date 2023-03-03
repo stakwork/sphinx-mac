@@ -54,7 +54,7 @@ class CommonVideoCallCollectionViewItem : CommonChatCollectionViewItem {
 extension CommonVideoCallCollectionViewItem : JoinCallViewDelegate {
     func didTapCopyLink() {
         if let link = messageRow?.transactionMessage.messageContent {
-            let linkUrl = VoIPRequestMessage(JSONString: link)?.link ?? link
+            let linkUrl = VoIPRequestMessage.getFromString(link)?.link ?? link
             ClipboardHelper.copyToClipboard(text: linkUrl, message: "call.link.copied.clipboard".localized)
         }
     }

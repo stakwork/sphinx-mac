@@ -203,7 +203,7 @@ extension ChatViewController : ActionsDelegate {
             voipRequestMessage.link = link
             voipRequestMessage.cron = ""
             
-            messageText = voipRequestMessage.toJSONString() ?? link
+            messageText = voipRequestMessage.getCallLinkMessage() ?? link
         }
         
         sendMessageWith(

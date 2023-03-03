@@ -213,11 +213,13 @@ extension TransactionMessage {
             return "Boost"
         }
         
+        if isCallLink() {
+            adjustedMC = "join.call".localized
+        }
+        
         if let messageC = self.messageContent {
             if messageC.isEncryptedString() {
                 adjustedMC = getDecrytedMessage()
-            } else if messageC.isCallLink {
-                adjustedMC = "join.call".localized
             }
         }
         
@@ -580,7 +582,8 @@ extension TransactionMessage {
         }
 
         switch (self.getType()) {
-        case TransactionMessage.TransactionMessageType.message.rawValue:
+        case TransactionMessage.TransactionMessageType.message.rawValue,
+             TransactionMessage.TransactionMessageType.call.rawValue:
             if self.isGiphy() {
                 return "\("gif.capitalize".localized) \(directionString)"
             } else {

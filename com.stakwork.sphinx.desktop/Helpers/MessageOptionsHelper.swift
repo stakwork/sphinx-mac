@@ -321,7 +321,7 @@ extension MessageOptionsHelper : MessageOptionViewDelegate {
                 break
             case .CopyCallLink:
                 if let link = message.messageContent {
-                    let linkUrl = VoIPRequestMessage(JSONString: link)?.link ?? link
+                    let linkUrl = VoIPRequestMessage.getFromString(link)?.link ?? link
                     ClipboardHelper.copyToClipboard(text: linkUrl, message: "call.link.copied.clipboard".localized, bubbleContainer: bubbleContainer)
                 }
                 break
