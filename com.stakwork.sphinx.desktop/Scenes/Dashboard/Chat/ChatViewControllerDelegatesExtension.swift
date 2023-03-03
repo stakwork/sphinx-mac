@@ -147,7 +147,10 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
         return nil
     }
     
-    func sendMessageWith(text: String) {
+    func sendMessageWith(
+        text: String,
+        type: Int? = nil
+    ) {
         var messageText = text
         
         if messageText.isEmpty {
@@ -163,7 +166,7 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
             return
         }
         
-        let messageType = TransactionMessage.TransactionMessageType.message.rawValue
+        let messageType = type ?? TransactionMessage.TransactionMessageType.message.rawValue
         let _ = createProvisionalAndSend(messageText: messageText, type: messageType, botAmount: botAmount)
         hideMessageReplyView()
         resetMessageField()
@@ -239,6 +242,19 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
         enableViewAndComplete()
         chatDataSource?.addMessageAndReload(message: message)
         delegate?.shouldReloadChatList()
+        joinIfCallMessage(message: message)
+    }
+    
+    func joinIfCallMessage(message: TransactionMessage) {
+        if message.type == TransactionMessage.TransactionMessageType.call.rawValue {
+            if let link = message.messageContent {
+                let linkUrl = VoIPRequestMessage(JSONString: link)?.link ?? link
+                
+                if let url = URL(string: linkUrl) {
+                    NSWorkspace.shared.open(url)
+                }
+            }
+        }
     }
     
     func resetMessageField() {

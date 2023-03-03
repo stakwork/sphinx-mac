@@ -78,7 +78,7 @@ class ChatHelper {
     }
     
     func getItemFor(messageRow: TransactionMessageRow, indexPath: IndexPath, on collectionView: NSCollectionView) -> NSCollectionViewItem {
-        let isVideoCallLink = messageRow.isVideoCallLink
+        let isCallLink = messageRow.isCallLink
         let isGiphy = messageRow.isGiphy
         
         var cell: NSCollectionViewItem! = nil
@@ -116,7 +116,7 @@ class ChatHelper {
             let isPodcastBoost = messageRow.isPodcastBoost
             
             if incoming {
-                if isVideoCallLink {
+                if isCallLink {
                     cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "VideoCallReceivedCollectionViewItem"), for: indexPath)
                 } else if isGiphy {
                     cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PictureReceivedCollectionViewItem"), for: indexPath)
@@ -128,7 +128,7 @@ class ChatHelper {
                     cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MessageReceivedCollectionViewItem"), for: indexPath)
                 }
             } else {
-                if isVideoCallLink {
+                if isCallLink {
                      cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "VideoCallSentCollectionViewItem"), for: indexPath)
                 } else if isGiphy {
                     cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PictureSentCollectionViewItem"), for: indexPath)
@@ -249,6 +249,13 @@ class ChatHelper {
                 cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MessageReceivedCollectionViewItem"), for: indexPath)
             }
             break
+        case TransactionMessage.TransactionMessageType.call:
+            if incoming {
+                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "VideoCallReceivedCollectionViewItem"), for: indexPath)
+            } else {
+                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "VideoCallSentCollectionViewItem"), for: indexPath)
+            }
+            break
         default:
             break
         }
@@ -261,7 +268,7 @@ class ChatHelper {
     
     func getRowHeight(incoming: Bool, messageRow: TransactionMessageRow, chatWidth: CGFloat) -> CGFloat {
         var  height: CGFloat = 0.0
-        let isVideoCallLink = messageRow.isVideoCallLink
+        let isCallLink = messageRow.isCallLink
         let isGiphy = messageRow.isGiphy
         
         guard let message = messageRow.transactionMessage else {
@@ -283,7 +290,7 @@ class ChatHelper {
             let isPodcastComment = messageRow.isPodcastComment
             let isPodcastBoost = messageRow.isPodcastBoost
             
-            if isVideoCallLink {
+            if isCallLink {
                 height = CommonVideoCallCollectionViewItem.getRowHeight(messageRow: messageRow)
             } else if isGiphy {
                 height = CommonPictureCollectionViewItem.getRowHeight(messageRow: messageRow)
@@ -375,6 +382,9 @@ class ChatHelper {
             } else {
                 height = MessageReceivedCollectionViewItem.getRowHeight(messageRow: messageRow)
             }
+            break
+        case TransactionMessage.TransactionMessageType.call:
+            height = CommonVideoCallCollectionViewItem.getRowHeight(messageRow: messageRow)
             break
         default:
             break

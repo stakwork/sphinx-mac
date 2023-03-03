@@ -503,6 +503,7 @@
 		47E7713E2472F0BA00C9CFEB /* EmptyChatCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E7713C2472F0BA00C9CFEB /* EmptyChatCollectionViewItem.swift */; };
 		47E7713F2472F0BA00C9CFEB /* EmptyChatCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47E7713D2472F0BA00C9CFEB /* EmptyChatCollectionViewItem.xib */; };
 		47E77141247326EE00C9CFEB /* NSCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E77140247326EE00C9CFEB /* NSCollectionView.swift */; };
+		47EB025929B21D9D0032CFB5 /* VoIPRequestMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EB025829B21D9D0032CFB5 /* VoIPRequestMessage.swift */; };
 		47F258DB2541E54000122A5A /* PodcastPaymentsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F258DA2541E53F00122A5A /* PodcastPaymentsHelper.swift */; };
 		47F58A82268E4CAC00B223E0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 47F58A81268E4CAC00B223E0 /* README.md */; };
 		47F8824725656CB0002A7E71 /* SocketStringReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F8822925656CB0002A7E71 /* SocketStringReader.swift */; };
@@ -1192,6 +1193,7 @@
 		47E7713C2472F0BA00C9CFEB /* EmptyChatCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyChatCollectionViewItem.swift; sourceTree = "<group>"; };
 		47E7713D2472F0BA00C9CFEB /* EmptyChatCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyChatCollectionViewItem.xib; sourceTree = "<group>"; };
 		47E77140247326EE00C9CFEB /* NSCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSCollectionView.swift; sourceTree = "<group>"; };
+		47EB025829B21D9D0032CFB5 /* VoIPRequestMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoIPRequestMessage.swift; sourceTree = "<group>"; };
 		47F258DA2541E53F00122A5A /* PodcastPaymentsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastPaymentsHelper.swift; sourceTree = "<group>"; };
 		47F58A81268E4CAC00B223E0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		47F8822925656CB0002A7E71 /* SocketStringReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketStringReader.swift; sourceTree = "<group>"; };
@@ -1659,6 +1661,7 @@
 		4744FA5C2469A3FE00C5FD94 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				47EB025729B21D7F0032CFB5 /* Parsing Objects */,
 				4744FA5D2469A41100C5FD94 /* API.swift */,
 				475B684C29916655000EF29C /* API+HubError.swift */,
 				4744FA5F2469A41B00C5FD94 /* API+UsersExtension.swift */,
@@ -2732,6 +2735,14 @@
 			path = "Custom Views";
 			sourceTree = "<group>";
 		};
+		47EB025729B21D7F0032CFB5 /* Parsing Objects */ = {
+			isa = PBXGroup;
+			children = (
+				47EB025829B21D9D0032CFB5 /* VoIPRequestMessage.swift */,
+			);
+			path = "Parsing Objects";
+			sourceTree = "<group>";
+		};
 		47F8822725656CB0002A7E71 /* SocketIO */ = {
 			isa = PBXGroup;
 			children = (
@@ -3432,6 +3443,7 @@
 				47C1D604248EABEA00718B28 /* GroupAddedContactCollectionViewItem.swift in Sources */,
 				4785C11224D992D3004E2D6C /* GroupRequestCollectionViewItem.swift in Sources */,
 				475B680D29915CCA000EF29C /* FeedSearchAction.swift in Sources */,
+				47EB025929B21D9D0032CFB5 /* VoIPRequestMessage.swift in Sources */,
 				4744FA952469CA3900C5FD94 /* TransactionMessageQueriesExtension.swift in Sources */,
 				4702BCF2248FE6B700EE9394 /* NSImage.swift in Sources */,
 				479751EF246DBF2B00D2106B /* ChatListCollectionViewItem.swift in Sources */,

@@ -54,19 +54,22 @@ class CommonVideoCallCollectionViewItem : CommonChatCollectionViewItem {
 extension CommonVideoCallCollectionViewItem : JoinCallViewDelegate {
     func didTapCopyLink() {
         if let link = messageRow?.transactionMessage.messageContent {
-            ClipboardHelper.copyToClipboard(text: link, message: "call.link.copied.clipboard".localized)
+            let linkUrl = VoIPRequestMessage(JSONString: link)?.link ?? link
+            ClipboardHelper.copyToClipboard(text: linkUrl, message: "call.link.copied.clipboard".localized)
         }
     }
     
     func didTapVideoButton() {
         if let link = messageRow?.transactionMessage.messageContent {
-            delegate?.shouldStartCall(link: link, audioOnly: false)
+            let linkUrl = VoIPRequestMessage(JSONString: link)?.link ?? link
+            delegate?.shouldStartCall(link: linkUrl, audioOnly: false)
         }
     }
     
     func didTapAudioButton() {
         if let link = messageRow?.transactionMessage.messageContent {
-            delegate?.shouldStartCall(link: link, audioOnly: true)
+            let linkUrl = VoIPRequestMessage(JSONString: link)?.link ?? link
+            delegate?.shouldStartCall(link:linkUrl, audioOnly: true)
         }
     }
 }

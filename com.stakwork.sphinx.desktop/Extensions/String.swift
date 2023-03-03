@@ -268,7 +268,7 @@ extension String {
     }
     
     var hasLinks: Bool {
-        if self.isVideoCallLink {
+        if self.isCallLink {
             return false
         }
         
@@ -391,7 +391,7 @@ extension String {
         return self.lowerClean
     }
     
-    var isVideoCallLink: Bool {
+    var isCallLink: Bool {
         get {
             return self.lowerClean.starts(with: "http") && self.lowerClean.contains(TransactionMessage.kCallRoomName)
         }

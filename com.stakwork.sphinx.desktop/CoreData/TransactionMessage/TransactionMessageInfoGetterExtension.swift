@@ -216,7 +216,7 @@ extension TransactionMessage {
         if let messageC = self.messageContent {
             if messageC.isEncryptedString() {
                 adjustedMC = getDecrytedMessage()
-            } else if messageC.isVideoCallLink {
+            } else if messageC.isCallLink {
                 adjustedMC = "join.call".localized
             }
         }
@@ -452,6 +452,10 @@ extension TransactionMessage {
         return type == TransactionMessageType.directPayment.rawValue
     }
     
+    func isCallLink() -> Bool {
+        return type == TransactionMessageType.call.rawValue || messageContent?.isCallLink == true
+    }
+    
     func canBeDeleted() -> Bool {
         return isOutgoing() || (self.chat?.isMyPublicGroup() ?? false)
     }
@@ -489,11 +493,11 @@ extension TransactionMessage {
         var options = [(tag: Int, icon: String?, iconImage: String?, label: String)]()
         
         if let messageContent = messageContent, messageContent != "" && !isGiphy() {
-            if !messageContent.isVideoCallLink && !messageContent.isEncryptedString() {
+            if !self.isCallLink() && !messageContent.isEncryptedString() {
                 options.append((MessageActionsItem.Copy.rawValue, "", nil, "copy.text".localized))
             }
             
-            if !messageContent.isVideoCallLink && messageContent.stringLinks.count > 0 {
+            if !self.isCallLink() && messageContent.stringLinks.count > 0 {
                 options.append((MessageActionsItem.CopyLink.rawValue, "link", nil, "copy.link".localized))
             }
             
@@ -501,7 +505,7 @@ extension TransactionMessage {
                 options.append((MessageActionsItem.CopyPubKey.rawValue, "supervisor_account", nil, "copy.pub.key".localized))
             }
             
-            if messageContent.isVideoCallLink {
+            if self.isCallLink() {
                 options.append((MessageActionsItem.CopyCallLink.rawValue, "link", nil, "copy.call.link".localized))
             }
         }
@@ -526,7 +530,11 @@ extension TransactionMessage {
     }
     
     func shouldAllowBoost() -> Bool {
-        return isIncoming() && !isInvoice() && !isDirectPayment() && !(messageContent ?? "").isVideoCallLink && !(uuid ?? "").isEmpty
+        return isIncoming() &&
+        !isInvoice() &&
+        !isDirectPayment() &&
+        !isCallLink() &&
+        !(uuid ?? "").isEmpty
     }
     
     func isNewUnseenMessage() -> Bool {

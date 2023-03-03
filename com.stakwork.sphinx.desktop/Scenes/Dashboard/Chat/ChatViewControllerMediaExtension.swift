@@ -188,8 +188,28 @@ extension ChatViewController : ActionsDelegate {
     }
     
     func shouldCreateCall(mode: VideoCallHelper.CallMode) {
-        let room = VideoCallHelper.createCallMessage(mode: mode)
-        sendMessageWith(text: room)
+        let link = VideoCallHelper.createCallMessage(mode: mode)
+        
+        let type = (self.chat?.isGroup() == false) ?
+        TransactionMessage.TransactionMessageType.call.rawValue :
+        TransactionMessage.TransactionMessageType.message.rawValue
+        
+        var messageText = link
+        
+        if type == TransactionMessage.TransactionMessageType.call.rawValue {
+            
+            let voipRequestMessage = VoIPRequestMessage()
+            voipRequestMessage.recurring = false
+            voipRequestMessage.link = link
+            voipRequestMessage.cron = ""
+            
+            messageText = voipRequestMessage.toJSONString() ?? link
+        }
+        
+        sendMessageWith(
+            text: messageText,
+            type: type
+        )
     }
     
     func shouldSendPaymentFor(

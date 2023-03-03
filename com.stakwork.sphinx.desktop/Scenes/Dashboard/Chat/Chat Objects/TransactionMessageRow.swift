@@ -280,9 +280,9 @@ class TransactionMessageRow : NSObject {
         }
     }
     
-    var isVideoCallLink: Bool {
+    var isCallLink: Bool {
         get {
-            return (transactionMessage?.messageContent ?? "").isVideoCallLink
+            return (transactionMessage?.isCallLink() ?? false)
         }
     }
     

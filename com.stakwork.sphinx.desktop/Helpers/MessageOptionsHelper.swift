@@ -320,7 +320,10 @@ extension MessageOptionsHelper : MessageOptionViewDelegate {
                 ClipboardHelper.copyToClipboard(text: message.messageContent?.stringFirstPubKey ?? "", message: "pub.key.copied.clipboard".localized, bubbleContainer: bubbleContainer)
                 break
             case .CopyCallLink:
-                ClipboardHelper.copyToClipboard(text: message.messageContent ?? "", message: "call.link.copied.clipboard".localized, bubbleContainer: bubbleContainer)
+                if let link = message.messageContent {
+                    let linkUrl = VoIPRequestMessage(JSONString: link)?.link ?? link
+                    ClipboardHelper.copyToClipboard(text: linkUrl, message: "call.link.copied.clipboard".localized, bubbleContainer: bubbleContainer)
+                }
                 break
             case .Delete:
                 delegate?.shouldDeleteMessage?(message: message)
