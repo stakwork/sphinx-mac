@@ -376,13 +376,13 @@ extension ChatViewController : MessageCellDelegate {
     }
     
     func shouldStartCall(link: String, audioOnly: Bool) {
-        var callUrl = link
+        var linkUrl = VoIPRequestMessage(JSONString: link)?.link ?? link
         
-        if audioOnly && !link.contains("startAudioOnly") {
-            callUrl = "\(link)#config.startAudioOnly=true"
+        if audioOnly && !linkUrl.contains("startAudioOnly") {
+            linkUrl = "\(linkUrl)#config.startAudioOnly=true"
         }
         
-        if let url = URL(string: callUrl) {
+        if let url = URL(string: linkUrl) {
             NSWorkspace.shared.open(url)
         }
     }

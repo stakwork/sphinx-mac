@@ -61,15 +61,13 @@ extension CommonVideoCallCollectionViewItem : JoinCallViewDelegate {
     
     func didTapVideoButton() {
         if let link = messageRow?.transactionMessage.messageContent {
-            let linkUrl = VoIPRequestMessage(JSONString: link)?.link ?? link
-            delegate?.shouldStartCall(link: linkUrl, audioOnly: false)
+            delegate?.shouldStartCall(link: link, audioOnly: false)
         }
     }
     
     func didTapAudioButton() {
         if let link = messageRow?.transactionMessage.messageContent {
-            let linkUrl = VoIPRequestMessage(JSONString: link)?.link ?? link
-            delegate?.shouldStartCall(link:linkUrl, audioOnly: true)
+            delegate?.shouldStartCall(link: link, audioOnly: true)
         }
     }
 }
