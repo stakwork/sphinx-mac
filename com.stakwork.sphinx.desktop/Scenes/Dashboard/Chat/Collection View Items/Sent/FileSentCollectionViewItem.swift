@@ -39,6 +39,10 @@ class FileSentCollectionViewItem: CommonFileCollectionViewItem, MediaUploadingPr
         }
     }
     
+    override func getBubbbleView() -> NSView? {
+        return messageBubbleView
+    }
+    
     func setBubbleViewHeight() {
         bubbleViewHeight.constant = messageRow!.isPaidSentAttachment ? Constants.kPaidFileBubbleHeight : Constants.kFileBubbleHeight
         bubbleView.layoutSubtreeIfNeeded()
@@ -56,7 +60,8 @@ class FileSentCollectionViewItem: CommonFileCollectionViewItem, MediaUploadingPr
         }
         
         let bubbleHeight = messageRow.isPaidSentAttachment ? Constants.kPaidFileBubbleHeight : Constants.kFileBubbleHeight
-        let bubbleSize = CGSize(width: Constants.kFileBubbleWidth, height: bubbleHeight)
+        let bottomBubblePadding = messageRow.isBoosted ? Constants.kReactionsViewHeight : 0
+        let bubbleSize = CGSize(width: Constants.kFileBubbleWidth, height: bubbleHeight + bottomBubblePadding)
         bubbleView.showOutgoingFileBubble(messageRow: messageRow, size: bubbleSize)
         configureReplyBubble(bubbleView: bubbleView, bubbleSize: bubbleSize, incoming: false)
         

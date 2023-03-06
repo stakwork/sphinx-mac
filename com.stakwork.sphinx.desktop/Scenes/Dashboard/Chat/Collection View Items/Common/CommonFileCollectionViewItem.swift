@@ -119,7 +119,8 @@ class CommonFileCollectionViewItem : CommonReplyCollectionViewItem {
             let bubbleSize = MessageBubbleView.getBubbleSizeFrom(messageRow: messageRow, containerViewWidth: bubbleWidth, bubbleMargin: margin)
             height = bubbleHeight + bubbleSize.height + Constants.kComposedBubbleMessageMargin
         } else {
-            height = bubbleHeight
+            let bottomBubblePadding = messageRow.isBoosted ? Constants.kReactionsViewHeight : 0
+            height = bubbleHeight + bottomBubblePadding
         }
         
         return height + Constants.kBubbleTopMargin + Constants.kBubbleBottomMargin + payButtonHeight + replyTopPadding
