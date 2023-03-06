@@ -660,7 +660,7 @@ extension ChatDataSource {
         
         MessageOptionsHelper.sharedInstance.hideMenu()
         
-        if let yPosition = yPosition, yPosition != scrollView.contentView.bounds.origin.y {
+        if yPosition != scrollView.contentView.bounds.origin.y {
             if scrollView.contentView.bounds.origin.y == (collectionView.bounds.height - scrollView.frame.size.height + scrollView.contentInsets.bottom) {
                 delegate?.didScrollToBottom()
             }
