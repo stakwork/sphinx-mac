@@ -311,7 +311,19 @@ class DraggingDestinationView: NSView, LoadableNib {
     func processURLs(pasteBoard:NSPasteboard) -> Bool{
         let filteringOptionsCount = filteringOptions[NSPasteboard.ReadingOptionKey.urlReadingContentsConformToTypes]?.count ?? 0
         let options = filteringOptionsCount > 0 ? filteringOptions : nil
-        if let urls = pasteBoard.readObjects(forClasses: [NSURL.self], options: options) as? [URL], urls.count == 1 {
+        if let images = pasteBoard.readObjects(forClasses: [NSImage.self]),
+           images.count > 0,
+            let image = images[0] as? NSImage,
+           let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil){
+            let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
+            if let jpegData = bitmapRep.representation(using: NSBitmapImageRep.FileType.jpeg, properties: [:]){
+                showImagePreview(data: jpegData, image: image)
+                return true
+            }
+        }
+
+        if let urls = pasteBoard.readObjects(forClasses: [NSURL.self], options: options) as? [URL],
+            urls.count == 1 {
             let url = urls[0]
             
             if let data = getDataFrom(url: url) {
