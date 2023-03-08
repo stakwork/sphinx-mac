@@ -284,9 +284,33 @@ class DraggingDestinationView: NSView, LoadableNib {
     override func performDragOperation(_ draggingInfo: NSDraggingInfo) -> Bool {
         isReceivingDrag = false
         let pasteBoard = draggingInfo.draggingPasteboard
+        
+        let urlResult = processURLs(pasteBoard: pasteBoard)
+        if(urlResult == true){
+            return true
+        }
+        
+        isReceivingDrag = false
+        resetView()
+        return false
+    }
+    
+    func performPasteOperation(pasteBoard:NSPasteboard)->Bool{
+        isReceivingDrag = false
+        
+        let urlResult = processURLs(pasteBoard: pasteBoard)
+        if(urlResult == true){
+            return true
+        }
+        
+        isReceivingDrag = false
+        resetView()
+        return false
+    }
+    
+    func processURLs(pasteBoard:NSPasteboard) -> Bool{
         let filteringOptionsCount = filteringOptions[NSPasteboard.ReadingOptionKey.urlReadingContentsConformToTypes]?.count ?? 0
         let options = filteringOptionsCount > 0 ? filteringOptions : nil
-
         if let urls = pasteBoard.readObjects(forClasses: [NSURL.self], options: options) as? [URL], urls.count == 1 {
             let url = urls[0]
             
@@ -309,8 +333,6 @@ class DraggingDestinationView: NSView, LoadableNib {
                 return true
             }
         }
-        isReceivingDrag = false
-        resetView()
         return false
     }
     

@@ -9,6 +9,13 @@
 import Cocoa
 
 extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
+    func didDetectImagePaste(pasteBoard: NSPasteboard) {
+        let success = draggingView.performPasteOperation(pasteBoard: pasteBoard)
+        if success == false{
+            self.messageBubbleHelper.showGenericMessageView(text: "generic.error.message".localized, in: self.view)
+        }
+    }
+    
     
     func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
         if let replacementString = replacementString, replacementString == "\n" {
