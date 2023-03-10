@@ -285,7 +285,7 @@ class ProfileViewController: NSViewController {
             return
         }
         
-        UserData.sharedInstance.setPINHours(hours: pinTimeoutView.getPinHours())
+        updatePinSettings()
         UserDefaults.Keys.shouldTrackActions.set(isTrackActionsSwitchOn())
         
         var parameters = [String : AnyObject]()
@@ -304,6 +304,17 @@ class ProfileViewController: NSViewController {
         }, errorCallback: {
             self.saveFinished(success: false)
         })
+    }
+    
+    func updatePinSettings(){
+        if pinTimeoutView.getPinHours() == Int(pinTimeoutView.sliderControl.maxValue){
+            UserData.sharedInstance.setPINNeverOverride(isEnable: true)
+        }
+        else{
+            UserData.sharedInstance.setPINNeverOverride(isEnable: false)
+            UserData.sharedInstance.setPINHours(hours: pinTimeoutView.getPinHours())
+        }
+        
     }
     
     func didUpdateProfile() -> Bool {

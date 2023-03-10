@@ -414,3 +414,7 @@
 "earned.sats" = "Recibidod: %d sats";
 "sats.per.minute" = "Podcast: sats por minuto";
 "suggested.out.range" = "Monto sugerido (%d sats) por encima del máximo";
+
+//PIN Settings
+"never.require.pin" = "Nunca solicitar PIN";
+"always.require.pin" = "Siempre solicitar PIN";
