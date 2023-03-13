@@ -33,7 +33,7 @@ class PinTimeoutView: NSView, LoadableNib {
     }
     
     func configureView() {
-        sliderControl.maxValue = 25
+        sliderControl.maxValue = Double(Constants.kMaxPinTimeoutValue)
         if userData.getPINNeverOverride(){
             sliderControl.floatValue = Float(sliderControl.maxValue)
             hoursLabel.stringValue = "never.require.pin".localized
@@ -52,7 +52,7 @@ class PinTimeoutView: NSView, LoadableNib {
         if hours == 1 {
             return "\(hours) \("hour".localized)"
         }
-        if hours == 25{
+        if hours == Constants.kMaxPinTimeoutValue{
             return "never.require.pin".localized
         }
         return "\(hours) \("hours".localized)"

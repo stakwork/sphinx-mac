@@ -15,6 +15,9 @@ public enum MessagesSize: Int {
 }
 
 class Constants {
+    
+    public static var kMaxPinTimeoutValue : Int = 25
+    
     //Fonts
     public static var kMessageFont = NSFont(name: "Roboto-Regular", size: 16.0)!
     public static var kEmojisFont = NSFont(name: "Roboto-Regular", size: 40.0)!

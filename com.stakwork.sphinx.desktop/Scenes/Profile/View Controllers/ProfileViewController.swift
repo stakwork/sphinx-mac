@@ -307,14 +307,7 @@ class ProfileViewController: NSViewController {
     }
     
     func updatePinSettings(){
-        if pinTimeoutView.getPinHours() == Int(pinTimeoutView.sliderControl.maxValue){
-            UserData.sharedInstance.setPINNeverOverride(isEnable: true)
-        }
-        else{
-            UserData.sharedInstance.setPINNeverOverride(isEnable: false)
-            UserData.sharedInstance.setPINHours(hours: pinTimeoutView.getPinHours())
-        }
-        
+        UserData.sharedInstance.setPINHours(hours: pinTimeoutView.getPinHours())
     }
     
     func didUpdateProfile() -> Bool {
