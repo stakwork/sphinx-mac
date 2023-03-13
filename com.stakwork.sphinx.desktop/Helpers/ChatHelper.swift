@@ -9,6 +9,8 @@
 import Cocoa
 
 class ChatHelper {
+    var myView : NSView? = nil
+    
     public static func getSenderColorFor(message: TransactionMessage) -> NSColor {
         var key:String? = nil
         
@@ -136,7 +138,28 @@ class ChatHelper {
                     cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PodcastCommentSentCollectionViewItem"), for: indexPath)
                 } else if isPodcastBoost {
                     cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PodcastBoostSentCollectionViewItem"), for: indexPath)
-                } else {
+                }
+                else if messageRow.hasCodeSnippet(){
+                    cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MessageSentWithCodeCollectionViewItem"), for: indexPath)
+                    /*
+                    if let valid_cell = cell as? MessageSentCollectionViewItem{
+                        valid_cell.bubbleView.setBackgroundColor(color: .green)
+                        let content = messageRow.getMessageContent()
+                        let components = content.components(separatedBy: "```")
+                        print(components)
+                        for i in 0..<components.count{
+                            if(i % 2 == 1){
+                                let webView = CodeWebView(frame: valid_cell.bubbleView.frame)
+                                webView.loadHTMLString(components[i], baseURL: nil)
+                                valid_cell.bubbleView.addSubview(webView)
+                                valid_cell.bubbleView.bringSubviewToFront(webView)
+                                
+                            }
+                        }
+                    }
+                    */
+                }
+                else {
                     cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MessageSentCollectionViewItem"), for: indexPath)
                 }
             }
