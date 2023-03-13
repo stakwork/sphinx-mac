@@ -147,7 +147,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let mainWindow = getDashboardWindow() {
             mainWindow.replaceContentBy(vc: DashboardViewController.instantiate())
         } else {
-            if GroupsPinManager.sharedInstance.shouldAskForPin() {
+            if UserData.sharedInstance.isUserLogged() {
                 presentPIN()
             } else {
                 let splashVC = SplashViewController.instantiate()

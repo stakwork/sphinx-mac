@@ -48,7 +48,6 @@ extension UserDefaults {
         public static let privacyPIN = DefaultKey<String>("privacyPIN")
         public static let currentSessionPin = DefaultKey<String>("currentSessionPin")
         public static let lastPinDate = DefaultKey<Date>("lastPinDate")
-        public static let pinNeverOverride = DefaultKey<Bool>("pinNeverOverride")
         public static let pinHours = DefaultKey<Int>("pinHours")
         public static let privacyPinHours = DefaultKey<Int>("privacyPinHours")
 

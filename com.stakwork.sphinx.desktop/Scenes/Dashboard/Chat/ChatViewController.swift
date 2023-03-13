@@ -334,8 +334,7 @@ class ChatViewController: DashboardSplittedViewController {
         
         DelayPerformedHelper.performAfterDelay(seconds: 0.2, completion: {
             if let chat = self.chat,
-               let tablePosition = GroupsManager.sharedInstance.getChatLastRead(chatID: chat.id),
-               self.unseenMessagesCount != 1{
+               let tablePosition = GroupsManager.sharedInstance.getChatLastRead(chatID: chat.id) {
                 
                 self.chatCollectionView.scrollToOffset(yPosition: tablePosition.1)
                 
