@@ -28,6 +28,7 @@ class ChatViewController: DashboardSplittedViewController {
     
     @IBOutlet weak var messageFieldContainer: NSView!
     @IBOutlet var messageTextView: PlaceHolderTextView!
+    
     @IBOutlet weak var bottomBar: NSView!
     @IBOutlet weak var attachmentsButton: CustomButton!
     @IBOutlet weak var sendButton: CustomButton!
@@ -74,6 +75,8 @@ class ChatViewController: DashboardSplittedViewController {
     var currentMessageString = ""
     
     var unseenMessagesCount = 0
+    
+    var codePreview : WKWebView? = nil
     
     var unseenMessagesCountLabel: String {
         get {
@@ -133,9 +136,8 @@ class ChatViewController: DashboardSplittedViewController {
         
     }
     
-    func makeWebview(codeString:String){
-        let frame = CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: self.view.frame.width, height: self.view.frame.height * 0.3)
-        let webView2 = WKWebView(frame: self.view.frame)
+    func showCodePreviewWV(codeString:String){
+        codePreview = WKWebView(frame: messageTextView.frame)
         let html = """
         <!DOCTYPE html>
         <html lang="en">
@@ -159,8 +161,10 @@ class ChatViewController: DashboardSplittedViewController {
         </body>
         </html>
         """
-        webView2.loadHTMLString(html, baseURL: nil)
-        self.view.addSubview(webView2)
+        codePreview?.loadHTMLString(html, baseURL: nil)
+        if let preview = codePreview{
+            self.messageTextView.addSubview(preview)
+        }
     }
     
     override func viewDidAppear() {
@@ -534,7 +538,36 @@ class ChatViewController: DashboardSplittedViewController {
     
     @IBAction func codeButtonClicked(_ sender: Any) {
         print("codeButtonClicked")
-        makeWebview(codeString: messageTextView.string)
+        bottomBarHeightConstraint.constant = self.view.frame.height/2.0
+        let segmentedControl = NSSegmentedControl(frame: NSRect(origin: CGPoint(x: self.view.frame.width * 0.4, y: self.view.frame.height * 0.51), size: CGSize(width: self.view.frame.width * 0.2, height: self.view.frame.height * 0.05)))
+        segmentedControl.segmentCount = 2
+        segmentedControl.setLabel("Editor", forSegment: 0)
+        segmentedControl.setLabel("Preview", forSegment: 1)
+        segmentedControl.alphaValue = 1.0
+        segmentedControl.selectedSegment = 0
+        segmentedControl.action = #selector(previewSegmentSelected(_:))
+        self.view.addSubview(segmentedControl)
+        self.view.bringSubviewToFront(segmentedControl)
+        segmentedControl.layer?.zPosition = 1000
+        self.view.layoutSubtreeIfNeeded()
+    }
+    
+    @objc func previewSegmentSelected(_ sender: NSSegmentedControl){
+        if sender.selectedSegment == 0{
+            hideCodePreview()
+        }
+        else if sender.selectedSegment == 1{
+            showCodePreview()
+        }
+    }
+    
+    @objc func hideCodePreview(){
+        codePreview?.removeFromSuperview()
+        codePreview = nil
+    }
+    
+    @objc func showCodePreview(){
+        showCodePreviewWV(codeString: messageTextView.string)
     }
     
     
