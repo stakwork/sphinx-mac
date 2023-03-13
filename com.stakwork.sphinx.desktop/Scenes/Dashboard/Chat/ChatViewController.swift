@@ -8,6 +8,7 @@
 
 import Cocoa
 import CoreData
+import WebKit
 
 class ChatViewController: DashboardSplittedViewController {
     
@@ -121,6 +122,45 @@ class ChatViewController: DashboardSplittedViewController {
         self.mentionAutoCompleteEnclosingScrollView.isHidden = true
         configureView()
         prepareRecordingView()
+        let code = """
+          $(document).ready(function() {
+            $('pre code').each(function(i, block) {
+              hljs.highlightBlock(block);
+            });
+          });
+        """
+        //makeWebview(codeString: code)
+        
+    }
+    
+    func makeWebview(codeString:String){
+        let frame = CGRect(x: self.view.frame.minX, y: self.view.frame.minY, width: self.view.frame.width, height: self.view.frame.height * 0.3)
+        let webView2 = WKWebView(frame: self.view.frame)
+        let html = """
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/monokai.min.css">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/default.min.css" rel="stylesheet" />
+              <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+            <title>Document</title>
+        </head>
+        <body>
+            <div class="container">
+              <pre><code>
+              \(codeString)
+              </code></pre>
+              </div>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+              <script>hljs.initHighlightingOnLoad();</script>
+        </body>
+        </html>
+        """
+        webView2.loadHTMLString(html, baseURL: nil)
+        self.view.addSubview(webView2)
     }
     
     override func viewDidAppear() {
@@ -490,6 +530,13 @@ class ChatViewController: DashboardSplittedViewController {
         NSApp.orderFrontCharacterPalette(textView)
         view.window?.makeFirstResponder(messageTextView)
     }
+    
+    
+    @IBAction func codeButtonClicked(_ sender: Any) {
+        print("codeButtonClicked")
+        makeWebview(codeString: messageTextView.string)
+    }
+    
     
     @IBAction func giphyButtonClicked(_ sender: Any) {
         bottomBar.removeShadow()

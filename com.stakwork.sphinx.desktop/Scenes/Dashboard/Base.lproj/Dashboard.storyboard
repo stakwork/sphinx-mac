@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -514,14 +514,14 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="GTM-5e-6jW" customClass="ChatAvatarView" customModule="Sphinx" customModuleProvider="target">
-                                            <rect key="frame" x="150" y="184" width="100" height="100"/>
+                                            <rect key="frame" x="150" y="182" width="100" height="100"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="2q6-WF-7KQ"/>
                                                 <constraint firstAttribute="height" constant="100" id="rh4-st-D5y"/>
                                             </constraints>
                                         </customView>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aNk-mv-UTA">
-                                            <rect key="frame" x="147" y="135" width="107" height="19"/>
+                                            <rect key="frame" x="147" y="133" width="107" height="19"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Contact Name" id="Jwy-W5-tXa">
                                                 <font key="font" size="16" name="Roboto-Medium"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -529,7 +529,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Yp-Ei-wYU">
-                                            <rect key="frame" x="18" y="91" width="324" height="19"/>
+                                            <rect key="frame" x="18" y="92" width="324" height="16"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="320" id="ky2-3i-CUb"/>
                                             </constraints>
@@ -540,7 +540,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="yLY-oN-qAB">
-                                            <rect key="frame" x="148" y="21" width="105" height="40"/>
+                                            <rect key="frame" x="148" y="22" width="105" height="40"/>
                                             <subviews>
                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bVh-QR-8zW">
                                                     <rect key="frame" x="0.0" y="0.0" width="19" height="40"/>
@@ -548,7 +548,7 @@
                                                     <color key="contentTintColor" name="SecondaryText"/>
                                                 </imageView>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QTD-Rq-Ec3">
-                                                    <rect key="frame" x="25" y="13" width="82" height="13"/>
+                                                    <rect key="frame" x="25" y="14" width="82" height="13"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="CLICK TO COPY" id="JLX-aR-llf">
                                                         <font key="font" metaFont="system" size="10"/>
                                                         <color key="textColor" name="SecondaryText"/>
@@ -867,27 +867,52 @@
                                                     <constraint firstItem="hg3-oR-kWJ" firstAttribute="centerY" secondItem="Mab-6M-t8t" secondAttribute="centerY" id="lHE-QP-l37"/>
                                                 </constraints>
                                             </customView>
+                                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="LSR-hw-enu">
+                                                <rect key="frame" x="115" y="0.0" width="25" height="60"/>
+                                                <subviews>
+                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ao1-e6-vpk" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="18" width="25" height="25"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="25" id="Yat-HJ-8bv"/>
+                                                            <constraint firstAttribute="width" constant="25" id="j0U-zT-8xg"/>
+                                                        </constraints>
+                                                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="code_icon_no_bg" imagePosition="only" alignment="center" imageScaling="axesIndependently" inset="2" id="9up-qI-CVC">
+                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" size="25" name="MaterialIcons-Regular"/>
+                                                        </buttonCell>
+                                                        <color key="contentTintColor" name="MainBottomIcons"/>
+                                                        <connections>
+                                                            <action selector="codeButtonClicked:" target="TPZ-IL-9NC" id="aGd-CD-pjW"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="25" id="ND3-V2-fNv"/>
+                                                    <constraint firstItem="Ao1-e6-vpk" firstAttribute="centerX" secondItem="LSR-hw-enu" secondAttribute="centerX" id="Pew-63-kMH"/>
+                                                    <constraint firstItem="Ao1-e6-vpk" firstAttribute="centerY" secondItem="LSR-hw-enu" secondAttribute="centerY" id="fP4-bj-3z2"/>
+                                                </constraints>
+                                            </customView>
                                             <customView autoresizesSubviews="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fav-ye-bku">
-                                                <rect key="frame" x="115" y="10" width="490" height="40"/>
+                                                <rect key="frame" x="145" y="10" width="460" height="40"/>
                                                 <subviews>
                                                     <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="yGH-cJ-7KV">
-                                                        <rect key="frame" x="0.0" y="0.0" width="490" height="40"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="460" height="40"/>
                                                         <view key="contentView" id="1iU-nq-uFg">
-                                                            <rect key="frame" x="0.0" y="0.0" width="490" height="40"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="460" height="40"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="vI5-Bn-fx2">
-                                                                    <rect key="frame" x="10" y="11" width="470" height="19"/>
+                                                                    <rect key="frame" x="10" y="11" width="440" height="19"/>
                                                                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="nyS-Kg-Mr0">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="470" height="19"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="440" height="19"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
                                                                             <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" smartInsertDelete="YES" id="Sgo-5x-1ut" customClass="PlaceHolderTextView" customModule="Sphinx" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="470" height="19"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="440" height="19"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                <size key="minSize" width="470" height="19"/>
+                                                                                <size key="minSize" width="440" height="19"/>
                                                                                 <size key="maxSize" width="3000" height="500"/>
                                                                                 <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                                 <userDefinedRuntimeAttributes>
@@ -1152,23 +1177,26 @@
                                             <constraint firstAttribute="trailing" secondItem="xA7-bq-Py1" secondAttribute="trailing" id="Ber-DD-jSM"/>
                                             <constraint firstAttribute="bottom" secondItem="8wL-4g-zsh" secondAttribute="bottom" id="CdE-fv-VJx"/>
                                             <constraint firstItem="yFp-rI-RcR" firstAttribute="top" secondItem="14P-rj-E0n" secondAttribute="top" id="CoM-lO-NyT"/>
-                                            <constraint firstItem="fav-ye-bku" firstAttribute="leading" secondItem="14P-rj-E0n" secondAttribute="leading" constant="115" id="Cty-t0-LTd"/>
+                                            <constraint firstItem="fav-ye-bku" firstAttribute="leading" secondItem="14P-rj-E0n" secondAttribute="leading" constant="145" id="Cty-t0-LTd"/>
                                             <constraint firstItem="Mab-6M-t8t" firstAttribute="leading" secondItem="XCJ-ea-fyT" secondAttribute="trailing" constant="9" id="DPx-tI-rsr"/>
                                             <constraint firstAttribute="bottom" secondItem="XCJ-ea-fyT" secondAttribute="bottom" id="ERZ-Kg-OXo"/>
                                             <constraint firstAttribute="bottom" secondItem="xA7-bq-Py1" secondAttribute="bottom" id="EcW-gR-fIr"/>
                                             <constraint firstItem="Mab-6M-t8t" firstAttribute="top" secondItem="14P-rj-E0n" secondAttribute="top" id="Fmo-JL-dog"/>
                                             <constraint firstItem="yFp-rI-RcR" firstAttribute="leading" secondItem="14P-rj-E0n" secondAttribute="leading" id="GZG-yj-JxO"/>
                                             <constraint firstAttribute="bottom" secondItem="yFp-rI-RcR" secondAttribute="bottom" id="HLF-DY-Bag"/>
+                                            <constraint firstItem="LSR-hw-enu" firstAttribute="leading" secondItem="Mab-6M-t8t" secondAttribute="trailing" constant="8" symbolic="YES" id="Ier-yC-8CU"/>
                                             <constraint firstAttribute="bottom" secondItem="yoA-rZ-kAa" secondAttribute="bottom" id="LHW-kB-I2p"/>
                                             <constraint firstAttribute="bottom" secondItem="Mab-6M-t8t" secondAttribute="bottom" id="PXY-cV-F1E"/>
                                             <constraint firstAttribute="height" constant="60" id="PXh-Cf-QHT"/>
                                             <constraint firstItem="L1L-X0-NtZ" firstAttribute="top" secondItem="14P-rj-E0n" secondAttribute="top" id="QUB-5P-4q4"/>
+                                            <constraint firstItem="LSR-hw-enu" firstAttribute="top" secondItem="Mab-6M-t8t" secondAttribute="top" id="YSg-fi-ErM"/>
                                             <constraint firstItem="xA7-bq-Py1" firstAttribute="top" secondItem="14P-rj-E0n" secondAttribute="top" constant="1" id="eaU-Xg-NlU"/>
                                             <constraint firstAttribute="trailing" secondItem="L1L-X0-NtZ" secondAttribute="trailing" id="h3X-fa-rfv"/>
                                             <constraint firstItem="xtJ-CZ-Aie" firstAttribute="leading" secondItem="fav-ye-bku" secondAttribute="trailing" constant="8" id="jGi-fd-rTc"/>
                                             <constraint firstAttribute="trailing" secondItem="8wL-4g-zsh" secondAttribute="trailing" id="jsQ-Rk-9QG"/>
                                             <constraint firstItem="xA7-bq-Py1" firstAttribute="leading" secondItem="14P-rj-E0n" secondAttribute="leading" id="k8J-bh-1Y2"/>
                                             <constraint firstItem="L1L-X0-NtZ" firstAttribute="leading" secondItem="14P-rj-E0n" secondAttribute="leading" id="kFE-is-R1v"/>
+                                            <constraint firstItem="LSR-hw-enu" firstAttribute="bottom" secondItem="Mab-6M-t8t" secondAttribute="bottom" id="oUr-ng-lif"/>
                                             <constraint firstItem="8wL-4g-zsh" firstAttribute="leading" secondItem="xtJ-CZ-Aie" secondAttribute="trailing" constant="8" id="rzm-It-miN"/>
                                             <constraint firstItem="xtJ-CZ-Aie" firstAttribute="centerY" secondItem="14P-rj-E0n" secondAttribute="centerY" id="w83-Gf-JbC"/>
                                             <constraint firstItem="XCJ-ea-fyT" firstAttribute="leading" secondItem="yFp-rI-RcR" secondAttribute="trailing" id="whR-of-4g3"/>
@@ -1196,7 +1224,7 @@
                                                 </constraints>
                                             </customView>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3xo-JI-aRc">
-                                                <rect key="frame" x="20" y="20" width="309" height="20"/>
+                                                <rect key="frame" x="20" y="20" width="308" height="20"/>
                                                 <buttonCell key="cell" type="bevel" title="Open a conversation to start messaging" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="b26-JN-1eG">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" size="17" name="Roboto-Medium"/>
@@ -1231,7 +1259,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XZC-6W-7hr">
-                                                <rect key="frame" x="334" y="23" width="19" height="15"/>
+                                                <rect key="frame" x="333" y="23" width="19" height="15"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="lock" id="yKE-c5-U1V">
                                                     <font key="font" size="15" name="MaterialIcons-Regular"/>
                                                     <color key="textColor" name="SecondaryText"/>
@@ -1239,7 +1267,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oOa-kC-pzn">
-                                                <rect key="frame" x="353" y="23" width="19" height="15"/>
+                                                <rect key="frame" x="352" y="23" width="19" height="15"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="flash_on" id="TTp-Zc-yDN">
                                                     <font key="font" size="15" name="MaterialIcons-Regular"/>
                                                     <color key="textColor" name="SecondaryText"/>
@@ -1686,11 +1714,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NSStopProgressFreestandingTemplate" width="15" height="15"/>
+        <image name="NSStopProgressFreestandingTemplate" width="20" height="20"/>
         <image name="bottomBar1" width="25" height="25"/>
         <image name="bottomBar2" width="25" height="25"/>
         <image name="bottomBar3" width="25" height="25"/>
         <image name="bottomBar4" width="25" height="25"/>
+        <image name="code_icon_no_bg" width="225" height="225"/>
         <image name="emojiIcon" width="25" height="25"/>
         <image name="giphyIcon" width="19.5" height="25"/>
         <image name="muteOffIcon" width="18" height="18"/>
