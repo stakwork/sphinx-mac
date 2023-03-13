@@ -13,6 +13,7 @@ protocol MessageFieldDelegate: AnyObject {
     func didTapUpArrow() -> Bool
     func didTapDownArrow() -> Bool
     func didTapTab()
+    func didDetectImagePaste(pasteBoard: NSPasteboard) -> Bool
 }
 
 final class PlaceHolderTextView: NSTextView {
@@ -96,6 +97,24 @@ final class PlaceHolderTextView: NSTextView {
             }
         }
         return false
+    }
+    
+    private let commandKey = NSEvent.ModifierFlags.command.rawValue
+
+    override func performKeyEquivalent(with event: NSEvent) -> Bool {
+        if event.type == NSEvent.EventType.keyDown {
+            if (event.modifierFlags.rawValue & NSEvent.ModifierFlags.deviceIndependentFlagsMask.rawValue) == commandKey {
+                switch event.charactersIgnoringModifiers! {
+                case "v":
+                    if fieldDelegate?.didDetectImagePaste(pasteBoard: NSPasteboard.general) == true {
+                       return true
+                    }
+                default:
+                    break
+                }
+            }
+        }
+        return super.performKeyEquivalent(with: event)
     }
 }
 
