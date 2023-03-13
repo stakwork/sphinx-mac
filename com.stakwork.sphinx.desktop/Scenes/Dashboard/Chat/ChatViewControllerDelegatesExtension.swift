@@ -9,14 +9,8 @@
 import Cocoa
 
 extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
-    func didDetectImagePaste(pasteBoard: NSPasteboard) {
-        let success = draggingView.performPasteOperation(pasteBoard: pasteBoard)
-        //Keeping this out bc can't differentiate between text and genuine failure to copy image
-        /*
-        if success == false{
-            self.messageBubbleHelper.showGenericMessageView(text: "generic.error.message".localized, in: self.view)
-        }
-        */
+    func didDetectImagePaste(pasteBoard: NSPasteboard) -> Bool {
+        return draggingView.performPasteOperation(pasteBoard: pasteBoard)
     }
     
     

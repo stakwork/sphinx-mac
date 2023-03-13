@@ -13,7 +13,7 @@ protocol MessageFieldDelegate: AnyObject {
     func didTapUpArrow() -> Bool
     func didTapDownArrow() -> Bool
     func didTapTab()
-    func didDetectImagePaste(pasteBoard:NSPasteboard)
+    func didDetectImagePaste(pasteBoard: NSPasteboard) -> Bool
 }
 
 final class PlaceHolderTextView: NSTextView {
@@ -111,7 +111,9 @@ final class PlaceHolderTextView: NSTextView {
                 case "c":
                     if NSApp.sendAction(#selector(NSText.copy(_:)), to: nil, from: self) { return true }
                 case "v":
-                    fieldDelegate?.didDetectImagePaste(pasteBoard: NSPasteboard.general)
+                    if fieldDelegate?.didDetectImagePaste(pasteBoard: NSPasteboard.general) == true {
+                       return true
+                    }
                     if NSApp.sendAction(#selector(NSText.paste(_:)), to: nil, from: self) { return true }
                 case "z":
                     if NSApp.sendAction(Selector(("undo:")), to: nil, from: self) { return true }
