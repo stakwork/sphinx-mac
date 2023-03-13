@@ -260,11 +260,15 @@ class UserData {
         completion()
     }
     
+    func getPINNeverOverride() -> Bool{
+        return self.getPINHours() == Constants.kMaxPinTimeoutValue
+    }
+    
     func getPINHours() -> Int {
         if GroupsPinManager.sharedInstance.isStandardPIN {
-            return UserDefaults.Keys.pinHours.get(defaultValue: 12)
+            return UserDefaults.Keys.pinHours.get(defaultValue: 25)
         } else {
-            return UserDefaults.Keys.privacyPinHours.get(defaultValue: 12)
+            return UserDefaults.Keys.privacyPinHours.get(defaultValue: 25)
         }
     }
     
