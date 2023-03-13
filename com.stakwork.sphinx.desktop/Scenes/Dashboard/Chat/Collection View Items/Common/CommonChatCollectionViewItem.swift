@@ -147,7 +147,11 @@ class CommonChatCollectionViewItem: NSCollectionViewItem, MessageRowProtocol {
         
         hideBoostedAmtLabel()
         
-        guard let bubbleView = getBubbbleView(), let messageRow = messageRow, let message = messageRow.transactionMessage, let reactions = message.reactions, (reactions.totalSats ?? 0) > 0 else {
+        guard let bubbleView = getBubbbleView(),
+              let messageRow = messageRow,
+              let message = messageRow.transactionMessage,
+              let reactions = message.reactions, (reactions.totalSats ?? 0) > 0 else {
+            
             return
         }
         
