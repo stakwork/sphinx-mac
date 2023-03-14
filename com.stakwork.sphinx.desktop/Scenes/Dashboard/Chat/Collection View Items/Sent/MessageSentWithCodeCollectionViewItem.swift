@@ -105,9 +105,9 @@ class MessageSentWithCodeCollectionViewItem: CommonReplyCollectionViewItem {
     
     public static func getRowHeight(messageRow: TransactionMessageRow) -> CGFloat {
         let bubbleSize = getBubbleSize(messageRow: messageRow)
-        let replyTopPadding = CommonChatCollectionViewItem.getReplyTopPadding(message: messageRow.transactionMessage)
-        let rowHeight = bubbleSize.height + Constants.kBubbleTopMargin + Constants.kBubbleBottomMargin + replyTopPadding
+        let codeTopBottomPadding = 100.0
+        let rowHeight = bubbleSize.height + Constants.kBubbleTopMargin + Constants.kBubbleBottomMargin + codeTopBottomPadding
         let linksHeight = CommonChatCollectionViewItem.getLinkPreviewHeight(messageRow: messageRow)
-        return rowHeight + linksHeight
+        return 500.0//rowHeight + linksHeight
     }
 }
