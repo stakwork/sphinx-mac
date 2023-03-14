@@ -18,10 +18,10 @@
                 <outlet property="headerView" destination="SUI-Xg-ejY" id="sGC-bp-J3c"/>
                 <outlet property="leftLineContainer" destination="Xfy-Su-sPg" id="gsT-L2-8ls"/>
                 <outlet property="lockSign" destination="4Z2-Od-0wK" id="NNQ-P7-Nir"/>
+                <outlet property="markupContainerView" destination="avt-Oq-5Cc" id="LUq-Tt-ohH"/>
                 <outlet property="optionsButton" destination="mm0-mE-XH4" id="dw6-Qq-VYJ"/>
                 <outlet property="rightLineContainer" destination="ZsW-i6-Jjv" id="8rD-aT-cmC"/>
                 <outlet property="seenSign" destination="i0m-wt-hza" id="JnE-tP-ZMV"/>
-                <outlet property="stackView" destination="orb-TG-8ij" id="Tio-WS-5hf"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -46,16 +46,16 @@
                 <customView identifier="MessageBubbleView" translatesAutoresizingMaskIntoConstraints="NO" id="Ah3-pS-FA4" customClass="MessageBubbleView" customModule="Sphinx" customModuleProvider="target">
                     <rect key="frame" x="85" y="4" width="383" height="247"/>
                     <subviews>
-                        <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="orb-TG-8ij">
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="avt-Oq-5Cc">
                             <rect key="frame" x="0.0" y="0.0" width="383" height="247"/>
-                        </stackView>
+                        </customView>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="orb-TG-8ij" secondAttribute="bottom" id="6pC-w1-ObA"/>
-                        <constraint firstItem="orb-TG-8ij" firstAttribute="top" secondItem="Ah3-pS-FA4" secondAttribute="top" id="UKk-ho-Mlg"/>
-                        <constraint firstItem="orb-TG-8ij" firstAttribute="leading" secondItem="Ah3-pS-FA4" secondAttribute="leading" id="ad7-9t-QRo"/>
-                        <constraint firstAttribute="trailing" secondItem="orb-TG-8ij" secondAttribute="trailing" id="g8y-3i-VLG"/>
+                        <constraint firstAttribute="bottom" secondItem="avt-Oq-5Cc" secondAttribute="bottom" id="Kz2-vY-ry9"/>
                         <constraint firstAttribute="width" constant="383" id="hCX-2g-4iP"/>
+                        <constraint firstItem="avt-Oq-5Cc" firstAttribute="top" secondItem="Ah3-pS-FA4" secondAttribute="top" id="i1K-b2-aZF"/>
+                        <constraint firstAttribute="trailing" secondItem="avt-Oq-5Cc" secondAttribute="trailing" id="i8f-Nu-hzf"/>
+                        <constraint firstItem="avt-Oq-5Cc" firstAttribute="leading" secondItem="Ah3-pS-FA4" secondAttribute="leading" id="zT1-Kv-ZWa"/>
                     </constraints>
                 </customView>
                 <button verticalHuggingPriority="750" id="mm0-mE-XH4" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">

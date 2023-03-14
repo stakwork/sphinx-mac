@@ -8,9 +8,19 @@
 
 import Foundation
 import WebKit
+import Down
 
 class CodeWebView : WKWebView {
-    var contentString: String? = ""
+    var contentString: String? = """
+        ```
+        const myVar = "woohoo!";
+        func test(){
+            return foo;
+        }
+        """
+    var codeString : String = ""
+    let codeViewTopBottomMargin = 100.0
+    var height : CGFloat = 100.0
     
     override func scrollWheel(with event: NSEvent) {
         self.nextResponder?.scrollWheel(with: event)
@@ -40,7 +50,30 @@ class CodeWebView : WKWebView {
         </body>
         </html>
         """
-        self.contentString = html
+        self.codeString = code
+        //self.contentString = html
+        self.getCodeViewHeight(completion: { calculatedHeight in
+            self.height = calculatedHeight
+        })
         return super.loadHTMLString(html, baseURL: baseURL)
+    }
+    
+    func addDownView(){
+        if let string = contentString,
+            let downView = try? DownView(frame: self.bounds,markdownString: string){
+            self.addSubview(downView)
+            self.bringSubviewToFront(downView)
+        }
+    }
+    
+    func getCodeViewHeight(completion:@escaping (CGFloat) -> ()){
+        self.evaluateJavaScript("document.documentElement.scrollHeight", completionHandler: { (height, error) in
+            if let valid_height = height as? CGFloat{
+                completion(valid_height + self.codeViewTopBottomMargin)
+            }
+            else{
+                completion(100.0 + self.codeViewTopBottomMargin)
+            }
+        })
     }
 }

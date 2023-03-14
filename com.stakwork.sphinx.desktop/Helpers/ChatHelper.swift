@@ -326,7 +326,12 @@ class ChatHelper {
                 if incoming {
                     height = MessageReceivedCollectionViewItem.getRowHeight(messageRow: messageRow)
                 } else {
-                    height = MessageSentCollectionViewItem.getRowHeight(messageRow: messageRow)
+                    if messageRow.hasCodeSnippet(){
+                        height = MessageSentWithCodeCollectionViewItem.getRowHeight(messageRow: messageRow)
+                    }
+                    else{
+                        height = MessageSentCollectionViewItem.getRowHeight(messageRow: messageRow)
+                    }
                 }
             }
             break

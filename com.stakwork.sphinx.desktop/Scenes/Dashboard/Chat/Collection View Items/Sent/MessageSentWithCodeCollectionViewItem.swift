@@ -7,6 +7,8 @@
 //
 
 import Cocoa
+import Down
+import WebKit
 
 class MessageSentWithCodeCollectionViewItem: CommonReplyCollectionViewItem {
     
@@ -17,8 +19,11 @@ class MessageSentWithCodeCollectionViewItem: CommonReplyCollectionViewItem {
     @IBOutlet weak var seenSign: NSTextField!
     @IBOutlet weak var lockSign: NSTextField!
     @IBOutlet weak var bubbleViewWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var stackView: NSStackView!
+    @IBOutlet weak var markupContainerView: NSView!
+    
+    
     var codeViews : [CodeWebView] = []
+    let codeTopBottomPadding = 50.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,18 +55,18 @@ class MessageSentWithCodeCollectionViewItem: CommonReplyCollectionViewItem {
         }
         
         let content = messageRow.getMessageContent()
-        let components = content.components(separatedBy: "```")
-        print(components)
-        for i in 0..<components.count{
-            if(i % 2 == 1){
-                let codeView = CodeWebView(frame: CGRect(x: 0.0, y: 0.0, width: stackView.frame.width, height: MessageSentWithCodeCollectionViewItem.getRowHeight(messageRow: messageRow)))
-                codeView.loadHTMLString(components[i], baseURL: nil)
-                stackView.addView(codeView, in: .top)
-                codeViews.append(codeView)
-            }
+        do{
+
+            let dv = try DownView(frame: self.markupContainerView.bounds, markdownString: content,templateBundle: nil)
+            dv.navigationDelegate = self
+            markupContainerView.addSubview(dv)
         }
-        self.view.bringSubviewToFront(stackView)
+        catch let error{
+            print(error)
+        }
+        
     }
+    
     
     func configureMessageStatus() {
         guard let messageRow = messageRow else {
@@ -105,9 +110,57 @@ class MessageSentWithCodeCollectionViewItem: CommonReplyCollectionViewItem {
     
     public static func getRowHeight(messageRow: TransactionMessageRow) -> CGFloat {
         let bubbleSize = getBubbleSize(messageRow: messageRow)
-        let codeTopBottomPadding = 100.0
-        let rowHeight = bubbleSize.height + Constants.kBubbleTopMargin + Constants.kBubbleBottomMargin + codeTopBottomPadding
+        let replyTopPadding = CommonChatCollectionViewItem.getReplyTopPadding(message: messageRow.transactionMessage)
+        let rowHeight = bubbleSize.height + Constants.kBubbleTopMargin + Constants.kBubbleBottomMargin + replyTopPadding
         let linksHeight = CommonChatCollectionViewItem.getLinkPreviewHeight(messageRow: messageRow)
-        return 500.0//rowHeight + linksHeight
+        return (rowHeight + linksHeight)
     }
+}
+
+extension MessageSentWithCodeCollectionViewItem : WKNavigationDelegate{
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        webView.evaluateJavaScript("document.body.innerHTML") {(result, error) in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+            
+            print(String(describing: result))
+        }
+        
+        let fontChangeJS = """
+        paragraphs = document.querySelectorAll('.hljs');
+          paragraphs.forEach((p) => {
+            p.style.fontSize = "14px" ;
+          })
+        """
+        
+        webView.evaluateJavaScript(fontChangeJS) {(result, error) in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+            
+            print(String(describing: result))
+        }
+    }
+}
+
+extension String {
+    
+    func numberOfLines() -> Int {
+        return self.numberOfOccurrencesOf(string: "\n") + 1
+    }
+
+    func numberOfOccurrencesOf(string: String) -> Int {
+        return self.components(separatedBy:string).count - 1
+    }
+    
+    func slice(from: String, to: String) -> String? {
+            return (range(of: from)?.upperBound).flatMap { substringFrom in
+                (range(of: to, range: substringFrom..<endIndex)?.lowerBound).map { substringTo in
+                    String(self[substringFrom..<substringTo])
+                }
+            }
+        }
 }
