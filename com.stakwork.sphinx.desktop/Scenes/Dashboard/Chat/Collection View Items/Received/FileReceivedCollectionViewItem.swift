@@ -33,12 +33,17 @@ class FileReceivedCollectionViewItem: CommonFileCollectionViewItem {
         }
     }
     
+    override func getBubbbleView() -> NSView? {
+        return messageBubbleView
+    }
+    
     func configureFile() {
         guard let messageRow = messageRow else {
             return
         }
         
-        let bubbleSize = CGSize(width: Constants.kFileBubbleWidth, height: Constants.kFileBubbleHeight)
+        let bottomBubblePadding = messageRow.isBoosted ? Constants.kReactionsViewHeight : 0
+        let bubbleSize = CGSize(width: Constants.kFileBubbleWidth, height: Constants.kFileBubbleHeight + bottomBubblePadding)
         bubbleView.showIncomingFileBubble(messageRow: messageRow, size: bubbleSize)
         configureReplyBubble(bubbleView: bubbleView, bubbleSize: bubbleSize, incoming: true)
         

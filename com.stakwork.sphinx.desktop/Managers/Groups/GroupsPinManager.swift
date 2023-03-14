@@ -35,7 +35,7 @@ class GroupsPinManager {
     }
     
     func shouldAskForPin() -> Bool {
-        if !UserData.sharedInstance.isUserLogged() {
+        if !UserData.sharedInstance.isUserLogged() || UserData.sharedInstance.getPINNeverOverride() {
             return false
         }
         if let date: Date = UserDefaults.Keys.lastPinDate.get() {

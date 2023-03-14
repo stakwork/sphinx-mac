@@ -309,7 +309,8 @@ class ChatHelper {
         
         let messageType = TransactionMessage.TransactionMessageType(fromRawValue: Int(type))
         switch (messageType) {
-        case TransactionMessage.TransactionMessageType.message, TransactionMessage.TransactionMessageType.boost:
+        case TransactionMessage.TransactionMessageType.message,
+             TransactionMessage.TransactionMessageType.boost:
             let isPodcastComment = messageRow.isPodcastComment
             let isPodcastBoost = messageRow.isPodcastBoost
             
