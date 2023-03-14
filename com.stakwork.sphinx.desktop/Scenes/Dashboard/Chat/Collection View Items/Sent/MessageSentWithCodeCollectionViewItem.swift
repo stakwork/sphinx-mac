@@ -129,7 +129,11 @@ extension MessageSentWithCodeCollectionViewItem : WKNavigationDelegate{
         }
         
         let fontChangeJS = """
-        paragraphs = document.querySelectorAll('.hljs');
+        code = document.querySelectorAll('.hljs');
+          code.forEach((p) => {
+            p.style.fontSize = "14px" ;
+          });
+        paragraphs = document.querySelectorAll('p');
           paragraphs.forEach((p) => {
             p.style.fontSize = "14px" ;
           })
