@@ -28,7 +28,7 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+            <rect key="frame" x="0.0" y="0.0" width="477" height="272"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="Xfy-Su-sPg">
@@ -38,7 +38,7 @@
                     </constraints>
                 </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="ZsW-i6-Jjv">
-                    <rect key="frame" x="449" y="0.0" width="3" height="272"/>
+                    <rect key="frame" x="446" y="0.0" width="3" height="272"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="3" id="piI-VI-PgA"/>
                     </constraints>
@@ -59,7 +59,7 @@
                     </constraints>
                 </customView>
                 <button verticalHuggingPriority="750" id="mm0-mE-XH4" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                    <rect key="frame" x="59" y="228" width="22" height="18"/>
+                    <rect key="frame" x="590" y="228" width="22" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="bevel" title="" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="Ab1-nM-IuC" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -142,9 +142,8 @@
                 </customView>
             </subviews>
             <constraints>
-                <constraint firstItem="avt-Oq-5Cc" firstAttribute="leading" secondItem="mm0-mE-XH4" secondAttribute="trailing" constant="4" id="HaW-70-kRW"/>
+                <constraint firstAttribute="trailing" secondItem="Ah3-pS-FA4" secondAttribute="trailing" constant="9" id="C0c-Jq-RO1"/>
                 <constraint firstItem="ZsW-i6-Jjv" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="Hvc-o8-Tem"/>
-                <constraint firstItem="Ah3-pS-FA4" firstAttribute="leading" secondItem="Xfy-Su-sPg" secondAttribute="leading" constant="9" id="Nz5-s4-g5C"/>
                 <constraint firstItem="Xfy-Su-sPg" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="YXk-j2-hi9"/>
                 <constraint firstItem="SUI-Xg-ejY" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="4" id="YZe-4n-Saw"/>
                 <constraint firstItem="sQl-v2-dC3" firstAttribute="leading" secondItem="Xfy-Su-sPg" secondAttribute="trailing" constant="6" id="Ysx-Ul-f7K"/>
@@ -157,7 +156,7 @@
                 <constraint firstAttribute="bottom" secondItem="Xfy-Su-sPg" secondAttribute="bottom" id="zkn-on-K1J"/>
                 <constraint firstAttribute="bottom" secondItem="ZsW-i6-Jjv" secondAttribute="bottom" id="zpM-Fb-1eg"/>
             </constraints>
-            <point key="canvasLocation" x="-42" y="136"/>
+            <point key="canvasLocation" x="-42.5" y="136"/>
         </customView>
         <customObject id="lpR-V3-KBz" customClass="MessageSentWithCodeCollectionViewItem" customModule="Sphinx" customModuleProvider="target"/>
     </objects>
