@@ -37,14 +37,9 @@ class MessageSentWithCodeCollectionViewItem: CommonReplyCollectionViewItem {
     override func configureMessageRow(messageRow: TransactionMessageRow, contact: UserContact?, chat: Chat?, chatWidth: CGFloat) {
         super.configureMessageRow(messageRow: messageRow, contact: contact, chat: chat, chatWidth: chatWidth)
 
-        let minimumWidth:CGFloat = CommonChatCollectionViewItem.getMinimumWidth(message: messageRow.transactionMessage)
-        //let (label, size) = bubbleView.showOutgoingMessageBubble(messageRow: messageRow, minimumWidth: minimumWidth, chatWidth: chatWidth)
-        //setBubbleWidth(bubbleSize: size)
-        //addLinksOnLabel(label: label)
         
         commonConfigurationForMessages()
         configureMessageStatus()
-        //configureReplyBubble(bubbleView: bubbleView, bubbleSize: size, incoming: false)
 
         if messageRow.shouldShowRightLine {
             addRightLine()
