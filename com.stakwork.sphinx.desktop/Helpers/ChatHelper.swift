@@ -126,7 +126,10 @@ class ChatHelper {
                     cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PodcastCommentReceivedCollectionViewItem"), for: indexPath)
                 } else if isPodcastBoost {
                     cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PodcastBoostReceivedCollectionViewItem"), for: indexPath)
-                } else {
+                }else if messageRow.hasCodeSnippet(){
+                    cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MessageReceivedWithCodeCollectionViewItem"), for: indexPath)
+                }
+                else {
                     cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MessageReceivedCollectionViewItem"), for: indexPath)
                 }
             } else {
@@ -141,23 +144,6 @@ class ChatHelper {
                 }
                 else if messageRow.hasCodeSnippet(){
                     cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MessageSentWithCodeCollectionViewItem"), for: indexPath)
-                    /*
-                    if let valid_cell = cell as? MessageSentCollectionViewItem{
-                        valid_cell.bubbleView.setBackgroundColor(color: .green)
-                        let content = messageRow.getMessageContent()
-                        let components = content.components(separatedBy: "```")
-                        print(components)
-                        for i in 0..<components.count{
-                            if(i % 2 == 1){
-                                let webView = CodeWebView(frame: valid_cell.bubbleView.frame)
-                                webView.loadHTMLString(components[i], baseURL: nil)
-                                valid_cell.bubbleView.addSubview(webView)
-                                valid_cell.bubbleView.bringSubviewToFront(webView)
-                                
-                            }
-                        }
-                    }
-                    */
                 }
                 else {
                     cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MessageSentCollectionViewItem"), for: indexPath)
@@ -324,7 +310,12 @@ class ChatHelper {
                 height = CommonPodcastBoostCollectionViewItem.getRowHeight()
             } else {
                 if incoming {
-                    height = MessageReceivedCollectionViewItem.getRowHeight(messageRow: messageRow)
+                    if messageRow.hasCodeSnippet(){
+                        height = MessageReceivedWithCodeCollectionViewItem.getRowHeight(messageRow: messageRow)
+                    }
+                    else{
+                        height = MessageReceivedCollectionViewItem.getRowHeight(messageRow: messageRow)
+                    }
                 } else {
                     if messageRow.hasCodeSnippet(){
                         height = MessageSentWithCodeCollectionViewItem.getRowHeight(messageRow: messageRow)

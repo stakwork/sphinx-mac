@@ -535,6 +535,8 @@
 		47F88263256D397E002A7E71 /* MessageBoostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F88262256D397E002A7E71 /* MessageBoostView.swift */; };
 		47F88265256D398B002A7E71 /* MessageBoostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47F88264256D398B002A7E71 /* MessageBoostView.xib */; };
 		AA1C7BC427657C4800A5B959 /* SignupCommonSecureFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1C7BC327657C4800A5B959 /* SignupCommonSecureFieldView.swift */; };
+		CE2BCFA329C2560900810274 /* MessageReceivedWithCodeCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BCFA129C2560900810274 /* MessageReceivedWithCodeCollectionViewItem.swift */; };
+		CE2BCFA429C2560900810274 /* MessageReceivedWithCodeCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE2BCFA229C2560900810274 /* MessageReceivedWithCodeCollectionViewItem.xib */; };
 		CE326B4B294295C600821A53 /* ChatMentionAutocompleteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE326B4A294295C600821A53 /* ChatMentionAutocompleteDataSource.swift */; };
 		CE326B51294A179200821A53 /* ChatMentionAutocompleteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE326B4F294A179200821A53 /* ChatMentionAutocompleteCell.swift */; };
 		CE326B52294A179200821A53 /* ChatMentionAutocompleteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE326B50294A179200821A53 /* ChatMentionAutocompleteCell.xib */; };
@@ -1229,6 +1231,8 @@
 		82C242433501D81263FED4C2 /* Pods_Sphinx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sphinx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97A6F8CB5E1D14A28D7C7A67 /* Pods-com.stakwork.sphinx.desktop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-com.stakwork.sphinx.desktop.release.xcconfig"; path = "Target Support Files/Pods-com.stakwork.sphinx.desktop/Pods-com.stakwork.sphinx.desktop.release.xcconfig"; sourceTree = "<group>"; };
 		AA1C7BC327657C4800A5B959 /* SignupCommonSecureFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupCommonSecureFieldView.swift; sourceTree = "<group>"; };
+		CE2BCFA129C2560900810274 /* MessageReceivedWithCodeCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageReceivedWithCodeCollectionViewItem.swift; sourceTree = "<group>"; };
+		CE2BCFA229C2560900810274 /* MessageReceivedWithCodeCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageReceivedWithCodeCollectionViewItem.xib; sourceTree = "<group>"; };
 		CE326B4A294295C600821A53 /* ChatMentionAutocompleteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMentionAutocompleteDataSource.swift; sourceTree = "<group>"; };
 		CE326B4F294A179200821A53 /* ChatMentionAutocompleteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMentionAutocompleteCell.swift; sourceTree = "<group>"; };
 		CE326B50294A179200821A53 /* ChatMentionAutocompleteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatMentionAutocompleteCell.xib; sourceTree = "<group>"; };
@@ -2604,6 +2608,8 @@
 			children = (
 				47E7711F2472C26200C9CFEB /* MessageReceivedCollectionViewItem.swift */,
 				47E771202472C26200C9CFEB /* MessageReceivedCollectionViewItem.xib */,
+				CE2BCFA129C2560900810274 /* MessageReceivedWithCodeCollectionViewItem.swift */,
+				CE2BCFA229C2560900810274 /* MessageReceivedWithCodeCollectionViewItem.xib */,
 				470E0B35247D671700177D8A /* AudioReceivedCollectionViewItem.swift */,
 				470E0B36247D671700177D8A /* AudioReceivedCollectionViewItem.xib */,
 				474E3333247FF48200F7F603 /* PictureReceivedCollectionViewItem.swift */,
@@ -3092,6 +3098,7 @@
 				4797E82424BCC0DA00D13270 /* Groups.storyboard in Resources */,
 				4797E85424BCD3F900D13270 /* GroupRemovedCollectionViewItem.xib in Resources */,
 				478ED5C525D6FD0F00940132 /* WelcomeView.xib in Resources */,
+				CE2BCFA429C2560900810274 /* MessageReceivedWithCodeCollectionViewItem.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3210,6 +3217,7 @@
 				47B550A9248BEB9A000514BF /* PaymentTemplatesViewController.swift in Sources */,
 				479751E0246D8FFB00D2106B /* ChatListViewController.swift in Sources */,
 				4703CF95251CE5F3007B685C /* PdfInfoBubbleView.swift in Sources */,
+				CE2BCFA329C2560900810274 /* MessageReceivedWithCodeCollectionViewItem.swift in Sources */,
 				478ED59825D55C6B00940132 /* NamePinView.swift in Sources */,
 				47B5508E24898A0D000514BF /* VerticallyCenteredTextFieldCell.swift in Sources */,
 				470E0B3E247D681200177D8A /* CommonAudioCollectionViewItem.swift in Sources */,
