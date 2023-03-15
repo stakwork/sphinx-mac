@@ -15,6 +15,7 @@
                 <outlet property="dateLabel" destination="UVJ-PK-uCC" id="yQk-5e-S4n"/>
                 <outlet property="leftLineContainer" destination="1dl-mG-9oS" id="29d-5L-GKd"/>
                 <outlet property="lockSign" destination="MHV-s2-Sqm" id="gi5-Ca-wiR"/>
+                <outlet property="markupContainerView" destination="OzN-qY-Kf5" id="3am-rN-1am"/>
                 <outlet property="optionsButton" destination="zFt-JU-58I" id="oYc-Zx-TRP"/>
                 <outlet property="rightLineContainer" destination="xCG-Cf-WJi" id="ab4-dB-5IR"/>
                 <outlet property="senderLabel" destination="MTN-8p-3G4" id="xRH-KP-XlS"/>
@@ -35,8 +36,17 @@
                 </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="XVz-kw-SNr" customClass="MessageBubbleView" customModule="Sphinx" customModuleProvider="target">
                     <rect key="frame" x="56" y="4" width="410" height="326"/>
+                    <subviews>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="OzN-qY-Kf5">
+                            <rect key="frame" x="0.0" y="0.0" width="410" height="326"/>
+                        </customView>
+                    </subviews>
                     <constraints>
+                        <constraint firstItem="OzN-qY-Kf5" firstAttribute="top" secondItem="XVz-kw-SNr" secondAttribute="top" id="4LL-Wq-7fa"/>
+                        <constraint firstItem="OzN-qY-Kf5" firstAttribute="leading" secondItem="XVz-kw-SNr" secondAttribute="leading" id="AZU-J3-9wt"/>
                         <constraint firstAttribute="width" constant="410" id="HWB-MJ-IjH"/>
+                        <constraint firstAttribute="trailing" secondItem="OzN-qY-Kf5" secondAttribute="trailing" id="N9X-yx-T8I"/>
+                        <constraint firstAttribute="bottom" secondItem="OzN-qY-Kf5" secondAttribute="bottom" id="Ze4-uq-FM4"/>
                     </constraints>
                 </customView>
                 <button verticalHuggingPriority="750" id="zFt-JU-58I" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">

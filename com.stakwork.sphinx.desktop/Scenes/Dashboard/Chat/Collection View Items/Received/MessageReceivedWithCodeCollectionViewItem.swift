@@ -7,12 +7,15 @@
 //
 
 import Cocoa
+import Down
+import WebKit
 
 class MessageReceivedWithCodeCollectionViewItem:  CommonReplyCollectionViewItem {
     
     @IBOutlet weak var bubbleView: MessageBubbleView!
     @IBOutlet weak var lockSign: NSTextField!
     @IBOutlet weak var bubbleViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var markupContainerView: NSView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,12 +30,8 @@ class MessageReceivedWithCodeCollectionViewItem:  CommonReplyCollectionViewItem 
         super.configureMessageRow(messageRow: messageRow, contact: contact, chat: chat, chatWidth: chatWidth)
         
         let minimumWidth:CGFloat = CommonChatCollectionViewItem.getMinimumWidth(message: messageRow.transactionMessage)
-        let (label, size) = bubbleView.showIncomingMessageBubble(messageRow: messageRow, minimumWidth: minimumWidth, chatWidth: chatWidth)
-        setBubbleWidth(bubbleSize: size)
-        addLinksOnLabel(label: label)
         
         commonConfigurationForMessages()
-        configureReplyBubble(bubbleView: bubbleView, bubbleSize: size, incoming: true)
         
         lockSign.stringValue = messageRow.transactionMessage.encrypted ? "lock" : ""
 
@@ -44,7 +43,27 @@ class MessageReceivedWithCodeCollectionViewItem:  CommonReplyCollectionViewItem 
             addLeftLine()
         }
         
-        //bubbleView.setBackgroundColor(color: NSColor.purple)
+        let content = messageRow.getMessageContent()
+        do{
+
+            let dv = try DownView(frame: self.markupContainerView.bounds, markdownString: content,templateBundle: nil)
+            if let bubbleRadius = bubbleView.layer?.cornerRadius{
+                dv.layer?.cornerRadius = bubbleRadius
+                markupContainerView.layer?.cornerRadius = bubbleRadius
+            }
+            for view in dv.subviews{
+                if let valid_view = view as? NSView,
+                   let bubbleRadius = bubbleView.layer?.cornerRadius{
+                    valid_view.setBackgroundColor(color: NSColor.clear)
+                    valid_view.layer?.cornerRadius = bubbleRadius
+                }
+            }
+            dv.navigationDelegate = self
+            markupContainerView.addSubview(dv)
+        }
+        catch let error{
+            print(error)
+        }
     }
     
     override func getBubbbleView() -> NSView? {
@@ -75,3 +94,45 @@ class MessageReceivedWithCodeCollectionViewItem:  CommonReplyCollectionViewItem 
     }
 }
 
+extension MessageReceivedWithCodeCollectionViewItem : WKNavigationDelegate{
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        //printWebViewHTML(webView: webView)//for debug
+        styleView(webView: webView, fontSize: "14", fontColor: "#FFFFFF", bubbleColor: "#466085")
+    }
+    
+    func printWebViewHTML(webView:WKWebView){
+        webView.evaluateJavaScript("document.body.innerHTML") {(result, error) in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+            
+            print(String(describing: result))
+        }
+    }
+    
+    func styleView(webView:WKWebView,fontSize:String,fontColor:String,bubbleColor:String){
+        let fontChangeJS = """
+        code = document.querySelectorAll('.hljs');
+          code.forEach((p) => {
+            p.style.fontSize = "14px" ;
+          });
+        paragraphs = document.querySelectorAll('p');
+          paragraphs.forEach((p) => {
+            p.style.fontSize = "\(fontSize)px" ;
+            p.style.color = "\(fontColor)";
+          })
+        document.body.style.backgroundColor = "\(bubbleColor)";
+        """
+        
+        webView.evaluateJavaScript(fontChangeJS) {(result, error) in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+            
+            print(String(describing: result))
+        }
+    }
+    
+}
