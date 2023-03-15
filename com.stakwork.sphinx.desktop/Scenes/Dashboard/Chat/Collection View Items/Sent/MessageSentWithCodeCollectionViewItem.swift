@@ -20,9 +20,7 @@ class MessageSentWithCodeCollectionViewItem: CommonReplyCollectionViewItem {
     @IBOutlet weak var lockSign: NSTextField!
     @IBOutlet weak var bubbleViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var markupContainerView: NSView!
-    
-    
-    var codeViews : [CodeWebView] = []
+
     let codeTopBottomPadding = 50.0
     
     override func viewDidLoad() {

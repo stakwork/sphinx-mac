@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import WebKit
 
 extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
     func didDetectImagePaste(pasteBoard: NSPasteboard) -> Bool {
@@ -536,4 +537,48 @@ extension String {
         let newRange = botIndex..<self.index(botIndex, offsetBy: range.length)
         return String(self[newRange])
    }
+}
+
+
+extension ChatViewController : WKNavigationDelegate{
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        //printWebViewHTML(webView: webView)//for debug
+        styleView(webView: webView, fontSize: "14", fontColor: "#FFFFFF", bubbleColor: "#466085")
+    }
+    
+    func printWebViewHTML(webView:WKWebView){
+        webView.evaluateJavaScript("document.body.innerHTML") {(result, error) in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+            
+            print(String(describing: result))
+        }
+    }
+    
+    func styleView(webView:WKWebView,fontSize:String,fontColor:String,bubbleColor:String){
+        let fontChangeJS = """
+        code = document.querySelectorAll('.hljs');
+          code.forEach((p) => {
+            p.style.fontSize = "14px" ;
+          });
+        paragraphs = document.querySelectorAll('p');
+          paragraphs.forEach((p) => {
+            p.style.fontSize = "\(fontSize)px" ;
+            p.style.color = "\(fontColor)";
+          })
+        document.body.style.backgroundColor = "\(bubbleColor)";
+        """
+        
+        webView.evaluateJavaScript(fontChangeJS) {(result, error) in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+            
+            print(String(describing: result))
+        }
+    }
+    
 }

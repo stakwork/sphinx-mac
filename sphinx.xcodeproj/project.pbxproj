@@ -538,7 +538,6 @@
 		CE326B4B294295C600821A53 /* ChatMentionAutocompleteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE326B4A294295C600821A53 /* ChatMentionAutocompleteDataSource.swift */; };
 		CE326B51294A179200821A53 /* ChatMentionAutocompleteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE326B4F294A179200821A53 /* ChatMentionAutocompleteCell.swift */; };
 		CE326B52294A179200821A53 /* ChatMentionAutocompleteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE326B50294A179200821A53 /* ChatMentionAutocompleteCell.xib */; };
-		CEBFC6F529BF9A2500A60EA9 /* CodeWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBFC6F429BF9A2500A60EA9 /* CodeWebView.swift */; };
 		CEBFC6F829BFC24000A60EA9 /* MessageSentWithCodeCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBFC6F629BFC24000A60EA9 /* MessageSentWithCodeCollectionViewItem.swift */; };
 		CEBFC6F929BFC24000A60EA9 /* MessageSentWithCodeCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEBFC6F729BFC24000A60EA9 /* MessageSentWithCodeCollectionViewItem.xib */; };
 /* End PBXBuildFile section */
@@ -1233,7 +1232,6 @@
 		CE326B4A294295C600821A53 /* ChatMentionAutocompleteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMentionAutocompleteDataSource.swift; sourceTree = "<group>"; };
 		CE326B4F294A179200821A53 /* ChatMentionAutocompleteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMentionAutocompleteCell.swift; sourceTree = "<group>"; };
 		CE326B50294A179200821A53 /* ChatMentionAutocompleteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatMentionAutocompleteCell.xib; sourceTree = "<group>"; };
-		CEBFC6F429BF9A2500A60EA9 /* CodeWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeWebView.swift; sourceTree = "<group>"; };
 		CEBFC6F629BFC24000A60EA9 /* MessageSentWithCodeCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSentWithCodeCollectionViewItem.swift; sourceTree = "<group>"; };
 		CEBFC6F729BFC24000A60EA9 /* MessageSentWithCodeCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageSentWithCodeCollectionViewItem.xib; sourceTree = "<group>"; };
 		F90398F47E0448445B11E3B5 /* Pods-com.stakwork.sphinx.desktop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-com.stakwork.sphinx.desktop.debug.xcconfig"; path = "Target Support Files/Pods-com.stakwork.sphinx.desktop/Pods-com.stakwork.sphinx.desktop.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1791,7 +1789,6 @@
 				47B550B2248C46E8000514BF /* CustomScrollView.swift */,
 				474A6694249BE4BB002C2D10 /* DisabledScrollView.swift */,
 				474567ED25139FE000D66268 /* BotWebView.swift */,
-				CEBFC6F429BF9A2500A60EA9 /* CodeWebView.swift */,
 				473633F32555DEC0007405F2 /* CustomSliderCell.swift */,
 			);
 			path = "Custom Classes";
@@ -3541,7 +3538,6 @@
 				4703F04C2481A24400282186 /* LinkPreviewView.swift in Sources */,
 				475B680429915C9E000EF29C /* ActionTrack+FetchUtils.swift in Sources */,
 				478ED58225D4468700940132 /* WelcomeCodeViewController.swift in Sources */,
-				CEBFC6F529BF9A2500A60EA9 /* CodeWebView.swift in Sources */,
 				47E771292472C3DA00C9CFEB /* TransactionMessageRow.swift in Sources */,
 				479C794824ED6DD8009BA1CD /* WebAppHelper.swift in Sources */,
 				4744FADA246B398800C5FD94 /* WindowsManager.swift in Sources */,

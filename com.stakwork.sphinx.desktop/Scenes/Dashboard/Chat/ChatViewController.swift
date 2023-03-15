@@ -9,6 +9,7 @@
 import Cocoa
 import CoreData
 import WebKit
+import Down
 
 class ChatViewController: DashboardSplittedViewController {
     
@@ -76,7 +77,7 @@ class ChatViewController: DashboardSplittedViewController {
     
     var unseenMessagesCount = 0
     
-    var codePreview : CodeWebView? = nil
+    var codePreview : DownView? = nil
     
     var unseenMessagesCountLabel: String {
         get {
@@ -128,11 +129,15 @@ class ChatViewController: DashboardSplittedViewController {
     }
     
     func showCodePreviewWV(codeString:String){
-        codePreview = CodeWebView(frame: messageTextView.frame)
-        
-        codePreview?.loadHTMLString(codeString, baseURL: nil)
-        if let preview = codePreview{
-            self.messageTextView.addSubview(preview)
+        do{
+            codePreview = try DownView(frame: self.messageTextView.bounds, markdownString: codeString,templateBundle: nil)
+            if let preview = codePreview{
+                preview.navigationDelegate = self
+                self.messageTextView.addSubview(preview)
+            }
+        }
+        catch let error{
+            print(error)
         }
     }
     
