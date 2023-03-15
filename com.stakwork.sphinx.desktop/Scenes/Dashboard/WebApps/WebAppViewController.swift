@@ -54,6 +54,8 @@ class WebAppViewController: NSViewController {
         configuration.userContentController.add(webAppHelper, name: webAppHelper.messageHandler)
         let rect = CGRect(x: 0, y: 0, width: 700, height: 500)
         webView = WKWebView(frame: rect, configuration: configuration)
+        WKWebsiteDataStore.default().removeData(ofTypes: [WKWebsiteDataTypeDiskCache, WKWebsiteDataTypeMemoryCache], modifiedSince: Date(timeIntervalSince1970: 0), completionHandler:{ })
+
         webView.customUserAgent = "Sphinx"
 
         self.view.addSubview(webView, positioned: .below, relativeTo: authorizeModalContainer)
