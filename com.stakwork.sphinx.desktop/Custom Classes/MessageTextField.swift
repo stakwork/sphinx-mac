@@ -35,6 +35,9 @@ class MessageTextField: CCTextField, NSTextViewDelegate {
     func tappingOnLink(event: NSEvent) -> Bool {
         let point = self.convert(event.locationInWindow, from: nil)
         let charIndex = referenceView.textContainer!.textView!.characterIndexForInsertion(at: point)
+        referenceView.backgroundColor = .red
+        self.addSubview(referenceView)
+        self.bringSubviewToFront(referenceView)
         if charIndex < self.attributedStringValue.length {
             let attributes = self.attributedStringValue.attributes(at: charIndex, effectiveRange: nil)
             if let link = attributes[NSAttributedString.Key.init("custom_link")] as? String {
@@ -65,5 +68,59 @@ class MessageTextField: CCTextField, NSTextViewDelegate {
         if let textView = notification.object as? NSTextView {
             textView.selectedTextAttributes = [NSAttributedString.Key.backgroundColor: color]
         }
+    }
+}
+
+
+extension NSClickGestureRecognizer {
+
+   func didTapAttributedTextInLabel(label: NSTextField, inRange targetRange: NSRange) -> Bool {
+       let indexOfCharacter = getTappedCharacterNumber(label: label)
+       return NSLocationInRange(indexOfCharacter, targetRange)
+   }
+    
+    func getTappedCharacterNumber(label: NSTextField) -> Int{
+        guard let attributedText = label.attributedStringValue as? NSMutableAttributedString else { return -1 }
+
+        let mutableStr = NSMutableAttributedString.init(attributedString: attributedText)
+        mutableStr.addAttributes([NSAttributedString.Key.font : label.font!], range: NSRange.init(location: 0, length: attributedText.length))
+
+        // Create instances of NSLayoutManager, NSTextContainer and NSTextStorage
+        let layoutManager = NSLayoutManager()
+        let textContainer = NSTextContainer(size: CGSize.zero)
+        let textStorage = NSTextStorage(attributedString: mutableStr)
+
+        // Configure layoutManager and textStorage
+        layoutManager.addTextContainer(textContainer)
+        textStorage.addLayoutManager(layoutManager)
+
+        // Configure textContainer
+        textContainer.lineFragmentPadding = 0.0
+        textContainer.lineBreakMode = label.lineBreakMode
+        textContainer.maximumNumberOfLines = label.attributedStringValue.string.numberOfLines()
+        let labelSize = label.bounds.size
+        textContainer.size = labelSize
+
+        // Find the tapped character location and compare it to the specified range
+        let locationOfTouchInLabel = self.location(in: label)
+        let textBoundingBox = layoutManager.usedRect(for: textContainer)
+        let textContainerOffset = CGPoint(x: (labelSize.width - textBoundingBox.size.width) * 0.5 - textBoundingBox.origin.x,
+                                          y: (labelSize.height - textBoundingBox.size.height) * 0.5 - textBoundingBox.origin.y);
+        let locationOfTouchInTextContainer = CGPoint(x: locationOfTouchInLabel.x - textContainerOffset.x,
+                                                     y: locationOfTouchInLabel.y - textContainerOffset.y);
+        let indexOfCharacter = layoutManager.characterIndex(for: locationOfTouchInTextContainer, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
+        return indexOfCharacter
+    }
+
+}
+
+extension String {
+    
+    func numberOfLines() -> Int {
+        return self.numberOfOccurrencesOf(string: "\n") + 1
+    }
+
+    func numberOfOccurrencesOf(string: String) -> Int {
+        return self.components(separatedBy:string).count - 1
     }
 }
