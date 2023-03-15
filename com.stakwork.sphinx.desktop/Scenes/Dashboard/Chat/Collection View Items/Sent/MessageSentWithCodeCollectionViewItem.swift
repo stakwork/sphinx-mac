@@ -58,6 +58,17 @@ class MessageSentWithCodeCollectionViewItem: CommonReplyCollectionViewItem {
         do{
 
             let dv = try DownView(frame: self.markupContainerView.bounds, markdownString: content,templateBundle: nil)
+            if let bubbleRadius = bubbleView.layer?.cornerRadius{
+                dv.layer?.cornerRadius = bubbleRadius
+                markupContainerView.layer?.cornerRadius = bubbleRadius
+            }
+            for view in dv.subviews{
+                if let valid_view = view as? NSView,
+                   let bubbleRadius = bubbleView.layer?.cornerRadius{
+                    valid_view.setBackgroundColor(color: NSColor.clear)
+                    valid_view.layer?.cornerRadius = bubbleRadius
+                }
+            }
             dv.navigationDelegate = self
             markupContainerView.addSubview(dv)
         }
@@ -113,12 +124,18 @@ class MessageSentWithCodeCollectionViewItem: CommonReplyCollectionViewItem {
         let replyTopPadding = CommonChatCollectionViewItem.getReplyTopPadding(message: messageRow.transactionMessage)
         let rowHeight = bubbleSize.height + Constants.kBubbleTopMargin + Constants.kBubbleBottomMargin + replyTopPadding
         let linksHeight = CommonChatCollectionViewItem.getLinkPreviewHeight(messageRow: messageRow)
-        return (rowHeight + linksHeight)
+        return (rowHeight + linksHeight) + 25.0
     }
+    
 }
 
 extension MessageSentWithCodeCollectionViewItem : WKNavigationDelegate{
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        //printWebViewHTML(webView: webView)//for debug
+        styleView(webView: webView, fontSize: "14", fontColor: "#FFFFFF", bubbleColor: "#466085")
+    }
+    
+    func printWebViewHTML(webView:WKWebView){
         webView.evaluateJavaScript("document.body.innerHTML") {(result, error) in
             guard error == nil else {
                 print(error!)
@@ -127,7 +144,9 @@ extension MessageSentWithCodeCollectionViewItem : WKNavigationDelegate{
             
             print(String(describing: result))
         }
-        
+    }
+    
+    func styleView(webView:WKWebView,fontSize:String,fontColor:String,bubbleColor:String){
         let fontChangeJS = """
         code = document.querySelectorAll('.hljs');
           code.forEach((p) => {
@@ -135,8 +154,10 @@ extension MessageSentWithCodeCollectionViewItem : WKNavigationDelegate{
           });
         paragraphs = document.querySelectorAll('p');
           paragraphs.forEach((p) => {
-            p.style.fontSize = "14px" ;
+            p.style.fontSize = "\(fontSize)px" ;
+            p.style.color = "\(fontColor)";
           })
+        document.body.style.backgroundColor = "\(bubbleColor)";
         """
         
         webView.evaluateJavaScript(fontChangeJS) {(result, error) in
@@ -148,23 +169,5 @@ extension MessageSentWithCodeCollectionViewItem : WKNavigationDelegate{
             print(String(describing: result))
         }
     }
-}
-
-extension String {
     
-    func numberOfLines() -> Int {
-        return self.numberOfOccurrencesOf(string: "\n") + 1
-    }
-
-    func numberOfOccurrencesOf(string: String) -> Int {
-        return self.components(separatedBy:string).count - 1
-    }
-    
-    func slice(from: String, to: String) -> String? {
-            return (range(of: from)?.upperBound).flatMap { substringFrom in
-                (range(of: to, range: substringFrom..<endIndex)?.lowerBound).map { substringTo in
-                    String(self[substringFrom..<substringTo])
-                }
-            }
-        }
 }

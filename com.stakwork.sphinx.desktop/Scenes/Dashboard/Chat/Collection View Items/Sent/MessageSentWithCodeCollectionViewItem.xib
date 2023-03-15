@@ -59,13 +59,16 @@
                     </constraints>
                 </customView>
                 <button verticalHuggingPriority="750" id="mm0-mE-XH4" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                    <rect key="frame" x="100" y="127" width="22" height="18"/>
+                    <rect key="frame" x="59" y="228" width="22" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="bevel" title="" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="Ab1-nM-IuC" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" size="18" name="MaterialIcons-Regular"/>
                     </buttonCell>
                     <color key="contentTintColor" name="WashedOutReceivedText"/>
+                    <connections>
+                        <action selector="optionsButtonClicked:" target="-2" id="JiD-qD-Tia"/>
+                    </connections>
                 </button>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="SUI-Xg-ejY">
                     <rect key="frame" x="85" y="251" width="391" height="17"/>
@@ -139,15 +142,15 @@
                 </customView>
             </subviews>
             <constraints>
-                <constraint firstItem="Ah3-pS-FA4" firstAttribute="leading" secondItem="mm0-mE-XH4" secondAttribute="trailing" constant="-37" id="Fwa-N4-g39"/>
+                <constraint firstItem="avt-Oq-5Cc" firstAttribute="leading" secondItem="mm0-mE-XH4" secondAttribute="trailing" constant="4" id="HaW-70-kRW"/>
                 <constraint firstItem="ZsW-i6-Jjv" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="Hvc-o8-Tem"/>
                 <constraint firstItem="Ah3-pS-FA4" firstAttribute="leading" secondItem="Xfy-Su-sPg" secondAttribute="leading" constant="9" id="Nz5-s4-g5C"/>
-                <constraint firstItem="mm0-mE-XH4" firstAttribute="top" secondItem="Ah3-pS-FA4" secondAttribute="top" id="WDb-Hh-LRr"/>
                 <constraint firstItem="Xfy-Su-sPg" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="YXk-j2-hi9"/>
                 <constraint firstItem="SUI-Xg-ejY" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="4" id="YZe-4n-Saw"/>
                 <constraint firstItem="sQl-v2-dC3" firstAttribute="leading" secondItem="Xfy-Su-sPg" secondAttribute="trailing" constant="6" id="Ysx-Ul-f7K"/>
                 <constraint firstAttribute="trailing" secondItem="ZsW-i6-Jjv" secondAttribute="trailing" constant="28" id="dGz-X7-M3U"/>
                 <constraint firstItem="Ah3-pS-FA4" firstAttribute="top" secondItem="sQl-v2-dC3" secondAttribute="bottom" id="g5g-Qq-MY7"/>
+                <constraint firstItem="avt-Oq-5Cc" firstAttribute="top" secondItem="mm0-mE-XH4" secondAttribute="bottom" constant="-23" id="hmr-7Z-hn8"/>
                 <constraint firstItem="Xfy-Su-sPg" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="76" id="khX-Vf-bcm"/>
                 <constraint firstItem="Ah3-pS-FA4" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="21" id="rtq-ix-Kd0"/>
                 <constraint firstAttribute="bottom" secondItem="Ah3-pS-FA4" secondAttribute="bottom" constant="4" id="uRU-wx-Vb9"/>
