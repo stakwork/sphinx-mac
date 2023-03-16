@@ -45,7 +45,7 @@ class MessageReceivedWithCodeCollectionViewItem:  CommonReplyCollectionViewItem 
         
         let content = messageRow.getMessageContent()
         do{
-            let dv = try DownView(frame: self.markupContainerView.bounds, markdownString: content,templateBundle: nil)
+            let dv = try DownView(frame: self.bubbleView.bounds, markdownString: content,templateBundle: nil)
             if let bubbleRadius = bubbleView.layer?.cornerRadius{
                 dv.layer?.cornerRadius = bubbleRadius
                 markupContainerView.layer?.cornerRadius = bubbleRadius
@@ -58,7 +58,7 @@ class MessageReceivedWithCodeCollectionViewItem:  CommonReplyCollectionViewItem 
                 }
             }
             dv.navigationDelegate = self
-            markupContainerView.addSubview(dv)
+            bubbleView.addSubview(dv)
         }
         catch let error{
             print(error)
