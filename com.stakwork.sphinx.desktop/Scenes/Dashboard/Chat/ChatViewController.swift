@@ -92,7 +92,7 @@ class ChatViewController: DashboardSplittedViewController {
         }
     }
     
-    let kCharacterLimit = 500
+    let kCharacterLimit = 5000
     let kBottomBarMargins:CGFloat = 41
     
     let kMinimumPriceFieldWidth: CGFloat = 50

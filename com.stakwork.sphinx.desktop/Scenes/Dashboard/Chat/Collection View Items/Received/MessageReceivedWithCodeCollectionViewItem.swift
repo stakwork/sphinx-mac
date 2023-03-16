@@ -45,7 +45,6 @@ class MessageReceivedWithCodeCollectionViewItem:  CommonReplyCollectionViewItem 
         
         let content = messageRow.getMessageContent()
         do{
-
             let dv = try DownView(frame: self.markupContainerView.bounds, markdownString: content,templateBundle: nil)
             if let bubbleRadius = bubbleView.layer?.cornerRadius{
                 dv.layer?.cornerRadius = bubbleRadius

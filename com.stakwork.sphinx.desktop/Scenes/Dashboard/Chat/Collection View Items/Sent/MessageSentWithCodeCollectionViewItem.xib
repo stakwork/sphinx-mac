@@ -59,7 +59,7 @@
                     </constraints>
                 </customView>
                 <button verticalHuggingPriority="750" id="mm0-mE-XH4" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                    <rect key="frame" x="590" y="228" width="22" height="18"/>
+                    <rect key="frame" x="565" y="228" width="22" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="bevel" title="" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="Ab1-nM-IuC" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
