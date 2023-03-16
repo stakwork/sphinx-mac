@@ -120,7 +120,10 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
             return false
         }
         
-        //bottomBarHeightConstraint.constant = newFieldHeight + kBottomBarMargins
+        if(isInCodeMode == false){
+            bottomBarHeightConstraint.constant = newFieldHeight + kBottomBarMargins
+        }
+        
         bottomBar.layoutSubtreeIfNeeded()
         
         messageTextView.scrollRangeToVisible(NSMakeRange(messageTextView.string.length, 0))
