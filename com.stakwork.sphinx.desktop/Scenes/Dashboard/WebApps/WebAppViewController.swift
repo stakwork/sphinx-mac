@@ -54,14 +54,23 @@ class WebAppViewController: NSViewController {
         configuration.userContentController.add(webAppHelper, name: webAppHelper.messageHandler)
         let rect = CGRect(x: 0, y: 0, width: 700, height: 500)
         webView = WKWebView(frame: rect, configuration: configuration)
-        WKWebsiteDataStore.default().removeData(ofTypes: [WKWebsiteDataTypeDiskCache, WKWebsiteDataTypeMemoryCache], modifiedSince: Date(timeIntervalSince1970: 0), completionHandler:{ })
+        let dataStore = WKWebsiteDataStore.default()
+        dataStore.fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+          dataStore.removeData(
+            ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(),
+            for: records,
+            completionHandler: {
+                self.webView.customUserAgent = "Sphinx"
 
-        webView.customUserAgent = "Sphinx"
+                self.view.addSubview(self.webView, positioned: .below, relativeTo: self.authorizeModalContainer)
+                self.addWebViewConstraints()
 
-        self.view.addSubview(webView, positioned: .below, relativeTo: authorizeModalContainer)
-        addWebViewConstraints()
+                self.webAppHelper.setWebView(self.webView, authorizeHandler: self.configureAuthorizeView)
+            }
+          )
+        }
 
-        webAppHelper.setWebView(webView, authorizeHandler: configureAuthorizeView)
+        
     }
     
     func configureAuthorizeView(_ dict: [String: AnyObject]) {
