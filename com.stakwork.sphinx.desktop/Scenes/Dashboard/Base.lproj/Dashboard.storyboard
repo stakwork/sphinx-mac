@@ -1439,6 +1439,7 @@
                         <outlet property="chatAvatarView" destination="SpR-T0-gey" id="I0Z-76-ekP"/>
                         <outlet property="chatCollectionView" destination="Gnz-3F-xrF" id="U7b-dm-0OY"/>
                         <outlet property="childVCContainer" destination="hwe-uJ-mHT" id="fG9-s8-iQA"/>
+                        <outlet property="codeButton" destination="Ao1-e6-vpk" id="Ntp-oD-JVC"/>
                         <outlet property="contributedSatsIcon" destination="Cbc-gG-qvB" id="vKJ-Hl-MRA"/>
                         <outlet property="contributedSatsLabel" destination="ucj-2Z-9Fp" id="t0v-ui-EJe"/>
                         <outlet property="draggingView" destination="GoM-QU-nDk" id="bum-CP-N1K"/>

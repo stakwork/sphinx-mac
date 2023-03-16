@@ -97,7 +97,7 @@ class MessageReceivedWithCodeCollectionViewItem:  CommonReplyCollectionViewItem 
 extension MessageReceivedWithCodeCollectionViewItem : WKNavigationDelegate{
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         //printWebViewHTML(webView: webView)//for debug
-        styleView(webView: webView, fontSize: "14", fontColor: "#FFFFFF", bubbleColor: "#466085")
+        styleView(webView: webView, fontSize: "14", fontColor: "#FFFFFF", bubbleColor: "#222E3A")
     }
     
     func printWebViewHTML(webView:WKWebView){

@@ -272,6 +272,8 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
         let _ = updateBottomBarHeight()
         updatePriceFieldWidth()
         
+        cleanupCodeMode()
+        
         view.window?.makeFirstResponder(messageTextView)
     }
     
