@@ -90,7 +90,7 @@ class WebAppViewController: NSViewController {
     
     func loadPage() {
         if let url = URL(string: gameURL) {
-            let request = URLRequest(url: url)
+            let request = URLRequest(url: url,cachePolicy: .reloadIgnoringCacheData)
             webView.load(request)
         }
     }
