@@ -174,6 +174,14 @@ class DashboardViewController: NSViewController {
             guard let vc = self else { return }
             vc.createInvoice(n: n)
         }
+        
+        NotificationCenter.default.addObserver(forName: .onShareContentDeeplink, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
+            guard let vc = self else { return }
+            print("Deeplink found!")
+            if let query = n.userInfo?["query"] as? String{
+                print(query)
+            }
+        }
     }
     
     func createInvoice(n: Notification) {
