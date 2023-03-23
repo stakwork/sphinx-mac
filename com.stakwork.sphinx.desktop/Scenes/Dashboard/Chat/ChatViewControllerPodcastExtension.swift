@@ -15,6 +15,7 @@ extension ChatViewController {
             podcastVCContainer.superview?.layoutSubtreeIfNeeded()
             
             podcastPlayerVC = NewPodcastPlayerViewController.instantiate(chat: chat, delegate: self)
+            podcastPlayerVC?.deeplinkData = deeplinkData
             addChildVC(vc: podcastPlayerVC!)
         }
     }

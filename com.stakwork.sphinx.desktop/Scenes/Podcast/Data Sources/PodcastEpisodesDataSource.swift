@@ -127,10 +127,13 @@ extension PodcastEpisodesDataSource : NSCollectionViewDelegate, NSCollectionView
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
         if let indexPath = indexPaths.first {
             if indexPath.section == 0 { return }
-            
-            if let playerView = collectionView.item(at: IndexPath(item: 0, section: 0)) as? PodcastPlayerCollectionViewItem {
-                playerView.didTapEpisodeAt(index: indexPath.item)
-            }
+            playEpisode(atIndexPath: indexPath)
+        }
+    }
+    
+    func playEpisode(atIndexPath:IndexPath){
+        if let playerView = collectionView.item(at: IndexPath(item: 0, section: 0)) as? PodcastPlayerCollectionViewItem {
+            playerView.didTapEpisodeAt(index: atIndexPath.item)
         }
     }
 }
