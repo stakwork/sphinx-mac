@@ -178,11 +178,31 @@ class DashboardViewController: NSViewController {
         NotificationCenter.default.addObserver(forName: .onShareContentDeeplink, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
             guard let vc = self else { return }
             print("Deeplink found!")
-            if let query = n.userInfo?["query"] as? String{
+            var success = false
+            if let query = n.userInfo?["query"] as? String,
+               let feedID = query.getLinkValueFor(key: "feedID"),
+               let itemID = query.getLinkValueFor(key: "itemID"),
+               let feedURL = query.getLinkValueFor(key: "feedURL"){
                 print(query)
+                let feeds = FeedsManager.sharedInstance.fetchFeeds()
+                if let feed = feeds.filter({$0.feedID == feedID}).first,
+                   let chat = feed.chat,
+                   let clvc = vc.listViewController{
+                    clvc.selectRowFor(chatId: chat.id)
+                    if let indexPath = clvc.chatListDataSource.getIndexPathOfSelectedRow(){
+                        clvc.chatListDataSource.chatRowClicked(indexPath: indexPath)
+                        success = true
+                    }
+                    print(chat)
+                }
+            }
+            if success == false{
+                //throw error
+                print("Error opening content deeplink")
             }
         }
     }
+    
     
     func createInvoice(n: Notification) {
         if let query = n.userInfo?["query"] as? String {
