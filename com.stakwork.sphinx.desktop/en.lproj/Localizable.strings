@@ -419,3 +419,7 @@
 //PIN Settings
 "never.require.pin" = "Never require PIN";
 "always.require.pin" = "Always require PIN";
+
+//Deeplinks
+"deeplink.issue.title" = "Link Issue"
+"deeplink.issue.message" = "There was an issue with the link. This is usually because you do not have access to the tribe in question."

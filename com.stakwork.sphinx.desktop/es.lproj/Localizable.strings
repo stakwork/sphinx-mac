@@ -418,3 +418,7 @@
 //PIN Settings
 "never.require.pin" = "Nunca solicitar PIN";
 "always.require.pin" = "Siempre solicitar PIN";
+
+//Deeplinks
+"deeplink.issue.title" = "Problema Con Enlace"
+"deeplink.issue.message" = "Habia algun problema con este enlace. Usualmente es porque no tienes permiso para esa tribu."
