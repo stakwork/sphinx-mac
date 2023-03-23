@@ -8,6 +8,12 @@
 
 import Cocoa
 
+struct DeeplinkData{
+    var feedID:String
+    var itemID:String
+    var timestamp:String
+}
+
 class ChatHelper {
     public static func getSenderColorFor(message: TransactionMessage) -> NSColor {
         var key:String? = nil

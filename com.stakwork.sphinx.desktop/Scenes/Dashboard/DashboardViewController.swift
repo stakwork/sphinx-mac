@@ -20,6 +20,7 @@ class DashboardViewController: NSViewController {
     var contactsService : ContactsService! = nil
     var chatViewModel: ChatViewModel! = nil
     var chatListViewModel: ChatListViewModel! = nil
+    var deeplinkData: DeeplinkData? = nil
     
     var detailViewController : ChatViewController? = nil
     var listViewController : ChatListViewController? = nil
@@ -186,13 +187,10 @@ class DashboardViewController: NSViewController {
                 print(query)
                 let feeds = FeedsManager.sharedInstance.fetchFeeds()
                 if let feed = feeds.filter({$0.feedID == feedID}).first,
-                   let chat = feed.chat,
-                   let clvc = vc.listViewController{
-                    clvc.selectRowFor(chatId: chat.id)
-                    if let indexPath = clvc.chatListDataSource.getIndexPathOfSelectedRow(){
-                        clvc.chatListDataSource.chatRowClicked(indexPath: indexPath)
-                        success = true
-                    }
+                   let chat = feed.chat{
+                    vc.deeplinkData = DeeplinkData(feedID: feedID, itemID: itemID, timestamp: "0")
+                    vc.didClickOnChatRow(object: chat)
+                    success = true
                     print(chat)
                 }
             }
@@ -342,6 +340,10 @@ extension DashboardViewController : DashboardVCDelegate {
         let contact = (object as? UserContact) ?? (object as? Chat)?.getContact()
         detailViewController?.loadChatFor(contact: contact, chat: chat, contactsService: contactsService)
         detailViewController?.configureMentionAutocompleteTableView()
+        if(deeplinkData != nil){
+            detailViewController?.deeplinkData = deeplinkData
+        }
+        deeplinkData = nil
     }
     
     func shouldShowFullMediaFor(message: TransactionMessage) {
