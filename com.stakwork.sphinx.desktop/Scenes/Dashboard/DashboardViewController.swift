@@ -178,32 +178,33 @@ class DashboardViewController: NSViewController {
         
         NotificationCenter.default.addObserver(forName: .onShareContentDeeplink, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
             guard let vc = self else { return }
-            print("Deeplink found!")
-            var success = false
-            if let query = n.userInfo?["query"] as? String,
-               let feedID = query.getLinkValueFor(key: "feedID"),
-               let itemID = query.getLinkValueFor(key: "itemID"),
-               let timestamp = query.getLinkValueFor(key: "atTime"){
-                print(query)
-                let feeds = FeedsManager.sharedInstance.fetchFeeds()
-                if let feed = feeds.filter({$0.feedID == feedID}).first,
-                   let chat = feed.chat{
-                    let finalTS = Int(timestamp) ?? 0
-                    vc.deeplinkData = DeeplinkData(feedID: feedID, itemID: itemID, timestamp: finalTS)
-                    vc.didClickOnChatRow(object: chat)
-                    success = true
-                    print(chat)
-                }
-            }
-            if success == false{
-                //throw error
-                print("Error opening content deeplink")
-                AlertHelper.showAlert(title: "deeplink.issue.title", message: "deeplink.issue.message")
-            }
+            vc.processContentDeeplink(n: n)
         }
     }
     
-    
+    func processContentDeeplink(n: Notification){
+        var success = false
+        if let query = n.userInfo?["query"] as? String,
+           let feedID = query.getLinkValueFor(key: "feedID"),
+           let itemID = query.getLinkValueFor(key: "itemID"),
+           let timestamp = query.getLinkValueFor(key: "atTime"){
+            print(query)
+            let feeds = FeedsManager.sharedInstance.fetchFeeds()
+            if let feed = feeds.filter({$0.feedID == feedID}).first,
+               let chat = feed.chat{
+                let finalTS = Int(timestamp) ?? 0
+                self.deeplinkData = DeeplinkData(feedID: feedID, itemID: itemID, timestamp: finalTS)
+                self.didClickOnChatRow(object: chat)
+                success = true
+                print(chat)
+            }
+        }
+        if success == false{
+            //throw error
+            print("Error opening content deeplink")
+            AlertHelper.showAlert(title: "deeplink.issue.title", message: "deeplink.issue.message")
+        }
+    }
     func createInvoice(n: Notification) {
         if let query = n.userInfo?["query"] as? String {
             if let amountString = query.getLinkValueFor(key: "amount"), let amount = Int(amountString) {
