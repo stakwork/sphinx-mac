@@ -78,7 +78,13 @@ class WebAppViewController: NSViewController {
     }
     
     func loadPage() {
-        if let url = URL(string: gameURL) {
+        var url: String = gameURL
+        
+        if let tribeUUID = chat.tribeInfo?.uuid {
+            url = gameURL.withURLParam(key: "tribe", value: tribeUUID)
+        }
+        
+        if let url = URL(string: url) {
             let request = URLRequest(url: url)
             webView.load(request)
         }
