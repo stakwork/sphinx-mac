@@ -420,5 +420,5 @@
 "always.require.pin" = "Siempre solicitar PIN";
 
 //Deeplinks
-"deeplink.issue.title" = "Problema Con Enlace"
-"deeplink.issue.message" = "Habia algun problema con este enlace. Usualmente es porque no tienes permiso para esa tribu."
+"deeplink.issue.title" = "Problema con el Enlace"
+"deeplink.issue.message" = "Ha habido un problema con el enlace. Por favor vuelve a intentarlo más tarde."
