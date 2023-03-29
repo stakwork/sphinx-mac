@@ -9,12 +9,13 @@
 import Cocoa
 
 extension ChatViewController {
-    func addPodcastVC() {
+    func addPodcastVC(deeplinkData:DeeplinkData?=nil) {
         if let chat = chat, let contentFeed = chat.contentFeed, contentFeed.isPodcast {
             podcastContainerWidth.constant = DashboardViewController.kPodcastPlayerWidth
             podcastVCContainer.superview?.layoutSubtreeIfNeeded()
             
             podcastPlayerVC = NewPodcastPlayerViewController.instantiate(chat: chat, delegate: self)
+            podcastPlayerVC?.deeplinkData = deeplinkData
             addChildVC(vc: podcastPlayerVC!)
         }
     }

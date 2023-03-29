@@ -20,6 +20,7 @@ class DashboardViewController: NSViewController {
     var contactsService : ContactsService! = nil
     var chatViewModel: ChatViewModel! = nil
     var chatListViewModel: ChatListViewModel! = nil
+    var deeplinkData: DeeplinkData? = nil
     
     var detailViewController : ChatViewController? = nil
     var listViewController : ChatListViewController? = nil
@@ -174,8 +175,36 @@ class DashboardViewController: NSViewController {
             guard let vc = self else { return }
             vc.createInvoice(n: n)
         }
+        
+        NotificationCenter.default.addObserver(forName: .onShareContentDeeplink, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
+            guard let vc = self else { return }
+            vc.processContentDeeplink(n: n)
+        }
     }
     
+    func processContentDeeplink(n: Notification){
+        var success = false
+        if let query = n.userInfo?["query"] as? String,
+           let feedID = query.getLinkValueFor(key: "feedID"),
+           let itemID = query.getLinkValueFor(key: "itemID"),
+           let timestamp = query.getLinkValueFor(key: "atTime"){
+            print(query)
+            let feeds = FeedsManager.sharedInstance.fetchFeeds()
+            if let feed = feeds.filter({$0.feedID == feedID}).first,
+               let chat = feed.chat{
+                let finalTS = Int(timestamp) ?? 0
+                self.deeplinkData = DeeplinkData(feedID: feedID, itemID: itemID, timestamp: finalTS)
+                self.didClickOnChatRow(object: chat)
+                success = true
+                print(chat)
+            }
+        }
+        if success == false{
+            //throw error
+            print("Error opening content deeplink")
+            AlertHelper.showAlert(title: "deeplink.issue.title", message: "deeplink.issue.message")
+        }
+    }
     func createInvoice(n: Notification) {
         if let query = n.userInfo?["query"] as? String {
             if let amountString = query.getLinkValueFor(key: "amount"), let amount = Int(amountString) {
@@ -314,6 +343,10 @@ extension DashboardViewController : DashboardVCDelegate {
         let contact = (object as? UserContact) ?? (object as? Chat)?.getContact()
         detailViewController?.loadChatFor(contact: contact, chat: chat, contactsService: contactsService)
         detailViewController?.configureMentionAutocompleteTableView()
+        if(deeplinkData != nil){
+            detailViewController?.deeplinkData = deeplinkData
+        }
+        deeplinkData = nil
     }
     
     func shouldShowFullMediaFor(message: TransactionMessage) {

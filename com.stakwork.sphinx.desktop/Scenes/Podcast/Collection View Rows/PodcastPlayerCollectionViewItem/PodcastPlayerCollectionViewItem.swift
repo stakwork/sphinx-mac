@@ -155,7 +155,10 @@ class PodcastPlayerCollectionViewItem: NSCollectionViewItem {
         guard let episode = podcast.getEpisodeWith(index: index) else {
             return
         }
-        
+        selectEpisode(episode: episode)
+    }
+    
+    func selectEpisode(episode:PodcastEpisode,atTime:Int?=nil){
         guard let podcastData = podcast.getPodcastData(
             episodeId: episode.itemID
         ) else {
@@ -165,6 +168,13 @@ class PodcastPlayerCollectionViewItem: NSCollectionViewItem {
         podcastPlayerController.submitAction(
             UserAction.Play(podcastData)
         )
+        
+        if let time = atTime{
+            setProgress(
+                duration: podcastData.duration ?? 0,
+                currentTime: time
+            )
+        }
         
         delegate?.shouldReloadEpisodesTable()
     }

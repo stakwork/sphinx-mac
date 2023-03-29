@@ -418,3 +418,7 @@
 //PIN Settings
 "never.require.pin" = "Nunca solicitar PIN";
 "always.require.pin" = "Siempre solicitar PIN";
+
+//Deeplinks
+"deeplink.issue.title" = "Problema con el Enlace"
+"deeplink.issue.message" = "Ha habido un problema con el enlace. Por favor vuelve a intentarlo más tarde."
