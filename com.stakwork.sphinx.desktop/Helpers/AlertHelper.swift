@@ -17,12 +17,12 @@ class AlertHelper {
         alert.runModal()
     }
     
-    public static func showTwoOptionsAlert(title: String, message: String, confirm: (() -> ())? = nil, cancel: (() -> ())? = nil) {
+    public static func showTwoOptionsAlert(title: String, message: String, confirm: (() -> ())? = nil, cancel: (() -> ())? = nil,confirmLabel:String?=nil,cancelLabel:String?=nil) {
         let alert = NSAlert.init()
         alert.messageText = title
         alert.informativeText = message
-        alert.addButton(withTitle: "confirm".localized)
-        alert.addButton(withTitle: "cancel".localized)
+        alert.addButton(withTitle: confirmLabel ?? "confirm".localized)
+        alert.addButton(withTitle: cancelLabel ?? "cancel".localized)
         let res = alert.runModal()
         if res == NSApplication.ModalResponse.alertFirstButtonReturn {
             if let confirm = confirm {

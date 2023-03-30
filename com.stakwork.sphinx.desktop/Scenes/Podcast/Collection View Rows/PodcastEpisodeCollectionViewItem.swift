@@ -27,6 +27,11 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
     @IBOutlet weak var descriptionLabel: NSTextField!
     @IBOutlet weak var timeRemainingLabel: NSTextField!
     @IBOutlet weak var shareButton: NSImageView!
+    @IBOutlet weak var mediaTypeIconImageView: NSImageView!
+    @IBOutlet weak var downloadIconImage:NSImageView!
+    
+    
+    @IBOutlet weak var currentTimeProgressWidth : NSLayoutConstraint!
     
     var episode:PodcastEpisode? = nil
     var delegate:PodcastEpisodeCollectionViewItemDelegate? = nil
@@ -46,7 +51,41 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
         episodeNameLabel.stringValue = episode.title ?? "No title"
         divider.isHidden = isLastRow
         
-        //descriptionLabel.stringValue = "Hi Mom"
+        descriptionLabel.stringValue = episode.episodeDescription?.nonHtmlRawString ?? "No description"
+        datePublishedLabel.stringValue = episode.dateString ?? ""
+        
+        let duration = episode.duration ?? 0
+        let currentTime = episode.currentTime ?? 0
+        
+        let timeString = (duration - currentTime).getEpisodeTimeString(
+            isOnProgress: currentTime > 0
+        )
+        
+        timeRemainingLabel.stringValue = timeString
+        
+        durationProgressView.wantsLayer = true
+        playTimeProgressView.wantsLayer = true
+        durationProgressView.layer?.cornerRadius = 4.0
+        playTimeProgressView.layer?.cornerRadius = 4.0
+        dotView.wantsLayer = true
+        dotView.makeCircular()
+        mediaTypeIconImageView.wantsLayer = true
+        mediaTypeIconImageView.layer?.cornerRadius = 3.0
+        
+        downloadIconImage.alphaValue = 0.5
+        
+        if let currentTime = episode.currentTime,
+           let duration = episode.duration{
+            let percentage = CGFloat(currentTime)/CGFloat(duration)
+            currentTimeProgressWidth.constant = 40.0 * CGFloat(percentage)
+            playedCheckmark.isHidden = (percentage > 0.95) ? false : true
+            
+            self.view.layoutSubtreeIfNeeded()
+        }
+        else{
+            currentTimeProgressWidth.constant = 0.0
+            self.view.layoutSubtreeIfNeeded()
+        }
         
         self.view.wantsLayer = true
         self.view.layer?.backgroundColor = (playing ? NSColor.Sphinx.ChatListSelected : NSColor.clear).cgColor
@@ -84,5 +123,35 @@ extension NSView {
             frame.size.width,
             frame.size.height
         ) / 2
+    }
+}
+
+
+extension Int{
+    func getEpisodeTimeString(
+        isOnProgress: Bool
+    ) -> String {
+        let hours = Int((self % 86400) / 3600)
+        let minutes = Int((self % 3600) / 60)
+        
+        if (self == 0) {
+            return ""
+        }
+        
+        var string = ""
+        
+        if hours > 1 {
+            string += "\(hours) hrs"
+        } else if hours > 0 {
+            string += "\(hours) hr"
+        }
+        
+        string += " \(minutes) min"
+        
+        if isOnProgress {
+            string += " left"
+        }
+        
+        return string
     }
 }

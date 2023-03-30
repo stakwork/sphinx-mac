@@ -7,13 +7,23 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="PodcastEpisodeCollectionViewItem" customModule="Sphinx" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="PodcastEpisodeCollectionViewItem" customModule="Sphinx">
             <connections>
+                <outlet property="currentTimeProgressWidth" destination="glG-Vv-VYW" id="8Y7-gP-bcT"/>
+                <outlet property="datePublishedLabel" destination="g1Z-gy-QGr" id="o6c-MY-WOv"/>
+                <outlet property="descriptionLabel" destination="Lsa-5D-i61" id="FbZ-Al-frM"/>
                 <outlet property="divider" destination="ksL-lk-ds5" id="RZl-TA-DHS"/>
+                <outlet property="dotView" destination="uH4-AM-CPO" id="WrI-28-vTv"/>
+                <outlet property="downloadIconImage" destination="Ghv-yV-XUo" id="UFp-og-i4M"/>
+                <outlet property="durationProgressView" destination="AoM-mI-i6S" id="QOY-ZB-giE"/>
                 <outlet property="episodeImageView" destination="wv7-cj-loH" id="5Fy-QG-zmD"/>
                 <outlet property="episodeNameLabel" destination="32U-yj-2RQ" id="4Vs-2W-TmN"/>
-                <outlet property="itemButton" destination="8qo-6d-wZT" id="CpY-KN-jZv"/>
+                <outlet property="itemButton" destination="8qo-6d-wZT" id="YRR-Wv-Tdt"/>
+                <outlet property="mediaTypeIconImageView" destination="A6W-Sl-cE8" id="iUK-mr-aad"/>
                 <outlet property="playArrow" destination="R63-Jh-gvJ" id="HXj-Pl-ySQ"/>
+                <outlet property="playTimeProgressView" destination="AVp-bx-kcf" id="qvn-MZ-uBD"/>
+                <outlet property="playedCheckmark" destination="wIx-up-XjY" id="A8L-km-12l"/>
+                <outlet property="timeRemainingLabel" destination="ym2-QK-e9u" id="rO8-Se-71i"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -107,7 +117,7 @@
                         <constraint firstAttribute="height" constant="48" id="Sd6-bz-ROl"/>
                     </constraints>
                     <textFieldCell key="cell" title="This is my really awesome podcast description. Best podcast in the world ok? Everyone agreees" id="hSc-RP-Mi1">
-                        <font key="font" size="14" name="Roboto-Regular"/>
+                        <font key="font" size="13" name="Roboto-Regular"/>
                         <color key="textColor" name="MainBottomIcons"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -219,7 +229,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="shareButtonTapped:" target="9oj-Bp-MEb" id="3TS-K4-ZIy"/>
+                        <action selector="shareButtonTapped:" target="-2" id="jzF-cU-ReZ"/>
                     </connections>
                 </button>
             </subviews>
@@ -272,18 +282,7 @@
             </constraints>
             <point key="canvasLocation" x="139" y="154"/>
         </customView>
-        <customObject id="9oj-Bp-MEb" customClass="PodcastEpisodeCollectionViewItem" customModule="Sphinx" customModuleProvider="target">
-            <connections>
-                <outlet property="datePublishedLabel" destination="g1Z-gy-QGr" id="Cxm-AD-c6j"/>
-                <outlet property="descriptionLabel" destination="Lsa-5D-i61" id="COR-8x-u5Y"/>
-                <outlet property="dotView" destination="uH4-AM-CPO" id="nGB-TC-Rx0"/>
-                <outlet property="durationProgressView" destination="AoM-mI-i6S" id="d81-1V-m1E"/>
-                <outlet property="playTimeProgressView" destination="AVp-bx-kcf" id="ODf-Yx-ZHn"/>
-                <outlet property="playedCheckmark" destination="wIx-up-XjY" id="A9S-62-Lvg"/>
-                <outlet property="shareButton" destination="Ghv-yV-XUo" id="lFV-mH-SI5"/>
-                <outlet property="timeRemainingLabel" destination="ym2-QK-e9u" id="xbX-uk-6hW"/>
-            </connections>
-        </customObject>
+        <customObject id="9oj-Bp-MEb" customClass="PodcastEpisodeCollectionViewItem" customModule="Sphinx" customModuleProvider="target"/>
     </objects>
     <resources>
         <image name="didPlayIndicator" width="24" height="24"/>

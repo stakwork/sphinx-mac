@@ -163,8 +163,22 @@ extension PodcastEpisodesDataSource : PodcastPlayerViewDelegate {
 
 extension PodcastEpisodesDataSource:PodcastEpisodeCollectionViewItemDelegate{
     func episodeShareTapped(episode: PodcastEpisode) {
-        if let link = episode.constructShareLink(){
-            delegate?.shouldCopyShareLink(link: link)
-        }
+            AlertHelper.showTwoOptionsAlert(
+                title: "Share from beginning or current time?",
+                message: "",
+                confirm: {
+                    if let link = episode.constructShareLink(){
+                        self.delegate?.shouldCopyShareLink(link: link)
+                    }
+                },
+                cancel: {
+                    if let link = episode.constructShareLink(useTimestamp: true){
+                        self.delegate?.shouldCopyShareLink(link: link)
+                    }
+                },
+                confirmLabel: "Share from Beginning",
+                cancelLabel: "Share from Current Time"
+            )
+            
     }
 }
