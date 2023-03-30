@@ -12,6 +12,7 @@ import Cocoa
 protocol PodcastEpisodesDSDelegate : AnyObject {
     func shouldShareClip(comment: PodcastComment)
     func shouldSendBoost(message: String, amount: Int, animation: Bool) -> TransactionMessage?
+    func shouldCopyShareLink(link:String)
 }
 
 class PodcastEpisodesDataSource : NSObject {
@@ -77,6 +78,7 @@ extension PodcastEpisodesDataSource : NSCollectionViewDataSource {
             return item
         }
         let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PodcastEpisodeCollectionViewItem"), for: indexPath)
+        
         return item
     }
     
@@ -88,6 +90,7 @@ extension PodcastEpisodesDataSource : NSCollectionViewDataSource {
             let isPlaying = podcastPlayerController.isPlaying(episodeId: episode.itemID)
             
             collectionViewItem.configureWidth(podcast: podcast, and: episode, isLastRow: isLastRow, playing: isPlaying)
+            collectionViewItem.delegate = self
             
         } else if let collectionViewItem = item as? PodcastPlayerCollectionViewItem {
             
@@ -131,6 +134,7 @@ extension PodcastEpisodesDataSource : NSCollectionViewDelegate, NSCollectionView
         }
     }
     
+    
     func playEpisode(atIndexPath:IndexPath){
         if let playerView = collectionView.item(at: IndexPath(item: 0, section: 0)) as? PodcastPlayerCollectionViewItem {
             playerView.didTapEpisodeAt(index: atIndexPath.item)
@@ -153,5 +157,14 @@ extension PodcastEpisodesDataSource : PodcastPlayerViewDelegate {
     
     func shouldSyncPodcast() {
         feedsManager.saveContentFeedStatus(for: podcast.feedID)
+    }
+}
+
+
+extension PodcastEpisodesDataSource:PodcastEpisodeCollectionViewItemDelegate{
+    func episodeShareTapped(episode: PodcastEpisode) {
+        if let link = episode.constructShareLink(){
+            delegate?.shouldCopyShareLink(link: link)
+        }
     }
 }

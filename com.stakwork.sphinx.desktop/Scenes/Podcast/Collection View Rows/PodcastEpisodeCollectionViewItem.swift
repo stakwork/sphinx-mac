@@ -8,6 +8,10 @@
 
 import Cocoa
 
+protocol PodcastEpisodeCollectionViewItemDelegate{
+    func episodeShareTapped(episode:PodcastEpisode)
+}
+
 class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
 
     @IBOutlet weak var playArrow: NSTextField!
@@ -22,6 +26,10 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
     @IBOutlet weak var dotView: NSView!
     @IBOutlet weak var descriptionLabel: NSTextField!
     @IBOutlet weak var timeRemainingLabel: NSTextField!
+    @IBOutlet weak var shareButton: NSImageView!
+    
+    var episode:PodcastEpisode? = nil
+    var delegate:PodcastEpisodeCollectionViewItemDelegate? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,10 +42,11 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
         isLastRow: Bool,
         playing: Bool
     ) {
+        self.episode = episode
         episodeNameLabel.stringValue = episode.title ?? "No title"
         divider.isHidden = isLastRow
         
-        descriptionLabel.stringValue = "Hi Mom"
+        //descriptionLabel.stringValue = "Hi Mom"
         
         self.view.wantsLayer = true
         self.view.layer?.backgroundColor = (playing ? NSColor.Sphinx.ChatListSelected : NSColor.clear).cgColor
@@ -56,6 +65,14 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
             )
         }
     }
+    
+    
+    @IBAction func shareButtonTapped(_ sender: Any) {
+        if let episode = episode{
+            self.delegate?.episodeShareTapped(episode: episode)
+        }
+    }
+    
 }
 
 

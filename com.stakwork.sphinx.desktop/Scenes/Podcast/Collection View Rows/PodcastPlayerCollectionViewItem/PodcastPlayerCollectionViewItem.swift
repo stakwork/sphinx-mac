@@ -149,6 +149,13 @@ class PodcastPlayerCollectionViewItem: NSCollectionViewItem {
         )
     }
     
+    func didTapShareEpisode(index:Int)->String?{
+        guard let episode = podcast.getEpisodeWith(index: index) else {
+            return nil
+        }
+        return episode.constructShareLink()
+    }
+    
     func didTapEpisodeAt(index: Int) {
         audioLoading = true
         
