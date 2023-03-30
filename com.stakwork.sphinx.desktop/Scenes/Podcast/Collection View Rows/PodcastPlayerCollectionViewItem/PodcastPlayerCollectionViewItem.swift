@@ -67,6 +67,10 @@ class PodcastPlayerCollectionViewItem: NSCollectionViewItem {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        DispatchQueue.main.async {
+            self.episodeImageView.wantsLayer = true
+            self.episodeImageView.imageScaling = .scaleProportionallyUpOrDown
+        }
         
         boostButtonView.delegate = self
     }
