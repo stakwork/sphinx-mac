@@ -15,6 +15,13 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
     @IBOutlet weak var episodeNameLabel: NSTextField!
     @IBOutlet weak var divider: NSBox!
     @IBOutlet weak var itemButton: CustomButton!
+    @IBOutlet weak var datePublishedLabel: NSTextField!
+    @IBOutlet weak var playTimeProgressView: NSView!
+    @IBOutlet weak var durationProgressView: NSView!
+    @IBOutlet weak var playedCheckmark: NSImageView!
+    @IBOutlet weak var dotView: NSView!
+    @IBOutlet weak var descriptionLabel: NSTextField!
+    @IBOutlet weak var timeRemainingLabel: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +36,8 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
     ) {
         episodeNameLabel.stringValue = episode.title ?? "No title"
         divider.isHidden = isLastRow
+        
+        descriptionLabel.stringValue = "Hi Mom"
         
         self.view.wantsLayer = true
         self.view.layer?.backgroundColor = (playing ? NSColor.Sphinx.ChatListSelected : NSColor.clear).cgColor
@@ -46,5 +55,17 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
                 progress: nil
             )
         }
+    }
+}
+
+
+extension NSView {
+
+    func makeCircular() {
+     
+        layer?.cornerRadius = min(
+            frame.size.width,
+            frame.size.height
+        ) / 2
     }
 }

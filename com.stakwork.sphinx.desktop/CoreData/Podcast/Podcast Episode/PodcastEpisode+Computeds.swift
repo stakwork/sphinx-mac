@@ -27,6 +27,17 @@ extension PodcastEpisode {
         }
     }
     
+    var dateString : String?{
+        let date = self.datePublished
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d MMM yyyy"
+        if let valid_date = date{
+            let dateString = formatter.string(from: valid_date)
+            return dateString
+        }
+        return nil
+    }
+    
     func getRemoteAudioUrl() -> URL? {
         guard let episodeUrl = urlPath, !episodeUrl.isEmpty else {
             return nil
