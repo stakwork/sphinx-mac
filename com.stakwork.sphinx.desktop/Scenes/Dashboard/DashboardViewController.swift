@@ -186,13 +186,13 @@ class DashboardViewController: NSViewController {
         var success = false
         if let query = n.userInfo?["query"] as? String,
            let feedID = query.getLinkValueFor(key: "feedID"),
-           let itemID = query.getLinkValueFor(key: "itemID"),
-           let timestamp = query.getLinkValueFor(key: "atTime"){
+           let itemID = query.getLinkValueFor(key: "itemID"){
             print(query)
             let feeds = FeedsManager.sharedInstance.fetchFeeds()
             if let feed = feeds.filter({$0.feedID == feedID}).first,
                let chat = feed.chat{
-                let finalTS = Int(timestamp) ?? 0
+                let timestamp = query.getLinkValueFor(key: "atTime")
+                let finalTS = Int(timestamp ?? "") ?? 0
                 self.deeplinkData = DeeplinkData(feedID: feedID, itemID: itemID, timestamp: finalTS)
                 self.didClickOnChatRow(object: chat)
                 success = true

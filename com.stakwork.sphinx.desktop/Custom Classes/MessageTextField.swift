@@ -44,7 +44,8 @@ class MessageTextField: CCTextField, NSTextViewDelegate {
                         NotificationCenter.default.post(name: .onJoinTribeClick, object: nil, userInfo: userInfo)
                     }
                     else if link.starts(with: "sphinx.chat://?action=share_content"){
-                        
+                        let userInfo: [String: Any] = ["query" : link]
+                        NotificationCenter.default.post(name: .onShareContentDeeplink, object: nil, userInfo: userInfo)
                     }
                     else {
                         NewMessageBubbleHelper().showGenericMessageView(text: "link.not.supported".localized)

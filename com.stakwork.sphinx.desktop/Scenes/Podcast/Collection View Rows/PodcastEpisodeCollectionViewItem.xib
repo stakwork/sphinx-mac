@@ -285,7 +285,7 @@
         <customObject id="9oj-Bp-MEb" customClass="PodcastEpisodeCollectionViewItem" customModule="Sphinx" customModuleProvider="target"/>
     </objects>
     <resources>
-        <image name="didPlayIndicator" width="24" height="24"/>
+        <image name="didPlayIndicator" width="48" height="48"/>
         <image name="playerListDownload" width="32" height="32"/>
         <image name="playerListOptions" width="32" height="32"/>
         <image name="playerListShare" width="32" height="32"/>
