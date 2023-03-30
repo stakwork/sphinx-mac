@@ -95,9 +95,6 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
         
         let imageUrl = episode.imageURLPath ?? podcast?.imageURLPath
         
-        episodeImageView.wantsLayer = true
-        episodeImageView.imageScaling = .scaleProportionallyUpOrDown
-        
         if let episodeURLPath = imageUrl, let url = URL(string: episodeURLPath) {
             episodeImageView.sd_setImage(
                 with: url,
