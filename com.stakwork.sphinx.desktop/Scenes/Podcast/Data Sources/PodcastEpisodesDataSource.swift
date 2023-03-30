@@ -20,7 +20,7 @@ class PodcastEpisodesDataSource : NSObject {
     
     public static let kPlayerRowHeight: CGFloat = 670
     
-    let kRowHeight: CGFloat = 64
+    let kRowHeight: CGFloat = 200
     let kHeaderHeight: CGFloat = 60
     
     var collectionView: NSCollectionView! = nil
