@@ -539,6 +539,7 @@
 		CE326B4B294295C600821A53 /* ChatMentionAutocompleteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE326B4A294295C600821A53 /* ChatMentionAutocompleteDataSource.swift */; };
 		CE326B51294A179200821A53 /* ChatMentionAutocompleteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE326B4F294A179200821A53 /* ChatMentionAutocompleteCell.swift */; };
 		CE326B52294A179200821A53 /* ChatMentionAutocompleteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE326B50294A179200821A53 /* ChatMentionAutocompleteCell.xib */; };
+		CE9BA45F29D76A8E000C8837 /* PodcastDetailSelectionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BA45E29D76A8E000C8837 /* PodcastDetailSelectionVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1232,6 +1233,7 @@
 		CE326B4A294295C600821A53 /* ChatMentionAutocompleteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMentionAutocompleteDataSource.swift; sourceTree = "<group>"; };
 		CE326B4F294A179200821A53 /* ChatMentionAutocompleteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMentionAutocompleteCell.swift; sourceTree = "<group>"; };
 		CE326B50294A179200821A53 /* ChatMentionAutocompleteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatMentionAutocompleteCell.xib; sourceTree = "<group>"; };
+		CE9BA45E29D76A8E000C8837 /* PodcastDetailSelectionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailSelectionVM.swift; sourceTree = "<group>"; };
 		F90398F47E0448445B11E3B5 /* Pods-com.stakwork.sphinx.desktop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-com.stakwork.sphinx.desktop.debug.xcconfig"; path = "Target Support Files/Pods-com.stakwork.sphinx.desktop/Pods-com.stakwork.sphinx.desktop.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1289,6 +1291,7 @@
 			children = (
 				47AF0D4D2553099100C98398 /* NewPodcastPlayerViewController.swift */,
 				CE07F40429D72B7700EB0EC1 /* PodcastDetailSelectionVC.swift */,
+				CE9BA45E29D76A8E000C8837 /* PodcastDetailSelectionVM.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -3518,6 +3521,7 @@
 				479F657D2487EAD50015A16A /* DraggingDestinationView.swift in Sources */,
 				475B684D29916655000EF29C /* API+HubError.swift in Sources */,
 				47C1F1DA2481310900A71610 /* VideoSentCollectionViewItem.swift in Sources */,
+				CE9BA45F29D76A8E000C8837 /* PodcastDetailSelectionVM.swift in Sources */,
 				470708A024AE65D600A98DCA /* ChatChatListExtension.swift in Sources */,
 				471F3AC1255C748100E2AC79 /* InviteActionsHelper.swift in Sources */,
 				4726A42A24C62729005A66B4 /* NotificationsHelper.swift in Sources */,

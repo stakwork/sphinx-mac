@@ -11,7 +11,7 @@ import CoreData
 import SDWebImage
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+ class AppDelegate: NSObject, NSApplicationDelegate {
     
     let notificationsHelper = NotificationsHelper()
     var newMessageBubbleHelper = NewMessageBubbleHelper()

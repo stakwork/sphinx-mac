@@ -117,8 +117,10 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
         showMore()
     }
     func showMore(){
-        let detailVC = PodcastDetailSelectionVC.instantiate()
-        WindowsManager.sharedInstance.showNewWindow(with: "podcast.details".localized, size: CGSize(width: 400, height: 600), centeredIn: self.view.window, contentVC: detailVC)
+        if let episode = episode{
+            let detailVC = PodcastDetailSelectionVC.instantiate(podcast:episode.feed , and: episode)
+            WindowsManager.sharedInstance.showNewWindow(with: "podcast.details".localized, size: CGSize(width: 400, height: 600), centeredIn: self.view.window, contentVC: detailVC)
+        }
     }
     
 }
