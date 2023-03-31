@@ -52,6 +52,7 @@ internal enum StoryboardScene {
         internal static let webAppViewController = SceneType<WebAppViewController>(storyboard: Dashboard.self, identifier: "WebAppViewController")
         
         internal static let dashboardModalsViewController = SceneType<DashboardModalsViewController>(storyboard: Dashboard.self, identifier: "DashboardModalsViewController")
+
     }
     
     internal enum Groups: StoryboardType {
@@ -100,6 +101,8 @@ internal enum StoryboardScene {
         internal static let storyboardName = "Podcast"
         
         internal static let newPodcastPlayerViewController = SceneType<NewPodcastPlayerViewController>(storyboard: Podcast.self, identifier: "NewPodcastPlayerViewController")
+        
+        internal static let podcastDetailSelectionViewController = SceneType<PodcastDetailSelectionVC>(storyboard: Podcast.self, identifier: "PodcastDetailSelectionVC")
     }
 }
 

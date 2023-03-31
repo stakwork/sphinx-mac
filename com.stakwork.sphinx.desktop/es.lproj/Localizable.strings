@@ -396,6 +396,7 @@
 "logout.text" = "Estas seguro que deseas desonectarse? La información y preferencias de tu cuenta serán eliminadas.";
 "enter.code.placeholder" = "Ingresa el código...";
 "keychain.restore" = "Restaurar desde Keychain";
+"podcast.details" = "Podcast Detalles & Opciones";
 "code.not.supported" = "Código no soportado";
 "enter.restore.pin" = "Ingresa tu PIN";
 "share.invite.code" = "Compartir código de invitación";

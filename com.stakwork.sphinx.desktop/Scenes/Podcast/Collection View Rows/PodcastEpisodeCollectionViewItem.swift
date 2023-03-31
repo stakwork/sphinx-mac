@@ -112,6 +112,15 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
         }
     }
     
+    @IBAction func moreButtonTapped(_ sender: Any){
+        print("more tapped")
+        showMore()
+    }
+    func showMore(){
+        let detailVC = PodcastDetailSelectionVC.instantiate()
+        WindowsManager.sharedInstance.showNewWindow(with: "podcast.details".localized, size: CGSize(width: 400, height: 600), centeredIn: self.view.window, contentVC: detailVC)
+    }
+    
 }
 
 

@@ -232,6 +232,16 @@
                         <action selector="shareButtonTapped:" target="-2" id="jzF-cU-ReZ"/>
                     </connections>
                 </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RED-Sa-3aL">
+                    <rect key="frame" x="113" y="-3" width="62" height="60"/>
+                    <buttonCell key="cell" type="push" bezelStyle="rounded" alignment="center" borderStyle="border" transparent="YES" imageScaling="proportionallyDown" inset="2" id="1iG-Fd-L1n">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="moreButtonTapped:" target="-2" id="d4o-jV-5R9"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="ym2-QK-e9u" firstAttribute="centerY" secondItem="g1Z-gy-QGr" secondAttribute="centerY" id="02U-5g-KAl"/>
@@ -245,10 +255,12 @@
                 <constraint firstItem="AVp-bx-kcf" firstAttribute="leading" secondItem="AoM-mI-i6S" secondAttribute="leading" id="AFL-vT-StN"/>
                 <constraint firstItem="wLi-JI-Ya9" firstAttribute="leading" secondItem="AzQ-fN-4Wr" secondAttribute="trailing" constant="6" id="Ala-tg-L7N"/>
                 <constraint firstItem="wv7-cj-loH" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="16" id="BJC-eN-vdP"/>
+                <constraint firstItem="wLi-JI-Ya9" firstAttribute="top" secondItem="RED-Sa-3aL" secondAttribute="top" id="CVR-SG-X5n"/>
                 <constraint firstItem="A6W-Sl-cE8" firstAttribute="centerY" secondItem="g1Z-gy-QGr" secondAttribute="centerY" id="Cgz-94-lZ2"/>
                 <constraint firstItem="32U-yj-2RQ" firstAttribute="centerY" secondItem="wv7-cj-loH" secondAttribute="centerY" id="DY0-Ue-NjV"/>
                 <constraint firstItem="AVp-bx-kcf" firstAttribute="top" secondItem="AoM-mI-i6S" secondAttribute="top" id="FiK-gU-D3d"/>
                 <constraint firstItem="y4A-Kx-hpH" firstAttribute="leading" secondItem="AzQ-fN-4Wr" secondAttribute="leading" id="G47-Cx-pjD"/>
+                <constraint firstItem="wLi-JI-Ya9" firstAttribute="leading" secondItem="RED-Sa-3aL" secondAttribute="leading" id="Gdu-Yu-3XP"/>
                 <constraint firstItem="wIx-up-XjY" firstAttribute="leading" secondItem="ym2-QK-e9u" secondAttribute="trailing" constant="4" id="H0S-PJ-85U"/>
                 <constraint firstItem="32U-yj-2RQ" firstAttribute="trailing" secondItem="Lsa-5D-i61" secondAttribute="trailing" id="HND-FR-PyT"/>
                 <constraint firstItem="8qo-6d-wZT" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="HR2-ku-XRM"/>
@@ -259,12 +271,14 @@
                 <constraint firstItem="uH4-AM-CPO" firstAttribute="leading" secondItem="g1Z-gy-QGr" secondAttribute="trailing" constant="4" id="MPL-wx-EBk"/>
                 <constraint firstAttribute="trailing" secondItem="R63-Jh-gvJ" secondAttribute="trailing" constant="16" id="MVc-mn-1BW"/>
                 <constraint firstAttribute="trailing" secondItem="8qo-6d-wZT" secondAttribute="trailing" id="OYf-Z0-Z7f"/>
+                <constraint firstItem="wLi-JI-Ya9" firstAttribute="trailing" secondItem="RED-Sa-3aL" secondAttribute="trailing" id="RDH-K1-9oW"/>
                 <constraint firstItem="y4A-Kx-hpH" firstAttribute="bottom" secondItem="AzQ-fN-4Wr" secondAttribute="bottom" id="RH5-8o-78w"/>
                 <constraint firstItem="AVp-bx-kcf" firstAttribute="bottom" secondItem="AoM-mI-i6S" secondAttribute="bottom" id="RcZ-oK-nqN"/>
                 <constraint firstItem="Ghv-yV-XUo" firstAttribute="top" secondItem="g1Z-gy-QGr" secondAttribute="bottom" constant="8" id="SZN-aD-uAu"/>
                 <constraint firstItem="g1Z-gy-QGr" firstAttribute="leading" secondItem="A6W-Sl-cE8" secondAttribute="trailing" constant="7" id="UPR-bH-QX1"/>
                 <constraint firstItem="AoM-mI-i6S" firstAttribute="centerY" secondItem="wIx-up-XjY" secondAttribute="centerY" id="Vfi-3a-5OT"/>
                 <constraint firstAttribute="trailing" secondItem="ksL-lk-ds5" secondAttribute="trailing" id="WIs-vj-QfO"/>
+                <constraint firstItem="wLi-JI-Ya9" firstAttribute="bottom" secondItem="RED-Sa-3aL" secondAttribute="bottom" id="WNO-gP-Xom"/>
                 <constraint firstItem="Lsa-5D-i61" firstAttribute="top" secondItem="32U-yj-2RQ" secondAttribute="bottom" constant="10" id="Wbp-v2-UPJ"/>
                 <constraint firstItem="wv7-cj-loH" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="30" id="YhM-oR-DKU"/>
                 <constraint firstItem="wLi-JI-Ya9" firstAttribute="width" secondItem="wLi-JI-Ya9" secondAttribute="height" multiplier="1:1" id="aB0-Ls-M0G"/>
@@ -285,7 +299,7 @@
         <customObject id="9oj-Bp-MEb" customClass="PodcastEpisodeCollectionViewItem" customModule="Sphinx" customModuleProvider="target"/>
     </objects>
     <resources>
-        <image name="didPlayIndicator" width="48" height="48"/>
+        <image name="didPlayIndicator" width="24" height="24"/>
         <image name="playerListDownload" width="32" height="32"/>
         <image name="playerListOptions" width="32" height="32"/>
         <image name="playerListShare" width="32" height="32"/>
