@@ -89,7 +89,7 @@ extension PodcastEpisodesDataSource : NSCollectionViewDataSource {
             let isLastRow = indexPath.item == podcast.episodesArray.count - 1
             let isPlaying = podcastPlayerController.isPlaying(episodeId: episode.itemID)
             
-            collectionViewItem.configureWidth(podcast: podcast, and: episode, isLastRow: isLastRow, playing: isPlaying)
+            collectionViewItem.configureWith(podcast: podcast, and: episode, isLastRow: isLastRow, playing: isPlaying)
             collectionViewItem.delegate = self
             
         } else if let collectionViewItem = item as? PodcastPlayerCollectionViewItem {

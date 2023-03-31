@@ -416,6 +416,12 @@
 "earned.sats" = "Earned: %d sats";
 "sats.per.minute" = "Podcast: sats per minute";
 "suggested.out.range" = "Suggested amount (%d sats) is above the maximum";
+"download" = "Download";
+"copy.link" = "Copy Link";
+"mark.as.played" = "Mark As Played";
+"share" = "Share";
+"mark.as.unplayed" = "Mark as Unplayed";
+"erase.from.device" = "Erase from Device";
 
 //PIN Settings
 "never.require.pin" = "Never require PIN";

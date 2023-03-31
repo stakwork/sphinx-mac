@@ -55,8 +55,10 @@ class PodcastDetailSelectionVC : NSViewController{
         mediaTypeImageView.layer?.cornerRadius = 3.0
         dotView.wantsLayer = true
         dotView.layer?.backgroundColor = NSColor.Sphinx.SecondaryText.cgColor
+        dotView.makeCircular()
         dotView2.wantsLayer = true
         dotView2.layer?.backgroundColor = NSColor.Sphinx.SecondaryText.cgColor
+        dotView2.makeCircular()
         podcastDetailImageView.wantsLayer = true
         podcastDetailImageView.layer?.cornerRadius = 8.0
         

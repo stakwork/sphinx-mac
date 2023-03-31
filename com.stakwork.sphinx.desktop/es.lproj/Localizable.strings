@@ -415,6 +415,12 @@
 "earned.sats" = "Recibidod: %d sats";
 "sats.per.minute" = "Podcast: sats por minuto";
 "suggested.out.range" = "Monto sugerido (%d sats) por encima del máximo";
+"download" = "Descargar";
+"copy.link" = "Copiar Enlace";
+"mark.as.played" = "Marcar como leído";
+"share" = "Compartir";
+"mark.as.unplayed" = "Marcar como no leído";
+"erase.from.device" = "Borrar del despositivo";
 
 //PIN Settings
 "never.require.pin" = "Nunca solicitar PIN";

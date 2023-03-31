@@ -14,6 +14,10 @@ class PodcastDetailSelectionVM : NSObject{
     weak var collectionView : NSCollectionView?
     weak var vc: PodcastDetailSelectionVC?
     let kCellHeight = 63.0
+    let actionsList : [FeedItemActionType] = [
+        .copyLink,
+        .markAsPlayed
+    ]
     
     init(collectionView: NSCollectionView, vc: PodcastDetailSelectionVC) {
         self.collectionView = collectionView
@@ -30,11 +34,14 @@ class PodcastDetailSelectionVM : NSObject{
 
 extension PodcastDetailSelectionVM : NSCollectionViewDataSource,NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        return actionsList.count
     }
     
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-        return collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "GroupContactCollectionViewItem"), for: indexPath)
+        let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PodcastDetailActionCell"), for: indexPath) as! PodcastDetailActionCell
+        item.configureView(type: actionsList[indexPath.item])
+        
+        return item
     }
     
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {

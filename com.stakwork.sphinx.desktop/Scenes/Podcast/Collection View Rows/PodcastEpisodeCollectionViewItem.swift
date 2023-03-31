@@ -41,7 +41,7 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
         itemButton.cursor = .pointingHand
     }
     
-    func configureWidth(
+    func configureWith(
         podcast: PodcastFeed?,
         and episode: PodcastEpisode,
         isLastRow: Bool,
