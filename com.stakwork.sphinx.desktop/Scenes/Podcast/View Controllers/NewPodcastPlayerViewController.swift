@@ -24,12 +24,29 @@ class NewPodcastPlayerViewController: NSViewController {
         super.viewDidLoad()
         
         showEpisodesTable()
+        preloadPodcast()
     }
     
     override func viewDidLayout() {
         super.viewDidLayout()
         
         playerCollectionView.collectionViewLayout?.invalidateLayout()
+    }
+    
+    func preloadPodcast() {
+        guard let contentFeed = chat.contentFeed else {
+            return
+        }
+        
+        let podcast = PodcastFeed.convertFrom(contentFeed: contentFeed)
+        
+        guard let podcastData = podcast.getPodcastData() else {
+            return
+        }
+        
+        PodcastPlayerController.sharedInstance.submitAction(
+            UserAction.Preload(podcastData)
+        )
     }
     
     override func viewDidAppear() {
