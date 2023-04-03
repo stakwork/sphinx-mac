@@ -38,6 +38,15 @@ extension PodcastEpisode {
         return nil
     }
     
+    var wasPlayed: Bool? {
+        get {
+            return UserDefaults.standard.value(forKey: "wasPlayed-\(itemID)") as? Bool
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "wasPlayed-\(itemID)")
+        }
+    }
+    
     func getRemoteAudioUrl() -> URL? {
         guard let episodeUrl = urlPath, !episodeUrl.isEmpty else {
             return nil

@@ -78,7 +78,11 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
            let duration = episode.duration{
             let percentage = CGFloat(currentTime)/CGFloat(duration)
             currentTimeProgressWidth.constant = 40.0 * CGFloat(percentage)
-            playedCheckmark.isHidden = (percentage > 0.95) ? false : true
+            if(episode.wasPlayed ?? false == false),
+              (percentage > 0.95){
+                episode.wasPlayed = true
+            }
+            playedCheckmark.isHidden = (episode.wasPlayed != true)
             
             self.view.layoutSubtreeIfNeeded()
         }
@@ -105,6 +109,10 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
         }
     }
     
+    func toggleWasPlayed(){
+        self.episode?.wasPlayed = (!(self.episode?.wasPlayed ?? true))
+        self.collectionView?.reloadData()
+    }
     
     @IBAction func shareButtonTapped(_ sender: Any) {
         if let episode = episode{
@@ -118,10 +126,15 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
     }
     func showMore(){
         if let episode = episode{
-            let detailVC = PodcastDetailSelectionVC.instantiate(podcast:episode.feed , and: episode)
+            let detailVC = PodcastDetailSelectionVC.instantiate(podcast:episode.feed , and: episode,delegate: self)
             WindowsManager.sharedInstance.showNewWindow(with: "podcast.details".localized, size: CGSize(width: 400, height: 600), centeredIn: self.view.window, contentVC: detailVC)
         }
     }
+    
+}
+
+extension PodcastEpisodeCollectionViewItem : PodcastDetailSelectionVCDelegate{
+    
     
 }
 

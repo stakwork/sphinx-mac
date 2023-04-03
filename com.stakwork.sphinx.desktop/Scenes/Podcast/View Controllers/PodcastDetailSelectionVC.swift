@@ -9,6 +9,10 @@
 import Foundation
 import Cocoa
 
+protocol PodcastDetailSelectionVCDelegate{
+    
+}
+
 class PodcastDetailSelectionVC : NSViewController{
     
     @IBOutlet weak var podcastDetailImageView: NSImageView!
@@ -21,6 +25,7 @@ class PodcastDetailSelectionVC : NSViewController{
     @IBOutlet weak var dotView2 : NSView!
     @IBOutlet weak var timeRemainingLabel : NSTextField!
     @IBOutlet weak var collectionView: NSCollectionView!
+    var delegate : PodcastDetailSelectionVCDelegate? = nil
     
     var podcast:PodcastFeed? = nil
     var episode:PodcastEpisode!
@@ -39,11 +44,13 @@ class PodcastDetailSelectionVC : NSViewController{
     
     static func instantiate(
         podcast: PodcastFeed?,
-        and episode: PodcastEpisode
+        and episode: PodcastEpisode,
+        delegate:PodcastDetailSelectionVCDelegate
     ) -> PodcastDetailSelectionVC {
         let viewController = StoryboardScene.Podcast.podcastDetailSelectionViewController.instantiate()
         viewController.episode = episode
         viewController.podcast = podcast
+        viewController.delegate = delegate
         
         return viewController
     }
