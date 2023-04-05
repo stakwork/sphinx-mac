@@ -331,6 +331,17 @@ class DraggingDestinationView: NSView, LoadableNib {
                 return true
             }
         }
+        if let images = pasteBoard.readObjects(forClasses: [NSImage.self]),
+            images.count > 0,
+            let image = images[0] as? NSImage,
+            let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil) {
+            
+            let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
+            if let jpegData = bitmapRep.representation(using: NSBitmapImageRep.FileType.jpeg, properties: [:]) {
+                showImagePreview(data: jpegData, image: image)
+                return true
+            }
+        }
         return false
     }
     
