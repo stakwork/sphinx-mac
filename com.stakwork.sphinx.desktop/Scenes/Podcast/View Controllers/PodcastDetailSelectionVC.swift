@@ -11,7 +11,7 @@ import Cocoa
 
 protocol PodcastDetailSelectionVCDelegate{
     func shareButtonTapped(_ sender: Any)
-    func toggleWasPlayed()
+    func shouldReloadList()
 }
 
 class PodcastDetailSelectionVC : NSViewController{
@@ -27,13 +27,17 @@ class PodcastDetailSelectionVC : NSViewController{
     @IBOutlet weak var timeRemainingLabel : NSTextField!
     @IBOutlet weak var collectionView: NSCollectionView!
     
-    var delegate : PodcastDetailSelectionVCDelegate? = nil
+    var delegate : PodcastDetailSelectionVCDelegate!
     
     var podcast:PodcastFeed? = nil
     var episode:PodcastEpisode!
     
     lazy var podcastDetailSelectionVM: PodcastDetailSelectionVM = {
-        return PodcastDetailSelectionVM(collectionView: collectionView, vc: self)
+        return PodcastDetailSelectionVM(
+            collectionView: collectionView,
+            episode: episode,
+            delegate: delegate
+        )
     }()
     
     override func viewDidLoad() {
@@ -47,7 +51,7 @@ class PodcastDetailSelectionVC : NSViewController{
     static func instantiate(
         podcast: PodcastFeed?,
         and episode: PodcastEpisode,
-        delegate:PodcastDetailSelectionVCDelegate
+        delegate: PodcastDetailSelectionVCDelegate
     ) -> PodcastDetailSelectionVC {
         let viewController = StoryboardScene.Podcast.podcastDetailSelectionViewController.instantiate()
         viewController.episode = episode

@@ -119,11 +119,15 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem, PodcastDetailSelec
     
     func toggleWasPlayed(){
         self.episode?.wasPlayed = (!(self.episode?.wasPlayed ?? true))
+        shouldReloadList()
+    }
+    
+    func shouldReloadList() {
         self.collectionView?.reloadData()
     }
     
     @IBAction func shareButtonTapped(_ sender: Any) {
-        if let episode = episode{
+        if let episode = episode {
             self.delegate?.episodeShareTapped(episode: episode)
         }
     }
@@ -131,6 +135,7 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem, PodcastDetailSelec
     @IBAction func moreButtonTapped(_ sender: Any){
         showMore()
     }
+    
     func showMore(){
         if let episode = episode {
             
