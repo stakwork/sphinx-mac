@@ -14,6 +14,7 @@ protocol PodcastEpisodeCollectionViewItemDelegate{
 
 class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
 
+    @IBOutlet weak var playArrowBack: NSBox!
     @IBOutlet weak var playArrow: NSTextField!
     @IBOutlet weak var episodeImageView: NSImageView!
     @IBOutlet weak var episodeNameLabel: NSTextField!
@@ -21,6 +22,7 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
     @IBOutlet weak var itemButton: CustomButton!
     @IBOutlet weak var datePublishedLabel: NSTextField!
     @IBOutlet weak var playTimeProgressView: NSView!
+    @IBOutlet weak var playTimeProgressViewBox: NSBox!
     @IBOutlet weak var durationProgressView: NSView!
     @IBOutlet weak var playedCheckmark: NSImageView!
     @IBOutlet weak var dotView: NSView!
@@ -38,7 +40,24 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         itemButton.cursor = .pointingHand
+        
+        durationProgressView.wantsLayer = true
+        playTimeProgressView.wantsLayer = true
+        durationProgressView.layer?.cornerRadius = 2.0
+        playTimeProgressView.layer?.cornerRadius = 2.0
+        
+        dotView.wantsLayer = true
+        dotView.makeCircular()
+        
+        mediaTypeIconImageView.wantsLayer = true
+        mediaTypeIconImageView.layer?.cornerRadius = 3.0
+        
+        episodeImageView.wantsLayer = true
+        episodeImageView.layer?.cornerRadius = 6.0
+        
+        downloadIconImage.alphaValue = 0.5
     }
     
     func configureWith(
@@ -48,9 +67,8 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
         playing: Bool
     ) {
         self.episode = episode
-        episodeNameLabel.stringValue = episode.title ?? "No title"
-        divider.isHidden = isLastRow
         
+        episodeNameLabel.stringValue = episode.title ?? "No title"
         descriptionLabel.stringValue = episode.episodeDescription?.nonHtmlRawString ?? "No description"
         datePublishedLabel.stringValue = episode.dateString ?? ""
         
@@ -61,39 +79,31 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
             isOnProgress: currentTime > 0
         )
         
-        timeRemainingLabel.stringValue = timeString
-        
-        durationProgressView.wantsLayer = true
-        playTimeProgressView.wantsLayer = true
-        durationProgressView.layer?.cornerRadius = 4.0
-        playTimeProgressView.layer?.cornerRadius = 4.0
-        dotView.wantsLayer = true
-        dotView.makeCircular()
-        mediaTypeIconImageView.wantsLayer = true
-        mediaTypeIconImageView.layer?.cornerRadius = 3.0
-        
-        downloadIconImage.alphaValue = 0.5
-        
         if let currentTime = episode.currentTime,
-           let duration = episode.duration{
+           let duration = episode.duration {
+            
             let percentage = CGFloat(currentTime)/CGFloat(duration)
             currentTimeProgressWidth.constant = 40.0 * CGFloat(percentage)
-            if(episode.wasPlayed ?? false == false),
-              (percentage > 0.95){
-                episode.wasPlayed = true
-            }
-            playedCheckmark.isHidden = (episode.wasPlayed != true)
+            
+//            if !episode.wasPlayed && percentage > 0.95 {
+//                episode.wasPlayed = true
+//            }
+            
+            playedCheckmark.isHidden = !episode.wasPlayed
+            timeRemainingLabel.stringValue = episode.wasPlayed ? "Played" : timeString
             
             self.view.layoutSubtreeIfNeeded()
-        }
-        else{
+        } else {
+            timeRemainingLabel.stringValue = timeString
+            playedCheckmark.isHidden = true
+            
             currentTimeProgressWidth.constant = 0.0
             self.view.layoutSubtreeIfNeeded()
         }
         
-        self.view.wantsLayer = true
-        self.view.layer?.backgroundColor = (playing ? NSColor.Sphinx.ChatListSelected : NSColor.clear).cgColor
-        playArrow.isHidden = !playing
+        playArrow.stringValue = playing ? "pause" : "play_arrow"
+        playTimeProgressViewBox.fillColor = playing ? NSColor.Sphinx.BlueTextAccent : NSColor.Sphinx.Text
+        playTimeProgressViewBox.alphaValue = playing ? 1.0 : 0.3
         
         episodeImageView.sd_cancelCurrentImageLoad()
         
@@ -107,6 +117,8 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
                 progress: nil
             )
         }
+        
+        divider.isHidden = isLastRow
     }
     
     func toggleWasPlayed(){
@@ -121,13 +133,23 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
     }
     
     @IBAction func moreButtonTapped(_ sender: Any){
-        print("more tapped")
         showMore()
     }
     func showMore(){
-        if let episode = episode{
-            let detailVC = PodcastDetailSelectionVC.instantiate(podcast:episode.feed , and: episode,delegate: self)
-            WindowsManager.sharedInstance.showNewWindow(with: "podcast.details".localized, size: CGSize(width: 400, height: 600), centeredIn: self.view.window, contentVC: detailVC)
+        if let episode = episode {
+            
+            let detailVC = PodcastDetailSelectionVC.instantiate(
+                podcast: episode.feed,
+                and: episode,
+                delegate: self
+            )
+            
+            WindowsManager.sharedInstance.showNewWindow(
+                with: "podcast.details".localized,
+                size: CGSize(width: 400, height: 600),
+                centeredIn: self.view.window,
+                contentVC: detailVC
+            )
         }
     }
     

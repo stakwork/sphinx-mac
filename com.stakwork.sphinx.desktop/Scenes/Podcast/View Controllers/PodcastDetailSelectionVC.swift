@@ -25,6 +25,7 @@ class PodcastDetailSelectionVC : NSViewController{
     @IBOutlet weak var dotView2 : NSView!
     @IBOutlet weak var timeRemainingLabel : NSTextField!
     @IBOutlet weak var collectionView: NSCollectionView!
+    
     var delegate : PodcastDetailSelectionVCDelegate? = nil
     
     var podcast:PodcastFeed? = nil

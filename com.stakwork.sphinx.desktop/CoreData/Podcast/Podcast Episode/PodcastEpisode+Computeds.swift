@@ -38,9 +38,9 @@ extension PodcastEpisode {
         return nil
     }
     
-    var wasPlayed: Bool? {
+    var wasPlayed: Bool {
         get {
-            return UserDefaults.standard.value(forKey: "wasPlayed-\(itemID)") as? Bool
+            return (UserDefaults.standard.value(forKey: "wasPlayed-\(itemID)") as? Bool) ?? false
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "wasPlayed-\(itemID)")

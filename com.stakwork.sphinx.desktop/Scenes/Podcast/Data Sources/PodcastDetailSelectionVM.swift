@@ -11,9 +11,11 @@ import Cocoa
 
 
 class PodcastDetailSelectionVM : NSObject{
+    
     weak var collectionView : NSCollectionView?
     weak var vc: PodcastDetailSelectionVC?
     let kCellHeight = 63.0
+    
     func getActionsList()->[FeedItemActionType]{
         return [
             .share,
@@ -35,18 +37,18 @@ class PodcastDetailSelectionVM : NSObject{
     func handleAction(action:FeedItemActionType){
         switch(action){
         case .share:
-            if let valid_vc = vc?.delegate as? PodcastEpisodeCollectionViewItem{
+            if let valid_vc = vc?.delegate as? PodcastEpisodeCollectionViewItem {
                 valid_vc.shareButtonTapped(self)
             }
             break
         case .markAsPlayed:
-            if let valid_vc = vc?.delegate as? PodcastEpisodeCollectionViewItem{
+            if let valid_vc = vc?.delegate as? PodcastEpisodeCollectionViewItem {
                 valid_vc.toggleWasPlayed()
                 self.collectionView?.reloadData()
             }
             break
         case .markAsUnplayed:
-            if let valid_vc = vc?.delegate as? PodcastEpisodeCollectionViewItem{
+            if let valid_vc = vc?.delegate as? PodcastEpisodeCollectionViewItem {
                 valid_vc.toggleWasPlayed()
                 self.collectionView?.reloadData()
             }
