@@ -53,6 +53,9 @@ class PodcastPlayerController {
     var paymentsTimer : Timer? = nil
     var syncPodcastTimer : Timer? = nil
     
+    var allItems: [String: CachingPlayerItem] = [:]
+    var podcastItems: [String: CachingPlayerItem] = [:]
+    
     var playedSeconds: Int = 0
     var isLoadingOrPlaying = false
     
@@ -82,6 +85,15 @@ class PodcastPlayerController {
         return Static.instance
     }
     
+    let dispatchSemaphore = DispatchSemaphore(value: 1)
+    
+    init() {
+        let dispatchQueue = DispatchQueue.global(qos: .background)
+        dispatchQueue.async {
+            self.preloadAll()
+        }
+    }
+    
     func saveState() {
         podcast?.duration = podcastData?.duration ?? 0
         podcast?.currentTime = podcastData?.currentTime ?? 0
@@ -89,6 +101,13 @@ class PodcastPlayerController {
         if let episodeId = podcastData?.episodeId {
             podcast?.currentEpisodeId = episodeId
         }
+    }
+    
+    func getPodcastFrom(podcastData: PodcastData?) -> PodcastFeed? {
+        if let contentFeed = ContentFeed.getFeedWith(feedId: podcastData?.podcastId ?? "") {
+            return PodcastFeed.convertFrom(contentFeed: contentFeed)
+        }
+        return nil
     }
 
 }
