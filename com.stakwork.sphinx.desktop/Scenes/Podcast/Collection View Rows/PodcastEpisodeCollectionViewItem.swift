@@ -85,10 +85,6 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
             let percentage = CGFloat(currentTime)/CGFloat(duration)
             currentTimeProgressWidth.constant = 40.0 * CGFloat(percentage)
             
-//            if !episode.wasPlayed && percentage > 0.95 {
-//                episode.wasPlayed = true
-//            }
-            
             playedCheckmark.isHidden = !episode.wasPlayed
             timeRemainingLabel.stringValue = episode.wasPlayed ? "Played" : timeString
             
