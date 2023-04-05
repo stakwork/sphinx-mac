@@ -67,7 +67,12 @@ class PodcastPlayerCollectionViewItem: NSCollectionViewItem {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        /*
+        DispatchQueue.main.async {
+            self.episodeImageView.wantsLayer = true
+            self.episodeImageView.imageScaling = .scaleProportionallyUpOrDown
+        }
+        */
         boostButtonView.delegate = self
     }
     
@@ -147,6 +152,13 @@ class PodcastPlayerCollectionViewItem: NSCollectionViewItem {
         podcastPlayerController.submitAction(
             UserAction.Seek(podcastData)
         )
+    }
+    
+    func didTapShareEpisode(index:Int)->String?{
+        guard let episode = podcast.getEpisodeWith(index: index) else {
+            return nil
+        }
+        return episode.constructShareLink()
     }
     
     func didTapEpisodeAt(index: Int) {

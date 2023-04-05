@@ -42,7 +42,12 @@ class MessageTextField: CCTextField, NSTextViewDelegate {
                     if link.starts(with: "sphinx.chat://?action=tribe") {
                         let userInfo: [String: Any] = ["tribe_link" : link]
                         NotificationCenter.default.post(name: .onJoinTribeClick, object: nil, userInfo: userInfo)
-                    } else {
+                    }
+                    else if link.starts(with: "sphinx.chat://?action=share_content"){
+                        let userInfo: [String: Any] = ["query" : link]
+                        NotificationCenter.default.post(name: .onShareContentDeeplink, object: nil, userInfo: userInfo)
+                    }
+                    else {
                         NewMessageBubbleHelper().showGenericMessageView(text: "link.not.supported".localized)
                     }
                 } else if let url = CustomSwiftLinkPreview.sharedInstance.extractURL(text: link) {

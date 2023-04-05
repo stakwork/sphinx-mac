@@ -94,4 +94,8 @@ extension NewPodcastPlayerViewController : PodcastEpisodesDSDelegate {
     func shouldSendBoost(message: String, amount: Int, animation: Bool) -> TransactionMessage? {
         return delegate?.shouldSendBoost(message: message, amount: amount, animation: animation)
     }
+    
+    func shouldCopyShareLink(link: String) {
+        ClipboardHelper.copyToClipboard(text: link)
+    }
 }

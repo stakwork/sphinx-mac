@@ -151,6 +151,7 @@ extension PodcastPlayerController {
             currentTime: 0
         )
         
+        markEpisodeAsPlayed()
         runEndedStateUpdate()
     }
     
@@ -170,6 +171,18 @@ extension PodcastPlayerController {
                     self.playingEpisodeImage = nil
                 }
             )
+        }
+    }
+    
+    func markEpisodeAsPlayed() {
+        guard let podcastData = self.podcastData else {
+            return
+        }
+        
+        if let podcast = getPodcastWith(podcastId: podcastData.podcastId) {
+            if let episode = podcast.getEpisodeWith(id: podcastData.podcastId) {
+                episode.wasPlayed = true
+            }
         }
     }
 }

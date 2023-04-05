@@ -397,6 +397,7 @@
 "logout.text" = "Are you sure you want to logout? All data and preferences will be deleted.";
 "enter.code.placeholder" = "Enter code...";
 "keychain.restore" = "Restore from Keychain";
+"podcast.details" = "Podcast Details & Options";
 "code.not.supported" = "Code not supported";
 "enter.restore.pin" = "Enter Restore PIN";
 "share.invite.code" = "Share Invite Code";
@@ -415,6 +416,12 @@
 "earned.sats" = "Earned: %d sats";
 "sats.per.minute" = "Podcast: sats per minute";
 "suggested.out.range" = "Suggested amount (%d sats) is above the maximum";
+"download" = "Download";
+"copy.link" = "Copy Link";
+"mark.as.played" = "Mark As Played";
+"share" = "Share";
+"mark.as.unplayed" = "Mark as Unplayed";
+"erase.from.device" = "Erase from Device";
 
 //PIN Settings
 "never.require.pin" = "Never require PIN";

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -69,15 +69,205 @@
                 </viewController>
                 <customObject id="pWG-dx-9uK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="509" y="241"/>
+            <point key="canvasLocation" x="535" y="252"/>
+        </scene>
+        <!--Podcast Detail SelectionVC-->
+        <scene sceneID="FbN-kU-U3h">
+            <objects>
+                <viewController storyboardIdentifier="PodcastDetailSelectionVC" id="jwi-qg-0XF" customClass="PodcastDetailSelectionVC" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="gh6-j6-3hc">
+                        <rect key="frame" x="0.0" y="0.0" width="401" height="600"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Six-Vj-bF5">
+                                <rect key="frame" x="0.0" y="0.0" width="401" height="600"/>
+                                <view key="contentView" id="o18-Mn-qLu">
+                                    <rect key="frame" x="0.0" y="0.0" width="401" height="600"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f5c-8u-2bi">
+                                            <rect key="frame" x="126" y="422" width="150" height="150"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="f5c-8u-2bi" secondAttribute="height" multiplier="1:1" id="0nP-Db-PBX"/>
+                                                <constraint firstAttribute="width" constant="150" id="CNC-gc-DqQ"/>
+                                            </constraints>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="sphinxTagIcon" id="zzt-C8-1wA"/>
+                                        </imageView>
+                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Nkf-62-4zk">
+                                            <rect key="frame" x="38" y="393" width="325" height="15"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="321" id="e12-Z3-4Ws"/>
+                                            </constraints>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="No Agenda" id="HH2-Ok-WyL">
+                                                <font key="font" size="13" name="Roboto-Regular"/>
+                                                <color key="textColor" name="SecondaryText"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fPI-4n-MuU">
+                                            <rect key="frame" x="38" y="331" width="325" height="48"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="48" id="Wep-5Y-0V7"/>
+                                            </constraints>
+                                            <textFieldCell key="cell" alignment="center" title="DeFi &amp; Smart Contracts On The Bitcoin Network  Gabriel Kurman " id="Jhr-xk-UzG">
+                                                <font key="font" size="17" name="Roboto-Regular"/>
+                                                <color key="textColor" name="TextMessages"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lUd-Bi-JQT">
+                                            <rect key="frame" x="68" y="307" width="16" height="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="16" id="G1G-FI-ApZ"/>
+                                                <constraint firstAttribute="width" secondItem="lUd-Bi-JQT" secondAttribute="height" multiplier="1:1" id="cpy-pU-LHg"/>
+                                            </constraints>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="podcastTypeIcon" id="xtz-5t-S8x"/>
+                                        </imageView>
+                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="drK-Sh-NzH">
+                                            <rect key="frame" x="90" y="307" width="57" height="16"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Podcast" id="MVV-49-9oR">
+                                                <font key="font" size="13" name="Roboto-Regular"/>
+                                                <color key="textColor" name="SecondaryText"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="58n-sI-4xx">
+                                            <rect key="frame" x="153" y="312" width="6" height="6"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="6" id="S1M-nQ-0w6"/>
+                                                <constraint firstAttribute="width" secondItem="58n-sI-4xx" secondAttribute="height" multiplier="1:1" id="p9c-Jz-uUv"/>
+                                            </constraints>
+                                        </customView>
+                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hYN-KL-fiW">
+                                            <rect key="frame" x="165" y="307" width="72" height="16"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="3 Apr 2022" id="rPf-3B-EwY">
+                                                <font key="font" size="13" name="Roboto-Regular"/>
+                                                <color key="textColor" name="SecondaryText"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="Uuy-Nk-fVG">
+                                            <rect key="frame" x="243" y="312" width="6" height="6"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="Uuy-Nk-fVG" secondAttribute="height" multiplier="1:1" id="G1Y-Eh-0xC"/>
+                                                <constraint firstAttribute="width" constant="6" id="etT-BB-VE8"/>
+                                            </constraints>
+                                        </customView>
+                                        <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QDI-g9-Pmj">
+                                            <rect key="frame" x="40" y="32" width="321" height="243"/>
+                                            <clipView key="contentView" drawsBackground="NO" id="0E4-9l-uA3">
+                                                <rect key="frame" x="0.0" y="0.0" width="321" height="243"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <collectionView id="bVu-IZ-rdl">
+                                                        <rect key="frame" x="0.0" y="0.0" width="321" height="243"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                                        <collectionViewFlowLayout key="collectionViewLayout" id="2Wh-i5-Tyq">
+                                                            <size key="itemSize" width="50" height="64"/>
+                                                        </collectionViewFlowLayout>
+                                                        <color key="primaryBackgroundColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </collectionView>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </clipView>
+                                            <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="dqW-wp-65P">
+                                                <rect key="frame" x="-100" y="-100" width="233" height="15"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </scroller>
+                                            <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Zh2-wl-XXn">
+                                                <rect key="frame" x="305" y="0.0" width="16" height="243"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </scroller>
+                                        </scrollView>
+                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X8G-yz-LX3">
+                                            <rect key="frame" x="259" y="307" width="81" height="16"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="2 hrs 19 min" id="hDR-lb-cSy">
+                                                <font key="font" size="13" name="Roboto-Regular"/>
+                                                <color key="textColor" name="SecondaryText"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="X8G-yz-LX3" firstAttribute="centerY" secondItem="Uuy-Nk-fVG" secondAttribute="centerY" id="2Ya-Sc-Ibc"/>
+                                        <constraint firstItem="fPI-4n-MuU" firstAttribute="top" secondItem="Nkf-62-4zk" secondAttribute="bottom" constant="14" id="5OG-Qp-I24"/>
+                                        <constraint firstItem="QDI-g9-Pmj" firstAttribute="top" secondItem="X8G-yz-LX3" secondAttribute="bottom" constant="32" id="5PL-0n-7bh"/>
+                                        <constraint firstItem="58n-sI-4xx" firstAttribute="centerY" secondItem="drK-Sh-NzH" secondAttribute="centerY" id="79z-RU-bUO"/>
+                                        <constraint firstItem="hYN-KL-fiW" firstAttribute="top" secondItem="drK-Sh-NzH" secondAttribute="top" id="7KH-m6-Tpv"/>
+                                        <constraint firstItem="hYN-KL-fiW" firstAttribute="bottom" secondItem="drK-Sh-NzH" secondAttribute="bottom" id="8Rr-cM-sBt"/>
+                                        <constraint firstItem="Nkf-62-4zk" firstAttribute="centerX" secondItem="o18-Mn-qLu" secondAttribute="centerX" id="Cro-uW-T6s"/>
+                                        <constraint firstItem="drK-Sh-NzH" firstAttribute="leading" secondItem="lUd-Bi-JQT" secondAttribute="trailing" constant="8" id="E52-ib-kqD"/>
+                                        <constraint firstItem="f5c-8u-2bi" firstAttribute="centerX" secondItem="o18-Mn-qLu" secondAttribute="centerX" id="Eel-lY-OY1"/>
+                                        <constraint firstItem="X8G-yz-LX3" firstAttribute="leading" secondItem="Uuy-Nk-fVG" secondAttribute="trailing" constant="12" id="FUc-b7-ddO"/>
+                                        <constraint firstItem="X8G-yz-LX3" firstAttribute="bottom" secondItem="hYN-KL-fiW" secondAttribute="bottom" id="GpH-QJ-s1U"/>
+                                        <constraint firstAttribute="trailing" secondItem="Nkf-62-4zk" secondAttribute="trailing" constant="40" id="Gu0-Nl-qSs"/>
+                                        <constraint firstItem="58n-sI-4xx" firstAttribute="leading" secondItem="drK-Sh-NzH" secondAttribute="trailing" constant="8" id="IFQ-8s-6iN"/>
+                                        <constraint firstItem="Nkf-62-4zk" firstAttribute="leading" secondItem="o18-Mn-qLu" secondAttribute="leading" constant="40" id="J4l-aA-wIJ"/>
+                                        <constraint firstItem="fPI-4n-MuU" firstAttribute="trailing" secondItem="Nkf-62-4zk" secondAttribute="trailing" id="MjP-ai-bln"/>
+                                        <constraint firstItem="drK-Sh-NzH" firstAttribute="centerY" secondItem="lUd-Bi-JQT" secondAttribute="centerY" id="TTX-eU-anW"/>
+                                        <constraint firstItem="X8G-yz-LX3" firstAttribute="top" secondItem="hYN-KL-fiW" secondAttribute="top" id="Yop-0r-oYT"/>
+                                        <constraint firstItem="Uuy-Nk-fVG" firstAttribute="centerY" secondItem="hYN-KL-fiW" secondAttribute="centerY" id="Z1N-2e-P14"/>
+                                        <constraint firstItem="drK-Sh-NzH" firstAttribute="top" secondItem="lUd-Bi-JQT" secondAttribute="top" id="Z8w-4F-faW"/>
+                                        <constraint firstItem="lUd-Bi-JQT" firstAttribute="top" secondItem="fPI-4n-MuU" secondAttribute="bottom" constant="8" id="b2b-Vu-0a6"/>
+                                        <constraint firstItem="hYN-KL-fiW" firstAttribute="leading" secondItem="58n-sI-4xx" secondAttribute="trailing" constant="8" id="cOf-Bd-JO6"/>
+                                        <constraint firstItem="QDI-g9-Pmj" firstAttribute="leading" secondItem="fPI-4n-MuU" secondAttribute="leading" id="fJM-Lg-dek"/>
+                                        <constraint firstItem="Uuy-Nk-fVG" firstAttribute="leading" secondItem="hYN-KL-fiW" secondAttribute="trailing" constant="8" id="fKL-AM-emk"/>
+                                        <constraint firstItem="fPI-4n-MuU" firstAttribute="leading" secondItem="Nkf-62-4zk" secondAttribute="leading" id="gec-BI-TWD"/>
+                                        <constraint firstItem="Uuy-Nk-fVG" firstAttribute="width" secondItem="Uuy-Nk-fVG" secondAttribute="height" multiplier="1:1" id="i1J-IQ-Tfo"/>
+                                        <constraint firstItem="f5c-8u-2bi" firstAttribute="top" secondItem="o18-Mn-qLu" secondAttribute="top" constant="28" id="ick-k5-xJd"/>
+                                        <constraint firstAttribute="bottom" secondItem="QDI-g9-Pmj" secondAttribute="bottom" constant="32" id="kbZ-u0-c6F"/>
+                                        <constraint firstItem="drK-Sh-NzH" firstAttribute="bottom" secondItem="lUd-Bi-JQT" secondAttribute="bottom" id="kbw-nK-a7L"/>
+                                        <constraint firstItem="QDI-g9-Pmj" firstAttribute="trailing" secondItem="fPI-4n-MuU" secondAttribute="trailing" id="niL-5D-jJw"/>
+                                        <constraint firstItem="hYN-KL-fiW" firstAttribute="centerY" secondItem="drK-Sh-NzH" secondAttribute="centerY" id="od9-gn-TSd"/>
+                                        <constraint firstItem="Nkf-62-4zk" firstAttribute="top" secondItem="f5c-8u-2bi" secondAttribute="bottom" constant="14" id="sYX-vG-8Fq"/>
+                                        <constraint firstItem="hYN-KL-fiW" firstAttribute="centerX" secondItem="fPI-4n-MuU" secondAttribute="centerX" id="yld-t9-R7o"/>
+                                    </constraints>
+                                </view>
+                                <color key="fillColor" name="Body"/>
+                            </box>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Six-Vj-bF5" secondAttribute="trailing" id="U8U-F7-hN1"/>
+                            <constraint firstAttribute="bottom" secondItem="Six-Vj-bF5" secondAttribute="bottom" id="cDA-da-WpH"/>
+                            <constraint firstItem="Six-Vj-bF5" firstAttribute="leading" secondItem="gh6-j6-3hc" secondAttribute="leading" id="cbx-Eg-3DS"/>
+                            <constraint firstItem="Six-Vj-bF5" firstAttribute="top" secondItem="gh6-j6-3hc" secondAttribute="top" id="fxI-NV-Gwb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="bVu-IZ-rdl" id="5Lz-Qc-pie"/>
+                        <outlet property="dotView" destination="58n-sI-4xx" id="dIK-TL-fNU"/>
+                        <outlet property="dotView2" destination="Uuy-Nk-fVG" id="scj-oi-EyT"/>
+                        <outlet property="episodeTitleLabel" destination="fPI-4n-MuU" id="M5r-Lp-lqi"/>
+                        <outlet property="mediaTypeDescriptionLabel" destination="drK-Sh-NzH" id="WQv-Ox-eHr"/>
+                        <outlet property="mediaTypeImageView" destination="lUd-Bi-JQT" id="UFg-W5-lZd"/>
+                        <outlet property="podcastDetailImageView" destination="f5c-8u-2bi" id="hba-lX-6Wt"/>
+                        <outlet property="podcastTitleLabel" destination="Nkf-62-4zk" id="LEc-nN-Z6T"/>
+                        <outlet property="publishedDateLabel" destination="hYN-KL-fiW" id="hko-1K-iPj"/>
+                        <outlet property="timeRemainingLabel" destination="X8G-yz-LX3" id="xeF-pA-xcK"/>
+                    </connections>
+                </viewController>
+                <customObject id="YUp-T1-bsC" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1357.5" y="-29"/>
         </scene>
     </scenes>
     <resources>
+        <image name="podcastTypeIcon" width="32" height="32"/>
+        <image name="sphinxTagIcon" width="44" height="44"/>
+        <namedColor name="Body">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="HeaderBG">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="LightDivider">
             <color red="0.86274509803921573" green="0.8784313725490196" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SecondaryText">
+            <color red="0.55686274509803924" green="0.58823529411764708" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextMessages">
+            <color red="0.11764705882352941" green="0.12156862745098039" blue="0.14509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
