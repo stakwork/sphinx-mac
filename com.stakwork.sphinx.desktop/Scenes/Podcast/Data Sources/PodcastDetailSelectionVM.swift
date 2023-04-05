@@ -13,19 +13,27 @@ import Cocoa
 class PodcastDetailSelectionVM : NSObject{
     
     weak var collectionView : NSCollectionView?
-    weak var vc: PodcastDetailSelectionVC?
+    
+    var delegate : PodcastDetailSelectionVCDelegate!
+    var episode:PodcastEpisode!
+    
     let kCellHeight = 64.0
     
     func getActionsList() -> [FeedItemActionType] {
         return [
             .share,
-            (vc?.episode.wasPlayed ?? false) ? .markAsUnplayed : .markAsPlayed
+            episode.wasPlayed ? .markAsUnplayed : .markAsPlayed
         ]
     }
     
-    init(collectionView: NSCollectionView, vc: PodcastDetailSelectionVC) {
+    init(
+        collectionView: NSCollectionView,
+        episode:PodcastEpisode,
+        delegate: PodcastDetailSelectionVCDelegate
+    ) {
+        self.episode = episode
         self.collectionView = collectionView
-        self.vc = vc
+        self.delegate = delegate
     }
     
     func setupCollectionView(){
@@ -37,19 +45,16 @@ class PodcastDetailSelectionVM : NSObject{
     func handleAction(action:FeedItemActionType){
         switch(action){
         case .share:
-            if let valid_vc = vc?.delegate as? PodcastDetailSelectionVCDelegate {
-                valid_vc.shareButtonTapped(self)
+            if let delegate = delegate {
+                delegate.shareButtonTapped(self)
             }
             break
-        case .markAsPlayed:
-            if let valid_vc = vc?.delegate as? PodcastDetailSelectionVCDelegate {
-                valid_vc.toggleWasPlayed()
-                self.collectionView?.reloadData()
-            }
-            break
-        case .markAsUnplayed:
-            if let valid_vc = vc?.delegate as? PodcastDetailSelectionVCDelegate {
-                valid_vc.toggleWasPlayed()
+        case .markAsPlayed, .markAsUnplayed:
+            if let delegate = delegate {
+                episode.wasPlayed = !episode.wasPlayed
+                
+                delegate.shouldReloadList()
+                
                 self.collectionView?.reloadData()
             }
             break
