@@ -202,7 +202,7 @@ class DashboardViewController: NSViewController {
         if success == false{
             //throw error
             print("Error opening content deeplink")
-            AlertHelper.showAlert(title: "deeplink.issue.title", message: "deeplink.issue.message")
+            AlertHelper.showAlert(title: "deeplink.issue.title".localized, message: "deeplink.issue.message".localized)
         }
     }
     func createInvoice(n: Notification) {
