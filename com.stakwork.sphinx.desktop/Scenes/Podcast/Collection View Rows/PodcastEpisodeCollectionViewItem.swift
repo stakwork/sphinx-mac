@@ -12,7 +12,7 @@ protocol PodcastEpisodeCollectionViewItemDelegate{
     func episodeShareTapped(episode:PodcastEpisode)
 }
 
-class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
+class PodcastEpisodeCollectionViewItem: NSCollectionViewItem, PodcastDetailSelectionVCDelegate {
 
     @IBOutlet weak var playArrowBack: NSBox!
     @IBOutlet weak var playArrow: NSTextField!
@@ -148,11 +148,6 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem {
             )
         }
     }
-    
-}
-
-extension PodcastEpisodeCollectionViewItem : PodcastDetailSelectionVCDelegate{
-    
     
 }
 

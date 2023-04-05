@@ -10,7 +10,8 @@ import Foundation
 import Cocoa
 
 protocol PodcastDetailSelectionVCDelegate{
-    
+    func shareButtonTapped(_ sender: Any)
+    func toggleWasPlayed()
 }
 
 class PodcastDetailSelectionVC : NSViewController{

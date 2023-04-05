@@ -14,9 +14,9 @@ class PodcastDetailSelectionVM : NSObject{
     
     weak var collectionView : NSCollectionView?
     weak var vc: PodcastDetailSelectionVC?
-    let kCellHeight = 63.0
+    let kCellHeight = 64.0
     
-    func getActionsList()->[FeedItemActionType]{
+    func getActionsList() -> [FeedItemActionType] {
         return [
             .share,
             (vc?.episode.wasPlayed ?? false) ? .markAsUnplayed : .markAsPlayed
@@ -37,18 +37,18 @@ class PodcastDetailSelectionVM : NSObject{
     func handleAction(action:FeedItemActionType){
         switch(action){
         case .share:
-            if let valid_vc = vc?.delegate as? PodcastEpisodeCollectionViewItem {
+            if let valid_vc = vc?.delegate as? PodcastDetailSelectionVCDelegate {
                 valid_vc.shareButtonTapped(self)
             }
             break
         case .markAsPlayed:
-            if let valid_vc = vc?.delegate as? PodcastEpisodeCollectionViewItem {
+            if let valid_vc = vc?.delegate as? PodcastDetailSelectionVCDelegate {
                 valid_vc.toggleWasPlayed()
                 self.collectionView?.reloadData()
             }
             break
         case .markAsUnplayed:
-            if let valid_vc = vc?.delegate as? PodcastEpisodeCollectionViewItem {
+            if let valid_vc = vc?.delegate as? PodcastDetailSelectionVCDelegate {
                 valid_vc.toggleWasPlayed()
                 self.collectionView?.reloadData()
             }
@@ -66,10 +66,7 @@ extension PodcastDetailSelectionVM : NSCollectionViewDataSource,NSCollectionView
     }
     
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-        let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PodcastDetailActionCell"), for: indexPath) as! PodcastDetailActionCell
-        item.configureView(type: getActionsList()[indexPath.item])
-        
-        return item
+        return collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PodcastDetailActionCell"), for: indexPath) as! PodcastDetailActionCell
     }
     
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
@@ -79,6 +76,12 @@ extension PodcastDetailSelectionVM : NSCollectionViewDataSource,NSCollectionView
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
         if let indexPath = indexPaths.first {
             handleAction(action: getActionsList()[indexPath.item])
+        }
+    }
+    
+    func collectionView(_ collectionView: NSCollectionView, willDisplay item: NSCollectionViewItem, forRepresentedObjectAt indexPath: IndexPath) {
+        if let item = item as? PodcastDetailActionCell {
+            item.configureView(type: getActionsList()[indexPath.item])
         }
     }
     

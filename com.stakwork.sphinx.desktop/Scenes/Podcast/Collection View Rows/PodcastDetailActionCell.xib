@@ -43,7 +43,7 @@
                 <box translatesAutoresizingMaskIntoConstraints="NO" id="8qE-xa-ZeC">
                     <rect key="frame" x="5" y="-3" width="312" height="4"/>
                     <view key="contentView" id="bO5-c0-Kq2">
-                        <rect key="frame" x="4" y="-3" width="304" height="0.0"/>
+                        <rect key="frame" x="3" y="-4" width="306" height="0.0"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
                     <constraints>
@@ -59,6 +59,7 @@
                 <constraint firstAttribute="bottom" secondItem="8qE-xa-ZeC" secondAttribute="bottom" constant="1" id="Vg8-cU-JQP"/>
                 <constraint firstItem="DYz-FH-2qx" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="Y5a-qO-swT"/>
                 <constraint firstItem="jbI-X3-TlI" firstAttribute="leading" secondItem="DYz-FH-2qx" secondAttribute="trailing" constant="27" id="hqQ-N9-HcF"/>
+                <constraint firstItem="8qE-xa-ZeC" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="63" id="wqa-xQ-knb"/>
                 <constraint firstItem="DYz-FH-2qx" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="32" id="zNc-R0-1In"/>
             </constraints>
             <point key="canvasLocation" x="-82" y="135.5"/>
