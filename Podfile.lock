@@ -7,6 +7,7 @@ PODS:
   - SDWebImage (5.15.5):
     - SDWebImage/Core (= 5.15.5)
   - SDWebImage/Core (5.15.5)
+  - Sourceful (0.2.0)
   - Starscream (3.1.1)
   - SwiftLinkPreview (3.1.0)
   - SwiftyJSON (5.0.1)
@@ -19,6 +20,7 @@ DEPENDENCIES:
   - ReachabilitySwift
   - RNCryptor (~> 5.0)
   - SDWebImage (~> 5.15)
+  - Sourceful (~> 0.2)
   - Starscream (~> 3.1)
   - SwiftLinkPreview (~> 3.1.0)
   - SwiftyJSON
@@ -32,6 +34,7 @@ SPEC REPOS:
     - ReachabilitySwift
     - RNCryptor
     - SDWebImage
+    - Sourceful
     - Starscream
     - SwiftLinkPreview
     - SwiftyJSON
@@ -47,11 +50,12 @@ SPEC CHECKSUMS:
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   RNCryptor: a369134686cd2ad391323cc856b62e591193ba79
   SDWebImage: fd7e1a22f00303e058058278639bf6196ee431fe
+  Sourceful: f514447f2ee886f238face3ce8e8b5648c0dc365
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SwiftLinkPreview: 3d924eeaae8d17410a827a4b37675713af1a0a8a
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   Tor: fad2cec0e7ef5f889fecdaf69e5edd6df0438326
 
-PODFILE CHECKSUM: 224c989cd8689feb2a7777f7f37e4bd3caf53c52
+PODFILE CHECKSUM: b29096a6d2beb06ab8538c8a151f0346351a2be2
 
 COCOAPODS: 1.11.3

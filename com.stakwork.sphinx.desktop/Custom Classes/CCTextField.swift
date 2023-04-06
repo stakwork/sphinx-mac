@@ -17,6 +17,7 @@ class CCTextField: NSTextField {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         customizeCaretColor()
     }
     
@@ -32,11 +33,13 @@ class CCTextField: NSTextField {
     
     override func becomeFirstResponder() -> Bool {
         customizeCaretColor()
+        
         return super.becomeFirstResponder()
     }
     
     override func resignFirstResponder() -> Bool {
         onFocusChange(true)
+        
         return super.resignFirstResponder()
     }
 }

@@ -67,6 +67,7 @@ class MessageBubbleView: CommonBubbleView {
     }
     
     public static func getLabel(maxWidth: CGFloat? = nil, height: CGFloat? = nil, textColorAndFont: (String, NSColor, NSFont)) -> (NSTextField, CGSize) {
+        
         let label = MessageTextField()
         label.setColor(color: NSColor.getTextSelectionColor())
         label.isBordered = false

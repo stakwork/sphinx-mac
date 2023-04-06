@@ -8,6 +8,7 @@
 
 import Cocoa
 import CoreData
+import Sourceful
 
 class ChatViewController: DashboardSplittedViewController {
     
@@ -62,9 +63,7 @@ class ChatViewController: DashboardSplittedViewController {
     @IBOutlet weak var avatarWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomBarHeightConstraint: NSLayoutConstraint!
     
-    
     @IBOutlet weak var mentionScrollViewHeight: NSLayoutConstraint!
-    
     
     @IBOutlet weak var mentionAutoCompleteEnclosingScrollView: NSScrollView!
     @IBOutlet weak var mentionAutoCompleteTableView: NSCollectionView!
@@ -110,6 +109,7 @@ class ChatViewController: DashboardSplittedViewController {
     
     var podcastPlayerVC: NewPodcastPlayerViewController? = nil
     
+    let lexer = SwiftLexer()
     
     public enum RecordingButton: Int {
         case Confirm
@@ -118,6 +118,34 @@ class ChatViewController: DashboardSplittedViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let view = NSView.init(frame: NSRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width, height: self.view.frame.height)))
+        view.wantsLayer = true
+        view.layer?.backgroundColor = NSColor.black.cgColor
+        
+        let syntaxTextView = SyntaxTextView(frame: NSRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width, height: self.view.frame.height)))
+        
+        syntaxTextView.theme = DarkTheme()
+        syntaxTextView.text = """
+        This is a message with code in it
+        
+        override func viewDidAppear() {
+            super.viewDidAppear()
+            chatDataSource?.setDelegates(self)
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(self.setChatInfo), name: .shouldReloadTribeData, object: nil)
+        }
+        1387612387
+        
+        And this is a normal text
+        """
+        syntaxTextView.delegate = self
+        
+        view.addSubview(syntaxTextView)
+        
+        self.view.addSubview(view)
+        
+        
         
         self.mentionAutoCompleteEnclosingScrollView.isHidden = true
         configureView()
@@ -561,5 +589,51 @@ class ChatViewController: DashboardSplittedViewController {
             let chatDetailsVC = GroupDetailsViewController.instantiate(chat: chat, delegate: self)
             WindowsManager.sharedInstance.showContactWindow(vc: chatDetailsVC, window: view.window, title: "group.details".localized, identifier: "chat-window", size: CGSize(width: 414, height: 600))
         }
+    }
+}
+
+public struct DarkTheme: SourceCodeTheme {
+    
+    public var lineNumbersStyle: LineNumbersStyle? = LineNumbersStyle(font: Constants.kMessageFont, textColor: Color.lightGray)
+    
+    public let gutterStyle: GutterStyle = GutterStyle(backgroundColor: Color(white: 0.15, alpha: 1), minimumWidth: 32)
+
+    public let backgroundColor = NSColor.Sphinx.ReceivedMsgBG
+    public let font = Constants.kMessageFont
+
+    public func globalAttributes() -> [NSAttributedString.Key: Any] {
+        return [.font: Constants.kMessageFont, .foregroundColor: Constants.kMessageTextColor]
+    }
+
+    public func color(for syntaxColorType: SourceCodeTokenType) -> Color {
+        switch syntaxColorType {
+        case .plain:
+            return .white
+
+        case .number:
+            return Color(red: 150/255, green: 134/255, blue: 245/255, alpha: 1.0)
+
+        case .string:
+            return Color(red: 252/255, green: 106/255, blue: 93/255, alpha: 1.0)
+
+        case .identifier:
+            return Color(red: 122/255, green: 200/255, blue: 182/255, alpha: 1.0)
+
+        case .keyword:
+            return Color(red: 252/255, green: 95/255, blue: 163/255, alpha: 1.0)
+
+        case .comment:
+            return Color(red: 108/255, green: 121/255, blue: 134/255, alpha: 1.0)
+
+        case .editorPlaceholder:
+            return backgroundColor
+        }
+    }
+}
+
+extension ChatViewController: SyntaxTextViewDelegate {
+    /// Send back our Swift lexer for this source code.
+    func lexerForSource(_ source: String) -> Lexer {
+        return lexer
     }
 }
