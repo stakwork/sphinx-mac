@@ -52,6 +52,7 @@ class WebAppViewController: NSViewController {
     func addWebView() {
         let configuration = WKWebViewConfiguration()
         configuration.userContentController.add(webAppHelper, name: webAppHelper.messageHandler)
+        
         let rect = CGRect(x: 0, y: 0, width: 700, height: 500)
         webView = WKWebView(frame: rect, configuration: configuration)
         webView.customUserAgent = "Sphinx"
@@ -85,7 +86,7 @@ class WebAppViewController: NSViewController {
         }
         
         if let url = URL(string: url) {
-            let request = URLRequest(url: url)
+            let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 10)
             webView.load(request)
         }
     }
