@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Display InvoiceVC-->
+        <scene sceneID="PEd-7d-5j0">
+            <objects>
+                <viewController storyboardIdentifier="DisplayInvoiceVC" id="bU7-R8-ocO" customClass="DisplayInvoiceVC" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="tOy-S4-hL0">
+                        <rect key="frame" x="0.0" y="0.0" width="532" height="676"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gc5-Pf-cC8">
+                                <rect key="frame" x="116" y="298" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="6Ch-GV-jHV"/>
+                                    <constraint firstAttribute="width" secondItem="gc5-Pf-cC8" secondAttribute="height" multiplier="1:1" id="x5U-Rh-D6r"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="extraIcon" id="066-dH-VQL"/>
+                            </imageView>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ga3-U6-LIS">
+                                <rect key="frame" x="114" y="606" width="304" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="mOS-ut-vt9"/>
+                                </constraints>
+                                <textFieldCell key="cell" alignment="center" title="Receive Invoice Details" id="f1b-6R-thb">
+                                    <font key="font" size="28" name="Roboto-Regular"/>
+                                    <color key="textColor" name="TextMessages"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LId-FC-mhF">
+                                <rect key="frame" x="114" y="233" width="304" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="SSw-kD-TJa"/>
+                                </constraints>
+                                <textFieldCell key="cell" alignment="center" title="Receive Invoice Details" id="wNu-2z-sZt">
+                                    <font key="font" size="12" name="Roboto-Regular"/>
+                                    <color key="textColor" name="TextMessages"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="qkc-tl-sN7">
+                                <rect key="frame" x="99" y="158" width="334" height="60"/>
+                                <subviews>
+                                    <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="30" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="nLs-qO-HLu">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="60"/>
+                                        <view key="contentView" id="BB7-Ls-jUL">
+                                            <rect key="frame" x="0.0" y="0.0" width="334" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                        <color key="fillColor" name="PrimaryBlue"/>
+                                    </box>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lzg-8d-AWU">
+                                        <rect key="frame" x="290" y="19" width="26" height="22"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="photo" id="4Fo-tq-oPZ">
+                                            <font key="font" size="22" name="MaterialIcons-Regular"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2KP-Os-n7a" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="C8q-sB-UVN"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="square" title="Copy QR Code Image" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="dy9-Sq-zAd" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" size="17" name="Roboto-Regular"/>
+                                        </buttonCell>
+                                        <color key="contentTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="2KP-Os-n7a" secondAttribute="bottom" id="0HD-BQ-KeN"/>
+                                    <constraint firstAttribute="trailing" secondItem="lzg-8d-AWU" secondAttribute="trailing" constant="20" id="5HJ-3m-aUQ"/>
+                                    <constraint firstItem="lzg-8d-AWU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qkc-tl-sN7" secondAttribute="leading" constant="20" symbolic="YES" id="8RC-Yg-dRg"/>
+                                    <constraint firstAttribute="height" constant="60" id="Cza-sH-rcE"/>
+                                    <constraint firstItem="lzg-8d-AWU" firstAttribute="centerY" secondItem="qkc-tl-sN7" secondAttribute="centerY" id="IKn-1v-2Pt"/>
+                                    <constraint firstItem="nLs-qO-HLu" firstAttribute="leading" secondItem="qkc-tl-sN7" secondAttribute="leading" id="ZQe-cu-mkp"/>
+                                    <constraint firstAttribute="bottom" secondItem="nLs-qO-HLu" secondAttribute="bottom" id="gMk-4D-JfG"/>
+                                    <constraint firstAttribute="trailing" secondItem="2KP-Os-n7a" secondAttribute="trailing" id="hX3-AX-Z4b"/>
+                                    <constraint firstAttribute="trailing" secondItem="nLs-qO-HLu" secondAttribute="trailing" id="kvs-bt-B71"/>
+                                    <constraint firstItem="2KP-Os-n7a" firstAttribute="leading" secondItem="qkc-tl-sN7" secondAttribute="leading" id="oTC-69-H06"/>
+                                    <constraint firstItem="nLs-qO-HLu" firstAttribute="top" secondItem="qkc-tl-sN7" secondAttribute="top" id="qLy-BQ-oeA"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="600" id="uSu-LC-7h8"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="4HU-9Q-GFs">
+                                <rect key="frame" x="99" y="86" width="334" height="60"/>
+                                <subviews>
+                                    <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="30" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="4yu-P3-6nx">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="60"/>
+                                        <view key="contentView" id="1c7-Sg-svb">
+                                            <rect key="frame" x="0.0" y="0.0" width="334" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                        <color key="fillColor" name="PrimaryBlue"/>
+                                    </box>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6FC-1p-n81">
+                                        <rect key="frame" x="290" y="19" width="26" height="22"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="content_copy" id="EGe-As-lHQ">
+                                            <font key="font" size="22" name="MaterialIcons-Regular"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3v4-1V-GE0" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="ZEZ-Ys-4P4"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="square" title="Copy Invoice String" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="tA6-sn-INu" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" size="17" name="Roboto-Regular"/>
+                                        </buttonCell>
+                                        <color key="contentTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="4yu-P3-6nx" firstAttribute="leading" secondItem="4HU-9Q-GFs" secondAttribute="leading" id="BtF-ry-TsD"/>
+                                    <constraint firstItem="3v4-1V-GE0" firstAttribute="leading" secondItem="4HU-9Q-GFs" secondAttribute="leading" id="DeK-0m-xNi"/>
+                                    <constraint firstAttribute="height" constant="60" id="M54-JU-ijS"/>
+                                    <constraint firstAttribute="trailing" secondItem="4yu-P3-6nx" secondAttribute="trailing" id="MPx-Qw-UPc"/>
+                                    <constraint firstItem="6FC-1p-n81" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4HU-9Q-GFs" secondAttribute="leading" constant="20" symbolic="YES" id="PKD-ib-0eD"/>
+                                    <constraint firstItem="6FC-1p-n81" firstAttribute="centerY" secondItem="4HU-9Q-GFs" secondAttribute="centerY" id="PYc-6z-rTJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="3v4-1V-GE0" secondAttribute="trailing" id="TTS-p8-X4R"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="600" id="aV3-sh-p9D"/>
+                                    <constraint firstAttribute="bottom" secondItem="3v4-1V-GE0" secondAttribute="bottom" id="cl0-9K-2a5"/>
+                                    <constraint firstAttribute="trailing" secondItem="6FC-1p-n81" secondAttribute="trailing" constant="20" id="lFj-BQ-zd4"/>
+                                    <constraint firstItem="4yu-P3-6nx" firstAttribute="top" secondItem="4HU-9Q-GFs" secondAttribute="top" id="x1z-rj-Bd8"/>
+                                    <constraint firstAttribute="bottom" secondItem="4yu-P3-6nx" secondAttribute="bottom" id="xTW-CX-y4M"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="gc5-Pf-cC8" firstAttribute="centerX" secondItem="tOy-S4-hL0" secondAttribute="centerX" id="4Ok-Nh-K7W"/>
+                            <constraint firstItem="ga3-U6-LIS" firstAttribute="centerX" secondItem="gc5-Pf-cC8" secondAttribute="centerX" id="7fD-nn-Hd8"/>
+                            <constraint firstItem="gc5-Pf-cC8" firstAttribute="leading" secondItem="ga3-U6-LIS" secondAttribute="leading" id="MaL-64-vGN"/>
+                            <constraint firstItem="LId-FC-mhF" firstAttribute="trailing" secondItem="gc5-Pf-cC8" secondAttribute="trailing" id="ayp-O5-xIx"/>
+                            <constraint firstItem="qkc-tl-sN7" firstAttribute="leading" secondItem="tOy-S4-hL0" secondAttribute="leading" constant="99" id="cLL-t8-SP9"/>
+                            <constraint firstItem="gc5-Pf-cC8" firstAttribute="leading" secondItem="tOy-S4-hL0" secondAttribute="leading" constant="116" id="ghu-DA-n0n"/>
+                            <constraint firstItem="4HU-9Q-GFs" firstAttribute="top" secondItem="2KP-Os-n7a" secondAttribute="bottom" constant="12" id="jEw-LF-Jbd"/>
+                            <constraint firstItem="qkc-tl-sN7" firstAttribute="top" secondItem="LId-FC-mhF" secondAttribute="bottom" constant="15" id="k3X-5K-JBY"/>
+                            <constraint firstItem="4HU-9Q-GFs" firstAttribute="leading" secondItem="qkc-tl-sN7" secondAttribute="leading" id="m1G-uC-0YE"/>
+                            <constraint firstItem="ga3-U6-LIS" firstAttribute="top" secondItem="tOy-S4-hL0" secondAttribute="top" constant="22" id="n59-FQ-Wju"/>
+                            <constraint firstItem="LId-FC-mhF" firstAttribute="top" secondItem="gc5-Pf-cC8" secondAttribute="bottom" constant="17" id="oII-BV-O6G"/>
+                            <constraint firstItem="LId-FC-mhF" firstAttribute="leading" secondItem="gc5-Pf-cC8" secondAttribute="leading" id="s8D-Bs-B7R"/>
+                            <constraint firstItem="gc5-Pf-cC8" firstAttribute="top" secondItem="ga3-U6-LIS" secondAttribute="bottom" constant="8" id="sfr-iW-2pc"/>
+                            <constraint firstItem="qkc-tl-sN7" firstAttribute="centerX" secondItem="tOy-S4-hL0" secondAttribute="centerX" id="trN-sl-Ybg"/>
+                            <constraint firstItem="4HU-9Q-GFs" firstAttribute="trailing" secondItem="qkc-tl-sN7" secondAttribute="trailing" id="ze1-tF-laI"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="invoiceStringDisplay" destination="LId-FC-mhF" id="5gR-m7-gEW"/>
+                        <outlet property="qrCodeImageView" destination="gc5-Pf-cC8" id="xLI-pn-ZcM"/>
+                        <outlet property="receiveInvoiceTitle" destination="ga3-U6-LIS" id="LYh-Cm-UrD"/>
+                        <outlet property="shareInvoiceStringButton" destination="4HU-9Q-GFs" id="oxL-j8-Xjw"/>
+                        <outlet property="shareQRImageButton" destination="qkc-tl-sN7" id="rtu-xT-I8M"/>
+                    </connections>
+                </viewController>
+                <customObject id="9uD-mB-xHs" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="67" y="129"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="extraIcon" width="100" height="100"/>
+        <namedColor name="PrimaryBlue">
+            <color red="0.38039215686274508" green="0.54117647058823526" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextMessages">
+            <color red="0.11764705882352941" green="0.12156862745098039" blue="0.14509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

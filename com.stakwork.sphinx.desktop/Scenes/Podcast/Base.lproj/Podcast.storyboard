@@ -116,7 +116,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lUd-Bi-JQT">
-                                            <rect key="frame" x="68" y="307" width="16" height="16"/>
+                                            <rect key="frame" x="69" y="307" width="16" height="16"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="16" id="G1G-FI-ApZ"/>
                                                 <constraint firstAttribute="width" secondItem="lUd-Bi-JQT" secondAttribute="height" multiplier="1:1" id="cpy-pU-LHg"/>
@@ -124,7 +124,7 @@
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="podcastTypeIcon" id="xtz-5t-S8x"/>
                                         </imageView>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="drK-Sh-NzH">
-                                            <rect key="frame" x="90" y="307" width="57" height="16"/>
+                                            <rect key="frame" x="91" y="307" width="56" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Podcast" id="MVV-49-9oR">
                                                 <font key="font" size="13" name="Roboto-Regular"/>
                                                 <color key="textColor" name="SecondaryText"/>
@@ -180,7 +180,7 @@
                                             </scroller>
                                         </scrollView>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X8G-yz-LX3">
-                                            <rect key="frame" x="259" y="307" width="81" height="16"/>
+                                            <rect key="frame" x="259" y="307" width="80" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="2 hrs 19 min" id="hDR-lb-cSy">
                                                 <font key="font" size="13" name="Roboto-Regular"/>
                                                 <color key="textColor" name="SecondaryText"/>

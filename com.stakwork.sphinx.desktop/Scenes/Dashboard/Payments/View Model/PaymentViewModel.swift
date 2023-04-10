@@ -131,7 +131,7 @@ class PaymentViewModel : NSObject {
         })
     }
     
-    func shouldCreateInvoice(callback: @escaping (TransactionMessage) -> (), errorCallback: @escaping (String?) -> ()) {
+    func shouldCreateInvoice(callback: @escaping (TransactionMessage?,String?) -> (), shouldDisplayAsQR:Bool=false, errorCallback: @escaping (String?) -> ()) {
         if !validateInvoice() {
             errorCallback("memo.too.large".localized)
             return
@@ -143,9 +143,13 @@ class PaymentViewModel : NSObject {
             if let message = message {
                 let (messageObject, success) = self.createLocalMessages(message: message)
                 if let messageObject = messageObject, success {
-                    callback(messageObject)
+                    callback(messageObject,nil)
                     return
                 }
+            }
+            else if let invoice = invoice{
+                callback(nil,invoice)
+                return
             }
             errorCallback(nil)
         }, errorCallback: {

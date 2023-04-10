@@ -31,6 +31,7 @@ extension ChatListViewController {
     
     func listenForNotifications() {
         healthCheckView.listenForEvents()
+        balanceLabel.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(handleBalanceClick)))
         
         NotificationCenter.default.addObserver(forName: .onBalanceDidChange, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
             self?.updateBalance()
@@ -52,6 +53,61 @@ extension ChatListViewController {
         searchField?.stringValue = ""
         NotificationCenter.default.post(name: NSControl.textDidChangeNotification, object: searchField)
     }
+    
+    @objc func handleBalanceClick(){
+        print("balance tapped")
+        
+        let vc = CreateInvoiceViewController.instantiate(childVCDelegate: self, viewModel: PaymentViewModel(mode: .Request), delegate: self)
+        WindowsManager.sharedInstance.showContactWindow(vc: vc, window: view.window, title: "Manage Payments", identifier: "invoice-management-window", size: CGSize(width: 414, height: 600))
+        
+    }
+}
+
+extension ChatListViewController : ChildVCDelegate,ActionsDelegate{
+    
+    func handleInvoiceCreation(invoice:String){
+        WindowsManager.sharedInstance.closeIfExists(identifier: "invoice-management-window")
+        let vc = DisplayInvoiceVC.instantiate(qrCodeString: invoice)
+        WindowsManager.sharedInstance.showContactWindow(vc: vc, window: view.window, title: "Manage Payments", identifier: "invoice-management-window", size: CGSize(width: 414, height: 650))
+    }
+    
+    func didCreateMessage(message: TransactionMessage) {
+        
+    }
+    
+    func didFailInvoiceOrPayment() {
+        
+    }
+    
+    func shouldCreateCall(mode: VideoCallHelper.CallMode) {
+        
+    }
+    
+    func shouldSendPaymentFor(paymentObject: PaymentViewModel.PaymentObject, callback: ((Bool) -> ())?) {
+        
+    }
+    
+    func shouldReloadMuteState() {
+        
+    }
+    
+    func shouldDimiss() {
+        
+    }
+    
+    func shouldGoForward(paymentViewModel: PaymentViewModel) {
+        
+    }
+    
+    func shouldGoBack(paymentViewModel: PaymentViewModel) {
+        
+    }
+    
+    func shouldSendPaymentFor(paymentObject: PaymentViewModel.PaymentObject) {
+        
+    }
+    
+    
 }
 
 extension ChatListViewController : ChatListDataSourceDelegate {

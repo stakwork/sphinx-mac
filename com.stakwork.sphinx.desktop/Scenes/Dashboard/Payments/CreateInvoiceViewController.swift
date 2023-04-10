@@ -42,8 +42,14 @@ class CreateInvoiceViewController : PaymentInvoiceFormViewController {
     }
     
     func createPaymentRequest() {
-        paymentViewModel.shouldCreateInvoice(callback: { message in
-            self.didCreateMessage(message: message)
+        paymentViewModel.shouldCreateInvoice(callback: { message,invoice in
+            if let message = message{
+                self.didCreateMessage(message: message)
+            }
+            else if let invoice = invoice{
+                print(invoice)
+                self.handleInvoiceCreation(invoice: invoice)
+            }
         }, errorCallback: { errorMessage in
             self.paymentView.loading = false
             self.didFailWith(message: errorMessage)

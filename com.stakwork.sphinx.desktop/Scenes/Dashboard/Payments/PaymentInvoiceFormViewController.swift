@@ -54,6 +54,12 @@ class PaymentInvoiceFormViewController: NSViewController {
     func performConfirmAction() {}
     
     func saveMessage(message: String) {}
+    
+    func handleInvoiceCreation(invoice:String){
+        if let delegate = delegate as? ChatListViewController{
+            delegate.handleInvoiceCreation(invoice: invoice)
+        }
+    }
 }
 
 extension PaymentInvoiceFormViewController : CommonPaymentViewDelegate {
