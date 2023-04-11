@@ -62,19 +62,18 @@ extension ChatListViewController {
         
     }
     
-    @objc func handleReceivePaymentClick(){
-        let vc = CreateInvoiceViewController.instantiate(childVCDelegate: self, viewModel: PaymentViewModel(mode: .Request), delegate: self)
-        WindowsManager.sharedInstance.showContactWindow(vc: vc, window: view.window, title: "Manage Payments", identifier: "invoice-management-window", size: CGSize(width: 414, height: 600))
-    }
 }
 
 extension ChatListViewController : ChildVCDelegate,ActionsDelegate,ChoosePaymentModeVCDelegate{
     func handleReceiveClick() {
-        handleReceivePaymentClick()
+        let vc = CreateInvoiceViewController.instantiate(childVCDelegate: self, viewModel: PaymentViewModel(mode: .Request), delegate: self)
+        WindowsManager.sharedInstance.showContactWindow(vc: vc, window: view.window, title: "Manage Payments", identifier: "invoice-management-window", size: CGSize(width: 414, height: 600))
     }
     
     func handleSentClick() {
-        
+        WindowsManager.sharedInstance.closeIfExists(identifier: "invoice-management-window")
+        let vc = SendPaymentVC.instantiate()
+        WindowsManager.sharedInstance.showContactWindow(vc: vc, window: view.window, title: "Manage Payments", identifier: "invoice-management-window", size: CGSize(width: 414, height: 550))
     }
     
     
