@@ -541,6 +541,7 @@
 		CE326B52294A179200821A53 /* ChatMentionAutocompleteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE326B50294A179200821A53 /* ChatMentionAutocompleteCell.xib */; };
 		CE38D91129E0821A00F271CD /* Payments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE38D91029E0821A00F271CD /* Payments.storyboard */; };
 		CE38D91329E0823800F271CD /* DisplayInvoiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE38D91229E0823800F271CD /* DisplayInvoiceVC.swift */; };
+		CE6BF5C829E59905009BCFDE /* ChoosePaymentModeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6BF5C729E59905009BCFDE /* ChoosePaymentModeVC.swift */; };
 		CE9BA45F29D76A8E000C8837 /* PodcastDetailSelectionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BA45E29D76A8E000C8837 /* PodcastDetailSelectionVM.swift */; };
 		CE9BA46229D772BD000C8837 /* PodcastDetailActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BA46029D772BD000C8837 /* PodcastDetailActionCell.swift */; };
 		CE9BA46329D772BD000C8837 /* PodcastDetailActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9BA46129D772BD000C8837 /* PodcastDetailActionCell.xib */; };
@@ -1239,6 +1240,7 @@
 		CE326B50294A179200821A53 /* ChatMentionAutocompleteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatMentionAutocompleteCell.xib; sourceTree = "<group>"; };
 		CE38D91029E0821A00F271CD /* Payments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payments.storyboard; sourceTree = "<group>"; };
 		CE38D91229E0823800F271CD /* DisplayInvoiceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayInvoiceVC.swift; sourceTree = "<group>"; };
+		CE6BF5C729E59905009BCFDE /* ChoosePaymentModeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosePaymentModeVC.swift; sourceTree = "<group>"; };
 		CE9BA45E29D76A8E000C8837 /* PodcastDetailSelectionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailSelectionVM.swift; sourceTree = "<group>"; };
 		CE9BA46029D772BD000C8837 /* PodcastDetailActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailActionCell.swift; sourceTree = "<group>"; };
 		CE9BA46129D772BD000C8837 /* PodcastDetailActionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodcastDetailActionCell.xib; sourceTree = "<group>"; };
@@ -2414,6 +2416,7 @@
 			children = (
 				47B550A0248BD9E7000514BF /* CommonPaymentView.swift */,
 				CE38D91229E0823800F271CD /* DisplayInvoiceVC.swift */,
+				CE6BF5C729E59905009BCFDE /* ChoosePaymentModeVC.swift */,
 				CE38D91029E0821A00F271CD /* Payments.storyboard */,
 				4797E88024BCD69F00D13270 /* CommonPaymentView.xib */,
 				47B550A4248BEB0E000514BF /* PaymentTemplatesView.swift */,
@@ -3357,6 +3360,7 @@
 				475B685A29917395000EF29C /* PodcastPlayerController+Delegates&Actions.swift in Sources */,
 				4744FAD7246B2FDE00C5FD94 /* KeychainRestoreViewController.swift in Sources */,
 				474A668B24990188002C2D10 /* MessageOptionView.swift in Sources */,
+				CE6BF5C829E59905009BCFDE /* ChoosePaymentModeVC.swift in Sources */,
 				4744FA8E2469C9F800C5FD94 /* UserInvite+CoreDataProperties.swift in Sources */,
 				4703F046248195AE00282186 /* CachingPlayerItem.swift in Sources */,
 				47F8824D25656CB0002A7E71 /* SocketPacket.swift in Sources */,

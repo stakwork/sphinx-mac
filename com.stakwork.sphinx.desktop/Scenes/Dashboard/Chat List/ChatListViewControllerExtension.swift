@@ -57,13 +57,26 @@ extension ChatListViewController {
     @objc func handleBalanceClick(){
         print("balance tapped")
         
-        let vc = CreateInvoiceViewController.instantiate(childVCDelegate: self, viewModel: PaymentViewModel(mode: .Request), delegate: self)
+        let vc = ChoosePaymentModeVC.instantiate(delegate: self)
         WindowsManager.sharedInstance.showContactWindow(vc: vc, window: view.window, title: "Manage Payments", identifier: "invoice-management-window", size: CGSize(width: 414, height: 600))
         
     }
+    
+    @objc func handleReceivePaymentClick(){
+        let vc = CreateInvoiceViewController.instantiate(childVCDelegate: self, viewModel: PaymentViewModel(mode: .Request), delegate: self)
+        WindowsManager.sharedInstance.showContactWindow(vc: vc, window: view.window, title: "Manage Payments", identifier: "invoice-management-window", size: CGSize(width: 414, height: 600))
+    }
 }
 
-extension ChatListViewController : ChildVCDelegate,ActionsDelegate{
+extension ChatListViewController : ChildVCDelegate,ActionsDelegate,ChoosePaymentModeVCDelegate{
+    func handleReceiveClick() {
+        handleReceivePaymentClick()
+    }
+    
+    func handleSentClick() {
+        
+    }
+    
     
     func handleInvoiceCreation(invoice:String,amount:Int){
         WindowsManager.sharedInstance.closeIfExists(identifier: "invoice-management-window")
@@ -71,41 +84,15 @@ extension ChatListViewController : ChildVCDelegate,ActionsDelegate{
         WindowsManager.sharedInstance.showContactWindow(vc: vc, window: view.window, title: "Manage Payments", identifier: "invoice-management-window", size: CGSize(width: 414, height: 700))
     }
     
-    func didCreateMessage(message: TransactionMessage) {
-        
-    }
-    
-    func didFailInvoiceOrPayment() {
-        
-    }
-    
-    func shouldCreateCall(mode: VideoCallHelper.CallMode) {
-        
-    }
-    
-    func shouldSendPaymentFor(paymentObject: PaymentViewModel.PaymentObject, callback: ((Bool) -> ())?) {
-        
-    }
-    
-    func shouldReloadMuteState() {
-        
-    }
-    
-    func shouldDimiss() {
-        
-    }
-    
-    func shouldGoForward(paymentViewModel: PaymentViewModel) {
-        
-    }
-    
-    func shouldGoBack(paymentViewModel: PaymentViewModel) {
-        
-    }
-    
-    func shouldSendPaymentFor(paymentObject: PaymentViewModel.PaymentObject) {
-        
-    }
+    func didCreateMessage(message: TransactionMessage) {}
+    func didFailInvoiceOrPayment() {}
+    func shouldCreateCall(mode: VideoCallHelper.CallMode) {}
+    func shouldSendPaymentFor(paymentObject: PaymentViewModel.PaymentObject, callback: ((Bool) -> ())?) {}
+    func shouldReloadMuteState() {}
+    func shouldDimiss() {}
+    func shouldGoForward(paymentViewModel: PaymentViewModel) {}
+    func shouldGoBack(paymentViewModel: PaymentViewModel) {}
+    func shouldSendPaymentFor(paymentObject: PaymentViewModel.PaymentObject) {}
     
     
 }

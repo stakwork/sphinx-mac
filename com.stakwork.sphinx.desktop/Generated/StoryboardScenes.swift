@@ -35,6 +35,7 @@ internal enum StoryboardScene {
     internal enum Payments : StoryboardType{
         internal static let storyboardName = "Payments"
         internal static let displayInvoiceVC = SceneType<DisplayInvoiceVC>(storyboard: Payments.self, identifier: "DisplayInvoiceVC")
+        internal static let choosePaymentModeVC = SceneType<ChoosePaymentModeVC>(storyboard: Payments.self, identifier: "ChoosePaymentModeVC")
     }
     
     internal enum Dashboard: StoryboardType {
