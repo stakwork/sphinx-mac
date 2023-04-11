@@ -58,8 +58,8 @@ class DisplayInvoiceVC : NSViewController{
     }
     
     @objc func copyInvoiceImage(){
-        if let image = self.qrCodeImageView.image{
-            ClipboardHelper.addVcImageToClipboard(screenshot:image)
+        if let image = self.view.bitmapImage(){
+            ClipboardHelper.addImageToClipboard(image: image)
         }
         
     }

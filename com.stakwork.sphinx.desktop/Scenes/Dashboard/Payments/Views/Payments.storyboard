@@ -307,7 +307,7 @@
         <scene sceneID="K20-aC-P0s">
             <objects>
                 <viewController storyboardIdentifier="SendPaymentVC" id="wIU-ri-c4b" customClass="SendPaymentVC" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="u72-4T-Thc">
+                    <view key="view" id="u72-4T-Thc">
                         <rect key="frame" x="0.0" y="0.0" width="343" height="624"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>

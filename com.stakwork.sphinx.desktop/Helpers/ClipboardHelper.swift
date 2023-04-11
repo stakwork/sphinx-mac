@@ -20,6 +20,19 @@ class ClipboardHelper {
         }
     }
     
+    public static func addImageToClipboard(image:NSImage,bubbleContainer: NSView? = nil){
+        if let cgImage = image.cgImage{
+            let pasteBoard = NSPasteboard.general
+            pasteBoard.clearContents()
+            let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
+            let jpegData = bitmapRep.representation(using: NSBitmapImageRep.FileType.jpeg, properties: [:])!
+            pasteBoard.setData(jpegData, forType: .png)
+            
+            let message = "Copied image to the clipboard"
+            NewMessageBubbleHelper().showGenericMessageView(text: message, in: bubbleContainer)
+        }
+    }
+    
     public static func addVcImageToClipboard(screenshot:NSImage,bubbleContainer: NSView? = nil){
         
         /*
