@@ -48,7 +48,8 @@ class CreateInvoiceViewController : PaymentInvoiceFormViewController {
             }
             else if let invoice = invoice{
                 print(invoice)
-                self.handleInvoiceCreation(invoice: invoice)
+                let amount = self.paymentViewModel.currentPayment.amount ?? -1
+                self.handleInvoiceCreation(invoice: invoice,amount: amount)
             }
         }, errorCallback: { errorMessage in
             self.paymentView.loading = false

@@ -16,14 +16,18 @@ class DisplayInvoiceVC : NSViewController{
     @IBOutlet weak var shareInvoiceStringButton: NSView!
     @IBOutlet weak var shareQRImageButton: NSView!
     @IBOutlet weak var invoiceStringDisplay: NSTextField!
+    @IBOutlet weak var amountTextField: NSTextField!
     
     var qrString : String? = nil
+    var amount : Int? = nil
     
     static func instantiate(
-        qrCodeString:String
+        qrCodeString:String,
+        amount:Int
     ) -> DisplayInvoiceVC {
         let viewController = StoryboardScene.Payments.displayInvoiceVC.instantiate()
         viewController.qrString = qrCodeString
+        viewController.amount = amount
         return viewController
     }
     
@@ -39,6 +43,13 @@ class DisplayInvoiceVC : NSViewController{
                 self.shareInvoiceStringButton.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(self.copyInvoiceText)))
                 self.shareQRImageButton.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(self.copyInvoiceImage)))
                 self.invoiceStringDisplay.stringValue = qrString
+                var amountText = ""
+                if let amount = self.amount
+                {
+                    amountText = "\(String(amount)) sats"
+                    self.view.bringSubviewToFront(self.amountTextField)
+                }
+                self.amountTextField.stringValue = amountText
                 self.view.bringSubviewToFront(self.invoiceStringDisplay)
             })
             
@@ -47,7 +58,10 @@ class DisplayInvoiceVC : NSViewController{
     }
     
     @objc func copyInvoiceImage(){
-        ClipboardHelper.addVcImageToClipboard(vc: self)
+        if let image = self.qrCodeImageView.image{
+            ClipboardHelper.addVcImageToClipboard(screenshot:image)
+        }
+        
     }
     
     @objc func copyInvoiceText(){

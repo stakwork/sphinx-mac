@@ -65,10 +65,10 @@ extension ChatListViewController {
 
 extension ChatListViewController : ChildVCDelegate,ActionsDelegate{
     
-    func handleInvoiceCreation(invoice:String){
+    func handleInvoiceCreation(invoice:String,amount:Int){
         WindowsManager.sharedInstance.closeIfExists(identifier: "invoice-management-window")
-        let vc = DisplayInvoiceVC.instantiate(qrCodeString: invoice)
-        WindowsManager.sharedInstance.showContactWindow(vc: vc, window: view.window, title: "Manage Payments", identifier: "invoice-management-window", size: CGSize(width: 414, height: 650))
+        let vc = DisplayInvoiceVC.instantiate(qrCodeString: invoice,amount: amount)
+        WindowsManager.sharedInstance.showContactWindow(vc: vc, window: view.window, title: "Manage Payments", identifier: "invoice-management-window", size: CGSize(width: 414, height: 700))
     }
     
     func didCreateMessage(message: TransactionMessage) {

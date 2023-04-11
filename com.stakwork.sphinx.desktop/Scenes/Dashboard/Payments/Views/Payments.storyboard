@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gc5-Pf-cC8">
-                                <rect key="frame" x="116" y="298" width="300" height="300"/>
+                                <rect key="frame" x="116" y="266" width="300" height="300"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="6Ch-GV-jHV"/>
                                     <constraint firstAttribute="width" secondItem="gc5-Pf-cC8" secondAttribute="height" multiplier="1:1" id="x5U-Rh-D6r"/>
@@ -28,14 +28,14 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="mOS-ut-vt9"/>
                                 </constraints>
-                                <textFieldCell key="cell" alignment="center" title="Receive Invoice Details" id="f1b-6R-thb">
+                                <textFieldCell key="cell" alignment="center" title="Payment Request" id="f1b-6R-thb">
                                     <font key="font" size="28" name="Roboto-Regular"/>
                                     <color key="textColor" name="TextMessages"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LId-FC-mhF">
-                                <rect key="frame" x="114" y="233" width="304" height="48"/>
+                                <rect key="frame" x="114" y="201" width="304" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="SSw-kD-TJa"/>
                                 </constraints>
@@ -46,7 +46,7 @@
                                 </textFieldCell>
                             </textField>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="qkc-tl-sN7">
-                                <rect key="frame" x="99" y="158" width="334" height="60"/>
+                                <rect key="frame" x="99" y="126" width="334" height="60"/>
                                 <subviews>
                                     <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="30" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="nLs-qO-HLu">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="60"/>
@@ -92,7 +92,7 @@
                                 </constraints>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="4HU-9Q-GFs">
-                                <rect key="frame" x="99" y="86" width="334" height="60"/>
+                                <rect key="frame" x="99" y="54" width="334" height="60"/>
                                 <subviews>
                                     <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="30" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="4yu-P3-6nx">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="60"/>
@@ -137,12 +137,26 @@
                                     <constraint firstAttribute="bottom" secondItem="4yu-P3-6nx" secondAttribute="bottom" id="xTW-CX-y4M"/>
                                 </constraints>
                             </customView>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="quZ-Sv-9fI">
+                                <rect key="frame" x="114" y="579" width="304" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="dvJ-hs-4I3"/>
+                                </constraints>
+                                <textFieldCell key="cell" alignment="center" title="Receive Invoice Details" id="NXD-Ix-g5w">
+                                    <font key="font" size="12" name="Roboto-Regular"/>
+                                    <color key="textColor" name="TextMessages"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="gc5-Pf-cC8" firstAttribute="centerX" secondItem="tOy-S4-hL0" secondAttribute="centerX" id="4Ok-Nh-K7W"/>
+                            <constraint firstItem="ga3-U6-LIS" firstAttribute="leading" secondItem="quZ-Sv-9fI" secondAttribute="leading" id="7NV-Fs-Ntk"/>
                             <constraint firstItem="ga3-U6-LIS" firstAttribute="centerX" secondItem="gc5-Pf-cC8" secondAttribute="centerX" id="7fD-nn-Hd8"/>
+                            <constraint firstItem="quZ-Sv-9fI" firstAttribute="top" secondItem="ga3-U6-LIS" secondAttribute="bottom" constant="9" id="CBl-k9-g6h"/>
                             <constraint firstItem="gc5-Pf-cC8" firstAttribute="leading" secondItem="ga3-U6-LIS" secondAttribute="leading" id="MaL-64-vGN"/>
                             <constraint firstItem="LId-FC-mhF" firstAttribute="trailing" secondItem="gc5-Pf-cC8" secondAttribute="trailing" id="ayp-O5-xIx"/>
+                            <constraint firstItem="ga3-U6-LIS" firstAttribute="trailing" secondItem="quZ-Sv-9fI" secondAttribute="trailing" id="bOs-G6-SV3"/>
                             <constraint firstItem="qkc-tl-sN7" firstAttribute="leading" secondItem="tOy-S4-hL0" secondAttribute="leading" constant="99" id="cLL-t8-SP9"/>
                             <constraint firstItem="gc5-Pf-cC8" firstAttribute="leading" secondItem="tOy-S4-hL0" secondAttribute="leading" constant="116" id="ghu-DA-n0n"/>
                             <constraint firstItem="4HU-9Q-GFs" firstAttribute="top" secondItem="2KP-Os-n7a" secondAttribute="bottom" constant="12" id="jEw-LF-Jbd"/>
@@ -151,12 +165,13 @@
                             <constraint firstItem="ga3-U6-LIS" firstAttribute="top" secondItem="tOy-S4-hL0" secondAttribute="top" constant="22" id="n59-FQ-Wju"/>
                             <constraint firstItem="LId-FC-mhF" firstAttribute="top" secondItem="gc5-Pf-cC8" secondAttribute="bottom" constant="17" id="oII-BV-O6G"/>
                             <constraint firstItem="LId-FC-mhF" firstAttribute="leading" secondItem="gc5-Pf-cC8" secondAttribute="leading" id="s8D-Bs-B7R"/>
-                            <constraint firstItem="gc5-Pf-cC8" firstAttribute="top" secondItem="ga3-U6-LIS" secondAttribute="bottom" constant="8" id="sfr-iW-2pc"/>
                             <constraint firstItem="qkc-tl-sN7" firstAttribute="centerX" secondItem="tOy-S4-hL0" secondAttribute="centerX" id="trN-sl-Ybg"/>
+                            <constraint firstItem="gc5-Pf-cC8" firstAttribute="top" secondItem="quZ-Sv-9fI" secondAttribute="bottom" constant="13" id="veC-mw-jfH"/>
                             <constraint firstItem="4HU-9Q-GFs" firstAttribute="trailing" secondItem="qkc-tl-sN7" secondAttribute="trailing" id="ze1-tF-laI"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="amountTextField" destination="quZ-Sv-9fI" id="ZT1-J6-HwU"/>
                         <outlet property="invoiceStringDisplay" destination="LId-FC-mhF" id="5gR-m7-gEW"/>
                         <outlet property="qrCodeImageView" destination="gc5-Pf-cC8" id="xLI-pn-ZcM"/>
                         <outlet property="receiveInvoiceTitle" destination="ga3-U6-LIS" id="LYh-Cm-UrD"/>

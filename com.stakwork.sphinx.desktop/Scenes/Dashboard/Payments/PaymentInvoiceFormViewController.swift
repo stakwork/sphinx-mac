@@ -55,9 +55,9 @@ class PaymentInvoiceFormViewController: NSViewController {
     
     func saveMessage(message: String) {}
     
-    func handleInvoiceCreation(invoice:String){
+    func handleInvoiceCreation(invoice:String,amount:Int){
         if let delegate = delegate as? ChatListViewController{
-            delegate.handleInvoiceCreation(invoice: invoice)
+            delegate.handleInvoiceCreation(invoice: invoice,amount: amount)
         }
     }
 }

@@ -20,7 +20,7 @@ class ClipboardHelper {
         }
     }
     
-    public static func addVcImageToClipboard(vc:NSViewController,bubbleContainer: NSView? = nil){
+    public static func addVcImageToClipboard(screenshot:NSImage,bubbleContainer: NSView? = nil){
         
         /*
         var displayCount: UInt32 = 0;
@@ -48,11 +48,12 @@ class ClipboardHelper {
         }
          */
         
-        if let screenshot : NSImage = vc.view.bitmapImage(),
-           let cgScreenshot :CGImage = screenshot.cgImage{
+        //if let screenshot : NSImage = vc.view.bitmapImage(),
+        if let cgScreenshot :CGImage = screenshot.cgImage{
             let bitmapRep = NSBitmapImageRep(cgImage: cgScreenshot)
             let jpegData = bitmapRep.representation(using: NSBitmapImageRep.FileType.png, properties: [:])!
-            NSPasteboard.general.setData(jpegData, forType: .png)
+            let data = screenshot.sd_imageData()
+            NSPasteboard.general.setData(data, forType: .png)
             
             NewMessageBubbleHelper().showGenericMessageView(text: "QR Code Copied to Clipboard", in: bubbleContainer)
         }
