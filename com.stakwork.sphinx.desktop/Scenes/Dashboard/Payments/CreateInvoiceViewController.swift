@@ -31,6 +31,7 @@ class CreateInvoiceViewController : PaymentInvoiceFormViewController {
     }
     
     func configureView() {
+        paymentView.closeButton.isHidden = true
         paymentView.configureView(paymentViewModel: paymentViewModel, delegate: self)
         paymentView.setTitle(title: "request.amount.upper".localized, placeHolder: "memo".localized, buttonLabel: "confirm.upper".localized)
     }

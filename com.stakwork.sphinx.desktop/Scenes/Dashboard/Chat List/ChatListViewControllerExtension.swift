@@ -58,7 +58,7 @@ extension ChatListViewController {
         print("balance tapped")
         
         let vc = ChoosePaymentModeVC.instantiate(delegate: self)
-        WindowsManager.sharedInstance.showContactWindow(vc: vc, window: view.window, title: "Manage Payments", identifier: "invoice-management-window", size: CGSize(width: 414, height: 600))
+        WindowsManager.sharedInstance.showContactWindow(vc: vc, window: view.window, title: "Manage Payments", identifier: "invoice-management-window", size: CGSize(width: 414, height: 350))
         
     }
     
@@ -73,7 +73,7 @@ extension ChatListViewController : ChildVCDelegate,ActionsDelegate,ChoosePayment
     func handleSentClick() {
         WindowsManager.sharedInstance.closeIfExists(identifier: "invoice-management-window")
         let vc = SendPaymentVC.instantiate()
-        WindowsManager.sharedInstance.showContactWindow(vc: vc, window: view.window, title: "Manage Payments", identifier: "invoice-management-window", size: CGSize(width: 414, height: 550))
+        WindowsManager.sharedInstance.showContactWindow(vc: vc, window: view.window, title: "Manage Payments", identifier: "invoice-management-window", size: CGSize(width: 414, height: 325))
     }
     
     
