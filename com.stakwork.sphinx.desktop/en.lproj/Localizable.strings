@@ -32,6 +32,9 @@
 "search" = "Search";
 "submit" = "Submit";
 "finish" = "finish";
+"verify.upper" = "Verify";
+"pay.upper" = "Pay";
+"make.payment" = "Make Payment";
 
 "connected.to.node" = "Connected to Node";
 "socket.disconnected" = "Live updates unavailable";
@@ -122,6 +125,11 @@
 //INVOICE DETAILS
 "x.copied.clipboard" = "%@ copied to clipboard";
 "payment.request" = "Payment Request";
+"invoice.amount" = "Invoice Amount:";
+"expiration.date" = "Expiration Date:";
+"invoice.string" = "Invoice String";
+"copy.invoice.string" = "Copy Invoice String";
+"copy.invoice.image" = "Copy Invoice Image";
 
 //ADDRESS BOOK
 "new.contact" = "New Contact";

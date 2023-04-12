@@ -19,6 +19,10 @@ class ChoosePaymentModeVC : NSViewController{
     
     @IBOutlet weak var sendPaymentButton: NSView!
     @IBOutlet weak var receivePaymentButton: NSView!
+    
+    @IBOutlet weak var sendPaymentLabel: VerticallyCenteredButtonCell!
+    @IBOutlet weak var receivePaymentLabel: VerticallyCenteredButtonCell!
+    
     var delegate:ChoosePaymentModeVCDelegate? = nil
     
     static func instantiate(delegate:ChoosePaymentModeVCDelegate) -> ChoosePaymentModeVC {
@@ -35,6 +39,12 @@ class ChoosePaymentModeVC : NSViewController{
         
         sendPaymentButton.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(handleSendClick)))
         receivePaymentButton.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(handleReceiveClick)))
+        addLocalization()
+    }
+    
+    func addLocalization(){
+        sendPaymentLabel.title = "send.payment.upper".localized.capitalized
+        receivePaymentLabel.title = "request.amount.upper".localized.capitalized
     }
     
     @objc func handleReceiveClick(){

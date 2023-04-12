@@ -32,6 +32,9 @@
 "search" = "Buscar";
 "submit" = "Enviar";
 "finish" = "finalizar";
+"verify.upper" = "Verificar";
+"pay.upper" = "Pagar";
+"make.payment" = "Hacer el Pago";
 
 "connected.to.node" = "Conectado al Nodo";
 "socket.disconnected" = "Actualizaciones en tiempo real\nno disponibles";
@@ -120,6 +123,8 @@
 //INVOICE DETAILS
 "x.copied.clipboard" = "%@ copiado al portapapeles";
 "payment.request" = "Solicitud de Pago";
+"copy.invoice.string" = "Copiar Texto de Ingresa";
+"copy.invoice.image" = "Copiar Imagen de Ingresa";
 
 //ADDRESS BOOK
 "new.contact" = "Nuevo Contacto";
@@ -234,6 +239,10 @@
 "expired" = "Caducado: ";
 "invoice" = "Solicitud";
 "confirm.pay.invoice" = "¿Estás seguro que deseas pagar esta solicitud?";
+"invoice.amount" = "Ingresar monto: ";
+"expiration.date" = "Fecha de expiración: ";
+"invoice.string" = "Ingresar Texto";
+
 
 //CHAT
 "payment.failed.upper" = "PAGO FALLIDO";

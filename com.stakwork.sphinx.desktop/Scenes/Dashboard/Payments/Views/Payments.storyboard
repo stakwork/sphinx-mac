@@ -172,6 +172,8 @@
                     </view>
                     <connections>
                         <outlet property="amountTextField" destination="quZ-Sv-9fI" id="ZT1-J6-HwU"/>
+                        <outlet property="codeImageLabel" destination="dy9-Sq-zAd" id="xtF-Ke-VLZ"/>
+                        <outlet property="codeStringLabel" destination="tA6-sn-INu" id="CXV-uP-VWc"/>
                         <outlet property="invoiceStringDisplay" destination="LId-FC-mhF" id="5gR-m7-gEW"/>
                         <outlet property="qrCodeImageView" destination="gc5-Pf-cC8" id="xLI-pn-ZcM"/>
                         <outlet property="receiveInvoiceTitle" destination="ga3-U6-LIS" id="LYh-Cm-UrD"/>
@@ -296,7 +298,9 @@
                     </view>
                     <connections>
                         <outlet property="receivePaymentButton" destination="OsL-24-8iA" id="tob-AI-BJA"/>
+                        <outlet property="receivePaymentLabel" destination="Dnz-Kp-Yqu" id="8eE-is-mvV"/>
                         <outlet property="sendPaymentButton" destination="QGG-6J-NS0" id="wT2-h5-QYT"/>
+                        <outlet property="sendPaymentLabel" destination="TT4-mO-6g8" id="VLr-NJ-1XV"/>
                     </connections>
                 </viewController>
                 <customObject id="mbI-6G-wxL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -317,6 +321,28 @@
                                     <constraint firstAttribute="height" constant="289" id="nVd-yR-DoG"/>
                                 </constraints>
                             </customView>
+                            <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="HbM-T5-vcT">
+                                <rect key="frame" x="70" y="151" width="203" height="1"/>
+                                <view key="contentView" id="Rt6-Hx-gQY">
+                                    <rect key="frame" x="0.0" y="0.0" width="203" height="1"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="y8n-Ti-uk1"/>
+                                </constraints>
+                                <color key="fillColor" name="LightDivider"/>
+                            </box>
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tjP-79-yz1">
+                                <rect key="frame" x="70" y="152" width="203" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="eLE-7C-vDh"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" drawsBackground="YES" id="8Qr-X6-67t">
+                                    <font key="font" size="17" name="Roboto-Regular"/>
+                                    <color key="textColor" name="Text"/>
+                                    <color key="backgroundColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                </textFieldCell>
+                            </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YZZ-OU-oIN">
                                 <rect key="frame" x="58" y="216" width="227" height="48"/>
                                 <constraints>
@@ -329,19 +355,8 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="M91-cj-Vra">
-                                <rect key="frame" x="70" y="159" width="203" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="DfR-Es-S1e"/>
-                                </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="f1M-c9-pLt">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="plp-AS-h1s">
-                                <rect key="frame" x="107" y="97" width="130" height="40"/>
+                                <rect key="frame" x="107" y="90" width="130" height="40"/>
                                 <subviews>
                                     <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="20" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="3oy-NL-4gL">
                                         <rect key="frame" x="0.0" y="0.0" width="130" height="40"/>
@@ -364,7 +379,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="vl8-md-0uG"/>
                                         </constraints>
-                                        <buttonCell key="cell" type="square" title="Check Invoice" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="TPC-Xj-wL1" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
+                                        <buttonCell key="cell" type="square" title="Verify" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="TPC-Xj-wL1" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" size="14" name="Roboto-Regular"/>
                                         </buttonCell>
@@ -387,23 +402,23 @@
                                 </constraints>
                             </customView>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iM0-Ip-iyu">
-                                <rect key="frame" x="68" y="192" width="207" height="12"/>
+                                <rect key="frame" x="68" y="192" width="95" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="12" id="q40-g6-UgL"/>
+                                    <constraint firstAttribute="height" constant="20" id="q40-g6-UgL"/>
                                 </constraints>
-                                <textFieldCell key="cell" alignment="center" title="ENTER BOLT11 INVOICE STRING" id="RWs-aR-MeD">
-                                    <font key="font" size="9" name="Roboto-Regular"/>
-                                    <color key="textColor" name="TextMessages"/>
+                                <textFieldCell key="cell" alignment="left" title="INVOICE STRING" id="RWs-aR-MeD">
+                                    <font key="font" size="12" name="Roboto-Regular"/>
+                                    <color key="textColor" name="SecondaryText"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="lDK-bz-j0p">
-                                <rect key="frame" x="0.0" y="-143" width="343" height="130"/>
+                                <rect key="frame" x="0.0" y="-150" width="343" height="130"/>
                                 <subviews>
                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AMt-sw-PeH">
-                                        <rect key="frame" x="58" y="96" width="99" height="16"/>
+                                        <rect key="frame" x="58" y="96" width="124" height="16"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="95" id="eEx-e8-DEO"/>
+                                            <constraint firstAttribute="width" constant="120" id="eEx-e8-DEO"/>
                                             <constraint firstAttribute="height" constant="16" id="oNv-ZZ-pp8"/>
                                         </constraints>
                                         <textFieldCell key="cell" alignment="left" title="Invoice Amount:" id="Ea7-H2-7Dh">
@@ -413,7 +428,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PdM-4D-YUS">
-                                        <rect key="frame" x="161" y="96" width="144" height="16"/>
+                                        <rect key="frame" x="178" y="96" width="144" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="140" id="k3U-fc-dTl"/>
                                             <constraint firstAttribute="height" constant="16" id="lqf-z5-DMw"/>
@@ -425,7 +440,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mM6-Or-Bks">
-                                        <rect key="frame" x="161" y="72" width="144" height="16"/>
+                                        <rect key="frame" x="178" y="72" width="144" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="Jsc-bu-Nhq"/>
                                             <constraint firstAttribute="width" constant="140" id="xJu-bO-aly"/>
@@ -437,9 +452,9 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5XW-Ko-YAi">
-                                        <rect key="frame" x="58" y="72" width="99" height="16"/>
+                                        <rect key="frame" x="58" y="72" width="124" height="16"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="95" id="Cba-j9-aao"/>
+                                            <constraint firstAttribute="width" constant="120" id="Cba-j9-aao"/>
                                             <constraint firstAttribute="height" constant="16" id="dgr-So-ICO"/>
                                         </constraints>
                                         <textFieldCell key="cell" alignment="left" title="Expiration Date:" id="LUL-D5-qRg">
@@ -538,14 +553,14 @@
                                     <constraint firstItem="Tbh-PE-vJj" firstAttribute="leading" secondItem="w4U-a9-HSp" secondAttribute="trailing" constant="8" symbolic="YES" id="60W-Lv-5X1"/>
                                     <constraint firstItem="w4U-a9-HSp" firstAttribute="top" secondItem="5XW-Ko-YAi" secondAttribute="bottom" constant="8" symbolic="YES" id="783-9h-gJQ"/>
                                     <constraint firstAttribute="trailing" secondItem="grQ-lX-LdM" secondAttribute="trailing" constant="9" id="HcK-zs-Lr2"/>
-                                    <constraint firstItem="mM6-Or-Bks" firstAttribute="leading" secondItem="5XW-Ko-YAi" secondAttribute="trailing" constant="8" symbolic="YES" id="ITe-PT-Dtl"/>
+                                    <constraint firstItem="mM6-Or-Bks" firstAttribute="leading" secondItem="5XW-Ko-YAi" secondAttribute="trailing" id="ITe-PT-Dtl"/>
                                     <constraint firstAttribute="height" constant="130" id="Jrs-cb-x6k"/>
                                     <constraint firstItem="Tbh-PE-vJj" firstAttribute="centerY" secondItem="w4U-a9-HSp" secondAttribute="centerY" id="M45-wI-qlu"/>
                                     <constraint firstItem="grQ-lX-LdM" firstAttribute="top" secondItem="lDK-bz-j0p" secondAttribute="top" id="UaR-Nr-QEk"/>
                                     <constraint firstItem="mM6-Or-Bks" firstAttribute="centerY" secondItem="5XW-Ko-YAi" secondAttribute="centerY" id="VsB-5h-J00"/>
                                     <constraint firstItem="5XW-Ko-YAi" firstAttribute="leading" secondItem="AMt-sw-PeH" secondAttribute="leading" id="WLH-To-poO"/>
                                     <constraint firstItem="PdM-4D-YUS" firstAttribute="centerY" secondItem="AMt-sw-PeH" secondAttribute="centerY" id="arR-ze-2G6"/>
-                                    <constraint firstItem="PdM-4D-YUS" firstAttribute="leading" secondItem="AMt-sw-PeH" secondAttribute="trailing" constant="8" symbolic="YES" id="kWV-FW-8fe"/>
+                                    <constraint firstItem="PdM-4D-YUS" firstAttribute="leading" secondItem="AMt-sw-PeH" secondAttribute="trailing" id="kWV-FW-8fe"/>
                                     <constraint firstItem="w4U-a9-HSp" firstAttribute="leading" secondItem="5XW-Ko-YAi" secondAttribute="leading" id="kxL-KC-WQK"/>
                                     <constraint firstItem="AMt-sw-PeH" firstAttribute="top" secondItem="lDK-bz-j0p" secondAttribute="top" constant="18" id="rGE-MM-4Za"/>
                                     <constraint firstItem="zQr-ov-k4r" firstAttribute="centerX" secondItem="lDK-bz-j0p" secondAttribute="centerX" id="slY-UV-rfK"/>
@@ -559,27 +574,34 @@
                             <constraint firstItem="v22-iw-4ui" firstAttribute="leading" secondItem="u72-4T-Thc" secondAttribute="leading" id="30k-Sh-eDU"/>
                             <constraint firstItem="plp-AS-h1s" firstAttribute="centerX" secondItem="u72-4T-Thc" secondAttribute="centerX" id="334-RP-fF4"/>
                             <constraint firstItem="YZZ-OU-oIN" firstAttribute="leading" secondItem="u72-4T-Thc" secondAttribute="leading" constant="60" id="7LI-db-FnD"/>
-                            <constraint firstItem="M91-cj-Vra" firstAttribute="leading" secondItem="iM0-Ip-iyu" secondAttribute="leading" id="CH5-Zf-zCg"/>
+                            <constraint firstItem="tjP-79-yz1" firstAttribute="leading" secondItem="u72-4T-Thc" secondAttribute="leading" constant="70" id="BqG-4w-1dN"/>
+                            <constraint firstItem="HbM-T5-vcT" firstAttribute="top" secondItem="tjP-79-yz1" secondAttribute="bottom" id="Ex3-7i-9AL"/>
+                            <constraint firstItem="tjP-79-yz1" firstAttribute="trailing" secondItem="HbM-T5-vcT" secondAttribute="trailing" id="Nqr-8q-txO"/>
                             <constraint firstItem="YZZ-OU-oIN" firstAttribute="top" secondItem="u72-4T-Thc" secondAttribute="top" constant="25" id="O8W-UH-Jqf"/>
                             <constraint firstAttribute="trailing" secondItem="v22-iw-4ui" secondAttribute="trailing" id="Opj-7T-enU"/>
-                            <constraint firstItem="M91-cj-Vra" firstAttribute="trailing" secondItem="iM0-Ip-iyu" secondAttribute="trailing" id="PTf-Eu-dfa"/>
-                            <constraint firstItem="M91-cj-Vra" firstAttribute="leading" secondItem="u72-4T-Thc" secondAttribute="leading" constant="70" id="Pna-7k-r7x"/>
+                            <constraint firstItem="tjP-79-yz1" firstAttribute="leading" secondItem="iM0-Ip-iyu" secondAttribute="leading" id="Pa2-KN-aai"/>
                             <constraint firstItem="v22-iw-4ui" firstAttribute="top" secondItem="u72-4T-Thc" secondAttribute="top" id="WVG-AE-IF0"/>
                             <constraint firstItem="YZZ-OU-oIN" firstAttribute="centerX" secondItem="u72-4T-Thc" secondAttribute="centerX" id="Xg5-se-oOm"/>
+                            <constraint firstItem="tjP-79-yz1" firstAttribute="leading" secondItem="HbM-T5-vcT" secondAttribute="leading" id="YRe-bY-SaX"/>
+                            <constraint firstItem="tjP-79-yz1" firstAttribute="top" secondItem="iM0-Ip-iyu" secondAttribute="bottom" constant="12" id="YvV-t6-RFp"/>
                             <constraint firstAttribute="bottom" secondItem="v22-iw-4ui" secondAttribute="bottom" id="f1F-FF-ibs"/>
-                            <constraint firstItem="M91-cj-Vra" firstAttribute="centerX" secondItem="u72-4T-Thc" secondAttribute="centerX" id="lTz-W5-8rd"/>
-                            <constraint firstItem="DBr-XU-def" firstAttribute="top" secondItem="M91-cj-Vra" secondAttribute="bottom" constant="22" id="lWK-fp-KVI"/>
+                            <constraint firstItem="tjP-79-yz1" firstAttribute="centerX" secondItem="v22-iw-4ui" secondAttribute="centerX" id="hyR-l8-iR3"/>
                             <constraint firstItem="lDK-bz-j0p" firstAttribute="top" secondItem="plp-AS-h1s" secondAttribute="top" constant="150" id="pFw-6Q-VM1"/>
                             <constraint firstAttribute="trailing" secondItem="lDK-bz-j0p" secondAttribute="trailing" id="pSA-S3-dvb"/>
+                            <constraint firstItem="DBr-XU-def" firstAttribute="top" secondItem="tjP-79-yz1" secondAttribute="bottom" constant="22" id="qVo-7j-wBa"/>
                             <constraint firstItem="lDK-bz-j0p" firstAttribute="leading" secondItem="u72-4T-Thc" secondAttribute="leading" id="rVI-np-uy3"/>
-                            <constraint firstItem="M91-cj-Vra" firstAttribute="top" secondItem="iM0-Ip-iyu" secondAttribute="bottom" constant="12" id="vG9-kn-QgI"/>
-                            <constraint firstItem="iM0-Ip-iyu" firstAttribute="top" secondItem="YZZ-OU-oIN" secondAttribute="bottom" constant="12" id="voa-Sf-yVT"/>
+                            <constraint firstItem="iM0-Ip-iyu" firstAttribute="top" secondItem="YZZ-OU-oIN" secondAttribute="bottom" constant="4" id="voa-Sf-yVT"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="addressField" destination="M91-cj-Vra" id="y7b-gO-b4d"/>
+                        <outlet property="addressField" destination="tjP-79-yz1" id="fdz-7y-fTW"/>
                         <outlet property="closeButton" destination="grQ-lX-LdM" id="05Z-2t-q4Q"/>
                         <outlet property="confirmButton" destination="plp-AS-h1s" id="t79-mo-RdA"/>
+                        <outlet property="expirationDateTitle" destination="5XW-Ko-YAi" id="kAm-qf-b8I"/>
+                        <outlet property="invoiceAmountTitle" destination="AMt-sw-PeH" id="UNU-Gy-ssZ"/>
+                        <outlet property="invoiceStringTitle" destination="iM0-Ip-iyu" id="3fD-Sl-zEY"/>
+                        <outlet property="memoTitle" destination="w4U-a9-HSp" id="Tko-Xu-BIE"/>
+                        <outlet property="payButtonWithLabel" destination="Y0k-xk-ZIY" id="Bx9-pA-KcI"/>
                         <outlet property="payInvoiceButton" destination="zQr-ov-k4r" id="8sh-B9-uW5"/>
                         <outlet property="paymentContainerAmountField" destination="PdM-4D-YUS" id="A3r-cv-s4O"/>
                         <outlet property="paymentContainerExpirationField" destination="mM6-Or-Bks" id="Wn9-B6-ODN"/>
@@ -587,6 +609,7 @@
                         <outlet property="paymentContainerToCheckInvoiceTopConstraint" destination="pFw-6Q-VM1" id="bgh-Ys-Zuy"/>
                         <outlet property="paymentContainerView" destination="lDK-bz-j0p" id="5dD-U7-kgs"/>
                         <outlet property="titleLabel" destination="YZZ-OU-oIN" id="p7r-MF-tpc"/>
+                        <outlet property="verifyButtonWithLabel" destination="TPC-Xj-wL1" id="Wzw-PB-uOE"/>
                     </connections>
                 </viewController>
                 <customObject id="M3e-LK-gFk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -599,8 +622,17 @@
         <namedColor name="DashboardWashedOutText">
             <color red="0.63921568627450975" green="0.75686274509803919" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="LightDivider">
+            <color red="0.86274509803921573" green="0.8784313725490196" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="PrimaryBlue">
             <color red="0.38039215686274508" green="0.54117647058823526" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SecondaryText">
+            <color red="0.55686274509803924" green="0.58823529411764708" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text">
+            <color red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="TextMessages">
             <color red="0.11764705882352941" green="0.12156862745098039" blue="0.14509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

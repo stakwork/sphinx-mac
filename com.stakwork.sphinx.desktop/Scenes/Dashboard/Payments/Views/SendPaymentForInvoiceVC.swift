@@ -23,6 +23,13 @@ class SendPaymentForInvoiceVC:NSViewController{
     @IBOutlet weak var paymentContainerMemoField: NSTextField!
     @IBOutlet weak var payInvoiceButton: NSView!
     @IBOutlet weak var closeButton: NSButton!
+    @IBOutlet weak var verifyButtonWithLabel: VerticallyCenteredButtonCell!
+    @IBOutlet weak var payButtonWithLabel: VerticallyCenteredButtonCell!
+    @IBOutlet weak var invoiceStringTitle: NSTextField!
+    
+    @IBOutlet weak var invoiceAmountTitle: NSTextField!
+    @IBOutlet weak var expirationDateTitle: NSTextField!
+    @IBOutlet weak var memoTitle: NSTextField!
     
     @IBOutlet weak var paymentContainerToCheckInvoiceTopConstraint: NSLayoutConstraint!
     
@@ -48,9 +55,17 @@ class SendPaymentForInvoiceVC:NSViewController{
         //scannerOverlay.setBackgroundColor(color: .purple)
         confirmButton.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(confirmButtonTouched)))
         payInvoiceButton.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(payInvoiceButtonTouched)))
+        addLocalizations()
         
-        //scannerViewHeight.constant = 0
-        //scannerOverlay.layoutSubtreeIfNeeded()
+    }
+    
+    func addLocalizations(){
+        verifyButtonWithLabel.title = "verify.upper".localized
+        payButtonWithLabel.title = "pay.upper".localized
+        titleLabel.stringValue = "make.payment".localized
+        invoiceAmountTitle.stringValue = "invoice.amount".localized
+        expirationDateTitle.stringValue = "expiration.date".localized
+        invoiceStringTitle.stringValue = "invoice.string".localized
     }
     
     @objc func confirmButtonTouched() {

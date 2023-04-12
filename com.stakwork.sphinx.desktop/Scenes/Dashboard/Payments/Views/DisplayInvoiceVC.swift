@@ -17,6 +17,8 @@ class DisplayInvoiceVC : NSViewController{
     @IBOutlet weak var shareQRImageButton: NSView!
     @IBOutlet weak var invoiceStringDisplay: NSTextField!
     @IBOutlet weak var amountTextField: NSTextField!
+    @IBOutlet weak var codeStringLabel: VerticallyCenteredButtonCell!
+    @IBOutlet weak var codeImageLabel: VerticallyCenteredButtonCell!
     
     var qrString : String? = nil
     var amount : Int? = nil
@@ -55,6 +57,13 @@ class DisplayInvoiceVC : NSViewController{
             
         }
         self.view.setBackgroundColor(color: NSColor.Sphinx.Body)
+        self.addLocalization()
+    }
+    
+    func addLocalization(){
+        receiveInvoiceTitle.stringValue = "payment.request".localized
+        codeStringLabel.title = "copy.invoice.string".localized
+        codeImageLabel.title = "copy.invoice.image".localized
     }
     
     @objc func copyInvoiceImage(){
