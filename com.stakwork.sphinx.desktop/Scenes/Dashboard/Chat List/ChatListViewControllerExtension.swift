@@ -72,7 +72,7 @@ extension ChatListViewController : ChildVCDelegate,ActionsDelegate,ChoosePayment
     
     func handleSentClick() {
         WindowsManager.sharedInstance.closeIfExists(identifier: "invoice-management-window")
-        let vc = SendPaymentVC.instantiate()
+        let vc = SendPaymentForInvoiceVC.instantiate()
         WindowsManager.sharedInstance.showContactWindow(vc: vc, window: view.window, title: "Manage Payments", identifier: "invoice-management-window", size: CGSize(width: 414, height: 325))
     }
     

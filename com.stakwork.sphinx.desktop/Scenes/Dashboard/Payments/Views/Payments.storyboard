@@ -303,10 +303,10 @@
             </objects>
             <point key="canvasLocation" x="736" y="77"/>
         </scene>
-        <!--Send PaymentVC-->
+        <!--Send Payment For InvoiceVC-->
         <scene sceneID="K20-aC-P0s">
             <objects>
-                <viewController storyboardIdentifier="SendPaymentVC" id="wIU-ri-c4b" customClass="SendPaymentVC" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SendPaymentVC" id="wIU-ri-c4b" customClass="SendPaymentForInvoiceVC" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="u72-4T-Thc">
                         <rect key="frame" x="0.0" y="0.0" width="343" height="289"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -392,7 +392,7 @@
                                 </textFieldCell>
                             </textField>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="lDK-bz-j0p">
-                                <rect key="frame" x="0.0" y="-123" width="343" height="130"/>
+                                <rect key="frame" x="0.0" y="-143" width="343" height="130"/>
                                 <subviews>
                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AMt-sw-PeH">
                                         <rect key="frame" x="58" y="96" width="99" height="16"/>
@@ -559,7 +559,7 @@
                             <constraint firstItem="YZZ-OU-oIN" firstAttribute="centerX" secondItem="u72-4T-Thc" secondAttribute="centerX" id="Xg5-se-oOm"/>
                             <constraint firstItem="M91-cj-Vra" firstAttribute="centerX" secondItem="u72-4T-Thc" secondAttribute="centerX" id="lTz-W5-8rd"/>
                             <constraint firstItem="DBr-XU-def" firstAttribute="top" secondItem="M91-cj-Vra" secondAttribute="bottom" constant="22" id="lWK-fp-KVI"/>
-                            <constraint firstItem="lDK-bz-j0p" firstAttribute="top" secondItem="plp-AS-h1s" secondAttribute="top" constant="130" id="pFw-6Q-VM1"/>
+                            <constraint firstItem="lDK-bz-j0p" firstAttribute="top" secondItem="plp-AS-h1s" secondAttribute="top" constant="150" id="pFw-6Q-VM1"/>
                             <constraint firstAttribute="trailing" secondItem="lDK-bz-j0p" secondAttribute="trailing" id="pSA-S3-dvb"/>
                             <constraint firstItem="lDK-bz-j0p" firstAttribute="leading" secondItem="u72-4T-Thc" secondAttribute="leading" id="rVI-np-uy3"/>
                             <constraint firstItem="M91-cj-Vra" firstAttribute="top" secondItem="iM0-Ip-iyu" secondAttribute="bottom" constant="12" id="vG9-kn-QgI"/>

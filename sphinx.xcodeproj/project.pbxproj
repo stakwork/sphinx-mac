@@ -542,7 +542,7 @@
 		CE38D91129E0821A00F271CD /* Payments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE38D91029E0821A00F271CD /* Payments.storyboard */; };
 		CE38D91329E0823800F271CD /* DisplayInvoiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE38D91229E0823800F271CD /* DisplayInvoiceVC.swift */; };
 		CE6BF5C829E59905009BCFDE /* ChoosePaymentModeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6BF5C729E59905009BCFDE /* ChoosePaymentModeVC.swift */; };
-		CE6BF5CA29E5BA38009BCFDE /* SendPaymentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6BF5C929E5BA38009BCFDE /* SendPaymentVC.swift */; };
+		CE6BF5CA29E5BA38009BCFDE /* SendPaymentForInvoiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6BF5C929E5BA38009BCFDE /* SendPaymentForInvoiceVC.swift */; };
 		CE9BA45F29D76A8E000C8837 /* PodcastDetailSelectionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BA45E29D76A8E000C8837 /* PodcastDetailSelectionVM.swift */; };
 		CE9BA46229D772BD000C8837 /* PodcastDetailActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BA46029D772BD000C8837 /* PodcastDetailActionCell.swift */; };
 		CE9BA46329D772BD000C8837 /* PodcastDetailActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9BA46129D772BD000C8837 /* PodcastDetailActionCell.xib */; };
@@ -1242,7 +1242,7 @@
 		CE38D91029E0821A00F271CD /* Payments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payments.storyboard; sourceTree = "<group>"; };
 		CE38D91229E0823800F271CD /* DisplayInvoiceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayInvoiceVC.swift; sourceTree = "<group>"; };
 		CE6BF5C729E59905009BCFDE /* ChoosePaymentModeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosePaymentModeVC.swift; sourceTree = "<group>"; };
-		CE6BF5C929E5BA38009BCFDE /* SendPaymentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPaymentVC.swift; sourceTree = "<group>"; };
+		CE6BF5C929E5BA38009BCFDE /* SendPaymentForInvoiceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPaymentForInvoiceVC.swift; sourceTree = "<group>"; };
 		CE9BA45E29D76A8E000C8837 /* PodcastDetailSelectionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailSelectionVM.swift; sourceTree = "<group>"; };
 		CE9BA46029D772BD000C8837 /* PodcastDetailActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailActionCell.swift; sourceTree = "<group>"; };
 		CE9BA46129D772BD000C8837 /* PodcastDetailActionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodcastDetailActionCell.xib; sourceTree = "<group>"; };
@@ -2418,7 +2418,7 @@
 			children = (
 				47B550A0248BD9E7000514BF /* CommonPaymentView.swift */,
 				CE38D91229E0823800F271CD /* DisplayInvoiceVC.swift */,
-				CE6BF5C929E5BA38009BCFDE /* SendPaymentVC.swift */,
+				CE6BF5C929E5BA38009BCFDE /* SendPaymentForInvoiceVC.swift */,
 				CE6BF5C729E59905009BCFDE /* ChoosePaymentModeVC.swift */,
 				CE38D91029E0821A00F271CD /* Payments.storyboard */,
 				4797E88024BCD69F00D13270 /* CommonPaymentView.xib */,
@@ -3225,7 +3225,7 @@
 				474567F82514FE3100D66268 /* FileBubbleView.swift in Sources */,
 				4720991624834E0000426028 /* CryptorRSAUtilities.swift in Sources */,
 				47D03DE4250BB9F40077A968 /* NewInviteViewController.swift in Sources */,
-				CE6BF5CA29E5BA38009BCFDE /* SendPaymentVC.swift in Sources */,
+				CE6BF5CA29E5BA38009BCFDE /* SendPaymentForInvoiceVC.swift in Sources */,
 				4731BE2F24855E4600BCCA9E /* CommonInvoiceCollectionViewItem.swift in Sources */,
 				47B550A9248BEB9A000514BF /* PaymentTemplatesViewController.swift in Sources */,
 				479751E0246D8FFB00D2106B /* ChatListViewController.swift in Sources */,

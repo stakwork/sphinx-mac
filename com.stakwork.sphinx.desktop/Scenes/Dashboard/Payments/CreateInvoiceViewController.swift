@@ -43,7 +43,7 @@ class CreateInvoiceViewController : PaymentInvoiceFormViewController {
     }
     
     func createPaymentRequest() {
-        paymentViewModel.shouldCreateInvoice(callback: { message,invoice in
+        paymentViewModel.shouldCreateInvoice(isKeySend:false,callback: { message,invoice in
             if let message = message{
                 self.didCreateMessage(message: message)
             }

@@ -10,7 +10,7 @@ import Foundation
 import Cocoa
 import AVFoundation
 
-class SendPaymentVC:NSViewController{
+class SendPaymentForInvoiceVC:NSViewController{
     
     @IBOutlet weak var titleLabel: NSTextField!
     @IBOutlet weak var addressField: NSTextField!
@@ -31,7 +31,7 @@ class SendPaymentVC:NSViewController{
     
     static func instantiate(
 
-    ) -> SendPaymentVC {
+    ) -> SendPaymentForInvoiceVC {
         let viewController = StoryboardScene.Payments.sendPaymentVC.instantiate()
         return viewController
     }
@@ -136,7 +136,7 @@ class SendPaymentVC:NSViewController{
     }
     
     func animatePaymentContainer(show:Bool=true){
-        paymentContainerToCheckInvoiceTopConstraint.constant = show ? (0) : (130)
+        paymentContainerToCheckInvoiceTopConstraint.constant = show ? (0) : (150)
         AnimationHelper.animateViewWith(duration: 0.2, animationsBlock: {
             self.paymentContainerView.layoutSubtreeIfNeeded()
         })
