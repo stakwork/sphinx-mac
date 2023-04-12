@@ -136,7 +136,7 @@ class SendPaymentForInvoiceVC:NSViewController{
     }
     
     func animatePaymentContainer(show:Bool=true){
-        paymentContainerToCheckInvoiceTopConstraint.constant = show ? (0) : (150)
+        paymentContainerToCheckInvoiceTopConstraint.constant = show ? (0) : (self.confirmButton.frame.maxY + 50.0)
         AnimationHelper.animateViewWith(duration: 0.2, animationsBlock: {
             self.paymentContainerView.layoutSubtreeIfNeeded()
         })
