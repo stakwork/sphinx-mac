@@ -24,6 +24,7 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem, PodcastDetailSelec
     @IBOutlet weak var playTimeProgressView: NSView!
     @IBOutlet weak var playTimeProgressViewBox: NSBox!
     @IBOutlet weak var durationProgressView: NSView!
+    @IBOutlet weak var durationViewBox: NSBox!
     @IBOutlet weak var playedCheckmark: NSImageView!
     @IBOutlet weak var dotView: NSView!
     @IBOutlet weak var descriptionLabel: NSTextField!
@@ -69,37 +70,17 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem, PodcastDetailSelec
         self.episode = episode
         
         episodeNameLabel.stringValue = episode.title ?? "No title"
+        episodeNameLabel.maximumNumberOfLines = 2
+        
         descriptionLabel.stringValue = episode.episodeDescription?.nonHtmlRawString ?? "No description"
+        descriptionLabel.maximumNumberOfLines = 2
+        
         datePublishedLabel.stringValue = episode.dateString ?? ""
         
-        let duration = episode.duration ?? 0
-        let currentTime = episode.currentTime ?? 0
-        
-        let timeString = (duration - currentTime).getEpisodeTimeString(
-            isOnProgress: currentTime > 0
-        )
-        
-        if let currentTime = episode.currentTime,
-           let duration = episode.duration {
-            
-            let percentage = CGFloat(currentTime)/CGFloat(duration)
-            currentTimeProgressWidth.constant = 40.0 * CGFloat(percentage)
-            
-            playedCheckmark.isHidden = !episode.wasPlayed
-            timeRemainingLabel.stringValue = episode.wasPlayed ? "Played" : timeString
-            
-            self.view.layoutSubtreeIfNeeded()
-        } else {
-            timeRemainingLabel.stringValue = timeString
-            playedCheckmark.isHidden = true
-            
-            currentTimeProgressWidth.constant = 0.0
-            self.view.layoutSubtreeIfNeeded()
-        }
-        
         playArrow.stringValue = playing ? "pause" : "play_arrow"
+        durationProgressView.alphaValue = 0.1
         playTimeProgressViewBox.fillColor = playing ? NSColor.Sphinx.BlueTextAccent : NSColor.Sphinx.Text
-        playTimeProgressViewBox.alphaValue = playing ? 1.0 : 0.3
+        playTimeProgressView.alphaValue = playing ? 1.0 : 0.3
         
         episodeImageView.sd_cancelCurrentImageLoad()
         
@@ -115,6 +96,33 @@ class PodcastEpisodeCollectionViewItem: NSCollectionViewItem, PodcastDetailSelec
         }
         
         divider.isHidden = isLastRow
+        
+        let duration = episode.duration ?? 0
+        let currentTime = episode.currentTime ?? 0
+        
+        let timeString = (duration - currentTime).getEpisodeTimeString(
+            isOnProgress: currentTime > 0
+        )
+        
+        let shouldShowProgressView = (duration > 0 && currentTime > 0)
+        durationProgressView.isHidden = !shouldShowProgressView
+        playTimeProgressView.isHidden = !shouldShowProgressView
+        
+        if let currentTime = episode.currentTime, let duration = episode.duration {
+            
+            let percentage = max(CGFloat(currentTime)/CGFloat(duration), CGFloat(0.075))
+            currentTimeProgressWidth.constant = 40.0 * CGFloat(percentage)
+            playTimeProgressViewBox.layoutSubtreeIfNeeded()
+            
+            playedCheckmark.isHidden = !episode.wasPlayed
+            timeRemainingLabel.stringValue = episode.wasPlayed ? "Played" : timeString
+        } else {
+            timeRemainingLabel.stringValue = timeString
+            playedCheckmark.isHidden = true
+            
+            currentTimeProgressWidth.constant = 0.0
+            playTimeProgressViewBox.layoutSubtreeIfNeeded()
+        }
     }
     
     func toggleWasPlayed(){

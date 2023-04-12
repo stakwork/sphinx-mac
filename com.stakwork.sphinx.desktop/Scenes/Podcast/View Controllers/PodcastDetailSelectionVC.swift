@@ -41,9 +41,6 @@ class PodcastDetailSelectionVC : NSViewController{
     }()
     
     override func viewDidLoad() {
-        self.view.wantsLayer = true
-        //self.view.layer?.backgroundColor = NSColor.Sphinx.BlueTextAccent.cgColor
-        
         adjustUI(episode: episode, podcast: podcast)
         podcastDetailSelectionVM.setupCollectionView()
     }
@@ -67,10 +64,10 @@ class PodcastDetailSelectionVC : NSViewController{
         mediaTypeImageView.wantsLayer = true
         mediaTypeImageView.layer?.cornerRadius = 3.0
         dotView.wantsLayer = true
-        dotView.layer?.backgroundColor = NSColor.Sphinx.SecondaryText.cgColor
+        dotView.layer?.backgroundColor = NSColor.Sphinx.Text.cgColor
         dotView.makeCircular()
         dotView2.wantsLayer = true
-        dotView2.layer?.backgroundColor = NSColor.Sphinx.SecondaryText.cgColor
+        dotView2.layer?.backgroundColor = NSColor.Sphinx.Text.cgColor
         dotView2.makeCircular()
         podcastDetailImageView.wantsLayer = true
         podcastDetailImageView.layer?.cornerRadius = 8.0

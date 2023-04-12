@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jbI-X3-TlI">
-                    <rect key="frame" x="77" y="22" width="222" height="20"/>
+                    <rect key="frame" x="45" y="22" width="263" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="qFZ-de-Zbl"/>
                     </constraints>
@@ -33,34 +33,33 @@
                     </textFieldCell>
                 </textField>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DYz-FH-2qx">
-                    <rect key="frame" x="32" y="22" width="20" height="20"/>
+                    <rect key="frame" x="0.0" y="22" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="9bO-a0-R25"/>
                         <constraint firstAttribute="width" secondItem="DYz-FH-2qx" secondAttribute="height" multiplier="1:1" id="9l1-KE-Wcf"/>
                     </constraints>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="sn5-Ie-yc6"/>
                 </imageView>
-                <box translatesAutoresizingMaskIntoConstraints="NO" id="8qE-xa-ZeC">
-                    <rect key="frame" x="5" y="-3" width="312" height="4"/>
+                <box boxType="custom" borderType="none" borderWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="8qE-xa-ZeC">
+                    <rect key="frame" x="0.0" y="0.0" width="322" height="1"/>
                     <view key="contentView" id="bO5-c0-Kq2">
-                        <rect key="frame" x="3" y="-4" width="306" height="0.0"/>
+                        <rect key="frame" x="0.0" y="0.0" width="322" height="1"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
                     <constraints>
-                        <constraint firstAttribute="height" id="7hq-QP-6H8"/>
+                        <constraint firstAttribute="height" constant="1" id="7hq-QP-6H8"/>
                     </constraints>
                 </box>
             </subviews>
             <constraints>
-                <constraint firstItem="8qE-xa-ZeC" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="7LR-Sm-AUd"/>
-                <constraint firstAttribute="trailing" secondItem="jbI-X3-TlI" secondAttribute="trailing" constant="25" id="CF0-ag-ieh"/>
-                <constraint firstItem="8qE-xa-ZeC" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="8" id="HDD-BI-Y1W"/>
+                <constraint firstAttribute="trailing" secondItem="jbI-X3-TlI" secondAttribute="trailing" constant="16" id="CF0-ag-ieh"/>
+                <constraint firstItem="8qE-xa-ZeC" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="HDD-BI-Y1W"/>
+                <constraint firstAttribute="trailing" secondItem="8qE-xa-ZeC" secondAttribute="trailing" id="NKn-oh-dq5"/>
                 <constraint firstItem="jbI-X3-TlI" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="NSD-MV-X8X"/>
-                <constraint firstAttribute="bottom" secondItem="8qE-xa-ZeC" secondAttribute="bottom" constant="1" id="Vg8-cU-JQP"/>
                 <constraint firstItem="DYz-FH-2qx" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="Y5a-qO-swT"/>
                 <constraint firstItem="jbI-X3-TlI" firstAttribute="leading" secondItem="DYz-FH-2qx" secondAttribute="trailing" constant="27" id="hqQ-N9-HcF"/>
                 <constraint firstItem="8qE-xa-ZeC" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="63" id="wqa-xQ-knb"/>
-                <constraint firstItem="DYz-FH-2qx" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="32" id="zNc-R0-1In"/>
+                <constraint firstItem="DYz-FH-2qx" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="zNc-R0-1In"/>
             </constraints>
             <point key="canvasLocation" x="-82" y="135.5"/>
         </customView>

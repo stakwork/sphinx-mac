@@ -170,7 +170,7 @@ class PodcastPlayerCollectionViewItem: NSCollectionViewItem {
         selectEpisode(episode: episode)
     }
     
-    func selectEpisode(episode:PodcastEpisode,atTime:Int?=nil){
+    func selectEpisode(episode:PodcastEpisode, atTime:Int?=nil){
         guard let podcastData = podcast.getPodcastData(
             episodeId: episode.itemID
         ) else {
@@ -178,7 +178,7 @@ class PodcastPlayerCollectionViewItem: NSCollectionViewItem {
         }
             
         podcastPlayerController.submitAction(
-            UserAction.Play(podcastData)
+            UserAction.TogglePlay(podcastData)
         )
         
         if let time = atTime{
