@@ -9,6 +9,10 @@
 import Foundation
 
 extension PodcastPlayerController {
+    func resetPlayedSeconds() {
+        self.playedSeconds = 0
+    }
+    
     @objc func updatePlayedTime() {
         playedSeconds = playedSeconds + 1
         
@@ -24,11 +28,11 @@ extension PodcastPlayerController {
             return
         }
         
-//        podcastPaymentsHelper.processPaymentsFor(
-//            podcastFeed: podcast,
-//            boostAmount: amount,
-//            itemId: podcastData.episodeId,
-//            currentTime: podcastData.currentTime ?? 0
-//        )
+        podcastPaymentsHelper.processPaymentsFor(
+            podcastFeed: podcast,
+            boostAmount: amount,
+            itemId: podcastData.episodeId,
+            currentTime: podcastData.currentTime ?? 0
+        )
     }
 }

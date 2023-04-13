@@ -68,12 +68,9 @@ class PodcastPlayerController {
             if self.podcast?.feedID == podcastData?.podcastId {
                 return
             }
-            if let contentFeed = ContentFeed.getFeedWith(feedId: podcastData?.podcastId ?? "") {
-                self.podcast = PodcastFeed.convertFrom(contentFeed: contentFeed)
-            }
-//            else if podcastData?.podcastId == RecommendationsHelper.kRecommendationPodcastId {
-//                self.podcast = RecommendationsHelper.sharedInstance.recommendationsPodcast
-//            }
+            self.podcast = getPodcastFrom(podcastData: podcastData)
+            
+            self.resetPlayedSeconds()
         }
     }
     
@@ -108,6 +105,9 @@ class PodcastPlayerController {
         if let contentFeed = ContentFeed.getFeedWith(feedId: podcastData?.podcastId ?? "") {
             return PodcastFeed.convertFrom(contentFeed: contentFeed)
         }
+//            else if podcastData?.podcastId == RecommendationsHelper.kRecommendationPodcastId {
+//                return RecommendationsHelper.sharedInstance.recommendationsPodcast
+//            }
         return nil
     }
 
