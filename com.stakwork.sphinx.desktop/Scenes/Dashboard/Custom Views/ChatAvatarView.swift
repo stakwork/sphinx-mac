@@ -129,24 +129,23 @@ class ChatAvatarView: NSView, LoadableNib {
 
         if let urlString = object?.getPhotoUrl()?.removeDuplicatedProtocol(),
            let url = URL(string: urlString) {
+            
+            container.isHidden = true
+            imageView.isHidden = false
+            imageView.bordered = false
+            
             imageView.sd_setImage(
                 with: url,
                 placeholderImage: NSImage(named: "profile_avatar"),
-                options: [SDWebImageOptions.retryFailed],
+                options: [SDWebImageOptions.progressiveLoad],
                 completed: { (image, error, _, _) in
-                    if let image = image, error == nil {
-                        self.setImage(image: image, in: imageView, initialsContainer: container)
+                    if let _ = error {
+                        container.isHidden = false
+                        imageView.isHidden = true
                     }
                 }
             )
         }
-    }
-    
-    func setImage(image: NSImage, in imageView: AspectFillNSImageView, initialsContainer: NSView) {
-        initialsContainer.isHidden = true
-        imageView.isHidden = false
-        imageView.bordered = false
-        imageView.image = image
     }
     
     func showInitialsFor(_ object: ChatListCommonObject?, in imageView: AspectFillNSImageView, and container: NSView) {
