@@ -120,10 +120,14 @@ extension PodcastFeed {
     }
     
     func getEpisodesToCache() -> [PodcastEpisode] {
+        if(episodesArray.count == 0){return []}
+        let maxIndex = episodesArray.count - 1
         if let currentEpisodeIndex = currentEpisodeIndex {
-            return Array(episodesArray[0...currentEpisodeIndex])
+            let endIndex = min(maxIndex,currentEpisodeIndex)
+            return Array(episodesArray[0...endIndex])
         }
-        return Array(episodesArray[0...2])
+        let endIndex = min(maxIndex,2)
+        return Array(episodesArray[0...endIndex])
     }
     
     var currentEpisodeIndex: Int? {
