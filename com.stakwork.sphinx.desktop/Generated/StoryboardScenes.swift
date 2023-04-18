@@ -37,6 +37,8 @@ internal enum StoryboardScene {
         
         internal static let dashboardViewController = SceneType<DashboardViewController>(storyboard: Dashboard.self, identifier: "DashboardViewController")
         
+        internal static let youtubeViewController = SceneType<YoutubePlayerVC>(storyboard: Dashboard.self, identifier: "YoutubePlayerVC")
+        
         internal static let chatListViewController = SceneType<ChatListViewController>(storyboard: Dashboard.self, identifier: "ChatListViewController")
         
         internal static let chatViewController = SceneType<ChatViewController>(storyboard: Dashboard.self, identifier: "ChatViewController")

@@ -542,6 +542,7 @@
 		CE9BA45F29D76A8E000C8837 /* PodcastDetailSelectionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BA45E29D76A8E000C8837 /* PodcastDetailSelectionVM.swift */; };
 		CE9BA46229D772BD000C8837 /* PodcastDetailActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BA46029D772BD000C8837 /* PodcastDetailActionCell.swift */; };
 		CE9BA46329D772BD000C8837 /* PodcastDetailActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9BA46129D772BD000C8837 /* PodcastDetailActionCell.xib */; };
+		CEDD653829EEFB2500AC67B8 /* YoutubePlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDD653729EEFB2500AC67B8 /* YoutubePlayerVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1238,6 +1239,7 @@
 		CE9BA45E29D76A8E000C8837 /* PodcastDetailSelectionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailSelectionVM.swift; sourceTree = "<group>"; };
 		CE9BA46029D772BD000C8837 /* PodcastDetailActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailActionCell.swift; sourceTree = "<group>"; };
 		CE9BA46129D772BD000C8837 /* PodcastDetailActionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodcastDetailActionCell.xib; sourceTree = "<group>"; };
+		CEDD653729EEFB2500AC67B8 /* YoutubePlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubePlayerVC.swift; sourceTree = "<group>"; };
 		F90398F47E0448445B11E3B5 /* Pods-com.stakwork.sphinx.desktop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-com.stakwork.sphinx.desktop.debug.xcconfig"; path = "Target Support Files/Pods-com.stakwork.sphinx.desktop/Pods-com.stakwork.sphinx.desktop.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2150,6 +2152,7 @@
 				4797E7482785D1560080B966 /* People */,
 				4797E83B24BCC10D00D13270 /* Dashboard.storyboard */,
 				479751C9246C732C00D2106B /* DashboardViewController.swift */,
+				CEDD653729EEFB2500AC67B8 /* YoutubePlayerVC.swift */,
 				479751FD246EE0AE00D2106B /* DashboardSplittedViewController.swift */,
 				473437AD24DB12B300950F25 /* Profile */,
 				479751FF246F014700D2106B /* Custom Views */,
@@ -3404,6 +3407,7 @@
 				479751C1246C57CE00D2106B /* NSViewWithTag.swift in Sources */,
 				4702BCF0248FE5C400EE9394 /* ShareInviteCodeViewController.swift in Sources */,
 				4731BE1D2485305D00BCCA9E /* CommonDirectPaymentCollectionViewItem.swift in Sources */,
+				CEDD653829EEFB2500AC67B8 /* YoutubePlayerVC.swift in Sources */,
 				478ED59625D55C0700940132 /* WelcomeLightningViewController.swift in Sources */,
 				475B685B29917395000EF29C /* PodcastPlayerController+Payments.swift in Sources */,
 				47F8824F25656CB0002A7E71 /* SocketManager.swift in Sources */,

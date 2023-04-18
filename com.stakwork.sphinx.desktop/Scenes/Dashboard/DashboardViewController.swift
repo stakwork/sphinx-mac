@@ -57,6 +57,19 @@ class DashboardViewController: NSViewController {
         leftSplittedView.isHidden = windowState.menuCollapsed
         
         DistributedNotificationCenter.default().addObserver(self, selector: #selector(self.themeChangedNotification(notification:)), name: .onInterfaceThemeChanged, object: nil)
+        
+        showYT()
+    }
+    
+    func showYT(){
+        let ytVC = YoutubePlayerVC.instantiate()
+        
+        WindowsManager.sharedInstance.showNewWindow(
+            with: "YouTube",
+            size: CGSize(width: 1200, height: 600),
+            centeredIn: self.view.window,
+            contentVC: ytVC
+        )
     }
     
     override func viewWillAppear() {
