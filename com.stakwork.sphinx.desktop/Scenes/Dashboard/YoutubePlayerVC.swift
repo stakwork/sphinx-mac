@@ -17,6 +17,10 @@ class YoutubePlayerVC : NSViewController{
     @IBOutlet weak var boostViewContainer: NSView!
     @IBOutlet weak var boostButton: BoostButtonView!
     @IBOutlet weak var satsStreamView: PodcastSatsView!
+    @IBOutlet weak var episodeTitleLabel: NSTextField!
+    @IBOutlet weak var titleView: NSView!
+    @IBOutlet weak var descriptionLabel: NSTextField!
+    
     let kSecondsPerPayment = 600
     var isPlaying : Bool = true
     var playedSeconds : Int = 0
@@ -41,6 +45,9 @@ class YoutubePlayerVC : NSViewController{
             self.view.bringSubviewToFront(self.detailsView)
             self.detailsView.bringSubviewToFront(self.boostButton)
             self.detailsView.bringSubviewToFront(self.satsStreamView)
+            self.detailsView.bringSubviewToFront(self.titleView)
+            self.titleView.bringSubviewToFront(self.episodeTitleLabel)
+            self.titleView.bringSubviewToFront(self.descriptionLabel)
         })
         setupFeedBoostHelper()
         setupStreamView()
@@ -116,6 +123,18 @@ class YoutubePlayerVC : NSViewController{
         }
     }
     
+    func configureUI(item:ContentFeedItem){
+        episodeTitleLabel.usesSingleLineMode = false
+        episodeTitleLabel.cell?.wraps = true
+        episodeTitleLabel.cell?.isScrollable = false
+        episodeTitleLabel.stringValue = item.title
+        
+        descriptionLabel.usesSingleLineMode = false
+        descriptionLabel.cell?.wraps = true
+        descriptionLabel.cell?.isScrollable = false
+        descriptionLabel.stringValue = item.itemDescription ?? ""
+    }
+    
     func fetchCFTest(searchResult:FeedSearchResult){
         ContentFeed.fetchContentFeed(
             at: searchResult.feedURLPath,
@@ -132,6 +151,7 @@ class YoutubePlayerVC : NSViewController{
                            split.count > 1{
                             let videoID = split[1]
                             self.loadPage(itemID: String(videoID))
+                            self.configureUI(item: firstItem)
                         }
                     } else if let link = contentFeed.linkURL {
                         self.loadPage(url: link)

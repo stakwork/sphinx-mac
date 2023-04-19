@@ -66,7 +66,7 @@ class DashboardViewController: NSViewController {
         
         WindowsManager.sharedInstance.showNewWindow(
             with: "YouTube",
-            size: CGSize(width: 1200, height: 600),
+            size: CGSize(width: 1200, height: 750),
             centeredIn: self.view.window,
             contentVC: ytVC
         )

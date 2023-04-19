@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -191,7 +191,7 @@
                     <rect key="frame" x="0.0" y="348" width="400" height="30"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FdI-os-ded">
-                            <rect key="frame" x="14" y="7" width="121" height="16"/>
+                            <rect key="frame" x="14" y="7" width="120" height="16"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="GROUP MEMBERS" id="wLK-aH-PyB">
                                 <font key="font" size="14" name="Roboto-Medium"/>
                                 <color key="textColor" name="SecondaryText"/>
@@ -199,7 +199,7 @@
                             </textFieldCell>
                         </textField>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZbU-2Z-Zhm">
-                            <rect key="frame" x="319" y="0.0" width="65" height="30"/>
+                            <rect key="frame" x="318" y="0.0" width="66" height="30"/>
                             <buttonCell key="cell" type="bevel" title="SELECT ALL" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="Zqp-JM-Q4y">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" size="11" name="Roboto-Bold"/>
@@ -271,7 +271,7 @@
         </customView>
     </objects>
     <resources>
-        <image name="NSStopProgressFreestandingTemplate" width="15" height="15"/>
+        <image name="NSStopProgressFreestandingTemplate" width="20" height="20"/>
         <namedColor name="ListBG">
             <color red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -1548,63 +1548,117 @@
             <objects>
                 <viewController storyboardIdentifier="YoutubePlayerVC" id="PkE-dJ-G4O" customClass="YoutubePlayerVC" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="zjR-Cl-6UD">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="921" height="372"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <wkWebView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bnr-E0-3AY">
-                                <rect key="frame" x="29" y="20" width="392" height="260"/>
+                                <rect key="frame" x="29" y="20" width="863" height="332"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="Dfw-iq-QSQ">
-                                <rect key="frame" x="-375" y="20" width="1200" height="130"/>
+                                <rect key="frame" x="-139" y="20" width="1200" height="130"/>
                                 <subviews>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="5VS-7r-LFk" customClass="PodcastSatsView" customModule="Sphinx" customModuleProvider="target">
-                                        <rect key="frame" x="363" y="8" width="400" height="65"/>
+                                        <rect key="frame" x="637" y="8" width="450" height="65"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="400" id="g1h-wF-cB4"/>
+                                            <constraint firstAttribute="width" constant="450" id="g1h-wF-cB4"/>
                                             <constraint firstAttribute="height" constant="65" id="sNr-In-yMJ"/>
                                         </constraints>
                                     </customView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="ga7-oo-e1x" customClass="BoostButtonView" customModule="Sphinx" customModuleProvider="target">
-                                        <rect key="frame" x="783" y="23" width="35" height="35"/>
+                                        <rect key="frame" x="1107" y="23" width="35" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="35" id="XJo-ZC-EjK"/>
                                             <constraint firstAttribute="height" constant="35" id="tuo-9J-F8M"/>
                                         </constraints>
                                     </customView>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Q5K-fD-P4q">
+                                        <rect key="frame" x="0.0" y="0.0" width="625" height="130"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wpb-AY-hGn">
+                                                <rect key="frame" x="60" y="60" width="504" height="55"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="55" id="SNd-li-yIt"/>
+                                                </constraints>
+                                                <textFieldCell key="cell" lineBreakMode="truncatingMiddle" alignment="left" title="My Really Amazing Podcast Title. It Really Is The Best" id="2vj-H7-euA">
+                                                    <font key="font" size="22" name="Roboto-Bold"/>
+                                                    <color key="textColor" name="sphinxWhite"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jE6-1L-LeL">
+                                                <rect key="frame" x="60" y="8" width="504" height="44"/>
+                                                <textFieldCell key="cell" lineBreakMode="truncatingMiddle" alignment="left" title="My Really Amazing Podcast Title. It Really Is The Best" id="GmH-RG-LW4">
+                                                    <font key="font" size="12" name="Roboto-Regular"/>
+                                                    <color key="textColor" name="SecondaryText"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="625" id="9wO-UN-DVA"/>
+                                            <constraint firstItem="wpb-AY-hGn" firstAttribute="top" secondItem="Q5K-fD-P4q" secondAttribute="top" constant="15" id="LDv-kE-fTi"/>
+                                            <constraint firstItem="wpb-AY-hGn" firstAttribute="width" secondItem="Q5K-fD-P4q" secondAttribute="width" multiplier="0.8" id="Xg9-8a-Jpj"/>
+                                            <constraint firstItem="jE6-1L-LeL" firstAttribute="top" secondItem="wpb-AY-hGn" secondAttribute="bottom" constant="8" id="cqh-dL-32o"/>
+                                            <constraint firstAttribute="bottom" secondItem="jE6-1L-LeL" secondAttribute="bottom" constant="8" id="j3M-5O-6fC"/>
+                                            <constraint firstItem="jE6-1L-LeL" firstAttribute="trailing" secondItem="wpb-AY-hGn" secondAttribute="trailing" id="ob0-h7-ca5"/>
+                                            <constraint firstItem="jE6-1L-LeL" firstAttribute="leading" secondItem="wpb-AY-hGn" secondAttribute="leading" id="unu-gu-Azf"/>
+                                            <constraint firstItem="wpb-AY-hGn" firstAttribute="centerX" secondItem="Q5K-fD-P4q" secondAttribute="centerX" id="wct-KM-8d3"/>
+                                        </constraints>
+                                    </customView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="5VS-7r-LFk" secondAttribute="bottom" constant="8" id="0Jm-qx-0Ny"/>
-                                    <constraint firstItem="ga7-oo-e1x" firstAttribute="centerX" secondItem="Dfw-iq-QSQ" secondAttribute="centerX" constant="200" id="C0q-Lk-WPb"/>
+                                    <constraint firstItem="5VS-7r-LFk" firstAttribute="leading" secondItem="Q5K-fD-P4q" secondAttribute="trailing" constant="12" id="DDh-qd-zwe"/>
                                     <constraint firstItem="ga7-oo-e1x" firstAttribute="centerY" secondItem="5VS-7r-LFk" secondAttribute="centerY" id="Ihd-0v-4fH"/>
                                     <constraint firstAttribute="width" constant="1200" id="KWc-2C-cFX"/>
                                     <constraint firstItem="ga7-oo-e1x" firstAttribute="leading" secondItem="5VS-7r-LFk" secondAttribute="trailing" constant="20" id="Ssw-u5-inW"/>
                                     <constraint firstAttribute="height" constant="130" id="bbz-Ll-aAY"/>
+                                    <constraint firstItem="Q5K-fD-P4q" firstAttribute="top" secondItem="Dfw-iq-QSQ" secondAttribute="top" id="f9d-OO-Hc3"/>
+                                    <constraint firstItem="Q5K-fD-P4q" firstAttribute="leading" secondItem="Dfw-iq-QSQ" secondAttribute="leading" id="jjb-vn-eLh"/>
+                                    <constraint firstAttribute="bottom" secondItem="Q5K-fD-P4q" secondAttribute="bottom" id="lb1-vm-Byi"/>
                                 </constraints>
                             </customView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nQK-tP-j4w">
+                                <rect key="frame" x="540" y="101" width="365" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="IwE-aL-efQ"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="truncatingMiddle" alignment="center" title="Contribute Value for Value:" id="flx-UF-Oe6">
+                                    <font key="font" size="16" name="Roboto-Medium"/>
+                                    <color key="textColor" name="sphinxWhite"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Dfw-iq-QSQ" firstAttribute="centerX" secondItem="zjR-Cl-6UD" secondAttribute="centerX" id="6Qs-Fb-NE0"/>
                             <constraint firstItem="bnr-E0-3AY" firstAttribute="leading" secondItem="zjR-Cl-6UD" secondAttribute="leading" constant="29" id="Nlo-Wq-FJd"/>
+                            <constraint firstItem="nQK-tP-j4w" firstAttribute="centerX" secondItem="5VS-7r-LFk" secondAttribute="centerX" id="PEf-6A-tko"/>
+                            <constraint firstItem="5VS-7r-LFk" firstAttribute="top" secondItem="nQK-tP-j4w" secondAttribute="bottom" constant="8" id="Sya-JI-h6A"/>
                             <constraint firstItem="bnr-E0-3AY" firstAttribute="centerY" secondItem="zjR-Cl-6UD" secondAttribute="centerY" id="jfm-CI-hKh"/>
                             <constraint firstItem="bnr-E0-3AY" firstAttribute="top" secondItem="zjR-Cl-6UD" secondAttribute="top" constant="20" symbolic="YES" id="oCN-gX-W6i"/>
+                            <constraint firstItem="nQK-tP-j4w" firstAttribute="width" secondItem="5VS-7r-LFk" secondAttribute="width" multiplier="0.8" id="wHt-if-u4G"/>
                             <constraint firstItem="Dfw-iq-QSQ" firstAttribute="bottom" secondItem="bnr-E0-3AY" secondAttribute="bottom" id="zH7-KT-Jvi"/>
                             <constraint firstItem="bnr-E0-3AY" firstAttribute="centerX" secondItem="zjR-Cl-6UD" secondAttribute="centerX" id="zd7-dH-wVm"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="boostButton" destination="ga7-oo-e1x" id="zKM-2f-Myg"/>
+                        <outlet property="descriptionLabel" destination="jE6-1L-LeL" id="A2K-8E-GJg"/>
                         <outlet property="detailsView" destination="Dfw-iq-QSQ" id="m9g-nF-YSW"/>
+                        <outlet property="episodeTitleLabel" destination="wpb-AY-hGn" id="DY5-e9-wgD"/>
                         <outlet property="satsStreamView" destination="5VS-7r-LFk" id="iml-gI-2FL"/>
+                        <outlet property="titleView" destination="Q5K-fD-P4q" id="oJm-gg-mhw"/>
                         <outlet property="ytWebView" destination="bnr-E0-3AY" id="QMi-jj-ADQ"/>
                     </connections>
                 </viewController>
                 <customObject id="yjv-5l-9MI" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1198" y="1397"/>
+            <point key="canvasLocation" x="1433.5" y="1433"/>
         </scene>
         <!--Send Payment View Controller-->
         <scene sceneID="IZE-e5-jvU">
