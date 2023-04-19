@@ -59,6 +59,9 @@ typealias SyncActionsCallback = ((Bool) -> ())
 typealias ContentFeedCallback = ((JSON) -> ())
 typealias AllContentFeedStatusCallback = (([ContentFeedStatus]) -> ())
 typealias ContentFeedStatusCallback = ((ContentFeedStatus) -> ())
+typealias FeedSearchCompletionHandler = (
+    Result<[FeedSearchResult], API.RequestError>
+) -> ()
 
 class API {
     
@@ -72,7 +75,7 @@ class API {
     var onionConnector = SphinxOnionConnector.sharedInstance
     
     var uploadRequest: UploadRequest?
-    
+    var podcastSearchRequest: DataRequest?
     var giphyRequest: DataRequest?
     var giphyRequestType: GiphyHelper.SearchType = GiphyHelper.SearchType.Gifs
     

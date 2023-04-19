@@ -536,6 +536,8 @@
 		47F88265256D398B002A7E71 /* MessageBoostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47F88264256D398B002A7E71 /* MessageBoostView.xib */; };
 		AA1C7BC427657C4800A5B959 /* SignupCommonSecureFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1C7BC327657C4800A5B959 /* SignupCommonSecureFieldView.swift */; };
 		CE07F40529D72B7700EB0EC1 /* PodcastDetailSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07F40429D72B7700EB0EC1 /* PodcastDetailSelectionVC.swift */; };
+		CE2223DD29F07212005EC422 /* API+FeedSearchUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2223DC29F07212005EC422 /* API+FeedSearchUtils.swift */; };
+		CE2223E129F07872005EC422 /* FeedSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2223E029F07872005EC422 /* FeedSearchResult.swift */; };
 		CE326B4B294295C600821A53 /* ChatMentionAutocompleteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE326B4A294295C600821A53 /* ChatMentionAutocompleteDataSource.swift */; };
 		CE326B51294A179200821A53 /* ChatMentionAutocompleteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE326B4F294A179200821A53 /* ChatMentionAutocompleteCell.swift */; };
 		CE326B52294A179200821A53 /* ChatMentionAutocompleteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE326B50294A179200821A53 /* ChatMentionAutocompleteCell.xib */; };
@@ -1233,6 +1235,8 @@
 		97A6F8CB5E1D14A28D7C7A67 /* Pods-com.stakwork.sphinx.desktop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-com.stakwork.sphinx.desktop.release.xcconfig"; path = "Target Support Files/Pods-com.stakwork.sphinx.desktop/Pods-com.stakwork.sphinx.desktop.release.xcconfig"; sourceTree = "<group>"; };
 		AA1C7BC327657C4800A5B959 /* SignupCommonSecureFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupCommonSecureFieldView.swift; sourceTree = "<group>"; };
 		CE07F40429D72B7700EB0EC1 /* PodcastDetailSelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailSelectionVC.swift; sourceTree = "<group>"; };
+		CE2223DC29F07212005EC422 /* API+FeedSearchUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+FeedSearchUtils.swift"; sourceTree = "<group>"; };
+		CE2223E029F07872005EC422 /* FeedSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSearchResult.swift; sourceTree = "<group>"; };
 		CE326B4A294295C600821A53 /* ChatMentionAutocompleteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMentionAutocompleteDataSource.swift; sourceTree = "<group>"; };
 		CE326B4F294A179200821A53 /* ChatMentionAutocompleteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMentionAutocompleteCell.swift; sourceTree = "<group>"; };
 		CE326B50294A179200821A53 /* ChatMentionAutocompleteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatMentionAutocompleteCell.xib; sourceTree = "<group>"; };
@@ -1677,6 +1681,7 @@
 			children = (
 				47EB025729B21D7F0032CFB5 /* Parsing Objects */,
 				4744FA5D2469A41100C5FD94 /* API.swift */,
+				CE2223DC29F07212005EC422 /* API+FeedSearchUtils.swift */,
 				475B684C29916655000EF29C /* API+HubError.swift */,
 				4744FA5F2469A41B00C5FD94 /* API+UsersExtension.swift */,
 				4744FA612469A42D00C5FD94 /* API+MessagesExtension.swift */,
@@ -1960,6 +1965,7 @@
 				475B680829915CCA000EF29C /* FeedSearchAction.swift */,
 				475B680A29915CCA000EF29C /* MessageAction.swift */,
 				475B680929915CCA000EF29C /* PodcastClipAction.swift */,
+				CE2223E029F07872005EC422 /* FeedSearchResult.swift */,
 			);
 			path = "Action Wrappers";
 			sourceTree = "<group>";
@@ -3382,6 +3388,7 @@
 				47F8825725656CB0002A7E71 /* SocketAnyEvent.swift in Sources */,
 				47AF0D4E2553099100C98398 /* NewPodcastPlayerViewController.swift in Sources */,
 				479A03FE2588E7C50093DB30 /* ContactLinkPreviewView.swift in Sources */,
+				CE2223E129F07872005EC422 /* FeedSearchResult.swift in Sources */,
 				4744FAA52469CE6D00C5FD94 /* Data.swift in Sources */,
 				479751FA246DE61A00D2106B /* ContactsService.swift in Sources */,
 				479751FE246EE0AE00D2106B /* DashboardSplittedViewController.swift in Sources */,
@@ -3503,6 +3510,7 @@
 				474E334E24803FDE00F7F603 /* PaidAttachmentBubbleView.swift in Sources */,
 				4744FA5E2469A41100C5FD94 /* API.swift in Sources */,
 				4744FA902469C9F800C5FD94 /* Subscription+CoreDataProperties.swift in Sources */,
+				CE2223DD29F07212005EC422 /* API+FeedSearchUtils.swift in Sources */,
 				475B68682991A1A2000EF29C /* FeedBoostHelper.swift in Sources */,
 				474F674D2486777400CE6016 /* VideoCallReceivedCollectionViewItem.swift in Sources */,
 				470E0B33247C743900177D8A /* LoadingMoreCollectionViewItem.swift in Sources */,

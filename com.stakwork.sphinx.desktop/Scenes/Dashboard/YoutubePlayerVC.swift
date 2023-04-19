@@ -17,7 +17,7 @@ class YoutubePlayerVC : NSViewController{
     @IBOutlet weak var boostViewContainer: NSView!
     @IBOutlet weak var boostButton: BoostButtonView!
     @IBOutlet weak var satsStreamView: PodcastSatsView!
-    let kSecondsPerPayment = 10
+    let kSecondsPerPayment = 600
     var isPlaying : Bool = true
     var playedSeconds : Int = 0
     var fbh = FeedBoostHelper()
@@ -43,21 +43,31 @@ class YoutubePlayerVC : NSViewController{
             self.detailsView.bringSubviewToFront(self.satsStreamView)
         })
         setupFeedBoostHelper()
-        loadPage()
-        setupStremView()
+        setupStreamView()
         configureTimer()
+        searchTest()
     }
     
-    func loadPage() {
-        var url: String = "https://www.youtube.com/watch?v=Qw4xak-vFXE&pp=ygUPdGZ0YyBtYXJ0eSBiZW50" //tftc
-        
-        if let url = URL(string: url) {
-            let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 10)
-            ytWebView.load(request)
-        }
+    override func viewWillDisappear() {
+        paymentsTimer?.invalidate()
+        paymentsTimer = nil
     }
     
-    func setupStremView(){
+    func loadPage(url:URL) {
+        let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 10)
+        ytWebView.load(request)
+    }
+    
+    func loadPage(itemID:String) {
+        let heightString = String(self.view.frame.height - detailsView.frame.height - 50.0)
+        let iframe = """
+        <html><body><iframe width="100%" height="\(heightString)" src="https://www.youtube.com/embed/\(itemID)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></body></html>
+        """
+        let embededHTML = iframe
+        self.ytWebView.loadHTMLString(embededHTML, baseURL: Bundle.main.bundleURL)
+    }
+    
+    func setupStreamView(){
         if let item = viewItem,
            let feed = item.contentFeed,
            let chat = feed.chat{
@@ -103,6 +113,56 @@ class YoutubePlayerVC : NSViewController{
            let feed = item.contentFeed{
             let pf = PodcastFeed.convertFrom(contentFeed: feed)
             fbh.processPayment(itemID: item.id, amount: pf.satsPerMinute ?? 0)
+        }
+    }
+    
+    func fetchCFTest(searchResult:FeedSearchResult){
+        ContentFeed.fetchContentFeed(
+            at: searchResult.feedURLPath,
+            chat: nil,
+            searchResultDescription: searchResult.feedDescription,
+            searchResultImageUrl: searchResult.imageUrl,
+            persistingIn: CoreDataManager.sharedManager.getBackgroundContext(),
+            then: { result in
+                print(result)
+                if case .success(let contentFeed) = result {
+                    if #available(macOS 13.0, *) {
+                        if let firstItem = contentFeed.items?.first,
+                           let split = firstItem.linkURL?.absoluteString.split(separator: "v="),
+                           split.count > 1{
+                            let videoID = split[1]
+                            self.loadPage(itemID: String(videoID))
+                        }
+                    } else if let link = contentFeed.linkURL {
+                        self.loadPage(url: link)
+                        // Fallback on earlier versions
+                    }
+                    return
+                }
+                
+        })
+    }
+    
+    func searchTest(){
+        API.sharedInstance.searchForFeeds(
+            with: .Video,
+            matching: "Tales from the Crypt Marty Bent"
+        ) { [weak self] result in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let results):
+                    
+                    if let firstResult = results.first{
+                        print(firstResult)
+                        self.fetchCFTest(searchResult: firstResult)
+                    }
+                    
+                case .failure(_):
+                    break
+                }
+            }
         }
     }
 }
