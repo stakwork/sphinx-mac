@@ -20,6 +20,7 @@ class YoutubePlayerVC : NSViewController{
     @IBOutlet weak var episodeTitleLabel: NSTextField!
     @IBOutlet weak var titleView: NSView!
     @IBOutlet weak var descriptionLabel: NSTextField!
+    @IBOutlet weak var contributeLabel: NSTextField!
     
     let kSecondsPerPayment = 600
     var isPlaying : Bool = true
@@ -46,6 +47,7 @@ class YoutubePlayerVC : NSViewController{
             self.detailsView.bringSubviewToFront(self.boostButton)
             self.detailsView.bringSubviewToFront(self.satsStreamView)
             self.detailsView.bringSubviewToFront(self.titleView)
+            self.view.bringSubviewToFront(self.contributeLabel)
             self.titleView.bringSubviewToFront(self.episodeTitleLabel)
             self.titleView.bringSubviewToFront(self.descriptionLabel)
         })

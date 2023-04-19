@@ -1648,6 +1648,7 @@
                     </view>
                     <connections>
                         <outlet property="boostButton" destination="ga7-oo-e1x" id="zKM-2f-Myg"/>
+                        <outlet property="contributeLabel" destination="nQK-tP-j4w" id="RDI-mn-SZ9"/>
                         <outlet property="descriptionLabel" destination="jE6-1L-LeL" id="A2K-8E-GJg"/>
                         <outlet property="detailsView" destination="Dfw-iq-QSQ" id="m9g-nF-YSW"/>
                         <outlet property="episodeTitleLabel" destination="wpb-AY-hGn" id="DY5-e9-wgD"/>
