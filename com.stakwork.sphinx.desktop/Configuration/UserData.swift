@@ -88,7 +88,13 @@ class UserData {
             completion?(transportKey)
             return
         }
-
+        
+        fetchAndSaveTransportKey(completion: completion)
+    }
+    
+    func fetchAndSaveTransportKey(
+        completion: ((String?) ->())? = nil
+    ) {
         API.sharedInstance.getTransportKey(callback: { transportKey in
             self.save(transportKey: transportKey)
             completion?(transportKey)
