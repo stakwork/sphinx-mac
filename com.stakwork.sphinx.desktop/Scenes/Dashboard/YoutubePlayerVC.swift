@@ -38,6 +38,7 @@ class YoutubePlayerVC : NSViewController{
     
     
     override func viewDidLoad() {
+        self.view.setBackgroundColor(color: NSColor.Sphinx.Body)
         detailsView.setBackgroundColor(color: NSColor.Sphinx.Body)
         detailsView.layer?.cornerRadius = 12.0
         boostButton.delegate = self
@@ -70,10 +71,31 @@ class YoutubePlayerVC : NSViewController{
     func loadPage(itemID:String) {
         let heightString = String(self.view.frame.height - detailsView.frame.height - 50.0)
         let iframe = """
-        <html><body><iframe width="100%" height="\(heightString)" src="https://www.youtube.com/embed/\(itemID)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></body></html>
+        <html><body><iframe width="100%" height="\(heightString)" src="https://www.youtube.com/embed/\(itemID)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen; allowscriptaccess="always";></iframe></body></html>
         """
         let embededHTML = iframe
         self.ytWebView.loadHTMLString(embededHTML, baseURL: Bundle.main.bundleURL)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 15.0, execute: {
+            self.debugWebview()
+        })
+    }
+    
+    func debugWebview(){
+        ytWebView.evaluateJavaScript("document.documentElement.outerHTML") { (html, error) in
+            guard let html = html as? String else {
+                print(error)
+                return
+            }
+            // Here you have HTML of the whole page.
+            print(html)
+        }
+        
+        let stopCommand = """
+            $('.yt_player_iframe').each(function(){
+              this.contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', '*')
+            });
+        """
+        ytWebView.evaluateJavaScript(stopCommand)
     }
     
     func setupStreamView(){
