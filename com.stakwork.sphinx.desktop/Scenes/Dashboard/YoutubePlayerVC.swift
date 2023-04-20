@@ -27,7 +27,7 @@ class YoutubePlayerVC : NSViewController{
     var playedSeconds : Int = 0
     var fbh = FeedBoostHelper()
     
-    var viewItem : ContentFeedItem? = ContentFeedItem.getItemWith(itemID: "14937084479")
+    var viewItem : ContentFeedItem? = ContentFeedItem.getItemWith(itemID: "14937084479")//currently a hardcoded item
     var paymentsTimer : Timer? = nil
     
     static func instantiate() -> YoutubePlayerVC {
@@ -38,12 +38,13 @@ class YoutubePlayerVC : NSViewController{
     
     
     override func viewDidLoad() {
-        self.view.setBackgroundColor(color: NSColor.Sphinx.Body)
+        
         detailsView.setBackgroundColor(color: NSColor.Sphinx.Body)
         detailsView.layer?.cornerRadius = 12.0
         boostButton.delegate = self
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
+            self.ytWebView.setBackgroundColor(color: NSColor.clear)
             self.view.bringSubviewToFront(self.detailsView)
             self.detailsView.bringSubviewToFront(self.boostButton)
             self.detailsView.bringSubviewToFront(self.satsStreamView)
@@ -52,6 +53,7 @@ class YoutubePlayerVC : NSViewController{
             self.titleView.bringSubviewToFront(self.episodeTitleLabel)
             self.titleView.bringSubviewToFront(self.descriptionLabel)
         })
+        
         setupFeedBoostHelper()
         setupStreamView()
         configureTimer()
@@ -108,6 +110,35 @@ class YoutubePlayerVC : NSViewController{
                 satsStreamView.bringSubviewToFront(view)
             }
         }
+    }
+    
+    func parseDestinationFromChannelDescription(feed:ContentFeed){
+        var destinationWasSet = false
+        if #available(macOS 13.0, *) {
+            let keySplit = feed.feedDescription?.split(separator: "::")
+            if keySplit?.count ?? 0 > 1{
+                let address = keySplit?[1] ?? ""
+                print(address)
+                feed.setYTWorkaroundDestination(address: String(address))
+                destinationWasSet = true
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        if(destinationWasSet == false){disableV4V()}
+    }
+    
+    func disableV4V(){
+        paymentsTimer?.invalidate()
+        self.satsStreamView.amountSlider.isEnabled = false
+        self.satsStreamView.alphaValue = 0.8
+        self.satsStreamView.titleLabel.textColor = NSColor.Sphinx.SemitransparentText
+        self.satsStreamView.setSliderValue(value: 0)
+        self.satsStreamView.titleLabel.stringValue = "Creator has not enabled V4V"
+        
+        self.boostButton.alphaValue = 0.8
+        self.boostButton.boostButton.isEnabled = false
     }
     
     func configureTimer() {
@@ -173,6 +204,7 @@ class YoutubePlayerVC : NSViewController{
                         if let firstItem = contentFeed.items?.first,
                            let split = firstItem.linkURL?.absoluteString.split(separator: "v="),
                            split.count > 1{
+                            self.parseDestinationFromChannelDescription(feed:contentFeed)
                             let videoID = split[1]
                             self.loadPage(itemID: String(videoID))
                             self.configureUI(item: firstItem)
@@ -190,7 +222,8 @@ class YoutubePlayerVC : NSViewController{
     func searchTest(){
         API.sharedInstance.searchForFeeds(
             with: .Video,
-            matching: "Tales from the Crypt Marty Bent"
+            matching: "wREFINE Wrestling"
+            //matching:"Tales from the Crypt Marty Bent"
         ) { [weak self] result in
             guard let self = self else { return }
             

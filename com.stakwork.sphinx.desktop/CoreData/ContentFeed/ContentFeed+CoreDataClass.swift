@@ -88,6 +88,19 @@ public class ContentFeed: NSManagedObject {
         return contentFeed
     }
     
+    func setYTWorkaroundDestination(address:String){
+        if let managedObjectContext = self.managedObjectContext {
+            var ytDestination = ContentFeedPaymentDestination(context: managedObjectContext)
+            let fd = self.feedDescription
+            print(fd)
+            ytDestination.address = address
+            ytDestination.feed = self
+            ytDestination.split = 100.0
+            ytDestination.type = "node"
+            self.paymentDestinations = [ytDestination]
+        }
+    }
+    
     public static func fetchChatFeedContentInBackground(
         feedUrl: String,
         chatId: Int,
