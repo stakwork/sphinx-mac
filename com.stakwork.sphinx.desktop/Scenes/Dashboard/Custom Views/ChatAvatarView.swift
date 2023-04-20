@@ -58,6 +58,7 @@ class ChatAvatarView: NSView, LoadableNib {
         
         profileImageContainer.isHidden = false
         profileImageView.isHidden = false
+        profileInitialsContainer.isHidden = true
 
         profileImageView.sd_cancelCurrentImageLoad()
         profileImageView.rounded = false
@@ -96,10 +97,6 @@ class ChatAvatarView: NSView, LoadableNib {
     }
     
     func resetLayout() {
-        profileImageContainer.isHidden = true
-        profileInitialsContainer.isHidden = true
-        profileImageView.isHidden = true
-        
         groupImagesContainer.isHidden = true
         
         groupImage1.isHidden = true
@@ -134,8 +131,8 @@ class ChatAvatarView: NSView, LoadableNib {
             
             imageView.sd_setImage(
                 with: url,
-                placeholderImage: NSImage(named: "profile_avatar"),
-                options: [SDWebImageOptions.progressiveLoad],
+                placeholderImage: NSImage(named: "profileAvatar"),
+                options: [SDWebImageOptions.highPriority],
                 completed: { (image, error, _, _) in
                     if let _ = error {
                         container.isHidden = false
