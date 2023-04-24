@@ -27,6 +27,7 @@ extension TransactionMessage {
         case Reply
         case Save
         case Boost
+        case Resend
     }
     
     //Sender and Receiver info
@@ -526,6 +527,10 @@ extension TransactionMessage {
         
         if shouldAllowBoost() {
             options.append((MessageActionsItem.Boost.rawValue, nil, "boostIconGreen", "Boost"))
+        }
+        
+        if(failed() == true){
+            options.append((MessageActionsItem.Resend.rawValue, "send", nil, "resend.message".localized))
         }
         
         return options

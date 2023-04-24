@@ -277,6 +277,7 @@
 "reply" = "Responder";
 "save.file" = "Descargar";
 "delete.message" = "Eliminar Mensaje";
+"resend.message" = "Mandar otra vez";
 "received" = "recibido/a";
 "sent" = "enviado/a";
 "message.x.deleted" = "Mensaje eliminado";

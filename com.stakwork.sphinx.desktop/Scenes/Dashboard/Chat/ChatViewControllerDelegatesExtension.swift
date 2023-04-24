@@ -504,6 +504,18 @@ extension ChatViewController : MessageOptionsDelegate {
         willReplay()
     }
     
+    func shouldResendMessage(message: TransactionMessage) {
+        if shouldUploadMedia() {
+            uploadAndSend()
+            return
+        }
+        
+        if let text = message.messageContent{
+            sendMessageWith(text: text)
+            willReplay()
+        }
+    }
+    
     func willReplay() {
         toggleMessageReplyView()
         if chatCollectionView.shouldScrollToBottom() { chatCollectionView.scrollToBottom(animated: false) }
