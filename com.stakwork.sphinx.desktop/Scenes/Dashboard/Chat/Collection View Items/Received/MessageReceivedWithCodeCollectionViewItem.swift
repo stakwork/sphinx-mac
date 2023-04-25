@@ -96,7 +96,7 @@ class MessageReceivedWithCodeCollectionViewItem:  CommonReplyCollectionViewItem 
 extension MessageReceivedWithCodeCollectionViewItem : WKNavigationDelegate{
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         //printWebViewHTML(webView: webView)//for debug
-        styleView(webView: webView, fontSize: "14", fontColor: "#FFFFFF", bubbleColor: "#222E3A")
+        styleView(webView: webView, fontSize: "10", fontColor: "#FFFFFF", bubbleColor: "#222E3A")
     }
     
     func printWebViewHTML(webView:WKWebView){
@@ -114,7 +114,7 @@ extension MessageReceivedWithCodeCollectionViewItem : WKNavigationDelegate{
         let fontChangeJS = """
         code = document.querySelectorAll('.hljs');
           code.forEach((p) => {
-            p.style.fontSize = "14px" ;
+            p.style.fontSize = "\(fontSize)px" ;
           });
         paragraphs = document.querySelectorAll('p');
           paragraphs.forEach((p) => {
