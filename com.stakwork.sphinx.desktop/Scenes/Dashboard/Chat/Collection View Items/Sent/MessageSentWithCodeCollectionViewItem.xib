@@ -58,6 +58,21 @@
                         <constraint firstItem="avt-Oq-5Cc" firstAttribute="leading" secondItem="Ah3-pS-FA4" secondAttribute="leading" id="zT1-Kv-ZWa"/>
                     </constraints>
                 </customView>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bPj-ky-CeT">
+                    <rect key="frame" x="343" y="218" width="114" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="1jz-Jl-pVn"/>
+                        <constraint firstAttribute="width" constant="100" id="lKJ-np-Xvi"/>
+                    </constraints>
+                    <buttonCell key="cell" type="push" title="Copy Code" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rp4-Hd-vkr">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <color key="bezelColor" name="BlueTextAccent"/>
+                    <connections>
+                        <action selector="copyCode:" target="-1" id="VfD-HA-cUn"/>
+                    </connections>
+                </button>
                 <button verticalHuggingPriority="750" id="mm0-mE-XH4" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                     <rect key="frame" x="565" y="228" width="22" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -147,12 +162,14 @@
                 <constraint firstItem="Xfy-Su-sPg" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="YXk-j2-hi9"/>
                 <constraint firstItem="SUI-Xg-ejY" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="4" id="YZe-4n-Saw"/>
                 <constraint firstItem="sQl-v2-dC3" firstAttribute="leading" secondItem="Xfy-Su-sPg" secondAttribute="trailing" constant="6" id="Ysx-Ul-f7K"/>
+                <constraint firstItem="bPj-ky-CeT" firstAttribute="top" secondItem="Ah3-pS-FA4" secondAttribute="top" constant="6" id="ZDw-cI-5km"/>
                 <constraint firstAttribute="trailing" secondItem="ZsW-i6-Jjv" secondAttribute="trailing" constant="28" id="dGz-X7-M3U"/>
                 <constraint firstItem="Ah3-pS-FA4" firstAttribute="top" secondItem="sQl-v2-dC3" secondAttribute="bottom" id="g5g-Qq-MY7"/>
                 <constraint firstItem="avt-Oq-5Cc" firstAttribute="top" secondItem="mm0-mE-XH4" secondAttribute="bottom" constant="-23" id="hmr-7Z-hn8"/>
                 <constraint firstItem="Xfy-Su-sPg" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="76" id="khX-Vf-bcm"/>
                 <constraint firstItem="Ah3-pS-FA4" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="21" id="rtq-ix-Kd0"/>
                 <constraint firstAttribute="bottom" secondItem="Ah3-pS-FA4" secondAttribute="bottom" constant="4" id="uRU-wx-Vb9"/>
+                <constraint firstItem="bPj-ky-CeT" firstAttribute="trailing" secondItem="Ah3-pS-FA4" secondAttribute="trailing" constant="-18" id="wNH-pL-Bkj"/>
                 <constraint firstAttribute="bottom" secondItem="Xfy-Su-sPg" secondAttribute="bottom" id="zkn-on-K1J"/>
                 <constraint firstAttribute="bottom" secondItem="ZsW-i6-Jjv" secondAttribute="bottom" id="zpM-Fb-1eg"/>
             </constraints>
@@ -161,6 +178,9 @@
         <customObject id="lpR-V3-KBz" customClass="MessageSentWithCodeCollectionViewItem" customModule="Sphinx" customModuleProvider="target"/>
     </objects>
     <resources>
+        <namedColor name="BlueTextAccent">
+            <color red="0.36470588235294116" green="0.5607843137254902" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="PrimaryGreen">
             <color red="0.28627450980392155" green="0.78823529411764703" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

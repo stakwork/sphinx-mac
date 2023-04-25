@@ -49,6 +49,18 @@
                         <constraint firstAttribute="bottom" secondItem="OzN-qY-Kf5" secondAttribute="bottom" id="Ze4-uq-FM4"/>
                     </constraints>
                 </customView>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vDd-bg-svK">
+                    <rect key="frame" x="481" y="297" width="114" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="TRK-lq-Or1"/>
+                        <constraint firstAttribute="width" constant="100" id="fYG-lP-Q13"/>
+                    </constraints>
+                    <buttonCell key="cell" type="push" title="Copy Code" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ejK-hs-1CY">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <color key="bezelColor" name="BlueTextAccent"/>
+                </button>
                 <button verticalHuggingPriority="750" id="zFt-JU-58I" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                     <rect key="frame" x="475" y="306" width="22" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -115,6 +127,7 @@
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="xCG-Cf-WJi" secondAttribute="bottom" id="1up-Tv-4FK"/>
+                <constraint firstItem="vDd-bg-svK" firstAttribute="trailing" secondItem="XVz-kw-SNr" secondAttribute="trailing" constant="-18" id="3Sz-kk-MAK"/>
                 <constraint firstItem="XVz-kw-SNr" firstAttribute="trailing" secondItem="OHE-fe-ojb" secondAttribute="trailing" id="87t-w8-jBu"/>
                 <constraint firstItem="OHE-fe-ojb" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="4" id="Bey-vF-oNN"/>
                 <constraint firstItem="xCG-Cf-WJi" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="F9v-Dh-dda"/>
@@ -122,6 +135,7 @@
                 <constraint firstItem="HNA-iD-386" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="4" id="IGB-nG-7sn"/>
                 <constraint firstItem="XVz-kw-SNr" firstAttribute="leading" secondItem="OHE-fe-ojb" secondAttribute="leading" id="Unr-zW-Had"/>
                 <constraint firstItem="1dl-mG-9oS" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="75.5" id="a2C-ck-9bu"/>
+                <constraint firstItem="vDd-bg-svK" firstAttribute="top" secondItem="XVz-kw-SNr" secondAttribute="top" constant="6" id="atE-WK-Caf"/>
                 <constraint firstItem="XVz-kw-SNr" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="21" id="cog-zl-TrU"/>
                 <constraint firstAttribute="trailing" secondItem="xCG-Cf-WJi" secondAttribute="trailing" constant="28" id="fq4-aS-yaa"/>
                 <constraint firstItem="XVz-kw-SNr" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="56" id="hwH-4m-cAd"/>
@@ -134,6 +148,9 @@
         <customObject id="lWO-gg-h1I" customClass="MessageReceivedWithCodeCollectionViewItem" customModule="Sphinx" customModuleProvider="target"/>
     </objects>
     <resources>
+        <namedColor name="BlueTextAccent">
+            <color red="0.36470588235294116" green="0.5607843137254902" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Text">
             <color red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

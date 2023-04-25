@@ -16,6 +16,7 @@ class MessageReceivedWithCodeCollectionViewItem:  CommonReplyCollectionViewItem 
     @IBOutlet weak var lockSign: NSTextField!
     @IBOutlet weak var bubbleViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var markupContainerView: NSView!
+    var stashedMessageContent : String? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +75,13 @@ class MessageReceivedWithCodeCollectionViewItem:  CommonReplyCollectionViewItem 
         bubbleView.layoutSubtreeIfNeeded()
     }
     
+    @IBAction func copyCode(_ sender: Any) {
+        if let content = stashedMessageContent{
+            ClipboardHelper.copyToClipboard(text: content)
+        }
+    }
+    
+    
     public static func getBubbleSize(messageRow: TransactionMessageRow) -> CGSize {
         let hasLinkPreview = messageRow.shouldShowLinkPreview() || messageRow.shouldShowTribeLinkPreview() || messageRow.shouldShowPubkeyPreview()
         let width = hasLinkPreview ? MessageBubbleView.kBubbleLinkPreviewWidth : MessageBubbleView.getContainerWidth(messageRow: messageRow)
@@ -87,7 +95,8 @@ class MessageReceivedWithCodeCollectionViewItem:  CommonReplyCollectionViewItem 
     public static func getRowHeight(messageRow: TransactionMessageRow) -> CGFloat {
         let bubbleSize = getBubbleSize(messageRow: messageRow)
         let replyTopPadding = CommonChatCollectionViewItem.getReplyTopPadding(message: messageRow.transactionMessage)
-        let rowHeight = bubbleSize.height + Constants.kBubbleTopMargin + Constants.kBubbleBottomMargin + replyTopPadding
+        var rowHeight = bubbleSize.height + Constants.kBubbleTopMargin + Constants.kBubbleBottomMargin + replyTopPadding
+        rowHeight = rowHeight * (8.0/14.0)
         let linksHeight = CommonChatCollectionViewItem.getLinkPreviewHeight(messageRow: messageRow)
         return rowHeight + linksHeight
     }

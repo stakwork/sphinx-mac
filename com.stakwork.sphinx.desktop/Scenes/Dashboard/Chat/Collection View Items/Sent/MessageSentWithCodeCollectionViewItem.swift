@@ -20,7 +20,8 @@ class MessageSentWithCodeCollectionViewItem: CommonReplyCollectionViewItem {
     @IBOutlet weak var lockSign: NSTextField!
     @IBOutlet weak var bubbleViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var markupContainerView: NSView!
-
+    var stashedMessageContent : String? = nil
+    
     let codeTopBottomPadding = 50.0
     
     override func viewDidLoad() {
@@ -48,6 +49,7 @@ class MessageSentWithCodeCollectionViewItem: CommonReplyCollectionViewItem {
         }
         
         let content = messageRow.getMessageContent()
+        stashedMessageContent = content
         do{
 
             let dv = try DownView(frame: self.markupContainerView.bounds, markdownString: content,templateBundle: nil)
@@ -116,9 +118,16 @@ class MessageSentWithCodeCollectionViewItem: CommonReplyCollectionViewItem {
         let bubbleSize = getBubbleSize(messageRow: messageRow)
         let replyTopPadding = CommonChatCollectionViewItem.getReplyTopPadding(message: messageRow.transactionMessage)
         var rowHeight = bubbleSize.height + Constants.kBubbleTopMargin + Constants.kBubbleBottomMargin + replyTopPadding
-        rowHeight = rowHeight * (10.0/14.0)
+        rowHeight = rowHeight * (8.0/14.0)
         let linksHeight = CommonChatCollectionViewItem.getLinkPreviewHeight(messageRow: messageRow)
         return (rowHeight + linksHeight) + 25.0
+    }
+    
+    
+    @IBAction func copyCodeTapped(_ sender: Any) {
+        if let content = stashedMessageContent{
+            ClipboardHelper.copyToClipboard(text: content)
+        }
     }
     
 }
