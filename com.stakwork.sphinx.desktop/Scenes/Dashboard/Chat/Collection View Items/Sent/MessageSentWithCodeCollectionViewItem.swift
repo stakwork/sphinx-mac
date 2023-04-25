@@ -115,7 +115,8 @@ class MessageSentWithCodeCollectionViewItem: CommonReplyCollectionViewItem {
     public static func getRowHeight(messageRow: TransactionMessageRow) -> CGFloat {
         let bubbleSize = getBubbleSize(messageRow: messageRow)
         let replyTopPadding = CommonChatCollectionViewItem.getReplyTopPadding(message: messageRow.transactionMessage)
-        let rowHeight = bubbleSize.height + Constants.kBubbleTopMargin + Constants.kBubbleBottomMargin + replyTopPadding
+        var rowHeight = bubbleSize.height + Constants.kBubbleTopMargin + Constants.kBubbleBottomMargin + replyTopPadding
+        rowHeight = rowHeight * (10.0/14.0)
         let linksHeight = CommonChatCollectionViewItem.getLinkPreviewHeight(messageRow: messageRow)
         return (rowHeight + linksHeight) + 25.0
     }
@@ -125,7 +126,7 @@ class MessageSentWithCodeCollectionViewItem: CommonReplyCollectionViewItem {
 extension MessageSentWithCodeCollectionViewItem : WKNavigationDelegate{
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         //printWebViewHTML(webView: webView)//for debug
-        styleView(webView: webView, fontSize: "14", fontColor: "#FFFFFF", bubbleColor: "#466085")
+        styleView(webView: webView, fontSize: "10", fontColor: "#FFFFFF", bubbleColor: "#466085")
     }
     
     func printWebViewHTML(webView:WKWebView){
@@ -143,7 +144,7 @@ extension MessageSentWithCodeCollectionViewItem : WKNavigationDelegate{
         let fontChangeJS = """
         code = document.querySelectorAll('.hljs');
           code.forEach((p) => {
-            p.style.fontSize = "14px" ;
+            p.style.fontSize = "\(fontSize)px" ;
           });
         paragraphs = document.querySelectorAll('p');
           paragraphs.forEach((p) => {

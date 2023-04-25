@@ -44,15 +44,15 @@
                     </constraints>
                 </customView>
                 <customView identifier="MessageBubbleView" translatesAutoresizingMaskIntoConstraints="NO" id="Ah3-pS-FA4" customClass="MessageBubbleView" customModule="Sphinx" customModuleProvider="target">
-                    <rect key="frame" x="85" y="4" width="383" height="247"/>
+                    <rect key="frame" x="-82" y="4" width="550" height="247"/>
                     <subviews>
                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="avt-Oq-5Cc">
-                            <rect key="frame" x="0.0" y="0.0" width="383" height="247"/>
+                            <rect key="frame" x="0.0" y="0.0" width="550" height="247"/>
                         </customView>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="avt-Oq-5Cc" secondAttribute="bottom" id="Kz2-vY-ry9"/>
-                        <constraint firstAttribute="width" constant="383" id="hCX-2g-4iP"/>
+                        <constraint firstAttribute="width" constant="550" id="hCX-2g-4iP"/>
                         <constraint firstItem="avt-Oq-5Cc" firstAttribute="top" secondItem="Ah3-pS-FA4" secondAttribute="top" id="i1K-b2-aZF"/>
                         <constraint firstAttribute="trailing" secondItem="avt-Oq-5Cc" secondAttribute="trailing" id="i8f-Nu-hzf"/>
                         <constraint firstItem="avt-Oq-5Cc" firstAttribute="leading" secondItem="Ah3-pS-FA4" secondAttribute="leading" id="zT1-Kv-ZWa"/>
