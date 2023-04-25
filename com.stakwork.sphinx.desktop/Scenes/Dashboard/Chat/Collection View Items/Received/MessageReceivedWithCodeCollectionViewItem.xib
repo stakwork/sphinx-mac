@@ -62,7 +62,7 @@
                     <color key="bezelColor" name="BlueTextAccent"/>
                 </button>
                 <button verticalHuggingPriority="750" id="zFt-JU-58I" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                    <rect key="frame" x="475" y="306" width="22" height="18"/>
+                    <rect key="frame" x="610" y="306" width="22" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="bevel" title="" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="5Yd-kL-eau" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

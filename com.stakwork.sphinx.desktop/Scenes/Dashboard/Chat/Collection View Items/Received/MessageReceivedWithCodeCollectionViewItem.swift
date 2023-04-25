@@ -96,7 +96,7 @@ class MessageReceivedWithCodeCollectionViewItem:  CommonReplyCollectionViewItem 
         let bubbleSize = getBubbleSize(messageRow: messageRow)
         let replyTopPadding = CommonChatCollectionViewItem.getReplyTopPadding(message: messageRow.transactionMessage)
         var rowHeight = bubbleSize.height + Constants.kBubbleTopMargin + Constants.kBubbleBottomMargin + replyTopPadding
-        rowHeight = rowHeight * (8.0/14.0)
+        rowHeight = rowHeight * (9.0/14.0)
         let linksHeight = CommonChatCollectionViewItem.getLinkPreviewHeight(messageRow: messageRow)
         return rowHeight + linksHeight
     }
