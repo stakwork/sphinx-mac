@@ -8,6 +8,12 @@
 
 import Cocoa
 
+struct DeeplinkData{
+    var feedID:String
+    var itemID:String
+    var timestamp:Int
+}
+
 class ChatHelper {
     var myView : NSView? = nil
     

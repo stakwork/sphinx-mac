@@ -18,6 +18,7 @@ class NewPodcastPlayerViewController: NSViewController {
     
     var chat: Chat! = nil
     var collectionViewDS: PodcastEpisodesDataSource! = nil
+    var deeplinkData : DeeplinkData? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +76,13 @@ class NewPodcastPlayerViewController: NSViewController {
             podcast: podcast,
             view: self.view
         )
+        
+        if let data = deeplinkData,
+           let deeplinkedItem = podcast.episodes?.first(where: {$0.itemID == data.itemID}){
+            if let playerView = collectionViewDS.collectionView.item(at: IndexPath(item: 0, section: 0)) as? PodcastPlayerCollectionViewItem {
+                playerView.selectEpisode(episode: deeplinkedItem,atTime: data.timestamp)
+            }
+        }
     }
 }
 
@@ -85,5 +93,9 @@ extension NewPodcastPlayerViewController : PodcastEpisodesDSDelegate {
     
     func shouldSendBoost(message: String, amount: Int, animation: Bool) -> TransactionMessage? {
         return delegate?.shouldSendBoost(message: message, amount: amount, animation: animation)
+    }
+    
+    func shouldCopyShareLink(link: String) {
+        ClipboardHelper.copyToClipboard(text: link)
     }
 }

@@ -12,6 +12,7 @@ import Cocoa
 protocol PodcastEpisodesDSDelegate : AnyObject {
     func shouldShareClip(comment: PodcastComment)
     func shouldSendBoost(message: String, amount: Int, animation: Bool) -> TransactionMessage?
+    func shouldCopyShareLink(link:String)
 }
 
 class PodcastEpisodesDataSource : NSObject {
@@ -20,7 +21,7 @@ class PodcastEpisodesDataSource : NSObject {
     
     public static let kPlayerRowHeight: CGFloat = 670
     
-    let kRowHeight: CGFloat = 64
+    let kRowHeight: CGFloat = 200
     let kHeaderHeight: CGFloat = 60
     
     var collectionView: NSCollectionView! = nil
@@ -77,6 +78,7 @@ extension PodcastEpisodesDataSource : NSCollectionViewDataSource {
             return item
         }
         let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PodcastEpisodeCollectionViewItem"), for: indexPath)
+        
         return item
     }
     
@@ -87,7 +89,8 @@ extension PodcastEpisodesDataSource : NSCollectionViewDataSource {
             let isLastRow = indexPath.item == podcast.episodesArray.count - 1
             let isPlaying = podcastPlayerController.isPlaying(episodeId: episode.itemID)
             
-            collectionViewItem.configureWidth(podcast: podcast, and: episode, isLastRow: isLastRow, playing: isPlaying)
+            collectionViewItem.configureWith(podcast: podcast, and: episode, isLastRow: isLastRow, playing: isPlaying)
+            collectionViewItem.delegate = self
             
         } else if let collectionViewItem = item as? PodcastPlayerCollectionViewItem {
             
@@ -127,10 +130,14 @@ extension PodcastEpisodesDataSource : NSCollectionViewDelegate, NSCollectionView
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
         if let indexPath = indexPaths.first {
             if indexPath.section == 0 { return }
-            
-            if let playerView = collectionView.item(at: IndexPath(item: 0, section: 0)) as? PodcastPlayerCollectionViewItem {
-                playerView.didTapEpisodeAt(index: indexPath.item)
-            }
+            playEpisode(atIndexPath: indexPath)
+        }
+    }
+    
+    
+    func playEpisode(atIndexPath:IndexPath){
+        if let playerView = collectionView.item(at: IndexPath(item: 0, section: 0)) as? PodcastPlayerCollectionViewItem {
+            playerView.didTapEpisodeAt(index: atIndexPath.item)
         }
     }
 }
@@ -150,5 +157,28 @@ extension PodcastEpisodesDataSource : PodcastPlayerViewDelegate {
     
     func shouldSyncPodcast() {
         feedsManager.saveContentFeedStatus(for: podcast.feedID)
+    }
+}
+
+
+extension PodcastEpisodesDataSource:PodcastEpisodeCollectionViewItemDelegate{
+    func episodeShareTapped(episode: PodcastEpisode) {
+            AlertHelper.showTwoOptionsAlert(
+                title: "Share from beginning or current time?",
+                message: "",
+                confirm: {
+                    if let link = episode.constructShareLink(){
+                        self.delegate?.shouldCopyShareLink(link: link)
+                    }
+                },
+                cancel: {
+                    if let link = episode.constructShareLink(useTimestamp: true){
+                        self.delegate?.shouldCopyShareLink(link: link)
+                    }
+                },
+                confirmLabel: "Share from Beginning",
+                cancelLabel: "Share from Current Time"
+            )
+            
     }
 }

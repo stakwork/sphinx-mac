@@ -542,6 +542,14 @@ extension String {
         return self
     }
     
+    func withURLParam(key: String, value: String) -> String {
+        if self.contains("?") {
+            return "\(self)&\(key)=\(value)"
+        } else {
+            return "\(self)?\(key)=\(value)"
+        }
+    }
+    
     public static func getAttributedText(string: String,
                                          boldStrings: [String],
                                          font: NSFont,

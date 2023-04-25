@@ -77,6 +77,7 @@ class ChatViewController: DashboardSplittedViewController {
     var currentMessageString = ""
     
     var unseenMessagesCount = 0
+    var deeplinkData : DeeplinkData? = nil
     
     var codePreview : DownView? = nil
     var isInCodeMode : Bool = false
@@ -411,7 +412,7 @@ class ChatViewController: DashboardSplittedViewController {
     private func onTribeInfoUpdated() {
         setChatInfo()
         webAppButton.isHidden = !(chat?.hasWebApp() ?? false)
-        addPodcastVC()
+        addPodcastVC(deeplinkData: deeplinkData)
         updateSatsEarned()
     }
     

@@ -542,6 +542,14 @@
 		CE326B52294A179200821A53 /* ChatMentionAutocompleteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE326B50294A179200821A53 /* ChatMentionAutocompleteCell.xib */; };
 		CEBFC6F829BFC24000A60EA9 /* MessageSentWithCodeCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBFC6F629BFC24000A60EA9 /* MessageSentWithCodeCollectionViewItem.swift */; };
 		CEBFC6F929BFC24000A60EA9 /* MessageSentWithCodeCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEBFC6F729BFC24000A60EA9 /* MessageSentWithCodeCollectionViewItem.xib */; };
+		CE07F40529D72B7700EB0EC1 /* PodcastDetailSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07F40429D72B7700EB0EC1 /* PodcastDetailSelectionVC.swift */; };
+		CE326B4B294295C600821A53 /* ChatMentionAutocompleteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE326B4A294295C600821A53 /* ChatMentionAutocompleteDataSource.swift */; };
+		CE326B51294A179200821A53 /* ChatMentionAutocompleteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE326B4F294A179200821A53 /* ChatMentionAutocompleteCell.swift */; };
+		CE326B52294A179200821A53 /* ChatMentionAutocompleteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE326B50294A179200821A53 /* ChatMentionAutocompleteCell.xib */; };
+		CE9BA45F29D76A8E000C8837 /* PodcastDetailSelectionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BA45E29D76A8E000C8837 /* PodcastDetailSelectionVM.swift */; };
+		CE9BA46229D772BD000C8837 /* PodcastDetailActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BA46029D772BD000C8837 /* PodcastDetailActionCell.swift */; };
+		CE9BA46329D772BD000C8837 /* PodcastDetailActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE9BA46129D772BD000C8837 /* PodcastDetailActionCell.xib */; };
+
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1238,6 +1246,13 @@
 		CE326B50294A179200821A53 /* ChatMentionAutocompleteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatMentionAutocompleteCell.xib; sourceTree = "<group>"; };
 		CEBFC6F629BFC24000A60EA9 /* MessageSentWithCodeCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSentWithCodeCollectionViewItem.swift; sourceTree = "<group>"; };
 		CEBFC6F729BFC24000A60EA9 /* MessageSentWithCodeCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageSentWithCodeCollectionViewItem.xib; sourceTree = "<group>"; };
+		CE07F40429D72B7700EB0EC1 /* PodcastDetailSelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailSelectionVC.swift; sourceTree = "<group>"; };
+		CE326B4A294295C600821A53 /* ChatMentionAutocompleteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMentionAutocompleteDataSource.swift; sourceTree = "<group>"; };
+		CE326B4F294A179200821A53 /* ChatMentionAutocompleteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMentionAutocompleteCell.swift; sourceTree = "<group>"; };
+		CE326B50294A179200821A53 /* ChatMentionAutocompleteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatMentionAutocompleteCell.xib; sourceTree = "<group>"; };
+		CE9BA45E29D76A8E000C8837 /* PodcastDetailSelectionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailSelectionVM.swift; sourceTree = "<group>"; };
+		CE9BA46029D772BD000C8837 /* PodcastDetailActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailActionCell.swift; sourceTree = "<group>"; };
+		CE9BA46129D772BD000C8837 /* PodcastDetailActionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodcastDetailActionCell.xib; sourceTree = "<group>"; };
 		F90398F47E0448445B11E3B5 /* Pods-com.stakwork.sphinx.desktop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-com.stakwork.sphinx.desktop.debug.xcconfig"; path = "Target Support Files/Pods-com.stakwork.sphinx.desktop/Pods-com.stakwork.sphinx.desktop.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1294,6 +1309,7 @@
 			isa = PBXGroup;
 			children = (
 				47AF0D4D2553099100C98398 /* NewPodcastPlayerViewController.swift */,
+				CE07F40429D72B7700EB0EC1 /* PodcastDetailSelectionVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -1311,6 +1327,7 @@
 		470396EA2537292F007F9C23 /* Data Sources */ = {
 			isa = PBXGroup;
 			children = (
+				CE9BA45E29D76A8E000C8837 /* PodcastDetailSelectionVM.swift */,
 				470396EB2537293E007F9C23 /* PodcastEpisodesDataSource.swift */,
 				47B6F528258BC40600D64A41 /* PodcastLiveDataSource.swift */,
 			);
@@ -1320,6 +1337,8 @@
 		470396ED25372973007F9C23 /* Collection View Rows */ = {
 			isa = PBXGroup;
 			children = (
+				CE9BA46029D772BD000C8837 /* PodcastDetailActionCell.swift */,
+				CE9BA46129D772BD000C8837 /* PodcastDetailActionCell.xib */,
 				470396EE25372994007F9C23 /* PodcastEpisodeCollectionViewItem.swift */,
 				470396EF25372994007F9C23 /* PodcastEpisodeCollectionViewItem.xib */,
 				475B686D2991A928000EF29C /* PodcastPlayerCollectionViewItem */,
@@ -3057,6 +3076,7 @@
 				478ED5B725D6FBD600940132 /* Signup.storyboard in Resources */,
 				474567FE251507F500D66268 /* FileSentCollectionViewItem.xib in Resources */,
 				47F58A82268E4CAC00B223E0 /* README.md in Resources */,
+				CE9BA46329D772BD000C8837 /* PodcastDetailActionCell.xib in Resources */,
 				478ED57D25D41B0700940132 /* SignupFieldView.xib in Resources */,
 				479A04002588E7CD0093DB30 /* ContactLinkPreviewView.xib in Resources */,
 				4703F04E2481A24F00282186 /* LinkPreviewView.xib in Resources */,
@@ -3343,6 +3363,7 @@
 				4707089A24AE657700A98DCA /* MediaDownloader.swift in Sources */,
 				474E333E247FF5EA00F7F603 /* PictureBubbleView.swift in Sources */,
 				47C1D60C248EB4DD00718B28 /* GroupAllContactsDataSource.swift in Sources */,
+				CE9BA46229D772BD000C8837 /* PodcastDetailActionCell.swift in Sources */,
 				479A03ED2587ACE10093DB30 /* TribeMemberInfoView.swift in Sources */,
 				47B550A1248BD9E7000514BF /* CommonPaymentView.swift in Sources */,
 				475B686629917540000EF29C /* FeedsManager.swift in Sources */,
@@ -3482,6 +3503,7 @@
 				473633E125548E40007405F2 /* BoostButtonView.swift in Sources */,
 				474F67652486D08800CE6016 /* Notification.Name.swift in Sources */,
 				474A66842497CAFE002C2D10 /* MessageReplyView.swift in Sources */,
+				CE07F40529D72B7700EB0EC1 /* PodcastDetailSelectionVC.swift in Sources */,
 				470E0B40247D709D00177D8A /* AudioBubbleView.swift in Sources */,
 				47F8825225656CB0002A7E71 /* SocketEnginePollable.swift in Sources */,
 				4744FAA32469CDF200C5FD94 /* NSColor.swift in Sources */,
@@ -3530,6 +3552,7 @@
 				479F657D2487EAD50015A16A /* DraggingDestinationView.swift in Sources */,
 				475B684D29916655000EF29C /* API+HubError.swift in Sources */,
 				47C1F1DA2481310900A71610 /* VideoSentCollectionViewItem.swift in Sources */,
+				CE9BA45F29D76A8E000C8837 /* PodcastDetailSelectionVM.swift in Sources */,
 				470708A024AE65D600A98DCA /* ChatChatListExtension.swift in Sources */,
 				471F3AC1255C748100E2AC79 /* InviteActionsHelper.swift in Sources */,
 				4726A42A24C62729005A66B4 /* NotificationsHelper.swift in Sources */,
@@ -4158,7 +4181,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 249;
+				CURRENT_PROJECT_VERSION = 258;
 				DEVELOPMENT_TEAM = 8297M44YTW;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -4187,7 +4210,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 249;
+				CURRENT_PROJECT_VERSION = 258;
 				DEVELOPMENT_TEAM = 8297M44YTW;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";

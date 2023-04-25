@@ -117,11 +117,12 @@ class FeedsManager : NSObject {
     
     // MARK: - Getting content feed status from relay and restoring
     func restoreContentFeedStatusInBackgroundFor(
-        feedId: String
+        feedId: String,
+        completion: ((() -> ()))? = nil
     ) {
         let dispatchQueue = DispatchQueue.global(qos: .userInitiated)
         dispatchQueue.async {
-            self.restoreContentFeedStatusFor(feedId: feedId)
+            self.restoreContentFeedStatusFor(feedId: feedId,completionCallback: completion)
         }
     }
     

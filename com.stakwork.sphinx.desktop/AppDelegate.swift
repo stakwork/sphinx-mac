@@ -9,9 +9,10 @@
 import Cocoa
 import CoreData
 import SDWebImage
+import WebKit
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+ class AppDelegate: NSObject, NSApplicationDelegate {
     
     let notificationsHelper = NotificationsHelper()
     var newMessageBubbleHelper = NewMessageBubbleHelper()
@@ -77,6 +78,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 HTTPCookieStorage.shared.deleteCookie(cookie)
             }
         }
+        
+        WKWebsiteDataStore.default().removeData(
+            ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(),
+            modifiedSince: Date(timeIntervalSince1970: 0),
+            completionHandler: {}
+        )
     }
     
     func getRelayKeys() {
