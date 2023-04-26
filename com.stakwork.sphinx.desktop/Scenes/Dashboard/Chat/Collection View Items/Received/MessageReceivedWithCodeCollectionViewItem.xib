@@ -60,6 +60,9 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <color key="bezelColor" name="BlueTextAccent"/>
+                    <connections>
+                        <action selector="copyCode:" target="-2" id="ona-g4-N31"/>
+                    </connections>
                 </button>
                 <button verticalHuggingPriority="750" id="zFt-JU-58I" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                     <rect key="frame" x="610" y="306" width="22" height="18"/>

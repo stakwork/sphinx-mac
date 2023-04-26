@@ -45,6 +45,7 @@ class MessageReceivedWithCodeCollectionViewItem:  CommonReplyCollectionViewItem 
         }
         
         let content = messageRow.getMessageContent()
+        stashedMessageContent = content
         do{
             let dv = try DownView(frame: self.bubbleView.bounds, markdownString: content,templateBundle: nil)
             if let bubbleRadius = bubbleView.layer?.cornerRadius{

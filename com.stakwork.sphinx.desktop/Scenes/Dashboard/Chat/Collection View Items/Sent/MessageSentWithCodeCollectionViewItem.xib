@@ -70,7 +70,7 @@
                     </buttonCell>
                     <color key="bezelColor" name="BlueTextAccent"/>
                     <connections>
-                        <action selector="copyCode:" target="-1" id="VfD-HA-cUn"/>
+                        <action selector="copyCodeTapped:" target="-2" id="KUE-Aa-6nm"/>
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" id="mm0-mE-XH4" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
