@@ -11,6 +11,7 @@ import Cocoa
 @objc protocol MessageOptionsDelegate: AnyObject {
     @objc optional func shouldDeleteMessage(message: TransactionMessage)
     @objc optional func shouldReplyToMessage(message: TransactionMessage)
+    @objc optional func shouldResendMessage(message:TransactionMessage)
     @objc optional func shouldBoostMessage(message: TransactionMessage)
     @objc optional func shouldPerformChatAction(action: Int)
     @objc optional func shouldSetFeedType(type: Int)
@@ -336,6 +337,10 @@ extension MessageOptionsHelper : MessageOptionViewDelegate {
                 break
             case .Boost:
                 delegate?.shouldBoostMessage?(message: message)
+                break
+            case .Resend:
+                print("resending")
+                delegate?.shouldResendMessage?(message: message)
                 break
             }
         }
