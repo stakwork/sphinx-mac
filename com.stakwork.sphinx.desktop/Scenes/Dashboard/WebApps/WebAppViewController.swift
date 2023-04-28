@@ -16,6 +16,7 @@ class WebAppViewController: NSViewController {
     @IBOutlet weak var authorizeAppViewHeight: NSLayoutConstraint!
     @IBOutlet weak var loadingView: NSImageView!
     @IBOutlet weak var loadingIndicator: NSProgressIndicator!
+    @IBOutlet weak var currentBudgetButton: CustomButton!
     
     var webView: WKWebView!
     var gameURL: String! = nil
@@ -38,11 +39,10 @@ class WebAppViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        webAppHelper.delegate = self
         view.wantsLayer = true
         view.layer?.backgroundColor = NSColor.Sphinx.Body.cgColor
         authorizeModalContainer.alphaValue = 0.0
-        
         addWebView()
         loadPage()
     }
@@ -80,6 +80,7 @@ class WebAppViewController: NSViewController {
     func removeLoadingView(){
         loadingView.isHidden = true
         loadingIndicator.isHidden = true
+        self.view.bringSubviewToFront(currentBudgetButton)
     }
     
     @objc func checkForWebViewDoneLoading(){
@@ -143,5 +144,11 @@ extension WebAppViewController : NSWindowDelegate {
     func windowWillClose(_ notification: Notification) {
         webView.configuration.userContentController.removeAllUserScripts()
         webView.loadHTMLString("", baseURL: Bundle.main.bundleURL)
+    }
+}
+
+extension WebAppViewController:WebAppHelperDelegate{
+    func setBudget(budget:Int){
+        self.currentBudgetButton.title = "Remaining Budget: \(budget) sats"
     }
 }

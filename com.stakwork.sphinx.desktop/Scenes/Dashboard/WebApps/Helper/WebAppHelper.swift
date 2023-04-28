@@ -10,6 +10,10 @@ import Foundation
 import WebKit
 import SwiftyJSON
 
+protocol WebAppHelperDelegate : NSObject{
+    func setBudget(budget:Int)
+}
+
 class WebAppHelper : NSObject {
     
     
@@ -19,6 +23,7 @@ class WebAppHelper : NSObject {
     var authorizeHandler: (([String: AnyObject]) -> ())! = nil
     
     var persistingValues: [String: AnyObject] = [:]
+    var delegate : WebAppHelperDelegate? = nil
     
     func setWebView(_ webView: WKWebView, authorizeHandler: @escaping (([String: AnyObject]) -> ())) {
         self.webView = webView
@@ -246,6 +251,7 @@ extension WebAppHelper : WKScriptMessageHandler {
         let savedBudget: Int? = getValue(withKey: "budget")
         if let budget = savedBudget {
             params["budget"] = budget as AnyObject
+            delegate?.setBudget(budget: budget)
         }
         sendMessage(dict: params)
     }
