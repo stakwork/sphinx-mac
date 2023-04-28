@@ -197,6 +197,7 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
         botAmount: Int = 0
     ) {
         let messageType = TransactionMessage.TransactionMessageType(fromRawValue: provisionalMessage?.type ?? 0)
+        
         guard let params = TransactionMessage.getMessageParams(contact: contact, chat: chat, type: messageType, text: text, botAmount: botAmount, replyingMessage: messageReplyView.getReplyingMessage()) else {
             DelayPerformedHelper.performAfterDelay(seconds: 0.5, completion: {
                 self.didFailSendingMessage(provisionalMessage: provisionalMessage)
@@ -505,13 +506,11 @@ extension ChatViewController : MessageOptionsDelegate {
     }
     
     func shouldResendMessage(message: TransactionMessage) {
-        if shouldUploadMedia() {
-            uploadAndSend()
-            return
-        }
-        
-        if let text = message.messageContent{
-            sendMessageWith(text: text)
+        if let text = message.messageContent {
+            
+            message.status = TransactionMessage.TransactionMessageStatus.pending.rawValue
+            
+            sendMessage(provisionalMessage: message, text: text)
             willReplay()
         }
     }

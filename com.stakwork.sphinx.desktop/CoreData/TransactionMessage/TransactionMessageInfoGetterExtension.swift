@@ -529,7 +529,7 @@ extension TransactionMessage {
             options.append((MessageActionsItem.Boost.rawValue, nil, "boostIconGreen", "Boost"))
         }
         
-        if(failed() == true){
+        if failed() && isTextMessage() {
             options.append((MessageActionsItem.Resend.rawValue, "send", nil, "resend.message".localized))
         }
         
