@@ -14,12 +14,16 @@ class WebAppViewController: NSViewController {
     @IBOutlet weak var authorizeModalContainer: NSView!
     @IBOutlet weak var authorizeAppView: AuthorizeAppView!
     @IBOutlet weak var authorizeAppViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var loadingView: NSImageView!
+    @IBOutlet weak var loadingIndicator: NSProgressIndicator!
     
     var webView: WKWebView!
     var gameURL: String! = nil
     var chat: Chat! = nil
+    var finishLoadingTimer : Timer? = nil
     
     let webAppHelper = WebAppHelper()
+
     
     static func instantiate(chat: Chat) -> WebAppViewController {
         let viewController = StoryboardScene.Dashboard.webAppViewController.instantiate()
@@ -56,12 +60,36 @@ class WebAppViewController: NSViewController {
         let rect = CGRect(x: 0, y: 0, width: 700, height: 500)
         webView = WKWebView(frame: rect, configuration: configuration)
         webView.customUserAgent = "Sphinx"
+        webView.isHidden = true
+        webView.setBackgroundColor(color: NSColor.clear)
+        addLoadingView()
+        finishLoadingTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(checkForWebViewDoneLoading), userInfo: nil, repeats: true)
 
         self.view.addSubview(webView, positioned: .below, relativeTo: authorizeModalContainer)
         addWebViewConstraints()
 
         webAppHelper.setWebView(webView, authorizeHandler: configureAuthorizeView)
     }
+    
+    func addLoadingView(){
+        loadingView.isHidden = false
+        loadingView.image = #imageLiteral(resourceName: "whiteIcon")
+        loadingIndicator.startAnimation(self)
+    }
+    
+    func removeLoadingView(){
+        loadingView.isHidden = true
+        loadingIndicator.isHidden = true
+    }
+    
+    @objc func checkForWebViewDoneLoading(){
+        if(webView.isLoading == false){
+            finishLoadingTimer?.invalidate()
+            webView.isHidden = false
+            removeLoadingView()
+        }
+    }
+    
     
     func configureAuthorizeView(_ dict: [String: AnyObject]) {
         let viewHeight = authorizeAppView.configureFor(url: gameURL, delegate: self, dict: dict)
