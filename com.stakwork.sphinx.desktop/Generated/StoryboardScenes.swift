@@ -32,6 +32,13 @@ internal enum StoryboardScene {
         internal static let shareInviteCodeViewController = SceneType<ShareInviteCodeViewController>(storyboard: Invite.self, identifier: "ShareInviteCodeViewController")
     }
     
+    internal enum Payments : StoryboardType{
+        internal static let storyboardName = "Payments"
+        internal static let displayInvoiceVC = SceneType<DisplayInvoiceVC>(storyboard: Payments.self, identifier: "DisplayInvoiceVC")
+        internal static let sendPaymentVC = SceneType<SendPaymentForInvoiceVC>(storyboard: Payments.self, identifier: "SendPaymentVC")
+        internal static let choosePaymentModeVC = SceneType<ChoosePaymentModeVC>(storyboard: Payments.self, identifier: "ChoosePaymentModeVC")
+    }
+    
     internal enum Dashboard: StoryboardType {
         internal static let storyboardName = "Dashboard"
         

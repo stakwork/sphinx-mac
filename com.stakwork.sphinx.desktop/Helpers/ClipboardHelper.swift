@@ -19,4 +19,76 @@ class ClipboardHelper {
             NewMessageBubbleHelper().showGenericMessageView(text: message, in: bubbleContainer)
         }
     }
+    
+    public static func addImageToClipboard(image:NSImage,bubbleContainer: NSView? = nil){
+        if let cgImage = image.cgImage{
+            let pasteBoard = NSPasteboard.general
+            pasteBoard.clearContents()
+            let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
+            let jpegData = bitmapRep.representation(using: NSBitmapImageRep.FileType.jpeg, properties: [:])!
+            pasteBoard.setData(jpegData, forType: .png)
+            
+            let message = "Copied image to the clipboard"
+            NewMessageBubbleHelper().showGenericMessageView(text: message, in: bubbleContainer)
+        }
+    }
+    
+    public static func addVcImageToClipboard(screenshot:NSImage,bubbleContainer: NSView? = nil){
+        
+        /*
+        var displayCount: UInt32 = 0;
+        var result = CGGetActiveDisplayList(0, nil, &displayCount)
+        if (result != CGError.success) {
+            print("error: \(result)")
+            return
+        }
+        let allocated = Int(displayCount)
+        let activeDisplays = UnsafeMutablePointer<CGDirectDisplayID>.allocate(capacity: allocated)
+        result = CGGetActiveDisplayList(displayCount, activeDisplays, &displayCount)
+        
+        if (result != CGError.success) {
+            print("error: \(result)")
+            return
+        }
+           
+        for i in 1...displayCount {
+            let screenShot:CGImage = CGDisplayCreateImage(activeDisplays[Int(i-1)])!
+            let bitmapRep = NSBitmapImageRep(cgImage: screenShot)
+            let jpegData = bitmapRep.representation(using: NSBitmapImageRep.FileType.jpeg, properties: [:])!
+            
+            
+            NSPasteboard.general.setData(jpegData, forType: .png)
+        }
+         */
+        
+        //if let screenshot : NSImage = vc.view.bitmapImage(),
+        if let cgScreenshot :CGImage = screenshot.cgImage{
+            let bitmapRep = NSBitmapImageRep(cgImage: cgScreenshot)
+            let jpegData = bitmapRep.representation(using: NSBitmapImageRep.FileType.png, properties: [:])!
+            let data = screenshot.sd_imageData()
+            NSPasteboard.general.setData(data, forType: .png)
+            
+            NewMessageBubbleHelper().showGenericMessageView(text: "QR Code Copied to Clipboard", in: bubbleContainer)
+        }
+        
+    }
+
+    func CreateTimeStamp() -> Int32
+    {
+        return Int32(Date().timeIntervalSince1970)
+    }
+}
+
+
+extension NSView {
+    func bitmapImage() -> NSImage? {
+        guard let rep = bitmapImageRepForCachingDisplay(in: bounds) else {
+            return nil
+        }
+        cacheDisplay(in: bounds, to: rep)
+        guard let cgImage = rep.cgImage else {
+            return nil
+        }
+        return NSImage(cgImage: cgImage, size: bounds.size)
+    }
 }

@@ -67,27 +67,33 @@ class PaymentViewModel : NSObject {
         return currentPayment.transactionMessage != nil
     }
     
-    func validateInvoice() -> Bool {
+    func validateInvoice(isKeySend:Bool=true) -> Bool {
         guard let memo = currentPayment.memo else {
             return true
         }
         
-        if memo.count > 50 || currentPayment.contacts.count != 1 {
+        if memo.count > 50 || (currentPayment.contacts.count != 1 && isKeySend){
             return false
         }
-        
-        let contact = currentPayment.contacts[0]
-        let encryptionManager = EncryptionManager.sharedInstance
-        let encryptedOwnMessage = encryptionManager.encryptMessageForOwner(message: memo)
-        let (contactIsEncrypted, encryptedContactMessage) = encryptionManager.encryptMessage(message: memo, for: contact)
-        
-        if contactIsEncrypted && !encryptedContactMessage.isValidLengthMemo() {
+        if(isKeySend == false){
+            currentPayment.encryptedMemo = memo
+            currentPayment.remoteEncryptedMemo = memo
             return memo.isValidLengthMemo()
         }
-        
-        if contactIsEncrypted {
-            currentPayment.encryptedMemo = encryptedOwnMessage
-            currentPayment.remoteEncryptedMemo = encryptedContactMessage
+        else{
+            let contact = currentPayment.contacts[0]
+            let encryptionManager = EncryptionManager.sharedInstance
+            let encryptedOwnMessage = encryptionManager.encryptMessageForOwner(message: memo)
+            let (contactIsEncrypted, encryptedContactMessage) = encryptionManager.encryptMessage(message: memo, for: contact)
+            
+            if contactIsEncrypted && !encryptedContactMessage.isValidLengthMemo() {
+                return memo.isValidLengthMemo()
+            }
+            
+            if contactIsEncrypted {
+                currentPayment.encryptedMemo = encryptedOwnMessage
+                currentPayment.remoteEncryptedMemo = encryptedContactMessage
+            }
         }
         
         return true
@@ -131,8 +137,8 @@ class PaymentViewModel : NSObject {
         })
     }
     
-    func shouldCreateInvoice(callback: @escaping (TransactionMessage) -> (), errorCallback: @escaping (String?) -> ()) {
-        if !validateInvoice() {
+    func shouldCreateInvoice(isKeySend:Bool=true,callback: @escaping (TransactionMessage?,String?) -> (), shouldDisplayAsQR:Bool=false, errorCallback: @escaping (String?) -> ()) {
+        if !validateInvoice(isKeySend: isKeySend) {
             errorCallback("memo.too.large".localized)
             return
         }
@@ -143,9 +149,13 @@ class PaymentViewModel : NSObject {
             if let message = message {
                 let (messageObject, success) = self.createLocalMessages(message: message)
                 if let messageObject = messageObject, success {
-                    callback(messageObject)
+                    callback(messageObject,nil)
                     return
                 }
+            }
+            else if let invoice = invoice{
+                callback(nil,invoice)
+                return
             }
             errorCallback(nil)
         }, errorCallback: {

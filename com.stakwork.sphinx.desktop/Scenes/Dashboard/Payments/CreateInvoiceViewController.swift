@@ -31,6 +31,7 @@ class CreateInvoiceViewController : PaymentInvoiceFormViewController {
     }
     
     func configureView() {
+        paymentView.closeButton.isHidden = true
         paymentView.configureView(paymentViewModel: paymentViewModel, delegate: self)
         paymentView.setTitle(title: "request.amount.upper".localized, placeHolder: "memo".localized, buttonLabel: "confirm.upper".localized)
     }
@@ -42,8 +43,15 @@ class CreateInvoiceViewController : PaymentInvoiceFormViewController {
     }
     
     func createPaymentRequest() {
-        paymentViewModel.shouldCreateInvoice(callback: { message in
-            self.didCreateMessage(message: message)
+        paymentViewModel.shouldCreateInvoice(isKeySend:false,callback: { message,invoice in
+            if let message = message{
+                self.didCreateMessage(message: message)
+            }
+            else if let invoice = invoice{
+                print(invoice)
+                let amount = self.paymentViewModel.currentPayment.amount ?? -1
+                self.handleInvoiceCreation(invoice: invoice,amount: amount)
+            }
         }, errorCallback: { errorMessage in
             self.paymentView.loading = false
             self.didFailWith(message: errorMessage)
