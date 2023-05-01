@@ -46,7 +46,8 @@ class WebAppViewController: NSViewController {
         addWebView()
         loadPage()
         
-        checkForLSAT()
+        //checkForLSAT()
+        listLSats()
     }
     
     func checkForLSAT(){
@@ -54,6 +55,22 @@ class WebAppViewController: NSViewController {
             print(amount)
         })
         
+    }
+    
+    func listLSats(){
+        API.sharedInstance.getLsatList(callback: {results in
+//            if let lsat_dicts = results.rawDictionary as? [String:Any]{
+//                for dict in lsat_dicts{
+//                    if let paymentRequest = dict["paymentRequest"] as? String{
+//                        
+//                    }
+//                }
+//            }
+            
+            print(results)
+        }, errorCallback: {
+            
+        })
     }
     
     override func viewDidAppear() {
