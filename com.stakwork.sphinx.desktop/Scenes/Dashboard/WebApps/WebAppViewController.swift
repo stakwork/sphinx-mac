@@ -45,6 +45,15 @@ class WebAppViewController: NSViewController {
         authorizeModalContainer.alphaValue = 0.0
         addWebView()
         loadPage()
+        
+        checkForLSAT()
+    }
+    
+    func checkForLSAT(){
+        webAppHelper.checkForExistingLsat(completion: { amount in
+            print(amount)
+        })
+        
     }
     
     override func viewDidAppear() {
