@@ -210,7 +210,7 @@
 "RB4-Sm-HuC.title" = "\tRight to Left";
 
 /* Class = "NSMenuItem"; title = "New Contact"; ObjectID = "RHC-tx-zTM"; */
-"RHC-tx-zTM.title" = "New Contact";
+"RHC-tx-zTM.title" = "Bagong kontak";
 
 /* Class = "NSMenuItem"; title = "Banner"; ObjectID = "RHk-GR-HhJ"; */
 "RHk-GR-HhJ.title" = "Banner";
@@ -342,13 +342,13 @@
 "feM-82-G70.title" = "Appearance";
 
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "gVA-U4-sdL"; */
-"gVA-U4-sdL.title" = "Paste";
+"gVA-U4-sdL.title" = "Idikit";
 
 /* Class = "NSMenuItem"; title = "TriTone (default)"; ObjectID = "gkf-ou-cs9"; */
 "gkf-ou-cs9.title" = "TriTone (default)";
 
 /* Class = "NSMenu"; title = "Notifications"; ObjectID = "gyU-2K-4vs"; */
-"gyU-2K-4vs.title" = "Notifications";
+"gyU-2K-4vs.title" = "Notipikasyon";
 
 /* Class = "NSMenu"; title = "Notification Type"; ObjectID = "hLH-rD-Zt1"; */
 "hLH-rD-Zt1.title" = "Notification Type";
@@ -369,7 +369,7 @@
 "i8q-0O-PQm.title" = "Remove account from this computer";
 
 /* Class = "NSMenuItem"; title = "Notifications"; ObjectID = "iiA-rK-mNB"; */
-"iiA-rK-mNB.title" = "Notifications";
+"iiA-rK-mNB.title" = "Notipikasyon";
 
 /* Class = "NSMenu"; title = "Baseline"; ObjectID = "ijk-EB-dga"; */
 "ijk-EB-dga.title" = "Baseline";

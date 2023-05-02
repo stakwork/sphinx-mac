@@ -9,10 +9,10 @@
 "Fnv-vP-ePi.title" = "";
 
 /* Class = "NSButtonCell"; title = "Change Privacy PIN"; ObjectID = "ISn-bT-TNB"; */
-"ISn-bT-TNB.title" = "Change Privacy PIN";
+"ISn-bT-TNB.title" = "Baguhin ang Privacy PIN";
 
 /* Class = "NSButtonCell"; title = "Change PIN"; ObjectID = "JQz-vv-8Tw"; */
-"JQz-vv-8Tw.title" = "Change PIN";
+"JQz-vv-8Tw.title" = "Baguhin ang PIN";
 
 /* Class = "NSTextFieldCell"; title = "Track actions"; ObjectID = "Pmy-Ba-4bp"; */
 "Pmy-Ba-4bp.title" = "Track actions";

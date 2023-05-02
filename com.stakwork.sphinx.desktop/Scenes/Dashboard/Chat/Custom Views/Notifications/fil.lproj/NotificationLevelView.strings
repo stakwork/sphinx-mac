@@ -1,6 +1,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Mute Chat"; ObjectID = "Bkl-v9-wXE"; */
-"Bkl-v9-wXE.title" = "Mute Chat";
+"Bkl-v9-wXE.title" = "I-Mute ang Chat";
 
 /* Class = "NSBox"; title = "Box"; ObjectID = "Fev-5w-h0e"; */
 "Fev-5w-h0e.title" = "Box";
@@ -21,7 +21,7 @@
 "kN2-XY-pv5.title" = "Box";
 
 /* Class = "NSTextFieldCell"; title = "See All"; ObjectID = "mTH-O6-gID"; */
-"mTH-O6-gID.title" = "See All";
+"mTH-O6-gID.title" = "Ipakita lahat";
 
 /* Class = "NSTextFieldCell"; title = "Only Mentions"; ObjectID = "vqa-8i-9eZ"; */
-"vqa-8i-9eZ.title" = "Only Mentions";
+"vqa-8i-9eZ.title" = "Mga Pagbanggit lamang";
