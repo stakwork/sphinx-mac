@@ -9,6 +9,7 @@
 import Foundation
 import WebKit
 import SwiftyJSON
+import ObjectMapper
 
 protocol WebAppHelperDelegate : NSObject{
     func setBudget(budget:Int)
@@ -24,6 +25,8 @@ class WebAppHelper : NSObject {
     
     var persistingValues: [String: AnyObject] = [:]
     var delegate : WebAppHelperDelegate? = nil
+    
+    var lsatList = [LSATObject]()
     
     func setWebView(_ webView: WKWebView, authorizeHandler: @escaping (([String: AnyObject]) -> ())) {
         self.webView = webView
@@ -77,6 +80,22 @@ extension WebAppHelper : WKScriptMessageHandler {
                 }
             }
         }
+    }
+    
+    func listLSats(){
+        API.sharedInstance.getLsatList(callback: {results in
+            let lsats = results["lsats"]
+            print(lsats)
+            for lsat in lsats{
+                if let json = JSON(lsat.1).rawValue as? [String:Any],
+                let lsat_object = Mapper<LSATObject>().map(JSON: json){
+                    print(lsat_object)
+                    self.lsatList.append(lsat_object)
+                }
+            }
+        }, errorCallback: {
+            
+        })
     }
     
     func jsonStringWithObject(obj: AnyObject) -> String? {

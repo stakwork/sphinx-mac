@@ -407,6 +407,7 @@
 "enter.code.placeholder" = "Ingresa el código...";
 "keychain.restore" = "Restaurar desde Keychain";
 "podcast.details" = "Podcast Detalles & Opciones";
+"my.lsats" = "Mis LSATs";
 "code.not.supported" = "Código no soportado";
 "enter.restore.pin" = "Ingresa tu PIN";
 "share.invite.code" = "Compartir código de invitación";

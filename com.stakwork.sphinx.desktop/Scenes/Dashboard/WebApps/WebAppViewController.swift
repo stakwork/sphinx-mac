@@ -47,7 +47,8 @@ class WebAppViewController: NSViewController {
         loadPage()
         
         //checkForLSAT()
-        listLSats()
+        currentBudgetButton.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(showLsatList)))
+        webAppHelper.listLSats()
     }
     
     func checkForLSAT(){
@@ -57,21 +58,18 @@ class WebAppViewController: NSViewController {
         
     }
     
-    func listLSats(){
-        API.sharedInstance.getLsatList(callback: {results in
-//            if let lsat_dicts = results.rawDictionary as? [String:Any]{
-//                for dict in lsat_dicts{
-//                    if let paymentRequest = dict["paymentRequest"] as? String{
-//                        
-//                    }
-//                }
-//            }
-            
-            print(results)
-        }, errorCallback: {
-            
-        })
+    @objc func showLsatList(){
+        let viewController = LsatListViewController.instantiate(lsatList: webAppHelper.lsatList)
+        
+        WindowsManager.sharedInstance.showNewWindow(
+            with: "my.lsats".localized,
+            size: CGSize(width: 400, height: 600),
+            centeredIn: self.view.window,
+            contentVC: viewController
+        )
+        print(webAppHelper.lsatList)
     }
+    
     
     override func viewDidAppear() {
         super.viewDidAppear()

@@ -59,7 +59,8 @@ internal enum StoryboardScene {
         internal static let webAppViewController = SceneType<WebAppViewController>(storyboard: Dashboard.self, identifier: "WebAppViewController")
         
         internal static let dashboardModalsViewController = SceneType<DashboardModalsViewController>(storyboard: Dashboard.self, identifier: "DashboardModalsViewController")
-
+        
+        internal static let lsatListViewController = SceneType<LsatListViewController>(storyboard: Dashboard.self, identifier: "LsatListViewController")
     }
     
     internal enum Groups: StoryboardType {
