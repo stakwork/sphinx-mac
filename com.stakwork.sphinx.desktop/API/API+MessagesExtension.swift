@@ -308,6 +308,40 @@ extension API {
         }
     }
     
+    public func deleteLsat(
+        lsat: LSATObject,
+        callback: @escaping EmptyCallback,
+        errorCallback: @escaping EmptyCallback
+    ) {
+        guard let valid_id = lsat.identifier else{
+            errorCallback()
+            return
+        }
+        
+        print("deleting Lsat")
+        guard let request = getURLRequest(route: "/lsats/\(valid_id)", method: "DELETE") else {
+            errorCallback()
+            return
+        }
+        
+        sphinxRequest(request) { response in
+            switch response.result {
+            case .success(let data):
+                if let json = data as? NSDictionary {
+                    if let success = json["success"] as? Bool,
+                        success {
+                        callback()
+                    } else {
+                        print()
+                        errorCallback()
+                    }
+                }
+            case .failure(_):
+                errorCallback()
+            }
+        }
+    }
+    
     
     public func getPersonData(
         callback: @escaping GetPersonDataCallback,

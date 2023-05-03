@@ -46,7 +46,8 @@ extension LsatListViewModel: NSTableViewDelegate, NSTableViewDataSource{
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         print("hi")
         guard let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "LsatListTableCellView"), owner: self) as? LsatListTableCellView else { return nil }
-         cell.configureWith(lsat: lsatList[row])
+        cell.configureWith(lsat: lsatList[row], index: row)
+        cell.delegate = self
 //        cell.backgroundColor = tableView.backgroundColor
 //        cell.delegate = self
 //        cell.index = row
@@ -66,6 +67,38 @@ extension LsatListViewModel: NSTableViewDelegate, NSTableViewDataSource{
     }
 }
 
-//extension LsatListViewModel : LsatListCellDelegate{
-//    
-//}
+extension LsatListViewModel : LsatListCellDelegate{
+    func deleteLsat(index: Int) {
+        AlertHelper.showTwoOptionsAlert(
+            title: "Are you sure you want to delete this LSAT credential?",
+            message: "",
+            confirm: {
+                print("calling delete LSAT API")
+                API.sharedInstance.deleteLsat(
+                    lsat: self.lsatList[index],
+                    callback: {
+                        NewMessageBubbleHelper().showGenericMessageView(text: "Deletion succeeded.", in: nil)
+                        self.lsatList.remove(at: index)
+                        self.tableView.reloadData()
+                    },
+                    errorCallback: {
+                        NewMessageBubbleHelper().showGenericMessageView(text: "Error deleting LSAT data please try again.", in: nil)
+                    })
+            },
+            cancel: {
+                print("cancelling deletion")
+            },
+            confirmLabel: "Delete",
+            cancelLabel: "Cancel"
+        )
+    }
+    
+    func copyLsat(index: Int) {
+        if let jsonString = lsatList[index].toJSONString(prettyPrint: true){
+            ClipboardHelper.copyToClipboard(text: jsonString)
+        }
+        else{
+            NewMessageBubbleHelper().showGenericMessageView(text: "Error copying LSAT data please try again.", in: nil)
+        }
+    }
+}

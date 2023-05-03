@@ -8,6 +8,12 @@
 
 import Cocoa
 
+protocol LsatListCellDelegate{
+    func deleteLsat(index:Int)
+    func copyLsat(index:Int)
+}
+
+
 class LsatListTableCellView: NSTableCellView {
 
     @IBOutlet weak var cellLabel: NSTextField!
@@ -15,6 +21,8 @@ class LsatListTableCellView: NSTableCellView {
     @IBOutlet weak var deleteLabel: NSTextField!
     @IBOutlet weak var paymentRequestLabel: NSTextField!
     
+    var delegate : LsatListCellDelegate? = nil
+    var index : Int? = nil
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
@@ -22,20 +30,28 @@ class LsatListTableCellView: NSTableCellView {
         // Drawing code here.
     }
     
-    func configureWith(lsat:LSATObject){
+    func configureWith(lsat:LSATObject,index:Int){
         self.cellLabel.stringValue = lsat.identifier ?? "Unknown ID"
         self.paymentRequestLabel.stringValue = lsat.paymentRequest ?? "Unknown PR string"
-        
+        self.index = index
+        copyLabel.isSelectable = true
+        deleteLabel.isSelectable = true
         copyLabel.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(handleCopy)))
         deleteLabel.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(handleDelete)))
     }
     
     @objc func handleCopy(){
         print("copying")
+        if let index = index{
+            delegate?.copyLsat(index: index)
+        }
     }
     
     @objc func handleDelete(){
         print("delete")
+        if let index = index{
+            delegate?.deleteLsat(index: index)
+        }
     }
     
 }
