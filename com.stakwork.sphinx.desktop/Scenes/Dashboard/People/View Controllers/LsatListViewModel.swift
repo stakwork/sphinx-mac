@@ -94,8 +94,16 @@ extension LsatListViewModel : LsatListCellDelegate{
     }
     
     func copyLsat(index: Int) {
-        if let jsonString = lsatList[index].toJSONString(prettyPrint: true){
-            ClipboardHelper.copyToClipboard(text: jsonString)
+        let lsat = lsatList[index]
+        if let jsonString = lsat.toJSONString(prettyPrint: true){
+            var preamble = "LSAT"
+            if let preimage = lsat.preImage,
+               let macaroon = lsat.macaroon{
+                preamble += "- macaroon:preimage:\n"
+                preamble += " \(macaroon):\(preimage)"
+            }
+            preamble += "\n\nJSON:\(jsonString)"
+            ClipboardHelper.copyToClipboard(text: preamble)
         }
         else{
             NewMessageBubbleHelper().showGenericMessageView(text: "Error copying LSAT data please try again.", in: nil)

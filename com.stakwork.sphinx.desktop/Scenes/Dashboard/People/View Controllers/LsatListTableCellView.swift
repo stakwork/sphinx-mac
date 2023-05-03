@@ -32,7 +32,7 @@ class LsatListTableCellView: NSTableCellView {
     
     func configureWith(lsat:LSATObject,index:Int){
         self.cellLabel.stringValue = lsat.identifier ?? "Unknown ID"
-        self.paymentRequestLabel.stringValue = lsat.paymentRequest ?? "Unknown PR string"
+        self.paymentRequestLabel.stringValue = lsat.preImage ?? "Unknown Preimage string"
         self.index = index
         copyLabel.isSelectable = true
         deleteLabel.isSelectable = true
