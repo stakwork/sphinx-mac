@@ -82,7 +82,7 @@ extension WebAppHelper : WKScriptMessageHandler {
         }
     }
     
-    func listLSats(){
+    func listLSats(completion: @escaping (Bool)->()){
         API.sharedInstance.getLsatList(callback: {results in
             let lsats = results["lsats"]
             print(lsats)
@@ -93,8 +93,9 @@ extension WebAppHelper : WKScriptMessageHandler {
                     self.lsatList.append(lsat_object)
                 }
             }
+            completion(true)
         }, errorCallback: {
-            
+            completion(false)
         })
     }
     

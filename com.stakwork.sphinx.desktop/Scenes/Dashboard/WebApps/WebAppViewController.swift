@@ -45,10 +45,9 @@ class WebAppViewController: NSViewController {
         authorizeModalContainer.alphaValue = 0.0
         addWebView()
         loadPage()
+    
         
-        //checkForLSAT()
         currentBudgetButton.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(showLsatList)))
-        webAppHelper.listLSats()
     }
     
     func checkForLSAT(){
@@ -59,15 +58,24 @@ class WebAppViewController: NSViewController {
     }
     
     @objc func showLsatList(){
-        let viewController = LsatListViewController.instantiate(lsatList: webAppHelper.lsatList)
+        NewMessageBubbleHelper().showGenericMessageView(text: "Retrieving your LSATs...", in: nil)
+        webAppHelper.listLSats(completion: { success in
+            if(success){
+                let viewController = LsatListViewController.instantiate(lsatList: self.webAppHelper.lsatList)
+                
+                WindowsManager.sharedInstance.showNewWindow(
+                    with: "my.lsats".localized,
+                    size: CGSize(width: 400, height: 600),
+                    centeredIn: self.view.window,
+                    contentVC: viewController
+                )
+                print(self.webAppHelper.lsatList)
+            }
+            else{
+                NewMessageBubbleHelper().showGenericMessageView(text: "Error loading LSAT data please try again.", in: nil)
+            }
+        })
         
-        WindowsManager.sharedInstance.showNewWindow(
-            with: "my.lsats".localized,
-            size: CGSize(width: 400, height: 600),
-            centeredIn: self.view.window,
-            contentVC: viewController
-        )
-        print(webAppHelper.lsatList)
     }
     
     
