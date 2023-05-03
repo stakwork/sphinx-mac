@@ -93,16 +93,24 @@ extension LsatListViewModel : LsatListCellDelegate{
         )
     }
     
+    func debugLsat(index: Int) {
+        let lsat = lsatList[index]
+        var preamble = "LSAT"
+        if let preimage = lsat.preImage,
+           let macaroon = lsat.macaroon{
+            preamble += " \(macaroon):\(preimage)"
+            ClipboardHelper.copyToClipboard(text: preamble)
+        }
+        else{
+            NewMessageBubbleHelper().showGenericMessageView(text: "Error copying LSAT data please try again.", in: nil)
+        }
+    }
+    
     func copyLsat(index: Int) {
         let lsat = lsatList[index]
         if let jsonString = lsat.toJSONString(prettyPrint: true){
-            var preamble = "LSAT"
-            if let preimage = lsat.preImage,
-               let macaroon = lsat.macaroon{
-                preamble += "- macaroon:preimage:\n"
-                preamble += " \(macaroon):\(preimage)"
-            }
-            preamble += "\n\nJSON:\(jsonString)"
+            var preamble = ""
+            preamble += "JSON:\n\(jsonString)"
             ClipboardHelper.copyToClipboard(text: preamble)
         }
         else{

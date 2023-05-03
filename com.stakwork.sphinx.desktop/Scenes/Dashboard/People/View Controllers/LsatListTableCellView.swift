@@ -11,6 +11,7 @@ import Cocoa
 protocol LsatListCellDelegate{
     func deleteLsat(index:Int)
     func copyLsat(index:Int)
+    func debugLsat(index:Int)
 }
 
 
@@ -19,6 +20,7 @@ class LsatListTableCellView: NSTableCellView {
     @IBOutlet weak var cellLabel: NSTextField!
     @IBOutlet weak var copyLabel: NSTextField!
     @IBOutlet weak var deleteLabel: NSTextField!
+    @IBOutlet weak var terminalLabel: NSTextField!
     @IBOutlet weak var paymentRequestLabel: NSTextField!
     
     var delegate : LsatListCellDelegate? = nil
@@ -36,8 +38,11 @@ class LsatListTableCellView: NSTableCellView {
         self.index = index
         copyLabel.isSelectable = true
         deleteLabel.isSelectable = true
+        terminalLabel.isSelectable = true
+        self.bringSubviewToFront(terminalLabel)
         copyLabel.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(handleCopy)))
         deleteLabel.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(handleDelete)))
+        terminalLabel.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(handleTerminal)))
     }
     
     @objc func handleCopy(){
@@ -51,6 +56,13 @@ class LsatListTableCellView: NSTableCellView {
         print("delete")
         if let index = index{
             delegate?.deleteLsat(index: index)
+        }
+    }
+    
+    @objc func handleTerminal(){
+        print("terminal")
+        if let index = index{
+            delegate?.debugLsat(index:index)
         }
     }
     

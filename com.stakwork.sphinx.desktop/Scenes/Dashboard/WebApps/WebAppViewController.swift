@@ -65,7 +65,7 @@ class WebAppViewController: NSViewController {
                 
                 WindowsManager.sharedInstance.showNewWindow(
                     with: "my.lsats".localized,
-                    size: CGSize(width: 400, height: 600),
+                    size: CGSize(width: 480, height: 600),
                     centeredIn: self.view.window,
                     contentVC: viewController
                 )
