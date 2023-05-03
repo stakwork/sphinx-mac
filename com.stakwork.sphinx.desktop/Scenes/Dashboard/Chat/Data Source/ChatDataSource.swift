@@ -644,12 +644,29 @@ extension ChatDataSource : NSCollectionViewDataSource {
             item.configureMessage(message: messageRow.transactionMessage)
             item.delegate = self
         }
+        /*
+        if(messageRow.hasCodeSnippet()){
+            let content = messageRow.getMessageContent()
+            let components = content.components(separatedBy: "```")
+            print(components)
+            for i in 0..<components.count{
+                if(i % 2 == 1){
+                    let webView = CodeWebView(frame: item.view.frame)
+                    webView.loadHTMLString(components[i], baseURL: nil)
+                    item.view.addSubview(webView)
+                    item.view.bringSubviewToFront(webView)
+                    
+                }
+            }
+        }
+        */
     }
  
     func collectionView(_ itemForRepresentedObjectAtcollectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
         let messageRow = messageRowsArray[indexPath.item]
         return chatHelper.getItemFor(messageRow: messageRow, indexPath: indexPath, on: collectionView)
     }
+    
 }
 
 extension ChatDataSource {

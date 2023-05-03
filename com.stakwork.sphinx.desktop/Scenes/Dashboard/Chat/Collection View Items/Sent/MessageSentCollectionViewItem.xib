@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -61,10 +61,10 @@
                     </connections>
                 </button>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="W6y-fa-ggk">
-                    <rect key="frame" x="90" y="302" width="392" height="17"/>
+                    <rect key="frame" x="91" y="302" width="391" height="17"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="P6w-nM-piJ">
-                            <rect key="frame" x="332" y="4" width="47" height="11"/>
+                            <rect key="frame" x="331" y="4" width="47" height="11"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="06:05 AM" id="WIT-4p-oc4">
                                 <font key="font" size="10" name="Roboto-Regular"/>
                                 <color key="textColor" name="WashedOutReceivedText"/>
@@ -72,7 +72,7 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yFL-k9-u4Y">
-                            <rect key="frame" x="317" y="5" width="16" height="12"/>
+                            <rect key="frame" x="316" y="5" width="16" height="12"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="lock" id="99Z-ay-nWG">
                                 <font key="font" size="12" name="MaterialIcons-Regular"/>
                                 <color key="textColor" name="WashedOutReceivedText"/>
@@ -80,7 +80,7 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kvZ-B8-6fW">
-                            <rect key="frame" x="305" y="5" width="16" height="12"/>
+                            <rect key="frame" x="304" y="5" width="16" height="12"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="flash_on" id="F5R-bM-awo">
                                 <font key="font" size="12" name="MaterialIcons-Regular"/>
                                 <color key="textColor" name="PrimaryGreen"/>
@@ -88,7 +88,7 @@
                             </textFieldCell>
                         </textField>
                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="jLd-2G-ckX">
-                            <rect key="frame" x="0.0" y="0.0" width="94" height="17"/>
+                            <rect key="frame" x="0.0" y="0.0" width="93" height="17"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5fg-cA-6QA">
                                     <rect key="frame" x="-2" y="4" width="16" height="12"/>
@@ -99,7 +99,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ow5-11-hte">
-                                    <rect key="frame" x="13" y="4" width="75" height="11"/>
+                                    <rect key="frame" x="13" y="4" width="74" height="11"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Message Failed" id="3AQ-91-9Rk">
                                         <font key="font" size="10" name="Roboto-Regular"/>
                                         <color key="textColor" name="WashedOutReceivedText"/>

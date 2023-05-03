@@ -15,6 +15,8 @@ struct DeeplinkData{
 }
 
 class ChatHelper {
+    var myView : NSView? = nil
+    
     public static func getSenderColorFor(message: TransactionMessage) -> NSColor {
         var key:String? = nil
         
@@ -130,7 +132,11 @@ class ChatHelper {
                     cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PodcastCommentReceivedCollectionViewItem"), for: indexPath)
                 } else if isPodcastBoost {
                     cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PodcastBoostReceivedCollectionViewItem"), for: indexPath)
-                } else {
+                }else if messageRow.hasCodeSnippet(){
+                    cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MessageReceivedWithCodeCollectionViewItem"), for: indexPath)
+
+                }
+                else {
                     cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MessageReceivedCollectionViewItem"), for: indexPath)
                 }
             } else {
@@ -142,7 +148,11 @@ class ChatHelper {
                     cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PodcastCommentSentCollectionViewItem"), for: indexPath)
                 } else if isPodcastBoost {
                     cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PodcastBoostSentCollectionViewItem"), for: indexPath)
-                } else {
+                }
+                else if messageRow.hasCodeSnippet(){
+                    cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MessageSentWithCodeCollectionViewItem"), for: indexPath)
+                }
+                else {
                     cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MessageSentCollectionViewItem"), for: indexPath)
                 }
             }
@@ -307,9 +317,19 @@ class ChatHelper {
                 height = CommonPodcastBoostCollectionViewItem.getRowHeight()
             } else {
                 if incoming {
-                    height = MessageReceivedCollectionViewItem.getRowHeight(messageRow: messageRow)
+                    if messageRow.hasCodeSnippet(){
+                        height = MessageReceivedWithCodeCollectionViewItem.getRowHeight(messageRow: messageRow)
+                    }
+                    else{
+                        height = MessageReceivedCollectionViewItem.getRowHeight(messageRow: messageRow)
+                    }
                 } else {
-                    height = MessageSentCollectionViewItem.getRowHeight(messageRow: messageRow)
+                    if messageRow.hasCodeSnippet(){
+                        height = MessageSentWithCodeCollectionViewItem.getRowHeight(messageRow: messageRow)
+                    }
+                    else{
+                        height = MessageSentCollectionViewItem.getRowHeight(messageRow: messageRow)
+                    }
                 }
             }
             break

@@ -8,6 +8,8 @@
 
 import Cocoa
 import CoreData
+import WebKit
+import Down
 
 class ChatViewController: DashboardSplittedViewController {
     
@@ -24,9 +26,11 @@ class ChatViewController: DashboardSplittedViewController {
     @IBOutlet weak var volumeButton: CustomButton!
     @IBOutlet weak var videoCallButton: CustomButton!
     @IBOutlet weak var expandMenuButton: NSButton!
+    @IBOutlet weak var codeButton: CustomButton!
     
     @IBOutlet weak var messageFieldContainer: NSView!
     @IBOutlet var messageTextView: PlaceHolderTextView!
+    
     @IBOutlet weak var bottomBar: NSView!
     @IBOutlet weak var attachmentsButton: CustomButton!
     @IBOutlet weak var sendButton: CustomButton!
@@ -75,6 +79,10 @@ class ChatViewController: DashboardSplittedViewController {
     var unseenMessagesCount = 0
     var deeplinkData : DeeplinkData? = nil
     
+    var codePreview : DownView? = nil
+    var isInCodeMode : Bool = false
+    var codePreviewSegmentedControl : NSSegmentedControl? = nil
+    
     var unseenMessagesCountLabel: String {
         get {
             if unseenMessagesCount > 0 {
@@ -85,7 +93,7 @@ class ChatViewController: DashboardSplittedViewController {
         }
     }
     
-    let kCharacterLimit = 500
+    let kCharacterLimit = 5000
     let kBottomBarMargins:CGFloat = 41
     
     let kMinimumPriceFieldWidth: CGFloat = 50
@@ -118,10 +126,24 @@ class ChatViewController: DashboardSplittedViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        codeButton.alphaValue = 0.25
         
         self.mentionAutoCompleteEnclosingScrollView.isHidden = true
         configureView()
         prepareRecordingView()
+    }
+    
+    func showCodePreviewWV(codeString:String){
+        do{
+            codePreview = try DownView(frame: self.messageTextView.bounds, markdownString: codeString,templateBundle: nil)
+            if let preview = codePreview{
+                preview.navigationDelegate = self
+                self.messageTextView.addSubview(preview)
+            }
+        }
+        catch let error{
+            print(error)
+        }
     }
     
     override func viewDidAppear() {
@@ -492,6 +514,67 @@ class ChatViewController: DashboardSplittedViewController {
         NSApp.orderFrontCharacterPalette(textView)
         view.window?.makeFirstResponder(messageTextView)
     }
+    
+    
+    @IBAction func codeButtonClicked(_ sender: Any) {
+        if(isInCodeMode == false){
+            codeButton.alphaValue = 1.0
+            print("codeButtonClicked")
+            messageTextView.string = "```\n\n```"
+            messageTextView.setSelectedRange(NSMakeRange(4, 0))
+            bottomBarHeightConstraint.constant = self.view.frame.height/2.0
+            codePreviewSegmentedControl = NSSegmentedControl(frame: NSRect(origin: CGPoint(x: self.view.frame.width * 0.4, y: self.view.frame.height * 0.51), size: CGSize(width: self.view.frame.width * 0.2, height: self.view.frame.height * 0.05)))
+            if let codePreviewSegmentedControl = codePreviewSegmentedControl{
+                codePreviewSegmentedControl.segmentCount = 2
+                codePreviewSegmentedControl.setLabel("Editor", forSegment: 0)
+                codePreviewSegmentedControl.setLabel("Preview", forSegment: 1)
+                codePreviewSegmentedControl.alphaValue = 1.0
+                codePreviewSegmentedControl.selectedSegment = 0
+                codePreviewSegmentedControl.action = #selector(previewSegmentSelected(_:))
+                self.view.addSubview(codePreviewSegmentedControl)
+                self.view.bringSubviewToFront(codePreviewSegmentedControl)
+                codePreviewSegmentedControl.layer?.zPosition = 1000
+            }
+            self.view.layoutSubtreeIfNeeded()
+        }
+        else{
+            cleanupCodeMode()
+        }
+        
+        isInCodeMode = !isInCodeMode
+    }
+    
+    func cleanupCodeMode(){
+        hideCodePreview()
+        codePreviewSegmentedControl?.removeFromSuperview()
+        codePreviewSegmentedControl = nil
+        codeButton.alphaValue = 0.25
+        bottomBarHeightConstraint.constant = 60.0
+        messageTextView.string = ""
+        self.view.layoutSubtreeIfNeeded()
+    }
+    
+    @objc func previewSegmentSelected(_ sender: NSSegmentedControl){
+        if sender.selectedSegment == 0{
+            hideCodePreview()
+        }
+        else if sender.selectedSegment == 1 && messageTextView.string == ""{
+            sender.selectedSegment = 0
+        }
+        else if sender.selectedSegment == 1{
+            showCodePreview()
+        }
+    }
+    
+    @objc func hideCodePreview(){
+        codePreview?.removeFromSuperview()
+        codePreview = nil
+    }
+    
+    @objc func showCodePreview(){
+        showCodePreviewWV(codeString: messageTextView.string)
+    }
+    
     
     @IBAction func giphyButtonClicked(_ sender: Any) {
         bottomBar.removeShadow()

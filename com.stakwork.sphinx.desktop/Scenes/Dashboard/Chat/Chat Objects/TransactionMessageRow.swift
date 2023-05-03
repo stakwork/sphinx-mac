@@ -52,6 +52,13 @@ class TransactionMessageRow : NSObject {
         return ""
     }
     
+    func hasCodeSnippet()->Bool{
+        if self.getMessageContent().components(separatedBy: "```").count > 2{
+            return true
+        }
+        return false
+    }
+    
     func getMessageAttributes() -> (String, NSColor, NSFont) {
         let regularBigFont = Constants.kMessageFont
         let mediumSmallFont = Constants.kBoldSmallMessageFont
