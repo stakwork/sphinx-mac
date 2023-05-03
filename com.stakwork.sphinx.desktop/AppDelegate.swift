@@ -154,7 +154,8 @@ import WebKit
         if let mainWindow = getDashboardWindow() {
             mainWindow.replaceContentBy(vc: DashboardViewController.instantiate())
         } else {
-            if UserData.sharedInstance.isUserLogged() {
+            if UserData.sharedInstance.isUserLogged() &&
+                UserData.sharedInstance.getPINNeverOverride() != true {
                 presentPIN()
             } else {
                 let splashVC = SplashViewController.instantiate()
