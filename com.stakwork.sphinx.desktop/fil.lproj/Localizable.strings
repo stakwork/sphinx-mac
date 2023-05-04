@@ -10,9 +10,9 @@
 "generic.success.title"  = "Tagumpay";
 "generic.error.title"  = "Mali";
 "generic.error.message"  = "May mali. Paki ulit sa ilang saglit.";
-"generic.message.error" = "The message could not be sent due to an encryption error.";
+"generic.message.error" = "Hindi maipadala ang mensahe dahil sa isang error sa pag-encrypt.";
 "confirm"  = "Kumpirma";
-"authorize"  = "None";
+"authorize"  = "Authorize";
 "warning"  = "Babala";
 "done.upper"  = "TAPOS";
 "next.upper"  = "SUSUNOD";
@@ -28,8 +28,8 @@
 "today"  = "Ngayon";
 "contact" = "Contact";
 "profile"  = "Profile";
-"profile.saved" = "Profile changes successfully saved";
-"search"  = "None";
+"profile.saved" = "Matagumpay na na-save ang mga pagbabago sa profile";
+"search"  = "Search";
 "submit"  = "Ipasa";
 "finish" = "finish";
 "verify.upper"  = "Patunayan";
@@ -76,7 +76,7 @@
 "exit.group"  = "Lumabas sa Grupo";
 "confirm.exit.delete.group"  = "Sigurado ka bang gusto mong lumabas at tanggalin ang grupo?";
 "delete.group"  = "Tanggalin ang Grupo";
-"confirm.delete.group" = "Are you sure you want to delete the group?";
+"confirm.delete.group" = "Sigurado ka bang gusto mong tanggalin ang grupo?";
 "confirm.exit.delete.tribe"  = "Sigurado ka bang gusto mong lumabas at tanggalin ang tribo?";
 "share.group.link"  = "QR code sa Pagsali sa Tribo";
 "group.link.upper" = "TRIBE QR CODE";
@@ -90,17 +90,17 @@
 "added.to.group"  = "Naidagdag si %@ sa grupo";
 "tribe.kick"  = "Inalis ka ng admin sa tribong ito";
 "tribe.deleted"  = "Tinanggal ng admin ang kanyang tribo";
-"member.request" = "%@ wants to\njoin the tribe";
-"member.request.rejected" = "The admin \ndeclined your request";
+"member.request" = "Gusto ni %@ na sumali sa tribo";
+"member.request.rejected" = "Tinanggihan ng admin ang iyong request";
 "member.request.approved"  = "Maligayang pagdating! Miyembro ka na ngayon";
 "admin.request.approved"  = "Inaprubahan mo ang kahilingan mula sa/kay %@";
 "admin.request.rejected"  = "Tinanggihan mo ang kahilingan mula sa/kay %@";
 "waiting.admin.approval"  = "Naghihintay ng pag-apruba ng admin";
-"deleted.tribe.title" = "Deleted Tribe";
-"deleted.tribe.description" = "The admin has deleted this tribe. You won't be able to send or receive messages anymore. Exit and delete tribe from details view.";
-"join.tribe" = "Join Tribe";
+"deleted.tribe.title" = "Tinanggal na Tribo";
+"deleted.tribe.description" = "Tinanggal ng admin ang tribong ito. Hindi ka na makapag padala o makakatanggap ng mga mensahe. Lumabas at tanggalin ang tribo mula sa details view.";
+"join.tribe" = "Mag Join sa Tribo";
 "exit.tribe"  = "Lumabas sa Tribo";
-"confirm.exit.tribe" = "Are you sure you want to exit tribe?";
+"confirm.exit.tribe" = "Sigurado ka bang gusto mong umalis sa tribo?";
 "share.group"  = "Ibahagi ang QR code ng tribo";
 "delete.tribe"  = "Tanggalin ang Tribo";
 "edit.tribe"  = "I-Edit ang Tribo";
@@ -128,18 +128,18 @@
 "invoice.amount" = "Invoice Amount:";
 "expiration.date" = "Expiration Date:";
 "invoice.string" = "Invoice String";
-"copy.invoice.string" = "Copy Invoice String";
-"copy.invoice.image" = "Copy Invoice Image";
+"copy.invoice.string" = "Kopyahin ang Invoice String";
+"copy.invoice.image" = "Kopyahin ang Invoice Image";
 
 //ADDRESS BOOK
 "new.contact"  = "Bagong kontak";
-"save.to.contacts.upper"  = "None";
+"save.to.contacts.upper"  = "SAVE TO CONTACTS";
 "edit.contact.upper"  = "EDIT CONTACT";
 "subscribed.upper"  = "SUBSCRIBED";
 "subscribe.upper"  = "SUBSCRIBE";
 "nickname.address.required"  = "Kinakailangan ang Palayaw at Address.";
 "invalid.pubkey"  = "Di-wastong pampublikong Susi";
-"new.contact.error.alreadyExists" = "A contact with this public key already exists in your Address Book.";
+"new.contact.error.alreadyExists" = "Ang isang contact na may public key na ito ay nag e-exists  sa iyong Address Book.";
 
 //INVITE
 "add.people"  = "Magdagdag ng mga Tao";
@@ -147,17 +147,17 @@
 "welcome"  = "Maligayang Pagdating";
 "welcome!"  = "Maligayang Pagdating!";
 "contact.support"  = "Nagkaproblema. Mangyaring makipag-ugnayan sa aming suporta sa support@stakwork.com";
-"paste.invite.text" = "Paste the invitation text\nor scan the QR code";
-"paste.invitation.code" = "Paste your invitation code...";
+"paste.invite.text" = "I-paste ang text ng imbitasyon\no i-scan ang QR code";
+"paste.invitation.code" = "I-paste ang iyong invitation code...";
 "paste.keys"  = "Idikit ang iyong mga susi...";
 "pin" = "PIN";
-"enter.pin.upper"  = "None";
+"enter.pin.upper"  = "ENTER PIN";
 "invalid.pin"  = "Di-wastong PIN";
 "message.from.friend"  = "Isang mensahe mula sa iyong kaibigan..";
 "skip" = "skip";
-"get.it.now" = "get it now";
-"select.image" = "select image";
-"change.image" = "change image";
+"get.it.now" = "kunin na ngayon";
+"select.image" = "i-select ang imahe";
+"change.image" = "baguhin ang imahe";
 "nickname"  = "Palayaw";
 "change.image"  = "Baguhin ang Larawan";
 "nickname.cannot.empty"  = "Hindi maaaring walang laman ang palayaw.";
@@ -170,13 +170,13 @@
 "code.copied.clipboard"  = "Nakopya ang code sa clipboard";
 "confirm.delete.keychain"  = "Sigurado ka bang gusto mong permanenteng tanggalin ang node na ito sa keychain? I-double check na hindi ka nakakonekta sa node na ito mula sa ibang aparato, dahil aalisin nito ang impormasyon mula sa keychain na nagiging sanhi ng pagkawala ng koneksyong iyon.";
 "error.restoring.keychain"  = "Nagkaroon ng pagkakamali sa pag-babalik mula sa Keychain.";
-"share.invite.code.upper"  = "None";
-"add.friend"  = "None";
-"invalid.code.pubkey" = "This looks like a pubkey, to sign up you'll need an invite code from https://sphinx.chat";
-"invalid.code.invoice" = "This looks like an invoice, to sign up you'll need an invite code from https://sphinx.chat";
-"invalid.code" = "We don't recognize this code, to sign up you'll need an invite code from https://sphinx.chat";
-"invalid.code.claim" = "There was an error claiming this QR code. Please try again.";
-"invalid.restore.code" = "We don't recognize this code, to restore you'll need to copy your keys from mobile app and paste it here";
+"share.invite.code.upper"  = "Share Invite Code";
+"add.friend"  = "Add Friend";
+"invalid.code.pubkey" = "Mukhang isang pubkey ito, para mag-sign up need mo ng code ng imbitasyon mula sa https://sphinx.chat";
+"invalid.code.invoice" = "Mukhang isang invoice ito, para mag-sign up need mo ng code ng imbitasyon mula sa https://sphinx.chat";
+"invalid.code" = "Hindi namin nakikilala ang code na ito, upang mag-sign up, need mo ng code ng imbitasyon mula sa https://sphinx.chat";
+"invalid.code.claim" = "Nagkaroon ng error sa pag-claim sa QR code na ito. Pakisubukang muli.";
+"invalid.restore.code" = "Hindi makikilala ang code na ito, upang maibalik, kakailanganin mong kopyahin ang iyong keys sa mobile app at i-paste ito dito";
 "tor.connection.failed"  = "May pagkakamali  sa koneksyon ng Tor";
 "establishing.tor.circuit" = "Establishing Tor circuit...";
 "wait.tor.request"  = "Mangyaring maghintay. Maaaring tumagal ng ilang minuto ang prosesong ito...";
@@ -185,12 +185,12 @@
 "restore.label.bold"  = "Kopyahin ang iyong mga susi";
 "signup.label.bold.1"  = "Idikit";
 "signup.label.bold.2" = "invitation code";
-"get.started"  = "None";
-"set.nickname" = "Set Nickname";
+"get.started"  = "Get Started";
+"set.nickname" = "Set Palayaw";
 "set.pin" = "Set PIN (6 digits)";
-"confirm.pin" = "Confirm PIN";
-"sphinx.on.phone" = "Don't you have Sphinx on your phone?";
-"sphinx.on.phone.bold" = "Sphinx on your phone";
+"confirm.pin" = "Kumpirmahin ang PIN";
+"sphinx.on.phone" = "Wala ka bang Sphinx sa iyong phone?";
+"sphinx.on.phone.bold" = "Sphinx sa iyong phone";
 
 
 //PROFILE
@@ -200,22 +200,22 @@
 "keys.will.copy.clipboard"  = "Kokopyahin ang iyong mga susi sa clipboard. I-save ang string na ito at tandaan ang iyong pin bago burahin ang app o mawawala ang lahat ng data.";
 "keys.copied.clipboard"  = "I-export ang mga key na kinopya sa clipboard";
 "server.url.updated"  = "Matagumpay na na-update ang URL ng server";
-"drag.image" = "Drag Image";
+"drag.image" = "I-Drag ang  Image";
 "pubkey"  = "Pampublikong susi";
 "route.hint"  = "Route Hint";
-"pubkey.upper"  = "None";
+"pubkey.upper"  = "Pubkey";
 
 //PIN
-"privacy.pin" = "Privacy PIN";
+"privacy.pin" = "Pribadong PIN";
 "standard.pin" = "Standard PIN";
-"enter.pin.upper"  = "None";
+"enter.pin.upper"  = "Enter Pin";
 "choose.pin.upper"  = "PUMILI NG PIN";
 "confirm.pin.upper"  = "KUMPIRMAHIN ANG PIN";
-"pin.doesnt.match" = "PIN doesn't match";
-"pins.do.not.match" = "PINS do not match";
-"current.pin" = "Old PIN";
-"new.pin" = "New PIN";
-"confirm.new.pin" = "Confirm new PIN";
+"pin.doesnt.match" = "Hindi match ang PIN";
+"pins.do.not.match" = "Hindi match ang PINS";
+"current.pin" = "Lumang PIN";
+"new.pin" = "Bagong PIN";
+"confirm.new.pin" = "Kumpirmahin ang bagong PIN";
 "pin.changed"  = "Na-update na ang iyong PIN. Mangyaring muling i-export ang iyong mga susi gamit ang bagong PIN.";
 "contact.pin.error"  = "Hindi mo magagamit ang iyong pangunahing PIN bilang PIN ng grupo";
 "set.privacy.pin"  = "Itakda ang Privacy PIN";
@@ -287,10 +287,10 @@
 "reply"  = "Sumagot";
 "save.file"  = "I-Save ang File";
 "delete.message"  = "Tanggalin ang Mensahe";
-"resend.message" = "Resend";
+"resend.message" = "Ipadala ulit";
 "received"  = "natanggap";
 "sent"  = "naipadala";
-"message.x.deleted" = "Message %@ deleted";
+"message.x.deleted" = "Mensahe %@ tinanggal";
 "payment"  = "Pagbabayad";
 "tribe.payment.sent"  = "Ang pagbabayad ng %@ ay ipinadala sa %@";
 "tribe.payment.received"  = "Nagpadala si %@ ng bayad na %@ sa %@";
@@ -360,7 +360,7 @@
 "authorization.failed"  = "Nabigong Awtorisasyon";
 "already.connected"  = "Naka konekta ka na sa taong ito";
 "price.to.meet"  = "Presyo dapat matugunan: ";
-"popup.authorize-with" = "Do you want to authorize with:";
+"popup.authorize-with" = "Gusto mo bang i-authorize ang:";
 "popup.redeem-sats"  = "I-redeem ang %d sats mula sa:";
 
 "people.save-profile"  = "I-save ang Profile mula sa:";
@@ -401,17 +401,17 @@
 "invite.pmt.in.progress.message"  = "Pinoproseso ang iyong bayad.";
 
 //DESKTOP
-"message" = "Message";
+"message" = "Mensahe";
 "logout" = "Logout";
-"logout.text" = "Are you sure you want to logout? All data and preferences will be deleted.";
-"enter.code.placeholder"  = "None";
-"keychain.restore"  = "None";
-"podcast.details" = "Podcast Details & Options";
-"code.not.supported" = "Code not supported";
-"enter.restore.pin" = "Enter Restore PIN";
-"share.invite.code" = "Share Invite Code";
-"open.conversation" = "Open a conversation to start using Sphinx";
-"drag.attachment" = "Drag image or video in the chat view to send. Sending and Receiving payments are not supported in groups yet";
+"logout.text" = "Sigurado ka bang gusto mong mag-logout? Ang lahat ng data at preferences ay tatanggalin.";
+"enter.code.placeholder"  = "Enter Code";
+"keychain.restore"  = "Keychain Restore";
+"podcast.details" = "Detalye at Options Podcast";
+"code.not.supported" = "Ang Code ay hindi suportado";
+"enter.restore.pin" = "I-Enter ang Restore PIN";
+"share.invite.code" = "I-Share ang Invite Code";
+"open.conversation" = "Magbukas ng pag-uusap para simulan ang paggamit ng Sphinx.";
+"drag.attachment" = "I-drag ang imahe o video sa view chat para ipadala. Ang pagpapadala at Pagtanggap ng mga pagbabayad ay hindi pa sinusuportahan sa mga grupo.";
 "audio.too.short" = "Audio too short";
 "resume-restoring"  = "Ipagpatuloy ang Pagpapa Numbalik...";
 "restoring-progress"  = "Ibinabalik:";
@@ -423,14 +423,14 @@
 "price.per.minute"  = "Presyo bawat minuto: %d sats";
 "contributed.sats"  = "Na-ambag: %d sats";
 "earned.sats"  = "Naipon: %d sats";
-"sats.per.minute" = "Podcast: sats per minute";
+"sats.per.minute" = "Podcast: sats kada minuto";
 "suggested.out.range"  = "Ang iminungkahing halaga (%d sats) ay higit sa pinakamataas";
 "download"  = "I-download";
 "copy.link"  = "Kopyahin ang Link";
 "mark.as.played" = "Mark As Played";
 "share"  = "Ibahagi";
 "mark.as.unplayed"  = "Markahan bilang hindi na-play";
-"erase.from.device" = "Erase from Device";
+"erase.from.device" = "Burahin sa Device";
 
 //PIN Settings
 "never.require.pin"  = "Hindi kailanman nangangailangan ng PIN";
@@ -438,4 +438,4 @@
 
 //Deeplinks
 "deeplink.issue.title" = "Link Issue";
-"deeplink.issue.message" = "There was an issue with the link. This is usually because you do not have access to the tribe in question.";
+"deeplink.issue.message" = "Nagkaroon ng isyu sa link. Kadalasan ito ay dahil wala kang access sa pinag-uusapang tribo.";
