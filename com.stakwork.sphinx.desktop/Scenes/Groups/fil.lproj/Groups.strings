@@ -6,7 +6,7 @@
 "4xc-dn-4c9.title" = "Description *";
 
 /* Class = "NSTextFieldCell"; title = "Time to stake: (hours)"; ObjectID = "5Mx-Tg-RiK"; */
-"5Mx-Tg-RiK.title" = "Time to stake: (hours)";
+"5Mx-Tg-RiK.title" = "Oras sa stake: (oras)";
 
 /* Class = "NSTextFieldCell"; title = "Approve each membership request?"; ObjectID = "7zZ-36-zq9"; */
 "7zZ-36-zq9.title" = "Approve each membership request?";
@@ -15,16 +15,16 @@
 "BZI-9s-vtk.title" = "Price per Message";
 
 /* Class = "NSTextFieldCell"; title = "Price per message:"; ObjectID = "IDt-GP-9ir"; */
-"IDt-GP-9ir.title" = "Price per message:";
+"IDt-GP-9ir.title" = "Presyo per mensahe:";
 
 /* Class = "NSTextFieldCell"; title = "..."; ObjectID = "K7j-En-bxK"; */
 "K7j-En-bxK.title" = "...";
 
 /* Class = "NSButtonCell"; title = "SAVE TRIBE"; ObjectID = "MlG-NU-gvK"; */
-"MlG-NU-gvK.title" = "SAVE TRIBE";
+"MlG-NU-gvK.title" = "I-SAVE ANG TRIBU";
 
 /* Class = "NSBox"; title = "Box"; ObjectID = "N7v-vR-tcQ"; */
-"N7v-vR-tcQ.title" = "Box";
+"N7v-vR-tcQ.title" = "Kahon";
 
 /* Class = "NSTextFieldCell"; title = "App Url"; ObjectID = "PBt-DD-vJn"; */
 "PBt-DD-vJn.title" = "App Url";
@@ -36,7 +36,7 @@
 "PtV-tc-Kg6.title" = "0";
 
 /* Class = "NSTextFieldCell"; title = "Created on..."; ObjectID = "QlS-aW-Ovp"; */
-"QlS-aW-Ovp.title" = "Created on...";
+"QlS-aW-Ovp.title" = "Nilikha noong...";
 
 /* Class = "NSTextFieldCell"; title = "Tags"; ObjectID = "R9c-DX-E9G"; */
 "R9c-DX-E9G.title" = "Tags";
@@ -45,7 +45,7 @@
 "RfR-WJ-3c7.title" = "Amount to Stake";
 
 /* Class = "NSTextFieldCell"; title = "Amount to stake:"; ObjectID = "RlC-nx-gKp"; */
-"RlC-nx-gKp.title" = "Amount to stake:";
+"RlC-nx-gKp.title" = "Halaga sa stake:";
 
 /* Class = "NSTextFieldCell"; title = "Image"; ObjectID = "S5M-do-OMG"; */
 "S5M-do-OMG.title" = "Image";
@@ -66,7 +66,7 @@
 "e8W-tI-OEy.title" = "...";
 
 /* Class = "NSBox"; title = "Box"; ObjectID = "eKC-UU-qat"; */
-"eKC-UU-qat.title" = "Box";
+"eKC-UU-qat.title" = "Kahon";
 
 /* Class = "NSTextFieldCell"; title = "0"; ObjectID = "eZH-e0-Be5"; */
 "eZH-e0-Be5.title" = "0";
