@@ -59,8 +59,10 @@ class MediaDownloader {
                 MediaLoader.loadFileData(url: url, message: message, completion: { (_, data) in
                     let success = saveFile(data: data, name: fileName)
                     completion(success)
+                    NewMessageBubbleHelper().hideLoadingWheel()
                 }, errorCompletion: { _ in
                     completion(false)
+                    NewMessageBubbleHelper().hideLoadingWheel()
                 })
             }
         } else {
