@@ -369,9 +369,6 @@ public class Chat: NSManagedObject {
     var unseenMentionsCount: Int = 0
     
     func getReceivedUnseenMentionsCount() -> Int {
-        if !isOnlyMentions() {
-            return 0
-        }
         if unseenMentionsCount == 0 {
             calculateUnseenMentionsCount()
         }
