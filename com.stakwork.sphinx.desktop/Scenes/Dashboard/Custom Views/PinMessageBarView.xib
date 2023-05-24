@@ -52,16 +52,32 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YG4-qB-b23">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Yr5-kb-Iu5"/>
+                                </constraints>
+                                <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="ysw-Qj-3sl">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="pinBarButtonClicked:" target="-2" id="VrR-pz-Znj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="hMx-7y-hAk" firstAttribute="leading" secondItem="ySA-mR-k6l" secondAttribute="leading" id="3e8-Zf-ftY"/>
+                            <constraint firstItem="YG4-qB-b23" firstAttribute="leading" secondItem="ySA-mR-k6l" secondAttribute="leading" id="4tA-kT-W65"/>
                             <constraint firstItem="hMx-7y-hAk" firstAttribute="top" secondItem="ySA-mR-k6l" secondAttribute="top" id="7am-up-E6Z"/>
+                            <constraint firstAttribute="trailing" secondItem="YG4-qB-b23" secondAttribute="trailing" id="DOw-Sy-J7b"/>
                             <constraint firstAttribute="trailing" secondItem="hMx-7y-hAk" secondAttribute="trailing" id="GSA-y4-kkU"/>
                             <constraint firstItem="5U0-hI-nYr" firstAttribute="leading" secondItem="cDH-iD-Qm2" secondAttribute="trailing" constant="12" id="Msm-fC-GrW"/>
                             <constraint firstItem="5U0-hI-nYr" firstAttribute="centerY" secondItem="ySA-mR-k6l" secondAttribute="centerY" id="RjC-4M-DxL"/>
                             <constraint firstItem="cDH-iD-Qm2" firstAttribute="leading" secondItem="ySA-mR-k6l" secondAttribute="leading" constant="12" id="UlM-ZN-1fW"/>
                             <constraint firstAttribute="trailing" secondItem="5U0-hI-nYr" secondAttribute="trailing" constant="16" id="cZm-zy-FF8"/>
                             <constraint firstItem="cDH-iD-Qm2" firstAttribute="centerY" secondItem="ySA-mR-k6l" secondAttribute="centerY" id="gzv-pE-mmR"/>
+                            <constraint firstItem="YG4-qB-b23" firstAttribute="top" secondItem="ySA-mR-k6l" secondAttribute="top" id="mri-3e-USt"/>
                         </constraints>
                     </view>
                     <color key="fillColor" name="LightBG"/>

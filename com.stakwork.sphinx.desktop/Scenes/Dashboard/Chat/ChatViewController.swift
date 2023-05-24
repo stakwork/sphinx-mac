@@ -225,6 +225,13 @@ class ChatViewController: DashboardSplittedViewController {
         toggleControls(enable: false)
         chatAvatarView.setImages(object: nil)
         
+        pinMessageBarViewHeightConstraint.constant = 0
+        pinMessageBarView.superview?.layoutSubtreeIfNeeded()
+        
+        pinMessageBarView.isHidden = true
+        pinMessageDetailView.isHidden = true
+        pinNotificationView.isHidden = true
+        
         nameButton.title = "open.conversation".localized
         avatarWidthConstraint.constant = 20
         nameButtonY.constant = 0
@@ -374,6 +381,7 @@ class ChatViewController: DashboardSplittedViewController {
     
     func updateTribeInfo() {
         removePodcastVC()
+        configurePinnedMessageView()
         
         guard let chat = chat else {
             return
@@ -381,12 +389,15 @@ class ChatViewController: DashboardSplittedViewController {
         
         if let feedId = chat.contentFeed?.feedID, PodcastPlayerController.sharedInstance.isPlaying(podcastId: feedId) {
             self.onTribeInfoUpdated()
+            
             FeedsManager.sharedInstance.restoreContentFeedStatusInBackgroundFor(feedId: feedId)
+            
             return
         }
         
         chat.updateTribeInfo() {
             self.onTribeInfoUpdated()
+            self.configurePinnedMessageView()
         }
     }
     

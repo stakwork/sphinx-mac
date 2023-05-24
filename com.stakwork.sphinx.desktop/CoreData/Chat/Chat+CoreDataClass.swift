@@ -527,18 +527,24 @@ public class Chat: NSManagedObject {
     
     func updateChatFromTribesInfo() {
         if self.isMyPublicGroup() {
+            self.pinnedMessageUUID = self.tribeInfo?.pin ?? nil
+            self.saveChat()
             return
         }
         
-        self.escrowAmount = NSDecimalNumber(integerLiteral: self.tribeInfo?.amountToStake ?? (self.escrowAmount?.intValue ?? 0))
-        self.pricePerMessage = NSDecimalNumber(integerLiteral: self.tribeInfo?.pricePerMessage ?? (self.pricePerMessage?.intValue ?? 0))
+        self.escrowAmount = NSDecimalNumber(
+            integerLiteral: self.tribeInfo?.amountToStake ?? (self.escrowAmount?.intValue ?? 0)
+        )
+        self.pricePerMessage = NSDecimalNumber(
+            integerLiteral: self.tribeInfo?.pricePerMessage ?? (self.pricePerMessage?.intValue ?? 0)
+        )
+        self.pinnedMessageUUID = self.tribeInfo?.pin ?? nil
         self.name = (self.tribeInfo?.name?.isEmpty ?? true) ? self.name : self.tribeInfo!.name
         
         let tribeImage = self.tribeInfo?.img ?? self.photoUrl
         
         if self.photoUrl != tribeImage {
             self.photoUrl = tribeImage
-            
             NotificationCenter.default.post(name: .onTribeImageChanged, object: nil, userInfo: nil)
         }
         

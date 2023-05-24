@@ -290,6 +290,7 @@
 		476AAA932A1E5EB20092AC87 /* MaterialIcons.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 476AAA8F2A1E5E670092AC87 /* MaterialIcons.ttf */; };
 		476AAA942A1E5EB20092AC87 /* MaterialIconsOutlined.otf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 476AAA902A1E5E670092AC87 /* MaterialIconsOutlined.otf */; };
 		476AAA962A1E71040092AC87 /* PinMessageDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 476AAA982A1E71040092AC87 /* PinMessageDetailView.xib */; };
+		476AAAA02A1E773F0092AC87 /* ChatViewController+PinMessageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476AAA9F2A1E773F0092AC87 /* ChatViewController+PinMessageExtension.swift */; };
 		477ADCCC2A1E5A3B004E74CE /* PinNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477ADCCB2A1E5A3B004E74CE /* PinNotificationView.swift */; };
 		477ADCCE2A1E5A46004E74CE /* PinNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477ADCCD2A1E5A46004E74CE /* PinNotificationView.xib */; };
 		477ADCD02A1E5A5F004E74CE /* PinMessageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477ADCCF2A1E5A5F004E74CE /* PinMessageDetailView.swift */; };
@@ -924,6 +925,7 @@
 		476AAA9A2A1E71080092AC87 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PinMessageDetailView.strings; sourceTree = "<group>"; };
 		476AAA9C2A1E71090092AC87 /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/PinMessageDetailView.strings; sourceTree = "<group>"; };
 		476AAA9E2A1E710A0092AC87 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PinMessageDetailView.strings; sourceTree = "<group>"; };
+		476AAA9F2A1E773F0092AC87 /* ChatViewController+PinMessageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatViewController+PinMessageExtension.swift"; sourceTree = "<group>"; };
 		477ADCCB2A1E5A3B004E74CE /* PinNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinNotificationView.swift; sourceTree = "<group>"; };
 		477ADCCD2A1E5A46004E74CE /* PinNotificationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PinNotificationView.xib; sourceTree = "<group>"; };
 		477ADCCF2A1E5A5F004E74CE /* PinMessageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinMessageDetailView.swift; sourceTree = "<group>"; };
@@ -2294,6 +2296,7 @@
 				4787F8A3247C202500CCE8B9 /* ChatViewControllerSocketDelegate.swift */,
 				479F657A2487D31C0015A16A /* ChatViewControllerMediaExtension.swift */,
 				473633EB2555AEE8007405F2 /* ChatViewControllerPodcastExtension.swift */,
+				476AAA9F2A1E773F0092AC87 /* ChatViewController+PinMessageExtension.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -3572,6 +3575,7 @@
 				475B680E29915CCA000EF29C /* PodcastClipAction.swift in Sources */,
 				47F88263256D397E002A7E71 /* MessageBoostView.swift in Sources */,
 				4720991A24834E0000426028 /* CryptorRSAConstants.swift in Sources */,
+				476AAAA02A1E773F0092AC87 /* ChatViewController+PinMessageExtension.swift in Sources */,
 				47AF0D482550900900C98398 /* CommonPodcastBoostCollectionViewItem.swift in Sources */,
 				478ED59025D5522C00940132 /* WelcomeEmptyViewController.swift in Sources */,
 				473633E125548E40007405F2 /* BoostButtonView.swift in Sources */,
