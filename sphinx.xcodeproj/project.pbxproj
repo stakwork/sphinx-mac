@@ -289,10 +289,10 @@
 		476AAA922A1E5E670092AC87 /* MaterialIconsOutlined.otf in Resources */ = {isa = PBXBuildFile; fileRef = 476AAA902A1E5E670092AC87 /* MaterialIconsOutlined.otf */; };
 		476AAA932A1E5EB20092AC87 /* MaterialIcons.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 476AAA8F2A1E5E670092AC87 /* MaterialIcons.ttf */; };
 		476AAA942A1E5EB20092AC87 /* MaterialIconsOutlined.otf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 476AAA902A1E5E670092AC87 /* MaterialIconsOutlined.otf */; };
+		476AAA962A1E71040092AC87 /* PinMessageDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 476AAA982A1E71040092AC87 /* PinMessageDetailView.xib */; };
 		477ADCCC2A1E5A3B004E74CE /* PinNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477ADCCB2A1E5A3B004E74CE /* PinNotificationView.swift */; };
 		477ADCCE2A1E5A46004E74CE /* PinNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477ADCCD2A1E5A46004E74CE /* PinNotificationView.xib */; };
 		477ADCD02A1E5A5F004E74CE /* PinMessageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477ADCCF2A1E5A5F004E74CE /* PinMessageDetailView.swift */; };
-		477ADCD22A1E5A68004E74CE /* PinMessageDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477ADCD12A1E5A68004E74CE /* PinMessageDetailView.xib */; };
 		477ADCD42A1E5A7E004E74CE /* PinMessageBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477ADCD32A1E5A7E004E74CE /* PinMessageBarView.swift */; };
 		477ADCD62A1E5A85004E74CE /* PinMessageBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477ADCD52A1E5A85004E74CE /* PinMessageBarView.xib */; };
 		4785C11224D992D3004E2D6C /* GroupRequestCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4785C11024D992D3004E2D6C /* GroupRequestCollectionViewItem.swift */; };
@@ -919,10 +919,14 @@
 		476A6C43282C2F3000CA213D /* TribeMemberPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TribeMemberPopupView.swift; sourceTree = "<group>"; };
 		476AAA8F2A1E5E670092AC87 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		476AAA902A1E5E670092AC87 /* MaterialIconsOutlined.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIconsOutlined.otf; sourceTree = "<group>"; };
+		476AAA952A1E70DB0092AC87 /* com_stakwork_sphinx_desktop 21.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "com_stakwork_sphinx_desktop 21.xcdatamodel"; sourceTree = "<group>"; };
+		476AAA972A1E71040092AC87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PinMessageDetailView.xib; sourceTree = "<group>"; };
+		476AAA9A2A1E71080092AC87 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PinMessageDetailView.strings; sourceTree = "<group>"; };
+		476AAA9C2A1E71090092AC87 /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/PinMessageDetailView.strings; sourceTree = "<group>"; };
+		476AAA9E2A1E710A0092AC87 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PinMessageDetailView.strings; sourceTree = "<group>"; };
 		477ADCCB2A1E5A3B004E74CE /* PinNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinNotificationView.swift; sourceTree = "<group>"; };
 		477ADCCD2A1E5A46004E74CE /* PinNotificationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PinNotificationView.xib; sourceTree = "<group>"; };
 		477ADCCF2A1E5A5F004E74CE /* PinMessageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinMessageDetailView.swift; sourceTree = "<group>"; };
-		477ADCD12A1E5A68004E74CE /* PinMessageDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PinMessageDetailView.xib; sourceTree = "<group>"; };
 		477ADCD32A1E5A7E004E74CE /* PinMessageBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinMessageBarView.swift; sourceTree = "<group>"; };
 		477ADCD52A1E5A85004E74CE /* PinMessageBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PinMessageBarView.xib; sourceTree = "<group>"; };
 		4785C10F24D98AAB004E2D6C /* com_stakwork_sphinx_desktop 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "com_stakwork_sphinx_desktop 7.xcdatamodel"; sourceTree = "<group>"; };
@@ -2338,7 +2342,7 @@
 				477ADCCB2A1E5A3B004E74CE /* PinNotificationView.swift */,
 				477ADCCD2A1E5A46004E74CE /* PinNotificationView.xib */,
 				477ADCCF2A1E5A5F004E74CE /* PinMessageDetailView.swift */,
-				477ADCD12A1E5A68004E74CE /* PinMessageDetailView.xib */,
+				476AAA982A1E71040092AC87 /* PinMessageDetailView.xib */,
 				477ADCD32A1E5A7E004E74CE /* PinMessageBarView.swift */,
 				477ADCD52A1E5A85004E74CE /* PinMessageBarView.xib */,
 			);
@@ -3157,7 +3161,7 @@
 				4726A43B24C628DA005A66B4 /* glass.caf in Resources */,
 				47BDEE0224F6A2CA001688F3 /* SettingsTabsView.xib in Resources */,
 				474F675D2486928500CE6016 /* PaidMessageSentCollectionViewItem.xib in Resources */,
-				477ADCD22A1E5A68004E74CE /* PinMessageDetailView.xib in Resources */,
+				476AAA962A1E71040092AC87 /* PinMessageDetailView.xib in Resources */,
 				4705D3A427A0707E009C0729 /* RestoreProgressView.xib in Resources */,
 				47B6F52D258BCF0A00D64A41 /* PodcastLiveHeaderCollectionViewItem.xib in Resources */,
 				4731BE212485309C00BCCA9E /* DirectPaymentSentCollectionViewItem.xib in Resources */,
@@ -3779,6 +3783,17 @@
 				CE59E72C2A004BF40089D496 /* fil */,
 			);
 			name = GiphySearchView.xib;
+			sourceTree = "<group>";
+		};
+		476AAA982A1E71040092AC87 /* PinMessageDetailView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				476AAA972A1E71040092AC87 /* Base */,
+				476AAA9A2A1E71080092AC87 /* en */,
+				476AAA9C2A1E71090092AC87 /* fil */,
+				476AAA9E2A1E710A0092AC87 /* es */,
+			);
+			name = PinMessageDetailView.xib;
 			sourceTree = "<group>";
 		};
 		478ED5B925D6FBD600940132 /* Signup.storyboard */ = {
