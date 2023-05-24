@@ -62,9 +62,12 @@ class ChatViewController: DashboardSplittedViewController {
     @IBOutlet weak var avatarWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomBarHeightConstraint: NSLayoutConstraint!
     
-    
     @IBOutlet weak var mentionScrollViewHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var pinMessageBarView: PinMessageBarView!
+    @IBOutlet weak var pinMessageBarViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pinMessageDetailView: PinMessageDetailView!
+    @IBOutlet weak var pinNotificationView: PinNotificationView!
     
     @IBOutlet weak var mentionAutoCompleteEnclosingScrollView: NSScrollView!
     @IBOutlet weak var mentionAutoCompleteTableView: NSCollectionView!

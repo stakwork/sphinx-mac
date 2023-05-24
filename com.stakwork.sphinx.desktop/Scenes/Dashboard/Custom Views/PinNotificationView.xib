@@ -16,11 +16,19 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="280" height="280"/>
+            <rect key="frame" x="0.0" y="0.0" width="700" height="700"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
+                <box boxType="custom" borderType="none" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="Iog-dU-4Kf">
+                    <rect key="frame" x="0.0" y="0.0" width="700" height="700"/>
+                    <view key="contentView" id="vsJ-wD-2DY">
+                        <rect key="frame" x="0.0" y="0.0" width="700" height="700"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <color key="fillColor" white="0.0" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </box>
                 <box boxType="custom" borderType="none" cornerRadius="10" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="XH7-tJ-Dbu">
-                    <rect key="frame" x="0.0" y="0.0" width="280" height="280"/>
+                    <rect key="frame" x="210" y="210" width="280" height="280"/>
                     <view key="contentView" id="ATX-7B-kIN">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="280"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -67,14 +75,20 @@
                             <constraint firstItem="0dk-4M-q7p" firstAttribute="centerX" secondItem="ATX-7B-kIN" secondAttribute="centerX" id="zJT-B1-Cbw"/>
                         </constraints>
                     </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="280" id="RWU-Ji-4lt"/>
+                        <constraint firstAttribute="width" constant="280" id="aXw-Le-nSW"/>
+                    </constraints>
                     <color key="fillColor" name="PrimaryBlue"/>
                 </box>
             </subviews>
             <constraints>
-                <constraint firstItem="XH7-tJ-Dbu" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="AmO-EY-3uF"/>
-                <constraint firstAttribute="bottom" secondItem="XH7-tJ-Dbu" secondAttribute="bottom" id="GML-Pr-4Hd"/>
-                <constraint firstItem="XH7-tJ-Dbu" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="i6L-kK-fg5"/>
-                <constraint firstAttribute="trailing" secondItem="XH7-tJ-Dbu" secondAttribute="trailing" id="kD7-DY-GG0"/>
+                <constraint firstItem="Iog-dU-4Kf" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="HdZ-H1-cg6"/>
+                <constraint firstItem="XH7-tJ-Dbu" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="kt5-P0-w6n"/>
+                <constraint firstItem="Iog-dU-4Kf" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="mDV-iv-pTQ"/>
+                <constraint firstItem="XH7-tJ-Dbu" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="qLu-pS-oAL"/>
+                <constraint firstAttribute="bottom" secondItem="Iog-dU-4Kf" secondAttribute="bottom" id="usi-6r-3lX"/>
+                <constraint firstAttribute="trailing" secondItem="Iog-dU-4Kf" secondAttribute="trailing" id="xZ4-oh-P0Q"/>
             </constraints>
             <point key="canvasLocation" x="91" y="-36"/>
         </customView>
