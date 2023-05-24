@@ -145,6 +145,7 @@ class GroupsManager {
         var groupKey : String? = nil
         var ownerPubkey : String? = nil
         var ownerAlias : String? = nil
+        var pin : String? = nil
         var host : String! = nil
         var uuid : String! = nil
         var tags : [Tag] = []
@@ -339,6 +340,7 @@ class GroupsManager {
         tribeInfo.name = json["name"].string ?? tribeInfo.name
         tribeInfo.description = json["description"].string ?? tribeInfo.description
         tribeInfo.img = json["img"].string ?? tribeInfo.img
+        tribeInfo.pin = json["pin"].string ?? tribeInfo.pin
         tribeInfo.groupKey = json["group_key"].string ?? tribeInfo.groupKey
         tribeInfo.ownerPubkey = json["owner_pubkey"].string ?? tribeInfo.ownerPubkey
         tribeInfo.ownerAlias = json["owner_alias"].string ?? tribeInfo.ownerAlias
