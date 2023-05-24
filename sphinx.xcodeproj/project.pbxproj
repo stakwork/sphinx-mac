@@ -4491,6 +4491,7 @@
 		4734D3992417E3D400D6957E /* com_stakwork_sphinx_desktop.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				476AAA952A1E70DB0092AC87 /* com_stakwork_sphinx_desktop 21.xcdatamodel */,
 				475B67F72991586C000EF29C /* com_stakwork_sphinx_desktop 20.xcdatamodel */,
 				474CC56E290090D700B68F08 /* com_stakwork_sphinx_desktop 19.xcdatamodel */,
 				474C7A4528D219EB007A3E17 /* com_stakwork_sphinx_desktop 18.xcdatamodel */,
@@ -4512,7 +4513,7 @@
 				4787F89C247C0C2300CCE8B9 /* com_stakwork_sphinx_desktop 2.xcdatamodel */,
 				4734D39A2417E3D400D6957E /* com_stakwork_sphinx_desktop.xcdatamodel */,
 			);
-			currentVersion = 475B67F72991586C000EF29C /* com_stakwork_sphinx_desktop 20.xcdatamodel */;
+			currentVersion = 476AAA952A1E70DB0092AC87 /* com_stakwork_sphinx_desktop 21.xcdatamodel */;
 			path = com_stakwork_sphinx_desktop.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -76,6 +76,7 @@ public class Chat: NSManagedObject {
             let myPhotoUrl = chat["my_photo_url"].string
             let metaData = chat["meta"].string
             let status = chat["status"].intValue
+            let pinnedMessageUUID = chat["pin"].string
             let date = Date.getDateFromString(dateString: chat["created_at"].stringValue) ?? Date()
             
             var notify = muted ? NotificationLevel.MuteChat.rawValue : NotificationLevel.SeeAll.rawValue
@@ -103,6 +104,7 @@ public class Chat: NSManagedObject {
                                          myAlias: myAlias,
                                          myPhotoUrl: myPhotoUrl,
                                          notify: notify,
+                                         pinnedMessageUUID: pinnedMessageUUID,
                                          contactIds: contactIds,
                                          pendingContactIds: pendingContactIds,
                                          date: date,
@@ -129,6 +131,7 @@ public class Chat: NSManagedObject {
                              myAlias: String?,
                              myPhotoUrl: String?,
                              notify: Int,
+                             pinnedMessageUUID: String?,
                              contactIds: [NSNumber],
                              pendingContactIds: [NSNumber],
                              date: Date,
@@ -152,6 +155,7 @@ public class Chat: NSManagedObject {
         chat.myAlias = myAlias
         chat.myPhotoUrl = myPhotoUrl
         chat.notify = notify
+        chat.pinnedMessageUUID = pinnedMessageUUID
         chat.contactIds = contactIds
         chat.pendingContactIds = pendingContactIds
         chat.subscription = chat.getContact()?.getCurrentSubscription()
