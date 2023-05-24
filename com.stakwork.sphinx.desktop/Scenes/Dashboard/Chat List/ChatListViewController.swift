@@ -101,7 +101,7 @@ class ChatListViewController : DashboardSplittedViewController {
         self.syncContentFeedStatus(
             restoring: restoring,
             progressCallback:  { contentProgress in
-                contentProgressShare = 0.05
+                contentProgressShare = 0.1
                 
                 if (contentProgress >= 0 && restoring) {
                     DispatchQueue.main.async {
