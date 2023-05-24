@@ -11,6 +11,7 @@
             <connections>
                 <outlet property="arrowView" destination="RJc-Ra-Mir" id="yK8-Sw-azw"/>
                 <outlet property="avatarView" destination="zM8-fQ-tqo" id="xmm-9Y-s1V"/>
+                <outlet property="backgroundBox" destination="kjh-hx-hlp" id="AAw-9a-ar4"/>
                 <outlet property="contentView" destination="c22-O7-iKe" id="Zqy-XN-h5A"/>
                 <outlet property="messageLabel" destination="jar-q7-f1c" id="fT1-wO-x39"/>
                 <outlet property="unpinButtonContainer" destination="f1P-bM-V4z" id="xLM-qR-0EU"/>

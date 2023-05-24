@@ -96,6 +96,7 @@ class PinMessageBarView: NSView, LoadableNib {
     }
     
     func hideView() {
+        self.messageId = nil
         self.isHidden = true
     }
     

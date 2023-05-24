@@ -12,6 +12,7 @@ extension ChatViewController: PinnedMessageViewDelegate {
     
     func configurePinnedMessageView() {
         guard let pinnedMessageUUID = chat?.pinnedMessageUUID, !pinnedMessageUUID.isEmpty else {
+            pinMessageBarView.hideView()
             return
         }
         
@@ -27,11 +28,52 @@ extension ChatViewController: PinnedMessageViewDelegate {
         }
     }
     
-    func didTapUnpinButtonFor(messageId: Int) {
+    func shouldTogglePinState(
+        messageId: Int,
+        pin: Bool
+    ) {
+        guard let chat = self.chat else {
+            return
+        }
         
+        guard let message = TransactionMessage.getMessageWith(id: messageId) else {
+            return
+        }
+        
+        API.sharedInstance.pinChatMessage(
+            messageUUID: (pin ? message.uuid : ""),
+            chatId: chat.id,
+            callback: { pinnedMessageUUID in
+                self.chat?.pinnedMessageUUID = pinnedMessageUUID
+                self.chat?.saveChat()
+                
+                self.configurePinnedMessageView()
+                self.showPinStatePopupFor(mode: pin ? .MessagePinned : .MessageUnpinned)
+            },
+            errorCallback: {
+                AlertHelper.showAlert(title: "generic.error.title".localized, message: "generic.error.message".localized)
+            }
+        )
     }
     
-    func didTapPinBarViewFor(messageId: Int) {
+    func showPinStatePopupFor(
+        mode: PinNotificationView.ViewMode
+    ) {
+        pinNotificationView.configureFor(mode: mode)
+    }
+    
+    func didTapUnpinButtonFor(
+        messageId: Int
+    ) {
+        shouldTogglePinState(
+            messageId: messageId,
+            pin: false
+        )
+    }
+    
+    func didTapPinBarViewFor(
+        messageId: Int
+    ) {
         pinMessageDetailView.configureWith(
             messageId: messageId,
             delegate: self

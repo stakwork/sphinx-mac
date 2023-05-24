@@ -28,6 +28,8 @@ extension TransactionMessage {
         case Save
         case Boost
         case Resend
+        case Pin
+        case Unpin
     }
     
     //Sender and Receiver info
@@ -470,6 +472,24 @@ extension TransactionMessage {
         return false
     }
     
+    var isPinActionAllowed: Bool {
+        get {
+            return (self.chat?.isMyPublicGroup() ?? false) && !isMessagePinned
+        }
+    }
+    
+    var isUnpinActionAllowed: Bool {
+        get {
+            return (self.chat?.isMyPublicGroup() ?? false) && isMessagePinned
+        }
+    }
+    
+    var isMessagePinned: Bool {
+        get {
+            return self.uuid == self.chat?.pinnedMessageUUID
+        }
+    }
+    
     func getReplyingTo() -> TransactionMessage? {
         if let replyUUID = replyUUID, !replyUUID.isEmpty {
             if let replyingMessage = replyingMessage {
@@ -510,6 +530,18 @@ extension TransactionMessage {
             
             if self.isCallLink() {
                 options.append((MessageActionsItem.CopyCallLink.rawValue, "link", nil, "copy.call.link".localized))
+            }
+            
+            if isPinActionAllowed {
+                options.append(
+                    (MessageActionsItem.Pin.rawValue, "push_pin", nil, "pin.message".localized)
+                )
+            }
+            
+            if isUnpinActionAllowed {
+                options.append(
+                    (MessageActionsItem.Unpin.rawValue, "push_pin", nil, "unpin.message".localized)
+                )
             }
         }
         

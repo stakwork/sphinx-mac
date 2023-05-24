@@ -515,6 +515,10 @@ extension ChatViewController : MessageOptionsDelegate {
         }
     }
     
+    func shouldTogglePinState(message: TransactionMessage, pin: Bool) {
+        shouldTogglePinState(messageId: message.id, pin: pin)
+    }
+    
     func willReplay() {
         toggleMessageReplyView()
         if chatCollectionView.shouldScrollToBottom() { chatCollectionView.scrollToBottom(animated: false) }

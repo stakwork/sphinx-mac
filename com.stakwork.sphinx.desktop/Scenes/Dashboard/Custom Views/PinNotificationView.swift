@@ -35,5 +35,11 @@ class PinNotificationView: NSView, LoadableNib {
     
     func configureFor(mode: ViewMode) {
         pinStateLabel.stringValue = mode == .MessagePinned ? "message.pinned".localized : "message.unpinned".localized
+        
+        self.isHidden = false
+        
+        DelayPerformedHelper.performAfterDelay(seconds: 1.5, completion: {
+            self.isHidden = true
+        })
     }
 }

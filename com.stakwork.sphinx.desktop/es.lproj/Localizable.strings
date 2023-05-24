@@ -435,6 +435,7 @@
 //PIN MESSAGE
 "message.pinned" = "Mensaje Fijado";
 "message.unpinned" = "Mensaje Removido";
+"pin.message" = "Fijar Mensaje";
 "unpin.message" = "Remover Mensaje";
 "pinned.message" = "Mensaje Fijado";
 

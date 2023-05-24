@@ -14,6 +14,7 @@ class PinMessageDetailView: NSView, LoadableNib {
     
     @IBOutlet var contentView: NSView!
 
+    @IBOutlet weak var backgroundBox: NSBox!
     @IBOutlet weak var avatarView: ChatSmallAvatarView!
     @IBOutlet weak var usernameLabel: NSTextField!
     @IBOutlet weak var messageLabel: NSTextField!
@@ -44,7 +45,7 @@ class PinMessageDetailView: NSView, LoadableNib {
     
     func addClickEvent() {
         let click = NSClickGestureRecognizer(target: self, action: #selector(shouldDismissView))
-        self.contentView.addGestureRecognizer(click)
+        backgroundBox.addGestureRecognizer(click)
     }
     
     @objc func shouldDismissView() {
@@ -112,6 +113,7 @@ class PinMessageDetailView: NSView, LoadableNib {
     @IBAction func unpinMessageButtoniClicked(_ sender: Any) {
         if let messageId = messageId {
             delegate?.didTapUnpinButtonFor(messageId: messageId)
+            shouldDismissView()
         }
     }
 }

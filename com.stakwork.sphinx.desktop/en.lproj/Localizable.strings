@@ -435,6 +435,7 @@
 //PIN MESSAGE
 "message.pinned" = "Message Pinned";
 "message.unpinned" = "Message Unpinned";
+"pin.message" = "Pin Message";
 "unpin.message" = "Unpin Message";
 "pinned.message" = "Pinned Message";
 

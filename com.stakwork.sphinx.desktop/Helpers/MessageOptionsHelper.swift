@@ -13,6 +13,7 @@ import Cocoa
     @objc optional func shouldReplyToMessage(message: TransactionMessage)
     @objc optional func shouldResendMessage(message:TransactionMessage)
     @objc optional func shouldBoostMessage(message: TransactionMessage)
+    @objc optional func shouldTogglePinState(message: TransactionMessage, pin: Bool)
     @objc optional func shouldPerformChatAction(action: Int)
     @objc optional func shouldSetFeedType(type: Int)
     @objc optional func willHideMenu()
@@ -339,8 +340,13 @@ extension MessageOptionsHelper : MessageOptionViewDelegate {
                 delegate?.shouldBoostMessage?(message: message)
                 break
             case .Resend:
-                print("resending")
                 delegate?.shouldResendMessage?(message: message)
+                break
+            case .Pin:
+                delegate?.shouldTogglePinState?(message: message, pin: true)
+                break
+            case .Unpin:
+                delegate?.shouldTogglePinState?(message: message, pin: false)
                 break
             }
         }
