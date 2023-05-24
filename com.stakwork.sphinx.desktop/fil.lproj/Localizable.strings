@@ -432,6 +432,12 @@
 "mark.as.unplayed"  = "Markahan bilang hindi na-play";
 "erase.from.device" = "Burahin sa Device";
 
+//PIN MESSAGE
+"message.pinned" = "Message Pinned";
+"message.unpinned" = "Message Unpinned";
+"unpin.message" = "Unpin Message";
+"pinned.message" = "Pinned Message";
+
 //PIN Settings
 "never.require.pin"  = "Hindi kailanman nangangailangan ng PIN";
 "always.require.pin"  = "Laging nangangailangan ng PIN";

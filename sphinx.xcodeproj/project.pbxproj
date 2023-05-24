@@ -285,6 +285,16 @@
 		4767AE942509BA8C00C82E5B /* GiphySearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4767AE962509BA8C00C82E5B /* GiphySearchView.xib */; };
 		476A6C42282C2F2000CA213D /* TribeMemberPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 476A6C41282C2F2000CA213D /* TribeMemberPopupView.xib */; };
 		476A6C44282C2F3000CA213D /* TribeMemberPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476A6C43282C2F3000CA213D /* TribeMemberPopupView.swift */; };
+		476AAA912A1E5E670092AC87 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 476AAA8F2A1E5E670092AC87 /* MaterialIcons.ttf */; };
+		476AAA922A1E5E670092AC87 /* MaterialIconsOutlined.otf in Resources */ = {isa = PBXBuildFile; fileRef = 476AAA902A1E5E670092AC87 /* MaterialIconsOutlined.otf */; };
+		476AAA932A1E5EB20092AC87 /* MaterialIcons.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 476AAA8F2A1E5E670092AC87 /* MaterialIcons.ttf */; };
+		476AAA942A1E5EB20092AC87 /* MaterialIconsOutlined.otf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 476AAA902A1E5E670092AC87 /* MaterialIconsOutlined.otf */; };
+		477ADCCC2A1E5A3B004E74CE /* PinNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477ADCCB2A1E5A3B004E74CE /* PinNotificationView.swift */; };
+		477ADCCE2A1E5A46004E74CE /* PinNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477ADCCD2A1E5A46004E74CE /* PinNotificationView.xib */; };
+		477ADCD02A1E5A5F004E74CE /* PinMessageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477ADCCF2A1E5A5F004E74CE /* PinMessageDetailView.swift */; };
+		477ADCD22A1E5A68004E74CE /* PinMessageDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477ADCD12A1E5A68004E74CE /* PinMessageDetailView.xib */; };
+		477ADCD42A1E5A7E004E74CE /* PinMessageBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477ADCD32A1E5A7E004E74CE /* PinMessageBarView.swift */; };
+		477ADCD62A1E5A85004E74CE /* PinMessageBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477ADCD52A1E5A85004E74CE /* PinMessageBarView.xib */; };
 		4785C11224D992D3004E2D6C /* GroupRequestCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4785C11024D992D3004E2D6C /* GroupRequestCollectionViewItem.swift */; };
 		4785C11324D992D3004E2D6C /* GroupRequestCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4785C11124D992D3004E2D6C /* GroupRequestCollectionViewItem.xib */; };
 		4787F89E247C14FD00CCE8B9 /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4787F89D247C14FD00CCE8B9 /* CGFloat.swift */; };
@@ -572,6 +582,8 @@
 			dstPath = Fonts;
 			dstSubfolderSpec = 7;
 			files = (
+				476AAA932A1E5EB20092AC87 /* MaterialIcons.ttf in CopyFiles */,
+				476AAA942A1E5EB20092AC87 /* MaterialIconsOutlined.otf in CopyFiles */,
 				47949C0424AA94E1000D697B /* Roboto-Italic.ttf in CopyFiles */,
 				4725DA752481DAB40099A00B /* MaterialIcons-Regular.ttf in CopyFiles */,
 				4725DA762481DAB40099A00B /* Montserrat-Black.otf in CopyFiles */,
@@ -905,6 +917,14 @@
 		4767AE9A2509BA9200C82E5B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/GiphySearchView.strings; sourceTree = "<group>"; };
 		476A6C41282C2F2000CA213D /* TribeMemberPopupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TribeMemberPopupView.xib; sourceTree = "<group>"; };
 		476A6C43282C2F3000CA213D /* TribeMemberPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TribeMemberPopupView.swift; sourceTree = "<group>"; };
+		476AAA8F2A1E5E670092AC87 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
+		476AAA902A1E5E670092AC87 /* MaterialIconsOutlined.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIconsOutlined.otf; sourceTree = "<group>"; };
+		477ADCCB2A1E5A3B004E74CE /* PinNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinNotificationView.swift; sourceTree = "<group>"; };
+		477ADCCD2A1E5A46004E74CE /* PinNotificationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PinNotificationView.xib; sourceTree = "<group>"; };
+		477ADCCF2A1E5A5F004E74CE /* PinMessageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinMessageDetailView.swift; sourceTree = "<group>"; };
+		477ADCD12A1E5A68004E74CE /* PinMessageDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PinMessageDetailView.xib; sourceTree = "<group>"; };
+		477ADCD32A1E5A7E004E74CE /* PinMessageBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinMessageBarView.swift; sourceTree = "<group>"; };
+		477ADCD52A1E5A85004E74CE /* PinMessageBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PinMessageBarView.xib; sourceTree = "<group>"; };
 		4785C10F24D98AAB004E2D6C /* com_stakwork_sphinx_desktop 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "com_stakwork_sphinx_desktop 7.xcdatamodel"; sourceTree = "<group>"; };
 		4785C11024D992D3004E2D6C /* GroupRequestCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRequestCollectionViewItem.swift; sourceTree = "<group>"; };
 		4785C11124D992D3004E2D6C /* GroupRequestCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupRequestCollectionViewItem.xib; sourceTree = "<group>"; };
@@ -1434,6 +1454,8 @@
 		4703F0552481C5F600282186 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				476AAA8F2A1E5E670092AC87 /* MaterialIcons.ttf */,
+				476AAA902A1E5E670092AC87 /* MaterialIconsOutlined.otf */,
 				47949C0324AA94DB000D697B /* Roboto-Italic.ttf */,
 				473FC42C2481CE52000096C3 /* MaterialIcons-Regular.ttf */,
 				4703F0562481C61A00282186 /* Montserrat-Black.otf */,
@@ -2313,6 +2335,12 @@
 				4797E87224BCD5B500D13270 /* ChildVCContainer.xib */,
 				4726A41024C0D165005A66B4 /* HealthCheckView.swift */,
 				4726A41224C0D173005A66B4 /* HealthCheckView.xib */,
+				477ADCCB2A1E5A3B004E74CE /* PinNotificationView.swift */,
+				477ADCCD2A1E5A46004E74CE /* PinNotificationView.xib */,
+				477ADCCF2A1E5A5F004E74CE /* PinMessageDetailView.swift */,
+				477ADCD12A1E5A68004E74CE /* PinMessageDetailView.xib */,
+				477ADCD32A1E5A7E004E74CE /* PinMessageBarView.swift */,
+				477ADCD52A1E5A85004E74CE /* PinMessageBarView.xib */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -3062,6 +3090,7 @@
 				478ED5CC25D6FD3400940132 /* FriendMessageView.xib in Resources */,
 				47C1F1D7248130F900A71610 /* VideoReceivedCollectionViewItem.xib in Resources */,
 				47C7D72527874A67006D2809 /* PeopleTorActionsView.xib in Resources */,
+				477ADCCE2A1E5A46004E74CE /* PinNotificationView.xib in Resources */,
 				474A668D24990193002C2D10 /* MessageOptionView.xib in Resources */,
 				474F674A2486775900CE6016 /* VideoCallSentCollectionViewItem.xib in Resources */,
 				47AF0D4225508FC900C98398 /* PodcastBoostSentCollectionViewItem.xib in Resources */,
@@ -3084,6 +3113,7 @@
 				473633E325548E4B007405F2 /* BoostButtonView.xib in Resources */,
 				474274A728EC7289000C3D51 /* TribeTagsView.xib in Resources */,
 				478ED5D325D6FD5300940132 /* NamePinView.xib in Resources */,
+				476AAA922A1E5E670092AC87 /* MaterialIconsOutlined.otf in Resources */,
 				479A04042588E7F00093DB30 /* TribeLinkPreviewView.xib in Resources */,
 				4797E82B24BCC0F200D13270 /* Invite.storyboard in Resources */,
 				4797E87024BCD5B500D13270 /* ChildVCContainer.xib in Resources */,
@@ -3109,6 +3139,7 @@
 				4726A43924C628DA005A66B4 /* synth.caf in Resources */,
 				4797E89A24BCFDE300D13270 /* DeletedMessageSentCollectionViewItem.xib in Resources */,
 				47B550B1248C23E7000514BF /* TemplateCollectionViewItem.xib in Resources */,
+				476AAA912A1E5E670092AC87 /* MaterialIcons.ttf in Resources */,
 				478ED5B725D6FBD600940132 /* Signup.storyboard in Resources */,
 				474567FE251507F500D66268 /* FileSentCollectionViewItem.xib in Resources */,
 				47F58A82268E4CAC00B223E0 /* README.md in Resources */,
@@ -3126,12 +3157,14 @@
 				4726A43B24C628DA005A66B4 /* glass.caf in Resources */,
 				47BDEE0224F6A2CA001688F3 /* SettingsTabsView.xib in Resources */,
 				474F675D2486928500CE6016 /* PaidMessageSentCollectionViewItem.xib in Resources */,
+				477ADCD22A1E5A68004E74CE /* PinMessageDetailView.xib in Resources */,
 				4705D3A427A0707E009C0729 /* RestoreProgressView.xib in Resources */,
 				47B6F52D258BCF0A00D64A41 /* PodcastLiveHeaderCollectionViewItem.xib in Resources */,
 				4731BE212485309C00BCCA9E /* DirectPaymentSentCollectionViewItem.xib in Resources */,
 				4726A43C24C628DA005A66B4 /* bells.caf in Resources */,
 				4797E87724BCD60C00D13270 /* PaidAttachmentView.xib in Resources */,
 				4734D39D2417E3D500D6957E /* Assets.xcassets in Resources */,
+				477ADCD62A1E5A85004E74CE /* PinMessageBarView.xib in Resources */,
 				47C1D605248EABEA00718B28 /* GroupAddedContactCollectionViewItem.xib in Resources */,
 				47AF0D4625508FDF00C98398 /* PodcastBoostReceivedCollectionViewItem.xib in Resources */,
 				4744FAE2246C2B7400C5FD94 /* KeychainRestoreCollectionViewItem.xib in Resources */,
@@ -3306,6 +3339,7 @@
 				478ED5AC25D5730A00940132 /* CCSecureTextField.swift in Sources */,
 				470E0B37247D671700177D8A /* AudioReceivedCollectionViewItem.swift in Sources */,
 				4744FA8A2469C9F800C5FD94 /* Subscription+CoreDataClass.swift in Sources */,
+				477ADCD02A1E5A5F004E74CE /* PinMessageDetailView.swift in Sources */,
 				474A6695249BE4BB002C2D10 /* DisabledScrollView.swift in Sources */,
 				47F8825825656CB0002A7E71 /* SocketIOClient.swift in Sources */,
 				479A04022588E7E80093DB30 /* TribeLinkPreviewView.swift in Sources */,
@@ -3542,6 +3576,7 @@
 				CE07F40529D72B7700EB0EC1 /* PodcastDetailSelectionVC.swift in Sources */,
 				470E0B40247D709D00177D8A /* AudioBubbleView.swift in Sources */,
 				47F8825225656CB0002A7E71 /* SocketEnginePollable.swift in Sources */,
+				477ADCCC2A1E5A3B004E74CE /* PinNotificationView.swift in Sources */,
 				4744FAA32469CDF200C5FD94 /* NSColor.swift in Sources */,
 				474F67602486929600CE6016 /* PaidMessageReceivedCollectionViewItem.swift in Sources */,
 				47B5507E2487F2E2000514BF /* CustomButton.swift in Sources */,
@@ -3600,6 +3635,7 @@
 				47E7713E2472F0BA00C9CFEB /* EmptyChatCollectionViewItem.swift in Sources */,
 				4705D3A127A06597009C0729 /* RestoreProgressView.swift in Sources */,
 				47F8825025656CB0002A7E71 /* SocketEngineClient.swift in Sources */,
+				477ADCD42A1E5A7E004E74CE /* PinMessageBarView.swift in Sources */,
 				47B55095248A9A9D000514BF /* GroupsManager.swift in Sources */,
 				47B550B3248C46E8000514BF /* CustomScrollView.swift in Sources */,
 				4703F04C2481A24400282186 /* LinkPreviewView.swift in Sources */,
