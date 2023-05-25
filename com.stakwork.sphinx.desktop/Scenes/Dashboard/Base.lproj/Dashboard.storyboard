@@ -1373,7 +1373,7 @@
                                     <constraint firstAttribute="bottom" secondItem="xdH-X6-5PP" secondAttribute="bottom" id="6Cg-VS-UiW"/>
                                     <constraint firstAttribute="bottom" secondItem="hwe-uJ-mHT" secondAttribute="bottom" id="6Xp-5M-5PJ"/>
                                     <constraint firstAttribute="bottom" secondItem="y0u-r6-RUu" secondAttribute="bottom" id="8w0-hS-hhl"/>
-                                    <constraint firstAttribute="trailing" secondItem="y0u-r6-RUu" secondAttribute="trailing" id="AMr-OJ-xVR"/>
+                                    <constraint firstAttribute="trailing" secondItem="y0u-r6-RUu" secondAttribute="trailing" priority="750" id="AMr-OJ-xVR"/>
                                     <constraint firstItem="y0u-r6-RUu" firstAttribute="top" secondItem="Vyu-wn-T1v" secondAttribute="top" id="BLP-h1-o4D"/>
                                     <constraint firstItem="GoM-QU-nDk" firstAttribute="trailing" secondItem="um1-Mb-zd8" secondAttribute="trailing" id="JDi-mT-eOq"/>
                                     <constraint firstItem="xdH-X6-5PP" firstAttribute="leading" secondItem="Vyu-wn-T1v" secondAttribute="leading" id="JdS-sP-6oO"/>
@@ -1383,11 +1383,11 @@
                                     <constraint firstAttribute="trailing" secondItem="xdH-X6-5PP" secondAttribute="trailing" id="Odu-zV-ktW"/>
                                     <constraint firstAttribute="trailing" secondItem="cPS-2s-ytn" secondAttribute="trailing" id="Q7T-FT-0sX"/>
                                     <constraint firstItem="TCK-by-aGy" firstAttribute="top" secondItem="USL-Ca-asX" secondAttribute="bottom" constant="20" id="QwA-Do-byB"/>
-                                    <constraint firstAttribute="trailing" secondItem="Js3-MQ-ivA" secondAttribute="trailing" id="S6Z-4r-I0q"/>
+                                    <constraint firstAttribute="trailing" secondItem="Js3-MQ-ivA" secondAttribute="trailing" priority="750" id="S6Z-4r-I0q"/>
                                     <constraint firstItem="hwe-uJ-mHT" firstAttribute="leading" secondItem="Vyu-wn-T1v" secondAttribute="leading" id="Svg-fn-ODQ"/>
                                     <constraint firstItem="GoM-QU-nDk" firstAttribute="top" secondItem="um1-Mb-zd8" secondAttribute="top" id="X0K-Nu-ohU"/>
                                     <constraint firstItem="14P-rj-E0n" firstAttribute="leading" secondItem="Vyu-wn-T1v" secondAttribute="leading" id="YSK-Wn-WbB"/>
-                                    <constraint firstItem="Js3-MQ-ivA" firstAttribute="leading" secondItem="Vyu-wn-T1v" secondAttribute="leading" id="ZWb-hU-z66"/>
+                                    <constraint firstItem="Js3-MQ-ivA" firstAttribute="leading" secondItem="Vyu-wn-T1v" secondAttribute="leading" priority="750" id="ZWb-hU-z66"/>
                                     <constraint firstItem="Ghc-rF-3vi" firstAttribute="top" secondItem="GHZ-Wm-eGW" secondAttribute="bottom" constant="16" id="abO-2D-4Z9"/>
                                     <constraint firstItem="Js3-MQ-ivA" firstAttribute="top" secondItem="Vyu-wn-T1v" secondAttribute="top" id="b1v-Hd-cFg"/>
                                     <constraint firstItem="14P-rj-E0n" firstAttribute="top" secondItem="TCK-by-aGy" secondAttribute="bottom" id="ec7-5f-pNU"/>
@@ -1396,7 +1396,7 @@
                                     <constraint firstAttribute="bottom" secondItem="Js3-MQ-ivA" secondAttribute="bottom" id="fjT-GK-HG0"/>
                                     <constraint firstItem="xdH-X6-5PP" firstAttribute="top" secondItem="Vyu-wn-T1v" secondAttribute="top" id="fvv-V8-4pP"/>
                                     <constraint firstItem="GHZ-Wm-eGW" firstAttribute="leading" secondItem="Vyu-wn-T1v" secondAttribute="leading" id="gQZ-PM-OC9"/>
-                                    <constraint firstItem="y0u-r6-RUu" firstAttribute="leading" secondItem="Vyu-wn-T1v" secondAttribute="leading" id="hdY-Jm-tYW"/>
+                                    <constraint firstItem="y0u-r6-RUu" firstAttribute="leading" secondItem="Vyu-wn-T1v" secondAttribute="leading" priority="750" id="hdY-Jm-tYW"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ghc-rF-3vi" secondAttribute="trailing" constant="20" symbolic="YES" id="iTU-pW-tbQ"/>
                                     <constraint firstItem="Ghc-rF-3vi" firstAttribute="leading" secondItem="Vyu-wn-T1v" secondAttribute="leading" constant="-5" id="l9a-XI-hkj"/>
                                     <constraint firstAttribute="trailing" secondItem="hwe-uJ-mHT" secondAttribute="trailing" id="nD4-6Y-RoZ"/>
