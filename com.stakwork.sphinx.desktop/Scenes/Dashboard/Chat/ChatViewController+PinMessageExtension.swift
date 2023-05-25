@@ -11,7 +11,7 @@ import Foundation
 extension ChatViewController: PinnedMessageViewDelegate {
     
     func configurePinnedMessageView() {
-        guard let pinnedMessageUUID = chat?.pinnedMessageUUID, !pinnedMessageUUID.isEmpty else {
+        guard let pinnedMessageUUID = chat?.pinnedMessageUUID, !pinnedMessageUUID.isEmptyPinnedMessage else {
             pinMessageBarView.hideView()
             return
         }
@@ -41,7 +41,7 @@ extension ChatViewController: PinnedMessageViewDelegate {
         }
         
         API.sharedInstance.pinChatMessage(
-            messageUUID: (pin ? message.uuid : ""),
+            messageUUID: (pin ? message.uuid : "_"),
             chatId: chat.id,
             callback: { pinnedMessageUUID in
                 self.chat?.pinnedMessageUUID = pinnedMessageUUID
