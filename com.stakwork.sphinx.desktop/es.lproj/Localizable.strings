@@ -432,6 +432,13 @@
 "mark.as.unplayed" = "Marcar como no leído";
 "erase.from.device" = "Borrar del despositivo";
 
+//PIN MESSAGE
+"message.pinned" = "Mensaje Fijado";
+"message.unpinned" = "Mensaje Removido";
+"pin.message" = "Fijar Mensaje";
+"unpin.message" = "Remover Mensaje";
+"pinned.message" = "Mensaje Fijado";
+
 //PIN Settings
 "never.require.pin" = "Nunca solicitar PIN";
 "always.require.pin" = "Siempre solicitar PIN";
