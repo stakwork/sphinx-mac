@@ -45,7 +45,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5U0-hI-nYr">
-                                <rect key="frame" x="43" y="18" width="423" height="14"/>
+                                <rect key="frame" x="43" y="18" width="419" height="14"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" title="This is a test message. Let's see how it works when it goes out of the bounds" id="run-02-evz">
                                     <font key="font" size="12" name="Roboto-Regular"/>
                                     <color key="textColor" name="Text"/>
@@ -75,7 +75,6 @@
                             <constraint firstItem="5U0-hI-nYr" firstAttribute="leading" secondItem="cDH-iD-Qm2" secondAttribute="trailing" constant="12" id="Msm-fC-GrW"/>
                             <constraint firstItem="5U0-hI-nYr" firstAttribute="centerY" secondItem="ySA-mR-k6l" secondAttribute="centerY" id="RjC-4M-DxL"/>
                             <constraint firstItem="cDH-iD-Qm2" firstAttribute="leading" secondItem="ySA-mR-k6l" secondAttribute="leading" constant="12" id="UlM-ZN-1fW"/>
-                            <constraint firstAttribute="trailing" secondItem="5U0-hI-nYr" secondAttribute="trailing" constant="16" id="cZm-zy-FF8"/>
                             <constraint firstItem="cDH-iD-Qm2" firstAttribute="centerY" secondItem="ySA-mR-k6l" secondAttribute="centerY" id="gzv-pE-mmR"/>
                             <constraint firstItem="YG4-qB-b23" firstAttribute="top" secondItem="ySA-mR-k6l" secondAttribute="top" id="mri-3e-USt"/>
                         </constraints>

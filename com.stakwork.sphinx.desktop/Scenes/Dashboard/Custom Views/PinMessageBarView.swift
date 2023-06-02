@@ -31,14 +31,19 @@ class PinMessageBarView: NSView, LoadableNib {
         super.init(coder: coder)
         loadViewFromNib()
         
-        self.isHidden = true
+        setupView()
     }
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         loadViewFromNib()
         
+        setupView()
+    }
+    
+    func setupView() {
         self.isHidden = true
+        messageLabel.maximumNumberOfLines = 2
     }
     
     func configureWith(
@@ -63,6 +68,10 @@ class PinMessageBarView: NSView, LoadableNib {
         }
     }
     
+    func setMessageLabelMaxWidth() {
+        messageLabel.preferredMaxLayoutWidth = frame.width - 43 - 16
+    }
+    
     func fetchMessage(
         pinnedMessageUUID: String,
         delegate: PinnedMessageViewDelegate
@@ -85,6 +94,8 @@ class PinMessageBarView: NSView, LoadableNib {
         message: TransactionMessage,
         delegate: PinnedMessageViewDelegate
     ) {
+        setMessageLabelMaxWidth()
+        
         self.delegate = delegate
         self.messageId = message.id
         
