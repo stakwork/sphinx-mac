@@ -1,0 +1,18 @@
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "1bG-nF-yVH"; */
+"1bG-nF-yVH.title" = "Box";
+
+/* Class = "NSButtonCell"; title = "close"; ObjectID = "Bfe-3r-Ni9"; */
+"Bfe-3r-Ni9.title" = "close";
+
+/* Class = "NSTextFieldCell"; title = "verified_user"; ObjectID = "PFl-fQ-GSv"; */
+"PFl-fQ-GSv.title" = "verified_user";
+
+/* Class = "NSTextFieldCell"; title = "..."; ObjectID = "RlS-mq-WEc"; */
+"RlS-mq-WEc.title" = "...";
+
+/* Class = "NSTextFieldCell"; title = "AUTHORIZE"; ObjectID = "e25-DE-JZe"; */
+"e25-DE-JZe.title" = "AUTHORIZE";
+
+/* Class = "NSTextFieldCell"; title = "Do you want to authorize with"; ObjectID = "yWk-Ya-2Rc"; */
+"yWk-Ya-2Rc.title" = "Do you want to authorize with";

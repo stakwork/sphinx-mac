@@ -1,0 +1,36 @@
+
+/* Class = "NSTextFieldCell"; title = "ESTIMATED COST"; ObjectID = "2Zg-7w-0An"; */
+"2Zg-7w-0An.title" = "ESTIMATED COST";
+
+/* Class = "NSTextFieldCell"; title = "sat"; ObjectID = "5FB-oi-tka"; */
+"5FB-oi-tka.title" = "sat";
+
+/* Class = "NSButtonCell"; title = "New to Sphinx"; ObjectID = "7K0-qh-kjT"; */
+"7K0-qh-kjT.title" = "New to Sphinx";
+
+/* Class = "NSTextFieldCell"; title = "INCLUDE A MESSAGE"; ObjectID = "BaA-cg-3Wy"; */
+"BaA-cg-3Wy.title" = "MAGSAMA NG MENSAHE";
+
+/* Class = "NSTextFieldCell"; title = "-"; ObjectID = "Fuj-c5-RjV"; */
+"Fuj-c5-RjV.title" = "-";
+
+/* Class = "NSTextFieldCell"; title = "NICKNAME"; ObjectID = "IDl-1s-whI"; */
+"IDl-1s-whI.title" = "NICKNAME";
+
+/* Class = "NSTextFieldCell"; title = "Address *"; ObjectID = "Jsc-Su-47q"; */
+"Jsc-Su-47q.title" = "Address *";
+
+/* Class = "NSButtonCell"; title = "Already on Sphinx"; ObjectID = "WJf-FC-pOh"; */
+"WJf-FC-pOh.title" = "Already on Sphinx";
+
+/* Class = "NSTextFieldCell"; title = "Route Hint"; ObjectID = "aRB-lU-d5K"; */
+"aRB-lU-d5K.title" = "Route Hint";
+
+/* Class = "NSTextFieldCell"; title = "Nickname *"; ObjectID = "bfZ-y3-PQn"; */
+"bfZ-y3-PQn.title" = "Nickname *";
+
+/* Class = "NSButtonCell"; title = "Create Invitation"; ObjectID = "jmS-xv-TNf"; */
+"jmS-xv-TNf.title" = "Create Invitation";
+
+/* Class = "NSButtonCell"; title = "SAVE TO CONTACTS"; ObjectID = "qpE-NU-eH4"; */
+"qpE-NU-eH4.title" = "SAVE TO CONTACTS";

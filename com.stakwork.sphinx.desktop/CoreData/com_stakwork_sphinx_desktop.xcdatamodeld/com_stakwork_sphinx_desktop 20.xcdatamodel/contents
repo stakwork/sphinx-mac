@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21G83" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="21G83" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="ActionTrack" representedClassName="ActionTrack" syncable="YES">
         <attribute name="metaData" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -193,16 +193,4 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <elements>
-        <element name="Chat" positionX="-54" positionY="-9" width="128" height="434"/>
-        <element name="Subscription" positionX="-36" positionY="9" width="128" height="223"/>
-        <element name="TransactionMessage" positionX="-18" positionY="27" width="128" height="494"/>
-        <element name="UserContact" positionX="0" positionY="45" width="128" height="328"/>
-        <element name="UserInvite" positionX="18" positionY="63" width="128" height="118"/>
-        <element name="ContentFeed" positionX="-18" positionY="153" width="128" height="314"/>
-        <element name="ContentFeedItem" positionX="-9" positionY="162" width="128" height="224"/>
-        <element name="ContentFeedPaymentModel" positionX="0" positionY="171" width="128" height="74"/>
-        <element name="ContentFeedPaymentDestination" positionX="9" positionY="180" width="128" height="119"/>
-        <element name="ActionTrack" positionX="18" positionY="189" width="128" height="74"/>
-    </elements>
 </model>

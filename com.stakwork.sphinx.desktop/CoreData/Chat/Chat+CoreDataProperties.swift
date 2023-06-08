@@ -39,6 +39,7 @@ extension Chat {
     @NSManaged public var notify: Int
     @NSManaged public var contactIds: [NSNumber]
     @NSManaged public var pendingContactIds: [NSNumber]
+    @NSManaged public var pinnedMessageUUID: String?
     
     @NSManaged public var messages: NSSet?
     @NSManaged public var subscription: Subscription?

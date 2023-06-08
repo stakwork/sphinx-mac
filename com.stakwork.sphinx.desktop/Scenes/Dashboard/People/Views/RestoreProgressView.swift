@@ -42,7 +42,8 @@ class RestoreProgressView: NSView, LoadableNib {
         let restoringMessages = (progress >= messagesStartProgress)
         let restoreLabel = (restoringMessages ? "restoring-messages" : "restoring-content").localized
         restoreProgressLabel.stringValue = (progress == 0) ? "resume-restoring".localized : "\(restoreLabel) \(progress)%"
-        restoreProgressBar.doubleValue = Double(progress) / 100
+        
+        restoreProgressBar.doubleValue = Double(progress)
         
         continueLaterButton.isEnabled = restoringMessages
         continueLaterButtonContainer.alphaValue = restoringMessages ? 1.0 : 0.5

@@ -1,0 +1,27 @@
+
+/* Class = "NSTextFieldCell"; title = "Price to meet: 0 sats"; ObjectID = "10T-Yj-zOa"; */
+"10T-Yj-zOa.title" = "Price to meet: 0 sats";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "Ab8-7Q-TbO"; */
+"Ab8-7Q-TbO.title" = "Box";
+
+/* Class = "NSButtonCell"; title = "close"; ObjectID = "IR5-JT-hny"; */
+"IR5-JT-hny.title" = "close";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Initial message to Unknown"; ObjectID = "NJy-bL-lBZ"; */
+"NJy-bL-lBZ.placeholderString" = "Initial message to Unknown";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "P4d-BF-byL"; */
+"P4d-BF-byL.title" = "Box";
+
+/* Class = "NSTextFieldCell"; title = "CONNECT"; ObjectID = "boK-z6-ylz"; */
+"boK-z6-ylz.title" = "CONNECT";
+
+/* Class = "NSTextFieldCell"; title = "Unknown"; ObjectID = "by2-wU-d7V"; */
+"by2-wU-d7V.title" = "Hindi makilala";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "f3W-3l-UfQ"; */
+"f3W-3l-UfQ.title" = "Box";
+
+/* Class = "NSTextFieldCell"; title = "This is the description\ntest"; ObjectID = "i2d-VL-AJG"; */
+"i2d-VL-AJG.title" = "This is the description\ntest";

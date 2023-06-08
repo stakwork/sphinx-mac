@@ -62,9 +62,12 @@ class ChatViewController: DashboardSplittedViewController {
     @IBOutlet weak var avatarWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomBarHeightConstraint: NSLayoutConstraint!
     
-    
     @IBOutlet weak var mentionScrollViewHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var pinMessageBarView: PinMessageBarView!
+    @IBOutlet weak var pinMessageBarViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pinMessageDetailView: PinMessageDetailView!
+    @IBOutlet weak var pinNotificationView: PinNotificationView!
     
     @IBOutlet weak var mentionAutoCompleteEnclosingScrollView: NSScrollView!
     @IBOutlet weak var mentionAutoCompleteTableView: NSCollectionView!
@@ -222,6 +225,13 @@ class ChatViewController: DashboardSplittedViewController {
         toggleControls(enable: false)
         chatAvatarView.setImages(object: nil)
         
+        pinMessageBarViewHeightConstraint.constant = 0
+        pinMessageBarView.superview?.layoutSubtreeIfNeeded()
+        
+        pinMessageBarView.isHidden = true
+        pinMessageDetailView.isHidden = true
+        pinNotificationView.isHidden = true
+        
         nameButton.title = "open.conversation".localized
         avatarWidthConstraint.constant = 20
         nameButtonY.constant = 0
@@ -371,6 +381,7 @@ class ChatViewController: DashboardSplittedViewController {
     
     func updateTribeInfo() {
         removePodcastVC()
+        configurePinnedMessageView()
         
         guard let chat = chat else {
             return
@@ -378,12 +389,15 @@ class ChatViewController: DashboardSplittedViewController {
         
         if let feedId = chat.contentFeed?.feedID, PodcastPlayerController.sharedInstance.isPlaying(podcastId: feedId) {
             self.onTribeInfoUpdated()
+            
             FeedsManager.sharedInstance.restoreContentFeedStatusInBackgroundFor(feedId: feedId)
+            
             return
         }
         
         chat.updateTribeInfo() {
             self.onTribeInfoUpdated()
+            self.configurePinnedMessageView()
         }
     }
     
