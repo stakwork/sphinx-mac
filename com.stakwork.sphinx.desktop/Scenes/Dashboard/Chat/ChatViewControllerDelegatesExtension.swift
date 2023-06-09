@@ -31,6 +31,7 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
         chat?.setOngoingMessage(text: messageTextView.string)
         
         processMention(text: messageTextView.string, cursorPosition: messageTextView.cursorPosition)
+        processMacro(text: messageTextView.string, cursorPosition: messageTextView.cursorPosition)
         
         let didUpdateHeight = updateBottomBarHeight()
         if !didUpdateHeight {
@@ -86,6 +87,7 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
         return chatMentionAutocompleteDataSource?.isTableVisible() ?? false
     }
     
+    
     func getAtMention(text:String,cursorPosition:Int?)->String?{
         let relevantText = text[0..<(cursorPosition ?? text.count)]
         if let lastLetter = relevantText.last, lastLetter == " " {
@@ -100,7 +102,7 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
     }
     
     func processMention(text:String,cursorPosition:Int?){
-        var suggestions : [String] = []
+        var suggestions : [MentionOrMacroItem] = []
         if let mention = getAtMention(text: text, cursorPosition:cursorPosition){
             let mentionText = String(mention).replacingOccurrences(of: "@", with: "").lowercased()
             let possibleMentions = self.chat?.aliases.filter(
@@ -112,9 +114,45 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
                 return (substring.lowercased() == mentionText && mentionText != "")
             }).sorted()
             
-            suggestions = possibleMentions ?? []
+            suggestions = possibleMentions?.compactMap({
+                let suggestion = MentionOrMacroItem(type: .mention, displayText: $0, action: nil)
+                return suggestion
+            }) ?? []
         }
-        chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: suggestions)
+        chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: suggestions.reversed())
+    }
+    
+    func getMacro(text:String,cursorPosition:Int?)->String?{
+        let relevantText = text[0..<(cursorPosition ?? text.count)]
+        if let firstLetter = relevantText.first, firstLetter == "/" {
+            return relevantText
+        }
+
+        return nil
+    }
+    
+    func processMacro(text:String,cursorPosition:Int?){
+        var macros : [MentionOrMacroItem] = []
+        if let macro = getMacro(text: text, cursorPosition:cursorPosition){
+            let macrosText = String(macro).replacingOccurrences(of: "/", with: "").lowercased()
+            let possibleMacros = self.macros.filter(
+            {
+                if(macrosText.count > $0.count){
+                    return false
+                }
+                let substring = $0.substring(range: NSRange(location: 0, length: macrosText.count))
+                return (substring.lowercased() == macrosText)
+            }).sorted()
+            
+            macros  = possibleMacros.compactMap({
+                let macro = MentionOrMacroItem(type: .macro, displayText: $0, action: nil)
+                return macro
+            })
+            macros.reverse()
+        }
+        if(chatMentionAutocompleteDataSource?.suggestions.count == 0){
+            chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: macros.reversed())
+        }
     }
     
     func updateBottomBarHeight() -> Bool {

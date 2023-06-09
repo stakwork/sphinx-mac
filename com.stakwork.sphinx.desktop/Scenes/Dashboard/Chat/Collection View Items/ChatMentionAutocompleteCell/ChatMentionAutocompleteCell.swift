@@ -23,10 +23,10 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
         dividerLine.layer?.borderColor = NSColor.Sphinx.LightDivider.cgColor
     }
     
-    func configureWith(alias:String,delegate:ChatMentionAutocompleteDelegate){
+    func configureWith(mentionOrMacro:MentionOrMacroItem,delegate:ChatMentionAutocompleteDelegate){
         self.delegate = delegate
-        self.mentionTextField.stringValue = alias
-        self.alias = alias
+        self.mentionTextField.stringValue = mentionOrMacro.displayText
+        self.alias = mentionOrMacro.displayText
         self.view.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(handleClick)))
         
     }

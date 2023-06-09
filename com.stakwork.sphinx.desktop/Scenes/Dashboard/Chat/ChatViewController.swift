@@ -74,6 +74,7 @@ class ChatViewController: DashboardSplittedViewController {
     var chatMentionAutocompleteDataSource : ChatMentionAutocompleteDataSource? = nil
     
     var currentMessageString = ""
+    var macros = ["Find and Share a Gif"]
     
     var unseenMessagesCount = 0
     var deeplinkData : DeeplinkData? = nil

@@ -552,6 +552,7 @@
 		CE326B52294A179200821A53 /* ChatMentionAutocompleteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE326B50294A179200821A53 /* ChatMentionAutocompleteCell.xib */; };
 		CE38D91129E0821A00F271CD /* Payments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE38D91029E0821A00F271CD /* Payments.storyboard */; };
 		CE38D91329E0823800F271CD /* DisplayInvoiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE38D91229E0823800F271CD /* DisplayInvoiceVC.swift */; };
+		CE599F5F2A336E5800B11F41 /* MentionOrMacroItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE599F5E2A336E5800B11F41 /* MentionOrMacroItem.swift */; };
 		CE6BF5C829E59905009BCFDE /* ChoosePaymentModeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6BF5C729E59905009BCFDE /* ChoosePaymentModeVC.swift */; };
 		CE6BF5CA29E5BA38009BCFDE /* SendPaymentForInvoiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6BF5C929E5BA38009BCFDE /* SendPaymentForInvoiceVC.swift */; };
 		CE9BA45F29D76A8E000C8837 /* PodcastDetailSelectionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BA45E29D76A8E000C8837 /* PodcastDetailSelectionVM.swift */; };
@@ -1267,6 +1268,7 @@
 		CE326B50294A179200821A53 /* ChatMentionAutocompleteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatMentionAutocompleteCell.xib; sourceTree = "<group>"; };
 		CE38D91029E0821A00F271CD /* Payments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payments.storyboard; sourceTree = "<group>"; };
 		CE38D91229E0823800F271CD /* DisplayInvoiceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayInvoiceVC.swift; sourceTree = "<group>"; };
+		CE599F5E2A336E5800B11F41 /* MentionOrMacroItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentionOrMacroItem.swift; sourceTree = "<group>"; };
 		CE59E70F2A004BF30089D496 /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/NewEpisodeAlertView.strings; sourceTree = "<group>"; };
 		CE59E7102A004BF30089D496 /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/Podcast.strings; sourceTree = "<group>"; };
 		CE59E7112A004BF30089D496 /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/Contacts.strings; sourceTree = "<group>"; };
@@ -2293,6 +2295,7 @@
 				47E771152472C1A700C9CFEB /* Data Source */,
 				479751E1246D900A00D2106B /* ChatViewController.swift */,
 				47975206246F1A0F00D2106B /* ChatViewControllerDelegatesExtension.swift */,
+				CE599F5E2A336E5800B11F41 /* MentionOrMacroItem.swift */,
 				4787F8A3247C202500CCE8B9 /* ChatViewControllerSocketDelegate.swift */,
 				479F657A2487D31C0015A16A /* ChatViewControllerMediaExtension.swift */,
 				473633EB2555AEE8007405F2 /* ChatViewControllerPodcastExtension.swift */,
@@ -3362,6 +3365,7 @@
 				470396EC2537293E007F9C23 /* PodcastEpisodesDataSource.swift in Sources */,
 				47949C0224AA8F4C000D697B /* CommonDeletedMessageCollectionViewItem.swift in Sources */,
 				474A66812497C4C1002C2D10 /* CommonReplyCollectionViewItem.swift in Sources */,
+				CE599F5F2A336E5800B11F41 /* MentionOrMacroItem.swift in Sources */,
 				4797E74B2785D2420080B966 /* AuthExternalView.swift in Sources */,
 				47F258DB2541E54000122A5A /* PodcastPaymentsHelper.swift in Sources */,
 				47C1D5FA248EA71E00718B28 /* GroupMembersView.swift in Sources */,

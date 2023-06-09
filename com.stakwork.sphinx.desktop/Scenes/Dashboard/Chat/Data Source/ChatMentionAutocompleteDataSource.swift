@@ -19,7 +19,7 @@ fileprivate enum CellIdentifiers {
   }
 
 class ChatMentionAutocompleteDataSource : NSObject {
-    var mentionSuggestions : [String] = [String]()
+    var suggestions : [MentionOrMacroItem] = [MentionOrMacroItem]()
     var tableView : NSCollectionView!
     var scrollView: NSScrollView!
     var delegate: ChatMentionAutocompleteDelegate!
@@ -45,10 +45,10 @@ class ChatMentionAutocompleteDataSource : NSObject {
         configureCollectionView()
     }
     
-    func updateMentionSuggestions(suggestions: [String]) {
+    func updateMentionSuggestions(suggestions: [MentionOrMacroItem]) {
         self.scrollView.isHidden = (suggestions.isEmpty == true)
-        self.mentionSuggestions = suggestions.reversed()
-        selectedRow = mentionSuggestions.count - 1
+        self.suggestions = suggestions
+        selectedRow = suggestions.count - 1
         updateMentionTableHeight()
         tableView.reloadData()
         
@@ -60,12 +60,12 @@ class ChatMentionAutocompleteDataSource : NSObject {
     }
     
     func isTableVisible() -> Bool {
-        return mentionSuggestions.count > 0
+        return suggestions.count > 0
     }
     
     func updateMentionTableHeight() {
         if let heightConstraint = self.delegate.getTableHeightConstraint() {
-            let height = min(4 * mentionCellHeight, mentionCellHeight * CGFloat(mentionSuggestions.count))
+            let height = min(4 * mentionCellHeight, mentionCellHeight * CGFloat(suggestions.count))
             heightConstraint.isActive = false
             heightConstraint.constant = height
             heightConstraint.isActive = true
@@ -85,14 +85,14 @@ class ChatMentionAutocompleteDataSource : NSObject {
     }
     
     func getSelectedValue() -> String? {
-        if (!mentionSuggestions.isEmpty && selectedRow < mentionSuggestions.count) {
-            return mentionSuggestions[selectedRow]
+        if (!suggestions.isEmpty && selectedRow < suggestions.count) {
+            return suggestions[selectedRow].displayText
         }
         return nil
     }
     
     func moveSelectionDown() {
-        if(selectedRow < mentionSuggestions.count - 1){
+        if(selectedRow < suggestions.count - 1){
             selectedRow+=1
             tableView.reloadData()
             tableView.animator().scrollToItems(at: [IndexPath(item: selectedRow, section: 0)], scrollPosition: .bottom)
@@ -115,7 +115,7 @@ extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate, NSCollec
     }
     
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-        return mentionSuggestions.count
+        return suggestions.count
     }
     
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
@@ -135,7 +135,7 @@ extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate, NSCollec
     func collectionView(_ collectionView: NSCollectionView, willDisplay item: NSCollectionViewItem, forRepresentedObjectAt indexPath: IndexPath) {
         if let collectionViewItem = item as? ChatMentionAutocompleteCell,
            let valid_vc = vc {
-            collectionViewItem.configureWith(alias: mentionSuggestions[indexPath.item], delegate: valid_vc)
+            collectionViewItem.configureWith(mentionOrMacro: suggestions[indexPath.item], delegate: valid_vc)
         }
     }
     
