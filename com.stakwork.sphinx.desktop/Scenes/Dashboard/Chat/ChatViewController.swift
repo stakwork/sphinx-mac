@@ -74,7 +74,7 @@ class ChatViewController: DashboardSplittedViewController {
     var chatMentionAutocompleteDataSource : ChatMentionAutocompleteDataSource? = nil
     
     var currentMessageString = ""
-    var macros = ["Find and Share a Gif"]
+    var macros : [MentionOrMacroItem] = []
     
     var unseenMessagesCount = 0
     var deeplinkData : DeeplinkData? = nil
@@ -126,6 +126,7 @@ class ChatViewController: DashboardSplittedViewController {
         self.mentionAutoCompleteEnclosingScrollView.isHidden = true
         configureView()
         prepareRecordingView()
+        initializeMacros()
     }
     
     override func viewDidAppear() {
@@ -152,6 +153,32 @@ class ChatViewController: DashboardSplittedViewController {
         headerView.wantsLayer = true
         headerView.layer?.backgroundColor = NSColor.Sphinx.HeaderBG.cgColor
     }
+    
+    func initializeMacros() {
+        self.macros = [
+               MentionOrMacroItem(type: .macro, displayText: "Find and Share a Gif", action: {
+                   self.giphyButtonClicked(self) // Call the instance method using 'self'
+               }),
+               MentionOrMacroItem(type: .macro, displayText: "Start Audio Call", action: {
+                   self.shouldCreateCall(mode: .Audio)
+               }),
+               MentionOrMacroItem(type: .macro, displayText: "Start Video Call", action: {
+                   self.shouldCreateCall(mode: .All)
+               }),
+               MentionOrMacroItem(type: .macro, displayText: "Send Payment (Sats)", action: {
+                   self.macroDoPayment(buttonTag: ChildVCContainer.ChildVCOptionsMenuButton.Send)
+               }),
+               MentionOrMacroItem(type: .macro, displayText: "Request Sats (Send Invoice)", action: {
+                   self.macroDoPayment(buttonTag: ChildVCContainer.ChildVCOptionsMenuButton.Request)
+               }),
+               MentionOrMacroItem(type: .macro, displayText: "Send Emoji", action: {
+                   self.emojiButtonClicked(self)
+               }),
+               MentionOrMacroItem(type: .macro, displayText: "Record Voice Memo", action: {
+                   self.micButtonClicked(self)
+               })
+           ]
+       }
     
     func configureView() {
         headerView.addShadow(location: VerticalLocation.bottom, color: NSColor.black, opacity: 0.2, radius: 5.0)
@@ -501,6 +528,15 @@ class ChatViewController: DashboardSplittedViewController {
             messageTextView.window?.makeFirstResponder(nil)
             childVCContainer.showPmtOptionsMenuOn(parentVC: self, with: self.chat, delegate: self)
         }
+    }
+    
+    func macroDoPayment(buttonTag:ChildVCContainer.ChildVCOptionsMenuButton){
+        attachmentButtonClicked(self)
+        let virtualButton = NSButton()
+        virtualButton.tag = buttonTag.rawValue
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
+            self.childVCContainer.optionButtonClicked(virtualButton)
+        })
     }
     
     @IBAction func emojiButtonClicked(_ sender: Any) {

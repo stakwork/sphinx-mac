@@ -54,7 +54,7 @@ class ChildVCContainer: NSView, LoadableNib {
     var chat : Chat? = nil
     var message: TransactionMessage? = nil
     
-    enum OptionsMenuButton: Int {
+    public enum ChildVCOptionsMenuButton: Int {
         case Request
         case Send
         case Audio
@@ -274,25 +274,25 @@ class ChildVCContainer: NSView, LoadableNib {
     @IBAction func optionButtonClicked(_ sender: Any) {
         if let sender = sender as? NSButton {
             switch(sender.tag) {
-            case OptionsMenuButton.Request.rawValue:
+            case ChildVCOptionsMenuButton.Request.rawValue:
                 showChildVC(mode: ViewMode.RequestAmount)
                 break
-            case OptionsMenuButton.Send.rawValue:
+            case ChildVCOptionsMenuButton.Send.rawValue:
                 if chat?.isPrivateGroup() ?? false {
                     showChildVC(mode: ViewMode.GroupMembers)
                 } else {
                     showChildVC(mode: ViewMode.SendAmount)
                 }
                 break
-            case OptionsMenuButton.Audio.rawValue:
+            case ChildVCOptionsMenuButton.Audio.rawValue:
                 delegate?.shouldCreateCall(mode: .Audio)
                 hideView()
                 break
-            case OptionsMenuButton.Video.rawValue:
+            case ChildVCOptionsMenuButton.Video.rawValue:
                 delegate?.shouldCreateCall(mode: .All)
                 hideView()
                 break
-            case OptionsMenuButton.Cancel.rawValue:
+            case ChildVCOptionsMenuButton.Cancel.rawValue:
                 hideView()
                 break
             default:

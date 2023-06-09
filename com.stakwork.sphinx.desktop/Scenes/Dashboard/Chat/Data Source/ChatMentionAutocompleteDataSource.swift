@@ -11,6 +11,7 @@ import AppKit
 
 protocol ChatMentionAutocompleteDelegate{
     func processAutocomplete(text:String)
+    func processGeneralPurposeMacro(action: @escaping ()->())
     func getTableHeightConstraint() -> NSLayoutConstraint?
 }
 
@@ -86,7 +87,16 @@ class ChatMentionAutocompleteDataSource : NSObject {
     
     func getSelectedValue() -> String? {
         if (!suggestions.isEmpty && selectedRow < suggestions.count) {
-            return suggestions[selectedRow].displayText
+            let suggestion = suggestions[selectedRow]
+            return (suggestion.type == .macro) ? (nil) : (suggestion.displayText)
+        }
+        return nil
+    }
+    
+    func getSelectedAction()-> (()->())?{
+        if (!suggestions.isEmpty && selectedRow < suggestions.count) {
+            let suggestion = suggestions[selectedRow]
+            return (suggestion.type == .macro) ? (suggestion.action) : (nil)
         }
         return nil
     }

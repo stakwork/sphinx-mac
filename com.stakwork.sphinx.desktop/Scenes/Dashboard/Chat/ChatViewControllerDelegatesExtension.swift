@@ -47,6 +47,10 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
         if let selectedMention = chatMentionAutocompleteDataSource?.getSelectedValue() {
             populateMentionAutocomplete(autocompleteText: selectedMention)
         }
+        else if let datasource = chatMentionAutocompleteDataSource,
+                let action = datasource.getSelectedAction(){
+            self.processGeneralPurposeMacro(action: action)
+        }
     }
     func populateMentionAutocomplete(autocompleteText: String) {
         let text = messageTextView.string
@@ -72,6 +76,7 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
                 }
             })
         }
+                
         chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: [])
     }
     
@@ -119,7 +124,7 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
                 return suggestion
             }) ?? []
         }
-        chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: suggestions.reversed())
+        chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: suggestions)
     }
     
     func getMacro(text:String,cursorPosition:Int?)->String?{
@@ -132,26 +137,21 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
     }
     
     func processMacro(text:String,cursorPosition:Int?){
-        var macros : [MentionOrMacroItem] = []
+        var localMacros : [MentionOrMacroItem] = []
         if let macro = getMacro(text: text, cursorPosition:cursorPosition){
             let macrosText = String(macro).replacingOccurrences(of: "/", with: "").lowercased()
-            let possibleMacros = self.macros.filter(
+            let possibleMacros = self.macros.compactMap({$0.displayText}).filter(
             {
-                if(macrosText.count > $0.count){
-                    return false
-                }
-                let substring = $0.substring(range: NSRange(location: 0, length: macrosText.count))
-                return (substring.lowercased() == macrosText)
+                let actionText = $0.lowercased()
+                return actionText.contains(macrosText.lowercased()) || macrosText == ""
             }).sorted()
             
-            macros  = possibleMacros.compactMap({
-                let macro = MentionOrMacroItem(type: .macro, displayText: $0, action: nil)
-                return macro
+            localMacros  = macros.filter({macroObject in
+                return possibleMacros.contains(macroObject.displayText)
             })
-            macros.reverse()
         }
         if(chatMentionAutocompleteDataSource?.suggestions.count == 0){
-            chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: macros.reversed())
+            chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: localMacros.reversed())
         }
     }
     
@@ -581,6 +581,14 @@ extension ChatViewController : GroupDetailsDelegate {
 }
 
 extension ChatViewController : ChatMentionAutocompleteDelegate{
+    func processGeneralPurposeMacro(action: @escaping () -> ()) {
+        action()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
+            self.messageTextView.string = ""
+            self.textDidChange(Notification(name: Notification.Name(rawValue: "")))
+        })
+    }
+    
     func processAutocomplete(text: String) {
         populateMentionAutocomplete(autocompleteText: text)
         self.chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: [])

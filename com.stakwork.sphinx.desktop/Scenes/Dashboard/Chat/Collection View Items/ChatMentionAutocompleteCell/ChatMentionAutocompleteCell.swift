@@ -15,6 +15,8 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
     
     var delegate : ChatMentionAutocompleteDelegate? = nil
     var alias : String? = nil
+    var type : MentionOrMacroType = .mention
+    var action: (()->())? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +29,8 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
         self.delegate = delegate
         self.mentionTextField.stringValue = mentionOrMacro.displayText
         self.alias = mentionOrMacro.displayText
+        self.type = mentionOrMacro.type
+        self.action = mentionOrMacro.action
         self.view.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(handleClick)))
         
     }
@@ -37,8 +41,13 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
     }
     
     @objc func handleClick(){
-        if let valid_alias = alias{
+        if let valid_alias = alias, type == .mention{
             self.delegate?.processAutocomplete(text: valid_alias + " ")
+        }
+        else if type == .macro,
+        let action = action{
+            print("MACRO")
+            self.delegate?.processGeneralPurposeMacro(action: action)
         }
     }
 }
