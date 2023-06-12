@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import Cocoa
 
 public enum MentionOrMacroType{
     case mention
@@ -20,11 +20,14 @@ class MentionOrMacroItem:NSObject{
     var type : MentionOrMacroType
     var displayText : String =  ""
     var action : (()->())?
+    var image : NSImage? = nil
+    var imageLink : URL? = nil
     
-    init(type: MentionOrMacroType, displayText: String, action: (() -> ())?) {
+    init(type: MentionOrMacroType, displayText: String,image:NSImage?=nil, action: (() -> ())?) {
         self.type = type
         self.displayText = displayText
         self.action = action
+        self.image = image
     }
     
 }

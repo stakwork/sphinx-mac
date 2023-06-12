@@ -156,25 +156,39 @@ class ChatViewController: DashboardSplittedViewController {
     
     func initializeMacros() {
         self.macros = [
-               MentionOrMacroItem(type: .macro, displayText: "Find and Share a Gif", action: {
+               MentionOrMacroItem(type: .macro, displayText: "Find and Share a Gif",
+                    image: #imageLiteral(resourceName: "giphyIcon"),
+                    action: {
                    self.giphyButtonClicked(self) // Call the instance method using 'self'
                }),
-               MentionOrMacroItem(type: .macro, displayText: "Start Audio Call", action: {
+               MentionOrMacroItem(type: .macro, displayText: "Start Audio Call",
+                image: #imageLiteral(resourceName: "phone_call_icon"),
+                action: {
                    self.shouldCreateCall(mode: .Audio)
                }),
-               MentionOrMacroItem(type: .macro, displayText: "Start Video Call", action: {
+               MentionOrMacroItem(type: .macro, displayText: "Start Video Call",
+                image: #imageLiteral(resourceName:"video_call_icon"),
+                action: {
                    self.shouldCreateCall(mode: .All)
                }),
-               MentionOrMacroItem(type: .macro, displayText: "Send Payment (Sats)", action: {
+               MentionOrMacroItem(type: .macro, displayText: "Send Payment (Sats)",
+                image: #imageLiteral(resourceName: "invoicePayIcon")
+                ,action: {
                    self.macroDoPayment(buttonTag: ChildVCContainer.ChildVCOptionsMenuButton.Send)
                }),
-               MentionOrMacroItem(type: .macro, displayText: "Request Sats (Send Invoice)", action: {
+               MentionOrMacroItem(type: .macro, displayText: "Request Sats (Send Invoice)",
+                image: #imageLiteral(resourceName: "invoiceReceiveIcon"),
+                action: {
                    self.macroDoPayment(buttonTag: ChildVCContainer.ChildVCOptionsMenuButton.Request)
                }),
-               MentionOrMacroItem(type: .macro, displayText: "Send Emoji", action: {
+               MentionOrMacroItem(type: .macro, displayText: "Send Emoji",
+                image: #imageLiteral(resourceName: "emojiIcon"),
+                action: {
                    self.emojiButtonClicked(self)
                }),
-               MentionOrMacroItem(type: .macro, displayText: "Record Voice Memo", action: {
+               MentionOrMacroItem(type: .macro, displayText: "Record Voice Memo",
+                    image: #imageLiteral(resourceName:"microphone_icon") ,
+                    action: {
                    self.micButtonClicked(self)
                })
            ]

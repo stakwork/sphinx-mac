@@ -12,6 +12,7 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
 
     @IBOutlet weak var mentionTextField: NSTextField!
     @IBOutlet weak var dividerLine: NSBox!
+    @IBOutlet weak var avatarImage: NSImageView!
     
     var delegate : ChatMentionAutocompleteDelegate? = nil
     var alias : String? = nil
@@ -32,6 +33,15 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
         self.type = mentionOrMacro.type
         self.action = mentionOrMacro.action
         self.view.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(handleClick)))
+        
+        
+        if(mentionOrMacro.type == .macro){
+            avatarImage.image = mentionOrMacro.image ?? #imageLiteral(resourceName: "appPinIcon")
+        }
+        else{
+            
+        }
+        avatarImage.contentTintColor = NSColor.Sphinx.BodyInverted
         
     }
     

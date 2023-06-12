@@ -9,6 +9,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ChatMentionAutocompleteCell" customModule="Sphinx" customModuleProvider="target">
             <connections>
+                <outlet property="avatarImage" destination="N9f-xz-8ZP" id="D25-Tk-QIG"/>
                 <outlet property="dividerLine" destination="Yum-LE-6f5" id="SUC-N6-6Wp"/>
                 <outlet property="mentionTextField" destination="rBd-mY-EUl" id="w4z-qT-sdZ"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
@@ -21,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rBd-mY-EUl">
-                    <rect key="frame" x="10" y="128" width="460" height="16"/>
+                    <rect key="frame" x="48" y="128" width="384" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Hello World!" id="lJu-m6-Qwx">
                         <font key="font" usesAppearanceFont="YES"/>
                         <color key="textColor" name="Text"/>
@@ -39,14 +40,24 @@
                     </constraints>
                     <color key="fillColor" name="Divider"/>
                 </box>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N9f-xz-8ZP">
+                    <rect key="frame" x="12" y="121" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="N9f-xz-8ZP" secondAttribute="height" multiplier="1:1" id="YWc-Vd-OkF"/>
+                        <constraint firstAttribute="width" constant="30" id="te2-tL-Rbb"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="6sW-aZ-n1I"/>
+                </imageView>
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Yum-LE-6f5" secondAttribute="bottom" id="AZM-W3-BxH"/>
+                <constraint firstItem="N9f-xz-8ZP" firstAttribute="centerY" secondItem="rBd-mY-EUl" secondAttribute="centerY" id="EqF-xz-jN2"/>
+                <constraint firstItem="N9f-xz-8ZP" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="12" id="FGK-kh-t1j"/>
                 <constraint firstItem="Yum-LE-6f5" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="JB5-mc-aV9"/>
                 <constraint firstItem="rBd-mY-EUl" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="WsV-2b-7H5"/>
                 <constraint firstItem="Yum-LE-6f5" firstAttribute="width" secondItem="Hz6-mo-xeY" secondAttribute="width" id="fWq-i9-ebl"/>
                 <constraint firstItem="rBd-mY-EUl" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="h7f-B7-uaa"/>
-                <constraint firstItem="rBd-mY-EUl" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="12" id="pAJ-HC-tNd"/>
+                <constraint firstItem="rBd-mY-EUl" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="50" id="pAJ-HC-tNd"/>
             </constraints>
             <point key="canvasLocation" x="130" y="114"/>
         </customView>
