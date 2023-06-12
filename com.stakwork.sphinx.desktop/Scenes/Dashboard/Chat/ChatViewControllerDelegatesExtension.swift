@@ -121,6 +121,7 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
             
             suggestions = possibleMentions?.compactMap({
                 let suggestion = MentionOrMacroItem(type: .mention, displayText: $0, action: nil)
+                suggestion.imageLink = chat?.findImageURLByAlias(alias: $0)
                 return suggestion
             }) ?? []
         }

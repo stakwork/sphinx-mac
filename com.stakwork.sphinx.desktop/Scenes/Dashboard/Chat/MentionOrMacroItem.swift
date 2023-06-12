@@ -23,11 +23,18 @@ class MentionOrMacroItem:NSObject{
     var image : NSImage? = nil
     var imageLink : URL? = nil
     
-    init(type: MentionOrMacroType, displayText: String,image:NSImage?=nil, action: (() -> ())?) {
+    init(
+        type: MentionOrMacroType,
+         displayText: String,
+         image:NSImage?=nil,
+        imageLink : URL?=nil,
+         action: (() -> ())?
+    ) {
         self.type = type
         self.displayText = displayText
         self.action = action
         self.image = image
+        self.imageLink = imageLink
     }
     
 }

@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import SDWebImage
 
 class ChatMentionAutocompleteCell: NSCollectionViewItem {
 
@@ -39,7 +40,9 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
             avatarImage.image = mentionOrMacro.image ?? #imageLiteral(resourceName: "appPinIcon")
         }
         else{
-            
+            avatarImage.layer?.contentsGravity = .resizeAspectFill
+            avatarImage.sd_setImage(with: mentionOrMacro.imageLink, placeholderImage: #imageLiteral(resourceName: "appPinIcon"), context: nil)
+            avatarImage.makeCircular()
         }
         avatarImage.contentTintColor = NSColor.Sphinx.BodyInverted
         
@@ -47,6 +50,7 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        avatarImage?.image = nil
         view.layer?.backgroundColor = .clear
     }
     

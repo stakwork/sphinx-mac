@@ -291,6 +291,12 @@ public class Chat: NSManagedObject {
         self.aliases = Array(Set(self.getAllMessages().compactMap({$0.senderAlias})))
     }
     
+    func findImageURLByAlias(alias:String)->URL?{
+        let allMessages = self.getAllMessages()
+        guard let picURLString = allMessages.first(where: {$0.senderAlias == alias})?.senderPic else { return nil }
+        return URL(string: picURLString)
+    }
+    
     func getAllMessages(
         limit: Int? = 100,
         messagesIdsToExclude: [Int] = [],
