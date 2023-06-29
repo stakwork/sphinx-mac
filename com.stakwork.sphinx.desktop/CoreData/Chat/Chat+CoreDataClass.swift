@@ -19,7 +19,7 @@ public class Chat: NSManagedObject {
     
     public var ongoingMessage : String? = nil
     var tribeInfo: GroupsManager.TribeInfo? = nil
-    var aliases : [String] = [String]()
+    var aliasesAndPics: [(String, String)] = []
     
     public enum ChatType: Int {
         case conversation = 0
@@ -287,8 +287,21 @@ public class Chat: NSManagedObject {
         return chat
     }
     
-    func loadAllAliases(){
-        self.aliases = Array(Set(self.getAllMessages().compactMap({$0.senderAlias})))
+    func processAliasesFrom(messages: [TransactionMessage]) {
+        var aliases: [String] = []
+        
+        aliasesAndPics = []
+        
+        for message in messages {
+            if let alias = message.senderAlias, alias.isEmpty == false {
+                if !aliases.contains(alias) {
+                    aliasesAndPics.append(
+                        (alias, message.senderPic ?? "")
+                    )
+                    aliases.append(alias)
+                }
+            }
+        }
     }
     
     func findImageURLByAlias(alias:String)->URL?{

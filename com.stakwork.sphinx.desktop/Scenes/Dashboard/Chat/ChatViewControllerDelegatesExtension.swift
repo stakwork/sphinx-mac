@@ -9,6 +9,27 @@
 import Cocoa
 
 extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
+    
+    func didDetectPossibleMentions(
+        mentionText: String
+    ) {
+        guard let mentionsDataSource = chatMentionAutocompleteDataSource else {
+            return
+        }
+        
+        let possibleMentions = self.getMentionsFrom(mentionText: mentionText)
+        let suggestionObjects = possibleMentions.compactMap({
+            let result = MentionOrMacroItem(
+                type: .mention,
+                displayText: $0.0,
+                imageLink: $0.1,
+                action: nil
+            )
+            return result
+        })
+        mentionsDataSource.updateMentionSuggestions(suggestions: suggestionObjects)
+    }
+    
     func didDetectImagePaste(pasteBoard: NSPasteboard) -> Bool {
         return draggingView.performPasteOperation(pasteBoard: pasteBoard)
     }
@@ -30,7 +51,7 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
     func textDidChange(_ notification: Notification) {
         chat?.setOngoingMessage(text: messageTextView.string)
         
-        processMention(text: messageTextView.string, cursorPosition: messageTextView.cursorPosition)
+        processMention(text: messageTextView.string, cursorPosition: messageTextView.cursorPosition ?? 0)
         processMacro(text: messageTextView.string, cursorPosition: messageTextView.cursorPosition)
         
         let didUpdateHeight = updateBottomBarHeight()
@@ -107,26 +128,34 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
         return nil
     }
     
-    func processMention(text:String,cursorPosition:Int?){
-        var suggestions : [MentionOrMacroItem] = []
-        if let mention = getAtMention(text: text, cursorPosition:cursorPosition){
-            let mentionText = String(mention).replacingOccurrences(of: "@", with: "").lowercased()
-            let possibleMentions = self.chat?.aliases.filter(
-            {
-                if(mentionText.count > $0.count){
-                    return false
+    func getMentionsFrom(mentionText: String) -> [(String, String)] {
+        var possibleMentions: [(String, String)] = []
+        
+        if mentionText.count > 0 {
+            for alias in self.chat?.aliasesAndPics ?? [] {
+                if (mentionText.count > alias.0.count) {
+                    continue
                 }
-                let substring = $0.substring(range: NSRange(location: 0, length: mentionText.count))
-                return (substring.lowercased() == mentionText && mentionText != "")
-            }).sorted()
-            
-            suggestions = possibleMentions?.compactMap({
-                let suggestion = MentionOrMacroItem(type: .mention, displayText: $0, action: nil)
-                suggestion.imageLink = chat?.findImageURLByAlias(alias: $0)
-                return suggestion
-            }) ?? []
+                let substring = alias.0.substring(range: NSRange(location: 0, length: mentionText.count))
+                if (substring.lowercased() == mentionText && mentionText.isEmpty == false) {
+                    possibleMentions.append(alias)
+                }
+            }
         }
-        chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: suggestions)
+        
+        return possibleMentions
+    }
+    
+    func processMention(
+        text: String,
+        cursorPosition:Int
+    ) {
+        if let mention = getAtMention(text: text,cursorPosition: cursorPosition) {
+            let mentionValue = String(mention).replacingOccurrences(of: "@", with: "").lowercased()
+            self.didDetectPossibleMentions(mentionText: mentionValue)
+        } else {
+            self.didDetectPossibleMentions(mentionText: "")
+        }
     }
     
     func getMacro(text:String,cursorPosition:Int?)->String?{

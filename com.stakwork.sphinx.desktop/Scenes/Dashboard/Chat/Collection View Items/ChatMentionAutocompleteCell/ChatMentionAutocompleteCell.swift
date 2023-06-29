@@ -14,6 +14,7 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
     @IBOutlet weak var mentionTextField: NSTextField!
     @IBOutlet weak var dividerLine: NSBox!
     @IBOutlet weak var avatarImage: NSImageView!
+    @IBOutlet weak var iconLabel: NSTextField!
     
     var delegate : ChatMentionAutocompleteDelegate? = nil
     var alias : String? = nil
@@ -27,25 +28,60 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
         dividerLine.layer?.borderColor = NSColor.Sphinx.LightDivider.cgColor
     }
     
-    func configureWith(mentionOrMacro:MentionOrMacroItem,delegate:ChatMentionAutocompleteDelegate){
-        self.delegate = delegate
-        self.mentionTextField.stringValue = mentionOrMacro.displayText
+    func configureWith(mentionOrMacro: MentionOrMacroItem,delegate:ChatMentionAutocompleteDelegate){
         self.alias = mentionOrMacro.displayText
         self.type = mentionOrMacro.type
         self.action = mentionOrMacro.action
-        self.view.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(handleClick)))
         
+        mentionTextField.stringValue = mentionOrMacro.displayText
         
-        if(mentionOrMacro.type == .macro){
-            avatarImage.image = mentionOrMacro.image ?? #imageLiteral(resourceName: "appPinIcon")
-        }
-        else{
-            avatarImage.layer?.contentsGravity = .resizeAspectFill
-            avatarImage.sd_setImage(with: mentionOrMacro.imageLink, placeholderImage: #imageLiteral(resourceName: "appPinIcon"), context: nil)
+        avatarImage?.sd_cancelCurrentImageLoad()
+        
+        if (mentionOrMacro.type == .macro) {
+            
+            if let icon = mentionOrMacro.icon {
+                iconLabel.stringValue = icon
+                
+                avatarImage.isHidden = true
+                iconLabel.isHidden = false
+            } else {
+                avatarImage.image = mentionOrMacro.image ?? NSImage(named: "appPinIcon")
+                //avatarImage.contentMode = mentionOrMacro.imageContentMode ?? .center
+                
+                avatarImage.isHidden = false
+                iconLabel.isHidden = true
+            }
+            
+        } else {
+            avatarImage.isHidden = false
+            iconLabel.isHidden = true
+            
             avatarImage.makeCircular()
+            makeImagesCircular(images: [avatarImage])
+            avatarImage.imageScaling = .scaleAxesIndependently
+            avatarImage.imageAlignment = .alignCenter
+            
+            if let imageLink = mentionOrMacro.imageLink, let url = URL(string: imageLink) {
+                avatarImage.sd_setImage(
+                    with: url,
+                    placeholderImage: NSImage(named: "profile_avatar"),
+                    context: nil
+                )
+            } else {
+                avatarImage.image = NSImage(named: "profile_avatar")
+            }
+            
+            //avatarImage.contentMode = .scaleAspectFill
         }
-        avatarImage.contentTintColor = NSColor.Sphinx.BodyInverted
-        
+        avatarImage.contentTintColor = NSColor.Sphinx.SecondaryText
+    }
+    
+    func makeImagesCircular(images: [NSView]) {
+        for image in images {
+            image.wantsLayer = true
+            image.layer?.cornerRadius = image.frame.size.height / 2
+            image.layer?.masksToBounds = true
+        }
     }
     
     override func prepareForReuse() {

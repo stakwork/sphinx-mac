@@ -171,16 +171,6 @@ class ChatViewController: DashboardSplittedViewController {
                 action: {
                    self.shouldCreateCall(mode: .All)
                }),
-               MentionOrMacroItem(type: .macro, displayText: "Send Payment (Sats)",
-                image: #imageLiteral(resourceName: "invoicePayIcon")
-                ,action: {
-                   self.macroDoPayment(buttonTag: ChildVCContainer.ChildVCOptionsMenuButton.Send)
-               }),
-               MentionOrMacroItem(type: .macro, displayText: "Request Sats (Send Invoice)",
-                image: #imageLiteral(resourceName: "invoiceReceiveIcon"),
-                action: {
-                   self.macroDoPayment(buttonTag: ChildVCContainer.ChildVCOptionsMenuButton.Request)
-               }),
                MentionOrMacroItem(type: .macro, displayText: "Send Emoji",
                 image: #imageLiteral(resourceName: "emojiIcon"),
                 action: {
@@ -192,6 +182,21 @@ class ChatViewController: DashboardSplittedViewController {
                    self.micButtonClicked(self)
                })
            ]
+        
+        if(self.chat?.isGroup() == false){
+            macros.append(contentsOf: [
+                MentionOrMacroItem(type: .macro, displayText: "Send Payment (Sats)",
+                 image: #imageLiteral(resourceName: "invoicePayIcon")
+                 ,action: {
+                    self.macroDoPayment(buttonTag: ChildVCContainer.ChildVCOptionsMenuButton.Send)
+                }),
+                MentionOrMacroItem(type: .macro, displayText: "Request Sats (Send Invoice)",
+                 image: #imageLiteral(resourceName: "invoiceReceiveIcon"),
+                 action: {
+                    self.macroDoPayment(buttonTag: ChildVCContainer.ChildVCOptionsMenuButton.Request)
+                }),
+            ])
+        }
        }
     
     func configureView() {
@@ -306,7 +311,10 @@ class ChatViewController: DashboardSplittedViewController {
         
         self.contact = contact
         self.chat = chat
-        self.chat?.loadAllAliases()
+        if let valid_chat = chat{
+            valid_chat.processAliasesFrom(messages: valid_chat.getAllMessages())
+        }
+        
         
         self.contactsService = contactsService
         

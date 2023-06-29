@@ -15,25 +15,28 @@ public enum MentionOrMacroType{
 }
 
 
-class MentionOrMacroItem:NSObject{
+class MentionOrMacroItem: NSObject{
     
-    var type : MentionOrMacroType
-    var displayText : String =  ""
-    var action : (()->())?
-    var image : NSImage? = nil
-    var imageLink : URL? = nil
+    var type: MentionOrMacroType
+    var displayText: String =  ""
+    var action: (()->())?
+    var image: NSImage? = nil
+    var icon: String? = nil
+    var imageLink: String? = nil
     
     init(
         type: MentionOrMacroType,
-         displayText: String,
-         image:NSImage?=nil,
-        imageLink : URL?=nil,
-         action: (() -> ())?
+        displayText: String,
+        image: NSImage? = nil,
+        imageLink: String? = nil,
+        icon: String? = nil,
+        action: (() -> ())?
     ) {
         self.type = type
         self.displayText = displayText
         self.action = action
         self.image = image
+        self.icon = icon
         self.imageLink = imageLink
     }
     
