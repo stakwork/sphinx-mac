@@ -156,27 +156,27 @@ class ChatViewController: DashboardSplittedViewController {
     
     func initializeMacros() {
         self.macros = [
-               MentionOrMacroItem(type: .macro, displayText: "Find and Share a Gif",
+               MentionOrMacroItem(type: .macro, displayText: "send.giphy".localized,
                     image: #imageLiteral(resourceName: "giphyIcon"),
                     action: {
                    self.giphyButtonClicked(self) // Call the instance method using 'self'
                }),
-               MentionOrMacroItem(type: .macro, displayText: "Start Audio Call",
+               MentionOrMacroItem(type: .macro, displayText: "start.audio.call".localized,
                 image: #imageLiteral(resourceName: "phone_call_icon"),
                 action: {
                    self.shouldCreateCall(mode: .Audio)
                }),
-               MentionOrMacroItem(type: .macro, displayText: "Start Video Call",
+               MentionOrMacroItem(type: .macro, displayText: "start.video.call".localized,
                 image: #imageLiteral(resourceName:"video_call_icon"),
                 action: {
                    self.shouldCreateCall(mode: .All)
                }),
-               MentionOrMacroItem(type: .macro, displayText: "Send Emoji",
+               MentionOrMacroItem(type: .macro, displayText: "send.emoji".localized,
                 image: #imageLiteral(resourceName: "emojiIcon"),
                 action: {
                    self.emojiButtonClicked(self)
                }),
-               MentionOrMacroItem(type: .macro, displayText: "Record Voice Memo",
+               MentionOrMacroItem(type: .macro, displayText: "record.voice".localized,
                     image: #imageLiteral(resourceName:"microphone_icon") ,
                     action: {
                    self.micButtonClicked(self)
@@ -185,12 +185,12 @@ class ChatViewController: DashboardSplittedViewController {
         
         if(self.chat?.isGroup() == false){
             macros.append(contentsOf: [
-                MentionOrMacroItem(type: .macro, displayText: "Send Payment (Sats)",
+                MentionOrMacroItem(type: .macro, displayText: "send.payment".localized,
                  image: #imageLiteral(resourceName: "invoicePayIcon")
                  ,action: {
                     self.macroDoPayment(buttonTag: ChildVCContainer.ChildVCOptionsMenuButton.Send)
                 }),
-                MentionOrMacroItem(type: .macro, displayText: "Request Sats (Send Invoice)",
+                MentionOrMacroItem(type: .macro, displayText: "request.payment".localized,
                  image: #imageLiteral(resourceName: "invoiceReceiveIcon"),
                  action: {
                     self.macroDoPayment(buttonTag: ChildVCContainer.ChildVCOptionsMenuButton.Request)

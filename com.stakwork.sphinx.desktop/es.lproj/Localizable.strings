@@ -446,3 +446,12 @@
 //Deeplinks
 "deeplink.issue.title" = "Problema con el Enlace";
 "deeplink.issue.message" = "Ha habido un problema con el enlace. Por favor vuelve a intentarlo más tarde.";
+
+//MACRO
+"send.giphy" = "Enviar Giphy";
+"start.audio.call" = "Iniciar llamada de audio";
+"start.video.call" = "Iniciar video llamada";
+"send.payment" = "Enviar pago";
+"request.payment" = "Solicitar pago";
+"send.emoji" = "Enviar emoji";
+"record.voice" = "Recordar mensaje de audio";
