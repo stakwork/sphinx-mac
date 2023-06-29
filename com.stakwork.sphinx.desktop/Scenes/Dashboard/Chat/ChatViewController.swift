@@ -156,30 +156,20 @@ class ChatViewController: DashboardSplittedViewController {
     
     func initializeMacros() {
         self.macros = [
-               MentionOrMacroItem(type: .macro, displayText: "Find and Share a Gif",
+               MentionOrMacroItem(type: .macro, displayText: "find.and.share.gif".localized,
                     image: #imageLiteral(resourceName: "giphyIcon"),
                     action: {
                    self.giphyButtonClicked(self) // Call the instance method using 'self'
                }),
-               MentionOrMacroItem(type: .macro, displayText: "Start Audio Call",
+               MentionOrMacroItem(type: .macro, displayText: "start.audio.call".localized,
                 image: #imageLiteral(resourceName: "phone_call_icon"),
                 action: {
                    self.shouldCreateCall(mode: .Audio)
                }),
-               MentionOrMacroItem(type: .macro, displayText: "Start Video Call",
+               MentionOrMacroItem(type: .macro, displayText: "start.video.call".localized,
                 image: #imageLiteral(resourceName:"video_call_icon"),
                 action: {
                    self.shouldCreateCall(mode: .All)
-               }),
-               MentionOrMacroItem(type: .macro, displayText: "Send Payment (Sats)",
-                image: #imageLiteral(resourceName: "invoicePayIcon")
-                ,action: {
-                   self.macroDoPayment(buttonTag: ChildVCContainer.ChildVCOptionsMenuButton.Send)
-               }),
-               MentionOrMacroItem(type: .macro, displayText: "Request Sats (Send Invoice)",
-                image: #imageLiteral(resourceName: "invoiceReceiveIcon"),
-                action: {
-                   self.macroDoPayment(buttonTag: ChildVCContainer.ChildVCOptionsMenuButton.Request)
                }),
                MentionOrMacroItem(type: .macro, displayText: "Send Emoji",
                 image: #imageLiteral(resourceName: "emojiIcon"),
@@ -192,6 +182,21 @@ class ChatViewController: DashboardSplittedViewController {
                    self.micButtonClicked(self)
                })
            ]
+        
+            if self.chat?.isGroup() == false{
+                macros.append(contentsOf: [
+                    MentionOrMacroItem(type: .macro, displayText: "pub.key.options-send.payment".localized,
+                     image: #imageLiteral(resourceName: "invoicePayIcon")
+                     ,action: {
+                        self.macroDoPayment(buttonTag: ChildVCContainer.ChildVCOptionsMenuButton.Send)
+                    }),
+                    MentionOrMacroItem(type: .macro, displayText: "request.payment.create.invoice".localized,
+                     image: #imageLiteral(resourceName: "invoiceReceiveIcon"),
+                     action: {
+                        self.macroDoPayment(buttonTag: ChildVCContainer.ChildVCOptionsMenuButton.Request)
+                    }),
+                ])
+            }
        }
     
     func configureView() {
