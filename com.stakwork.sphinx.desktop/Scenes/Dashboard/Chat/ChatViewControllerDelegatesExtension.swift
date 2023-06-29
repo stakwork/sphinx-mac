@@ -98,10 +98,11 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
         if let lastLetter = relevantText.last, lastLetter == " " {
             return nil
         }
-        if let lastWord = relevantText.split(separator: " ").last {
-            if let firstLetter = lastWord.first, firstLetter == "@" {
-                return String(lastWord)
-            }
+        if let lastLine = relevantText.split(separator: "\n").last,
+            let lastWord = lastLine.split(separator: " ").last,
+           let firstLetter = lastWord.first,
+           firstLetter == "@"{
+            return String(lastWord)
         }
         return nil
     }
