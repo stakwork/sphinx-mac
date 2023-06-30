@@ -19,51 +19,53 @@ extension NSTextField {
     
     func addLinksOnLabel(linkColor: NSColor = NSColor.Sphinx.PrimaryBlue, alignment: NSTextAlignment = .left) {
         let text = self.stringValue
+        let attributedString = NSMutableAttributedString(string: text)
+        
+        let pubKeyMatches = text.pubKeyMatches
+        let mentionMatches = text.mentionMatches
         
         self.allowsEditingTextAttributes = true
         self.isSelectable = true
         
-        let linkMatches = text.stringLinks
-        let pubKeyMatches = text.pubKeyMatches
-        let mentionMatches = text.mentionMatches
-        
-        if (linkMatches.count + pubKeyMatches.count + mentionMatches.count) > 0 {
-            let attributedString = NSMutableAttributedString(string: text)
+        if let font = self.font, let color = self.textColor {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.alignment = alignment
             
-            if let font = self.font, let color = self.textColor {
-                let paragraphStyle: NSMutableParagraphStyle = NSMutableParagraphStyle()
-                paragraphStyle.alignment = alignment
-                
-                attributedString.beginEditing()
-                attributedString.setAttributes([NSAttributedString.Key.foregroundColor: color,
-                                                NSAttributedString.Key.font: font,
-                                                NSAttributedString.Key.paragraphStyle: paragraphStyle], range: NSMakeRange(0, self.stringValue.count))
-                
-                for match in linkMatches {
-                    if let stringRange = Range(match.range) {
-                        let url = text[stringRange]
-                        
-                        attributedString.addAttributes([NSAttributedString.Key.foregroundColor: linkColor, NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.init("custom_link") : url], range: match.range)
-                    }
+            attributedString.beginEditing()
+            attributedString.setAttributes([NSAttributedString.Key.foregroundColor: color,
+                                            NSAttributedString.Key.font: font,
+                                            NSAttributedString.Key.paragraphStyle: paragraphStyle], range: NSRange(location: 0, length: attributedString.length))
+            
+            let linkDetector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+            let matches = linkDetector?.matches(in: text, options: [], range: NSRange(location: 0, length: text.utf16.count))
+            
+            if let matches = matches {
+                for match in matches {
+                    let url = (text as NSString).substring(with: match.range)
+                    
+                    attributedString.addAttributes([NSAttributedString.Key.foregroundColor: linkColor,
+                                                    NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
+                                                    NSAttributedString.Key.link: url], range: match.range)
                 }
-                
-                for match in pubKeyMatches {
-                    if let stringRange = Range(match.range) {
-                        let pubkey = text[stringRange]
-                        
-                        attributedString.addAttributes([NSAttributedString.Key.foregroundColor: linkColor, NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.init("user_pub_key") : pubkey], range: match.range)
-                    }
-                }
-                
-                for match in mentionMatches {
-                    attributedString.addAttributes([NSAttributedString.Key.foregroundColor: linkColor], range: match.range)
-                }
-                
-                attributedString.endEditing()
-                self.attributedStringValue = attributedString
             }
+            
+            for match in pubKeyMatches {
+                if let stringRange = Range(match.range) {
+                    let pubkey = text[stringRange]
+                    
+                    attributedString.addAttributes([NSAttributedString.Key.foregroundColor: linkColor, NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.init("user_pub_key") : pubkey], range: match.range)
+                }
+            }
+            
+            for match in mentionMatches {
+                attributedString.addAttributes([NSAttributedString.Key.foregroundColor: linkColor], range: match.range)
+            }
+            
+            attributedString.endEditing()
+            self.attributedStringValue = attributedString
         }
     }
+
     
     func getStringSize(width: CGFloat? = nil, height: CGFloat? = nil, text: String, font: NSFont) -> CGSize {
         self.isBordered = false
