@@ -287,18 +287,40 @@ public class Chat: NSManagedObject {
         return chat
     }
     
-    func processAliasesFrom(messages: [TransactionMessage]) {
-        var aliases: [String] = []
+    func processAliases() {
+        if self.isConversation() {
+            return
+        }
         
-        aliasesAndPics = []
+        let backgroundContext = CoreDataManager.sharedManager.getBackgroundContext()
         
+        backgroundContext.perform {
+            let messages = self.getAllMessages(
+                limit: 2000,
+                context: backgroundContext
+            )
+            
+            for message in messages {
+                if let alias = message.senderAlias, alias.isNotEmpty {
+                    if !self.aliasesAndPics.contains(where: {$0.0 == alias}) {
+                        self.aliasesAndPics.append(
+                            (alias, message.senderPic ?? "")
+                        )
+                    }
+                }
+            }
+        }
+    }
+    
+    func processAliasesFrom(
+        messages: [TransactionMessage]
+    ) {
         for message in messages {
-            if let alias = message.senderAlias, alias.isEmpty == false {
-                if !aliases.contains(alias) {
-                    aliasesAndPics.append(
+            if let alias = message.senderAlias, alias.isNotEmpty {
+                if !aliasesAndPics.contains(where: {$0.0 == alias}) {
+                    self.aliasesAndPics.append(
                         (alias, message.senderPic ?? "")
                     )
-                    aliases.append(alias)
                 }
             }
         }
@@ -314,14 +336,17 @@ public class Chat: NSManagedObject {
         limit: Int? = 100,
         messagesIdsToExclude: [Int] = [],
         lastMessage: TransactionMessage? = nil,
-        firstMessage: TransactionMessage? = nil
+        firstMessage: TransactionMessage? = nil,
+        context: NSManagedObjectContext? = nil
     ) -> [TransactionMessage] {
+        
         return TransactionMessage.getAllMessagesFor(
             chat: self,
             limit: limit,
             messagesIdsToExclude: messagesIdsToExclude,
             lastMessage: lastMessage,
-            firstMessage: firstMessage
+            firstMessage: firstMessage,
+            context: context
         )
     }
     

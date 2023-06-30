@@ -126,7 +126,6 @@ class ChatViewController: DashboardSplittedViewController {
         self.mentionAutoCompleteEnclosingScrollView.isHidden = true
         configureView()
         prepareRecordingView()
-        initializeMacros()
     }
     
     override func viewDidAppear() {
@@ -156,48 +155,69 @@ class ChatViewController: DashboardSplittedViewController {
     
     func initializeMacros() {
         self.macros = [
-               MentionOrMacroItem(type: .macro, displayText: "send.giphy".localized,
-                    image: #imageLiteral(resourceName: "giphyIcon"),
-                    action: {
-                   self.giphyButtonClicked(self) // Call the instance method using 'self'
-               }),
-               MentionOrMacroItem(type: .macro, displayText: "start.audio.call".localized,
-                image: #imageLiteral(resourceName: "phone_call_icon"),
+            MentionOrMacroItem(
+                type: .macro,
+                displayText: "send.giphy".localized,
+                image: NSImage(named: "giphyIcon"),
                 action: {
-                   self.shouldCreateCall(mode: .Audio)
-               }),
-               MentionOrMacroItem(type: .macro, displayText: "start.video.call".localized,
-                image: #imageLiteral(resourceName:"video_call_icon"),
+                    self.giphyButtonClicked(self) // Call the instance method using 'self'
+                }
+            ),
+            MentionOrMacroItem(
+                type: .macro,
+                displayText: "start.audio.call".localized,
+                icon: "call",
                 action: {
-                   self.shouldCreateCall(mode: .All)
-               }),
-               MentionOrMacroItem(type: .macro, displayText: "send.emoji".localized,
-                image: #imageLiteral(resourceName: "emojiIcon"),
+                    self.shouldCreateCall(mode: .Audio)
+                }
+            ),
+            MentionOrMacroItem(
+                type: .macro,
+                displayText: "start.video.call".localized,
+                icon: "video_call",
                 action: {
-                   self.emojiButtonClicked(self)
-               }),
-               MentionOrMacroItem(type: .macro, displayText: "record.voice".localized,
-                    image: #imageLiteral(resourceName:"microphone_icon") ,
-                    action: {
-                   self.micButtonClicked(self)
-               })
-           ]
+                    self.shouldCreateCall(mode: .All)
+                }
+            ),
+            MentionOrMacroItem(
+                type: .macro,
+                displayText: "send.emoji".localized,
+                icon: "mood",
+                action: {
+                    self.emojiButtonClicked(self)
+                }
+            ),
+            MentionOrMacroItem(
+                type: .macro,
+                displayText: "record.voice".localized,
+                icon: "mic",
+                action: {
+                    self.micButtonClicked(self)
+                }
+            )
+        ]
         
-        if(self.chat?.isGroup() == false){
+        if (self.chat?.isGroup() == false) {
             macros.append(contentsOf: [
-                MentionOrMacroItem(type: .macro, displayText: "send.payment".localized,
-                 image: #imageLiteral(resourceName: "invoicePayIcon")
-                 ,action: {
-                    self.macroDoPayment(buttonTag: ChildVCContainer.ChildVCOptionsMenuButton.Send)
-                }),
-                MentionOrMacroItem(type: .macro, displayText: "request.payment".localized,
-                 image: #imageLiteral(resourceName: "invoiceReceiveIcon"),
-                 action: {
-                    self.macroDoPayment(buttonTag: ChildVCContainer.ChildVCOptionsMenuButton.Request)
-                }),
+                MentionOrMacroItem(
+                    type: .macro,
+                    displayText: "send.payment".localized,
+                    image: NSImage(named: "bottomBar4"),
+                    action: {
+                        self.macroDoPayment(buttonTag: ChildVCContainer.ChildVCOptionsMenuButton.Send)
+                    }
+                ),
+                MentionOrMacroItem(
+                    type: .macro,
+                    displayText: "request.payment".localized,
+                    image: NSImage(named: "bottomBar1"),
+                    action: {
+                        self.macroDoPayment(buttonTag: ChildVCContainer.ChildVCOptionsMenuButton.Request)
+                    }
+                ),
             ])
         }
-       }
+    }
     
     func configureView() {
         headerView.addShadow(location: VerticalLocation.bottom, color: NSColor.black, opacity: 0.2, radius: 5.0)
@@ -311,10 +331,6 @@ class ChatViewController: DashboardSplittedViewController {
         
         self.contact = contact
         self.chat = chat
-        if let valid_chat = chat{
-            valid_chat.processAliasesFrom(messages: valid_chat.getAllMessages())
-        }
-        
         
         self.contactsService = contactsService
         
@@ -338,10 +354,19 @@ class ChatViewController: DashboardSplittedViewController {
         if chatDataSource == nil {
             chatDataSource = ChatDataSource(collectionView: chatCollectionView, delegate: self, cellDelegate: self)
         }
+        
+        initializeMacros()
         initialLoad()
         updateTribeInfo()
         checkActiveTribe()
         checkRoute()
+        processChatAliases()
+    }
+    
+    func processChatAliases() {
+        DispatchQueue.global(qos: .background).async {
+            self.chat?.processAliases()
+        }
     }
     
     @objc func setChatInfo() {

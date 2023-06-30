@@ -15,6 +15,8 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
     @IBOutlet weak var dividerLine: NSBox!
     @IBOutlet weak var avatarImage: NSImageView!
     @IBOutlet weak var iconLabel: NSTextField!
+    @IBOutlet weak var initialsBox: NSBox!
+    @IBOutlet weak var initialsLabel: NSTextField!
     
     var delegate : ChatMentionAutocompleteDelegate? = nil
     var alias : String? = nil
@@ -23,15 +25,23 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
+        
         view.wantsLayer = true
         dividerLine.layer?.borderColor = NSColor.Sphinx.LightDivider.cgColor
+        avatarImage.imageAlignment = .alignCenter
     }
     
-    func configureWith(mentionOrMacro: MentionOrMacroItem,delegate:ChatMentionAutocompleteDelegate){
+    func configureWith(
+        mentionOrMacro: MentionOrMacroItem,
+        delegate: ChatMentionAutocompleteDelegate
+    ){
         self.alias = mentionOrMacro.displayText
         self.type = mentionOrMacro.type
         self.action = mentionOrMacro.action
+        
+        avatarImage.isHidden = true
+        iconLabel.isHidden = true
+        initialsBox.isHidden = true
         
         mentionTextField.stringValue = mentionOrMacro.displayText
         
@@ -41,37 +51,39 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
             
             if let icon = mentionOrMacro.icon {
                 iconLabel.stringValue = icon
-                
-                avatarImage.isHidden = true
                 iconLabel.isHidden = false
             } else {
+                avatarImage.layer?.cornerRadius = 0
+                avatarImage.imageScaling = .scaleNone
                 avatarImage.image = mentionOrMacro.image ?? NSImage(named: "appPinIcon")
-                //avatarImage.contentMode = mentionOrMacro.imageContentMode ?? .center
-                
                 avatarImage.isHidden = false
-                iconLabel.isHidden = true
             }
             
         } else {
-            avatarImage.isHidden = false
+            
+            initialsBox.isHidden = false
             iconLabel.isHidden = true
             
-            avatarImage.makeCircular()
-            makeImagesCircular(images: [avatarImage])
             avatarImage.imageScaling = .scaleAxesIndependently
-            avatarImage.imageAlignment = .alignCenter
+            
+            initialsBox.fillColor = NSColor.getColorFor(key: "\(mentionOrMacro.displayText)-color")
+            initialsLabel.stringValue = mentionOrMacro.displayText.getInitialsFromName()
             
             if let imageLink = mentionOrMacro.imageLink, let url = URL(string: imageLink) {
+                avatarImage.makeCircular()
+                
                 avatarImage.sd_setImage(
                     with: url,
                     placeholderImage: NSImage(named: "profile_avatar"),
-                    context: nil
+                    options: [SDWebImageOptions.progressiveLoad],
+                    completed: { (image, error, _, _) in
+                        if let image = image, error == nil {
+                            self.avatarImage.image = image
+                            self.avatarImage.isHidden = false
+                        }
+                    }
                 )
-            } else {
-                avatarImage.image = NSImage(named: "profile_avatar")
             }
-            
-            //avatarImage.contentMode = .scaleAspectFill
         }
         avatarImage.contentTintColor = NSColor.Sphinx.SecondaryText
     }

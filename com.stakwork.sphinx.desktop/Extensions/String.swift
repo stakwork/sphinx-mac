@@ -741,6 +741,10 @@ extension String {
     var isEmptyPinnedMessage : Bool {
         return self.isEmpty || self == "_"
     }
+    
+    var isNotEmpty: Bool {
+        return !isEmpty
+    }
 }
 
 
