@@ -64,6 +64,7 @@
 "select.option" = "Please select an option";
 "required.fields.empty" = "Some of the required fields are empty";
 "add.contacts" = "Add Contacts";
+"pub.key.options-send.payment" = "Send Payment";
 "select.contacts" = "Select Contacts";
 "contacts.upper" = "CONTACTS";
 "member.join.soon" = "New members will join group soon";
@@ -319,6 +320,7 @@
 "price.required" = "Price is required";
 "message.required" = "Message is required";
 "send.gif.upper" = "SEND GIF";
+"find.and.share.gif" = "Find and share a gif";
 "send.image.upper" = "SEND IMAGE";
 "send.paid.message.upper" = "SEND PAID MESSAGE";
 "send.video.upper" = "SEND VIDEO";
@@ -336,6 +338,8 @@
 "pdf.description" = "PDF - %@ - Page %d of %d";
 
 //OTHER
+"start.video.call" = "Start video call";
+"start.audio.call" = "Start audio call";
 "create.call" = "Create Call";
 "select.call.mode" = "Select call mode";
 "audio" = "Audio";
@@ -447,3 +451,12 @@
 //Deeplinks
 "deeplink.issue.title" = "Link Issue";
 "deeplink.issue.message" = "There was an issue with the link. This is usually because you do not have access to the tribe in question.";
+
+//MACRO
+"send.giphy" = "Enviar Giphy";
+"start.audio.call" = "Iniciar llamada de audio";
+"start.video.call" = "Iniciar video llamada";
+"send.payment" = "Enviar pago";
+"request.payment" = "Solicitar pago";
+"send.emoji" = "Send emoji";
+"record.voice" = "Record voice message";

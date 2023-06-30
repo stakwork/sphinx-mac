@@ -100,6 +100,8 @@ class ChatDataSource : NSObject {
         boosts = [:]
         createContactIdsDictionary()
         
+        chat?.processAliasesFrom(messages: messagesArray)
+        
         chatHelper.processMessagesReactionsFor(chat: chat, messagesArray: messagesArray, boosts: &boosts)
         processMessagesArray(newObjectsCount: messagesArray.count)
 

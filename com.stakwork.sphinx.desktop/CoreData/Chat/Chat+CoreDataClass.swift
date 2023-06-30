@@ -19,7 +19,7 @@ public class Chat: NSManagedObject {
     
     public var ongoingMessage : String? = nil
     var tribeInfo: GroupsManager.TribeInfo? = nil
-    var aliases : [String] = [String]()
+    var aliasesAndPics: [(String, String)] = []
     
     public enum ChatType: Int {
         case conversation = 0
@@ -287,22 +287,66 @@ public class Chat: NSManagedObject {
         return chat
     }
     
-    func loadAllAliases(){
-        self.aliases = Array(Set(self.getAllMessages().compactMap({$0.senderAlias})))
+    func processAliases() {
+        if self.isConversation() {
+            return
+        }
+        
+        let backgroundContext = CoreDataManager.sharedManager.getBackgroundContext()
+        
+        backgroundContext.perform {
+            let messages = self.getAllMessages(
+                limit: 2000,
+                context: backgroundContext
+            )
+            
+            for message in messages {
+                if let alias = message.senderAlias, alias.isNotEmpty {
+                    if !self.aliasesAndPics.contains(where: {$0.0 == alias}) {
+                        self.aliasesAndPics.append(
+                            (alias, message.senderPic ?? "")
+                        )
+                    }
+                }
+            }
+        }
+    }
+    
+    func processAliasesFrom(
+        messages: [TransactionMessage]
+    ) {
+        for message in messages {
+            if let alias = message.senderAlias, alias.isNotEmpty {
+                if !aliasesAndPics.contains(where: {$0.0 == alias}) {
+                    self.aliasesAndPics.append(
+                        (alias, message.senderPic ?? "")
+                    )
+                }
+            }
+        }
+    }
+    
+    func findImageURLByAlias(alias:String)->URL?{
+        let allMessages = self.getAllMessages()
+        guard let picURLString = allMessages.first(where: {$0.senderAlias == alias})?.senderPic else { return nil }
+        return URL(string: picURLString)
     }
     
     func getAllMessages(
         limit: Int? = 100,
         messagesIdsToExclude: [Int] = [],
         lastMessage: TransactionMessage? = nil,
-        firstMessage: TransactionMessage? = nil
+        firstMessage: TransactionMessage? = nil,
+        context: NSManagedObjectContext? = nil
     ) -> [TransactionMessage] {
+        
         return TransactionMessage.getAllMessagesFor(
             chat: self,
             limit: limit,
             messagesIdsToExclude: messagesIdsToExclude,
             lastMessage: lastMessage,
-            firstMessage: firstMessage
+            firstMessage: firstMessage,
+            context: context
         )
     }
     

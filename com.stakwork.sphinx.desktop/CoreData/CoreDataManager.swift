@@ -158,8 +158,14 @@ class CoreDataManager {
         return nil
     }
     
-    func getObjectsOfTypeWith<T>(predicate: NSPredicate, sortDescriptors: [NSSortDescriptor], entityName: String, fetchLimit: Int? = nil) -> [T] {
-        let managedContext = persistentContainer.viewContext
+    func getObjectsOfTypeWith<T>(
+        predicate: NSPredicate,
+        sortDescriptors: [NSSortDescriptor],
+        entityName: String,
+        fetchLimit: Int? = nil,
+        managedContext: NSManagedObjectContext? = nil
+    ) -> [T] {
+        let managedContext = managedContext ?? persistentContainer.viewContext
         var objects:[T] = [T]()
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"\(entityName)")

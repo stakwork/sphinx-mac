@@ -74,6 +74,7 @@ class ChatViewController: DashboardSplittedViewController {
     var chatMentionAutocompleteDataSource : ChatMentionAutocompleteDataSource? = nil
     
     var currentMessageString = ""
+    var macros : [MentionOrMacroItem] = []
     
     var unseenMessagesCount = 0
     var deeplinkData : DeeplinkData? = nil
@@ -150,6 +151,72 @@ class ChatViewController: DashboardSplittedViewController {
         
         headerView.wantsLayer = true
         headerView.layer?.backgroundColor = NSColor.Sphinx.HeaderBG.cgColor
+    }
+    
+    func initializeMacros() {
+        self.macros = [
+            MentionOrMacroItem(
+                type: .macro,
+                displayText: "send.giphy".localized,
+                image: NSImage(named: "giphyIcon"),
+                action: {
+                    self.giphyButtonClicked(self) // Call the instance method using 'self'
+                }
+            ),
+            MentionOrMacroItem(
+                type: .macro,
+                displayText: "start.audio.call".localized,
+                icon: "call",
+                action: {
+                    self.shouldCreateCall(mode: .Audio)
+                }
+            ),
+            MentionOrMacroItem(
+                type: .macro,
+                displayText: "start.video.call".localized,
+                icon: "video_call",
+                action: {
+                    self.shouldCreateCall(mode: .All)
+                }
+            ),
+            MentionOrMacroItem(
+                type: .macro,
+                displayText: "send.emoji".localized,
+                icon: "mood",
+                action: {
+                    self.emojiButtonClicked(self)
+                }
+            ),
+            MentionOrMacroItem(
+                type: .macro,
+                displayText: "record.voice".localized,
+                icon: "mic",
+                action: {
+                    self.micButtonClicked(self)
+                }
+            )
+        ]
+        
+        if (self.chat?.isGroup() == false) {
+            macros.append(contentsOf: [
+                MentionOrMacroItem(
+                    type: .macro,
+                    displayText: "send.payment".localized,
+                    image: NSImage(named: "bottomBar4"),
+                    action: {
+                        self.macroDoPayment(buttonTag: ChildVCContainer.ChildVCOptionsMenuButton.Send)
+                    }
+                ),
+                MentionOrMacroItem(
+                    type: .macro,
+                    displayText: "request.payment".localized,
+                    image: NSImage(named: "bottomBar1"),
+                    action: {
+                        self.macroDoPayment(buttonTag: ChildVCContainer.ChildVCOptionsMenuButton.Request)
+                    }
+                ),
+            ])
+        }
     }
     
     func configureView() {
@@ -264,7 +331,6 @@ class ChatViewController: DashboardSplittedViewController {
         
         self.contact = contact
         self.chat = chat
-        self.chat?.loadAllAliases()
         
         self.contactsService = contactsService
         
@@ -288,10 +354,19 @@ class ChatViewController: DashboardSplittedViewController {
         if chatDataSource == nil {
             chatDataSource = ChatDataSource(collectionView: chatCollectionView, delegate: self, cellDelegate: self)
         }
+        
+        initializeMacros()
         initialLoad()
         updateTribeInfo()
         checkActiveTribe()
         checkRoute()
+        processChatAliases()
+    }
+    
+    func processChatAliases() {
+        DispatchQueue.global(qos: .background).async {
+            self.chat?.processAliases()
+        }
     }
     
     @objc func setChatInfo() {
@@ -500,6 +575,15 @@ class ChatViewController: DashboardSplittedViewController {
             messageTextView.window?.makeFirstResponder(nil)
             childVCContainer.showPmtOptionsMenuOn(parentVC: self, with: self.chat, delegate: self)
         }
+    }
+    
+    func macroDoPayment(buttonTag:ChildVCContainer.ChildVCOptionsMenuButton){
+        attachmentButtonClicked(self)
+        let virtualButton = NSButton()
+        virtualButton.tag = buttonTag.rawValue
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
+            self.childVCContainer.optionButtonClicked(virtualButton)
+        })
     }
     
     @IBAction func emojiButtonClicked(_ sender: Any) {

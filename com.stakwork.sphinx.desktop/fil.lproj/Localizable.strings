@@ -446,3 +446,13 @@
 //Deeplinks
 "deeplink.issue.title" = "Link Issue";
 "deeplink.issue.message" = "Nagkaroon ng isyu sa link. Kadalasan ito ay dahil wala kang access sa pinag-uusapang tribo.";
+
+
+//MACRO
+"send.giphy" = "Send Giphy";
+"start.audio.call" = "Start Audio Call";
+"start.video.call" = "Start Video Call";
+"send.payment" = "Send Payment";
+"request.payment" = "Request Payment";
+"send.emoji" = "Send emoji";
+"record.voice" = "Record voice message";

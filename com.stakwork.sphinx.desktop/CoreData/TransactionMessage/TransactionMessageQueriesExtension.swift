@@ -33,11 +33,14 @@ extension TransactionMessage {
         return message
     }
     
-    static func getAllMessagesFor(chat: Chat,
-                                  limit: Int? = nil,
-                                  messagesIdsToExclude: [Int] = [],
-                                  lastMessage: TransactionMessage? = nil,
-                                  firstMessage: TransactionMessage? = nil) -> [TransactionMessage] {
+    static func getAllMessagesFor(
+        chat: Chat,
+        limit: Int? = nil,
+        messagesIdsToExclude: [Int] = [],
+        lastMessage: TransactionMessage? = nil,
+        firstMessage: TransactionMessage? = nil,
+        context: NSManagedObjectContext? = nil
+    ) -> [TransactionMessage] {
         
         var predicate : NSPredicate!
         if messagesIdsToExclude.count > 0 {
@@ -60,7 +63,15 @@ extension TransactionMessage {
         let sortDescriptors = [NSSortDescriptor(key: "date", ascending: false), NSSortDescriptor(key: "id", ascending: false)]
         
         let fetchLimit = (firstMessage == nil) ? limit : nil
-        let messages: [TransactionMessage] = CoreDataManager.sharedManager.getObjectsOfTypeWith(predicate: predicate, sortDescriptors: sortDescriptors, entityName: "TransactionMessage", fetchLimit: fetchLimit)
+        
+        let messages: [TransactionMessage] = CoreDataManager.sharedManager.getObjectsOfTypeWith(
+            predicate: predicate,
+            sortDescriptors: sortDescriptors,
+            entityName: "TransactionMessage",
+            fetchLimit: fetchLimit,
+            managedContext: context
+        )
+        
         return messages.reversed()
     }
     
