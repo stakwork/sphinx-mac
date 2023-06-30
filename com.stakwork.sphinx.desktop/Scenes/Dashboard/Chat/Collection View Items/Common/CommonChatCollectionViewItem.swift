@@ -85,7 +85,7 @@ class CommonChatCollectionViewItem: NSCollectionViewItem, MessageRowProtocol {
             return
         }
         
-        addLinkPreview()
+//        addLinkPreview()
         addTribeLinkPreview()
         addPubKeyPreview()
         addBostedAmtLabel()
