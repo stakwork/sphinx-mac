@@ -9,6 +9,7 @@
 import Foundation
 import WebKit
 import SwiftyJSON
+import ObjectMapper
 
 protocol WebAppHelperDelegate : NSObject{
     func setBudget(budget:Int)
@@ -24,6 +25,8 @@ class WebAppHelper : NSObject {
     
     var persistingValues: [String: AnyObject] = [:]
     var delegate : WebAppHelperDelegate? = nil
+    
+    var lsatList = [LSATObject]()
     
     func setWebView(_ webView: WKWebView, authorizeHandler: @escaping (([String: AnyObject]) -> ())) {
         self.webView = webView
@@ -77,6 +80,23 @@ extension WebAppHelper : WKScriptMessageHandler {
                 }
             }
         }
+    }
+    
+    func listLSats(completion: @escaping (Bool)->()){
+        API.sharedInstance.getLsatList(callback: {results in
+            let lsats = results["lsats"]
+            print(lsats)
+            for lsat in lsats{
+                if let json = JSON(lsat.1).rawValue as? [String:Any],
+                let lsat_object = Mapper<LSATObject>().map(JSON: json){
+                    print(lsat_object)
+                    self.lsatList.append(lsat_object)
+                }
+            }
+            completion(true)
+        }, errorCallback: {
+            completion(false)
+        })
     }
     
     func jsonStringWithObject(obj: AnyObject) -> String? {
@@ -368,25 +388,54 @@ extension WebAppHelper : WKScriptMessageHandler {
            
         }
     }
+    
+    func checkForExistingLsat(completion: @escaping (Int?)->()){
+        API.sharedInstance.getActiveLsat(callback: { lsat in
+            let newDict = self.decodeLsat(lsat: lsat, dict: [:])
+            if let paymentRequest = newDict["paymentRequest"] as? String{
+                let prDecoder = PaymentRequestDecoder()
+                prDecoder.decodePaymentRequest(paymentRequest: paymentRequest)
+                let amount = prDecoder.getAmount()
+                print(amount)
+                completion(amount)
+            }
+        }, errorCallback: {
+            print("failed to retrieve and active LSAT")
+            completion(nil)
+        })
+    }
+    
+    func decodeLsat(lsat:JSON,dict:[String: AnyObject])->[String: AnyObject]{
+        var newDict = dict
+        if let macaroon = lsat["macaroon"].string,
+            let identifier = lsat["identifier"].string,
+            let preimage = lsat["preimage"].string,
+            let paymentRequest = lsat["paymentRequest"].string,
+            let issuer = lsat["issuer"].string,
+            let status = lsat["status"].number{
+            
+            newDict["macaroon"] = macaroon as AnyObject
+            newDict["identifier"] = identifier as AnyObject
+            newDict["preimage"] = preimage as AnyObject
+            newDict["paymentRequest"] = paymentRequest as AnyObject
+            
+            
+            newDict["issuer"] = issuer as AnyObject
+            newDict["status"] = status as AnyObject
+            if let paths = lsat["paths"].string {
+                newDict["paths"] = paths as AnyObject
+            }
+            else {
+                newDict["paths"] = "" as AnyObject
+            }
+        }
+        return newDict
+    }
+    
     func getActiveLsat(_ dict: [String: AnyObject]) {
         
             API.sharedInstance.getActiveLsat(callback: { lsat in
-            var newDict = dict
-                if let macaroon = lsat["macaroon"].string, let  identifier = lsat["identifier"].string, let preimage = lsat["preimage"].string, let paymentRequest = lsat["paymentRequest"].string, let issuer = lsat["issuer"].string, let status = lsat["status"].number{
-                    
-                    newDict["macaroon"] = macaroon as AnyObject
-                    newDict["identifier"] = identifier as AnyObject
-                    newDict["preimage"] = preimage as AnyObject
-                    newDict["paymentRequest"] = paymentRequest as AnyObject
-                    newDict["issuer"] = issuer as AnyObject
-                    newDict["status"] = status as AnyObject
-                        if let paths = lsat["paths"].string {
-                            newDict["paths"] = paths as AnyObject
-                        }
-                        else {
-                            newDict["paths"] = "" as AnyObject
-                        }
-                        }
+                let newDict = self.decodeLsat(lsat: lsat, dict: dict)
                 self.getLsatResponse(dict: newDict, success: true)
             }, errorCallback: {
                 print("failed to retrieve and active LSAT")
