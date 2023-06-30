@@ -514,14 +514,14 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="GTM-5e-6jW" customClass="ChatAvatarView" customModule="Sphinx" customModuleProvider="target">
-                                            <rect key="frame" x="150" y="182" width="100" height="100"/>
+                                            <rect key="frame" x="150" y="184" width="100" height="100"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="2q6-WF-7KQ"/>
                                                 <constraint firstAttribute="height" constant="100" id="rh4-st-D5y"/>
                                             </constraints>
                                         </customView>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aNk-mv-UTA">
-                                            <rect key="frame" x="147" y="133" width="107" height="19"/>
+                                            <rect key="frame" x="147" y="135" width="107" height="19"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Contact Name" id="Jwy-W5-tXa">
                                                 <font key="font" size="16" name="Roboto-Medium"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -529,7 +529,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Yp-Ei-wYU">
-                                            <rect key="frame" x="18" y="92" width="324" height="16"/>
+                                            <rect key="frame" x="18" y="91" width="324" height="19"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="320" id="ky2-3i-CUb"/>
                                             </constraints>
@@ -540,7 +540,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="yLY-oN-qAB">
-                                            <rect key="frame" x="148" y="22" width="105" height="40"/>
+                                            <rect key="frame" x="148" y="21" width="105" height="40"/>
                                             <subviews>
                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bVh-QR-8zW">
                                                     <rect key="frame" x="0.0" y="0.0" width="19" height="40"/>
@@ -548,7 +548,7 @@
                                                     <color key="contentTintColor" name="SecondaryText"/>
                                                 </imageView>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QTD-Rq-Ec3">
-                                                    <rect key="frame" x="25" y="14" width="82" height="13"/>
+                                                    <rect key="frame" x="25" y="13" width="82" height="13"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="CLICK TO COPY" id="JLX-aR-llf">
                                                         <font key="font" metaFont="system" size="10"/>
                                                         <color key="textColor" name="SecondaryText"/>
@@ -654,13 +654,13 @@
                                         <color key="fillColor" name="Body"/>
                                     </box>
                                     <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="um1-Mb-zd8">
-                                        <rect key="frame" x="0.0" y="60" width="835" height="356"/>
+                                        <rect key="frame" x="0.0" y="60" width="835" height="316"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="kEN-Ag-NHA">
-                                            <rect key="frame" x="0.0" y="0.0" width="835" height="356"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="835" height="316"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <collectionView selectable="YES" id="Gnz-3F-xrF">
-                                                    <rect key="frame" x="0.0" y="0.0" width="830" height="336"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="830" height="296"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" id="HsZ-kE-bcj">
                                                         <size key="itemSize" width="50" height="50"/>
@@ -677,12 +677,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="th7-8R-ZjF">
-                                            <rect key="frame" x="783" y="10" width="16" height="336"/>
+                                            <rect key="frame" x="818" y="10" width="16" height="296"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
                                     <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ghc-rF-3vi">
-                                        <rect key="frame" x="-5" y="351" width="30" height="45"/>
+                                        <rect key="frame" x="-5" y="315" width="30" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="4sg-8c-ZtV"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="qTx-3x-bby"/>
@@ -740,7 +740,7 @@
                                         </constraints>
                                     </customView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="GoM-QU-nDk" customClass="DraggingDestinationView" customModule="Sphinx" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="60" width="835" height="356"/>
+                                        <rect key="frame" x="0.0" y="60" width="835" height="316"/>
                                     </customView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="TCK-by-aGy">
                                         <rect key="frame" x="0.0" y="60" width="835" height="0.0"/>
@@ -1196,7 +1196,7 @@
                                                 </constraints>
                                             </customView>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3xo-JI-aRc">
-                                                <rect key="frame" x="20" y="20" width="308" height="20"/>
+                                                <rect key="frame" x="20" y="20" width="309" height="20"/>
                                                 <buttonCell key="cell" type="bevel" title="Open a conversation to start messaging" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="b26-JN-1eG">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" size="17" name="Roboto-Medium"/>
@@ -1231,7 +1231,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XZC-6W-7hr">
-                                                <rect key="frame" x="333" y="23" width="19" height="15"/>
+                                                <rect key="frame" x="334" y="23" width="19" height="15"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="lock" id="yKE-c5-U1V">
                                                     <font key="font" size="15" name="MaterialIcons-Regular"/>
                                                     <color key="textColor" name="SecondaryText"/>
@@ -1239,7 +1239,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oOa-kC-pzn">
-                                                <rect key="frame" x="352" y="23" width="19" height="15"/>
+                                                <rect key="frame" x="353" y="23" width="19" height="15"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="flash_on" id="TTp-Zc-yDN">
                                                     <font key="font" size="15" name="MaterialIcons-Regular"/>
                                                     <color key="textColor" name="SecondaryText"/>
@@ -1249,7 +1249,7 @@
                                             <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J0W-Yf-gz5" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                                                 <rect key="frame" x="715" y="2" width="40" height="58"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="40" id="sgd-m1-Zdu"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="sgd-m1-Zdu"/>
                                                 </constraints>
                                                 <buttonCell key="cell" type="square" title="apps" bezelStyle="shadowlessSquare" alignment="center" inset="2" id="Oux-j3-ALM">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1292,6 +1292,7 @@
                                         <constraints>
                                             <constraint firstItem="Uyl-oe-7nG" firstAttribute="leading" secondItem="3xo-JI-aRc" secondAttribute="leading" constant="3" id="05y-tQ-qzK"/>
                                             <constraint firstItem="tgU-wH-N0J" firstAttribute="top" secondItem="DtP-U1-1iT" secondAttribute="top" id="2G6-re-SLD"/>
+                                            <constraint firstItem="J0W-Yf-gz5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="oOa-kC-pzn" secondAttribute="trailing" constant="8" symbolic="YES" id="5Ji-T6-wXi"/>
                                             <constraint firstItem="tgU-wH-N0J" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="oOa-kC-pzn" secondAttribute="trailing" constant="8" symbolic="YES" id="6JN-ph-5de"/>
                                             <constraint firstItem="LtY-pI-a4x" firstAttribute="leading" secondItem="DtP-U1-1iT" secondAttribute="leading" id="8Zk-Dh-Ism"/>
                                             <constraint firstAttribute="bottom" secondItem="J0W-Yf-gz5" secondAttribute="bottom" constant="2" id="B7v-Oo-lzG"/>
@@ -1323,6 +1324,12 @@
                                             <constraint firstItem="SpR-T0-gey" firstAttribute="top" secondItem="DtP-U1-1iT" secondAttribute="top" id="xon-rf-u0p"/>
                                         </constraints>
                                     </customView>
+                                    <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GHZ-Wm-eGW" customClass="PinMessageBarView" customModule="Sphinx" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="376" width="835" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="bKH-3I-VRu"/>
+                                        </constraints>
+                                    </customView>
                                     <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPS-2s-ytn">
                                         <rect key="frame" x="0.0" y="60" width="835" height="240"/>
                                         <clipView key="contentView" id="BSs-86-tOJ">
@@ -1351,13 +1358,23 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
+                                    <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y0u-r6-RUu" customClass="PinMessageDetailView" customModule="Sphinx" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="835" height="476"/>
+                                    </customView>
+                                    <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Js3-MQ-ivA" customClass="PinNotificationView" customModule="Sphinx" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="835" height="476"/>
+                                    </customView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="GHZ-Wm-eGW" secondAttribute="trailing" id="0TW-2b-7I3"/>
                                     <constraint firstAttribute="trailing" secondItem="DtP-U1-1iT" secondAttribute="trailing" id="0kE-Q6-1rZ"/>
                                     <constraint firstAttribute="trailing" secondItem="um1-Mb-zd8" secondAttribute="trailing" id="5C0-cO-XLw"/>
                                     <constraint firstItem="hwe-uJ-mHT" firstAttribute="top" secondItem="Vyu-wn-T1v" secondAttribute="top" id="64P-jl-OTi"/>
                                     <constraint firstAttribute="bottom" secondItem="xdH-X6-5PP" secondAttribute="bottom" id="6Cg-VS-UiW"/>
                                     <constraint firstAttribute="bottom" secondItem="hwe-uJ-mHT" secondAttribute="bottom" id="6Xp-5M-5PJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="y0u-r6-RUu" secondAttribute="bottom" id="8w0-hS-hhl"/>
+                                    <constraint firstAttribute="trailing" secondItem="y0u-r6-RUu" secondAttribute="trailing" priority="750" id="AMr-OJ-xVR"/>
+                                    <constraint firstItem="y0u-r6-RUu" firstAttribute="top" secondItem="Vyu-wn-T1v" secondAttribute="top" id="BLP-h1-o4D"/>
                                     <constraint firstItem="GoM-QU-nDk" firstAttribute="trailing" secondItem="um1-Mb-zd8" secondAttribute="trailing" id="JDi-mT-eOq"/>
                                     <constraint firstItem="xdH-X6-5PP" firstAttribute="leading" secondItem="Vyu-wn-T1v" secondAttribute="leading" id="JdS-sP-6oO"/>
                                     <constraint firstItem="GoM-QU-nDk" firstAttribute="leading" secondItem="um1-Mb-zd8" secondAttribute="leading" id="L6R-a2-R3p"/>
@@ -1366,15 +1383,20 @@
                                     <constraint firstAttribute="trailing" secondItem="xdH-X6-5PP" secondAttribute="trailing" id="Odu-zV-ktW"/>
                                     <constraint firstAttribute="trailing" secondItem="cPS-2s-ytn" secondAttribute="trailing" id="Q7T-FT-0sX"/>
                                     <constraint firstItem="TCK-by-aGy" firstAttribute="top" secondItem="USL-Ca-asX" secondAttribute="bottom" constant="20" id="QwA-Do-byB"/>
-                                    <constraint firstItem="Ghc-rF-3vi" firstAttribute="top" secondItem="Vyu-wn-T1v" secondAttribute="top" constant="80" id="RJ5-F0-3ge"/>
+                                    <constraint firstAttribute="trailing" secondItem="Js3-MQ-ivA" secondAttribute="trailing" priority="750" id="S6Z-4r-I0q"/>
                                     <constraint firstItem="hwe-uJ-mHT" firstAttribute="leading" secondItem="Vyu-wn-T1v" secondAttribute="leading" id="Svg-fn-ODQ"/>
                                     <constraint firstItem="GoM-QU-nDk" firstAttribute="top" secondItem="um1-Mb-zd8" secondAttribute="top" id="X0K-Nu-ohU"/>
                                     <constraint firstItem="14P-rj-E0n" firstAttribute="leading" secondItem="Vyu-wn-T1v" secondAttribute="leading" id="YSK-Wn-WbB"/>
-                                    <constraint firstItem="um1-Mb-zd8" firstAttribute="top" secondItem="DtP-U1-1iT" secondAttribute="bottom" id="c6f-ZN-xqC"/>
+                                    <constraint firstItem="Js3-MQ-ivA" firstAttribute="leading" secondItem="Vyu-wn-T1v" secondAttribute="leading" priority="750" id="ZWb-hU-z66"/>
+                                    <constraint firstItem="Ghc-rF-3vi" firstAttribute="top" secondItem="GHZ-Wm-eGW" secondAttribute="bottom" constant="16" id="abO-2D-4Z9"/>
+                                    <constraint firstItem="Js3-MQ-ivA" firstAttribute="top" secondItem="Vyu-wn-T1v" secondAttribute="top" id="b1v-Hd-cFg"/>
                                     <constraint firstItem="14P-rj-E0n" firstAttribute="top" secondItem="TCK-by-aGy" secondAttribute="bottom" id="ec7-5f-pNU"/>
                                     <constraint firstAttribute="trailing" secondItem="14P-rj-E0n" secondAttribute="trailing" id="eq4-T3-RHg"/>
                                     <constraint firstItem="DtP-U1-1iT" firstAttribute="top" secondItem="Vyu-wn-T1v" secondAttribute="top" id="fXg-bd-mNy"/>
+                                    <constraint firstAttribute="bottom" secondItem="Js3-MQ-ivA" secondAttribute="bottom" id="fjT-GK-HG0"/>
                                     <constraint firstItem="xdH-X6-5PP" firstAttribute="top" secondItem="Vyu-wn-T1v" secondAttribute="top" id="fvv-V8-4pP"/>
+                                    <constraint firstItem="GHZ-Wm-eGW" firstAttribute="leading" secondItem="Vyu-wn-T1v" secondAttribute="leading" id="gQZ-PM-OC9"/>
+                                    <constraint firstItem="y0u-r6-RUu" firstAttribute="leading" secondItem="Vyu-wn-T1v" secondAttribute="leading" priority="750" id="hdY-Jm-tYW"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ghc-rF-3vi" secondAttribute="trailing" constant="20" symbolic="YES" id="iTU-pW-tbQ"/>
                                     <constraint firstItem="Ghc-rF-3vi" firstAttribute="leading" secondItem="Vyu-wn-T1v" secondAttribute="leading" constant="-5" id="l9a-XI-hkj"/>
                                     <constraint firstAttribute="trailing" secondItem="hwe-uJ-mHT" secondAttribute="trailing" id="nD4-6Y-RoZ"/>
@@ -1383,8 +1405,10 @@
                                     <constraint firstAttribute="trailing" secondItem="TCK-by-aGy" secondAttribute="trailing" id="qiu-bO-ou6"/>
                                     <constraint firstAttribute="trailing" secondItem="USL-Ca-asX" secondAttribute="trailing" constant="-10" id="s4e-Cd-EAe"/>
                                     <constraint firstItem="GoM-QU-nDk" firstAttribute="bottom" secondItem="um1-Mb-zd8" secondAttribute="bottom" id="tFs-aO-VpL"/>
+                                    <constraint firstItem="GHZ-Wm-eGW" firstAttribute="top" secondItem="DtP-U1-1iT" secondAttribute="bottom" id="uFg-T1-0mb"/>
                                     <constraint firstItem="14P-rj-E0n" firstAttribute="top" secondItem="cPS-2s-ytn" secondAttribute="bottom" id="x9M-YJ-SLb"/>
                                     <constraint firstItem="um1-Mb-zd8" firstAttribute="bottom" secondItem="TCK-by-aGy" secondAttribute="top" id="xKc-o0-A29"/>
+                                    <constraint firstItem="um1-Mb-zd8" firstAttribute="top" secondItem="GHZ-Wm-eGW" secondAttribute="bottom" id="xlt-DR-Vpa"/>
                                     <constraint firstItem="cPS-2s-ytn" firstAttribute="leading" secondItem="Vyu-wn-T1v" secondAttribute="leading" id="yiS-JP-VcG"/>
                                 </constraints>
                             </customView>
@@ -1431,6 +1455,10 @@
                         <outlet property="micButton" destination="YBK-VT-y5o" id="HPO-6b-wML"/>
                         <outlet property="nameButton" destination="3xo-JI-aRc" id="X18-CQ-rsf"/>
                         <outlet property="nameButtonY" destination="QLO-FN-il0" id="31v-qa-FnW"/>
+                        <outlet property="pinMessageBarView" destination="GHZ-Wm-eGW" id="TaC-Zi-a9C"/>
+                        <outlet property="pinMessageBarViewHeightConstraint" destination="bKH-3I-VRu" id="98B-vM-bCC"/>
+                        <outlet property="pinMessageDetailView" destination="y0u-r6-RUu" id="eDL-Fk-nsx"/>
+                        <outlet property="pinNotificationView" destination="Js3-MQ-ivA" id="4BG-Gt-zbY"/>
                         <outlet property="podcastContainerWidth" destination="KMn-g1-JXa" id="3K6-ph-9vq"/>
                         <outlet property="podcastVCContainer" destination="r8h-oI-AGJ" id="Mtw-uN-BYN"/>
                         <outlet property="priceContainer" destination="xtJ-CZ-Aie" id="1IZ-RT-QZ8"/>
@@ -1820,7 +1848,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NSStopProgressFreestandingTemplate" width="20" height="20"/>
+        <image name="NSStopProgressFreestandingTemplate" width="15" height="15"/>
         <image name="bottomBar1" width="25" height="25"/>
         <image name="bottomBar2" width="25" height="25"/>
         <image name="bottomBar3" width="25" height="25"/>

@@ -433,6 +433,13 @@
 "mark.as.unplayed" = "Mark as Unplayed";
 "erase.from.device" = "Erase from Device";
 
+//PIN MESSAGE
+"message.pinned" = "Message Pinned";
+"message.unpinned" = "Message Unpinned";
+"pin.message" = "Pin Message";
+"unpin.message" = "Unpin Message";
+"pinned.message" = "Pinned Message";
+
 //PIN Settings
 "never.require.pin" = "Never require PIN";
 "always.require.pin" = "Always require PIN";

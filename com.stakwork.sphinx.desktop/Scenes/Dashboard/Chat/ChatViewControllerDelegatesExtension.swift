@@ -49,11 +49,18 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
     }
     func populateMentionAutocomplete(autocompleteText: String) {
         let text = messageTextView.string
-        if let typedMentionText = self.getAtMention(text: text, cursorPosition: messageTextView.cursorPosition){
+        if let typedMentionText = self.getAtMention(text: text, cursorPosition: messageTextView.cursorPosition) {
             let initialPosition = messageTextView.cursorPosition
             
-            messageTextView.string = text
-                .replacingOccurrences(of: typedMentionText, with: "@\(autocompleteText) ")
+            let startIndex = text.index(text.startIndex, offsetBy: (initialPosition ?? 0) - typedMentionText.count)
+            let endIndex = text.index(text.startIndex, offsetBy: (initialPosition ?? 0))
+            
+            messageTextView.string = text.replacingOccurrences(
+                of: typedMentionText,
+                with: "@\(autocompleteText) ",
+                options: [],
+                range: startIndex..<endIndex
+            )
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
                 self.messageTextView.string = self.messageTextView.string.replacingOccurrences(of: "\t", with: "")
@@ -104,6 +111,7 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
                 let substring = $0.substring(range: NSRange(location: 0, length: mentionText.count))
                 return (substring.lowercased() == mentionText && mentionText != "")
             }).sorted()
+            
             suggestions = possibleMentions ?? []
         }
         chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: suggestions)
@@ -513,6 +521,10 @@ extension ChatViewController : MessageOptionsDelegate {
             sendMessage(provisionalMessage: message, text: text)
             willReplay()
         }
+    }
+    
+    func shouldTogglePinState(message: TransactionMessage, pin: Bool) {
+        shouldTogglePinState(messageId: message.id, pin: pin)
     }
     
     func willReplay() {

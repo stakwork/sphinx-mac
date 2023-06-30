@@ -3,7 +3,7 @@ use_frameworks!
 inhibit_all_warnings!
 
 target 'Sphinx' do
-   pod 'Alamofire', '~> 5.0.0-rc.3'
+   pod 'Alamofire', '~> 5.6.4'
    pod 'ReachabilitySwift'
    pod 'SwiftyJSON'
    pod 'SDWebImage', '~> 5.15'

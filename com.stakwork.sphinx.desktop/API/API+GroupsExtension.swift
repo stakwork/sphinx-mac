@@ -165,5 +165,47 @@ extension API {
             }
         }
     }
+    
+    func pinChatMessage(
+        messageUUID: String?,
+        chatId: Int,
+        callback: @escaping PinMessageCallback,
+        errorCallback: @escaping EmptyCallback
+    ){
+        let params: [String: AnyObject] = [
+            "pin" : (messageUUID ?? "") as AnyObject
+        ]
+        
+        guard let request = getURLRequest(
+            route: "/chat_pin/\(chatId)",
+            params: params as NSDictionary,
+            method: "PUT"
+        ) else {
+            errorCallback()
+            return
+        }
+
+        sphinxRequest(request) { response in
+            switch response.result {
+            case .success(let data):
+                if let json = data as? NSDictionary {
+                    if let success = json["success"] as? Bool,
+                        let response = json["response"] as? NSDictionary,
+                        success {
+                        
+                        if let pin = response["pin"] as? String {
+                            callback(pin)
+                        } else {
+                            errorCallback()
+                        }
+                        return
+                    }
+                }
+                errorCallback()
+            case .failure(_):
+                errorCallback()
+            }
+        }
+    }
 
 }

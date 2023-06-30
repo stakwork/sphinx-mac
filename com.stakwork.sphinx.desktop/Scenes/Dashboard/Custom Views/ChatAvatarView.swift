@@ -123,23 +123,19 @@ class ChatAvatarView: NSView, LoadableNib {
     }
     
     func loadImageFor(_ object: ChatListCommonObject?, in imageView: AspectFillNSImageView, and container: NSView) {
-        showInitials(object, in: imageView, and: container)
+        showInitialsFor(object, in: imageView, and: container)
         
         imageView.sd_cancelCurrentImageLoad()
 
         if let urlString = object?.getPhotoUrl()?.removeDuplicatedProtocol(), let url = URL(string: urlString) {
             
-            container.isHidden = true
-            imageView.isHidden = false
-            
             imageView.sd_setImage(
                 with: url,
                 placeholderImage: NSImage(named: "profile_avatar"),
-                options: [SDWebImageOptions.progressiveLoad],
+                options: [SDWebImageOptions.retryFailed],
                 completed: { (image, error, _, _) in
-                    if let _ = error {
-                        container.isHidden = false
-                        imageView.isHidden = true
+                    if let image = image, error == nil {
+                        self.setImage(image: image, in: imageView, initialsContainer: container)
                     }
                 }
             )
@@ -149,9 +145,20 @@ class ChatAvatarView: NSView, LoadableNib {
         }
     }
     
-    func showInitials(_ object: ChatListCommonObject?, in imageView: AspectFillNSImageView, and container: NSView) {
+    func setImage(image: NSImage, in imageView: AspectFillNSImageView, initialsContainer: NSView) {
+         initialsContainer.isHidden = true
+         imageView.isHidden = false
+         imageView.bordered = false
+         imageView.image = image
+     }
+    
+    func showInitialsFor(_ object: ChatListCommonObject?, in imageView: AspectFillNSImageView, and container: NSView) {
         let senderInitials = object?.getName().getInitialsFromName() ?? "UK"
         let senderColor = object?.getColor()
+        
+        container.isHidden = false
+        imageView.bordered = false
+        imageView.image = nil
         
         container.wantsLayer = true
         container.layer?.cornerRadius = container.frame.size.height / 2
