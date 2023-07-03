@@ -38,6 +38,7 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
         self.alias = mentionOrMacro.displayText
         self.type = mentionOrMacro.type
         self.action = mentionOrMacro.action
+        self.delegate = delegate
         
         avatarImage.isHidden = true
         iconLabel.isHidden = true
@@ -86,6 +87,11 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
             }
         }
         avatarImage.contentTintColor = NSColor.Sphinx.SecondaryText
+        
+        self.view.subviews.first?.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(handleClick)))
+        for view in self.view.subviews{
+            view.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(handleClick)))
+        }
     }
     
     func makeImagesCircular(images: [NSView]) {
@@ -111,5 +117,10 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
             print("MACRO")
             self.delegate?.processGeneralPurposeMacro(action: action)
         }
+    }
+    
+    override func mouseDown(with event: NSEvent) {
+        super.mouseDown(with: event)
+        handleClick()
     }
 }
