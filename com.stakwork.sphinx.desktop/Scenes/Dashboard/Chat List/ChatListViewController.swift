@@ -71,7 +71,6 @@ class ChatListViewController : DashboardSplittedViewController {
                 container: chatListVCContainer
             )
             
-            resetSearchField()
             loadFriendAndReload()
         }
     }
@@ -284,15 +283,6 @@ class ChatListViewController : DashboardSplittedViewController {
         updateBalance()
         
         chatListViewModel.updateContactsAndChats()
-
-        if searchField.stringValue.isEmpty {
-//            chatListObjectsArray = contactsService.getChatListObjects()
-        } else {
-//            chatListObjectsArray = contactsService.getObjectsWith(
-//                searchString: searchField.stringValue as String
-//            )
-        }
-        
         shouldCheckAppVersions()
     }
     

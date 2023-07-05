@@ -260,15 +260,9 @@ extension ContactsService : NSFetchedResultsControllerDelegate {
         processChatListObjects()
     }
     
-    func updateContactsSearchQuery(term: String) {
+    func updateChatListWith(term: String) {
         contactsSearchQuery = term
-        
-        processChatListObjects()
-    }
-    
-    func updateChatsSearchQuery(term: String) {
         chatsSearchQuery = term
-        
         processChatListObjects()
     }
     
