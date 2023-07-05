@@ -156,7 +156,10 @@ public class TransactionMessage: NSManagedObject {
     
     static let kCallRoomName = "/sphinx.call"
     
-    static func insertMessage(m: JSON, existingMessage: TransactionMessage? = nil) -> (TransactionMessage?, Bool) {
+    static func insertMessage(
+        m: JSON,
+        existingMessage: TransactionMessage? = nil
+    ) -> (TransactionMessage?, Bool) {
         let encryptionManager = EncryptionManager.sharedInstance
         
         let id = m["id"].intValue
@@ -198,10 +201,11 @@ public class TransactionMessage: NSManagedObject {
             let _ = UserContact.getOrCreateContact(contact: JSON(contact))
         }
         
-        let (messageChat, chatError) = TransactionMessage.getChat(m: m)
-        if chatError && messageChat != nil {
+        guard let messageChat = TransactionMessage.getChat(m: m) else  {
             return (nil, false)
         }
+        
+        messageChat.seen = (m["chat"].dictionary)?["seen"]?.boolValue ?? messageChat.seen
         
         let (messageEncrypted, messageContent) = encryptionManager.decryptMessage(message: m["message_content"].stringValue)
         let status = TransactionMessage.TransactionMessageStatus(fromRawValue: (m["status"].intValue))
@@ -253,57 +257,49 @@ public class TransactionMessage: NSManagedObject {
         return (updatedMessage, existingMessage == nil)
     }
     
-    static func getChat(m: JSON) -> (Chat?, Bool) {
-        var messageChatId : Int? = nil
-        var messageChat : Chat!
+    static func getChat(
+        m: JSON
+    ) -> Chat? {
         
         if let chatId = m["chat_id"].int, let chatObject = Chat.getChatWith(id: chatId) {
-            messageChatId = chatId
-            messageChat = chatObject
+            return chatObject
         } else if let ch = m["chat"].dictionary, let chatObject = Chat.getOrCreateChat(chat: JSON(ch)) {
-            messageChatId = m["chat_id"].int
-            messageChat = chatObject
+            return chatObject
         }
         
-        if messageChat == nil {
-            return (nil, true)
-        } else if messageChat != nil && messageChatId != nil {
-            if messageChat.id != messageChatId {
-                return (messageChat, true)
-            }
-        }
-        
-        return (messageChat, false)
+        return nil
     }
     
-    static func createObject(id: Int,
-                             uuid: String? = nil,
-                             replyUUID: String? = nil,
-                             type: Int,
-                             sender: Int,
-                             senderAlias: String?,
-                             senderPic: String?,
-                             recipientAlias: String?,
-                             recipientPic: String?,
-                             receiver: Int,
-                             amount: NSDecimalNumber? = nil,
-                             paymentHash: String? = nil,
-                             invoice: String? = nil,
-                             messageContent: String,
-                             status: Int,
-                             date: Date,
-                             expirationDate: Date? = nil,
-                             mediaTerms: String? = nil,
-                             receipt: String? = nil,
-                             mediaToken: String? = nil,
-                             mediaKey: String? = nil,
-                             mediaType: String? = nil,
-                             originalMuid: String? = nil,
-                             seen: Bool,
-                             push: Bool,
-                             messageEncrypted: Bool,
-                             chat: Chat?,
-                             message: TransactionMessage) -> TransactionMessage? {
+    static func createObject(
+        id: Int,
+         uuid: String? = nil,
+         replyUUID: String? = nil,
+         type: Int,
+         sender: Int,
+         senderAlias: String?,
+         senderPic: String?,
+         recipientAlias: String?,
+         recipientPic: String?,
+         receiver: Int,
+         amount: NSDecimalNumber? = nil,
+         paymentHash: String? = nil,
+         invoice: String? = nil,
+         messageContent: String,
+         status: Int,
+         date: Date,
+         expirationDate: Date? = nil,
+         mediaTerms: String? = nil,
+         receipt: String? = nil,
+         mediaToken: String? = nil,
+         mediaKey: String? = nil,
+         mediaType: String? = nil,
+         originalMuid: String? = nil,
+         seen: Bool,
+         push: Bool,
+         messageEncrypted: Bool,
+         chat: Chat?,
+         message: TransactionMessage
+    ) -> TransactionMessage? {
         
         message.id = id
         message.uuid = uuid

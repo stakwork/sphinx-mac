@@ -44,7 +44,7 @@ extension Chat {
     @NSManaged public var messages: NSSet?
     @NSManaged public var subscription: Subscription?
     @NSManaged public var contentFeed: ContentFeed?
-
+    @NSManaged public var lastMessage: TransactionMessage?
 }
 
 // MARK: Generated accessors for messages

@@ -13,7 +13,6 @@ import SwiftyJSON
 @objc(Chat)
 public class Chat: NSManagedObject {
     
-    public var lastMessage : TransactionMessage? = nil
     public var conversationContact : UserContact? = nil
     public var tribeAdmin: UserContact? = nil
     
