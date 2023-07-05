@@ -25,6 +25,19 @@ class ChatListViewController : DashboardSplittedViewController {
     @IBOutlet weak var upgradeBox: NSBox!
     @IBOutlet weak var upgradeButton: NSButton!
     
+    @IBOutlet weak var dashboardNavigationTabs: ChatsSegmentedControl! {
+        didSet {
+            dashboardNavigationTabs.configureFromOutlet(
+                buttonTitles: [
+                    "dashboard.tabs.friends".localized,
+                    "dashboard.tabs.tribes".localized,
+                ],
+                initialIndex: 1,
+                delegate: self
+            )
+        }
+    }
+    
     let feedsManager = FeedsManager.sharedInstance
     
     let newMessageBubbleHelper = NewMessageBubbleHelper()
@@ -37,6 +50,20 @@ class ChatListViewController : DashboardSplittedViewController {
         didSet {
             healthCheckView.isHidden = loading
             LoadingWheelHelper.toggleLoadingWheel(loading: loading, loadingWheel: loadingWheel, color: NSColor.white, controls: [])
+        }
+    }
+    
+    internal var activeTab: DashboardTab = .friends {
+        didSet {
+//            let newViewController = mainContentViewController(forActiveTab: activeTab)
+//
+//            addChildVC(
+//                child: newViewController,
+//                container: mainContentContainerView
+//            )
+            
+            resetSearchField()
+//            loadDataOnTabChange(to: activeTab)
         }
     }
     

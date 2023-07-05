@@ -24,8 +24,6 @@ extension ChatListViewController {
         bottomBar.addShadow(location: VerticalLocation.top, color: NSColor.black, opacity: 0.2, radius: 5.0)
 
         searchFieldContainer.wantsLayer = true
-        searchFieldContainer.layer?.borderColor = NSColor.Sphinx.LightDivider.cgColor
-        searchFieldContainer.layer?.borderWidth = 1
         searchFieldContainer.layer?.cornerRadius = searchFieldContainer.frame.height / 2
     }
     
@@ -125,6 +123,23 @@ extension ChatListViewController : HealthCheckDelegate {
 extension ChatListViewController : NewContactChatDelegate {
     func shouldReloadContacts() {
         updateContactsAndReload()
+    }
+}
+
+extension ChatListViewController: ChatsSegmentedControlDelegate {
+    
+    func segmentedControlDidSwitch(
+        _ segmentedControl: ChatsSegmentedControl,
+        to index: Int
+    ) {
+        activeTab = DashboardTab(rawValue: index)!
+    }
+}
+
+extension ChatListViewController {
+    enum DashboardTab: Int, Hashable {
+        case friends
+        case tribes
     }
 }
 

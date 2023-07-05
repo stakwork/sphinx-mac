@@ -53,6 +53,10 @@
 "support.logs.copied" = "Logs copied to clipboard";
 "message.sent" = "Your message has been sent";
 
+//Dashboard
+"dashboard.tabs.friends" = "Friends";
+"dashboard.tabs.tribes" = "Tribes";
+
 //GROUPS
 "group.details" = "Group Details";
 "tribe.details" = "Tribe Details";

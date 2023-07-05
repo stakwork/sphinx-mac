@@ -53,6 +53,10 @@
 "support.logs.copied" = "Registros copiados al portapapeles";
 "message.sent" = "Su mensaje ha sido enviado";
 
+//Dashboard
+"dashboard.tabs.friends" = "Amigos";
+"dashboard.tabs.tribes" = "Tribus";
+
 //GROUPS
 "unselect.all.upper" = "DESELECCIONAR TODOS";
 "select.all.upper" = "SELECCIONAR TODOS";

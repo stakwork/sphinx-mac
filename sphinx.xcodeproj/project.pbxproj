@@ -36,6 +36,7 @@
 		470708A024AE65D600A98DCA /* ChatChatListExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4707089F24AE65D600A98DCA /* ChatChatListExtension.swift */; };
 		470708A224AF939C00A98DCA /* MessageTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470708A124AF939C00A98DCA /* MessageTextField.swift */; };
 		470708A624B36C8A00A98DCA /* MetaDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470708A524B36C8900A98DCA /* MetaDataCache.swift */; };
+		4708C1FB2A55A31700274AD4 /* ChatsSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4708C1FA2A55A31700274AD4 /* ChatsSegmentedControl.swift */; };
 		470E0B33247C743900177D8A /* LoadingMoreCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470E0B31247C743900177D8A /* LoadingMoreCollectionViewItem.swift */; };
 		470E0B37247D671700177D8A /* AudioReceivedCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470E0B35247D671700177D8A /* AudioReceivedCollectionViewItem.swift */; };
 		470E0B38247D671700177D8A /* AudioReceivedCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470E0B36247D671700177D8A /* AudioReceivedCollectionViewItem.xib */; };
@@ -654,6 +655,7 @@
 		470708A124AF939C00A98DCA /* MessageTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTextField.swift; sourceTree = "<group>"; };
 		470708A524B36C8900A98DCA /* MetaDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDataCache.swift; sourceTree = "<group>"; };
 		4708C1F92A559D6F00274AD4 /* com_stakwork_sphinx_desktop 22.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "com_stakwork_sphinx_desktop 22.xcdatamodel"; sourceTree = "<group>"; };
+		4708C1FA2A55A31700274AD4 /* ChatsSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsSegmentedControl.swift; sourceTree = "<group>"; };
 		470E0B31247C743900177D8A /* LoadingMoreCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingMoreCollectionViewItem.swift; sourceTree = "<group>"; };
 		470E0B35247D671700177D8A /* AudioReceivedCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioReceivedCollectionViewItem.swift; sourceTree = "<group>"; };
 		470E0B36247D671700177D8A /* AudioReceivedCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioReceivedCollectionViewItem.xib; sourceTree = "<group>"; };
@@ -2362,6 +2364,7 @@
 				476AAA982A1E71040092AC87 /* PinMessageDetailView.xib */,
 				477ADCD32A1E5A7E004E74CE /* PinMessageBarView.swift */,
 				477ADCD52A1E5A85004E74CE /* PinMessageBarView.xib */,
+				4708C1FA2A55A31700274AD4 /* ChatsSegmentedControl.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -3505,6 +3508,7 @@
 				4744FAA52469CE6D00C5FD94 /* Data.swift in Sources */,
 				479751FA246DE61A00D2106B /* ContactsService.swift in Sources */,
 				CE1FA8FA2A01A68F0014360C /* LsatListViewController.swift in Sources */,
+				4708C1FB2A55A31700274AD4 /* ChatsSegmentedControl.swift in Sources */,
 				479751FE246EE0AE00D2106B /* DashboardSplittedViewController.swift in Sources */,
 				47E771252472C27200C9CFEB /* MessageSentCollectionViewItem.swift in Sources */,
 				4797E7582785F3AD0080B966 /* DashboardModalsViewController.swift in Sources */,
