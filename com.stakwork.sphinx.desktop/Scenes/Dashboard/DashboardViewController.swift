@@ -17,7 +17,6 @@ class DashboardViewController: NSViewController {
     
     var mediaFullScreenView: MediaFullScreenView? = nil
     
-    var contactsService : ContactsService! = nil
     var chatViewModel: ChatViewModel! = nil
     var chatListViewModel: ChatListViewModel! = nil
     var deeplinkData: DeeplinkData? = nil
@@ -46,8 +45,7 @@ class DashboardViewController: NSViewController {
         
         listerForNotifications()
         
-        contactsService = ContactsService()
-        chatListViewModel = ChatListViewModel(contactsService: contactsService)
+        chatListViewModel = ChatListViewModel()
         chatViewModel = ChatViewModel()
         
         dashboardSplitView.delegate = self
@@ -107,9 +105,11 @@ class DashboardViewController: NSViewController {
         
         if let splitedVC = segue.destinationController as? DashboardSplittedViewController {
             splitedVC.delegate = self
-            splitedVC.setDataModels(contactsService: contactsService,
-                                    chatListViewModel: chatListViewModel,
-                                    chatViewModel: chatViewModel)
+            
+            splitedVC.setDataModels(
+                chatListViewModel: chatListViewModel,
+                chatViewModel: chatViewModel
+            )
         }
     }
     
@@ -241,7 +241,7 @@ class DashboardViewController: NSViewController {
         let chatFaulted = detailViewController?.chat?.isFault ?? false
         
         if contactFaulted || chatFaulted {
-            detailViewController?.loadChatFor(contactsService: contactsService)
+            detailViewController?.loadChatFor()
         }
     }
     
@@ -341,7 +341,7 @@ extension DashboardViewController : DashboardVCDelegate {
     func presentChatVC(object: ChatListCommonObject) {
         let chat = (object as? Chat) ?? ((object as? UserContact)?.getConversation())
         let contact = (object as? UserContact) ?? (object as? Chat)?.getContact()
-        detailViewController?.loadChatFor(contact: contact, chat: chat, contactsService: contactsService)
+        detailViewController?.loadChatFor(contact: contact, chat: chat)
         detailViewController?.configureMentionAutocompleteTableView()
         if(deeplinkData != nil){
             detailViewController?.deeplinkData = deeplinkData

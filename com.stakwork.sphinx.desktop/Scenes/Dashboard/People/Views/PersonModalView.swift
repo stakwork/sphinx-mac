@@ -105,7 +105,7 @@ class PersonModalView: CommonModalView, LoadableNib {
             
             let contactsService = ContactsService()
             
-            contactsService.createContact(nickname: nickname, pubKey: pubkey, routeHint: routeHint, contactKey: contactKey, callback: { (success) in
+            UserContactsHelper.createContact(nickname: nickname, pubKey: pubkey, routeHint: routeHint, contactKey: contactKey, callback: { (success) in
                 
                 if success {
                     self.sendInitialMessage()

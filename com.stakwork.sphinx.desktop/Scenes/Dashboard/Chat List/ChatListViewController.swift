@@ -24,6 +24,7 @@ class ChatListViewController : DashboardSplittedViewController {
     @IBOutlet weak var healthCheckView: HealthCheckView!
     @IBOutlet weak var upgradeBox: NSBox!
     @IBOutlet weak var upgradeButton: NSButton!
+    @IBOutlet weak var chatListVCContainer: NSView!
     
     @IBOutlet weak var dashboardNavigationTabs: ChatsSegmentedControl! {
         didSet {
@@ -100,7 +101,6 @@ class ChatListViewController : DashboardSplittedViewController {
         NotificationCenter.default.removeObserver(self, name: .onBalanceDidChange, object: nil)
         NotificationCenter.default.removeObserver(self, name: .onJoinTribeClick, object: nil)
         NotificationCenter.default.removeObserver(self, name: .onPubKeyClick, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .onTribeImageChanged, object: nil)
     }
     
     func prepareView() {
@@ -212,11 +212,11 @@ class ChatListViewController : DashboardSplittedViewController {
         chatListViewModel.updateContactsAndChats()
 
         if searchField.stringValue.isEmpty {
-            chatListObjectsArray = contactsService.getChatListObjects()
+//            chatListObjectsArray = contactsService.getChatListObjects()
         } else {
-            chatListObjectsArray = contactsService.getObjectsWith(
-                searchString: searchField.stringValue as String
-            )
+//            chatListObjectsArray = contactsService.getObjectsWith(
+//                searchString: searchField.stringValue as String
+//            )
         }
         
         loadDataSource()
@@ -262,8 +262,15 @@ class ChatListViewController : DashboardSplittedViewController {
     }
     
     @IBAction func addContactButtonClicked(_ sender: Any) {
-        let addFriendVC = AddFriendViewController.instantiate(contactsService: contactsService, delegate: self)
-        WindowsManager.sharedInstance.showContactWindow(vc: addFriendVC, window: view.window, title: "new.contact".localized, identifier: "new-contact-window", size: CGSize(width: 414, height: 600))
+        let addFriendVC = AddFriendViewController.instantiate(delegate: self)
+        
+        WindowsManager.sharedInstance.showContactWindow(
+            vc: addFriendVC,
+            window: view.window,
+            title: "new.contact".localized,
+            identifier: "new-contact-window",
+            size: CGSize(width: 414, height: 600)
+        )
     }
     
     func listenForPubKeyAndTribeJoin() {
@@ -278,8 +285,19 @@ class ChatListViewController : DashboardSplittedViewController {
                 if let user = user, existing {
                     vc.chatListDataSource.shouldSelectContactOrChat(user)
                 } else {
-                    let contactVC = NewContactViewController.instantiate(contactsService: vc.contactsService, delegate: self, pubkey: pubkey)
-                    WindowsManager.sharedInstance.showContactWindow(vc: contactVC, window: vc.view.window, title: "new.contact".localized, identifier: "new-contact-window", size: CGSize(width: 414, height: 600))
+                    
+                    let contactVC = NewContactViewController.instantiate(
+                        delegate: self,
+                        pubkey: pubkey
+                    )
+                    
+                    WindowsManager.sharedInstance.showContactWindow(
+                        vc: contactVC,
+                        window: vc.view.window,
+                        title: "new.contact".localized,
+                        identifier: "new-contact-window",
+                        size: CGSize(width: 414, height: 600)
+                    )
                 }
             }
         }

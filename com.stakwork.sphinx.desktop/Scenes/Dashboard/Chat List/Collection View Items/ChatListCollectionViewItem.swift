@@ -39,32 +39,32 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
     }
 
     func configureChatListRow(object: ChatListCommonObject, isLastRow: Bool = false, selected: Bool = false) {
-        setSelectedState(selected)
-        
-        nameLabel.font = Constants.kChatNameFont
-        nameLabel.stringValue = object.getName()
-        lockSign.isHidden = !object.hasEncryptionKey()
-        inviteSignLabel.stringValue = ""
-
-        chatAvatarView.setImages(object: object)
-
-        separatorLine.isHidden = isLastRow
-        configureLastMessage(object: object)
-        
-        configureBadge(count: object.getConversation()?.getReceivedUnseenMessagesCount() ?? 0)
-        configureMentions(count: object.getConversation()?.getReceivedUnseenMentionsCount() ?? 0)
-
-        muteImageView.isHidden = !(object.getConversation()?.isMuted() ?? false)
-        
-        if (object.getConversation()?.isMuted() ?? false) || (object.getConversation()?.isOnlyMentions() ?? false) {
-            badgeView.alphaValue = 0.2
-            badgeView.fillColor = .Sphinx.WashedOutReceivedText
-        } else {
-            badgeView.alphaValue = 1.0
-            badgeView.fillColor = .Sphinx.PrimaryBlue
-        }
-
-        resetPriceLayouts()
+//        setSelectedState(selected)
+//
+//        nameLabel.font = Constants.kChatNameFont
+//        nameLabel.stringValue = object.getName()
+//        lockSign.isHidden = !object.hasEncryptionKey()
+//        inviteSignLabel.stringValue = ""
+//
+//        chatAvatarView.setImages(object: object)
+//
+//        separatorLine.isHidden = isLastRow
+//        configureLastMessage(object: object)
+//
+//        configureBadge(count: object.getConversation()?.getReceivedUnseenMessagesCount() ?? 0)
+//        configureMentions(count: object.getConversation()?.getReceivedUnseenMentionsCount() ?? 0)
+//
+//        muteImageView.isHidden = !(object.getConversation()?.isMuted() ?? false)
+//
+//        if (object.getConversation()?.isMuted() ?? false) || (object.getConversation()?.isOnlyMentions() ?? false) {
+//            badgeView.alphaValue = 0.2
+//            badgeView.fillColor = .Sphinx.WashedOutReceivedText
+//        } else {
+//            badgeView.alphaValue = 1.0
+//            badgeView.fillColor = .Sphinx.PrimaryBlue
+//        }
+//
+//        resetPriceLayouts()
     }
     
     func setSelectedState(_ selected: Bool) {
@@ -97,93 +97,93 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
     }
     
     func configureLastMessage(object: ChatListCommonObject) {
-        if object.lastMessage?.isFault ?? false {
-            object.updateLastMessage()
-        }
-        
-        if let lastMessage = object.lastMessage {
-            messageLabel.isHidden = false
-            dateLabel.isHidden = false
-            
-            let newMessage = lastMessage.isNewUnseenMessage()
-            messageLabel.font = newMessage ? Constants.kNewMessagePreviewFont : Constants.kMessagePreviewFont
-            messageLabel.textColor = newMessage ? NSColor.Sphinx.TextMessages : NSColor.Sphinx.SecondaryText
-
-            dateLabel.stringValue = lastMessage.messageDate.getLastMessageDateFormat()
-            messageLabel.stringValue = lastMessage.getMessageDescription()
-            setNameTopConstraint(value: Constants.kChatListNamePosition)
-        } else {
-            messageLabel.isHidden = true
-            dateLabel.isHidden = true
-            setNameTopConstraint(value: 0)
-        }
+//        if object.lastMessage?.isFault ?? false {
+//            object.updateLastMessage()
+//        }
+//
+//        if let lastMessage = object.lastMessage {
+//            messageLabel.isHidden = false
+//            dateLabel.isHidden = false
+//
+//            let newMessage = lastMessage.isNewUnseenMessage()
+//            messageLabel.font = newMessage ? Constants.kNewMessagePreviewFont : Constants.kMessagePreviewFont
+//            messageLabel.textColor = newMessage ? NSColor.Sphinx.TextMessages : NSColor.Sphinx.SecondaryText
+//
+//            dateLabel.stringValue = lastMessage.messageDate.getLastMessageDateFormat()
+//            messageLabel.stringValue = lastMessage.getMessageDescription()
+//            setNameTopConstraint(value: Constants.kChatListNamePosition)
+//        } else {
+//            messageLabel.isHidden = true
+//            dateLabel.isHidden = true
+//            setNameTopConstraint(value: 0)
+//        }
     }
     
     func setNameTopConstraint(value: CGFloat) {
-        if nameTopConstraint.constant != value {
-            nameTopConstraint.constant = value
-            nameLabel.superview?.layoutSubtreeIfNeeded()
-        }
-        
-        if messageBottomConstraint.constant != Constants.kChatListMessagePosition {
-            messageBottomConstraint.constant = Constants.kChatListMessagePosition
-            messageLabel.superview?.layoutSubtreeIfNeeded()
-        }
+//        if nameTopConstraint.constant != value {
+//            nameTopConstraint.constant = value
+//            nameLabel.superview?.layoutSubtreeIfNeeded()
+//        }
+//
+//        if messageBottomConstraint.constant != Constants.kChatListMessagePosition {
+//            messageBottomConstraint.constant = Constants.kChatListMessagePosition
+//            messageLabel.superview?.layoutSubtreeIfNeeded()
+//        }
     }
     
     func setNameRightConstraint(value: CGFloat) {
-        if nameRightConstraint.constant != value {
-            nameRightConstraint.constant = value
-            nameLabel.superview?.layoutSubtreeIfNeeded()
-        }
+//        if nameRightConstraint.constant != value {
+//            nameRightConstraint.constant = value
+//            nameLabel.superview?.layoutSubtreeIfNeeded()
+//        }
     }
     
     func configureInvitation(contact: UserContact, isLastRow: Bool = false) {
-        backgroundColorBox.fillColor = NSColor.Sphinx.HeaderBG
-        
-        let inviteString = String(format: "invite.name".localized, contact.nickname ?? "")
-        nameLabel.font = Constants.kChatNameFont
-        nameLabel.stringValue = inviteString
-        messageLabel.stringValue = contact.invite?.welcomeMessage ?? "welcome.to.sphinx".localized
-        dateLabel.stringValue = ""
-        messageLabel.isHidden = false
-        lockSign.isHidden = true
-        badgeView.isHidden = true
-        muteImageView.isHidden = true
-        
-        chatAvatarView.configureForInvite()
-        
-        separatorLine.isHidden = isLastRow
-        
-        messageLabel.font = Constants.kNewMessagePreviewFont
-        messageLabel.textColor = NSColor.Sphinx.TextMessages
-        
-        messageLabel.isHidden = false
-        dateLabel.isHidden = false
-        setNameTopConstraint(value: Constants.kChatListNamePosition)
-        
-        resetPriceLayouts()
-        configureInviteStatus(invite: contact.invite)
+//        backgroundColorBox.fillColor = NSColor.Sphinx.HeaderBG
+//
+//        let inviteString = String(format: "invite.name".localized, contact.nickname ?? "")
+//        nameLabel.font = Constants.kChatNameFont
+//        nameLabel.stringValue = inviteString
+//        messageLabel.stringValue = contact.invite?.welcomeMessage ?? "welcome.to.sphinx".localized
+//        dateLabel.stringValue = ""
+//        messageLabel.isHidden = false
+//        lockSign.isHidden = true
+//        badgeView.isHidden = true
+//        muteImageView.isHidden = true
+//
+//        chatAvatarView.configureForInvite()
+//
+//        separatorLine.isHidden = isLastRow
+//
+//        messageLabel.font = Constants.kNewMessagePreviewFont
+//        messageLabel.textColor = NSColor.Sphinx.TextMessages
+//
+//        messageLabel.isHidden = false
+//        dateLabel.isHidden = false
+//        setNameTopConstraint(value: Constants.kChatListNamePosition)
+//
+//        resetPriceLayouts()
+//        configureInviteStatus(invite: contact.invite)
     }
     
     func configureInviteStatus(invite: UserInvite?) {
-        if let invite = invite {
-            let (sign, color, text) = invite.getDataForRow()
-            
-            messageLabel.font = Constants.kMessagePreviewFont
-
-            inviteSignLabel.stringValue = sign
-            inviteSignLabel.textColor = color
-            messageLabel.stringValue = text
-
-            if let price = invite.price, invite.isPendingPayment(){
-                invitePriceContainer.isHidden = false
-                invitePriceLabel.stringValue = Int(truncating: price).formattedWithSeparator
-                
-                let nameRightC = lockSignWidht + muteSignWidht + rowRightMargin + invitePriceContainer.frame.size.width
-                setNameRightConstraint(value: nameRightC)
-            }
-        }
+//        if let invite = invite {
+//            let (sign, color, text) = invite.getDataForRow()
+//            
+//            messageLabel.font = Constants.kMessagePreviewFont
+//
+//            inviteSignLabel.stringValue = sign
+//            inviteSignLabel.textColor = color
+//            messageLabel.stringValue = text
+//
+//            if let price = invite.price, invite.isPendingPayment(){
+//                invitePriceContainer.isHidden = false
+//                invitePriceLabel.stringValue = Int(truncating: price).formattedWithSeparator
+//                
+//                let nameRightC = lockSignWidht + muteSignWidht + rowRightMargin + invitePriceContainer.frame.size.width
+//                setNameRightConstraint(value: nameRightC)
+//            }
+//        }
     }
     
 }

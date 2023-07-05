@@ -37,6 +37,10 @@
 		470708A224AF939C00A98DCA /* MessageTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470708A124AF939C00A98DCA /* MessageTextField.swift */; };
 		470708A624B36C8A00A98DCA /* MetaDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470708A524B36C8900A98DCA /* MetaDataCache.swift */; };
 		4708C1FB2A55A31700274AD4 /* ChatsSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4708C1FA2A55A31700274AD4 /* ChatsSegmentedControl.swift */; };
+		4708C1FD2A55BA7200274AD4 /* NewChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4708C1FC2A55BA7200274AD4 /* NewChatListViewController.swift */; };
+		4708C1FF2A55BCE300274AD4 /* UserContactsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4708C1FE2A55BCE300274AD4 /* UserContactsHelper.swift */; };
+		4708C2012A55C0AA00274AD4 /* UserContact+FetchUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4708C2002A55C0AA00274AD4 /* UserContact+FetchUtils.swift */; };
+		4708C2032A55C0DE00274AD4 /* Chat+FetchUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4708C2022A55C0DE00274AD4 /* Chat+FetchUtils.swift */; };
 		470E0B33247C743900177D8A /* LoadingMoreCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470E0B31247C743900177D8A /* LoadingMoreCollectionViewItem.swift */; };
 		470E0B37247D671700177D8A /* AudioReceivedCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470E0B35247D671700177D8A /* AudioReceivedCollectionViewItem.swift */; };
 		470E0B38247D671700177D8A /* AudioReceivedCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470E0B36247D671700177D8A /* AudioReceivedCollectionViewItem.xib */; };
@@ -656,6 +660,10 @@
 		470708A524B36C8900A98DCA /* MetaDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDataCache.swift; sourceTree = "<group>"; };
 		4708C1F92A559D6F00274AD4 /* com_stakwork_sphinx_desktop 22.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "com_stakwork_sphinx_desktop 22.xcdatamodel"; sourceTree = "<group>"; };
 		4708C1FA2A55A31700274AD4 /* ChatsSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsSegmentedControl.swift; sourceTree = "<group>"; };
+		4708C1FC2A55BA7200274AD4 /* NewChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatListViewController.swift; sourceTree = "<group>"; };
+		4708C1FE2A55BCE300274AD4 /* UserContactsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContactsHelper.swift; sourceTree = "<group>"; };
+		4708C2002A55C0AA00274AD4 /* UserContact+FetchUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserContact+FetchUtils.swift"; sourceTree = "<group>"; };
+		4708C2022A55C0DE00274AD4 /* Chat+FetchUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chat+FetchUtils.swift"; sourceTree = "<group>"; };
 		470E0B31247C743900177D8A /* LoadingMoreCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingMoreCollectionViewItem.swift; sourceTree = "<group>"; };
 		470E0B35247D671700177D8A /* AudioReceivedCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioReceivedCollectionViewItem.swift; sourceTree = "<group>"; };
 		470E0B36247D671700177D8A /* AudioReceivedCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioReceivedCollectionViewItem.xib; sourceTree = "<group>"; };
@@ -1500,6 +1508,7 @@
 				4744FA812469C9F700C5FD94 /* Chat+CoreDataClass.swift */,
 				4744FA852469C9F700C5FD94 /* Chat+CoreDataProperties.swift */,
 				4707089F24AE65D600A98DCA /* ChatChatListExtension.swift */,
+				4708C2022A55C0DE00274AD4 /* Chat+FetchUtils.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1510,6 +1519,7 @@
 				4744FA832469C9F700C5FD94 /* UserContact+CoreDataClass.swift */,
 				4744FA7D2469C9F700C5FD94 /* UserContact+CoreDataProperties.swift */,
 				4707089D24AE65CB00A98DCA /* UserContactChatListExtension.swift */,
+				4708C2002A55C0AA00274AD4 /* UserContact+FetchUtils.swift */,
 			);
 			path = UserContact;
 			sourceTree = "<group>";
@@ -1751,6 +1761,7 @@
 				4726A42924C62729005A66B4 /* NotificationsHelper.swift */,
 				4789E27B24F45BC3003991BE /* RelayURLUpdateHelper.swift */,
 				479A03FB258814240093DB30 /* DeepLinksHandlerHelper.swift */,
+				4708C1FE2A55BCE300274AD4 /* UserContactsHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2294,6 +2305,7 @@
 				479751DF246D8FFB00D2106B /* ChatListViewController.swift */,
 				479751E8246D91B000D2106B /* ChatListViewControllerExtension.swift */,
 				479751FB246ED18C00D2106B /* ChatListSocketDelegateExtension.swift */,
+				4708C1FC2A55BA7200274AD4 /* NewChatListViewController.swift */,
 			);
 			path = "Chat List";
 			sourceTree = "<group>";
@@ -3317,6 +3329,7 @@
 				474567F12513A03D00D66268 /* MessageWebViewReceivedCollectionViewItem.swift in Sources */,
 				47F8825C25656CB0002A7E71 /* SocketIOClientSpec.swift in Sources */,
 				4789E27424F421A2003991BE /* ProfileViewController.swift in Sources */,
+				4708C1FF2A55BCE300274AD4 /* UserContactsHelper.swift in Sources */,
 				47E771392472E4DA00C9CFEB /* CommonBubbleView.swift in Sources */,
 				4787F8A0247C16B200CCE8B9 /* ChatSmallAvatarView.swift in Sources */,
 				47C1D5F8248EA6F600718B28 /* GroupMembersViewController.swift in Sources */,
@@ -3333,6 +3346,7 @@
 				47D03DE4250BB9F40077A968 /* NewInviteViewController.swift in Sources */,
 				CE6BF5CA29E5BA38009BCFDE /* SendPaymentForInvoiceVC.swift in Sources */,
 				4731BE2F24855E4600BCCA9E /* CommonInvoiceCollectionViewItem.swift in Sources */,
+				4708C2032A55C0DE00274AD4 /* Chat+FetchUtils.swift in Sources */,
 				47B550A9248BEB9A000514BF /* PaymentTemplatesViewController.swift in Sources */,
 				479751E0246D8FFB00D2106B /* ChatListViewController.swift in Sources */,
 				4703CF95251CE5F3007B685C /* PdfInfoBubbleView.swift in Sources */,
@@ -3499,6 +3513,7 @@
 				47D7D8E424620B520089C6EE /* KeychainManager.swift in Sources */,
 				4789E27724F42295003991BE /* SettingsTabsView.swift in Sources */,
 				47AF0D4A255092E800C98398 /* PodcastBoostBubbleView.swift in Sources */,
+				4708C2012A55C0AA00274AD4 /* UserContact+FetchUtils.swift in Sources */,
 				474A668F24990643002C2D10 /* MenuOptionsView.swift in Sources */,
 				47393E652461DB2C00E6F93E /* String.swift in Sources */,
 				4787F8A4247C202500CCE8B9 /* ChatViewControllerSocketDelegate.swift in Sources */,
@@ -3684,6 +3699,7 @@
 				4731BE4D2485B39400BCCA9E /* CommonPaymentCollectionViewItem.swift in Sources */,
 				479E7D8425ACF8200092595B /* GroupsPinManager.swift in Sources */,
 				47B5509C248BD02C000514BF /* PaymentViewModel.swift in Sources */,
+				4708C1FD2A55BA7200274AD4 /* NewChatListViewController.swift in Sources */,
 				47F8824B25656CB0002A7E71 /* SocketTypes.swift in Sources */,
 				475B681829915D01000EF29C /* ContentFeed+Computeds.swift in Sources */,
 				475B681929915D01000EF29C /* ContentFeed+CoreDataProperties.swift in Sources */,

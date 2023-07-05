@@ -10,6 +10,61 @@ import Cocoa
 import CoreData
 
 extension UserContact : ChatListCommonObject {
+    public func isConversation() -> Bool {
+        return true
+    }
+    
+    public func isPublicGroup() -> Bool {
+        return false
+    }
+    
+    public func getContactStatus() -> Int? {
+        return status
+    }
+    
+    public func getInviteStatus() -> Int? {
+        if let invite = invite {
+            if (invite.isPendingPayment() && invite.isPaymentProcessed()) {
+                return UserInvite.Status.ProcessingPayment.rawValue
+            }
+            return invite.status
+        }
+        return nil
+    }
+    
+    public func getObjectId() -> String {
+        return "user-\(self.id)"
+    }
+    
+    public func isMuted() -> Bool {
+        return conversation?.isMuted() ?? false
+    }
+    
+    public func isSeen(ownerId: Int) -> Bool {
+        if self.getChat()?.lastMessage?.isOutgoing(ownerId: ownerId) ?? true {
+            return true
+        }
+        
+        return
+            self.getChat()?.lastMessage?.isSeen(ownerId: ownerId) ?? true &&
+            self.getChat()?.seen ?? true
+    }
+    
+    public func getChat() -> Chat? {
+        if conversation == nil {
+            setContactConversation()
+        }
+        return conversation
+    }
+    
+    public func getContact() -> UserContact? {
+        return self
+    }
+    
+    public func getInvite() -> UserInvite? {
+        return self.invite
+    }
+    
     public func getObjectId() -> Int {
         return self.id
     }

@@ -56,7 +56,6 @@ class ProfileViewController: NSViewController {
     let kSwitchOnLeading: CGFloat = 25
     let kSwitchOffLeading: CGFloat = 2
     
-    var contactsService = ContactsService()
     var walletBalanceService = WalletBalanceService()
     let newMessageBubbleHelper = NewMessageBubbleHelper()
     let urlUpdateHelper = RelayURLUpdateHelper()
@@ -299,7 +298,7 @@ class ProfileViewController: NSViewController {
         
         API.sharedInstance.updateUser(id: profile.id, params: parameters, callback: { contact in
             API.kVideoCallServer = self.meetingServerField.stringValue
-            self.contactsService.insertContact(contact: contact)
+            let _ = UserContactsHelper.insertContact(contact: contact)
             self.saveFinished(success: true)
         }, errorCallback: {
             self.saveFinished(success: false)

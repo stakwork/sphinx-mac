@@ -11,13 +11,7 @@ import SwiftyJSON
 
 final class ChatListViewModel: NSObject {
     
-    private var contactsService: ContactsService!
-    
     public static let kMessagesPerPage: Int = 200
-    
-    init(contactsService: ContactsService) {
-        self.contactsService = contactsService
-    }
     
     public static func isRestoreRunning() -> Bool {
         let restoreRunning = API.sharedInstance.lastSeenMessagesDate == nil && UserDefaults.Keys.messagesFetchPage.get(defaultValue: -1) > 0
@@ -30,30 +24,35 @@ final class ChatListViewModel: NSObject {
     }
     
     func loadFriends(completion: @escaping () -> ()) {
-        if let contactsService = contactsService {
-            API.sharedInstance.getLatestContacts(date: Date(), callback: {(contacts, chats, subscriptions, invites) -> () in
-                contactsService.insertObjects(contacts: contacts, chats: chats, subscriptions: subscriptions, invites: invites)
+        API.sharedInstance.getLatestContacts(
+            date: Date(),
+            callback: {(contacts, chats, subscriptions, invites) -> () in
+                
+                UserContactsHelper.insertObjects(
+                    contacts: contacts,
+                    chats: chats,
+                    subscriptions: subscriptions,
+                    invites: invites
+                )
+                
                 self.forceKeychainSync()
                 completion()
-            })
-        } else {
-            completion()
-        }
+        })
     }
     
     func getChatListObjectsCount() -> Int {
-        if let contactsService = contactsService {
-            return contactsService.chatListObjects.count
-        }
+//        if let contactsService = contactsService {
+//            return contactsService.chatListObjects.count
+//        }
         return 0
     }
     
     func updateContactsAndChats() {
-        guard let contactsService = contactsService else {
-            return
-        }
-        contactsService.updateContacts()
-        contactsService.updateChats()
+//        guard let contactsService = contactsService else {
+//            return
+//        }
+//        contactsService.updateContacts()
+//        contactsService.updateChats()
     }
     
     func forceKeychainSync() {
@@ -92,17 +91,13 @@ final class ChatListViewModel: NSObject {
                 
                 UserDefaults.Keys.messagesFetchPage.removeValue()
                 
-                Chat.updateLastMessageForChats(
-                    self.newMessagesChatIds
-                )
-                
                 completion(chatNewMessagesCount, newMessagesCount)
             }
         )
     }
     
     func calculateBadges() {
-        contactsService.calculateBadges()
+//        contactsService.calculateBadges()
     }
     
     func finishRestoring() {

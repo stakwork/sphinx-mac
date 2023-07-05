@@ -22,8 +22,6 @@ class FriendMessageView: NSView, LoadableNib {
     @IBOutlet weak var initialsCircle: NSBox!
     @IBOutlet weak var initialsLabel: NSTextField!
     
-    var contactsService: ContactsService! = nil
-    
     var loading = false {
         didSet {
             LoadingWheelHelper.toggleLoadingWheel(loading: loading, loadingWheel: loadingWheel, color: NSColor.white, controls: [continueButtonView.getButton()])
@@ -39,13 +37,15 @@ class FriendMessageView: NSView, LoadableNib {
         loadViewFromNib()
     }
     
-    init(frame frameRect: NSRect, contactsService: ContactsService, delegate: WelcomeEmptyViewDelegate) {
+    init(
+        frame frameRect: NSRect,
+        delegate: WelcomeEmptyViewDelegate
+    ) {
         super.init(frame: frameRect)
-        loadViewFromNib()
         
-        self.contactsService = contactsService
         self.delegate = delegate
         
+        loadViewFromNib()
         configureView()
     }
     
@@ -73,7 +73,7 @@ extension FriendMessageView : SignupButtonViewDelegate {
             
             if let pubkey = inviter.pubkey {
                 
-                contactsService.createContact(
+                UserContactsHelper.createContact(
                     nickname: inviter.nickname,
                     pubKey: pubkey,
                     routeHint: inviter.routeHint,

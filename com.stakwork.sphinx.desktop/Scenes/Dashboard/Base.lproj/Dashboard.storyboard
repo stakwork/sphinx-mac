@@ -105,7 +105,10 @@
                                     <rect key="frame" x="0.0" y="0.0" width="409" height="542"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <scrollView wantsLayer="YES" focusRingType="none" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gx2-09-Cou">
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="ySx-Q7-u4E">
+                                            <rect key="frame" x="0.0" y="0.0" width="409" height="384"/>
+                                        </customView>
+                                        <scrollView hidden="YES" wantsLayer="YES" focusRingType="none" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gx2-09-Cou">
                                             <rect key="frame" x="0.0" y="0.0" width="409" height="384"/>
                                             <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="iB2-SR-Y1z">
                                                 <rect key="frame" x="0.0" y="0.0" width="409" height="384"/>
@@ -465,15 +468,19 @@
                                         <constraint firstItem="jDY-5P-PW5" firstAttribute="top" secondItem="hky-hJ-L7j" secondAttribute="bottom" id="E6Y-2r-0Ce"/>
                                         <constraint firstAttribute="bottom" secondItem="Gx2-09-Cou" secondAttribute="bottom" id="Gun-mc-LxS"/>
                                         <constraint firstItem="Tn4-P2-Qe9" firstAttribute="top" secondItem="jDY-5P-PW5" secondAttribute="bottom" id="Kwg-Zg-NLT"/>
+                                        <constraint firstItem="ySx-Q7-u4E" firstAttribute="leading" secondItem="hee-Rj-5G9" secondAttribute="leading" id="P56-YK-XLq"/>
                                         <constraint firstAttribute="trailing" secondItem="hky-hJ-L7j" secondAttribute="trailing" id="S1d-d6-EdJ"/>
                                         <constraint firstAttribute="trailing" secondItem="Tn4-P2-Qe9" secondAttribute="trailing" id="TE3-j4-8lC"/>
+                                        <constraint firstAttribute="bottom" secondItem="ySx-Q7-u4E" secondAttribute="bottom" id="UA3-vc-c6e"/>
                                         <constraint firstAttribute="trailing" secondItem="jDY-5P-PW5" secondAttribute="trailing" id="WgH-fK-lsv"/>
+                                        <constraint firstAttribute="trailing" secondItem="ySx-Q7-u4E" secondAttribute="trailing" id="XLN-5M-UCZ"/>
                                         <constraint firstItem="hky-hJ-L7j" firstAttribute="top" secondItem="hee-Rj-5G9" secondAttribute="top" id="aOh-XM-BON"/>
                                         <constraint firstAttribute="trailing" secondItem="Gx2-09-Cou" secondAttribute="trailing" id="bUk-5L-1EQ"/>
                                         <constraint firstItem="hky-hJ-L7j" firstAttribute="leading" secondItem="hee-Rj-5G9" secondAttribute="leading" id="dUv-RM-Ynq"/>
                                         <constraint firstItem="Gx2-09-Cou" firstAttribute="top" secondItem="Tn4-P2-Qe9" secondAttribute="bottom" id="dcs-cK-AsR"/>
                                         <constraint firstItem="jDY-5P-PW5" firstAttribute="leading" secondItem="hee-Rj-5G9" secondAttribute="leading" id="dgq-5Y-NAI"/>
                                         <constraint firstAttribute="trailing" secondItem="gZo-o6-Yss" secondAttribute="trailing" id="eS4-se-sUf"/>
+                                        <constraint firstItem="ySx-Q7-u4E" firstAttribute="top" secondItem="Tn4-P2-Qe9" secondAttribute="bottom" id="le3-KD-eFP"/>
                                         <constraint firstAttribute="bottom" secondItem="gZo-o6-Yss" secondAttribute="bottom" id="lfA-rJ-O8C"/>
                                         <constraint firstItem="gZo-o6-Yss" firstAttribute="leading" secondItem="hee-Rj-5G9" secondAttribute="leading" id="vC7-lC-cGI"/>
                                         <constraint firstItem="Tn4-P2-Qe9" firstAttribute="leading" secondItem="hee-Rj-5G9" secondAttribute="leading" id="zmc-zP-fVr"/>
@@ -494,6 +501,7 @@
                         <outlet property="balanceUnitLabel" destination="RkR-tA-a4e" id="VEG-qD-Oay"/>
                         <outlet property="bottomBar" destination="gZo-o6-Yss" id="uaE-4h-qoc"/>
                         <outlet property="chatListCollectionView" destination="NiA-gA-0FD" id="Anl-dg-SkN"/>
+                        <outlet property="chatListVCContainer" destination="ySx-Q7-u4E" id="n8I-XA-t6A"/>
                         <outlet property="dashboardNavigationTabs" destination="Tn4-P2-Qe9" id="yGZ-Dn-Hbx"/>
                         <outlet property="headerView" destination="hky-hJ-L7j" id="PBU-Ut-AiU"/>
                         <outlet property="healthCheckView" destination="Euq-bW-3e4" id="e78-H4-jvj"/>
@@ -510,6 +518,56 @@
                 <customObject id="R1D-29-ZaS" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-324" y="815"/>
+        </scene>
+        <!--New Chat List View Controller-->
+        <scene sceneID="NLu-lf-NwT">
+            <objects>
+                <viewController storyboardIdentifier="NewChatListViewController" id="Qs7-jr-BEv" customClass="NewChatListViewController" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="8jg-OO-Rdx">
+                        <rect key="frame" x="0.0" y="0.0" width="409" height="453"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView wantsLayer="YES" focusRingType="none" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pcu-Nn-sAK">
+                                <rect key="frame" x="0.0" y="0.0" width="409" height="453"/>
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="AZq-64-JAG">
+                                    <rect key="frame" x="0.0" y="0.0" width="409" height="453"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <collectionView selectable="YES" id="RbR-fK-zoX">
+                                            <rect key="frame" x="0.0" y="0.0" width="409" height="384"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" id="pZg-vf-HgB">
+                                                <size key="itemSize" width="350" height="85"/>
+                                            </collectionViewFlowLayout>
+                                            <color key="primaryBackgroundColor" name="ListBG"/>
+                                        </collectionView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="gvV-3J-84k">
+                                    <rect key="frame" x="-100" y="-100" width="233" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Xkr-NK-dpT">
+                                    <rect key="frame" x="393" y="0.0" width="16" height="300"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="pcu-Nn-sAK" firstAttribute="leading" secondItem="8jg-OO-Rdx" secondAttribute="leading" id="MDN-pP-ofi"/>
+                            <constraint firstAttribute="trailing" secondItem="pcu-Nn-sAK" secondAttribute="trailing" id="b6p-74-234"/>
+                            <constraint firstItem="pcu-Nn-sAK" firstAttribute="top" secondItem="8jg-OO-Rdx" secondAttribute="top" id="nJi-Gd-qIb"/>
+                            <constraint firstAttribute="bottom" secondItem="pcu-Nn-sAK" secondAttribute="bottom" id="oGK-hY-1fc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="chatsCollectionView" destination="RbR-fK-zoX" id="gtg-UH-3bh"/>
+                    </connections>
+                </viewController>
+                <customObject id="Qio-yf-036" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-324.5" y="1412.5"/>
         </scene>
         <!--Contact View Controller-->
         <scene sceneID="Vqy-QO-2DZ">

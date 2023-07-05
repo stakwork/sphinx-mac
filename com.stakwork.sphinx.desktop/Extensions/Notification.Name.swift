@@ -22,7 +22,6 @@ extension Notification.Name {
     static let onConnectionStatusChanged = Notification.Name.init("onConnectionStatusChanged")
     static let screenIsLocked = Notification.Name.init("com.apple.screenIsLocked")
     static let screenIsUnlocked = Notification.Name.init("com.apple.screenIsUnlocked")
-    static let onTribeImageChanged = Notification.Name("onTribeImageChanged")
     static let onInterfaceThemeChanged = Notification.Name("AppleInterfaceThemeChangedNotification")
     
     static let onAuthDeepLink = Notification.Name("onAuthDeepLink")
@@ -32,4 +31,6 @@ extension Notification.Name {
     static let onRedeemSatsDeepLink = Notification.Name("onRedeemSatsDeepLink")
     static let onInvoiceDeepLink = Notification.Name("onInvoiceDeepLink")
     static let onShareContentDeeplink = Notification.Name("onShareContentDeeplink")
+    
+    static let onContactsAndChatsChanged = Notification.Name("onContactsAndChatsChanged")
 }

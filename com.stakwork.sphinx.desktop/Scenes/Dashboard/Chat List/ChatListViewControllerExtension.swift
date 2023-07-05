@@ -34,12 +34,6 @@ extension ChatListViewController {
         NotificationCenter.default.addObserver(forName: .onBalanceDidChange, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
             self?.updateBalance()
         }
-        
-        NotificationCenter.default.addObserver(forName: .onTribeImageChanged, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
-            guard let vc = self else { return }
-            vc.chatListObjectsArray = vc.contactsService.getChatListObjects()
-            vc.loadDataSource()
-        }
     }
     
     func updateBalance() {
@@ -107,10 +101,10 @@ extension ChatListViewController : NSTextFieldDelegate {
     }
     
     func controlTextDidChange(_ obj: Notification) {
-        let currentString = (searchField?.stringValue ?? "")
-        searchClearButton.isHidden = currentString.isEmpty
-        chatListObjectsArray = contactsService.getObjectsWith(searchString: currentString as String)
-        loadDataSource()
+//        let currentString = (searchField?.stringValue ?? "")
+//        searchClearButton.isHidden = currentString.isEmpty
+//        chatListObjectsArray = contactsService.getObjectsWith(searchString: currentString as String)
+//        loadDataSource()
     }
 }
 

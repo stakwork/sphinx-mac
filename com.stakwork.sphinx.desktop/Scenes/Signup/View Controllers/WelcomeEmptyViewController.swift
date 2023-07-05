@@ -74,7 +74,7 @@ class WelcomeEmptyViewController: WelcomeTorConnectionViewController {
         case .Welcome:
             subView = WelcomeView(frame: NSRect.zero, delegate: self)
         case .FriendMessage:
-            subView = FriendMessageView(frame: NSRect.zero, contactsService: contactsService, delegate: self)
+            subView = FriendMessageView(frame: NSRect.zero, delegate: self)
         }
         
         self.view.addSubview(subView!)
@@ -224,7 +224,7 @@ extension WelcomeEmptyViewController : WelcomeEmptyViewDelegate {
         }
 
         if isNewUser {
-            view.window?.replaceContentBy(vc: WelcomeLightningViewController.instantiate(contactsService: contactsService))
+            view.window?.replaceContentBy(vc: WelcomeLightningViewController.instantiate())
         } else {
             GroupsPinManager.sharedInstance.loginPin()
             SignupHelper.completeSignup()

@@ -360,7 +360,7 @@ extension SphinxSocketManager {
     }
     
     func didReceiveContact(contactJson: JSON) {
-        if let contact = UserContact.insertContact(contact: contactJson).0 {
+        if let contact = UserContact.insertContact(contact: contactJson) {
             if shouldUpdateObjectsOnView(contact: contact) {
                 delegate?.didUpdateContact?(contact: contact)
             }
@@ -370,7 +370,7 @@ extension SphinxSocketManager {
     func didReceiveGroup(groupJson: JSON) {
         if let contacts = groupJson["new_contacts"].array {
             for c in contacts {
-                let (_, _) = UserContact.insertContact(contact: c)
+                let _ = UserContact.insertContact(contact: c)
             }
         }
 

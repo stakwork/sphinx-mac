@@ -96,30 +96,30 @@ class ChatListDataSource : NSObject {
     }
     
     func updateChatAndReload(object: ChatListCommonObject) {
-        var chatRowIndex:Int? = nil
-        
-        guard let chat = object as? Chat else {
-            return
-        }
-
-        for (index, o) in  chatListObjects.enumerated() {
-            let chatObject = (o as? Chat) ?? o.getConversation()
-            
-            if let c = chatObject {
-                if c.id == chat.id {
-                    chatListObjects[index] = chat
-                    chatRowIndex = index
-                    break
-                }
-            }
-        }
-
-        guard let indexToUpdate = chatRowIndex else {
-            return
-        }
-
-        let indexPath = IndexPath(item: indexToUpdate, section: 0)
-        collectionView.reloadItems(at: [indexPath])
+//        var chatRowIndex:Int? = nil
+//        
+//        guard let chat = object as? Chat else {
+//            return
+//        }
+//
+//        for (index, o) in  chatListObjects.enumerated() {
+//            let chatObject = (o as? Chat) ?? o.getConversation()
+//            
+//            if let c = chatObject {
+//                if c.id == chat.id {
+//                    chatListObjects[index] = chat
+//                    chatRowIndex = index
+//                    break
+//                }
+//            }
+//        }
+//
+//        guard let indexToUpdate = chatRowIndex else {
+//            return
+//        }
+//
+//        let indexPath = IndexPath(item: indexToUpdate, section: 0)
+//        collectionView.reloadItems(at: [indexPath])
     }
 }
 

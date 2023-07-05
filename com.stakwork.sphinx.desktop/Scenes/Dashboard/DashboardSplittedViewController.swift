@@ -22,7 +22,6 @@ class DashboardSplittedViewController: NSViewController {
     
     weak var delegate: DashboardVCDelegate?
     
-    var contactsService : ContactsService! = nil
     var chatViewModel: ChatViewModel! = nil
     var chatListViewModel: ChatListViewModel! = nil
 
@@ -30,8 +29,10 @@ class DashboardSplittedViewController: NSViewController {
         super.viewDidLoad()
     }
     
-    func setDataModels(contactsService: ContactsService, chatListViewModel: ChatListViewModel, chatViewModel: ChatViewModel) {
-        self.contactsService = contactsService
+    func setDataModels(
+        chatListViewModel: ChatListViewModel,
+        chatViewModel: ChatViewModel
+    ) {
         self.chatListViewModel = chatListViewModel
         self.chatViewModel = chatViewModel
     }

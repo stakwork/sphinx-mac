@@ -87,54 +87,58 @@ public class Chat: NSManagedObject {
             let contactIds = chat["contact_ids"].arrayObject as? [NSNumber] ?? []
             let pendingContactIds = chat["pending_contact_ids"].arrayObject as? [NSNumber] ?? []
             
-            let chat = Chat.createObject(id: id,
-                                         name: name,
-                                         photoUrl: photoUrl,
-                                         uuid: uuid,
-                                         type: type,
-                                         status: status,
-                                         muted: muted,
-                                         seen: seen,
-                                         host: host,
-                                         groupKey: groupKey,
-                                         ownerPubkey:ownerPubkey,
-                                         pricePerMessage: pricePerMessage,
-                                         escrowAmount: escrowAmount,
-                                         myAlias: myAlias,
-                                         myPhotoUrl: myPhotoUrl,
-                                         notify: notify,
-                                         pinnedMessageUUID: pinnedMessageUUID,
-                                         contactIds: contactIds,
-                                         pendingContactIds: pendingContactIds,
-                                         date: date,
-                                         metaData: metaData)
+            let chat = Chat.createObject(
+                id: id,
+                name: name,
+                photoUrl: photoUrl,
+                uuid: uuid,
+                type: type,
+                status: status,
+                muted: muted,
+                seen: seen,
+                host: host,
+                groupKey: groupKey,
+                ownerPubkey:ownerPubkey,
+                pricePerMessage: pricePerMessage,
+                escrowAmount: escrowAmount,
+                myAlias: myAlias,
+                myPhotoUrl: myPhotoUrl,
+                notify: notify,
+                pinnedMessageUUID: pinnedMessageUUID,
+                contactIds: contactIds,
+                pendingContactIds: pendingContactIds,
+                date: date,
+                metaData: metaData
+            )
             
             return chat
         }
         return nil
     }
     
-    static func createObject(id: Int,
-                             name: String,
-                             photoUrl: String?,
-                             uuid: String?,
-                             type: Int,
-                             status: Int,
-                             muted: Bool,
-                             seen: Bool,
-                             host: String?,
-                             groupKey: String?,
-                             ownerPubkey: String?,
-                             pricePerMessage: Int,
-                             escrowAmount: Int,
-                             myAlias: String?,
-                             myPhotoUrl: String?,
-                             notify: Int,
-                             pinnedMessageUUID: String?,
-                             contactIds: [NSNumber],
-                             pendingContactIds: [NSNumber],
-                             date: Date,
-                             metaData: String?) -> Chat? {
+    static func createObject(
+        id: Int,
+        name: String,
+        photoUrl: String?,
+        uuid: String?,
+        type: Int,
+        status: Int,
+        muted: Bool,
+        seen: Bool,
+        host: String?,
+        groupKey: String?,
+        ownerPubkey: String?,
+        pricePerMessage: Int,
+        escrowAmount: Int,
+        myAlias: String?,
+        myPhotoUrl: String?,
+        notify: Int,
+        pinnedMessageUUID: String?,
+        contactIds: [NSNumber],
+        pendingContactIds: [NSNumber],
+        date: Date,
+        metaData: String?
+    ) -> Chat? {
         
         let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
         
@@ -181,10 +185,6 @@ public class Chat: NSManagedObject {
             ids.append(contactId.intValue)
         }
         return ids
-    }
-    
-    func isMuted() -> Bool {
-        return self.notify == NotificationLevel.MuteChat.rawValue
     }
     
     public func isOnlyMentions() -> Bool {
@@ -406,19 +406,22 @@ public class Chat: NSManagedObject {
     
     var unseenMessagesCount: Int = 0
     
-    func getReceivedUnseenMessagesCount() -> Int {
-        if unseenMessagesCount == 0 {
-            calculateUnseenMessagesCount()
+    var unseenMessagesCountLabel: String {
+        get {
+            if unseenMessagesCount > 0 {
+                return "+\(unseenMessagesCount)"
+            }
+            return ""
         }
+    }
+    
+    func getReceivedUnseenMessagesCount() -> Int {
         return unseenMessagesCount
     }
     
     var unseenMentionsCount: Int = 0
     
     func getReceivedUnseenMentionsCount() -> Int {
-        if unseenMentionsCount == 0 {
-            calculateUnseenMentionsCount()
-        }
         return unseenMentionsCount
     }
     
@@ -452,18 +455,9 @@ public class Chat: NSManagedObject {
         return messages.first
     }
     
-    public static func updateLastMessageForChats(_ chatIds: [Int]) {
-        for id in chatIds {
-            if let chat = Chat.getChatWith(id: id) {
-                chat.calculateBadge()
-            }
-        }
-    }
-    
     public func updateLastMessage() {
-        if lastMessage?.id ?? 0 <= 0 {
+        if lastMessage == nil {
             lastMessage = getLastMessageToShow()
-            calculateBadge()
         }
     }
     
@@ -478,14 +472,6 @@ public class Chat: NSManagedObject {
             lastMessage = message
             calculateBadge()
         }
-    }
-    
-    func getContact() -> UserContact? {
-        if self.type == Chat.ChatType.conversation.rawValue {
-            let contacts = getContacts(includeOwner: false)
-            return contacts.first
-        }
-        return nil
     }
     
     func getAdmin() -> UserContact? {
@@ -588,7 +574,6 @@ public class Chat: NSManagedObject {
         
         if self.photoUrl != tribeImage {
             self.photoUrl = tribeImage
-            NotificationCenter.default.post(name: .onTribeImageChanged, object: nil, userInfo: nil)
         }
         
         self.saveChat()
@@ -660,14 +645,6 @@ public class Chat: NSManagedObject {
     
     func isPrivateGroup() -> Bool {
         return type == Chat.ChatType.privateGroup.rawValue
-    }
-    
-    func isPublicGroup() -> Bool {
-        return type == Chat.ChatType.publicGroup.rawValue
-    }
-    
-    func isConversation() -> Bool {
-        return type == Chat.ChatType.conversation.rawValue
     }
     
     func isMyPublicGroup() -> Bool {

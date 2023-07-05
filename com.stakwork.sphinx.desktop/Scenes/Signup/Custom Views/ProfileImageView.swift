@@ -35,7 +35,6 @@ class ProfileImageView: NSView, LoadableNib {
     
     var imageSet = false
     let messageBubbleHelper = NewMessageBubbleHelper()
-    var contactsService: ContactsService! = nil
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
@@ -46,13 +45,16 @@ class ProfileImageView: NSView, LoadableNib {
         loadViewFromNib()
     }
     
-    init(frame frameRect: NSRect, nickname: String, contactsService: ContactsService, delegate: WelcomeEmptyViewDelegate) {
+    init(
+        frame frameRect: NSRect,
+        nickname: String,
+        delegate: WelcomeEmptyViewDelegate
+    ) {
         super.init(frame: frameRect)
-        loadViewFromNib()
         
-        self.contactsService = contactsService
         self.delegate = delegate
         
+        loadViewFromNib()
         configureView(nickname: nickname)
     }
     
@@ -104,7 +106,7 @@ class ProfileImageView: NSView, LoadableNib {
         
         API.sharedInstance.updateUser(id: id, params: parameters, callback: { contact in
             self.loading = false
-            self.contactsService.insertContact(contact: contact)
+            let _ = UserContactsHelper.insertContact(contact: contact)
             self.goToSphinxReady()
         }, errorCallback: {
             self.loading = false

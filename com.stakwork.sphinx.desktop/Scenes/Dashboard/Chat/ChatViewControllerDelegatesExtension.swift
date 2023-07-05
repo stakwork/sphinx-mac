@@ -363,7 +363,7 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
     }
     
     func forceKeysExchange(contactId: Int) {
-        contactsService.exchangeKeys(id: contactId)
+        UserContactsHelper.exchangeKeys(id: contactId)
     }
 }
 

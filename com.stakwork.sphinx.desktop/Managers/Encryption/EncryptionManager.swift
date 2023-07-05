@@ -21,7 +21,6 @@ class EncryptionManager {
         return Static.instance
     }
     
-    var contactsService = ContactsService()
     let userData = UserData.sharedInstance
     
     var ownPrivateKey: SecKey? {
@@ -176,7 +175,7 @@ class EncryptionManager {
                 return
             }
 
-            contactsService.updateContact(contact: owner, contactKey: base64PublicKey, callback: { _ in
+            UserContactsHelper.updateContact(contact: owner, contactKey: base64PublicKey, callback: { _ in
                 completion?()
             })
         }

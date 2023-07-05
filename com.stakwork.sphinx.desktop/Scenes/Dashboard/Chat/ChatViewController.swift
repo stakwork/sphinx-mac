@@ -318,7 +318,7 @@ class ChatViewController: DashboardSplittedViewController {
         expandMenuButton.isHidden = !show
     }
     
-    func loadChatFor(contact: UserContact? = nil, chat: Chat? = nil, contactsService: ContactsService) {        
+    func loadChatFor(contact: UserContact? = nil, chat: Chat? = nil) {        
         if let chat = chat, let viewChat = self.chat, chat.id == viewChat.id {
             return
         }
@@ -331,8 +331,6 @@ class ChatViewController: DashboardSplittedViewController {
         
         self.contact = contact
         self.chat = chat
-        
-        self.contactsService = contactsService
         
         if chat == nil && contact == nil {
             childVCContainer.resetAllViews()
@@ -653,11 +651,31 @@ class ChatViewController: DashboardSplittedViewController {
     
     @IBAction func nameButtonClicked(_ sender: Any) {
         if let contact = contact {
-            let contactVC = NewContactViewController.instantiate(contactsService: contactsService, contact: contact)
-            WindowsManager.sharedInstance.showContactWindow(vc: contactVC, window: view.window, title: "add.friend".localized, identifier: "contact-window", size: CGSize(width: 414, height: 700))
+            
+            let contactVC = NewContactViewController.instantiate(contact: contact)
+            
+            WindowsManager.sharedInstance.showContactWindow(
+                vc: contactVC,
+                window: view.window,
+                title: "add.friend".localized,
+                identifier: "contact-window",
+                size: CGSize(width: 414, height: 700)
+            )
+            
         } else if let chat = chat {
-            let chatDetailsVC = GroupDetailsViewController.instantiate(chat: chat, delegate: self)
-            WindowsManager.sharedInstance.showContactWindow(vc: chatDetailsVC, window: view.window, title: "group.details".localized, identifier: "chat-window", size: CGSize(width: 414, height: 600))
+            
+            let chatDetailsVC = GroupDetailsViewController.instantiate(
+                chat: chat,
+                delegate: self
+            )
+            
+            WindowsManager.sharedInstance.showContactWindow(
+                vc: chatDetailsVC,
+                window: view.window,
+                title: "group.details".localized,
+                identifier: "chat-window",
+                size: CGSize(width: 414, height: 600)
+            )
         }
     }
 }

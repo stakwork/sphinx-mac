@@ -295,6 +295,12 @@ extension TransactionMessage {
         return getDirection(id: ownerId ?? UserData.sharedInstance.getUserId()) == TransactionMessageDirection.outgoing
     }
     
+    func isSeen(
+        ownerId: Int
+    ) -> Bool {
+        return self.isOutgoing(ownerId: ownerId) || self.seen
+    }
+    
     //Statues
     func isFailedOrMediaExpired() -> Bool {
         let failed = self.failed()
