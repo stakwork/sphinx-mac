@@ -536,11 +536,11 @@ class ChatHelper {
         contact: UserContact?,
         boosts: inout [String: TransactionMessage.Reactions]
     ) {
-        if let replyUUID = message.replyUUID {
+        if let replyUUID = message.replyUUID, let owner = UserContact.getOwner() {
             let outgoing = message.isOutgoing()
             let senderImageUrl: String? = message.getMessageSenderImageUrl(owner: owner, contact: contact)
             
-            let user: (String, NSColor, String?) = (message.getMessageSenderNickname(forceNickname: true), ChatHelper.getSenderColorFor(message: message), senderImageUrl)
+            let user: (String, NSColor, String?) = (message.getMessageSenderNickname(forceNickname: true, owner: owner, contact: nil), ChatHelper.getSenderColorFor(message: message), senderImageUrl)
             let amount = message.amount?.intValue ?? 0
             
             if var reaction = boosts[replyUUID] {

@@ -19,7 +19,14 @@ class GroupActionMessageCollectionViewItem: CommonGroupActionCollectionViewItem 
     }
     
     override func configureMessage(message: TransactionMessage) {
-        let groupLeaveText = message.getGroupMessageText()
+        guard let owner = UserContact.getOwner() else {
+            return
+        }
+        
+        let groupLeaveText = message.getGroupMessageText(
+            owner: owner,
+            contact: nil
+        )
         groupJoinLeaveLabel.stringValue = groupLeaveText
     }
     

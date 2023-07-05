@@ -63,8 +63,19 @@ class GroupRequestCollectionViewItem: CommonGroupActionCollectionViewItem {
     }
     
     func setLabel(message: TransactionMessage?, declined: Bool, accepted: Bool) {
-        groupApprovalLabel.stringValue = message?.getGroupMessageText() ?? ""
-        let senderNickname = message?.getMessageSenderNickname() ?? "name.unknown".localized
+        guard let owner = UserContact.getOwner() else {
+            return
+        }
+        
+        groupApprovalLabel.stringValue = message?.getGroupMessageText(
+            owner: owner,
+            contact: nil
+        ) ?? ""
+        
+        let senderNickname = message?.getMessageSenderNickname(
+            owner: owner,
+            contact: nil
+        ) ?? "name.unknown".localized
         
         if accepted {
             groupApprovalLabel.stringValue = String(format: "admin.request.approved".localized, senderNickname)

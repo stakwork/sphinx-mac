@@ -166,12 +166,20 @@ class MessageReplyView: NSView, LoadableNib {
     }
     
     func configureMessage(isIncoming: Bool = true) {
-        guard let message = self.message else {
+        guard let message = self.message, let owner = UserContact.getOwner() else {
             return
         }
         
         leftBar.fillColor = ChatHelper.getSenderColorFor(message: message)
-        configureWith(title: message.getMessageSenderNickname(), message: message.getReplyMessageContent(), isIncoming: isIncoming)
+        
+        configureWith(
+            title: message.getMessageSenderNickname(
+                owner: owner,
+                contact: nil
+            ),
+            message: message.getReplyMessageContent(),
+            isIncoming: isIncoming
+        )
     }
     
     func configureWith(title: String, message: String, isIncoming: Bool = true) {

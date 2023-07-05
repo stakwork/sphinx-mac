@@ -313,7 +313,7 @@ extension MessageOptionsHelper : MessageOptionViewDelegate {
             
             switch(option) {
             case .Copy:
-                ClipboardHelper.copyToClipboard(text: message.getMessageContent(), message: "text.copied.clipboard".localized, bubbleContainer: bubbleContainer)
+                ClipboardHelper.copyToClipboard(text: message.bubbleMessageContentString ?? "", message: "text.copied.clipboard".localized, bubbleContainer: bubbleContainer)
                 break
             case .CopyLink:
                 ClipboardHelper.copyToClipboard(text: message.messageContent?.stringFirstLink ?? "", message: "link.copied.clipboard".localized, bubbleContainer: bubbleContainer)

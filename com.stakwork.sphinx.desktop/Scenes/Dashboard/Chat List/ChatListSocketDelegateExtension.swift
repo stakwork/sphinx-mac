@@ -30,11 +30,11 @@ extension ChatListViewController {
     }
     
     func didUpdateContact(contact: UserContact) {
-        chatListDataSource?.updateContactAndReload(object: contact)
+//        chatListDataSource?.updateContactAndReload(object: contact)
     }
     
     func didUpdateChat(chat: Chat) {
-        chatListDataSource?.updateChatAndReload(object: chat)
+//        chatListDataSource?.updateChatAndReload(object: chat)
     }
     
     func didReceiveOrUpdateGroup() {

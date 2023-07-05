@@ -155,8 +155,6 @@ extension ContactsService : NSFetchedResultsControllerDelegate {
         }
         
         if chats.count > 0 || allContacts.count > 0 {
-            self.chats = self.chats.filter({ !$0.isConversation() })
-            
             let conversations = chats.filter({ $0.isConversation() })
             let contactIds = ((conversations.map { $0.contactIds }).flatMap { $0 }).map { $0.intValue }
             self.contacts = self.allContacts.filter({ !contactIds.contains($0.id) && !$0.isExpiredInvite() })

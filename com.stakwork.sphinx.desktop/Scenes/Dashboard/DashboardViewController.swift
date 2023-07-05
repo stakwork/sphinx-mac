@@ -246,13 +246,11 @@ class DashboardViewController: NSViewController {
     }
     
     func reloadView() {
-        self.listViewController?.chatListCollectionView.reloadData()
+//        self.listViewController?.chatListCollectionView.reloadData()
         self.detailViewController?.chatCollectionView.reloadData()
     }
     
     func reloadData() {
-        self.listViewController?.chatListDataSource.reloadSelectedRow()
-        
         self.chatListViewModel.loadFriends {
             let chatId = self.detailViewController?.chat?.id
             self.chatListViewModel.syncMessages(chatId: chatId, progressCallback: { (_, restoring) in

@@ -88,10 +88,26 @@ extension ChatListViewController : ChildVCDelegate,ActionsDelegate,ChoosePayment
     
 }
 
-extension ChatListViewController : ChatListDataSourceDelegate {
-    func didClickOnChatRow(object: ChatListCommonObject) {
+extension ChatListViewController : NewChatListViewControllerDelegate {
+    func didClickRowAt(
+        index: Int,
+        tab: NewChatListViewController.Tab
+    ) {
         updateBalance()
-        delegate?.didClickOnChatRow(object: object)
+        
+        selectedChatIndex = (tab, index)
+        
+        guard let selectedChatIndex = selectedChatIndex else {
+            return
+        }
+        
+        contactChatsContainerViewController.updateWith(
+            newSelectedIndex: selectedChatIndex
+        )
+        
+        tribeChatsContainerViewController.updateWith(
+            newSelectedIndex: selectedChatIndex
+        )
     }
 }
 

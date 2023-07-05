@@ -305,6 +305,7 @@ public class TransactionMessage: NSManagedObject {
         message.uuid = uuid
         message.replyUUID = replyUUID
         message.type = type
+        message.status = status
         message.senderId = sender
         message.senderAlias = senderAlias
         message.senderPic = senderPic
@@ -324,10 +325,6 @@ public class TransactionMessage: NSManagedObject {
         message.seen = seen
         message.push = push
         message.encrypted = isContentEncrypted(messageEncrypted: messageEncrypted, type: type, mediaKey: mediaKey)
-        
-        if status != 0 {
-            message.status = status
-        }
         
         if messageContent != "" {
             message.messageContent = messageContent

@@ -85,6 +85,10 @@ class CommonChatCollectionViewItem: NSCollectionViewItem, MessageRowProtocol {
             return
         }
         
+        guard let owner = UserContact.getOwner() else {
+            return
+        }
+        
 //        addLinkPreview()
         addTribeLinkPreview()
         addPubKeyPreview()
@@ -119,7 +123,7 @@ class CommonChatCollectionViewItem: NSCollectionViewItem, MessageRowProtocol {
         if let senderLabel = senderLabel, let chat = chat {
             let isGroup = chat.isGroup()
             senderLabel.isHidden = !isGroup
-            senderLabel.stringValue = isGroup ? "\(message.getMessageSenderNickname())   " : ""
+            senderLabel.stringValue = isGroup ? "\(message.getMessageSenderNickname(owner: owner, contact: nil))   " : ""
             senderLabel.textColor = ChatHelper.getSenderColorFor(message: message)
         }
         

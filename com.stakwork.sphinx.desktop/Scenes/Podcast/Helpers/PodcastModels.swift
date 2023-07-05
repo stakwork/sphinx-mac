@@ -89,4 +89,8 @@ struct PodcastComment {
 
         return nil
     }
+    
+    func isValid() -> Bool {
+        return timestamp != nil && title != nil && url != nil
+    }
 }

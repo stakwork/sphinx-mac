@@ -46,6 +46,7 @@ internal enum StoryboardScene {
         
         internal static let chatListViewController = SceneType<ChatListViewController>(storyboard: Dashboard.self, identifier: "ChatListViewController")
         
+        @available(macOS 10.15.1, *)
         internal static let newChatListViewController = SceneType<NewChatListViewController>(storyboard: Dashboard.self, identifier: "NewChatListViewController")
         
         internal static let chatViewController = SceneType<ChatViewController>(storyboard: Dashboard.self, identifier: "ChatViewController")

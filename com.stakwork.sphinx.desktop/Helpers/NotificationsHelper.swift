@@ -132,6 +132,10 @@ class NotificationsHelper : NSObject {
     }
     
     func createNotificationFrom(_ message: TransactionMessage) -> NSUserNotification? {
+        guard let owner = UserContact.getOwner() else {
+            return nil
+        }
+        
         if shouldShowBanner() {
             let notification = NSUserNotification()
             
@@ -139,7 +143,10 @@ class NotificationsHelper : NSObject {
             let chatId = message.chat?.id ?? -1
             
             if chatName.isEmpty {
-                notification.title = message.getMessageSenderNickname()
+                notification.title = message.getMessageSenderNickname(
+                    owner: owner,
+                    contact: nil
+                )
             } else {
                 notification.title = chatName
             }

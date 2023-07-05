@@ -17,9 +17,10 @@ class ChatListViewController : DashboardSplittedViewController {
     @IBOutlet weak var searchBarContainer: NSView!
     @IBOutlet weak var searchFieldContainer: NSBox!
     @IBOutlet weak var searchField: NSTextField!
-    @IBOutlet weak var chatListCollectionView: NSCollectionView!
     @IBOutlet weak var loadingWheelContainer: NSView!
     @IBOutlet weak var loadingWheel: NSProgressIndicator!
+    @IBOutlet weak var loadingChatsBox: NSBox!
+    @IBOutlet weak var loadingChatsWheel: NSProgressIndicator!
     @IBOutlet weak var searchClearButton: NSButton!
     @IBOutlet weak var healthCheckView: HealthCheckView!
     @IBOutlet weak var upgradeBox: NSBox!
@@ -33,19 +34,19 @@ class ChatListViewController : DashboardSplittedViewController {
                     "dashboard.tabs.friends".localized,
                     "dashboard.tabs.tribes".localized,
                 ],
-                initialIndex: 1,
+                initialIndex: 0,
                 delegate: self
             )
         }
     }
     
+    let contactsService = ContactsService.sharedInstance
     let feedsManager = FeedsManager.sharedInstance
     
     let newMessageBubbleHelper = NewMessageBubbleHelper()
     var walletBalanceService = WalletBalanceService()
     
-    var chatListDataSource: ChatListDataSource! = nil
-    var chatListObjectsArray = [ChatListCommonObject]()
+    var selectedChatIndex: (NewChatListViewController.Tab, Int)? = nil
     
     var loading = false {
         didSet {
@@ -54,33 +55,83 @@ class ChatListViewController : DashboardSplittedViewController {
         }
     }
     
-    internal var activeTab: DashboardTab = .friends {
+    var intialLoading = true {
         didSet {
-//            let newViewController = mainContentViewController(forActiveTab: activeTab)
-//
-//            addChildVC(
-//                child: newViewController,
-//                container: mainContentContainerView
-//            )
-            
-            resetSearchField()
-//            loadDataOnTabChange(to: activeTab)
+            loadingChatsBox.isHidden = !intialLoading
+            LoadingWheelHelper.toggleLoadingWheel(loading: intialLoading, loadingWheel: loadingChatsWheel, color: NSColor.white, controls: [])
         }
     }
     
+    internal var activeTab: DashboardTab = .friends {
+        didSet {
+            let newViewController = mainContentViewController(forActiveTab: activeTab)
+
+            addChildVC(
+                child: newViewController,
+                container: chatListVCContainer
+            )
+            
+            resetSearchField()
+            loadFriendAndReload()
+        }
+    }
+    
+    var indicesOfTabsWithNewMessages: [Int] {
+        var indices = [Int]()
+
+        if contactsService.contactsHasNewMessages {
+            indices.append(1)
+        }
+        
+        if contactsService.chatsHasNewMessages {
+            indices.append(2)
+        }
+        
+        return indices
+    }
+    
+    private func mainContentViewController(
+        forActiveTab activeTab: DashboardTab
+    ) -> NSViewController {
+        switch activeTab {
+        case .friends:
+            return contactChatsContainerViewController
+        case .tribes:
+            return tribeChatsContainerViewController
+        }
+    }
+    
+    internal lazy var contactChatsContainerViewController: NewChatListViewController = {
+        NewChatListViewController.instantiate(
+            tab: NewChatListViewController.Tab.Friends,
+            delegate: self
+        )
+    }()
+    
+    internal lazy var tribeChatsContainerViewController: NewChatListViewController = {
+        NewChatListViewController.instantiate(
+            tab: NewChatListViewController.Tab.Tribes,
+            delegate: self
+        )
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         prepareView()
         listenForPubKeyAndTribeJoin()
     }
     
     override func viewDidLayout() {
-        chatListDataSource?.updateFrame()
+        for childVC in self.children {
+            childVC.view.frame = chatListVCContainer.frame
+        }
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
         
+        intialLoading = true
         loading = true
         
         updateContactsAndReload()
@@ -90,9 +141,18 @@ class ChatListViewController : DashboardSplittedViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         
+        activeTab = .friends
+        
+        NotificationCenter.default.removeObserver(self, name: .onContactsAndChatsChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(dataDidChange), name: .onContactsAndChatsChanged, object: nil)
+        
         listenForNotifications()
         updateBalance()
         loadFriendAndReload()
+        
+        DelayPerformedHelper.performAfterDelay(seconds: 0.5, completion: {
+            self.intialLoading = false
+        })
     }
     
     override func viewWillDisappear() {
@@ -103,14 +163,27 @@ class ChatListViewController : DashboardSplittedViewController {
         NotificationCenter.default.removeObserver(self, name: .onPubKeyClick, object: nil)
     }
     
-    func prepareView() {
-        let flowLayout = NSCollectionViewFlowLayout()
-        flowLayout.itemSize = NSSize(width: self.view.frame.width, height: 60.0)
-        flowLayout.sectionInset = NSEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
-        flowLayout.minimumInteritemSpacing = 0.0
-        flowLayout.minimumLineSpacing = 0.0
-        chatListCollectionView.collectionViewLayout = flowLayout
+    @objc func dataDidChange() {
+        updateNewMessageBadges()
         
+        contactChatsContainerViewController.updateWithNewChats(
+            contactsService.contactListObjects
+        )
+        
+        tribeChatsContainerViewController.updateWithNewChats(
+            contactsService.chatListObjects
+        )
+    }
+    
+    internal func updateNewMessageBadges() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            guard let self = self else { return }
+            
+            self.dashboardNavigationTabs.indicesOfTitlesWithBadge = self.indicesOfTabsWithNewMessages
+        }
+    }
+    
+    func prepareView() {
         searchField.setPlaceHolder(color: NSColor.Sphinx.PlaceholderText, font: NSFont(name: "Roboto-Regular", size: 14.0)!, string: "search".localized)
         searchField.delegate = self
         
@@ -209,6 +282,7 @@ class ChatListViewController : DashboardSplittedViewController {
     
     func updateContactsAndReload() {
         updateBalance()
+        
         chatListViewModel.updateContactsAndChats()
 
         if searchField.stringValue.isEmpty {
@@ -219,22 +293,12 @@ class ChatListViewController : DashboardSplittedViewController {
 //            )
         }
         
-        loadDataSource()
         shouldCheckAppVersions()
     }
     
     func finishLoading() {
         newMessageBubbleHelper.hideLoadingWheel()
         loading = false
-    }
-    
-    func loadDataSource() {
-        if chatListDataSource == nil {
-            chatListDataSource = ChatListDataSource(collectionView: chatListCollectionView, delegate: self)
-            chatListDataSource?.setDataAndReload(chatListObjects: chatListObjectsArray)
-        } else {
-            chatListDataSource?.updateDataAndReload(chatListObjects: chatListObjectsArray)
-        }
     }
     
     func shouldCheckAppVersions() {        
@@ -248,15 +312,15 @@ class ChatListViewController : DashboardSplittedViewController {
     }
     
     func selectRowFor(chatId: Int) {
-        chatListDataSource?.selectedChatId = chatId
-        chatListCollectionView.reloadData()
+//        chatListDataSource?.selectedChatId = chatId
     }
     
     @IBAction func refreshButtonClicked(_ sender: Any) {
         loading = true
         updateBalance()
-        chatListDataSource.resetSelection()
         loadFriendAndReload()
+        
+        //        chatListDataSource.resetSelection()
         
         delegate?.didReloadDashboard()
     }
@@ -283,7 +347,7 @@ class ChatListViewController : DashboardSplittedViewController {
                 let (existing, user) = pk.isExistingContactPubkey()
                 
                 if let user = user, existing {
-                    vc.chatListDataSource.shouldSelectContactOrChat(user)
+//                    vc.chatListDataSource.shouldSelectContactOrChat(user)
                 } else {
                     
                     let contactVC = NewContactViewController.instantiate(
@@ -308,7 +372,7 @@ class ChatListViewController : DashboardSplittedViewController {
             if let tribeLink = n.userInfo?["tribe_link"] as? String {
                 if let tribeInfo = GroupsManager.sharedInstance.getGroupInfo(query: tribeLink), let uuid = tribeInfo.uuid {
                     if let chat = Chat.getChatWith(uuid: uuid) {
-                        vc.chatListDataSource.shouldSelectContactOrChat(chat)
+//                        vc.chatListDataSource.shouldSelectContactOrChat(chat)
                     } else {
                         let joinTribeVC = JoinTribeViewController.instantiate(tribeInfo: tribeInfo, delegate: vc)
                         WindowsManager.sharedInstance.showContactWindow(vc: joinTribeVC, window: vc.view.window, title: "join.tribe".localized.uppercased(), identifier: "join-tribe-window", size: CGSize(width: 414, height: 870))
@@ -332,3 +396,5 @@ class ChatListViewController : DashboardSplittedViewController {
         resetSearchField()
     }
 }
+
+

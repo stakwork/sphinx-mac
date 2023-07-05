@@ -99,7 +99,7 @@ class PinMessageBarView: NSView, LoadableNib {
         self.delegate = delegate
         self.messageId = message.id
         
-        messageLabel.stringValue = message.getMessageContent()
+        messageLabel.stringValue = message.bubbleMessageContentString ?? ""
         
         self.isHidden = false
         

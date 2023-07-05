@@ -647,8 +647,10 @@ public class Chat: NSManagedObject {
         return type == Chat.ChatType.privateGroup.rawValue
     }
     
-    func isMyPublicGroup() -> Bool {
-        return isPublicGroup() && ownerPubkey == UserData.sharedInstance.getUserPubKey()
+    func isMyPublicGroup(
+        ownerPubKey: String? = nil
+    ) -> Bool {
+        return isPublicGroup() && ownerPubkey == (ownerPubKey ?? UserData.sharedInstance.getUserPubKey())
     }
     
     func isEncrypted() -> Bool {

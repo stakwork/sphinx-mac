@@ -103,7 +103,7 @@ class PinMessageDetailView: NSView, LoadableNib {
                 usernameLabel.textColor = ChatHelper.getSenderColorFor(message: message)
             }
             
-            messageLabel.stringValue = message.getMessageContent()
+            messageLabel.stringValue = message.bubbleMessageContentString ?? ""
             unpinButtonContainer.isHidden = message.chat?.isMyPublicGroup() == false
             
             self.isHidden = false

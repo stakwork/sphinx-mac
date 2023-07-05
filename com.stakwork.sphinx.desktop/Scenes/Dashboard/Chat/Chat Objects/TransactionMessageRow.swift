@@ -46,8 +46,8 @@ class TransactionMessageRow : NSObject {
     }
     
     func getMessageContent() -> String {
-        if let message = transactionMessage, message.getMessageContent() != "" {
-            return message.getMessageContent()
+        if let message = transactionMessage, message.bubbleMessageContentString != "" {
+            return message.bubbleMessageContentString ?? ""
         }
         return ""
     }
@@ -62,7 +62,7 @@ class TransactionMessageRow : NSObject {
             return ("", messageTextColor, regularBigFont)
         }
         
-        let messageContent = message.getMessageContent()
+        let messageContent = message.bubbleMessageContentString ?? ""
         let canDecrypt = canBeDecrypted()
         let messagePendingAttachment = message.isPendingPaidMessage() || message.isLoadingPaidMessage()
         var font = canDecrypt && !messagePendingAttachment ? regularBigFont : mediumSmallFont
@@ -74,7 +74,7 @@ class TransactionMessageRow : NSObject {
     }
     
     func isEmojisMessage() -> Bool {
-        let messageContent = transactionMessage.getMessageContent()
+        let messageContent = transactionMessage.bubbleMessageContentString ?? ""
         return messageContent.length < 4 && messageContent.length > 0 && messageContent.containsOnlyEmoji && transactionMessage.isTextMessage()
     }
     
@@ -180,8 +180,7 @@ class TransactionMessageRow : NSObject {
     }
     
     func getPodcastComment() -> PodcastComment? {
-        transactionMessage?.processPodcastComment()
-        return transactionMessage?.podcastComment
+        return transactionMessage?.getPodcastComment()
     }
     
     var isDayHeader: Bool {

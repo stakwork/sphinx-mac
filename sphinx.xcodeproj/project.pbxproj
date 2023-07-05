@@ -41,6 +41,8 @@
 		4708C1FF2A55BCE300274AD4 /* UserContactsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4708C1FE2A55BCE300274AD4 /* UserContactsHelper.swift */; };
 		4708C2012A55C0AA00274AD4 /* UserContact+FetchUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4708C2002A55C0AA00274AD4 /* UserContact+FetchUtils.swift */; };
 		4708C2032A55C0DE00274AD4 /* Chat+FetchUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4708C2022A55C0DE00274AD4 /* Chat+FetchUtils.swift */; };
+		4708C2052A55CA4800274AD4 /* NSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4708C2042A55CA4800274AD4 /* NSViewController.swift */; };
+		4708C2072A55EF5900274AD4 /* NSFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4708C2062A55EF5900274AD4 /* NSFont.swift */; };
 		470E0B33247C743900177D8A /* LoadingMoreCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470E0B31247C743900177D8A /* LoadingMoreCollectionViewItem.swift */; };
 		470E0B37247D671700177D8A /* AudioReceivedCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470E0B35247D671700177D8A /* AudioReceivedCollectionViewItem.swift */; };
 		470E0B38247D671700177D8A /* AudioReceivedCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470E0B36247D671700177D8A /* AudioReceivedCollectionViewItem.xib */; };
@@ -368,7 +370,6 @@
 		479751EB246DB6D700D2106B /* NSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479751EA246DB6D700D2106B /* NSTextField.swift */; };
 		479751EF246DBF2B00D2106B /* ChatListCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479751ED246DBF2B00D2106B /* ChatListCollectionViewItem.swift */; };
 		479751F0246DBF2B00D2106B /* ChatListCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479751EE246DBF2B00D2106B /* ChatListCollectionViewItem.xib */; };
-		479751F3246DBFD000D2106B /* ChatListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479751F2246DBFD000D2106B /* ChatListDataSource.swift */; };
 		479751F5246DE43300D2106B /* MediaLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479751F4246DE43300D2106B /* MediaLoader.swift */; };
 		479751F8246DE5E100D2106B /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479751F7246DE5E100D2106B /* ChatListViewModel.swift */; };
 		479751FA246DE61A00D2106B /* ContactsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479751F9246DE61A00D2106B /* ContactsService.swift */; };
@@ -664,6 +665,8 @@
 		4708C1FE2A55BCE300274AD4 /* UserContactsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContactsHelper.swift; sourceTree = "<group>"; };
 		4708C2002A55C0AA00274AD4 /* UserContact+FetchUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserContact+FetchUtils.swift"; sourceTree = "<group>"; };
 		4708C2022A55C0DE00274AD4 /* Chat+FetchUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chat+FetchUtils.swift"; sourceTree = "<group>"; };
+		4708C2042A55CA4800274AD4 /* NSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSViewController.swift; sourceTree = "<group>"; };
+		4708C2062A55EF5900274AD4 /* NSFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFont.swift; sourceTree = "<group>"; };
 		470E0B31247C743900177D8A /* LoadingMoreCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingMoreCollectionViewItem.swift; sourceTree = "<group>"; };
 		470E0B35247D671700177D8A /* AudioReceivedCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioReceivedCollectionViewItem.swift; sourceTree = "<group>"; };
 		470E0B36247D671700177D8A /* AudioReceivedCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioReceivedCollectionViewItem.xib; sourceTree = "<group>"; };
@@ -1036,7 +1039,6 @@
 		479751EA246DB6D700D2106B /* NSTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSTextField.swift; sourceTree = "<group>"; };
 		479751ED246DBF2B00D2106B /* ChatListCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListCollectionViewItem.swift; sourceTree = "<group>"; };
 		479751EE246DBF2B00D2106B /* ChatListCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatListCollectionViewItem.xib; sourceTree = "<group>"; };
-		479751F2246DBFD000D2106B /* ChatListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListDataSource.swift; sourceTree = "<group>"; };
 		479751F4246DE43300D2106B /* MediaLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLoader.swift; sourceTree = "<group>"; };
 		479751F7246DE5E100D2106B /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
 		479751F9246DE61A00D2106B /* ContactsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsService.swift; sourceTree = "<group>"; };
@@ -1723,6 +1725,8 @@
 				47A93EF825DD7C4B0030DF14 /* NSImageView.swift */,
 				473BC89C260284160070E519 /* JSON.swift */,
 				475B684A29916552000EF29C /* Array.swift */,
+				4708C2042A55CA4800274AD4 /* NSViewController.swift */,
+				4708C2062A55EF5900274AD4 /* NSFont.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2300,7 +2304,6 @@
 			isa = PBXGroup;
 			children = (
 				479751F6246DE5D500D2106B /* View Model */,
-				479751F1246DBFC100D2106B /* Data Source */,
 				479751EC246DBEFB00D2106B /* Collection View Items */,
 				479751DF246D8FFB00D2106B /* ChatListViewController.swift */,
 				479751E8246D91B000D2106B /* ChatListViewControllerExtension.swift */,
@@ -2336,14 +2339,6 @@
 				479751EE246DBF2B00D2106B /* ChatListCollectionViewItem.xib */,
 			);
 			path = "Collection View Items";
-			sourceTree = "<group>";
-		};
-		479751F1246DBFC100D2106B /* Data Source */ = {
-			isa = PBXGroup;
-			children = (
-				479751F2246DBFD000D2106B /* ChatListDataSource.swift */,
-			);
-			path = "Data Source";
 			sourceTree = "<group>";
 		};
 		479751F6246DE5D500D2106B /* View Model */ = {
@@ -3393,7 +3388,6 @@
 				475B685E29917395000EF29C /* PodcastPlayerController.swift in Sources */,
 				479751D8246C986200D2106B /* LoadableNib.swift in Sources */,
 				473BC89D260284160070E519 /* JSON.swift in Sources */,
-				479751F3246DBFD000D2106B /* ChatListDataSource.swift in Sources */,
 				479751FC246ED18D00D2106B /* ChatListSocketDelegateExtension.swift in Sources */,
 				475B685D29917395000EF29C /* PodcastPlayerController+Utils.swift in Sources */,
 				475B683D29915E08000EF29C /* PodcastEpisode+Computeds.swift in Sources */,
@@ -3424,6 +3418,7 @@
 				479F657B2487D31C0015A16A /* ChatViewControllerMediaExtension.swift in Sources */,
 				47A4EFFE24B6321700117AE6 /* ConnectivityHelper.swift in Sources */,
 				4797E75A278607960080B966 /* PeopleTorActionsView.swift in Sources */,
+				4708C2052A55CA4800274AD4 /* NSViewController.swift in Sources */,
 				4744FA642469A43600C5FD94 /* API+SubscriptionsExtension.swift in Sources */,
 				47B6F529258BC40600D64A41 /* PodcastLiveDataSource.swift in Sources */,
 				475B685C29917395000EF29C /* PodcastPlayerController+ActionsTracking.swift in Sources */,
@@ -3502,6 +3497,7 @@
 				475B682329915D25000EF29C /* ContentFeedItem+CoreDataClass.swift in Sources */,
 				479751CC246C750600D2106B /* NSWindow.swift in Sources */,
 				475B682A29915D72000EF29C /* ContentFeedPaymentDestination+CoreDataClass.swift in Sources */,
+				4708C2072A55EF5900274AD4 /* NSFont.swift in Sources */,
 				4744FA5B2469908E00C5FD94 /* SphinxSocketManager.swift in Sources */,
 				47AF0D552553175B00C98398 /* PodcastPlayerCollectionViewItem.swift in Sources */,
 				47E771322472D04F00C9CFEB /* Cache.swift in Sources */,
@@ -4368,7 +4364,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gl.sphinx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4397,7 +4393,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gl.sphinx;
 				PRODUCT_NAME = "$(TARGET_NAME)";

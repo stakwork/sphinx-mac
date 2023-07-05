@@ -31,7 +31,14 @@ class GroupRemovedCollectionViewItem: CommonGroupActionCollectionViewItem {
     }
     
     override func configureMessage(message: TransactionMessage) {
-        messageLabel.stringValue = message.getGroupMessageText()
+        guard let owner = UserContact.getOwner() else {
+            return
+        }
+        
+        messageLabel.stringValue = message.getGroupMessageText(
+            owner: owner,
+            contact: nil
+        )
     }
     
     override func getCornerRadius() -> CGFloat {

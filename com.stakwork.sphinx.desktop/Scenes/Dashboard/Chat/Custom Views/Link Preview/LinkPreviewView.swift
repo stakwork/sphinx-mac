@@ -275,7 +275,7 @@ class LinkPreviewView: NSView, LoadableNib {
     }
     
     @IBAction func previewButtonClicked(_ sender: Any) {
-        if let link = message?.getMessageContent().stringFirstLink, !link.isEmpty && link.isValidURL {
+        if let link = message?.bubbleMessageContentString?.stringFirstLink, !link.isEmpty && link.isValidURL {
             if let url = CustomSwiftLinkPreview.sharedInstance.extractURL(text: link) {
                 NSWorkspace.shared.open(url)
             }

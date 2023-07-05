@@ -62,6 +62,10 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         chat: Chat?,
         with delegate: ChatSmallAvatarViewDelegate? = nil
     ) {
+        guard let owner = UserContact.getOwner() else {
+            return
+        }
+        
         self.delegate = delegate
         
         profileImageView.isHidden = true
@@ -71,7 +75,7 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         if !message.consecutiveMessages.previousMessage {
             
             let senderAvatarURL = message.getMessageSenderProfilePic(chat: chat, contact: contact)
-            let senderNickname = message.getMessageSenderNickname()
+            let senderNickname = message.getMessageSenderNickname(owner: owner, contact: nil)
             let senderColor = ChatHelper.getSenderColorFor(message: message)
             
             showInitials(senderColor: senderColor, senderNickname: senderNickname)
