@@ -138,7 +138,7 @@ class DashboardViewController: NSViewController {
             guard let vc = self else { return }
             
             if let chatId = n.userInfo?["chat-id"] as? Int, let chat = Chat.getChatWith(id: chatId) {
-                vc.shouldGoToChat(chat: chat)
+                vc.shouldGoToChat(chatId: chat.id)
                 
                 if let message = n.userInfo?["message"] as? String {
                     vc.detailViewController?.sendMessageWith(text: message)
@@ -184,19 +184,29 @@ class DashboardViewController: NSViewController {
     
     func processContentDeeplink(n: Notification){
         var success = false
+        
         if let query = n.userInfo?["query"] as? String,
            let feedID = query.getLinkValueFor(key: "feedID"),
            let itemID = query.getLinkValueFor(key: "itemID"){
             print(query)
             
             if let feed = ContentFeed.getFeedWith(feedId: feedID),
-               let chat = feed.chat{
+               let chat = feed.chat {
                 let timestamp = query.getLinkValueFor(key: "atTime")
                 let finalTS = Int(timestamp ?? "") ?? 0
-                self.deeplinkData = DeeplinkData(feedID: feedID, itemID: itemID, timestamp: finalTS)
-                self.didClickOnChatRow(object: chat)
+                
+                self.deeplinkData = DeeplinkData(
+                    feedID: feedID,
+                    itemID: itemID,
+                    timestamp: finalTS
+                )
+                
+                self.didClickOnChatRow(
+                    chatId: chat.id,
+                    contactId: nil
+                )
+                
                 success = true
-                print(chat)
             }
         }
         if success == false{
@@ -231,9 +241,9 @@ class DashboardViewController: NSViewController {
         }
     }
     
-    func shouldGoToChat(chat: Chat) {
-        self.presentChatVC(object: chat)
-        self.listViewController?.selectRowFor(chatId: chat.id)
+    func shouldGoToChat(chatId: Int) {
+        self.presentChatVCFor(chatId: chatId, contactId: nil)
+        self.listViewController?.selectRowFor(chatId: chatId)
     }
     
     func resetChatIfDeleted() {
@@ -288,8 +298,11 @@ extension DashboardViewController : NSSplitViewDelegate {
 }
 
 extension DashboardViewController : DashboardVCDelegate {
-    func didClickOnChatRow(object: ChatListCommonObject) {
-        if let contact = object as? UserContact, contact.isPending() {
+    func didClickOnChatRow(
+        chatId: Int?,
+        contactId: Int?
+    ) {
+        if let contactId = contactId, let contact = UserContact.getContactWith(id: contactId), contact.isPending() {
             if let invite = contact.invite {
                 if invite.isPendingPayment() {
                     payInvite(invite: invite)
@@ -304,7 +317,10 @@ extension DashboardViewController : DashboardVCDelegate {
                 }
             }
         } else {
-            presentChatVC(object: object)
+            self.presentChatVCFor(
+                chatId: chatId,
+                contactId: contactId
+            )
         }
     }
     
@@ -336,14 +352,20 @@ extension DashboardViewController : DashboardVCDelegate {
         listViewController?.updateContactsAndReload()
     }
     
-    func presentChatVC(object: ChatListCommonObject) {
-        let chat = (object as? Chat) ?? ((object as? UserContact)?.getConversation())
-        let contact = (object as? UserContact) ?? (object as? Chat)?.getContact()
+    func presentChatVCFor(
+        chatId: Int?,
+        contactId: Int?
+    ) {
+        let chat = chatId != nil ? Chat.getChatWith(id: chatId!) : nil
+        let contact = contactId != nil ? UserContact.getContactWith(id: contactId!) : chat?.getConversationContact()
+        
         detailViewController?.loadChatFor(contact: contact, chat: chat)
         detailViewController?.configureMentionAutocompleteTableView()
-        if(deeplinkData != nil){
+        
+        if (deeplinkData != nil) {
             detailViewController?.deeplinkData = deeplinkData
         }
+        
         deeplinkData = nil
     }
     

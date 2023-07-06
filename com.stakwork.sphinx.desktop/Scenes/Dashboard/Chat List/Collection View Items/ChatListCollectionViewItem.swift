@@ -264,12 +264,6 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
             invitePriceContainer.isHidden = true
         }
     }
-    
-    func setSelectedState(_ selected: Bool) {
-//        let backColor = selected ? NSColor.Sphinx.ChatListSelected : NSColor.Sphinx.HeaderBG
-//        backgroundColorBox.fillColor = backColor
-//        chatAvatarView.setBackgroundColors(color: backColor)
-    }
 }
 
 // MARK: -  Computeds

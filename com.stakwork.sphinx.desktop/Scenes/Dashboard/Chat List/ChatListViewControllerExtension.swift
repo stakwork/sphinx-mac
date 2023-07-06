@@ -131,7 +131,9 @@ extension ChatListViewController : ChildVCDelegate,ActionsDelegate,ChoosePayment
 extension ChatListViewController : NewChatListViewControllerDelegate {
     func didClickRowAt(
         index: Int,
-        tab: NewChatListViewController.Tab
+        tab: NewChatListViewController.Tab,
+        chatId: Int?,
+        contactId: Int?
     ) {
         updateBalance()
         
@@ -141,12 +143,19 @@ extension ChatListViewController : NewChatListViewControllerDelegate {
             return
         }
         
-        contactChatsContainerViewController.updateWith(
-            newSelectedIndex: selectedChatIndex
-        )
+        if tab == NewChatListViewController.Tab.Tribes {
+            contactChatsContainerViewController.updateWith(
+                newSelectedIndex: selectedChatIndex
+            )
+        } else {
+            tribeChatsContainerViewController.updateWith(
+                newSelectedIndex: selectedChatIndex
+            )
+        }
         
-        tribeChatsContainerViewController.updateWith(
-            newSelectedIndex: selectedChatIndex
+        delegate?.didClickOnChatRow(
+            chatId: chatId,
+            contactId: contactId
         )
     }
 }

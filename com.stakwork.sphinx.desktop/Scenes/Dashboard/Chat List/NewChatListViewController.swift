@@ -9,7 +9,12 @@
 import Cocoa
 
 protocol NewChatListViewControllerDelegate: AnyObject {
-    func didClickRowAt(index: Int, tab: NewChatListViewController.Tab)
+    func didClickRowAt(
+        index: Int,
+        tab: NewChatListViewController.Tab,
+        chatId: Int?,
+        contactId: Int?
+    )
 }
 
 class NewChatListViewController: NSViewController {
@@ -66,14 +71,20 @@ class NewChatListViewController: NSViewController {
         newSelectedIndex: (Tab, Int)
     ) {
         if newSelectedIndex.0 == tab {
+            if selectedIndex == newSelectedIndex.1 {
+                return
+            }
+            
             selectedIndex = newSelectedIndex.1
         } else {
+            if selectedIndex == nil {
+                return
+            }
+            
             selectedIndex = nil
         }
         
-        DispatchQueue.main.async {
-            self.updateSnapshot()
-        }
+        updateSnapshot()
     }
 
     override func viewDidLoad() {
@@ -302,7 +313,9 @@ extension NewChatListViewController {
 // MARK: - Data Source Snapshot
 extension NewChatListViewController {
 
-    func updateSnapshot() {
+    func updateSnapshot(
+        completion: (() -> ())? = nil
+    ) {
         guard let dataSource = dataSource else {
             return
         }
@@ -329,7 +342,9 @@ extension NewChatListViewController {
 
         snapshot.appendItems(items, toSection: .all)
         
-        dataSource.apply(snapshot, animatingDifferences: true)
+        dataSource.apply(snapshot, animatingDifferences: true) {
+            completion?()
+        }
     }
     
     func updateOwner() {
@@ -342,10 +357,21 @@ extension NewChatListViewController {
 extension NewChatListViewController : NSCollectionViewDelegate {
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
         if let indexPath = indexPaths.first {
-            delegate?.didClickRowAt(
-                index: indexPath.item,
-                tab: tab
-            )
+            
+            selectedIndex = indexPath.item
+            
+            updateSnapshot() {
+                let chat = self.chatListObjects[indexPath.item] as? Chat
+                let contact = self.chatListObjects[indexPath.item] as? UserContact
+                
+                self.delegate?.didClickRowAt(
+                    index: indexPath.item,
+                    tab: self.tab,
+                    chatId: chat?.id,
+                    contactId: contact?.id
+                )
+                
+            }
         }
     }
 }
