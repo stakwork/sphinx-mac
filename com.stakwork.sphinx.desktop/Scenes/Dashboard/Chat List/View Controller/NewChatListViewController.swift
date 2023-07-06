@@ -213,16 +213,16 @@ extension NewChatListViewController {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = itemContentInsets
 
-
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
             heightDimension: .absolute(Constants.kChatListRowHeight)
         )
+        
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-
 
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .none
+        section.contentInsets = NSDirectionalEdgeInsets(top: 8.0, leading: 0, bottom: 8.0, trailing: 0)
 
         return section
     }

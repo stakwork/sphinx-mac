@@ -134,10 +134,19 @@ class ChatSmallAvatarView: NSView, LoadableNib {
     func showImageWith(
         url: URL
     ) {
+        let transformer = SDImageResizingTransformer(
+            size: CGSize(
+                width: profileImageView.bounds.size.width * 2,
+                height: profileImageView.bounds.size.height * 2
+            ),
+            scaleMode: .aspectFill
+        )
+        
         profileImageView.sd_setImage(
             with: url,
             placeholderImage: NSImage(named: "profile_avatar"),
-            options: [.retryFailed],
+            options: [.lowPriority, .avoidDecodeImage],
+            context: [.imageTransformer: transformer],
             progress: nil,
             completed: { (image, error, _, _) in
                 if let image = image, error == nil {

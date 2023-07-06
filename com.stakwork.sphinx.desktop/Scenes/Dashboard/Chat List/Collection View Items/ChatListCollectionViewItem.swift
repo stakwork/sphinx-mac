@@ -175,7 +175,6 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
     private func renderContactImageViews(
         for chatListObject: ChatListCommonObject
     ) {
-        
         chatImageView.sd_cancelCurrentImageLoad()
 
         if chatListObject.isPending() {
@@ -200,10 +199,17 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
                 let imageURLPath = chatListObject.getPhotoUrl()?.removeDuplicatedProtocol(),
                 let imageURL = URL(string: imageURLPath)
             {
+                
+                let transformer = SDImageResizingTransformer(
+                    size: CGSize(width: chatImageView.bounds.size.width * 2, height: chatImageView.bounds.size.height * 2),
+                    scaleMode: .aspectFill
+                )
+                
                 chatImageView.sd_setImage(
                     with: imageURL,
                     placeholderImage: NSImage(named: "profile_avatar"),
-                    options: .lowPriority,
+                    options: [.lowPriority, .avoidDecodeImage],
+                    context: [.imageTransformer: transformer],
                     progress: nil,
                     completed: { [unowned self] (image, error,_,_) in
                         if (error == nil) {

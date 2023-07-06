@@ -129,10 +129,20 @@ class ChatAvatarView: NSView, LoadableNib {
 
         if let urlString = object?.getPhotoUrl()?.removeDuplicatedProtocol(), let url = URL(string: urlString) {
             
+            let transformer = SDImageResizingTransformer(
+                size: CGSize(
+                    width: imageView.bounds.size.width * 2,
+                    height: imageView.bounds.size.height * 2
+                ),
+                scaleMode: .aspectFill
+            )
+            
             imageView.sd_setImage(
                 with: url,
                 placeholderImage: NSImage(named: "profile_avatar"),
-                options: [SDWebImageOptions.retryFailed],
+                options: [.lowPriority, .avoidDecodeImage],
+                context: [.imageTransformer: transformer],
+                progress: nil,
                 completed: { (image, error, _, _) in
                     if let image = image, error == nil {
                         self.setImage(image: image, in: imageView, initialsContainer: container)
