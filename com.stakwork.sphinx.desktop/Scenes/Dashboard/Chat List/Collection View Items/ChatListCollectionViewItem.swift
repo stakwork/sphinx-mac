@@ -28,28 +28,13 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
     @IBOutlet weak var unreadMessageBadgeContainer: NSBox!
     @IBOutlet weak var unreadMessageBadgeLabel: NSTextField!
     
-    
-    var chatListObject: ChatListCommonObject? {
-        didSet {
-            guard let chatListObject = chatListObject else { return }
-            DispatchQueue.main.async {
-                self.render(with: chatListObject)
-  
-            }
-        }
-    }
-    
-    var owner: UserContact!
-    
-    var rowSelected = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupViews()
     }
     
     func setupViews() {
+        ///General setup
         chatImageView.rounded = true
         chatImageView.gravity = .resizeAspectFill
         
@@ -59,7 +44,7 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
         invitePriceContainer.wantsLayer = true
         invitePriceContainer.layer?.cornerRadius = 2
         
-        // Clear initial contents
+        ///Clear initial contents
         unreadMessageBadgeContainer.isHidden = true
         mentionsBadgeContainer.isHidden = true
         
@@ -73,10 +58,23 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
         invitePriceContainer.isHidden = true
     }
     
-    private func render(with chatListObject: ChatListCommonObject) {
-        backgroundBox.fillColor = rowSelected ? NSColor.Sphinx.ChatListSelected : NSColor.Sphinx.HeaderBG
-        
+    func render(
+        with chatListObject: ChatListCommonObject,
+        owner: UserContact,
+        selected: Bool
+    ) {
+        backgroundBox.fillColor = selected ? NSColor.Sphinx.ChatListSelected : NSColor.Sphinx.HeaderBG
         nameLabel.font = Constants.kChatNameFont
+        
+        let unreadMessagesCount = getUnreadMessagesCount(
+            chatListObject: chatListObject,
+            ownerId: owner.id
+        )
+        
+        let unreadMentionsCount = getUnreadMentionsCount(
+            chatListObject: chatListObject,
+            ownerId: owner.id
+        )
         
         if chatListObject.isPending() {
             
@@ -91,7 +89,7 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
             
         } else {
             
-            if hasUnreadMessages {
+            if unreadMessagesCount > 0 {
                 nameLabel.font = nameLabel.font?.bold()
             }
             
@@ -100,15 +98,31 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
             lockSignLabel.isHidden = chatListObject.hasEncryptionKey() == false
         }
         
-        renderLastMessage(for: chatListObject)
-        renderBadgeView(for: chatListObject)
-        renderMentionsView(for: chatListObject)
+        renderLastMessage(
+            for: chatListObject,
+            owner: owner,
+            hasUnreadMessages: unreadMessagesCount > 0
+        )
+        
+        renderBadgeView(
+            for: chatListObject,
+            unreadMessagesCount: unreadMessagesCount
+        )
+        
+        renderMentionsView(
+            for: chatListObject,
+            unreadMentionsCount: unreadMentionsCount
+        )
+        
         renderContactImageViews(for: chatListObject)
         renderInvitePrice(for: chatListObject)
     }
     
-    private func renderBadgeView(for chatListObject: ChatListCommonObject) {
-        guard hasUnreadMessages else {
+    private func renderBadgeView(
+        for chatListObject: ChatListCommonObject,
+        unreadMessagesCount: Int
+    ) {
+        guard unreadMessagesCount > 0 else {
             unreadMessageBadgeContainer.isHidden = true
             return
         }
@@ -120,7 +134,7 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
         
         unreadMessageBadgeContainer.isHidden = false
         
-        let unreadMCount = unreadMessageCount
+        let unreadMCount = unreadMessagesCount
         unreadMessageBadgeLabel.stringValue = unreadMCount > 99 ? "99+" : "\(unreadMCount)"
         
         if chatListObject.getChat()?.isMuted() == true || chatListObject.getChat()?.isOnlyMentions() == true {
@@ -135,8 +149,11 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
         unreadMessageBadgeContainer.makeCircular()
     }
     
-    private func renderMentionsView(for chatListObject: ChatListCommonObject) {
-        guard hasUnreadMentions else {
+    private func renderMentionsView(
+        for chatListObject: ChatListCommonObject,
+        unreadMentionsCount: Int
+    ) {
+        guard unreadMentionsCount > 0 else {
             mentionsBadgeContainer.isHidden = true
             return
         }
@@ -155,7 +172,9 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
         mentionsBadgeContainer.makeCircular()
     }
     
-    private func renderContactImageViews(for chatListObject: ChatListCommonObject) {
+    private func renderContactImageViews(
+        for chatListObject: ChatListCommonObject
+    ) {
         
         chatImageView.sd_cancelCurrentImageLoad()
 
@@ -198,7 +217,9 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
         }
     }
     
-    private func renderContactInitialsLabel(for chatListObject: ChatListCommonObject) {
+    private func renderContactInitialsLabel(
+        for chatListObject: ChatListCommonObject
+    ) {
         let senderInitials = chatListObject.getName().getInitialsFromName()
         let senderColor = chatListObject.getColor()
         
@@ -207,7 +228,11 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
         chatInitialsLabel.stringValue = senderInitials
     }
     
-    private func renderLastMessage(for chatListObject: ChatListCommonObject) {
+    private func renderLastMessage(
+        for chatListObject: ChatListCommonObject,
+        owner: UserContact,
+        hasUnreadMessages: Bool
+    ) {
         if let invite = chatListObject.getInvite(), chatListObject.isPending() {
             
             let (icon, iconColor, text) = invite.getDataForRow()
@@ -228,7 +253,7 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
             inviteIconLabel.isHidden = true
             
             if let lastMessage = chatListObject.lastMessage {
-                
+
                 messageLabel.font = hasUnreadMessages ?
                     Constants.kNewMessagePreviewFont
                     : Constants.kMessagePreviewFont
@@ -238,7 +263,7 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
                     : .Sphinx.SecondaryText
                 
                 messageLabel.stringValue = lastMessage.getMessageContentPreview(
-                    owner: self.owner,
+                    owner: owner,
                     contact: chatListObject.getContact()
                 )
                 
@@ -269,23 +294,25 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
 // MARK: -  Computeds
 extension ChatListCollectionViewItem {
     
-    var unreadMessageCount: Int {
-        if chatListObject?.isSeen(ownerId: owner.id) == true {
+    func getUnreadMessagesCount(
+        chatListObject: ChatListCommonObject?,
+        ownerId: Int
+    ) -> Int {
+        if chatListObject?.isSeen(ownerId: ownerId) == true {
             return 0
         }
         return chatListObject?.getChat()?.getReceivedUnseenMessagesCount() ?? 0
     }
     
-    var hasUnreadMessages: Bool { unreadMessageCount > 0 }
-    
-    var unreadMentionsCount: Int {
-        if chatListObject?.isSeen(ownerId: owner.id) == true {
+    func getUnreadMentionsCount(
+        chatListObject: ChatListCommonObject?,
+        ownerId: Int
+    ) -> Int {
+        if chatListObject?.isSeen(ownerId: ownerId) == true {
             return 0
         }
         return chatListObject?.getChat()?.getReceivedUnseenMentionsCount() ?? 0
     }
-    
-    var hasUnreadMentions: Bool { unreadMentionsCount > 0 }
 }
 
 // MARK: - Static Properties

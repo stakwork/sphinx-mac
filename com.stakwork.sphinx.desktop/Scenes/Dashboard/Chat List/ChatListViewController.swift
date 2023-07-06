@@ -46,8 +46,6 @@ class ChatListViewController : DashboardSplittedViewController {
     let newMessageBubbleHelper = NewMessageBubbleHelper()
     var walletBalanceService = WalletBalanceService()
     
-    var selectedChatIndex: (NewChatListViewController.Tab, Int)? = nil
-    
     var loading = false {
         didSet {
             healthCheckView.isHidden = loading

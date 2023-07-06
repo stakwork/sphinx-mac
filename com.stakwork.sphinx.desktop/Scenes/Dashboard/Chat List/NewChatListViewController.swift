@@ -10,8 +10,7 @@ import Cocoa
 
 protocol NewChatListViewControllerDelegate: AnyObject {
     func didClickRowAt(
-        index: Int,
-        tab: NewChatListViewController.Tab,
+        selectedObjectId: String?,
         chatId: Int?,
         contactId: Int?
     )
@@ -33,7 +32,7 @@ class NewChatListViewController: NSViewController {
     
     private var owner: UserContact!
     
-    var selectedIndex: Int? = nil
+    var selectedObjectId: String? = nil
     
     public enum Tab: Int {
         case Friends
@@ -63,27 +62,17 @@ class NewChatListViewController: NSViewController {
         _ chats: [ChatListCommonObject]
     ) {
         self.chatListObjects = chats
-        
         updateSnapshot()
     }
     
     public func updateWith(
-        newSelectedIndex: (Tab, Int)
+        selectedObjectId: String?
     ) {
-        if newSelectedIndex.0 == tab {
-            if selectedIndex == newSelectedIndex.1 {
-                return
-            }
-            
-            selectedIndex = newSelectedIndex.1
-        } else {
-            if selectedIndex == nil {
-                return
-            }
-            
-            selectedIndex = nil
+        if selectedObjectId == self.selectedObjectId {
+            return
         }
         
+        self.selectedObjectId = selectedObjectId
         updateSnapshot()
     }
 
@@ -300,9 +289,11 @@ extension NewChatListViewController {
                     for: indexPath
                 ) as? CollectionViewCell else { return nil }
 
-                cell.rowSelected = (self.selectedIndex == indexPath.item)
-                cell.owner = self.owner
-                cell.chatListObject = self.chatListObjects[indexPath.item]
+                cell.render(
+                    with: self.chatListObjects[indexPath.item],
+                    owner: self.owner,
+                    selected: chatItem.selected
+                )
 
                 return cell
             }
@@ -335,7 +326,7 @@ extension NewChatListViewController {
                 contactStatus: element.getContactStatus(),
                 inviteStatus: element.getInviteStatus(),
                 muted: element.isMuted(),
-                selected: selectedIndex == index
+                selected: selectedObjectId == element.getObjectId()
             )
             
         }
@@ -358,15 +349,14 @@ extension NewChatListViewController : NSCollectionViewDelegate {
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
         if let indexPath = indexPaths.first {
             
-            selectedIndex = indexPath.item
+            selectedObjectId = self.chatListObjects[indexPath.item].getObjectId()
             
             updateSnapshot() {
                 let chat = self.chatListObjects[indexPath.item] as? Chat
                 let contact = self.chatListObjects[indexPath.item] as? UserContact
                 
                 self.delegate?.didClickRowAt(
-                    index: indexPath.item,
-                    tab: self.tab,
+                    selectedObjectId: self.selectedObjectId,
                     chatId: chat?.id,
                     contactId: contact?.id
                 )
