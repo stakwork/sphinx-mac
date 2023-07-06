@@ -114,6 +114,15 @@ class ChatViewController: DashboardSplittedViewController {
     
     var podcastPlayerVC: NewPodcastPlayerViewController? = nil
     
+    static func instantiate(
+        contact: UserContact? = nil,
+        chat: Chat? = nil
+    ) -> ChatViewController {
+        let viewController = StoryboardScene.Dashboard.chatViewController.instantiate()
+        viewController.chat = chat
+        viewController.contact = contact
+        return viewController
+    }
     
     public enum RecordingButton: Int {
         case Confirm
@@ -126,6 +135,10 @@ class ChatViewController: DashboardSplittedViewController {
         self.mentionAutoCompleteEnclosingScrollView.isHidden = true
         configureView()
         prepareRecordingView()
+        
+        if chat != nil || contact != nil {
+            loadChat()
+        }
     }
     
     override func viewDidAppear() {
@@ -318,7 +331,10 @@ class ChatViewController: DashboardSplittedViewController {
         expandMenuButton.isHidden = !show
     }
     
-    func loadChatFor(contact: UserContact? = nil, chat: Chat? = nil) {        
+    func loadChatFor(
+        contact: UserContact? = nil,
+        chat: Chat? = nil
+    ) {
         if let chat = chat, let viewChat = self.chat, chat.id == viewChat.id {
             return
         }
@@ -332,6 +348,10 @@ class ChatViewController: DashboardSplittedViewController {
         self.contact = contact
         self.chat = chat
         
+        loadChat()
+    }
+    
+    func loadChat() {
         if chat == nil && contact == nil {
             childVCContainer.resetAllViews()
             return

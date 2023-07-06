@@ -343,16 +343,38 @@ extension DashboardViewController : DashboardVCDelegate {
         chatId: Int?,
         contactId: Int?
     ) {
+        if let chatId = chatId, detailViewController?.chat?.id == chatId {
+            return
+        }
+        
+        if let contactId = contactId, detailViewController?.contact?.id == contactId {
+            return
+        }
+        
         let chat = chatId != nil ? Chat.getChatWith(id: chatId!) : nil
         let contact = contactId != nil ? UserContact.getContactWith(id: contactId!) : chat?.getConversationContact()
         
-        detailViewController?.loadChatFor(contact: contact, chat: chat)
-        detailViewController?.configureMentionAutocompleteTableView()
+        let newChatVCController = ChatViewController.instantiate(
+            contact: contact,
+            chat: chat
+        )
+        
+        newChatVCController.setDataModels(
+            chatListViewModel: chatListViewModel,
+            chatViewModel: chatViewModel
+        )
+        
+        self.addChildVC(
+            child: newChatVCController,
+            container: rightSplittedView
+        )
+        
+        detailViewController = newChatVCController
         
         if (deeplinkData != nil) {
             detailViewController?.deeplinkData = deeplinkData
         }
-        
+
         deeplinkData = nil
     }
     
