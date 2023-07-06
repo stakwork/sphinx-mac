@@ -77,8 +77,6 @@ class GroupPinView: NSView, LoadableNib {
         
         self.chat?.pin = pin
         self.chat?.saveChat()
-        
-        NotificationCenter.default.post(name: .shouldReloadChatsList, object: nil)
     }
     
     func getPin() -> String? {

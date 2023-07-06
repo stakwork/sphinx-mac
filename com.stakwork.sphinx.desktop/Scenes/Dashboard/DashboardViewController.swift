@@ -74,7 +74,6 @@ class DashboardViewController: NSViewController {
         NotificationCenter.default.removeObserver(self, name: .shouldTrackPosition, object: nil)
         NotificationCenter.default.removeObserver(self, name: .shouldReloadViews, object: nil)
         NotificationCenter.default.removeObserver(self, name: .shouldResetChat, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .shouldReloadChatsList, object: nil)
         NotificationCenter.default.removeObserver(self, name: .chatNotificationClicked, object: nil)
         NotificationCenter.default.removeObserver(self, name: .onAuthDeepLink, object: nil)
         NotificationCenter.default.removeObserver(self, name: .onPersonDeepLink, object: nil)
@@ -128,10 +127,6 @@ class DashboardViewController: NSViewController {
         
         NotificationCenter.default.addObserver(forName: .shouldResetChat, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
             self?.resetChatIfDeleted()
-        }
-        
-        NotificationCenter.default.addObserver(forName: .shouldReloadChatsList, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
-            self?.shouldReloadChatList()
         }
         
         NotificationCenter.default.addObserver(forName: .chatNotificationClicked, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
@@ -255,22 +250,19 @@ class DashboardViewController: NSViewController {
     }
     
     func reloadView() {
-//        self.listViewController?.chatListCollectionView.reloadData()
         self.detailViewController?.chatCollectionView.reloadData()
     }
     
     func reloadData() {
         self.chatListViewModel.loadFriends {
-            let chatId = self.detailViewController?.chat?.id
-            self.chatListViewModel.syncMessages(chatId: chatId, progressCallback: { (_, restoring) in
-                self.chatListViewModel.calculateBadges()
-                self.listViewController?.updateContactsAndReload()
-            }) { (_, count) in
+
+            self.chatListViewModel.syncMessages(
+                chatId: self.detailViewController?.chat?.id,
+                progressCallback: { (_, _) in }
+            ) { (_, count) in
                 if count > 0 {
                     self.detailViewController?.initialLoad()
                 }
-
-                self.listViewController?.updateContactsAndReload()
                 self.listViewController?.loading = false
 
                 if let appDelegate = NSApplication.shared.delegate as? AppDelegate {
@@ -345,10 +337,6 @@ extension DashboardViewController : DashboardVCDelegate {
     
     func didReloadDashboard() {
         detailViewController?.reload()
-    }
-    
-    func shouldReloadChatList() {
-        listViewController?.updateContactsAndReload()
     }
     
     func presentChatVCFor(
@@ -447,20 +435,16 @@ extension DashboardViewController : DashboardVCDelegate {
 
 extension DashboardViewController : SocketManagerDelegate {
     func didReceiveMessage(message: TransactionMessage, onChat: Bool) {
-        listViewController?.didReceiveMessage(message: message)
-        
         if onChat {
             detailViewController?.didReceiveMessage(message: message)
         }
     }
     
     func didReceiveConfirmation(message: TransactionMessage) {
-        listViewController?.didReceiveConfirmation(message: message)
         detailViewController?.didReceiveConfirmation(message: message)
     }
     
     func didReceivePurchaseUpdate(message: TransactionMessage) {
-        listViewController?.didReceivePurchaseUpdate(message: message)
         detailViewController?.didReceivePurchaseUpdate(message: message)
     }
     
@@ -470,7 +454,6 @@ extension DashboardViewController : SocketManagerDelegate {
     }
     
     func didUpdateContact(contact: UserContact) {
-        listViewController?.didUpdateContact(contact: contact)
         detailViewController?.didUpdateContact(contact: contact)
     }
     
@@ -479,7 +462,6 @@ extension DashboardViewController : SocketManagerDelegate {
     }
     
     func didUpdateChat(chat: Chat) {
-        listViewController?.didUpdateChat(chat: chat)
         detailViewController?.didUpdateChat(chat: chat)
     }
 }
@@ -508,7 +490,7 @@ extension DashboardViewController : RestoreModalViewControllerDelegate {
     func didFinishRestoring() {
         modalsContainerView.isHidden = true
         
-        listViewController?.updateContactsAndReload()
+        listViewController?.updateBalanceAndCheckVersion()
         listViewController?.finishLoading()
     }
 }

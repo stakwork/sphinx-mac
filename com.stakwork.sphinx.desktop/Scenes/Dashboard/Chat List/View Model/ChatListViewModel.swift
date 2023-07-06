@@ -40,21 +40,6 @@ final class ChatListViewModel: NSObject {
         })
     }
     
-    func getChatListObjectsCount() -> Int {
-//        if let contactsService = contactsService {
-//            return contactsService.chatListObjects.count
-//        }
-        return 0
-    }
-    
-    func updateContactsAndChats() {
-//        guard let contactsService = contactsService else {
-//            return
-//        }
-//        contactsService.updateContacts()
-//        contactsService.updateChats()
-    }
-    
     func forceKeychainSync() {
         UserData.sharedInstance.forcePINSyncOnKeychain()
         UserData.sharedInstance.saveNewNodeOnKeychain()
@@ -94,10 +79,6 @@ final class ChatListViewModel: NSObject {
                 completion(chatNewMessagesCount, newMessagesCount)
             }
         )
-    }
-    
-    func calculateBadges() {
-//        contactsService.calculateBadges()
     }
     
     func finishRestoring() {

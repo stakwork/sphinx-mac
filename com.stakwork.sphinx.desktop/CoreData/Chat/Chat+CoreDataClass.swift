@@ -609,7 +609,6 @@ public class Chat: NSManagedObject {
     
     func updateWebAppLastDate() {
         self.webAppLastDate = Date()
-        NotificationCenter.default.post(name: .shouldReloadChatsList, object: nil)
     }
     
     func hasWebApp() -> Bool {

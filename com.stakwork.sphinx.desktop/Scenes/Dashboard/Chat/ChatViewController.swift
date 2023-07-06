@@ -511,8 +511,6 @@ class ChatViewController: DashboardSplittedViewController {
         unseenMessagesCount = 0
         scrollDownLabel.stringValue = unseenMessagesCountLabel
         scrollDownContainer.isHidden = true
-        
-        NotificationCenter.default.post(name: .shouldReloadChatsList, object: nil)
     }
     
     func reloadAndScroll(newMessageCount: Int = 0) {
@@ -617,7 +615,6 @@ class ChatViewController: DashboardSplittedViewController {
                 }
                 self.setChatInfo()
                 self.setVolumeState()
-                self.delegate?.shouldReloadChatList()
             })
         }
     }

@@ -180,7 +180,6 @@ extension ChatViewController : AttachmentsManagerDelegate {
 extension ChatViewController : ActionsDelegate {
     func didCreateMessage(message: TransactionMessage) {
         chatDataSource?.addMessageAndReload(message: message)
-        delegate?.shouldReloadChatList()
     }
     
     func didFailInvoiceOrPayment() {
@@ -240,6 +239,5 @@ extension ChatViewController : ActionsDelegate {
     
     func shouldReloadMuteState() {
         setVolumeState()
-        NotificationCenter.default.post(name: .shouldReloadChatsList, object: nil)
     }
 }

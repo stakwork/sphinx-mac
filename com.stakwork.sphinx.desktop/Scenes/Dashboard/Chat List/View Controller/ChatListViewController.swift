@@ -97,7 +97,7 @@ class ChatListViewController : DashboardSplittedViewController {
         loadingChatList = true
         loading = true
         
-        updateContactsAndReload()
+        updateBalanceAndCheckVersion()
         configureHeaderAndBottomBar()
     }
     
@@ -135,8 +135,8 @@ class ChatListViewController : DashboardSplittedViewController {
         self.view.window?.makeFirstResponder(self)
     }
     
-    func loadMessages() {        
-        updateContactsAndReload()
+    func loadMessages() {
+        updateBalanceAndCheckVersion()
         
         let restoring = chatListViewModel.isRestoring()
         var contentProgressShare : Float = 0.0
@@ -161,9 +161,6 @@ class ChatListViewController : DashboardSplittedViewController {
 
                         DispatchQueue.main.async {
                             
-                            self.chatListViewModel.calculateBadges()
-                            self.updateContactsAndReload()
-                            
                             if (restoring) {
                                 self.loading = false
                                 let messagesProgress : Int = Int(Float(progress) * (1.0 - contentProgressShare))
@@ -183,7 +180,7 @@ class ChatListViewController : DashboardSplittedViewController {
                         
                     }) { (_, _) in
                         DispatchQueue.main.async {
-                            self.updateContactsAndReload()
+                            self.updateBalanceAndCheckVersion()
                             self.finishLoading()
                         }
                     }
@@ -223,10 +220,8 @@ class ChatListViewController : DashboardSplittedViewController {
         }
     }
     
-    func updateContactsAndReload() {
+    func updateBalanceAndCheckVersion() {
         updateBalance()
-        
-        chatListViewModel.updateContactsAndChats()
         shouldCheckAppVersions()
     }
     

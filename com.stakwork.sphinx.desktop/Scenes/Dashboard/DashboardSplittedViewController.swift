@@ -11,7 +11,6 @@ import Cocoa
 protocol DashboardVCDelegate: AnyObject {
     func didClickOnChatRow(chatId: Int?, contactId: Int?)
     func didReloadDashboard()
-    func shouldReloadChatList()
     func shouldShowRestoreModal(with progress: Int, messagesStartProgress: Int)
     func shouldHideRetoreModal()
     func shouldShowFullMediaFor(message: TransactionMessage)

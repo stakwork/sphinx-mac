@@ -323,7 +323,6 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
         updateViewChat(updatedChat: chat ?? contact?.getConversation())
         enableViewAndComplete()
         chatDataSource?.addMessageAndReload(message: message)
-        delegate?.shouldReloadChatList()
         joinIfCallMessage(message: message)
     }
     

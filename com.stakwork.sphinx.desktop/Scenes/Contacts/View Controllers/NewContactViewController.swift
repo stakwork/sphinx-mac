@@ -156,8 +156,6 @@ class NewContactViewController: NSViewController {
             UserContactsHelper.updateContact(contact: contact, nickname: userNameField.stringValue, routeHint: routeHintField.stringValue, pin: pin, callback: { success in
                 self.loading = false
                 
-                NotificationCenter.default.post(name: .shouldReloadChatsList, object: nil)
-
                 if success {
                     self.delegate?.shouldReloadContacts()
                     self.closeWindow()

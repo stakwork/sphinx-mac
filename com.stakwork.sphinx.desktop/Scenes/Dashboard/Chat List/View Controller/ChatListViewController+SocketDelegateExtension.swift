@@ -8,33 +8,9 @@
 
 import Cocoa
 
-extension ChatListViewController {
-    func didReceiveMessage(message: TransactionMessage) {
-        shouldReloadChatList()
-    }
-    
-    func didReceiveConfirmation(message: TransactionMessage) {
-        shouldReloadChatList()
-    }
-    
-    func didReceivePurchaseUpdate(message: TransactionMessage) {
-        shouldReloadChatList()
-    }
-    
-    func shouldReloadChatList() {
-        updateContactsAndReload()
-    }
-    
+extension ChatListViewController {    
     func shouldShowAlert(message: String) {
         AlertHelper.showAlert(title: "Hey!", message: message)
-    }
-    
-    func didUpdateContact(contact: UserContact) {
-//        chatListDataSource?.updateContactAndReload(object: contact)
-    }
-    
-    func didUpdateChat(chat: Chat) {
-//        chatListDataSource?.updateChatAndReload(object: chat)
     }
     
     func didReceiveOrUpdateGroup() {

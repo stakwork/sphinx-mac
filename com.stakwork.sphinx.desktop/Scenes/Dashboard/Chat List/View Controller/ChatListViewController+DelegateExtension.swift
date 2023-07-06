@@ -172,7 +172,7 @@ extension ChatListViewController : HealthCheckDelegate {
 
 extension ChatListViewController : NewContactChatDelegate {
     func shouldReloadContacts() {
-        updateContactsAndReload()
+        updateBalanceAndCheckVersion()
     }
 }
 

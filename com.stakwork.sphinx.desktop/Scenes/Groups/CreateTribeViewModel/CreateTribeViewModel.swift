@@ -139,7 +139,6 @@ class CreateTribeViewModel {
     
     func didSuccessSavingTribe() {
         NotificationCenter.default.post(name: .shouldReloadTribeData, object: nil)
-        NotificationCenter.default.post(name: .shouldReloadChatsList, object: nil)
         self.successCallback?()
     }
     
