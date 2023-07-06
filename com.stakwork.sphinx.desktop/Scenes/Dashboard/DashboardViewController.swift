@@ -242,7 +242,6 @@ class DashboardViewController: NSViewController {
     }
     
     func shouldGoToChat(chatId: Int) {
-        self.presentChatVCFor(chatId: chatId, contactId: nil)
         self.listViewController?.selectRowFor(chatId: chatId)
     }
     

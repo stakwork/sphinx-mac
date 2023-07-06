@@ -64,7 +64,7 @@ extension ChatListViewController {
     
 }
 
-extension ChatListViewController : ChildVCDelegate,ActionsDelegate,ChoosePaymentModeVCDelegate{
+extension ChatListViewController : ChildVCDelegate, ActionsDelegate, ChoosePaymentModeVCDelegate{
     func handleReceiveClick() {
         let vc = CreateInvoiceViewController.instantiate(
             childVCDelegate: self,
@@ -129,6 +129,7 @@ extension ChatListViewController : ChildVCDelegate,ActionsDelegate,ChoosePayment
 }
 
 extension ChatListViewController : NewChatListViewControllerDelegate {
+    
     func didClickRowAt(
         selectedObjectId: String?,
         chatId: Int?,
@@ -181,14 +182,9 @@ extension ChatListViewController: ChatsSegmentedControlDelegate {
         _ segmentedControl: ChatsSegmentedControl,
         to index: Int
     ) {
-        activeTab = DashboardTab(rawValue: index)!
-    }
-}
-
-extension ChatListViewController {
-    enum DashboardTab: Int, Hashable {
-        case friends
-        case tribes
+        if let tab = DashboardTab(rawValue: index) {
+            setActiveTab(tab)
+        }
     }
 }
 

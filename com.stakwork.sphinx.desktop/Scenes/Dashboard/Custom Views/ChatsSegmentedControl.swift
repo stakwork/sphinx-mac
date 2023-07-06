@@ -259,8 +259,7 @@ extension ChatsSegmentedControl {
     
     private func updateTitleBadges() {
         buttonTitleBadges.enumerated().forEach { (index, badge) in
-            badge.isHidden = false
-//            badge.isHidden = !indicesOfTitlesWithBadge.contains(index)
+            badge.isHidden = !indicesOfTitlesWithBadge.contains(index)
         }
     }
     
@@ -286,9 +285,8 @@ extension ChatsSegmentedControl {
         }
         
         buttonTitleBadges.enumerated().forEach { (index, badge) in
-//            badge.isHidden = !indicesOfTitlesWithBadge.contains(index)
-            badge.isHidden = false
             buttonContainers[index].addSubview(badge)
+            badge.isHidden = !indicesOfTitlesWithBadge.contains(index)
         }
     }
 }

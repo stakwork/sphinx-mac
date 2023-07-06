@@ -73,6 +73,7 @@ class NewChatListViewController: NSViewController {
         }
         
         self.selectedObjectId = selectedObjectId
+        
         updateSnapshot()
     }
 
@@ -351,7 +352,9 @@ extension NewChatListViewController : NSCollectionViewDelegate {
             
             selectedObjectId = self.chatListObjects[indexPath.item].getObjectId()
             
-            updateSnapshot() {
+            updateSnapshot()
+            
+            DelayPerformedHelper.performAfterDelay(seconds: 0.05, completion: {
                 let chat = self.chatListObjects[indexPath.item] as? Chat
                 let contact = self.chatListObjects[indexPath.item] as? UserContact
                 
@@ -360,8 +363,7 @@ extension NewChatListViewController : NSCollectionViewDelegate {
                     chatId: chat?.id,
                     contactId: contact?.id
                 )
-                
-            }
+            })
         }
     }
 }

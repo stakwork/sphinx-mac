@@ -10,6 +10,7 @@ import Cocoa
 
 class ChatListViewController : DashboardSplittedViewController {
 
+    ///IBOutlets
     @IBOutlet weak var headerView: NSView!
     @IBOutlet weak var balanceLabel: NSTextField!
     @IBOutlet weak var balanceUnitLabel: NSTextField!
@@ -40,12 +41,13 @@ class ChatListViewController : DashboardSplittedViewController {
         }
     }
     
+    ///Helpers
     let contactsService = ContactsService.sharedInstance
     let feedsManager = FeedsManager.sharedInstance
-    
     let newMessageBubbleHelper = NewMessageBubbleHelper()
     var walletBalanceService = WalletBalanceService()
     
+    ///Loading
     var loading = false {
         didSet {
             healthCheckView.isHidden = loading
@@ -53,51 +55,14 @@ class ChatListViewController : DashboardSplittedViewController {
         }
     }
     
-    var intialLoading = true {
+    var loadingChatList = true {
         didSet {
-            loadingChatsBox.isHidden = !intialLoading
-            LoadingWheelHelper.toggleLoadingWheel(loading: intialLoading, loadingWheel: loadingChatsWheel, color: NSColor.white, controls: [])
+            loadingChatsBox.isHidden = !loadingChatList
+            LoadingWheelHelper.toggleLoadingWheel(loading: loadingChatList, loadingWheel: loadingChatsWheel, color: NSColor.white, controls: [])
         }
     }
     
-    internal var activeTab: DashboardTab = .friends {
-        didSet {
-            let newViewController = mainContentViewController(forActiveTab: activeTab)
-
-            addChildVC(
-                child: newViewController,
-                container: chatListVCContainer
-            )
-            
-            loadFriendAndReload()
-        }
-    }
-    
-    var indicesOfTabsWithNewMessages: [Int] {
-        var indices = [Int]()
-
-        if contactsService.contactsHasNewMessages {
-            indices.append(1)
-        }
-        
-        if contactsService.chatsHasNewMessages {
-            indices.append(2)
-        }
-        
-        return indices
-    }
-    
-    private func mainContentViewController(
-        forActiveTab activeTab: DashboardTab
-    ) -> NSViewController {
-        switch activeTab {
-        case .friends:
-            return contactChatsContainerViewController
-        case .tribes:
-            return tribeChatsContainerViewController
-        }
-    }
-    
+    ///Chat List VCs
     internal lazy var contactChatsContainerViewController: NewChatListViewController = {
         NewChatListViewController.instantiate(
             tab: NewChatListViewController.Tab.Friends,
@@ -112,6 +77,7 @@ class ChatListViewController : DashboardSplittedViewController {
         )
     }()
     
+    ///Lifecycle events
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -128,7 +94,7 @@ class ChatListViewController : DashboardSplittedViewController {
     override func viewWillAppear() {
         super.viewWillAppear()
         
-        intialLoading = true
+        loadingChatList = true
         loading = true
         
         updateContactsAndReload()
@@ -138,7 +104,7 @@ class ChatListViewController : DashboardSplittedViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         
-        activeTab = .friends
+        setActiveTab(.friends)
         
         NotificationCenter.default.removeObserver(self, name: .onContactsAndChatsChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(dataDidChange), name: .onContactsAndChatsChanged, object: nil)
@@ -148,7 +114,7 @@ class ChatListViewController : DashboardSplittedViewController {
         loadFriendAndReload()
         
         DelayPerformedHelper.performAfterDelay(seconds: 0.5, completion: {
-            self.intialLoading = false
+            self.loadingChatList = false
         })
     }
     
@@ -158,26 +124,6 @@ class ChatListViewController : DashboardSplittedViewController {
         NotificationCenter.default.removeObserver(self, name: .onBalanceDidChange, object: nil)
         NotificationCenter.default.removeObserver(self, name: .onJoinTribeClick, object: nil)
         NotificationCenter.default.removeObserver(self, name: .onPubKeyClick, object: nil)
-    }
-    
-    @objc func dataDidChange() {
-        updateNewMessageBadges()
-        
-        contactChatsContainerViewController.updateWithNewChats(
-            contactsService.contactListObjects
-        )
-        
-        tribeChatsContainerViewController.updateWithNewChats(
-            contactsService.chatListObjects
-        )
-    }
-    
-    internal func updateNewMessageBadges() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
-            guard let self = self else { return }
-            
-            self.dashboardNavigationTabs.indicesOfTitlesWithBadge = self.indicesOfTabsWithNewMessages
-        }
     }
     
     func prepareView() {
@@ -300,16 +246,19 @@ class ChatListViewController : DashboardSplittedViewController {
     }
     
     func selectRowFor(chatId: Int) {
-//        chatListDataSource?.selectedChatId = chatId
+        if let chat = Chat.getChatWith(id: chatId) {
+            didClickRowAt(
+                selectedObjectId: chat.getObjectId(),
+                chatId: chat.id,
+                contactId: chat.getConversationContact()?.id
+            )
+        }
     }
     
     @IBAction func refreshButtonClicked(_ sender: Any) {
         loading = true
         updateBalance()
         loadFriendAndReload()
-        
-        //        chatListDataSource.resetSelection()
-        
         delegate?.didReloadDashboard()
     }
     
@@ -326,8 +275,13 @@ class ChatListViewController : DashboardSplittedViewController {
     }
     
     func listenForPubKeyAndTribeJoin() {
-        NotificationCenter.default.addObserver(forName: .onPubKeyClick, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
-            guard let vc = self else { return }
+        NotificationCenter.default.addObserver(
+            forName: .onPubKeyClick,
+            object: nil,
+            queue: OperationQueue.main
+        ) { [weak self] (n: Notification) in
+            
+            guard let self = self else { return }
             
             if let pubkey = n.userInfo?["pub-key"] as? String {
                 if pubkey == UserData.sharedInstance.getUserPubKey() { return }
@@ -335,7 +289,14 @@ class ChatListViewController : DashboardSplittedViewController {
                 let (existing, user) = pk.isExistingContactPubkey()
                 
                 if let user = user, existing {
-//                    vc.chatListDataSource.shouldSelectContactOrChat(user)
+                    
+                    let chat = user.getChat()
+                    
+                    self.didClickRowAt(
+                        selectedObjectId: chat?.getObjectId() ?? user.getObjectId(),
+                        chatId: chat?.id,
+                        contactId: user.id
+                    )
                 } else {
                     
                     let contactVC = NewContactViewController.instantiate(
@@ -345,7 +306,7 @@ class ChatListViewController : DashboardSplittedViewController {
                     
                     WindowsManager.sharedInstance.showContactWindow(
                         vc: contactVC,
-                        window: vc.view.window,
+                        window: self.view.window,
                         title: "new.contact".localized,
                         identifier: "new-contact-window",
                         size: CGSize(width: 414, height: 600)
@@ -354,16 +315,34 @@ class ChatListViewController : DashboardSplittedViewController {
             }
         }
         
-        NotificationCenter.default.addObserver(forName: .onJoinTribeClick, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
-            guard let vc = self else { return }
+        NotificationCenter.default.addObserver(
+            forName: .onJoinTribeClick,
+            object: nil,
+            queue: OperationQueue.main
+        ) { [weak self] (n: Notification) in
+            guard let self = self else { return }
             
             if let tribeLink = n.userInfo?["tribe_link"] as? String {
                 if let tribeInfo = GroupsManager.sharedInstance.getGroupInfo(query: tribeLink), let uuid = tribeInfo.uuid {
                     if let chat = Chat.getChatWith(uuid: uuid) {
-//                        vc.chatListDataSource.shouldSelectContactOrChat(chat)
+                        self.didClickRowAt(
+                            selectedObjectId: chat.getObjectId(),
+                            chatId: chat.id,
+                            contactId: chat.getConversationContact()?.id
+                        )
                     } else {
-                        let joinTribeVC = JoinTribeViewController.instantiate(tribeInfo: tribeInfo, delegate: vc)
-                        WindowsManager.sharedInstance.showContactWindow(vc: joinTribeVC, window: vc.view.window, title: "join.tribe".localized.uppercased(), identifier: "join-tribe-window", size: CGSize(width: 414, height: 870))
+                        let joinTribeVC = JoinTribeViewController.instantiate(
+                            tribeInfo: tribeInfo,
+                            delegate: self
+                        )
+                        
+                        WindowsManager.sharedInstance.showContactWindow(
+                            vc: joinTribeVC,
+                            window: self.view.window,
+                            title: "join.tribe".localized.uppercased(),
+                            identifier: "join-tribe-window",
+                            size: CGSize(width: 414, height: 870)
+                        )
                     }
                 }
             }
