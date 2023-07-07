@@ -189,9 +189,6 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
         } else {
 
             chatImageView.layer?.cornerRadius = chatImageView.frame.height / 2
-
-            chatInitialsView.isHidden = false
-            chatImageView.isHidden = true
             
             renderContactInitialsLabel(for: chatListObject)
 
@@ -205,6 +202,9 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
                     scaleMode: .aspectFill
                 )
                 
+                chatImageView.isHidden = false
+                chatInitialsView.isHidden = true
+                
                 chatImageView.sd_setImage(
                     with: imageURL,
                     placeholderImage: NSImage(named: "profile_avatar"),
@@ -213,12 +213,13 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
                     progress: nil,
                     completed: { [unowned self] (image, error,_,_) in
                         if (error == nil) {
-                            self.chatInitialsView.isHidden = true
-                            self.chatImageView.isHidden = false
                             self.chatImageView.image = image
                         }
                     }
                 )
+            } else {
+                chatImageView.isHidden = true
+                chatInitialsView.isHidden = false
             }
         }
     }
