@@ -1398,7 +1398,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="835" height="240"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <collectionView id="dqF-n9-Yry">
+                                                <collectionView selectable="YES" id="dqF-n9-Yry">
                                                     <rect key="frame" x="0.0" y="0.0" width="835" height="240"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" id="ulK-SZ-ow5">

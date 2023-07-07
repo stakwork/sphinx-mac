@@ -59,9 +59,7 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
                 avatarImage.image = mentionOrMacro.image ?? NSImage(named: "appPinIcon")
                 avatarImage.isHidden = false
             }
-            
         } else {
-            
             initialsBox.isHidden = false
             iconLabel.isHidden = true
             
@@ -113,12 +111,9 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
     }
     
     @objc func handleClick(){
-        if let valid_alias = alias, type == .mention{
+        if let valid_alias = alias, type == .mention {
             self.delegate?.processAutocomplete(text: valid_alias + " ")
-        }
-        else if type == .macro,
-        let action = action{
-            print("MACRO")
+        } else if type == .macro, let action = action {
             self.delegate?.processGeneralPurposeMacro(action: action)
         }
     }

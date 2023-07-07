@@ -42,8 +42,11 @@ class ChatMentionAutocompleteDataSource : NSObject {
         self.scrollView = scrollView
         self.tableView.backgroundColors = [NSColor.Sphinx.HeaderBG]
         
-        updateMentionSuggestions(suggestions: [])
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+       
         configureCollectionView()
+        updateMentionSuggestions(suggestions: [])
     }
     
     func updateMentionSuggestions(suggestions: [MentionOrMacroItem]) {
@@ -150,9 +153,17 @@ extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate, NSCollec
     }
     
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
-        if let path = indexPaths.first{
-            selectedRow = path.item
-            tableView.reloadData()
+        if let index = indexPaths.first?.item {
+            
+            let suggestion = suggestions[index]
+            
+            if suggestion.type == .mention {
+                let valid_alias = suggestion.displayText
+                self.delegate?.processAutocomplete(text: valid_alias + " ")
+            } else if suggestion.type == .macro, let action = suggestion.action {
+                self.delegate?.processGeneralPurposeMacro(action: action)
+            }
+            
         }
     }
 }

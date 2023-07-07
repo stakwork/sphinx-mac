@@ -307,11 +307,6 @@ class ChatViewController: DashboardSplittedViewController {
             delegate: self,
             vc: self
         )
-        
-        mentionAutoCompleteTableView.delegate = chatMentionAutocompleteDataSource
-        mentionAutoCompleteTableView.dataSource = chatMentionAutocompleteDataSource
-       
-        chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: [])
     }
     
     func resetHeader() {

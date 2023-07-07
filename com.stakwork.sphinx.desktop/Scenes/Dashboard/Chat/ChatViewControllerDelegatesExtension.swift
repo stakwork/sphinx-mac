@@ -94,6 +94,8 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
                 if var position = initialPosition {
                     position += ("@\(autocompleteText) ".count - typedMentionText.count)
                     self.messageTextView.setSelectedRange(NSRange(location: position, length: 0))
+                    self.messageTextView.window?.makeFirstResponder(self.messageTextView)
+                    
                 }
             })
         }
@@ -621,6 +623,7 @@ extension ChatViewController : ChatMentionAutocompleteDelegate{
     
     func processAutocomplete(text: String) {
         populateMentionAutocomplete(autocompleteText: text)
+        
         self.chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: [])
     }
     
