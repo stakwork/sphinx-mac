@@ -356,7 +356,8 @@ extension DashboardViewController : DashboardVCDelegate {
         
         let newChatVCController = ChatViewController.instantiate(
             contact: contact,
-            chat: chat
+            chat: chat,
+            delegate: self
         )
         
         newChatVCController.setDataModels(

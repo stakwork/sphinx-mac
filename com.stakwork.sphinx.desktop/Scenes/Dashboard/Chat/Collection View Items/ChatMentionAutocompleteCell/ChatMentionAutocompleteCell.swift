@@ -45,6 +45,7 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
         
         mentionTextField.stringValue = mentionOrMacro.displayText
         
+        avatarImage.wantsLayer = true
         avatarImage?.sd_cancelCurrentImageLoad()
         
         if (mentionOrMacro.type == .macro) {
@@ -64,18 +65,27 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
             initialsBox.isHidden = false
             iconLabel.isHidden = true
             
-            avatarImage.imageScaling = .scaleAxesIndependently
-            
             initialsBox.fillColor = NSColor.getColorFor(key: "\(mentionOrMacro.displayText)-color")
             initialsLabel.stringValue = mentionOrMacro.displayText.getInitialsFromName()
             
             if let imageLink = mentionOrMacro.imageLink, let url = URL(string: imageLink) {
-                avatarImage.makeCircular()
+                
+                let transformer = SDImageResizingTransformer(
+                    size: CGSize(
+                        width: avatarImage.bounds.size.width * 2,
+                        height: avatarImage.bounds.size.height * 2
+                    ),
+                    scaleMode: .aspectFill
+                )
+                
+                avatarImage.layer?.cornerRadius = avatarImage.frame.size.height / 2
                 
                 avatarImage.sd_setImage(
                     with: url,
                     placeholderImage: NSImage(named: "profile_avatar"),
                     options: [SDWebImageOptions.progressiveLoad],
+                    context: [.imageTransformer: transformer],
+                    progress: nil,
                     completed: { (image, error, _, _) in
                         if let image = image, error == nil {
                             self.avatarImage.image = image

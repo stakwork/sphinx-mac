@@ -116,11 +116,13 @@ class ChatViewController: DashboardSplittedViewController {
     
     static func instantiate(
         contact: UserContact? = nil,
-        chat: Chat? = nil
+        chat: Chat? = nil,
+        delegate: DashboardVCDelegate?
     ) -> ChatViewController {
         let viewController = StoryboardScene.Dashboard.chatViewController.instantiate()
         viewController.chat = chat
         viewController.contact = contact
+        viewController.delegate = delegate
         return viewController
     }
     
@@ -144,6 +146,7 @@ class ChatViewController: DashboardSplittedViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         chatDataSource?.setDelegates(self)
+        configureMentionAutocompleteTableView()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.setChatInfo), name: .shouldReloadTribeData, object: nil)
     }
@@ -292,8 +295,19 @@ class ChatViewController: DashboardSplittedViewController {
     }
     
     func configureMentionAutocompleteTableView(){
+        if chatMentionAutocompleteDataSource != nil {
+            return
+        }
+        
         mentionAutoCompleteTableView.isHidden = false
-        chatMentionAutocompleteDataSource = ChatMentionAutocompleteDataSource(tableView: mentionAutoCompleteTableView, scrollView: mentionAutoCompleteEnclosingScrollView,delegate:self, vc: self)
+        
+        chatMentionAutocompleteDataSource = ChatMentionAutocompleteDataSource(
+            tableView: mentionAutoCompleteTableView,
+            scrollView: mentionAutoCompleteEnclosingScrollView,
+            delegate: self,
+            vc: self
+        )
+        
         mentionAutoCompleteTableView.delegate = chatMentionAutocompleteDataSource
         mentionAutoCompleteTableView.dataSource = chatMentionAutocompleteDataSource
        
