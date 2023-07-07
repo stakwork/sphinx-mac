@@ -211,10 +211,6 @@ class ChatListViewController : DashboardSplittedViewController {
     }
     
     func loadFriendAndReload() {
-        guard let chatListViewModel = chatListViewModel else {
-            return
-        }
-        
         chatListViewModel.loadFriends() {
             self.loadMessages()
         }

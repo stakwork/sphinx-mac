@@ -72,7 +72,7 @@ class MessageReplyView: NSView, LoadableNib {
     private func setup() {        
         toggleMediaContainer(show: false, width: 0)
         
-        isHidden = true
+//        isHidden = true
     }
     
     func resetView() {
@@ -285,9 +285,9 @@ class MessageReplyView: NSView, LoadableNib {
     }
     
     func toggleMediaContainer(show: Bool, width: CGFloat) {
-        imageContainerWidth.constant = show ? width : 0
-        imageContainer.superview?.layoutSubtreeIfNeeded()
-        imageContainer.isHidden = !show
+//        imageContainerWidth.constant = show ? width : 0
+//        imageContainer.superview?.layoutSubtreeIfNeeded()
+//        imageContainer.isHidden = !show
     }
     
     func toggleOverlay(show: Bool, color: NSColor, icon: String, textColor: NSColor) {

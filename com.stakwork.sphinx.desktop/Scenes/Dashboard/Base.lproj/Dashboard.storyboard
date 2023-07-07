@@ -1546,6 +1546,107 @@
             </objects>
             <point key="canvasLocation" x="396" y="782"/>
         </scene>
+        <!--New Chat View Controller-->
+        <scene sceneID="ZXt-EC-Kc7">
+            <objects>
+                <viewController storyboardIdentifier="NewChatViewController" id="Pz4-0N-V1w" customClass="NewChatViewController" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="rwT-W3-Ok3">
+                        <rect key="frame" x="0.0" y="0.0" width="835" height="700"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="hFm-gq-P1I">
+                                <rect key="frame" x="0.0" y="0.0" width="835" height="700"/>
+                                <subviews>
+                                    <box boxType="custom" borderType="none" cornerRadius="4" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="MCJ-UN-ATU">
+                                        <rect key="frame" x="0.0" y="0.0" width="835" height="700"/>
+                                        <view key="contentView" id="fIT-gE-ZaX">
+                                            <rect key="frame" x="0.0" y="0.0" width="835" height="700"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                        <color key="fillColor" name="Body"/>
+                                    </box>
+                                    <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tEY-A3-U6q">
+                                        <rect key="frame" x="0.0" y="0.0" width="835" height="700"/>
+                                        <subviews>
+                                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="ffC-9B-Cdx" customClass="ChatTopView" customModule="Sphinx" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="590" width="835" height="110"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" priority="750" constant="110" id="viS-Ik-0Uv"/>
+                                                </constraints>
+                                            </customView>
+                                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="hrp-5k-g3S">
+                                                <rect key="frame" x="0.0" y="60" width="835" height="530"/>
+                                                <subviews>
+                                                    <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="X86-z6-O1z">
+                                                        <rect key="frame" x="0.0" y="0.0" width="835" height="530"/>
+                                                        <view key="contentView" id="JBN-Ay-LgI">
+                                                            <rect key="frame" x="0.0" y="0.0" width="835" height="530"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        </view>
+                                                        <color key="fillColor" name="PrimaryRed"/>
+                                                    </box>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="X86-z6-O1z" firstAttribute="leading" secondItem="hrp-5k-g3S" secondAttribute="leading" id="3NF-cF-tgz"/>
+                                                    <constraint firstAttribute="trailing" secondItem="X86-z6-O1z" secondAttribute="trailing" id="9OY-v0-gCf"/>
+                                                    <constraint firstAttribute="bottom" secondItem="X86-z6-O1z" secondAttribute="bottom" id="HLU-vw-sfa"/>
+                                                    <constraint firstItem="X86-z6-O1z" firstAttribute="top" secondItem="hrp-5k-g3S" secondAttribute="top" id="Xbw-fu-14U"/>
+                                                </constraints>
+                                            </customView>
+                                            <customView horizontalHuggingPriority="249" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="VsO-VQ-Xhc" customClass="ChatBottomView" customModule="Sphinx" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="835" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" priority="750" constant="60" id="dsj-Cy-Nos"/>
+                                                </constraints>
+                                            </customView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="hrp-5k-g3S" secondAttribute="trailing" id="0rE-Hc-fUW"/>
+                                            <constraint firstItem="ffC-9B-Cdx" firstAttribute="leading" secondItem="tEY-A3-U6q" secondAttribute="leading" id="6un-yZ-Wwz"/>
+                                            <constraint firstItem="hrp-5k-g3S" firstAttribute="leading" secondItem="tEY-A3-U6q" secondAttribute="leading" id="U9Y-Yq-C8b"/>
+                                            <constraint firstItem="VsO-VQ-Xhc" firstAttribute="leading" secondItem="tEY-A3-U6q" secondAttribute="leading" id="euw-PX-Rav"/>
+                                            <constraint firstAttribute="trailing" secondItem="ffC-9B-Cdx" secondAttribute="trailing" id="sJd-c7-tJc"/>
+                                            <constraint firstAttribute="trailing" secondItem="VsO-VQ-Xhc" secondAttribute="trailing" id="yIE-OC-vvt"/>
+                                        </constraints>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="MCJ-UN-ATU" firstAttribute="leading" secondItem="hFm-gq-P1I" secondAttribute="leading" id="2ip-3F-owc"/>
+                                    <constraint firstItem="MCJ-UN-ATU" firstAttribute="top" secondItem="hFm-gq-P1I" secondAttribute="top" id="8fW-ib-3VE"/>
+                                    <constraint firstAttribute="trailing" secondItem="MCJ-UN-ATU" secondAttribute="trailing" id="Huz-Ep-VuB"/>
+                                    <constraint firstAttribute="bottom" secondItem="tEY-A3-U6q" secondAttribute="bottom" id="dh9-HJ-J2B"/>
+                                    <constraint firstAttribute="trailing" secondItem="tEY-A3-U6q" secondAttribute="trailing" id="eQK-gB-Hir"/>
+                                    <constraint firstItem="tEY-A3-U6q" firstAttribute="leading" secondItem="hFm-gq-P1I" secondAttribute="leading" id="grr-ND-1Na"/>
+                                    <constraint firstItem="tEY-A3-U6q" firstAttribute="top" secondItem="hFm-gq-P1I" secondAttribute="top" id="h7W-Cd-4rv"/>
+                                    <constraint firstAttribute="bottom" secondItem="MCJ-UN-ATU" secondAttribute="bottom" id="lE0-mS-4Ol"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="hFm-gq-P1I" secondAttribute="bottom" id="BvE-i3-8e7"/>
+                            <constraint firstAttribute="trailing" secondItem="hFm-gq-P1I" secondAttribute="trailing" id="Cfh-B6-gFN"/>
+                            <constraint firstItem="hFm-gq-P1I" firstAttribute="leading" secondItem="rwT-W3-Ok3" secondAttribute="leading" id="o3x-Fk-qPE"/>
+                            <constraint firstItem="hFm-gq-P1I" firstAttribute="top" secondItem="rwT-W3-Ok3" secondAttribute="top" id="o6L-fz-XqW"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="chatTopView" destination="ffC-9B-Cdx" id="YPh-Ow-0Fs"/>
+                    </connections>
+                </viewController>
+                <customObject id="Bnk-TP-Qxz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="395.5" y="1442"/>
+        </scene>
         <!--Web App View Controller-->
         <scene sceneID="mGz-DL-Ubp">
             <objects>
@@ -1637,7 +1738,7 @@
                 </viewController>
                 <customObject id="ngG-D3-GFA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="383" y="1968"/>
+            <point key="canvasLocation" x="429" y="2219"/>
         </scene>
         <!--Create Invoice View Controller-->
         <scene sceneID="rFM-AW-0V0">

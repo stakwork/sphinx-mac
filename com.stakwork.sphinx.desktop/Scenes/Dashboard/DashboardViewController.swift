@@ -104,11 +104,6 @@ class DashboardViewController: NSViewController {
         
         if let splitedVC = segue.destinationController as? DashboardSplittedViewController {
             splitedVC.delegate = self
-            
-            splitedVC.setDataModels(
-                chatListViewModel: chatListViewModel,
-                chatViewModel: chatViewModel
-            )
         }
     }
     
@@ -354,15 +349,10 @@ extension DashboardViewController : DashboardVCDelegate {
         let chat = chatId != nil ? Chat.getChatWith(id: chatId!) : nil
         let contact = contactId != nil ? UserContact.getContactWith(id: contactId!) : chat?.getConversationContact()
         
-        let newChatVCController = ChatViewController.instantiate(
+        let newChatVCController = NewChatViewController.instantiate(
             contact: contact,
             chat: chat,
             delegate: self
-        )
-        
-        newChatVCController.setDataModels(
-            chatListViewModel: chatListViewModel,
-            chatViewModel: chatViewModel
         )
         
         self.addChildVC(
@@ -370,13 +360,13 @@ extension DashboardViewController : DashboardVCDelegate {
             container: rightSplittedView
         )
         
-        detailViewController = newChatVCController
-        
-        if (deeplinkData != nil) {
-            detailViewController?.deeplinkData = deeplinkData
-        }
-
-        deeplinkData = nil
+//        detailViewController = newChatVCController
+//
+//        if (deeplinkData != nil) {
+//            detailViewController?.deeplinkData = deeplinkData
+//        }
+//
+//        deeplinkData = nil
     }
     
     func shouldShowFullMediaFor(message: TransactionMessage) {

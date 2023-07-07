@@ -45,6 +45,15 @@
 		4708C2072A55EF5900274AD4 /* NSFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4708C2062A55EF5900274AD4 /* NSFont.swift */; };
 		4708C20A2A56FE8800274AD4 /* ChatListViewController+TabsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4708C2092A56FE8800274AD4 /* ChatListViewController+TabsExtension.swift */; };
 		4708C20C2A5700CF00274AD4 /* ChatListViewController+SocketDelegateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4708C20B2A5700CF00274AD4 /* ChatListViewController+SocketDelegateExtension.swift */; };
+		4708C20E2A5884EC00274AD4 /* ChatHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4708C20D2A5884EC00274AD4 /* ChatHeaderView.swift */; };
+		4708C2102A5884F800274AD4 /* ChatHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4708C20F2A5884F800274AD4 /* ChatHeaderView.xib */; };
+		4708C2132A58851900274AD4 /* ChatBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4708C2122A58851900274AD4 /* ChatBottomView.swift */; };
+		4708C2152A58852000274AD4 /* ChatBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4708C2142A58852000274AD4 /* ChatBottomView.xib */; };
+		4708C2172A5885CB00274AD4 /* ChatTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4708C2162A5885CB00274AD4 /* ChatTopView.swift */; };
+		4708C2192A5885D200274AD4 /* ChatTopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4708C2182A5885D200274AD4 /* ChatTopView.xib */; };
+		4708C21B2A588F7A00274AD4 /* NewChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4708C21A2A588F7A00274AD4 /* NewChatViewController.swift */; };
+		4708C21D2A58958C00274AD4 /* ChatMessageFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4708C21C2A58958C00274AD4 /* ChatMessageFieldView.swift */; };
+		4708C21F2A58959900274AD4 /* ChatMessageFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4708C21E2A58959900274AD4 /* ChatMessageFieldView.xib */; };
 		470E0B33247C743900177D8A /* LoadingMoreCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470E0B31247C743900177D8A /* LoadingMoreCollectionViewItem.swift */; };
 		470E0B37247D671700177D8A /* AudioReceivedCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470E0B35247D671700177D8A /* AudioReceivedCollectionViewItem.swift */; };
 		470E0B38247D671700177D8A /* AudioReceivedCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470E0B36247D671700177D8A /* AudioReceivedCollectionViewItem.xib */; };
@@ -670,6 +679,15 @@
 		4708C2062A55EF5900274AD4 /* NSFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFont.swift; sourceTree = "<group>"; };
 		4708C2092A56FE8800274AD4 /* ChatListViewController+TabsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatListViewController+TabsExtension.swift"; sourceTree = "<group>"; };
 		4708C20B2A5700CF00274AD4 /* ChatListViewController+SocketDelegateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ChatListViewController+SocketDelegateExtension.swift"; sourceTree = "<group>"; };
+		4708C20D2A5884EC00274AD4 /* ChatHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHeaderView.swift; sourceTree = "<group>"; };
+		4708C20F2A5884F800274AD4 /* ChatHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatHeaderView.xib; sourceTree = "<group>"; };
+		4708C2122A58851900274AD4 /* ChatBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBottomView.swift; sourceTree = "<group>"; };
+		4708C2142A58852000274AD4 /* ChatBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatBottomView.xib; sourceTree = "<group>"; };
+		4708C2162A5885CB00274AD4 /* ChatTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTopView.swift; sourceTree = "<group>"; };
+		4708C2182A5885D200274AD4 /* ChatTopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatTopView.xib; sourceTree = "<group>"; };
+		4708C21A2A588F7A00274AD4 /* NewChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatViewController.swift; sourceTree = "<group>"; };
+		4708C21C2A58958C00274AD4 /* ChatMessageFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageFieldView.swift; sourceTree = "<group>"; };
+		4708C21E2A58959900274AD4 /* ChatMessageFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatMessageFieldView.xib; sourceTree = "<group>"; };
 		470E0B31247C743900177D8A /* LoadingMoreCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingMoreCollectionViewItem.swift; sourceTree = "<group>"; };
 		470E0B35247D671700177D8A /* AudioReceivedCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioReceivedCollectionViewItem.swift; sourceTree = "<group>"; };
 		470E0B36247D671700177D8A /* AudioReceivedCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioReceivedCollectionViewItem.xib; sourceTree = "<group>"; };
@@ -1540,6 +1558,21 @@
 			path = "View Controller";
 			sourceTree = "<group>";
 		};
+		4708C2112A5884FC00274AD4 /* Chat View */ = {
+			isa = PBXGroup;
+			children = (
+				4708C20D2A5884EC00274AD4 /* ChatHeaderView.swift */,
+				4708C20F2A5884F800274AD4 /* ChatHeaderView.xib */,
+				4708C2122A58851900274AD4 /* ChatBottomView.swift */,
+				4708C2142A58852000274AD4 /* ChatBottomView.xib */,
+				4708C2162A5885CB00274AD4 /* ChatTopView.swift */,
+				4708C2182A5885D200274AD4 /* ChatTopView.xib */,
+				4708C21C2A58958C00274AD4 /* ChatMessageFieldView.swift */,
+				4708C21E2A58959900274AD4 /* ChatMessageFieldView.xib */,
+			);
+			path = "Chat View";
+			sourceTree = "<group>";
+		};
 		471F3ABF255C747400E2AC79 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -2339,6 +2372,7 @@
 				479F657A2487D31C0015A16A /* ChatViewControllerMediaExtension.swift */,
 				473633EB2555AEE8007405F2 /* ChatViewControllerPodcastExtension.swift */,
 				476AAA9F2A1E773F0092AC87 /* ChatViewController+PinMessageExtension.swift */,
+				4708C21A2A588F7A00274AD4 /* NewChatViewController.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -2859,6 +2893,7 @@
 		47E771352472E44600C9CFEB /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				4708C2112A5884FC00274AD4 /* Chat View */,
 				474C7A3D28D211AB007A3E17 /* Notifications */,
 				47F88261256D3963002A7E71 /* Boosting Messages */,
 				47D03DE8250FDC920077A968 /* PDF */,
@@ -3108,6 +3143,7 @@
 				47E771222472C26200C9CFEB /* MessageReceivedCollectionViewItem.xib in Resources */,
 				4785C11324D992D3004E2D6C /* GroupRequestCollectionViewItem.xib in Resources */,
 				47AF0D5225530DF900C98398 /* PodcastEpisodesHeaderView.xib in Resources */,
+				4708C21F2A58959900274AD4 /* ChatMessageFieldView.xib in Resources */,
 				47C6236225091C02005D265C /* GiphySearchCollectionViewItem.xib in Resources */,
 				473BC8922600FB320070E519 /* NewEpisodeAlertView.xib in Resources */,
 				4726A44224C628DA005A66B4 /* horn.caf in Resources */,
@@ -3156,6 +3192,7 @@
 				478ED5E825D6FDD800940132 /* PinView.xib in Resources */,
 				47C1F1DF2481530000A71610 /* GroupActionMessageCollectionViewItem.xib in Resources */,
 				CE38D91129E0821A00F271CD /* Payments.storyboard in Resources */,
+				4708C2192A5885D200274AD4 /* ChatTopView.xib in Resources */,
 				47C7D71127874A12006D2809 /* AuthExternalView.xib in Resources */,
 				473633E325548E4B007405F2 /* BoostButtonView.xib in Resources */,
 				474274A728EC7289000C3D51 /* TribeTagsView.xib in Resources */,
@@ -3185,6 +3222,8 @@
 				478ED5AA25D5720600940132 /* SignupSecureFieldView.xib in Resources */,
 				4726A43924C628DA005A66B4 /* synth.caf in Resources */,
 				4797E89A24BCFDE300D13270 /* DeletedMessageSentCollectionViewItem.xib in Resources */,
+				4708C2102A5884F800274AD4 /* ChatHeaderView.xib in Resources */,
+				4708C2152A58852000274AD4 /* ChatBottomView.xib in Resources */,
 				47B550B1248C23E7000514BF /* TemplateCollectionViewItem.xib in Resources */,
 				476AAA912A1E5E670092AC87 /* MaterialIcons.ttf in Resources */,
 				478ED5B725D6FBD600940132 /* Signup.storyboard in Resources */,
@@ -3407,15 +3446,18 @@
 				CE599F5F2A336E5800B11F41 /* MentionOrMacroItem.swift in Sources */,
 				4797E74B2785D2420080B966 /* AuthExternalView.swift in Sources */,
 				47F258DB2541E54000122A5A /* PodcastPaymentsHelper.swift in Sources */,
+				4708C20E2A5884EC00274AD4 /* ChatHeaderView.swift in Sources */,
 				47C1D5FA248EA71E00718B28 /* GroupMembersView.swift in Sources */,
 				474F6759248685AE00CE6016 /* ClipboardHelper.swift in Sources */,
 				CE1FA8FE2A01B6680014360C /* LsatListTableCellView.swift in Sources */,
+				4708C2132A58851900274AD4 /* ChatBottomView.swift in Sources */,
 				478ED59C25D55EA600940132 /* ProfileImageView.swift in Sources */,
 				4744FA772469A83E00C5FD94 /* Date.swift in Sources */,
 				474567EE25139FE000D66268 /* BotWebView.swift in Sources */,
 				4744FAE1246C2B7400C5FD94 /* KeychainRestoreCollectionViewItem.swift in Sources */,
 				4744FAD5246B2D0200C5FD94 /* AnimationHelper.swift in Sources */,
 				4744FAA72469CEE100C5FD94 /* Int.swift in Sources */,
+				4708C2172A5885CB00274AD4 /* ChatTopView.swift in Sources */,
 				4789E27C24F45BC3003991BE /* RelayURLUpdateHelper.swift in Sources */,
 				4744FA8F2469C9F800C5FD94 /* Chat+CoreDataProperties.swift in Sources */,
 				47F8825525656CB0002A7E71 /* SocketEngine.swift in Sources */,
@@ -3431,6 +3473,7 @@
 				4708C2052A55CA4800274AD4 /* NSViewController.swift in Sources */,
 				4744FA642469A43600C5FD94 /* API+SubscriptionsExtension.swift in Sources */,
 				47B6F529258BC40600D64A41 /* PodcastLiveDataSource.swift in Sources */,
+				4708C21D2A58958C00274AD4 /* ChatMessageFieldView.swift in Sources */,
 				475B685C29917395000EF29C /* PodcastPlayerController+ActionsTracking.swift in Sources */,
 				475F0BA224F7D97D0032EDC4 /* NewContactViewController.swift in Sources */,
 				474F675C2486928500CE6016 /* PaidMessageSentCollectionViewItem.swift in Sources */,
@@ -3730,6 +3773,7 @@
 				4703F0502481A70200282186 /* CustomSwiftLinkPreview.swift in Sources */,
 				47A4EFFC24B4DA2A00117AE6 /* CommonGroupActionCollectionViewItem.swift in Sources */,
 				4731BE4824859BB800BCCA9E /* PaymentReceivedCollectionViewItem.swift in Sources */,
+				4708C21B2A588F7A00274AD4 /* NewChatViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

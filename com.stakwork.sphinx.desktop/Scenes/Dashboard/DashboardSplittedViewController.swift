@@ -21,19 +21,7 @@ class DashboardSplittedViewController: NSViewController {
     
     weak var delegate: DashboardVCDelegate?
     
-    var chatViewModel: ChatViewModel! = nil
-    var chatListViewModel: ChatListViewModel! = nil
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    func setDataModels(
-        chatListViewModel: ChatListViewModel,
-        chatViewModel: ChatViewModel
-    ) {
-        self.chatListViewModel = chatListViewModel
-        self.chatViewModel = chatViewModel
-    }
+    var chatViewModel = ChatViewModel()
+    var chatListViewModel = ChatListViewModel()
     
 }

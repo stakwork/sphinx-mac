@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,14 +29,14 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="75" height="85"/>
+            <rect key="frame" x="0.0" y="0.0" width="77" height="85"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="rLf-rq-Pdy">
-                    <rect key="frame" x="0.0" y="0.0" width="75" height="85"/>
+                    <rect key="frame" x="0.0" y="0.0" width="77" height="85"/>
                     <subviews>
                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WAK-Q0-XpQ" customClass="AspectFillNSImageView" customModule="Sphinx" customModuleProvider="target">
-                            <rect key="frame" x="15" y="20" width="45" height="45"/>
+                            <rect key="frame" x="16" y="20" width="45" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="IvX-zB-vbs"/>
                                 <constraint firstAttribute="width" constant="45" id="OTh-4Z-iyb"/>
@@ -47,7 +47,7 @@
                             </userDefinedRuntimeAttributes>
                         </imageView>
                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="Qmb-Ig-wi8">
-                            <rect key="frame" x="15" y="20" width="45" height="45"/>
+                            <rect key="frame" x="16" y="20" width="45" height="45"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="990-B8-bwg">
                                     <rect key="frame" x="21" y="13" width="4" height="20"/>
@@ -68,20 +68,20 @@
                         <constraint firstItem="Qmb-Ig-wi8" firstAttribute="top" secondItem="WAK-Q0-XpQ" secondAttribute="top" id="4Ah-p9-6J8"/>
                         <constraint firstItem="Qmb-Ig-wi8" firstAttribute="bottom" secondItem="WAK-Q0-XpQ" secondAttribute="bottom" id="BTO-gB-J1Y"/>
                         <constraint firstItem="WAK-Q0-XpQ" firstAttribute="centerX" secondItem="rLf-rq-Pdy" secondAttribute="centerX" id="Jnx-Pn-9SQ"/>
-                        <constraint firstAttribute="width" constant="75" id="NpR-ah-Nu7"/>
+                        <constraint firstAttribute="width" constant="77" id="NpR-ah-Nu7"/>
                         <constraint firstItem="WAK-Q0-XpQ" firstAttribute="centerY" secondItem="rLf-rq-Pdy" secondAttribute="centerY" id="Z2M-ac-bJf"/>
                         <constraint firstItem="Qmb-Ig-wi8" firstAttribute="trailing" secondItem="WAK-Q0-XpQ" secondAttribute="trailing" id="Z6J-D1-9K8"/>
                         <constraint firstItem="Qmb-Ig-wi8" firstAttribute="leading" secondItem="WAK-Q0-XpQ" secondAttribute="leading" id="qGV-Vc-yCL"/>
                     </constraints>
                 </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="2o8-8m-9Um">
-                    <rect key="frame" x="0.0" y="0.0" width="75" height="85"/>
+                    <rect key="frame" x="0.0" y="0.0" width="77" height="85"/>
                     <subviews>
                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="hlG-z2-LnZ">
-                            <rect key="frame" x="0.0" y="17" width="75" height="52"/>
+                            <rect key="frame" x="0.0" y="17" width="77" height="52"/>
                             <subviews>
                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nan-bS-e55" customClass="AspectFillNSImageView" customModule="Sphinx" customModuleProvider="target">
-                                    <rect key="frame" x="29" y="17" width="35" height="35"/>
+                                    <rect key="frame" x="31" y="17" width="35" height="35"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="35" id="g7S-QB-KHk"/>
                                         <constraint firstAttribute="width" constant="35" id="pYR-VN-CSD"/>
@@ -92,7 +92,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </imageView>
                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="12d-yG-vPo">
-                                    <rect key="frame" x="29" y="17" width="35" height="35"/>
+                                    <rect key="frame" x="31" y="17" width="35" height="35"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TZC-Zi-Zoq">
                                             <rect key="frame" x="16" y="8" width="4" height="18"/>
@@ -173,7 +173,7 @@
                         </customView>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="width" constant="75" id="7uJ-89-jHZ"/>
+                        <constraint firstAttribute="width" constant="77" id="7uJ-89-jHZ"/>
                         <constraint firstItem="hlG-z2-LnZ" firstAttribute="leading" secondItem="2o8-8m-9Um" secondAttribute="leading" id="raH-Ng-iRD"/>
                         <constraint firstAttribute="trailing" secondItem="hlG-z2-LnZ" secondAttribute="trailing" id="sja-XC-ziI"/>
                         <constraint firstItem="hlG-z2-LnZ" firstAttribute="centerY" secondItem="2o8-8m-9Um" secondAttribute="centerY" id="wLo-TD-tGP"/>
