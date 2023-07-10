@@ -6,7 +6,7 @@ target 'Sphinx' do
    pod 'Alamofire', '~> 5.6.4'
    pod 'ReachabilitySwift'
    pod 'SwiftyJSON'
-   pod 'SDWebImage', '~> 5.15'
+   pod 'SDWebImage', '~> 5.16.0'
    pod 'RNCryptor', '~> 5.0'
    pod 'SwiftLinkPreview', '~> 3.1.0'
    pod 'KeychainAccess'

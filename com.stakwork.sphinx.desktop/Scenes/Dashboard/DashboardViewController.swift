@@ -371,6 +371,7 @@ extension DashboardViewController : DashboardVCDelegate {
         )
         
         detailViewController = newChatVCController
+        detailViewController?.setMessageFieldActive()
         
         if (deeplinkData != nil) {
             detailViewController?.deeplinkData = deeplinkData
