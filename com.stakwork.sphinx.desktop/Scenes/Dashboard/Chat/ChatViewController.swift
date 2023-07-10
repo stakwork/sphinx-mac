@@ -372,7 +372,6 @@ class ChatViewController: DashboardSplittedViewController {
         lockSign.isHidden = false
         volumeButton.isHidden = false
         videoCallButton.isHidden = false
-        view.window?.makeFirstResponder(messageTextView)
         
         toggleRecordButton(enable: !audioRecorderHelper.isPermissionDenied())
         toggleControls(enable: chat?.isStatusApproved() ?? true)
@@ -388,6 +387,10 @@ class ChatViewController: DashboardSplittedViewController {
         checkActiveTribe()
         checkRoute()
         processChatAliases()
+    }
+    
+    func setMessageFieldActive() {
+        view.window?.makeFirstResponder(messageTextView)
     }
     
     func processChatAliases() {
