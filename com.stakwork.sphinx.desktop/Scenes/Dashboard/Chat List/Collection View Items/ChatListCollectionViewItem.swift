@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Kingfisher
 import SDWebImage
 
 class ChatListCollectionViewItem: NSCollectionViewItem {
@@ -175,8 +176,6 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
     private func renderContactImageViews(
         for chatListObject: ChatListCommonObject
     ) {
-        chatImageView.sd_cancelCurrentImageLoad()
-
         if chatListObject.isPending() {
 
             chatImageView.contentTintColor = NSColor.Sphinx.TextMessages
@@ -188,34 +187,33 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
 
         } else {
 
-            chatImageView.layer?.cornerRadius = chatImageView.frame.height / 2
-            
             renderContactInitialsLabel(for: chatListObject)
 
             if
                 let imageURLPath = chatListObject.getPhotoUrl()?.removeDuplicatedProtocol(),
                 let imageURL = URL(string: imageURLPath)
             {
-                
-                let transformer = SDImageResizingTransformer(
-                    size: CGSize(width: chatImageView.bounds.size.width * 2, height: chatImageView.bounds.size.height * 2),
-                    scaleMode: .aspectFill
-                )
-                
                 chatImageView.isHidden = false
                 chatInitialsView.isHidden = true
+
+                let processor = DownsamplingImageProcessor(
+                    size: CGSize(
+                        width: chatImageView.bounds.size.width * 2,
+                        height: chatImageView.bounds.size.height * 2
+                    )
+                )
                 
-                chatImageView.sd_setImage(
+                chatImageView.kf.cancelDownloadTask()
+                chatImageView.kf.indicatorType = .activity
+                chatImageView.kf.setImage(
                     with: imageURL,
-                    placeholderImage: NSImage(named: "profile_avatar"),
-                    options: [.lowPriority, .avoidDecodeImage],
-                    context: [.imageTransformer: transformer],
-                    progress: nil,
-                    completed: { [unowned self] (image, error,_,_) in
-                        if (error == nil) {
-                            self.chatImageView.image = image
-                        }
-                    }
+                    placeholder: NSImage(named: "profile_avatar"),
+                    options: [
+                        .processor(processor),
+                        .scaleFactor(1.0),
+                        .transition(.fade(1)),
+                        .cacheOriginalImage
+                    ]
                 )
             } else {
                 chatImageView.isHidden = true

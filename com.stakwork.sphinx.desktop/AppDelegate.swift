@@ -59,8 +59,7 @@ import WebKit
         setAppSettings()
         clearWebkitCache()
         
-        SDImageCache.shared.clearMemory()
-        SDImageCache.shared.config.maxMemoryCount = 100
+        SDImageCache.shared.config.maxMemoryCount = 1000
         
         addStatusBarItem()
         listenToSleepEvents()

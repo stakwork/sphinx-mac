@@ -8,6 +8,7 @@
 
 import Cocoa
 import SDWebImage
+import Kingfisher
 
 protocol ChatSmallAvatarViewDelegate: AnyObject {
     func didClickAvatarView()
@@ -25,8 +26,7 @@ class ChatSmallAvatarView: NSView, LoadableNib {
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-        
-        profileImageView.isHidden = true
+        setup()
     }
 
     required init?(coder: NSCoder) {
@@ -36,9 +36,13 @@ class ChatSmallAvatarView: NSView, LoadableNib {
     }
     
     private func setup() {
+        profileImageView.rounded = true
+        profileImageView.gravity = .resizeAspectFill
+        profileImageView.wantsLayer = true
+        profileImageView?.layer?.cornerRadius = profileImageView.frame.height / 2
+        
         profileInitialContainer.wantsLayer = true
-        profileInitialContainer.layer?.cornerRadius = self.bounds.height/2
-        profileInitialContainer.layer?.masksToBounds = true
+        profileInitialContainer?.layer?.cornerRadius = profileInitialContainer.frame.height / 2
         
         avatarButton.cursor = .pointingHand
     }
@@ -80,8 +84,6 @@ class ChatSmallAvatarView: NSView, LoadableNib {
             
             showInitials(senderColor: senderColor, senderNickname: senderNickname)
             
-            profileImageView.sd_cancelCurrentImageLoad()
-
             if let senderAvatarURL = senderAvatarURL,
                let url = URL(string: senderAvatarURL) {
                 
@@ -134,38 +136,40 @@ class ChatSmallAvatarView: NSView, LoadableNib {
     func showImageWith(
         url: URL
     ) {
-        let transformer = SDImageResizingTransformer(
+        setup()
+        
+        let processor = DownsamplingImageProcessor(
             size: CGSize(
                 width: profileImageView.bounds.size.width * 2,
                 height: profileImageView.bounds.size.height * 2
-            ),
-            scaleMode: .aspectFill
+            )
         )
         
-        profileImageView.sd_setImage(
+        profileImageView.kf.cancelDownloadTask()
+        profileImageView.kf.indicatorType = .activity
+        
+        profileImageView.kf.setImage(
             with: url,
-            placeholderImage: NSImage(named: "profile_avatar"),
-            options: [.lowPriority, .avoidDecodeImage],
-            context: [.imageTransformer: transformer],
-            progress: nil,
-            completed: { (image, error, _, _) in
-                if let image = image, error == nil {
-                    self.setImage(image: image)
-                }
+            placeholder: NSImage(named: "profile_avatar"),
+            options: [
+                .processor(processor),
+                .scaleFactor(1.0),
+                .cacheOriginalImage
+            ]
+        ) { result in
+            switch result {
+            case .success(_):
+                self.profileInitialContainer.isHidden = true
+                self.profileImageView.isHidden = false
+            case .failure(_):
+                break
             }
-        )
-    }
-    
-    func setImage(image: NSImage) {
-        DispatchQueue.main.async {
-            self.profileInitialContainer.isHidden = true
-            self.profileImageView.isHidden = false
-            self.profileImageView.bordered = false
-            self.profileImageView.image = image
         }
     }
     
-    func showInitials(senderColor: NSColor, senderNickname: String) {        
+    func showInitials(senderColor: NSColor, senderNickname: String) {
+        setup()
+        
         profileInitialContainer.isHidden = false
         profileInitialContainer.wantsLayer = true
         profileInitialContainer.layer?.backgroundColor = senderColor.cgColor

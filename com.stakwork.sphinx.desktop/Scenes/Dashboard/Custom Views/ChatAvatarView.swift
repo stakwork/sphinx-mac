@@ -8,6 +8,7 @@
 
 import Cocoa
 import SDWebImage
+import Kingfisher
 
 class ChatAvatarView: NSView, LoadableNib {
     
@@ -125,29 +126,30 @@ class ChatAvatarView: NSView, LoadableNib {
     func loadImageFor(_ object: ChatListCommonObject?, in imageView: AspectFillNSImageView, and container: NSView) {
         showInitialsFor(object, in: imageView, and: container)
         
-        imageView.sd_cancelCurrentImageLoad()
-
         if let urlString = object?.getPhotoUrl()?.removeDuplicatedProtocol(), let url = URL(string: urlString) {
             
-            let transformer = SDImageResizingTransformer(
+            container.isHidden = true
+            imageView.isHidden = false
+            imageView.bordered = false
+            
+            let processor = DownsamplingImageProcessor(
                 size: CGSize(
                     width: imageView.bounds.size.width * 2,
                     height: imageView.bounds.size.height * 2
-                ),
-                scaleMode: .aspectFill
+                )
             )
             
-            imageView.sd_setImage(
+            imageView.kf.cancelDownloadTask()
+            imageView.kf.indicatorType = .activity
+            imageView.kf.setImage(
                 with: url,
-                placeholderImage: NSImage(named: "profile_avatar"),
-                options: [.lowPriority, .avoidDecodeImage],
-                context: [.imageTransformer: transformer],
-                progress: nil,
-                completed: { (image, error, _, _) in
-                    if let image = image, error == nil {
-                        self.setImage(image: image, in: imageView, initialsContainer: container)
-                    }
-                }
+                placeholder: NSImage(named: "profile_avatar"),
+                options: [
+                    .processor(processor),
+                    .scaleFactor(1.0),
+                    .transition(.fade(1)),
+                    .cacheOriginalImage
+                ]
             )
         } else {
             container.isHidden = false
