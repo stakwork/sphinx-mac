@@ -343,6 +343,11 @@ extension DashboardViewController : DashboardVCDelegate {
         chatId: Int?,
         contactId: Int?
     ) {
+        
+        if let detailViewController = detailViewController {
+            self.removeChildVC(child: detailViewController)
+        }
+        
         if let chatId = chatId, detailViewController?.chat?.id == chatId {
             return
         }
