@@ -21,6 +21,8 @@ class DashboardViewController: NSViewController {
     var chatListViewModel: ChatListViewModel! = nil
     var deeplinkData: DeeplinkData? = nil
     
+    let contactsService = ContactsService.sharedInstance
+    
     var detailViewController : ChatViewController? = nil
     var listViewController : ChatListViewController? = nil
     
@@ -128,6 +130,8 @@ class DashboardViewController: NSViewController {
             guard let vc = self else { return }
             
             if let chatId = n.userInfo?["chat-id"] as? Int, let chat = Chat.getChatWith(id: chatId) {
+                vc.contactsService.selectedObjectId = chat.getObjectId()
+                
                 vc.shouldGoToChat(chatId: chat.id)
                 
                 if let message = n.userInfo?["message"] as? String {
@@ -334,6 +338,32 @@ extension DashboardViewController : DashboardVCDelegate {
         detailViewController?.reload()
     }
     
+    func reloadChatListVC() {
+        if let listViewController = listViewController {
+            self.removeChildVC(child: listViewController)
+        }
+        
+        let chatListVCController = ChatListViewController.instantiate(
+            delegate: self
+        )
+        
+        chatListVCController.setDataModels(
+            chatListViewModel: chatListViewModel,
+            chatViewModel: chatViewModel
+        )
+        
+        self.addChildVC(
+            child: chatListVCController,
+            container: leftSplittedView
+        )
+        
+        listViewController = chatListVCController        
+        
+        DelayPerformedHelper.performAfterDelay(seconds: 0.5, completion: {
+            ContactsService.sharedInstance.forceUpdate()
+        })
+    }
+    
     func presentChatVCFor(
         chatId: Int?,
         contactId: Int?
@@ -344,6 +374,10 @@ extension DashboardViewController : DashboardVCDelegate {
         
         if let contactId = contactId, detailViewController?.contact?.id == contactId {
             return
+        }
+        
+        if let detailViewController = detailViewController {
+            self.removeChildVC(child: detailViewController)
         }
         
         let chat = chatId != nil ? Chat.getChatWith(id: chatId!) : nil

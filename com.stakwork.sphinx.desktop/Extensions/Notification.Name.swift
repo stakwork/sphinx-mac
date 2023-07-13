@@ -20,7 +20,6 @@ extension Notification.Name {
     static let chatNotificationClicked = Notification.Name("chatNotificationClicked")
     static let onConnectionStatusChanged = Notification.Name.init("onConnectionStatusChanged")
     static let screenIsLocked = Notification.Name.init("com.apple.screenIsLocked")
-    static let screenIsUnlocked = Notification.Name.init("com.apple.screenIsUnlocked")
     static let onInterfaceThemeChanged = Notification.Name("AppleInterfaceThemeChangedNotification")
     
     static let onAuthDeepLink = Notification.Name("onAuthDeepLink")

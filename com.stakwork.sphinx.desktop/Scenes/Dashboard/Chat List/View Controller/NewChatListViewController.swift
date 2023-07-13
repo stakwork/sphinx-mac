@@ -10,7 +10,6 @@ import Cocoa
 
 protocol NewChatListViewControllerDelegate: AnyObject {
     func didClickRowAt(
-        selectedObjectId: String?,
         chatId: Int?,
         contactId: Int?
     )
@@ -30,9 +29,9 @@ class NewChatListViewController: NSViewController {
     private var currentDataSnapshot: DataSourceSnapshot!
     private var dataSource: DataSource!
     
-    private var owner: UserContact!
+    private var contactsService = ContactsService.sharedInstance
     
-    var selectedObjectId: String? = nil
+    private var owner: UserContact!
     
     public enum Tab: Int {
         case Friends
@@ -62,18 +61,6 @@ class NewChatListViewController: NSViewController {
         _ chats: [ChatListCommonObject]
     ) {
         self.chatListObjects = chats
-        updateSnapshot()
-    }
-    
-    public func updateWith(
-        selectedObjectId: String?
-    ) {
-        if selectedObjectId == self.selectedObjectId {
-            return
-        }
-        
-        self.selectedObjectId = selectedObjectId
-        
         updateSnapshot()
     }
 
@@ -181,10 +168,6 @@ extension NewChatListViewController {
         chatsCollectionView.layer?.backgroundColor = NSColor.Sphinx.DashboardHeader.cgColor
         chatsCollectionView.delegate = self
     }
-    
-//    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        onContentScrolled?(scrollView)
-//    }
 }
 
 // MARK: - Layout Composition
@@ -261,6 +244,14 @@ extension NewChatListViewController {
     }
     
     func configureDataSource() {
+        if let _ = dataSource {
+            return
+        }
+        
+        guard let _ = chatsCollectionView else {
+            return
+        }
+        
         dataSource = makeDataSource()
 
         updateSnapshot()
@@ -308,7 +299,9 @@ extension NewChatListViewController {
     func updateSnapshot(
         completion: (() -> ())? = nil
     ) {
-        guard let dataSource = dataSource else {
+        configureDataSource()
+        
+        guard let _ = dataSource else {
             return
         }
         
@@ -327,7 +320,7 @@ extension NewChatListViewController {
                 contactStatus: element.getContactStatus(),
                 inviteStatus: element.getInviteStatus(),
                 muted: element.isMuted(),
-                selected: selectedObjectId == element.getObjectId()
+                selected: contactsService.selectedObjectId == element.getObjectId()
             )
             
         }
@@ -350,7 +343,7 @@ extension NewChatListViewController : NSCollectionViewDelegate {
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
         if let indexPath = indexPaths.first {
             
-            selectedObjectId = self.chatListObjects[indexPath.item].getObjectId()
+            contactsService.selectedObjectId = self.chatListObjects[indexPath.item].getObjectId()
             
             updateSnapshot()
             
@@ -359,7 +352,6 @@ extension NewChatListViewController : NSCollectionViewDelegate {
                 let contact = self.chatListObjects[indexPath.item] as? UserContact
                 
                 self.delegate?.didClickRowAt(
-                    selectedObjectId: self.selectedObjectId,
                     chatId: chat?.id,
                     contactId: contact?.id
                 )

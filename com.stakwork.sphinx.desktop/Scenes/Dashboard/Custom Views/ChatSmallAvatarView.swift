@@ -165,7 +165,7 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         }
     }
     
-    func showInitials(senderColor: NSColor, senderNickname: String) {        
+    func showInitials(senderColor: NSColor, senderNickname: String) {
         profileInitialContainer.isHidden = false
         profileInitialContainer.wantsLayer = true
         profileInitialContainer.layer?.backgroundColor = senderColor.cgColor

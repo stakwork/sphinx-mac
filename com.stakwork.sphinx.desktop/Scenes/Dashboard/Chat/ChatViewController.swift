@@ -351,7 +351,6 @@ class ChatViewController: DashboardSplittedViewController {
         resetHeader()
         
         messageTextView.string = ""
-        chatCollectionView.alphaValue = 0.0
         let _ = updateBottomBarHeight()
         
         self.contact = contact
@@ -366,6 +365,7 @@ class ChatViewController: DashboardSplittedViewController {
             return
         }
         
+        chatCollectionView.alphaValue = 0.0
         contributedSatsIcon.isHidden = true
         contributedSatsLabel.isHidden = true
         healthCheckSign.isHidden = false

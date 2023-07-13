@@ -131,19 +131,13 @@ extension ChatListViewController : ChildVCDelegate, ActionsDelegate, ChoosePayme
 extension ChatListViewController : NewChatListViewControllerDelegate {
     
     func didClickRowAt(
-        selectedObjectId: String?,
         chatId: Int?,
         contactId: Int?
     ) {
         updateBalance()
         
-        contactChatsContainerViewController.updateWith(
-            selectedObjectId: selectedObjectId
-        )
-        
-        tribeChatsContainerViewController.updateWith(
-            selectedObjectId: selectedObjectId
-        )
+        contactChatsContainerViewController.updateSnapshot()
+        tribeChatsContainerViewController.updateSnapshot()
         
         delegate?.didClickOnChatRow(
             chatId: chatId,
@@ -183,6 +177,8 @@ extension ChatListViewController: ChatsSegmentedControlDelegate {
         to index: Int
     ) {
         if let tab = DashboardTab(rawValue: index) {
+            contactsService.selectedTab = tab
+            
             setActiveTab(tab)
         }
     }
