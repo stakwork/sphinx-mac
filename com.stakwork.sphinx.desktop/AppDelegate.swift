@@ -59,7 +59,8 @@ import WebKit
         setAppSettings()
         clearWebkitCache()
         
-        SDImageCache.shared.config.maxMemoryCount = 1000
+        SDImageCache.shared.clearMemory()
+        SDImageCache.shared.config.maxMemoryCount = 100
         
         addStatusBarItem()
         listenToSleepEvents()
@@ -191,18 +192,33 @@ import WebKit
         }
         return nil
     }
+     
+     func getDashboardVC() -> DashboardViewController? {
+         for w in NSApplication.shared.windows {
+             if let vc = w.contentViewController as? DashboardViewController {
+                 return vc
+             }
+         }
+         return nil
+     }
     
     func listenToSleepEvents() {
-        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(sleepListener(aNotification:)), name: NSWorkspace.didWakeNotification, object: nil)
-        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(sleepListener(aNotification:)), name: .screenIsUnlocked, object: nil)
+        NSWorkspace.shared.notificationCenter.addObserver(
+            self,
+            selector: #selector(sleepListener(aNotification:)),
+            name: NSWorkspace.didWakeNotification,
+            object: nil
+        )
     }
     
     @objc func sleepListener(aNotification: NSNotification) {
-        if (aNotification.name == NSWorkspace.didWakeNotification || aNotification.name == .screenIsUnlocked) && UserData.sharedInstance.isUserLogged() {
+        if (aNotification.name == NSWorkspace.didWakeNotification) && UserData.sharedInstance.isUserLogged() {
             SDImageCache.shared.clearMemory()
             
             unlockTimer?.invalidate()
             unlockTimer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(reloadDataAndConnectSocket), userInfo: nil, repeats: false)
+            
+            getDashboardVC()?.reloadChatListVC()
         }
     }
 
@@ -287,7 +303,7 @@ import WebKit
         notificationsHelper.sendNotification(message: message)
     }
     
-    @IBAction func appearenceButtonClicked(_ sender: NSMenuItem) {
+    @IBAction func appearenceButtonClicked(_ sender: NSMenuItem) {        
         setAppearanceFrom(value: sender.tag, shouldUpdate: true)
         UserDefaults.Keys.appAppearance.set(sender.tag)
     }

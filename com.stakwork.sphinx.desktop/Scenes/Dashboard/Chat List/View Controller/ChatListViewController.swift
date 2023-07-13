@@ -35,7 +35,6 @@ class ChatListViewController : DashboardSplittedViewController {
                     "dashboard.tabs.friends".localized,
                     "dashboard.tabs.tribes".localized,
                 ],
-                initialIndex: 0,
                 delegate: self
             )
         }
@@ -77,12 +76,25 @@ class ChatListViewController : DashboardSplittedViewController {
         )
     }()
     
+    static func instantiate(
+        delegate: DashboardVCDelegate?
+    ) -> ChatListViewController {
+        let viewController = StoryboardScene.Dashboard.chatListViewController.instantiate()
+        viewController.delegate = delegate
+        return viewController
+    }
+    
     ///Lifecycle events
     override func viewDidLoad() {
         super.viewDidLoad()
         
         prepareView()
         listenForPubKeyAndTribeJoin()
+        
+        setActiveTab(contactsService.selectedTab)
+        
+        NotificationCenter.default.removeObserver(self, name: .onContactsAndChatsChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(dataDidChange), name: .onContactsAndChatsChanged, object: nil)
     }
     
     override func viewDidLayout() {
@@ -103,11 +115,6 @@ class ChatListViewController : DashboardSplittedViewController {
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        
-        setActiveTab(.friends)
-        
-        NotificationCenter.default.removeObserver(self, name: .onContactsAndChatsChanged, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(dataDidChange), name: .onContactsAndChatsChanged, object: nil)
         
         listenForNotifications()
         updateBalance()
@@ -243,7 +250,6 @@ class ChatListViewController : DashboardSplittedViewController {
     func selectRowFor(chatId: Int) {
         if let chat = Chat.getChatWith(id: chatId) {
             didClickRowAt(
-                selectedObjectId: chat.getObjectId(),
                 chatId: chat.id,
                 contactId: chat.getConversationContact()?.id
             )
@@ -287,8 +293,9 @@ class ChatListViewController : DashboardSplittedViewController {
                     
                     let chat = user.getChat()
                     
+                    self.contactsService.selectedObjectId = chat?.getObjectId() ?? user.getObjectId()
+                    
                     self.didClickRowAt(
-                        selectedObjectId: chat?.getObjectId() ?? user.getObjectId(),
                         chatId: chat?.id,
                         contactId: user.id
                     )
@@ -320,8 +327,10 @@ class ChatListViewController : DashboardSplittedViewController {
             if let tribeLink = n.userInfo?["tribe_link"] as? String {
                 if let tribeInfo = GroupsManager.sharedInstance.getGroupInfo(query: tribeLink), let uuid = tribeInfo.uuid {
                     if let chat = Chat.getChatWith(uuid: uuid) {
+                        
+                        self.contactsService.selectedObjectId = chat.getObjectId()
+                        
                         self.didClickRowAt(
-                            selectedObjectId: chat.getObjectId(),
                             chatId: chat.id,
                             contactId: chat.getConversationContact()?.id
                         )

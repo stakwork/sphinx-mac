@@ -54,8 +54,7 @@ class ChatsSegmentedControl: NSView {
 
     public weak var delegate: ChatsSegmentedControlDelegate?
     
-    private(set) var selectedIndex: Int = 0
-    
+    let contactsService = ContactsService.sharedInstance
     
     convenience init(
         frame: CGRect,
@@ -98,10 +97,7 @@ extension ChatsSegmentedControl {
             )
             
             if button == sender {
-                selectedIndex = buttonIndex
-
-                delegate?.segmentedControlDidSwitch(self, to: selectedIndex)
-                
+                delegate?.segmentedControlDidSwitch(self, to: buttonIndex)
                 updateButtonsOnIndexChange()
             }
         }
@@ -113,12 +109,10 @@ extension ChatsSegmentedControl {
 
     public func configureFromOutlet(
         buttonTitles: [String],
-        initialIndex: Int = 0,
         indicesOfTitlesWithBadge: [Int] = [],
         delegate: ChatsSegmentedControlDelegate?
     ) {
         self.buttonTitles = buttonTitles
-        self.selectedIndex = initialIndex
         self.delegate = delegate
         
         setupInitialViews()
@@ -154,7 +148,7 @@ extension ChatsSegmentedControl {
     }
     
     private var selectorPosition: CGFloat {
-        return kButtonWidth * CGFloat(selectedIndex)
+        return kButtonWidth * CGFloat(contactsService.selectedTabIndex)
     }
     
     private func configureSelectorView() {
@@ -224,7 +218,8 @@ extension ChatsSegmentedControl {
             buttons.append(button)
         }
         
-        let selectedButton = buttons[selectedIndex]
+        let selectedButton = buttons[contactsService.selectedTabIndex]
+        
         selectedButton.attributedTitle = NSAttributedString(
             string: selectedButton.attributedTitle.string,
             attributes:
@@ -243,7 +238,7 @@ extension ChatsSegmentedControl {
             
             self.selectorView.frame.origin.x = self.selectorPosition
             
-            let selectedButton = self.buttons[self.selectedIndex]
+            let selectedButton = self.buttons[self.contactsService.selectedTabIndex]
             
             selectedButton.attributedTitle = NSAttributedString(
                 string: selectedButton.attributedTitle.string,

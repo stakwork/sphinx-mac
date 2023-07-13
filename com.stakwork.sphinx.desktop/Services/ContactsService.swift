@@ -29,6 +29,20 @@ class ContactsService: NSObject {
     var chatListObjects = [ChatListCommonObject]()
     var contactListObjects = [ChatListCommonObject]()
     
+    var selectedObjectId: String? = nil
+    var selectedTab: ChatListViewController.DashboardTab = .friends
+    
+    var selectedTabIndex: Int {
+        get {
+            switch (selectedTab) {
+            case .friends:
+                return 0
+            case .tribes:
+                return 1
+            }
+        }
+    }
+    
     var contactsHasNewMessages = false
     var chatsHasNewMessages = false
     
