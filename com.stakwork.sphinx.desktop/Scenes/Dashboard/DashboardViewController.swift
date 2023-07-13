@@ -135,7 +135,7 @@ class DashboardViewController: NSViewController {
             guard let vc = self else { return }
             
             if let chatId = n.userInfo?["chat-id"] as? Int, let chat = Chat.getChatWith(id: chatId) {
-                self.contactsService.selectedObjectId = chat.getObjectId()
+                vc.contactsService.selectedObjectId = chat.getObjectId()
                 
                 vc.shouldGoToChat(chatId: chat.id)
                 
