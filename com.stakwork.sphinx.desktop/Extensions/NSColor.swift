@@ -14,6 +14,8 @@ extension NSColor {
     
     enum Sphinx {
         
+        public static let SphinxWhite = color("SphinxWhite")
+        
         public static let Body = color("Body")
         public static let BodyInverted = color("BodyInverted")
         public static let HeaderBG = color("HeaderBG")

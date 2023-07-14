@@ -73,6 +73,7 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
             self.processGeneralPurposeMacro(action: action)
         }
     }
+    
     func populateMentionAutocomplete(autocompleteText: String) {
         let text = messageTextView.string
         if let typedMentionText = self.getAtMention(text: text, cursorPosition: messageTextView.cursorPosition) {

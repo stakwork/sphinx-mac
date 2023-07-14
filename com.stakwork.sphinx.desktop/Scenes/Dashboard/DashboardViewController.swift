@@ -347,11 +347,6 @@ extension DashboardViewController : DashboardVCDelegate {
             delegate: self
         )
         
-        chatListVCController.setDataModels(
-            chatListViewModel: chatListViewModel,
-            chatViewModel: chatViewModel
-        )
-        
         self.addChildVC(
             child: chatListVCController,
             container: leftSplittedView

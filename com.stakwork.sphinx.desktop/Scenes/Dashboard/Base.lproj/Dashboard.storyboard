@@ -867,7 +867,7 @@
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" size="21" name="MaterialIcons-Regular"/>
                                                         </buttonCell>
-                                                        <color key="contentTintColor" name="sphinxWhite"/>
+                                                        <color key="contentTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <connections>
                                                             <action selector="attachmentButtonClicked:" target="TPZ-IL-9NC" id="I4c-dj-xSp"/>
                                                         </connections>
