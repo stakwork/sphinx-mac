@@ -24,6 +24,7 @@ class DashboardViewController: NSViewController {
     let contactsService = ContactsService.sharedInstance
     
     var detailViewController : ChatViewController? = nil
+    var newDetailViewController : NewChatViewController? = nil
     var listViewController : ChatListViewController? = nil
     
     let kDetailSegueIdentifier = "ChatViewControllerSegue"
@@ -98,7 +99,7 @@ class DashboardViewController: NSViewController {
             listViewController = (segue.destinationController as? ChatListViewController) ?? nil
             break
         case kDetailSegueIdentifier:
-            detailViewController = (segue.destinationController as? ChatViewController) ?? nil
+            newDetailViewController = (segue.destinationController as? NewChatViewController) ?? nil
             break
         default:
             break

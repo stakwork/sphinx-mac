@@ -33,6 +33,8 @@ class ChatMessageFieldView: NSView, LoadableNib {
     let kMinimumPriceFieldWidth: CGFloat = 50
     let kPriceFieldPadding: CGFloat = 10
     
+    let kFieldPlaceHolder = "message.placeholder".localized
+    
     var macros : [MentionOrMacroItem] = []
     
     var chat: Chat? = nil
@@ -152,5 +154,35 @@ class ChatMessageFieldView: NSView, LoadableNib {
     
     func setupData() {
         initializeMacros()
+    }
+    
+    func updateFieldStateFrom(
+        _ chat: Chat?,
+        and contact: UserContact?
+    ) {
+        setOngoingMessage(text: chat?.ongoingMessage ?? "")
+        
+        let pending = chat?.isStatusPending() ?? true
+        let rejected = chat?.isStatusRejected() ?? true
+        let active = (!pending && !rejected || (chat == nil && contact != nil))
+        
+        sendButton.isEnabled = active
+        attachmentsButton.isEnabled = active
+        priceTextField.isEditable = active
+        
+        self.alphaValue = active ? 1.0 : 0.7
+    }
+    
+    func setOngoingMessage(text: String) {
+        if text.isEmpty {
+            return
+        }
+        
+        messageTextView.string = text
+        
+        NotificationCenter.default.post(
+            name: NSControl.textDidChangeNotification,
+            object: textDidChange
+        )
     }
 }

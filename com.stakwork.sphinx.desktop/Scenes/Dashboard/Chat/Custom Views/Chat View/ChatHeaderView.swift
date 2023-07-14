@@ -75,6 +75,8 @@ class ChatHeaderView: NSView, LoadableNib {
         imageContainer.isHidden = true
         contributionsContainer.isHidden = true
         
+        lockSign.isHidden = true
+        boltSign.isHidden = true
         volumeButton.isHidden = true
         webAppButton.isHidden = true
         callButton.isHidden = true

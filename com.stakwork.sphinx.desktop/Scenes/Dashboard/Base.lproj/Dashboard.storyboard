@@ -45,7 +45,7 @@
                                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="sNN-Zp-F4E">
                                                 <rect key="frame" x="0.0" y="0.0" width="640" height="400"/>
                                                 <connections>
-                                                    <segue destination="TPZ-IL-9NC" kind="embed" identifier="ChatViewControllerSegue" id="4o1-m0-NQO"/>
+                                                    <segue destination="Pz4-0N-V1w" kind="embed" id="QPQ-fP-nMH"/>
                                                 </connections>
                                             </containerView>
                                         </subviews>
@@ -1544,7 +1544,7 @@
                 </viewController>
                 <customObject id="LE6-n7-RA8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="396" y="782"/>
+            <point key="canvasLocation" x="838" y="693"/>
         </scene>
         <!--New Chat View Controller-->
         <scene sceneID="ZXt-EC-Kc7">
@@ -1640,6 +1640,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="chatBottomView" destination="VsO-VQ-Xhc" id="cXK-MW-BYo"/>
                         <outlet property="chatTopView" destination="ffC-9B-Cdx" id="YPh-Ow-0Fs"/>
                     </connections>
                 </viewController>

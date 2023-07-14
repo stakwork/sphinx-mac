@@ -11,6 +11,7 @@ import Cocoa
 class NewChatViewController: DashboardSplittedViewController {
     
     @IBOutlet weak var chatTopView: ChatTopView!
+    @IBOutlet weak var chatBottomView: ChatBottomView!
     
     var contact: UserContact?
     var chat: Chat?
@@ -48,7 +49,12 @@ class NewChatViewController: DashboardSplittedViewController {
         )
         
         configurePinnedMessageView()
-//        bottomView.updateFieldStateFrom(chat)
+        
+        chatBottomView.updateFieldStateFrom(
+            chat,
+            and: contact
+        )
+        
 //        showPendingApprovalMessage()
     }
 }
