@@ -561,6 +561,11 @@
 		47F8826025656F26002A7E71 /* DayHeaderCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4787F8A5247C406F00CCE8B9 /* DayHeaderCollectionViewItem.swift */; };
 		47F88263256D397E002A7E71 /* MessageBoostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F88262256D397E002A7E71 /* MessageBoostView.swift */; };
 		47F88265256D398B002A7E71 /* MessageBoostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47F88264256D398B002A7E71 /* MessageBoostView.xib */; };
+		47FEE1EF2A61A19E00646C4E /* ChatMessageFieldView+FieldsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE1EE2A61A19E00646C4E /* ChatMessageFieldView+FieldsExtension.swift */; };
+		47FEE1F12A61A1C200646C4E /* ChatMessageFieldView+MentionsMacrosExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE1F02A61A1C200646C4E /* ChatMessageFieldView+MentionsMacrosExtension.swift */; };
+		47FEE1F42A61B1CA00646C4E /* NewChatViewController+FetchControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE1F32A61B1CA00646C4E /* NewChatViewController+FetchControllerExtension.swift */; };
+		47FEE1F62A61B5B000646C4E /* NewChatViewController+BottomTopBarsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE1F52A61B5B000646C4E /* NewChatViewController+BottomTopBarsExtension.swift */; };
+		47FEE1F82A61B5F100646C4E /* NewChatViewController+TribeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE1F72A61B5F100646C4E /* NewChatViewController+TribeExtension.swift */; };
 		AA1C7BC427657C4800A5B959 /* SignupCommonSecureFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1C7BC327657C4800A5B959 /* SignupCommonSecureFieldView.swift */; };
 		CE07F40529D72B7700EB0EC1 /* PodcastDetailSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07F40429D72B7700EB0EC1 /* PodcastDetailSelectionVC.swift */; };
 		CE1FA8F82A0199C20014360C /* LSATObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1FA8F72A0199C20014360C /* LSATObject.swift */; };
@@ -1296,6 +1301,11 @@
 		47F8824625656CB0002A7E71 /* SocketAckEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckEmitter.swift; sourceTree = "<group>"; };
 		47F88262256D397E002A7E71 /* MessageBoostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBoostView.swift; sourceTree = "<group>"; };
 		47F88264256D398B002A7E71 /* MessageBoostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageBoostView.xib; sourceTree = "<group>"; };
+		47FEE1EE2A61A19E00646C4E /* ChatMessageFieldView+FieldsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatMessageFieldView+FieldsExtension.swift"; sourceTree = "<group>"; };
+		47FEE1F02A61A1C200646C4E /* ChatMessageFieldView+MentionsMacrosExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatMessageFieldView+MentionsMacrosExtension.swift"; sourceTree = "<group>"; };
+		47FEE1F32A61B1CA00646C4E /* NewChatViewController+FetchControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewChatViewController+FetchControllerExtension.swift"; sourceTree = "<group>"; };
+		47FEE1F52A61B5B000646C4E /* NewChatViewController+BottomTopBarsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewChatViewController+BottomTopBarsExtension.swift"; sourceTree = "<group>"; };
+		47FEE1F72A61B5F100646C4E /* NewChatViewController+TribeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewChatViewController+TribeExtension.swift"; sourceTree = "<group>"; };
 		5EA81AB599AD947A8862A100 /* Pods-Sphinx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sphinx.debug.xcconfig"; path = "Target Support Files/Pods-Sphinx/Pods-Sphinx.debug.xcconfig"; sourceTree = "<group>"; };
 		82C242433501D81263FED4C2 /* Pods_Sphinx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sphinx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97A6F8CB5E1D14A28D7C7A67 /* Pods-com.stakwork.sphinx.desktop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-com.stakwork.sphinx.desktop.release.xcconfig"; path = "Target Support Files/Pods-com.stakwork.sphinx.desktop/Pods-com.stakwork.sphinx.desktop.release.xcconfig"; sourceTree = "<group>"; };
@@ -1569,6 +1579,8 @@
 				4708C2182A5885D200274AD4 /* ChatTopView.xib */,
 				4708C21C2A58958C00274AD4 /* ChatMessageFieldView.swift */,
 				4708C21E2A58959900274AD4 /* ChatMessageFieldView.xib */,
+				47FEE1EE2A61A19E00646C4E /* ChatMessageFieldView+FieldsExtension.swift */,
+				47FEE1F02A61A1C200646C4E /* ChatMessageFieldView+MentionsMacrosExtension.swift */,
 			);
 			path = "Chat View";
 			sourceTree = "<group>";
@@ -2372,7 +2384,7 @@
 				479F657A2487D31C0015A16A /* ChatViewControllerMediaExtension.swift */,
 				473633EB2555AEE8007405F2 /* ChatViewControllerPodcastExtension.swift */,
 				476AAA9F2A1E773F0092AC87 /* ChatViewController+PinMessageExtension.swift */,
-				4708C21A2A588F7A00274AD4 /* NewChatViewController.swift */,
+				47FEE1F22A61B1AF00646C4E /* New Chat View Controller */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -3008,6 +3020,17 @@
 			path = "Boosting Messages";
 			sourceTree = "<group>";
 		};
+		47FEE1F22A61B1AF00646C4E /* New Chat View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4708C21A2A588F7A00274AD4 /* NewChatViewController.swift */,
+				47FEE1F32A61B1CA00646C4E /* NewChatViewController+FetchControllerExtension.swift */,
+				47FEE1F52A61B5B000646C4E /* NewChatViewController+BottomTopBarsExtension.swift */,
+				47FEE1F72A61B5F100646C4E /* NewChatViewController+TribeExtension.swift */,
+			);
+			path = "New Chat View Controller";
+			sourceTree = "<group>";
+		};
 		90CB5EBD497A4B4F39AB48EE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -3443,6 +3466,7 @@
 				470396EC2537293E007F9C23 /* PodcastEpisodesDataSource.swift in Sources */,
 				47949C0224AA8F4C000D697B /* CommonDeletedMessageCollectionViewItem.swift in Sources */,
 				474A66812497C4C1002C2D10 /* CommonReplyCollectionViewItem.swift in Sources */,
+				47FEE1F82A61B5F100646C4E /* NewChatViewController+TribeExtension.swift in Sources */,
 				CE599F5F2A336E5800B11F41 /* MentionOrMacroItem.swift in Sources */,
 				4797E74B2785D2420080B966 /* AuthExternalView.swift in Sources */,
 				47F258DB2541E54000122A5A /* PodcastPaymentsHelper.swift in Sources */,
@@ -3518,7 +3542,9 @@
 				47BDEDF124F466C4001688F3 /* ProfileViewControllerExtension.swift in Sources */,
 				474F67492486775900CE6016 /* VideoCallSentCollectionViewItem.swift in Sources */,
 				47F8825B25656CB0002A7E71 /* SocketRawView.swift in Sources */,
+				47FEE1F62A61B5B000646C4E /* NewChatViewController+BottomTopBarsExtension.swift in Sources */,
 				474A66882498F3E6002C2D10 /* MessageOptionsHelper.swift in Sources */,
+				47FEE1EF2A61A19E00646C4E /* ChatMessageFieldView+FieldsExtension.swift in Sources */,
 				4744FAC92469DFDB00C5FD94 /* StoryboardScenes.swift in Sources */,
 				479E7DA125AF2D0D0092595B /* GroupDetailsViewController.swift in Sources */,
 				475B686A2991A909000EF29C /* PodcastPlayerCollectionViewItem+UI.swift in Sources */,
@@ -3583,6 +3609,7 @@
 				479A03EB2583D2290093DB30 /* JoinTribeViewController.swift in Sources */,
 				4720991824834E0000426028 /* SSLPointerTricks.swift in Sources */,
 				47F8825D25656CB0002A7E71 /* SocketIOStatus.swift in Sources */,
+				47FEE1F12A61A1C200646C4E /* ChatMessageFieldView+MentionsMacrosExtension.swift in Sources */,
 				47B55099248BCDD7000514BF /* CreateInvoiceViewController.swift in Sources */,
 				4744FA742469A4BA00C5FD94 /* DelayPerformerHelper.swift in Sources */,
 				4731BE1A2485303600BCCA9E /* DirectPaymentReceivedCollectionViewItem.swift in Sources */,
@@ -3721,6 +3748,7 @@
 				478ED5B625D6BF6E00940132 /* WelcomeMobileViewController.swift in Sources */,
 				4720991924834E0000426028 /* CryptorRSAErrors.swift in Sources */,
 				474E3335247FF48200F7F603 /* PictureReceivedCollectionViewItem.swift in Sources */,
+				47FEE1F42A61B1CA00646C4E /* NewChatViewController+FetchControllerExtension.swift in Sources */,
 				4744FA702469A47A00C5FD94 /* API+TransactionsExtension.swift in Sources */,
 				479F657D2487EAD50015A16A /* DraggingDestinationView.swift in Sources */,
 				475B684D29916655000EF29C /* API+HubError.swift in Sources */,

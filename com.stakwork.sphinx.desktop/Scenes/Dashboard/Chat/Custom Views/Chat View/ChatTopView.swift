@@ -29,4 +29,44 @@ class ChatTopView: NSView, LoadableNib {
         loadViewFromNib()
     }
     
+    func checkRoute() {
+//        chatHeaderView.checkRoute()
+    }
+    
+    func setChatInfoOnHeader() {
+//        chatHeaderView.setChatInfo()
+    }
+    
+    func updateSatsEarnedOnHeader() {
+//        chatHeaderView.updateSatsEarned()
+    }
+    
+    func toggleWebAppIcon(showChatIcon: Bool) {
+//        chatHeaderView.toggleWebAppIcon(showChatIcon: showChatIcon)
+    }
+    
+    func configureHeaderWith(
+        chat: Chat?,
+        contact: UserContact?,
+        andDelegate delegate: ChatHeaderViewDelegate
+    ) {
+        chatHeaderView.configureWith(
+            chat: chat,
+            contact: contact,
+            delegate: delegate
+        )
+    }
+    
+    func configurePinnedMessageViewWith(
+        chatId: Int,
+        andDelegate delegate: PinnedMessageViewDelegate,
+        completion: (() ->())? = nil
+    ) {
+        pinMessageBarView.configureWith(
+            chatId: chatId,
+            and: delegate,
+            completion: completion
+        )
+    }
+    
 }

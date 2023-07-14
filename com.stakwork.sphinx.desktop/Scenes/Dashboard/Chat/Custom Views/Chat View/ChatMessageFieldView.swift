@@ -33,6 +33,11 @@ class ChatMessageFieldView: NSView, LoadableNib {
     let kMinimumPriceFieldWidth: CGFloat = 50
     let kPriceFieldPadding: CGFloat = 10
     
+    var macros : [MentionOrMacroItem] = []
+    
+    var chat: Chat? = nil
+    var contact: Chat? = nil
+    
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
     }
@@ -41,15 +46,18 @@ class ChatMessageFieldView: NSView, LoadableNib {
         super.init(coder: coder)
         loadViewFromNib()
         setupView()
+        setupData()
     }
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         loadViewFromNib()
         setupView()
+        setupData()
     }
     
     func setupView() {
+        setupButtonsCursor()
         setupMessageField()
         setupPriceField()
         setupAttachmentButton()
@@ -61,6 +69,14 @@ class ChatMessageFieldView: NSView, LoadableNib {
             opacity: 0.3,
             radius: 5.0
         )
+    }
+    
+    func setupButtonsCursor() {
+        attachmentsButton.cursor = .pointingHand
+        sendButton.cursor = .pointingHand
+        micButton.cursor = .pointingHand
+        emojiButton.cursor = .pointingHand
+        giphyButton.cursor = .pointingHand
     }
     
     func setupMessageField() {
@@ -105,7 +121,6 @@ class ChatMessageFieldView: NSView, LoadableNib {
         sendButton.layer?.cornerRadius = sendButton.frame.height / 2
         sendButton.layer?.backgroundColor = NSColor.Sphinx.PrimaryBlue.cgColor
         sendButton.isEnabled = false
-        sendButton.cursor = .pointingHand
     }
     
     func updateBottomBarHeight() -> Bool {
@@ -134,107 +149,8 @@ class ChatMessageFieldView: NSView, LoadableNib {
             )
         )
     }
-}
-
-extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
-    func textView(
-        _ textView: NSTextView,
-        shouldChangeTextIn affectedCharRange: NSRange,
-        replacementString: String?
-    ) -> Bool {
-        if let replacementString = replacementString, replacementString == "\n" {
-//            if sendButton.isEnabled {
-//                shouldSendMessage()
-//            }
-            return false
-        }
-        
-        let currentString = textView.string as NSString
-        
-        let currentChangedString = currentString.replacingCharacters(
-            in: affectedCharRange,
-            with: replacementString ?? ""
-        )
-        
-        return (currentChangedString.count <= kCharacterLimit)
-    }
     
-    func textDidChange(_ notification: Notification) {
-//        chat?.setOngoingMessage(text: messageTextView.string)
-//
-//        processMention(text: messageTextView.string, cursorPosition: messageTextView.cursorPosition ?? 0)
-//        processMacro(text: messageTextView.string, cursorPosition: messageTextView.cursorPosition)
-        
-        let didUpdateHeight = updateBottomBarHeight()
-        if !didUpdateHeight {
-            return
-        }
-        
-//        if chatCollectionView.shouldScrollToBottom() {
-//            chatCollectionView.scrollToBottom(animated: false)
-//        }
-    }
-    
-    func didTapTab(){
-//        if let selectedMention = chatMentionAutocompleteDataSource?.getSelectedValue() {
-//            populateMentionAutocomplete(
-//                autocompleteText: selectedMention
-//            )
-//        } else if let datasource = chatMentionAutocompleteDataSource, let action = datasource.getSelectedAction() {
-//            self.processGeneralPurposeMacro(
-//                action: action
-//            )
-//        }
-    }
-    
-    func didDetectPossibleMentions(mentionText:String) {}
-    
-    func didTapUpArrow() -> Bool {
-        return false
-    }
-    
-    func didTapDownArrow() -> Bool {
-        return false
-    }
-    
-    func didDetectImagePaste(pasteBoard: NSPasteboard) -> Bool {
-        return false
-    }
-}
-
-extension ChatMessageFieldView : NSTextFieldDelegate {
-    func controlTextDidChange(
-        _ obj: Notification
-    ) {
-        updatePriceFieldWidth()
-    }
-    
-    func updatePriceFieldWidth() {
-        let currentString = (priceTextField?.stringValue ?? "")
-        
-        let width = NSTextField().getStringSize(
-            text: currentString,
-            font: NSFont.systemFont(ofSize: 15, weight: .semibold)
-        ).width
-        
-        priceTextFieldWidth.constant = (
-            width < (kMinimumPriceFieldWidth - kPriceFieldPadding)
-        ) ? kMinimumPriceFieldWidth : width + kPriceFieldPadding
-        
-        priceTextField.superview?.layoutSubtreeIfNeeded()
-    }
-    
-    func control(
-        _ control: NSControl,
-        textView: NSTextView,
-        doCommandBy commandSelector: Selector
-    ) -> Bool {
-        if (commandSelector == #selector(NSResponder.insertNewline(_:))) {
-//            if sendButton.isEnabled {
-//                shouldSendMessage()
-//            }
-            return true
-        }
-        return false
+    func setupData() {
+        initializeMacros()
     }
 }

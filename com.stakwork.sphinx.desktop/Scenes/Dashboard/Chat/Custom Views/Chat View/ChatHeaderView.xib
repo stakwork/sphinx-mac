@@ -9,7 +9,21 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ChatHeaderView" customModule="Sphinx" customModuleProvider="target">
             <connections>
+                <outlet property="boltSign" destination="JNa-8X-CaO" id="l6X-eS-s81"/>
+                <outlet property="callButton" destination="VaF-EB-L4n" id="fCY-iw-A5A"/>
                 <outlet property="contentView" destination="c22-O7-iKe" id="S8o-19-C94"/>
+                <outlet property="contributedSatsLabel" destination="IHe-SB-qGm" id="j4v-uV-duY"/>
+                <outlet property="contributionSign" destination="Z5U-q1-dkr" id="Wro-7J-utt"/>
+                <outlet property="contributionsContainer" destination="Bfe-Pb-g4b" id="zmY-TP-9I7"/>
+                <outlet property="imageContainer" destination="hc9-ue-1sf" id="CHl-zL-vHT"/>
+                <outlet property="initialsContainer" destination="4i4-rg-aZX" id="Gbf-ni-kBt"/>
+                <outlet property="initialsLabel" destination="alC-kC-ETc" id="Chb-3Y-Iby"/>
+                <outlet property="lockSign" destination="T82-4F-A3v" id="rdr-J6-a39"/>
+                <outlet property="nameLabel" destination="uGI-oR-OOS" id="80M-Bb-Zfs"/>
+                <outlet property="profileImageView" destination="cKv-Wh-FUp" id="0ot-4i-RHM"/>
+                <outlet property="tribePriceLabel" destination="EME-3C-8RS" id="58y-MJ-kGk"/>
+                <outlet property="volumeButton" destination="kVc-1M-iiC" id="1Vr-tL-3Di"/>
+                <outlet property="webAppButton" destination="cuK-dZ-qgQ" id="SGm-Oy-J2P"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -43,32 +57,35 @@
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                     </userDefinedRuntimeAttributes>
                                 </imageView>
-                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="BZo-4T-RmC">
+                                <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="22" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="4i4-rg-aZX">
                                     <rect key="frame" x="16" y="8" width="44" height="44"/>
-                                    <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="alC-kC-ETc">
-                                            <rect key="frame" x="10" y="12" width="24" height="20"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" title="TT" id="HhY-xH-ZQJ">
-                                                <font key="font" size="17" name="Montserrat-Regular"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="alC-kC-ETc" firstAttribute="centerX" secondItem="BZo-4T-RmC" secondAttribute="centerX" id="fyy-Oj-sth"/>
-                                        <constraint firstItem="alC-kC-ETc" firstAttribute="centerY" secondItem="BZo-4T-RmC" secondAttribute="centerY" id="rqc-zi-IUz"/>
-                                    </constraints>
-                                </customView>
+                                    <view key="contentView" id="DAZ-jq-nha">
+                                        <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="alC-kC-ETc">
+                                                <rect key="frame" x="10" y="12" width="24" height="20"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="TT" id="HhY-xH-ZQJ">
+                                                    <font key="font" size="17" name="Montserrat-Regular"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="alC-kC-ETc" firstAttribute="centerY" secondItem="DAZ-jq-nha" secondAttribute="centerY" id="m2o-x7-zKh"/>
+                                            <constraint firstItem="alC-kC-ETc" firstAttribute="centerX" secondItem="DAZ-jq-nha" secondAttribute="centerX" id="rA5-vH-K3p"/>
+                                        </constraints>
+                                    </view>
+                                </box>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="BZo-4T-RmC" firstAttribute="leading" secondItem="hc9-ue-1sf" secondAttribute="leading" constant="16" id="79b-UE-kON"/>
-                                <constraint firstItem="BZo-4T-RmC" firstAttribute="trailing" secondItem="cKv-Wh-FUp" secondAttribute="trailing" id="9qb-jA-3nW"/>
+                                <constraint firstItem="4i4-rg-aZX" firstAttribute="leading" secondItem="cKv-Wh-FUp" secondAttribute="leading" id="D0y-zN-gP9"/>
                                 <constraint firstItem="cKv-Wh-FUp" firstAttribute="centerY" secondItem="hc9-ue-1sf" secondAttribute="centerY" id="Gqn-3T-QMa"/>
-                                <constraint firstItem="BZo-4T-RmC" firstAttribute="leading" secondItem="cKv-Wh-FUp" secondAttribute="leading" id="bVM-RZ-QVY"/>
-                                <constraint firstItem="BZo-4T-RmC" firstAttribute="bottom" secondItem="cKv-Wh-FUp" secondAttribute="bottom" id="f15-Tp-uDW"/>
+                                <constraint firstItem="4i4-rg-aZX" firstAttribute="bottom" secondItem="cKv-Wh-FUp" secondAttribute="bottom" id="VsC-1d-bzr"/>
+                                <constraint firstItem="4i4-rg-aZX" firstAttribute="top" secondItem="cKv-Wh-FUp" secondAttribute="top" id="b7C-52-vWK"/>
                                 <constraint firstItem="cKv-Wh-FUp" firstAttribute="leading" secondItem="hc9-ue-1sf" secondAttribute="leading" constant="16" id="ffz-v9-PMm"/>
-                                <constraint firstItem="BZo-4T-RmC" firstAttribute="top" secondItem="cKv-Wh-FUp" secondAttribute="top" id="rkS-jl-b0F"/>
+                                <constraint firstItem="4i4-rg-aZX" firstAttribute="trailing" secondItem="cKv-Wh-FUp" secondAttribute="trailing" id="nb5-pd-rtb"/>
                                 <constraint firstAttribute="width" constant="60" id="w0L-f7-zI9"/>
                             </constraints>
                         </customView>
@@ -76,21 +93,21 @@
                             <rect key="frame" x="60" y="0.0" width="612" height="60"/>
                             <subviews>
                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v9P-BL-ytY">
-                                    <rect key="frame" x="16" y="11" width="343" height="39"/>
+                                    <rect key="frame" x="16" y="11" width="339" height="39"/>
                                     <subviews>
                                         <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kct-k1-Eby">
-                                            <rect key="frame" x="0.0" y="19" width="343" height="20"/>
+                                            <rect key="frame" x="0.0" y="19" width="339" height="20"/>
                                             <subviews>
-                                                <button verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="aV6-Vs-G5L">
-                                                    <rect key="frame" x="0.0" y="0.0" width="309" height="20"/>
-                                                    <buttonCell key="cell" type="bevel" title="Open a conversation to start messaging" bezelStyle="rounded" alignment="left" imageScaling="proportionallyDown" inset="2" id="xe0-zR-nkb">
-                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="uGI-oR-OOS">
+                                                    <rect key="frame" x="-2" y="0.0" width="309" height="20"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Open a conversation to start messaging" id="GWR-bo-qRK">
                                                         <font key="font" size="17" name="Roboto-Medium"/>
-                                                    </buttonCell>
-                                                    <color key="contentTintColor" name="Text"/>
-                                                </button>
+                                                        <color key="textColor" name="Text"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="T82-4F-A3v">
-                                                    <rect key="frame" x="309" y="2" width="19" height="15"/>
+                                                    <rect key="frame" x="305" y="2" width="19" height="15"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="lock" id="fcg-eb-t63">
                                                         <font key="font" size="15" name="MaterialIcons-Regular"/>
                                                         <color key="textColor" name="SecondaryText"/>
@@ -98,7 +115,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JNa-8X-CaO">
-                                                    <rect key="frame" x="326" y="2" width="19" height="15"/>
+                                                    <rect key="frame" x="322" y="2" width="19" height="15"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="flash_on" id="9h4-lv-oIq">
                                                         <font key="font" size="15" name="MaterialIcons-Regular"/>
                                                         <color key="textColor" name="SecondaryText"/>
@@ -109,7 +126,6 @@
                                             <constraints>
                                                 <constraint firstItem="JNa-8X-CaO" firstAttribute="centerY" secondItem="kct-k1-Eby" secondAttribute="centerY" id="NKc-wD-7gD"/>
                                                 <constraint firstItem="T82-4F-A3v" firstAttribute="centerY" secondItem="kct-k1-Eby" secondAttribute="centerY" id="WrZ-66-YpM"/>
-                                                <constraint firstItem="aV6-Vs-G5L" firstAttribute="centerY" secondItem="kct-k1-Eby" secondAttribute="centerY" id="zhL-iA-QpQ"/>
                                             </constraints>
                                             <visibilityPriorities>
                                                 <integer value="1000"/>

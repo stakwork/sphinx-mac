@@ -9,7 +9,6 @@
 import Cocoa
 
 protocol MessageFieldDelegate: AnyObject {
-    func didDetectPossibleMentions(mentionText:String)
     func textDidChange(_ notification: Notification)
     func didTapUpArrow() -> Bool
     func didTapDownArrow() -> Bool
