@@ -131,7 +131,14 @@ class DashboardViewController: NSViewController {
             guard let vc = self else { return }
             
             if let chatId = n.userInfo?["chat-id"] as? Int, let chat = Chat.getChatWith(id: chatId) {
-                vc.contactsService.selectedObjectId = chat.getObjectId()
+                
+                if chat.isPublicGroup() {
+                    vc.contactsService.selectedTribeId = chat.getObjectId()
+                    vc.listViewController?.setActiveTab(.tribes)
+                } else {
+                    vc.contactsService.selectedFriendId = chat.getObjectId()
+                    vc.listViewController?.setActiveTab(.friends)
+                }
                 
                 vc.shouldGoToChat(chatId: chat.id)
                 
@@ -289,6 +296,22 @@ extension DashboardViewController : NSSplitViewDelegate {
 }
 
 extension DashboardViewController : DashboardVCDelegate {
+    func didSwitchToTab() {
+        let (chatId, contactId) = contactsService.getObjectIdForCurrentSelection()
+        
+        if let chatId = chatId {
+            didClickOnChatRow(
+                chatId: chatId,
+                contactId: nil
+            )
+        } else if let contactId = contactId {
+            didClickOnChatRow(
+                chatId: nil,
+                contactId: contactId
+            )
+        }
+    }
+    
     func didClickOnChatRow(
         chatId: Int?,
         contactId: Int?

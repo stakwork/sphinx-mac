@@ -29,7 +29,9 @@ class ContactsService: NSObject {
     var chatListObjects = [ChatListCommonObject]()
     var contactListObjects = [ChatListCommonObject]()
     
-    var selectedObjectId: String? = nil
+    var selectedFriendId: String? = nil
+    var selectedTribeId: String? = nil
+    
     var selectedTab: ChatListViewController.DashboardTab = .friends
     
     var selectedTabIndex: Int {
@@ -112,6 +114,34 @@ class ContactsService: NSObject {
 
     func updateSubscriptions() {
         self.subscriptions = Subscription.getAll()
+    }
+    
+    func getObjectIdForCurrentSelection() -> (Int?, Int?) {
+        switch (selectedTab) {
+        case .friends:
+            if
+                let chatIdString = selectedFriendId?.replacingOccurrences(of: "chat-", with: ""),
+                let chatId = Int(chatIdString), selectedTribeId?.contains("chat-") == true
+            {
+                return (chatId, nil)
+            }
+            else if
+                let contactIdString = selectedFriendId?.replacingOccurrences(of: "user-", with: ""),
+                let contactId = Int(contactIdString)
+            {
+                return (nil, contactId)
+            }
+            break
+        case .tribes:
+            if
+                let chatIdString = selectedTribeId?.replacingOccurrences(of: "chat-", with: ""),
+                let chatId = Int(chatIdString)
+            {
+                return (chatId, nil)
+            }
+            break
+        }
+        return (nil, nil)
     }
 }
 

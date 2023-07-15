@@ -15,6 +15,7 @@ protocol DashboardVCDelegate: AnyObject {
     func shouldHideRetoreModal()
     func shouldShowFullMediaFor(message: TransactionMessage)
     func shouldToggleLeftView(show: Bool?)
+    func didSwitchToTab()
 }
 
 class DashboardSplittedViewController: NSViewController {

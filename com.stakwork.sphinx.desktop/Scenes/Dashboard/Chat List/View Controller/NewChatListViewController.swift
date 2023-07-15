@@ -310,6 +310,10 @@ extension NewChatListViewController {
         var snapshot = DataSourceSnapshot()
 
         snapshot.appendSections(CollectionViewSection.allCases)
+        
+        let selectedObjectId = (tab == .Friends) ?
+            contactsService.selectedFriendId :
+            contactsService.selectedTribeId
 
         let items = chatListObjects.enumerated().map { (index, element) in
             
@@ -320,7 +324,7 @@ extension NewChatListViewController {
                 contactStatus: element.getContactStatus(),
                 inviteStatus: element.getInviteStatus(),
                 muted: element.isMuted(),
-                selected: contactsService.selectedObjectId == element.getObjectId()
+                selected: selectedObjectId == element.getObjectId()
             )
             
         }
@@ -343,7 +347,11 @@ extension NewChatListViewController : NSCollectionViewDelegate {
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
         if let indexPath = indexPaths.first {
             
-            contactsService.selectedObjectId = self.chatListObjects[indexPath.item].getObjectId()
+            if (tab == .Friends) {
+                contactsService.selectedFriendId = self.chatListObjects[indexPath.item].getObjectId()
+            } else {
+                contactsService.selectedTribeId = self.chatListObjects[indexPath.item].getObjectId()
+            }
             
             updateSnapshot()
             
