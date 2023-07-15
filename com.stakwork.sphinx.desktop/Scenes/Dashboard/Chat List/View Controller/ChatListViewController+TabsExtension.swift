@@ -28,6 +28,8 @@ extension ChatListViewController {
         )
         
         loadFriendAndReload()
+        
+        delegate?.didSwitchToTab()
     }
     
     var indicesOfTabsWithNewMessages: [Int] {
