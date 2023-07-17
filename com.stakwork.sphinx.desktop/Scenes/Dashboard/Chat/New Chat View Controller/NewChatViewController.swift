@@ -20,6 +20,9 @@ class NewChatViewController: DashboardSplittedViewController {
     
     @IBOutlet weak var childViewControllerContainer: ChildVCContainer!
     
+    @IBOutlet weak var pinMessageDetailView: PinMessageDetailView!
+    @IBOutlet weak var pinMessageNotificationView: PinNotificationView!
+    
     var contact: UserContact?
     var chat: Chat?
     var deepLinkData : DeeplinkData? = nil
