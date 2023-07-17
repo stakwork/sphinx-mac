@@ -132,10 +132,42 @@ class ChildVCContainer: NSView, LoadableNib {
         resetAllViews()
     }
 
-    func showPmtOptionsMenuOn(parentVC: NSViewController, with chat: Chat?, delegate: ActionsDelegate) {
+    func showPmtOptionsMenuOn(
+        parentVC: NSViewController,
+        with chat: Chat?,
+        delegate: ActionsDelegate
+    ) {
         prepareMenuViewSize()
         preparePopupOn(parentVC: parentVC, with: chat, and: nil, delegate: delegate)
         optionsMenuContainer.isHidden = false
+        showView()
+    }
+    
+    func showPaymentModeWith(
+        parentVC: NSViewController,
+        with chat: Chat?,
+        delegate: ActionsDelegate,
+        mode: ChildVCContainer.ChildVCOptionsMenuButton
+    ) {
+        switch (mode) {
+        case ChildVCOptionsMenuButton.Request:
+            showChildVC(
+                mode: ViewMode.RequestAmount
+            )
+        case ChildVCOptionsMenuButton.Send:
+            if chat?.isPrivateGroup() ?? false {
+                showChildVC(
+                    mode: ViewMode.GroupMembers
+                )
+            } else {
+                showChildVC(
+                    mode: ViewMode.SendAmount
+                )
+            }
+        default:
+            break
+        }
+        
         showView()
     }
     
@@ -218,22 +250,30 @@ class ChildVCContainer: NSView, LoadableNib {
     func getVCFor(mode: ViewMode, paymentVM: PaymentViewModel) -> NSViewController {
         switch(mode) {
         case ViewMode.RequestAmount:
-            return CreateInvoiceViewController.instantiate(childVCDelegate: self,
-                                                           viewModel: paymentVM,
-                                                           delegate: delegate)
+            return CreateInvoiceViewController.instantiate(
+                childVCDelegate: self,
+                viewModel: paymentVM,
+                delegate: delegate
+            )
         case ViewMode.SendAmount:
-            return SendPaymentViewController.instantiate(childVCDelegate: self,
-                                                         viewModel: paymentVM,
-                                                         delegate: delegate)
+            return SendPaymentViewController.instantiate(
+                childVCDelegate: self,
+                viewModel: paymentVM,
+                delegate: delegate
+            )
         case ViewMode.GroupMembers:
-            return GroupMembersViewController.instantiate(childVCDelegate: self,
-                                                          viewModel: paymentVM,
-                                                          chat: chat!,
-                                                          delegate: delegate)
+            return GroupMembersViewController.instantiate(
+                childVCDelegate: self,
+                viewModel: paymentVM,
+                chat: chat!,
+                delegate: delegate
+            )
         case ViewMode.PaymentTemplates:
-            return PaymentTemplatesViewController.instantiate(childVCDelegate: self,
-                                                              viewModel: paymentVM,
-                                                              delegate: delegate)
+            return PaymentTemplatesViewController.instantiate(
+                childVCDelegate: self,
+                viewModel: paymentVM,
+                delegate: delegate
+            )
         }
         
     }

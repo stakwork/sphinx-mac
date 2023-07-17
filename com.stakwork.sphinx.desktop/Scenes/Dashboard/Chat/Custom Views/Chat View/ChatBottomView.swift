@@ -23,6 +23,8 @@ protocol ChatBottomViewDelegate : AnyObject {
     func shouldGetSelectedMacroAction() -> (() -> ())?
     func didTapUpArrow() -> Bool
     func didTapDownArrow() -> Bool
+    func didSelectSendPaymentMacro()
+    func didSelectReceivePaymentMacro()
 }
 
 class ChatBottomView: NSView, LoadableNib {

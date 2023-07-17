@@ -95,7 +95,23 @@ extension NewChatViewController : GroupDetailsDelegate {
 
 extension NewChatViewController : ChatBottomViewDelegate {
     func didClickAttachmentsButton() {
+        guard let chat = chat else {
+            return
+        }
         
+        if chat.isPublicGroup() {
+            messageBubbleHelper.showGenericMessageView(
+                text: "drag.attachment".localized,
+                in: view,
+                delay: 2.5
+            )
+        } else {
+            childViewControllerContainer.showPmtOptionsMenuOn(
+                parentVC: self,
+                with: chat,
+                delegate: self
+            )
+        }
     }
     
     func didClickGiphyButton() {
@@ -116,6 +132,24 @@ extension NewChatViewController : ChatBottomViewDelegate {
     
     func didClickCancelRecordingButton() {
         
+    }
+    
+    func didSelectSendPaymentMacro() {
+        childViewControllerContainer.showPaymentModeWith(
+            parentVC: self,
+            with: chat,
+            delegate: self,
+            mode: .Send
+        )
+    }
+    
+    func didSelectReceivePaymentMacro() {
+        childViewControllerContainer.showPaymentModeWith(
+            parentVC: self,
+            with: chat,
+            delegate: self,
+            mode: .Request
+        )
     }
     
     func shouldUpdateMentionSuggestionsWith(_ object: [MentionOrMacroItem]) {
@@ -145,6 +179,31 @@ extension NewChatViewController : ChatBottomViewDelegate {
 
 extension NewChatViewController : GiphySearchViewDelegate {
     func didSelectGiphy(object: GiphyObject, data: Data) {
+        
+    }
+}
+
+extension NewChatViewController : ActionsDelegate {
+    func didCreateMessage(message: TransactionMessage) {
+        
+    }
+    
+    func didFailInvoiceOrPayment() {
+        
+    }
+    
+    func shouldCreateCall(mode: VideoCallHelper.CallMode) {
+        
+    }
+    
+    func shouldSendPaymentFor(
+        paymentObject: PaymentViewModel.PaymentObject,
+        callback: ((Bool) -> ())?
+    ) {
+        
+    }
+    
+    func shouldReloadMuteState() {
         
     }
 }

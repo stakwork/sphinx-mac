@@ -54,14 +54,12 @@ class ChatMessageFieldView: NSView, LoadableNib {
         super.init(coder: coder)
         loadViewFromNib()
         setupView()
-        setupData()
     }
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         loadViewFromNib()
         setupView()
-        setupData()
     }
     
     func setupView() {
@@ -158,10 +156,6 @@ class ChatMessageFieldView: NSView, LoadableNib {
         )
     }
     
-    func setupData() {
-        initializeMacros()
-    }
-    
     func updateFieldStateFrom(
         _ chat: Chat?,
         and contact: UserContact?,
@@ -182,6 +176,8 @@ class ChatMessageFieldView: NSView, LoadableNib {
         priceTextField.isEditable = active
         
         self.alphaValue = active ? 1.0 : 0.7
+        
+        initializeMacros()
     }
     
     func setOngoingMessage(text: String) {

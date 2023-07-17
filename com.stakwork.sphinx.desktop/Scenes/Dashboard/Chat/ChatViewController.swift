@@ -604,7 +604,7 @@ class ChatViewController: DashboardSplittedViewController {
         }
     }
     
-    func macroDoPayment(buttonTag:ChildVCContainer.ChildVCOptionsMenuButton){
+    func macroDoPayment(buttonTag: ChildVCContainer.ChildVCOptionsMenuButton){
         attachmentButtonClicked(self)
         let virtualButton = NSButton()
         virtualButton.tag = buttonTag.rawValue

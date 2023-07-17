@@ -1621,12 +1621,19 @@
                                                                             </view>
                                                                             <color key="fillColor" name="Body"/>
                                                                         </box>
+                                                                        <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wD4-1y-bkn" customClass="ChildVCContainer" customModule="Sphinx" customModuleProvider="target">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="600" height="510"/>
+                                                                        </customView>
                                                                     </subviews>
                                                                     <constraints>
                                                                         <constraint firstItem="X86-z6-O1z" firstAttribute="leading" secondItem="hrp-5k-g3S" secondAttribute="leading" id="3NF-cF-tgz"/>
                                                                         <constraint firstAttribute="trailing" secondItem="X86-z6-O1z" secondAttribute="trailing" id="9OY-v0-gCf"/>
                                                                         <constraint firstAttribute="bottom" secondItem="X86-z6-O1z" secondAttribute="bottom" id="HLU-vw-sfa"/>
+                                                                        <constraint firstItem="wD4-1y-bkn" firstAttribute="leading" secondItem="hrp-5k-g3S" secondAttribute="leading" id="Uwk-B7-iEf"/>
                                                                         <constraint firstItem="X86-z6-O1z" firstAttribute="top" secondItem="hrp-5k-g3S" secondAttribute="top" id="Xbw-fu-14U"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="wD4-1y-bkn" secondAttribute="bottom" id="aOw-iS-AZo"/>
+                                                                        <constraint firstItem="wD4-1y-bkn" firstAttribute="top" secondItem="hrp-5k-g3S" secondAttribute="top" id="ijw-Gs-qyw"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="wD4-1y-bkn" secondAttribute="trailing" id="mWK-Xd-PNK"/>
                                                                     </constraints>
                                                                 </customView>
                                                                 <customView horizontalHuggingPriority="249" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="VsO-VQ-Xhc" customClass="ChatBottomView" customModule="Sphinx" customModuleProvider="target">
@@ -1704,6 +1711,7 @@
                     <connections>
                         <outlet property="chatBottomView" destination="VsO-VQ-Xhc" id="cXK-MW-BYo"/>
                         <outlet property="chatTopView" destination="ffC-9B-Cdx" id="YPh-Ow-0Fs"/>
+                        <outlet property="childViewControllerContainer" destination="wD4-1y-bkn" id="X43-AB-cYK"/>
                         <outlet property="mentionsCollectionView" destination="llZ-ed-gHt" id="7m9-3j-WqT"/>
                         <outlet property="mentionsScrollView" destination="YNj-1S-7Oo" id="Dm4-w9-saU"/>
                         <outlet property="mentionsScrollViewHeightConstraint" destination="sLd-GY-zc3" id="b3D-2u-qRi"/>

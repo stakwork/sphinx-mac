@@ -18,6 +18,8 @@ class NewChatViewController: DashboardSplittedViewController {
     @IBOutlet weak var mentionsCollectionView: NSCollectionView!
     @IBOutlet weak var mentionsScrollViewHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var childViewControllerContainer: ChildVCContainer!
+    
     var contact: UserContact?
     var chat: Chat?
     var deepLinkData : DeeplinkData? = nil

@@ -12,9 +12,11 @@ class CreateInvoiceViewController : PaymentInvoiceFormViewController {
     
     @IBOutlet weak var paymentView: CommonPaymentView!
     
-    static func instantiate(childVCDelegate: ChildVCDelegate,
-                            viewModel: PaymentViewModel,
-                            delegate: ActionsDelegate?) -> CreateInvoiceViewController {
+    static func instantiate(
+        childVCDelegate: ChildVCDelegate,
+        viewModel: PaymentViewModel,
+        delegate: ActionsDelegate?
+    ) -> CreateInvoiceViewController {
         
         let viewController = StoryboardScene.Dashboard.createInvoiceViewController.instantiate()
         viewController.childVCDelegate = childVCDelegate
@@ -31,7 +33,6 @@ class CreateInvoiceViewController : PaymentInvoiceFormViewController {
     }
     
     func configureView() {
-        paymentView.closeButton.isHidden = true
         paymentView.configureView(paymentViewModel: paymentViewModel, delegate: self)
         paymentView.setTitle(title: "request.amount.upper".localized, placeHolder: "memo".localized, buttonLabel: "confirm.upper".localized)
     }

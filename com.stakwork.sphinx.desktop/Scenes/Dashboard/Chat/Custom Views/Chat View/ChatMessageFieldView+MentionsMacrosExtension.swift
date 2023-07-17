@@ -140,6 +140,10 @@ extension ChatMessageFieldView {
 
 extension ChatMessageFieldView {
     func initializeMacros() {
+        guard let chat = chat else {
+            return
+        }
+        
         self.macros = [
             MentionOrMacroItem(
                 type: .macro,
@@ -183,9 +187,7 @@ extension ChatMessageFieldView {
             )
         ]
         
-        let isTribe = chat?.isPublicGroup() == false
-        
-        if !isTribe {
+        if !chat.isPublicGroup() {
             macros.append(
                 contentsOf: [
                     MentionOrMacroItem(
@@ -193,7 +195,7 @@ extension ChatMessageFieldView {
                         displayText: "send.payment".localized,
                         image: NSImage(named: "bottomBar4"),
                         action: {
-//                            self.macroDoPayment(buttonTag: ChildVCContainer.ChildVCOptionsMenuButton.Send)
+                            self.delegate?.didSelectSendPaymentMacro()
                         }
                     ),
                     MentionOrMacroItem(
@@ -201,7 +203,7 @@ extension ChatMessageFieldView {
                         displayText: "request.payment".localized,
                         image: NSImage(named: "bottomBar1"),
                         action: {
-//                            self.macroDoPayment(buttonTag: ChildVCContainer.ChildVCOptionsMenuButton.Request)
+                            self.delegate?.didSelectReceivePaymentMacro()
                         }
                     )
                 ]
