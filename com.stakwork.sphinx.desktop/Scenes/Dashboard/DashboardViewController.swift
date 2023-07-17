@@ -414,7 +414,7 @@ extension DashboardViewController : DashboardVCDelegate {
         
         self.addChildVC(
             child: newChatVCController,
-            container: rightSplitViewContainer
+            container: rightSplittedView
         )
         
         newDetailViewController = newChatVCController
