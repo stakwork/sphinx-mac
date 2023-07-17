@@ -282,6 +282,9 @@ class DashboardViewController: NSViewController {
 
 extension DashboardViewController : NSSplitViewDelegate {
     func splitViewDidResizeSubviews(_ notification: Notification) {
+        newDetailViewController?.view.frame = rightSplittedView.bounds
+        listViewController?.view.frame = leftSplittedView.bounds
+        
         if let window = view.window {
             let (minWidth, _) = getWindowMinWidth(leftColumnVisible: !leftSplittedView.isHidden)
             window.minSize = CGSize(width: minWidth, height: kWindowMinHeight)
