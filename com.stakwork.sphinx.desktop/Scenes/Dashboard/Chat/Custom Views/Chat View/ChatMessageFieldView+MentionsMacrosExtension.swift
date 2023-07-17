@@ -9,30 +9,132 @@
 import Cocoa
 
 extension ChatMessageFieldView {
+    func populateMentionAutocomplete(
+        autocompleteText: String
+    ) {
+        let text = messageTextView.string
+        
+        if let typedMentionText = self.getAtMention(
+            text: text,
+            cursorPosition: messageTextView.cursorPosition
+        ) {
+            let initialPosition = messageTextView.cursorPosition
+            
+            let startIndex = text.index(text.startIndex, offsetBy: (initialPosition ?? 0) - typedMentionText.count)
+            let endIndex = text.index(text.startIndex, offsetBy: (initialPosition ?? 0))
+            
+            messageTextView.string = text.replacingOccurrences(
+                of: typedMentionText,
+                with: "@\(autocompleteText) ",
+                options: [],
+                range: startIndex..<endIndex
+            )
+            
+            DispatchQueue.main.asyncAfter(
+                deadline: .now() + 0.01,
+                execute: {
+                    self.messageTextView.string = self.messageTextView.string.replacingOccurrences(of: "\t", with: "")
+                    
+                    let position = (initialPosition ?? 0) + ("@\(autocompleteText) ".count - typedMentionText.count)
+                    self.messageTextView.setSelectedRange(NSRange(location: position, length: 0))
+                    self.messageTextView.window?.makeFirstResponder(self.messageTextView)
+                }
+            )
+        }
+    }
+    
     func processMention(
         text: String,
         cursorPosition: Int
     ) {
-        if let mention = getAtMention(text: text,cursorPosition: cursorPosition) {
+        if let mention = getAtMention(
+            text: text,
+            cursorPosition: cursorPosition
+        ) {
             let mentionValue = String(mention).replacingOccurrences(of: "@", with: "").lowercased()
-//            self.didDetectPossibleMentions(mentionText: mentionValue)
+            self.didDetectPossibleMentions(mentionText: mentionValue)
         } else {
-//            self.didDetectPossibleMentions(mentionText: "")
+            self.didDetectPossibleMentions(mentionText: "")
         }
     }
     
-    func getAtMention(text:String,cursorPosition:Int?)->String?{
+    func getAtMention(
+        text: String,
+        cursorPosition: Int?) -> String? {
+            
         let relevantText = text[0..<(cursorPosition ?? text.count)]
+            
         if let lastLetter = relevantText.last, lastLetter == " " {
             return nil
         }
-        if let lastLine = relevantText.split(separator: "\n").last,
+            
+        if
+            let lastLine = relevantText.split(separator: "\n").last,
             let lastWord = lastLine.split(separator: " ").last,
-           let firstLetter = lastWord.first,
-           firstLetter == "@"{
+            let firstLetter = lastWord.first, firstLetter == "@" {
+            
             return String(lastWord)
         }
         return nil
+    }
+    
+    func getMentionsFrom(
+        mentionText: String
+    ) -> [(String, String)] {
+        var possibleMentions: [(String, String)] = []
+        
+        if mentionText.count > 0 {
+            for alias in self.chat?.aliasesAndPics ?? [] {
+                if (mentionText.count > alias.0.count) {
+                    continue
+                }
+                let substring = alias.0.substring(range: NSRange(location: 0, length: mentionText.count))
+                if (substring.lowercased() == mentionText && mentionText.isEmpty == false) {
+                    possibleMentions.append(alias)
+                }
+            }
+        }
+        
+        return possibleMentions
+    }
+    
+    func didDetectPossibleMentions(
+        mentionText: String
+    ) {
+        let possibleMentions = self.getMentionsFrom(mentionText: mentionText)
+        let suggestionObjects = possibleMentions.compactMap({
+            let result = MentionOrMacroItem(
+                type: .mention,
+                displayText: $0.0,
+                imageLink: $0.1,
+                action: nil
+            )
+            return result
+        })
+        
+        delegate?.shouldUpdateMentionSuggestionsWith(suggestionObjects)
+    }
+}
+
+extension ChatMessageFieldView {
+    func didTapTab(){
+        if let selectedMention = delegate?.shouldGetSelectedMention() {
+            populateMentionAutocomplete(
+                autocompleteText: selectedMention
+            )
+        } else if let action = delegate?.shouldGetSelectedMacroAction() {
+            self.processGeneralPurposeMacro(
+                action: action
+            )
+        }
+    }
+    
+    func didTapUpArrow() -> Bool {
+        return delegate?.didTapUpArrow() ?? false
+    }
+    
+    func didTapDownArrow() -> Bool {
+        return delegate?.didTapDownArrow() ?? false
     }
 }
 
@@ -44,7 +146,7 @@ extension ChatMessageFieldView {
                 displayText: "send.giphy".localized,
                 image: NSImage(named: "giphyIcon"),
                 action: {
-//                    self.giphyButtonClicked(self)
+                    self.delegate?.didClickGiphyButton()
                 }
             ),
             MentionOrMacroItem(
@@ -68,7 +170,7 @@ extension ChatMessageFieldView {
                 displayText: "send.emoji".localized,
                 icon: "mood",
                 action: {
-//                    self.emojiButtonClicked(self)
+                    self.emojiButtonClicked(self.emojiButton as Any)
                 }
             ),
             MentionOrMacroItem(
@@ -107,6 +209,17 @@ extension ChatMessageFieldView {
         }
     }
     
+    func processGeneralPurposeMacro(
+        action: @escaping () -> ()
+    ) {
+        action()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
+            self.messageTextView.string = ""
+            self.textDidChange(Notification(name: Notification.Name(rawValue: "")))
+        })
+    }
+    
     func processMacro(
         text: String,
         cursorPosition: Int
@@ -115,7 +228,7 @@ extension ChatMessageFieldView {
         
         if let macro = getMacro(
             text: text,
-            cursorPosition:cursorPosition
+            cursorPosition: cursorPosition
         ) {
             let macrosText = String(macro).replacingOccurrences(of: "/", with: "").lowercased()
             let possibleMacros = self.macros.compactMap({ $0.displayText }).filter({
@@ -126,11 +239,9 @@ extension ChatMessageFieldView {
             localMacros = macros.filter({macroObject in
                 return possibleMacros.contains(macroObject.displayText)
             })
+            
+            delegate?.shouldUpdateMentionSuggestionsWith(localMacros.reversed())
         }
-        
-//        if(chatMentionAutocompleteDataSource?.suggestions.count == 0){
-//            chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: localMacros.reversed())
-//        }
     }
     
     func getMacro(

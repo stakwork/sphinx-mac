@@ -77,6 +77,7 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
                 )
                 
                 avatarImage.layer?.cornerRadius = avatarImage.frame.size.height / 2
+                avatarImage.imageScaling = .scaleAxesIndependently
                 
                 avatarImage.sd_setImage(
                     with: url,

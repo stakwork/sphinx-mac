@@ -12,7 +12,7 @@ import AppKit
 protocol ChatMentionAutocompleteDelegate{
     func processAutocomplete(text:String)
     func processGeneralPurposeMacro(action: @escaping ()->())
-    func getTableHeightConstraint() -> NSLayoutConstraint?
+    func shouldUpdateTableHeightTo(value: CGFloat)
 }
 
 fileprivate enum CellIdentifiers {
@@ -26,16 +26,13 @@ class ChatMentionAutocompleteDataSource : NSObject {
     var delegate: ChatMentionAutocompleteDelegate!
     var mentionCellHeight :CGFloat = 50.0
     var selectedRow : Int = 0
-    var vc : ChatViewController? = nil
     
     init(
         tableView: NSCollectionView,
         scrollView: NSScrollView,
-        delegate: ChatMentionAutocompleteDelegate,
-        vc: ChatViewController
+        delegate: ChatMentionAutocompleteDelegate
     ){
         super.init()
-        self.vc = vc
         
         self.tableView = tableView
         self.delegate = delegate
@@ -52,14 +49,22 @@ class ChatMentionAutocompleteDataSource : NSObject {
     func updateMentionSuggestions(suggestions: [MentionOrMacroItem]) {
         self.scrollView.isHidden = (suggestions.isEmpty == true)
         self.suggestions = suggestions
+        
         selectedRow = suggestions.count - 1
         updateMentionTableHeight()
         tableView.reloadData()
         
-        if suggestions.isEmpty { return }
+        if suggestions.isEmpty {
+            return
+        }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
-            self.tableView.animator().scrollToItems(at: [IndexPath(item: self.selectedRow, section: 0)], scrollPosition: .bottom)
+            if self.tableView.numberOfItems(inSection: 0) > self.selectedRow {
+                self.tableView.animator().scrollToItems(
+                    at: [IndexPath(item: self.selectedRow, section: 0)],
+                    scrollPosition: .bottom
+                )
+            }
         })
     }
     
@@ -68,13 +73,8 @@ class ChatMentionAutocompleteDataSource : NSObject {
     }
     
     func updateMentionTableHeight() {
-        if let heightConstraint = self.delegate.getTableHeightConstraint() {
-            let height = min(4 * mentionCellHeight, mentionCellHeight * CGFloat(suggestions.count))
-            heightConstraint.isActive = false
-            heightConstraint.constant = height
-            heightConstraint.isActive = true
-            scrollView.layoutSubtreeIfNeeded()
-        }
+        let height = min(4 * mentionCellHeight, mentionCellHeight * CGFloat(suggestions.count))
+        delegate.shouldUpdateTableHeightTo(value: height)
     }
     
     func configureCollectionView() {
@@ -146,9 +146,11 @@ extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate, NSCollec
     }
     
     func collectionView(_ collectionView: NSCollectionView, willDisplay item: NSCollectionViewItem, forRepresentedObjectAt indexPath: IndexPath) {
-        if let collectionViewItem = item as? ChatMentionAutocompleteCell,
-           let valid_vc = vc {
-            collectionViewItem.configureWith(mentionOrMacro: suggestions[indexPath.item], delegate: valid_vc)
+        if let collectionViewItem = item as? ChatMentionAutocompleteCell {
+            collectionViewItem.configureWith(
+                mentionOrMacro: suggestions[indexPath.item],
+                delegate: delegate
+            )
         }
     }
     

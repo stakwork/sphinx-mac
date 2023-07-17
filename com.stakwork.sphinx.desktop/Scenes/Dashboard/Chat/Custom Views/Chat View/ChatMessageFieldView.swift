@@ -31,7 +31,6 @@ class ChatMessageFieldView: NSView, LoadableNib {
     @IBOutlet weak var intermitentAlphaView: IntermitentAlphaAnimatedView!
     @IBOutlet weak var recordingTimeLabel: NSTextField!
     
-    
     @IBOutlet weak var messageContainerHeightConstraint: NSLayoutConstraint!
     
     let kTextViewVerticalMargins: CGFloat = 41
@@ -45,7 +44,7 @@ class ChatMessageFieldView: NSView, LoadableNib {
     var macros : [MentionOrMacroItem] = []
     
     var chat: Chat? = nil
-    var contact: Chat? = nil
+    var contact: UserContact? = nil
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
@@ -168,6 +167,8 @@ class ChatMessageFieldView: NSView, LoadableNib {
         and contact: UserContact?,
         with delegate: ChatBottomViewDelegate?
     ) {
+        self.chat = chat
+        self.contact = contact
         self.delegate = delegate
         
         setOngoingMessage(text: chat?.ongoingMessage ?? "")

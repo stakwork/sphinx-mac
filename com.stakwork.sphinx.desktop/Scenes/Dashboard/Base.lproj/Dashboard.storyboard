@@ -1563,7 +1563,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="680"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jge-lT-8sr">
+                                                <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jge-lT-8sr">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="680"/>
                                                     <subviews>
                                                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tEY-A3-U6q">
@@ -1583,6 +1583,41 @@
                                                                             <view key="contentView" id="JBN-Ay-LgI">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="510"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                                <subviews>
+                                                                                    <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YNj-1S-7Oo">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="600" height="240"/>
+                                                                                        <clipView key="contentView" id="8Oj-wf-kqB">
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="600" height="240"/>
+                                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                                            <subviews>
+                                                                                                <collectionView selectable="YES" id="llZ-ed-gHt">
+                                                                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="240"/>
+                                                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                                                                                    <collectionViewFlowLayout key="collectionViewLayout" id="BX1-RF-jKr">
+                                                                                                        <size key="itemSize" width="200" height="50"/>
+                                                                                                    </collectionViewFlowLayout>
+                                                                                                    <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                                                </collectionView>
+                                                                                            </subviews>
+                                                                                        </clipView>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="height" constant="240" id="sLd-GY-zc3"/>
+                                                                                        </constraints>
+                                                                                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="FcS-No-8TS">
+                                                                                            <rect key="frame" x="-100" y="-100" width="233" height="15"/>
+                                                                                            <autoresizingMask key="autoresizingMask"/>
+                                                                                        </scroller>
+                                                                                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="ivE-9i-8Se">
+                                                                                            <rect key="frame" x="480" y="1" width="16" height="238"/>
+                                                                                            <autoresizingMask key="autoresizingMask"/>
+                                                                                        </scroller>
+                                                                                    </scrollView>
+                                                                                </subviews>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="trailing" secondItem="YNj-1S-7Oo" secondAttribute="trailing" id="Pub-tu-ys0"/>
+                                                                                    <constraint firstItem="YNj-1S-7Oo" firstAttribute="leading" secondItem="JBN-Ay-LgI" secondAttribute="leading" id="pkb-Mm-h1q"/>
+                                                                                    <constraint firstAttribute="bottom" secondItem="YNj-1S-7Oo" secondAttribute="bottom" id="sPC-Rq-O3d"/>
+                                                                                </constraints>
                                                                             </view>
                                                                             <color key="fillColor" name="Body"/>
                                                                         </box>
@@ -1669,6 +1704,9 @@
                     <connections>
                         <outlet property="chatBottomView" destination="VsO-VQ-Xhc" id="cXK-MW-BYo"/>
                         <outlet property="chatTopView" destination="ffC-9B-Cdx" id="YPh-Ow-0Fs"/>
+                        <outlet property="mentionsCollectionView" destination="llZ-ed-gHt" id="7m9-3j-WqT"/>
+                        <outlet property="mentionsScrollView" destination="YNj-1S-7Oo" id="Dm4-w9-saU"/>
+                        <outlet property="mentionsScrollViewHeightConstraint" destination="sLd-GY-zc3" id="b3D-2u-qRi"/>
                         <outlet property="podcastPlayerView" destination="k2o-Hd-LQD" id="BVc-IC-n0J"/>
                     </connections>
                 </viewController>

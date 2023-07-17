@@ -9,12 +9,20 @@
 import Cocoa
 
 protocol ChatBottomViewDelegate : AnyObject {
+    ///IBActions
     func didClickAttachmentsButton()
     func didClickGiphyButton()
     func didClickSendButton()
     func didClickMicButton()
     func didClickConfirmRecordingButton()
     func didClickCancelRecordingButton()
+    
+    ///Mentions and Macros
+    func shouldUpdateMentionSuggestionsWith(_ object: [MentionOrMacroItem])
+    func shouldGetSelectedMention() -> String?
+    func shouldGetSelectedMacroAction() -> (() -> ())?
+    func didTapUpArrow() -> Bool
+    func didTapDownArrow() -> Bool
 }
 
 class ChatBottomView: NSView, LoadableNib {
@@ -66,6 +74,22 @@ class ChatBottomView: NSView, LoadableNib {
     ) {
         giphySearchView.loadGiphySearch(
             delegate: delegate
+        )
+    }
+    
+    func populateMentionAutocomplete(
+        autocompleteText: String
+    ) {
+        messageFieldView.populateMentionAutocomplete(
+            autocompleteText: autocompleteText
+        )
+    }
+    
+    func processGeneralPurposeMacro(
+        action: @escaping () -> ()
+    ) {
+        messageFieldView.processGeneralPurposeMacro(
+            action: action
         )
     }
 }

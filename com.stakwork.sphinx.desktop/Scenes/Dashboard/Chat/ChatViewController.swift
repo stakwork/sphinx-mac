@@ -304,8 +304,7 @@ class ChatViewController: DashboardSplittedViewController {
         chatMentionAutocompleteDataSource = ChatMentionAutocompleteDataSource(
             tableView: mentionAutoCompleteTableView,
             scrollView: mentionAutoCompleteEnclosingScrollView,
-            delegate: self,
-            vc: self
+            delegate: self
         )
     }
     

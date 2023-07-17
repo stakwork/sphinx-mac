@@ -14,6 +14,10 @@ class NewChatViewController: DashboardSplittedViewController {
     @IBOutlet weak var chatBottomView: ChatBottomView!
     @IBOutlet weak var podcastPlayerView: NSView!
     
+    @IBOutlet weak var mentionsScrollView: NSScrollView!
+    @IBOutlet weak var mentionsCollectionView: NSCollectionView!
+    @IBOutlet weak var mentionsScrollViewHeightConstraint: NSLayoutConstraint!
+    
     var contact: UserContact?
     var chat: Chat?
     var deepLinkData : DeeplinkData? = nil
@@ -23,6 +27,7 @@ class NewChatViewController: DashboardSplittedViewController {
     
     let messageBubbleHelper = NewMessageBubbleHelper()
     
+    var chatMentionAutocompleteDataSource : ChatMentionAutocompleteDataSource? = nil
     var podcastPlayerVC: NewPodcastPlayerViewController? = nil
     
     static func instantiate(
@@ -53,6 +58,7 @@ class NewChatViewController: DashboardSplittedViewController {
         super.viewDidAppear()
         
         fetchTribeData()
+        configureMentionAutocompleteTableView()
     }
     
     func setupData() {
@@ -69,6 +75,8 @@ class NewChatViewController: DashboardSplittedViewController {
             and: contact,
             with: self
         )
+        
+        processChatAliases()
         
 //        showPendingApprovalMessage()
     }

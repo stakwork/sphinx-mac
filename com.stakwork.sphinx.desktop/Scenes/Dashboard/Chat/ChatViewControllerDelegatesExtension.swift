@@ -631,6 +631,14 @@ extension ChatViewController : ChatMentionAutocompleteDelegate{
     func getTableHeightConstraint() -> NSLayoutConstraint?{
         return mentionScrollViewHeight
     }
+    
+    func shouldUpdateTableHeightTo(value: CGFloat) {
+        mentionScrollViewHeight.isActive = false
+        mentionScrollViewHeight.constant = value
+        mentionScrollViewHeight.isActive = true
+        
+        mentionAutoCompleteEnclosingScrollView.layoutSubtreeIfNeeded()
+    }
 }
 
 extension String {

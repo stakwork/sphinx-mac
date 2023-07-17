@@ -38,7 +38,9 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
     }
     
     func textDidChange(_ notification: Notification) {
-//        chat?.setOngoingMessage(text: messageTextView.string)
+        chat?.setOngoingMessage(
+            text: messageTextView.string
+        )
 
         processMention(
             text: messageTextView.string,
@@ -58,26 +60,6 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
 //        if chatCollectionView.shouldScrollToBottom() {
 //            chatCollectionView.scrollToBottom(animated: false)
 //        }
-    }
-    
-    func didTapTab(){
-//        if let selectedMention = chatMentionAutocompleteDataSource?.getSelectedValue() {
-//            populateMentionAutocomplete(
-//                autocompleteText: selectedMention
-//            )
-//        } else if let datasource = chatMentionAutocompleteDataSource, let action = datasource.getSelectedAction() {
-//            self.processGeneralPurposeMacro(
-//                action: action
-//            )
-//        }
-    }
-    
-    func didTapUpArrow() -> Bool {
-        return false
-    }
-    
-    func didTapDownArrow() -> Bool {
-        return false
     }
     
     func didDetectImagePaste(pasteBoard: NSPasteboard) -> Bool {

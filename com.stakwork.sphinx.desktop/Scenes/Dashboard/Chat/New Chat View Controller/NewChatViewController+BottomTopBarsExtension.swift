@@ -100,8 +100,6 @@ extension NewChatViewController : ChatBottomViewDelegate {
     
     func didClickGiphyButton() {
         chatBottomView.loadGiphySearchWith(delegate: self)
-//        giphySearchView.loadGiphySearch(delegate: self)
-//        toggleGiphySearchView()
     }
     
     func didClickSendButton() {
@@ -118,6 +116,30 @@ extension NewChatViewController : ChatBottomViewDelegate {
     
     func didClickCancelRecordingButton() {
         
+    }
+    
+    func shouldUpdateMentionSuggestionsWith(_ object: [MentionOrMacroItem]) {
+        chatMentionAutocompleteDataSource?.updateMentionSuggestions(
+            suggestions: object
+        )
+    }
+    
+    func shouldGetSelectedMention() -> String? {
+        return chatMentionAutocompleteDataSource?.getSelectedValue()
+    }
+    
+    func shouldGetSelectedMacroAction() -> (() -> ())? {
+        return chatMentionAutocompleteDataSource?.getSelectedAction()
+    }
+    
+    func didTapUpArrow() -> Bool {
+        chatMentionAutocompleteDataSource?.moveSelectionUp()
+        return chatMentionAutocompleteDataSource?.isTableVisible() ?? false
+    }
+    
+    func didTapDownArrow() -> Bool {
+        chatMentionAutocompleteDataSource?.moveSelectionDown()
+        return chatMentionAutocompleteDataSource?.isTableVisible() ?? false
     }
 }
 
