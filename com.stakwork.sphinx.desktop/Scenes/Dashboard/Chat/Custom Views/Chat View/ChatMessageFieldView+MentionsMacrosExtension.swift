@@ -64,7 +64,7 @@ extension ChatMessageFieldView {
             
         let relevantText = text[0..<(cursorPosition ?? text.count)]
             
-        if let lastLetter = relevantText.last, lastLetter == " " {
+        if let lastLetter = relevantText.last, lastLetter == " " || lastLetter == "\n" {
             return nil
         }
             
