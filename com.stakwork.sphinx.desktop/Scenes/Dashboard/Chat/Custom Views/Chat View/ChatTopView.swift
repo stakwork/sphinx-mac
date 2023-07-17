@@ -29,20 +29,26 @@ class ChatTopView: NSView, LoadableNib {
         loadViewFromNib()
     }
     
-    func checkRoute() {
-//        chatHeaderView.checkRoute()
+    func updateViewOnTribeFetch() {
+        setChatInfoOnHeader()
+        updateSatsEarnedOnHeader()
+        toggleWebAppIcon()
     }
     
     func setChatInfoOnHeader() {
-//        chatHeaderView.setChatInfo()
+        chatHeaderView.setChatInfo()
+    }
+    
+    func setVolumeState() {
+        chatHeaderView.setVolumeState()
     }
     
     func updateSatsEarnedOnHeader() {
-//        chatHeaderView.updateSatsEarned()
+        chatHeaderView.configureContributions()
     }
     
-    func toggleWebAppIcon(showChatIcon: Bool) {
-//        chatHeaderView.toggleWebAppIcon(showChatIcon: showChatIcon)
+    func toggleWebAppIcon() {
+        chatHeaderView.toggleWebAppIcon()
     }
     
     func configureHeaderWith(

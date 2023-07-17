@@ -32,14 +32,16 @@ class NewMessageBubbleHelper {
         case Bottom
     }
     
-    func showGenericMessageView(text: String,
-                                in view: NSView? = nil,
-                                position: VerticalPosition = .Bottom,
-                                delay: Double = 1.5,
-                                textColor: NSColor = NSColor.Sphinx.Body,
-                                backColor: NSColor = NSColor.Sphinx.Text,
-                                backAlpha: CGFloat = 0.7,
-                                withLink link: String? = nil) {
+    func showGenericMessageView(
+        text: String,
+        in view: NSView? = nil,
+        position: VerticalPosition = .Bottom,
+        delay: Double = 1.5,
+        textColor: NSColor = NSColor.Sphinx.Body,
+        backColor: NSColor = NSColor.Sphinx.Text,
+        backAlpha: CGFloat = 0.7,
+        withLink link: String? = nil
+    ) {
         
         if GroupsPinManager.sharedInstance.shouldAskForPin() {
             return

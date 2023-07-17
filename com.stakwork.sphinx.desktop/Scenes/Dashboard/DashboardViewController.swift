@@ -387,15 +387,15 @@ extension DashboardViewController : DashboardVCDelegate {
         chatId: Int?,
         contactId: Int?
     ) {
-        if let chatId = chatId, detailViewController?.chat?.id == chatId {
+        if let chatId = chatId, newDetailViewController?.chat?.id == chatId {
             return
         }
         
-        if let contactId = contactId, detailViewController?.contact?.id == contactId {
+        if let contactId = contactId, newDetailViewController?.contact?.id == contactId {
             return
         }
         
-        if let detailViewController = detailViewController {
+        if let detailViewController = newDetailViewController {
             self.removeChildVC(child: detailViewController)
         }
         
@@ -413,8 +413,8 @@ extension DashboardViewController : DashboardVCDelegate {
             container: rightSplittedView
         )
         
-//        detailViewController = newChatVCController
-//        detailViewController?.setMessageFieldActive()
+        newDetailViewController = newChatVCController
+        newDetailViewController?.setMessageFieldActive()
 //
 //        if (deeplinkData != nil) {
 //            detailViewController?.deeplinkData = deeplinkData

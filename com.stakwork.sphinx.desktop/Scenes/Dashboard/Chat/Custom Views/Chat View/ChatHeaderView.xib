@@ -15,6 +15,7 @@
                 <outlet property="contributedSatsLabel" destination="IHe-SB-qGm" id="j4v-uV-duY"/>
                 <outlet property="contributionSign" destination="Z5U-q1-dkr" id="Wro-7J-utt"/>
                 <outlet property="contributionsContainer" destination="Bfe-Pb-g4b" id="zmY-TP-9I7"/>
+                <outlet property="headerButton" destination="TUM-g0-3nc" id="zYv-iL-4s7"/>
                 <outlet property="imageContainer" destination="hc9-ue-1sf" id="CHl-zL-vHT"/>
                 <outlet property="initialsContainer" destination="4i4-rg-aZX" id="Gbf-ni-kBt"/>
                 <outlet property="initialsLabel" destination="alC-kC-ETc" id="Chb-3Y-Iby"/>
@@ -138,8 +139,8 @@
                                                 <real value="3.4028234663852886e+38"/>
                                             </customSpacing>
                                         </stackView>
-                                        <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bfe-Pb-g4b">
-                                            <rect key="frame" x="0.0" y="0.0" width="260" height="15"/>
+                                        <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bfe-Pb-g4b">
+                                            <rect key="frame" x="0.0" y="0.0" width="268" height="15"/>
                                             <subviews>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EME-3C-8RS">
                                                     <rect key="frame" x="-2" y="1" width="138" height="13"/>
@@ -150,7 +151,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IHe-SB-qGm">
-                                                    <rect key="frame" x="134" y="1" width="111" height="13"/>
+                                                    <rect key="frame" x="138" y="1" width="111" height="13"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Contributed: 500 sats" id="ikN-nL-EN3">
                                                         <font key="font" size="11" name="Roboto-Medium"/>
                                                         <color key="textColor" name="SecondaryText"/>
@@ -158,7 +159,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z5U-q1-dkr">
-                                                    <rect key="frame" x="243" y="0.0" width="19" height="15"/>
+                                                    <rect key="frame" x="251" y="0.0" width="19" height="15"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="verified_user" id="1Wm-i9-AFa">
                                                         <font key="font" size="15" name="MaterialIcons-Regular"/>
                                                         <color key="textColor" name="SecondaryText"/>
@@ -192,10 +193,26 @@
                                         <real value="3.4028234663852886e+38"/>
                                     </customSpacing>
                                 </stackView>
+                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TUM-g0-3nc" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="612" height="60"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="60" id="8sH-yi-zXI"/>
+                                    </constraints>
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" transparent="YES" imageScaling="proportionallyDown" inset="2" id="oku-zd-bBE">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="headerButtonClicked:" target="-2" id="vhp-83-LZK"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <constraints>
+                                <constraint firstAttribute="trailing" secondItem="TUM-g0-3nc" secondAttribute="trailing" id="0CO-i2-LAg"/>
                                 <constraint firstItem="v9P-BL-ytY" firstAttribute="centerY" secondItem="DVp-3x-Zd0" secondAttribute="centerY" id="WW6-qC-Jt0"/>
                                 <constraint firstItem="v9P-BL-ytY" firstAttribute="leading" secondItem="DVp-3x-Zd0" secondAttribute="leading" constant="16" id="Wsy-RE-Bvj"/>
+                                <constraint firstItem="TUM-g0-3nc" firstAttribute="top" secondItem="DVp-3x-Zd0" secondAttribute="top" id="cBs-qL-kNQ"/>
+                                <constraint firstItem="TUM-g0-3nc" firstAttribute="leading" secondItem="DVp-3x-Zd0" secondAttribute="leading" id="lHW-z4-5Ce"/>
                             </constraints>
                         </customView>
                         <button translatesAutoresizingMaskIntoConstraints="NO" id="cuK-dZ-qgQ" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
@@ -208,6 +225,9 @@
                                 <font key="font" size="25" name="MaterialIcons-Regular"/>
                             </buttonCell>
                             <color key="contentTintColor" name="SecondaryText"/>
+                            <connections>
+                                <action selector="webAppButtonClicked:" target="-2" id="Wh7-cN-bns"/>
+                            </connections>
                         </button>
                         <button translatesAutoresizingMaskIntoConstraints="NO" id="kVc-1M-iiC" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                             <rect key="frame" x="712" y="0.0" width="40" height="60"/>
@@ -219,6 +239,9 @@
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                             <color key="contentTintColor" name="SecondaryText"/>
+                            <connections>
+                                <action selector="muteButtonClicked:" target="-2" id="GYq-RR-GQa"/>
+                            </connections>
                         </button>
                         <button translatesAutoresizingMaskIntoConstraints="NO" id="VaF-EB-L4n" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                             <rect key="frame" x="752" y="0.0" width="40" height="60"/>
@@ -230,6 +253,9 @@
                                 <font key="font" size="25" name="MaterialIcons-Regular"/>
                             </buttonCell>
                             <color key="contentTintColor" name="SecondaryText"/>
+                            <connections>
+                                <action selector="callButtonClicked:" target="-2" id="UuS-Z1-DI1"/>
+                            </connections>
                         </button>
                     </subviews>
                     <constraints>

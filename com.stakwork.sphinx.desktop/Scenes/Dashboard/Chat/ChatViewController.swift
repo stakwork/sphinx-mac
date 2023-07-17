@@ -620,9 +620,9 @@ class ChatViewController: DashboardSplittedViewController {
     }
     
     @IBAction func giphyButtonClicked(_ sender: Any) {
-        bottomBar.removeShadow()
-        giphySearchView.loadGiphySearch(delegate: self)
-        toggleGiphySearchView()
+//        bottomBar.removeShadow()
+//        giphySearchView.loadGiphySearch(delegate: self)
+//        toggleGiphySearchView()
     }
     
     @IBAction func webAppButtonClicked(_ sender: Any) {

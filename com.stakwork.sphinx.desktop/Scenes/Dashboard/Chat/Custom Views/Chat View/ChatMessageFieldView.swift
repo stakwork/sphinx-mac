@@ -9,6 +9,8 @@
 import Cocoa
 
 class ChatMessageFieldView: NSView, LoadableNib {
+    
+    weak var delegate: ChatBottomViewDelegate?
 
     @IBOutlet var contentView: NSView!
     
@@ -24,6 +26,11 @@ class ChatMessageFieldView: NSView, LoadableNib {
     @IBOutlet weak var priceContainer: NSBox!
     @IBOutlet weak var priceTextField: CCTextField!
     @IBOutlet weak var priceTextFieldWidth: NSLayoutConstraint!
+    
+    @IBOutlet weak var recordingContainer: NSBox!
+    @IBOutlet weak var intermitentAlphaView: IntermitentAlphaAnimatedView!
+    @IBOutlet weak var recordingTimeLabel: NSTextField!
+    
     
     @IBOutlet weak var messageContainerHeightConstraint: NSLayoutConstraint!
     
@@ -158,8 +165,11 @@ class ChatMessageFieldView: NSView, LoadableNib {
     
     func updateFieldStateFrom(
         _ chat: Chat?,
-        and contact: UserContact?
+        and contact: UserContact?,
+        with delegate: ChatBottomViewDelegate?
     ) {
+        self.delegate = delegate
+        
         setOngoingMessage(text: chat?.ongoingMessage ?? "")
         
         let pending = chat?.isStatusPending() ?? true
@@ -184,5 +194,34 @@ class ChatMessageFieldView: NSView, LoadableNib {
             name: NSControl.textDidChangeNotification,
             object: textDidChange
         )
+    }
+    
+    @IBAction func attachmentsButtonClicked(_ sender: Any) {
+        delegate?.didClickAttachmentsButton()
+    }
+    
+    @IBAction func giphyButtonClicked(_ sender: Any) {
+        delegate?.didClickGiphyButton()
+    }
+    
+    @IBAction func emojiButtonClicked(_ sender: Any) {
+        NSApp.orderFrontCharacterPalette(textView)
+        self.window?.makeFirstResponder(messageTextView)
+    }
+    
+    @IBAction func sendButtonClicked(_ sender: Any) {
+        delegate?.didClickSendButton()
+    }
+    
+    @IBAction func micButtonClicked(_ sender: Any) {
+        delegate?.didClickMicButton()
+    }
+    
+    @IBAction func cancelRecordingButtonClicked(_ sender: Any) {
+        delegate?.didClickCancelRecordingButton()
+    }
+    
+    @IBAction func confirmRecordingButtonClicked(_ sender: Any) {
+        delegate?.didClickConfirmRecordingButton()
     }
 }

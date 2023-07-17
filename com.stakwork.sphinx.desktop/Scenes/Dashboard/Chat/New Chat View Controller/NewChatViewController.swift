@@ -19,6 +19,8 @@ class NewChatViewController: DashboardSplittedViewController {
     var contactResultsController: NSFetchedResultsController<UserContact>!
     var chatResultsController: NSFetchedResultsController<Chat>!
     
+    let messageBubbleHelper = NewMessageBubbleHelper()
+    
     static func instantiate(
         contact: UserContact? = nil,
         chat: Chat? = nil,
@@ -41,6 +43,12 @@ class NewChatViewController: DashboardSplittedViewController {
         configureFetchResultsController()
     }
     
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        
+        fetchTribeData()
+    }
+    
     func setupData() {
         chatTopView.configureHeaderWith(
             chat: chat,
@@ -52,7 +60,8 @@ class NewChatViewController: DashboardSplittedViewController {
         
         chatBottomView.updateFieldStateFrom(
             chat,
-            and: contact
+            and: contact,
+            with: self
         )
         
 //        showPendingApprovalMessage()

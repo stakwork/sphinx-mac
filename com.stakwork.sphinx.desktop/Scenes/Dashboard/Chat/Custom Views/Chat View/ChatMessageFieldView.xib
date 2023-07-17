@@ -13,6 +13,7 @@
                 <outlet property="contentView" destination="c22-O7-iKe" id="rs1-s4-020"/>
                 <outlet property="emojiButton" destination="tlx-Yr-Pwz" id="bwb-a9-y5o"/>
                 <outlet property="giphyButton" destination="7ma-wQ-0Fe" id="h57-cj-lva"/>
+                <outlet property="intermitentAlphaView" destination="mkz-12-tB6" id="751-NE-BfM"/>
                 <outlet property="messageContainerHeightConstraint" destination="Nf9-s3-XmQ" id="1kt-gH-Hgi"/>
                 <outlet property="messageTextView" destination="zOY-KA-GOx" id="qHd-hu-tKM"/>
                 <outlet property="messageTextViewContainer" destination="cfV-Jc-PH8" id="v0t-Fc-gfm"/>
@@ -20,6 +21,8 @@
                 <outlet property="priceContainer" destination="QmM-Ic-bse" id="OLP-ML-ak9"/>
                 <outlet property="priceTextField" destination="QGf-Co-sPB" id="acn-IP-xVB"/>
                 <outlet property="priceTextFieldWidth" destination="g8M-au-ZBp" id="33c-bb-SIf"/>
+                <outlet property="recordingContainer" destination="E5V-UG-0ys" id="zkC-F8-0q0"/>
+                <outlet property="recordingTimeLabel" destination="2LL-pO-iDQ" id="hMO-YB-rp4"/>
                 <outlet property="sendButton" destination="AH1-P5-0X5" id="3Ur-Ve-fEC"/>
             </connections>
         </customObject>
@@ -65,6 +68,9 @@
                                         <font key="font" size="21" name="MaterialIcons-Regular"/>
                                     </buttonCell>
                                     <color key="contentTintColor" name="SphinxWhite"/>
+                                    <connections>
+                                        <action selector="attachmentsButtonClicked:" target="-2" id="JLo-QL-qHe"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <constraints>
@@ -87,6 +93,9 @@
                                         <font key="font" size="25" name="MaterialIcons-Regular"/>
                                     </buttonCell>
                                     <color key="contentTintColor" name="MainBottomIcons"/>
+                                    <connections>
+                                        <action selector="giphyButtonClicked:" target="-2" id="Ubh-C2-mYs"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <constraints>
@@ -109,6 +118,9 @@
                                         <font key="font" size="25" name="MaterialIcons-Regular"/>
                                     </buttonCell>
                                     <color key="contentTintColor" name="MainBottomIcons"/>
+                                    <connections>
+                                        <action selector="emojiButtonClicked:" target="-2" id="MI6-sz-LqY"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <constraints>
@@ -241,6 +253,9 @@
                                 <font key="font" size="19" name="MaterialIcons-Regular"/>
                             </buttonCell>
                             <color key="contentTintColor" name="SphinxWhite"/>
+                            <connections>
+                                <action selector="sendButtonClicked:" target="-2" id="qQX-cW-dtb"/>
+                            </connections>
                         </button>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UcZ-ht-u51" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                             <rect key="frame" x="789" y="12" width="32" height="37"/>
@@ -253,6 +268,9 @@
                                 <font key="font" size="27" name="MaterialIcons-Regular"/>
                             </buttonCell>
                             <color key="contentTintColor" name="MainBottomIcons"/>
+                            <connections>
+                                <action selector="micButtonClicked:" target="-2" id="a3X-W6-jsZ"/>
+                            </connections>
                         </button>
                     </subviews>
                     <constraints>
@@ -288,14 +306,137 @@
                         <real value="3.4028234663852886e+38"/>
                     </customSpacing>
                 </stackView>
+                <box hidden="YES" boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="E5V-UG-0ys">
+                    <rect key="frame" x="0.0" y="0.0" width="853" height="60"/>
+                    <view key="contentView" id="kOD-Se-9fV">
+                        <rect key="frame" x="0.0" y="0.0" width="853" height="60"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="Sxk-Ts-VpR">
+                                <rect key="frame" x="575" y="0.0" width="59" height="60"/>
+                                <subviews>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="mkz-12-tB6" customClass="IntermitentAlphaAnimatedView" customModule="Sphinx" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="20" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="HGf-Mb-8po"/>
+                                            <constraint firstAttribute="height" constant="20" id="KmV-vr-fr5"/>
+                                        </constraints>
+                                    </customView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="mkz-12-tB6" firstAttribute="centerY" secondItem="Sxk-Ts-VpR" secondAttribute="centerY" id="CNW-W0-7Km"/>
+                                    <constraint firstItem="mkz-12-tB6" firstAttribute="centerX" secondItem="Sxk-Ts-VpR" secondAttribute="centerX" id="GFQ-g5-J9H"/>
+                                    <constraint firstAttribute="width" constant="59" id="h7J-Z4-vwD"/>
+                                </constraints>
+                            </customView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2LL-pO-iDQ">
+                                <rect key="frame" x="652" y="18" width="43" height="24"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="0:00" id="7bN-oH-ieK">
+                                    <font key="font" size="20" name="Roboto-Regular"/>
+                                    <color key="textColor" name="Text"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="zNg-ds-7mx">
+                                <rect key="frame" x="713" y="0.0" width="140" height="60"/>
+                                <subviews>
+                                    <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="qUJ-v4-2XV">
+                                        <rect key="frame" x="84" y="10" width="40" height="40"/>
+                                        <view key="contentView" id="S2M-xC-zFQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0D0-0a-LMy">
+                                                    <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                    <buttonCell key="cell" type="bevel" title="done" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="cOi-Z0-faV" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" size="25" name="MaterialIcons-Regular"/>
+                                                    </buttonCell>
+                                                    <color key="contentTintColor" name="sphinxWhite"/>
+                                                    <connections>
+                                                        <action selector="confirmRecordingButtonClicked:" target="-2" id="Mg1-5E-b6s"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="0D0-0a-LMy" firstAttribute="leading" secondItem="S2M-xC-zFQ" secondAttribute="leading" id="4WQ-o9-CTL"/>
+                                                <constraint firstAttribute="bottom" secondItem="0D0-0a-LMy" secondAttribute="bottom" id="P21-tc-ab9"/>
+                                                <constraint firstItem="0D0-0a-LMy" firstAttribute="top" secondItem="S2M-xC-zFQ" secondAttribute="top" id="djD-gB-8cW"/>
+                                                <constraint firstAttribute="trailing" secondItem="0D0-0a-LMy" secondAttribute="trailing" id="sBB-Mi-gEb"/>
+                                            </constraints>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="cXw-XK-AeK"/>
+                                            <constraint firstAttribute="width" constant="40" id="uWU-xL-2ra"/>
+                                        </constraints>
+                                        <color key="fillColor" name="PrimaryGreen"/>
+                                    </box>
+                                    <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="gxY-sQ-j7K">
+                                        <rect key="frame" x="24" y="10" width="40" height="40"/>
+                                        <view key="contentView" id="n32-RF-Gxn">
+                                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="XFh-GQ-R0E">
+                                                    <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                    <buttonCell key="cell" type="bevel" title="close" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="KFZ-da-7mf" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" size="25" name="MaterialIcons-Regular"/>
+                                                    </buttonCell>
+                                                    <color key="contentTintColor" name="sphinxWhite"/>
+                                                    <connections>
+                                                        <action selector="cancelRecordingButtonClicked:" target="-2" id="AxN-Nz-Cgc"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="XFh-GQ-R0E" secondAttribute="bottom" id="54y-ov-fcl"/>
+                                                <constraint firstAttribute="trailing" secondItem="XFh-GQ-R0E" secondAttribute="trailing" id="FMz-kw-wXg"/>
+                                                <constraint firstItem="XFh-GQ-R0E" firstAttribute="leading" secondItem="n32-RF-Gxn" secondAttribute="leading" id="mFf-On-zR0"/>
+                                                <constraint firstItem="XFh-GQ-R0E" firstAttribute="top" secondItem="n32-RF-Gxn" secondAttribute="top" id="uNS-7a-iIC"/>
+                                            </constraints>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="eaJ-dm-Gh3"/>
+                                            <constraint firstAttribute="width" constant="40" id="kmu-VC-83i"/>
+                                        </constraints>
+                                        <color key="fillColor" name="PrimaryRed"/>
+                                    </box>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="056-o0-29m"/>
+                                    <constraint firstItem="qUJ-v4-2XV" firstAttribute="leading" secondItem="gxY-sQ-j7K" secondAttribute="trailing" constant="20" id="3Rh-Vz-P3r"/>
+                                    <constraint firstAttribute="trailing" secondItem="qUJ-v4-2XV" secondAttribute="trailing" constant="16" id="61B-1m-Uq3"/>
+                                    <constraint firstItem="qUJ-v4-2XV" firstAttribute="centerY" secondItem="zNg-ds-7mx" secondAttribute="centerY" id="T7N-Wi-NpI"/>
+                                    <constraint firstItem="gxY-sQ-j7K" firstAttribute="centerY" secondItem="qUJ-v4-2XV" secondAttribute="centerY" id="kOQ-Ov-Vt7"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="2LL-pO-iDQ" firstAttribute="centerY" secondItem="kOD-Se-9fV" secondAttribute="centerY" id="ERR-8U-qFG"/>
+                            <constraint firstAttribute="bottom" secondItem="Sxk-Ts-VpR" secondAttribute="bottom" id="V8s-Zb-RjV"/>
+                            <constraint firstItem="zNg-ds-7mx" firstAttribute="leading" secondItem="2LL-pO-iDQ" secondAttribute="trailing" constant="20" id="Xcl-J6-NVh"/>
+                            <constraint firstItem="Sxk-Ts-VpR" firstAttribute="top" secondItem="kOD-Se-9fV" secondAttribute="top" id="ckD-je-u7g"/>
+                            <constraint firstAttribute="bottom" secondItem="zNg-ds-7mx" secondAttribute="bottom" id="e5U-5k-ZZB"/>
+                            <constraint firstItem="zNg-ds-7mx" firstAttribute="top" secondItem="kOD-Se-9fV" secondAttribute="top" id="gbk-eV-ZZC"/>
+                            <constraint firstAttribute="trailing" secondItem="zNg-ds-7mx" secondAttribute="trailing" id="mAo-o0-OdG"/>
+                            <constraint firstItem="2LL-pO-iDQ" firstAttribute="leading" secondItem="Sxk-Ts-VpR" secondAttribute="trailing" constant="20" id="nhr-0A-f7I"/>
+                        </constraints>
+                    </view>
+                    <color key="fillColor" name="HeaderBG"/>
+                </box>
             </subviews>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="E5V-UG-0ys" secondAttribute="trailing" id="16X-WQ-Tzz"/>
+                <constraint firstItem="E5V-UG-0ys" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="2WC-TS-UQ0"/>
                 <constraint firstAttribute="trailing" secondItem="pxB-lp-DrO" secondAttribute="trailing" constant="16" id="AS6-mH-h9X"/>
                 <constraint firstAttribute="trailing" secondItem="E67-WX-gYz" secondAttribute="trailing" id="AYv-jD-lI9"/>
+                <constraint firstItem="E5V-UG-0ys" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="Bo1-jr-Fod"/>
                 <constraint firstItem="Sun-BX-O1P" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="GHS-IR-Rod"/>
                 <constraint firstItem="pxB-lp-DrO" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="JkA-Kb-2SQ"/>
                 <constraint firstItem="pxB-lp-DrO" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="16" id="RxV-em-Yv9"/>
                 <constraint firstItem="Sun-BX-O1P" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="Z3M-4R-RTw"/>
+                <constraint firstAttribute="bottom" secondItem="E5V-UG-0ys" secondAttribute="bottom" id="gQI-vF-fdK"/>
                 <constraint firstAttribute="trailing" secondItem="Sun-BX-O1P" secondAttribute="trailing" id="ieG-gJ-6mK"/>
                 <constraint firstItem="E67-WX-gYz" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="k9Z-4X-5oc"/>
                 <constraint firstAttribute="bottom" secondItem="E67-WX-gYz" secondAttribute="bottom" id="o12-0G-tDT"/>
@@ -304,121 +445,6 @@
             </constraints>
             <point key="canvasLocation" x="-85.5" y="-36.5"/>
         </customView>
-        <box hidden="YES" boxType="custom" borderType="none" titlePosition="noTitle" id="E5V-UG-0ys">
-            <rect key="frame" x="0.0" y="0.0" width="835" height="59"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <view key="contentView" id="kOD-Se-9fV">
-                <rect key="frame" x="0.0" y="0.0" width="835" height="59"/>
-                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                <subviews>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Sxk-Ts-VpR">
-                        <rect key="frame" x="557" y="0.0" width="59" height="59"/>
-                        <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="mkz-12-tB6" customClass="IntermitentAlphaAnimatedView" customModule="Sphinx" customModuleProvider="target">
-                                <rect key="frame" x="20" y="20" width="20" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="HGf-Mb-8po"/>
-                                    <constraint firstAttribute="height" constant="20" id="KmV-vr-fr5"/>
-                                </constraints>
-                            </customView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="mkz-12-tB6" firstAttribute="centerY" secondItem="Sxk-Ts-VpR" secondAttribute="centerY" id="CNW-W0-7Km"/>
-                            <constraint firstItem="mkz-12-tB6" firstAttribute="centerX" secondItem="Sxk-Ts-VpR" secondAttribute="centerX" id="GFQ-g5-J9H"/>
-                            <constraint firstAttribute="width" constant="59" id="h7J-Z4-vwD"/>
-                        </constraints>
-                    </customView>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2LL-pO-iDQ">
-                        <rect key="frame" x="634" y="18" width="43" height="24"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="0:00" id="7bN-oH-ieK">
-                            <font key="font" size="20" name="Roboto-Regular"/>
-                            <color key="textColor" name="Text"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="zNg-ds-7mx">
-                        <rect key="frame" x="695" y="0.0" width="140" height="59"/>
-                        <subviews>
-                            <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="qUJ-v4-2XV">
-                                <rect key="frame" x="80" y="10" width="40" height="40"/>
-                                <view key="contentView" id="S2M-xC-zFQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0D0-0a-LMy">
-                                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
-                                            <buttonCell key="cell" type="bevel" title="done" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="cOi-Z0-faV" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" size="25" name="MaterialIcons-Regular"/>
-                                            </buttonCell>
-                                            <color key="contentTintColor" name="sphinxWhite"/>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="0D0-0a-LMy" firstAttribute="leading" secondItem="S2M-xC-zFQ" secondAttribute="leading" id="4WQ-o9-CTL"/>
-                                        <constraint firstAttribute="bottom" secondItem="0D0-0a-LMy" secondAttribute="bottom" id="P21-tc-ab9"/>
-                                        <constraint firstItem="0D0-0a-LMy" firstAttribute="top" secondItem="S2M-xC-zFQ" secondAttribute="top" id="djD-gB-8cW"/>
-                                        <constraint firstAttribute="trailing" secondItem="0D0-0a-LMy" secondAttribute="trailing" id="sBB-Mi-gEb"/>
-                                    </constraints>
-                                </view>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="cXw-XK-AeK"/>
-                                    <constraint firstAttribute="width" constant="40" id="uWU-xL-2ra"/>
-                                </constraints>
-                                <color key="fillColor" name="PrimaryGreen"/>
-                            </box>
-                            <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="gxY-sQ-j7K">
-                                <rect key="frame" x="20" y="10" width="40" height="40"/>
-                                <view key="contentView" id="n32-RF-Gxn">
-                                    <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="XFh-GQ-R0E">
-                                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
-                                            <buttonCell key="cell" type="bevel" title="close" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="KFZ-da-7mf" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" size="25" name="MaterialIcons-Regular"/>
-                                            </buttonCell>
-                                            <color key="contentTintColor" name="sphinxWhite"/>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="XFh-GQ-R0E" secondAttribute="bottom" id="54y-ov-fcl"/>
-                                        <constraint firstAttribute="trailing" secondItem="XFh-GQ-R0E" secondAttribute="trailing" id="FMz-kw-wXg"/>
-                                        <constraint firstItem="XFh-GQ-R0E" firstAttribute="leading" secondItem="n32-RF-Gxn" secondAttribute="leading" id="mFf-On-zR0"/>
-                                        <constraint firstItem="XFh-GQ-R0E" firstAttribute="top" secondItem="n32-RF-Gxn" secondAttribute="top" id="uNS-7a-iIC"/>
-                                    </constraints>
-                                </view>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="eaJ-dm-Gh3"/>
-                                    <constraint firstAttribute="width" constant="40" id="kmu-VC-83i"/>
-                                </constraints>
-                                <color key="fillColor" name="PrimaryRed"/>
-                            </box>
-                        </subviews>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="140" id="056-o0-29m"/>
-                            <constraint firstItem="qUJ-v4-2XV" firstAttribute="leading" secondItem="gxY-sQ-j7K" secondAttribute="trailing" constant="20" id="3Rh-Vz-P3r"/>
-                            <constraint firstAttribute="trailing" secondItem="qUJ-v4-2XV" secondAttribute="trailing" constant="20" id="61B-1m-Uq3"/>
-                            <constraint firstItem="qUJ-v4-2XV" firstAttribute="centerY" secondItem="zNg-ds-7mx" secondAttribute="centerY" id="T7N-Wi-NpI"/>
-                            <constraint firstItem="gxY-sQ-j7K" firstAttribute="centerY" secondItem="qUJ-v4-2XV" secondAttribute="centerY" id="kOQ-Ov-Vt7"/>
-                        </constraints>
-                    </customView>
-                </subviews>
-                <constraints>
-                    <constraint firstItem="2LL-pO-iDQ" firstAttribute="centerY" secondItem="kOD-Se-9fV" secondAttribute="centerY" id="ERR-8U-qFG"/>
-                    <constraint firstAttribute="bottom" secondItem="Sxk-Ts-VpR" secondAttribute="bottom" id="V8s-Zb-RjV"/>
-                    <constraint firstItem="zNg-ds-7mx" firstAttribute="leading" secondItem="2LL-pO-iDQ" secondAttribute="trailing" constant="20" id="Xcl-J6-NVh"/>
-                    <constraint firstItem="Sxk-Ts-VpR" firstAttribute="top" secondItem="kOD-Se-9fV" secondAttribute="top" id="ckD-je-u7g"/>
-                    <constraint firstAttribute="bottom" secondItem="zNg-ds-7mx" secondAttribute="bottom" id="e5U-5k-ZZB"/>
-                    <constraint firstItem="zNg-ds-7mx" firstAttribute="top" secondItem="kOD-Se-9fV" secondAttribute="top" id="gbk-eV-ZZC"/>
-                    <constraint firstAttribute="trailing" secondItem="zNg-ds-7mx" secondAttribute="trailing" id="mAo-o0-OdG"/>
-                    <constraint firstItem="2LL-pO-iDQ" firstAttribute="leading" secondItem="Sxk-Ts-VpR" secondAttribute="trailing" constant="20" id="nhr-0A-f7I"/>
-                </constraints>
-            </view>
-            <color key="fillColor" name="HeaderBG"/>
-            <point key="canvasLocation" x="9" y="-161"/>
-        </box>
     </objects>
     <resources>
         <image name="emojiIcon" width="25" height="25"/>

@@ -11,16 +11,24 @@ import SwiftyJSON
 
 final class ChatViewModel: NSObject {
     
-    func toggleVolumeOn(chat: Chat, completion: @escaping (Chat?) -> ()) {
+    func toggleVolumeOn(
+        chat: Chat,
+        completion: @escaping (Chat?) -> ()
+    ) {
         let currentMode = chat.isMuted()
         
-        API.sharedInstance.toggleChatSound(chatId: chat.id, muted: !currentMode, callback: { chatJson in
-            if let updatedChat = Chat.insertChat(chat: chatJson) {
-                completion(updatedChat)
+        API.sharedInstance.toggleChatSound(
+            chatId: chat.id,
+            muted: !currentMode,
+            callback: { chatJson in
+                if let updatedChat = Chat.insertChat(chat: chatJson) {
+                    completion(updatedChat)
+                }
+            },
+            errorCallback: {
+                completion(nil)
             }
-        }, errorCallback: {
-            completion(nil)
-        })
+        )
     }
     
     func shouldDeleteMessage(message: TransactionMessage, completion: @escaping (Bool, TransactionMessage?) -> ()) {

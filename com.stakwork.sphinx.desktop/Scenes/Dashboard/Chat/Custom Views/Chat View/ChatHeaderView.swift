@@ -10,8 +10,10 @@ import Cocoa
 import SDWebImage
 
 protocol ChatHeaderViewDelegate : AnyObject {
-    func didTapWebAppButton()
-    func didTapMuteButton()
+    func didClickWebAppButton()
+    func didClickMuteButton()
+    func didClickCallButton()
+    func didClickHeaderButton()
 }
 
 class ChatHeaderView: NSView, LoadableNib {
@@ -34,6 +36,7 @@ class ChatHeaderView: NSView, LoadableNib {
     @IBOutlet weak var volumeButton: CustomButton!
     @IBOutlet weak var webAppButton: CustomButton!
     @IBOutlet weak var callButton: CustomButton!
+    @IBOutlet weak var headerButton: CustomButton!
     
     var chat: Chat? = nil
     var contact: UserContact? = nil
@@ -45,11 +48,20 @@ class ChatHeaderView: NSView, LoadableNib {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         loadViewFromNib()
+        setupView()
     }
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         loadViewFromNib()
+        setupView()
+    }
+    
+    func setupView() {
+        volumeButton.cursor = .pointingHand
+        webAppButton.cursor = .pointingHand
+        callButton.cursor = .pointingHand
+        headerButton.cursor = .pointingHand
     }
     
     func configureWith(
@@ -195,6 +207,19 @@ class ChatHeaderView: NSView, LoadableNib {
         contributedSatsLabel.isHidden = true
     }
     
+    func configureContributions() {
+        if let contentFeed = chat?.contentFeed, !contentFeed.feedID.isEmpty {
+            let isMyTribe = (chat?.isMyPublicGroup() ?? false)
+            let label = isMyTribe ? "earned.sats".localized : "contributed.sats".localized
+            let sats = PodcastPaymentsHelper.getSatsEarnedFor(contentFeed.feedID)
+            
+            contributionSign.isHidden = false
+            contributedSatsLabel.isHidden = false
+        
+            contributedSatsLabel.stringValue = String(format: label, sats)
+        }
+    }
+    
     func configureWebAppButton() {
         webAppButton.isHidden = true
     }
@@ -204,6 +229,10 @@ class ChatHeaderView: NSView, LoadableNib {
             named: chat?.isMuted() ?? false ? "muteOnIcon" : "muteOffIcon"
         )
         volumeButton.isHidden = false
+    }
+    
+    func toggleWebAppIcon() {
+        webAppButton.isHidden = !(chat?.hasWebApp() ?? false)
     }
     
     func checkRoute() {
@@ -223,4 +252,21 @@ class ChatHeaderView: NSView, LoadableNib {
     func forceKeysExchange(contactId: Int) {
         UserContactsHelper.exchangeKeys(id: contactId)
     }
+    
+    @IBAction func webAppButtonClicked(_ sender: Any) {
+        delegate?.didClickWebAppButton()
+    }
+    
+    @IBAction func muteButtonClicked(_ sender: Any) {
+        delegate?.didClickMuteButton()
+    }
+    
+    @IBAction func callButtonClicked(_ sender: Any) {
+        delegate?.didClickCallButton()
+    }
+    
+    @IBAction func headerButtonClicked(_ sender: Any) {
+        delegate?.didClickHeaderButton()
+    }
+    
 }

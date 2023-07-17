@@ -8,6 +8,12 @@
 
 import Cocoa
 
+extension ChatMessageFieldView {
+    func setMessageFieldActive() {
+        self.window?.makeFirstResponder(messageTextView)
+    }
+}
+
 extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
     func textView(
         _ textView: NSTextView,

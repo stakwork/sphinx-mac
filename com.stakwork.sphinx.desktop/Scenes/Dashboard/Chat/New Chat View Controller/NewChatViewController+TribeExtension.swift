@@ -12,13 +12,14 @@ extension NewChatViewController {
     
     func fetchTribeData() {
 //        configureMentions()
+        configurePinnedMessageView()
         
         if chat?.isPublicGroup() == false {
             return
         }
 
         chat?.updateTribeInfo() {
-//            self.headerView.setChatInfoOnHeader()
+            self.chatTopView.updateViewOnTribeFetch()
 //            self.loadPodcastFeed()
             self.configurePinnedMessageView()
         }
