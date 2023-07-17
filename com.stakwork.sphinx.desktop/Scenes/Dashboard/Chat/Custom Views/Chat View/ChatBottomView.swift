@@ -53,6 +53,10 @@ class ChatBottomView: NSView, LoadableNib {
         )
     }
     
+    func updateBottomBarHeight() {
+        let _ = messageFieldView.updateBottomBarHeight()
+    }
+    
     func setMessageFieldActive() {
         messageFieldView.setMessageFieldActive()
     }

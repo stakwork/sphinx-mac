@@ -18,7 +18,6 @@ extension NSViewController {
         container.addSubview(child.view)
     }
     
-    
     func removeChildVC(
         child: NSViewController
     ) {

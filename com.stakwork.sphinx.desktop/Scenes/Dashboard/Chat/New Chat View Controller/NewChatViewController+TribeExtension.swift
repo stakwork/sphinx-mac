@@ -20,7 +20,7 @@ extension NewChatViewController {
 
         chat?.updateTribeInfo() {
             self.chatTopView.updateViewOnTribeFetch()
-//            self.loadPodcastFeed()
+            self.addPodcastVC(deepLinkData: self.deepLinkData) 
             self.configurePinnedMessageView()
         }
     }

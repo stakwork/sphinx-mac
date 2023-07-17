@@ -405,22 +405,19 @@ extension DashboardViewController : DashboardVCDelegate {
         let newChatVCController = NewChatViewController.instantiate(
             contact: contact,
             chat: chat,
-            delegate: self
+            delegate: self,
+            deepLinkData: deeplinkData
         )
         
         self.addChildVC(
             child: newChatVCController,
-            container: rightSplittedView
+            container: rightSplitViewContainer
         )
         
         newDetailViewController = newChatVCController
         newDetailViewController?.setMessageFieldActive()
-//
-//        if (deeplinkData != nil) {
-//            detailViewController?.deeplinkData = deeplinkData
-//        }
-//
-//        deeplinkData = nil
+
+        deeplinkData = nil
     }
     
     func shouldShowFullMediaFor(message: TransactionMessage) {

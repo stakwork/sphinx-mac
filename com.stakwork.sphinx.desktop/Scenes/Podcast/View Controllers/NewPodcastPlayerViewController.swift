@@ -18,7 +18,7 @@ class NewPodcastPlayerViewController: NSViewController {
     
     var chat: Chat! = nil
     var collectionViewDS: PodcastEpisodesDataSource! = nil
-    var deeplinkData : DeeplinkData? = nil
+    var deepLinkData : DeeplinkData? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +40,6 @@ class NewPodcastPlayerViewController: NSViewController {
             object: playerCollectionView.enclosingScrollView?.contentView,
             queue: OperationQueue.main
         ) { [weak self] (n: Notification) in
-            
             self?.newEpisodeView?.hideView()
         }
     }
@@ -51,10 +50,15 @@ class NewPodcastPlayerViewController: NSViewController {
         NotificationCenter.default.removeObserver(self, name: NSView.boundsDidChangeNotification, object: nil)
     }
     
-    static func instantiate(chat: Chat, delegate: PodcastPlayerViewDelegate) -> NewPodcastPlayerViewController {
+    static func instantiate(
+        chat: Chat,
+        delegate: PodcastPlayerViewDelegate,
+        deepLinkData: DeeplinkData? = nil
+    ) -> NewPodcastPlayerViewController {
         let viewController = StoryboardScene.Podcast.newPodcastPlayerViewController.instantiate()
         viewController.chat = chat
         viewController.delegate = delegate
+        viewController.deepLinkData = deepLinkData
         
         return viewController
     }
@@ -77,10 +81,16 @@ class NewPodcastPlayerViewController: NSViewController {
             view: self.view
         )
         
-        if let data = deeplinkData,
-           let deeplinkedItem = podcast.episodes?.first(where: {$0.itemID == data.itemID}){
-            if let playerView = collectionViewDS.collectionView.item(at: IndexPath(item: 0, section: 0)) as? PodcastPlayerCollectionViewItem {
-                playerView.selectEpisode(episode: deeplinkedItem,atTime: data.timestamp)
+        if let data = deepLinkData,
+           let deeplinkedItem = podcast.episodes?.first(where: {$0.itemID == data.itemID}) {
+            
+            if let playerView = collectionViewDS.collectionView.item(
+                at: IndexPath(item: 0, section: 0)
+            ) as? PodcastPlayerCollectionViewItem {
+                playerView.selectEpisode(
+                    episode: deeplinkedItem,
+                    atTime: data.timestamp
+                )
             }
         }
     }

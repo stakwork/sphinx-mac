@@ -12,19 +12,24 @@ class NewChatViewController: DashboardSplittedViewController {
     
     @IBOutlet weak var chatTopView: ChatTopView!
     @IBOutlet weak var chatBottomView: ChatBottomView!
+    @IBOutlet weak var podcastPlayerView: NSView!
     
     var contact: UserContact?
     var chat: Chat?
+    var deepLinkData : DeeplinkData? = nil
     
     var contactResultsController: NSFetchedResultsController<UserContact>!
     var chatResultsController: NSFetchedResultsController<Chat>!
     
     let messageBubbleHelper = NewMessageBubbleHelper()
     
+    var podcastPlayerVC: NewPodcastPlayerViewController? = nil
+    
     static func instantiate(
         contact: UserContact? = nil,
         chat: Chat? = nil,
-        delegate: DashboardVCDelegate?
+        delegate: DashboardVCDelegate?,
+        deepLinkData : DeeplinkData? = nil
     ) -> NewChatViewController {
         
         let viewController = StoryboardScene.Dashboard.newChatViewController.instantiate()
@@ -32,6 +37,7 @@ class NewChatViewController: DashboardSplittedViewController {
         viewController.chat = chat
         viewController.contact = contact
         viewController.delegate = delegate
+        viewController.deepLinkData = deepLinkData
         
         return viewController
     }
