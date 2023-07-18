@@ -256,22 +256,16 @@ extension SphinxSocketManager {
     
     func didReceiveMessage(type: String, messageJson: JSON) {
         let isConfirmation = type == "confirmation"
-        let incoming = messageJson["sender"].intValue != UserData.sharedInstance.getUserId()
-        let messageId = messageJson["id"].intValue
-        let deleted = messageJson["status"].intValue == TransactionMessage.TransactionMessageStatus.deleted.rawValue
-        let existingMessage = TransactionMessage.getMessageWith(id: messageId)
-        
-        if incoming && existingMessage != nil && !deleted {
-            return
-        }
-        
-        if isConfirmation && (existingMessage?.isConfirmedAsReceived() ?? false) {
-            return
-        }
 
-        if let message = TransactionMessage.insertMessage(m: messageJson, existingMessage: existingMessage).0 {
+        if let message = TransactionMessage.insertMessage(
+            m: messageJson
+        ).0 {
             message.setPaymentInvoiceAsPaid()
-            setSeen(message: message, value: false)
+            
+            setSeen(
+                message: message,
+                value: false
+            )
             
             updateBalanceIfNeeded(type: type)
 
@@ -280,24 +274,6 @@ extension SphinxSocketManager {
             if isConfirmation {
                 delegate?.didReceiveConfirmation?(message: message)
             } else {
-                if message.isIncoming() && message.chat?.isPublicGroup() ?? false {
-                    debounceMessageNotification(message: message, onChat: onChat)
-                } else {
-                    sendNotification(message: message)
-                    delegate?.didReceiveMessage?(message: message, onChat: onChat)
-                }
-            }
-        }
-    }
-    
-    func debounceMessageNotification(message: TransactionMessage, onChat: Bool) {
-        incomingMSGTimer?.invalidate()
-        incomingMSGTimer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(shouldUpdateDashboard(timer:)), userInfo: ["message": message, "onChat" : onChat], repeats: false)
-    }
-   
-    @objc func shouldUpdateDashboard(timer: Timer) {
-        if let userInfo = timer.userInfo as? [String: Any] {
-            if let message = userInfo["message"] as? TransactionMessage, let onChat = userInfo["onChat"] as? Bool {
                 sendNotification(message: message)
                 delegate?.didReceiveMessage?(message: message, onChat: onChat)
             }
@@ -401,8 +377,6 @@ extension SphinxSocketManager {
                 chat = chatObject
 
                 if let chat = chat {
-                    CoreDataManager.sharedManager.saveContext()
-
                     if shouldUpdateObjectsOnView(chat: chat) {
                         delegate?.didUpdateChat?(chat: chat)
                     }
@@ -487,7 +461,6 @@ extension SphinxSocketManager {
     ) {
         message.seen = value
         message.chat?.seen = value
-        message.saveMessage()
     }
     
     func setAppBadgeCount() {

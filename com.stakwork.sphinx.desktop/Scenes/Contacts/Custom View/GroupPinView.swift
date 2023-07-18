@@ -73,7 +73,6 @@ class GroupPinView: NSView, LoadableNib {
     func setObjectPrivate(pin: String? = nil) {
         self.contact?.pin = pin
         self.contact?.getConversation()?.pin = pin
-        self.contact?.saveContact()
         
         self.chat?.pin = pin
         self.chat?.saveChat()

@@ -159,7 +159,6 @@ class MediaLoader {
                     if str != "" {
                         DispatchQueue.main.async {
                             message.messageContent = str
-                            message.saveMessage()
                             completion(messageId, str)
                         }
                         return

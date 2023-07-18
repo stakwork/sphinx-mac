@@ -405,17 +405,11 @@ public class TransactionMessage: NSManagedObject {
         if let paymentHash = self.paymentHash, self.type == TransactionMessage.TransactionMessageType.payment.rawValue {
             if let message = TransactionMessage.getInvoiceWith(paymentHash: paymentHash) {
                 message.status = TransactionMessage.TransactionMessageStatus.confirmed.rawValue
-                message.saveMessage()
             }
         }
     }
     
     func setAsSeen() {
         seen = true
-        saveMessage()
-    }
-    
-    func saveMessage() {
-        CoreDataManager.sharedManager.saveContext()
     }
 }

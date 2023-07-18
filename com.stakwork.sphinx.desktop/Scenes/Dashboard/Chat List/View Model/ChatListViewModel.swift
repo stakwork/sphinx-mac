@@ -133,6 +133,7 @@ final class ChatListViewModel: NSObject {
                             } else {
                                 
                                 CoreDataManager.sharedManager.saveContext()
+                                
                                 UserDefaults.Keys.messagesFetchPage.set(page + 1)
                                 
                                 self.getMessagesPaginated(
