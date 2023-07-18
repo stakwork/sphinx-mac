@@ -210,7 +210,6 @@ public class UserContact: NSManagedObject {
     func updateFromGroup(contact: JSON) -> Bool {
         if self.fromGroup != contact["from_group"].boolValue {
             self.fromGroup = contact["from_group"].boolValue
-            self.saveContact()
             return true
         }
         return false
@@ -326,9 +325,5 @@ public class UserContact: NSManagedObject {
             return publicKey
         }
         return nil
-    }
-    
-    public func saveContact() {
-        CoreDataManager.sharedManager.saveContext()
     }
 }

@@ -360,22 +360,26 @@ public class Chat: NSManagedObject {
         return TransactionMessage.getNewMessagesCountFor(chat: self, lastMessageId: lastMessageId)
     }
     
-    func setChatMessagesAsSeen(shouldSync: Bool = true, shouldSave: Bool = true, forceSeen: Bool = false) {
+    func setChatMessagesAsSeen(
+        shouldSync: Bool = true,
+        shouldSave: Bool = true,
+        forceSeen: Bool = false
+    ) {
         if NSApplication.shared.isActive || forceSeen {
-            self.seen = true
-            self.unseenMessagesCount = 0
-            self.unseenMentionsCount = 0
-            
             let receivedUnseenMessages = self.getReceivedUnseenMessages()
+            
             if receivedUnseenMessages.count > 0 {
                 for m in receivedUnseenMessages {
                     m.seen = true
                 }
             }
             
-            if shouldSave {
-                CoreDataManager.sharedManager.saveContext()
+            if !self.seen {
+                seen = true
             }
+            
+            self.unseenMessagesCount = 0
+            self.unseenMentionsCount = 0
             
             if shouldSync && receivedUnseenMessages.count > 0 {
                 API.sharedInstance.setChatMessagesAsSeen(chatId: self.id, callback: { _ in })
@@ -449,9 +453,22 @@ public class Chat: NSManagedObject {
     }
     
     func getLastMessageToShow() -> TransactionMessage? {
-        let sortDescriptors = [NSSortDescriptor(key: "date", ascending: false), NSSortDescriptor(key: "id", ascending: false)]
-        let predicate = NSPredicate(format: "chat == %@ AND type != %d", self, TransactionMessage.TransactionMessageType.repayment.rawValue)
-        let messages: [TransactionMessage] = CoreDataManager.sharedManager.getObjectsOfTypeWith(predicate: predicate, sortDescriptors: sortDescriptors, entityName: "TransactionMessage", fetchLimit: 1)
+        let sortDescriptors = [
+            NSSortDescriptor(key: "date", ascending: false),
+            NSSortDescriptor(key: "id", ascending: false)
+        ]
+        let predicate = NSPredicate(
+            format: "chat == %@ AND type != %d",
+            self,
+            TransactionMessage.TransactionMessageType.repayment.rawValue
+        )
+        let messages: [TransactionMessage] = CoreDataManager.sharedManager.getObjectsOfTypeWith(
+            predicate: predicate,
+            sortDescriptors: sortDescriptors,
+            entityName: "TransactionMessage",
+            fetchLimit: 1
+        )
+        
         return messages.first
     }
     

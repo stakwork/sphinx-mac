@@ -127,10 +127,6 @@ class ChatListViewController : DashboardSplittedViewController {
     
     override func viewWillDisappear() {
         super.viewWillDisappear()
-        
-        NotificationCenter.default.removeObserver(self, name: .onBalanceDidChange, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .onJoinTribeClick, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .onPubKeyClick, object: nil)
     }
     
     func prepareView() {
