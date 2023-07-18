@@ -211,6 +211,10 @@ extension TransactionMessage {
         return adjustedMC
     }
     
+    func isProvisional() -> Bool {
+        return id < 0
+    }
+    
     //Direction
     func getDirection(id: Int) -> TransactionMessageDirection {
         if Int(self.senderId) == id {
@@ -244,6 +248,10 @@ extension TransactionMessage {
         let expired = self.isMediaExpired()
         
         return failed || expired
+    }
+    
+    func pending() -> Bool {
+        return status == TransactionMessageStatus.pending.rawValue
     }
     
     func received() -> Bool {
@@ -310,12 +318,24 @@ extension TransactionMessage {
         return type == TransactionMessageType.attachment.rawValue
     }
     
+    func isBotHTMLResponse() -> Bool {
+        return type == TransactionMessageType.botResponse.rawValue && self.messageContent?.isValidHTML == true
+    }
+    
+    func isBotTextResponse() -> Bool {
+        return type == TransactionMessageType.botResponse.rawValue && self.messageContent?.isValidHTML == false
+    }
+    
     func isBotResponse() -> Bool {
         return type == TransactionMessageType.botResponse.rawValue
     }
     
     func isVideo() -> Bool {
         return getMediaType() == TransactionMessage.TransactionMessageType.videoAttachment.rawValue
+    }
+    
+    func isImage() -> Bool {
+        return getMediaType() == TransactionMessage.TransactionMessageType.imageAttachment.rawValue
     }
     
     func isAudio() -> Bool {
@@ -371,6 +391,10 @@ extension TransactionMessage {
         return type == TransactionMessageType.boost.rawValue && (!(replyUUID ?? "").isEmpty || (messageContent?.isEmpty ?? true))
     }
     
+    func isMemberRequest() -> Bool {
+        return type == TransactionMessageType.memberRequest.rawValue
+    }
+    
     func isApprovedRequest() -> Bool {
         return type == TransactionMessageType.memberApprove.rawValue
     }
@@ -386,6 +410,27 @@ extension TransactionMessage {
                type == TransactionMessageType.memberRequest.rawValue ||
                type == TransactionMessageType.memberApprove.rawValue ||
                type == TransactionMessageType.memberReject.rawValue
+    }
+    
+    func isGroupLeaveMessage() -> Bool {
+        return type == TransactionMessageType.groupLeave.rawValue
+    }
+    
+    func isGroupJoinMessage() -> Bool {
+        return type == TransactionMessageType.groupJoin.rawValue
+    }
+    
+    func isGroupKickMessage() -> Bool {
+        return type == TransactionMessageType.groupKick.rawValue
+    }
+    
+    func isGroupDeletedMessage() -> Bool {
+        return type == TransactionMessageType.groupDelete.rawValue
+    }
+    
+    func isGroupLeaveOrJoinMessage() -> Bool {
+        return type == TransactionMessageType.groupJoin.rawValue ||
+               type == TransactionMessageType.groupLeave.rawValue
     }
     
     func isDeleted() -> Bool {
@@ -413,6 +458,69 @@ extension TransactionMessage {
             return true
         }
         return false
+    }
+    
+    var isCopyTextActionAllowed: Bool {
+        get {
+            if let messageContent = bubbleMessageContentString {
+                return !self.isCallLink() && !messageContent.isEncryptedString()
+            }
+            return false
+        }
+    }
+    
+    var isCopyLinkActionAllowed: Bool {
+        get {
+            if let messageContent = bubbleMessageContentString {
+                return messageContent.stringLinks.count > 0
+            }
+            return false
+        }
+    }
+    
+    var isCopyPublicKeyActionAllowed: Bool {
+        get {
+            if let messageContent = bubbleMessageContentString {
+                return messageContent.pubKeyMatches.count > 0
+            }
+            return false
+        }
+    }
+    
+    var isCopyCallLinkActionAllowed: Bool {
+        get {
+            return self.isCallLink()
+        }
+    }
+    
+    var isReplyActionAllowed: Bool {
+        get {
+            return (isTextMessage() || isAttachment() || isBotResponse()) && !(uuid ?? "").isEmpty
+        }
+    }
+    
+    var isDownloadFileActionAllowed: Bool {
+        get {
+            return (type == TransactionMessageType.attachment.rawValue && getMediaType() != TransactionMessageType.textAttachment.rawValue) || isGiphy()
+        }
+    }
+    
+    var isResendActionAllowed: Bool {
+        get {
+            return (isTextMessage() && status == TransactionMessageStatus.failed.rawValue)
+        }
+    }
+    
+    var isFlagActionAllowed: Bool {
+        get {
+            return isIncoming()
+        }
+    }
+    
+    var isDeleteActionAllowed: Bool {
+        get {
+            return (!isInvoice() || (isInvoice() && !isPaid())) && canBeDeleted()
+        }
     }
     
     var isPinActionAllowed: Bool {
@@ -839,5 +947,18 @@ extension TransactionMessage {
         }
         
         return false
+    }
+    
+    //Grouping Logic
+    func shouldAvoidGrouping() -> Bool {
+        return pending() || failed() || isDeleted() || isInvoice() || isPayment() || isGroupActionMessage()
+    }
+    
+    func hasSameSenderThanMessage(_ message: TransactionMessage) -> Bool {
+        let hasSameSenderId = senderId == message.senderId
+        let hasSameSenderAlias = (senderAlias ?? "") == (message.senderAlias ?? "")
+        let hasSameSenderPicture = (senderPic ?? "") == (message.senderPic ?? "")
+
+        return hasSameSenderId && hasSameSenderAlias && hasSameSenderPicture
     }
 }

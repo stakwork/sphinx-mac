@@ -192,7 +192,7 @@ class DashboardViewController: NSViewController {
            let itemID = query.getLinkValueFor(key: "itemID"){
             print(query)
             
-            if let feed = ContentFeed.getFeedWith(feedId: feedID),
+            if let feed = ContentFeed.getFeedById(feedId: feedID),
                let chat = feed.chat {
                 let timestamp = query.getLinkValueFor(key: "atTime")
                 let finalTS = Int(timestamp ?? "") ?? 0

@@ -29,6 +29,20 @@ public class UserContact: NSManagedObject {
         }
     }
     
+    func getFakeChat() -> Chat {
+        let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        context.parent = CoreDataManager.sharedManager.persistentContainer.viewContext
+        
+        let chat = Chat(context: context)
+        chat.name = self.getName()
+        chat.id = -1
+        chat.photoUrl = self.avatarUrl
+        chat.type = Chat.ChatType.conversation.rawValue
+        chat.status = Chat.ChatStatus.approved.rawValue
+        
+        return chat
+    }
+    
     public static func insertContact(contact: JSON) -> UserContact? {
         let id: Int? = contact.getJSONId()
         
@@ -239,6 +253,19 @@ public class UserContact: NSManagedObject {
         let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
         let contact:UserContact? = CoreDataManager.sharedManager.getObjectOfTypeWith(predicate: predicate, sortDescriptors: sortDescriptors, entityName: "UserContact")
         return contact
+    }
+    
+    public static func getContactsWith(pubkeys: [String]) -> [UserContact] {
+        var predicate = NSPredicate(format: "publicKey IN %@ AND isOwner == %@", pubkeys, NSNumber(value: false))
+        let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+        
+        let contacts: [UserContact] = CoreDataManager.sharedManager.getObjectsOfTypeWith(
+            predicate: predicate,
+            sortDescriptors: sortDescriptors,
+            entityName: "UserContact"
+        )
+        
+        return contacts
     }
     
     public static func getOwner() -> UserContact? {

@@ -24,4 +24,24 @@ extension NSFont {
     func bold() -> NSFont {
         return withTraits(traits: NSFontDescriptor.SymbolicTraits.bold)
     }
+    
+    func italic() -> NSFont {
+        return withTraits(traits: NSFontDescriptor.SymbolicTraits.italic)
+    }
+    
+    static func getMessageFont() -> NSFont {
+        return Constants.kMessageFont
+    }
+    
+    static func getEmojisFont() -> NSFont {
+        return Constants.kEmojisFont
+    }
+    
+    static func getAmountFont() -> NSFont {
+        return NSFont(name: "Roboto-Bold", size: 16)!
+    }
+    
+    static func getEncryptionErrorFont() -> NSFont {
+        return Constants.kBoldSmallMessageFont
+    }
 }

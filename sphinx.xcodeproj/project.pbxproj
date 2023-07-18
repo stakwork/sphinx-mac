@@ -568,6 +568,20 @@
 		47FEE1F82A61B5F100646C4E /* NewChatViewController+TribeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE1F72A61B5F100646C4E /* NewChatViewController+TribeExtension.swift */; };
 		47FEE1FA2A65A11400646C4E /* NewChatViewController+PodcastExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE1F92A65A11400646C4E /* NewChatViewController+PodcastExtension.swift */; };
 		47FEE1FC2A65BA4F00646C4E /* NewChatViewController+MentionsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE1FB2A65BA4F00646C4E /* NewChatViewController+MentionsExtension.swift */; };
+		47FEE2002A66D3B500646C4E /* MessageLayoutState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE1FF2A66D3B500646C4E /* MessageLayoutState.swift */; };
+		47FEE2022A66D3C400646C4E /* MessageTableCellState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE2012A66D3C400646C4E /* MessageTableCellState.swift */; };
+		47FEE2042A66D3D700646C4E /* MessageTableCellState+DataTypeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE2032A66D3D700646C4E /* MessageTableCellState+DataTypeExtension.swift */; };
+		47FEE2072A66DB1800646C4E /* NewChatTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE2062A66DB1800646C4E /* NewChatTableDataSource.swift */; };
+		47FEE2092A66DB2E00646C4E /* NewChatTableDataSource+ResultsControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE2082A66DB2E00646C4E /* NewChatTableDataSource+ResultsControllerExtension.swift */; };
+		47FEE20B2A66DB3E00646C4E /* NewChatTableDataSource+CellDelegateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE20A2A66DB3E00646C4E /* NewChatTableDataSource+CellDelegateExtension.swift */; };
+		47FEE20D2A66DB4E00646C4E /* NewChatTableDataSource+PreloaderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE20C2A66DB4E00646C4E /* NewChatTableDataSource+PreloaderExtension.swift */; };
+		47FEE20F2A66DB5E00646C4E /* NewChatTableDataSource+ScrollExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE20E2A66DB5E00646C4E /* NewChatTableDataSource+ScrollExtension.swift */; };
+		47FEE2112A66DB6D00646C4E /* NewChatTableDataSource+AttachmentsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE2102A66DB6D00646C4E /* NewChatTableDataSource+AttachmentsExtension.swift */; };
+		47FEE2132A66DD8400646C4E /* NewChatTableDataSource+BotWebViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE2122A66DD8400646C4E /* NewChatTableDataSource+BotWebViewExtension.swift */; };
+		47FEE2152A66DD9700646C4E /* NewChatTableDataSource+AudioExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE2142A66DD9700646C4E /* NewChatTableDataSource+AudioExtension.swift */; };
+		47FEE2172A66DDAC00646C4E /* NewChatTableDataSource+SearchMessagesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE2162A66DDAC00646C4E /* NewChatTableDataSource+SearchMessagesExtension.swift */; };
+		47FEE21C2A66E2EE00646C4E /* MessagesPreloaderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE21B2A66E2EE00646C4E /* MessagesPreloaderHelper.swift */; };
+		47FEE21E2A66F35200646C4E /* NewAudioPlayerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE21D2A66F35200646C4E /* NewAudioPlayerHelper.swift */; };
 		AA1C7BC427657C4800A5B959 /* SignupCommonSecureFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1C7BC327657C4800A5B959 /* SignupCommonSecureFieldView.swift */; };
 		CE07F40529D72B7700EB0EC1 /* PodcastDetailSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07F40429D72B7700EB0EC1 /* PodcastDetailSelectionVC.swift */; };
 		CE1FA8F82A0199C20014360C /* LSATObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1FA8F72A0199C20014360C /* LSATObject.swift */; };
@@ -1310,6 +1324,20 @@
 		47FEE1F72A61B5F100646C4E /* NewChatViewController+TribeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewChatViewController+TribeExtension.swift"; sourceTree = "<group>"; };
 		47FEE1F92A65A11400646C4E /* NewChatViewController+PodcastExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewChatViewController+PodcastExtension.swift"; sourceTree = "<group>"; };
 		47FEE1FB2A65BA4F00646C4E /* NewChatViewController+MentionsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewChatViewController+MentionsExtension.swift"; sourceTree = "<group>"; };
+		47FEE1FF2A66D3B500646C4E /* MessageLayoutState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageLayoutState.swift; sourceTree = "<group>"; };
+		47FEE2012A66D3C400646C4E /* MessageTableCellState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableCellState.swift; sourceTree = "<group>"; };
+		47FEE2032A66D3D700646C4E /* MessageTableCellState+DataTypeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageTableCellState+DataTypeExtension.swift"; sourceTree = "<group>"; };
+		47FEE2062A66DB1800646C4E /* NewChatTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatTableDataSource.swift; sourceTree = "<group>"; };
+		47FEE2082A66DB2E00646C4E /* NewChatTableDataSource+ResultsControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewChatTableDataSource+ResultsControllerExtension.swift"; sourceTree = "<group>"; };
+		47FEE20A2A66DB3E00646C4E /* NewChatTableDataSource+CellDelegateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewChatTableDataSource+CellDelegateExtension.swift"; sourceTree = "<group>"; };
+		47FEE20C2A66DB4E00646C4E /* NewChatTableDataSource+PreloaderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewChatTableDataSource+PreloaderExtension.swift"; sourceTree = "<group>"; };
+		47FEE20E2A66DB5E00646C4E /* NewChatTableDataSource+ScrollExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewChatTableDataSource+ScrollExtension.swift"; sourceTree = "<group>"; };
+		47FEE2102A66DB6D00646C4E /* NewChatTableDataSource+AttachmentsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewChatTableDataSource+AttachmentsExtension.swift"; sourceTree = "<group>"; };
+		47FEE2122A66DD8400646C4E /* NewChatTableDataSource+BotWebViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewChatTableDataSource+BotWebViewExtension.swift"; sourceTree = "<group>"; };
+		47FEE2142A66DD9700646C4E /* NewChatTableDataSource+AudioExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewChatTableDataSource+AudioExtension.swift"; sourceTree = "<group>"; };
+		47FEE2162A66DDAC00646C4E /* NewChatTableDataSource+SearchMessagesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewChatTableDataSource+SearchMessagesExtension.swift"; sourceTree = "<group>"; };
+		47FEE21B2A66E2EE00646C4E /* MessagesPreloaderHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesPreloaderHelper.swift; sourceTree = "<group>"; };
+		47FEE21D2A66F35200646C4E /* NewAudioPlayerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAudioPlayerHelper.swift; sourceTree = "<group>"; };
 		5EA81AB599AD947A8862A100 /* Pods-Sphinx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sphinx.debug.xcconfig"; path = "Target Support Files/Pods-Sphinx/Pods-Sphinx.debug.xcconfig"; sourceTree = "<group>"; };
 		82C242433501D81263FED4C2 /* Pods_Sphinx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sphinx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97A6F8CB5E1D14A28D7C7A67 /* Pods-com.stakwork.sphinx.desktop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-com.stakwork.sphinx.desktop.release.xcconfig"; path = "Target Support Files/Pods-com.stakwork.sphinx.desktop/Pods-com.stakwork.sphinx.desktop.release.xcconfig"; sourceTree = "<group>"; };
@@ -2731,6 +2759,7 @@
 		47E771152472C1A700C9CFEB /* Data Source */ = {
 			isa = PBXGroup;
 			children = (
+				47FEE1FD2A66D35E00646C4E /* New Chat Data Source */,
 				47E771162472C1B500C9CFEB /* ChatDataSource.swift */,
 				CE326B4A294295C600821A53 /* ChatMentionAutocompleteDataSource.swift */,
 			);
@@ -2902,6 +2931,7 @@
 				475723AC247ED3B7001ADC7E /* AudioRecorderHelper.swift */,
 				475723AE247ED3C0001ADC7E /* CustomAudioPlayer.swift */,
 				470397032538C158007F9C23 /* PodcastRowAudioPlayer.swift */,
+				47FEE21D2A66F35200646C4E /* NewAudioPlayerHelper.swift */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -3035,6 +3065,50 @@
 				47FEE1FB2A65BA4F00646C4E /* NewChatViewController+MentionsExtension.swift */,
 			);
 			path = "New Chat View Controller";
+			sourceTree = "<group>";
+		};
+		47FEE1FD2A66D35E00646C4E /* New Chat Data Source */ = {
+			isa = PBXGroup;
+			children = (
+				47FEE2182A66E2C800646C4E /* Helpers */,
+				47FEE2052A66DB0400646C4E /* New Chat Table Data Source */,
+				47FEE1FE2A66D39E00646C4E /* MessageTableCellState */,
+			);
+			path = "New Chat Data Source";
+			sourceTree = "<group>";
+		};
+		47FEE1FE2A66D39E00646C4E /* MessageTableCellState */ = {
+			isa = PBXGroup;
+			children = (
+				47FEE1FF2A66D3B500646C4E /* MessageLayoutState.swift */,
+				47FEE2012A66D3C400646C4E /* MessageTableCellState.swift */,
+				47FEE2032A66D3D700646C4E /* MessageTableCellState+DataTypeExtension.swift */,
+			);
+			path = MessageTableCellState;
+			sourceTree = "<group>";
+		};
+		47FEE2052A66DB0400646C4E /* New Chat Table Data Source */ = {
+			isa = PBXGroup;
+			children = (
+				47FEE2062A66DB1800646C4E /* NewChatTableDataSource.swift */,
+				47FEE2082A66DB2E00646C4E /* NewChatTableDataSource+ResultsControllerExtension.swift */,
+				47FEE20A2A66DB3E00646C4E /* NewChatTableDataSource+CellDelegateExtension.swift */,
+				47FEE20C2A66DB4E00646C4E /* NewChatTableDataSource+PreloaderExtension.swift */,
+				47FEE20E2A66DB5E00646C4E /* NewChatTableDataSource+ScrollExtension.swift */,
+				47FEE2102A66DB6D00646C4E /* NewChatTableDataSource+AttachmentsExtension.swift */,
+				47FEE2122A66DD8400646C4E /* NewChatTableDataSource+BotWebViewExtension.swift */,
+				47FEE2142A66DD9700646C4E /* NewChatTableDataSource+AudioExtension.swift */,
+				47FEE2162A66DDAC00646C4E /* NewChatTableDataSource+SearchMessagesExtension.swift */,
+			);
+			path = "New Chat Table Data Source";
+			sourceTree = "<group>";
+		};
+		47FEE2182A66E2C800646C4E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				47FEE21B2A66E2EE00646C4E /* MessagesPreloaderHelper.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		90CB5EBD497A4B4F39AB48EE /* Pods */ = {
@@ -3419,6 +3493,7 @@
 				4720991624834E0000426028 /* CryptorRSAUtilities.swift in Sources */,
 				47D03DE4250BB9F40077A968 /* NewInviteViewController.swift in Sources */,
 				CE6BF5CA29E5BA38009BCFDE /* SendPaymentForInvoiceVC.swift in Sources */,
+				47FEE2092A66DB2E00646C4E /* NewChatTableDataSource+ResultsControllerExtension.swift in Sources */,
 				4731BE2F24855E4600BCCA9E /* CommonInvoiceCollectionViewItem.swift in Sources */,
 				4708C2032A55C0DE00274AD4 /* Chat+FetchUtils.swift in Sources */,
 				47B550A9248BEB9A000514BF /* PaymentTemplatesViewController.swift in Sources */,
@@ -3450,6 +3525,7 @@
 				47B5508A24898331000514BF /* IntegerValueFormatter.swift in Sources */,
 				4731BE4024859AE700BCCA9E /* PaidInvoiceReceivedCollectionViewItem.swift in Sources */,
 				479C793024EAD243009BA1CD /* SphinxOnionConnector.swift in Sources */,
+				47FEE2072A66DB1800646C4E /* NewChatTableDataSource.swift in Sources */,
 				473437AF24DB12E000950F25 /* ContactViewController.swift in Sources */,
 				47E77141247326EE00C9CFEB /* NSCollectionView.swift in Sources */,
 				479E7D9525AE02F80092595B /* GroupPinView.swift in Sources */,
@@ -3487,6 +3563,7 @@
 				4744FAE1246C2B7400C5FD94 /* KeychainRestoreCollectionViewItem.swift in Sources */,
 				4744FAD5246B2D0200C5FD94 /* AnimationHelper.swift in Sources */,
 				4744FAA72469CEE100C5FD94 /* Int.swift in Sources */,
+				47FEE2042A66D3D700646C4E /* MessageTableCellState+DataTypeExtension.swift in Sources */,
 				4708C2172A5885CB00274AD4 /* ChatTopView.swift in Sources */,
 				4789E27C24F45BC3003991BE /* RelayURLUpdateHelper.swift in Sources */,
 				4744FA8F2469C9F800C5FD94 /* Chat+CoreDataProperties.swift in Sources */,
@@ -3520,6 +3597,7 @@
 				470396F625377653007F9C23 /* CommonPodcastCommentCollectionViewItem.swift in Sources */,
 				479751DC246D815500D2106B /* SoundsPlayer.swift in Sources */,
 				4797E7532785D2750080B966 /* CommonModalView.swift in Sources */,
+				47FEE2022A66D3C400646C4E /* MessageTableCellState.swift in Sources */,
 				47E771212472C26200C9CFEB /* MessageReceivedCollectionViewItem.swift in Sources */,
 				475723AF247ED3C0001ADC7E /* CustomAudioPlayer.swift in Sources */,
 				475723A2247E96DF001ADC7E /* LoadingWheelHelper.swift in Sources */,
@@ -3558,6 +3636,7 @@
 				474274A928EC77A5000C3D51 /* TribeTagView.swift in Sources */,
 				CE38D91329E0823800F271CD /* DisplayInvoiceVC.swift in Sources */,
 				4707089A24AE657700A98DCA /* MediaDownloader.swift in Sources */,
+				47FEE21C2A66E2EE00646C4E /* MessagesPreloaderHelper.swift in Sources */,
 				474E333E247FF5EA00F7F603 /* PictureBubbleView.swift in Sources */,
 				47C1D60C248EB4DD00718B28 /* GroupAllContactsDataSource.swift in Sources */,
 				CE9BA46229D772BD000C8837 /* PodcastDetailActionCell.swift in Sources */,
@@ -3651,6 +3730,8 @@
 				47B55085248958CB000514BF /* PaymentInvoiceFormViewController.swift in Sources */,
 				475B681B29915D01000EF29C /* ContentFeedKind.swift in Sources */,
 				473633F42555DEC0007405F2 /* CustomSliderCell.swift in Sources */,
+				47FEE2112A66DB6D00646C4E /* NewChatTableDataSource+AttachmentsExtension.swift in Sources */,
+				47FEE20D2A66DB4E00646C4E /* NewChatTableDataSource+PreloaderExtension.swift in Sources */,
 				478F07D924E45E6000EE32A3 /* GiphyHelper.swift in Sources */,
 				470396FD25377683007F9C23 /* PodcastCommentSentCollectionViewItem.swift in Sources */,
 				47B550AC248C20EE000514BF /* PaymentTemplatesDataSource.swift in Sources */,
@@ -3693,6 +3774,7 @@
 				479C793C24ED61E2009BA1CD /* AuthorizeAppView.swift in Sources */,
 				475B681C29915D01000EF29C /* ContentFeedStatus+SupportingModels.swift in Sources */,
 				4731BE4424859BA800BCCA9E /* PaymentSentCollectionViewItem.swift in Sources */,
+				47FEE2152A66DD9700646C4E /* NewChatTableDataSource+AudioExtension.swift in Sources */,
 				4734D39B2417E3D400D6957E /* com_stakwork_sphinx_desktop.xcdatamodeld in Sources */,
 				478ED5A425D567CF00940132 /* PinView.swift in Sources */,
 				47AF0D4525508FDF00C98398 /* PodcastBoostReceivedCollectionViewItem.swift in Sources */,
@@ -3706,6 +3788,7 @@
 				47AF0D482550900900C98398 /* CommonPodcastBoostCollectionViewItem.swift in Sources */,
 				47FEE1FC2A65BA4F00646C4E /* NewChatViewController+MentionsExtension.swift in Sources */,
 				478ED59025D5522C00940132 /* WelcomeEmptyViewController.swift in Sources */,
+				47FEE2002A66D3B500646C4E /* MessageLayoutState.swift in Sources */,
 				473633E125548E40007405F2 /* BoostButtonView.swift in Sources */,
 				474F67652486D08800CE6016 /* Notification.Name.swift in Sources */,
 				474A66842497CAFE002C2D10 /* MessageReplyView.swift in Sources */,
@@ -3740,6 +3823,7 @@
 				47B550B0248C23E7000514BF /* TemplateCollectionViewItem.swift in Sources */,
 				47F8825925656CB0002A7E71 /* SocketIOClientOption.swift in Sources */,
 				47D03DEF250FF9A90077A968 /* URLResponse.swift in Sources */,
+				47FEE2172A66DDAC00646C4E /* NewChatTableDataSource+SearchMessagesExtension.swift in Sources */,
 				475B686C2991A91D000EF29C /* PodcastPlayerCollectionViewItem+Delegates.swift in Sources */,
 				47D03DE2250BB2810077A968 /* AddFriendViewController.swift in Sources */,
 				47C1F1DE2481530000A71610 /* GroupActionMessageCollectionViewItem.swift in Sources */,
@@ -3750,6 +3834,7 @@
 				475B681729915D01000EF29C /* ContentFeed+CoreDataClass.swift in Sources */,
 				47F8824C25656CB0002A7E71 /* SocketParsable.swift in Sources */,
 				474567FD251507F500D66268 /* FileSentCollectionViewItem.swift in Sources */,
+				47FEE21E2A66F35200646C4E /* NewAudioPlayerHelper.swift in Sources */,
 				47AF0D4125508FC900C98398 /* PodcastBoostSentCollectionViewItem.swift in Sources */,
 				4731BE202485309C00BCCA9E /* DirectPaymentSentCollectionViewItem.swift in Sources */,
 				47F8825625656CB0002A7E71 /* SocketIOClientConfiguration.swift in Sources */,
@@ -3759,6 +3844,7 @@
 				47FEE1F42A61B1CA00646C4E /* NewChatViewController+FetchControllerExtension.swift in Sources */,
 				4744FA702469A47A00C5FD94 /* API+TransactionsExtension.swift in Sources */,
 				479F657D2487EAD50015A16A /* DraggingDestinationView.swift in Sources */,
+				47FEE20F2A66DB5E00646C4E /* NewChatTableDataSource+ScrollExtension.swift in Sources */,
 				475B684D29916655000EF29C /* API+HubError.swift in Sources */,
 				47C1F1DA2481310900A71610 /* VideoSentCollectionViewItem.swift in Sources */,
 				CE9BA45F29D76A8E000C8837 /* PodcastDetailSelectionVM.swift in Sources */,
@@ -3802,7 +3888,9 @@
 				47AF0D5025530DDC00C98398 /* PodcastEpisodesHeaderView.swift in Sources */,
 				475B685929917395000EF29C /* PodcastPlayerController+AudioPlayer.swift in Sources */,
 				475B680C29915CCA000EF29C /* ContentBoostAction.swift in Sources */,
+				47FEE20B2A66DB3E00646C4E /* NewChatTableDataSource+CellDelegateExtension.swift in Sources */,
 				4731BE2C24855E2700BCCA9E /* InvoiceReceivedCollectionViewItem.swift in Sources */,
+				47FEE2132A66DD8400646C4E /* NewChatTableDataSource+BotWebViewExtension.swift in Sources */,
 				478ED57B25D41AFD00940132 /* SignupFieldView.swift in Sources */,
 				47C1D608248EABFB00718B28 /* GroupContactCollectionViewItem.swift in Sources */,
 				4731BE232485316200BCCA9E /* PaymentInvoiceBubbleView.swift in Sources */,

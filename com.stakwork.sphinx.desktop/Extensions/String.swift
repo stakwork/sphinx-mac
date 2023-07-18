@@ -248,7 +248,7 @@ extension String {
         return ""
     }
     
-    var stringFirstTribeLink : String {
+    var stringFirstTribeLink : String? {
         for link in self.stringLinks {
             let range = link.range
             let matchString = (self as NSString).substring(with: range) as String
@@ -256,15 +256,15 @@ extension String {
                 return matchString
             }
         }
-        return ""
+        return nil
     }
     
-    var stringFirstPubKey : String {
+    var stringFirstPubKey : String? {
         if let range = self.pubKeyMatches.first?.range {
             let matchString = (self as NSString).substring(with: range) as String
             return matchString
         }
-        return ""
+        return nil
     }
     
     var hasLinks: Bool {
@@ -313,24 +313,33 @@ extension String {
          }
      }
      
-     var pubkeyComponents : (String, String) {
-         get {
-             let components = self.components(separatedBy: ":")
-             if components.count >= 3 {
-                 return (components[0], self.replacingOccurrences(of: components[0] + ":", with: ""))
-             }
-             return (self, "")
-         }
-     }
-     
-     func isExistingContactPubkey() -> (Bool, UserContact?) {
-        let pubkey = self.stringFirstPubKey
-        let (pk, _) = pubkey.pubkeyComponents
-        if let contact = UserContact.getContactWith(pubkey: pk), !contact.fromGroup {
-            return (true, contact)
+    var pubkeyComponents : (String, String) {
+        get {
+            let components = self.components(separatedBy: ":")
+            if components.count >= 3 {
+                return (components[0], self.replacingOccurrences(of: components[0] + ":", with: ""))
+            }
+            return (self, "")
         }
-        if let owner = UserContact.getOwner(), owner.publicKey == pk {
-            return (true, owner)
+    }
+    
+    func withProtocol(protocolString: String) -> String {
+        if !self.contains(protocolString) {
+            let linkString = "\(protocolString)://\(self)"
+            return linkString
+        }
+        return self
+    }
+     
+    func isExistingContactPubkey() -> (Bool, UserContact?) {
+        if let pubkey = self.stringFirstPubKey {
+            let (pk, _) = pubkey.pubkeyComponents
+            if let contact = UserContact.getContactWith(pubkey: pk), !contact.fromGroup {
+                return (true, contact)
+            }
+            if let owner = UserContact.getOwner(), owner.publicKey == pk {
+                return (true, owner)
+            }
         }
         return (false, nil)
     }

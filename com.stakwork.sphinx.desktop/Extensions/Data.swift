@@ -92,7 +92,7 @@ extension Data {
         animation.keyTimes = timesArray
         animation.calculationMode = CAAnimationCalculationMode.discrete
 
-        return animation;
+        return animation
     }
     
     func getPDFDescription(fileName: String, currentPage: Int) -> String? {

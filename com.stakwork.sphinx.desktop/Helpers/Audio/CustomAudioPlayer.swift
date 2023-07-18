@@ -45,6 +45,13 @@ class CustomAudioPlayer : NSObject {
         }
     }
     
+    func play(atTime: Double? = nil) {
+        if let atTime = atTime, atTime > 0 {
+            audioPlayer?.currentTime = TimeInterval(atTime)
+        }
+        audioPlayer?.play()
+    }
+    
     func play() {
         audioPlayer?.play()
     }

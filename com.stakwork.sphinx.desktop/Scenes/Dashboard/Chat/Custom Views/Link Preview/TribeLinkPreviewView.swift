@@ -53,7 +53,7 @@ class TribeLinkPreviewView: LinkPreviewBubbleView, LoadableNib {
     func configurePreview(messageRow: TransactionMessageRow, delegate: LinkPreviewDelegate, doneCompletion: @escaping (Int) -> ()) {
         messageId = messageRow.transactionMessage.id
         
-        let link = messageRow.getMessageContent().stringFirstTribeLink
+        let link = messageRow.getMessageContent().stringFirstTribeLink ?? ""
         loadTribeDetails(link: link, completion: { tribeInfo in
             if let tribeInfo = tribeInfo {
                 messageRow.transactionMessage.tribeInfo = tribeInfo

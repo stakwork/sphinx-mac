@@ -17,6 +17,7 @@ struct PodcastData {
     var currentTime: Int? = nil
     var duration: Int? = nil
     var speed: Float = 1
+    var clipInfo: ClipInfo? = nil
     
     init(
         _ chatId: Int?,
@@ -25,7 +26,8 @@ struct PodcastData {
         _ episodeUrl: URL,
         _ currentTime: Int? = nil,
         _ duration: Int? = nil,
-        _ speed: Float = 1
+        _ speed: Float = 1,
+        _ clipInfo: ClipInfo? = nil
     ) {
         self.chatId = chatId
         self.podcastId = podcastId
@@ -34,6 +36,26 @@ struct PodcastData {
         self.currentTime = currentTime
         self.duration = duration
         self.speed = speed
+        self.clipInfo = clipInfo
+    }
+    
+    struct ClipInfo {
+        var messageId: Int
+        var rowIndex: Int
+        var messageUUID: String?
+        var clipSenderPubKey: String? = nil
+        
+        init(
+            _ messageId: Int,
+            _ rowIndex: Int,
+            _ messageUUID: String? = nil,
+            _ clipSenderPubKey: String? = nil
+        ) {
+            self.messageId = messageId
+            self.rowIndex = rowIndex
+            self.messageUUID = messageUUID
+            self.clipSenderPubKey = clipSenderPubKey
+        }
     }
 }
 
@@ -42,7 +64,8 @@ extension PodcastFeed {
     func getPodcastData(
         episodeId: String? = nil,
         currentTime: Int? = nil,
-        playerSpeed: Float? = nil
+        playerSpeed: Float? = nil,
+        clipInfo: PodcastData.ClipInfo? = nil
     ) -> PodcastData? {
         
         var episode: PodcastEpisode? = nil
@@ -66,7 +89,8 @@ extension PodcastFeed {
             url,
             currentTime,
             episode.duration,
-            playerSpeed ?? self.playerSpeed
+            playerSpeed ?? self.playerSpeed,
+            clipInfo
         )
     }
 }

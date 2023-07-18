@@ -1587,6 +1587,34 @@
                                                                                         <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
                                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                         <subviews>
+                                                                                            <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="pLa-eF-Xok">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
+                                                                                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="cj7-hf-EDH">
+                                                                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
+                                                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                                                    <subviews>
+                                                                                                        <collectionView selectable="YES" id="i4b-mt-d3a">
+                                                                                                            <rect key="frame" x="0.0" y="0.0" width="595" height="336"/>
+                                                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                                                                                            <collectionViewFlowLayout key="collectionViewLayout" id="nYt-YS-CvF">
+                                                                                                                <size key="itemSize" width="50" height="50"/>
+                                                                                                            </collectionViewFlowLayout>
+                                                                                                            <color key="primaryBackgroundColor" name="Body"/>
+                                                                                                        </collectionView>
+                                                                                                    </subviews>
+                                                                                                    <color key="backgroundColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                                </clipView>
+                                                                                                <edgeInsets key="contentInsets" left="0.0" right="5" top="10" bottom="10"/>
+                                                                                                <edgeInsets key="scrollerInsets" left="0.0" right="-4" top="0.0" bottom="0.0"/>
+                                                                                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="ds3-83-N9e">
+                                                                                                    <rect key="frame" x="-100" y="-100" width="600" height="16"/>
+                                                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                                                </scroller>
+                                                                                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="DbG-iI-1Vx">
+                                                                                                    <rect key="frame" x="818" y="10" width="16" height="296"/>
+                                                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                                                </scroller>
+                                                                                            </scrollView>
                                                                                             <scrollView hidden="YES" wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YNj-1S-7Oo">
                                                                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="240"/>
                                                                                                 <clipView key="contentView" id="8Oj-wf-kqB">
@@ -1617,7 +1645,11 @@
                                                                                             </scrollView>
                                                                                         </subviews>
                                                                                         <constraints>
+                                                                                            <constraint firstAttribute="trailing" secondItem="pLa-eF-Xok" secondAttribute="trailing" id="Juk-cf-Nz8"/>
+                                                                                            <constraint firstItem="pLa-eF-Xok" firstAttribute="leading" secondItem="JBN-Ay-LgI" secondAttribute="leading" id="Lth-ZR-1cw"/>
+                                                                                            <constraint firstItem="pLa-eF-Xok" firstAttribute="top" secondItem="JBN-Ay-LgI" secondAttribute="top" id="OJx-es-wNx"/>
                                                                                             <constraint firstAttribute="trailing" secondItem="YNj-1S-7Oo" secondAttribute="trailing" id="Pub-tu-ys0"/>
+                                                                                            <constraint firstAttribute="bottom" secondItem="pLa-eF-Xok" secondAttribute="bottom" id="g7Z-Cc-3Pz"/>
                                                                                             <constraint firstItem="YNj-1S-7Oo" firstAttribute="leading" secondItem="JBN-Ay-LgI" secondAttribute="leading" id="pkb-Mm-h1q"/>
                                                                                             <constraint firstAttribute="bottom" secondItem="YNj-1S-7Oo" secondAttribute="bottom" id="sPC-Rq-O3d"/>
                                                                                         </constraints>
@@ -1737,6 +1769,8 @@
                     </view>
                     <connections>
                         <outlet property="chatBottomView" destination="VsO-VQ-Xhc" id="cXK-MW-BYo"/>
+                        <outlet property="chatCollectionView" destination="i4b-mt-d3a" id="BYY-lT-F1M"/>
+                        <outlet property="chatScrollView" destination="pLa-eF-Xok" id="AOl-wj-U2J"/>
                         <outlet property="chatTopView" destination="ffC-9B-Cdx" id="YPh-Ow-0Fs"/>
                         <outlet property="childViewControllerContainer" destination="wD4-1y-bkn" id="X43-AB-cYK"/>
                         <outlet property="mentionsCollectionView" destination="llZ-ed-gHt" id="7m9-3j-WqT"/>

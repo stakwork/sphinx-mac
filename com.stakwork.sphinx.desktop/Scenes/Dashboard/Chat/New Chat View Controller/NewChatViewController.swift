@@ -10,16 +10,18 @@ import Cocoa
 
 class NewChatViewController: DashboardSplittedViewController {
     
+    @IBOutlet weak var podcastPlayerView: NSView!
+    
     @IBOutlet weak var chatTopView: ChatTopView!
     @IBOutlet weak var chatBottomView: ChatBottomView!
-    @IBOutlet weak var podcastPlayerView: NSView!
+    @IBOutlet weak var chatScrollView: NSScrollView!
+    @IBOutlet weak var chatCollectionView: NSCollectionView!
     
     @IBOutlet weak var mentionsScrollView: NSScrollView!
     @IBOutlet weak var mentionsCollectionView: NSCollectionView!
     @IBOutlet weak var mentionsScrollViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var childViewControllerContainer: ChildVCContainer!
-    
     @IBOutlet weak var pinMessageDetailView: PinMessageDetailView!
     @IBOutlet weak var pinMessageNotificationView: PinNotificationView!
     
