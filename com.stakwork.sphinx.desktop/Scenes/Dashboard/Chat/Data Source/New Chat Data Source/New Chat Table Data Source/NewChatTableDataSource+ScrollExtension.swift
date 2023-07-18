@@ -8,7 +8,11 @@
 
 import Cocoa
 
-extension NewChatTableDataSource: NSCollectionViewDelegate {    
+extension NewChatTableDataSource: NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
+        return CGSize(width: collectionView.frame.width, height: 100.0)
+    }
+    
 //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
 //        let difference: CGFloat = 16
 //        let scrolledToTop = tableView.contentOffset.y > tableView.contentSize.height - tableView.frame.size.height - difference

@@ -14,9 +14,6 @@ extension NewChatTableDataSource {
     enum CollectionViewSection: Int, CaseIterable {
         case messages
     }
-
-//    typealias BubbleCell = NewMessageTableViewCell
-//    typealias NoBubbleCell = MessageNoBubbleTableViewCell
     
     typealias DataSource = NSCollectionViewDiffableDataSource<CollectionViewSection, MessageTableCellState>
     typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<CollectionViewSection, MessageTableCellState>
@@ -71,15 +68,15 @@ extension NewChatTableDataSource {
     ) -> DataSource.ItemProvider {
         { (collectionView, indexPath, dataSourceItem) -> NSCollectionViewItem in
             
-//            var cell: ChatTableViewCellProtocol? = nil
+            var cell: ChatCollectionViewItemProtocol? = nil
 //            var mutableDataSourceItem = dataSourceItem
-//
+
 //            if let _ = mutableDataSourceItem.bubble {
 //                if mutableDataSourceItem.isTextOnlyMessage {
-//                    cell = tableView.dequeueReusableCell(
-//                        withIdentifier: "NewOnlyTextMessageTableViewCell",
-//                        for: indexPath
-//                    ) as! NewOnlyTextMessageTableViewCell
+                    cell = collectionView.makeItem(
+                        withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "NewOnlyTextMessageCollectionViewitem"),
+                        for: indexPath
+                    ) as? ChatCollectionViewItemProtocol
 //                } else {
 //                    cell = tableView.dequeueReusableCell(
 //                        withIdentifier: "NewMessageTableViewCell",
@@ -92,30 +89,26 @@ extension NewChatTableDataSource {
 //                    for: indexPath
 //                ) as! MessageNoBubbleTableViewCell
 //            }
-//
-//            let mediaData = (dataSourceItem.messageId != nil) ? self.mediaCached[dataSourceItem.messageId!] : nil
-//            let tribeData = (dataSourceItem.linkTribe?.uuid != nil) ? self.preloaderHelper.tribesData[dataSourceItem.linkTribe!.uuid] : nil
-//            let linkData = (dataSourceItem.linkWeb?.link != nil) ? self.preloaderHelper.linksData[dataSourceItem.linkWeb!.link] : nil
-//            let botWebViewData = (dataSourceItem.messageId != nil) ? self.botsWebViewData[dataSourceItem.messageId!] : nil
-//            let uploadProgressData = (dataSourceItem.messageId != nil) ? self.uploadingProgress[dataSourceItem.messageId!] : nil
-//
-//            cell?.configureWith(
-//                messageCellState: dataSourceItem,
-//                mediaData: mediaData,
-//                tribeData: tribeData,
-//                linkData: linkData,
-//                botWebViewData: botWebViewData,
-//                uploadProgressData: uploadProgressData,
-//                delegate: self,
-//                searchingTerm: self.searchingTerm,
-//                indexPath: indexPath
-//            )
-//
-//            cell?.contentView.transform = CGAffineTransform(scaleX: 1, y: -1)
-//
-//            return (cell as? UITableViewCell) ?? NSCollectionViewItem()
-            
-            return NSCollectionViewItem()
+
+            let mediaData = (dataSourceItem.messageId != nil) ? self.mediaCached[dataSourceItem.messageId!] : nil
+            let tribeData = (dataSourceItem.linkTribe?.uuid != nil) ? self.preloaderHelper.tribesData[dataSourceItem.linkTribe!.uuid] : nil
+            let linkData = (dataSourceItem.linkWeb?.link != nil) ? self.preloaderHelper.linksData[dataSourceItem.linkWeb!.link] : nil
+            let botWebViewData = (dataSourceItem.messageId != nil) ? self.botsWebViewData[dataSourceItem.messageId!] : nil
+            let uploadProgressData = (dataSourceItem.messageId != nil) ? self.uploadingProgress[dataSourceItem.messageId!] : nil
+
+            cell?.configureWith(
+                messageCellState: dataSourceItem,
+                mediaData: mediaData,
+                tribeData: tribeData,
+                linkData: linkData,
+                botWebViewData: botWebViewData,
+                uploadProgressData: uploadProgressData,
+                delegate: self,
+                searchingTerm: self.searchingTerm,
+                indexPath: indexPath
+            )
+
+            return (cell as? NSCollectionViewItem) ?? NSCollectionViewItem()
         }
     }
 }
@@ -176,7 +169,7 @@ extension NewChatTableDataSource {
                         owner: owner,
                         contact: contact,
                         tribeAdmin: admin,
-                        viewWidth: 0.0,
+                        viewWidth: collectionView.frame.width,
                         separatorDate: separatorDate,
                         invoiceData: (invoiceData.0 > 0, invoiceData.1 > 0)
                     ),
@@ -259,8 +252,8 @@ extension NewChatTableDataSource {
         groupingDate: inout Date?
     ) -> (MessageTableCellState.BubbleState?, Date?) {
         
-        let previousMessage = (index > 0) ? messages[index - 1] : nil
-        let nextMessage = (index < messages.count - 1) ? messages[index + 1] : nil
+        let previousMessage = (index < messages.count - 1) ? messages[index + 1] : nil
+        let nextMessage = (index > 0) ? messages[index - 1] : nil
         
         var separatorDate: Date? = nil
         
@@ -537,7 +530,7 @@ extension NewChatTableDataSource : NSFetchedResultsControllerDelegate {
             
             if controller == messagesResultsController {
                 if let messages = firstSection.objects as? [TransactionMessage] {
-                    self.messagesArray = messages.reversed()
+                    self.messagesArray = messages.filter { $0.isTextMessage() }
                     
                     if !(self.delegate?.isOnStandardMode() ?? true) {
                         return

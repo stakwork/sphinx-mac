@@ -34,6 +34,7 @@ class NewChatViewController: DashboardSplittedViewController {
     
     let messageBubbleHelper = NewMessageBubbleHelper()
     
+    var chatTableDataSource: NewChatTableDataSource? = nil
     var chatMentionAutocompleteDataSource : ChatMentionAutocompleteDataSource? = nil
     var podcastPlayerVC: NewPodcastPlayerViewController? = nil
     
@@ -59,6 +60,7 @@ class NewChatViewController: DashboardSplittedViewController {
         
         setupData()
         configureFetchResultsController()
+        configureCollectionView()
     }
     
     override func viewDidAppear() {
@@ -66,6 +68,10 @@ class NewChatViewController: DashboardSplittedViewController {
         
         fetchTribeData()
         configureMentionAutocompleteTableView()
+    }
+    
+    override func viewDidLayout() {
+        chatTableDataSource?.updateFrame()
     }
     
     func setupData() {

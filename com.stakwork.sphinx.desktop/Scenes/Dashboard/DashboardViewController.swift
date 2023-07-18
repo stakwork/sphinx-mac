@@ -287,12 +287,24 @@ extension DashboardViewController : NSSplitViewDelegate {
         
         if let window = view.window {
             let (minWidth, _) = getWindowMinWidth(leftColumnVisible: !leftSplittedView.isHidden)
-            window.minSize = CGSize(width: minWidth, height: kWindowMinHeight)
+            
+            window.minSize = CGSize(
+                width: minWidth,
+                height: kWindowMinHeight
+            )
             
             if window.frame.width < minWidth {
-                let newFrame = CGRect(x: window.frame.origin.x, y: window.frame.origin.y, width: minWidth, height: window.frame.height)
+                
+                let newFrame = CGRect(
+                    x: window.frame.origin.x,
+                    y: window.frame.origin.y,
+                    width: minWidth,
+                    height: window.frame.height
+                )
+                
                 view.window?.setFrame(newFrame, display: true)
             }
+            
             detailViewController?.toggleExpandMenuButton(show: leftSplittedView.isHidden)
         }
     }

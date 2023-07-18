@@ -199,6 +199,54 @@ extension NSView {
         self.wantsLayer = true
         self.layer?.insertSublayer(shape, at: 0)
     }
+    
+    func drawReceivedBubbleArrow(
+        color: NSColor,
+        arrowWidth: CGFloat = 4
+    ) {
+        let arrowBezierPath = NSBezierPath()
+        
+        arrowBezierPath.move(to: CGPoint(x: 0, y: self.frame.height))
+        arrowBezierPath.line(to: CGPoint(x: self.frame.width, y: self.frame.height))
+        arrowBezierPath.line(to: CGPoint(x: self.frame.width, y: 0))
+        arrowBezierPath.line(to: CGPoint(x: arrowWidth, y: 0))
+        arrowBezierPath.line(to: CGPoint(x: 0, y: self.frame.height))
+        arrowBezierPath.close()
+        
+        let messageArrowLayer = CAShapeLayer()
+        messageArrowLayer.path = arrowBezierPath.cgPath
+        
+        messageArrowLayer.frame = self.bounds
+        messageArrowLayer.fillColor = color.cgColor
+        messageArrowLayer.name = "arrow"
+        
+        self.wantsLayer = true
+        self.layer?.addSublayer(messageArrowLayer)
+    }
+    
+    func drawSentBubbleArrow(
+        color: NSColor,
+        arrowWidth: CGFloat = 7
+    ) {
+        let arrowBezierPath = NSBezierPath()
+        
+        arrowBezierPath.move(to: CGPoint(x: 0, y: self.frame.height))
+        arrowBezierPath.line(to: CGPoint(x: self.frame.width, y: self.frame.height))
+        arrowBezierPath.line(to: CGPoint(x: self.frame.width - arrowWidth, y: 0))
+        arrowBezierPath.line(to: CGPoint(x: 0, y: 0))
+        arrowBezierPath.line(to: CGPoint(x: 0, y: self.frame.height))
+        arrowBezierPath.close()
+        
+        let messageArrowLayer = CAShapeLayer()
+        messageArrowLayer.path = arrowBezierPath.cgPath
+        
+        messageArrowLayer.frame = self.bounds
+        messageArrowLayer.fillColor = color.cgColor
+        messageArrowLayer.name = "arrow"
+        
+        self.wantsLayer = true
+        self.layer?.addSublayer(messageArrowLayer)
+    }
 }
 
 

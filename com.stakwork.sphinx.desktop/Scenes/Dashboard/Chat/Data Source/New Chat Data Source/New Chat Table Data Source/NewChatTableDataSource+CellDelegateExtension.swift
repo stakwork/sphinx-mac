@@ -11,8 +11,7 @@ import SwiftLinkPreview
 import AVKit
 
 ///Loading content in background
-//extension NewChatTableDataSource : NewMessageTableViewCellDelegate {
-extension NewChatTableDataSource {
+extension NewChatTableDataSource : ChatCollectionViewItemDelegate {
     func shouldReplyToMessageWith(messageId: Int, and rowIndex: Int) {
         if let tableCellState = getTableCellStateFor(
             messageId: messageId,

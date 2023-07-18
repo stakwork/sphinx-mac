@@ -107,9 +107,9 @@ class NewChatTableDataSource : NSObject {
         contact: UserContact?,
         collectionView : NSCollectionView,
         headerImageView: NSImageView?,
-        bottomView: NSView,
-        webView: WKWebView,
-        delegate: NewChatTableDataSourceDelegate?
+        bottomView: NSView
+//        webView: WKWebView,
+//        delegate: NewChatTableDataSourceDelegate?
     ) {
         super.init()
         
@@ -119,13 +119,17 @@ class NewChatTableDataSource : NSObject {
         self.collectionView = collectionView
         self.headerImage = headerImageView?.image
         self.bottomView = bottomView
-        self.webView = webView
+//        self.webView = webView
         
-        self.delegate = delegate
+//        self.delegate = delegate
         
         configureTableView()
         configureDataSource()
         processChatAliases()
+    }
+    
+    func updateFrame() {
+        self.collectionView.collectionViewLayout?.invalidateLayout()
     }
     
     func processChatAliases() {
@@ -139,34 +143,28 @@ class NewChatTableDataSource : NSObject {
     }
     
     func configureTableView() {
-//        collectionView.rowHeight = UITableView.automaticDimension
-//        collectionView.estimatedItemSize = CGSize(width: collectionView.frame.width, height: 200.0)
-//        collectionView.contentInset.top = Constants.kMargin
-//        collectionView.transform = CGAffineTransform(scaleX: 1, y: -1)
-        
-        let flowLayout = NSCollectionViewFlowLayout()
-        flowLayout.sectionInset = NSEdgeInsets(
-            top: Constants.kMargin,
-            left: Constants.kMargin,
-            bottom: 0.0,
-            right: Constants.kMargin
-        )
-        flowLayout.minimumInteritemSpacing = 0.0
-        flowLayout.minimumLineSpacing = 0.0
-        flowLayout.estimatedItemSize = CGSize(
-            width: collectionView.frame.width,
-            height: 200.0
-        )
-        
-        collectionView.collectionViewLayout = flowLayout
+//        let flowLayout = NSCollectionViewFlowLayout()
+//        flowLayout.sectionInset = NSEdgeInsets(
+//            top: Constants.kMargin,
+//            left: 0.0,
+//            bottom: 0.0,
+//            right: 0.0
+//        )
+//        flowLayout.minimumInteritemSpacing = 0.0
+//        flowLayout.minimumLineSpacing = 0.0
+
+//        collectionView.superview?.wantsLayer = true
+//        collectionView.wantsLayer = true
+//        collectionView.layer?.setAffineTransform(
+//            CGAffineTransform(scaleX: 1, y: -1)
+//        )
+        collectionView.layer?.backgroundColor = NSColor.green.cgColor
+//        collectionView.collectionViewLayout = flowLayout
         
         collectionView.delegate = self
         collectionView.reloadData()
         
-//        collectionView.registerItem(MessageSentCollectionViewItem.self)
-        
-//        collectionView.registerCell(NewMessageTableViewCell.self)
-//        collectionView.registerCell(MessageNoBubbleTableViewCell.self)
-//        collectionView.registerCell(NewOnlyTextMessageTableViewCell.self)
+        collectionView.registerItem(NewOnlyTextMessageCollectionViewitem.self)
+        collectionView.registerItem(ChatMentionAutocompleteCell.self)
     }
 }
