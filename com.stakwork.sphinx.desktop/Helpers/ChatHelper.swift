@@ -553,8 +553,15 @@ class ChatHelper {
         }
     }
     
-    func getRowHeightFor(_ tableCellState: MessageTableCellState) -> CGFloat {
+    func getRowHeightFor(
+        _ tableCellState: MessageTableCellState,
+        maxWidth: CGFloat
+    ) -> CGFloat {
         var mutableTableCellState = tableCellState
+        
+        if let _ = mutableTableCellState.dateSeparator {
+            return DateSeparatorView.kViewHeight
+        }
         
         let kGeneralMargin: CGFloat = 2.0
         let kLabelMargin: CGFloat = 16.0
@@ -566,7 +573,7 @@ class ChatHelper {
         if let text = mutableTableCellState.messageContent?.text {
             let attrs = [NSAttributedString.Key.font: Constants.kMessageFont]
             let attributedString = NSAttributedString(string: text, attributes: attrs)
-            textHeight = attributedString.height(forWidth: 500)
+            textHeight = attributedString.height(forWidth: maxWidth)
         }
         
         if let grouping = mutableTableCellState.bubble?.grouping, grouping.isGroupedAtTop() {

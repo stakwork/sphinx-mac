@@ -156,7 +156,7 @@ class NewChatTableDataSource : NSObject {
         collectionView.reloadData()
         
         collectionView.registerItem(NewOnlyTextMessageCollectionViewitem.self)
-        collectionView.registerItem(ChatMentionAutocompleteCell.self)
+        collectionView.registerItem(MessageNoBubbleCollectionViewItem.self)
         
         NotificationCenter.default.addObserver(
             forName: NSView.boundsDidChangeNotification,

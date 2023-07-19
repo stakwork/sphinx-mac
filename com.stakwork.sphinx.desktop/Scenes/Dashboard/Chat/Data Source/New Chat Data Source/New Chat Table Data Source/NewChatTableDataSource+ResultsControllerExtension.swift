@@ -68,9 +68,9 @@ extension NewChatTableDataSource {
         { (collectionView, indexPath, dataSourceItem) -> NSCollectionViewItem in
             
             var cell: ChatCollectionViewItemProtocol? = nil
-//            var mutableDataSourceItem = dataSourceItem
+            var mutableDataSourceItem = dataSourceItem
 
-//            if let _ = mutableDataSourceItem.bubble {
+            if let _ = mutableDataSourceItem.bubble {
 //                if mutableDataSourceItem.isTextOnlyMessage {
                     cell = collectionView.makeItem(
                         withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "NewOnlyTextMessageCollectionViewitem"),
@@ -82,12 +82,12 @@ extension NewChatTableDataSource {
 //                        for: indexPath
 //                    ) as! NewMessageTableViewCell
 //                }
-//            } else {
-//                cell = tableView.dequeueReusableCell(
-//                    withIdentifier: "MessageNoBubbleTableViewCell",
-//                    for: indexPath
-//                ) as! MessageNoBubbleTableViewCell
-//            }
+            } else {
+                cell = collectionView.makeItem(
+                    withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MessageNoBubbleCollectionViewItem"),
+                    for: indexPath
+                ) as? ChatCollectionViewItemProtocol
+            }
 
             let mediaData = (dataSourceItem.messageId != nil) ? self.mediaCached[dataSourceItem.messageId!] : nil
             let tribeData = (dataSourceItem.linkTribe?.uuid != nil) ? self.preloaderHelper.tribesData[dataSourceItem.linkTribe!.uuid] : nil
@@ -162,19 +162,19 @@ extension NewChatTableDataSource {
                 groupingDate: &groupingDate
             )
             
-//            if let separatorDate = bubbleStateAndDate.1 {
-//                array.append(
-//                    MessageTableCellState(
-//                        chat: chat,
-//                        owner: owner,
-//                        contact: contact,
-//                        tribeAdmin: admin,
-//                        viewWidth: collectionView.frame.width,
-//                        separatorDate: separatorDate,
-//                        invoiceData: (invoiceData.0 > 0, invoiceData.1 > 0)
-//                    )
-//                )
-//            }
+            if let separatorDate = bubbleStateAndDate.1 {
+                array.append(
+                    MessageTableCellState(
+                        chat: chat,
+                        owner: owner,
+                        contact: contact,
+                        tribeAdmin: admin,
+                        viewWidth: collectionView.frame.width,
+                        separatorDate: separatorDate,
+                        invoiceData: (invoiceData.0 > 0, invoiceData.1 > 0)
+                    )
+                )
+            }
             
             let replyingMessage = (message.replyUUID != nil) ? replyingMessagesMap[message.replyUUID!] : nil
             let boostsMessages = (message.uuid != nil) ? (boostMessagesMap[message.uuid!] ?? []) : []
@@ -256,9 +256,9 @@ extension NewChatTableDataSource {
         
         var separatorDate: Date? = nil
         
-        if let nextMessageDate = nextMessage?.date, let date = message.date {
-            if Date.isDifferentDay(firstDate: nextMessageDate, secondDate: date) {
-                separatorDate = nextMessageDate
+        if let previousMessageDate = previousMessage?.date, let date = message.date {
+            if Date.isDifferentDay(firstDate: previousMessageDate, secondDate: date) {
+                separatorDate = message.date
             }
         } else if index == 0 {
             separatorDate = message.date
