@@ -1604,6 +1604,7 @@
                                                                                                     </subviews>
                                                                                                     <color key="backgroundColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                 </clipView>
+                                                                                                <edgeInsets key="contentInsets" left="0.0" right="0.0" top="8" bottom="8"/>
                                                                                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="ds3-83-N9e">
                                                                                                     <rect key="frame" x="-100" y="-100" width="600" height="16"/>
                                                                                                     <autoresizingMask key="autoresizingMask"/>

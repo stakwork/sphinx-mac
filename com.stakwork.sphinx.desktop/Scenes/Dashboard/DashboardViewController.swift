@@ -36,6 +36,8 @@ class DashboardViewController: NSViewController {
     
     public static let kPodcastPlayerWidth: CGFloat = 350
     
+    var resizeTimer : Timer? = nil
+    
     static func instantiate() -> DashboardViewController {
         let viewController = StoryboardScene.Dashboard.dashboardViewController.instantiate()
         return viewController
@@ -282,10 +284,10 @@ class DashboardViewController: NSViewController {
 
 extension DashboardViewController : NSSplitViewDelegate {
     func splitViewDidResizeSubviews(_ notification: Notification) {
-        newDetailViewController?.view.frame = rightSplittedView.bounds
-        listViewController?.view.frame = leftSplittedView.bounds
-        
         if let window = view.window {
+            newDetailViewController?.view.frame = rightSplittedView.bounds
+            listViewController?.view.frame = leftSplittedView.bounds
+            
             let (minWidth, _) = getWindowMinWidth(leftColumnVisible: !leftSplittedView.isHidden)
             
             window.minSize = CGSize(
@@ -306,7 +308,21 @@ extension DashboardViewController : NSSplitViewDelegate {
             }
             
             detailViewController?.toggleExpandMenuButton(show: leftSplittedView.isHidden)
+            
+            resizeTimer?.invalidate()
+            resizeTimer = Timer.scheduledTimer(
+                timeInterval: 0.05,
+                target: self,
+                selector: #selector(resizeSubviews),
+                userInfo: nil,
+                repeats: false
+            )
         }
+    }
+    
+    @objc func resizeSubviews() {
+        newDetailViewController?.view.frame = rightSplittedView.bounds
+        listViewController?.view.frame = leftSplittedView.bounds
     }
 }
 

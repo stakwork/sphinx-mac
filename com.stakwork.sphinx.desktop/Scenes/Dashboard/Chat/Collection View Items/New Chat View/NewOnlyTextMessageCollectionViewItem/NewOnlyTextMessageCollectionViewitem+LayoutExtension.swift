@@ -13,7 +13,10 @@ extension NewOnlyTextMessageCollectionViewitem {
         statusHeader: BubbleMessageLayoutState.StatusHeader?
     ) {
         if let statusHeader = statusHeader {
-//            statusHeaderView.configureWith(statusHeader: statusHeader, uploadProgressData: nil)
+            statusHeaderView.configureWith(
+                statusHeader: statusHeader,
+                uploadProgressData: nil
+            )
         }
     }
     
@@ -75,7 +78,13 @@ extension NewOnlyTextMessageCollectionViewitem {
     func configureWith(
         avatarImage: BubbleMessageLayoutState.AvatarImage?
     ) {
-//        if let avatarImage = avatarImage {
+        if let avatarImage = avatarImage {
+            chatAvatarView.configureForUserWith(
+                color: avatarImage.color,
+                alias: avatarImage.alias,
+                picture: avatarImage.imageUrl
+            )
+            
 //            chatAvatarView.configureForUserWith(
 //                color: avatarImage.color,
 //                alias: avatarImage.alias,
@@ -83,9 +92,9 @@ extension NewOnlyTextMessageCollectionViewitem {
 //                image: avatarImage.image,
 //                and: self
 //            )
-//        } else {
-//            chatAvatarView.resetView()
-//        }
+        } else {
+            chatAvatarView.resetView()
+        }
     }
     
     func configureWith(
@@ -112,7 +121,7 @@ extension NewOnlyTextMessageCollectionViewitem {
         let bubbleColor = isOutgoing ? NSColor.Sphinx.SentMsgBG : NSColor.Sphinx.ReceivedMsgBG
         bubbleOnlyText.fillColor = bubbleColor
         
-//        statusHeaderView.configureWith(direction: direction)
+        statusHeaderView.configureWith(direction: direction)
     }
     
     func configureWith(

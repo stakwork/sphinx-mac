@@ -311,7 +311,7 @@ class ChatViewController: DashboardSplittedViewController {
     func resetHeader() {
         toggleRecordButton(enable: false)
         toggleControls(enable: false)
-        chatAvatarView.setImages(object: nil)
+        chatAvatarView.loadWith(nil)
         
         pinMessageBarViewHeightConstraint.constant = 0
         pinMessageBarView.superview?.layoutSubtreeIfNeeded()
@@ -410,7 +410,7 @@ class ChatViewController: DashboardSplittedViewController {
             nameButton.title = contact.getName()
         }
         
-        chatAvatarView.setImages(object: contact ?? chat)
+        chatAvatarView.loadWith(contact ?? chat)
         
         let isEncrypted = (chat?.isEncrypted() ?? contact?.hasEncryptionKey()) ?? false
         lockSign.stringValue = isEncrypted ? "lock" : "lock_open"

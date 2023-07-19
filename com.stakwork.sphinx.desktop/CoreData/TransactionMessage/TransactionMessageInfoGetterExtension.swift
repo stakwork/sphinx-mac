@@ -314,6 +314,10 @@ extension TransactionMessage {
         return getType() == TransactionMessageType.message.rawValue
     }
     
+    func isOnlyText() -> Bool {
+        return getType() == TransactionMessageType.message.rawValue && !isCallLink() && !isDeleted()
+    }
+    
     func isAttachment() -> Bool {
         return type == TransactionMessageType.attachment.rawValue
     }

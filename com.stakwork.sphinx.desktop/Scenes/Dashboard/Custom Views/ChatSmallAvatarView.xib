@@ -33,7 +33,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="68" height="68"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CAX-gQ-IWg">
-                            <rect key="frame" x="24" y="27" width="21" height="18"/>
+                            <rect key="frame" x="24" y="25" width="21" height="18"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="TT" id="poB-6C-4Wx">
                                 <font key="font" size="14" name="Montserrat-Regular"/>
                                 <color key="textColor" name="sphinxWhite"/>
@@ -43,7 +43,7 @@
                     </subviews>
                     <constraints>
                         <constraint firstItem="CAX-gQ-IWg" firstAttribute="centerX" secondItem="YYh-BM-9Dh" secondAttribute="centerX" id="pSQ-GV-oSJ"/>
-                        <constraint firstItem="CAX-gQ-IWg" firstAttribute="centerY" secondItem="YYh-BM-9Dh" secondAttribute="centerY" constant="-2" id="pUP-0o-GGt"/>
+                        <constraint firstItem="CAX-gQ-IWg" firstAttribute="centerY" secondItem="YYh-BM-9Dh" secondAttribute="centerY" id="pUP-0o-GGt"/>
                     </constraints>
                 </customView>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="b8h-ag-L0G" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">

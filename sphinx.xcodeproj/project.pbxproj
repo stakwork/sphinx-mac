@@ -515,6 +515,10 @@
 		47D76E6B27F12B1C000DC021 /* API+AuthenticationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D76E6A27F12B1C000DC021 /* API+AuthenticationExtension.swift */; };
 		47D7D8E424620B520089C6EE /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D7D8E324620B520089C6EE /* KeychainManager.swift */; };
 		47DE1BF02A67139D0029597B /* NewOnlyTextMessageCollectionViewitem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47DE1BEF2A67139D0029597B /* NewOnlyTextMessageCollectionViewitem.xib */; };
+		47DE1BF42A6813BA0029597B /* StatusHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1BF32A6813BA0029597B /* StatusHeaderView.swift */; };
+		47DE1BF62A6813C50029597B /* StatusHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47DE1BF52A6813C50029597B /* StatusHeaderView.xib */; };
+		47DE1BFB2A681D8C0029597B /* String+Geometrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1BFA2A681D8C0029597B /* String+Geometrics.m */; };
+		47DE1BFC2A681EE80029597B /* String+Geometrics.h in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1BF92A681D8C0029597B /* String+Geometrics.h */; };
 		47E771172472C1B500C9CFEB /* ChatDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E771162472C1B500C9CFEB /* ChatDataSource.swift */; };
 		47E771212472C26200C9CFEB /* MessageReceivedCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E7711F2472C26200C9CFEB /* MessageReceivedCollectionViewItem.swift */; };
 		47E771222472C26200C9CFEB /* MessageReceivedCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47E771202472C26200C9CFEB /* MessageReceivedCollectionViewItem.xib */; };
@@ -1279,6 +1283,11 @@
 		47D76E6A27F12B1C000DC021 /* API+AuthenticationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+AuthenticationExtension.swift"; sourceTree = "<group>"; };
 		47D7D8E324620B520089C6EE /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		47DE1BEF2A67139D0029597B /* NewOnlyTextMessageCollectionViewitem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewOnlyTextMessageCollectionViewitem.xib; sourceTree = "<group>"; };
+		47DE1BF32A6813BA0029597B /* StatusHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusHeaderView.swift; sourceTree = "<group>"; };
+		47DE1BF52A6813C50029597B /* StatusHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusHeaderView.xib; sourceTree = "<group>"; };
+		47DE1BF82A681D8B0029597B /* Sphinx-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sphinx-Bridging-Header.h"; sourceTree = "<group>"; };
+		47DE1BF92A681D8C0029597B /* String+Geometrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "String+Geometrics.h"; sourceTree = "<group>"; };
+		47DE1BFA2A681D8C0029597B /* String+Geometrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "String+Geometrics.m"; sourceTree = "<group>"; };
 		47E771162472C1B500C9CFEB /* ChatDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDataSource.swift; sourceTree = "<group>"; };
 		47E7711F2472C26200C9CFEB /* MessageReceivedCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageReceivedCollectionViewItem.swift; sourceTree = "<group>"; };
 		47E771202472C26200C9CFEB /* MessageReceivedCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageReceivedCollectionViewItem.xib; sourceTree = "<group>"; };
@@ -1737,6 +1746,7 @@
 		4734D3942417E3D400D6957E /* com.stakwork.sphinx.desktop */ = {
 			isa = PBXGroup;
 			children = (
+				47DE1BF72A681D7F0029597B /* Objective-C */,
 				4720990C24834DEA00426028 /* Libraries */,
 				4703F0552481C5F600282186 /* Fonts */,
 				479751E3246D909100D2106B /* Services */,
@@ -2770,6 +2780,33 @@
 			path = Keychain;
 			sourceTree = "<group>";
 		};
+		47DE1BF12A68138B0029597B /* New Chat View */ = {
+			isa = PBXGroup;
+			children = (
+				47DE1BF22A6813920029597B /* Status Header */,
+			);
+			path = "New Chat View";
+			sourceTree = "<group>";
+		};
+		47DE1BF22A6813920029597B /* Status Header */ = {
+			isa = PBXGroup;
+			children = (
+				47DE1BF32A6813BA0029597B /* StatusHeaderView.swift */,
+				47DE1BF52A6813C50029597B /* StatusHeaderView.xib */,
+			);
+			path = "Status Header";
+			sourceTree = "<group>";
+		};
+		47DE1BF72A681D7F0029597B /* Objective-C */ = {
+			isa = PBXGroup;
+			children = (
+				47DE1BF92A681D8C0029597B /* String+Geometrics.h */,
+				47DE1BFA2A681D8C0029597B /* String+Geometrics.m */,
+				47DE1BF82A681D8B0029597B /* Sphinx-Bridging-Header.h */,
+			);
+			path = "Objective-C";
+			sourceTree = "<group>";
+		};
 		47E771152472C1A700C9CFEB /* Data Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -2954,6 +2991,7 @@
 		47E771352472E44600C9CFEB /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				47DE1BF12A68138B0029597B /* New Chat View */,
 				4708C2112A5884FC00274AD4 /* Chat View */,
 				474C7A3D28D211AB007A3E17 /* Notifications */,
 				47F88261256D3963002A7E71 /* Boosting Messages */,
@@ -3240,6 +3278,7 @@
 				TargetAttributes = {
 					4734D3912417E3D400D6957E = {
 						CreatedOnToolsVersion = 11.3;
+						LastSwiftMigration = 1420;
 					};
 					4734D3A62417E3D500D6957E = {
 						CreatedOnToolsVersion = 11.3;
@@ -3309,6 +3348,7 @@
 				4726A43D24C628DA005A66B4 /* tweet.caf in Resources */,
 				474F67612486929600CE6016 /* PaidMessageReceivedCollectionViewItem.xib in Resources */,
 				47975203246F018300D2106B /* ChatAvatarView.xib in Resources */,
+				47DE1BF62A6813C50029597B /* StatusHeaderView.xib in Resources */,
 				470396FE25377683007F9C23 /* PodcastCommentSentCollectionViewItem.xib in Resources */,
 				474F67532486779D00CE6016 /* JoinVideoCallView.xib in Resources */,
 				478ED5CC25D6FD3400940132 /* FriendMessageView.xib in Resources */,
@@ -3498,8 +3538,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47DE1BFC2A681EE80029597B /* String+Geometrics.h in Sources */,
 				47F8826025656F26002A7E71 /* DayHeaderCollectionViewItem.swift in Sources */,
 				47B5508724895D51000514BF /* SplashViewController.swift in Sources */,
+				47DE1BFB2A681D8C0029597B /* String+Geometrics.m in Sources */,
 				47E771342472D17700C9CFEB /* CommonChatCollectionViewItem.swift in Sources */,
 				47D76E6B27F12B1C000DC021 /* API+AuthenticationExtension.swift in Sources */,
 				47308E2325083FCF00FFAC6F /* API+GiphyExtension.swift in Sources */,
@@ -3546,6 +3588,7 @@
 				474E333C247FF4AD00F7F603 /* CommonPictureCollectionViewItem.swift in Sources */,
 				475B684629915E12000EF29C /* PodcastFeed+Properties.swift in Sources */,
 				47F8825125656CB0002A7E71 /* SocketEngineWebsocket.swift in Sources */,
+				47DE1BF42A6813BA0029597B /* StatusHeaderView.swift in Sources */,
 				47AE2468287F1F4700EF42BD /* API+RedeemSatsExtension.swift in Sources */,
 				478ED57725D41ACB00940132 /* SignupButtonView.swift in Sources */,
 				47C1F1E1248158E700A71610 /* MediaFullScreenView.swift in Sources */,
@@ -4575,6 +4618,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_SECURITY_KEYCHAIN_API = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = com.stakwork.sphinx.desktop/com_stakwork_sphinx_desktop.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -4593,6 +4637,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gl.sphinx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "com.stakwork.sphinx.desktop/Objective-C/Sphinx-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -4604,6 +4649,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_SECURITY_KEYCHAIN_API = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = com.stakwork.sphinx.desktop/com_stakwork_sphinx_desktop.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -4622,6 +4668,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gl.sphinx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "com.stakwork.sphinx.desktop/Objective-C/Sphinx-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};

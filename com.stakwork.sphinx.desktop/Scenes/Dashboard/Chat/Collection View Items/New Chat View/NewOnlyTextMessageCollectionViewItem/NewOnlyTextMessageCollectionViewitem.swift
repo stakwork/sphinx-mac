@@ -16,12 +16,12 @@ class NewOnlyTextMessageCollectionViewitem: CommonNewMessageCollectionViewitem, 
     @IBOutlet weak var sentArrow: NSView!
     
     @IBOutlet weak var chatAvatarContainerView: NSView!
-//    @IBOutlet weak var chatAvatarView: ChatAvatarView!
+    @IBOutlet weak var chatAvatarView: ChatSmallAvatarView!
     @IBOutlet weak var sentMessageMargingView: NSView!
     @IBOutlet weak var receivedMessageMarginView: NSView!
     @IBOutlet weak var statusHeaderViewContainer: NSView!
 
-    //    @IBOutlet weak var statusHeaderView: NSView!
+    @IBOutlet weak var statusHeaderView: StatusHeaderView!
     
     ///Constraints
     @IBOutlet weak var bubbleWidthConstraint: NSLayoutConstraint!

@@ -552,4 +552,28 @@ class ChatHelper {
             }
         }
     }
+    
+    func getRowHeightFor(_ tableCellState: MessageTableCellState) -> CGFloat {
+        var mutableTableCellState = tableCellState
+        
+        let kGeneralMargin: CGFloat = 2.0
+        let kLabelMargin: CGFloat = 16.0
+        let kStatusHeaderHeight: CGFloat = 25.0
+        
+        var textHeight: CGFloat = 0.0
+        var statusHeaderheight: CGFloat = kStatusHeaderHeight
+        
+        if let text = mutableTableCellState.messageContent?.text {
+            let attrs = [NSAttributedString.Key.font: Constants.kMessageFont]
+            let attributedString = NSAttributedString(string: text, attributes: attrs)
+            textHeight = attributedString.height(forWidth: 500)
+        }
+        
+        if let grouping = mutableTableCellState.bubble?.grouping, grouping.isGroupedAtTop() {
+            statusHeaderheight = 0.0
+        }
+        
+        
+        return textHeight + (kGeneralMargin * 2) + (kLabelMargin * 2) + statusHeaderheight
+    }
 }

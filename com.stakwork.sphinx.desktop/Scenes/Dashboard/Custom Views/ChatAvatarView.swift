@@ -18,22 +18,11 @@ class ChatAvatarView: NSView, LoadableNib {
     @IBOutlet weak var profileInitialsContainer: NSView!
     @IBOutlet weak var profileInitialsLabel: NSTextField!
     
-    @IBOutlet weak var groupImagesContainer: NSView!
-    @IBOutlet weak var groupImage2Container: NSBox!
-    @IBOutlet weak var groupImage1: AspectFillNSImageView!
-    @IBOutlet weak var initialsContainer1: NSView!
-    @IBOutlet weak var initialsLabel1: NSTextField!
-    @IBOutlet weak var groupImage2: AspectFillNSImageView!
-    @IBOutlet weak var initialsContainer2: NSView!
-    @IBOutlet weak var initialsLabel2: NSTextField!
-    
     @IBOutlet weak var profileImageHeight: NSLayoutConstraint!
     @IBOutlet weak var profileImageWidth: NSLayoutConstraint!
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-        
-        setBackgroundColors(color: NSColor.Sphinx.HeaderBG)
     }
     
     required init?(coder: NSCoder) {
@@ -49,10 +38,6 @@ class ChatAvatarView: NSView, LoadableNib {
         profileInitialsLabel.font = NSFont(name: "Montserrat-Regular", size: fontSize)!
     }
     
-    func setBackgroundColors(color: NSColor) {
-        groupImage2Container.fillColor = color
-    }
-    
     func configureForInvite() {
         resetLayout()
         
@@ -64,54 +49,13 @@ class ChatAvatarView: NSView, LoadableNib {
         profileImageView.image = NSImage(named: "inviteQrCode")?.sd_tintedImage(with: NSColor.Sphinx.TextMessages)
     }
     
-    func setImages(object: ChatListCommonObject?) {
-        resetLayout()
-        
-        guard let object = object else {
-            profileImageContainer.isHidden = true
-            groupImagesContainer.isHidden = true
-            return
-        }
-
-        makeImagesCircular(images: [groupImage2Container])
-        
-        let shouldShowSingleImage = object.shouldShowSingleImage()
-        let contacts = object.getChatContacts()
-
-        profileImageContainer.isHidden = !shouldShowSingleImage
-        groupImagesContainer.isHidden = shouldShowSingleImage
-        
-        func getContactWithIndex(contacts: [UserContact], index: Int) -> UserContact? {
-            return contacts.count >= index + 1 ? contacts[index] : nil
-        }
-        
-        if shouldShowSingleImage {
-            loadImageFor(object, in: profileImageView, and: profileInitialsContainer)
-        } else {
-            let orderedContacts = contacts.sorted(by: { (!$0.isOwner && $0.avatarUrl != nil) && ($1.isOwner || $1.avatarUrl == nil) })
-            
-            loadImageFor(getContactWithIndex(contacts: orderedContacts, index: 0), in: groupImage2, and: initialsContainer2)
-            loadImageFor(getContactWithIndex(contacts: orderedContacts, index: 1), in: groupImage1, and: initialsContainer1)
-        }
-    }
-    
     func resetLayout() {
         profileImageContainer.isHidden = true
         profileInitialsContainer.isHidden = true
         profileImageView.isHidden = true
         
-        groupImagesContainer.isHidden = true
-        
-        groupImage1.isHidden = true
-        initialsContainer1.isHidden = true
-        
-        groupImage2.isHidden = true
-        initialsContainer2.isHidden = true
-        
         profileImageView.rounded = true
         profileImageView.image = nil
-        groupImage2.image = nil
-        groupImage1.image = nil
     }
     
     func makeImagesCircular(images: [NSView]) {
@@ -122,8 +66,26 @@ class ChatAvatarView: NSView, LoadableNib {
         }
     }
     
-    func loadImageFor(_ object: ChatListCommonObject?, in imageView: AspectFillNSImageView, and container: NSView) {
-        showInitialsFor(object, in: imageView, and: container)
+    func loadWith(
+        _ object: ChatListCommonObject?
+    ) {
+        loadImageFor(
+            object,
+            in: profileImageView,
+            and: profileInitialsContainer
+        )
+    }
+    
+    func loadImageFor(
+        _ object: ChatListCommonObject?,
+        in imageView: AspectFillNSImageView,
+        and container: NSView
+    ) {
+        showInitialsFor(
+            object,
+            in: imageView,
+            and: container
+        )
         
         imageView.sd_cancelCurrentImageLoad()
 

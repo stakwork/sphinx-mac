@@ -34,7 +34,7 @@ extension NewChatTableDataSource {
         
         DelayPerformedHelper.performAfterDelay(seconds: 0.1, completion: { [weak self] in
             guard let self = self else { return }
-            self.configureResultsController(items: max(self.dataSource.snapshot().numberOfItems, 100))
+            self.configureResultsController(items: max(self.dataSource.snapshot().numberOfItems, 500))
         })
     }
     
@@ -59,6 +59,7 @@ extension NewChatTableDataSource {
             self.dataSource.apply(snapshot, animatingDifferences: false)
             self.collectionView.alphaValue = 1.0
 //            self.restoreScrollLastPosition()
+            self.collectionView.scrollToBottom(animated: false)
             self.loadingMoreItems = false
         }
     }
@@ -69,7 +70,7 @@ extension NewChatTableDataSource {
         { (collectionView, indexPath, dataSourceItem) -> NSCollectionViewItem in
             
             var cell: ChatCollectionViewItemProtocol? = nil
-//            var mutableDataSourceItem = dataSourceItem
+            var mutableDataSourceItem = dataSourceItem
 
 //            if let _ = mutableDataSourceItem.bubble {
 //                if mutableDataSourceItem.isTextOnlyMessage {
@@ -162,20 +163,20 @@ extension NewChatTableDataSource {
                 groupingDate: &groupingDate
             )
             
-            if let separatorDate = bubbleStateAndDate.1 {
-                array.insert(
-                    MessageTableCellState(
-                        chat: chat,
-                        owner: owner,
-                        contact: contact,
-                        tribeAdmin: admin,
-                        viewWidth: collectionView.frame.width,
-                        separatorDate: separatorDate,
-                        invoiceData: (invoiceData.0 > 0, invoiceData.1 > 0)
-                    ),
-                    at: 0
-                )
-            }
+//            if let separatorDate = bubbleStateAndDate.1 {
+//                array.insert(
+//                    MessageTableCellState(
+//                        chat: chat,
+//                        owner: owner,
+//                        contact: contact,
+//                        tribeAdmin: admin,
+//                        viewWidth: collectionView.frame.width,
+//                        separatorDate: separatorDate,
+//                        invoiceData: (invoiceData.0 > 0, invoiceData.1 > 0)
+//                    ),
+//                    at: 0
+//                )
+//            }
             
             let replyingMessage = (message.replyUUID != nil) ? replyingMessagesMap[message.replyUUID!] : nil
             let boostsMessages = (message.uuid != nil) ? (boostMessagesMap[message.uuid!] ?? []) : []
@@ -257,11 +258,11 @@ extension NewChatTableDataSource {
         
         var separatorDate: Date? = nil
         
-        if let previousMessageDate = previousMessage?.date, let date = message.date {
-            if Date.isDifferentDay(firstDate: previousMessageDate, secondDate: date) {
+        if let nextMessageDate = nextMessage?.date, let date = message.date {
+            if Date.isDifferentDay(firstDate: nextMessageDate, secondDate: date) {
                 separatorDate = date
             }
-        } else if previousMessage == nil {
+        } else if nextMessage == nil {
             separatorDate = message.date
         }
         
@@ -485,12 +486,9 @@ extension NewChatTableDataSource : NSFetchedResultsControllerDelegate {
         
         messagesResultsController.delegate = self
         
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            do {
-                try self.messagesResultsController.performFetch()
-            } catch {}
-        }
+        do {
+            try self.messagesResultsController.performFetch()
+        } catch {}
     }
     
     func configureBoostAndPurchaseResultsController() {
@@ -513,12 +511,9 @@ extension NewChatTableDataSource : NSFetchedResultsControllerDelegate {
         
         additionMessagesResultsController.delegate = self
         
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            do {
-                try self.additionMessagesResultsController.performFetch()
-            } catch {}
-        }
+        do {
+            try self.additionMessagesResultsController.performFetch()
+        } catch {}
     }
     
     func controller(
@@ -530,7 +525,7 @@ extension NewChatTableDataSource : NSFetchedResultsControllerDelegate {
             
             if controller == messagesResultsController {
                 if let messages = firstSection.objects as? [TransactionMessage] {
-                    self.messagesArray = messages.filter { $0.isTextMessage() }
+                    self.messagesArray = messages.filter { $0.isOnlyText() }
                     
                     if !(self.delegate?.isOnStandardMode() ?? true) {
                         return

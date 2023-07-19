@@ -88,7 +88,7 @@ class NewContactViewController: NSViewController {
         if let contact = contact {
             qrButton.cursor = .pointingHand
             contactAvatarView.configureSize(width: 100, height: 100, fontSize: 25)
-            contactAvatarView.setImages(object: contact)
+            contactAvatarView.loadWith(contact)
             userNameLabel.stringValue = userNameLabel.stringValue.replacingOccurrences(of: " *", with: "")
             addressLabel.stringValue = addressLabel.stringValue.replacingOccurrences(of: " *", with: "")
             userNameField.stringValue = contact.getName()

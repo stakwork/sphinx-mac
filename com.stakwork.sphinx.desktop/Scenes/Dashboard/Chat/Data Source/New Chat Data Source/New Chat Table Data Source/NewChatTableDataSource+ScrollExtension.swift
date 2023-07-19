@@ -9,7 +9,18 @@
 import Cocoa
 
 extension NewChatTableDataSource: NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
+    func collectionView(
+        _ collectionView: NSCollectionView,
+        layout collectionViewLayout: NSCollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> NSSize {
+        if let tableCellState = getTableCellStateFor(
+            rowIndex: indexPath.item
+        ) {
+            let rowHeight = chatHelper.getRowHeightFor(tableCellState)
+            return CGSize(width: collectionView.frame.width, height: rowHeight)
+        }
+        
         return CGSize(width: collectionView.frame.width, height: 100.0)
     }
     

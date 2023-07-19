@@ -974,6 +974,17 @@ extension NewChatTableDataSource {
         return tableCellState
     }
     
+    func getTableCellStateFor(
+        rowIndex: Int
+    ) -> MessageTableCellState? {
+
+        if messageTableCellStateArray.count > rowIndex {
+            return messageTableCellStateArray[rowIndex]
+        }
+        
+        return nil
+    }
+    
     func getTableCellStatesForVisibleRows() -> [MessageTableCellState] {
         let rowIndexes = collectionView.indexPathsForVisibleItems().map({ $0.item })
         

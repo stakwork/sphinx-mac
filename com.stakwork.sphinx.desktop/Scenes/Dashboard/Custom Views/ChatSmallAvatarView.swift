@@ -110,6 +110,13 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         )
     }
     
+    func resetView() {
+        profileImageView.isHidden = false
+        profileImageView.image = NSImage(named: "profile_avatar")
+        
+        profileInitialContainer.isHidden = true
+    }
+    
     func configureForUserWith(
         color: NSColor,
         alias: String?,

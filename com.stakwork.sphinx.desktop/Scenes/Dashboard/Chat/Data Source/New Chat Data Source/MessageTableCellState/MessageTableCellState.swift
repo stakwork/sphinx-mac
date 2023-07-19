@@ -766,6 +766,10 @@ extension MessageTableCellState {
         case Middle
         case Last
         case Empty
+        
+        public func isGroupedAtTop() -> Bool {
+            return self == .Middle || self == .Last
+        }
     }
     
     public enum InvoiceLinesState {

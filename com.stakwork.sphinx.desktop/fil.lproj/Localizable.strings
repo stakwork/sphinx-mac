@@ -35,6 +35,7 @@
 "verify.upper"  = "Patunayan";
 "pay.upper" = "Pay";
 "make.payment" = "Make Payment";
+"expired.invoice" = "Expired Invoice";
 
 "connected.to.node"  = "Kumunekta sa Node";
 "socket.disconnected"  = "Hindi available ang Live updates";

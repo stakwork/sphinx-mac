@@ -35,6 +35,7 @@
 "verify.upper" = "Verificar";
 "pay.upper" = "Pagar";
 "make.payment" = "Hacer el Pago";
+"expired.invoice" = "Solicitud caducada";
 
 "connected.to.node" = "Conectado al Nodo";
 "socket.disconnected" = "Actualizaciones en tiempo real\nno disponibles";
