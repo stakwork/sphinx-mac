@@ -573,7 +573,7 @@ class ChatHelper {
         if let text = mutableTableCellState.messageContent?.text {
             let attrs = [NSAttributedString.Key.font: Constants.kMessageFont]
             let attributedString = NSAttributedString(string: text, attributes: attrs)
-            textHeight = attributedString.height(forWidth: maxWidth)
+            textHeight = attributedString.height(forWidth: maxWidth - (kLabelMargin * 2))
         }
         
         if let grouping = mutableTableCellState.bubble?.grouping, grouping.isGroupedAtTop() {

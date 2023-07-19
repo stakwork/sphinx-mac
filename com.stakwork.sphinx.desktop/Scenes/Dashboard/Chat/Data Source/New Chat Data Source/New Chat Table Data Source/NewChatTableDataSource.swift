@@ -134,17 +134,10 @@ class NewChatTableDataSource : NSObject {
         
         configureTableView()
         configureDataSource()
-        processChatAliases()
     }
     
     func updateFrame() {
         self.collectionView.collectionViewLayout?.invalidateLayout()
-    }
-    
-    func processChatAliases() {
-        DispatchQueue.global(qos: .background).async {
-            self.chat?.processAliases()
-        }
     }
     
     func isFinalDS() -> Bool {

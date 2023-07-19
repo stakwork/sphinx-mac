@@ -8,22 +8,7 @@
 
 import Cocoa
 
-extension NewChatTableDataSource: NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout {
-    func collectionView(
-        _ collectionView: NSCollectionView,
-        layout collectionViewLayout: NSCollectionViewLayout,
-        sizeForItemAt indexPath: IndexPath
-    ) -> NSSize {
-        if let tableCellState = getTableCellStateFor(
-            rowIndex: indexPath.item
-        ) {
-            let rowHeight = chatHelper.getRowHeightFor(tableCellState)
-            return CGSize(width: collectionView.frame.width, height: rowHeight)
-        }
-        
-        return CGSize(width: collectionView.frame.width, height: 100.0)
-    }
-    
+extension NewChatTableDataSource: NSCollectionViewDelegate {
     func scrollViewDidScroll() {
         if let scrollViewDesiredOffset = scrollViewDesiredOffset {
             if scrollViewDesiredOffset == collectionViewScroll.documentYOffset {

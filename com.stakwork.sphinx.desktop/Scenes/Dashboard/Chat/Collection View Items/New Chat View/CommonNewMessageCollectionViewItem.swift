@@ -17,6 +17,8 @@ class CommonNewMessageCollectionViewitem : NSCollectionViewItem {
     
     var urlRanges = [NSRange]()
     
+    static let kMaximumLabelBubbleWidth: CGFloat = 500
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

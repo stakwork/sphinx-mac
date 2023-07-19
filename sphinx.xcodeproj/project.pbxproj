@@ -523,6 +523,7 @@
 		47DE1C052A68813B0029597B /* MessageNoBubbleCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47DE1C032A68813B0029597B /* MessageNoBubbleCollectionViewItem.xib */; };
 		47DE1C082A6881F10029597B /* DateSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1C072A6881F10029597B /* DateSeparatorView.swift */; };
 		47DE1C0A2A6881FA0029597B /* DateSeparatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47DE1C092A6881FA0029597B /* DateSeparatorView.xib */; };
+		47DE1C0C2A6886020029597B /* NewChatTableDataSource+RowHeightExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1C0B2A6886020029597B /* NewChatTableDataSource+RowHeightExtension.swift */; };
 		47E771172472C1B500C9CFEB /* ChatDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E771162472C1B500C9CFEB /* ChatDataSource.swift */; };
 		47E771212472C26200C9CFEB /* MessageReceivedCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E7711F2472C26200C9CFEB /* MessageReceivedCollectionViewItem.swift */; };
 		47E771222472C26200C9CFEB /* MessageReceivedCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47E771202472C26200C9CFEB /* MessageReceivedCollectionViewItem.xib */; };
@@ -1296,6 +1297,7 @@
 		47DE1C032A68813B0029597B /* MessageNoBubbleCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageNoBubbleCollectionViewItem.xib; sourceTree = "<group>"; };
 		47DE1C072A6881F10029597B /* DateSeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSeparatorView.swift; sourceTree = "<group>"; };
 		47DE1C092A6881FA0029597B /* DateSeparatorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateSeparatorView.xib; sourceTree = "<group>"; };
+		47DE1C0B2A6886020029597B /* NewChatTableDataSource+RowHeightExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewChatTableDataSource+RowHeightExtension.swift"; sourceTree = "<group>"; };
 		47E771162472C1B500C9CFEB /* ChatDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDataSource.swift; sourceTree = "<group>"; };
 		47E7711F2472C26200C9CFEB /* MessageReceivedCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageReceivedCollectionViewItem.swift; sourceTree = "<group>"; };
 		47E771202472C26200C9CFEB /* MessageReceivedCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageReceivedCollectionViewItem.xib; sourceTree = "<group>"; };
@@ -3180,6 +3182,7 @@
 				47FEE2122A66DD8400646C4E /* NewChatTableDataSource+BotWebViewExtension.swift */,
 				47FEE2142A66DD9700646C4E /* NewChatTableDataSource+AudioExtension.swift */,
 				47FEE2162A66DDAC00646C4E /* NewChatTableDataSource+SearchMessagesExtension.swift */,
+				47DE1C0B2A6886020029597B /* NewChatTableDataSource+RowHeightExtension.swift */,
 			);
 			path = "New Chat Table Data Source";
 			sourceTree = "<group>";
@@ -3814,6 +3817,7 @@
 				47B55099248BCDD7000514BF /* CreateInvoiceViewController.swift in Sources */,
 				4744FA742469A4BA00C5FD94 /* DelayPerformerHelper.swift in Sources */,
 				4731BE1A2485303600BCCA9E /* DirectPaymentReceivedCollectionViewItem.swift in Sources */,
+				47DE1C0C2A6886020029597B /* NewChatTableDataSource+RowHeightExtension.swift in Sources */,
 				CE326B51294A179200821A53 /* ChatMentionAutocompleteCell.swift in Sources */,
 				47C6236125091C02005D265C /* GiphySearchCollectionViewItem.swift in Sources */,
 				475B682E29915D8A000EF29C /* ContentFeedPaymentModel+Computeds.swift in Sources */,

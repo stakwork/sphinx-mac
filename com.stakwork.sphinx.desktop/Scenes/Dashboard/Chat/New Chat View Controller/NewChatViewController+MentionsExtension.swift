@@ -10,9 +10,7 @@ import Cocoa
 
 extension NewChatViewController {
     func processChatAliases() {
-        DispatchQueue.global(qos: .background).async {
-            self.chat?.processAliases()
-        }
+        chat?.processAliases()
     }
     
     func configureMentionAutocompleteTableView() {
