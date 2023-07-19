@@ -162,7 +162,7 @@ extension NewChatTableDataSource {
             )
             
 //            if let separatorDate = bubbleStateAndDate.1 {
-//                array.insert(
+//                array.append(
 //                    MessageTableCellState(
 //                        chat: chat,
 //                        owner: owner,
@@ -171,8 +171,7 @@ extension NewChatTableDataSource {
 //                        viewWidth: collectionView.frame.width,
 //                        separatorDate: separatorDate,
 //                        invoiceData: (invoiceData.0 > 0, invoiceData.1 > 0)
-//                    ),
-//                    at: 0
+//                    )
 //                )
 //            }
             
@@ -202,7 +201,7 @@ extension NewChatTableDataSource {
                 invoiceData: (invoiceData.0 > 0, invoiceData.1 > 0)
             )
             
-            array.insert(messageTableCellState, at: 0)
+            array.append(messageTableCellState)
             
             invoiceData = (
                 invoiceData.0 + ((message.isInvoice() && message.isPaid() && message.isOutgoing(ownerId: owner.id)) ? 1 : 0),
@@ -251,16 +250,16 @@ extension NewChatTableDataSource {
         groupingDate: inout Date?
     ) -> (MessageTableCellState.BubbleState?, Date?) {
         
-        let previousMessage = (index < messages.count - 1) ? messages[index + 1] : nil
-        let nextMessage = (index > 0) ? messages[index - 1] : nil
+        let previousMessage = (index > 0) ? messages[index - 1] : nil
+        let nextMessage = (index < messages.count - 1) ? messages[index + 1] : nil
         
         var separatorDate: Date? = nil
         
         if let nextMessageDate = nextMessage?.date, let date = message.date {
             if Date.isDifferentDay(firstDate: nextMessageDate, secondDate: date) {
-                separatorDate = date
+                separatorDate = nextMessageDate
             }
-        } else if nextMessage == nil {
+        } else if index == 0 {
             separatorDate = message.date
         }
         
@@ -523,7 +522,7 @@ extension NewChatTableDataSource : NSFetchedResultsControllerDelegate {
             
             if controller == messagesResultsController {
                 if let messages = firstSection.objects as? [TransactionMessage] {
-                    self.messagesArray = messages.filter { $0.isOnlyText() }
+                    self.messagesArray = messages.reversed().filter { $0.isOnlyText() }
                     
                     if !(self.delegate?.isOnStandardMode() ?? true) {
                         return

@@ -28,6 +28,8 @@ extension NewChatViewController {
 //        self.deeplinkData = nil
         
         addChildVC(vc: podcastPlayerVC!)
+        
+        chatTableDataSource?.updateFrame()
     }
     
     func addChildVC(vc: NSViewController) {

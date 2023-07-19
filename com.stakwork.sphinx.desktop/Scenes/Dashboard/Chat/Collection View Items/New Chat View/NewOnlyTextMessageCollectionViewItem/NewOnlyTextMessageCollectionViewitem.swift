@@ -53,12 +53,12 @@ class NewOnlyTextMessageCollectionViewitem: CommonNewMessageCollectionViewitem, 
         receivedArrow.drawReceivedBubbleArrow(color: NSColor.Sphinx.ReceivedMsgBG)
         sentArrow.drawSentBubbleArrow(color: NSColor.Sphinx.SentMsgBG)
         
-        let lineFrame = CGRect(
-            x: 0.0,
-            y: 0.0,
-            width: 3,
-            height: view.frame.size.height
-        )
+//        let lineFrame = CGRect(
+//            x: 0.0,
+//            y: 0.0,
+//            width: 3,
+//            height: view.frame.size.height
+//        )
         
 //        let rightLineLayer = rightLineContainer.getVerticalDottedLine(
 //            color: NSColor.Sphinx.WashedOutReceivedText,

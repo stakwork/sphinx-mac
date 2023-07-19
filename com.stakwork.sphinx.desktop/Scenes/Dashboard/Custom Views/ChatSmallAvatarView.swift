@@ -119,8 +119,8 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         radius: CGFloat? = nil,
         image: NSImage? = nil
     ) {
-        profileImageView.radius = radius ?? profileImageView.frame.height / 2
         profileImageView.sd_cancelCurrentImageLoad()
+        profileImageView.radius = radius ?? profileImageView.frame.height / 2
         
         showInitials(
             senderColor: color,
@@ -130,7 +130,6 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         if let image = image {
             profileInitialContainer.isHidden = true
             profileImageView.isHidden = false
-            profileImageView.bordered = false
             profileImageView.image = image
         } else if let pic = picture, let url = URL(string: pic) {
             showImageWith(url: url)
@@ -148,24 +147,19 @@ class ChatSmallAvatarView: NSView, LoadableNib {
             scaleMode: .aspectFill
         )
         
+        self.profileInitialContainer.isHidden = true
+        self.profileImageView.isHidden = false
+        
         profileImageView.sd_setImage(
             with: url,
             placeholderImage: NSImage(named: "profile_avatar"),
-            options: [.lowPriority, .avoidDecodeImage],
-            context: [.imageTransformer: transformer],
-            progress: nil,
-            completed: { (image, error, _, _) in
-                if let image = image, error == nil {
-                    self.profileImageView.image = image
-                    self.profileInitialContainer.isHidden = true
-                    self.profileImageView.isHidden = false
-                    self.profileImageView.bordered = false
-                }
-            }
+            options: [.scaleDownLargeImages, .avoidDecodeImage],
+            context: [.imageTransformer: transformer]
         )
     }
     
     func showInitials(senderColor: NSColor, senderNickname: String) {
+        profileImageView.isHidden = true
         profileInitialContainer.isHidden = false
         profileInitialContainer.wantsLayer = true
         profileInitialContainer.layer?.backgroundColor = senderColor.cgColor

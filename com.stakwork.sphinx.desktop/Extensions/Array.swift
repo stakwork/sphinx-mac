@@ -20,10 +20,8 @@ extension Array {
     }
     
     func endSubarray(size: Int) -> [Element] {
-        if count - size >= 0 {
-            return Array(self[count - size ..< count])
-        }
-        return []
+        let start = Swift.max(count - size, 0)
+        return Array(self[start ..< count])
     }
     
     func unique(selector: (Element, Element) -> Bool) -> Array<Element> {
