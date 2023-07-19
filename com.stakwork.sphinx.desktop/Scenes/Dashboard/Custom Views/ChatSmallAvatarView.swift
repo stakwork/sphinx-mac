@@ -117,7 +117,8 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         alias: String?,
         picture: String?,
         radius: CGFloat? = nil,
-        image: NSImage? = nil
+        image: NSImage? = nil,
+        isPreload: Bool = false
     ) {
         profileImageView.sd_cancelCurrentImageLoad()
         profileImageView.radius = radius ?? profileImageView.frame.height / 2
@@ -131,7 +132,7 @@ class ChatSmallAvatarView: NSView, LoadableNib {
             profileInitialContainer.isHidden = true
             profileImageView.isHidden = false
             profileImageView.image = image
-        } else if let pic = picture, let url = URL(string: pic) {
+        } else if let pic = picture, let url = URL(string: pic), !isPreload {
             showImageWith(url: url)
         }
     }
@@ -148,13 +149,21 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         )
         
         self.profileInitialContainer.isHidden = true
-        self.profileImageView.isHidden = false
+        self.profileImageView.alphaValue = 0.0
         
         profileImageView.sd_setImage(
             with: url,
             placeholderImage: NSImage(named: "profile_avatar"),
             options: [.scaleDownLargeImages, .avoidDecodeImage],
-            context: [.imageTransformer: transformer]
+            context: [.imageTransformer: transformer],
+            progress: nil,
+            completed: { (image, error, _, _) in
+                if let image = image, error == nil {
+                    self.profileImageView.image = image
+                    self.profileImageView.isHidden = false
+                }
+            }
+
         )
     }
     

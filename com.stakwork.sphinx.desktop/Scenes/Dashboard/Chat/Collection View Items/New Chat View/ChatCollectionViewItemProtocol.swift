@@ -18,7 +18,8 @@ protocol ChatCollectionViewItemProtocol: AnyObject {
         uploadProgressData: MessageTableCellState.UploadProgressData?,
         delegate: ChatCollectionViewItemDelegate?,
         searchingTerm: String?,
-        indexPath: IndexPath
+        indexPath: IndexPath,
+        isPreload: Bool
     )
 }
 

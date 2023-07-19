@@ -104,7 +104,8 @@ extension NewChatTableDataSource {
                 uploadProgressData: uploadProgressData,
                 delegate: self,
                 searchingTerm: self.searchingTerm,
-                indexPath: indexPath
+                indexPath: indexPath,
+                isPreload: self.isPreload
             )
 
             return (cell as? NSCollectionViewItem) ?? NSCollectionViewItem()
@@ -519,6 +520,8 @@ extension NewChatTableDataSource : NSFetchedResultsControllerDelegate {
     ) {
         if let resultController = controller as? NSFetchedResultsController<NSManagedObject>,
             let firstSection = resultController.sections?.first {
+            
+            isPreload = false
             
             if controller == messagesResultsController {
                 if let messages = firstSection.objects as? [TransactionMessage] {

@@ -99,6 +99,7 @@ class NewChatTableDataSource : NSObject {
     var loadingMoreItems = false
     var scrolledAtBottom = false
     var scrollViewDesiredOffset: CGFloat? = nil
+    var isPreload = true
     
     ///WebView Loading
     let webViewSemaphore = DispatchSemaphore(value: 1)

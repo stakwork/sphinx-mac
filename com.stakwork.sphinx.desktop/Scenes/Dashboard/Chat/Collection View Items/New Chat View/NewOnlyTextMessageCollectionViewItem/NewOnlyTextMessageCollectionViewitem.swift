@@ -82,7 +82,8 @@ class NewOnlyTextMessageCollectionViewitem: CommonNewMessageCollectionViewitem, 
         uploadProgressData: MessageTableCellState.UploadProgressData?,
         delegate: ChatCollectionViewItemDelegate?,
         searchingTerm: String?,
-        indexPath: IndexPath
+        indexPath: IndexPath,
+        isPreload: Bool
     ) {
         var mutableMessageCellState = messageCellState
         
@@ -105,7 +106,10 @@ class NewOnlyTextMessageCollectionViewitem: CommonNewMessageCollectionViewitem, 
         )
         
         ///Header and avatar
-        configureWith(avatarImage: mutableMessageCellState.avatarImage)
+        configureWith(
+            avatarImage: mutableMessageCellState.avatarImage,
+            isPreload: isPreload
+        )
         configureWith(bubble: bubble)
         
         ///Invoice Lines
