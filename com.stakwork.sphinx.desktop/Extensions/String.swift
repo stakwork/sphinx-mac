@@ -23,6 +23,10 @@ extension String {
         }
     }
     
+    var nsRange : NSRange {
+        return NSRange(self.startIndex..., in: self)
+    }
+    
     var length: Int {
       return count
     }
