@@ -30,7 +30,7 @@ extension NewChatTableDataSource {
     func configureDataSource() {
         dataSource = makeDataSource()
 
-//        restorePreloadedMessages()
+        restorePreloadedMessages()
         
         DelayPerformedHelper.performAfterDelay(seconds: 0.1, completion: { [weak self] in
             guard let self = self else { return }
@@ -55,11 +55,9 @@ extension NewChatTableDataSource {
         let snapshot = makeSnapshotForCurrentState()
 
         DispatchQueue.main.async {
-//            self.saveSnapshotCurrentState()
+            self.saveSnapshotCurrentState()
             self.dataSource.apply(snapshot, animatingDifferences: false)
-            self.collectionView.alphaValue = 1.0
-//            self.restoreScrollLastPosition()
-            self.collectionView.scrollToBottom(animated: false)
+            self.restoreScrollLastPosition()
             self.loadingMoreItems = false
         }
     }
@@ -70,7 +68,7 @@ extension NewChatTableDataSource {
         { (collectionView, indexPath, dataSourceItem) -> NSCollectionViewItem in
             
             var cell: ChatCollectionViewItemProtocol? = nil
-            var mutableDataSourceItem = dataSourceItem
+//            var mutableDataSourceItem = dataSourceItem
 
 //            if let _ = mutableDataSourceItem.bubble {
 //                if mutableDataSourceItem.isTextOnlyMessage {
@@ -538,7 +536,7 @@ extension NewChatTableDataSource : NSFetchedResultsControllerDelegate {
                 if !(self.delegate?.isOnStandardMode() ?? true) {
                     return
                 }
-                
+
                 self.processMessages(messages: self.messagesArray)
             }
         }

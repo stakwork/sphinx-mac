@@ -19,6 +19,13 @@ extension Array {
         return Array(self[0 ..< Swift.min(size, count)])
     }
     
+    func endSubarray(size: Int) -> [Element] {
+        if count - size >= 0 {
+            return Array(self[count - size ..< count])
+        }
+        return []
+    }
+    
     func unique(selector: (Element, Element) -> Bool) -> Array<Element> {
         return reduce(Array<Element>()){
             if let last = $0.last {

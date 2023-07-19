@@ -7,9 +7,12 @@
 //
 
 import Cocoa
+import SDWebImage
 
 extension NewChatViewController {
     func configureCollectionView() {
+        chatCollectionView.alphaValue = 0.0
+        
         if let ds = chatTableDataSource {
             if ds.isFinalDS() {
                 return
@@ -22,7 +25,8 @@ extension NewChatViewController {
             chat: chat,
             contact: contact,
             collectionView: chatCollectionView,
-            headerImageView: getContactImageView(),
+            collectionViewScroll: chatScrollView,
+            headerImage: getContactImage(),
             bottomView: chatBottomView
 //            webView: botWebView,
 //            delegate: self
@@ -31,13 +35,13 @@ extension NewChatViewController {
 //        chatViewModel.setDataSource(chatTableDataSource)
     }
     
-    func getContactImageView() -> NSImageView? {
+    func getContactImage() -> NSImage? {
         let imageView = chatTopView.chatHeaderView.profileImageView
         
         if imageView?.isHidden == true {
             return nil
         }
         
-        return imageView
+        return imageView?.image
     }
 }

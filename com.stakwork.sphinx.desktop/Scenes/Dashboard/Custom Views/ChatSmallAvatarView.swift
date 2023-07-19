@@ -22,12 +22,6 @@ class ChatSmallAvatarView: NSView, LoadableNib {
     @IBOutlet weak var profileInitialContainer: NSView!
     @IBOutlet weak var initialsLabel: NSTextField!
     @IBOutlet weak var avatarButton: CustomButton!
-    
-    override func draw(_ dirtyRect: NSRect) {
-        super.draw(dirtyRect)
-        
-        profileImageView.isHidden = true
-    }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -39,7 +33,8 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         profileInitialContainer.wantsLayer = true
         profileInitialContainer.layer?.cornerRadius = self.bounds.height/2
         profileInitialContainer.layer?.masksToBounds = true
-        
+     
+        profileImageView.rounded = true
         avatarButton.cursor = .pointingHand
     }
     
@@ -120,20 +115,24 @@ class ChatSmallAvatarView: NSView, LoadableNib {
     func configureForUserWith(
         color: NSColor,
         alias: String?,
-        picture: String?
+        picture: String?,
+        radius: CGFloat? = nil,
+        image: NSImage? = nil
     ) {
+        profileImageView.radius = radius ?? profileImageView.frame.height / 2
         profileImageView.sd_cancelCurrentImageLoad()
-        
-        profileImageView.isHidden = true
-        profileInitialContainer.isHidden = true
-        profileImageView.layer?.borderWidth = 0
         
         showInitials(
             senderColor: color,
             senderNickname: alias ?? "Unknown"
         )
         
-        if let pic = picture, let url = URL(string: pic) {
+        if let image = image {
+            profileInitialContainer.isHidden = true
+            profileImageView.isHidden = false
+            profileImageView.bordered = false
+            profileImageView.image = image
+        } else if let pic = picture, let url = URL(string: pic) {
             showImageWith(url: url)
         }
     }
@@ -157,19 +156,13 @@ class ChatSmallAvatarView: NSView, LoadableNib {
             progress: nil,
             completed: { (image, error, _, _) in
                 if let image = image, error == nil {
-                    self.setImage(image: image)
+                    self.profileImageView.image = image
+                    self.profileInitialContainer.isHidden = true
+                    self.profileImageView.isHidden = false
+                    self.profileImageView.bordered = false
                 }
             }
         )
-    }
-    
-    func setImage(image: NSImage) {
-        DispatchQueue.main.async {
-            self.profileInitialContainer.isHidden = true
-            self.profileImageView.isHidden = false
-            self.profileImageView.bordered = false
-            self.profileImageView.image = image
-        }
     }
     
     func showInitials(senderColor: NSColor, senderNickname: String) {

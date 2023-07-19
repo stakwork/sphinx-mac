@@ -59,6 +59,7 @@ class NewChatTableDataSource : NSObject {
     
     ///View references
     var collectionView : NSCollectionView!
+    var collectionViewScroll: NSScrollView!
     var headerImage: NSImage?
     var bottomView: NSView!
     var webView: WKWebView!
@@ -97,6 +98,7 @@ class NewChatTableDataSource : NSObject {
     var messagesCount = 0
     var loadingMoreItems = false
     var scrolledAtBottom = false
+    var scrollViewDesiredOffset: CGFloat? = nil
     
     ///WebView Loading
     let webViewSemaphore = DispatchSemaphore(value: 1)
@@ -109,7 +111,8 @@ class NewChatTableDataSource : NSObject {
         chat: Chat?,
         contact: UserContact?,
         collectionView : NSCollectionView,
-        headerImageView: NSImageView?,
+        collectionViewScroll: NSScrollView,
+        headerImage: NSImage?,
         bottomView: NSView
 //        webView: WKWebView,
 //        delegate: NewChatTableDataSourceDelegate?
@@ -120,7 +123,9 @@ class NewChatTableDataSource : NSObject {
         self.contact = contact
         
         self.collectionView = collectionView
-        self.headerImage = headerImageView?.image
+        self.headerImage = headerImage
+        self.collectionViewScroll = collectionViewScroll
+        self.headerImage = headerImage
         self.bottomView = bottomView
 //        self.webView = webView
         
@@ -146,28 +151,18 @@ class NewChatTableDataSource : NSObject {
     }
     
     func configureTableView() {
-//        let flowLayout = NSCollectionViewFlowLayout()
-//        flowLayout.sectionInset = NSEdgeInsets(
-//            top: Constants.kMargin,
-//            left: 0.0,
-//            bottom: 0.0,
-//            right: 0.0
-//        )
-//        flowLayout.minimumInteritemSpacing = 0.0
-//        flowLayout.minimumLineSpacing = 0.0
-
-//        collectionView.superview?.wantsLayer = true
-//        collectionView.wantsLayer = true
-//        collectionView.layer?.setAffineTransform(
-//            CGAffineTransform(scaleX: 1, y: -1)
-//        )
-        collectionView.layer?.backgroundColor = NSColor.green.cgColor
-//        collectionView.collectionViewLayout = flowLayout
-        
         collectionView.delegate = self
         collectionView.reloadData()
         
         collectionView.registerItem(NewOnlyTextMessageCollectionViewitem.self)
         collectionView.registerItem(ChatMentionAutocompleteCell.self)
+        
+        NotificationCenter.default.addObserver(
+            forName: NSView.boundsDidChangeNotification,
+            object: collectionViewScroll.contentView,
+            queue: OperationQueue.main
+        ) { [weak self] (n: Notification) in
+            self?.scrollViewDidScroll()
+        }
     }
 }

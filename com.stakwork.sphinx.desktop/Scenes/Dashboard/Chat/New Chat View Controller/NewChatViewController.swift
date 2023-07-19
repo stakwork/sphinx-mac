@@ -57,6 +57,7 @@ class NewChatViewController: DashboardSplittedViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
         setupData()
         configureFetchResultsController()
@@ -68,6 +69,12 @@ class NewChatViewController: DashboardSplittedViewController {
         
         fetchTribeData()
         configureMentionAutocompleteTableView()
+    }
+    
+    override func viewWillDisappear() {
+        super.viewWillDisappear()
+        
+        chatTableDataSource?.saveSnapshotCurrentState()
     }
     
     override func viewDidLayout() {

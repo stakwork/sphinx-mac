@@ -21,16 +21,18 @@ extension NewChatTableDataSource {
     }
     
     func saveMessagesToPreloader() {
-        guard let chat = chat else {
+        let firstVisibleItem = collectionView.indexPathsForVisibleItems().sorted().first?.item ?? 0
+        
+        guard let chat = chat, collectionView.numberOfSections > 0 && firstVisibleItem > 0 else {
             return
         }
         
-        if let firstVisibleRow = collectionView.indexPathsForVisibleItems().sorted().last {
-            preloaderHelper.add(
-                messageStateArray: messageTableCellStateArray.subarray(size: firstVisibleRow.item + 10),
-                for: chat.id
-            )
-        }
+        let numberOfItems = collectionView.numberOfItems(inSection: 0)
+        
+        preloaderHelper.add(
+            messageStateArray: messageTableCellStateArray.endSubarray(size: (numberOfItems - firstVisibleItem) + 10),
+            for: chat.id
+        )
     }
     
     func saveSnapshotCurrentState() {
@@ -56,6 +58,10 @@ extension NewChatTableDataSource {
     }
     
     func restoreScrollLastPosition() {
+        let collectionViewContentSize = collectionView.collectionViewLayout?.collectionViewContentSize.height ?? 0
+        scrollViewDesiredOffset = collectionViewContentSize - collectionViewScroll.frame.height + collectionViewScroll.contentInsets.bottom
+        collectionViewScroll.documentYOffset = scrollViewDesiredOffset ?? 0
+        
 //        guard let chat = chat else {
 //            return
 //        }

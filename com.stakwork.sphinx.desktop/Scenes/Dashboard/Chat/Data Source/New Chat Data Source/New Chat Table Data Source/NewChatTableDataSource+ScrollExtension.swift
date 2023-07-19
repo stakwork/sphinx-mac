@@ -24,7 +24,13 @@ extension NewChatTableDataSource: NSCollectionViewDelegate, NSCollectionViewDele
         return CGSize(width: collectionView.frame.width, height: 100.0)
     }
     
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    func scrollViewDidScroll() {
+        if let scrollViewDesiredOffset = scrollViewDesiredOffset {
+            if scrollViewDesiredOffset == collectionViewScroll.documentYOffset {
+                collectionView.alphaValue = 1.0
+            }
+        }
+        
 //        let difference: CGFloat = 16
 //        let scrolledToTop = tableView.contentOffset.y > tableView.contentSize.height - tableView.frame.size.height - difference
 //        let scrolledToBottom = tableView.contentOffset.y < -10
@@ -37,7 +43,7 @@ extension NewChatTableDataSource: NSCollectionViewDelegate, NSCollectionViewDele
 //        } else if didMoveOutOfBottomArea {
 //            didScrollOutOfBottomArea()
 //        }
-//    }
+    }
     
     func scrollViewShouldScrollToTop(_ scrollView: NSScrollView) -> Bool {
         return false

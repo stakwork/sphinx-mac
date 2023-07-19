@@ -82,7 +82,9 @@ extension NewOnlyTextMessageCollectionViewitem {
             chatAvatarView.configureForUserWith(
                 color: avatarImage.color,
                 alias: avatarImage.alias,
-                picture: avatarImage.imageUrl
+                picture: avatarImage.imageUrl,
+                radius: kChatAvatarHeight / 2,
+                image: avatarImage.image
             )
             
 //            chatAvatarView.configureForUserWith(
