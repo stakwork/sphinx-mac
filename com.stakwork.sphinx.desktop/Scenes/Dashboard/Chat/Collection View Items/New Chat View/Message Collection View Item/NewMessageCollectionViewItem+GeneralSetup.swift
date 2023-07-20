@@ -46,9 +46,15 @@ extension NewMessageCollectionViewItem {
         
         let attrs = [NSAttributedString.Key.font: Constants.kMessageFont]
         let attributedString = NSAttributedString(string: messageContent?.text ?? "", attributes: attrs)
-        let textWidth = attributedString.size(forWidth: kBubbleMaxWidth - labelMargins, height: 2000).width  - labelSizeFix
+        let textSize = attributedString.size(forWidth: kBubbleMaxWidth - labelMargins, height: 2000)
+        let textWidth = textSize.width - labelSizeFix
+        let textHeight = textSize.height
+        var desiredWidth: CGFloat = kBubbleMaxWidth
         
-        let desiredWidth = max(textWidth, kBubbleMinWidth - labelMargins) + labelMargins
+        if textHeight < 30 {
+            desiredWidth = max(textWidth, kBubbleMinWidth - labelMargins) + labelMargins
+        }
+        
         topViewWidthConstraint.constant = desiredWidth
         bottomViewWidthConstraint.constant = desiredWidth
         
