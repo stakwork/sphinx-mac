@@ -698,11 +698,7 @@ extension NewChatTableDataSource {
                     and: contactLink.pubkeyComponents.1
                 )
             } else if let url = URL(string: link.withProtocol(protocolString: "http")) {
-//                UIApplication.shared.open(
-//                    url,
-//                    options: [:],
-//                    completionHandler: nil
-//                )
+                NSWorkspace.shared.open(url)
             }
         }
     }

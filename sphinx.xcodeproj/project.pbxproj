@@ -524,6 +524,15 @@
 		47DE1C082A6881F10029597B /* DateSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1C072A6881F10029597B /* DateSeparatorView.swift */; };
 		47DE1C0A2A6881FA0029597B /* DateSeparatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47DE1C092A6881FA0029597B /* DateSeparatorView.xib */; };
 		47DE1C0C2A6886020029597B /* NewChatTableDataSource+RowHeightExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1C0B2A6886020029597B /* NewChatTableDataSource+RowHeightExtension.swift */; };
+		47DE1C102A6969C50029597B /* NewMessageCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1C0E2A6969C40029597B /* NewMessageCollectionViewItem.swift */; };
+		47DE1C112A6969C50029597B /* NewMessageCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47DE1C0F2A6969C40029597B /* NewMessageCollectionViewItem.xib */; };
+		47DE1C142A69744C0029597B /* NewLinkPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1C132A69744C0029597B /* NewLinkPreviewView.swift */; };
+		47DE1C162A6974550029597B /* NewLinkPreviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47DE1C152A6974550029597B /* NewLinkPreviewView.xib */; };
+		47DE1C182A6976120029597B /* NewMessageCollectionViewItem+GeneralSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1C172A6976120029597B /* NewMessageCollectionViewItem+GeneralSetup.swift */; };
+		47DE1C1A2A6976630029597B /* NewMessageCollectionViewItem+StatusHeaderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1C192A6976630029597B /* NewMessageCollectionViewItem+StatusHeaderExtension.swift */; };
+		47DE1C1C2A69769B0029597B /* NewMessageCollectionViewItem+BubbleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1C1B2A69769B0029597B /* NewMessageCollectionViewItem+BubbleExtension.swift */; };
+		47DE1C1E2A6977730029597B /* NewMessageCollectionViewItem+MessageTypesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1C1D2A6977730029597B /* NewMessageCollectionViewItem+MessageTypesExtension.swift */; };
+		47DE1C202A697FC60029597B /* NewMessageCollectionViewItem+DelegatesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1C1F2A697FC60029597B /* NewMessageCollectionViewItem+DelegatesExtension.swift */; };
 		47E771172472C1B500C9CFEB /* ChatDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E771162472C1B500C9CFEB /* ChatDataSource.swift */; };
 		47E771212472C26200C9CFEB /* MessageReceivedCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E7711F2472C26200C9CFEB /* MessageReceivedCollectionViewItem.swift */; };
 		47E771222472C26200C9CFEB /* MessageReceivedCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47E771202472C26200C9CFEB /* MessageReceivedCollectionViewItem.xib */; };
@@ -1298,6 +1307,15 @@
 		47DE1C072A6881F10029597B /* DateSeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSeparatorView.swift; sourceTree = "<group>"; };
 		47DE1C092A6881FA0029597B /* DateSeparatorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateSeparatorView.xib; sourceTree = "<group>"; };
 		47DE1C0B2A6886020029597B /* NewChatTableDataSource+RowHeightExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewChatTableDataSource+RowHeightExtension.swift"; sourceTree = "<group>"; };
+		47DE1C0E2A6969C40029597B /* NewMessageCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageCollectionViewItem.swift; sourceTree = "<group>"; };
+		47DE1C0F2A6969C40029597B /* NewMessageCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewMessageCollectionViewItem.xib; sourceTree = "<group>"; };
+		47DE1C132A69744C0029597B /* NewLinkPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLinkPreviewView.swift; sourceTree = "<group>"; };
+		47DE1C152A6974550029597B /* NewLinkPreviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewLinkPreviewView.xib; sourceTree = "<group>"; };
+		47DE1C172A6976120029597B /* NewMessageCollectionViewItem+GeneralSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewMessageCollectionViewItem+GeneralSetup.swift"; sourceTree = "<group>"; };
+		47DE1C192A6976630029597B /* NewMessageCollectionViewItem+StatusHeaderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewMessageCollectionViewItem+StatusHeaderExtension.swift"; sourceTree = "<group>"; };
+		47DE1C1B2A69769B0029597B /* NewMessageCollectionViewItem+BubbleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewMessageCollectionViewItem+BubbleExtension.swift"; sourceTree = "<group>"; };
+		47DE1C1D2A6977730029597B /* NewMessageCollectionViewItem+MessageTypesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewMessageCollectionViewItem+MessageTypesExtension.swift"; sourceTree = "<group>"; };
+		47DE1C1F2A697FC60029597B /* NewMessageCollectionViewItem+DelegatesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewMessageCollectionViewItem+DelegatesExtension.swift"; sourceTree = "<group>"; };
 		47E771162472C1B500C9CFEB /* ChatDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDataSource.swift; sourceTree = "<group>"; };
 		47E7711F2472C26200C9CFEB /* MessageReceivedCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageReceivedCollectionViewItem.swift; sourceTree = "<group>"; };
 		47E771202472C26200C9CFEB /* MessageReceivedCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageReceivedCollectionViewItem.xib; sourceTree = "<group>"; };
@@ -2793,6 +2811,7 @@
 		47DE1BF12A68138B0029597B /* New Chat View */ = {
 			isa = PBXGroup;
 			children = (
+				47DE1C122A69743C0029597B /* Link Previews */,
 				47DE1C062A6881E00029597B /* No Bubble Views */,
 				47DE1BF22A6813920029597B /* Status Header */,
 			);
@@ -2834,6 +2853,29 @@
 				47DE1C092A6881FA0029597B /* DateSeparatorView.xib */,
 			);
 			path = "No Bubble Views";
+			sourceTree = "<group>";
+		};
+		47DE1C0D2A69699C0029597B /* Message Collection View Item */ = {
+			isa = PBXGroup;
+			children = (
+				47DE1C0E2A6969C40029597B /* NewMessageCollectionViewItem.swift */,
+				47DE1C0F2A6969C40029597B /* NewMessageCollectionViewItem.xib */,
+				47DE1C172A6976120029597B /* NewMessageCollectionViewItem+GeneralSetup.swift */,
+				47DE1C192A6976630029597B /* NewMessageCollectionViewItem+StatusHeaderExtension.swift */,
+				47DE1C1B2A69769B0029597B /* NewMessageCollectionViewItem+BubbleExtension.swift */,
+				47DE1C1D2A6977730029597B /* NewMessageCollectionViewItem+MessageTypesExtension.swift */,
+				47DE1C1F2A697FC60029597B /* NewMessageCollectionViewItem+DelegatesExtension.swift */,
+			);
+			path = "Message Collection View Item";
+			sourceTree = "<group>";
+		};
+		47DE1C122A69743C0029597B /* Link Previews */ = {
+			isa = PBXGroup;
+			children = (
+				47DE1C132A69744C0029597B /* NewLinkPreviewView.swift */,
+				47DE1C152A6974550029597B /* NewLinkPreviewView.xib */,
+			);
+			path = "Link Previews";
 			sourceTree = "<group>";
 		};
 		47E771152472C1A700C9CFEB /* Data Source */ = {
@@ -3198,6 +3240,7 @@
 		47FEE21F2A66F59D00646C4E /* New Chat View */ = {
 			isa = PBXGroup;
 			children = (
+				47DE1C0D2A69699C0029597B /* Message Collection View Item */,
 				47DE1C012A68811F0029597B /* MessageNoBubbleCollectionViewItem */,
 				47FEE22C2A670CFD00646C4E /* NewOnlyTextMessageCollectionViewItem */,
 				47FEE2242A66F69E00646C4E /* ChatCollectionViewItemProtocol.swift */,
@@ -3351,6 +3394,7 @@
 				47B5508824895D71000514BF /* Main.storyboard in Resources */,
 				4797E8AF24BDFE3800D13270 /* InvoiceReceivedCollectionViewItem.xib in Resources */,
 				47E771222472C26200C9CFEB /* MessageReceivedCollectionViewItem.xib in Resources */,
+				47DE1C162A6974550029597B /* NewLinkPreviewView.xib in Resources */,
 				4785C11324D992D3004E2D6C /* GroupRequestCollectionViewItem.xib in Resources */,
 				47AF0D5225530DF900C98398 /* PodcastEpisodesHeaderView.xib in Resources */,
 				4708C21F2A58959900274AD4 /* ChatMessageFieldView.xib in Resources */,
@@ -3481,6 +3525,7 @@
 				47A93EF725DD79F70030DF14 /* lightningNetwork.gif in Resources */,
 				47C7D71B27874A44006D2809 /* PersonModalView.xib in Resources */,
 				479C793F24ED6A6C009BA1CD /* AuthorizeAppView.xib in Resources */,
+				47DE1C112A6969C50029597B /* NewMessageCollectionViewItem.xib in Resources */,
 				47DE1C0A2A6881FA0029597B /* DateSeparatorView.xib in Resources */,
 				474E334C248000AA00F7F603 /* AttachmentPriceView.xib in Resources */,
 				47F88265256D398B002A7E71 /* MessageBoostView.xib in Resources */,
@@ -3586,15 +3631,18 @@
 				475B684B29916552000EF29C /* Array.swift in Sources */,
 				47B550A5248BEB0E000514BF /* PaymentTemplatesView.swift in Sources */,
 				47F8824A25656CB0002A7E71 /* SSLSecurity.swift in Sources */,
+				47DE1C182A6976120029597B /* NewMessageCollectionViewItem+GeneralSetup.swift in Sources */,
 				47FEE22B2A66F76E00646C4E /* NewOnlyTextMessageCollectionViewitem+DelegateExtension.swift in Sources */,
 				470E0B3B247D672900177D8A /* AudioSentCollectionViewItem.swift in Sources */,
 				47B5509E248BD256000514BF /* SendPaymentViewController.swift in Sources */,
 				474567F12513A03D00D66268 /* MessageWebViewReceivedCollectionViewItem.swift in Sources */,
 				47F8825C25656CB0002A7E71 /* SocketIOClientSpec.swift in Sources */,
 				4789E27424F421A2003991BE /* ProfileViewController.swift in Sources */,
+				47DE1C1C2A69769B0029597B /* NewMessageCollectionViewItem+BubbleExtension.swift in Sources */,
 				4708C1FF2A55BCE300274AD4 /* UserContactsHelper.swift in Sources */,
 				47E771392472E4DA00C9CFEB /* CommonBubbleView.swift in Sources */,
 				4787F8A0247C16B200CCE8B9 /* ChatSmallAvatarView.swift in Sources */,
+				47DE1C1A2A6976630029597B /* NewMessageCollectionViewItem+StatusHeaderExtension.swift in Sources */,
 				47C1D5F8248EA6F600718B28 /* GroupMembersViewController.swift in Sources */,
 				473633EC2555AEE8007405F2 /* ChatViewControllerPodcastExtension.swift in Sources */,
 				47F8825F25656CB0002A7E71 /* SocketAckEmitter.swift in Sources */,
@@ -3609,6 +3657,7 @@
 				47D03DE4250BB9F40077A968 /* NewInviteViewController.swift in Sources */,
 				CE6BF5CA29E5BA38009BCFDE /* SendPaymentForInvoiceVC.swift in Sources */,
 				47FEE2092A66DB2E00646C4E /* NewChatTableDataSource+ResultsControllerExtension.swift in Sources */,
+				47DE1C202A697FC60029597B /* NewMessageCollectionViewItem+DelegatesExtension.swift in Sources */,
 				4731BE2F24855E4600BCCA9E /* CommonInvoiceCollectionViewItem.swift in Sources */,
 				4708C2032A55C0DE00274AD4 /* Chat+FetchUtils.swift in Sources */,
 				47B550A9248BEB9A000514BF /* PaymentTemplatesViewController.swift in Sources */,
@@ -3939,12 +3988,14 @@
 				475B68682991A1A2000EF29C /* FeedBoostHelper.swift in Sources */,
 				474F674D2486777400CE6016 /* VideoCallReceivedCollectionViewItem.swift in Sources */,
 				470E0B33247C743900177D8A /* LoadingMoreCollectionViewItem.swift in Sources */,
+				47DE1C102A6969C50029597B /* NewMessageCollectionViewItem.swift in Sources */,
 				4734D3962417E3D400D6957E /* AppDelegate.swift in Sources */,
 				47975205246F186B00D2106B /* PlaceHolderTextView.swift in Sources */,
 				474E3346247FFAB400F7F603 /* GifOverlayView.swift in Sources */,
 				475B683E29915E08000EF29C /* PodcastEpisode+Properties.swift in Sources */,
 				47B550B0248C23E7000514BF /* TemplateCollectionViewItem.swift in Sources */,
 				47F8825925656CB0002A7E71 /* SocketIOClientOption.swift in Sources */,
+				47DE1C142A69744C0029597B /* NewLinkPreviewView.swift in Sources */,
 				47D03DEF250FF9A90077A968 /* URLResponse.swift in Sources */,
 				47FEE2172A66DDAC00646C4E /* NewChatTableDataSource+SearchMessagesExtension.swift in Sources */,
 				475B686C2991A91D000EF29C /* PodcastPlayerCollectionViewItem+Delegates.swift in Sources */,
@@ -3984,6 +4035,7 @@
 				47F8825025656CB0002A7E71 /* SocketEngineClient.swift in Sources */,
 				477ADCD42A1E5A7E004E74CE /* PinMessageBarView.swift in Sources */,
 				47B55095248A9A9D000514BF /* GroupsManager.swift in Sources */,
+				47DE1C1E2A6977730029597B /* NewMessageCollectionViewItem+MessageTypesExtension.swift in Sources */,
 				47B550B3248C46E8000514BF /* CustomScrollView.swift in Sources */,
 				4703F04C2481A24400282186 /* LinkPreviewView.swift in Sources */,
 				475B680429915C9E000EF29C /* ActionTrack+FetchUtils.swift in Sources */,

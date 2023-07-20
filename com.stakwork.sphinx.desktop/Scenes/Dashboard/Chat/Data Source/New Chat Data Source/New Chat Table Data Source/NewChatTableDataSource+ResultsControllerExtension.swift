@@ -71,17 +71,17 @@ extension NewChatTableDataSource {
             var mutableDataSourceItem = dataSourceItem
 
             if let _ = mutableDataSourceItem.bubble {
-//                if mutableDataSourceItem.isTextOnlyMessage {
+                if mutableDataSourceItem.isTextOnlyMessage {
                     cell = collectionView.makeItem(
                         withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "NewOnlyTextMessageCollectionViewitem"),
                         for: indexPath
                     ) as? ChatCollectionViewItemProtocol
-//                } else {
-//                    cell = tableView.dequeueReusableCell(
-//                        withIdentifier: "NewMessageTableViewCell",
-//                        for: indexPath
-//                    ) as! NewMessageTableViewCell
-//                }
+                } else {
+                    cell = collectionView.makeItem(
+                        withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "NewMessageCollectionViewItem"),
+                        for: indexPath
+                    ) as? ChatCollectionViewItemProtocol
+                }
             } else {
                 cell = collectionView.makeItem(
                     withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MessageNoBubbleCollectionViewItem"),

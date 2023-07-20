@@ -148,6 +148,7 @@ class NewChatTableDataSource : NSObject {
         collectionView.delegate = self
         collectionView.reloadData()
         
+        collectionView.registerItem(NewMessageCollectionViewItem.self)
         collectionView.registerItem(NewOnlyTextMessageCollectionViewitem.self)
         collectionView.registerItem(MessageNoBubbleCollectionViewItem.self)
         

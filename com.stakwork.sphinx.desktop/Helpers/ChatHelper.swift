@@ -565,10 +565,34 @@ class ChatHelper {
         
         let kGeneralMargin: CGFloat = 2.0
         let kLabelMargin: CGFloat = 16.0
-        let kStatusHeaderHeight: CGFloat = 25.0
         
+        var statusHeaderheight: CGFloat = getStatusHeaderHeightFor(tableCellState)
+        var textHeight: CGFloat = getTextMessageHeightFor(tableCellState, maxWidth: maxWidth)
+        var viewsHeight: CGFloat = getAdditionalViewsHeightFor(tableCellState)
+        
+        return textHeight + (kGeneralMargin * 2) + (kLabelMargin * 2) + statusHeaderheight + viewsHeight
+    }
+    
+    func getStatusHeaderHeightFor(
+        _ tableCellState: MessageTableCellState
+    ) -> CGFloat {
+        var mutableTableCellState = tableCellState
+        var statusHeaderheight: CGFloat = 25.0
+        
+        if let grouping = mutableTableCellState.bubble?.grouping, grouping.isGroupedAtTop() {
+            statusHeaderheight = 0.0
+        }
+        
+        return statusHeaderheight
+    }
+    
+    func getTextMessageHeightFor(
+        _ tableCellState: MessageTableCellState,
+        maxWidth: CGFloat
+    ) -> CGFloat {
+        var mutableTableCellState = tableCellState
         var textHeight: CGFloat = 0.0
-        var statusHeaderheight: CGFloat = kStatusHeaderHeight
+        let kLabelMargin: CGFloat = 16.0
         
         if let text = mutableTableCellState.messageContent?.text {
             let attrs = [NSAttributedString.Key.font: Constants.kMessageFont]
@@ -576,11 +600,19 @@ class ChatHelper {
             textHeight = attributedString.height(forWidth: maxWidth - (kLabelMargin * 2))
         }
         
-        if let grouping = mutableTableCellState.bubble?.grouping, grouping.isGroupedAtTop() {
-            statusHeaderheight = 0.0
+        return textHeight
+    }
+    
+    func getAdditionalViewsHeightFor(
+        _ tableCellState: MessageTableCellState
+    ) -> CGFloat {
+        var mutableTableCellState = tableCellState
+        var viewsHeight: CGFloat = 0.0
+        
+        if let _ = mutableTableCellState.webLink {
+            viewsHeight += NewLinkPreviewView.kViewHeight
         }
         
-        
-        return textHeight + (kGeneralMargin * 2) + (kLabelMargin * 2) + statusHeaderheight
+        return viewsHeight
     }
 }

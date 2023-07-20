@@ -385,6 +385,10 @@ extension CommonChatCollectionViewItem : LinkPreviewDelegate {
             NotificationCenter.default.post(name: .onPubKeyClick, object: nil, userInfo: userInfo)
         }
     }
+    
+    func didTapOnWebLinkButton() {
+        
+    }
 }
 
 extension CommonChatCollectionViewItem : ChatSmallAvatarViewDelegate {

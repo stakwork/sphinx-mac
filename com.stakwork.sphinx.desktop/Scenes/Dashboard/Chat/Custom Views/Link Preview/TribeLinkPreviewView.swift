@@ -11,6 +11,7 @@ import Cocoa
 protocol LinkPreviewDelegate: AnyObject {
     func didTapOnTribeButton()
     func didTapOnContactButton()
+    func didTapOnWebLinkButton()
 }
 
 class TribeLinkPreviewView: LinkPreviewBubbleView, LoadableNib {

@@ -32,8 +32,6 @@ class NewOnlyTextMessageCollectionViewitem: CommonNewMessageCollectionViewitem, 
     @IBOutlet weak var messageLabelLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var messageLabelTrailingConstraint: NSLayoutConstraint!
     
-    let kChatAvatarHeight: CGFloat = 33
-    
     ///Invoice Lines
 //    @IBOutlet weak var leftLineContainer: NSView!
 //    @IBOutlet weak var rightLineContainer: NSView!
