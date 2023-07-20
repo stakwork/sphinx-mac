@@ -28,7 +28,7 @@ class NewOnlyTextMessageCollectionViewitem: CommonNewMessageCollectionViewitem, 
     
     ///Thirs Container
     @IBOutlet weak var textMessageView: NSView!
-    @IBOutlet weak var messageLabel: NSTextField!
+    @IBOutlet weak var messageLabel: MessageTextField!
     @IBOutlet weak var messageLabelLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var messageLabelTrailingConstraint: NSLayoutConstraint!
     
@@ -50,6 +50,9 @@ class NewOnlyTextMessageCollectionViewitem: CommonNewMessageCollectionViewitem, 
     func setupViews() {
         receivedArrow.drawReceivedBubbleArrow(color: NSColor.Sphinx.ReceivedMsgBG)
         sentArrow.drawSentBubbleArrow(color: NSColor.Sphinx.SentMsgBG)
+        
+        messageLabel.setSelectionColor(color: NSColor.getTextSelectionColor())
+        messageLabel.allowsEditingTextAttributes = true
         
 //        let lineFrame = CGRect(
 //            x: 0.0,

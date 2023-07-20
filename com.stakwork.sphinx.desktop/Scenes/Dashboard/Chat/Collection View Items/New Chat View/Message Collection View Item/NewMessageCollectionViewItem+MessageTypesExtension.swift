@@ -43,11 +43,20 @@ extension NewMessageCollectionViewItem {
 
                 let attributedString = NSMutableAttributedString(string: messageC)
                 attributedString.addAttributes(
-                    [NSAttributedString.Key.font: messageContent.font], range: messageC.nsRange
+                    [
+                        NSAttributedString.Key.font: messageContent.font,
+                        NSAttributedString.Key.foregroundColor: NSColor.Sphinx.Text
+                    ]
+                    , range: messageC.nsRange
                 )
 
                 let searchingTermRange = (messageC.lowercased() as NSString).range(of: term.lowercased())
-                attributedString.addAttributes([NSAttributedString.Key.backgroundColor: NSColor.Sphinx.PrimaryGreen], range: searchingTermRange)
+                attributedString.addAttributes(
+                    [
+                        NSAttributedString.Key.backgroundColor: NSColor.Sphinx.PrimaryGreen
+                    ]
+                    , range: searchingTermRange
+                )
 
                 for match in messageContent.linkMatches {
 

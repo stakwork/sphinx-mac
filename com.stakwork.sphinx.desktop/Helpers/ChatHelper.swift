@@ -599,9 +599,11 @@ class ChatHelper {
         var textHeight: CGFloat = 0.0
         let kLabelMargin: CGFloat = 16.0
         
-        if let text = mutableTableCellState.messageContent?.text?.dropLast() {
+        if let text = mutableTableCellState.messageContent?.text {
+            let adaptedtext = (text.count > 1) ? String(text.dropLast()) : text
+            
             let attrs = [NSAttributedString.Key.font: Constants.kMessageFont]
-            let attributedString = NSAttributedString(string: String(text), attributes: attrs)
+            let attributedString = NSAttributedString(string: adaptedtext, attributes: attrs)
             textHeight = attributedString.height(forWidth: maxWidth - (kLabelMargin * 2))
         }
         

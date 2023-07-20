@@ -23,6 +23,10 @@ class CCTextField: NSTextField {
     func setColor(color: NSColor) {
         self.color = color
     }
+    
+    func setSelectionColor(color: NSColor) {
+        self.color = color
+    }
 
     func customizeCaretColor() {
         if let fieldEditor = self.window?.fieldEditor(true, for: self) as? NSTextView {

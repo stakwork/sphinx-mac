@@ -29,7 +29,7 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
     
     ///Thirs Container
     @IBOutlet weak var textMessageView: NSView!
-    @IBOutlet weak var messageLabel: NSTextField!
+    @IBOutlet weak var messageLabel: CCTextField!
     @IBOutlet weak var messageLabelLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var messageLabelTrailingConstraint: NSLayoutConstraint!
     
@@ -43,7 +43,12 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
+        setup()
+    }
+    
+    func setup() {
+        messageLabel.setSelectionColor(color: NSColor.getTextSelectionColor())
+        messageLabel.allowsEditingTextAttributes = true
     }
     
     func configureWith(
