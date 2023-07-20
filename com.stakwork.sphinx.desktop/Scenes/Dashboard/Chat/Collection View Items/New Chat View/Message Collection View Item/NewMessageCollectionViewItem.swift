@@ -22,13 +22,15 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
 
     @IBOutlet weak var statusHeaderView: StatusHeaderView!
     
+    ///First Container
+    @IBOutlet weak var messageReplyView: NewMessageReplyView!
+    
     ///Thirs Container
     @IBOutlet weak var textMessageView: NSView!
     @IBOutlet weak var messageLabel: NSTextField!
     @IBOutlet weak var messageLabelLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var messageLabelTrailingConstraint: NSLayoutConstraint!
     
-    ///Forth Container
     @IBOutlet weak var linkPreviewView: NewLinkPreviewView!
 
     override func viewDidLoad() {
@@ -48,9 +50,6 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
         indexPath: IndexPath,
         isPreload: Bool
     ) {
-        messageLabel.wantsLayer = true
-        messageLabel.layer?.backgroundColor = NSColor.red.cgColor
-        
         hideAllSubviews()
         
         var mutableMessageCellState = messageCellState
@@ -73,7 +72,7 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
         )
         
         ///Message Reply
-//        configureWith(messageReply: mutableMessageCellState.messageReply, and: bubble)
+        configureWith(messageReply: mutableMessageCellState.messageReply, and: bubble)
 //
 //        ///Paid Content
 //        configureWith(paidContent: mutableMessageCellState.paidContent, and: bubble)

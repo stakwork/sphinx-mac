@@ -11,6 +11,16 @@ import Cocoa
 extension NewMessageCollectionViewItem {
     
     func configureWith(
+        messageReply: BubbleMessageLayoutState.MessageReply?,
+        and bubble: BubbleMessageLayoutState.Bubble
+    ) {
+        if let messageReply = messageReply {
+            messageReplyView.configureWith(messageReply: messageReply, and: bubble, delegate: self)
+            messageReplyView.isHidden = false
+        }
+    }
+    
+    func configureWith(
         messageContent: BubbleMessageLayoutState.MessageContent?,
         searchingTerm: String?
     ) {

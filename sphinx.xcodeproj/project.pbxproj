@@ -533,6 +533,8 @@
 		47DE1C1C2A69769B0029597B /* NewMessageCollectionViewItem+BubbleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1C1B2A69769B0029597B /* NewMessageCollectionViewItem+BubbleExtension.swift */; };
 		47DE1C1E2A6977730029597B /* NewMessageCollectionViewItem+MessageTypesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1C1D2A6977730029597B /* NewMessageCollectionViewItem+MessageTypesExtension.swift */; };
 		47DE1C202A697FC60029597B /* NewMessageCollectionViewItem+DelegatesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1C1F2A697FC60029597B /* NewMessageCollectionViewItem+DelegatesExtension.swift */; };
+		47DE1C232A69963E0029597B /* NewMessageReplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1C222A69963E0029597B /* NewMessageReplyView.swift */; };
+		47DE1C252A6996480029597B /* NewMessageReplyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47DE1C242A6996480029597B /* NewMessageReplyView.xib */; };
 		47E771172472C1B500C9CFEB /* ChatDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E771162472C1B500C9CFEB /* ChatDataSource.swift */; };
 		47E771212472C26200C9CFEB /* MessageReceivedCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E7711F2472C26200C9CFEB /* MessageReceivedCollectionViewItem.swift */; };
 		47E771222472C26200C9CFEB /* MessageReceivedCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47E771202472C26200C9CFEB /* MessageReceivedCollectionViewItem.xib */; };
@@ -1316,6 +1318,8 @@
 		47DE1C1B2A69769B0029597B /* NewMessageCollectionViewItem+BubbleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewMessageCollectionViewItem+BubbleExtension.swift"; sourceTree = "<group>"; };
 		47DE1C1D2A6977730029597B /* NewMessageCollectionViewItem+MessageTypesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewMessageCollectionViewItem+MessageTypesExtension.swift"; sourceTree = "<group>"; };
 		47DE1C1F2A697FC60029597B /* NewMessageCollectionViewItem+DelegatesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewMessageCollectionViewItem+DelegatesExtension.swift"; sourceTree = "<group>"; };
+		47DE1C222A69963E0029597B /* NewMessageReplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageReplyView.swift; sourceTree = "<group>"; };
+		47DE1C242A6996480029597B /* NewMessageReplyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewMessageReplyView.xib; sourceTree = "<group>"; };
 		47E771162472C1B500C9CFEB /* ChatDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDataSource.swift; sourceTree = "<group>"; };
 		47E7711F2472C26200C9CFEB /* MessageReceivedCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageReceivedCollectionViewItem.swift; sourceTree = "<group>"; };
 		47E771202472C26200C9CFEB /* MessageReceivedCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageReceivedCollectionViewItem.xib; sourceTree = "<group>"; };
@@ -2811,6 +2815,7 @@
 		47DE1BF12A68138B0029597B /* New Chat View */ = {
 			isa = PBXGroup;
 			children = (
+				47DE1C212A69962B0029597B /* Message Reply */,
 				47DE1C122A69743C0029597B /* Link Previews */,
 				47DE1C062A6881E00029597B /* No Bubble Views */,
 				47DE1BF22A6813920029597B /* Status Header */,
@@ -2876,6 +2881,15 @@
 				47DE1C152A6974550029597B /* NewLinkPreviewView.xib */,
 			);
 			path = "Link Previews";
+			sourceTree = "<group>";
+		};
+		47DE1C212A69962B0029597B /* Message Reply */ = {
+			isa = PBXGroup;
+			children = (
+				47DE1C222A69963E0029597B /* NewMessageReplyView.swift */,
+				47DE1C242A6996480029597B /* NewMessageReplyView.xib */,
+			);
+			path = "Message Reply";
 			sourceTree = "<group>";
 		};
 		47E771152472C1A700C9CFEB /* Data Source */ = {
@@ -3505,6 +3519,7 @@
 				CE1FA9022A01B7330014360C /* LsatListTableCellView.xib in Resources */,
 				47B6F52D258BCF0A00D64A41 /* PodcastLiveHeaderCollectionViewItem.xib in Resources */,
 				4731BE212485309C00BCCA9E /* DirectPaymentSentCollectionViewItem.xib in Resources */,
+				47DE1C252A6996480029597B /* NewMessageReplyView.xib in Resources */,
 				4726A43C24C628DA005A66B4 /* bells.caf in Resources */,
 				4797E87724BCD60C00D13270 /* PaidAttachmentView.xib in Resources */,
 				4734D39D2417E3D500D6957E /* Assets.xcassets in Resources */,
@@ -3796,6 +3811,7 @@
 				47FEE1F62A61B5B000646C4E /* NewChatViewController+BottomTopBarsExtension.swift in Sources */,
 				474A66882498F3E6002C2D10 /* MessageOptionsHelper.swift in Sources */,
 				47FEE1EF2A61A19E00646C4E /* ChatMessageFieldView+FieldsExtension.swift in Sources */,
+				47DE1C232A69963E0029597B /* NewMessageReplyView.swift in Sources */,
 				4744FAC92469DFDB00C5FD94 /* StoryboardScenes.swift in Sources */,
 				479E7DA125AF2D0D0092595B /* GroupDetailsViewController.swift in Sources */,
 				475B686A2991A909000EF29C /* PodcastPlayerCollectionViewItem+UI.swift in Sources */,

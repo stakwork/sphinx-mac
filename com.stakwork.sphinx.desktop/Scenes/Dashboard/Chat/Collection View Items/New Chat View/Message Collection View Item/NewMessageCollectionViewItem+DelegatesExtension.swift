@@ -8,6 +8,14 @@
 
 import Foundation
 
+extension NewMessageCollectionViewItem : NewMessageReplyViewDelegate {
+    func didTapMessageReplyView() {
+        if let messageId = messageId {
+            delegate?.didTapMessageReplyFor(messageId: messageId, and: rowIndex)
+        }
+    }
+}
+
 extension NewMessageCollectionViewItem : LinkPreviewDelegate {
     func didTapOnTribeButton() {
 //        if let messageId = messageId {

@@ -63,7 +63,7 @@ extension NewMessageCollectionViewItem {
         direction: MessageTableCellState.MessageDirection
     ) {
         let isOutgoing = direction.isOutgoing()
-        let textRightAligned = isOutgoing && bubbleAllViews.isHidden
+        let textRightAligned = isOutgoing
         
         sentMessageMargingView.isHidden = !isOutgoing
         receivedMessageMarginView.isHidden = isOutgoing

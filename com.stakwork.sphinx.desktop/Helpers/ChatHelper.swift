@@ -615,8 +615,12 @@ class ChatHelper {
         var mutableTableCellState = tableCellState
         var viewsHeight: CGFloat = 0.0
         
-        if let _ = mutableTableCellState.webLink, linkData != nil {
+        if let _ = mutableTableCellState.webLink, let linkData = linkData, !linkData.failed {
             viewsHeight += NewLinkPreviewView.kViewHeight
+        }
+        
+        if let _ = mutableTableCellState.replyingMessage {
+            viewsHeight += NewMessageReplyView.kViewHeight
         }
         
         return viewsHeight
