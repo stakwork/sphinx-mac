@@ -65,6 +65,8 @@ extension NewMessageCollectionViewItem {
         let isOutgoing = direction.isOutgoing()
         let textRightAligned = isOutgoing
         
+        messageContentStackView.alignment = isOutgoing ? .trailing : .leading
+        
         sentMessageMargingView.isHidden = !isOutgoing
         receivedMessageMarginView.isHidden = isOutgoing
         

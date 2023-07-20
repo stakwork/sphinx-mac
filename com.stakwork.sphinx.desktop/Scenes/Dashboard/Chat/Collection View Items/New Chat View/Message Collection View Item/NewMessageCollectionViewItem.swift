@@ -10,6 +10,8 @@ import Cocoa
 
 class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatCollectionViewItemProtocol {
     
+    @IBOutlet weak var messageContentStackView: NSStackView!
+    
     @IBOutlet weak var bubbleAllViews: NSBox!
     @IBOutlet weak var receivedArrow: NSView!
     @IBOutlet weak var sentArrow: NSView!
@@ -33,6 +35,12 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
     
     @IBOutlet weak var linkPreviewView: NewLinkPreviewView!
 
+    @IBOutlet weak var topViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomViewWidthConstraint: NSLayoutConstraint!
+    
+    let kBubbleMaxWidth: CGFloat = 500
+    let kBubbleMinWidth: CGFloat = 250
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -61,6 +69,9 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
         self.rowIndex = indexPath.item
         self.messageId = mutableMessageCellState.message?.id
         self.delegate = delegate
+        
+        ///Views Width
+        configureViewsWidth(messageContent: mutableMessageCellState.messageContent)
         
         ///Status Header
         configureWith(statusHeader: mutableMessageCellState.statusHeader, uploadProgressData: uploadProgressData)

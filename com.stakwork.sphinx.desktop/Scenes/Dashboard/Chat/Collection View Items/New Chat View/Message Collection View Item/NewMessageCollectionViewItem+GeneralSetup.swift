@@ -38,6 +38,23 @@ extension NewMessageCollectionViewItem {
 //        leftLineContainer.layer.addSublayer(leftLineLayer)
     }
     
+    func configureViewsWidth(
+        messageContent: BubbleMessageLayoutState.MessageContent?
+    ) {
+        let labelMargins = (Constants.kMargin * 2)
+        let labelSizeFix: CGFloat = 10
+        
+        let attrs = [NSAttributedString.Key.font: Constants.kMessageFont]
+        let attributedString = NSAttributedString(string: messageContent?.text ?? "", attributes: attrs)
+        let textWidth = attributedString.size(forWidth: kBubbleMaxWidth - labelMargins, height: 2000).width  - labelSizeFix
+        
+        let desiredWidth = max(textWidth, kBubbleMinWidth - labelMargins) + labelMargins
+        topViewWidthConstraint.constant = desiredWidth
+        bottomViewWidthConstraint.constant = desiredWidth
+        
+        self.view.layoutSubtreeIfNeeded()
+    }
+    
     func hideAllSubviews() {
 //        invoicePaymentView.isHidden = true
 //        invoiceView.isHidden = true

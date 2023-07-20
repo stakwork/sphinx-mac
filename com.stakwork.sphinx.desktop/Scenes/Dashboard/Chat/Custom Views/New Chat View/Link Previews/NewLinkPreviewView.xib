@@ -49,8 +49,8 @@
                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="Cdb-3I-M8R"/>
                                 </imageView>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="t8P-q9-Ksd">
-                                    <rect key="frame" x="33" y="52" width="253" height="13"/>
-                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="psb-Pt-y8j">
+                                    <rect key="frame" x="34" y="52" width="268" height="13"/>
+                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" title="Label" id="psb-Pt-y8j">
                                         <font key="font" size="11" name="Roboto-Bold"/>
                                         <color key="textColor" name="Text"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -68,15 +68,15 @@
                             <constraints>
                                 <constraint firstItem="2iJ-AU-Uhi" firstAttribute="leading" secondItem="tgI-wj-Zx0" secondAttribute="leading" id="97q-i7-CoJ"/>
                                 <constraint firstItem="t8P-q9-Ksd" firstAttribute="centerY" secondItem="2iJ-AU-Uhi" secondAttribute="centerY" id="A0R-O1-yjl"/>
-                                <constraint firstItem="t8P-q9-Ksd" firstAttribute="leading" secondItem="2iJ-AU-Uhi" secondAttribute="trailing" constant="15" id="FHw-kh-j5i"/>
-                                <constraint firstAttribute="trailing" secondItem="VbG-j6-CJA" secondAttribute="trailing" id="Hea-0l-zQE"/>
+                                <constraint firstItem="t8P-q9-Ksd" firstAttribute="leading" secondItem="2iJ-AU-Uhi" secondAttribute="trailing" constant="16" id="FHw-kh-j5i"/>
                                 <constraint firstItem="VbG-j6-CJA" firstAttribute="top" secondItem="2iJ-AU-Uhi" secondAttribute="bottom" constant="8" id="M2y-3k-CbR"/>
                                 <constraint firstItem="2iJ-AU-Uhi" firstAttribute="top" secondItem="tgI-wj-Zx0" secondAttribute="top" id="PCQ-YR-EaR"/>
                                 <constraint firstAttribute="width" constant="300" id="Wuu-yx-CPF"/>
+                                <constraint firstAttribute="trailing" secondItem="VbG-j6-CJA" secondAttribute="trailing" id="WvN-t5-vOj"/>
                                 <constraint firstAttribute="bottom" secondItem="VbG-j6-CJA" secondAttribute="bottom" id="b6R-WG-Yz8"/>
-                                <constraint firstAttribute="trailing" secondItem="t8P-q9-Ksd" secondAttribute="trailing" constant="16" id="hhd-nr-6bX"/>
                                 <constraint firstItem="VbG-j6-CJA" firstAttribute="leading" secondItem="tgI-wj-Zx0" secondAttribute="leading" id="lpd-fw-jbY"/>
                                 <constraint firstAttribute="height" constant="68" id="r50-IA-Rzx"/>
+                                <constraint firstAttribute="trailing" secondItem="t8P-q9-Ksd" secondAttribute="trailing" id="urb-BZ-bQL"/>
                             </constraints>
                         </customView>
                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rQy-7e-9fJ" customClass="AspectFillNSImageView" customModule="Sphinx" customModuleProvider="target">
