@@ -18,8 +18,11 @@ extension NewChatTableDataSource: NSCollectionViewDelegateFlowLayout {
         if let tableCellState = getTableCellStateFor(
             rowIndex: indexPath.item
         ) {
+            let linkData = (tableCellState.linkWeb?.link != nil) ? self.preloaderHelper.linksData[tableCellState.linkWeb!.link] : nil
+            
             let rowHeight = chatHelper.getRowHeightFor(
                 tableCellState,
+                and: linkData,
                 maxWidth: min(
                     CommonNewMessageCollectionViewitem.kMaximumLabelBubbleWidth,
                     collectionView.frame.width - 80

@@ -555,6 +555,7 @@ class ChatHelper {
     
     func getRowHeightFor(
         _ tableCellState: MessageTableCellState,
+        and linkData: MessageTableCellState.LinkData? = nil,
         maxWidth: CGFloat
     ) -> CGFloat {
         var mutableTableCellState = tableCellState
@@ -566,9 +567,13 @@ class ChatHelper {
         let kGeneralMargin: CGFloat = 2.0
         let kLabelMargin: CGFloat = 16.0
         
-        var statusHeaderheight: CGFloat = getStatusHeaderHeightFor(tableCellState)
-        var textHeight: CGFloat = getTextMessageHeightFor(tableCellState, maxWidth: maxWidth)
-        var viewsHeight: CGFloat = getAdditionalViewsHeightFor(tableCellState)
+        let statusHeaderheight: CGFloat = getStatusHeaderHeightFor(tableCellState)
+        let textHeight: CGFloat = getTextMessageHeightFor(tableCellState, maxWidth: maxWidth)
+        
+        let viewsHeight: CGFloat = getAdditionalViewsHeightFor(
+            tableCellState,
+            and: linkData
+        )
         
         return textHeight + (kGeneralMargin * 2) + (kLabelMargin * 2) + statusHeaderheight + viewsHeight
     }
@@ -604,12 +609,13 @@ class ChatHelper {
     }
     
     func getAdditionalViewsHeightFor(
-        _ tableCellState: MessageTableCellState
+        _ tableCellState: MessageTableCellState,
+        and linkData: MessageTableCellState.LinkData? = nil
     ) -> CGFloat {
         var mutableTableCellState = tableCellState
         var viewsHeight: CGFloat = 0.0
         
-        if let _ = mutableTableCellState.webLink {
+        if let _ = mutableTableCellState.webLink, linkData != nil {
             viewsHeight += NewLinkPreviewView.kViewHeight
         }
         
