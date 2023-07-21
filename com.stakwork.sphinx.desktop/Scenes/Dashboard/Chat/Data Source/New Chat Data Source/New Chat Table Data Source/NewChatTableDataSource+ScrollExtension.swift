@@ -39,6 +39,7 @@ extension NewChatTableDataSource: NSCollectionViewDelegate {
         if let scrollViewDesiredOffset = scrollViewDesiredOffset {
             if scrollViewDesiredOffset == collectionViewScroll.documentYOffset {
                 collectionView.alphaValue = 1.0
+                shimmeringView.isHidden = true
             }
         }
         

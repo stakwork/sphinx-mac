@@ -11,6 +11,7 @@ import Cocoa
 class NewChatViewController: DashboardSplittedViewController {
     
     @IBOutlet weak var podcastPlayerView: NSView!
+    @IBOutlet weak var shimmeringView: ChatShimmeringView!
     
     @IBOutlet weak var chatTopView: ChatTopView!
     @IBOutlet weak var chatBottomView: ChatBottomView!
@@ -58,7 +59,7 @@ class NewChatViewController: DashboardSplittedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        addShimmeringView()
         setupData()
         configureFetchResultsController()
         configureCollectionView()
@@ -79,6 +80,14 @@ class NewChatViewController: DashboardSplittedViewController {
     
     override func viewDidLayout() {
         chatTableDataSource?.updateFrame()
+    }
+    
+    func addShimmeringView() {
+        if chat != nil || contact != nil {
+            shimmeringView.isHidden = false
+            shimmeringView.alphaValue = 0.15
+            shimmeringView.startAnimating()
+        }
     }
     
     func setupData() {

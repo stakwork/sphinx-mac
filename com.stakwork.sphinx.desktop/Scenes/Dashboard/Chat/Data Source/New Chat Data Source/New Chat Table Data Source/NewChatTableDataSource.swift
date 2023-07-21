@@ -60,6 +60,7 @@ class NewChatTableDataSource : NSObject {
     ///View references
     var collectionView : NSCollectionView!
     var collectionViewScroll: NSScrollView!
+    var shimmeringView: ChatShimmeringView!
     var headerImage: NSImage?
     var bottomView: NSView!
     var webView: WKWebView!
@@ -114,6 +115,7 @@ class NewChatTableDataSource : NSObject {
         contact: UserContact?,
         collectionView : NSCollectionView,
         collectionViewScroll: NSScrollView,
+        shimmeringView: ChatShimmeringView,
         headerImage: NSImage?,
         bottomView: NSView
 //        webView: WKWebView,
@@ -129,6 +131,7 @@ class NewChatTableDataSource : NSObject {
         self.collectionViewScroll = collectionViewScroll
         self.headerImage = headerImage
         self.bottomView = bottomView
+        self.shimmeringView = shimmeringView
 //        self.webView = webView
         
 //        self.delegate = delegate

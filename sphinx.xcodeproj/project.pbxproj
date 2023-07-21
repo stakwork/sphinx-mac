@@ -539,6 +539,13 @@
 		47DE1C2A2A69DC4A0029597B /* NewMessageBoostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47DE1C292A69DC4A0029597B /* NewMessageBoostView.xib */; };
 		47DE1C2C2A69E0BA0029597B /* MessageBoostImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1C2B2A69E0BA0029597B /* MessageBoostImageView.swift */; };
 		47DE1C2E2A69E0C10029597B /* MessageBoostImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47DE1C2D2A69E0C10029597B /* MessageBoostImageView.xib */; };
+		47DE1C342A6AF5FA0029597B /* ShimmeringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1C332A6AF5FA0029597B /* ShimmeringView.swift */; };
+		47DE1C372A6AF6D00029597B /* ShimmeringReceivedMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1C362A6AF6D00029597B /* ShimmeringReceivedMessageView.swift */; };
+		47DE1C392A6AF6DC0029597B /* ShimmeringReceivedMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47DE1C382A6AF6DC0029597B /* ShimmeringReceivedMessageView.xib */; };
+		47DE1C3B2A6AF6E70029597B /* ShimmeringSentMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1C3A2A6AF6E70029597B /* ShimmeringSentMessageView.swift */; };
+		47DE1C3D2A6AF6F10029597B /* ShimmeringSentMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47DE1C3C2A6AF6F10029597B /* ShimmeringSentMessageView.xib */; };
+		47DE1C3F2A6AFA070029597B /* ChatShimmeringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1C3E2A6AFA070029597B /* ChatShimmeringView.swift */; };
+		47DE1C412A6AFA0F0029597B /* ChatShimmeringView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47DE1C402A6AFA0F0029597B /* ChatShimmeringView.xib */; };
 		47E771172472C1B500C9CFEB /* ChatDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E771162472C1B500C9CFEB /* ChatDataSource.swift */; };
 		47E771212472C26200C9CFEB /* MessageReceivedCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E7711F2472C26200C9CFEB /* MessageReceivedCollectionViewItem.swift */; };
 		47E771222472C26200C9CFEB /* MessageReceivedCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47E771202472C26200C9CFEB /* MessageReceivedCollectionViewItem.xib */; };
@@ -1328,6 +1335,13 @@
 		47DE1C292A69DC4A0029597B /* NewMessageBoostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewMessageBoostView.xib; sourceTree = "<group>"; };
 		47DE1C2B2A69E0BA0029597B /* MessageBoostImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBoostImageView.swift; sourceTree = "<group>"; };
 		47DE1C2D2A69E0C10029597B /* MessageBoostImageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageBoostImageView.xib; sourceTree = "<group>"; };
+		47DE1C332A6AF5FA0029597B /* ShimmeringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmeringView.swift; sourceTree = "<group>"; };
+		47DE1C362A6AF6D00029597B /* ShimmeringReceivedMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmeringReceivedMessageView.swift; sourceTree = "<group>"; };
+		47DE1C382A6AF6DC0029597B /* ShimmeringReceivedMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShimmeringReceivedMessageView.xib; sourceTree = "<group>"; };
+		47DE1C3A2A6AF6E70029597B /* ShimmeringSentMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmeringSentMessageView.swift; sourceTree = "<group>"; };
+		47DE1C3C2A6AF6F10029597B /* ShimmeringSentMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShimmeringSentMessageView.xib; sourceTree = "<group>"; };
+		47DE1C3E2A6AFA070029597B /* ChatShimmeringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatShimmeringView.swift; sourceTree = "<group>"; };
+		47DE1C402A6AFA0F0029597B /* ChatShimmeringView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatShimmeringView.xib; sourceTree = "<group>"; };
 		47E771162472C1B500C9CFEB /* ChatDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDataSource.swift; sourceTree = "<group>"; };
 		47E7711F2472C26200C9CFEB /* MessageReceivedCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageReceivedCollectionViewItem.swift; sourceTree = "<group>"; };
 		47E771202472C26200C9CFEB /* MessageReceivedCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageReceivedCollectionViewItem.xib; sourceTree = "<group>"; };
@@ -2061,6 +2075,7 @@
 				474A6694249BE4BB002C2D10 /* DisabledScrollView.swift */,
 				474567ED25139FE000D66268 /* BotWebView.swift */,
 				473633F32555DEC0007405F2 /* CustomSliderCell.swift */,
+				47DE1C332A6AF5FA0029597B /* ShimmeringView.swift */,
 			);
 			path = "Custom Classes";
 			sourceTree = "<group>";
@@ -2823,6 +2838,7 @@
 		47DE1BF12A68138B0029597B /* New Chat View */ = {
 			isa = PBXGroup;
 			children = (
+				47DE1C352A6AF6BB0029597B /* Shimmering */,
 				47DE1C262A69DC2C0029597B /* Message Boost */,
 				47DE1C212A69962B0029597B /* Message Reply */,
 				47DE1C122A69743C0029597B /* Link Previews */,
@@ -2910,6 +2926,19 @@
 				47DE1C2D2A69E0C10029597B /* MessageBoostImageView.xib */,
 			);
 			path = "Message Boost";
+			sourceTree = "<group>";
+		};
+		47DE1C352A6AF6BB0029597B /* Shimmering */ = {
+			isa = PBXGroup;
+			children = (
+				47DE1C362A6AF6D00029597B /* ShimmeringReceivedMessageView.swift */,
+				47DE1C382A6AF6DC0029597B /* ShimmeringReceivedMessageView.xib */,
+				47DE1C3A2A6AF6E70029597B /* ShimmeringSentMessageView.swift */,
+				47DE1C3C2A6AF6F10029597B /* ShimmeringSentMessageView.xib */,
+				47DE1C3E2A6AFA070029597B /* ChatShimmeringView.swift */,
+				47DE1C402A6AFA0F0029597B /* ChatShimmeringView.xib */,
+			);
+			path = Shimmering;
 			sourceTree = "<group>";
 		};
 		47E771152472C1A700C9CFEB /* Data Source */ = {
@@ -3432,6 +3461,7 @@
 				4785C11324D992D3004E2D6C /* GroupRequestCollectionViewItem.xib in Resources */,
 				47AF0D5225530DF900C98398 /* PodcastEpisodesHeaderView.xib in Resources */,
 				4708C21F2A58959900274AD4 /* ChatMessageFieldView.xib in Resources */,
+				47DE1C3D2A6AF6F10029597B /* ShimmeringSentMessageView.xib in Resources */,
 				47C6236225091C02005D265C /* GiphySearchCollectionViewItem.xib in Resources */,
 				473BC8922600FB320070E519 /* NewEpisodeAlertView.xib in Resources */,
 				4726A44224C628DA005A66B4 /* horn.caf in Resources */,
@@ -3439,6 +3469,7 @@
 				479A03F02587E73A0093DB30 /* TribeMemberInfoView.xib in Resources */,
 				47DE1C052A68813B0029597B /* MessageNoBubbleCollectionViewItem.xib in Resources */,
 				470396FA2537766F007F9C23 /* PodcastCommentReceivedCollectionViewItem.xib in Resources */,
+				47DE1C392A6AF6DC0029597B /* ShimmeringReceivedMessageView.xib in Resources */,
 				475F0BA324F7EBCD0032EDC4 /* Contacts.storyboard in Resources */,
 				CE326B52294A179200821A53 /* ChatMentionAutocompleteCell.xib in Resources */,
 				4797E83224BCC10000D13270 /* Pin.storyboard in Resources */,
@@ -3524,6 +3555,7 @@
 				47F58A82268E4CAC00B223E0 /* README.md in Resources */,
 				CE9BA46329D772BD000C8837 /* PodcastDetailActionCell.xib in Resources */,
 				478ED57D25D41B0700940132 /* SignupFieldView.xib in Resources */,
+				47DE1C412A6AFA0F0029597B /* ChatShimmeringView.xib in Resources */,
 				479A04002588E7CD0093DB30 /* ContactLinkPreviewView.xib in Resources */,
 				4703F04E2481A24F00282186 /* LinkPreviewView.xib in Resources */,
 				4797E88524BCD6D700D13270 /* PaymentTemplatesView.xib in Resources */,
@@ -3671,6 +3703,7 @@
 				47DE1C182A6976120029597B /* NewMessageCollectionViewItem+GeneralSetup.swift in Sources */,
 				47FEE22B2A66F76E00646C4E /* NewOnlyTextMessageCollectionViewitem+DelegateExtension.swift in Sources */,
 				470E0B3B247D672900177D8A /* AudioSentCollectionViewItem.swift in Sources */,
+				47DE1C342A6AF5FA0029597B /* ShimmeringView.swift in Sources */,
 				47B5509E248BD256000514BF /* SendPaymentViewController.swift in Sources */,
 				474567F12513A03D00D66268 /* MessageWebViewReceivedCollectionViewItem.swift in Sources */,
 				47F8825C25656CB0002A7E71 /* SocketIOClientSpec.swift in Sources */,
@@ -3866,6 +3899,7 @@
 				474F675724867EC900CE6016 /* CommonVideoCallCollectionViewItem.swift in Sources */,
 				47C6236525091E6B005D265C /* GiphySearchDataSource.swift in Sources */,
 				475B682329915D25000EF29C /* ContentFeedItem+CoreDataClass.swift in Sources */,
+				47DE1C3B2A6AF6E70029597B /* ShimmeringSentMessageView.swift in Sources */,
 				479751CC246C750600D2106B /* NSWindow.swift in Sources */,
 				475B682A29915D72000EF29C /* ContentFeedPaymentDestination+CoreDataClass.swift in Sources */,
 				4708C2072A55EF5900274AD4 /* NSFont.swift in Sources */,
@@ -3902,6 +3936,7 @@
 				479A03EB2583D2290093DB30 /* JoinTribeViewController.swift in Sources */,
 				4720991824834E0000426028 /* SSLPointerTricks.swift in Sources */,
 				47F8825D25656CB0002A7E71 /* SocketIOStatus.swift in Sources */,
+				47DE1C372A6AF6D00029597B /* ShimmeringReceivedMessageView.swift in Sources */,
 				47FEE1F12A61A1C200646C4E /* ChatMessageFieldView+MentionsMacrosExtension.swift in Sources */,
 				47B55099248BCDD7000514BF /* CreateInvoiceViewController.swift in Sources */,
 				4744FA742469A4BA00C5FD94 /* DelayPerformerHelper.swift in Sources */,
@@ -4003,6 +4038,7 @@
 				473633E125548E40007405F2 /* BoostButtonView.swift in Sources */,
 				474F67652486D08800CE6016 /* Notification.Name.swift in Sources */,
 				474A66842497CAFE002C2D10 /* MessageReplyView.swift in Sources */,
+				47DE1C3F2A6AFA070029597B /* ChatShimmeringView.swift in Sources */,
 				CE07F40529D72B7700EB0EC1 /* PodcastDetailSelectionVC.swift in Sources */,
 				470E0B40247D709D00177D8A /* AudioBubbleView.swift in Sources */,
 				47F8825225656CB0002A7E71 /* SocketEnginePollable.swift in Sources */,

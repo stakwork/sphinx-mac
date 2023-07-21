@@ -26,6 +26,7 @@ extension NewChatViewController {
             contact: contact,
             collectionView: chatCollectionView,
             collectionViewScroll: chatScrollView,
+            shimmeringView: shimmeringView,
             headerImage: getContactImage(),
             bottomView: chatBottomView
 //            webView: botWebView,

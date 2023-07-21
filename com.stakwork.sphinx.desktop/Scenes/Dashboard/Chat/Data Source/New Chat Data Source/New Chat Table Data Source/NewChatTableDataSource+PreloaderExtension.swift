@@ -164,7 +164,6 @@ extension NewChatTableDataSource {
         let topInset = enclosingScrollView.contentInsets.top
         
         self.distanceFromBottom = contentHeight - (contentOffsetY + scrollViewHeight) - topInset
-//        self.distanceFromBottom = max(0, distanceFromBottom)
     }
 
 }

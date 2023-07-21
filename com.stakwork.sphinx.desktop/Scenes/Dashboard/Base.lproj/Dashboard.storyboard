@@ -1642,15 +1642,22 @@
                                                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                                                 </scroller>
                                                                                             </scrollView>
+                                                                                            <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="00Y-N3-bPz" customClass="ChatShimmeringView" customModule="Sphinx" customModuleProvider="target">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
+                                                                                            </customView>
                                                                                         </subviews>
                                                                                         <constraints>
+                                                                                            <constraint firstAttribute="bottom" secondItem="00Y-N3-bPz" secondAttribute="bottom" id="4pU-zg-FU4"/>
                                                                                             <constraint firstAttribute="trailing" secondItem="pLa-eF-Xok" secondAttribute="trailing" id="Juk-cf-Nz8"/>
+                                                                                            <constraint firstAttribute="trailing" secondItem="00Y-N3-bPz" secondAttribute="trailing" id="Kia-nT-fqR"/>
                                                                                             <constraint firstItem="pLa-eF-Xok" firstAttribute="leading" secondItem="JBN-Ay-LgI" secondAttribute="leading" id="Lth-ZR-1cw"/>
                                                                                             <constraint firstItem="pLa-eF-Xok" firstAttribute="top" secondItem="JBN-Ay-LgI" secondAttribute="top" id="OJx-es-wNx"/>
                                                                                             <constraint firstAttribute="trailing" secondItem="YNj-1S-7Oo" secondAttribute="trailing" id="Pub-tu-ys0"/>
                                                                                             <constraint firstAttribute="bottom" secondItem="pLa-eF-Xok" secondAttribute="bottom" id="g7Z-Cc-3Pz"/>
                                                                                             <constraint firstItem="YNj-1S-7Oo" firstAttribute="leading" secondItem="JBN-Ay-LgI" secondAttribute="leading" id="pkb-Mm-h1q"/>
+                                                                                            <constraint firstItem="00Y-N3-bPz" firstAttribute="top" secondItem="JBN-Ay-LgI" secondAttribute="top" id="r8a-6n-xA7"/>
                                                                                             <constraint firstAttribute="bottom" secondItem="YNj-1S-7Oo" secondAttribute="bottom" id="sPC-Rq-O3d"/>
+                                                                                            <constraint firstItem="00Y-N3-bPz" firstAttribute="leading" secondItem="JBN-Ay-LgI" secondAttribute="leading" id="wsq-Ha-kr1"/>
                                                                                         </constraints>
                                                                                     </view>
                                                                                     <color key="fillColor" name="Body"/>
@@ -1778,6 +1785,7 @@
                         <outlet property="pinMessageDetailView" destination="ppD-YX-fSX" id="Ohq-B5-AhN"/>
                         <outlet property="pinMessageNotificationView" destination="Wch-GS-WUG" id="HZL-W4-Vx9"/>
                         <outlet property="podcastPlayerView" destination="k2o-Hd-LQD" id="BVc-IC-n0J"/>
+                        <outlet property="shimmeringView" destination="00Y-N3-bPz" id="mpz-I2-MeS"/>
                     </connections>
                 </viewController>
                 <customObject id="Bnk-TP-Qxz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
