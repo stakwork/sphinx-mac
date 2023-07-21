@@ -99,6 +99,7 @@ class NewChatTableDataSource : NSObject {
     var loadingMoreItems = false
     var scrolledAtBottom = false
     var scrollViewDesiredOffset: CGFloat? = nil
+    var distanceFromBottom: CGFloat? = nil
     var isPreload = true
     
     ///WebView Loading
@@ -132,6 +133,7 @@ class NewChatTableDataSource : NSObject {
         
 //        self.delegate = delegate
         
+        addScrollObservers()
         configureTableView()
         configureDataSource()
     }
@@ -151,13 +153,5 @@ class NewChatTableDataSource : NSObject {
         collectionView.registerItem(NewMessageCollectionViewItem.self)
         collectionView.registerItem(NewOnlyTextMessageCollectionViewitem.self)
         collectionView.registerItem(MessageNoBubbleCollectionViewItem.self)
-        
-        NotificationCenter.default.addObserver(
-            forName: NSView.boundsDidChangeNotification,
-            object: collectionViewScroll.contentView,
-            queue: OperationQueue.main
-        ) { [weak self] (n: Notification) in
-            self?.scrollViewDidScroll()
-        }
     }
 }

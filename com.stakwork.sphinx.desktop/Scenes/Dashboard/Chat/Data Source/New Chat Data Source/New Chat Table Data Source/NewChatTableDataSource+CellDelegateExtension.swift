@@ -50,7 +50,21 @@ extension NewChatTableDataSource : ChatCollectionViewItemDelegate {
         }
     }
     
-    func shouldLoadLinkDataFor(messageId: Int, and rowIndex: Int) {
+    func shouldLoadLinkDataFor(
+        messageId: Int,
+        and rowIndex: Int
+    ) {
+        loadLinkDataFor(
+            messageId: messageId,
+            and: rowIndex
+        )
+    }
+    
+    func loadLinkDataFor(
+        messageId: Int,
+        and rowIndex: Int,
+        reloadCell: Bool = true
+    ) {
         if var tableCellState = getTableCellStateFor(
             messageId: messageId,
             and: rowIndex
@@ -73,7 +87,8 @@ extension NewChatTableDataSource : ChatCollectionViewItemDelegate {
                             cached.title?.isEmpty == true ||
                             cached.description?.isEmpty == true
                         )
-                    )
+                    ),
+                    reloadCell: reloadCell
                 )
             } else  {
                 linkPreviewsLoader.preview(link, onSuccess: { result in
@@ -92,7 +107,8 @@ extension NewChatTableDataSource : ChatCollectionViewItemDelegate {
                                 result.title?.isEmpty == true ||
                                 result.description?.isEmpty == true
                             )
-                        )
+                        ),
+                        reloadCell: reloadCell
                     )
                 }, onError: { error in
                     self.updateMessageTableCellStateFor(
@@ -103,7 +119,8 @@ extension NewChatTableDataSource : ChatCollectionViewItemDelegate {
                             title: "",
                             description: "",
                             failed: true
-                        )
+                        ),
+                        reloadCell: reloadCell
                     )
                 })
             }
@@ -516,7 +533,8 @@ extension NewChatTableDataSource {
     func updateMessageTableCellStateFor(
         rowIndex: Int,
         messageId: Int,
-        with linkData: MessageTableCellState.LinkData
+        with linkData: MessageTableCellState.LinkData,
+        reloadCell: Bool = true
     ) {
         if let tableCellState = getTableCellStateFor(
             messageId: messageId,
@@ -524,8 +542,15 @@ extension NewChatTableDataSource {
         ), let linkWeb = tableCellState.1.linkWeb
         {
             preloaderHelper.linksData[linkWeb.link] = linkData
+            
+            if !reloadCell {
+                return
+            }
 
             DispatchQueue.main.async {
+                if !(self.collectionView.indexPathsForVisibleItems().map { $0.item }).contains(rowIndex) {
+                    return
+                }
                 var snapshot = self.dataSource.snapshot()
                 snapshot.reloadItems([tableCellState.1])
                 self.dataSource.apply(snapshot, animatingDifferences: false)

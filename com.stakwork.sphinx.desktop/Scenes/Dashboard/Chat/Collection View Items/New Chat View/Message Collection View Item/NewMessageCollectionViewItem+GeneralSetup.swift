@@ -38,26 +38,21 @@ extension NewMessageCollectionViewItem {
 //        leftLineContainer.layer.addSublayer(leftLineLayer)
     }
     
-    func configureViewsWidth(
-        messageContent: BubbleMessageLayoutState.MessageContent?
+    func configureViewsWidthWith(
+        messageCellState: MessageTableCellState,
+        and linkData: MessageTableCellState.LinkData?
     ) {
-        let labelMargins = (Constants.kMargin * 2)
-        let labelSizeFix: CGFloat = 10
+        var mutableCellState = messageCellState
         
-        let attrs = [NSAttributedString.Key.font: Constants.kMessageFont]
-        let attributedString = NSAttributedString(string: messageContent?.text ?? "", attributes: attrs)
-        let textSize = attributedString.size(forWidth: kBubbleMaxWidth - labelMargins, height: 2000)
-        let textWidth = textSize.width - labelSizeFix
-        let textHeight = textSize.height
-        var desiredWidth: CGFloat = kBubbleMaxWidth
-        
-        if textHeight < 30 || (messageContent?.text ?? "").contains("\n") {
-            desiredWidth = max(textWidth, kBubbleMinWidth - labelMargins) + labelMargins
+        if let linkData = linkData, !linkData.failed {
+            widthConstraint.constant = 400 - 32
+        } else if let _ = mutableCellState.boosts {
+            widthConstraint.constant = 250 - 32
+        } else if let _ = mutableCellState.messageReply {
+            widthConstraint.constant = 250 - 32
+        } else {
+            widthConstraint.constant = 500 - 32
         }
-        
-        topViewWidthConstraint.constant = desiredWidth
-        bottomViewWidthConstraint.constant = desiredWidth
-        veryBottomViewWidthConstraint.constant = desiredWidth
         
         self.view.layoutSubtreeIfNeeded()
     }

@@ -13,13 +13,19 @@ class NewLinkPreviewView: NSView, LoadableNib {
     
     weak var delegate: LinkPreviewDelegate?
     
+    @IBOutlet var contentView: NSView!
+    
     @IBOutlet weak var iconImageView: AspectFillNSImageView!
     @IBOutlet weak var titleLabel: NSTextField!
     @IBOutlet weak var descriptionLabel: NSTextField!
     @IBOutlet weak var pictureImageView: AspectFillNSImageView!
     @IBOutlet weak var linkButton: CustomButton!
     
-    @IBOutlet var contentView: NSView!
+    @IBOutlet weak var contentStackView: NSStackView!
+    @IBOutlet weak var overContainer: NSBox!
+    @IBOutlet weak var loadingView: NSView!
+    @IBOutlet weak var failedView: NSView!
+    @IBOutlet weak var loadingWheel: NSProgressIndicator!
     
     static let kViewHeight: CGFloat = 100.0
 
@@ -40,9 +46,23 @@ class NewLinkPreviewView: NSView, LoadableNib {
     }
     
     func configureWith(
-        linkData: MessageTableCellState.LinkData,
+        linkData: MessageTableCellState.LinkData?,
         delegate: LinkPreviewDelegate?
     ) {
+        overContainer.isHidden = true
+        contentStackView.isHidden = true
+        loadingWheel.stopAnimation(nil)
+        
+        guard let linkData = linkData else {
+            configureLoadingMode()
+            return
+        }
+        
+        if linkData.failed {
+            configureFailedMode()
+            return
+        }
+        
         self.delegate = delegate
         
         loadImageOn(
@@ -57,6 +77,21 @@ class NewLinkPreviewView: NSView, LoadableNib {
         
         titleLabel.stringValue = linkData.title
         descriptionLabel.stringValue = linkData.description
+        
+        contentStackView.isHidden = false
+    }
+    
+    func configureLoadingMode() {
+        loadingWheel.startAnimation(nil)
+        overContainer.isHidden = false
+        failedView.isHidden = true
+        loadingView.isHidden = false
+    }
+    
+    func configureFailedMode() {
+        overContainer.isHidden = false
+        failedView.isHidden = false
+        loadingView.isHidden = true
     }
     
     func loadImageOn(

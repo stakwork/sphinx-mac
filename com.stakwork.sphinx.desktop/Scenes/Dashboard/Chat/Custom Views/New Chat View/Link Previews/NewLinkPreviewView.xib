@@ -9,10 +9,15 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NewLinkPreviewView" customModule="Sphinx" customModuleProvider="target">
             <connections>
+                <outlet property="contentStackView" destination="XnV-n2-kUD" id="ofO-gQ-ZfE"/>
                 <outlet property="contentView" destination="c22-O7-iKe" id="HHm-o0-tql"/>
                 <outlet property="descriptionLabel" destination="VbG-j6-CJA" id="h8j-Jy-wy2"/>
+                <outlet property="failedView" destination="0eg-f2-3fo" id="zsl-HJ-rkt"/>
                 <outlet property="iconImageView" destination="2iJ-AU-Uhi" id="7rk-ae-ZDm"/>
                 <outlet property="linkButton" destination="qSt-JL-6we" id="s7O-K2-zHF"/>
+                <outlet property="loadingView" destination="DLT-Oa-q1v" id="H9d-pq-U7Z"/>
+                <outlet property="loadingWheel" destination="iQe-ae-iun" id="dqc-Bj-Tdx"/>
+                <outlet property="overContainer" destination="vBp-1K-Gtw" id="dQW-wZ-OQg"/>
                 <outlet property="pictureImageView" destination="rQy-7e-9fJ" id="8g9-0A-CtT"/>
                 <outlet property="titleLabel" destination="t8P-q9-Ksd" id="0GB-wa-479"/>
             </connections>
@@ -110,17 +115,89 @@
                         <action selector="didClickLinkPreview:" target="-2" id="X1Z-hd-pff"/>
                     </connections>
                 </button>
+                <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="vBp-1K-Gtw">
+                    <rect key="frame" x="0.0" y="0.0" width="408" height="100"/>
+                    <view key="contentView" id="vFi-7p-hMb">
+                        <rect key="frame" x="0.0" y="0.0" width="408" height="100"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="DLT-Oa-q1v">
+                                <rect key="frame" x="0.0" y="0.0" width="408" height="100"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gFP-Rq-v4T">
+                                        <rect key="frame" x="140" y="43" width="128" height="15"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Loading Link Preview" id="hzf-9I-oav">
+                                            <font key="font" size="13" name="Roboto-Regular"/>
+                                            <color key="textColor" name="Text"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <progressIndicator maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="iQe-ae-iun">
+                                        <rect key="frame" x="274" y="42" width="16" height="16"/>
+                                    </progressIndicator>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="iQe-ae-iun" firstAttribute="centerY" secondItem="gFP-Rq-v4T" secondAttribute="centerY" id="0x0-Pn-d6h"/>
+                                    <constraint firstItem="gFP-Rq-v4T" firstAttribute="centerX" secondItem="DLT-Oa-q1v" secondAttribute="centerX" id="1Dr-wf-beE"/>
+                                    <constraint firstItem="gFP-Rq-v4T" firstAttribute="centerY" secondItem="DLT-Oa-q1v" secondAttribute="centerY" id="FSu-ez-ukH"/>
+                                    <constraint firstItem="iQe-ae-iun" firstAttribute="leading" secondItem="gFP-Rq-v4T" secondAttribute="trailing" constant="8" id="vMO-vs-tiG"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="0eg-f2-3fo">
+                                <rect key="frame" x="0.0" y="0.0" width="408" height="100"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GYd-hb-ZXL">
+                                        <rect key="frame" x="126" y="43" width="156" height="15"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Link Preview not available" id="fLF-fj-7ah">
+                                            <font key="font" size="13" name="Roboto-Regular"/>
+                                            <color key="textColor" name="Text"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9LQ-yu-r0j">
+                                        <rect key="frame" x="286" y="40" width="24" height="20"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="error" id="v3C-Pn-5Lt">
+                                            <font key="font" size="20" name="MaterialIcons-Regular"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="9LQ-yu-r0j" firstAttribute="centerY" secondItem="GYd-hb-ZXL" secondAttribute="centerY" id="787-CA-KXb"/>
+                                    <constraint firstItem="GYd-hb-ZXL" firstAttribute="centerY" secondItem="0eg-f2-3fo" secondAttribute="centerY" id="M08-OC-TGc"/>
+                                    <constraint firstItem="9LQ-yu-r0j" firstAttribute="leading" secondItem="GYd-hb-ZXL" secondAttribute="trailing" constant="8" id="oO3-tP-up0"/>
+                                    <constraint firstItem="GYd-hb-ZXL" firstAttribute="centerX" secondItem="0eg-f2-3fo" secondAttribute="centerX" id="rOM-Hr-GhV"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="0eg-f2-3fo" firstAttribute="top" secondItem="vFi-7p-hMb" secondAttribute="top" id="5H5-lZ-fN3"/>
+                            <constraint firstItem="DLT-Oa-q1v" firstAttribute="top" secondItem="vFi-7p-hMb" secondAttribute="top" id="Gmm-eg-gb7"/>
+                            <constraint firstAttribute="trailing" secondItem="0eg-f2-3fo" secondAttribute="trailing" id="Yc8-Oe-zdH"/>
+                            <constraint firstAttribute="trailing" secondItem="DLT-Oa-q1v" secondAttribute="trailing" id="bAI-uG-e9M"/>
+                            <constraint firstItem="DLT-Oa-q1v" firstAttribute="leading" secondItem="vFi-7p-hMb" secondAttribute="leading" id="g38-Po-8lv"/>
+                            <constraint firstItem="0eg-f2-3fo" firstAttribute="leading" secondItem="vFi-7p-hMb" secondAttribute="leading" id="mSl-hW-UTp"/>
+                            <constraint firstAttribute="bottom" secondItem="0eg-f2-3fo" secondAttribute="bottom" id="tPY-4z-RkU"/>
+                            <constraint firstAttribute="bottom" secondItem="DLT-Oa-q1v" secondAttribute="bottom" id="tfl-c7-xfR"/>
+                        </constraints>
+                    </view>
+                </box>
             </subviews>
             <constraints>
                 <constraint firstItem="XnV-n2-kUD" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="16" id="4AY-DF-MWR"/>
                 <constraint firstItem="qSt-JL-6we" firstAttribute="leading" secondItem="XnV-n2-kUD" secondAttribute="leading" id="6Nv-d3-HqY"/>
                 <constraint firstAttribute="trailing" secondItem="eXg-A9-nWU" secondAttribute="trailing" id="AXa-lj-2Oh"/>
                 <constraint firstItem="qSt-JL-6we" firstAttribute="top" secondItem="XnV-n2-kUD" secondAttribute="top" id="Bp7-Rl-ZY8"/>
+                <constraint firstItem="vBp-1K-Gtw" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="BwI-39-vCc"/>
                 <constraint firstItem="XnV-n2-kUD" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="16" id="GvC-JE-I5X"/>
                 <constraint firstItem="eXg-A9-nWU" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="Iqj-ei-pw0"/>
                 <constraint firstAttribute="trailing" secondItem="XnV-n2-kUD" secondAttribute="trailing" constant="16" id="NAn-Ft-PfC"/>
+                <constraint firstAttribute="trailing" secondItem="vBp-1K-Gtw" secondAttribute="trailing" id="Nkm-LP-ecH"/>
                 <constraint firstItem="qSt-JL-6we" firstAttribute="trailing" secondItem="XnV-n2-kUD" secondAttribute="trailing" id="Wgg-Zg-28G"/>
                 <constraint firstItem="eXg-A9-nWU" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="hoH-so-OHV"/>
+                <constraint firstItem="vBp-1K-Gtw" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="iS4-uZ-NFZ"/>
+                <constraint firstAttribute="bottom" secondItem="vBp-1K-Gtw" secondAttribute="bottom" id="nwT-sj-uRa"/>
                 <constraint firstAttribute="bottom" secondItem="XnV-n2-kUD" secondAttribute="bottom" constant="16" id="rFt-2A-rPI"/>
                 <constraint firstItem="qSt-JL-6we" firstAttribute="bottom" secondItem="XnV-n2-kUD" secondAttribute="bottom" id="zXa-3H-CKw"/>
             </constraints>

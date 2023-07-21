@@ -37,9 +37,7 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
     ///Forth Container
     @IBOutlet weak var messageBoostView: NewMessageBoostView!
 
-    @IBOutlet weak var topViewWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var bottomViewWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var veryBottomViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var widthConstraint: NSLayoutConstraint!
     
     let kBubbleMaxWidth: CGFloat = 500
     let kBubbleMinWidth: CGFloat = 250
@@ -79,7 +77,10 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
         self.delegate = delegate
         
         ///Views Width
-        configureViewsWidth(messageContent: mutableMessageCellState.messageContent)
+        configureViewsWidthWith(
+            messageCellState: messageCellState,
+            and: linkData
+        )
         
         ///Status Header
         configureWith(statusHeader: mutableMessageCellState.statusHeader, uploadProgressData: uploadProgressData)

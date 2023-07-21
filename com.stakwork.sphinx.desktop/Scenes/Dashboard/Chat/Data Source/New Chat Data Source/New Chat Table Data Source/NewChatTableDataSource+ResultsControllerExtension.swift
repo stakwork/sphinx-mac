@@ -222,6 +222,7 @@ extension NewChatTableDataSource {
         
         updateSnapshot()
         delegate?.configureNewMessagesIndicatorWith(newMsgCount: newMsgCount)
+        preloadDataForItems()
         
 //        finishSearchProcess()
     }

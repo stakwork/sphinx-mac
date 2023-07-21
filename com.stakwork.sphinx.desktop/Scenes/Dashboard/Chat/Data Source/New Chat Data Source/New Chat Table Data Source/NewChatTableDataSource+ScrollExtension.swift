@@ -9,6 +9,36 @@
 import Cocoa
 
 extension NewChatTableDataSource: NSCollectionViewDelegate {
+    func addScrollObservers() {
+        guard let scrollView = collectionView.enclosingScrollView else {
+            return
+        }
+        
+        NotificationCenter.default.addObserver(
+            forName: NSView.boundsDidChangeNotification,
+            object: collectionViewScroll.contentView,
+            queue: OperationQueue.main
+        ) { [weak self] (n: Notification) in
+            self?.scrollViewDidScroll()
+        }
+        
+//        NotificationCenter.default.addObserver(
+//            forName: NSScrollView.willStartLiveScrollNotification,
+//            object: scrollView,
+//            queue: OperationQueue.main
+//        ) { [weak self] (n: Notification) in
+//            self?.isScrolling = true
+//        }
+//        
+//        NotificationCenter.default.addObserver(
+//            forName: NSScrollView.didEndLiveScrollNotification,
+//            object: scrollView,
+//            queue: OperationQueue.main
+//        ) { [weak self] (n: Notification) in
+//            self?.isScrolling = false
+//        }
+    }
+    
     func scrollViewDidScroll() {
         if let scrollViewDesiredOffset = scrollViewDesiredOffset {
             if scrollViewDesiredOffset == collectionViewScroll.documentYOffset {

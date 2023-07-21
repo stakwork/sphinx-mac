@@ -9,6 +9,44 @@
 import Foundation
 
 extension NewChatTableDataSource {
+    func preloadDataForItems() {
+        for index in stride(from: messageTableCellStateArray.count - 1, through: 0, by: -1) {
+            let item = messageTableCellStateArray[index]
+            
+            if let messageId = item.message?.id {
+                DispatchQueue.global(qos: .userInteractive).async {
+                    self.preloadDataFor(
+                        rowIndex: index,
+                        messageId: messageId
+                    )
+                }
+            }
+        }
+    }
+    
+    func preloadDataFor(
+        rowIndex: Int,
+        messageId: Int
+    ) {
+        if let tableCellState = getTableCellStateFor(
+            messageId: messageId,
+            and: rowIndex
+        ) {
+            var mutableCellState = tableCellState
+            
+            if let link = mutableCellState.1.webLink?.link {
+                let linkData = preloaderHelper.linksData[link]
+                
+                if linkData == nil {
+                    loadLinkDataFor(
+                        messageId: messageId,
+                        and: rowIndex
+                    )
+                }
+            }
+        }
+    }
+    
     func restorePreloadedMessages() {
         guard let chat = chat else {
             return
