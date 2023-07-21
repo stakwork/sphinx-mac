@@ -10,10 +10,6 @@ import Cocoa
 
 extension NewChatTableDataSource: NSCollectionViewDelegate {
     func addScrollObservers() {
-        guard let scrollView = collectionView.enclosingScrollView else {
-            return
-        }
-        
         NotificationCenter.default.addObserver(
             forName: NSView.boundsDidChangeNotification,
             object: collectionViewScroll.contentView,

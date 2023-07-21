@@ -93,12 +93,19 @@ extension NewChatTableDataSource {
 //        }
 //
         saveMessagesToPreloader()
+        saveDistanceFromBottom()
     }
     
     func restoreScrollLastPosition() {
-        let collectionViewContentSize = collectionView.collectionViewLayout?.collectionViewContentSize.height ?? 0
-        scrollViewDesiredOffset = collectionViewContentSize - collectionViewScroll.frame.height + collectionViewScroll.contentInsets.bottom
-        collectionViewScroll.documentYOffset = scrollViewDesiredOffset ?? 0
+        if let distanceFromBottom = distanceFromBottom {
+            let collectionViewContentSize = collectionView.collectionViewLayout?.collectionViewContentSize.height ?? 0
+            let offset = (collectionViewContentSize - collectionViewScroll.frame.height - distanceFromBottom) - collectionViewScroll.contentInsets.top
+            collectionViewScroll.documentYOffset = offset
+        } else {
+            let collectionViewContentSize = collectionView.collectionViewLayout?.collectionViewContentSize.height ?? 0
+            scrollViewDesiredOffset = collectionViewContentSize - collectionViewScroll.frame.height + collectionViewScroll.contentInsets.top
+            collectionViewScroll.documentYOffset = scrollViewDesiredOffset ?? 0
+        }
         
 //        guard let chat = chat else {
 //            return
@@ -134,4 +141,30 @@ extension NewChatTableDataSource {
 //            delegate?.didScrollToBottom()
 //        }
     }
+    
+    func getCollectionViewContentSize() -> CGFloat {
+        guard let collectionViewLayout = collectionView.collectionViewLayout else {
+            return CGFloat.zero
+        }
+
+        return collectionViewLayout.collectionViewContentSize.height
+    }
+    
+    func saveDistanceFromBottom() {
+        guard let enclosingScrollView = collectionView.enclosingScrollView else { return }
+        
+        if collectionView.alphaValue == 0 { return }
+                
+        let contentHeight = getCollectionViewContentSize()
+        
+        if contentHeight == 0 { return }
+        
+        let scrollViewHeight = enclosingScrollView.bounds.height
+        let contentOffsetY = enclosingScrollView.contentView.bounds.origin.y
+        let topInset = enclosingScrollView.contentInsets.top
+        
+        self.distanceFromBottom = contentHeight - (contentOffsetY + scrollViewHeight) - topInset
+//        self.distanceFromBottom = max(0, distanceFromBottom)
+    }
+
 }

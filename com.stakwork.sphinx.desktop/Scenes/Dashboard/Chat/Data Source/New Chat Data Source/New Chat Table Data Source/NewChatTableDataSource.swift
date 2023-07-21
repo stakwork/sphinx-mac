@@ -147,6 +147,8 @@ class NewChatTableDataSource : NSObject {
     }
     
     func configureTableView() {
+        collectionView.alphaValue = 0.0
+        
         collectionView.delegate = self
         collectionView.reloadData()
         
