@@ -14,6 +14,7 @@
                 <outlet property="chatAvatarContainerView" destination="RAQ-Ej-oyC" id="k2c-d5-aKh"/>
                 <outlet property="chatAvatarView" destination="0w7-Od-NJs" id="Aqe-yb-NC9"/>
                 <outlet property="linkPreviewView" destination="Q58-W9-lXF" id="RH2-RJ-jzU"/>
+                <outlet property="messageBoostView" destination="pkI-rw-Lfs" id="bdg-Uw-4mJ"/>
                 <outlet property="messageContentStackView" destination="PqZ-pq-8i0" id="vGN-pK-4mw"/>
                 <outlet property="messageLabel" destination="okv-Ag-SIE" id="YZ4-Zp-4yz"/>
                 <outlet property="messageLabelLeadingConstraint" destination="90f-L3-Gf9" id="rSt-TT-gmy"/>
@@ -27,6 +28,7 @@
                 <outlet property="statusHeaderViewContainer" destination="QIj-fa-qcL" id="UMS-Or-U0H"/>
                 <outlet property="textMessageView" destination="4D1-XE-gCv" id="ICY-LD-Di4"/>
                 <outlet property="topViewWidthConstraint" destination="gKu-Mg-kNr" id="vGm-aX-5eF"/>
+                <outlet property="veryBottomViewWidthConstraint" destination="S6x-Tl-jbQ" id="pZB-ZP-Bt2"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -37,9 +39,9 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <box horizontalHuggingPriority="1000" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="8" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="YWa-SY-0um">
-                    <rect key="frame" x="1007" y="250" width="250" height="200"/>
+                    <rect key="frame" x="1007" y="200" width="250" height="250"/>
                     <view key="contentView" id="XBi-4A-5G5">
-                        <rect key="frame" x="0.0" y="0.0" width="250" height="200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
                     <constraints>
@@ -96,10 +98,10 @@
                                     </constraints>
                                 </customView>
                                 <stackView distribution="fill" orientation="vertical" alignment="trailing" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PqZ-pq-8i0">
-                                    <rect key="frame" x="41" y="248" width="500" height="225"/>
+                                    <rect key="frame" x="41" y="198" width="500" height="275"/>
                                     <subviews>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="QIj-fa-qcL">
-                                            <rect key="frame" x="0.0" y="200" width="500" height="25"/>
+                                            <rect key="frame" x="0.0" y="250" width="500" height="25"/>
                                             <subviews>
                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="Kv2-Gm-iRV" customClass="StatusHeaderView" customModule="Sphinx" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="500" height="17"/>
@@ -116,7 +118,7 @@
                                             </constraints>
                                         </customView>
                                         <customView horizontalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="3Zu-1O-esC">
-                                            <rect key="frame" x="0.0" y="150" width="500" height="50"/>
+                                            <rect key="frame" x="0.0" y="200" width="500" height="50"/>
                                             <subviews>
                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FMV-Mi-7ET">
                                                     <rect key="frame" x="0.0" y="0.0" width="500" height="50"/>
@@ -149,7 +151,7 @@
                                             </constraints>
                                         </customView>
                                         <customView horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="4D1-XE-gCv">
-                                            <rect key="frame" x="250" y="100" width="250" height="50"/>
+                                            <rect key="frame" x="250" y="150" width="250" height="50"/>
                                             <subviews>
                                                 <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="okv-Ag-SIE" customClass="CCTextField" customModule="Sphinx" customModuleProvider="target">
                                                     <rect key="frame" x="14" y="16" width="222" height="18"/>
@@ -170,7 +172,7 @@
                                             </constraints>
                                         </customView>
                                         <customView horizontalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="kN9-4b-ag8">
-                                            <rect key="frame" x="0.0" y="0.0" width="500" height="100"/>
+                                            <rect key="frame" x="0.0" y="50" width="500" height="100"/>
                                             <subviews>
                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="del-xZ-9Yd">
                                                     <rect key="frame" x="0.0" y="0.0" width="500" height="100"/>
@@ -202,6 +204,39 @@
                                                 <constraint firstAttribute="trailing" secondItem="del-xZ-9Yd" secondAttribute="trailing" id="ioD-W4-qLF"/>
                                             </constraints>
                                         </customView>
+                                        <customView horizontalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="BIL-nr-WQh">
+                                            <rect key="frame" x="0.0" y="0.0" width="500" height="50"/>
+                                            <subviews>
+                                                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jli-km-p8n">
+                                                    <rect key="frame" x="0.0" y="0.0" width="500" height="50"/>
+                                                    <subviews>
+                                                        <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pkI-rw-Lfs" customClass="NewMessageBoostView" customModule="Sphinx" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="9" width="500" height="41"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="41" id="Zb2-6X-FCe"/>
+                                                            </constraints>
+                                                        </customView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="pkI-rw-Lfs" secondAttribute="trailing" id="2yY-G1-TNw"/>
+                                                        <constraint firstItem="pkI-rw-Lfs" firstAttribute="leading" secondItem="jli-km-p8n" secondAttribute="leading" id="WXZ-Uw-M1i"/>
+                                                    </constraints>
+                                                    <visibilityPriorities>
+                                                        <integer value="1000"/>
+                                                    </visibilityPriorities>
+                                                    <customSpacing>
+                                                        <real value="3.4028234663852886e+38"/>
+                                                    </customSpacing>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="jli-km-p8n" secondAttribute="trailing" id="PQP-RX-6UD"/>
+                                                <constraint firstAttribute="bottom" secondItem="jli-km-p8n" secondAttribute="bottom" id="Q9J-lr-Uot"/>
+                                                <constraint firstAttribute="width" constant="500" id="S6x-Tl-jbQ"/>
+                                                <constraint firstItem="jli-km-p8n" firstAttribute="leading" secondItem="BIL-nr-WQh" secondAttribute="leading" id="kP4-TX-GlR"/>
+                                                <constraint firstItem="jli-km-p8n" firstAttribute="top" secondItem="BIL-nr-WQh" secondAttribute="top" id="npX-ti-yG2"/>
+                                            </constraints>
+                                        </customView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="QIj-fa-qcL" firstAttribute="leading" secondItem="PqZ-pq-8i0" secondAttribute="leading" id="Um1-2v-SEQ"/>
@@ -213,8 +248,10 @@
                                         <integer value="1000"/>
                                         <integer value="1000"/>
                                         <integer value="1000"/>
+                                        <integer value="1000"/>
                                     </visibilityPriorities>
                                     <customSpacing>
+                                        <real value="3.4028234663852886e+38"/>
                                         <real value="3.4028234663852886e+38"/>
                                         <real value="3.4028234663852886e+38"/>
                                         <real value="3.4028234663852886e+38"/>
@@ -274,11 +311,11 @@
                 <constraint firstItem="Viu-pF-fdW" firstAttribute="leading" secondItem="YWa-SY-0um" secondAttribute="leading" constant="-4" id="Gza-sE-GY8"/>
                 <constraint firstItem="YWa-SY-0um" firstAttribute="leading" secondItem="okv-Ag-SIE" secondAttribute="leading" constant="-16" id="KcC-5g-EwU"/>
                 <constraint firstItem="YWa-SY-0um" firstAttribute="trailing" secondItem="okv-Ag-SIE" secondAttribute="trailing" constant="16" id="O6x-ga-iV6"/>
-                <constraint firstItem="YWa-SY-0um" firstAttribute="bottom" secondItem="kN9-4b-ag8" secondAttribute="bottom" id="QqP-MP-FjH"/>
                 <constraint firstAttribute="bottom" secondItem="itm-5A-n1p" secondAttribute="bottom" constant="2" id="SMV-35-0Ba"/>
                 <constraint firstAttribute="trailing" secondItem="itm-5A-n1p" secondAttribute="trailing" constant="16" id="aV2-Wc-eBl"/>
                 <constraint firstItem="RsB-r9-lHO" firstAttribute="top" secondItem="YWa-SY-0um" secondAttribute="top" id="ens-3i-koW"/>
                 <constraint firstItem="RsB-r9-lHO" firstAttribute="trailing" secondItem="YWa-SY-0um" secondAttribute="trailing" constant="7" id="grT-kC-w7S"/>
+                <constraint firstItem="YWa-SY-0um" firstAttribute="bottom" secondItem="BIL-nr-WQh" secondAttribute="bottom" id="mSd-bm-6i6"/>
                 <constraint firstItem="Viu-pF-fdW" firstAttribute="top" secondItem="YWa-SY-0um" secondAttribute="top" id="vhW-uG-LUF"/>
                 <constraint firstItem="YWa-SY-0um" firstAttribute="top" secondItem="3Zu-1O-esC" secondAttribute="top" id="yfT-ps-Qf9"/>
             </constraints>

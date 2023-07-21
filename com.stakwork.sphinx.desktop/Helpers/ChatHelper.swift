@@ -625,6 +625,10 @@ class ChatHelper {
             viewsHeight += NewMessageReplyView.kViewHeight
         }
         
+        if let _ = mutableTableCellState.boosts {
+            viewsHeight += NewMessageBoostView.kViewHeight
+        }
+        
         return viewsHeight
     }
 }

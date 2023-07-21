@@ -51,12 +51,13 @@ extension NewMessageCollectionViewItem {
         let textHeight = textSize.height
         var desiredWidth: CGFloat = kBubbleMaxWidth
         
-        if textHeight < 30 {
+        if textHeight < 30 || (messageContent?.text ?? "").contains("\n") {
             desiredWidth = max(textWidth, kBubbleMinWidth - labelMargins) + labelMargins
         }
         
         topViewWidthConstraint.constant = desiredWidth
         bottomViewWidthConstraint.constant = desiredWidth
+        veryBottomViewWidthConstraint.constant = desiredWidth
         
         self.view.layoutSubtreeIfNeeded()
     }
@@ -79,7 +80,7 @@ extension NewMessageCollectionViewItem {
 //        tribeLinkPreviewView.isHidden = true
 //        contactLinkPreviewView.isHidden = true
         linkPreviewView.isHidden = true
-//        messageBoostView.isHidden = true
+        messageBoostView.isHidden = true
 //        paidAttachmentView.isHidden = true
     }
 }

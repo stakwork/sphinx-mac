@@ -315,7 +315,7 @@ extension TransactionMessage {
     }
     
     func isOnlyText() -> Bool {
-        return getType() == TransactionMessageType.message.rawValue && !isCallLink() && !isDeleted()
+        return getType() == TransactionMessageType.message.rawValue && !isCallLink() && !isDeleted() || !isGiphy()
     }
     
     func isAttachment() -> Bool {

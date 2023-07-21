@@ -107,4 +107,14 @@ extension NewMessageCollectionViewItem {
             }
         }
     }
+    
+    func configureWith(
+        boosts: BubbleMessageLayoutState.Boosts?,
+        and bubble: BubbleMessageLayoutState.Bubble
+    ) {
+        if let boosts = boosts {
+            messageBoostView.configureWith(boosts: boosts, and: bubble)
+            messageBoostView.isHidden = false
+        }
+    }
 }

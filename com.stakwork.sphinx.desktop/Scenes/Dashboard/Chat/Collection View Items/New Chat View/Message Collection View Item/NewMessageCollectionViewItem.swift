@@ -32,11 +32,14 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
     @IBOutlet weak var messageLabel: CCTextField!
     @IBOutlet weak var messageLabelLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var messageLabelTrailingConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var linkPreviewView: NewLinkPreviewView!
+    
+    ///Forth Container
+    @IBOutlet weak var messageBoostView: NewMessageBoostView!
 
     @IBOutlet weak var topViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var veryBottomViewWidthConstraint: NSLayoutConstraint!
     
     let kBubbleMaxWidth: CGFloat = 500
     let kBubbleMinWidth: CGFloat = 250
@@ -106,7 +109,7 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
 //        configureWith(podcastComment: mutableMessageCellState.podcastComment, mediaData: mediaData, and: bubble)
         
         ///Bottom view
-//        configureWith(boosts: mutableMessageCellState.boosts, and: bubble)
+        configureWith(boosts: mutableMessageCellState.boosts, and: bubble)
 //        configureWith(contactLink: mutableMessageCellState.contactLink, and: bubble)
 //        configureWith(tribeLink: mutableMessageCellState.tribeLink, tribeData: tribeData, and: bubble)
         configureWith(webLink: mutableMessageCellState.webLink, linkData: linkData)

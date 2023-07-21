@@ -535,6 +535,10 @@
 		47DE1C202A697FC60029597B /* NewMessageCollectionViewItem+DelegatesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1C1F2A697FC60029597B /* NewMessageCollectionViewItem+DelegatesExtension.swift */; };
 		47DE1C232A69963E0029597B /* NewMessageReplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1C222A69963E0029597B /* NewMessageReplyView.swift */; };
 		47DE1C252A6996480029597B /* NewMessageReplyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47DE1C242A6996480029597B /* NewMessageReplyView.xib */; };
+		47DE1C282A69DC410029597B /* NewMessageBoostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1C272A69DC410029597B /* NewMessageBoostView.swift */; };
+		47DE1C2A2A69DC4A0029597B /* NewMessageBoostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47DE1C292A69DC4A0029597B /* NewMessageBoostView.xib */; };
+		47DE1C2C2A69E0BA0029597B /* MessageBoostImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1C2B2A69E0BA0029597B /* MessageBoostImageView.swift */; };
+		47DE1C2E2A69E0C10029597B /* MessageBoostImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47DE1C2D2A69E0C10029597B /* MessageBoostImageView.xib */; };
 		47E771172472C1B500C9CFEB /* ChatDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E771162472C1B500C9CFEB /* ChatDataSource.swift */; };
 		47E771212472C26200C9CFEB /* MessageReceivedCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E7711F2472C26200C9CFEB /* MessageReceivedCollectionViewItem.swift */; };
 		47E771222472C26200C9CFEB /* MessageReceivedCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47E771202472C26200C9CFEB /* MessageReceivedCollectionViewItem.xib */; };
@@ -1320,6 +1324,10 @@
 		47DE1C1F2A697FC60029597B /* NewMessageCollectionViewItem+DelegatesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewMessageCollectionViewItem+DelegatesExtension.swift"; sourceTree = "<group>"; };
 		47DE1C222A69963E0029597B /* NewMessageReplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageReplyView.swift; sourceTree = "<group>"; };
 		47DE1C242A6996480029597B /* NewMessageReplyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewMessageReplyView.xib; sourceTree = "<group>"; };
+		47DE1C272A69DC410029597B /* NewMessageBoostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageBoostView.swift; sourceTree = "<group>"; };
+		47DE1C292A69DC4A0029597B /* NewMessageBoostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewMessageBoostView.xib; sourceTree = "<group>"; };
+		47DE1C2B2A69E0BA0029597B /* MessageBoostImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBoostImageView.swift; sourceTree = "<group>"; };
+		47DE1C2D2A69E0C10029597B /* MessageBoostImageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageBoostImageView.xib; sourceTree = "<group>"; };
 		47E771162472C1B500C9CFEB /* ChatDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDataSource.swift; sourceTree = "<group>"; };
 		47E7711F2472C26200C9CFEB /* MessageReceivedCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageReceivedCollectionViewItem.swift; sourceTree = "<group>"; };
 		47E771202472C26200C9CFEB /* MessageReceivedCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageReceivedCollectionViewItem.xib; sourceTree = "<group>"; };
@@ -2815,6 +2823,7 @@
 		47DE1BF12A68138B0029597B /* New Chat View */ = {
 			isa = PBXGroup;
 			children = (
+				47DE1C262A69DC2C0029597B /* Message Boost */,
 				47DE1C212A69962B0029597B /* Message Reply */,
 				47DE1C122A69743C0029597B /* Link Previews */,
 				47DE1C062A6881E00029597B /* No Bubble Views */,
@@ -2890,6 +2899,17 @@
 				47DE1C242A6996480029597B /* NewMessageReplyView.xib */,
 			);
 			path = "Message Reply";
+			sourceTree = "<group>";
+		};
+		47DE1C262A69DC2C0029597B /* Message Boost */ = {
+			isa = PBXGroup;
+			children = (
+				47DE1C272A69DC410029597B /* NewMessageBoostView.swift */,
+				47DE1C292A69DC4A0029597B /* NewMessageBoostView.xib */,
+				47DE1C2B2A69E0BA0029597B /* MessageBoostImageView.swift */,
+				47DE1C2D2A69E0C10029597B /* MessageBoostImageView.xib */,
+			);
+			path = "Message Boost";
 			sourceTree = "<group>";
 		};
 		47E771152472C1A700C9CFEB /* Data Source */ = {
@@ -3446,6 +3466,7 @@
 				47C7D72527874A67006D2809 /* PeopleTorActionsView.xib in Resources */,
 				477ADCCE2A1E5A46004E74CE /* PinNotificationView.xib in Resources */,
 				474A668D24990193002C2D10 /* MessageOptionView.xib in Resources */,
+				47DE1C2A2A69DC4A0029597B /* NewMessageBoostView.xib in Resources */,
 				474F674A2486775900CE6016 /* VideoCallSentCollectionViewItem.xib in Resources */,
 				47AF0D4225508FC900C98398 /* PodcastBoostSentCollectionViewItem.xib in Resources */,
 				4726A43824C628DA005A66B4 /* note.caf in Resources */,
@@ -3470,6 +3491,7 @@
 				478ED5D325D6FD5300940132 /* NamePinView.xib in Resources */,
 				476AAA922A1E5E670092AC87 /* MaterialIconsOutlined.otf in Resources */,
 				479A04042588E7F00093DB30 /* TribeLinkPreviewView.xib in Resources */,
+				47DE1C2E2A69E0C10029597B /* MessageBoostImageView.xib in Resources */,
 				4797E82B24BCC0F200D13270 /* Invite.storyboard in Resources */,
 				4797E87024BCD5B500D13270 /* ChildVCContainer.xib in Resources */,
 				4724BC1A25474BE70012BD76 /* Podcast.storyboard in Resources */,
@@ -3656,6 +3678,7 @@
 				47DE1C1C2A69769B0029597B /* NewMessageCollectionViewItem+BubbleExtension.swift in Sources */,
 				4708C1FF2A55BCE300274AD4 /* UserContactsHelper.swift in Sources */,
 				47E771392472E4DA00C9CFEB /* CommonBubbleView.swift in Sources */,
+				47DE1C282A69DC410029597B /* NewMessageBoostView.swift in Sources */,
 				4787F8A0247C16B200CCE8B9 /* ChatSmallAvatarView.swift in Sources */,
 				47DE1C1A2A6976630029597B /* NewMessageCollectionViewItem+StatusHeaderExtension.swift in Sources */,
 				47C1D5F8248EA6F600718B28 /* GroupMembersViewController.swift in Sources */,
@@ -3806,6 +3829,7 @@
 				4797E74C24B8B40F00D13270 /* VideoCallHelper.swift in Sources */,
 				475B682929915D72000EF29C /* ContentFeedPaymentDestination+CoreDataProperties.swift in Sources */,
 				47BDEDF124F466C4001688F3 /* ProfileViewControllerExtension.swift in Sources */,
+				47DE1C2C2A69E0BA0029597B /* MessageBoostImageView.swift in Sources */,
 				474F67492486775900CE6016 /* VideoCallSentCollectionViewItem.swift in Sources */,
 				47F8825B25656CB0002A7E71 /* SocketRawView.swift in Sources */,
 				47FEE1F62A61B5B000646C4E /* NewChatViewController+BottomTopBarsExtension.swift in Sources */,
