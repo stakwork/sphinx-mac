@@ -73,10 +73,6 @@ class ContactsService: NSObject {
             return
         }
         
-        if isRestoring() {
-            return
-        }
-        
         updateLastMessages()
         
         ///Contacts results controller
@@ -189,6 +185,10 @@ extension ContactsService : NSFetchedResultsControllerDelegate {
     
     func processContactsAndChats() {
         updateOwner()
+        
+        guard let owner = owner else {
+            return
+        }
         
         for chat in chats {
             if chat.isConversation() {
