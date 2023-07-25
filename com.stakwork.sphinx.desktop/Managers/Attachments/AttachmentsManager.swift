@@ -127,13 +127,21 @@ class AttachmentsManager {
         }
     }
     
-    func uploadAndSendAttachment(attachmentObject: AttachmentObject, replyingMessage: TransactionMessage? = nil) {
+    func uploadAndSendAttachment(
+        attachmentObject: AttachmentObject,
+        replyingMessage: TransactionMessage? = nil,
+        threadUUID: String? = nil
+    ) {
         uploading = true
         delegate?.didUpdateUploadProgress?(progress: 5)
         
         guard let token: String = UserDefaults.Keys.attachmentsToken.get() else {
             self.authenticate(completion: { token in
-                self.uploadAndSendAttachment(attachmentObject: attachmentObject, replyingMessage: replyingMessage)
+                self.uploadAndSendAttachment(
+                    attachmentObject: attachmentObject,
+                    replyingMessage: replyingMessage,
+                    threadUUID: threadUUID
+                )
             }, errorCompletion: {
                 UserDefaults.Keys.attachmentsToken.removeValue()
                 self.uploadFailed()
@@ -144,7 +152,13 @@ class AttachmentsManager {
         
         if let _ = attachmentObject.data {
             uploadData(attachmentObject: attachmentObject, token: token) { fileJSON, AttachmentObject in
-                self.sendAttachment(file: fileJSON, attachmentObject: attachmentObject, replyingMessage: replyingMessage)
+                self.sendAttachment(
+                    file: fileJSON,
+                    attachmentObject: attachmentObject,
+                    replyingMessage: replyingMessage,
+                    threadUUID: threadUUID
+                    
+                )
             }
         }
     }
@@ -164,8 +178,22 @@ class AttachmentsManager {
         })
     }
     
-    func sendAttachment(file: NSDictionary, attachmentObject: AttachmentObject, replyingMessage: TransactionMessage? = nil) {
-        guard let params = TransactionMessage.getMessageParams(contact: contact, chat: chat, file: file, text: attachmentObject.text, mediaKey: attachmentObject.mediaKey, price: attachmentObject.price, replyingMessage: replyingMessage) else {
+    func sendAttachment(
+        file: NSDictionary,
+        attachmentObject: AttachmentObject,
+        replyingMessage: TransactionMessage? = nil,
+        threadUUID: String? = nil
+    ) {
+        guard let params = TransactionMessage.getMessageParams(
+            contact: contact,
+            chat: chat,
+            file: file,
+            text: attachmentObject.text,
+            mediaKey: attachmentObject.mediaKey,
+            price: attachmentObject.price,
+            replyingMessage: replyingMessage,
+            threadUUID: threadUUID
+        ) else {
             uploadFailed()
             return
         }

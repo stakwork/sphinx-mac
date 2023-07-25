@@ -10,16 +10,19 @@ import Foundation
 import CoreData
 
 extension TransactionMessage {
-    static func getMessageParams(contact: UserContact? = nil,
-                                 chat: Chat? = nil,
-                                 file: NSDictionary? = nil,
-                                 type: TransactionMessageType = .message,
-                                 text: String? = nil,
-                                 mediaKey: String? = nil,
-                                 price: Int? = nil,
-                                 botAmount: Int = 0,
-                                 priceToMeet: Int? = nil,
-                                 replyingMessage: TransactionMessage? = nil) -> [String: AnyObject]? {
+    static func getMessageParams(
+        contact: UserContact? = nil,
+        chat: Chat? = nil,
+        file: NSDictionary? = nil,
+        type: TransactionMessageType = .message,
+        text: String? = nil,
+        mediaKey: String? = nil,
+        price: Int? = nil,
+        botAmount: Int = 0,
+        priceToMeet: Int? = nil,
+        replyingMessage: TransactionMessage? = nil,
+        threadUUID: String? = nil
+    ) -> [String: AnyObject]? {
         
         var parameters = [String : AnyObject]()
         var contacts = [UserContact]()
@@ -55,6 +58,10 @@ extension TransactionMessage {
         
         if let replyingMessage = replyingMessage, let replyUUID = replyingMessage.uuid, !replyUUID.isEmpty {
             parameters["reply_uuid"] = replyUUID as AnyObject?
+        }
+        
+        if let threadUUID = threadUUID {
+            parameters["thread_uuid"] = threadUUID as AnyObject?
         }
         
         if !addTextParams(parameters: &parameters, chat: chat, contacts: contacts, text: text) {
