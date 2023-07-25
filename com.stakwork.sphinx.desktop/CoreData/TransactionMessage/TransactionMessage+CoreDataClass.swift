@@ -177,6 +177,7 @@ public class TransactionMessage: NSManagedObject {
         let receiver = m["contact_id"].intValue
         let uuid:String? = m["uuid"].string
         let replyUUID:String? = m["reply_uuid"].string
+        let threadUUID:String? = m["thread_uuid"].string
         
         var amount:NSDecimalNumber? = nil
         if let a = m["amount"].double, abs(a) > 0 {
@@ -229,6 +230,7 @@ public class TransactionMessage: NSManagedObject {
             id: id,
             uuid: uuid,
             replyUUID: replyUUID,
+            threadUUID: threadUUID,
             type: type,
             sender: sender,
             senderAlias: senderAlias,
@@ -272,38 +274,40 @@ public class TransactionMessage: NSManagedObject {
     
     static func createObject(
         id: Int,
-         uuid: String? = nil,
-         replyUUID: String? = nil,
-         type: Int,
-         sender: Int,
-         senderAlias: String?,
-         senderPic: String?,
-         recipientAlias: String?,
-         recipientPic: String?,
-         receiver: Int,
-         amount: NSDecimalNumber? = nil,
-         paymentHash: String? = nil,
-         invoice: String? = nil,
-         messageContent: String,
-         status: Int,
-         date: Date,
-         expirationDate: Date? = nil,
-         mediaTerms: String? = nil,
-         receipt: String? = nil,
-         mediaToken: String? = nil,
-         mediaKey: String? = nil,
-         mediaType: String? = nil,
-         originalMuid: String? = nil,
-         seen: Bool,
-         push: Bool,
-         messageEncrypted: Bool,
-         chat: Chat?,
-         message: TransactionMessage
+        uuid: String? = nil,
+        replyUUID: String? = nil,
+        threadUUID: String? = nil,
+        type: Int,
+        sender: Int,
+        senderAlias: String?,
+        senderPic: String?,
+        recipientAlias: String?,
+        recipientPic: String?,
+        receiver: Int,
+        amount: NSDecimalNumber? = nil,
+        paymentHash: String? = nil,
+        invoice: String? = nil,
+        messageContent: String,
+        status: Int,
+        date: Date,
+        expirationDate: Date? = nil,
+        mediaTerms: String? = nil,
+        receipt: String? = nil,
+        mediaToken: String? = nil,
+        mediaKey: String? = nil,
+        mediaType: String? = nil,
+        originalMuid: String? = nil,
+        seen: Bool,
+        push: Bool,
+        messageEncrypted: Bool,
+        chat: Chat?,
+        message: TransactionMessage
     ) -> TransactionMessage? {
         
         message.id = id
         message.uuid = uuid
         message.replyUUID = replyUUID
+        message.threadUUID = threadUUID
         message.type = type
         message.status = status
         message.senderId = sender
@@ -338,21 +342,54 @@ public class TransactionMessage: NSManagedObject {
         return message
     }
     
-    static func createProvisionalMessage(messageContent: String, type: Int, date: Date, chat: Chat?, replyUUID: String? = nil) -> TransactionMessage? {
+    static func createProvisionalMessage(
+        messageContent: String,
+        type: Int,
+        date: Date,
+        chat: Chat?,
+        replyUUID: String? = nil,
+        threadUUID: String? = nil
+    ) -> TransactionMessage? {
         let messageType = TransactionMessageType(fromRawValue: type)
-        return createProvisional(messageContent: messageContent, date: date, chat: chat, type: messageType, replyUUID: replyUUID)
+        
+        return createProvisional(
+            messageContent: messageContent,
+            date: date,
+            chat: chat,
+            type: messageType,
+            replyUUID: replyUUID,
+            threadUUID: threadUUID
+        )
     }
     
-    static func createProvisionalAttachmentMessage(attachmentObject: AttachmentObject, date: Date, chat: Chat?, replyUUID: String? = nil) -> TransactionMessage? {
-        return createProvisional(messageContent: attachmentObject.text, date: date, chat: chat, type: TransactionMessageType.attachment, attachmentObject: attachmentObject, replyUUID: replyUUID)
+    static func createProvisionalAttachmentMessage(
+        attachmentObject: AttachmentObject,
+        date: Date,
+        chat: Chat?,
+        replyUUID: String? = nil,
+        threadUUID: String? = nil
+    ) -> TransactionMessage? {
+        
+        return createProvisional(
+            messageContent: attachmentObject.text,
+            date: date,
+            chat: chat,
+            type: TransactionMessageType.attachment,
+            attachmentObject: attachmentObject,
+            replyUUID: replyUUID,
+            threadUUID: threadUUID
+        )
     }
     
-    static func createProvisional(messageContent: String?,
-                                  date: Date,
-                                  chat: Chat?,
-                                  type: TransactionMessageType,
-                                  attachmentObject: AttachmentObject? = nil,
-                                  replyUUID: String? = nil) -> TransactionMessage? {
+    static func createProvisional(
+        messageContent: String?,
+        date: Date,
+        chat: Chat?,
+        type: TransactionMessageType,
+        attachmentObject: AttachmentObject? = nil,
+        replyUUID: String? = nil,
+        threadUUID: String? = nil
+    ) -> TransactionMessage? {
         
         let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
         
@@ -365,6 +402,7 @@ public class TransactionMessage: NSManagedObject {
         message.status = TransactionMessageStatus.pending.rawValue
         message.date = date
         message.replyUUID = replyUUID
+        message.threadUUID = threadUUID
         
         if let attachmentObject = attachmentObject {
             message.mediaType = attachmentObject.getMimeType()
