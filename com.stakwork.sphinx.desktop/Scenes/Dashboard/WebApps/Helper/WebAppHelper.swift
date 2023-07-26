@@ -74,6 +74,9 @@ extension WebAppHelper : WKScriptMessageHandler {
                 case "GETPERSONDATA":
                     getPersonData(dict)
                     break
+                case "SIGN":
+                    signMessage(dict)
+                    break
                 default:
                     defaultAction(dict)
                     break
@@ -373,6 +376,30 @@ extension WebAppHelper : WKScriptMessageHandler {
         }
         }
     }
+    
+    //Sign Message
+    func signMessageResponse(dict: [String: AnyObject], success: Bool) {
+        var params: [String: AnyObject] = [:]
+        setTypeApplicationAndPassword(params: &params, dict: dict)
+        params["signature"] = dict["signature"] as AnyObject
+        params["success"] = success as AnyObject
+        sendMessage(dict: params)
+    }
+    
+    func signMessage(_ dict: [String: AnyObject]){
+        if let message = dict["message"] as? String {
+            API.sharedInstance.signChallenge(challenge: message, callback: { signature in
+                var newDict = dict
+                if let signature = signature {
+                    newDict["signature"] = signature as AnyObject
+                    self.signMessageResponse(dict: newDict, success: true)
+                }else {
+                    self.signMessageResponse(dict: dict, success: false)
+                }
+            })
+        }
+    }
+    
     func updateLsat(_ dict: [String: AnyObject]) {
             if let identifier = dict["identifier"] as? String, let status = dict["status"] as? String {
             let params = ["status": status as AnyObject]
