@@ -120,17 +120,23 @@ class CoreDataManager {
         return managedContext.object(with:objectId) as? T
     }
     
-    func getAllOfType<T>(entityName: String, sortDescriptors: [NSSortDescriptor]? = nil) -> [T] {
-        let managedContext = persistentContainer.viewContext
+    func getAllOfType<T>(
+        entityName: String,
+        sortDescriptors: [NSSortDescriptor]? = nil,
+        context: NSManagedObjectContext? = nil
+    ) -> [T] {
+        let managedContext = context ?? persistentContainer.viewContext
         var objects:[T] = [T]()
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"\(entityName)")
         fetchRequest.sortDescriptors = sortDescriptors ?? [NSSortDescriptor(key: "id", ascending: false)]
         
-        do {
-            try objects = managedContext.fetch(fetchRequest) as! [T]
-        } catch let error as NSError {
-            print("Error: " + error.localizedDescription)
+        managedContext.performAndWait {
+            do {
+                try objects = managedContext.fetch(fetchRequest) as! [T]
+            } catch let error as NSError {
+                print("Error: " + error.localizedDescription)
+            }
         }
         
         return objects
@@ -146,10 +152,12 @@ class CoreDataManager {
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
         fetchRequest.fetchLimit = 1
         
-        do {
-            try objects = managedContext.fetch(fetchRequest) as! [T]
-        } catch let error as NSError {
-            print("Error: " + error.localizedDescription)
+        managedContext.performAndWait {
+            do {
+                try objects = managedContext.fetch(fetchRequest) as! [T]
+            } catch let error as NSError {
+                print("Error: " + error.localizedDescription)
+            }
         }
         
         if objects.count > 0 {
@@ -176,10 +184,12 @@ class CoreDataManager {
             fetchRequest.fetchLimit = fetchLimit
         }
         
-        do {
-            try objects = managedContext.fetch(fetchRequest) as! [T]
-        } catch let error as NSError {
-            print("Error: " + error.localizedDescription)
+        managedContext.performAndWait {
+            do {
+                try objects = managedContext.fetch(fetchRequest) as! [T]
+            } catch let error as NSError {
+                print("Error: " + error.localizedDescription)
+            }
         }
         
         return objects
@@ -194,10 +204,12 @@ class CoreDataManager {
             fetchRequest.predicate = predicate
         }
         
-        do {
-            try count = managedContext.count(for: fetchRequest)
-        } catch let error as NSError {
-            print("Error: " + error.localizedDescription)
+        managedContext.performAndWait {
+            do {
+                try count = managedContext.count(for: fetchRequest)
+            } catch let error as NSError {
+                print("Error: " + error.localizedDescription)
+            }
         }
         
         return count
@@ -217,10 +229,12 @@ class CoreDataManager {
         fetchRequest.sortDescriptors = sortDescriptors
         fetchRequest.fetchLimit = 1
         
-        do {
-            try objects = managedContext.fetch(fetchRequest) as! [T]
-        } catch let error as NSError {
-            print("Error: " + error.localizedDescription)
+        managedContext.performAndWait {
+            do {
+                try objects = managedContext.fetch(fetchRequest) as! [T]
+            } catch let error as NSError {
+                print("Error: " + error.localizedDescription)
+            }
         }
         
         if objects.count > 0 {
@@ -231,7 +245,9 @@ class CoreDataManager {
     
     func deleteObject(object: NSManagedObject) {
         let managedContext = persistentContainer.viewContext
-        managedContext.delete(object)
+        managedContext.performAndWait {
+            managedContext.delete(object)
+        }
         saveContext()
     }
 }
