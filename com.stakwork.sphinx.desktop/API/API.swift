@@ -258,7 +258,6 @@ class API {
     }
     
     func cleanCancellableRequest() {
-        cancellableRequest?.cancel()
         cancellableRequest = nil
     }
     

@@ -750,6 +750,7 @@
 		4734D3B62417E3D600D6957E /* com_stakwork_sphinx_desktopUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = com_stakwork_sphinx_desktopUITests.swift; sourceTree = "<group>"; };
 		4734D3B82417E3D600D6957E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4734D3C42417E48600D6957E /* EncryptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionManager.swift; sourceTree = "<group>"; };
+		4735969B2A70670D00489606 /* com_stakwork_sphinx_desktop 23.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "com_stakwork_sphinx_desktop 23.xcdatamodel"; sourceTree = "<group>"; };
 		473633DE2554464C007405F2 /* Asn1Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asn1Parser.swift; sourceTree = "<group>"; };
 		473633E025548E40007405F2 /* BoostButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoostButtonView.swift; sourceTree = "<group>"; };
 		473633E225548E4B007405F2 /* BoostButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BoostButtonView.xib; sourceTree = "<group>"; };
@@ -4396,8 +4397,8 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 273;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 274;
+				DEVELOPMENT_TEAM = 8297M44YTW;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = com.stakwork.sphinx.desktop/Info.plist;
@@ -4548,6 +4549,7 @@
 		4734D3992417E3D400D6957E /* com_stakwork_sphinx_desktop.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				4735969B2A70670D00489606 /* com_stakwork_sphinx_desktop 23.xcdatamodel */,
 				4708C1F92A559D6F00274AD4 /* com_stakwork_sphinx_desktop 22.xcdatamodel */,
 				476AAA952A1E70DB0092AC87 /* com_stakwork_sphinx_desktop 21.xcdatamodel */,
 				475B67F72991586C000EF29C /* com_stakwork_sphinx_desktop 20.xcdatamodel */,
@@ -4571,7 +4573,7 @@
 				4787F89C247C0C2300CCE8B9 /* com_stakwork_sphinx_desktop 2.xcdatamodel */,
 				4734D39A2417E3D400D6957E /* com_stakwork_sphinx_desktop.xcdatamodel */,
 			);
-			currentVersion = 4708C1F92A559D6F00274AD4 /* com_stakwork_sphinx_desktop 22.xcdatamodel */;
+			currentVersion = 4735969B2A70670D00489606 /* com_stakwork_sphinx_desktop 23.xcdatamodel */;
 			path = com_stakwork_sphinx_desktop.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

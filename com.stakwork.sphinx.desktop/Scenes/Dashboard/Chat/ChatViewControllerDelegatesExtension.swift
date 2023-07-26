@@ -276,8 +276,17 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
         botAmount: Int = 0
     ) {
         let messageType = TransactionMessage.TransactionMessageType(fromRawValue: provisionalMessage?.type ?? 0)
+        let replyingToMessage = messageReplyView.getReplyingMessage()
         
-        guard let params = TransactionMessage.getMessageParams(contact: contact, chat: chat, type: messageType, text: text, botAmount: botAmount, replyingMessage: messageReplyView.getReplyingMessage()) else {
+        guard let params = TransactionMessage.getMessageParams(
+            contact: contact,
+            chat: chat,
+            type: messageType,
+            text: text,
+            botAmount: botAmount,
+            replyingMessage: replyingToMessage,
+            threadUUID: replyingToMessage?.threadUUID ?? replyingToMessage?.uuid
+        ) else {
             DelayPerformedHelper.performAfterDelay(seconds: 0.5, completion: {
                 self.didFailSendingMessage(provisionalMessage: provisionalMessage)
             })
@@ -311,8 +320,21 @@ extension ChatViewController : NSTextViewDelegate, MessageFieldDelegate {
         })
     }
     
-    func insertPrivisionalMessage(text: String, type: Int, chat: Chat?) -> TransactionMessage? {
-        let message = TransactionMessage.createProvisionalMessage(messageContent: text, type: type, date: Date(), chat: chat, replyUUID: messageReplyView.getReplyingMessage()?.uuid)
+    func insertPrivisionalMessage(
+        text: String,
+        type: Int,
+        chat: Chat?
+    ) -> TransactionMessage? {
+        let replyingToMessage = messageReplyView.getReplyingMessage()
+        
+        let message = TransactionMessage.createProvisionalMessage(
+            messageContent: text,
+            type: type,
+            date: Date(),
+            chat: chat,
+            replyUUID: replyingToMessage?.uuid,
+            threadUUID: replyingToMessage?.threadUUID ?? replyingToMessage?.uuid
+        )
         
         if let message = message {
             chatDataSource?.addMessageAndReload(message: message, provisional: true)

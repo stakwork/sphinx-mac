@@ -38,6 +38,7 @@ extension TransactionMessage {
     @NSManaged public var recipientPic: String?
     @NSManaged public var uuid: String?
     @NSManaged public var replyUUID: String?
+    @NSManaged public var threadUUID: String?
     @NSManaged public var originalMuid: String?
     @NSManaged public var chat: Chat?
     @NSManaged public var push: Bool

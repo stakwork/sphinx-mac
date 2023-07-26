@@ -143,12 +143,34 @@ extension ChatViewController : AttachmentsManagerDelegate {
         insertPrivisionalAttachmentMessageAndUpload(attachmentObject: attachmentObject, chat: chat)
     }
     
-    func insertPrivisionalAttachmentMessageAndUpload(attachmentObject: AttachmentObject, chat: Chat?) {
-        if let message = TransactionMessage.createProvisionalAttachmentMessage(attachmentObject: attachmentObject, date: Date(), chat: chat, replyUUID: messageReplyView.getReplyingMessage()?.uuid) {
+    func insertPrivisionalAttachmentMessageAndUpload(
+        attachmentObject: AttachmentObject,
+        chat: Chat?
+    ) {
+        let replyingToMessage = messageReplyView.getReplyingMessage()
+        
+        if let message = TransactionMessage.createProvisionalAttachmentMessage(
+            attachmentObject: attachmentObject,
+            date: Date(),
+            chat: chat,
+            replyUUID: replyingToMessage?.uuid,
+            threadUUID: replyingToMessage?.threadUUID ?? replyingToMessage?.uuid
+        ) {
             chatDataSource?.addMessageAndReload(message: message, provisional: true)
             
-            attachmentsManager.setData(delegate: self, contact: contact, chat: chat, provisionalMessage: message)
-            attachmentsManager.uploadAndSendAttachment(attachmentObject: attachmentObject, replyingMessage: messageReplyView.getReplyingMessage())
+            attachmentsManager.setData(
+                delegate: self,
+                contact: contact,
+                chat: chat,
+                provisionalMessage: message
+            )
+            
+            attachmentsManager.uploadAndSendAttachment(
+                attachmentObject: attachmentObject,
+                replyingMessage: replyingToMessage,
+                threadUUID: replyingToMessage?.threadUUID ?? replyingToMessage?.uuid
+            )
+            
             hideMessageReplyView()
         }
     }
