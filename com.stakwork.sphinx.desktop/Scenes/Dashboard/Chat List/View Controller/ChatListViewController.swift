@@ -91,7 +91,10 @@ class ChatListViewController : DashboardSplittedViewController {
         prepareView()
         listenForPubKeyAndTribeJoin()
         
-        setActiveTab(contactsService.selectedTab)
+        setActiveTab(
+            contactsService.selectedTab,
+            loadData: false
+        )
         
         NotificationCenter.default.removeObserver(self, name: .onContactsAndChatsChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(dataDidChange), name: .onContactsAndChatsChanged, object: nil)
@@ -138,7 +141,9 @@ class ChatListViewController : DashboardSplittedViewController {
         self.view.window?.makeFirstResponder(self)
     }
     
-    func loadMessages() {
+    func loadMessages(
+        contactsProgress: Float = 0
+    ) {
         updateBalanceAndCheckVersion()
         
         let restoring = chatListViewModel.isRestoring()
@@ -150,10 +155,13 @@ class ChatListViewController : DashboardSplittedViewController {
                 contentProgressShare = 0.1
                 
                 if (contentProgress >= 0 && restoring) {
+                    let contentProgress = Int(contentProgressShare * Float(contentProgress))
+                    
                     DispatchQueue.main.async {
                         self.delegate?.shouldShowRestoreModal(
-                            with: Int(contentProgressShare * Float(contentProgress)),
-                            messagesStartProgress: Int(contentProgressShare * Float(100))
+                            with: contentProgress + Int(contactsProgress * 100),
+                            label: "restoring-content".localized,
+                            buttonEnabled: false
                         )
                     }
                 }
@@ -166,12 +174,13 @@ class ChatListViewController : DashboardSplittedViewController {
                             
                             if (restoring) {
                                 self.loading = false
-                                let messagesProgress : Int = Int(Float(progress) * (1.0 - contentProgressShare))
+                                let messagesProgress : Int = Int(Float(progress) * (1.0 - contentProgressShare - contactsProgress))
                                 
                                 if (progress >= 0) {
                                     self.delegate?.shouldShowRestoreModal(
-                                        with: messagesProgress + Int(contentProgressShare * 100),
-                                        messagesStartProgress: Int(contentProgressShare * Float(100))
+                                        with: messagesProgress + Int(contentProgressShare * 100) + Int(contactsProgress * 100),
+                                        label: "restoring-messages".localized,
+                                        buttonEnabled: true
                                     )
                                 } else {
                                     self.newMessageBubbleHelper.showLoadingWheel(text: "fetching.old.messages".localized)
@@ -214,8 +223,41 @@ class ChatListViewController : DashboardSplittedViewController {
     }
     
     func loadFriendAndReload() {
-        chatListViewModel.loadFriends() {
-            self.loadMessages()
+        guard let chatListViewModel = chatListViewModel else {
+            return
+        }
+        
+        if chatListViewModel.isRestoring() {
+            DispatchQueue.main.async {
+                self.delegate?.shouldShowRestoreModal(
+                    with: 1,
+                    label: "restoring-contacts".localized,
+                    buttonEnabled: false
+                )
+            }
+        }
+        
+        var contactsProgressShare : Float = 0.01
+        
+        chatListViewModel.loadFriends(
+            progressCompletion: { restoring in
+                if restoring {
+                    
+                    contactsProgressShare += 0.01
+                    
+                    DispatchQueue.main.async {
+                        self.delegate?.shouldShowRestoreModal(
+                            with: Int(contactsProgressShare * 100),
+                            label: "restoring-contacts".localized,
+                            buttonEnabled: false
+                        )
+                    }
+                }
+            }
+        ) { restoring in
+            self.loadMessages(
+                contactsProgress: contactsProgressShare
+            )
         }
     }
     

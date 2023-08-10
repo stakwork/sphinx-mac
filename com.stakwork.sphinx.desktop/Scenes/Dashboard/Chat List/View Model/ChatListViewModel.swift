@@ -13,37 +13,95 @@ final class ChatListViewModel: NSObject {
     
     public static let kMessagesPerPage: Int = 200
     
+    public static var restoreRunning = false
+    
     public static func isRestoreRunning() -> Bool {
-        let restoreRunning = API.sharedInstance.lastSeenMessagesDate == nil && UserDefaults.Keys.messagesFetchPage.get(defaultValue: -1) > 0
-        
-        if !restoreRunning {
-            UserDefaults.Keys.messagesFetchPage.removeValue()
-        }
-        
         return restoreRunning
     }
     
-    func loadFriends(completion: @escaping () -> ()) {
+    func loadFriends(
+        progressCompletion: ((Bool) -> ())? = nil,
+        completion: @escaping (Bool) -> ()
+    ) {
+        let restoring = self.isRestoring()
+        
+        ChatListViewModel.restoreRunning = restoring
+
+        restoreContacts(
+            page: 1,
+            restoring: restoring,
+            progressCompletion: progressCompletion,
+            completion: completion
+        )
+    }
+    
+    func restoreContacts(
+        page: Int,
+        restoring: Bool,
+        progressCompletion: ((Bool) -> ())? = nil,
+        completion: @escaping (Bool) -> ()
+    ) {
         API.sharedInstance.getLatestContacts(
+            page: page,
             date: Date(),
-            callback: {(contacts, chats, subscriptions, invites) -> () in
-                
-                UserContactsHelper.insertObjects(
+            nextPageCallback: {(contacts, chats, subscriptions, invites) -> () in
+                self.saveObjects(
                     contacts: contacts,
                     chats: chats,
                     subscriptions: subscriptions,
                     invites: invites
                 )
                 
+                self.restoreContacts(
+                    page: page + 1,
+                    restoring: restoring,
+                    progressCompletion: progressCompletion,
+                    completion: completion
+                )
+                
+                progressCompletion?(restoring)
+            },
+            callback: {(contacts, chats, subscriptions, invites) -> () in
+            
+                self.saveObjects(
+                    contacts: contacts,
+                    chats: chats,
+                    subscriptions: subscriptions,
+                    invites: invites
+                )
+                
+                CoreDataManager.sharedManager.persistentContainer.viewContext.saveContext()
+                    
                 self.forceKeychainSync()
-                completion()
-        })
+                self.authenticateWithMemesServer()
+                
+                completion(restoring)
+            }
+        )
+    }
+    
+    func saveObjects(
+        contacts: [JSON],
+        chats: [JSON],
+        subscriptions: [JSON],
+        invites: [JSON]
+    ) {
+        UserContactsHelper.insertObjects(
+            contacts: contacts,
+            chats: chats,
+            subscriptions: subscriptions,
+            invites: invites
+        )
     }
     
     func forceKeychainSync() {
         UserData.sharedInstance.forcePINSyncOnKeychain()
         UserData.sharedInstance.saveNewNodeOnKeychain()
         EncryptionManager.sharedInstance.saveKeysOnKeychain()
+    }
+    
+    func authenticateWithMemesServer() {
+        AttachmentsManager.sharedInstance.runAuthentication()
     }
     
     func isRestoring() -> Bool {
@@ -59,7 +117,6 @@ final class ChatListViewModel: NSObject {
         progressCallback: @escaping (Double, Bool) -> (),
         completion: @escaping (Int, Int) -> ()
     ) {
-        
         UserDefaults.Keys.messagesFetchPage.set(
             UserDefaults.Keys.messagesFetchPage.get(defaultValue: 1)
         )

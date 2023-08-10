@@ -263,7 +263,7 @@ class DashboardViewController: NSViewController {
     }
     
     func reloadData() {
-        self.chatListViewModel.loadFriends {
+        self.chatListViewModel.loadFriends { _ in
 
             self.chatListViewModel.syncMessages(
                 chatId: self.detailViewController?.chat?.id,
@@ -498,7 +498,8 @@ extension DashboardViewController : DashboardVCDelegate {
     
     func shouldShowRestoreModal(
         with progress: Int,
-        messagesStartProgress: Int
+        label: String,
+        buttonEnabled: Bool
     ) {
         for childVC in self.children {
             if let childVC = childVC as? DashboardModalsViewController {
@@ -506,7 +507,8 @@ extension DashboardViewController : DashboardVCDelegate {
                 
                 childVC.showProgressViewWith(
                     with: progress,
-                    messagesStartProgress: messagesStartProgress,
+                    label: label,
+                    buttonEnabled: buttonEnabled,
                     delegate: self
                 )
             }
