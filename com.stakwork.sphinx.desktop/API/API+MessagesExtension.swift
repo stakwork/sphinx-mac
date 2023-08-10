@@ -70,6 +70,7 @@ extension API {
                         if ((newMessages.count > 0 || page > 1) && newMessages.count < itemsPerPage) {
                             //If is last page date should be tracked
                             self.lastSeenMessagesDate = date
+                            ChatListViewModel.restoreRunning = false
                         }
                         
                         callback(messagesTotal, newMessages)

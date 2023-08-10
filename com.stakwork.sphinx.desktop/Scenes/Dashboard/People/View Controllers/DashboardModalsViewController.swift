@@ -48,7 +48,8 @@ class DashboardModalsViewController: NSViewController {
     
     func showProgressViewWith(
         with progress: Int,
-        messagesStartProgress: Int,
+        label: String,
+        buttonEnabled: Bool,
         delegate: RestoreModalViewControllerDelegate?
     ) {
         restoreModalsDelegate = delegate
@@ -60,7 +61,8 @@ class DashboardModalsViewController: NSViewController {
         
         restoreProgressView.setProgress(
             with: progress,
-            messagesStartProgress: messagesStartProgress,
+            label: label,
+            buttonEnabled: buttonEnabled,
             delegate: delegate
         )
         

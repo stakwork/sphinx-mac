@@ -23,8 +23,6 @@ class UserContactsHelper {
             self.insertSubscriptions(subscriptions: subscriptions)
             self.insertInvites(invites: invites)
         })
-        
-        CoreDataManager.sharedManager.saveContext()
     }
 
     public static func insertContacts(

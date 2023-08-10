@@ -36,17 +36,16 @@ class RestoreProgressView: NSView, LoadableNib {
     
     func setProgress(
         with progress: Int,
-        messagesStartProgress: Int,
+        label: String,
+        buttonEnabled: Bool,
         delegate: RestoreModalViewControllerDelegate?
     ) {
-        let restoringMessages = (progress >= messagesStartProgress)
-        let restoreLabel = (restoringMessages ? "restoring-messages" : "restoring-content").localized
-        restoreProgressLabel.stringValue = (progress == 0) ? "resume-restoring".localized : "\(restoreLabel) \(progress)%"
+        restoreProgressLabel.stringValue = (progress == 0) ? "resume-restoring".localized : "\(label) \(progress)%"
         
         restoreProgressBar.doubleValue = Double(progress)
         
-        continueLaterButton.isEnabled = restoringMessages
-        continueLaterButtonContainer.alphaValue = restoringMessages ? 1.0 : 0.5
+        continueLaterButton.isEnabled = buttonEnabled
+        continueLaterButtonContainer.alphaValue = buttonEnabled ? 1.0 : 0.5
         
         restoreModalsDelegate = delegate
     }

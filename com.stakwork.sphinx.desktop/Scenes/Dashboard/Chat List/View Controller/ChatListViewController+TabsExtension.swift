@@ -18,7 +18,8 @@ extension ChatListViewController {
 extension ChatListViewController {
     
     func setActiveTab(
-        _ tab: DashboardTab
+        _ tab: DashboardTab,
+        loadData: Bool = true
     ) {
         let newViewController = mainContentViewController(forActiveTab: tab)
 
@@ -27,7 +28,9 @@ extension ChatListViewController {
             container: chatListVCContainer
         )
         
-        loadFriendAndReload()
+        if loadData {
+            loadFriendAndReload()
+        }
         
         delegate?.didSwitchToTab()
     }
