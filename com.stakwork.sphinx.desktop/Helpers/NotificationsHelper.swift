@@ -142,15 +142,20 @@ class NotificationsHelper : NSObject {
             let chatName = message.chat?.name ?? ""
             let chatId = message.chat?.id ?? -1
             
+            let senderNickName = message.getMessageSenderNickname(
+                owner: owner,
+                contact: nil
+            )
+            
+            var senderPrefix = ""
+            
             if chatName.isEmpty {
-                notification.title = message.getMessageSenderNickname(
-                    owner: owner,
-                    contact: nil
-                )
+                notification.title = senderNickName
             } else {
                 notification.title = chatName
+                senderPrefix = "\(senderNickName): "
             }
-            notification.informativeText = message.getMessageDescription()
+            notification.informativeText = senderPrefix + message.getMessageDescription()
             notification.userInfo = ["chat-id" : chatId]
             notification.hasReplyButton = true
             notification.responsePlaceholder = "message.placeholder".localized

@@ -160,7 +160,7 @@ extension TransactionMessage {
             return podcastComment.text ?? ""
         }
         
-        if isPodcastBoost() {
+        if isPodcastBoost() || isMessageReaction() {
             return "Boost"
         }
         
