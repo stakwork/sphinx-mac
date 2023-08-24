@@ -205,6 +205,43 @@
 "route.hint" = "Pista de Ruta";
 "pubkey.upper" = "CLAVE PÚBLICA";
 
+"profile.setup-signing-device" = "Configurar Dispositivo de firma";
+"profile.configure-signing-device" = "Configurar Dispositivo de firma";
+"profile.lightning-url-title" = "URL del nodo de lightning";
+"profile.lightning-url-message" = "Ingresa la URL de tu nodo de lightning";
+"profile.lightning-url-error" = "La URL no puede ser vacía";
+"profile.lightning-port-title" = "Puerto del nodo de lightning";
+"profile.lightning-port-message" = "Ingresa el número de puerto de tu nodo de lightning";
+"profile.lightning-port-error" = "El Puerto no puede ser vacío";
+"profile.wifi-network-title" = "Red WiFi";
+"profile.wifi-network-message" = "Por favor especifica tu red WiFi";
+"profile.wifi-network-error" = "La red WiFi no puede ser vacía";
+"profile.wifi-password-title" = "Contraseña de WiFi";
+"profile.wifi-password-message" = "Ingresa la contraseña de WiFi para %@";
+"profile.wifi-password-error" = "La contraseña de WiFi no puede ser vacía";
+"profile.seed-sent-successfully" = "Seed envíado al dispositivo con éxito";
+"profile.error-sending-seed" = "Ocurrió un error enviando el seed al dispositivo";
+"profile.error-getting-hardware-public-key" = "Ocurrió un error al intentar obtener la clave pública del dispositivo";
+"profile.store-mnemonic" = "Guarda tus palabras de seguridad cuidadosamente";
+"profile.network-check-title" = "Verifica tu conexión WiFi";
+"profile.network-check-message" = "Antes de comenzar tenes que conectarte a la red WiFi \"sphinxkey\". De lo contrario no vas a poder configurar tu dispositivo. ¿Estás actualmente conectado a esta red?";
+"profile.mnemonic-copied" = "Palabras de seguridad copiadas al portapapeles";
+"profile.bitcoin-network" = "Red de Bitcoin";
+"profile.select-bitcoin-network" = "Seleccioná la red de Bitcoin";
+"profile.mnemonic-generation-title" = "Generación de palabras de seguridad";
+"profile.mnemonic-generation-description" = "Elegí la opción de tu preferencia";
+"profile.mnemonic-enter-title" = "Palabras de seguridad";
+"profile.mnemonic-enter-description" = "Ingresá 12 o 24 palabras de seguridad separadas por un espacio";
+"profile.mnemonic-enter-error" = "Las palabras ingresadas no son válidas";
+"profile.mnemonic-enter" = "Ingresá tus 12/24 palabras de seguridad";
+"profile.mnemonic-generate" = "Generar palabras de seguridad al azar";
+"profile.signer-setup-title" = "Configuración";
+"profile.signer-setup-message" = "Configurar hardware o computer signer";
+"profile.harware-option" = "Hardware";
+"profile.phone-signer-option" = "Computer Signer";
+"profile.signer-qr-code.title" = "Código QR";
+"profile.signer-qr-code.message" = "Ingresá el contenido del código QR";
+
 //PIN
 "privacy.pin" = "PIN de Privacidad";
 "standard.pin" = "PIN Estandar";

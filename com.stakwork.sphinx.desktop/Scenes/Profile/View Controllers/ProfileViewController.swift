@@ -27,6 +27,8 @@ class ProfileViewController: NSViewController {
     @IBOutlet weak var pinTimeoutBox: NSBox!
     @IBOutlet weak var changePinBox: NSBox!
     @IBOutlet weak var changePrivacyPinBox: NSBox!
+    @IBOutlet weak var setupSignerBox: NSBox!
+    @IBOutlet weak var disconnectMQTTBox: NSBox!
     
     @IBOutlet weak var userNameField: NSTextField!
     @IBOutlet weak var addressField: NSTextField!
@@ -323,5 +325,13 @@ class ProfileViewController: NSViewController {
     func saveFinished(success: Bool) {
         self.configureProfile()
         self.newMessageBubbleHelper.showGenericMessageView(text: success ? "profile.saved".localized : "generic.error.message".localized, in: self.view, position: .Top)
+    }
+    
+    @IBAction func setupSignerButtonClicked(_ sender: Any) {
+        CrypterManager.sharedInstance.startSetup()
+    }
+    
+    @IBAction func disconnectMQTTButtonClicked(_ sender: Any) {
+        CrypterManager.sharedInstance.resetMQTTConnection()
     }
 }

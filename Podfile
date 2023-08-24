@@ -13,4 +13,7 @@ target 'Sphinx' do
    pod 'Starscream', '~> 3.1'
    pod 'Tor', podspec: 'https://raw.githubusercontent.com/iCepa/Tor.framework/v405.8.1/Tor.podspec'
    pod 'ObjectMapper'
+   pod 'HDWalletKit'
+   pod 'CocoaMQTT'
+   pod 'MessagePack.swift', '~> 4.0'
 end
