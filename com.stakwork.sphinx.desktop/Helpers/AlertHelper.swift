@@ -85,7 +85,6 @@ class AlertHelper {
         title: String,
         message: String,
         textFieldText: String? = nil,
-        secureEntry: Bool = false,
         confirm: ((String?) -> ())? = nil,
         cancel: (() -> ())? = nil
     ){

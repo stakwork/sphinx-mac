@@ -65,6 +65,7 @@ import WebKit
         addStatusBarItem()
         listenToSleepEvents()
         connectTor()
+        connectMQTT()
         getRelayKeys()
         
         setInitialVC()
@@ -108,6 +109,12 @@ import WebKit
             return
         }
         onionConnector.startIfNeeded()
+    }
+     
+    func connectMQTT() {
+        if let phoneSignerSetup: Bool = UserDefaults.Keys.setupPhoneSigner.get(), phoneSignerSetup {
+            CrypterManager.sharedInstance.startMQTTSetup()
+        }
     }
 
     
@@ -213,6 +220,7 @@ import WebKit
     
     @objc func sleepListener(aNotification: NSNotification) {
         if (aNotification.name == NSWorkspace.didWakeNotification) && UserData.sharedInstance.isUserLogged() {
+            connectMQTT()
             SDImageCache.shared.clearMemory()
             
             unlockTimer?.invalidate()

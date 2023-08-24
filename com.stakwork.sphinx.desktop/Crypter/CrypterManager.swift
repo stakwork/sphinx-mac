@@ -16,7 +16,6 @@ import MessagePack
 class CrypterManager : NSObject {
     
     class var sharedInstance : CrypterManager {
-        
         struct Static {
             static let instance = CrypterManager()
         }
@@ -78,10 +77,9 @@ class CrypterManager : NSObject {
         var encryptedSeed: String? = nil
     }
     
-    var endCallback: () -> Void = {}
-    
     var hardwarePostDto = HardwarePostDto()
     let newMessageBubbleHelper = NewMessageBubbleHelper()
+    var shouldDisconnect = false
     
     var clientID: String {
         get {
@@ -101,7 +99,7 @@ class CrypterManager : NSObject {
             if let lssNonce: String = UserDefaults.Keys.lssNonce.get() {
                 return lssNonce
             }
-            let lssNonce = randomBytes(32).hexString
+            let lssNonce = Nonce(length: 32).hexString
             UserDefaults.Keys.lssNonce.set(lssNonce)
             return lssNonce
         }
@@ -145,11 +143,9 @@ class CrypterManager : NSObject {
         clear()
     }
     
-    func setupSigningDevice(
-        hardwareLink: HardwareLink? = nil,
-        callback: @escaping () -> ()
+    func startSetup(
+        hardwareLink: HardwareLink? = nil
     ) {
-        self.endCallback = callback
         self.hardwarePostDto = HardwarePostDto()
         
         if let hardwareLink = hardwareLink {
@@ -157,20 +153,97 @@ class CrypterManager : NSObject {
             hardwarePostDto.bitcoinNetwork = hardwareLink.network
         }
         
-        self.setupSigningDevice()
+        chooseConnectionType()
     }
     
-    func start() {
-        let (mnemonic, seed) = getOrCreateWalletMnemonic()
-        let seed32Bytes = seed.bytes[0..<32]
+    func chooseConnectionType() {
+        let setupHardwareCallback: (() -> ()) = {
+            self.setupSigningDevice()
+        }
         
-        print("LOGGING MNEMONIC: \(mnemonic)")
-        print("LOGGING SEED: \(seed)")
-        print("LOGGING SEED 32 BYTES: \(seed32Bytes)")
+        let setupPhoneDeviceCallback: (() -> ()) = {
+            self.startMQTTSetup()
+        }
+        
+        AlertHelper.showOptionsPopup(
+            title: "profile.signer-setup-title".localized,
+            message: "profile.signer-setup-message".localized,
+            options: [
+                "profile.harware-option".localized,
+                "profile.phone-signer-option".localized
+            ],
+            callbacks: [
+                setupHardwareCallback,
+                setupPhoneDeviceCallback
+            ]
+        )
+    }
+    
+    func presentPromptForQR() {
+        AlertHelper.showPromptAlert(
+            title: "profile.signer-qr-code.title".localized,
+            message: "profile.signer-qr-code.message".localized,
+            confirm: { value in
+                if let value = value, !value.isEmpty {
+                    if let hardwareLink = CrypterManager.HardwareLink.getHardwareLinkFrom(
+                        query: value
+                    ) {
+                        self.hardwarePostDto.lightningNodeUrl = hardwareLink.mqtt
+                        self.hardwarePostDto.bitcoinNetwork = hardwareLink.network
+                        
+                        self.startMQTTSetup()
+                    }
+                } else {
+                    self.showErrorWithMessage("code.not.recognized".localized)
+                }
+            },
+            cancel: {}
+        )
+    }
+    
+    func resetMQTTConnection() {
+        if mqtt?.connState != .connected && mqtt?.connState != .connecting {
+            showErrorWithMessage("MQTT not connected yet")
+            return
+        }
+        
+        shouldDisconnect = true
+        
+        UserDefaults.Keys.phoneSignerHost.removeValue()
+        UserDefaults.Keys.phoneSignerNetwork.removeValue()
+        UserDefaults.Keys.setupPhoneSigner.removeValue()
+        UserDefaults.Keys.signerKeys.removeValue()
+        UserDefaults.Keys.sequence.removeValue()
+        
+        mqtt?.disconnect()
+        mqtt = nil
+        
+        showSuccessWithMessage("MQTT disconnected")
+        
+        DelayPerformedHelper.performAfterDelay(seconds: 2, completion: {
+            self.shouldDisconnect = false
+        })
+    }
+    
+    func startMQTTSetup() {
+        if mqtt?.connState == .connected || mqtt?.connState == .connecting {
+            showSuccessWithMessage("MQTT already connected or connecting")
+            return
+        }
+        
+        let host = hardwarePostDto.lightningNodeUrl ?? UserDefaults.Keys.phoneSignerHost.get()
+        let network = hardwarePostDto.bitcoinNetwork ?? UserDefaults.Keys.phoneSignerNetwork.get()
+        
+        guard let host = host, let network = network else {
+            presentPromptForQR()
+            return
+        }
+        
+        let (_, seed) = getOrCreateWalletMnemonic()
         
         var keys: Keys? = nil
         do {
-            keys = try nodeKeys(net: "regtest", seed: seed32Bytes.hexString)
+            keys = try nodeKeys(net: network, seed: seed.hexString)
         } catch {
             print(error.localizedDescription)
         }
@@ -179,9 +252,6 @@ class CrypterManager : NSObject {
             return
         }
         
-        print("LOGGING PUB KEY: \(keys.pubkey)")
-        print("LOGGING SECRET: \(keys.secret)")
-        
         var password: String? = nil
         do {
             password = try makeAuthToken(ts: UInt32(Date().timeIntervalSince1970), secret: keys.secret)
@@ -189,29 +259,50 @@ class CrypterManager : NSObject {
             print(error.localizedDescription)
         }
         
-        print("LOGGING PASSWORD: \(password ?? "")")
-        
         guard let password = password else {
             return
         }
         
         connectToMQTTWith(
+            host: host,
+            network: network,
             keys: keys,
             and: password
         )
     }
     
     func connectToMQTTWith(
+        host: String,
+        network: String,
         keys: Keys,
         and password: String
     ) {
-        mqtt = CocoaMQTT(clientID: clientID, host: "192.168.0.24", port: 1883)
+        if shouldDisconnect {
+            shouldDisconnect = false
+            return
+        }
+        
+        let (actualHost, actualPort, ssl) = host.getHostAndPort(defaultPort: 1883)
+        
+        mqtt = CocoaMQTT(
+            clientID: clientID,
+            host: actualHost,
+            port: actualPort
+        )
+        
         mqtt.username = keys.pubkey
         mqtt.password = password
+        mqtt.enableSSL = ssl
+        
+        showSuccessWithMessage("Connecting to MQTT")
 
         let success = mqtt.connect()
 
         if success {
+            UserDefaults.Keys.setupPhoneSigner.set(true)
+            UserDefaults.Keys.phoneSignerHost.set(host)
+            UserDefaults.Keys.phoneSignerNetwork.set(network)
+            
             mqtt.didReceiveMessage = { mqtt, message, id in
                 print("Message received in topic \(message.topic) with payload \(message.payload)")
                 
@@ -222,15 +313,28 @@ class CrypterManager : NSObject {
             }
 
             mqtt.didDisconnect =  { cocaMQTT2, error in
+                self.showErrorWithMessage("MQTT disconnected. Trying to reconnect...")
+                
+                guard let _ = self.mqtt else {
+                    return
+                }
+                
                 self.mqtt.didDisconnect = { _, _ in }
                 self.sequence = nil
                 
                 DelayPerformedHelper.performAfterDelay(seconds: 1, completion: {
-                    self.connectToMQTTWith(keys: keys, and: password)
+                    self.connectToMQTTWith(
+                        host: host,
+                        network: network,
+                        keys: keys,
+                        and: password
+                    )
                 })
             }
             
             mqtt.didConnectAck = { _, _ in
+                self.showSuccessWithMessage("MQTT connected")
+                
                 self.mqtt.subscribe([
                     ("\(self.clientID)/\(Topics.VLS.rawValue)", CocoaMQTTQoS.qos1),
                     ("\(self.clientID)/\(Topics.INIT_1_MSG.rawValue)", CocoaMQTTQoS.qos1),
@@ -344,7 +448,7 @@ class CrypterManager : NSObject {
     }
     
     func makeArgs() -> [String: AnyObject] {
-        let seedHexString = seed.bytes[0..<32].hexString
+        let seedHexString = seed.hexString
         
         guard let seedBytes = stringToBytes(seedHexString) else {
             return [:]
@@ -596,7 +700,6 @@ class CrypterManager : NSObject {
             title: title,
             message: message,
             textFieldText: textFieldText,
-            secureEntry: secureEntry,
             confirm: { value in
                 if let value = value, !value.isEmpty {
                     callback(value)
@@ -609,11 +712,16 @@ class CrypterManager : NSObject {
     }
     
     func promptForSeedGeneration(
-        callback: @escaping ((String, String)) -> ()
+        callback: @escaping ((String, Data)) -> ()
     ) {
+        if let (mnemonic, seed) = getStoredMnemonicAndSeed() {
+            callback((mnemonic, seed))
+            return
+        }
+        
         let generateMnemonicCallbak: (() -> ()) = {
             self.newMessageBubbleHelper.showLoadingWheel()
-            let (mnemonic, seed) = self.generateWalletMnemonic()
+            let (mnemonic, seed) = self.getOrCreateWalletMnemonic()
             callback((mnemonic, seed))
         }
         
@@ -633,7 +741,7 @@ class CrypterManager : NSObject {
     }
     
     func promptForSeedEnter(
-        callback: @escaping ((String, String)) -> ()
+        callback: @escaping ((String, Data)) -> ()
     ) {
         promptFor(
             "profile.mnemonic-enter-title".localized,
@@ -648,8 +756,8 @@ class CrypterManager : NSObject {
                     let words = value.split(separator: " ").map { String($0).trim() }
                     let fixedWords = words.joined(separator: " ")
                     
-                    let (mnemonic, seed) = self.generateWalletMnemonic(
-                        mnemonic: fixedWords
+                    let (mnemonic, seed) = self.getOrCreateWalletMnemonic(
+                        enteredMnemonic: fixedWords
                     )
                     callback((mnemonic, seed))
                 } else {
@@ -659,25 +767,30 @@ class CrypterManager : NSObject {
         )
     }
     
-    public func generateWalletMnemonic(
-        mnemonic: String? = nil
-    ) -> (String, String) {
-        let mnemonic = mnemonic ?? Mnemonic.create()
+    public func getOrCreateWalletMnemonic(
+        enteredMnemonic: String? = nil
+    ) -> (String, Data) {
+        let mnemonic = enteredMnemonic ?? UserDefaults.Keys.mnemonic.get() ?? Mnemonic.create()
         let seed = Mnemonic.createSeed(mnemonic: mnemonic)
-        let seed32Bytes = seed.bytes[0..<32]
-        
-        return (mnemonic, seed32Bytes.hexString)
-    }
-    
-    public func getOrCreateWalletMnemonic() -> (String, Data) {
-        let storedMnemonic: String? = UserDefaults.Keys.mnemonic.get()
-        let mnemonic = storedMnemonic ?? Mnemonic.create()
+        let seed32Bytes = Data(seed.bytes[0..<32])
 
-        seed = Mnemonic.createSeed(mnemonic: mnemonic)
-        
+        self.seed = seed32Bytes
         UserDefaults.Keys.mnemonic.set(mnemonic)
         
-        return (mnemonic, seed)
+        return (mnemonic, seed32Bytes)
+    }
+    
+    func getStoredMnemonicAndSeed() -> (String, Data)? {
+        if let mnemonic: String = UserDefaults.Keys.mnemonic.get() {
+            let seed = Mnemonic.createSeed(mnemonic: mnemonic)
+            let seed32Bytes = Data(seed.bytes[0..<32])
+            
+            self.seed = seed32Bytes
+            
+            return (mnemonic, seed32Bytes)
+        }
+        
+        return nil
     }
     
     func testCrypter() {
@@ -728,7 +841,7 @@ class CrypterManager : NSObject {
                     var cipher: String? = nil
 
                     do {
-                        cipher = try encrypt(plaintext: seed, secret: sec1, nonce: nonce)
+                        cipher = try encrypt(plaintext: seed.hexString, secret: sec1, nonce: nonce)
                     } catch {
                         print(error.localizedDescription)
                     }
@@ -752,8 +865,6 @@ class CrypterManager : NSObject {
                         } else {
                             self.showErrorWithMessage("profile.error-sending-seed".localized)
                         }
-
-                        self.endCallback()
                     })
                 }
             }

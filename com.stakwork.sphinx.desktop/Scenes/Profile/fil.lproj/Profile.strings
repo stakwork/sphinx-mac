@@ -46,3 +46,11 @@
 
 /* Class = "NSTextFieldCell"; title = "Server URL"; ObjectID = "wRd-MN-U8t"; */
 "wRd-MN-U8t.title" = "Server URL";
+
+"JQz-vv-8Tw.title" = "Change PIN";
+
+"ISn-bT-TNB.title" = "Change Privacy PIN";
+
+"GQo-KW-3sa.title" = "Setup Signer";
+
+"lmK-Cf-g9b.title" = "Disconnect MQTT";
