@@ -150,10 +150,11 @@ import WebKit
             profileMenuItem,
             newContactMenuItem,
             logoutMenuItem,
-            removeAccountMenuItem,
-            createTribeMenuItem
+            removeAccountMenuItem
         ]
         .forEach { $0?.isHidden = shouldEnableItems == false }
+        
+        createTribeMenuItem.isHidden = !shouldEnableItems || UserContact.getOwner()?.isVirtualNode() == true
     }
     
     
