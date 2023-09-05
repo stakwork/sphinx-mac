@@ -41,19 +41,19 @@ class SignupSecureFieldView: SignupCommonSecureFieldView {
 extension SignupSecureFieldView {
     
     override func controlTextDidChange(_ obj: Notification) {
-        topLabel.alphaValue = textField.stringValue.isEmpty ? 0.0 : 1.0
-        
-        let pinString = textField.stringValue
-        
-        if pinString.length > 6 || Int(pinString) == nil{
-            textField.stringValue = String(pinString.dropLast())
-        }
-        delegate?.didChangeText?(text: textField.stringValue)
-        
-        if textField.stringValue.length == pinLength {
-            DelayPerformedHelper.performAfterDelay(seconds: 0.2, completion: {
+        if (obj.object as? NSTextField) == textField {
+            topLabel.alphaValue = textField.stringValue.isEmpty ? 0.0 : 1.0
+            
+            let pinString = textField.stringValue
+            
+            if pinString.length > 6 || Int(pinString) == nil{
+                textField.stringValue = String(pinString.dropLast())
+            }
+            delegate?.didChangeText?(text: textField.stringValue)
+            
+            if textField.stringValue.length == pinLength {
                 self.delegate?.didConfirmPin?(text: self.textField.stringValue)
-            })
+            }
         }
     }
     
