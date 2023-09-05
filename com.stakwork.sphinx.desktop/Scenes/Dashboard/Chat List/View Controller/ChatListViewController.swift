@@ -98,6 +98,8 @@ class ChatListViewController : DashboardSplittedViewController {
         
         NotificationCenter.default.removeObserver(self, name: .onContactsAndChatsChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(dataDidChange), name: .onContactsAndChatsChanged, object: nil)
+        
+        resetSearchField()
     }
     
     override func viewDidLayout() {

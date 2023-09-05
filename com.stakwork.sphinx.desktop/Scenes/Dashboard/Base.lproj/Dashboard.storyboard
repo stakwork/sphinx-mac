@@ -156,7 +156,7 @@
                                                             </textField>
                                                             <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FCC-PE-Y6e">
                                                                 <rect key="frame" x="41" y="11" width="272" height="16"/>
-                                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" alignment="left" placeholderString="Search" drawsBackground="YES" id="rha-Yr-Htc">
+                                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" focusRingType="none" alignment="left" placeholderString="Search" drawsBackground="YES" id="rha-Yr-Htc">
                                                                     <font key="font" size="14" name="Roboto-Regular"/>
                                                                     <color key="textColor" name="Text"/>
                                                                     <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>

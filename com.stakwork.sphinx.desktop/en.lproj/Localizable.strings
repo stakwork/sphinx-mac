@@ -332,7 +332,7 @@
 "resend.message" = "Resend";
 "received" = "received";
 "sent" = "sent";
-"message.x.deleted" = "Message %@ deleted";
+"message.x.deleted" = "Message deleted";
 "payment" = "Payment";
 "tribe.payment.sent" = "Payment of %@ sent to %@";
 "tribe.payment.received" = "%@ sent a payment of %@ to %@";

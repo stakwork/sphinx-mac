@@ -307,6 +307,10 @@ extension NewChatListViewController {
         
         updateOwner()
         
+        guard let owner = owner else {
+            return
+        }
+        
         var snapshot = DataSourceSnapshot()
 
         snapshot.appendSections(CollectionViewSection.allCases)

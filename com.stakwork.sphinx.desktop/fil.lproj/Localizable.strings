@@ -331,7 +331,7 @@
 "resend.message" = "Ipadala ulit";
 "received"  = "natanggap";
 "sent"  = "naipadala";
-"message.x.deleted" = "Mensahe %@ tinanggal";
+"message.x.deleted" = "Mensahe tinanggal";
 "payment"  = "Pagbabayad";
 "tribe.payment.sent"  = "Ang pagbabayad ng %@ ay ipinadala sa %@";
 "tribe.payment.received"  = "Nagpadala si %@ ng bayad na %@ sa %@";
