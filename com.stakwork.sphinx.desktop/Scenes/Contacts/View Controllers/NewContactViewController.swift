@@ -153,16 +153,22 @@ class NewContactViewController: NSViewController {
         let pin = groupPinView.getPin()
         
         if contact.id > 0 && (nicknameDidChange || routeHintDidChange || groupPinView.didChangePin) {
-            UserContactsHelper.updateContact(contact: contact, nickname: userNameField.stringValue, routeHint: routeHintField.stringValue, pin: pin, callback: { success in
-                self.loading = false
-                
-                if success {
-                    self.delegate?.shouldReloadContacts()
-                    self.closeWindow()
-                } else {
-                    self.showErrorAlert(message: "generic.error.message".localized)
+            UserContactsHelper.updateContact(
+                contact: contact,
+                nickname: userNameField.stringValue,
+                routeHint: routeHintField.stringValue,
+                pin: pin,
+                callback: { success in
+                    self.loading = false
+                    
+                    if success {
+                        self.delegate?.shouldReloadContacts()
+                        self.closeWindow()
+                    } else {
+                        self.showErrorAlert(message: "generic.error.message".localized)
+                    }
                 }
-            })
+            )
         } else {
             loading = false
             userNameField.stringValue = contact.getName()
@@ -194,6 +200,7 @@ class NewContactViewController: NSViewController {
     }
     
     func closeWindow() {
+        CoreDataManager.sharedManager.saveContext()
         self.view.window?.close()
     }
 

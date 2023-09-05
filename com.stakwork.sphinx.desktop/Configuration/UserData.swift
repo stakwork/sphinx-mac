@@ -519,7 +519,6 @@ class UserData {
         onionConnector.nodeIp = nil
         EncryptionManager.sharedInstance.deleteOldKeys()
         CoreDataManager.sharedManager.clearCoreDataStore()
-        CoreDataManager.sharedManager.saveContext()
         UserDefaults.resetUserDefaults()
     }
 }
