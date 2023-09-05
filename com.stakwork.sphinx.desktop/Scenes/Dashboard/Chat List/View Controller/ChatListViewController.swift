@@ -88,6 +88,8 @@ class ChatListViewController : DashboardSplittedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        contactsService.configureFetchResultsController()
+        
         prepareView()
         listenForPubKeyAndTribeJoin()
         

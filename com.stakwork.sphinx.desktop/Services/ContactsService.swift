@@ -61,18 +61,23 @@ class ContactsService: NSObject {
         super.init()
         
         updateOwner()
-        configureFetchResultsController()
     }
     
     func isRestoring() -> Bool {
         return API.sharedInstance.lastSeenMessagesDate == nil
     }
     
-    func configureFetchResultsController() {
-        if let _ = chatsResultsController, let _ = contactsResultsController {
-            return
-        }
+    func resetObjects() {
+        self.contacts = []
+        self.allContacts = []
+        self.chats = []
         
+        selectedFriendId = nil
+        selectedTribeId = nil
+    }
+    
+    func configureFetchResultsController() {
+        resetObjects()
         updateLastMessages()
         
         ///Contacts results controller

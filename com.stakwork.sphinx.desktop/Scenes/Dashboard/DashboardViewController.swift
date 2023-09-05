@@ -252,12 +252,7 @@ class DashboardViewController: NSViewController {
     }
     
     func resetChatIfDeleted() {
-        let contactFaulted = detailViewController?.contact?.isFault ?? false
-        let chatFaulted = detailViewController?.chat?.isFault ?? false
-        
-        if contactFaulted || chatFaulted {
-            detailViewController?.loadChatFor()
-        }
+        detailViewController?.loadChatFor()
     }
     
     func reloadView() {

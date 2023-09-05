@@ -157,7 +157,7 @@ class UserContactsHelper {
         }
         
         API.sharedInstance.createContact(params: parameters, callback: { contact in
-            let c = self.insertContact(contact: contact, pin: pin)
+            let _ = self.insertContact(contact: contact, pin: pin)
             callback(true)
         }, errorCallback: {
             callback(false)

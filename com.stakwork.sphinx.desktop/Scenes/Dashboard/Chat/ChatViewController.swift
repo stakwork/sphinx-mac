@@ -361,11 +361,11 @@ class ChatViewController: DashboardSplittedViewController {
     
     func loadChat() {
         if chat == nil && contact == nil {
+            chatCollectionView.alphaValue = 0.0
             childVCContainer.resetAllViews()
             return
         }
         
-        chatCollectionView.alphaValue = 0.0
         contributedSatsIcon.isHidden = true
         contributedSatsLabel.isHidden = true
         healthCheckSign.isHidden = false
