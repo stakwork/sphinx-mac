@@ -56,9 +56,13 @@ class ChatMentionAutocompleteDataSource : NSObject {
         updateMentionTableHeight()
         tableView.reloadData()
         
-        if suggestions.isEmpty { return }
-        
+        if suggestions.isEmpty || self.selectedRow == -1 { return }
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
+            if self.selectedRow == -1 { return }
+            
+            print("self.selectedRow \(self.selectedRow)")
+            
             self.tableView.animator().scrollToItems(at: [IndexPath(item: self.selectedRow, section: 0)], scrollPosition: .bottom)
         })
     }
