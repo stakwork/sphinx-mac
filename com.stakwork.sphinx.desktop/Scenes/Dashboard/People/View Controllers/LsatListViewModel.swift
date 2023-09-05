@@ -70,7 +70,7 @@ extension LsatListViewModel: NSTableViewDelegate, NSTableViewDataSource{
 extension LsatListViewModel : LsatListCellDelegate{
     func deleteLsat(index: Int) {
         AlertHelper.showTwoOptionsAlert(
-            title: "Are you sure you want to delete this LSAT credential?",
+            title: "Are you sure you want to delete this L402 credential?",
             message: "",
             confirm: {
                 print("calling delete LSAT API")
@@ -82,7 +82,7 @@ extension LsatListViewModel : LsatListCellDelegate{
                         self.tableView.reloadData()
                     },
                     errorCallback: {
-                        NewMessageBubbleHelper().showGenericMessageView(text: "Error deleting LSAT data please try again.", in: nil)
+                        NewMessageBubbleHelper().showGenericMessageView(text: "Error deleting L402 data please try again.", in: nil)
                     })
             },
             cancel: {
@@ -102,7 +102,7 @@ extension LsatListViewModel : LsatListCellDelegate{
             ClipboardHelper.copyToClipboard(text: preamble)
         }
         else{
-            NewMessageBubbleHelper().showGenericMessageView(text: "Error copying LSAT data please try again.", in: nil)
+            NewMessageBubbleHelper().showGenericMessageView(text: "Error copying L402 data please try again.", in: nil)
         }
     }
     
@@ -114,7 +114,7 @@ extension LsatListViewModel : LsatListCellDelegate{
             ClipboardHelper.copyToClipboard(text: preamble)
         }
         else{
-            NewMessageBubbleHelper().showGenericMessageView(text: "Error copying LSAT data please try again.", in: nil)
+            NewMessageBubbleHelper().showGenericMessageView(text: "Error copying L402 data please try again.", in: nil)
         }
     }
 }
