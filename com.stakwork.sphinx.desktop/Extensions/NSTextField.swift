@@ -49,11 +49,14 @@ extension NSTextField {
                 }
             }
             
-            for match in pubKeyMatches {
-                if let stringRange = Range(match.range) {
+            var ranges = pubKeyMatches.map { $0.range }
+            ranges = ChatHelper.removeDuplicatedContainedFrom(urlRanges: ranges)
+            
+            for range in ranges {
+                if let stringRange = Range(range) {
                     let pubkey = text[stringRange]
                     
-                    attributedString.addAttributes([NSAttributedString.Key.foregroundColor: linkColor, NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.init("user_pub_key") : pubkey], range: match.range)
+                    attributedString.addAttributes([NSAttributedString.Key.foregroundColor: linkColor, NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.init("user_pub_key") : pubkey], range: range)
                 }
             }
             
