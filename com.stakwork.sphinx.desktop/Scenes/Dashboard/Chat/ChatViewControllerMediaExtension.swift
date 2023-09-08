@@ -176,12 +176,23 @@ extension ChatViewController : AttachmentsManagerDelegate {
     }
     
     func didFailSendingMessage(provisionalMessage: TransactionMessage?) {
+        let errorMessage = "generic.message.error".localized
+        didFailSending(provisionalMessage: provisionalMessage, with: errorMessage)
+    }
+    
+    func didFailSendingAttachment(provisionalMessage: TransactionMessage?) {
+        didFailSending(provisionalMessage: provisionalMessage, with: "generic.attachment.error".localized)
+    }
+    
+    func didFailSending(
+        provisionalMessage: TransactionMessage?,
+        with errorMessage: String
+    ) {
         if let provisionalMessage = provisionalMessage {
             chatDataSource?.deleteCellFor(m: provisionalMessage)
             CoreDataManager.sharedManager.deleteObject(object: provisionalMessage)
             
-            let errorMessage = provisionalMessage.isTextMessage() ? "generic.message.error" : "generic.error.message"
-            AlertHelper.showAlert(title: "generic.error.title".localized, message: errorMessage.localized)
+            AlertHelper.showAlert(title: "generic.error.title".localized, message: errorMessage)
         }
         toggleControls(enable: true)
     }

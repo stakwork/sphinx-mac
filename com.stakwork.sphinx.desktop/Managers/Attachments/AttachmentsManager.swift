@@ -13,6 +13,7 @@ import AVFoundation
 @objc protocol AttachmentsManagerDelegate: AnyObject {
     @objc optional func didUpdateUploadProgress(progress: Int)
     @objc optional func didFailSendingMessage(provisionalMessage: TransactionMessage?)
+    @objc optional func didFailSendingAttachment(provisionalMessage: TransactionMessage?)
     @objc optional func didSuccessSendingAttachment(message: TransactionMessage, image: NSImage?)
     @objc optional func didSuccessUploadingImage(url: String)
 }
@@ -247,7 +248,7 @@ class AttachmentsManager {
     
     func uploadFailed() {
         uploading = false
-        delegate?.didFailSendingMessage?(provisionalMessage: provisionalMessage)
+        delegate?.didFailSendingAttachment?(provisionalMessage: provisionalMessage)
     }
     
     func uploadSucceed(message: TransactionMessage) {

@@ -10,7 +10,8 @@
 "generic.success.title" = "Success";
 "generic.error.title" = "Error";
 "generic.error.message" = "There was an error. Please try again later.";
-"generic.message.error" = "The message could not be sent due to an encryption error.";
+"generic.message.error" = "The message could not be sent. Please try again later";
+"generic.attachment.error" = "There was an problem uploading the file. Please try again later.";
 "confirm" = "Confirm";
 "authorize" = "Authorize";
 "warning" = "Warning";
