@@ -96,8 +96,14 @@ import WebKit
     
     func application(_ application: NSApplication, open urls: [URL]) {
         if urls.count > 0 {
-            for url in urls {
-                DeepLinksHandlerHelper.handleLinkQueryFrom(url: url)
+            if let _ = getDashboardWindow() {
+                for url in urls {
+                    DeepLinksHandlerHelper.handleLinkQueryFrom(url: url)
+                }
+            } else {
+                if let url = urls.first {
+                    UserDefaults.Keys.linkQuery.set(url.absoluteString)
+                }
             }
         }
     }
