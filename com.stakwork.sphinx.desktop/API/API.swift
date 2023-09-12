@@ -61,6 +61,10 @@ typealias ContentFeedCallback = ((JSON) -> ())
 typealias AllContentFeedStatusCallback = (([ContentFeedStatus]) -> ())
 typealias ContentFeedStatusCallback = ((ContentFeedStatus) -> ())
 
+//Crypter
+typealias HardwarePublicKeyCallback = ((String) -> ())
+typealias HardwareSeedCallback = ((Bool) -> ())
+
 class API {
     
     class var sharedInstance : API {

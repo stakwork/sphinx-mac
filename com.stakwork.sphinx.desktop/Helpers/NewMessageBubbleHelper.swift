@@ -17,7 +17,6 @@ class NewMessageBubbleHelper {
     
     let font = NSFont(name: "Roboto-Regular", size: 13.0)!
     let titleFont = NSFont(name: "Roboto-Bold", size: 15.0)!
-    let windowSize = NSApplication.shared.keyWindow?.frame.size
     let loadingWheelContainerSize: CGFloat = 40.0
     let loadingWheelSize: CGFloat = 20.0
     var genericMessageY: CGFloat = 100.0
@@ -186,6 +185,7 @@ class NewMessageBubbleHelper {
                                      hasWheel: Bool = false,
                                      backAlpha: CGFloat = 0.7) -> NSViewWithTag {
         
+        let windowSize = NSApplication.shared.keyWindow?.frame.size
         let containerSize = view?.frame.size ?? (windowSize ?? CGSize(width: 1100, height: 850))
         var viewWidth = hasWheel ? loadingWheelContainerSize : 0.0
         var viewHeight = hasWheel ? loadingWheelContainerSize : 0.0

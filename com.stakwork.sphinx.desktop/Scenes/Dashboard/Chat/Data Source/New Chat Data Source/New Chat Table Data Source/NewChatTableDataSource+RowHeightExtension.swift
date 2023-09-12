@@ -6,7 +6,7 @@
 //  Copyright © 2023 Tomas Timinskas. All rights reserved.
 //
 
-import Foundation
+import Cocoa
 
 extension NewChatTableDataSource: NSCollectionViewDelegateFlowLayout {
     

@@ -65,6 +65,7 @@ import WebKit
         addStatusBarItem()
         listenToSleepEvents()
         connectTor()
+        connectMQTT()
         getRelayKeys()
         
         setInitialVC()
@@ -95,8 +96,14 @@ import WebKit
     
     func application(_ application: NSApplication, open urls: [URL]) {
         if urls.count > 0 {
-            for url in urls {
-                DeepLinksHandlerHelper.handleLinkQueryFrom(url: url)
+            if let _ = getDashboardWindow() {
+                for url in urls {
+                    DeepLinksHandlerHelper.handleLinkQueryFrom(url: url)
+                }
+            } else {
+                if let url = urls.first {
+                    UserDefaults.Keys.linkQuery.set(url.absoluteString)
+                }
             }
         }
     }
@@ -108,6 +115,12 @@ import WebKit
             return
         }
         onionConnector.startIfNeeded()
+    }
+     
+    func connectMQTT() {
+        if let phoneSignerSetup: Bool = UserDefaults.Keys.setupPhoneSigner.get(), phoneSignerSetup {
+            CrypterManager.sharedInstance.startMQTTSetup()
+        }
     }
 
     
@@ -143,10 +156,11 @@ import WebKit
             profileMenuItem,
             newContactMenuItem,
             logoutMenuItem,
-            removeAccountMenuItem,
-            createTribeMenuItem
+            removeAccountMenuItem
         ]
         .forEach { $0?.isHidden = shouldEnableItems == false }
+        
+        createTribeMenuItem.isHidden = !shouldEnableItems || UserContact.getOwner()?.isVirtualNode() == true
     }
     
     
@@ -213,6 +227,7 @@ import WebKit
     
     @objc func sleepListener(aNotification: NSNotification) {
         if (aNotification.name == NSWorkspace.didWakeNotification) && UserData.sharedInstance.isUserLogged() {
+            connectMQTT()
             SDImageCache.shared.clearMemory()
             
             unlockTimer?.invalidate()

@@ -207,6 +207,11 @@ class FeedsManager : NSObject {
             let feedsToRestore = contentFeedStatuses.filter({ $0.chatID != nil })
             let dispatchSemaphore = DispatchSemaphore(value: 1)
             
+            if feedsToRestore.isEmpty {
+                completionCallback?()
+                return
+            }
+            
             ///Update feeds present in remote data
             for (index, contentFeedStatus) in feedsToRestore.enumerated() {
                 

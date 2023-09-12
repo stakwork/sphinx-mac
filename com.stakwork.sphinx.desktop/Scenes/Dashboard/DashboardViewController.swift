@@ -69,6 +69,12 @@ class DashboardViewController: NSViewController {
         detailViewController?.delegate = self
     }
     
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        
+        handleDeepLink()
+    }
+    
     override func viewWillDisappear() {
         super.viewWillDisappear()
         
@@ -83,6 +89,13 @@ class DashboardViewController: NSViewController {
         NotificationCenter.default.removeObserver(self, name: .onAuthDeepLink, object: nil)
         NotificationCenter.default.removeObserver(self, name: .onPersonDeepLink, object: nil)
         NotificationCenter.default.removeObserver(self, name: .onSaveProfileDeepLink, object: nil)
+    }
+    
+    func handleDeepLink() {
+        if let linkQuery: String = UserDefaults.Keys.linkQuery.get(), let url = URL(string: linkQuery) {
+            DeepLinksHandlerHelper.handleLinkQueryFrom(url: url)
+            UserDefaults.Keys.linkQuery.removeValue()
+        }
     }
     
     @objc func themeChangedNotification(notification: Notification) {
@@ -250,12 +263,7 @@ class DashboardViewController: NSViewController {
     }
     
     func resetChatIfDeleted() {
-        let contactFaulted = detailViewController?.contact?.isFault ?? false
-        let chatFaulted = detailViewController?.chat?.isFault ?? false
-        
-        if contactFaulted || chatFaulted {
-            detailViewController?.loadChatFor()
-        }
+        detailViewController?.loadChatFor()
     }
     
     func reloadView() {

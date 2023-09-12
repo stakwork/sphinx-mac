@@ -10,7 +10,8 @@
 "generic.success.title" = "Success";
 "generic.error.title" = "Error";
 "generic.error.message" = "There was an error. Please try again later.";
-"generic.message.error" = "The message could not be sent due to an encryption error.";
+"generic.message.error" = "The message could not be sent. Please try again later";
+"generic.attachment.error" = "There was an problem uploading the file. Please try again later.";
 "confirm" = "Confirm";
 "authorize" = "Authorize";
 "warning" = "Warning";
@@ -211,6 +212,43 @@
 "route.hint" = "Route Hint";
 "pubkey.upper" = "PUBLIC KEY";
 
+"profile.setup-signing-device" = "Setup Signing Device";
+"profile.configure-signing-device" = "Configure Signing Device";
+"profile.lightning-url-title" = "Lightning node URL";
+"profile.lightning-url-message" = "Enter the URL of your lightning node";
+"profile.lightning-url-error" = "Lightning node URL can not be empty";
+"profile.lightning-port-title" = "Lightning node Port";
+"profile.lightning-port-message" = "Enter the Port number of your lightning node";
+"profile.lightning-port-error" = "Port can not be empty";
+"profile.wifi-network-title" = "WiFi network";
+"profile.wifi-network-message" = "Please specify your WiFi network";
+"profile.wifi-network-error" = "WiFi name can not be empty";
+"profile.wifi-password-title" = "WiFi password";
+"profile.wifi-password-message" = "Enter the WiFi password for %@";
+"profile.wifi-password-error" = "WiFi password can not be empty";
+"profile.seed-sent-successfully" = "Seed sent to hardware successfully";
+"profile.error-sending-seed" = "Error sending seed to hardware";
+"profile.error-getting-hardware-public-key" = "Error getting hardware public key";
+"profile.store-mnemonic" = "Store your Mnemonic securely";
+"profile.network-check-title" = "Check your network";
+"profile.network-check-message" = "Before starting you need to connect to \"sphinxkey\" WiFi network. Otherwise you won’t be able to setup your device. Are you connected to this network?";
+"profile.mnemonic-copied" = "Mnemonic words copied to clipboard";
+"profile.bitcoin-network" = "Bitcoin Network";
+"profile.select-bitcoin-network" = "Select Bitcoin Network";
+"profile.mnemonic-generation-title" = "Mnemonic generation";
+"profile.mnemonic-generation-description" = "Choose the option of your preference";
+"profile.mnemonic-enter-title" = "Mnemonic words";
+"profile.mnemonic-enter-description" = "Enter your 12 or 24 mnemonic words separated by a space";
+"profile.mnemonic-enter-error" = "The entered words are not valid";
+"profile.mnemonic-enter" = "Enter your 12/24 mnemonic words";
+"profile.mnemonic-generate" = "Generate random mnemonic words";
+"profile.signer-setup-title" = "Setup";
+"profile.signer-setup-message" = "Setup hardware device or computer signer";
+"profile.harware-option" = "Hardware";
+"profile.phone-signer-option" = "Computer Signer";
+"profile.signer-qr-code.title" = "QR code";
+"profile.signer-qr-code.message" = "Enter QR code content";
+
 //PIN
 "privacy.pin" = "Privacy PIN";
 "standard.pin" = "Standard PIN";
@@ -296,7 +334,7 @@
 "resend.message" = "Resend";
 "received" = "received";
 "sent" = "sent";
-"message.x.deleted" = "Message %@ deleted";
+"message.x.deleted" = "Message deleted";
 "payment" = "Payment";
 "tribe.payment.sent" = "Payment of %@ sent to %@";
 "tribe.payment.received" = "%@ sent a payment of %@ to %@";
@@ -416,7 +454,7 @@
 "enter.code.placeholder" = "Enter code...";
 "keychain.restore" = "Restore from Keychain";
 "podcast.details" = "Podcast Details & Options";
-"my.lsats" = "My LSATs";
+"my.lsats" = "My L402s";
 "code.not.supported" = "Code not supported";
 "enter.restore.pin" = "Enter Restore PIN";
 "share.invite.code" = "Share Invite Code";

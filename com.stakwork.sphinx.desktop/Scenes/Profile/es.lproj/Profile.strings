@@ -28,4 +28,10 @@
 /* Class = "NSTextFieldCell"; title = "Server URL"; ObjectID = "wRd-MN-U8t"; */
 "wRd-MN-U8t.title" = "URL del servidor";
 
-"0cE-Ar-9CG.title" = "Cambiar PIN";
+"JQz-vv-8Tw.title" = "Cambiar PIN";
+
+"ISn-bT-TNB.title" = "Cambiar PIN privado";
+
+"GQo-KW-3sa.title" = "Configurar Signer";
+
+"lmK-Cf-g9b.title" = "Desconectar MQTT";

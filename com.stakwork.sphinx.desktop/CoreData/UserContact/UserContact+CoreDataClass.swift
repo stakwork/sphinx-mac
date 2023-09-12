@@ -339,6 +339,10 @@ public class UserContact: NSManagedObject {
             self.invite?.status == UserInvite.Status.Expired.rawValue
     }
     
+    func isVirtualNode() -> Bool {
+        return !(self.routeHint ?? "").isEmpty
+    }
+    
     public func shouldBeExcluded() -> Bool {
         if fromGroup { return true }
         if let invite = self.invite {

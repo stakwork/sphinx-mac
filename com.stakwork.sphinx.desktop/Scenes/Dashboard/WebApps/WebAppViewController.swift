@@ -58,7 +58,8 @@ class WebAppViewController: NSViewController {
     }
     
     @objc func showLsatList(){
-        NewMessageBubbleHelper().showGenericMessageView(text: "Retrieving your LSATs...", in: nil)
+        NewMessageBubbleHelper().showGenericMessageView(text: "Retrieving your L402s...", in: nil)
+        
         webAppHelper.listLSats(completion: { success in
             if(success){
                 let viewController = LsatListViewController.instantiate(lsatList: self.webAppHelper.lsatList)
@@ -72,7 +73,7 @@ class WebAppViewController: NSViewController {
                 print(self.webAppHelper.lsatList)
             }
             else{
-                NewMessageBubbleHelper().showGenericMessageView(text: "Error loading LSAT data please try again.", in: nil)
+                NewMessageBubbleHelper().showGenericMessageView(text: "Error loading L402 data please try again.", in: nil)
             }
         })
         

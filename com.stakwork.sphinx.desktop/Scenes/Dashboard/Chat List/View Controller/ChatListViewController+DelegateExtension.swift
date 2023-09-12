@@ -47,6 +47,10 @@ extension ChatListViewController {
             name: NSControl.textDidChangeNotification,
             object: searchField
         )
+        
+        DelayPerformedHelper.performAfterDelay(seconds: 1.0, completion: {
+            self.searchField?.isEnabled = true
+        })
     }
     
     @objc func handleBalanceClick(){
@@ -152,9 +156,11 @@ extension ChatListViewController : NSTextFieldDelegate {
     }
     
     func controlTextDidChange(_ obj: Notification) {
-        let currentString = (searchField?.stringValue ?? "")
-        searchClearButton.isHidden = currentString.isEmpty
-        contactsService.updateChatListWith(term: currentString)
+        if (obj.object as? NSTextField) == searchField {
+            let currentString = (searchField?.stringValue ?? "")
+            searchClearButton.isHidden = currentString.isEmpty
+            contactsService.updateChatListWith(term: currentString)
+        }
     }
 }
 

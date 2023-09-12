@@ -246,6 +246,11 @@
 		474F67612486929600CE6016 /* PaidMessageReceivedCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 474F675F2486929600CE6016 /* PaidMessageReceivedCollectionViewItem.xib */; };
 		474F67632486971600CE6016 /* CommonPaidMessageCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474F67622486971600CE6016 /* CommonPaidMessageCollectionViewItem.swift */; };
 		474F67652486D08800CE6016 /* Notification.Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474F67642486D08800CE6016 /* Notification.Name.swift */; };
+		47543C552A9517BC003F8DEE /* universal-sphinxrs-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47543C542A9517BC003F8DEE /* universal-sphinxrs-mac.a */; };
+		47543C5C2A951836003F8DEE /* sphinxrs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47543C582A951836003F8DEE /* sphinxrs.swift */; };
+		47543C5D2A951836003F8DEE /* Nonce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47543C592A951836003F8DEE /* Nonce.swift */; };
+		47543C5E2A951836003F8DEE /* CrypterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47543C5B2A951836003F8DEE /* CrypterManager.swift */; };
+		47543C602A9519CD003F8DEE /* API+CrypterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47543C5F2A9519CD003F8DEE /* API+CrypterExtension.swift */; };
 		475723A2247E96DF001ADC7E /* LoadingWheelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475723A1247E96DF001ADC7E /* LoadingWheelHelper.swift */; };
 		475723AB247ED3AC001ADC7E /* AudioPlayerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475723AA247ED3AC001ADC7E /* AudioPlayerHelper.swift */; };
 		475723AD247ED3B7001ADC7E /* AudioRecorderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475723AC247ED3B7001ADC7E /* AudioRecorderHelper.swift */; };
@@ -953,6 +958,13 @@
 		474F67622486971600CE6016 /* CommonPaidMessageCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonPaidMessageCollectionViewItem.swift; sourceTree = "<group>"; };
 		474F67642486D08800CE6016 /* Notification.Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.Name.swift; sourceTree = "<group>"; };
 		474F67692486E25000CE6016 /* com_stakwork_sphinx_desktop 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "com_stakwork_sphinx_desktop 3.xcdatamodel"; sourceTree = "<group>"; };
+		47543C542A9517BC003F8DEE /* universal-sphinxrs-mac.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "universal-sphinxrs-mac.a"; sourceTree = "<group>"; };
+		47543C572A951836003F8DEE /* Sphinxrs-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Sphinxrs-Bridging-Header.h"; sourceTree = "<group>"; };
+		47543C582A951836003F8DEE /* sphinxrs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sphinxrs.swift; sourceTree = "<group>"; };
+		47543C592A951836003F8DEE /* Nonce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Nonce.swift; sourceTree = "<group>"; };
+		47543C5A2A951836003F8DEE /* sphinxrsFFI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sphinxrsFFI.h; sourceTree = "<group>"; };
+		47543C5B2A951836003F8DEE /* CrypterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrypterManager.swift; sourceTree = "<group>"; };
+		47543C5F2A9519CD003F8DEE /* API+CrypterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API+CrypterExtension.swift"; sourceTree = "<group>"; };
 		475723A1247E96DF001ADC7E /* LoadingWheelHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingWheelHelper.swift; sourceTree = "<group>"; };
 		475723AA247ED3AC001ADC7E /* AudioPlayerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerHelper.swift; sourceTree = "<group>"; };
 		475723AC247ED3B7001ADC7E /* AudioRecorderHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderHelper.swift; sourceTree = "<group>"; };
@@ -1313,7 +1325,6 @@
 		47DE1BEF2A67139D0029597B /* NewOnlyTextMessageCollectionViewitem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewOnlyTextMessageCollectionViewitem.xib; sourceTree = "<group>"; };
 		47DE1BF32A6813BA0029597B /* StatusHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusHeaderView.swift; sourceTree = "<group>"; };
 		47DE1BF52A6813C50029597B /* StatusHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusHeaderView.xib; sourceTree = "<group>"; };
-		47DE1BF82A681D8B0029597B /* Sphinx-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sphinx-Bridging-Header.h"; sourceTree = "<group>"; };
 		47DE1BF92A681D8C0029597B /* String+Geometrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "String+Geometrics.h"; sourceTree = "<group>"; };
 		47DE1BFA2A681D8C0029597B /* String+Geometrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "String+Geometrics.m"; sourceTree = "<group>"; };
 		47DE1C022A68813B0029597B /* MessageNoBubbleCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageNoBubbleCollectionViewItem.swift; sourceTree = "<group>"; };
@@ -1487,6 +1498,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47543C552A9517BC003F8DEE /* universal-sphinxrs-mac.a in Frameworks */,
 				47D03DE7250FC8B90077A968 /* PDFKit.framework in Frameworks */,
 				1AD578FF09B63C227165D4DA /* Pods_Sphinx.framework in Frameworks */,
 			);
@@ -1512,6 +1524,7 @@
 		3E664B87C7B66A1253E2E109 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				47543C542A9517BC003F8DEE /* universal-sphinxrs-mac.a */,
 				47D03DE6250FC8B90077A968 /* PDFKit.framework */,
 				82C242433501D81263FED4C2 /* Pods_Sphinx.framework */,
 			);
@@ -1802,6 +1815,7 @@
 			isa = PBXGroup;
 			children = (
 				47DE1BF72A681D7F0029597B /* Objective-C */,
+				47543C562A9517C5003F8DEE /* Crypter */,
 				4720990C24834DEA00426028 /* Libraries */,
 				4703F0552481C5F600282186 /* Fonts */,
 				479751E3246D909100D2106B /* Services */,
@@ -1971,6 +1985,7 @@
 				47D76E6A27F12B1C000DC021 /* API+AuthenticationExtension.swift */,
 				47AE2467287F1F4700EF42BD /* API+RedeemSatsExtension.swift */,
 				475B684E299166E7000EF29C /* API+ActionsExtension.swift */,
+				47543C5F2A9519CD003F8DEE /* API+CrypterExtension.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -2153,6 +2168,18 @@
 				474F67522486779D00CE6016 /* JoinVideoCallView.xib */,
 			);
 			path = "Video Call";
+			sourceTree = "<group>";
+		};
+		47543C562A9517C5003F8DEE /* Crypter */ = {
+			isa = PBXGroup;
+			children = (
+				47543C5B2A951836003F8DEE /* CrypterManager.swift */,
+				47543C592A951836003F8DEE /* Nonce.swift */,
+				47543C572A951836003F8DEE /* Sphinxrs-Bridging-Header.h */,
+				47543C582A951836003F8DEE /* sphinxrs.swift */,
+				47543C5A2A951836003F8DEE /* sphinxrsFFI.h */,
+			);
+			path = Crypter;
 			sourceTree = "<group>";
 		};
 		4758189C28ECA938006F32A2 /* CreateTribeViewModel */ = {
@@ -2863,7 +2890,6 @@
 			children = (
 				47DE1BF92A681D8C0029597B /* String+Geometrics.h */,
 				47DE1BFA2A681D8C0029597B /* String+Geometrics.m */,
-				47DE1BF82A681D8B0029597B /* Sphinx-Bridging-Header.h */,
 			);
 			path = "Objective-C";
 			sourceTree = "<group>";
@@ -3847,6 +3873,7 @@
 				475B683A29915DFE000EF29C /* PodcastDestination+Properties.swift in Sources */,
 				4744FA6E2469A47100C5FD94 /* API+GroupsExtension.swift in Sources */,
 				475B680F29915CCA000EF29C /* MessageAction.swift in Sources */,
+				47543C5D2A951836003F8DEE /* Nonce.swift in Sources */,
 				479E7D8625ADD3E10092595B /* PinTimeoutView.swift in Sources */,
 				4720991B24834E0000426028 /* CryptorRSAKey.swift in Sources */,
 				4744FAA12469CD4D00C5FD94 /* AttachmentObject.swift in Sources */,
@@ -3940,6 +3967,7 @@
 				47DE1C372A6AF6D00029597B /* ShimmeringReceivedMessageView.swift in Sources */,
 				47FEE1F12A61A1C200646C4E /* ChatMessageFieldView+MentionsMacrosExtension.swift in Sources */,
 				47B55099248BCDD7000514BF /* CreateInvoiceViewController.swift in Sources */,
+				47543C602A9519CD003F8DEE /* API+CrypterExtension.swift in Sources */,
 				4744FA742469A4BA00C5FD94 /* DelayPerformerHelper.swift in Sources */,
 				4731BE1A2485303600BCCA9E /* DirectPaymentReceivedCollectionViewItem.swift in Sources */,
 				47DE1C0C2A6886020029597B /* NewChatTableDataSource+RowHeightExtension.swift in Sources */,
@@ -3971,6 +3999,7 @@
 				4744FA892469C9F800C5FD94 /* TransactionMessage+CoreDataClass.swift in Sources */,
 				4731BE362485817F00BCCA9E /* ExpiredInvoiceReceivedCollectionViewItem.swift in Sources */,
 				475B682229915D25000EF29C /* ContentFeedItem+FetchUtils.swift in Sources */,
+				47543C5C2A951836003F8DEE /* sphinxrs.swift in Sources */,
 				47E771172472C1B500C9CFEB /* ChatDataSource.swift in Sources */,
 				4744FAA92469CF1A00C5FD94 /* PaymentRequestDecoder.swift in Sources */,
 				47B55085248958CB000514BF /* PaymentInvoiceFormViewController.swift in Sources */,
@@ -3996,6 +4025,7 @@
 				475B683729915DF5000EF29C /* PodcastModel+Computeds.swift in Sources */,
 				47F8824825656CB0002A7E71 /* SocketLogger.swift in Sources */,
 				4744FA7A2469C94400C5FD94 /* CoreDataManager.swift in Sources */,
+				47543C5E2A951836003F8DEE /* CrypterManager.swift in Sources */,
 				478ED58C25D47C9700940132 /* FriendMessageView.swift in Sources */,
 				474C7A3A28D21116007A3E17 /* NotificationLevelView.swift in Sources */,
 				472B4E8F268BAF4E00E8D0FC /* OnionManager.swift in Sources */,
@@ -4788,7 +4818,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 278;
+				CURRENT_PROJECT_VERSION = 286;
 				DEVELOPMENT_TEAM = 8297M44YTW;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -4797,12 +4827,16 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gl.sphinx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "com.stakwork.sphinx.desktop/Objective-C/Sphinx-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/com.stakwork.sphinx.desktop/Crypter/Sphinxrs-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -4819,7 +4853,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 278;
+				CURRENT_PROJECT_VERSION = 286;
 				DEVELOPMENT_TEAM = 8297M44YTW;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -4828,12 +4862,16 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gl.sphinx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "com.stakwork.sphinx.desktop/Objective-C/Sphinx-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/com.stakwork.sphinx.desktop/Crypter/Sphinxrs-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};

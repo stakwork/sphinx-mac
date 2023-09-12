@@ -274,6 +274,31 @@ extension SphinxSocketManager {
             if isConfirmation {
                 delegate?.didReceiveConfirmation?(message: message)
             } else {
+                if message.isIncoming() && message.chat?.isPublicGroup() ?? false {
+                     debounceMessageNotification(message: message, onChat: onChat)
+                 } else {
+                     sendNotification(message: message)
+                     delegate?.didReceiveMessage?(message: message, onChat: onChat)
+                 }
+            }
+        }
+    }
+    
+    func debounceMessageNotification(message: TransactionMessage, onChat: Bool) {
+        incomingMSGTimer?.invalidate()
+        
+        incomingMSGTimer = Timer.scheduledTimer(
+            timeInterval: 0.3,
+            target: self,
+            selector: #selector(sendDelayedNotification(timer:)),
+            userInfo: ["message": message, "onChat" : onChat],
+            repeats: false
+        )
+    }
+    
+    @objc func sendDelayedNotification(timer: Timer) {
+        if let userInfo = timer.userInfo as? [String: Any] {
+            if let message = userInfo["message"] as? TransactionMessage, let onChat = userInfo["onChat"] as? Bool {
                 sendNotification(message: message)
                 delegate?.didReceiveMessage?(message: message, onChat: onChat)
             }

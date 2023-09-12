@@ -13,6 +13,7 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
     
     @IBOutlet weak var backgroundBox: NSBox!
     @IBOutlet weak var chatImageView: AspectFillNSImageView!
+    @IBOutlet weak var inviteImageView: NSImageView!
     @IBOutlet weak var chatInitialsView: NSBox!
     @IBOutlet weak var chatInitialsLabel: NSTextField!
     @IBOutlet weak var nameLabel: NSTextField!
@@ -56,6 +57,10 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
         muteImageView.isHidden = true
         inviteIconLabel.isHidden = true
         invitePriceContainer.isHidden = true
+        
+        inviteImageView.contentTintColor = NSColor.white
+        inviteImageView.image = NSImage(named: "inviteQrCode")
+        inviteImageView.isHidden = true
     }
     
     func render(
@@ -183,11 +188,14 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
             chatImageView.layer?.cornerRadius = 0
 
             chatInitialsView.isHidden = true
-            chatImageView.isHidden = false
-            chatImageView.image = NSImage(named: "inviteQrCode")
+            chatImageView.isHidden = true
+            inviteImageView.isHidden = false
 
         } else {
 
+            inviteImageView.isHidden = true
+            
+            chatImageView.rounded = true
             chatImageView.layer?.cornerRadius = chatImageView.frame.height / 2
             
             renderContactInitialsLabel(for: chatListObject)
