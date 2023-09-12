@@ -38,10 +38,10 @@ extension NewChatTableDataSource {
                 let linkData = preloaderHelper.linksData[link]
                 
                 if linkData == nil {
-                    loadLinkDataFor(
-                        messageId: messageId,
-                        and: rowIndex
-                    )
+//                    loadLinkDataFor(
+//                        messageId: messageId,
+//                        and: rowIndex
+//                    )
                 }
             }
         }
