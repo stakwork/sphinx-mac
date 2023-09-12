@@ -665,7 +665,7 @@ struct MessageTableCellState {
                 (self.contactLink == nil) &&
                 (self.tribeLink == nil) &&
                 (self.messageMedia == nil) &&
-                (self.webLink == nil) &&
+//                (self.webLink == nil) &&
                 (self.botHTMLContent == nil) &&
                 (self.paidContent == nil) &&
                 (self.podcastComment == nil) &&

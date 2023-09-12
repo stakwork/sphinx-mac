@@ -16,6 +16,7 @@ class MessageNoBubbleCollectionViewItem: NSCollectionViewItem, ChatCollectionVie
     var messageId: Int?
 
     @IBOutlet weak var dateSeparatorView: DateSeparatorView!
+    @IBOutlet weak var deletedMessageView: DeletedMessageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +27,7 @@ class MessageNoBubbleCollectionViewItem: NSCollectionViewItem, ChatCollectionVie
     
     func hideAllSubviews() {
         dateSeparatorView.isHidden = true
-//        deletedMessageView.isHidden = true
+        deletedMessageView.isHidden = true
 //        groupActionsView.isHidden = true
     }
     
@@ -81,13 +82,13 @@ class MessageNoBubbleCollectionViewItem: NSCollectionViewItem, ChatCollectionVie
         deleted: NoBubbleMessageLayoutState.Deleted?,
         direction: MessageTableCellState.MessageDirection?
     ) {
-//        if let deleted = deleted {
-//            deletedMessageView.configureWith(
-//                deleted: deleted,
-//                direction: direction ?? MessageTableCellState.MessageDirection.Outgoing
-//            )
-//            deletedMessageView.isHidden = false
-//        }
+        if let deleted = deleted {
+            deletedMessageView.configureWith(
+                deleted: deleted,
+                direction: direction ?? MessageTableCellState.MessageDirection.Outgoing
+            )
+            deletedMessageView.isHidden = false
+        }
     }
     
     func configureWith(

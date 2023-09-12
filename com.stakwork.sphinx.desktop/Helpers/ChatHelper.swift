@@ -594,6 +594,10 @@ class ChatHelper {
             return DateSeparatorView.kViewHeight
         }
         
+        if let _ = mutableTableCellState.deleted {
+            return DeletedMessageView.kViewHeight
+        }
+        
         let kGeneralMargin: CGFloat = 2.0
         let kLabelMargin: CGFloat = 16.0
         
