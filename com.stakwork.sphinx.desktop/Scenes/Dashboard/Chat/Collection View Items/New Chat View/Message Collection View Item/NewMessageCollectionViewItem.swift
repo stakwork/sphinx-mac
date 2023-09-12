@@ -113,7 +113,7 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
         configureWith(boosts: mutableMessageCellState.boosts, and: bubble)
 //        configureWith(contactLink: mutableMessageCellState.contactLink, and: bubble)
 //        configureWith(tribeLink: mutableMessageCellState.tribeLink, tribeData: tribeData, and: bubble)
-        configureWith(webLink: mutableMessageCellState.webLink, linkData: linkData)
+//        configureWith(webLink: mutableMessageCellState.webLink, linkData: linkData)
         
         ///Avatar
         configureWith(
