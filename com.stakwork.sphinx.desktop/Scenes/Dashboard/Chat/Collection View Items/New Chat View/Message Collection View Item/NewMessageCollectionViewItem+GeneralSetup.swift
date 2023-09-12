@@ -58,13 +58,14 @@ extension NewMessageCollectionViewItem {
     }
     
     func hideAllSubviews() {
+        textMessageView.isHidden = true
 //        invoicePaymentView.isHidden = true
 //        invoiceView.isHidden = true
         messageReplyView.isHidden = true
 //        sentPaidDetailsView.isHidden = true
 //        paidTextMessageView.isHidden = true
 //        directPaymentView.isHidden = true
-//        mediaContentView.isHidden = true
+        mediaMessageView.isHidden = true
 //        fileDetailsView.isHidden = true
 //        audioMessageView.isHidden = true
 //        podcastAudioView.isHidden = true

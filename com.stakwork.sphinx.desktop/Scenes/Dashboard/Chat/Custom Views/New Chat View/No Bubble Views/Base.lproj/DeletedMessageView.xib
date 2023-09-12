@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2du-l5-IEk">
-                    <rect key="frame" x="54" y="35" width="412" height="11"/>
+                    <rect key="frame" x="58" y="35" width="401" height="11"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="Usm-he-WRM">
                         <font key="font" size="10" name="Roboto-Italic"/>
                         <color key="textColor" name="SecondaryText"/>
@@ -29,7 +29,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JRK-Du-OFB">
-                    <rect key="frame" x="54" y="16" width="412" height="11"/>
+                    <rect key="frame" x="58" y="16" width="401" height="11"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="This message has been deleted" id="2uf-pP-Vtm">
                         <font key="font" size="10" name="Roboto-Italic"/>
                         <color key="textColor" name="SecondaryText"/>
@@ -38,12 +38,12 @@
                 </textField>
             </subviews>
             <constraints>
-                <constraint firstItem="2du-l5-IEk" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="56" id="8Fs-Lj-RuW"/>
-                <constraint firstAttribute="trailing" secondItem="JRK-Du-OFB" secondAttribute="trailing" constant="16" id="CEl-Ht-23k"/>
+                <constraint firstItem="2du-l5-IEk" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="60" id="8Fs-Lj-RuW"/>
+                <constraint firstAttribute="trailing" secondItem="JRK-Du-OFB" secondAttribute="trailing" constant="23" id="CEl-Ht-23k"/>
                 <constraint firstItem="2du-l5-IEk" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="16" id="HK0-s2-6Z5"/>
-                <constraint firstAttribute="trailing" secondItem="2du-l5-IEk" secondAttribute="trailing" constant="16" id="MAk-HW-vxe"/>
+                <constraint firstAttribute="trailing" secondItem="2du-l5-IEk" secondAttribute="trailing" constant="23" id="MAk-HW-vxe"/>
                 <constraint firstItem="JRK-Du-OFB" firstAttribute="top" secondItem="2du-l5-IEk" secondAttribute="bottom" constant="8" symbolic="YES" id="Y93-lB-yJI"/>
-                <constraint firstItem="JRK-Du-OFB" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="56" id="mDc-fP-B5K"/>
+                <constraint firstItem="JRK-Du-OFB" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="60" id="mDc-fP-B5K"/>
                 <constraint firstAttribute="bottom" secondItem="JRK-Du-OFB" secondAttribute="bottom" constant="16" id="vhx-JM-Abb"/>
             </constraints>
             <point key="canvasLocation" x="83" y="-36"/>

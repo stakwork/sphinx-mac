@@ -27,6 +27,9 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
     ///First Container
     @IBOutlet weak var messageReplyView: NewMessageReplyView!
     
+    ///Second Container
+    @IBOutlet weak var mediaMessageView: MediaMessageView!
+    
     ///Thirs Container
     @IBOutlet weak var textMessageView: NSView!
     @IBOutlet weak var messageLabel: CCTextField!
@@ -103,7 +106,7 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
 //        configureWith(directPayment: mutableMessageCellState.directPayment, and: bubble)
 //        configureWith(callLink: mutableMessageCellState.callLink)
 //        configureWith(podcastBoost: mutableMessageCellState.podcastBoost)
-//        configureWith(messageMedia: mutableMessageCellState.messageMedia, mediaData: mediaData, and: bubble)
+        configureWith(messageMedia: mutableMessageCellState.messageMedia, mediaData: mediaData, and: bubble)
 //        configureWith(genericFile: mutableMessageCellState.genericFile, mediaData: mediaData)
 //        configureWith(botHTMLContent: mutableMessageCellState.botHTMLContent, botWebViewData: botWebViewData)
 //        configureWith(audio: mutableMessageCellState.audio, mediaData: mediaData, and: bubble)

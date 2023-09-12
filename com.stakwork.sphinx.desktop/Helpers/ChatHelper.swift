@@ -599,7 +599,6 @@ class ChatHelper {
         }
         
         let kGeneralMargin: CGFloat = 2.0
-        let kLabelMargin: CGFloat = 16.0
         
         let statusHeaderheight: CGFloat = getStatusHeaderHeightFor(tableCellState)
         let textHeight: CGFloat = getTextMessageHeightFor(tableCellState, maxWidth: maxWidth)
@@ -609,7 +608,8 @@ class ChatHelper {
             and: linkData
         )
         
-        return textHeight + (kGeneralMargin * 2) + (kLabelMargin * 2) + statusHeaderheight + viewsHeight
+        return textHeight + (kGeneralMargin * 2) + statusHeaderheight + viewsHeight
+        
     }
     
     func getStatusHeaderHeightFor(
@@ -633,12 +633,12 @@ class ChatHelper {
         var textHeight: CGFloat = 0.0
         let kLabelMargin: CGFloat = 16.0
         
-        if let text = mutableTableCellState.messageContent?.text {
+        if let text = mutableTableCellState.messageContent?.text, text.isNotEmpty {
             let adaptedtext = (text.count > 1) ? String(text.dropLast()) : text
             
             let attrs = [NSAttributedString.Key.font: Constants.kMessageFont]
             let attributedString = NSAttributedString(string: adaptedtext, attributes: attrs)
-            textHeight = attributedString.height(forWidth: maxWidth - (kLabelMargin * 2))
+            textHeight = attributedString.height(forWidth: maxWidth - (kLabelMargin * 2)) + (kLabelMargin * 2)
         }
         
         return textHeight
@@ -661,6 +661,10 @@ class ChatHelper {
         
         if let _ = mutableTableCellState.boosts {
             viewsHeight += NewMessageBoostView.kViewHeight
+        }
+        
+        if let _ = mutableTableCellState.messageMedia {
+            viewsHeight += MediaMessageView.kViewHeight
         }
         
         return viewsHeight

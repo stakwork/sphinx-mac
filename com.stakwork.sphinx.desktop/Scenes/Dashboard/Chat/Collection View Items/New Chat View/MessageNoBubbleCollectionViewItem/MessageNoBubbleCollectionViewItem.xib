@@ -38,7 +38,9 @@
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="kXu-ED-ywd" secondAttribute="trailing" id="IGs-j5-zkI"/>
+                        <constraint firstItem="fsM-fh-rn0" firstAttribute="leading" secondItem="JZA-h3-bFt" secondAttribute="leading" id="Tgj-uw-EP9"/>
                         <constraint firstItem="kXu-ED-ywd" firstAttribute="leading" secondItem="JZA-h3-bFt" secondAttribute="leading" id="l9q-VJ-vDg"/>
+                        <constraint firstAttribute="trailing" secondItem="fsM-fh-rn0" secondAttribute="trailing" id="vsM-dx-7sb"/>
                     </constraints>
                     <visibilityPriorities>
                         <integer value="1000"/>

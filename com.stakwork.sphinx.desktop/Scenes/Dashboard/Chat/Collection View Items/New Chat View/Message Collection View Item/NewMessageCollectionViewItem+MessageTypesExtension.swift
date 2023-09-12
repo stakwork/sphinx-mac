@@ -75,6 +75,8 @@ extension NewMessageCollectionViewItem {
                 messageLabel.attributedStringValue = attributedString
 //                messageLabel.isUserInteractionEnabled = true
             }
+            
+            textMessageView.isHidden = false
         }
 
 //        let tap = UITapGestureRecognizer(target: self, action: #selector(labelTapped(gesture:)))
@@ -118,6 +120,50 @@ extension NewMessageCollectionViewItem {
         if let boosts = boosts {
             messageBoostView.configureWith(boosts: boosts, and: bubble)
             messageBoostView.isHidden = false
+        }
+    }
+    
+    func configureWith(
+        messageMedia: BubbleMessageLayoutState.MessageMedia?,
+        mediaData: MessageTableCellState.MediaData?,
+        and bubble: BubbleMessageLayoutState.Bubble
+    ) {
+        if let messageMedia = messageMedia {
+            
+            mediaMessageView.configureWith(
+                messageMedia: messageMedia,
+                mediaData: mediaData,
+                bubble: bubble,
+                and: self
+            )
+            mediaMessageView.isHidden = false
+            
+            if let messageId = messageId, mediaData == nil {
+                let delayTime = DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+                DispatchQueue.global().asyncAfter(deadline: delayTime) {
+                    if messageMedia.isImage {
+                        self.delegate?.shouldLoadImageDataFor(
+                            messageId: messageId,
+                            and: self.rowIndex
+                        )
+                    } else if messageMedia.isPdf {
+                        self.delegate?.shouldLoadPdfDataFor(
+                            messageId: messageId,
+                            and: self.rowIndex
+                        )
+                    } else if messageMedia.isVideo {
+                        self.delegate?.shouldLoadVideoDataFor(
+                            messageId: messageId,
+                            and: self.rowIndex
+                        )
+                    } else if messageMedia.isGiphy {
+                        self.delegate?.shouldLoadGiphyDataFor(
+                            messageId: messageId,
+                            and: self.rowIndex
+                        )
+                    }
+                }
+            }
         }
     }
 }
