@@ -18,8 +18,7 @@ protocol NewChatTableDataSourceDelegate : AnyObject {
     func didScrollOutOfBottomArea()
     
     ///Attachments
-    func shouldGoToAttachmentViewFor(messageId: Int, isPdf: Bool)
-    func shouldGoToVideoPlayerFor(messageId: Int, with data: Data)
+    func shouldGoToMediaFullScreenFor(messageId: Int)
     
     ///LinkPreviews
     func didTapOnContactWith(pubkey: String, and routeHint: String?)
@@ -117,9 +116,9 @@ class NewChatTableDataSource : NSObject {
         collectionViewScroll: NSScrollView,
         shimmeringView: ChatShimmeringView,
         headerImage: NSImage?,
-        bottomView: NSView
+        bottomView: NSView,
 //        webView: WKWebView,
-//        delegate: NewChatTableDataSourceDelegate?
+        delegate: NewChatTableDataSourceDelegate?
     ) {
         super.init()
         
@@ -134,7 +133,7 @@ class NewChatTableDataSource : NSObject {
         self.shimmeringView = shimmeringView
 //        self.webView = webView
         
-//        self.delegate = delegate
+        self.delegate = delegate
         
         addScrollObservers()
         configureTableView()

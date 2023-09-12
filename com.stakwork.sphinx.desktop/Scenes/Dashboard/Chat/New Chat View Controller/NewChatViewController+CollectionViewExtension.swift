@@ -28,9 +28,9 @@ extension NewChatViewController {
             collectionViewScroll: chatScrollView,
             shimmeringView: shimmeringView,
             headerImage: getContactImage(),
-            bottomView: chatBottomView
+            bottomView: chatBottomView,
 //            webView: botWebView,
-//            delegate: self
+            delegate: self
         )
         
 //        chatViewModel.setDataSource(chatTableDataSource)
@@ -45,4 +45,38 @@ extension NewChatViewController {
         
         return imageView?.image
     }
+}
+
+extension NewChatViewController : NewChatTableDataSourceDelegate {
+    func configureNewMessagesIndicatorWith(newMsgCount: Int) {}
+    
+    func didScrollToBottom() {}
+    func didScrollOutOfBottomArea() {}
+    
+    func shouldGoToMediaFullScreenFor(messageId: Int) {
+        if let message = TransactionMessage.getMessageWith(id: messageId) {
+            delegate?.shouldShowFullMediaFor(message: message)
+        }
+    }
+    
+    func didTapOnContactWith(pubkey: String, and routeHint: String?) {}
+    func didTapOnTribeWith(joinLink: String) {}
+    
+    func didDeleteTribe() {}
+    
+    func didUpdateChat(_ chat: Chat) {}
+    
+    func shouldShowLeaderboardFor(messageId: Int) {}
+    
+    func shouldReplyToMessage(message: TransactionMessage) {}
+    
+    func shouldOpenActivityVCFor(url: URL) {}
+    
+    func shouldPayInvoiceFor(messageId: Int) {}
+    
+    func isOnStandardMode() -> Bool {
+        return true
+    }
+    func didFinishSearchingWith(matchesCount: Int, index: Int) {}
+    func shouldToggleSearchLoadingWheel(active: Bool) {}
 }

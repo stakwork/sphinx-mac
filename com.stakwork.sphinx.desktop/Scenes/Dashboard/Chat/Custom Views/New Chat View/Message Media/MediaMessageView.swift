@@ -32,6 +32,8 @@ class MediaMessageView: NSView, LoadableNib {
     @IBOutlet weak var mediaNotAvailableView: NSView!
     @IBOutlet weak var mediaNotAvailableIcon: NSTextField!
     
+    @IBOutlet weak var mediaButton: CustomButton!
+    
     static let kViewHeight: CGFloat = 300
 
     required init?(coder: NSCoder) {
@@ -47,6 +49,8 @@ class MediaMessageView: NSView, LoadableNib {
     }
     
     func setup() {
+        mediaButton.cursor = .pointingHand
+        
         mediaContainer.wantsLayer = true
         mediaContainer.layer?.cornerRadius = 8.0
     }
@@ -142,4 +146,7 @@ class MediaMessageView: NSView, LoadableNib {
         }
     }
 
+    @IBAction func mediaButtonClicked(_ sender: Any) {
+        delegate?.didTapMediaButton()
+    }
 }

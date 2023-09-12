@@ -621,17 +621,7 @@ extension NewChatTableDataSource {
         messageId: Int,
         and rowIndex: Int
     ) {
-        if var tableCellState = getTableCellStateFor(
-            messageId: messageId,
-            and: rowIndex
-        ), let messageMedia = tableCellState.1.messageMedia, let mediaCached = mediaCached[messageId] {
-            
-            if messageMedia.isVideo, let data = mediaCached.data {
-                delegate?.shouldGoToVideoPlayerFor(messageId: messageId, with: data)
-            } else {
-                delegate?.shouldGoToAttachmentViewFor(messageId: messageId, isPdf: messageMedia.isPdf)
-            }
-        }
+        delegate?.shouldGoToMediaFullScreenFor(messageId: messageId)
     }
     
     func didTapFileDownloadButtonFor(messageId: Int, and rowIndex: Int) {
