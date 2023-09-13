@@ -44,16 +44,12 @@ struct MessageTableCellState {
     ///Generic rows Data
     var separatorDate: Date? = nil
     
-    var bubbleWidth: CGFloat! = nil
-    var podcastClipBubbleWidth: CGFloat! = nil
-    
     init(
         message: TransactionMessage? = nil,
         chat: Chat,
         owner: UserContact,
         contact: UserContact?,
         tribeAdmin: UserContact?,
-        viewWidth: CGFloat,
         separatorDate: Date?,
         bubbleState: MessageTableCellState.BubbleState? = nil,
         contactImage: NSImage? = nil,
@@ -85,9 +81,6 @@ struct MessageTableCellState {
         self.linkTribe = linkTribe
         self.linkWeb = linkWeb
         self.invoiceData = invoiceData
-        
-        self.bubbleWidth = (viewWidth - (MessageTableCellState.kRowLeftMargin + MessageTableCellState.kRowRightMargin)) * (MessageTableCellState.kBubbleWidthPercentage)
-        self.podcastClipBubbleWidth = (viewWidth - (MessageTableCellState.kRowLeftMargin + MessageTableCellState.kRowRightMargin)) * (MessageTableCellState.kPodcastClipBubbleWidthPercentage)
     }
     
     ///Reply
@@ -322,6 +315,8 @@ struct MessageTableCellState {
             return nil
         }
         
+        let bubbleWidth: CGFloat = 300
+        
         return BubbleMessageLayoutState.Audio(
             url: message.getMediaUrlFromMediaToken(),
             mediaKey: message.mediaKey,
@@ -436,6 +431,8 @@ struct MessageTableCellState {
             return nil
         }
         
+        let bubbleWidth: CGFloat = 500
+        
         return BubbleMessageLayoutState.ContactLink(
             pubkey: linkContact.pubkey,
             imageUrl: linkContact.contact?.avatarUrl,
@@ -501,6 +498,8 @@ struct MessageTableCellState {
             return nil
         }
         
+        let podcastClipBubbleWidth: CGFloat = 500
+        
         return BubbleMessageLayoutState.PodcastComment(
             title: podcastComment.title!,
             timestamp: podcastComment.timestamp!,
@@ -526,6 +525,8 @@ struct MessageTableCellState {
         guard let message = message, message.isInvoice(), let date = message.date, let amount = message.amount?.intValue else {
             return nil
         }
+        
+        let bubbleWidth: CGFloat = 300
         
         return BubbleMessageLayoutState.Invoice(
             date: date,

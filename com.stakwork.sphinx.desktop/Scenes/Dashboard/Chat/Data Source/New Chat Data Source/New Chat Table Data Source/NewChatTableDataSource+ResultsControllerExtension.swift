@@ -170,7 +170,6 @@ extension NewChatTableDataSource {
                         owner: owner,
                         contact: contact,
                         tribeAdmin: admin,
-                        viewWidth: collectionView.frame.width,
                         separatorDate: separatorDate,
                         invoiceData: (invoiceData.0 > 0, invoiceData.1 > 0)
                     )
@@ -190,7 +189,6 @@ extension NewChatTableDataSource {
                 owner: owner,
                 contact: contact,
                 tribeAdmin: admin,
-                viewWidth: 0.0,
                 separatorDate: nil,
                 bubbleState: bubbleStateAndDate.0,
                 contactImage: headerImage,

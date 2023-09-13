@@ -704,6 +704,14 @@ class ChatHelper {
             viewsHeight += FileInfoView.kViewHeight
         }
         
+        if let contactLink = mutableTableCellState.contactLink {
+            if contactLink.isContact {
+                viewsHeight += ContactLinkView.kViewHeightWithoutButton
+            } else {
+                viewsHeight += ContactLinkView.kViewHeightWithButton
+            }
+        }
+        
         return viewsHeight
     }
 }

@@ -122,13 +122,14 @@ extension NSView {
         }
     }
     
-    func addDashedBorder(color: NSColor,
-                         size: CGSize,
-                         rect: CGRect? = nil,
-                         lineWidth: CGFloat = 3,
-                         dashPattern: [NSNumber] = [8,4],
-                         radius: CGFloat = 10) {
-        
+    func addDashedBorder(
+        color: NSColor,
+        size: CGSize,
+        rect: CGRect? = nil,
+        lineWidth: CGFloat = 3,
+        dashPattern: [NSNumber] = [8,4],
+        radius: CGFloat = 10
+    ) {
         removeDashBorder()
         
         let color = color.cgColor

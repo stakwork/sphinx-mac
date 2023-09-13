@@ -76,7 +76,7 @@ extension NewMessageCollectionViewItem {
 //        botResponseView.isHidden = true
 //        textMessageView.isHidden = true
 //        tribeLinkPreviewView.isHidden = true
-//        contactLinkPreviewView.isHidden = true
+        contactLinkPreviewView.isHidden = true
         linkPreviewView.isHidden = true
         messageBoostView.isHidden = true
 //        paidAttachmentView.isHidden = true

@@ -42,7 +42,8 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
     
     ///Forth Container
     @IBOutlet weak var messageBoostView: NewMessageBoostView!
-
+    @IBOutlet weak var contactLinkPreviewView: ContactLinkView!
+    
     @IBOutlet weak var widthConstraint: NSLayoutConstraint!
     
     let kBubbleMaxWidth: CGFloat = 500
@@ -117,7 +118,7 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
         
         ///Bottom view
         configureWith(boosts: mutableMessageCellState.boosts, and: bubble)
-//        configureWith(contactLink: mutableMessageCellState.contactLink, and: bubble)
+        configureWith(contactLink: mutableMessageCellState.contactLink, and: bubble)
 //        configureWith(tribeLink: mutableMessageCellState.tribeLink, tribeData: tribeData, and: bubble)
 //        configureWith(webLink: mutableMessageCellState.webLink, linkData: linkData)
         
