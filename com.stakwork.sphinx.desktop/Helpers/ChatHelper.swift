@@ -647,6 +647,11 @@ class ChatHelper {
                 CommonNewMessageCollectionViewitem.kMaximumMediaBubbleWidth,
                 collectionViewWidth - 80
             )
+        } else if let _ = mutableTableCellState.genericFile {
+            maxWidth = min(
+                CommonNewMessageCollectionViewitem.kMaximumFileBubbleWidth,
+                collectionViewWidth - 80
+            )
         }
         
         if let text = mutableTableCellState.messageContent?.text, text.isNotEmpty {
@@ -693,6 +698,10 @@ class ChatHelper {
         
         if let _ = mutableTableCellState.podcastBoost {
             viewsHeight += PodcastBoostView.kViewHeight
+        }
+        
+        if let _ = mutableTableCellState.genericFile {
+            viewsHeight += FileInfoView.kViewHeight
         }
         
         return viewsHeight

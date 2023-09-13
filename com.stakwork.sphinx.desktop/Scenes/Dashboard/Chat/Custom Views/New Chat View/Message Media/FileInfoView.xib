@@ -11,6 +11,7 @@
             <connections>
                 <outlet property="contentView" destination="c22-O7-iKe" id="1sx-o3-4Th"/>
                 <outlet property="downloadButton" destination="eze-Bq-9wR" id="aW7-e2-k3T"/>
+                <outlet property="downloadingWheel" destination="tM3-Ob-I6q" id="2pk-Wy-Sws"/>
                 <outlet property="fileNameLabel" destination="a1z-Iw-5bm" id="egJ-S8-cIW"/>
                 <outlet property="iconLabel" destination="vNH-DG-qBI" id="0zP-xH-1Z7"/>
                 <outlet property="pagesLabel" destination="fYB-yk-MmS" id="GFZ-04-ula"/>
@@ -23,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vNH-DG-qBI">
-                    <rect key="frame" x="16" y="19" width="29" height="25"/>
+                    <rect key="frame" x="14" y="19" width="29" height="25"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="picture_as_pdf" id="Pfe-i4-tMu">
                         <font key="font" size="25" name="MaterialIcons-Regular"/>
                         <color key="textColor" name="Text"/>
@@ -31,7 +32,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a1z-Iw-5bm">
-                    <rect key="frame" x="51" y="30" width="138" height="14"/>
+                    <rect key="frame" x="49" y="30" width="138" height="14"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="file_with_large_name.pdf" id="9Zj-Nv-SeT">
                         <font key="font" size="12" name="Roboto-Medium"/>
                         <color key="textColor" name="Text"/>
@@ -39,7 +40,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fYB-yk-MmS">
-                    <rect key="frame" x="51" y="19" width="39" height="11"/>
+                    <rect key="frame" x="49" y="19" width="39" height="11"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="- pages" id="Oaf-bO-PpQ">
                         <font key="font" size="10" name="Roboto-Regular"/>
                         <color key="textColor" name="Text"/>
@@ -47,7 +48,7 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eze-Bq-9wR" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                    <rect key="frame" x="256" y="19" width="29" height="25"/>
+                    <rect key="frame" x="255" y="19" width="29" height="25"/>
                     <buttonCell key="cell" type="square" title="" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="sVI-Y6-ihk">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" size="25" name="MaterialIcons-Regular"/>
@@ -57,16 +58,24 @@
                         <action selector="downloadButtonClicked:" target="-2" id="2Rg-N1-AB6"/>
                     </connections>
                 </button>
+                <progressIndicator hidden="YES" maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="tM3-Ob-I6q">
+                    <rect key="frame" x="255" y="23" width="29" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="29" id="Uax-Fq-Ovb"/>
+                    </constraints>
+                </progressIndicator>
             </subviews>
             <constraints>
                 <constraint firstItem="fYB-yk-MmS" firstAttribute="leading" secondItem="vNH-DG-qBI" secondAttribute="trailing" constant="10" id="61P-OW-5J6"/>
-                <constraint firstAttribute="trailing" secondItem="eze-Bq-9wR" secondAttribute="trailing" constant="15" id="JdD-5C-L67"/>
+                <constraint firstItem="tM3-Ob-I6q" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="Cbn-83-Ch0"/>
+                <constraint firstAttribute="trailing" secondItem="eze-Bq-9wR" secondAttribute="trailing" constant="16" id="JdD-5C-L67"/>
                 <constraint firstItem="eze-Bq-9wR" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="MDH-pZ-pEa"/>
+                <constraint firstAttribute="trailing" secondItem="tM3-Ob-I6q" secondAttribute="trailing" constant="16" id="T46-Te-sFo"/>
                 <constraint firstItem="fYB-yk-MmS" firstAttribute="bottom" secondItem="vNH-DG-qBI" secondAttribute="bottom" id="Wyx-wi-18D"/>
                 <constraint firstItem="vNH-DG-qBI" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="Yql-Fd-VdO"/>
                 <constraint firstItem="a1z-Iw-5bm" firstAttribute="leading" secondItem="vNH-DG-qBI" secondAttribute="trailing" constant="10" id="bUr-t8-kYg"/>
                 <constraint firstItem="a1z-Iw-5bm" firstAttribute="top" secondItem="vNH-DG-qBI" secondAttribute="top" id="fHc-nh-a06"/>
-                <constraint firstItem="vNH-DG-qBI" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="18" id="hIK-IE-b9V"/>
+                <constraint firstItem="vNH-DG-qBI" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="16" id="hIK-IE-b9V"/>
             </constraints>
             <point key="canvasLocation" x="83" y="-36"/>
         </customView>

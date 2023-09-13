@@ -291,6 +291,16 @@ extension TransactionMessage {
         return (isAttachment() && getType() != TransactionMessageType.textAttachment.rawValue) || isGiphy()
     }
     
+    func isImageVideoOrPdf() -> Bool {
+        let mediaAttachmentTypes = [
+            TransactionMessageType.imageAttachment.rawValue,
+            TransactionMessageType.videoAttachment.rawValue,
+            TransactionMessageType.pdfAttachment.rawValue,
+        ]
+        
+        return mediaAttachmentTypes.contains(getType() ?? -1)
+    }
+    
     func isPaidMessage() -> Bool {
         return isAttachment() && getType() == TransactionMessageType.textAttachment.rawValue
     }

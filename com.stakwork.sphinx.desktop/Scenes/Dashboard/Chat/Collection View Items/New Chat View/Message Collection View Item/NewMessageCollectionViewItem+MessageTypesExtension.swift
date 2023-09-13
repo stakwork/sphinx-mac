@@ -163,6 +163,31 @@ extension NewMessageCollectionViewItem {
     }
     
     func configureWith(
+        genericFile: BubbleMessageLayoutState.GenericFile?,
+        mediaData: MessageTableCellState.MediaData?
+    ) {
+        if let _ = genericFile {
+            
+            fileDetailsView.configureWith(
+                mediaData: mediaData,
+                and: self
+            )
+            
+            fileDetailsView.isHidden = false
+            
+            if let messageId = messageId, mediaData == nil {
+                let delayTime = DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+                DispatchQueue.global().asyncAfter(deadline: delayTime) {
+                    self.delegate?.shouldLoadFileDataFor(
+                        messageId: messageId,
+                        and: self.rowIndex
+                    )
+                }
+            }
+        }
+    }
+    
+    func configureWith(
         callLink: BubbleMessageLayoutState.CallLink?
     ) {
         if let callLink = callLink {

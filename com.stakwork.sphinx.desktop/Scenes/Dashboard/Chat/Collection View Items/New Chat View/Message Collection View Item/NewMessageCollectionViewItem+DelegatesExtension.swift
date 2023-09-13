@@ -108,3 +108,15 @@ extension NewMessageCollectionViewItem : JoinCallViewDelegate {
         }
     }
 }
+
+extension NewMessageCollectionViewItem : FileInfoViewDelegate {
+    func didTouchDownloadButton() {
+        if let messageId = messageId, let message = TransactionMessage.getMessageWith(id: messageId) {
+            MediaDownloader.shouldSaveFile(message: message, completion: { (success, alertMessage) in
+                DispatchQueue.main.async {
+                    NewMessageBubbleHelper().showGenericMessageView(text: alertMessage)
+                }
+            })
+        }
+    }
+}

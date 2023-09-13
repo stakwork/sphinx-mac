@@ -21,8 +21,9 @@ class FileInfoView: NSView, LoadableNib {
     @IBOutlet weak var fileNameLabel: NSTextField!
     @IBOutlet weak var pagesLabel: NSTextField!
     @IBOutlet weak var downloadButton: CustomButton!
+    @IBOutlet weak var downloadingWheel: NSProgressIndicator!
     
-    var message: TransactionMessage! = nil
+    static let kViewHeight: CGFloat = 62
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -36,7 +37,9 @@ class FileInfoView: NSView, LoadableNib {
         setup()
     }
     
-    func setup() {}
+    func setup() {
+        downloadButton.cursor = .pointingHand
+    }
     
     func configure(
         fileInfo: MessageTableCellState.FileInfo
@@ -47,6 +50,29 @@ class FileInfoView: NSView, LoadableNib {
         iconLabel.stringValue = "insert_drive_file"
         fileNameLabel.stringValue = fileInfo.fileName
         pagesLabel.stringValue = "\(fileInfo.pagesCount ?? 0) \("pages".localized)"
+    }
+    
+    func configureWith(
+        mediaData: MessageTableCellState.MediaData?,
+        and delegate: FileInfoViewDelegate?
+    ) {
+        self.delegate = delegate
+        
+        fileNameLabel.stringValue = mediaData?.fileInfo?.fileName ?? "file".localized
+        pagesLabel.stringValue = mediaData?.fileInfo?.fileSize.formattedSize ?? "- kb"
+        
+        downloadButton.isHidden = mediaData == nil
+        downloadingWheel.isHidden = mediaData != nil
+        
+        if let _ = mediaData {
+            downloadButton.isHidden = false
+            downloadingWheel.isHidden = true
+            downloadingWheel.stopAnimation(nil)
+        } else {
+            downloadButton.isHidden = true
+            downloadingWheel.isHidden = false
+            downloadingWheel.startAnimation(nil)
+        }
     }
     
     func configure(
@@ -63,7 +89,6 @@ class FileInfoView: NSView, LoadableNib {
     }
     
     @IBAction func downloadButtonClicked(_ sender: Any) {
-//        delegate?.didTouchDownloadButton(button: downloadButton)
-        
+        delegate?.didTouchDownloadButton()
     }
 }

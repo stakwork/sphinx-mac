@@ -29,6 +29,7 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
     
     ///Second Container
     @IBOutlet weak var mediaMessageView: MediaMessageView!
+    @IBOutlet weak var fileDetailsView: FileInfoView!
     @IBOutlet weak var callLinkView: JoinVideoCallView!
     @IBOutlet weak var podcastBoostView: PodcastBoostView!
     
@@ -109,7 +110,7 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
         configureWith(callLink: mutableMessageCellState.callLink)
         configureWith(podcastBoost: mutableMessageCellState.podcastBoost)
         configureWith(messageMedia: mutableMessageCellState.messageMedia, mediaData: mediaData, and: bubble)
-//        configureWith(genericFile: mutableMessageCellState.genericFile, mediaData: mediaData)
+        configureWith(genericFile: mutableMessageCellState.genericFile, mediaData: mediaData)
 //        configureWith(botHTMLContent: mutableMessageCellState.botHTMLContent, botWebViewData: botWebViewData)
 //        configureWith(audio: mutableMessageCellState.audio, mediaData: mediaData, and: bubble)
 //        configureWith(podcastComment: mutableMessageCellState.podcastComment, mediaData: mediaData, and: bubble)

@@ -50,6 +50,8 @@ extension NewMessageCollectionViewItem {
             widthConstraint.constant = 250
         } else if let _ = mutableCellState.podcastBoost {
             widthConstraint.constant = 200
+        } else if let _ = mutableCellState.genericFile {
+            widthConstraint.constant = 300
         } else {
             widthConstraint.constant = 500
         }
@@ -66,7 +68,7 @@ extension NewMessageCollectionViewItem {
 //        paidTextMessageView.isHidden = true
 //        directPaymentView.isHidden = true
         mediaMessageView.isHidden = true
-//        fileDetailsView.isHidden = true
+        fileDetailsView.isHidden = true
 //        audioMessageView.isHidden = true
 //        podcastAudioView.isHidden = true
         callLinkView.isHidden = true

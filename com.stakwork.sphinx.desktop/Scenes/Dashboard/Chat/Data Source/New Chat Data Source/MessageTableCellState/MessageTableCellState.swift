@@ -294,7 +294,7 @@ struct MessageTableCellState {
     }()
     
     lazy var messageMedia: BubbleMessageLayoutState.MessageMedia? = {
-        guard let message = message, message.isMediaAttachment() || message.isDirectPayment() || message.isGiphy() else {
+        guard let message = message, message.isImageVideoOrPdf() || message.isDirectPayment() || message.isGiphy() else {
             return nil
         }
         

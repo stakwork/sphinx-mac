@@ -21,6 +21,7 @@ class CommonNewMessageCollectionViewitem : NSCollectionViewItem {
     
     static let kMaximumLabelBubbleWidth: CGFloat = 500
     static let kMaximumMediaBubbleWidth: CGFloat = 400
+    static let kMaximumFileBubbleWidth: CGFloat = 300
     
     override func viewDidLoad() {
         super.viewDidLoad()
