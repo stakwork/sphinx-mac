@@ -373,7 +373,7 @@ class CommonChatCollectionViewItem: NSCollectionViewItem, MessageRowProtocol {
 
 extension CommonChatCollectionViewItem : LinkPreviewDelegate {
     func didTapOnTribeButton() {
-        if let link = messageRow?.getMessageContent().stringFirstTribeLink, link.starts(with: "sphinx.chat://") {
+        if let link = messageRow?.getMessageContent().stringFirstTribeLink?.0, link.starts(with: "sphinx.chat://") {
             let userInfo: [String: Any] = ["tribe_link" : link]
             NotificationCenter.default.post(name: .onJoinTribeClick, object: nil, userInfo: userInfo)
         }

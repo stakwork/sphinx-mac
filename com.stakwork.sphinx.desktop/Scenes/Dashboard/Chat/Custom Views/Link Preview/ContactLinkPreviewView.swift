@@ -51,7 +51,7 @@ class ContactLinkPreviewView: LinkPreviewBubbleView, LoadableNib {
         let (existing, contact) = messageRow.isExistingContactPubkey()
         addContactButtonContainer?.isHidden = existing
         contactName.stringValue = contact?.getUserName() ?? "new.contact".localized
-        contactPubkey.stringValue = messageRow.getMessageContent().stringFirstPubKey ?? ""
+        contactPubkey.stringValue = messageRow.getMessageContent().stringFirstPubKey?.0 ?? ""
 
         loadImage(contact: contact)
     }

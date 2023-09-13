@@ -79,7 +79,7 @@ class TransactionMessageRow : NSObject {
     }
     
     func getMessageLink() -> String {
-        return self.getMessageContent().stringFirstLink
+        return self.getMessageContent().stringFirstLink ?? ""
     }
     
     func getStatus() -> Int {
@@ -166,7 +166,7 @@ class TransactionMessageRow : NSObject {
             }
         }
         
-        let tribeLink = getMessageContent().stringFirstTribeLink ?? ""
+        let tribeLink = getMessageContent().stringFirstTribeLink?.0 ?? ""
         if let tribeInfo = GroupsManager.sharedInstance.getGroupInfo(query: tribeLink), let uuid = tribeInfo.uuid, !uuid.isEmpty {
             if let _ = Chat.getChatWith(uuid: uuid) {
                 return true
