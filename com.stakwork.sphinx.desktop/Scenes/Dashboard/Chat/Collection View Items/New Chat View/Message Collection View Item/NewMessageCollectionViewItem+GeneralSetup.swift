@@ -48,6 +48,8 @@ extension NewMessageCollectionViewItem {
             widthConstraint.constant = 400
         } else if let _ = mutableCellState.callLink {
             widthConstraint.constant = 250
+        } else if let _ = mutableCellState.podcastBoost {
+            widthConstraint.constant = 200
         } else {
             widthConstraint.constant = 500
         }
@@ -68,7 +70,7 @@ extension NewMessageCollectionViewItem {
 //        audioMessageView.isHidden = true
 //        podcastAudioView.isHidden = true
         callLinkView.isHidden = true
-//        podcastBoostView.isHidden = true
+        podcastBoostView.isHidden = true
 //        botResponseView.isHidden = true
 //        textMessageView.isHidden = true
 //        tribeLinkPreviewView.isHidden = true

@@ -30,6 +30,7 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
     ///Second Container
     @IBOutlet weak var mediaMessageView: MediaMessageView!
     @IBOutlet weak var callLinkView: JoinVideoCallView!
+    @IBOutlet weak var podcastBoostView: PodcastBoostView!
     
     ///Thirs Container
     @IBOutlet weak var textMessageView: NSView!
@@ -106,7 +107,7 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
 //        configureWith(invoice: mutableMessageCellState.invoice, and: bubble)
 //        configureWith(directPayment: mutableMessageCellState.directPayment, and: bubble)
         configureWith(callLink: mutableMessageCellState.callLink)
-//        configureWith(podcastBoost: mutableMessageCellState.podcastBoost)
+        configureWith(podcastBoost: mutableMessageCellState.podcastBoost)
         configureWith(messageMedia: mutableMessageCellState.messageMedia, mediaData: mediaData, and: bubble)
 //        configureWith(genericFile: mutableMessageCellState.genericFile, mediaData: mediaData)
 //        configureWith(botHTMLContent: mutableMessageCellState.botHTMLContent, botWebViewData: botWebViewData)

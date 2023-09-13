@@ -691,6 +691,10 @@ class ChatHelper {
             }
         }
         
+        if let _ = mutableTableCellState.podcastBoost {
+            viewsHeight += PodcastBoostView.kViewHeight
+        }
+        
         return viewsHeight
     }
 }

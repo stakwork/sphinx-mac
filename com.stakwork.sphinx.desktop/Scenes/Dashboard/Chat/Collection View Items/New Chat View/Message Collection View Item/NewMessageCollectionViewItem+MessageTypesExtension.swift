@@ -170,4 +170,13 @@ extension NewMessageCollectionViewItem {
             callLinkView.isHidden = false
         }
     }
+    
+    func configureWith(
+        podcastBoost: BubbleMessageLayoutState.PodcastBoost?
+    ) {
+        if let podcastBoost = podcastBoost {
+            podcastBoostView.configureWith(podcastBoost: podcastBoost)
+            podcastBoostView.isHidden = false
+        }
+    }
 }

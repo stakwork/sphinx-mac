@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="PodcastBoostView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="amountLabel" destination="q6v-Pr-QpI" id="ptf-2U-wnD"/>
+                <outlet property="boostIconView" destination="izM-Ic-f7F" id="Cjc-4R-QMa"/>
+                <outlet property="contentView" destination="c22-O7-iKe" id="yyI-Ge-tik"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="685" height="52"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cae-QQ-cKC">
+                    <rect key="frame" x="16" y="12" width="653" height="28"/>
+                    <subviews>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vzo-tD-LNr">
+                            <rect key="frame" x="-2" y="6" width="45" height="16"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Boost!" id="vDe-wS-r5I">
+                                <font key="font" size="14" name="Roboto-Regular"/>
+                                <color key="textColor" name="Text"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="q6v-Pr-QpI">
+                            <rect key="frame" x="44" y="6" width="84" height="16"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="500 000 000" id="46U-no-ypN">
+                                <font key="font" size="14" name="Roboto-Bold"/>
+                                <color key="textColor" name="Text"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="PZ8-j5-fbJ">
+                            <rect key="frame" x="131" y="0.0" width="489" height="28"/>
+                        </customView>
+                        <box boxType="custom" borderType="none" cornerRadius="4" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="izM-Ic-f7F">
+                            <rect key="frame" x="625" y="0.0" width="28" height="28"/>
+                            <view key="contentView" id="zKw-Hx-R9W">
+                                <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kBz-sh-hdD">
+                                        <rect key="frame" x="3" y="3" width="22" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="22" id="c1o-9T-Kn8"/>
+                                            <constraint firstAttribute="height" constant="22" id="ot8-TZ-i8J"/>
+                                        </constraints>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="boostIcon" id="svN-aJ-lgt"/>
+                                        <color key="contentTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="kBz-sh-hdD" firstAttribute="centerY" secondItem="zKw-Hx-R9W" secondAttribute="centerY" id="HVs-BK-mx3"/>
+                                    <constraint firstItem="kBz-sh-hdD" firstAttribute="centerX" secondItem="zKw-Hx-R9W" secondAttribute="centerX" id="bdh-gZ-HWu"/>
+                                </constraints>
+                            </view>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="28" id="3cK-C4-KGQ"/>
+                            </constraints>
+                            <color key="fillColor" name="PrimaryGreen"/>
+                        </box>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="wFw-sh-npz"/>
+                    </constraints>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="cae-QQ-cKC" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="3Jp-L2-QLr"/>
+                <constraint firstAttribute="trailing" secondItem="cae-QQ-cKC" secondAttribute="trailing" constant="16" id="kbh-Aw-gJy"/>
+                <constraint firstItem="cae-QQ-cKC" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="16" id="nPo-yl-avX"/>
+            </constraints>
+            <point key="canvasLocation" x="78" y="154"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="boostIcon" width="40" height="40"/>
+        <namedColor name="PrimaryGreen">
+            <color red="0.28627450980392155" green="0.78823529411764703" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text">
+            <color red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
