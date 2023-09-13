@@ -24,11 +24,6 @@ extension NewMessageCollectionViewItem {
         messageContent: BubbleMessageLayoutState.MessageContent?,
         searchingTerm: String?
     ) {
-//        if let messageContent = messageContent {
-//            messageLabel.stringValue = messageContent.text ?? ""
-//            messageLabel.font = messageContent.font
-//        }
-        
         urlRanges = []
 
         if let messageContent = messageContent {

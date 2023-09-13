@@ -73,8 +73,8 @@ extension NewMessageCollectionViewItem {
         receivedArrow.isHidden = isOutgoing
         sentArrow.isHidden = !isOutgoing
         
-        messageLabelLeadingConstraint.priority = NSLayoutConstraint.Priority(textRightAligned ? 1 : 1000)
-        messageLabelTrailingConstraint.priority = NSLayoutConstraint.Priority(textRightAligned ? 1000 : 1)
+//        messageLabelLeadingConstraint.priority = NSLayoutConstraint.Priority(textRightAligned ? 1 : 1000)
+//        messageLabelTrailingConstraint.priority = NSLayoutConstraint.Priority(textRightAligned ? 1000 : 1)
         
         let bubbleColor = isOutgoing ? NSColor.Sphinx.SentMsgBG : NSColor.Sphinx.ReceivedMsgBG
         bubbleAllViews.fillColor = bubbleColor

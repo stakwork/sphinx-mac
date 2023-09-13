@@ -586,7 +586,7 @@ class ChatHelper {
     func getRowHeightFor(
         _ tableCellState: MessageTableCellState,
         and linkData: MessageTableCellState.LinkData? = nil,
-        maxWidth: CGFloat
+        collectionViewWidth: CGFloat
     ) -> CGFloat {
         var mutableTableCellState = tableCellState
         
@@ -601,7 +601,11 @@ class ChatHelper {
         let kGeneralMargin: CGFloat = 2.0
         
         let statusHeaderheight: CGFloat = getStatusHeaderHeightFor(tableCellState)
-        let textHeight: CGFloat = getTextMessageHeightFor(tableCellState, maxWidth: maxWidth)
+        
+        let textHeight: CGFloat = getTextMessageHeightFor(
+            tableCellState,
+            collectionViewWidth: collectionViewWidth
+        )
         
         let viewsHeight: CGFloat = getAdditionalViewsHeightFor(
             tableCellState,
@@ -627,11 +631,23 @@ class ChatHelper {
     
     func getTextMessageHeightFor(
         _ tableCellState: MessageTableCellState,
-        maxWidth: CGFloat
+        collectionViewWidth: CGFloat
     ) -> CGFloat {
         var mutableTableCellState = tableCellState
         var textHeight: CGFloat = 0.0
         let kLabelMargin: CGFloat = 16.0
+        
+        var maxWidth = min(
+            CommonNewMessageCollectionViewitem.kMaximumLabelBubbleWidth,
+            collectionViewWidth - 80
+        )
+        
+        if let _ = mutableTableCellState.messageMedia {
+            maxWidth = min(
+                CommonNewMessageCollectionViewitem.kMaximumMediaBubbleWidth,
+                collectionViewWidth - 80
+            )
+        }
         
         if let text = mutableTableCellState.messageContent?.text, text.isNotEmpty {
             let adaptedtext = (text.count > 1) ? String(text.dropLast()) : text

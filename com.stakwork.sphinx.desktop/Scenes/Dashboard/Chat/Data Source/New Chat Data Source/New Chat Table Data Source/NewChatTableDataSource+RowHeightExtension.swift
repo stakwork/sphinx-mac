@@ -23,10 +23,7 @@ extension NewChatTableDataSource: NSCollectionViewDelegateFlowLayout {
             let rowHeight = chatHelper.getRowHeightFor(
                 tableCellState,
                 and: linkData,
-                maxWidth: min(
-                    CommonNewMessageCollectionViewitem.kMaximumLabelBubbleWidth,
-                    collectionView.frame.width - 80
-                )
+                collectionViewWidth: collectionView.frame.width
             )
             return CGSize(width: collectionView.frame.width, height: rowHeight)
         }

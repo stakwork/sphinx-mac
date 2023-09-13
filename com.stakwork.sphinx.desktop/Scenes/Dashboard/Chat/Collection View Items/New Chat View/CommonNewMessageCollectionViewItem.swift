@@ -20,6 +20,7 @@ class CommonNewMessageCollectionViewitem : NSCollectionViewItem {
     let kChatAvatarHeight: CGFloat = 33
     
     static let kMaximumLabelBubbleWidth: CGFloat = 500
+    static let kMaximumMediaBubbleWidth: CGFloat = 400
     
     override func viewDidLoad() {
         super.viewDidLoad()

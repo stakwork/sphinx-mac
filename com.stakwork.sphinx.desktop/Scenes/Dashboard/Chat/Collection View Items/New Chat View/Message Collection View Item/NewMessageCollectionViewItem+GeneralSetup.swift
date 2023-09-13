@@ -44,12 +44,8 @@ extension NewMessageCollectionViewItem {
     ) {
         var mutableCellState = messageCellState
         
-        if let linkData = linkData, !linkData.failed {
+        if let _ = mutableCellState.messageMedia {
             widthConstraint.constant = 400 - 32
-        } else if let _ = mutableCellState.boosts {
-            widthConstraint.constant = 250 - 32
-        } else if let _ = mutableCellState.messageReply {
-            widthConstraint.constant = 250 - 32
         } else {
             widthConstraint.constant = 500 - 32
         }
