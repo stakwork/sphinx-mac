@@ -50,6 +50,8 @@ class FileInfoView: NSView, LoadableNib {
         iconLabel.stringValue = "insert_drive_file"
         fileNameLabel.stringValue = fileInfo.fileName
         pagesLabel.stringValue = "\(fileInfo.pagesCount ?? 0) \("pages".localized)"
+        
+        downloadButton.isHidden = true
     }
     
     func configureWith(
