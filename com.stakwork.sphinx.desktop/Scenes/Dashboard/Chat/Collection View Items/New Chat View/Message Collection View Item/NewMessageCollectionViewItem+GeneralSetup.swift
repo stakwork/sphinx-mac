@@ -45,9 +45,11 @@ extension NewMessageCollectionViewItem {
         var mutableCellState = messageCellState
         
         if let _ = mutableCellState.messageMedia {
-            widthConstraint.constant = 400 - 32
+            widthConstraint.constant = 400
+        } else if let _ = mutableCellState.callLink {
+            widthConstraint.constant = 250
         } else {
-            widthConstraint.constant = 500 - 32
+            widthConstraint.constant = 500
         }
         
         self.view.layoutSubtreeIfNeeded()
@@ -65,7 +67,7 @@ extension NewMessageCollectionViewItem {
 //        fileDetailsView.isHidden = true
 //        audioMessageView.isHidden = true
 //        podcastAudioView.isHidden = true
-//        callLinkView.isHidden = true
+        callLinkView.isHidden = true
 //        podcastBoostView.isHidden = true
 //        botResponseView.isHidden = true
 //        textMessageView.isHidden = true

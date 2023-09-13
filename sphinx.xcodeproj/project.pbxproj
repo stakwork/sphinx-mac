@@ -2190,6 +2190,13 @@
 			path = "Message Media";
 			sourceTree = "<group>";
 		};
+		474E46822AB1FAAB0098AD24 /* Call Link */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Call Link";
+			sourceTree = "<group>";
+		};
 		474F674F2486777D00CE6016 /* Video Call */ = {
 			isa = PBXGroup;
 			children = (
@@ -2895,6 +2902,7 @@
 		47DE1BF12A68138B0029597B /* New Chat View */ = {
 			isa = PBXGroup;
 			children = (
+				474E46822AB1FAAB0098AD24 /* Call Link */,
 				474E46672AB0BC5E0098AD24 /* Message Media */,
 				47DE1C352A6AF6BB0029597B /* Shimmering */,
 				47DE1C262A69DC2C0029597B /* Message Boost */,

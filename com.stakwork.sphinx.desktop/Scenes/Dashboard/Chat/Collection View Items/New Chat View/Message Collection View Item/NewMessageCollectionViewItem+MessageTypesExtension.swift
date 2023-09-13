@@ -161,4 +161,13 @@ extension NewMessageCollectionViewItem {
             }
         }
     }
+    
+    func configureWith(
+        callLink: BubbleMessageLayoutState.CallLink?
+    ) {
+        if let callLink = callLink {
+            callLinkView.configureWith(callLink: callLink, and: self)
+            callLinkView.isHidden = false
+        }
+    }
 }

@@ -683,6 +683,14 @@ class ChatHelper {
             viewsHeight += MediaMessageView.kViewHeight
         }
         
+        if let link = mutableTableCellState.callLink {
+            if link.callMode == VideoCallHelper.CallMode.Audio {
+                viewsHeight += JoinVideoCallView.kViewAudioOnlyHeight
+            } else {
+                viewsHeight += JoinVideoCallView.kViewHeight
+            }
+        }
+        
         return viewsHeight
     }
 }

@@ -855,7 +855,15 @@ extension NewChatTableDataSource {
 
 extension NewChatTableDataSource {
     func startVideoCall(link: String, audioOnly: Bool) {
-//        VideoCallManager.sharedInstance.startVideoCall(link: link, audioOnly: audioOnly)
+        var linkUrl = VoIPRequestMessage.getFromString(link)?.link ?? link
+        
+        if audioOnly && !linkUrl.contains("startAudioOnly") {
+            linkUrl = "\(linkUrl)#config.startAudioOnly=true"
+        }
+        
+        if let url = URL(string: linkUrl) {
+            NSWorkspace.shared.open(url)
+        }
     }
 }
 
