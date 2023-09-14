@@ -71,7 +71,7 @@ extension NewMessageCollectionViewItem {
         } else if let _ = tribeData {
             widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumLinksBubbleWidth
         } else {
-            widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumLinksBubbleWidth
+            widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumLabelBubbleWidth
         }
         
         self.view.layoutSubtreeIfNeeded()
