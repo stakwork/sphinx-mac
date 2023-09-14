@@ -2,6 +2,7 @@ PODS:
   - Alamofire (5.0.5)
   - Down (0.11.0)
   - KeychainAccess (4.2.2)
+  - MarkdownKit (1.7.1)
   - ObjectMapper (4.2.0)
   - ReachabilitySwift (5.0.0)
   - RNCryptor (5.1.0)
@@ -17,6 +18,7 @@ DEPENDENCIES:
   - Alamofire (~> 5.0.0-rc.3)
   - Down
   - KeychainAccess
+  - MarkdownKit
   - ObjectMapper
   - ReachabilitySwift
   - RNCryptor (~> 5.0)
@@ -31,6 +33,7 @@ SPEC REPOS:
     - Alamofire
     - Down
     - KeychainAccess
+    - MarkdownKit
     - ObjectMapper
     - ReachabilitySwift
     - RNCryptor
@@ -47,6 +50,7 @@ SPEC CHECKSUMS:
   Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
   Down: b6ba1bc985c9d2f4e15e3b293d2207766fa12612
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
+  MarkdownKit: 0b15195c63cf3e39387949c4bdeccde0055e252a
   ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   RNCryptor: a369134686cd2ad391323cc856b62e591193ba79
@@ -56,7 +60,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   Tor: fad2cec0e7ef5f889fecdaf69e5edd6df0438326
 
-PODFILE CHECKSUM: 8716ede71d8c07fcd84d9545da39c083c777cccf
+PODFILE CHECKSUM: 13689824de584371c5a8677918fe901d51be1bf4
 
-
-COCOAPODS: 1.12.0
+COCOAPODS: 1.12.1

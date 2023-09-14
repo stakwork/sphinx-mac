@@ -14,4 +14,5 @@ target 'Sphinx' do
    pod 'Tor', podspec: 'https://raw.githubusercontent.com/iCepa/Tor.framework/v405.8.1/Tor.podspec'
    pod 'ObjectMapper'
    pod 'Down'
+   pod 'MarkdownKit'
 end
