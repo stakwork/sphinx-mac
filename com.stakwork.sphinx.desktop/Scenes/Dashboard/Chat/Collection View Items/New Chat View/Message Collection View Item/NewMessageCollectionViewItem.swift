@@ -28,6 +28,7 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
     @IBOutlet weak var messageReplyView: NewMessageReplyView!
     
     ///Second Container
+    @IBOutlet weak var directPaymentView: DirectPaymentView!
     @IBOutlet weak var mediaMessageView: MediaMessageView!
     @IBOutlet weak var fileDetailsView: FileInfoView!
     @IBOutlet weak var callLinkView: JoinVideoCallView!
@@ -109,7 +110,7 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
 //        ///Message types
 //        configureWith(payment: mutableMessageCellState.payment, and: bubble)
 //        configureWith(invoice: mutableMessageCellState.invoice, and: bubble)
-//        configureWith(directPayment: mutableMessageCellState.directPayment, and: bubble)
+        configureWith(directPayment: mutableMessageCellState.directPayment, and: bubble)
         configureWith(callLink: mutableMessageCellState.callLink)
         configureWith(podcastBoost: mutableMessageCellState.podcastBoost)
         configureWith(messageMedia: mutableMessageCellState.messageMedia, mediaData: mediaData, and: bubble)

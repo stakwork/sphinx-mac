@@ -646,7 +646,24 @@ class ChatHelper {
             collectionViewWidth - 80
         )
         
-        if let _ = mutableTableCellState.messageMedia {
+        if let _ = mutableTableCellState.directPayment {
+            if let _ = mutableTableCellState.messageMedia {
+                maxWidth = min(
+                    CommonNewMessageCollectionViewitem.kMaximumDirectPaymentWithMediaBubbleWidth,
+                    collectionViewWidth - 80
+                )
+            } else if let _ = mutableTableCellState.messageContent {
+                maxWidth = min(
+                    CommonNewMessageCollectionViewitem.kMaximumDirectPaymentWithTextBubbleWidth,
+                    collectionViewWidth - 80
+                )
+            } else {
+                maxWidth = min(
+                    CommonNewMessageCollectionViewitem.kMaximumDirectPaymentBubbleWidth,
+                    collectionViewWidth - 80
+                )
+            }
+        } else if let _ = mutableTableCellState.messageMedia {
             maxWidth = min(
                 CommonNewMessageCollectionViewitem.kMaximumMediaBubbleWidth,
                 collectionViewWidth - 80
@@ -696,8 +713,8 @@ class ChatHelper {
             viewsHeight += NewMessageReplyView.kViewHeight
         }
         
-        if let _ = mutableTableCellState.boosts {
-            viewsHeight += NewMessageBoostView.kViewHeight
+        if let _ = mutableTableCellState.directPayment {
+            viewsHeight += DirectPaymentView.kViewHeight
         }
         
         if let _ = mutableTableCellState.messageMedia {
@@ -738,6 +755,10 @@ class ChatHelper {
             } else {
                 viewsHeight += TribeLinkView.kViewHeightWithoutButton
             }
+        }
+        
+        if let _ = mutableTableCellState.boosts {
+            viewsHeight += NewMessageBoostView.kViewHeight
         }
         
         return viewsHeight

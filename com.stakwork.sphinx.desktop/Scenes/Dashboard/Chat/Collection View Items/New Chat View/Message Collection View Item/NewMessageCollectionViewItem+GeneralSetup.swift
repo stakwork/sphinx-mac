@@ -45,7 +45,20 @@ extension NewMessageCollectionViewItem {
     ) {
         var mutableCellState = messageCellState
         
-        if let _ = mutableCellState.messageMedia {
+        if let _ = mutableCellState.directPayment {
+            var width: CGFloat = 0
+            
+            if let _ = mutableCellState.messageMedia {
+                width = CommonNewMessageCollectionViewitem.kMaximumDirectPaymentWithMediaBubbleWidth
+            } else if let _ = mutableCellState.messageContent {
+                width = CommonNewMessageCollectionViewitem.kMaximumDirectPaymentWithTextBubbleWidth
+            } else {
+                width = CommonNewMessageCollectionViewitem.kMaximumDirectPaymentBubbleWidth
+            }
+            
+            widthConstraint.constant = width
+            
+        } else if let _ = mutableCellState.messageMedia {
             widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumMediaBubbleWidth
         } else if let _ = mutableCellState.callLink {
             widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumCallLinkBubbleWidth
@@ -71,7 +84,7 @@ extension NewMessageCollectionViewItem {
         messageReplyView.isHidden = true
 //        sentPaidDetailsView.isHidden = true
 //        paidTextMessageView.isHidden = true
-//        directPaymentView.isHidden = true
+        directPaymentView.isHidden = true
         mediaMessageView.isHidden = true
         fileDetailsView.isHidden = true
 //        audioMessageView.isHidden = true

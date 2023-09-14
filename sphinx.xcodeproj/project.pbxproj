@@ -378,6 +378,8 @@
 		479496282AB33D1200C42D1E /* TribeLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479496272AB33D1200C42D1E /* TribeLinkView.swift */; };
 		4794962B2AB343C600C42D1E /* TribeLinkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4794962D2AB343C600C42D1E /* TribeLinkView.xib */; };
 		479496342AB343EF00C42D1E /* ContactLinkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479496362AB343EF00C42D1E /* ContactLinkView.xib */; };
+		4794963F2AB3804E00C42D1E /* DirectPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4794963E2AB3804E00C42D1E /* DirectPaymentView.swift */; };
+		479496412AB3805600C42D1E /* DirectPaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479496402AB3805600C42D1E /* DirectPaymentView.xib */; };
 		47949BFB24AA8E10000D697B /* DeletedMessageSentCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47949BF924AA8E10000D697B /* DeletedMessageSentCollectionViewItem.swift */; };
 		47949BFF24AA8E2F000D697B /* DeletedMessageReceivedCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47949BFD24AA8E2F000D697B /* DeletedMessageReceivedCollectionViewItem.swift */; };
 		47949C0224AA8F4C000D697B /* CommonDeletedMessageCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47949C0124AA8F4C000D697B /* CommonDeletedMessageCollectionViewItem.swift */; };
@@ -1148,6 +1150,8 @@
 		479496382AB343F000C42D1E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ContactLinkView.strings; sourceTree = "<group>"; };
 		4794963A2AB343F100C42D1E /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/ContactLinkView.strings; sourceTree = "<group>"; };
 		4794963C2AB343F200C42D1E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/ContactLinkView.strings; sourceTree = "<group>"; };
+		4794963E2AB3804E00C42D1E /* DirectPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectPaymentView.swift; sourceTree = "<group>"; };
+		479496402AB3805600C42D1E /* DirectPaymentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DirectPaymentView.xib; sourceTree = "<group>"; };
 		47949BF924AA8E10000D697B /* DeletedMessageSentCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedMessageSentCollectionViewItem.swift; sourceTree = "<group>"; };
 		47949BFD24AA8E2F000D697B /* DeletedMessageReceivedCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedMessageReceivedCollectionViewItem.swift; sourceTree = "<group>"; };
 		47949C0124AA8F4C000D697B /* CommonDeletedMessageCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonDeletedMessageCollectionViewItem.swift; sourceTree = "<group>"; };
@@ -2506,6 +2510,15 @@
 			path = "Podcast Boost";
 			sourceTree = "<group>";
 		};
+		4794963D2AB3803B00C42D1E /* Direct Payment */ = {
+			isa = PBXGroup;
+			children = (
+				4794963E2AB3804E00C42D1E /* DirectPaymentView.swift */,
+				479496402AB3805600C42D1E /* DirectPaymentView.xib */,
+			);
+			path = "Direct Payment";
+			sourceTree = "<group>";
+		};
 		479751C2246C72C100D2106B /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -2922,6 +2935,7 @@
 		47DE1BF12A68138B0029597B /* New Chat View */ = {
 			isa = PBXGroup;
 			children = (
+				4794963D2AB3803B00C42D1E /* Direct Payment */,
 				4794961D2AB2074F00C42D1E /* Podcast Boost */,
 				474E46672AB0BC5E0098AD24 /* Message Media */,
 				47DE1C352A6AF6BB0029597B /* Shimmering */,
@@ -3573,6 +3587,7 @@
 				473633F22555DCF9007405F2 /* PodcastSatsView.xib in Resources */,
 				4797E85B24BCD44C00D13270 /* LoadingMoreCollectionViewItem.xib in Resources */,
 				4726A44124C628DA005A66B4 /* popcorn.caf in Resources */,
+				479496412AB3805600C42D1E /* DirectPaymentView.xib in Resources */,
 				4731BE4524859BA800BCCA9E /* PaymentSentCollectionViewItem.xib in Resources */,
 				474F674E2486777400CE6016 /* VideoCallReceivedCollectionViewItem.xib in Resources */,
 				47D03DEC250FDCC70077A968 /* PdfInfoView.xib in Resources */,
@@ -3974,6 +3989,7 @@
 				4744FAC92469DFDB00C5FD94 /* StoryboardScenes.swift in Sources */,
 				479E7DA125AF2D0D0092595B /* GroupDetailsViewController.swift in Sources */,
 				475B686A2991A909000EF29C /* PodcastPlayerCollectionViewItem+UI.swift in Sources */,
+				4794963F2AB3804E00C42D1E /* DirectPaymentView.swift in Sources */,
 				47E771372472E48700C9CFEB /* MessageBubbleView.swift in Sources */,
 				474274A928EC77A5000C3D51 /* TribeTagView.swift in Sources */,
 				CE38D91329E0823800F271CD /* DisplayInvoiceVC.swift in Sources */,
