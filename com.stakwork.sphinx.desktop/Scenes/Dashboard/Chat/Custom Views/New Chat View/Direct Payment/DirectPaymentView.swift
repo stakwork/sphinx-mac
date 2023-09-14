@@ -28,7 +28,6 @@ class DirectPaymentView: NSView, LoadableNib {
     @IBOutlet weak var sentPmtUnitLabel: NSTextField!
     @IBOutlet weak var sentPmtIconImageView: NSImageView!
     
-    
     static let kViewHeight: CGFloat = 56
 
     required init?(coder: NSCoder) {

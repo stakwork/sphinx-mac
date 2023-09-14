@@ -382,6 +382,8 @@
 		479496412AB3805600C42D1E /* DirectPaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479496402AB3805600C42D1E /* DirectPaymentView.xib */; };
 		479496442AB38CE900C42D1E /* BotResponseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479496432AB38CE900C42D1E /* BotResponseView.swift */; };
 		479496462AB38CF200C42D1E /* BotResponseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479496452AB38CF200C42D1E /* BotResponseView.xib */; };
+		479496492AB3A59500C42D1E /* AudioMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479496482AB3A59500C42D1E /* AudioMessageView.swift */; };
+		4794964B2AB3A59C00C42D1E /* AudioMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4794964A2AB3A59C00C42D1E /* AudioMessageView.xib */; };
 		47949BFB24AA8E10000D697B /* DeletedMessageSentCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47949BF924AA8E10000D697B /* DeletedMessageSentCollectionViewItem.swift */; };
 		47949BFF24AA8E2F000D697B /* DeletedMessageReceivedCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47949BFD24AA8E2F000D697B /* DeletedMessageReceivedCollectionViewItem.swift */; };
 		47949C0224AA8F4C000D697B /* CommonDeletedMessageCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47949C0124AA8F4C000D697B /* CommonDeletedMessageCollectionViewItem.swift */; };
@@ -1156,6 +1158,8 @@
 		479496402AB3805600C42D1E /* DirectPaymentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DirectPaymentView.xib; sourceTree = "<group>"; };
 		479496432AB38CE900C42D1E /* BotResponseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotResponseView.swift; sourceTree = "<group>"; };
 		479496452AB38CF200C42D1E /* BotResponseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BotResponseView.xib; sourceTree = "<group>"; };
+		479496482AB3A59500C42D1E /* AudioMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMessageView.swift; sourceTree = "<group>"; };
+		4794964A2AB3A59C00C42D1E /* AudioMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioMessageView.xib; sourceTree = "<group>"; };
 		47949BF924AA8E10000D697B /* DeletedMessageSentCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedMessageSentCollectionViewItem.swift; sourceTree = "<group>"; };
 		47949BFD24AA8E2F000D697B /* DeletedMessageReceivedCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedMessageReceivedCollectionViewItem.swift; sourceTree = "<group>"; };
 		47949C0124AA8F4C000D697B /* CommonDeletedMessageCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonDeletedMessageCollectionViewItem.swift; sourceTree = "<group>"; };
@@ -2532,6 +2536,15 @@
 			path = "Bot Response";
 			sourceTree = "<group>";
 		};
+		479496472AB3A58700C42D1E /* Audio View */ = {
+			isa = PBXGroup;
+			children = (
+				479496482AB3A59500C42D1E /* AudioMessageView.swift */,
+				4794964A2AB3A59C00C42D1E /* AudioMessageView.xib */,
+			);
+			path = "Audio View";
+			sourceTree = "<group>";
+		};
 		479751C2246C72C100D2106B /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -2948,6 +2961,7 @@
 		47DE1BF12A68138B0029597B /* New Chat View */ = {
 			isa = PBXGroup;
 			children = (
+				479496472AB3A58700C42D1E /* Audio View */,
 				479496422AB38CD900C42D1E /* Bot Response */,
 				4794963D2AB3803B00C42D1E /* Direct Payment */,
 				4794961D2AB2074F00C42D1E /* Podcast Boost */,
@@ -3584,6 +3598,7 @@
 				47C6236225091C02005D265C /* GiphySearchCollectionViewItem.xib in Resources */,
 				473BC8922600FB320070E519 /* NewEpisodeAlertView.xib in Resources */,
 				4726A44224C628DA005A66B4 /* horn.caf in Resources */,
+				4794964B2AB3A59C00C42D1E /* AudioMessageView.xib in Resources */,
 				4767AE942509BA8C00C82E5B /* GiphySearchView.xib in Resources */,
 				479A03F02587E73A0093DB30 /* TribeMemberInfoView.xib in Resources */,
 				47DE1C052A68813B0029597B /* MessageNoBubbleCollectionViewItem.xib in Resources */,
@@ -3995,6 +4010,7 @@
 				475B682929915D72000EF29C /* ContentFeedPaymentDestination+CoreDataProperties.swift in Sources */,
 				47BDEDF124F466C4001688F3 /* ProfileViewControllerExtension.swift in Sources */,
 				47DE1C2C2A69E0BA0029597B /* MessageBoostImageView.swift in Sources */,
+				479496492AB3A59500C42D1E /* AudioMessageView.swift in Sources */,
 				474F67492486775900CE6016 /* VideoCallSentCollectionViewItem.swift in Sources */,
 				47F8825B25656CB0002A7E71 /* SocketRawView.swift in Sources */,
 				47FEE1F62A61B5B000646C4E /* NewChatViewController+BottomTopBarsExtension.swift in Sources */,

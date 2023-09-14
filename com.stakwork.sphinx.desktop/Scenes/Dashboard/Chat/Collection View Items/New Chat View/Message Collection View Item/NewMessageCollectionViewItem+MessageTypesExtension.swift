@@ -31,6 +31,32 @@ extension NewMessageCollectionViewItem {
     }
     
     func configureWith(
+        audio: BubbleMessageLayoutState.Audio?,
+        mediaData: MessageTableCellState.MediaData?,
+        and bubble: BubbleMessageLayoutState.Bubble
+    ) {
+        if let audio = audio {
+            audioMessageView.configureWith(
+                audio: audio,
+                mediaData: mediaData,
+                bubble: bubble,
+                and: self
+            )
+            audioMessageView.isHidden = false
+            
+            if let messageId = messageId, mediaData == nil {
+                let delayTime = DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+                DispatchQueue.global().asyncAfter(deadline: delayTime) {
+                    self.delegate?.shouldLoadAudioDataFor(
+                        messageId: messageId,
+                        and: self.rowIndex
+                    )
+                }
+            }
+        }
+    }
+    
+    func configureWith(
         messageMedia: BubbleMessageLayoutState.MessageMedia?,
         mediaData: MessageTableCellState.MediaData?,
         and bubble: BubbleMessageLayoutState.Bubble

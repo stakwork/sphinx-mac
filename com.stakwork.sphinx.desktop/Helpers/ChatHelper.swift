@@ -721,6 +721,10 @@ class ChatHelper {
             viewsHeight += DirectPaymentView.kViewHeight
         }
         
+        if let _ = mutableTableCellState.audio {
+            viewsHeight += AudioMessageView.kViewHeight
+        }
+        
         if let _ = mutableTableCellState.messageMedia {
             viewsHeight += MediaMessageView.kViewHeight
         }

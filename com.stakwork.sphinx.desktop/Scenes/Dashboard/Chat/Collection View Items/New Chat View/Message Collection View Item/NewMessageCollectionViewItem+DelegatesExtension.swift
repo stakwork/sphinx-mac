@@ -120,3 +120,9 @@ extension NewMessageCollectionViewItem : FileInfoViewDelegate {
         }
     }
 }
+
+extension NewMessageCollectionViewItem : AudioMessageViewDelegate {
+    func didTapPlayPauseButton() {
+        
+    }
+}

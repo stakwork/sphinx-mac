@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="AudioMessageView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="c22-O7-iKe" id="bi1-Bo-wMb"/>
+                <outlet property="currentTimeView" destination="3Ag-7W-q30" id="A1d-kD-kMt"/>
+                <outlet property="durationView" destination="W9u-mD-ElI" id="LNv-iR-uXF"/>
+                <outlet property="durationViewContainer" destination="scZ-Tb-nat" id="3sm-p0-pqu"/>
+                <outlet property="loadingWheel" destination="aoK-Pv-Ye6" id="cSa-DJ-4Cf"/>
+                <outlet property="playPauseButton" destination="BLZ-8y-MTc" id="MyL-wF-DOn"/>
+                <outlet property="progressView" destination="DPT-sa-NZj" id="fyk-CY-oBF"/>
+                <outlet property="progressViewWidthConstraint" destination="cND-2F-ZA2" id="WsY-0l-Fw2"/>
+                <outlet property="timeLabel" destination="E7Q-M2-3vi" id="ip1-pP-ag2"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="426" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Beg-vI-auX">
+                    <rect key="frame" x="0.0" y="0.0" width="410" height="60"/>
+                    <subviews>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="Esg-eO-pej">
+                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                            <subviews>
+                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BLZ-8y-MTc" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                                    <rect key="frame" x="10" y="10" width="40" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="40" id="6KB-zM-VHZ"/>
+                                        <constraint firstAttribute="width" secondItem="BLZ-8y-MTc" secondAttribute="height" multiplier="1:1" id="q5w-hL-WVB"/>
+                                    </constraints>
+                                    <buttonCell key="cell" type="square" title="play_arrow" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="A0i-8w-Lkv">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" size="25" name="MaterialIcons-Regular"/>
+                                    </buttonCell>
+                                    <color key="contentTintColor" name="Text"/>
+                                    <connections>
+                                        <action selector="playPauseButtonClicked:" target="-2" id="ZYk-fH-K8d"/>
+                                    </connections>
+                                </button>
+                                <progressIndicator maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="aoK-Pv-Ye6">
+                                    <rect key="frame" x="22" y="22" width="16" height="16"/>
+                                </progressIndicator>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="HF3-O4-HWg"/>
+                                <constraint firstItem="BLZ-8y-MTc" firstAttribute="centerX" secondItem="Esg-eO-pej" secondAttribute="centerX" id="Q8e-zg-hgs"/>
+                                <constraint firstItem="BLZ-8y-MTc" firstAttribute="centerY" secondItem="Esg-eO-pej" secondAttribute="centerY" id="SaM-CI-hrE"/>
+                                <constraint firstItem="aoK-Pv-Ye6" firstAttribute="centerY" secondItem="Esg-eO-pej" secondAttribute="centerY" id="eUa-fy-gCt"/>
+                                <constraint firstItem="aoK-Pv-Ye6" firstAttribute="centerX" secondItem="Esg-eO-pej" secondAttribute="centerX" id="ew2-1C-Gjj"/>
+                            </constraints>
+                        </customView>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="scZ-Tb-nat">
+                            <rect key="frame" x="60" y="0.0" width="300" height="60"/>
+                            <subviews>
+                                <box boxType="custom" borderType="none" cornerRadius="2" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="W9u-mD-ElI">
+                                    <rect key="frame" x="0.0" y="28" width="300" height="4"/>
+                                    <view key="contentView" id="Hs0-dJ-Zwz">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="4"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </view>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="4" id="sek-TC-l0e"/>
+                                    </constraints>
+                                    <color key="fillColor" name="WashedOutReceivedText"/>
+                                </box>
+                                <box boxType="custom" borderType="none" cornerRadius="2" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="DPT-sa-NZj">
+                                    <rect key="frame" x="0.0" y="28" width="0.0" height="4"/>
+                                    <view key="contentView" id="qr5-Cl-sQS">
+                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="4"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </view>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="4" id="PDk-Wt-0k8"/>
+                                        <constraint firstAttribute="width" id="cND-2F-ZA2"/>
+                                    </constraints>
+                                    <color key="fillColor" name="ReceivedIcon"/>
+                                </box>
+                                <box boxType="custom" borderType="none" cornerRadius="6" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="3Ag-7W-q30">
+                                    <rect key="frame" x="-2" y="24" width="12" height="12"/>
+                                    <view key="contentView" id="VG4-Ic-h9z">
+                                        <rect key="frame" x="0.0" y="0.0" width="12" height="12"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </view>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="12" id="A6b-rq-MNa"/>
+                                        <constraint firstAttribute="width" constant="12" id="PiP-ZB-Nb6"/>
+                                    </constraints>
+                                    <color key="fillColor" name="ReceivedIcon"/>
+                                </box>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="W9u-mD-ElI" secondAttribute="trailing" id="1Em-lQ-O7q"/>
+                                <constraint firstItem="3Ag-7W-q30" firstAttribute="leading" secondItem="DPT-sa-NZj" secondAttribute="trailing" constant="-2" id="9cs-9H-PIY"/>
+                                <constraint firstItem="W9u-mD-ElI" firstAttribute="centerY" secondItem="scZ-Tb-nat" secondAttribute="centerY" id="B1j-gp-d4n"/>
+                                <constraint firstItem="W9u-mD-ElI" firstAttribute="leading" secondItem="scZ-Tb-nat" secondAttribute="leading" id="ZxU-zr-TmF"/>
+                                <constraint firstItem="DPT-sa-NZj" firstAttribute="centerY" secondItem="scZ-Tb-nat" secondAttribute="centerY" id="dkh-5m-wZS"/>
+                                <constraint firstItem="3Ag-7W-q30" firstAttribute="centerY" secondItem="scZ-Tb-nat" secondAttribute="centerY" id="gdz-zR-ahW"/>
+                                <constraint firstItem="DPT-sa-NZj" firstAttribute="leading" secondItem="scZ-Tb-nat" secondAttribute="leading" id="udf-UE-li0"/>
+                            </constraints>
+                        </customView>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="ymB-be-2wG">
+                            <rect key="frame" x="360" y="0.0" width="50" height="60"/>
+                            <subviews>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="E7Q-M2-3vi">
+                                    <rect key="frame" x="12" y="22" width="40" height="16"/>
+                                    <textFieldCell key="cell" lineBreakMode="clipping" title="00:00" id="3nG-hG-Dk1">
+                                        <font key="font" size="14" name="Roboto-Regular"/>
+                                        <color key="textColor" name="Text"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="E7Q-M2-3vi" secondAttribute="trailing" id="Gj4-5F-8OU"/>
+                                <constraint firstItem="E7Q-M2-3vi" firstAttribute="centerY" secondItem="ymB-be-2wG" secondAttribute="centerY" id="bXh-JQ-7dl"/>
+                                <constraint firstAttribute="width" constant="50" id="hgg-uJ-mmO"/>
+                            </constraints>
+                        </customView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="Cst-xb-B2n"/>
+                    </constraints>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Beg-vI-auX" secondAttribute="trailing" constant="16" id="5rY-mV-JQQ"/>
+                <constraint firstAttribute="bottom" secondItem="Beg-vI-auX" secondAttribute="bottom" id="Fgs-Qj-szl"/>
+                <constraint firstItem="Beg-vI-auX" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="tcs-0m-CQQ"/>
+                <constraint firstItem="Beg-vI-auX" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="y6q-RE-3to"/>
+            </constraints>
+            <point key="canvasLocation" x="-10" y="154"/>
+        </customView>
+    </objects>
+    <resources>
+        <namedColor name="ReceivedIcon">
+            <color red="0.50980392156862742" green="0.70588235294117652" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text">
+            <color red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="WashedOutReceivedText">
+            <color red="0.69019607843137254" green="0.71764705882352942" blue="0.73725490196078436" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
