@@ -59,8 +59,21 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
         }
     }
     
-    func didTapOnContactWith(pubkey: String, and routeHint: String?) {}
-    func didTapOnTribeWith(joinLink: String) {}
+    func didTapOnContactWith(pubkey: String, and routeHint: String?) {
+        var pubkey = pubkey
+        
+        if let routeHint = routeHint, routeHint.isNotEmpty {
+            pubkey = "\(pubkey):\(routeHint)"
+        }
+        
+        let userInfo: [String: Any] = ["pub-key" : pubkey]
+        NotificationCenter.default.post(name: .onPubKeyClick, object: nil, userInfo: userInfo)
+    }
+    
+    func didTapOnTribeWith(joinLink: String) {
+        let userInfo: [String: Any] = ["tribe_link" : joinLink]
+        NotificationCenter.default.post(name: .onJoinTribeClick, object: nil, userInfo: userInfo)
+    }
     
     func didDeleteTribe() {}
     

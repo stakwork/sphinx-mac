@@ -40,20 +40,25 @@ extension NewMessageCollectionViewItem {
     
     func configureViewsWidthWith(
         messageCellState: MessageTableCellState,
-        and linkData: MessageTableCellState.LinkData?
+        linkData: MessageTableCellState.LinkData?,
+        tribeData: MessageTableCellState.TribeData?
     ) {
         var mutableCellState = messageCellState
         
         if let _ = mutableCellState.messageMedia {
-            widthConstraint.constant = 400
+            widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumMediaBubbleWidth
         } else if let _ = mutableCellState.callLink {
-            widthConstraint.constant = 250
+            widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumCallLinkBubbleWidth
         } else if let _ = mutableCellState.podcastBoost {
-            widthConstraint.constant = 200
+            widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumPodcastBoostBubbleWidth
         } else if let _ = mutableCellState.genericFile {
-            widthConstraint.constant = 300
+            widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumGenericFileBubbleWidth
+        } else if let _ = linkData {
+            widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumLinksBubbleWidth
+        } else if let _ = tribeData {
+            widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumLinksBubbleWidth
         } else {
-            widthConstraint.constant = 500
+            widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumLinksBubbleWidth
         }
         
         self.view.layoutSubtreeIfNeeded()
@@ -75,7 +80,7 @@ extension NewMessageCollectionViewItem {
         podcastBoostView.isHidden = true
 //        botResponseView.isHidden = true
 //        textMessageView.isHidden = true
-//        tribeLinkPreviewView.isHidden = true
+        tribeLinkPreviewView.isHidden = true
         contactLinkPreviewView.isHidden = true
         linkPreviewView.isHidden = true
         messageBoostView.isHidden = true

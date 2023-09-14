@@ -38,11 +38,12 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
     @IBOutlet weak var messageLabel: CCTextField!
     @IBOutlet weak var messageLabelLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var messageLabelTrailingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var linkPreviewView: NewLinkPreviewView!
     
     ///Forth Container
     @IBOutlet weak var messageBoostView: NewMessageBoostView!
+    @IBOutlet weak var linkPreviewView: NewLinkPreviewView!
     @IBOutlet weak var contactLinkPreviewView: ContactLinkView!
+    @IBOutlet weak var tribeLinkPreviewView: TribeLinkView!
     
     @IBOutlet weak var widthConstraint: NSLayoutConstraint!
     
@@ -86,7 +87,8 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
         ///Views Width
         configureViewsWidthWith(
             messageCellState: messageCellState,
-            and: linkData
+            linkData: linkData,
+            tribeData: tribeData
         )
         
         ///Status Header
@@ -119,7 +121,7 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
         ///Bottom view
         configureWith(boosts: mutableMessageCellState.boosts, and: bubble)
         configureWith(contactLink: mutableMessageCellState.contactLink, and: bubble)
-//        configureWith(tribeLink: mutableMessageCellState.tribeLink, tribeData: tribeData, and: bubble)
+        configureWith(tribeLink: mutableMessageCellState.tribeLink, tribeData: tribeData, and: bubble)
 //        configureWith(webLink: mutableMessageCellState.webLink, linkData: linkData)
         
         ///Avatar

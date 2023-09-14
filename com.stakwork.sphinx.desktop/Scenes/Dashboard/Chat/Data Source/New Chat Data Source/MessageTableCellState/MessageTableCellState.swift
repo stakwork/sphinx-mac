@@ -431,7 +431,7 @@ struct MessageTableCellState {
             return nil
         }
         
-        let bubbleWidth: CGFloat = 500
+        let bubbleWidth: CGFloat = CommonNewMessageCollectionViewitem.kMaximumLinksBubbleWidth
         
         return BubbleMessageLayoutState.ContactLink(
             pubkey: linkContact.pubkey,

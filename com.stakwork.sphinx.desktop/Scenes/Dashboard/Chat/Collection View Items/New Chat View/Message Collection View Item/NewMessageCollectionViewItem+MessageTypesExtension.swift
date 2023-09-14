@@ -214,4 +214,25 @@ extension NewMessageCollectionViewItem {
             contactLinkPreviewView.isHidden = false
         }
     }
+    
+    func configureWith(
+        tribeLink: BubbleMessageLayoutState.TribeLink?,
+        tribeData: MessageTableCellState.TribeData?,
+        and bubble: BubbleMessageLayoutState.Bubble
+    ) {
+        if let _ = tribeLink {
+            if let tribeData = tribeData {
+                tribeLinkPreviewView.configureWith(tribeData: tribeData, and: bubble, delegate: self)
+                tribeLinkPreviewView.isHidden = false
+            } else if let messageId = messageId {
+                let delayTime = DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+                DispatchQueue.global().asyncAfter(deadline: delayTime) {
+                    self.delegate?.shouldLoadTribeInfoFor(
+                        messageId: messageId,
+                        and: self.rowIndex
+                    )
+                }
+            }
+        }
+    }
 }

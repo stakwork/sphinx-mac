@@ -18,15 +18,15 @@ extension NewMessageCollectionViewItem : NewMessageReplyViewDelegate {
 
 extension NewMessageCollectionViewItem : LinkPreviewDelegate {
     func didTapOnTribeButton() {
-//        if let messageId = messageId {
-//            delegate?.didTapTribeButtonFor(messageId: messageId, and: rowIndex)
-//        }
+        if let messageId = messageId {
+            delegate?.didTapTribeButtonFor(messageId: messageId, and: rowIndex)
+        }
     }
     
     func didTapOnContactButton() {
-//        if let messageId = messageId {
-//            delegate?.didTapContactButtonFor(messageId: messageId, and: rowIndex)
-//        }
+        if let messageId = messageId {
+            delegate?.didTapContactButtonFor(messageId: messageId, and: rowIndex)
+        }
     }
     
     func didTapOnWebLinkButton() {

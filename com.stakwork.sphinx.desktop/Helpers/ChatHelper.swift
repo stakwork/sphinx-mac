@@ -585,7 +585,8 @@ class ChatHelper {
     
     func getRowHeightFor(
         _ tableCellState: MessageTableCellState,
-        and linkData: MessageTableCellState.LinkData? = nil,
+        linkData: MessageTableCellState.LinkData? = nil,
+        tribeData: MessageTableCellState.TribeData? = nil,
         collectionViewWidth: CGFloat
     ) -> CGFloat {
         var mutableTableCellState = tableCellState
@@ -609,7 +610,8 @@ class ChatHelper {
         
         let viewsHeight: CGFloat = getAdditionalViewsHeightFor(
             tableCellState,
-            and: linkData
+            linkData: linkData,
+            tribeData: tribeData
         )
         
         return textHeight + (kGeneralMargin * 2) + statusHeaderheight + viewsHeight
@@ -631,6 +633,8 @@ class ChatHelper {
     
     func getTextMessageHeightFor(
         _ tableCellState: MessageTableCellState,
+        linkData: MessageTableCellState.LinkData? = nil,
+        tribeData: MessageTableCellState.TribeData? = nil,
         collectionViewWidth: CGFloat
     ) -> CGFloat {
         var mutableTableCellState = tableCellState
@@ -652,6 +656,21 @@ class ChatHelper {
                 CommonNewMessageCollectionViewitem.kMaximumFileBubbleWidth,
                 collectionViewWidth - 80
             )
+        } else if let _ = linkData {
+            maxWidth = min(
+                CommonNewMessageCollectionViewitem.kMaximumLinksBubbleWidth,
+                collectionViewWidth - 80
+            )
+        } else if let _ = tribeData {
+            maxWidth = min(
+                CommonNewMessageCollectionViewitem.kMaximumLinksBubbleWidth,
+                collectionViewWidth - 80
+            )
+        } else if let _ = mutableTableCellState.contactLink {
+            maxWidth = min(
+                CommonNewMessageCollectionViewitem.kMaximumLinksBubbleWidth,
+                collectionViewWidth - 80
+            )
         }
         
         if let text = mutableTableCellState.messageContent?.text, text.isNotEmpty {
@@ -667,14 +686,11 @@ class ChatHelper {
     
     func getAdditionalViewsHeightFor(
         _ tableCellState: MessageTableCellState,
-        and linkData: MessageTableCellState.LinkData? = nil
+        linkData: MessageTableCellState.LinkData? = nil,
+        tribeData: MessageTableCellState.TribeData? = nil
     ) -> CGFloat {
         var mutableTableCellState = tableCellState
         var viewsHeight: CGFloat = 0.0
-        
-//        if let _ = mutableTableCellState.webLink {
-//            viewsHeight += NewLinkPreviewView.kViewHeight
-//        }
         
         if let _ = mutableTableCellState.replyingMessage {
             viewsHeight += NewMessageReplyView.kViewHeight
@@ -709,6 +725,18 @@ class ChatHelper {
                 viewsHeight += ContactLinkView.kViewHeightWithoutButton
             } else {
                 viewsHeight += ContactLinkView.kViewHeightWithButton
+            }
+        }
+        
+        //        if let _ = mutableTableCellState.webLink {
+        //            viewsHeight += NewLinkPreviewView.kViewHeight
+        //        }
+        
+        if let tribeData = tribeData {
+            if tribeData.showJoinButton {
+                viewsHeight += TribeLinkView.kViewHeightWithButton
+            } else {
+                viewsHeight += TribeLinkView.kViewHeightWithoutButton
             }
         }
         

@@ -22,7 +22,7 @@ class ContactLinkView: NSView, LoadableNib {
     @IBOutlet weak var contactPubKeyIcon: NSImageView!
     @IBOutlet weak var addContactButtonContainer: NSView!
     @IBOutlet weak var addContactButtonView: NSBox!
-    @IBOutlet weak var containerButton: NSButton!
+    @IBOutlet weak var containerButton: CustomButton!
     @IBOutlet weak var borderView: NSView!
     
     static let kViewHeightWithButton: CGFloat = 159
@@ -43,6 +43,8 @@ class ContactLinkView: NSView, LoadableNib {
     }
     
     func setup() {
+        containerButton.cursor = .pointingHand
+        
         addContactButtonView.wantsLayer = true
         addContactButtonView.layer?.cornerRadius = 3
         
@@ -67,7 +69,6 @@ class ContactLinkView: NSView, LoadableNib {
         contactPubKey.stringValue = contactLink.pubkey
         contactName.stringValue = contactLink.alias ?? "new.contact".localized
         
-//        borderView.removeDashedLineBorderWith(name: "contact-link-border")
         borderView.removeDashBorder()
         
         if contactLink.isContact {
@@ -84,17 +85,6 @@ class ContactLinkView: NSView, LoadableNib {
                 size: CGSize(width: contactLink.bubbleWidth, height: kNewContactBubbleHeight),
                 radius: 0
             )
-            
-//            borderView.addDashedLineBorder(
-//                color: bubble.direction.isIncoming() ? NSColor.Sphinx.ReceivedMsgBG : NSColor.Sphinx.SentMsgBG,
-//                rect: CGRect(
-//                    x: 0,
-//                    y: 0,
-//                    width: contactLink.bubbleWidth,
-//                    height: kNewContactBubbleHeight
-//                ),
-//                name: "contact-link-border"
-//            )
         }
     }
     

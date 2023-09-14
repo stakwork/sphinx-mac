@@ -375,7 +375,9 @@
 		4794961F2AB2075C00C42D1E /* PodcastBoostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4794961E2AB2075C00C42D1E /* PodcastBoostView.swift */; };
 		479496212AB2076600C42D1E /* PodcastBoostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479496202AB2076600C42D1E /* PodcastBoostView.xib */; };
 		479496242AB22FD400C42D1E /* ContactLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479496232AB22FD400C42D1E /* ContactLinkView.swift */; };
-		479496262AB22FE000C42D1E /* ContactLinkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479496252AB22FE000C42D1E /* ContactLinkView.xib */; };
+		479496282AB33D1200C42D1E /* TribeLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479496272AB33D1200C42D1E /* TribeLinkView.swift */; };
+		4794962B2AB343C600C42D1E /* TribeLinkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4794962D2AB343C600C42D1E /* TribeLinkView.xib */; };
+		479496342AB343EF00C42D1E /* ContactLinkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479496362AB343EF00C42D1E /* ContactLinkView.xib */; };
 		47949BFB24AA8E10000D697B /* DeletedMessageSentCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47949BF924AA8E10000D697B /* DeletedMessageSentCollectionViewItem.swift */; };
 		47949BFF24AA8E2F000D697B /* DeletedMessageReceivedCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47949BFD24AA8E2F000D697B /* DeletedMessageReceivedCollectionViewItem.swift */; };
 		47949C0224AA8F4C000D697B /* CommonDeletedMessageCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47949C0124AA8F4C000D697B /* CommonDeletedMessageCollectionViewItem.swift */; };
@@ -1137,7 +1139,15 @@
 		4794961E2AB2075C00C42D1E /* PodcastBoostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastBoostView.swift; sourceTree = "<group>"; };
 		479496202AB2076600C42D1E /* PodcastBoostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodcastBoostView.xib; sourceTree = "<group>"; };
 		479496232AB22FD400C42D1E /* ContactLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactLinkView.swift; sourceTree = "<group>"; };
-		479496252AB22FE000C42D1E /* ContactLinkView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactLinkView.xib; sourceTree = "<group>"; };
+		479496272AB33D1200C42D1E /* TribeLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TribeLinkView.swift; sourceTree = "<group>"; };
+		4794962C2AB343C600C42D1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TribeLinkView.xib; sourceTree = "<group>"; };
+		4794962F2AB343C800C42D1E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/TribeLinkView.strings; sourceTree = "<group>"; };
+		479496312AB343C800C42D1E /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/TribeLinkView.strings; sourceTree = "<group>"; };
+		479496332AB343C900C42D1E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/TribeLinkView.strings; sourceTree = "<group>"; };
+		479496352AB343EF00C42D1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ContactLinkView.xib; sourceTree = "<group>"; };
+		479496382AB343F000C42D1E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ContactLinkView.strings; sourceTree = "<group>"; };
+		4794963A2AB343F100C42D1E /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/ContactLinkView.strings; sourceTree = "<group>"; };
+		4794963C2AB343F200C42D1E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/ContactLinkView.strings; sourceTree = "<group>"; };
 		47949BF924AA8E10000D697B /* DeletedMessageSentCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedMessageSentCollectionViewItem.swift; sourceTree = "<group>"; };
 		47949BFD24AA8E2F000D697B /* DeletedMessageReceivedCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedMessageReceivedCollectionViewItem.swift; sourceTree = "<group>"; };
 		47949C0124AA8F4C000D697B /* CommonDeletedMessageCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonDeletedMessageCollectionViewItem.swift; sourceTree = "<group>"; };
@@ -2496,15 +2506,6 @@
 			path = "Podcast Boost";
 			sourceTree = "<group>";
 		};
-		479496222AB22FBB00C42D1E /* Contact Link Preview */ = {
-			isa = PBXGroup;
-			children = (
-				479496232AB22FD400C42D1E /* ContactLinkView.swift */,
-				479496252AB22FE000C42D1E /* ContactLinkView.xib */,
-			);
-			path = "Contact Link Preview";
-			sourceTree = "<group>";
-		};
 		479751C2246C72C100D2106B /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -2921,7 +2922,6 @@
 		47DE1BF12A68138B0029597B /* New Chat View */ = {
 			isa = PBXGroup;
 			children = (
-				479496222AB22FBB00C42D1E /* Contact Link Preview */,
 				4794961D2AB2074F00C42D1E /* Podcast Boost */,
 				474E46672AB0BC5E0098AD24 /* Message Media */,
 				47DE1C352A6AF6BB0029597B /* Shimmering */,
@@ -2989,8 +2989,12 @@
 		47DE1C122A69743C0029597B /* Link Previews */ = {
 			isa = PBXGroup;
 			children = (
+				479496232AB22FD400C42D1E /* ContactLinkView.swift */,
+				479496362AB343EF00C42D1E /* ContactLinkView.xib */,
 				47DE1C132A69744C0029597B /* NewLinkPreviewView.swift */,
 				47DE1C152A6974550029597B /* NewLinkPreviewView.xib */,
+				479496272AB33D1200C42D1E /* TribeLinkView.swift */,
+				4794962D2AB343C600C42D1E /* TribeLinkView.xib */,
 			);
 			path = "Link Previews";
 			sourceTree = "<group>";
@@ -3613,7 +3617,7 @@
 				479A04042588E7F00093DB30 /* TribeLinkPreviewView.xib in Resources */,
 				47DE1C2E2A69E0C10029597B /* MessageBoostImageView.xib in Resources */,
 				4797E82B24BCC0F200D13270 /* Invite.storyboard in Resources */,
-				479496262AB22FE000C42D1E /* ContactLinkView.xib in Resources */,
+				479496342AB343EF00C42D1E /* ContactLinkView.xib in Resources */,
 				4797E87024BCD5B500D13270 /* ChildVCContainer.xib in Resources */,
 				4724BC1A25474BE70012BD76 /* Podcast.storyboard in Resources */,
 				4797E84D24BCD3C600D13270 /* ExpiredInvoiceReceivedCollectionViewItem.xib in Resources */,
@@ -3662,6 +3666,7 @@
 				476AAA962A1E71040092AC87 /* PinMessageDetailView.xib in Resources */,
 				4705D3A427A0707E009C0729 /* RestoreProgressView.xib in Resources */,
 				CE1FA9022A01B7330014360C /* LsatListTableCellView.xib in Resources */,
+				4794962B2AB343C600C42D1E /* TribeLinkView.xib in Resources */,
 				47B6F52D258BCF0A00D64A41 /* PodcastLiveHeaderCollectionViewItem.xib in Resources */,
 				4731BE212485309C00BCCA9E /* DirectPaymentSentCollectionViewItem.xib in Resources */,
 				47DE1C252A6996480029597B /* NewMessageReplyView.xib in Resources */,
@@ -3936,6 +3941,7 @@
 				475723A2247E96DF001ADC7E /* LoadingWheelHelper.swift in Sources */,
 				4731BE2824855E1700BCCA9E /* InvoiceSentCollectionViewItem.swift in Sources */,
 				4720991C24834E0000426028 /* CryptorRSA.swift in Sources */,
+				479496282AB33D1200C42D1E /* TribeLinkView.swift in Sources */,
 				478F07D324E2C7A300EE32A3 /* NSTextView.swift in Sources */,
 				47975207246F1A0F00D2106B /* ChatViewControllerDelegatesExtension.swift in Sources */,
 				475B683A29915DFE000EF29C /* PodcastDestination+Properties.swift in Sources */,
@@ -4481,6 +4487,28 @@
 				CE59E7232A004BF40089D496 /* fil */,
 			);
 			name = PinView.xib;
+			sourceTree = "<group>";
+		};
+		4794962D2AB343C600C42D1E /* TribeLinkView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4794962C2AB343C600C42D1E /* Base */,
+				4794962F2AB343C800C42D1E /* en */,
+				479496312AB343C800C42D1E /* fil */,
+				479496332AB343C900C42D1E /* es */,
+			);
+			name = TribeLinkView.xib;
+			sourceTree = "<group>";
+		};
+		479496362AB343EF00C42D1E /* ContactLinkView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				479496352AB343EF00C42D1E /* Base */,
+				479496382AB343F000C42D1E /* en */,
+				4794963A2AB343F100C42D1E /* fil */,
+				4794963C2AB343F200C42D1E /* es */,
+			);
+			name = ContactLinkView.xib;
 			sourceTree = "<group>";
 		};
 		4797E82624BCC0DA00D13270 /* Groups.storyboard */ = {

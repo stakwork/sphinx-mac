@@ -19,10 +19,12 @@ extension NewChatTableDataSource: NSCollectionViewDelegateFlowLayout {
             rowIndex: indexPath.item
         ) {
             let linkData = (tableCellState.linkWeb?.link != nil) ? self.preloaderHelper.linksData[tableCellState.linkWeb!.link] : nil
+            let tribeData = (tableCellState.linkTribe?.uuid != nil) ? self.preloaderHelper.tribesData[tableCellState.linkTribe!.uuid] : nil
             
             let rowHeight = chatHelper.getRowHeightFor(
                 tableCellState,
-                and: linkData,
+                linkData: linkData,
+                tribeData: tribeData,
                 collectionViewWidth: collectionView.frame.width
             )
             return CGSize(width: collectionView.frame.width, height: rowHeight)

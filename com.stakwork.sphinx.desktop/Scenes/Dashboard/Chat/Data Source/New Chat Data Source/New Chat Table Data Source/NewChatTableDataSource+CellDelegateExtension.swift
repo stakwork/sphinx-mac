@@ -494,13 +494,14 @@ extension NewChatTableDataSource {
             and: rowIndex
         ), let linkTribe = tableCellState.1.linkTribe
         {
+            let bubbleWidth: CGFloat = CommonNewMessageCollectionViewitem.kMaximumLinksBubbleWidth
+            
             preloaderHelper.tribesData[linkTribe.uuid] = MessageTableCellState.TribeData(
                 name: tribeInfo.name ?? "title.not.available".localized,
                 description: tribeInfo.description ?? "description.not.available".localized,
                 imageUrl: tribeInfo.img,
                 showJoinButton: !linkTribe.isJoined,
-                bubbleWidth:
-                    (collectionView.frame.width - (MessageTableCellState.kRowLeftMargin + MessageTableCellState.kRowRightMargin)) * (MessageTableCellState.kBubbleWidthPercentage)
+                bubbleWidth: bubbleWidth
             )
 
             DispatchQueue.main.async {
