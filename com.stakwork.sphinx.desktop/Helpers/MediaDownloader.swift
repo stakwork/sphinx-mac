@@ -100,6 +100,26 @@ class MediaDownloader {
         }
     }
     
+    static func saveImage(url:URL,
+                          completion:@escaping ()->(),
+                          errorCompletion:@escaping ()->()
+    ){
+        MediaLoader.loadDataFrom(URL: url, completion: { data, fileName in
+            let message = TransactionMessage()
+            //message.senderId = 0
+            message.saveFileName(fileName)
+            MediaLoader.loadMediaFromData(data: data, url: url, message: message, completion: { data in
+                DispatchQueue.main.async {
+                    completion()
+                }
+            }, errorCompletion: {_ in errorCompletion() })
+        }, errorCompletion: {
+            DispatchQueue.main.async {
+                errorCompletion()
+            }
+        })
+    }
+    
     static func getGifUrlFrom(message: TransactionMessage) -> URL? {
         if let url = message.getMediaUrl() {
             return url

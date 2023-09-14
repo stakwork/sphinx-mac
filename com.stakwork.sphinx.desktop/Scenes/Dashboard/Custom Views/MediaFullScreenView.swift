@@ -53,6 +53,7 @@ class MediaFullScreenView: NSView, LoadableNib {
     
     var currentMode = ViewMode.Sending
     var message: TransactionMessage? = nil
+    var url:URL? = nil
     
     var fileData: Data? = nil
     var fileName: String = ""
@@ -111,7 +112,7 @@ class MediaFullScreenView: NSView, LoadableNib {
         let height = (size?.height ?? self.frame.height) - kViewMargin
         let width = (size?.width ?? self.frame.width) - kViewMargin
         
-        if imageViewHeightConstraint.constant == height && imageViewWidthConstraint.constant == width {
+        if (imageViewHeightConstraint.constant == height && imageViewWidthConstraint.constant == width) || self.url != nil {
             return
         }
         
@@ -150,13 +151,35 @@ class MediaFullScreenView: NSView, LoadableNib {
     
     func showWith(imageURL:URL,completion: @escaping ()->()){
         loading = true
-        mediaImageView.sd_setImage(with: imageURL,completed: {_,_,_,_ in
+        mediaImageView.sd_setImage(with: imageURL, placeholderImage: nil, options: [.highPriority], completed: { image, _, _, _ in
+            if let imageSize = image?.size {
+                let maxDimension = CGFloat(512 * 1.5)
+                var newWidth = imageSize.width
+                var newHeight = imageSize.height
+                
+                // Check if width exceeds the maximum allowed width
+                if newWidth > maxDimension {
+                    newWidth = maxDimension
+                    // Scale height based on the aspect ratio
+                    newHeight = imageSize.height * (maxDimension / imageSize.width)
+                }
+                
+                // Check if height exceeds the maximum allowed height
+                if newHeight > maxDimension {
+                    newHeight = maxDimension
+                    // Scale width based on the aspect ratio
+                    newWidth = imageSize.width * (maxDimension / imageSize.height)
+                }
+                
+                let newSize = CGSize(width: newWidth, height: newHeight)
+                self.setViewSize(size: newSize)
+            }
+            self.url = imageURL
             self.currentMode = ViewMode.Viewing
-            self.setViewSize()
-            self.loading = false
-            self.mediaImageView.alphaValue = 1.0
-            self.mediaImageView.gravity = .resizeAspect
+            self.saveButton.isHidden = false
+            completion()
         })
+
     }
     
     func showFromData(data: Data, message: TransactionMessage) {
@@ -361,6 +384,15 @@ class MediaFullScreenView: NSView, LoadableNib {
                 DispatchQueue.main.async {
                     NewMessageBubbleHelper().showGenericMessageView(text: alertMessage, in: self)
                 }
+            })
+        }
+        else if let url = url{
+            MediaDownloader.saveImage(url: url,
+            completion: {
+                NewMessageBubbleHelper().showGenericMessageView(text: "Image download successful", in: self)
+            },
+            errorCompletion: {
+                NewMessageBubbleHelper().showGenericMessageView(text: "Image download failed. Please try again.", in: self)
             })
         }
     }

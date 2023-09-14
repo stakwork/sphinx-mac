@@ -476,10 +476,14 @@ extension DashboardViewController : DashboardVCDelegate {
         
         if let mediaFullScreenView = mediaFullScreenView{
             view.addSubview(mediaFullScreenView)
-            
-            mediaFullScreenView.delegate = self
-            mediaFullScreenView.constraintTo(view: view)
-            mediaFullScreenView.showWith(imageURL: imageURL)
+            mediaFullScreenView.showWith(imageURL: imageURL,completion: {
+                mediaFullScreenView.delegate = self
+                mediaFullScreenView.constraintTo(view: self.view)
+                mediaFullScreenView.currentMode = MediaFullScreenView.ViewMode.Viewing
+                mediaFullScreenView.loading = false
+                mediaFullScreenView.mediaImageView.alphaValue = 1.0
+                mediaFullScreenView.mediaImageView.gravity = .resizeAspect
+            })
             mediaFullScreenView.isHidden = false
             
         }
