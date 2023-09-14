@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="21507"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1554,6 +1555,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="570"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <wkWebView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l2C-x4-swX">
+                                <rect key="frame" x="150" y="185" width="300" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="Mgy-N8-CUh"/>
+                                    <constraint firstAttribute="width" constant="300" id="dF6-cX-ebD"/>
+                                </constraints>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="hFm-gq-P1I">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="570"/>
                                 <subviews>
@@ -1769,11 +1781,14 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="hFm-gq-P1I" secondAttribute="bottom" id="BvE-i3-8e7"/>
                             <constraint firstAttribute="trailing" secondItem="hFm-gq-P1I" secondAttribute="trailing" id="Cfh-B6-gFN"/>
+                            <constraint firstItem="l2C-x4-swX" firstAttribute="centerY" secondItem="rwT-W3-Ok3" secondAttribute="centerY" id="dNg-bm-2zH"/>
                             <constraint firstItem="hFm-gq-P1I" firstAttribute="leading" secondItem="rwT-W3-Ok3" secondAttribute="leading" id="o3x-Fk-qPE"/>
                             <constraint firstItem="hFm-gq-P1I" firstAttribute="top" secondItem="rwT-W3-Ok3" secondAttribute="top" id="o6L-fz-XqW"/>
+                            <constraint firstItem="l2C-x4-swX" firstAttribute="centerX" secondItem="rwT-W3-Ok3" secondAttribute="centerX" id="q6m-RG-svu"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="botWebView" destination="l2C-x4-swX" id="SWQ-Is-zlx"/>
                         <outlet property="chatBottomView" destination="VsO-VQ-Xhc" id="cXK-MW-BYo"/>
                         <outlet property="chatCollectionView" destination="i4b-mt-d3a" id="BYY-lT-F1M"/>
                         <outlet property="chatScrollView" destination="pLa-eF-Xok" id="AOl-wj-U2J"/>

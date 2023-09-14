@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import WebKit
 
 class NewChatViewController: DashboardSplittedViewController {
     
@@ -17,6 +18,7 @@ class NewChatViewController: DashboardSplittedViewController {
     @IBOutlet weak var chatBottomView: ChatBottomView!
     @IBOutlet weak var chatScrollView: NSScrollView!
     @IBOutlet weak var chatCollectionView: NSCollectionView!
+    @IBOutlet weak var botWebView: WKWebView!
     
     @IBOutlet weak var mentionsScrollView: NSScrollView!
     @IBOutlet weak var mentionsCollectionView: NSCollectionView!

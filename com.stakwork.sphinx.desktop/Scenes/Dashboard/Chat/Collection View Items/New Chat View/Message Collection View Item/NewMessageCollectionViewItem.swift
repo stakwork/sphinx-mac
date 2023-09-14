@@ -41,12 +41,14 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
     @IBOutlet weak var messageLabelTrailingConstraint: NSLayoutConstraint!
     
     ///Forth Container
+    @IBOutlet weak var botResponseView: BotResponseView!
     @IBOutlet weak var messageBoostView: NewMessageBoostView!
     @IBOutlet weak var linkPreviewView: NewLinkPreviewView!
     @IBOutlet weak var contactLinkPreviewView: ContactLinkView!
     @IBOutlet weak var tribeLinkPreviewView: TribeLinkView!
     
     @IBOutlet weak var widthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var botResponseViewHeightConstraint: NSLayoutConstraint!
     
     let kBubbleMaxWidth: CGFloat = 500
     let kBubbleMinWidth: CGFloat = 250
@@ -89,7 +91,8 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
         configureViewsWidthWith(
             messageCellState: messageCellState,
             linkData: linkData,
-            tribeData: tribeData
+            tribeData: tribeData,
+            webViewData: botWebViewData
         )
         
         ///Status Header
@@ -115,7 +118,7 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
         configureWith(podcastBoost: mutableMessageCellState.podcastBoost)
         configureWith(messageMedia: mutableMessageCellState.messageMedia, mediaData: mediaData, and: bubble)
         configureWith(genericFile: mutableMessageCellState.genericFile, mediaData: mediaData)
-//        configureWith(botHTMLContent: mutableMessageCellState.botHTMLContent, botWebViewData: botWebViewData)
+        configureWith(botHTMLContent: mutableMessageCellState.botHTMLContent, botWebViewData: botWebViewData)
 //        configureWith(audio: mutableMessageCellState.audio, mediaData: mediaData, and: bubble)
 //        configureWith(podcastComment: mutableMessageCellState.podcastComment, mediaData: mediaData, and: bubble)
         

@@ -625,21 +625,25 @@ extension NewChatTableDataSource {
         if let tableCellState = getTableCellStateFor(
             messageId: messageId,
             and: rowIndex
-        ), let messageMedia = tableCellState.1.messageMedia, !messageMedia.isPaymentTemplate {
-            delegate?.shouldGoToMediaFullScreenFor(messageId: messageId)
+        ) {
+            var mutableTableCellState = tableCellState
+            
+            if let messageMedia = mutableTableCellState.1.messageMedia, !messageMedia.isPaymentTemplate {
+                delegate?.shouldGoToMediaFullScreenFor(messageId: messageId)
+            }
         }
     }
     
     func didTapFileDownloadButtonFor(messageId: Int, and rowIndex: Int) {
-        if
-           let cacheData = mediaCached[messageId],
-           let data = cacheData.data,
-           let fileInfo = cacheData.fileInfo
-        {
+//        if
+//           let cacheData = mediaCached[messageId],
+//           let data = cacheData.data,
+//           let fileInfo = cacheData.fileInfo
+//        {
 //            if let url = MediaLoader.saveFileInMemory(data: data, name: fileInfo.fileName) {
 //                delegate?.shouldOpenActivityVCFor(url: url)
 //            }
-        }
+//        }
     }
     
     func didTapTribeButtonFor(messageId: Int, and rowIndex: Int) {

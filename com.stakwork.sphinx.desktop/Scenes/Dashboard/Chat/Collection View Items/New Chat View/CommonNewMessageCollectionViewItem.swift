@@ -29,6 +29,7 @@ class CommonNewMessageCollectionViewitem : NSCollectionViewItem {
     static let kMaximumDirectPaymentWithMediaBubbleWidth: CGFloat = 300
     static let kMaximumDirectPaymentWithTextBubbleWidth: CGFloat = 250
     static let kMaximumDirectPaymentBubbleWidth: CGFloat = 200
+    static let kMaximumWebViewBubbleWidth: CGFloat = 300
     
     override func viewDidLoad() {
         super.viewDidLoad()

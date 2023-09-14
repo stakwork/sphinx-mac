@@ -587,6 +587,7 @@ class ChatHelper {
         _ tableCellState: MessageTableCellState,
         linkData: MessageTableCellState.LinkData? = nil,
         tribeData: MessageTableCellState.TribeData? = nil,
+        botWebViewData: MessageTableCellState.BotWebViewData? = nil,
         collectionViewWidth: CGFloat
     ) -> CGFloat {
         var mutableTableCellState = tableCellState
@@ -611,7 +612,8 @@ class ChatHelper {
         let viewsHeight: CGFloat = getAdditionalViewsHeightFor(
             tableCellState,
             linkData: linkData,
-            tribeData: tribeData
+            tribeData: tribeData,
+            botWebViewData: botWebViewData
         )
         
         return textHeight + (kGeneralMargin * 2) + statusHeaderheight + viewsHeight
@@ -704,8 +706,10 @@ class ChatHelper {
     func getAdditionalViewsHeightFor(
         _ tableCellState: MessageTableCellState,
         linkData: MessageTableCellState.LinkData? = nil,
-        tribeData: MessageTableCellState.TribeData? = nil
+        tribeData: MessageTableCellState.TribeData? = nil,
+        botWebViewData: MessageTableCellState.BotWebViewData? = nil
     ) -> CGFloat {
+        
         var mutableTableCellState = tableCellState
         var viewsHeight: CGFloat = 0.0
         
@@ -759,6 +763,12 @@ class ChatHelper {
         
         if let _ = mutableTableCellState.boosts {
             viewsHeight += NewMessageBoostView.kViewHeight
+        }
+        
+        if let botWebViewData = botWebViewData {
+            viewsHeight += botWebViewData.height
+        } else if let _ = mutableTableCellState.botHTMLContent {
+            viewsHeight += BotResponseView.kViewHeight
         }
         
         return viewsHeight

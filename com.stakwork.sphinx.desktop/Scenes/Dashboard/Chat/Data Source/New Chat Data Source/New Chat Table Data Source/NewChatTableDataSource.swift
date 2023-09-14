@@ -117,7 +117,7 @@ class NewChatTableDataSource : NSObject {
         shimmeringView: ChatShimmeringView,
         headerImage: NSImage?,
         bottomView: NSView,
-//        webView: WKWebView,
+        webView: WKWebView,
         delegate: NewChatTableDataSourceDelegate?
     ) {
         super.init()
@@ -131,7 +131,7 @@ class NewChatTableDataSource : NSObject {
         self.headerImage = headerImage
         self.bottomView = bottomView
         self.shimmeringView = shimmeringView
-//        self.webView = webView
+        self.webView = webView
         
         self.delegate = delegate
         

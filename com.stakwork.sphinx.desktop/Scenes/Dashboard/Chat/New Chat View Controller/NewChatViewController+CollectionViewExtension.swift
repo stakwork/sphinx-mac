@@ -29,7 +29,7 @@ extension NewChatViewController {
             shimmeringView: shimmeringView,
             headerImage: getContactImage(),
             bottomView: chatBottomView,
-//            webView: botWebView,
+            webView: botWebView,
             delegate: self
         )
         
