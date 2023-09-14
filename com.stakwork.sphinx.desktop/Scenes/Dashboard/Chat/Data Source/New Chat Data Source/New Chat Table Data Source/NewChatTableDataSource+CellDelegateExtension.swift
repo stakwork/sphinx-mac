@@ -749,19 +749,19 @@ extension NewChatTableDataSource {
     }
     
     func didTapPlayPauseButtonFor(messageId: Int, and rowIndex: Int) {
-//        if audioPlayerHelper.isPlayingMessageWith(messageId) {
-//            audioPlayerHelper.pausePlayingAudio()
-//        } else {
-//            if let audioData = mediaCached[messageId], let data = audioData.data {
-//                audioPlayerHelper.playAudioFrom(
-//                    data: data,
-//                    messageId: messageId,
-//                    rowIndex: rowIndex,
-//                    atTime: audioData.audioInfo?.currentTime,
-//                    delegate: self
-//                )
-//            }
-//        }
+        if audioPlayerHelper.isPlayingMessageWith(messageId) {
+            audioPlayerHelper.pausePlayingAudio()
+        } else {
+            if let audioData = mediaCached[messageId], let data = audioData.data {
+                audioPlayerHelper.playAudioFrom(
+                    data: data,
+                    messageId: messageId,
+                    rowIndex: rowIndex,
+                    atTime: audioData.audioInfo?.currentTime,
+                    delegate: self
+                )
+            }
+        }
     }
     
     func didTapClipPlayPauseButtonFor(

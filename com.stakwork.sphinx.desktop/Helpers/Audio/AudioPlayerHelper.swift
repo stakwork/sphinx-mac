@@ -107,6 +107,7 @@ class AudioPlayerHelper : NSObject {
     
     @objc func updateCurrentTime() {
         if let audioPlayerDuration = customAudioPlayer.getDuration(), let audioPlayerCurrentTime = customAudioPlayer.getCurrentTime(), audioPlayerDuration > 0 {
+            
             currentTime = audioPlayerCurrentTime
             
             if audioPlayerCurrentTime > 0 {

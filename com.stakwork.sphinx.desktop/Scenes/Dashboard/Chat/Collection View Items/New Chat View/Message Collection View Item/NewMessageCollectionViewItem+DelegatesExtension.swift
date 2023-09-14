@@ -123,6 +123,8 @@ extension NewMessageCollectionViewItem : FileInfoViewDelegate {
 
 extension NewMessageCollectionViewItem : AudioMessageViewDelegate {
     func didTapPlayPauseButton() {
-        
+        if let messageId = messageId {
+            delegate?.didTapPlayPauseButtonFor(messageId: messageId, and: rowIndex)
+        }
     }
 }

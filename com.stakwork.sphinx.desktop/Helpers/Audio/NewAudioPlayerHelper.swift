@@ -103,6 +103,9 @@ class NewAudioPlayerHelper : NSObject {
         if let audioPlayerDuration = customAudioPlayer.getDuration(),
             let audioPlayerCurrentTime = customAudioPlayer.getCurrentTime(), audioPlayerDuration > 0 {
             
+            print("PLAYER DURATION \(audioPlayerDuration)")
+            print("PLAYER CURRENT TIME \(audioPlayerCurrentTime)")
+            
             if audioPlayerCurrentTime > 0 {
                 delegate?.progressCallback(
                     messageId: messageId,
@@ -110,8 +113,9 @@ class NewAudioPlayerHelper : NSObject {
                     duration: audioPlayerDuration,
                     currentTime: audioPlayerCurrentTime
                 )
+            } else {
+                audioDidFinishPlaying()
             }
-            
         } else {
             audioDidFinishPlaying()
         }
