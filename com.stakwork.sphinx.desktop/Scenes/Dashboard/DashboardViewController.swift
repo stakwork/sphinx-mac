@@ -57,6 +57,7 @@ class DashboardViewController: NSViewController {
         leftSplittedView.isHidden = windowState.menuCollapsed
         
         DistributedNotificationCenter.default().addObserver(self, selector: #selector(self.themeChangedNotification(notification:)), name: .onInterfaceThemeChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleImageNotification(_:)), name: .webViewImageClicked, object: nil)
     }
     
     override func viewWillAppear() {
@@ -86,6 +87,7 @@ class DashboardViewController: NSViewController {
         NotificationCenter.default.removeObserver(self, name: .onAuthDeepLink, object: nil)
         NotificationCenter.default.removeObserver(self, name: .onPersonDeepLink, object: nil)
         NotificationCenter.default.removeObserver(self, name: .onSaveProfileDeepLink, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .webViewImageClicked, object: nil)
     }
     
     func handleDeepLink() {
@@ -464,6 +466,30 @@ extension DashboardViewController : DashboardVCDelegate {
             mediaFullScreenView.constraintTo(view: view)
             mediaFullScreenView.showWith(message: message)
             mediaFullScreenView.isHidden = false
+        }
+    }
+    
+    func goToMediaFullView(imageURL:URL){
+        if mediaFullScreenView == nil {
+            mediaFullScreenView = MediaFullScreenView()
+        }
+        
+        if let mediaFullScreenView = mediaFullScreenView{
+            view.addSubview(mediaFullScreenView)
+            
+            mediaFullScreenView.delegate = self
+            mediaFullScreenView.constraintTo(view: view)
+            mediaFullScreenView.showWith(imageURL: imageURL)
+            mediaFullScreenView.isHidden = false
+            
+        }
+    }
+    
+    @objc func handleImageNotification(_ notification: Notification) {
+        if let imageURL = notification.userInfo?["imageURL"] as? URL {
+            // Handle the imageURL here, e.g., load an image from the URL
+            print("Received imageURL: \(imageURL)")
+            goToMediaFullView(imageURL: imageURL)
         }
     }
     

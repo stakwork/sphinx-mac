@@ -20,4 +20,30 @@ class BotWebView : WKWebView {
         self.contentString = string
         return super.loadHTMLString(string, baseURL: baseURL)
     }
+    
+    override func mouseDown(with event: NSEvent) {
+        // Define a regular expression pattern to match the src attribute within an <img> tag
+        let srcPattern = #"src="([^"]+)""#
+
+        // Create a regular expression object
+        if let regex = try? NSRegularExpression(pattern: srcPattern, options: .caseInsensitive),
+           let contentString = contentString {
+            // Find matches in the contentString
+            let matches = regex.matches(in: contentString, options: [], range: NSRange(location: 0, length: contentString.utf16.count))
+
+            // Loop through the matches and extract the src attribute
+            for match in matches {
+                if let srcRange = Range(match.range(at: 1), in: contentString) {
+                    let srcAttribute = contentString[srcRange]
+                    print("Found src attribute: \(srcAttribute)")
+                    if let url = URL(string: String(srcAttribute)){
+                        NotificationCenter.default.post(name: .webViewImageClicked, object: nil, userInfo: ["imageURL": url])
+                    }
+                }
+            }
+        }
+
+        super.mouseDown(with: event)
+    }
+
 }

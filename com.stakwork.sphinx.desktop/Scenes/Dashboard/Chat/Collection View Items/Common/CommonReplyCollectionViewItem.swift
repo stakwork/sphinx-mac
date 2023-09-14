@@ -9,7 +9,6 @@
 import Cocoa
 
 class CommonReplyCollectionViewItem : CommonChatCollectionViewItem {
-    
     var replyBubbleView : MessageBubbleView? = nil
     
     func addReplyBubble(relativeTo view: NSView) {

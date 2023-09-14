@@ -148,6 +148,17 @@ class MediaFullScreenView: NSView, LoadableNib {
         hideMediaFullScreenView()
     }
     
+    func showWith(imageURL:URL,completion: @escaping ()->()){
+        loading = true
+        mediaImageView.sd_setImage(with: imageURL,completed: {_,_,_,_ in
+            self.currentMode = ViewMode.Viewing
+            self.setViewSize()
+            self.loading = false
+            self.mediaImageView.alphaValue = 1.0
+            self.mediaImageView.gravity = .resizeAspect
+        })
+    }
+    
     func showFromData(data: Data, message: TransactionMessage) {
         if message.isGif() {
             showGif(data: data)
