@@ -66,6 +66,8 @@ extension NewMessageCollectionViewItem {
             widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumPodcastBoostBubbleWidth
         } else if let _ = mutableCellState.genericFile {
             widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumGenericFileBubbleWidth
+        } else if let _ = mutableCellState.contactLink {
+            widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumLinksBubbleWidth
         } else if let _ = linkData {
             widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumLinksBubbleWidth
         } else if let _ = tribeData {
