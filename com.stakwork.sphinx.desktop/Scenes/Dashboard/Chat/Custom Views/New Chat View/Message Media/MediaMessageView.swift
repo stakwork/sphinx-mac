@@ -92,8 +92,8 @@ class MediaMessageView: NSView, LoadableNib {
             gifOverlay.isHidden = !messageMedia.isGif || mediaData.failed
             videoOverlay.isHidden = !messageMedia.isVideo || mediaData.failed
             
-            mediaImageView.image = mediaData.image
             mediaImageView.gravity = messageMedia.isPaymentTemplate ? .resizeAspect : .resizeAspectFill
+            mediaImageView.image = mediaData.image
             
             if let fileInfo = mediaData.fileInfo {
                 fileInfoView.configure(fileInfo: fileInfo)

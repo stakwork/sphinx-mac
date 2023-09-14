@@ -622,7 +622,12 @@ extension NewChatTableDataSource {
         messageId: Int,
         and rowIndex: Int
     ) {
-        delegate?.shouldGoToMediaFullScreenFor(messageId: messageId)
+        if let tableCellState = getTableCellStateFor(
+            messageId: messageId,
+            and: rowIndex
+        ), let messageMedia = tableCellState.1.messageMedia, !messageMedia.isPaymentTemplate {
+            delegate?.shouldGoToMediaFullScreenFor(messageId: messageId)
+        }
     }
     
     func didTapFileDownloadButtonFor(messageId: Int, and rowIndex: Int) {
