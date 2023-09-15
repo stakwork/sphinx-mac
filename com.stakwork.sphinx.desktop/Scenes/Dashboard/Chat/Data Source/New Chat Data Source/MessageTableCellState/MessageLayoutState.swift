@@ -345,18 +345,18 @@ struct BubbleMessageLayoutState {
         var price: Int
         var statusTitle: String
         var status: TransactionMessage.TransactionMessageType
-        var isSentTextMessage: Bool
+        var shouldAddPadding: Bool
         
         init(
             price: Int,
             statusTitle: String,
             status: TransactionMessage.TransactionMessageType,
-            isSentTextMessage: Bool
+            shouldAddPadding: Bool
         ) {
             self.price = price
             self.statusTitle = statusTitle
             self.status = status
-            self.isSentTextMessage = isSentTextMessage
+            self.shouldAddPadding = shouldAddPadding
         }
         
         func isPurchaseAccepted() -> Bool {

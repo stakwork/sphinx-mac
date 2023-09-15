@@ -81,6 +81,8 @@ extension NewMessageCollectionViewItem {
             widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumWebViewBubbleWidth
         } else if let _ = webViewData {
             widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumWebViewBubbleWidth
+        } else if let _ = mutableCellState.messageContent, let _ = mutableCellState.paidContent {
+            widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumPaidTextViewBubbleWidth
         } else {
             widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumLabelBubbleWidth
         }
@@ -93,8 +95,8 @@ extension NewMessageCollectionViewItem {
 //        invoicePaymentView.isHidden = true
 //        invoiceView.isHidden = true
         messageReplyView.isHidden = true
-//        sentPaidDetailsView.isHidden = true
-//        paidTextMessageView.isHidden = true
+        sentPaidDetailsView.isHidden = true
+        paidTextMessageView.isHidden = true
         directPaymentView.isHidden = true
         mediaMessageView.isHidden = true
         fileDetailsView.isHidden = true

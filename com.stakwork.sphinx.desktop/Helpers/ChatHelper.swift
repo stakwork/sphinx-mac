@@ -695,6 +695,11 @@ class ChatHelper {
                 CommonNewMessageCollectionViewitem.kMaximumPodcastAudioBubbleWidth,
                 collectionViewWidth - 80
             )
+        } else if let _ = mutableTableCellState.messageContent, let _ = mutableTableCellState.paidContent {
+            maxWidth = min(
+                CommonNewMessageCollectionViewitem.kMaximumPaidTextViewBubbleWidth,
+                collectionViewWidth - 80
+            )
         }
         
         if let text = mutableTableCellState.messageContent?.text, text.isNotEmpty {
@@ -732,6 +737,10 @@ class ChatHelper {
         
         if let _ = mutableTableCellState.podcastComment {
             viewsHeight += PodcastAudioView.kViewHeight
+        }
+        
+        if let paidContent = mutableTableCellState.paidContent, paidContent.shouldAddPadding {
+            viewsHeight += SentPaidDetails.kViewHeight
         }
         
         if let _ = mutableTableCellState.messageMedia {

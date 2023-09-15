@@ -28,6 +28,8 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
     @IBOutlet weak var messageReplyView: NewMessageReplyView!
     
     ///Second Container
+    @IBOutlet weak var sentPaidDetailsView: SentPaidDetails!
+    @IBOutlet weak var paidTextMessageView: NSView!
     @IBOutlet weak var directPaymentView: DirectPaymentView!
     @IBOutlet weak var audioMessageView: AudioMessageView!
     @IBOutlet weak var podcastAudioView: PodcastAudioView!
@@ -108,9 +110,9 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
         
         ///Message Reply
         configureWith(messageReply: mutableMessageCellState.messageReply, and: bubble)
-//
-//        ///Paid Content
-//        configureWith(paidContent: mutableMessageCellState.paidContent, and: bubble)
+
+        ///Paid Content
+        configureWith(paidContent: mutableMessageCellState.paidContent, and: bubble)
 //
 //        ///Message types
 //        configureWith(payment: mutableMessageCellState.payment, and: bubble)

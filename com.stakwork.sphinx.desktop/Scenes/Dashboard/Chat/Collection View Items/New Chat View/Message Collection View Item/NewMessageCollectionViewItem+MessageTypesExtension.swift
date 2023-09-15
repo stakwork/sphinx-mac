@@ -203,6 +203,16 @@ extension NewMessageCollectionViewItem {
             }
             
             textMessageView.isHidden = false
+            
+            if let messageId = messageId, messageContent.shouldLoadPaidText {
+                let delayTime = DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+                DispatchQueue.global().asyncAfter(deadline: delayTime) {
+                    self.delegate?.shouldLoadTextDataFor(
+                        messageId: messageId,
+                        and: self.rowIndex
+                    )
+                }
+            }
         }
 
 //        let tap = UITapGestureRecognizer(target: self, action: #selector(labelTapped(gesture:)))
@@ -325,6 +335,23 @@ extension NewMessageCollectionViewItem {
                     )
                 }
             }
+        }
+    }
+    
+    func configureWith(
+        paidContent: BubbleMessageLayoutState.PaidContent?,
+        and bubble: BubbleMessageLayoutState.Bubble
+    ) {
+        if let paidContent = paidContent {
+            if bubble.direction.isIncoming() {
+//                paidAttachmentView.configure(paidContent: paidContent, and: self)
+//                paidAttachmentView.isHidden = false
+            } else {
+                sentPaidDetailsView.configureWith(paidContent: paidContent)
+                sentPaidDetailsView.isHidden = false
+            }
+            
+            paidTextMessageView.isHidden = !paidContent.shouldAddPadding
         }
     }
 }
