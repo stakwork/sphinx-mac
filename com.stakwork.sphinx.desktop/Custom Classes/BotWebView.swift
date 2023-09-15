@@ -11,6 +11,7 @@ import WebKit
 
 class BotWebView : WKWebView {
     var contentString: String? = ""
+    var message : TransactionMessage? = nil
     
     override func scrollWheel(with event: NSEvent) {
         self.nextResponder?.scrollWheel(with: event)
@@ -37,7 +38,7 @@ class BotWebView : WKWebView {
                     let srcAttribute = contentString[srcRange]
                     print("Found src attribute: \(srcAttribute)")
                     if let url = URL(string: String(srcAttribute)){
-                        NotificationCenter.default.post(name: .webViewImageClicked, object: nil, userInfo: ["imageURL": url])
+                        NotificationCenter.default.post(name: .webViewImageClicked, object: nil, userInfo: ["imageURL": url,"transactionMessage":message])
                     }
                 }
             }

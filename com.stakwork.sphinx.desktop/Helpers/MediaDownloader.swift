@@ -101,22 +101,20 @@ class MediaDownloader {
     }
     
     static func saveImage(url:URL,
+                          message:TransactionMessage,
                           completion:@escaping ()->(),
                           errorCompletion:@escaping ()->()
     ){
-        MediaLoader.loadDataFrom(URL: url, completion: { data, fileName in
-            let message = TransactionMessage()
-            //message.senderId = 0
-            message.saveFileName(fileName)
-            MediaLoader.loadMediaFromData(data: data, url: url, message: message, completion: { data in
-                DispatchQueue.main.async {
-                    completion()
-                }
-            }, errorCompletion: {_ in errorCompletion() })
-        }, errorCompletion: {
-            DispatchQueue.main.async {
+        let fileName = getFileName()
+        MediaLoader.loadImage(url: url, message: message, completion: { (_, image) in
+            if let imgData = image.tiffRepresentation(using: .jpeg, factor: 1) {
+                let success = saveFile(data: imgData, name: "\(String(describing: fileName)).jpg")
+                completion()
+            } else {
                 errorCompletion()
             }
+        }, errorCompletion: { _ in
+            errorCompletion()
         })
     }
     

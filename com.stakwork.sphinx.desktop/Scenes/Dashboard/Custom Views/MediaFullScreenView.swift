@@ -149,7 +149,7 @@ class MediaFullScreenView: NSView, LoadableNib {
         hideMediaFullScreenView()
     }
     
-    func showWith(imageURL:URL,completion: @escaping ()->()){
+    func showWith(imageURL:URL,message:TransactionMessage,completion: @escaping ()->()){
         loading = true
         mediaImageView.sd_setImage(with: imageURL, placeholderImage: nil, options: [.highPriority], completed: { image, _, _, _ in
             if let imageSize = image?.size {
@@ -175,6 +175,7 @@ class MediaFullScreenView: NSView, LoadableNib {
                 self.setViewSize(size: newSize)
             }
             self.url = imageURL
+            self.message = message
             self.currentMode = ViewMode.Viewing
             self.saveButton.isHidden = false
             completion()
@@ -379,22 +380,30 @@ class MediaFullScreenView: NSView, LoadableNib {
     }
     
     @IBAction func saveButtonClicked(_ sender: Any) {
-        if let message = message {
+        let itemType = "image".localized
+        let successfulllySave = String(format: "item.successfully.saved".localized, itemType)
+        let errorSaving = String(format: "error.saving.item".localized, itemType)
+        
+        if let url = url,
+        let message = message{
+            MediaDownloader.saveImage(
+                url: url,
+                message: message,
+            completion: {
+                NewMessageBubbleHelper().showGenericMessageView(text: successfulllySave, in: self)
+            },
+            errorCompletion: {
+                NewMessageBubbleHelper().showGenericMessageView(text: errorSaving, in: self)
+            })
+        }
+        else if let message = message {
             MediaDownloader.shouldSaveFile(message: message, completion: { (success, alertMessage) in
                 DispatchQueue.main.async {
                     NewMessageBubbleHelper().showGenericMessageView(text: alertMessage, in: self)
                 }
             })
         }
-        else if let url = url{
-            MediaDownloader.saveImage(url: url,
-            completion: {
-                NewMessageBubbleHelper().showGenericMessageView(text: "Image download successful", in: self)
-            },
-            errorCompletion: {
-                NewMessageBubbleHelper().showGenericMessageView(text: "Image download failed. Please try again.", in: self)
-            })
-        }
+        
     }
     
     @IBAction func closeButtonClicked(_ sender: Any) {

@@ -469,14 +469,14 @@ extension DashboardViewController : DashboardVCDelegate {
         }
     }
     
-    func goToMediaFullView(imageURL:URL){
+    func goToMediaFullView(imageURL:URL,message:TransactionMessage){
         if mediaFullScreenView == nil {
             mediaFullScreenView = MediaFullScreenView()
         }
         
         if let mediaFullScreenView = mediaFullScreenView{
             view.addSubview(mediaFullScreenView)
-            mediaFullScreenView.showWith(imageURL: imageURL,completion: {
+            mediaFullScreenView.showWith(imageURL: imageURL, message: message,completion: {
                 mediaFullScreenView.delegate = self
                 mediaFullScreenView.constraintTo(view: self.view)
                 mediaFullScreenView.currentMode = MediaFullScreenView.ViewMode.Viewing
@@ -490,10 +490,13 @@ extension DashboardViewController : DashboardVCDelegate {
     }
     
     @objc func handleImageNotification(_ notification: Notification) {
-        if let imageURL = notification.userInfo?["imageURL"] as? URL {
-            // Handle the imageURL here, e.g., load an image from the URL
+        if let imageURL = notification.userInfo?["imageURL"] as? URL,
+           let message = notification.userInfo?["transactionMessage"] as? TransactionMessage{
             print("Received imageURL: \(imageURL)")
-            goToMediaFullView(imageURL: imageURL)
+            goToMediaFullView(imageURL: imageURL,message: message)
+        }
+        else{
+            NewMessageBubbleHelper().showGenericMessageView(text: "Error pulling image data.")
         }
     }
     
