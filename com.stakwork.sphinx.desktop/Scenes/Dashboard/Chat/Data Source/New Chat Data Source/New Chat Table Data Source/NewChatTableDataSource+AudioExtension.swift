@@ -145,6 +145,8 @@ extension NewChatTableDataSource : PlayerDelegate {
         currentTime: Double?,
         clipInfo: PodcastData.ClipInfo? = nil
     ) {
+        print("PLAYING \(playing)")
+        
         guard let clipInfo = clipInfo else {
             return
         }

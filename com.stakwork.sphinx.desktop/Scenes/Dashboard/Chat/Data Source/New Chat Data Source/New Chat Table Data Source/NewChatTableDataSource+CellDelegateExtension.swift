@@ -769,35 +769,35 @@ extension NewChatTableDataSource {
         and rowIndex: Int,
         atTime time: Double
     ) {
-//        podcastPlayerController.addDelegate(
-//            self,
-//            withKey: PodcastDelegateKeys.ChatDataSource.rawValue
-//        )
-//
-//        updatePodcastInfoFor(
-//            loading: true,
-//            playing: false,
-//            duration: nil,
-//            currentTime: nil,
-//            messageId: messageId,
-//            rowIndex: rowIndex
-//        )
-//
-//        if let podcastData = getPodcastDataFrom(
-//            messageId: messageId,
-//            and: rowIndex,
-//            atTime: time
-//        ) {
-//            if podcastPlayerController.isPlaying(messageId: messageId) {
-//                podcastPlayerController.submitAction(
-//                    UserAction.Pause(podcastData)
-//                )
-//            } else {
-//                podcastPlayerController.submitAction(
-//                    UserAction.Play(podcastData)
-//                )
-//            }
-//        }
+        podcastPlayerController.addDelegate(
+            self,
+            withKey: PodcastDelegateKeys.ChatDataSource.rawValue
+        )
+
+        updatePodcastInfoFor(
+            loading: true,
+            playing: false,
+            duration: nil,
+            currentTime: nil,
+            messageId: messageId,
+            rowIndex: rowIndex
+        )
+
+        if let podcastData = getPodcastDataFrom(
+            messageId: messageId,
+            and: rowIndex,
+            atTime: time
+        ) {
+            if podcastPlayerController.isPlaying(messageId: messageId) {
+                podcastPlayerController.submitAction(
+                    UserAction.Pause(podcastData)
+                )
+            } else {
+                podcastPlayerController.submitAction(
+                    UserAction.Play(podcastData)
+                )
+            }
+        }
     }
     
     func shouldSeekClipFor(

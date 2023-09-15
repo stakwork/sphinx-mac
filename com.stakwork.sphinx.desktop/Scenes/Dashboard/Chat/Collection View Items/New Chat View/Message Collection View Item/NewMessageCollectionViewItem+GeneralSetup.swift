@@ -63,6 +63,8 @@ extension NewMessageCollectionViewItem {
             widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumMediaBubbleWidth
         } else if let _ = mutableCellState.audio {
             widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumAudioBubbleWidth
+        } else if let _ = mutableCellState.podcastComment {
+            widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumPodcastAudioBubbleWidth
         } else if let _ = mutableCellState.callLink {
             widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumCallLinkBubbleWidth
         } else if let _ = mutableCellState.podcastBoost {
@@ -97,7 +99,7 @@ extension NewMessageCollectionViewItem {
         mediaMessageView.isHidden = true
         fileDetailsView.isHidden = true
         audioMessageView.isHidden = true
-//        podcastAudioView.isHidden = true
+        podcastAudioView.isHidden = true
         callLinkView.isHidden = true
         podcastBoostView.isHidden = true
         botResponseView.isHidden = true

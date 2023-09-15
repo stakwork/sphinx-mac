@@ -227,6 +227,12 @@ extension PodcastPlayerController {
         return ((player?.currentItem?.asset) as? AVURLAsset)?.url.absoluteString == episodeUrl.absoluteString
     }
     
+    func isPlaying(
+        messageId: Int
+    ) -> Bool {
+        return isPlaying && podcastData?.clipInfo?.messageId == messageId
+    }
+    
     func isPlayingRecommendations() -> Bool {
 //        return isPlaying && podcastData?.podcastId == RecommendationsHelper.kRecommendationPodcastId
         return false

@@ -128,3 +128,11 @@ extension NewMessageCollectionViewItem : AudioMessageViewDelegate {
         }
     }
 }
+
+extension NewMessageCollectionViewItem : PodcastAudioViewDelegate {
+    func didTapClipPlayPauseButtonAt(time: Double) {
+        if let messageId = messageId {
+            delegate?.didTapClipPlayPauseButtonFor(messageId: messageId, and: rowIndex, atTime: time)
+        }
+    }
+}

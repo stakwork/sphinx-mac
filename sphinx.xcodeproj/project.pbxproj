@@ -384,6 +384,8 @@
 		479496462AB38CF200C42D1E /* BotResponseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479496452AB38CF200C42D1E /* BotResponseView.xib */; };
 		479496492AB3A59500C42D1E /* AudioMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479496482AB3A59500C42D1E /* AudioMessageView.swift */; };
 		4794964B2AB3A59C00C42D1E /* AudioMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4794964A2AB3A59C00C42D1E /* AudioMessageView.xib */; };
+		4794964D2AB4930F00C42D1E /* PodcastAudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4794964C2AB4930F00C42D1E /* PodcastAudioView.swift */; };
+		4794964F2AB4931700C42D1E /* PodcastAudioView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4794964E2AB4931700C42D1E /* PodcastAudioView.xib */; };
 		47949BFB24AA8E10000D697B /* DeletedMessageSentCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47949BF924AA8E10000D697B /* DeletedMessageSentCollectionViewItem.swift */; };
 		47949BFF24AA8E2F000D697B /* DeletedMessageReceivedCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47949BFD24AA8E2F000D697B /* DeletedMessageReceivedCollectionViewItem.swift */; };
 		47949C0224AA8F4C000D697B /* CommonDeletedMessageCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47949C0124AA8F4C000D697B /* CommonDeletedMessageCollectionViewItem.swift */; };
@@ -1160,6 +1162,8 @@
 		479496452AB38CF200C42D1E /* BotResponseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BotResponseView.xib; sourceTree = "<group>"; };
 		479496482AB3A59500C42D1E /* AudioMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMessageView.swift; sourceTree = "<group>"; };
 		4794964A2AB3A59C00C42D1E /* AudioMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioMessageView.xib; sourceTree = "<group>"; };
+		4794964C2AB4930F00C42D1E /* PodcastAudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastAudioView.swift; sourceTree = "<group>"; };
+		4794964E2AB4931700C42D1E /* PodcastAudioView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodcastAudioView.xib; sourceTree = "<group>"; };
 		47949BF924AA8E10000D697B /* DeletedMessageSentCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedMessageSentCollectionViewItem.swift; sourceTree = "<group>"; };
 		47949BFD24AA8E2F000D697B /* DeletedMessageReceivedCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedMessageReceivedCollectionViewItem.swift; sourceTree = "<group>"; };
 		47949C0124AA8F4C000D697B /* CommonDeletedMessageCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonDeletedMessageCollectionViewItem.swift; sourceTree = "<group>"; };
@@ -2541,6 +2545,8 @@
 			children = (
 				479496482AB3A59500C42D1E /* AudioMessageView.swift */,
 				4794964A2AB3A59C00C42D1E /* AudioMessageView.xib */,
+				4794964C2AB4930F00C42D1E /* PodcastAudioView.swift */,
+				4794964E2AB4931700C42D1E /* PodcastAudioView.xib */,
 			);
 			path = "Audio View";
 			sourceTree = "<group>";
@@ -3609,6 +3615,7 @@
 				4797E83224BCC10000D13270 /* Pin.storyboard in Resources */,
 				47E771262472C27200C9CFEB /* MessageSentCollectionViewItem.xib in Resources */,
 				4731BE3D24859AD300BCCA9E /* PaidInvoiceSentCollectionViewItem.xib in Resources */,
+				4794964F2AB4931700C42D1E /* PodcastAudioView.xib in Resources */,
 				4797E8A124BCFE1C00D13270 /* DeletedMessageReceivedCollectionViewItem.xib in Resources */,
 				4787F8A2247C16C600CCE8B9 /* ChatSmallAvatarView.xib in Resources */,
 				47DE1BF02A67139D0029597B /* NewOnlyTextMessageCollectionViewitem.xib in Resources */,
@@ -4235,6 +4242,7 @@
 				473633F02555DCEE007405F2 /* PodcastSatsView.swift in Sources */,
 				4758189E28ECA956006F32A2 /* CreateTribeViewModel.swift in Sources */,
 				475B681729915D01000EF29C /* ContentFeed+CoreDataClass.swift in Sources */,
+				4794964D2AB4930F00C42D1E /* PodcastAudioView.swift in Sources */,
 				47F8824C25656CB0002A7E71 /* SocketParsable.swift in Sources */,
 				474567FD251507F500D66268 /* FileSentCollectionViewItem.swift in Sources */,
 				47FEE21E2A66F35200646C4E /* NewAudioPlayerHelper.swift in Sources */,

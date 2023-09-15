@@ -30,6 +30,7 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
     ///Second Container
     @IBOutlet weak var directPaymentView: DirectPaymentView!
     @IBOutlet weak var audioMessageView: AudioMessageView!
+    @IBOutlet weak var podcastAudioView: PodcastAudioView!
     @IBOutlet weak var mediaMessageView: MediaMessageView!
     @IBOutlet weak var fileDetailsView: FileInfoView!
     @IBOutlet weak var callLinkView: JoinVideoCallView!
@@ -121,7 +122,7 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
         configureWith(genericFile: mutableMessageCellState.genericFile, mediaData: mediaData)
         configureWith(botHTMLContent: mutableMessageCellState.botHTMLContent, botWebViewData: botWebViewData)
         configureWith(audio: mutableMessageCellState.audio, mediaData: mediaData, and: bubble)
-//        configureWith(podcastComment: mutableMessageCellState.podcastComment, mediaData: mediaData, and: bubble)
+        configureWith(podcastComment: mutableMessageCellState.podcastComment, mediaData: mediaData, and: bubble)
         
         ///Bottom view
         configureWith(boosts: mutableMessageCellState.boosts, and: bubble)

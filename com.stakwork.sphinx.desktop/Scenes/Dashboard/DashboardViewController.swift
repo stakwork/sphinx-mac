@@ -435,6 +435,8 @@ extension DashboardViewController : DashboardVCDelegate {
         }
         
         if let detailViewController = newDetailViewController {
+            detailViewController.resetVC()
+            
             self.removeChildVC(child: detailViewController)
         }
         

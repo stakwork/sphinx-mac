@@ -258,6 +258,12 @@ extension PodcastPlayerController {
         invalidateTime()
     }
     
+    func pausePlayingClip() {
+        if let podcastData = podcastData, let _ = podcastData.clipInfo?.messageId {
+            pausePlaying()
+        }
+    }
+    
     func seek(
         _ podcastData: PodcastData
     ) {
@@ -331,7 +337,13 @@ extension PodcastPlayerController {
             return
         }
         
-        for d in self.delegates.values {
+        for (k, d) in self.delegates {
+            
+            ///Avoid calling delegates when playing chat clip
+            if let _ = podcastData.clipInfo?.messageId, k != PodcastDelegateKeys.ChatDataSource.rawValue {
+                continue
+            }
+            
             d.loadingState(podcastData)
         }
     }
@@ -343,7 +355,13 @@ extension PodcastPlayerController {
             return
         }
         
-        for d in self.delegates.values {
+        for (k, d) in self.delegates {
+            
+            ///Avoid calling delegates when playing chat clip
+            if let _ = podcastData.clipInfo?.messageId, k != PodcastDelegateKeys.ChatDataSource.rawValue {
+                continue
+            }
+            
             d.playingState(podcastData)
         }
     }
@@ -355,7 +373,13 @@ extension PodcastPlayerController {
             return
         }
         
-        for d in self.delegates.values {
+        for (k, d) in self.delegates {
+            
+            ///Avoid calling delegates when playing chat clip
+            if let _ = podcastData.clipInfo?.messageId, k != PodcastDelegateKeys.ChatDataSource.rawValue {
+                continue
+            }
+            
             d.pausedState(podcastData)
         }
         
@@ -369,7 +393,13 @@ extension PodcastPlayerController {
             return
         }
         
-        for d in self.delegates.values {
+        for (k, d) in self.delegates {
+            
+            ///Avoid calling delegates when playing chat clip
+            if let _ = podcastData.clipInfo?.messageId, k != PodcastDelegateKeys.ChatDataSource.rawValue {
+                continue
+            }
+            
             d.endedState(podcastData)
         }
         
@@ -383,7 +413,13 @@ extension PodcastPlayerController {
             return
         }
         
-        for d in self.delegates.values {
+        for (k, d) in self.delegates {
+            
+            ///Avoid calling delegates when playing chat clip
+            if let _ = podcastData.clipInfo?.messageId, k != PodcastDelegateKeys.ChatDataSource.rawValue {
+                continue
+            }
+            
             d.errorState(podcastData)
         }
     }

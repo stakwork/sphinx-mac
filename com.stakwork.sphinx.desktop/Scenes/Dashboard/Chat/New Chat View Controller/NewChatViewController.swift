@@ -84,6 +84,16 @@ class NewChatViewController: DashboardSplittedViewController {
         chatTableDataSource?.updateFrame()
     }
     
+    func resetVC() {
+        stopPlayingClip()
+    }
+    
+    func stopPlayingClip() {
+        let podcastPlayerController = PodcastPlayerController.sharedInstance
+        podcastPlayerController.removeFromDelegatesWith(key: PodcastDelegateKeys.ChatDataSource.rawValue)
+        podcastPlayerController.pausePlayingClip()
+    }
+    
     func addShimmeringView() {
         if chat != nil || contact != nil {
             shimmeringView.isHidden = false
