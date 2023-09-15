@@ -10,7 +10,7 @@ import Cocoa
 
 protocol PodcastAudioViewDelegate: AnyObject {
     func didTapClipPlayPauseButtonAt(time: Double)
-//    func shouldSeekTo(time: Double)
+    func shouldSeekTo(time: Double)
 }
 
 class PodcastAudioView: NSView, LoadableNib {
@@ -29,12 +29,11 @@ class PodcastAudioView: NSView, LoadableNib {
     @IBOutlet weak var durationView: NSBox!
     @IBOutlet weak var progressView: NSBox!
     @IBOutlet weak var currentTimeView: NSBox!
+    @IBOutlet weak var mouseDraggableView: MouseDraggableView!
     @IBOutlet weak var progressViewWidthConstraint: NSLayoutConstraint!
 
-//    @IBOutlet weak var tapHandlerView: UIView!
-    
     var audioInfo: MessageTableCellState.AudioInfo? = nil
-    var preventUIUpdates = false
+    var dragging = false
     
     static let kViewHeight: CGFloat = 80
     
@@ -133,7 +132,7 @@ class PodcastAudioView: NSView, LoadableNib {
             loading: audioInfo.loading && !audioInfo.playing
         )
         
-        if preventUIUpdates {
+        if dragging {
             return
         }
         
@@ -144,6 +143,8 @@ class PodcastAudioView: NSView, LoadableNib {
         let progress = audioInfo.currentTime * 1 / audioInfo.duration
         progressViewWidthConstraint.constant = progressBarWidth * progress
         progressView.layoutSubtreeIfNeeded()
+        
+        mouseDraggableView.delegate = self
     }
     
     func configureTimeWith(
@@ -159,12 +160,13 @@ class PodcastAudioView: NSView, LoadableNib {
         
         let progressBarWidth = kDurationViewWidth
         progressViewWidthConstraint.constant = progressBarWidth * progress
+        progressView.layoutSubtreeIfNeeded()
         
         if shouldSync {
-//            delegate?.shouldSeekTo(time: currentTime)
-            
+            delegate?.shouldSeekTo(time: currentTime)
+
             DelayPerformedHelper.performAfterDelay(seconds: 1.0, completion: {
-                self.preventUIUpdates = false
+                self.dragging = false
             })
         }
     }
@@ -188,7 +190,7 @@ class PodcastAudioView: NSView, LoadableNib {
             return
         }
 
-        preventUIUpdates = true
+        dragging = true
 
         let progressBarWidth = kDurationViewWidth
         let progress = progressViewWidthConstraint.constant / progressBarWidth
@@ -197,8 +199,37 @@ class PodcastAudioView: NSView, LoadableNib {
         delegate?.didTapClipPlayPauseButtonAt(time: currentTime)
 
         DelayPerformedHelper.performAfterDelay(seconds: 1.0, completion: {
-            self.preventUIUpdates = false
+            self.dragging = false
         })
     }
     
+}
+
+extension PodcastAudioView : MouseDraggableViewDelegate {
+    func mouseDownOn(x: CGFloat) {
+        dragging = true
+        mouseDraggedOn(x: x)
+    }
+    
+    func mouseUpOn(x: CGFloat) {
+        dragging = false
+        
+        let progressBarWidth = kDurationViewWidth
+        let progress = ((progressViewWidthConstraint.constant * 100) / progressBarWidth) / 100
+        
+        configureTimeWith(progress: progress, shouldSync: true)
+    }
+    
+    func mouseDraggedOn(x: CGFloat) {
+        let totalProgressWidth = kDurationViewWidth
+        let translation = (x < 0) ? 0 : ((x > totalProgressWidth) ? totalProgressWidth : x)
+        
+        if !translation.isFinite || translation < 0 {
+            return
+        }
+
+        let progress = ((translation * 100) / totalProgressWidth) / 100
+        
+        configureTimeWith(progress: progress)
+    }
 }

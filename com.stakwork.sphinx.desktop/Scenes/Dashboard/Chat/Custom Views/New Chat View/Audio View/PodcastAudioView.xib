@@ -16,6 +16,7 @@
                 <outlet property="endTimeLabel" destination="6np-4N-WjX" id="X49-ek-wkB"/>
                 <outlet property="episodeTitleLabel" destination="hNI-a5-cLW" id="UmQ-hd-Ovi"/>
                 <outlet property="loadingWheel" destination="dgc-CB-U81" id="bfl-XQ-Ghh"/>
+                <outlet property="mouseDraggableView" destination="H4b-SL-0oY" id="ChB-2s-hma"/>
                 <outlet property="playButton" destination="FFa-lc-k83" id="v9z-u0-JZC"/>
                 <outlet property="playButtonView" destination="Lfe-Sa-q10" id="0tG-Da-pjP"/>
                 <outlet property="progressView" destination="eqb-kF-ZSu" id="jKT-cY-blT"/>
@@ -69,6 +70,7 @@
                                         <constraint firstItem="dgc-CB-U81" firstAttribute="centerY" secondItem="Lfe-Sa-q10" secondAttribute="centerY" id="AcR-Ce-xpk"/>
                                         <constraint firstItem="FFa-lc-k83" firstAttribute="centerX" secondItem="Lfe-Sa-q10" secondAttribute="centerX" id="Iaw-ry-5w6"/>
                                         <constraint firstItem="FFa-lc-k83" firstAttribute="width" secondItem="FFa-lc-k83" secondAttribute="height" multiplier="1:1" id="PeG-r9-bwr"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="28" id="fYR-5W-TgX"/>
                                         <constraint firstAttribute="width" constant="28" id="jLY-Lp-LJg"/>
                                         <constraint firstItem="dgc-CB-U81" firstAttribute="centerX" secondItem="Lfe-Sa-q10" secondAttribute="centerX" id="qFB-RL-1mB"/>
                                         <constraint firstItem="FFa-lc-k83" firstAttribute="centerY" secondItem="Lfe-Sa-q10" secondAttribute="centerY" id="qtu-w0-G2q"/>
@@ -119,7 +121,7 @@
                                             <color key="fillColor" name="ReceivedIcon"/>
                                         </box>
                                         <box boxType="custom" borderType="none" cornerRadius="6" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="0Pv-70-dIG">
-                                            <rect key="frame" x="-2" y="8" width="12" height="12"/>
+                                            <rect key="frame" x="-6" y="8" width="12" height="12"/>
                                             <view key="contentView" id="pjQ-rC-TY4">
                                                 <rect key="frame" x="0.0" y="0.0" width="12" height="12"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -130,15 +132,24 @@
                                             </constraints>
                                             <color key="fillColor" name="ReceivedIcon"/>
                                         </box>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="H4b-SL-0oY" customClass="MouseDraggableView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="-6" width="214" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="gtM-lW-kcW"/>
+                                            </constraints>
+                                        </customView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="eqb-kF-ZSu" firstAttribute="centerY" secondItem="N8M-rS-lhp" secondAttribute="centerY" id="0GV-tz-KZV"/>
                                         <constraint firstItem="0Pv-70-dIG" firstAttribute="centerY" secondItem="N8M-rS-lhp" secondAttribute="centerY" id="BIG-g1-rD7"/>
+                                        <constraint firstItem="H4b-SL-0oY" firstAttribute="leading" secondItem="N8M-rS-lhp" secondAttribute="leading" id="S68-pf-cwn"/>
                                         <constraint firstItem="yzT-fS-lh1" firstAttribute="leading" secondItem="N8M-rS-lhp" secondAttribute="leading" id="Svh-tm-Qdh"/>
-                                        <constraint firstItem="0Pv-70-dIG" firstAttribute="leading" secondItem="eqb-kF-ZSu" secondAttribute="trailing" constant="-2" id="Zgq-fY-BuJ"/>
+                                        <constraint firstAttribute="trailing" secondItem="H4b-SL-0oY" secondAttribute="trailing" id="WYe-Fr-kj8"/>
+                                        <constraint firstItem="0Pv-70-dIG" firstAttribute="leading" secondItem="eqb-kF-ZSu" secondAttribute="trailing" constant="-6" id="Zgq-fY-BuJ"/>
                                         <constraint firstAttribute="trailing" secondItem="yzT-fS-lh1" secondAttribute="trailing" id="i2h-Lx-9E5"/>
                                         <constraint firstItem="yzT-fS-lh1" firstAttribute="centerY" secondItem="N8M-rS-lhp" secondAttribute="centerY" id="kJP-Tc-kKg"/>
                                         <constraint firstItem="eqb-kF-ZSu" firstAttribute="leading" secondItem="yzT-fS-lh1" secondAttribute="leading" id="t7P-3r-lcf"/>
+                                        <constraint firstItem="H4b-SL-0oY" firstAttribute="centerY" secondItem="N8M-rS-lhp" secondAttribute="centerY" id="y1H-JY-13o"/>
                                     </constraints>
                                 </customView>
                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="TTu-Yl-4w9">

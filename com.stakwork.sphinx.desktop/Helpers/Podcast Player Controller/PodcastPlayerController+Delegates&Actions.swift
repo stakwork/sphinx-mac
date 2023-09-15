@@ -113,7 +113,8 @@ extension PodcastPlayerController {
             episodeId: podcastData.episodeId,
             currentTime: podcastData.currentTime,
             duration: podcastData.duration,
-            playerSpeed: podcastData.speed
+            playerSpeed: podcastData.speed,
+            clipInfo: podcastData.clipInfo
         )
         
         if let episode = podcast?.getCurrentEpisode(), !episode.isMusicClip {
@@ -200,7 +201,8 @@ extension PodcastPlayerController {
         
         updatePodcastObject(
             podcastId: podcastData.podcastId,
-            duration: duration
+            duration: duration,
+            clipInfo: podcastData.clipInfo
         )
         
         if (duration > 0) {
@@ -247,7 +249,8 @@ extension PodcastPlayerController {
         updatePodcastObject(
             podcastId: podcastData.podcastId,
             currentTime: currentTime,
-            duration: duration
+            duration: duration,
+            clipInfo: podcastData.clipInfo
         )
 
         runPausedStateUpdate()
@@ -275,7 +278,8 @@ extension PodcastPlayerController {
         
         updatePodcastObject(
             podcastId: podcastData.podcastId,
-            currentTime: currentTime
+            currentTime: currentTime,
+            clipInfo: podcastData.clipInfo
         )
         
         if self.podcastData?.podcastId != podcastData.podcastId {
@@ -312,7 +316,8 @@ extension PodcastPlayerController {
     ) {
         updatePodcastObject(
             podcastId: podcastData.podcastId,
-            playerSpeed: podcastData.speed
+            playerSpeed: podcastData.speed,
+            clipInfo: podcastData.clipInfo
         )
         
         if self.podcastData?.podcastId != podcastData.podcastId {

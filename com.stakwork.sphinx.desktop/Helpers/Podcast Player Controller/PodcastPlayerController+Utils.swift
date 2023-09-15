@@ -15,8 +15,14 @@ extension PodcastPlayerController {
         episodeId: String? = nil,
         currentTime: Int? = nil,
         duration: Int? = nil,
-        playerSpeed: Float? = nil
+        playerSpeed: Float? = nil,
+        clipInfo: PodcastData.ClipInfo? = nil
     ) {
+        if let _ = clipInfo {
+            ///Avoid persisting state data when playing chat clips
+            return
+        }
+        
         guard let podcast = getPodcastWith(podcastId: podcastId) else {
             return
         }
@@ -126,7 +132,8 @@ extension PodcastPlayerController {
         updatePodcastObject(
             podcastId: podcastData.podcastId,
             currentTime: currentTime,
-            duration: duration
+            duration: duration,
+            clipInfo: podcastData.clipInfo
         )
 
         runPlayingStateUpdate()
@@ -148,7 +155,8 @@ extension PodcastPlayerController {
         
         updatePodcastObject(
             podcastId: podcastData.podcastId,
-            currentTime: 0
+            currentTime: 0,
+            clipInfo: podcastData.clipInfo
         )
         
         markEpisodeAsPlayed()

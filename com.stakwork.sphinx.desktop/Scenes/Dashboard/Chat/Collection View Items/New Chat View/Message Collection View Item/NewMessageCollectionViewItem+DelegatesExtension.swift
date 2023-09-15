@@ -135,4 +135,10 @@ extension NewMessageCollectionViewItem : PodcastAudioViewDelegate {
             delegate?.didTapClipPlayPauseButtonFor(messageId: messageId, and: rowIndex, atTime: time)
         }
     }
+    
+    func shouldSeekTo(time: Double) {
+        if let messageId = messageId {
+            delegate?.shouldSeekClipFor(messageId: messageId, and: rowIndex, atTime: time)
+        }
+    }
 }

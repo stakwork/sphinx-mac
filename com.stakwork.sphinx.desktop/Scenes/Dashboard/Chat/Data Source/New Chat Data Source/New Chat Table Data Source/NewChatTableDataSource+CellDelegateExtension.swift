@@ -769,11 +769,6 @@ extension NewChatTableDataSource {
         and rowIndex: Int,
         atTime time: Double
     ) {
-        podcastPlayerController.addDelegate(
-            self,
-            withKey: PodcastDelegateKeys.ChatDataSource.rawValue
-        )
-
         updatePodcastInfoFor(
             loading: true,
             playing: false,
@@ -789,10 +784,18 @@ extension NewChatTableDataSource {
             atTime: time
         ) {
             if podcastPlayerController.isPlaying(messageId: messageId) {
+                
                 podcastPlayerController.submitAction(
                     UserAction.Pause(podcastData)
                 )
+                
+                podcastPlayerController.removeFromDelegatesWith(key: PodcastDelegateKeys.ChatDataSource.rawValue)
             } else {
+                podcastPlayerController.addDelegate(
+                    self,
+                    withKey: PodcastDelegateKeys.ChatDataSource.rawValue
+                )
+                
                 podcastPlayerController.submitAction(
                     UserAction.Play(podcastData)
                 )
@@ -805,21 +808,21 @@ extension NewChatTableDataSource {
         and rowIndex: Int,
         atTime time: Double
     ) {
-//        updatePodcastInfoFor(
-//            currentTime: time,
-//            messageId: messageId,
-//            rowIndex: rowIndex
-//        )
-//
-//        if let podcastData = getPodcastDataFrom(
-//            messageId: messageId,
-//            and: rowIndex,
-//            atTime: time
-//        ) {
-//            podcastPlayerController.submitAction(
-//                UserAction.Seek(podcastData)
-//            )
-//        }
+        updatePodcastInfoFor(
+            currentTime: time,
+            messageId: messageId,
+            rowIndex: rowIndex
+        )
+
+        if let podcastData = getPodcastDataFrom(
+            messageId: messageId,
+            and: rowIndex,
+            atTime: time
+        ) {
+            podcastPlayerController.submitAction(
+                UserAction.Seek(podcastData)
+            )
+        }
     }
     
     func getPodcastDataFrom(
@@ -840,7 +843,6 @@ extension NewChatTableDataSource {
                 let episodeId = podcastComment.itemId,
                 let feed = ContentFeed.getFeedById(feedId: feedId)
             {
-                let audioInfo = mediaCached[messageId]?.audioInfo
                 let podcast = PodcastFeed.convertFrom(contentFeed: feed)
                 
                 let clipInfo = PodcastData.ClipInfo(
