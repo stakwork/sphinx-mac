@@ -19,9 +19,11 @@
                 <outlet property="messageLabelTrailingConstraint" destination="zAt-KU-ECV" id="hka-jt-3re"/>
                 <outlet property="receivedArrow" destination="JZc-bH-qgu" id="fUU-mh-YG1"/>
                 <outlet property="receivedMessageMarginView" destination="VEd-Nw-BI7" id="f1V-zq-le9"/>
+                <outlet property="receivedMessageMenuButton" destination="OSP-ED-UHM" id="fFC-JA-XGq"/>
                 <outlet property="rightLineContainer" destination="dsA-SD-6NT" id="PZg-Ex-WpG"/>
                 <outlet property="sentArrow" destination="k0I-pC-Pcm" id="HgE-Gn-WKy"/>
                 <outlet property="sentMessageMargingView" destination="5kg-HM-NR1" id="TyD-Zd-odx"/>
+                <outlet property="sentMessageMenuButton" destination="RqW-7V-PIs" id="UWk-yD-AFM"/>
                 <outlet property="statusHeaderView" destination="pCr-jf-cNZ" id="IqS-Np-YpO"/>
                 <outlet property="statusHeaderViewContainer" destination="9rC-bS-7Ll" id="g5f-Xb-o6x"/>
                 <outlet property="textMessageView" destination="d54-Qo-HA4" id="8rM-0v-YOF"/>
@@ -215,9 +217,34 @@
                         <real value="3.4028234663852886e+38"/>
                     </customSpacing>
                 </stackView>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RqW-7V-PIs" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="238" y="230" width="22" height="18"/>
+                    <buttonCell key="cell" type="bevel" title="" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="BRD-qp-olz" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="18" name="MaterialIcons-Regular"/>
+                    </buttonCell>
+                    <color key="contentTintColor" name="WashedOutReceivedText"/>
+                    <connections>
+                        <action selector="messageMenuButtonClicked:" target="-2" id="LU6-ye-Ytb"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OSP-ED-UHM" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="454" y="230" width="22" height="18"/>
+                    <buttonCell key="cell" type="bevel" title="" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="0e3-tW-C46" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="18" name="MaterialIcons-Regular"/>
+                    </buttonCell>
+                    <color key="contentTintColor" name="WashedOutReceivedText"/>
+                    <connections>
+                        <action selector="messageMenuButtonClicked:" target="-2" id="rbC-Zh-3z2"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
+                <constraint firstItem="RqW-7V-PIs" firstAttribute="top" secondItem="ahx-cg-gFk" secondAttribute="top" constant="5" id="3jn-7E-0Q9"/>
                 <constraint firstItem="Ew2-CA-NMt" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="3pu-ew-YOe"/>
+                <constraint firstItem="RqW-7V-PIs" firstAttribute="leading" secondItem="ahx-cg-gFk" secondAttribute="leading" constant="-19" id="4uw-sC-TvV"/>
+                <constraint firstItem="OSP-ED-UHM" firstAttribute="top" secondItem="ahx-cg-gFk" secondAttribute="top" constant="5" id="Bs8-hJ-pSU"/>
                 <constraint firstItem="ahx-cg-gFk" firstAttribute="trailing" secondItem="7nT-GT-4h9" secondAttribute="trailing" constant="16" id="JWZ-vo-Kwr"/>
                 <constraint firstItem="k0I-pC-Pcm" firstAttribute="top" secondItem="ahx-cg-gFk" secondAttribute="top" id="Lhu-Ie-QSO"/>
                 <constraint firstItem="k0I-pC-Pcm" firstAttribute="trailing" secondItem="ahx-cg-gFk" secondAttribute="trailing" constant="7" id="NBb-fs-FCc"/>
@@ -225,6 +252,7 @@
                 <constraint firstAttribute="bottom" secondItem="dsA-SD-6NT" secondAttribute="bottom" id="PYx-Ha-3l9"/>
                 <constraint firstItem="dsA-SD-6NT" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="RAq-k8-jfl"/>
                 <constraint firstItem="ahx-cg-gFk" firstAttribute="bottom" secondItem="7nT-GT-4h9" secondAttribute="bottom" constant="16" id="TMZ-Ah-1kY"/>
+                <constraint firstItem="OSP-ED-UHM" firstAttribute="trailing" secondItem="ahx-cg-gFk" secondAttribute="trailing" constant="19" id="TfN-ki-IwT"/>
                 <constraint firstItem="kkf-o1-Jqa" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="2" id="TvT-u9-VuM"/>
                 <constraint firstItem="ahx-cg-gFk" firstAttribute="top" secondItem="7nT-GT-4h9" secondAttribute="top" constant="-16" id="UYR-gv-E2X"/>
                 <constraint firstItem="JZc-bH-qgu" firstAttribute="leading" secondItem="ahx-cg-gFk" secondAttribute="leading" constant="-4" id="VAN-0X-pAp"/>
@@ -245,6 +273,9 @@
         </namedColor>
         <namedColor name="Text">
             <color red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="WashedOutReceivedText">
+            <color red="0.69019607843137254" green="0.71764705882352942" blue="0.73725490196078436" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

@@ -68,8 +68,8 @@ protocol ChatCollectionViewItemDelegate: AnyObject {
     func shouldSeekClipFor(messageId: Int, and rowIndex: Int, atTime time: Double)
     ///Invoices
     func didTapInvoicePayButtonFor(messageId: Int, and rowIndex: Int)
-    ///Menu Long Press
-//    func didLongPressOn(cell: UITableViewCell, with messageId: Int, bubbleViewRect: CGRect)
+    ///Menu
+    func shouldShowOptionsFor(messageId: Int, from button: NSButton)
     ///Reply on Swipe
     func shouldReplyToMessageWith(messageId: Int, and rowIndex: Int)
 }

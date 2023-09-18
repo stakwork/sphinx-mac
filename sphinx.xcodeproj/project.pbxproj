@@ -403,6 +403,7 @@
 		479496702AB8B51400C42D1E /* InvoiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4794966F2AB8B51400C42D1E /* InvoiceView.xib */; };
 		479496722AB8B51D00C42D1E /* InvoicePaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479496712AB8B51D00C42D1E /* InvoicePaymentView.swift */; };
 		479496742AB8B52600C42D1E /* InvoicePaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479496732AB8B52600C42D1E /* InvoicePaymentView.xib */; };
+		479496762AB8CA7500C42D1E /* NewChatViewController+MessageMenuExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479496752AB8CA7500C42D1E /* NewChatViewController+MessageMenuExtension.swift */; };
 		47949BFB24AA8E10000D697B /* DeletedMessageSentCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47949BF924AA8E10000D697B /* DeletedMessageSentCollectionViewItem.swift */; };
 		47949BFF24AA8E2F000D697B /* DeletedMessageReceivedCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47949BFD24AA8E2F000D697B /* DeletedMessageReceivedCollectionViewItem.swift */; };
 		47949C0224AA8F4C000D697B /* CommonDeletedMessageCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47949C0124AA8F4C000D697B /* CommonDeletedMessageCollectionViewItem.swift */; };
@@ -1198,6 +1199,7 @@
 		4794966F2AB8B51400C42D1E /* InvoiceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvoiceView.xib; sourceTree = "<group>"; };
 		479496712AB8B51D00C42D1E /* InvoicePaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoicePaymentView.swift; sourceTree = "<group>"; };
 		479496732AB8B52600C42D1E /* InvoicePaymentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvoicePaymentView.xib; sourceTree = "<group>"; };
+		479496752AB8CA7500C42D1E /* NewChatViewController+MessageMenuExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewChatViewController+MessageMenuExtension.swift"; sourceTree = "<group>"; };
 		47949BF924AA8E10000D697B /* DeletedMessageSentCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedMessageSentCollectionViewItem.swift; sourceTree = "<group>"; };
 		47949BFD24AA8E2F000D697B /* DeletedMessageReceivedCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedMessageReceivedCollectionViewItem.swift; sourceTree = "<group>"; };
 		47949C0124AA8F4C000D697B /* CommonDeletedMessageCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonDeletedMessageCollectionViewItem.swift; sourceTree = "<group>"; };
@@ -3465,6 +3467,7 @@
 				47FEE1F92A65A11400646C4E /* NewChatViewController+PodcastExtension.swift */,
 				47FEE1FB2A65BA4F00646C4E /* NewChatViewController+MentionsExtension.swift */,
 				47FEE22D2A6710F500646C4E /* NewChatViewController+CollectionViewExtension.swift */,
+				479496752AB8CA7500C42D1E /* NewChatViewController+MessageMenuExtension.swift */,
 			);
 			path = "New Chat View Controller";
 			sourceTree = "<group>";
@@ -4283,6 +4286,7 @@
 				4720991A24834E0000426028 /* CryptorRSAConstants.swift in Sources */,
 				476AAAA02A1E773F0092AC87 /* ChatViewController+PinMessageExtension.swift in Sources */,
 				47AF0D482550900900C98398 /* CommonPodcastBoostCollectionViewItem.swift in Sources */,
+				479496762AB8CA7500C42D1E /* NewChatViewController+MessageMenuExtension.swift in Sources */,
 				47FEE1FC2A65BA4F00646C4E /* NewChatViewController+MentionsExtension.swift in Sources */,
 				478ED59025D5522C00940132 /* WelcomeEmptyViewController.swift in Sources */,
 				47FEE2002A66D3B500646C4E /* MessageLayoutState.swift in Sources */,

@@ -63,7 +63,7 @@ extension NewMessageCollectionViewItem {
         direction: MessageTableCellState.MessageDirection
     ) {
         let isOutgoing = direction.isOutgoing()
-        let textRightAligned = isOutgoing
+//        let textRightAligned = isOutgoing
         
         messageContentStackView.alignment = isOutgoing ? .trailing : .leading
         
@@ -72,6 +72,9 @@ extension NewMessageCollectionViewItem {
         
         receivedArrow.isHidden = isOutgoing
         sentArrow.isHidden = !isOutgoing
+        
+        receivedMessageMenuButton.isHidden = isOutgoing
+        sentMessageMenuButton.isHidden = !isOutgoing
         
 //        messageLabelLeadingConstraint.priority = NSLayoutConstraint.Priority(textRightAligned ? 1 : 1000)
 //        messageLabelTrailingConstraint.priority = NSLayoutConstraint.Priority(textRightAligned ? 1000 : 1)

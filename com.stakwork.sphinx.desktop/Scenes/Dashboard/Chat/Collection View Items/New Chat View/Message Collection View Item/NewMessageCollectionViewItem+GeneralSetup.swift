@@ -36,6 +36,9 @@ extension NewMessageCollectionViewItem {
         )
         leftLineContainer.wantsLayer = true
         leftLineContainer.layer?.addSublayer(leftLineLayer)
+        
+        sentMessageMenuButton.cursor = .pointingHand
+        receivedMessageMenuButton.cursor = .pointingHand
     }
     
     func configureViewsWidthWith(

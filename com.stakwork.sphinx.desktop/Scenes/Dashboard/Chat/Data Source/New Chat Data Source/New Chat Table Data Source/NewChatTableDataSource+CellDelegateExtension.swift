@@ -461,6 +461,10 @@ extension NewChatTableDataSource : ChatCollectionViewItemDelegate {
             )
         }
     }
+    
+    func shouldShowOptionsFor(messageId: Int, from button: NSButton) {
+        delegate?.shouldShowOptionsFor(messageId: messageId, from: button)
+    }
 }
 
 ///Updating rows after content loaded
@@ -1032,4 +1036,5 @@ extension NewChatTableDataSource {
         
         return tableCellStates
     }
+    
 }

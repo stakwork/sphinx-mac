@@ -9,6 +9,10 @@
 import Cocoa
 
 extension NewChatTableDataSource: NSCollectionViewDelegate {
+    func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
+        MessageOptionsHelper.sharedInstance.hideMenu()
+    }
+    
     func addScrollObservers() {
         NotificationCenter.default.addObserver(
             forName: NSView.boundsDidChangeNotification,
@@ -36,6 +40,8 @@ extension NewChatTableDataSource: NSCollectionViewDelegate {
     }
     
     func scrollViewDidScroll() {
+        MessageOptionsHelper.sharedInstance.hideMenu()
+        
         if let scrollViewDesiredOffset = scrollViewDesiredOffset {
             if scrollViewDesiredOffset == collectionViewScroll.documentYOffset {
                 collectionView.alphaValue = 1.0

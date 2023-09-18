@@ -63,7 +63,13 @@ class MessageOptionsHelper {
         case Newsletter = 202
     }
     
-    func showMenuFor(message: TransactionMessage? = nil, chat: Chat? = nil, in view: NSView, from button: NSButton, with delegate: MessageOptionsDelegate) {
+    func showMenuFor(
+        message: TransactionMessage? = nil,
+        chat: Chat? = nil,
+        in view: NSView,
+        from button: NSButton,
+        with delegate: MessageOptionsDelegate
+    ) {
         
         if let m = self.message, m.id == message?.id{
             hideMenu()

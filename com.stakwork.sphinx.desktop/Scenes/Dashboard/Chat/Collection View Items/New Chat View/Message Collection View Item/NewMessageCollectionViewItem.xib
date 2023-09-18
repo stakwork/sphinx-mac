@@ -37,10 +37,12 @@
                 <outlet property="podcastBoostView" destination="PfX-EW-tGc" id="EZd-1z-66G"/>
                 <outlet property="receivedArrow" destination="Viu-pF-fdW" id="R48-yp-ejc"/>
                 <outlet property="receivedMessageMarginView" destination="QnT-Cm-qyW" id="shZ-y2-Kpz"/>
+                <outlet property="receivedMessageMenuButton" destination="UQJ-sx-Qvb" id="KC0-02-NMq"/>
                 <outlet property="rightLineContainer" destination="aXK-p2-lS1" id="b74-BE-KZM"/>
                 <outlet property="rightPaymentDot" destination="Mxe-5f-yrE" id="t28-4I-JYI"/>
                 <outlet property="sentArrow" destination="RsB-r9-lHO" id="qRP-NE-i2p"/>
                 <outlet property="sentMessageMargingView" destination="9zh-HR-aT5" id="uT0-Tq-oV0"/>
+                <outlet property="sentMessageMenuButton" destination="kVX-93-0gK" id="oSk-hu-MLg"/>
                 <outlet property="sentPaidDetailsView" destination="99n-FQ-THd" id="Axb-U6-OCT"/>
                 <outlet property="statusHeaderView" destination="Kv2-Gm-iRV" id="dxK-ok-mb8"/>
                 <outlet property="statusHeaderViewContainer" destination="QIj-fa-qcL" id="UMS-Or-U0H"/>
@@ -461,6 +463,28 @@
                     </constraints>
                     <color key="fillColor" name="WashedOutReceivedText"/>
                 </box>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kVX-93-0gK" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="1238" y="1608" width="22" height="18"/>
+                    <buttonCell key="cell" type="bevel" title="" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="qZR-Vk-u5O" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="18" name="MaterialIcons-Regular"/>
+                    </buttonCell>
+                    <color key="contentTintColor" name="WashedOutReceivedText"/>
+                    <connections>
+                        <action selector="messageMenuButtonClicked:" target="-2" id="Wfx-3I-4xp"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UQJ-sx-Qvb" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="1754" y="1608" width="22" height="18"/>
+                    <buttonCell key="cell" type="bevel" title="" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="frj-2V-25x" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="18" name="MaterialIcons-Regular"/>
+                    </buttonCell>
+                    <color key="contentTintColor" name="WashedOutReceivedText"/>
+                    <connections>
+                        <action selector="messageMenuButtonClicked:" target="-2" id="fww-vN-m9R"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="aXK-p2-lS1" secondAttribute="trailing" constant="28" id="4T8-8J-Dqu"/>
@@ -468,6 +492,7 @@
                 <constraint firstItem="eMS-4g-VRf" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="3" id="7rE-ex-zp1"/>
                 <constraint firstItem="99n-FQ-THd" firstAttribute="trailing" secondItem="3Zu-1O-esC" secondAttribute="trailing" id="8ds-FJ-zDV"/>
                 <constraint firstItem="99n-FQ-THd" firstAttribute="leading" secondItem="3Zu-1O-esC" secondAttribute="leading" id="Brs-fC-Yda"/>
+                <constraint firstItem="kVX-93-0gK" firstAttribute="top" secondItem="YWa-SY-0um" secondAttribute="top" constant="5" id="CmE-SW-h65"/>
                 <constraint firstItem="aXK-p2-lS1" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="Eyn-yG-utD"/>
                 <constraint firstItem="itm-5A-n1p" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="16" id="Gt9-Fc-EQD"/>
                 <constraint firstItem="YWa-SY-0um" firstAttribute="bottom" secondItem="PqZ-pq-8i0" secondAttribute="bottom" id="Gx4-tb-ZP6"/>
@@ -475,12 +500,15 @@
                 <constraint firstItem="YWa-SY-0um" firstAttribute="leading" secondItem="okv-Ag-SIE" secondAttribute="leading" constant="-16" id="KcC-5g-EwU"/>
                 <constraint firstAttribute="bottom" secondItem="aXK-p2-lS1" secondAttribute="bottom" id="Kpk-OM-kNR"/>
                 <constraint firstItem="YWa-SY-0um" firstAttribute="trailing" secondItem="okv-Ag-SIE" secondAttribute="trailing" constant="16" id="O6x-ga-iV6"/>
+                <constraint firstItem="UQJ-sx-Qvb" firstAttribute="trailing" secondItem="YWa-SY-0um" secondAttribute="trailing" constant="19" id="OqP-ff-j0N"/>
                 <constraint firstAttribute="bottom" secondItem="itm-5A-n1p" secondAttribute="bottom" constant="2" id="SMV-35-0Ba"/>
                 <constraint firstItem="bCg-hP-Rew" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="SQq-5d-TBN"/>
                 <constraint firstItem="Mxe-5f-yrE" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="3" id="Wjf-NH-uQl"/>
+                <constraint firstItem="kVX-93-0gK" firstAttribute="leading" secondItem="YWa-SY-0um" secondAttribute="leading" constant="-19" id="YLn-Us-64D"/>
                 <constraint firstItem="Mxe-5f-yrE" firstAttribute="centerX" secondItem="aXK-p2-lS1" secondAttribute="centerX" id="Z9c-T2-d9U"/>
                 <constraint firstAttribute="trailing" secondItem="itm-5A-n1p" secondAttribute="trailing" constant="16" id="aV2-Wc-eBl"/>
                 <constraint firstItem="99n-FQ-THd" firstAttribute="top" secondItem="3Zu-1O-esC" secondAttribute="top" id="c8k-Vg-Fsm"/>
+                <constraint firstItem="UQJ-sx-Qvb" firstAttribute="top" secondItem="YWa-SY-0um" secondAttribute="top" constant="5" id="cyx-WN-GN1"/>
                 <constraint firstItem="RsB-r9-lHO" firstAttribute="top" secondItem="YWa-SY-0um" secondAttribute="top" id="ens-3i-koW"/>
                 <constraint firstItem="RsB-r9-lHO" firstAttribute="trailing" secondItem="YWa-SY-0um" secondAttribute="trailing" constant="7" id="grT-kC-w7S"/>
                 <constraint firstItem="bCg-hP-Rew" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="76" id="mO0-Hr-UcS"/>

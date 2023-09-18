@@ -59,6 +59,9 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
     @IBOutlet weak var leftPaymentDot: NSBox!
     @IBOutlet weak var rightPaymentDot: NSBox!
     
+    @IBOutlet weak var sentMessageMenuButton: CustomButton!
+    @IBOutlet weak var receivedMessageMenuButton: CustomButton!
+    
     @IBOutlet weak var widthConstraint: NSLayoutConstraint!
     @IBOutlet weak var botResponseViewHeightConstraint: NSLayoutConstraint!
     
@@ -145,4 +148,11 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
         ///Invoice Lines
         configureWith(invoiceLines: mutableMessageCellState.invoicesLines)
     }
+    
+    @IBAction func messageMenuButtonClicked(_ sender: Any) {
+        if let button = sender as? NSButton, let messageId = messageId {
+            delegate?.shouldShowOptionsFor(messageId: messageId, from: button)
+        }
+    }
+    
 }

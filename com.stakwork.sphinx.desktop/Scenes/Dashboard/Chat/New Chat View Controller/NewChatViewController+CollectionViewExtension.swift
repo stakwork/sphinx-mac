@@ -92,4 +92,15 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
     }
     func didFinishSearchingWith(matchesCount: Int, index: Int) {}
     func shouldToggleSearchLoadingWheel(active: Bool) {}
+    
+    func shouldShowOptionsFor(messageId: Int, from button: NSButton) {
+        if let message = TransactionMessage.getMessageWith(id: messageId) {
+            MessageOptionsHelper.sharedInstance.showMenuFor(
+                message: message,
+                in: self.view,
+                from: button,
+                with: self
+            )
+        }
+    }
 }

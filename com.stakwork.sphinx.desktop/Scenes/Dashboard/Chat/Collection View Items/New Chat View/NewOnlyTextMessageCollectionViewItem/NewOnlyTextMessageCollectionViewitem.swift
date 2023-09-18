@@ -35,6 +35,10 @@ class NewOnlyTextMessageCollectionViewitem: CommonNewMessageCollectionViewitem, 
     ///Invoice Lines
     @IBOutlet weak var leftLineContainer: NSBox!
     @IBOutlet weak var rightLineContainer: NSBox!
+    
+    @IBOutlet weak var sentMessageMenuButton: CustomButton!
+    @IBOutlet weak var receivedMessageMenuButton: CustomButton!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +73,9 @@ class NewOnlyTextMessageCollectionViewitem: CommonNewMessageCollectionViewitem, 
         )
         leftLineContainer.wantsLayer = true
         leftLineContainer.layer?.addSublayer(leftLineLayer)
+        
+        sentMessageMenuButton.cursor = .pointingHand
+        receivedMessageMenuButton.cursor = .pointingHand
     }
     
     func configureWith(
@@ -117,5 +124,12 @@ class NewOnlyTextMessageCollectionViewitem: CommonNewMessageCollectionViewitem, 
     override func getBubbleView() -> NSBox? {
         return bubbleOnlyText
     }
+    
+    @IBAction func messageMenuButtonClicked(_ sender: Any) {
+        if let button = sender as? NSButton, let messageId = messageId {
+            delegate?.shouldShowOptionsFor(messageId: messageId, from: button)
+        }
+    }
+    
     
 }

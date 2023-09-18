@@ -123,6 +123,9 @@ extension NewOnlyTextMessageCollectionViewitem {
         receivedArrow.isHidden = isOutgoing
         sentArrow.isHidden = !isOutgoing
         
+        receivedMessageMenuButton.isHidden = isOutgoing
+        sentMessageMenuButton.isHidden = !isOutgoing
+        
         messageLabelLeadingConstraint.priority = NSLayoutConstraint.Priority(isOutgoing ? 1 : 1000)
         messageLabelTrailingConstraint.priority = NSLayoutConstraint.Priority(isOutgoing ? 1000 : 1)
         
