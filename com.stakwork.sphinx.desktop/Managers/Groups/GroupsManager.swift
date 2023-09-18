@@ -470,6 +470,27 @@ class GroupsManager {
             completion()
         })
     }
+    
+    func respondToRequest(
+        message: TransactionMessage,
+        action: String,
+        completion: @escaping (Chat, TransactionMessage) -> (),
+        errorCompletion: @escaping () -> ()
+    ) {
+        API.sharedInstance.requestAction(messageId: message.id, contactId: message.senderId, action: action, callback: { json in
+            if let chat = Chat.insertChat(chat: json["chat"]),
+                let message = TransactionMessage.insertMessage(m: json["message"]).0 {
+                
+                CoreDataManager.sharedManager.saveContext()
+                
+                completion(chat, message)
+                return
+            }
+            errorCompletion()
+        }, errorCallback: {
+            errorCompletion()
+        })
+    }
 }
 
 extension Int {

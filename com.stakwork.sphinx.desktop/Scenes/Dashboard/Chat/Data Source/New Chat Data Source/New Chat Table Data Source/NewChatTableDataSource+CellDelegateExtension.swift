@@ -883,15 +883,16 @@ extension NewChatTableDataSource {
 
 extension NewChatTableDataSource {
     func shouldDeleteGroup() {
-//        AlertHelper.showTwoOptionsAlert(
-//            title: "delete.tribe".localized,
-//            message: "confirm.delete.tribe".localized,
-//            confirmButtonTitle: "delete".localized,
-//            confirmStyle: .destructive,
-//            confirm: {
-//                self.deleteGroup()
-//            }
-//        )
+        AlertHelper.showTwoOptionsAlert(
+            title: "delete.tribe".localized,
+            message: "confirm.delete.tribe".localized,
+            confirm: {
+                self.deleteGroup()
+            },
+            cancel: {},
+            confirmLabel: "delete".localized,
+            cancelLabel: "cancel".localized
+        )
     }
     
     func deleteGroup() {
@@ -911,31 +912,31 @@ extension NewChatTableDataSource {
     func shouldApproveMember(message: TransactionMessage) {
         messageBubbleHelper.showLoadingWheel()
         
-//        GroupsManager.sharedInstance.respondToRequest(
-//            message: message,
-//            action: "approved",
-//            completion: { (chat, _) in
-//                self.requestResponseSucceddedWith(chat: chat)
-//            },
-//            errorCompletion: {
-//                self.requestResponseFailed()
-//            }
-//        )
+        GroupsManager.sharedInstance.respondToRequest(
+            message: message,
+            action: "approved",
+            completion: { (chat, _) in
+                self.requestResponseSucceddedWith(chat: chat)
+            },
+            errorCompletion: {
+                self.requestResponseFailed()
+            }
+        )
     }
     
     func shouldRejectMember(message: TransactionMessage) {
         messageBubbleHelper.showLoadingWheel()
         
-//        GroupsManager.sharedInstance.respondToRequest(
-//            message: message,
-//            action: "rejected",
-//            completion: { (chat, _) in
-//                self.requestResponseSucceddedWith(chat: chat)
-//            },
-//            errorCompletion: {
-//                self.requestResponseFailed()
-//            }
-//        )
+        GroupsManager.sharedInstance.respondToRequest(
+            message: message,
+            action: "rejected",
+            completion: { (chat, _) in
+                self.requestResponseSucceddedWith(chat: chat)
+            },
+            errorCompletion: {
+                self.requestResponseFailed()
+            }
+        )
     }
     
     func requestResponseSucceddedWith(chat: Chat) {
