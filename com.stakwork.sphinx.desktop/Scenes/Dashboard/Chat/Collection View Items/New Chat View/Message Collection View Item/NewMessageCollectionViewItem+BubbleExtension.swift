@@ -73,9 +73,6 @@ extension NewMessageCollectionViewItem {
         receivedArrow.isHidden = isOutgoing
         sentArrow.isHidden = !isOutgoing
         
-        receivedMessageMenuButton.isHidden = isOutgoing
-        sentMessageMenuButton.isHidden = !isOutgoing
-        
 //        messageLabelLeadingConstraint.priority = NSLayoutConstraint.Priority(textRightAligned ? 1 : 1000)
 //        messageLabelTrailingConstraint.priority = NSLayoutConstraint.Priority(textRightAligned ? 1000 : 1)
         
@@ -90,6 +87,9 @@ extension NewMessageCollectionViewItem {
         direction: MessageTableCellState.MessageDirection
     ) {
         let outgoing = direction == .Outgoing
+        
+        receivedMessageMenuButton.isHidden = outgoing || bubbleState == MessageTableCellState.BubbleState.Empty
+        sentMessageMenuButton.isHidden = !outgoing || bubbleState == MessageTableCellState.BubbleState.Empty
         
         switch (bubbleState) {
         case .Isolated:
