@@ -50,6 +50,7 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
     @IBOutlet weak var linkPreviewView: NewLinkPreviewView!
     @IBOutlet weak var contactLinkPreviewView: ContactLinkView!
     @IBOutlet weak var tribeLinkPreviewView: TribeLinkView!
+    @IBOutlet weak var paidAttachmentView: NewPaidAttachmentView!
     
     @IBOutlet weak var widthConstraint: NSLayoutConstraint!
     @IBOutlet weak var botResponseViewHeightConstraint: NSLayoutConstraint!

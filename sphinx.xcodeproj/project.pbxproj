@@ -388,6 +388,8 @@
 		4794964F2AB4931700C42D1E /* PodcastAudioView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4794964E2AB4931700C42D1E /* PodcastAudioView.xib */; };
 		479496522AB4BB7900C42D1E /* SentPaidDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479496512AB4BB7900C42D1E /* SentPaidDetails.swift */; };
 		479496542AB4BD6300C42D1E /* SentPaidDetails.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479496532AB4BD6300C42D1E /* SentPaidDetails.xib */; };
+		479496562AB88C6200C42D1E /* NewPaidAttachmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479496552AB88C6200C42D1E /* NewPaidAttachmentView.swift */; };
+		479496582AB88C6D00C42D1E /* NewPaidAttachmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479496572AB88C6D00C42D1E /* NewPaidAttachmentView.xib */; };
 		47949BFB24AA8E10000D697B /* DeletedMessageSentCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47949BF924AA8E10000D697B /* DeletedMessageSentCollectionViewItem.swift */; };
 		47949BFF24AA8E2F000D697B /* DeletedMessageReceivedCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47949BFD24AA8E2F000D697B /* DeletedMessageReceivedCollectionViewItem.swift */; };
 		47949C0224AA8F4C000D697B /* CommonDeletedMessageCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47949C0124AA8F4C000D697B /* CommonDeletedMessageCollectionViewItem.swift */; };
@@ -1168,6 +1170,8 @@
 		4794964E2AB4931700C42D1E /* PodcastAudioView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodcastAudioView.xib; sourceTree = "<group>"; };
 		479496512AB4BB7900C42D1E /* SentPaidDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentPaidDetails.swift; sourceTree = "<group>"; };
 		479496532AB4BD6300C42D1E /* SentPaidDetails.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SentPaidDetails.xib; sourceTree = "<group>"; };
+		479496552AB88C6200C42D1E /* NewPaidAttachmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPaidAttachmentView.swift; sourceTree = "<group>"; };
+		479496572AB88C6D00C42D1E /* NewPaidAttachmentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewPaidAttachmentView.xib; sourceTree = "<group>"; };
 		47949BF924AA8E10000D697B /* DeletedMessageSentCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedMessageSentCollectionViewItem.swift; sourceTree = "<group>"; };
 		47949BFD24AA8E2F000D697B /* DeletedMessageReceivedCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedMessageReceivedCollectionViewItem.swift; sourceTree = "<group>"; };
 		47949C0124AA8F4C000D697B /* CommonDeletedMessageCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonDeletedMessageCollectionViewItem.swift; sourceTree = "<group>"; };
@@ -2555,13 +2559,15 @@
 			path = "Audio View";
 			sourceTree = "<group>";
 		};
-		479496502AB4BB6B00C42D1E /* PaidContent */ = {
+		479496502AB4BB6B00C42D1E /* Paid Content */ = {
 			isa = PBXGroup;
 			children = (
 				479496512AB4BB7900C42D1E /* SentPaidDetails.swift */,
 				479496532AB4BD6300C42D1E /* SentPaidDetails.xib */,
+				479496552AB88C6200C42D1E /* NewPaidAttachmentView.swift */,
+				479496572AB88C6D00C42D1E /* NewPaidAttachmentView.xib */,
 			);
-			path = PaidContent;
+			path = "Paid Content";
 			sourceTree = "<group>";
 		};
 		479751C2246C72C100D2106B /* Dashboard */ = {
@@ -2980,7 +2986,7 @@
 		47DE1BF12A68138B0029597B /* New Chat View */ = {
 			isa = PBXGroup;
 			children = (
-				479496502AB4BB6B00C42D1E /* PaidContent */,
+				479496502AB4BB6B00C42D1E /* Paid Content */,
 				479496472AB3A58700C42D1E /* Audio View */,
 				479496422AB38CD900C42D1E /* Bot Response */,
 				4794963D2AB3803B00C42D1E /* Direct Payment */,
@@ -3725,6 +3731,7 @@
 				4726A43A24C628DA005A66B4 /* bamboo.caf in Resources */,
 				474274AB28EC77AE000C3D51 /* TribeTagView.xib in Resources */,
 				4731BE4924859BB800BCCA9E /* PaymentReceivedCollectionViewItem.xib in Resources */,
+				479496582AB88C6D00C42D1E /* NewPaidAttachmentView.xib in Resources */,
 				4726A43F24C628DA005A66B4 /* tri-tone.caf in Resources */,
 				478ED5BE25D6FCF000940132 /* ConnectingView.xib in Resources */,
 				4726A43B24C628DA005A66B4 /* glass.caf in Resources */,
@@ -4011,6 +4018,7 @@
 				4720991C24834E0000426028 /* CryptorRSA.swift in Sources */,
 				479496282AB33D1200C42D1E /* TribeLinkView.swift in Sources */,
 				478F07D324E2C7A300EE32A3 /* NSTextView.swift in Sources */,
+				479496562AB88C6200C42D1E /* NewPaidAttachmentView.swift in Sources */,
 				47975207246F1A0F00D2106B /* ChatViewControllerDelegatesExtension.swift in Sources */,
 				475B683A29915DFE000EF29C /* PodcastDestination+Properties.swift in Sources */,
 				4744FA6E2469A47100C5FD94 /* API+GroupsExtension.swift in Sources */,

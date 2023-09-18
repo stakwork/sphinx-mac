@@ -8,9 +8,9 @@
 
 import Cocoa
 
-protocol PaidAttachmentViewDelegate: AnyObject {
-    func didTapPayButton()
-}
+//protocol PaidAttachmentViewDelegate: AnyObject {
+//    func didTapPayButton()
+//}
 
 class PaidAttachmentView: NSView, LoadableNib {
     

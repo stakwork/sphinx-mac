@@ -739,8 +739,12 @@ class ChatHelper {
             viewsHeight += PodcastAudioView.kViewHeight
         }
         
-        if let paidContent = mutableTableCellState.paidContent, paidContent.shouldAddPadding {
-            viewsHeight += SentPaidDetails.kViewHeight
+        if let paidContent = mutableTableCellState.paidContent {
+            if paidContent.shouldAddPadding {
+                viewsHeight += SentPaidDetails.kViewHeight
+            } else if mutableTableCellState.bubble?.direction.isIncoming() == true {
+                viewsHeight += NewPaidAttachmentView.kViewHeight
+            }
         }
         
         if let _ = mutableTableCellState.messageMedia {

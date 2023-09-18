@@ -142,3 +142,11 @@ extension NewMessageCollectionViewItem : PodcastAudioViewDelegate {
         }
     }
 }
+
+extension NewMessageCollectionViewItem : PaidAttachmentViewDelegate {
+    func didTapPayButton() {
+        if let messageId = messageId {
+            delegate?.didTapPayButtonFor(messageId: messageId, and: rowIndex)
+        }
+    }
+}

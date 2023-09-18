@@ -344,8 +344,8 @@ extension NewMessageCollectionViewItem {
     ) {
         if let paidContent = paidContent {
             if bubble.direction.isIncoming() {
-//                paidAttachmentView.configure(paidContent: paidContent, and: self)
-//                paidAttachmentView.isHidden = false
+                paidAttachmentView.configure(paidContent: paidContent, and: self)
+                paidAttachmentView.isHidden = false
             } else {
                 sentPaidDetailsView.configureWith(paidContent: paidContent)
                 sentPaidDetailsView.isHidden = false
