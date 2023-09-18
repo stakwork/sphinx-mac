@@ -17,6 +17,7 @@ class MessageNoBubbleCollectionViewItem: NSCollectionViewItem, ChatCollectionVie
 
     @IBOutlet weak var dateSeparatorView: DateSeparatorView!
     @IBOutlet weak var deletedMessageView: DeletedMessageView!
+    @IBOutlet weak var groupActionsView: GroupActionsView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,7 @@ class MessageNoBubbleCollectionViewItem: NSCollectionViewItem, ChatCollectionVie
     func hideAllSubviews() {
         dateSeparatorView.isHidden = true
         deletedMessageView.isHidden = true
-//        groupActionsView.isHidden = true
+        groupActionsView.isHidden = true
     }
     
     func setupViews() {
@@ -105,36 +106,36 @@ class MessageNoBubbleCollectionViewItem: NSCollectionViewItem, ChatCollectionVie
     func configureWith(
         groupMemberNotification: NoBubbleMessageLayoutState.GroupMemberNotification?
     ) {
-//        if let groupMemberNotification = groupMemberNotification {
-//            groupActionsView.configureWith(
-//                groupMemberNotification: groupMemberNotification
-//            )
-//            groupActionsView.isHidden = false
-//        }
+        if let groupMemberNotification = groupMemberNotification {
+            groupActionsView.configureWith(
+                groupMemberNotification: groupMemberNotification
+            )
+            groupActionsView.isHidden = false
+        }
     }
     
     func configureWith(
         groupKickRemovedOrDeclined: NoBubbleMessageLayoutState.GroupKickRemovedOrDeclined?
     ) {
-//        if let groupKickRemovedOrDeclined = groupKickRemovedOrDeclined {
-//            groupActionsView.configureWith(
-//                groupKickRemovedOrDeclined: groupKickRemovedOrDeclined,
-//                andDelegate: self
-//            )
-//            groupActionsView.isHidden = false
-//        }
+        if let groupKickRemovedOrDeclined = groupKickRemovedOrDeclined {
+            groupActionsView.configureWith(
+                groupKickRemovedOrDeclined: groupKickRemovedOrDeclined,
+                andDelegate: self
+            )
+            groupActionsView.isHidden = false
+        }
     }
     
     func configureWith(
         groupMemberRequest: NoBubbleMessageLayoutState.GroupMemberRequest?
     ) {
-//        if let groupMemberRequest = groupMemberRequest {
-//            groupActionsView.configureWith(
-//                groupMemberRequest: groupMemberRequest,
-//                andDelegate: self
-//            )
-//            groupActionsView.isHidden = false
-//        }
+        if let groupMemberRequest = groupMemberRequest {
+            groupActionsView.configureWith(
+                groupMemberRequest: groupMemberRequest,
+                andDelegate: self
+            )
+            groupActionsView.isHidden = false
+        }
     }
     
     func configureWith(

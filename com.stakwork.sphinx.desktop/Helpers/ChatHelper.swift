@@ -592,6 +592,7 @@ class ChatHelper {
     ) -> CGFloat {
         var mutableTableCellState = tableCellState
         
+        ///No bubble message views
         if let _ = mutableTableCellState.dateSeparator {
             return DateSeparatorView.kViewHeight
         }
@@ -600,6 +601,19 @@ class ChatHelper {
             return DeletedMessageView.kViewHeight
         }
         
+        if let _ = mutableTableCellState.groupMemberNotification {
+            return GroupActionMessageView.kViewHeight
+        }
+        
+        if let _ = mutableTableCellState.groupMemberRequest {
+            return GroupRequestView.kViewHeight
+        }
+        
+        if let _ = mutableTableCellState.groupKickRemovedOrDeclined {
+            return GroupRemovedView.kViewHeight
+        }
+        
+        ///No Bubble message views
         let kGeneralMargin: CGFloat = 2.0
         
         let statusHeaderheight: CGFloat = getStatusHeaderHeightFor(tableCellState)
