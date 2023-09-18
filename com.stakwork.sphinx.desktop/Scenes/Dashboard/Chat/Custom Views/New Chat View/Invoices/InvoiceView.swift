@@ -29,6 +29,9 @@ class InvoiceView: NSView, LoadableNib {
     
     @IBOutlet weak var borderView: NSBox!
     
+    static let kViewOutgoingHeight: CGFloat = 53
+    static let kViewIncomingHeight: CGFloat = 106
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         loadViewFromNib()
@@ -54,22 +57,12 @@ class InvoiceView: NSView, LoadableNib {
         
         self.alphaValue = (invoice.isExpired && !invoice.isPaid) ? 0.4 : 1.0
         
-        borderView.removeDashBorder()
-        
-        let shouldDrawBorder = !invoice.isPaid && !invoice.isExpired
-        
-        if shouldDrawBorder {
-            borderView.addDashedBorder(
-                color: bubble.direction.isIncoming() ? NSColor.Sphinx.PrimaryGreen : NSColor.Sphinx.SecondaryText,
-                size: CGSize(width: CommonNewMessageCollectionViewitem.kMaximumInvoiceBubbleWidth, height: self.borderView.frame.height),
-                radius: 0
-            )
-        }
+        addDashdBorder(invoice: invoice, bubble: bubble)
         
         memoLabel.font = invoice.font
         unitLabel.textColor = bubble.direction.isIncoming() ? NSColor.Sphinx.WashedOutReceivedText : NSColor.Sphinx.WashedOutSentText
         
-        if let memo = invoice.memo {
+        if let memo = invoice.memo, memo.isNotEmpty {
             memoContainerView.isHidden = false
             memoLabel.stringValue = memo
         } else {
@@ -82,15 +75,51 @@ class InvoiceView: NSView, LoadableNib {
         
         if invoice.isPaid {
             if bubble.direction.isOutgoing() {
-                icon.image = NSImage(named: "invoice-pay-button")
+                icon.image = NSImage(named: "invoicePayIcon")
                 icon.contentTintColor = NSColor.Sphinx.Text
             } else {
-                icon.image = NSImage(named: "invoice-receive-icon")
+                icon.image = NSImage(named: "invoiceReceiveIcon")
                 icon.contentTintColor = NSColor.Sphinx.PrimaryBlue
             }
         } else {
-            icon.image = NSImage(named: "qr_code")
+            icon.image = NSImage(named: "qrCode")
             icon.contentTintColor = NSColor.Sphinx.Text
+        }
+    }
+    
+    func addDashdBorder(
+        invoice: BubbleMessageLayoutState.Invoice,
+        bubble: BubbleMessageLayoutState.Bubble
+    ) {
+        borderView.removeDashBorder()
+        
+        let shouldDrawBorder = !invoice.isPaid && !invoice.isExpired
+        
+        if shouldDrawBorder {
+            
+            var viewsHeight: CGFloat = 0
+            
+            if bubble.direction == .Incoming {
+                viewsHeight += InvoiceView.kViewIncomingHeight
+            } else {
+                viewsHeight += InvoiceView.kViewOutgoingHeight
+            }
+            
+            if let memo = invoice.memo, memo.isNotEmpty {
+                let textHeight = ChatHelper.getTextHeightFor(
+                    text: memo,
+                    width: CommonNewMessageCollectionViewitem.kMaximumPaidTextViewBubbleWidth
+                ) - 16
+                
+                viewsHeight += textHeight
+            }
+            
+            borderView.addDashedBorder(
+                color: bubble.direction.isIncoming() ? NSColor.Sphinx.PrimaryGreen : NSColor.Sphinx.SecondaryText,
+                fillColor: NSColor.Sphinx.Body,
+                size: CGSize(width: CommonNewMessageCollectionViewitem.kMaximumInvoiceBubbleWidth, height: viewsHeight),
+                radius: 8
+            )
         }
     }
     

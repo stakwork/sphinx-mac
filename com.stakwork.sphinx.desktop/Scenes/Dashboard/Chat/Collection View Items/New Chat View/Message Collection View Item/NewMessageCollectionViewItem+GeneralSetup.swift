@@ -86,6 +86,10 @@ extension NewMessageCollectionViewItem {
             widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumWebViewBubbleWidth
         } else if let _ = mutableCellState.messageContent, let _ = mutableCellState.paidContent {
             widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumPaidTextViewBubbleWidth
+        } else if let _ = mutableCellState.invoice {
+            widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumInvoiceBubbleWidth
+        } else if let _ = mutableCellState.payment {
+            widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumInvoiceBubbleWidth
         } else {
             widthConstraint.constant = CommonNewMessageCollectionViewitem.kMaximumLabelBubbleWidth
         }

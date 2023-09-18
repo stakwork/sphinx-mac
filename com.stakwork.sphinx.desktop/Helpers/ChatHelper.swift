@@ -655,7 +655,6 @@ class ChatHelper {
     ) -> CGFloat {
         var mutableTableCellState = tableCellState
         var textHeight: CGFloat = 0.0
-        let kLabelMargin: CGFloat = 16.0
         
         var maxWidth = min(
             CommonNewMessageCollectionViewitem.kMaximumLabelBubbleWidth,
@@ -717,11 +716,10 @@ class ChatHelper {
         }
         
         if let text = mutableTableCellState.messageContent?.text, text.isNotEmpty {
-            let adaptedtext = (text.count > 1) ? String(text.dropLast()) : text
-            
-            let attrs = [NSAttributedString.Key.font: Constants.kMessageFont]
-            let attributedString = NSAttributedString(string: adaptedtext, attributes: attrs)
-            textHeight = attributedString.height(forWidth: maxWidth - (kLabelMargin * 2)) + (kLabelMargin * 2)
+            textHeight = ChatHelper.getTextHeightFor(
+                text: text,
+                width: maxWidth
+            )
         }
         
         return textHeight
@@ -743,6 +741,27 @@ class ChatHelper {
         
         if let _ = mutableTableCellState.directPayment {
             viewsHeight += DirectPaymentView.kViewHeight
+        }
+        
+        if let invoice = mutableTableCellState.invoice {
+            if mutableTableCellState.bubble?.direction == .Incoming && !invoice.isPaid {
+                viewsHeight += InvoiceView.kViewIncomingHeight
+            } else {
+                viewsHeight += InvoiceView.kViewOutgoingHeight
+            }
+            
+            if let memo = invoice.memo, memo.isNotEmpty {
+                let textHeight = ChatHelper.getTextHeightFor(
+                    text: memo,
+                    width: CommonNewMessageCollectionViewitem.kMaximumPaidTextViewBubbleWidth
+                ) - 16
+                
+                viewsHeight += textHeight
+            }
+        }
+        
+        if let _ = mutableTableCellState.payment {
+            viewsHeight += InvoicePaymentView.kViewHeight
         }
         
         if let _ = mutableTableCellState.audio {
@@ -812,5 +831,23 @@ class ChatHelper {
         }
         
         return viewsHeight
+    }
+    
+    public static func getTextHeightFor(
+        text: String,
+        width: CGFloat
+    ) -> CGFloat {
+        let adaptedtext = (text.count > 1) ? String(text.dropLast()) : text
+        
+        let attrs = [NSAttributedString.Key.font: Constants.kMessageFont]
+        let attributedString = NSAttributedString(string: adaptedtext, attributes: attrs)
+        let kLabelHorizontalMargins: CGFloat = 32.0
+        let kLabelVerticalMargins: CGFloat = 32.0
+        
+        let textHeight = attributedString.height(
+            forWidth: width - kLabelHorizontalMargins
+        ) + kLabelVerticalMargins
+        
+        return textHeight
     }
 }

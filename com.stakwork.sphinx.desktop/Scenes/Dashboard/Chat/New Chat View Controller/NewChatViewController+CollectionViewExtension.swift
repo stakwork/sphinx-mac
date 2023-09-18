@@ -75,23 +75,39 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
         NotificationCenter.default.post(name: .onJoinTribeClick, object: nil, userInfo: userInfo)
     }
     
-    func didDeleteTribe() {}
+    func didDeleteTribe() {
+        
+    }
     
-    func didUpdateChat(_ chat: Chat) {}
+    func didUpdateChat(_ chat: Chat) {
+        
+    }
     
-    func shouldShowLeaderboardFor(messageId: Int) {}
+    func shouldShowLeaderboardFor(messageId: Int) {
+        
+    }
     
     func shouldReplyToMessage(message: TransactionMessage) {}
     
-    func shouldOpenActivityVCFor(url: URL) {}
+    func shouldOpenActivityVCFor(url: URL) {
+        
+    }
     
-    func shouldPayInvoiceFor(messageId: Int) {}
+    func shouldPayInvoiceFor(messageId: Int) {
+        
+    }
     
     func isOnStandardMode() -> Bool {
         return true
     }
-    func didFinishSearchingWith(matchesCount: Int, index: Int) {}
-    func shouldToggleSearchLoadingWheel(active: Bool) {}
+    
+    func didFinishSearchingWith(matchesCount: Int, index: Int) {
+        
+    }
+    
+    func shouldToggleSearchLoadingWheel(active: Bool) {
+        
+    }
     
     func shouldShowOptionsFor(messageId: Int, from button: NSButton) {
         if let message = TransactionMessage.getMessageWith(id: messageId) {

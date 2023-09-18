@@ -146,6 +146,7 @@ extension NSView {
     
     func addDashedBorder(
         color: NSColor,
+        fillColor: NSColor? = nil,
         size: CGSize,
         rect: CGRect? = nil,
         lineWidth: CGFloat = 3,
@@ -162,7 +163,7 @@ extension NSView {
         
         shapeLayer.bounds = shapeRect
         shapeLayer.position = CGPoint(x: shapeRect.origin.x + shapeRect.width/2, y: shapeRect.origin.y + shapeRect.height/2)
-        shapeLayer.fillColor = NSColor.clear.cgColor
+        shapeLayer.fillColor = fillColor?.cgColor ?? NSColor.clear.cgColor
         shapeLayer.strokeColor = color
         shapeLayer.lineWidth = lineWidth
         shapeLayer.lineJoin = .round

@@ -175,7 +175,7 @@ struct MessageTableCellState {
         if let expiryDate = message.expirationDate, Date().timeIntervalSince1970 < expiryDate.timeIntervalSince1970 {
             let secondsDiff = expiryDate.timeIntervalSince1970 - Date().timeIntervalSince1970
             let minutes = (Int(secondsDiff) % 3600) / 60
-            expirationTimestamp = String(format: "expires.in".localized, minutes)
+            expirationTimestamp = String(format: "expires.in".localized, "\(minutes)")
         }
         
         var statusHeader = BubbleMessageLayoutState.StatusHeader(

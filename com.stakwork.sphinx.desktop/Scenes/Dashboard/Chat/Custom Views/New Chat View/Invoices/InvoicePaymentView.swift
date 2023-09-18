@@ -14,6 +14,8 @@ class InvoicePaymentView: NSView, LoadableNib {
     
     @IBOutlet weak var invoiceDetailsLabel: NSTextField!
     
+    static let kViewHeight: CGFloat = 20
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         loadViewFromNib()
