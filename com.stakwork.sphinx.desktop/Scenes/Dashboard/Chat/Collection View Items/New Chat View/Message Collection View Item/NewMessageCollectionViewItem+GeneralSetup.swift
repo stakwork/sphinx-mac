@@ -10,21 +10,11 @@ import Cocoa
 
 extension NewMessageCollectionViewItem {
     func setupViews() {
-//        bubbleAllView.layer.cornerRadius = MessageTableCellState.kBubbleCornerRadius
 //        leftPaymentDot.layer.cornerRadius = leftPaymentDot.frame.height / 2
 //        rightPaymentDot.layer.cornerRadius = rightPaymentDot.frame.height / 2
 
-//        paidAttachmentView.roundCorners(
-//            corners: [.bottomLeft, .bottomRight],
-//            radius: MessageTableCellState.kBubbleCornerRadius,
-//            viewBounds: CGRect(
-//                origin: CGPoint.zero,
-//                size: CGSize(
-//                    width: (UIScreen.main.bounds.width - (MessageTableCellState.kRowLeftMargin + MessageTableCellState.kRowRightMargin)) * (MessageTableCellState.kBubbleWidthPercentage),
-//                    height: MessageTableCellState.kSendPaidContentButtonHeight
-//                )
-//            )
-//        )
+        messageLabel.setSelectionColor(color: NSColor.getTextSelectionColor())
+        messageLabel.allowsEditingTextAttributes = true
 
         receivedArrow.drawReceivedBubbleArrow(color: NSColor.Sphinx.ReceivedMsgBG)
         sentArrow.drawSentBubbleArrow(color: NSColor.Sphinx.SentMsgBG)

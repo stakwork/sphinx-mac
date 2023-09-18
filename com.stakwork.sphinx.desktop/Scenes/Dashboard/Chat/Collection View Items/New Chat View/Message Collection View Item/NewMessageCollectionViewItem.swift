@@ -60,12 +60,8 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
-    }
-    
-    func setup() {
-        messageLabel.setSelectionColor(color: NSColor.getTextSelectionColor())
-        messageLabel.allowsEditingTextAttributes = true
+        
+        setupViews()
     }
     
     func configureWith(
