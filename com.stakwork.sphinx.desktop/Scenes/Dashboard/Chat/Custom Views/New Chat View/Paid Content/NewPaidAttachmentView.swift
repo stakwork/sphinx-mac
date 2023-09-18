@@ -24,6 +24,7 @@ class NewPaidAttachmentView: NSView, LoadableNib {
     @IBOutlet weak var purchaseDeniedContainer: NSBox!
     @IBOutlet weak var purchaseAcceptContainer: NSBox!
     @IBOutlet weak var processingLoadingWheel: NSProgressIndicator!
+    @IBOutlet weak var payButton: CustomButton!
     
     static let kViewHeight: CGFloat = 50
 
@@ -40,6 +41,8 @@ class NewPaidAttachmentView: NSView, LoadableNib {
     }
     
     func setup() {
+        payButton.cursor = .pointingHand
+        
         processingLoadingWheel.set(tintColor: NSColor.white)
         
         payAttachmentContainer.cornerRadius = 8
@@ -84,4 +87,7 @@ class NewPaidAttachmentView: NSView, LoadableNib {
         }
     }
     
+    @IBAction func payButtonClicked(_ sender: Any) {
+        delegate?.didTapPayButton()
+    }
 }

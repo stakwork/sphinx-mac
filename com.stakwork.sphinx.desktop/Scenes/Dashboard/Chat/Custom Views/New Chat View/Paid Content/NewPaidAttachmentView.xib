@@ -11,6 +11,7 @@
             <connections>
                 <outlet property="contentView" destination="c22-O7-iKe" id="uhP-MA-vaJ"/>
                 <outlet property="payAttachmentContainer" destination="Uz8-Yo-EoC" id="NOX-0v-4qp"/>
+                <outlet property="payButton" destination="PWd-vU-J5u" id="ltN-mi-a5n"/>
                 <outlet property="processingLoadingWheel" destination="42S-X8-VF8" id="8RO-Te-taf"/>
                 <outlet property="processingPaymentContainer" destination="SEl-Vo-OFg" id="qu2-tB-NRx"/>
                 <outlet property="purchaseAcceptContainer" destination="dmh-EJ-xc9" id="Lmt-bJ-zbX"/>
@@ -183,6 +184,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="payButtonClicked:" target="-2" id="FuE-Sm-oyg"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
