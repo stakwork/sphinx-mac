@@ -13,11 +13,13 @@
                 <outlet property="chatAvatarContainerView" destination="4lQ-yH-mp7" id="LCt-vb-3N0"/>
                 <outlet property="chatAvatarView" destination="KSM-nR-A3G" id="VLz-do-s7N"/>
                 <outlet property="contentStackView" destination="XTD-1c-I4W" id="FR0-4g-udk"/>
+                <outlet property="leftLineContainer" destination="Ew2-CA-NMt" id="v43-bV-Kd1"/>
                 <outlet property="messageLabel" destination="7nT-GT-4h9" id="a38-wz-6nd"/>
                 <outlet property="messageLabelLeadingConstraint" destination="w2g-8z-QSW" id="YxI-G4-TEo"/>
                 <outlet property="messageLabelTrailingConstraint" destination="zAt-KU-ECV" id="hka-jt-3re"/>
                 <outlet property="receivedArrow" destination="JZc-bH-qgu" id="fUU-mh-YG1"/>
                 <outlet property="receivedMessageMarginView" destination="VEd-Nw-BI7" id="f1V-zq-le9"/>
+                <outlet property="rightLineContainer" destination="dsA-SD-6NT" id="PZg-Ex-WpG"/>
                 <outlet property="sentArrow" destination="k0I-pC-Pcm" id="HgE-Gn-WKy"/>
                 <outlet property="sentMessageMargingView" destination="5kg-HM-NR1" id="TyD-Zd-odx"/>
                 <outlet property="statusHeaderView" destination="pCr-jf-cNZ" id="IqS-Np-YpO"/>
@@ -33,6 +35,26 @@
             <rect key="frame" x="0.0" y="0.0" width="780" height="280"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
+                <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Ew2-CA-NMt">
+                    <rect key="frame" x="76" y="0.0" width="3" height="280"/>
+                    <view key="contentView" id="3Hk-UA-st0">
+                        <rect key="frame" x="0.0" y="0.0" width="3" height="280"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="3" id="RyL-bR-1QP"/>
+                    </constraints>
+                </box>
+                <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="dsA-SD-6NT">
+                    <rect key="frame" x="749" y="0.0" width="3" height="280"/>
+                    <view key="contentView" id="bbd-F2-NWO">
+                        <rect key="frame" x="0.0" y="0.0" width="3" height="280"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="3" id="SET-5Z-3V1"/>
+                    </constraints>
+                </box>
                 <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="8" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="ahx-cg-gFk">
                     <rect key="frame" x="257" y="2" width="200" height="251"/>
                     <view key="contentView" id="Q8o-4d-tdl">
@@ -195,18 +217,24 @@
                 </stackView>
             </subviews>
             <constraints>
+                <constraint firstItem="Ew2-CA-NMt" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="3pu-ew-YOe"/>
                 <constraint firstItem="ahx-cg-gFk" firstAttribute="trailing" secondItem="7nT-GT-4h9" secondAttribute="trailing" constant="16" id="JWZ-vo-Kwr"/>
                 <constraint firstItem="k0I-pC-Pcm" firstAttribute="top" secondItem="ahx-cg-gFk" secondAttribute="top" id="Lhu-Ie-QSO"/>
                 <constraint firstItem="k0I-pC-Pcm" firstAttribute="trailing" secondItem="ahx-cg-gFk" secondAttribute="trailing" constant="7" id="NBb-fs-FCc"/>
                 <constraint firstItem="JZc-bH-qgu" firstAttribute="top" secondItem="ahx-cg-gFk" secondAttribute="top" id="NkQ-KS-Pu2"/>
+                <constraint firstAttribute="bottom" secondItem="dsA-SD-6NT" secondAttribute="bottom" id="PYx-Ha-3l9"/>
+                <constraint firstItem="dsA-SD-6NT" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="RAq-k8-jfl"/>
                 <constraint firstItem="ahx-cg-gFk" firstAttribute="bottom" secondItem="7nT-GT-4h9" secondAttribute="bottom" constant="16" id="TMZ-Ah-1kY"/>
                 <constraint firstItem="kkf-o1-Jqa" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="2" id="TvT-u9-VuM"/>
                 <constraint firstItem="ahx-cg-gFk" firstAttribute="top" secondItem="7nT-GT-4h9" secondAttribute="top" constant="-16" id="UYR-gv-E2X"/>
                 <constraint firstItem="JZc-bH-qgu" firstAttribute="leading" secondItem="ahx-cg-gFk" secondAttribute="leading" constant="-4" id="VAN-0X-pAp"/>
                 <constraint firstAttribute="bottom" secondItem="kkf-o1-Jqa" secondAttribute="bottom" constant="2" id="Wzv-ro-IUz"/>
+                <constraint firstAttribute="trailing" secondItem="dsA-SD-6NT" secondAttribute="trailing" constant="28" id="YCX-5H-WPO"/>
                 <constraint firstAttribute="trailing" secondItem="kkf-o1-Jqa" secondAttribute="trailing" constant="16" id="bSD-O7-hHT"/>
                 <constraint firstItem="kkf-o1-Jqa" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="16" id="bmg-SO-gzn"/>
+                <constraint firstAttribute="bottom" secondItem="Ew2-CA-NMt" secondAttribute="bottom" id="fAe-zT-lKr"/>
                 <constraint firstItem="ahx-cg-gFk" firstAttribute="leading" secondItem="7nT-GT-4h9" secondAttribute="leading" constant="-16" id="imt-Gw-D6F"/>
+                <constraint firstItem="Ew2-CA-NMt" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="76" id="uXE-gB-czc"/>
             </constraints>
             <point key="canvasLocation" x="-40" y="154"/>
         </customView>

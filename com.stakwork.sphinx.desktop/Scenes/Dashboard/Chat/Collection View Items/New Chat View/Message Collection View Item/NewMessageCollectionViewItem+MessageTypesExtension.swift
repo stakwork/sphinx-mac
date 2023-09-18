@@ -31,6 +31,32 @@ extension NewMessageCollectionViewItem {
     }
     
     func configureWith(
+        payment: BubbleMessageLayoutState.Payment?,
+        and bubble: BubbleMessageLayoutState.Bubble
+    ) {
+        if let payment = payment {
+            invoicePaymentView.configureWith(payment: payment, and: bubble)
+            invoicePaymentView.isHidden = false
+            
+            rightPaymentDot.isHidden = bubble.direction.isIncoming()
+            leftPaymentDot.isHidden = bubble.direction.isOutgoing()
+        } else {
+            rightPaymentDot.isHidden = true
+            leftPaymentDot.isHidden = true
+        }
+    }
+    
+    func configureWith(
+        invoice: BubbleMessageLayoutState.Invoice?,
+        and bubble: BubbleMessageLayoutState.Bubble
+    ) {
+        if let invoice = invoice {
+            invoiceView.configureWith(invoice: invoice, bubble: bubble, and: self)
+            invoiceView.isHidden = false
+        }
+    }
+    
+    func configureWith(
         audio: BubbleMessageLayoutState.Audio?,
         mediaData: MessageTableCellState.MediaData?,
         and bubble: BubbleMessageLayoutState.Bubble

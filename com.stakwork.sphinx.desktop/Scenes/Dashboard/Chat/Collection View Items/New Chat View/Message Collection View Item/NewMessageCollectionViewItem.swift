@@ -28,6 +28,8 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
     @IBOutlet weak var messageReplyView: NewMessageReplyView!
     
     ///Second Container
+    @IBOutlet weak var invoicePaymentView: InvoicePaymentView!
+    @IBOutlet weak var invoiceView: InvoiceView!
     @IBOutlet weak var sentPaidDetailsView: SentPaidDetails!
     @IBOutlet weak var paidTextMessageView: NSView!
     @IBOutlet weak var directPaymentView: DirectPaymentView!
@@ -52,11 +54,13 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
     @IBOutlet weak var tribeLinkPreviewView: TribeLinkView!
     @IBOutlet weak var paidAttachmentView: NewPaidAttachmentView!
     
+    @IBOutlet weak var leftLineContainer: NSBox!
+    @IBOutlet weak var rightLineContainer: NSBox!
+    @IBOutlet weak var leftPaymentDot: NSBox!
+    @IBOutlet weak var rightPaymentDot: NSBox!
+    
     @IBOutlet weak var widthConstraint: NSLayoutConstraint!
     @IBOutlet weak var botResponseViewHeightConstraint: NSLayoutConstraint!
-    
-    let kBubbleMaxWidth: CGFloat = 500
-    let kBubbleMinWidth: CGFloat = 250
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,8 +116,8 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
         configureWith(paidContent: mutableMessageCellState.paidContent, and: bubble)
 //
 //        ///Message types
-//        configureWith(payment: mutableMessageCellState.payment, and: bubble)
-//        configureWith(invoice: mutableMessageCellState.invoice, and: bubble)
+        configureWith(payment: mutableMessageCellState.payment, and: bubble)
+        configureWith(invoice: mutableMessageCellState.invoice, and: bubble)
         configureWith(directPayment: mutableMessageCellState.directPayment, and: bubble)
         configureWith(callLink: mutableMessageCellState.callLink)
         configureWith(podcastBoost: mutableMessageCellState.podcastBoost)
@@ -139,6 +143,6 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
         configureWith(bubble: bubble)
         
         ///Invoice Lines
-//        configureWith(invoiceLines: mutableMessageCellState.invoicesLines)
+        configureWith(invoiceLines: mutableMessageCellState.invoicesLines)
     }
 }

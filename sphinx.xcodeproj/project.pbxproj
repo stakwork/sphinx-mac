@@ -399,6 +399,10 @@
 		479496672AB8A79B00C42D1E /* GroupRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479496662AB8A79B00C42D1E /* GroupRequestView.swift */; };
 		479496692AB8A7A000C42D1E /* GroupRequestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479496682AB8A7A000C42D1E /* GroupRequestView.xib */; };
 		4794966B2AB8B03800C42D1E /* MessageNoBubbleCollectionViewItem+DelegatesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4794966A2AB8B03800C42D1E /* MessageNoBubbleCollectionViewItem+DelegatesExtension.swift */; };
+		4794966E2AB8B50E00C42D1E /* InvoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4794966D2AB8B50E00C42D1E /* InvoiceView.swift */; };
+		479496702AB8B51400C42D1E /* InvoiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4794966F2AB8B51400C42D1E /* InvoiceView.xib */; };
+		479496722AB8B51D00C42D1E /* InvoicePaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479496712AB8B51D00C42D1E /* InvoicePaymentView.swift */; };
+		479496742AB8B52600C42D1E /* InvoicePaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479496732AB8B52600C42D1E /* InvoicePaymentView.xib */; };
 		47949BFB24AA8E10000D697B /* DeletedMessageSentCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47949BF924AA8E10000D697B /* DeletedMessageSentCollectionViewItem.swift */; };
 		47949BFF24AA8E2F000D697B /* DeletedMessageReceivedCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47949BFD24AA8E2F000D697B /* DeletedMessageReceivedCollectionViewItem.swift */; };
 		47949C0224AA8F4C000D697B /* CommonDeletedMessageCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47949C0124AA8F4C000D697B /* CommonDeletedMessageCollectionViewItem.swift */; };
@@ -1190,6 +1194,10 @@
 		479496662AB8A79B00C42D1E /* GroupRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRequestView.swift; sourceTree = "<group>"; };
 		479496682AB8A7A000C42D1E /* GroupRequestView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupRequestView.xib; sourceTree = "<group>"; };
 		4794966A2AB8B03800C42D1E /* MessageNoBubbleCollectionViewItem+DelegatesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageNoBubbleCollectionViewItem+DelegatesExtension.swift"; sourceTree = "<group>"; };
+		4794966D2AB8B50E00C42D1E /* InvoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceView.swift; sourceTree = "<group>"; };
+		4794966F2AB8B51400C42D1E /* InvoiceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvoiceView.xib; sourceTree = "<group>"; };
+		479496712AB8B51D00C42D1E /* InvoicePaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoicePaymentView.swift; sourceTree = "<group>"; };
+		479496732AB8B52600C42D1E /* InvoicePaymentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvoicePaymentView.xib; sourceTree = "<group>"; };
 		47949BF924AA8E10000D697B /* DeletedMessageSentCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedMessageSentCollectionViewItem.swift; sourceTree = "<group>"; };
 		47949BFD24AA8E2F000D697B /* DeletedMessageReceivedCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedMessageReceivedCollectionViewItem.swift; sourceTree = "<group>"; };
 		47949C0124AA8F4C000D697B /* CommonDeletedMessageCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonDeletedMessageCollectionViewItem.swift; sourceTree = "<group>"; };
@@ -2603,6 +2611,17 @@
 			path = "Group Actions";
 			sourceTree = "<group>";
 		};
+		4794966C2AB8B50000C42D1E /* Invoices */ = {
+			isa = PBXGroup;
+			children = (
+				4794966D2AB8B50E00C42D1E /* InvoiceView.swift */,
+				4794966F2AB8B51400C42D1E /* InvoiceView.xib */,
+				479496712AB8B51D00C42D1E /* InvoicePaymentView.swift */,
+				479496732AB8B52600C42D1E /* InvoicePaymentView.xib */,
+			);
+			path = Invoices;
+			sourceTree = "<group>";
+		};
 		479751C2246C72C100D2106B /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -3019,6 +3038,7 @@
 		47DE1BF12A68138B0029597B /* New Chat View */ = {
 			isa = PBXGroup;
 			children = (
+				4794966C2AB8B50000C42D1E /* Invoices */,
 				479496592AB8A6ED00C42D1E /* Group Actions */,
 				479496502AB4BB6B00C42D1E /* Paid Content */,
 				479496472AB3A58700C42D1E /* Audio View */,
@@ -3661,6 +3681,7 @@
 				4726A44224C628DA005A66B4 /* horn.caf in Resources */,
 				4794964B2AB3A59C00C42D1E /* AudioMessageView.xib in Resources */,
 				4767AE942509BA8C00C82E5B /* GiphySearchView.xib in Resources */,
+				479496742AB8B52600C42D1E /* InvoicePaymentView.xib in Resources */,
 				479A03F02587E73A0093DB30 /* TribeMemberInfoView.xib in Resources */,
 				47DE1C052A68813B0029597B /* MessageNoBubbleCollectionViewItem.xib in Resources */,
 				470396FA2537766F007F9C23 /* PodcastCommentReceivedCollectionViewItem.xib in Resources */,
@@ -3718,6 +3739,7 @@
 				47C1F1DF2481530000A71610 /* GroupActionMessageCollectionViewItem.xib in Resources */,
 				CE38D91129E0821A00F271CD /* Payments.storyboard in Resources */,
 				4708C2192A5885D200274AD4 /* ChatTopView.xib in Resources */,
+				479496702AB8B51400C42D1E /* InvoiceView.xib in Resources */,
 				47C7D71127874A12006D2809 /* AuthExternalView.xib in Resources */,
 				473633E325548E4B007405F2 /* BoostButtonView.xib in Resources */,
 				474274A728EC7289000C3D51 /* TribeTagsView.xib in Resources */,
@@ -4032,6 +4054,7 @@
 				4797E75A278607960080B966 /* PeopleTorActionsView.swift in Sources */,
 				4708C2052A55CA4800274AD4 /* NSViewController.swift in Sources */,
 				4744FA642469A43600C5FD94 /* API+SubscriptionsExtension.swift in Sources */,
+				479496722AB8B51D00C42D1E /* InvoicePaymentView.swift in Sources */,
 				474E46642AB0B6920098AD24 /* DeletedMessageView.swift in Sources */,
 				47B6F529258BC40600D64A41 /* PodcastLiveDataSource.swift in Sources */,
 				4708C21D2A58958C00274AD4 /* ChatMessageFieldView.swift in Sources */,
@@ -4131,6 +4154,7 @@
 				470396F325373CF9007F9C23 /* MouseDraggableView.swift in Sources */,
 				4731BE25248546A100BCCA9E /* ChatCollectionViewItemProtocols.swift in Sources */,
 				4744FA662469A44300C5FD94 /* API+InviteExtension.swift in Sources */,
+				4794966E2AB8B50E00C42D1E /* InvoiceView.swift in Sources */,
 				4744FA8D2469C9F800C5FD94 /* UserContact+CoreDataClass.swift in Sources */,
 				47DE1C082A6881F10029597B /* DateSeparatorView.swift in Sources */,
 				47D7D8E424620B520089C6EE /* KeychainManager.swift in Sources */,

@@ -19,6 +19,9 @@ class MessageNoBubbleCollectionViewItem: NSCollectionViewItem, ChatCollectionVie
     @IBOutlet weak var deletedMessageView: DeletedMessageView!
     @IBOutlet weak var groupActionsView: GroupActionsView!
     
+    @IBOutlet weak var leftLineContainer: NSBox!
+    @IBOutlet weak var rightLineContainer: NSBox!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,13 +36,26 @@ class MessageNoBubbleCollectionViewItem: NSCollectionViewItem, ChatCollectionVie
     }
     
     func setupViews() {
-//        let lineFrame = CGRect(x: 0.0, y: 0, width: 3, height: contentView.frame.size.height)
-//
-//        let rightLineLayer = rightLineContainer.getVerticalDottedLine(color: UIColor.Sphinx.WashedOutReceivedText, frame: lineFrame)
-//        rightLineContainer.layer.addSublayer(rightLineLayer)
-//
-//        let leftLineLayer = leftLineContainer.getVerticalDottedLine(color: UIColor.Sphinx.WashedOutReceivedText, frame: lineFrame)
-//        leftLineContainer.layer.addSublayer(leftLineLayer)
+        let lineFrame = CGRect(
+            x: 0.0,
+            y: 0,
+            width: 3,
+            height: self.view.frame.size.height
+        )
+
+        let rightLineLayer = rightLineContainer.getVerticalDottedLine(
+            color: NSColor.Sphinx.WashedOutReceivedText,
+            frame: lineFrame
+        )
+        rightLineContainer.wantsLayer = true
+        rightLineContainer.layer?.addSublayer(rightLineLayer)
+
+        let leftLineLayer = leftLineContainer.getVerticalDottedLine(
+            color: NSColor.Sphinx.WashedOutReceivedText,
+            frame: lineFrame
+        )
+        leftLineContainer.wantsLayer = true
+        leftLineContainer.layer?.addSublayer(leftLineLayer)
     }
     
     func configureWith(
@@ -141,23 +157,23 @@ class MessageNoBubbleCollectionViewItem: NSCollectionViewItem, ChatCollectionVie
     func configureWith(
         invoiceLines: BubbleMessageLayoutState.InvoiceLines
     ) {
-//        switch (invoiceLines.linesState) {
-//        case .None:
-//            leftLineContainer.isHidden = true
-//            rightLineContainer.isHidden = true
-//            break
-//        case .Left:
-//            leftLineContainer.isHidden = false
-//            rightLineContainer.isHidden = true
-//            break
-//        case .Right:
-//            leftLineContainer.isHidden = true
-//            rightLineContainer.isHidden = false
-//            break
-//        case .Both:
-//            leftLineContainer.isHidden = false
-//            rightLineContainer.isHidden = false
-//            break
-//        }
+        switch (invoiceLines.linesState) {
+        case .None:
+            leftLineContainer.isHidden = true
+            rightLineContainer.isHidden = true
+            break
+        case .Left:
+            leftLineContainer.isHidden = false
+            rightLineContainer.isHidden = true
+            break
+        case .Right:
+            leftLineContainer.isHidden = true
+            rightLineContainer.isHidden = false
+            break
+        case .Both:
+            leftLineContainer.isHidden = false
+            rightLineContainer.isHidden = false
+            break
+        }
     }
 }

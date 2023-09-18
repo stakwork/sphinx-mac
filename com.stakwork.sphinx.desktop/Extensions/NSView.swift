@@ -55,6 +55,28 @@ extension NSView {
         NSLayoutConstraint(item: self, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1.0, constant: 0.0).isActive = true
     }
     
+    func getVerticalDottedLine(
+        color: NSColor = NSColor.Sphinx.Body,
+        frame: CGRect
+    ) -> CAShapeLayer {
+        let cgColor = color.cgColor
+
+        let shapeLayer: CAShapeLayer = CAShapeLayer()
+        shapeLayer.frame = CGRect(x: frame.origin.x + 0.5, y: frame.origin.y, width: 1.5, height: frame.height)
+        shapeLayer.fillColor = cgColor
+        shapeLayer.strokeColor = cgColor
+        shapeLayer.lineWidth = 2
+        shapeLayer.lineDashPattern = [0.01, 5]
+        shapeLayer.lineCap = CAShapeLayerLineCap.round
+
+        let path: NSBezierPath = NSBezierPath()
+        path.move(to: CGPoint(x: frame.origin.x + 1, y: frame.origin.y))
+        path.line(to: CGPoint(x: frame.origin.x + 1, y: frame.origin.y + frame.height))
+        shapeLayer.path = path.cgPath
+
+        return shapeLayer
+    }
+    
     func setAnchorPoint(anchorPoint:CGPoint) {
         self.wantsLayer = true
         

@@ -10,22 +10,32 @@ import Cocoa
 
 extension NewMessageCollectionViewItem {
     func setupViews() {
-//        leftPaymentDot.layer.cornerRadius = leftPaymentDot.frame.height / 2
-//        rightPaymentDot.layer.cornerRadius = rightPaymentDot.frame.height / 2
-
         messageLabel.setSelectionColor(color: NSColor.getTextSelectionColor())
         messageLabel.allowsEditingTextAttributes = true
 
         receivedArrow.drawReceivedBubbleArrow(color: NSColor.Sphinx.ReceivedMsgBG)
         sentArrow.drawSentBubbleArrow(color: NSColor.Sphinx.SentMsgBG)
         
-//        let lineFrame = CGRect(x: 0.0, y: 0, width: 3, height: contentView.frame.size.height)
-//
-//        let rightLineLayer = rightLineContainer.getVerticalDottedLine(color: UIColor.Sphinx.WashedOutReceivedText, frame: lineFrame)
-//        rightLineContainer.layer.addSublayer(rightLineLayer)
-//
-//        let leftLineLayer = leftLineContainer.getVerticalDottedLine(color: UIColor.Sphinx.WashedOutReceivedText, frame: lineFrame)
-//        leftLineContainer.layer.addSublayer(leftLineLayer)
+        let lineFrame = CGRect(
+            x: 0.0,
+            y: 0,
+            width: 3,
+            height: self.view.frame.size.height
+        )
+
+        let rightLineLayer = rightLineContainer.getVerticalDottedLine(
+            color: NSColor.Sphinx.WashedOutReceivedText,
+            frame: lineFrame
+        )
+        rightLineContainer.wantsLayer = true
+        rightLineContainer.layer?.addSublayer(rightLineLayer)
+
+        let leftLineLayer = leftLineContainer.getVerticalDottedLine(
+            color: NSColor.Sphinx.WashedOutReceivedText,
+            frame: lineFrame
+        )
+        leftLineContainer.wantsLayer = true
+        leftLineContainer.layer?.addSublayer(leftLineLayer)
     }
     
     func configureViewsWidthWith(
@@ -82,8 +92,8 @@ extension NewMessageCollectionViewItem {
     
     func hideAllSubviews() {
         textMessageView.isHidden = true
-//        invoicePaymentView.isHidden = true
-//        invoiceView.isHidden = true
+        invoicePaymentView.isHidden = true
+        invoiceView.isHidden = true
         messageReplyView.isHidden = true
         sentPaidDetailsView.isHidden = true
         paidTextMessageView.isHidden = true

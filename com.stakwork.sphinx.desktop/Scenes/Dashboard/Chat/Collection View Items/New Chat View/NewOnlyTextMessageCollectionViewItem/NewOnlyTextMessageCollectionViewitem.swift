@@ -33,16 +33,11 @@ class NewOnlyTextMessageCollectionViewitem: CommonNewMessageCollectionViewitem, 
     @IBOutlet weak var messageLabelTrailingConstraint: NSLayoutConstraint!
     
     ///Invoice Lines
-//    @IBOutlet weak var leftLineContainer: NSView!
-//    @IBOutlet weak var rightLineContainer: NSView!
+    @IBOutlet weak var leftLineContainer: NSBox!
+    @IBOutlet weak var rightLineContainer: NSBox!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        self.view.wantsLayer = true
-//        self.view.layer?.setAffineTransform(
-//            CGAffineTransform(scaleX: 1, y: -1)
-//        )
         
         setupViews()
     }
@@ -54,24 +49,26 @@ class NewOnlyTextMessageCollectionViewitem: CommonNewMessageCollectionViewitem, 
         messageLabel.setSelectionColor(color: NSColor.getTextSelectionColor())
         messageLabel.allowsEditingTextAttributes = true
         
-//        let lineFrame = CGRect(
-//            x: 0.0,
-//            y: 0.0,
-//            width: 3,
-//            height: view.frame.size.height
-//        )
+        let lineFrame = CGRect(
+            x: 0.0,
+            y: 0.0,
+            width: 3,
+            height: view.frame.size.height
+        )
         
-//        let rightLineLayer = rightLineContainer.getVerticalDottedLine(
-//            color: NSColor.Sphinx.WashedOutReceivedText,
-//            frame: lineFrame
-//        )
-//        rightLineContainer.layer.addSublayer(rightLineLayer)
-//
-//        let leftLineLayer = leftLineContainer.getVerticalDottedLine(
-//            color: NSColor.Sphinx.WashedOutReceivedText,
-//            frame: lineFrame
-//        )
-//        leftLineContainer.layer.addSublayer(leftLineLayer)
+        let rightLineLayer = rightLineContainer.getVerticalDottedLine(
+            color: NSColor.Sphinx.WashedOutReceivedText,
+            frame: lineFrame
+        )
+        rightLineContainer.wantsLayer = true
+        rightLineContainer.layer?.addSublayer(rightLineLayer)
+
+        let leftLineLayer = leftLineContainer.getVerticalDottedLine(
+            color: NSColor.Sphinx.WashedOutReceivedText,
+            frame: lineFrame
+        )
+        leftLineContainer.wantsLayer = true
+        leftLineContainer.layer?.addSublayer(leftLineLayer)
     }
     
     func configureWith(
