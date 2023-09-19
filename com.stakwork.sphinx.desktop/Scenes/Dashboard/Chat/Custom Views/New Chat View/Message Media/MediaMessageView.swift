@@ -27,6 +27,7 @@ class MediaMessageView: NSView, LoadableNib {
     @IBOutlet weak var fileInfoView: FileInfoView!
     @IBOutlet weak var loadingContainer: NSView!
     @IBOutlet weak var loadingImageView: NSImageView!
+    @IBOutlet weak var gifView: NSView!
     @IBOutlet weak var gifOverlay: GifOverlayView!
     @IBOutlet weak var videoOverlay: NSView!
     @IBOutlet weak var mediaNotAvailableView: NSView!
@@ -89,11 +90,23 @@ class MediaMessageView: NSView, LoadableNib {
         
         if let mediaData = mediaData {
             fileInfoView.isHidden = !messageMedia.isPdf || mediaData.failed
-            gifOverlay.isHidden = !messageMedia.isGif || mediaData.failed
+            gifView.isHidden = !(messageMedia.isGif || messageMedia.isGiphy) || mediaData.failed
             videoOverlay.isHidden = !messageMedia.isVideo || mediaData.failed
+            mediaImageView.isHidden = messageMedia.isGif && !mediaData.failed
             
             mediaImageView.gravity = messageMedia.isPaymentTemplate ? .resizeAspect : .resizeAspectFill
-            mediaImageView.image = mediaData.image
+            
+            if messageMedia.isGif || messageMedia.isGiphy {
+                if let data = mediaData.data, let animation = data.createGIFAnimation() {
+                    gifView.wantsLayer = true
+                    gifView.layer?.removeAllAnimations()
+                    gifView.layer?.contents = nil
+                    gifView.layer?.contentsGravity = .resizeAspect
+                    gifView.layer?.add(animation, forKey: "contents")
+                }
+            } else {
+                mediaImageView.image = mediaData.image
+            }
             
             if let fileInfo = mediaData.fileInfo {
                 fileInfoView.configure(fileInfo: fileInfo)

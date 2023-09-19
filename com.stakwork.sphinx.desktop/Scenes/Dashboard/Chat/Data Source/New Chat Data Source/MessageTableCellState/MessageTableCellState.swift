@@ -331,7 +331,7 @@ struct MessageTableCellState {
         
         var urlAndKey: (URL?, String?) = (nil, nil)
         
-        if message.isMediaAttachment() || message.isPaidMessage() {
+        if message.isImageVideoOrPdf() || message.isPaidMessage() {
             if message.isPaidAttachment() && bubble?.direction.isIncoming() == true {
                 if let purchaseAccept = purchaseMessages[TransactionMessage.TransactionMessageType.purchaseAccept.rawValue] {
                     urlAndKey = (purchaseAccept.getMediaUrlFromMediaToken(), purchaseAccept.mediaKey)

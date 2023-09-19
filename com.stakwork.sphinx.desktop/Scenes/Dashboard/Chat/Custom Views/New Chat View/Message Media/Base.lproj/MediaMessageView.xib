@@ -11,6 +11,7 @@
                 <outlet property="contentView" destination="c22-O7-iKe" id="W2h-Nh-dBc"/>
                 <outlet property="fileInfoView" destination="cFp-fd-7Nl" id="Rm1-bC-i08"/>
                 <outlet property="gifOverlay" destination="rSf-ho-Jb8" id="Q4D-4K-z0D"/>
+                <outlet property="gifView" destination="dDe-Fw-cUr" id="wTe-E5-nGE"/>
                 <outlet property="loadingContainer" destination="erf-QR-Lg1" id="h6s-FW-3gl"/>
                 <outlet property="loadingImageView" destination="ica-kk-uAB" id="ytF-Hs-UIG"/>
                 <outlet property="mediaButton" destination="01I-5Q-iVg" id="E68-jt-ta5"/>
@@ -86,6 +87,9 @@
                                 <constraint firstItem="ica-kk-uAB" firstAttribute="centerX" secondItem="erf-QR-Lg1" secondAttribute="centerX" id="pjd-Au-q7D"/>
                             </constraints>
                         </customView>
+                        <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dDe-Fw-cUr">
+                            <rect key="frame" x="0.0" y="0.0" width="296" height="296"/>
+                        </customView>
                         <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rSf-ho-Jb8" customClass="GifOverlayView" customModule="Sphinx" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="296" height="296"/>
                         </customView>
@@ -130,6 +134,8 @@
                     </subviews>
                     <constraints>
                         <constraint firstItem="5r8-y2-HKf" firstAttribute="leading" secondItem="lcs-mm-Gx8" secondAttribute="leading" id="1PB-Un-5zO"/>
+                        <constraint firstAttribute="bottom" secondItem="dDe-Fw-cUr" secondAttribute="bottom" id="1hx-PP-25W"/>
+                        <constraint firstItem="dDe-Fw-cUr" firstAttribute="top" secondItem="lcs-mm-Gx8" secondAttribute="top" id="2py-Vt-R62"/>
                         <constraint firstItem="p4w-zt-196" firstAttribute="leading" secondItem="lcs-mm-Gx8" secondAttribute="leading" id="43e-fC-L3p"/>
                         <constraint firstItem="v91-6y-tbk" firstAttribute="leading" secondItem="lcs-mm-Gx8" secondAttribute="leading" id="5C3-Zf-D75"/>
                         <constraint firstAttribute="trailing" secondItem="p4w-zt-196" secondAttribute="trailing" id="7Pf-Lq-f3n"/>
@@ -146,8 +152,10 @@
                         <constraint firstAttribute="bottom" secondItem="cFp-fd-7Nl" secondAttribute="bottom" id="ZEg-6V-nHN"/>
                         <constraint firstItem="dtH-2D-HLo" firstAttribute="leading" secondItem="lcs-mm-Gx8" secondAttribute="leading" id="aQN-MR-slY"/>
                         <constraint firstAttribute="bottom" secondItem="rSf-ho-Jb8" secondAttribute="bottom" id="adJ-Db-KYM"/>
+                        <constraint firstAttribute="trailing" secondItem="dDe-Fw-cUr" secondAttribute="trailing" id="boj-HT-wXi"/>
                         <constraint firstAttribute="trailing" secondItem="rSf-ho-Jb8" secondAttribute="trailing" id="cW8-Cc-u1P"/>
                         <constraint firstAttribute="bottom" secondItem="dtH-2D-HLo" secondAttribute="bottom" id="cbZ-pf-juY"/>
+                        <constraint firstItem="dDe-Fw-cUr" firstAttribute="leading" secondItem="lcs-mm-Gx8" secondAttribute="leading" id="eYn-j9-fkj"/>
                         <constraint firstItem="rSf-ho-Jb8" firstAttribute="leading" secondItem="lcs-mm-Gx8" secondAttribute="leading" id="hAd-U3-JXA"/>
                         <constraint firstItem="v91-6y-tbk" firstAttribute="top" secondItem="lcs-mm-Gx8" secondAttribute="top" id="iGi-vH-11U"/>
                         <constraint firstAttribute="bottom" secondItem="v91-6y-tbk" secondAttribute="bottom" id="mBr-ox-BP7"/>

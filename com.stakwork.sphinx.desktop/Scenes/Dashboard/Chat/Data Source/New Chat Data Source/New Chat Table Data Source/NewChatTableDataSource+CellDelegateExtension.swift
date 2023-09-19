@@ -328,8 +328,8 @@ extension NewChatTableDataSource : ChatCollectionViewItemDelegate {
                 DispatchQueue.main.async {
                     if let data = data {
                         let updatedMediaData = MessageTableCellState.MediaData(
-//                            image: data.gifImageFromData()
-                            image: NSImage(data: data)
+                            image: NSImage(data: data),
+                            data: data
                         )
                         self.updateMessageTableCellStateFor(rowIndex: rowIndex, messageId: messageId, with: updatedMediaData)
                     } else {
