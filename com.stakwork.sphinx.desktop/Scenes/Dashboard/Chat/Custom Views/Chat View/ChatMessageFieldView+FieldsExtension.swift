@@ -21,9 +21,10 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
         replacementString: String?
     ) -> Bool {
         if let replacementString = replacementString, replacementString == "\n" {
-//            if sendButton.isEnabled {
-//                shouldSendMessage()
-//            }
+            if sendButton.isEnabled {
+                delegate?.shouldSendMessage(text: textView.string, completion: { _ in})
+                clearMessage()
+            }
             return false
         }
         
@@ -35,6 +36,11 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
         )
         
         return (currentChangedString.count <= kCharacterLimit)
+    }
+    
+    func clearMessage() {
+        messageTextView.string = ""
+        textDidChange(Notification(name: NSControl.textDidChangeNotification))
     }
     
     func textDidChange(_ notification: Notification) {

@@ -19,6 +19,7 @@ class NewChatViewController: DashboardSplittedViewController {
     @IBOutlet weak var chatScrollView: NSScrollView!
     @IBOutlet weak var chatCollectionView: NSCollectionView!
     @IBOutlet weak var botWebView: WKWebView!
+    @IBOutlet weak var draggingView: DraggingDestinationView!
     
     @IBOutlet weak var mentionsScrollView: NSScrollView!
     @IBOutlet weak var mentionsCollectionView: NSCollectionView!
@@ -27,6 +28,8 @@ class NewChatViewController: DashboardSplittedViewController {
     @IBOutlet weak var childViewControllerContainer: ChildVCContainer!
     @IBOutlet weak var pinMessageDetailView: PinMessageDetailView!
     @IBOutlet weak var pinMessageNotificationView: PinNotificationView!
+    
+    var newChatViewModel: NewChatViewModel!
     
     var contact: UserContact?
     var chat: Chat?
@@ -54,6 +57,11 @@ class NewChatViewController: DashboardSplittedViewController {
         viewController.contact = contact
         viewController.delegate = delegate
         viewController.deepLinkData = deepLinkData
+        
+        viewController.newChatViewModel = NewChatViewModel(
+            chat: viewController.chat,
+            contact: viewController.contact
+        )
         
         return viewController
     }

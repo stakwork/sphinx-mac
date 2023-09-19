@@ -467,6 +467,10 @@ extension TransactionMessage {
         return type == TransactionMessageType.call.rawValue || messageContent?.isCallLink == true
     }
     
+    func isCallMessageType() -> Bool {
+        return type == TransactionMessageType.call.rawValue
+    }
+    
     func canBeDeleted() -> Bool {
         return isOutgoing() || (self.chat?.isMyPublicGroup() ?? false)
     }

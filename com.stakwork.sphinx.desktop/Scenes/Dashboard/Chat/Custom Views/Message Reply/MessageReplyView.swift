@@ -75,6 +75,12 @@ class MessageReplyView: NSView, LoadableNib {
 //        isHidden = true
     }
     
+    func resetAndHideView() {
+        self.podcastComment = nil
+        self.message = nil
+        self.isHidden = true
+    }
+    
     func resetView() {
         senderLabel.stringValue = ""
         messageLabel.stringValue = ""

@@ -25,6 +25,10 @@ protocol ChatBottomViewDelegate : AnyObject {
     func didTapDownArrow() -> Bool
     func didSelectSendPaymentMacro()
     func didSelectReceivePaymentMacro()
+    
+    
+    ///Sending message
+    func shouldSendMessage(text: String, completion: @escaping (Bool) -> ())
 }
 
 class ChatBottomView: NSView, LoadableNib {
@@ -93,5 +97,13 @@ class ChatBottomView: NSView, LoadableNib {
         messageFieldView.processGeneralPurposeMacro(
             action: action
         )
+    }
+    
+    func isPaidTextMessage() -> Bool {
+        return messageFieldView.isPaidTextMessage()
+    }
+    
+    func resetReplyView() {
+        messageReplyView.resetAndHideView()
     }
 }

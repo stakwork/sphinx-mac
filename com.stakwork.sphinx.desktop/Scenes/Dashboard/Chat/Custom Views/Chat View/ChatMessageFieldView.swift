@@ -193,6 +193,12 @@ class ChatMessageFieldView: NSView, LoadableNib {
         )
     }
     
+    func isPaidTextMessage() -> Bool {
+        let price = Int(priceTextField.stringValue) ?? 0
+        let text = messageTextView.string.trim()
+        return price > 0 && !text.isEmpty
+    }
+    
     @IBAction func attachmentsButtonClicked(_ sender: Any) {
         delegate?.didClickAttachmentsButton()
     }

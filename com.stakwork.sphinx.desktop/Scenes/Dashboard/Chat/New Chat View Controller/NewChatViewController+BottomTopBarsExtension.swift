@@ -94,6 +94,26 @@ extension NewChatViewController : GroupDetailsDelegate {
 }
 
 extension NewChatViewController : ChatBottomViewDelegate {
+    func shouldSendMessage(text: String, completion: @escaping (Bool) -> ()) {
+        chatBottomView.resetReplyView()
+        
+        if shouldUploadMedia() {
+            
+        } else {
+            newChatViewModel.shouldSendMessage(
+                text: text,
+                type: TransactionMessage.TransactionMessageType.message.rawValue,
+                completion: { success in
+                    completion(success)
+                }
+            )
+        }
+    }
+    
+    func shouldUploadMedia() -> Bool {
+        return draggingView.isSendingMedia() || chatBottomView.isPaidTextMessage()
+    }
+    
     func didClickAttachmentsButton() {
         guard let chat = chat else {
             return
