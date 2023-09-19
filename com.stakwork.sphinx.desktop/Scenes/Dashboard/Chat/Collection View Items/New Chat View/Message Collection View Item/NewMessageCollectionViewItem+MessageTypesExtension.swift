@@ -211,21 +211,24 @@ extension NewMessageCollectionViewItem {
                 )
 
                 for match in messageContent.linkMatches {
+                    
+                    if let substring = messageContent.text?.substring(range: match.range), let url = URL(string: substring) {
+                        attributedString.setAttributes(
+                            [
+                                NSAttributedString.Key.foregroundColor: NSColor.Sphinx.PrimaryBlue,
+                                NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
+                                NSAttributedString.Key.font: messageContent.font,
+                                NSAttributedString.Key.link: url
+                            ],
+                            range: match.range
+                        )
 
-                    attributedString.setAttributes(
-                        [
-                            NSAttributedString.Key.foregroundColor: NSColor.Sphinx.PrimaryBlue,
-                            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
-                            NSAttributedString.Key.font: messageContent.font
-                        ],
-                        range: match.range
-                    )
-
-                    urlRanges.append(match.range)
+                        urlRanges.append(match.range)
+                    }
                 }
 
                 messageLabel.attributedStringValue = attributedString
-//                messageLabel.isUserInteractionEnabled = true
+                messageLabel.isEnabled = true
             }
             
             textMessageView.isHidden = false
@@ -240,14 +243,6 @@ extension NewMessageCollectionViewItem {
                 }
             }
         }
-
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(labelTapped(gesture:)))
-
-//        if urlRanges.isEmpty {
-//            messageLabel.removeGestureRecognizer(tap)
-//        } else {
-//            messageLabel.addGestureRecognizer(tap)
-//        }
     }
     
     func configureWith(

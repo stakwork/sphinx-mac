@@ -24,11 +24,6 @@ extension NewOnlyTextMessageCollectionViewitem {
         messageContent: BubbleMessageLayoutState.MessageContent?,
         searchingTerm: String?
     ) {
-//        if let messageContent = messageContent {
-//            messageLabel.stringValue = messageContent.text ?? ""
-//            messageLabel.font = messageContent.font
-//        }
-        
         urlRanges = []
 
         if let messageContent = messageContent {
@@ -61,30 +56,25 @@ extension NewOnlyTextMessageCollectionViewitem {
 
                 for match in messageContent.linkMatches {
 
-                    attributedString.setAttributes(
-                        [
-                            NSAttributedString.Key.foregroundColor: NSColor.Sphinx.PrimaryBlue,
-                            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
-                            NSAttributedString.Key.font: messageContent.font
-                        ],
-                        range: match.range
-                    )
+                    if let substring = messageContent.text?.substring(range: match.range), let url = URL(string: substring) {
+                        attributedString.setAttributes(
+                            [
+                                NSAttributedString.Key.foregroundColor: NSColor.Sphinx.PrimaryBlue,
+                                NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
+                                NSAttributedString.Key.font: messageContent.font,
+                                NSAttributedString.Key.link: url
+                            ],
+                            range: match.range
+                        )
 
-                    urlRanges.append(match.range)
+                        urlRanges.append(match.range)
+                    }
                 }
 
                 messageLabel.attributedStringValue = attributedString
-//                messageLabel.isUserInteractionEnabled = true
+                messageLabel.isEnabled = true
             }
         }
-
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(labelTapped(gesture:)))
-
-//        if urlRanges.isEmpty {
-//            messageLabel.removeGestureRecognizer(tap)
-//        } else {
-//            messageLabel.addGestureRecognizer(tap)
-//        }
     }
     
     func configureWith(
