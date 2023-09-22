@@ -28,7 +28,7 @@ protocol ChatBottomViewDelegate : AnyObject {
     
     
     ///Sending message
-    func shouldSendMessage(text: String, completion: @escaping (Bool) -> ())
+    func shouldSendMessage(text: String, price: Int, completion: @escaping (Bool) -> ())
 }
 
 class ChatBottomView: NSView, LoadableNib {
@@ -105,5 +105,9 @@ class ChatBottomView: NSView, LoadableNib {
     
     func resetReplyView() {
         messageReplyView.resetAndHideView()
+    }
+    
+    func clearMessage() {
+        messageFieldView.clearMessage()
     }
 }

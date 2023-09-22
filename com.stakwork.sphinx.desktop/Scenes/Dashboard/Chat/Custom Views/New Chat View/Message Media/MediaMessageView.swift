@@ -92,7 +92,7 @@ class MediaMessageView: NSView, LoadableNib {
             fileInfoView.isHidden = !messageMedia.isPdf || mediaData.failed
             gifView.isHidden = !(messageMedia.isGif || messageMedia.isGiphy) || mediaData.failed
             videoOverlay.isHidden = !messageMedia.isVideo || mediaData.failed
-            mediaImageView.isHidden = messageMedia.isGif && !mediaData.failed
+            mediaImageView.isHidden = (messageMedia.isGif || messageMedia.isGiphy) && !mediaData.failed
             
             mediaImageView.gravity = messageMedia.isPaymentTemplate ? .resizeAspect : .resizeAspectFill
             
@@ -101,7 +101,7 @@ class MediaMessageView: NSView, LoadableNib {
                     gifView.wantsLayer = true
                     gifView.layer?.removeAllAnimations()
                     gifView.layer?.contents = nil
-                    gifView.layer?.contentsGravity = .resizeAspect
+                    gifView.layer?.contentsGravity = .resizeAspectFill
                     gifView.layer?.add(animation, forKey: "contents")
                 }
             } else {

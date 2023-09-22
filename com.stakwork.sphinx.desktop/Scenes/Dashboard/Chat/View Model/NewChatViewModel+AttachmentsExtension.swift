@@ -6,59 +6,60 @@
 //  Copyright © 2023 Tomas Timinskas. All rights reserved.
 //
 
-import Foundation
+import Cocoa
 
 extension NewChatViewModel: AttachmentsManagerDelegate {
+    
     func insertPrivisionalAttachmentMessageAndUpload(
         attachmentObject: AttachmentObject,
         chat: Chat?,
         audioDuration: Double? = nil
     ) {
-//        let attachmentsManager = AttachmentsManager.sharedInstance
-//
-//        chatDataSource?.setMediaDataForMessageWith(
-//            messageId: TransactionMessage.getProvisionalMessageId(),
-//            mediaData: MessageTableCellState.MediaData(
-//                image: attachmentObject.image,
-//                data: attachmentObject.getDecryptedData(),
-//                fileInfo: attachmentObject.getFileInfo(),
-//                audioInfo: attachmentObject.getAudioInfo(duration: audioDuration),
-//                failed: false
-//            )
-//        )
-//
-//        if let message = TransactionMessage.createProvisionalAttachmentMessage(
-//            attachmentObject: attachmentObject,
-//            date: Date(),
-//            chat: chat,
-//            replyUUID: replyingTo?.uuid,
-//            threadUUID: threadUUID ?? replyingTo?.threadUUID ?? replyingTo?.uuid
-//        ) {
-//            attachmentsManager.setData(
-//                delegate: self,
-//                contact: contact,
-//                chat: chat,
-//                provisionalMessage: message
-//            )
-//
-//            chatDataSource?.setProgressForProvisional(messageId: message.id, progress: 0)
-//
-////            let dataSourceThreadUUID = (chatDataSource as? ThreadTableDataSource)?.threadUUID
-//
-////            attachmentsManager.uploadAndSendAttachment(
-////                attachmentObject: attachmentObject,
-////                replyingMessage: replyingTo,
-////                threadUUID: dataSourceThreadUUID ?? replyingTo?.threadUUID ?? replyingTo?.uuid
-////            )
-//
+        let attachmentsManager = AttachmentsManager.sharedInstance
+
+        chatDataSource?.setMediaDataForMessageWith(
+            messageId: TransactionMessage.getProvisionalMessageId(),
+            mediaData: MessageTableCellState.MediaData(
+                image: attachmentObject.image,
+                data: attachmentObject.getDecryptedData(),
+                fileInfo: attachmentObject.getFileInfo(),
+                audioInfo: attachmentObject.getAudioInfo(duration: audioDuration),
+                failed: false
+            )
+        )
+
+        if let message = TransactionMessage.createProvisionalAttachmentMessage(
+            attachmentObject: attachmentObject,
+            date: Date(),
+            chat: chat,
+            replyUUID: replyingTo?.uuid,
+            threadUUID: threadUUID ?? replyingTo?.threadUUID ?? replyingTo?.uuid
+        ) {
+            attachmentsManager.setData(
+                delegate: self,
+                contact: contact,
+                chat: chat,
+                provisionalMessage: message
+            )
+
+            chatDataSource?.setProgressForProvisional(messageId: message.id, progress: 0)
+
+//            let dataSourceThreadUUID = (chatDataSource as? ThreadTableDataSource)?.threadUUID
+
 //            attachmentsManager.uploadAndSendAttachment(
 //                attachmentObject: attachmentObject,
 //                replyingMessage: replyingTo,
-//                threadUUID: replyingTo?.threadUUID ?? replyingTo?.uuid
+//                threadUUID: dataSourceThreadUUID ?? replyingTo?.threadUUID ?? replyingTo?.uuid
 //            )
-//        }
-//
-//        resetReply()
+
+            attachmentsManager.uploadAndSendAttachment(
+                attachmentObject: attachmentObject,
+                replyingMessage: replyingTo,
+                threadUUID: replyingTo?.threadUUID ?? replyingTo?.uuid
+            )
+        }
+
+        resetReply()
     }
     
     func shouldReplaceMediaDataFor(provisionalMessageId: Int, and messageId: Int) {

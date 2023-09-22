@@ -71,6 +71,7 @@ class NewChatViewController: DashboardSplittedViewController {
 
         addShimmeringView()
         setupData()
+        setupViews()
         configureFetchResultsController()
         configureCollectionView()
     }
@@ -108,6 +109,10 @@ class NewChatViewController: DashboardSplittedViewController {
             shimmeringView.alphaValue = 0.15
             shimmeringView.startAnimating()
         }
+    }
+    
+    func setupViews() {
+        draggingView.setup()
     }
     
     func setupData() {

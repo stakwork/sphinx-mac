@@ -94,11 +94,76 @@ extension NewChatViewController : GroupDetailsDelegate {
 }
 
 extension NewChatViewController : ChatBottomViewDelegate {
-    func shouldSendMessage(text: String, completion: @escaping (Bool) -> ()) {
+    
+    func getAttachmentObject(
+        text: String,
+        price: Int
+    ) -> AttachmentObject? {
+        if draggingView.isSendingMedia() {
+            let attachmentObject = draggingView.getData(
+                price: price,
+                text: text
+            )
+            return attachmentObject
+        } else {
+            if let data = text.data(using: .utf8) {
+                let (key, encryptedData) = SymmetricEncryptionManager.sharedInstance.encryptData(data: data)
+                
+                if let encryptedData = encryptedData {
+                    let attachmentObject = AttachmentObject(
+                        data: encryptedData,
+                        mediaKey: key,
+                        type: .Text,
+                        text: nil,
+                        paidMessage: text,
+                        price: price
+                    )
+                    return attachmentObject
+                }
+            }
+        }
+        return nil
+    }
+    
+    func shouldSendMessage(
+        text: String,
+        price: Int,
+        completion: @escaping (Bool) -> ()
+    ) {
         chatBottomView.resetReplyView()
         
         if shouldUploadMedia() {
             
+            let attachmentObject = getAttachmentObject(
+                text: text,
+                price: price
+            )
+            
+            draggingView.setup()
+            
+            if let attachmentObject = attachmentObject {
+                chatBottomView.resetReplyView()
+                
+                newChatViewModel.insertPrivisionalAttachmentMessageAndUpload(
+                    attachmentObject: attachmentObject, chat: chat
+                )
+            } else {
+                messageBubbleHelper.showGenericMessageView(
+                    text: "generic.error.message".localized, in: view
+                )
+            }
+        } else if let text = giphyText(text: text), let data = draggingView.getMediaData() {
+            
+            draggingView.setup()
+            
+            newChatViewModel.shouldSendGiphyMessage(
+                text: text,
+                type: TransactionMessage.TransactionMessageType.message.rawValue,
+                data: data,
+                completion: { success in
+                    completion(success)
+                }
+            )
         } else {
             newChatViewModel.shouldSendMessage(
                 text: text,
@@ -108,6 +173,22 @@ extension NewChatViewController : ChatBottomViewDelegate {
                 }
             )
         }
+    }
+    
+    func giphyText(
+        text: String
+    ) -> String? {
+        let (sendingGiphy, giphyObject) = draggingView.isSendingGiphy()
+        
+        if let giphyObject = giphyObject, sendingGiphy {
+            
+            return GiphyHelper.getMessageStringFrom(
+                media: giphyObject,
+                text: text
+            )
+        }
+        
+        return nil
     }
     
     func shouldUploadMedia() -> Bool {
@@ -199,7 +280,7 @@ extension NewChatViewController : ChatBottomViewDelegate {
 
 extension NewChatViewController : GiphySearchViewDelegate {
     func didSelectGiphy(object: GiphyObject, data: Data) {
-        
+        draggingView.showGiphyPreview(data: data, object: object)
     }
 }
 

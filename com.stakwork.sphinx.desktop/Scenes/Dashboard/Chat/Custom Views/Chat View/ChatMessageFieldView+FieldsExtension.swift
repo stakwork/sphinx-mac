@@ -22,7 +22,13 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
     ) -> Bool {
         if let replacementString = replacementString, replacementString == "\n" {
             if sendButton.isEnabled {
-                delegate?.shouldSendMessage(text: textView.string, completion: { _ in})
+                
+                delegate?.shouldSendMessage(
+                    text: textView.string,
+                    price: Int(priceTextField.stringValue) ?? 0,
+                    completion: { _ in}
+                )
+                
                 clearMessage()
             }
             return false
