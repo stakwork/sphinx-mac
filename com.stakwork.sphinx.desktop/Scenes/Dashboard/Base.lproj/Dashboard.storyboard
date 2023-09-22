@@ -1674,10 +1674,10 @@
                                                                                     </view>
                                                                                     <color key="fillColor" name="Body"/>
                                                                                 </box>
-                                                                                <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wD4-1y-bkn" customClass="ChildVCContainer" customModule="Sphinx" customModuleProvider="target">
+                                                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="NL7-Ka-pQ0" customClass="DraggingDestinationView" customModule="Sphinx" customModuleProvider="target">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
                                                                                 </customView>
-                                                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="NL7-Ka-pQ0" customClass="DraggingDestinationView" customModule="Sphinx" customModuleProvider="target">
+                                                                                <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wD4-1y-bkn" customClass="ChildVCContainer" customModule="Sphinx" customModuleProvider="target">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
                                                                                 </customView>
                                                                             </subviews>
