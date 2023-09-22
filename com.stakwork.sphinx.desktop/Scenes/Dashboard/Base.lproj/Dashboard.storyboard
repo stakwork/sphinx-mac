@@ -532,7 +532,7 @@
                                             <collectionViewFlowLayout key="collectionViewLayout" id="pZg-vf-HgB">
                                                 <size key="itemSize" width="350" height="85"/>
                                             </collectionViewFlowLayout>
-                                            <color key="primaryBackgroundColor" name="ListBG"/>
+                                            <color key="primaryBackgroundColor" name="HeaderBG"/>
                                         </collectionView>
                                     </subviews>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2214,9 +2214,6 @@
         </namedColor>
         <namedColor name="LightDivider">
             <color red="0.86274509803921573" green="0.8784313725490196" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="ListBG">
-            <color red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="MainBottomIcons">
             <color red="0.37254901960784315" green="0.38823529411764707" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

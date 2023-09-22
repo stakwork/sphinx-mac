@@ -145,9 +145,11 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
         if chatListObject.getChat()?.isMuted() == true || chatListObject.getChat()?.isOnlyMentions() == true {
             unreadMessageBadgeContainer.alphaValue = 0.2
             unreadMessageBadgeContainer.fillColor = .Sphinx.WashedOutReceivedText
+            unreadMessageBadgeLabel.textColor = .Sphinx.Text
         } else {
             unreadMessageBadgeContainer.alphaValue = 1.0
             unreadMessageBadgeContainer.fillColor = .Sphinx.PrimaryBlue
+            unreadMessageBadgeLabel.textColor = NSColor.white
         }
         
         unreadMessageBadgeContainer.wantsLayer = true

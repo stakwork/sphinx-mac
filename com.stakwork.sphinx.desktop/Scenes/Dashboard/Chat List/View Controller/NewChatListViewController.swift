@@ -164,8 +164,6 @@ extension NewChatListViewController {
 
     func configureCollectionView() {
         chatsCollectionView.collectionViewLayout = makeLayout()
-        chatsCollectionView.wantsLayer = true
-        chatsCollectionView.layer?.backgroundColor = NSColor.Sphinx.DashboardHeader.cgColor
         chatsCollectionView.delegate = self
     }
 }

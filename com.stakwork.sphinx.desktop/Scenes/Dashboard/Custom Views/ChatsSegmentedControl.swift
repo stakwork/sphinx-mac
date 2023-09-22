@@ -24,7 +24,7 @@ class ChatsSegmentedControl: NSView {
     private var buttonTitleBadges: [NSView]!
     private var selectorView: NSView!
 
-    public var buttonBackgroundColor: NSColor = .Sphinx.DashboardHeader
+    public var buttonBackgroundColor: NSColor = .Sphinx.HeaderBG
     public var buttonTextColor: NSColor = .Sphinx.DashboardWashedOutText
     public var activeTextColor: NSColor = .Sphinx.PrimaryText
     
