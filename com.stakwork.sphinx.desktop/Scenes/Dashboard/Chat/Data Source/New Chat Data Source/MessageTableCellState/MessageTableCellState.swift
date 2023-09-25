@@ -203,12 +203,18 @@ struct MessageTableCellState {
         
         let senderInfo: (NSColor, String, String?) = getSenderInfo(message: replyingMessage)
         
+        var mediaType = replyingMessage.getMediaType()
+        
+        if replyingMessage.isGiphy() {
+            mediaType = TransactionMessage.TransactionMessageType.imageAttachment.rawValue
+        }
+        
         return BubbleMessageLayoutState.MessageReply(
             messageId: replyingMessage.id,
             color: senderInfo.0,
             alias: senderInfo.1,
             message: replyingMessage.bubbleMessageContentString,
-            mediaType: replyingMessage.getMediaType()
+            mediaType: mediaType
         )
     }()
     

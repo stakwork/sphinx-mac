@@ -33,6 +33,7 @@ class NewChatViewController: DashboardSplittedViewController {
     
     var contact: UserContact?
     var chat: Chat?
+    var owner: UserContact!
     var deepLinkData : DeeplinkData? = nil
     
     var contactResultsController: NSFetchedResultsController<UserContact>!
@@ -57,6 +58,7 @@ class NewChatViewController: DashboardSplittedViewController {
         viewController.contact = contact
         viewController.delegate = delegate
         viewController.deepLinkData = deepLinkData
+        viewController.owner = UserContact.getOwner()
         
         viewController.newChatViewModel = NewChatViewModel(
             chat: viewController.chat,

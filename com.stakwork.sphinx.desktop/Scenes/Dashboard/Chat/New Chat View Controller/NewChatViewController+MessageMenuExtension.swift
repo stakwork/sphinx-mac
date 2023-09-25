@@ -25,3 +25,12 @@ extension NewChatViewController : MessageOptionsDelegate {
         
     }
 }
+
+extension NewChatViewController : NewMessageReplyViewDelegate {
+    func didCloseReplyView() {
+        newChatViewModel.resetReply()
+        chatBottomView.resetReplyView()
+        
+//        shouldAdjustTableViewTopInset()
+    }
+}

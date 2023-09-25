@@ -87,7 +87,16 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
         
     }
     
-    func shouldReplyToMessage(message: TransactionMessage) {}
+    func shouldReplyToMessage(message: TransactionMessage) {
+        newChatViewModel.replyingTo = message
+        
+        chatBottomView.configureReplyViewFor(
+            message: message,
+            owner: self.owner,
+            withDelegate: self
+        )
+//        shouldAdjustTableViewTopInset()
+    }
     
     func shouldOpenActivityVCFor(url: URL) {
         

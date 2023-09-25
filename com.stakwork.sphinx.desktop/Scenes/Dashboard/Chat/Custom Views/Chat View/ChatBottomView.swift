@@ -35,7 +35,7 @@ class ChatBottomView: NSView, LoadableNib {
 
     @IBOutlet var contentView: NSView!
 
-    @IBOutlet weak var messageReplyView: MessageReplyView!
+    @IBOutlet weak var messageReplyView: NewMessageReplyView!
     @IBOutlet weak var giphySearchView: GiphySearchView!
     @IBOutlet weak var messageFieldView: ChatMessageFieldView!
     
@@ -46,11 +46,24 @@ class ChatBottomView: NSView, LoadableNib {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         loadViewFromNib()
+        
+        setup()
     }
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         loadViewFromNib()
+        
+        setup()
+    }
+    
+    func setup() {
+        self.addShadow(
+            location: VerticalLocation.top,
+            color: NSColor.black,
+            opacity: 0.3,
+            radius: 5.0
+        )
     }
     
     func updateFieldStateFrom(
@@ -103,8 +116,28 @@ class ChatBottomView: NSView, LoadableNib {
         return messageFieldView.isPaidTextMessage()
     }
     
+    func configureReplyViewFor(
+        message: TransactionMessage? = nil,
+        podcastComment: PodcastComment? = nil,
+        owner: UserContact,
+        withDelegate delegate: NewMessageReplyViewDelegate
+    ) {
+        if let message = message {
+            messageReplyView.configureForKeyboard(
+                with: message,
+                owner: owner,
+                and: delegate
+            )
+        } else if let podcastComment = podcastComment {
+            messageReplyView.configureForKeyboard(
+                with: podcastComment,
+                and: delegate
+            )
+        }
+    }
+    
     func resetReplyView() {
-        messageReplyView.resetAndHideView()
+        messageReplyView.resetAndHide()
     }
     
     func clearMessage() {

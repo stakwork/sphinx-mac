@@ -68,13 +68,6 @@ class ChatMessageFieldView: NSView, LoadableNib {
         setupPriceField()
         setupAttachmentButton()
         setupSendButton()
-        
-        self.addShadow(
-            location: VerticalLocation.top,
-            color: NSColor.black,
-            opacity: 0.3,
-            radius: 5.0
-        )
     }
     
     func setupButtonsCursor() {

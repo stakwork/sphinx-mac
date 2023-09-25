@@ -576,11 +576,11 @@ extension NewChatTableDataSource {
         ) {
             if let messageReply = tableCellState.1.messageReply {
                 if let replyingTableCellIndex = getTableCellStateFor(messageId: messageReply.messageId)?.0 {
-//                    tableView.scrollToRow(
-//                        at: IndexPath(row: replyingTableCellIndex, section: 0),
-//                        at: .top,
-//                        animated: true
-//                    )
+                    collectionView.scrollToIndex(
+                        targetIndex: replyingTableCellIndex,
+                        animated: true,
+                        position: NSCollectionView.ScrollPosition.top
+                    )
                 }
             }
         }
