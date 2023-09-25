@@ -68,6 +68,11 @@ class ChatMessageFieldView: NSView, LoadableNib {
         setupPriceField()
         setupAttachmentButton()
         setupSendButton()
+        setupIntermitentAlphaView()
+    }
+    
+    func setupIntermitentAlphaView() {
+        intermitentAlphaView.configureForRecording()
     }
     
     func setupButtonsCursor() {
@@ -158,8 +163,6 @@ class ChatMessageFieldView: NSView, LoadableNib {
         self.contact = contact
         self.delegate = delegate
         
-        setOngoingMessage(text: chat?.ongoingMessage ?? "")
-        
         let pending = chat?.isStatusPending() ?? true
         let rejected = chat?.isStatusRejected() ?? true
         let active = (!pending && !rejected || (chat == nil && contact != nil))
@@ -171,6 +174,8 @@ class ChatMessageFieldView: NSView, LoadableNib {
         self.alphaValue = active ? 1.0 : 0.7
         
         initializeMacros()
+        
+        self.setOngoingMessage(text: chat?.ongoingMessage ?? "")
     }
     
     func setOngoingMessage(text: String) {
@@ -180,16 +185,29 @@ class ChatMessageFieldView: NSView, LoadableNib {
         
         messageTextView.string = text
         
-        NotificationCenter.default.post(
-            name: NSControl.textDidChangeNotification,
-            object: textDidChange
-        )
+        self.textDidChange(Notification(name: NSControl.textDidChangeNotification))
     }
     
     func isPaidTextMessage() -> Bool {
         let price = Int(priceTextField.stringValue) ?? 0
         let text = messageTextView.string.trim()
         return price > 0 && !text.isEmpty
+    }
+    
+    func toggleRecordingViews(show: Bool) {
+        intermitentAlphaView.toggleAnimation(animate: show)
+        
+        recordingContainer.isHidden = !show
+    }
+    
+    func toggleRecordButton(enable: Bool) {
+        micButton.isEnabled = enable
+        micButton.alphaValue = enable ? 1.0 : 0.7
+        micButton.cursor = enable ? .pointingHand : .arrow
+    }
+    
+    func recordingProgress(minutes: String, seconds: String) {
+        recordingTimeLabel.stringValue = "\(minutes):\(seconds)"
     }
     
     @IBAction func attachmentsButtonClicked(_ sender: Any) {
@@ -206,10 +224,12 @@ class ChatMessageFieldView: NSView, LoadableNib {
     }
     
     @IBAction func sendButtonClicked(_ sender: Any) {
-        delegate?.didClickSendButton()
+        shouldSendMessage()
     }
     
     @IBAction func micButtonClicked(_ sender: Any) {
+        recordingTimeLabel.stringValue = "0:00"
+        
         delegate?.didClickMicButton()
     }
     

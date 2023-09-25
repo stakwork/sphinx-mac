@@ -101,7 +101,20 @@ class AudioRecorderHelper : NSObject {
     
     func getAudioData() -> Data? {
         let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.wav")
-        return MediaLoader.getDataFromUrl(videoURL: audioFilename)
+        return MediaLoader.getDataFromUrl(url: audioFilename)
+    }
+    
+    func getAudioDataAndDuration() -> (Data?, Double?) {
+        let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.wav")
+        
+        var lengthAudioPlayer : AVAudioPlayer?
+        do  {
+            lengthAudioPlayer = try AVAudioPlayer(contentsOf: audioFilename)
+        } catch {
+            lengthAudioPlayer = nil
+        }
+        
+        return (MediaLoader.getDataFromUrl(url: audioFilename), lengthAudioPlayer?.duration)
     }
     
     func prepare() throws {

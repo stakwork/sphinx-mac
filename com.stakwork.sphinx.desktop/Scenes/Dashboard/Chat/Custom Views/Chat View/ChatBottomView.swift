@@ -12,7 +12,6 @@ protocol ChatBottomViewDelegate : AnyObject {
     ///IBActions
     func didClickAttachmentsButton()
     func didClickGiphyButton()
-    func didClickSendButton()
     func didClickMicButton()
     func didClickConfirmRecordingButton()
     func didClickCancelRecordingButton()
@@ -142,5 +141,17 @@ class ChatBottomView: NSView, LoadableNib {
     
     func clearMessage() {
         messageFieldView.clearMessage()
+    }
+    
+    func toggleRecordingViews(show: Bool) {
+        messageFieldView.toggleRecordingViews(show: show)
+    }
+    
+    func toggleRecordButton(enable: Bool) {
+        messageFieldView.toggleRecordButton(enable: enable)
+    }
+    
+    func recordingProgress(minutes: String, seconds: String) {
+        messageFieldView.recordingProgress(minutes: minutes, seconds: seconds)
     }
 }

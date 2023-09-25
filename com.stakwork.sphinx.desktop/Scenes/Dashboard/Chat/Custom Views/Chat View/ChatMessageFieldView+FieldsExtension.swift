@@ -21,16 +21,7 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
         replacementString: String?
     ) -> Bool {
         if let replacementString = replacementString, replacementString == "\n" {
-            if sendButton.isEnabled {
-                
-                delegate?.shouldSendMessage(
-                    text: textView.string,
-                    price: Int(priceTextField.stringValue) ?? 0,
-                    completion: { _ in}
-                )
-                
-                clearMessage()
-            }
+            shouldSendMessage()
             return false
         }
         
@@ -44,8 +35,21 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
         return (currentChangedString.count <= kCharacterLimit)
     }
     
+    func shouldSendMessage() {
+        if sendButton.isEnabled {
+            delegate?.shouldSendMessage(
+                text: messageTextView.string,
+                price: Int(priceTextField.stringValue) ?? 0,
+                completion: { _ in}
+            )
+            
+            clearMessage()
+        }
+    }
+    
     func clearMessage() {
         messageTextView.string = ""
+        priceTextField.stringValue = ""
         textDidChange(Notification(name: NSControl.textDidChangeNotification))
     }
     
@@ -107,9 +111,7 @@ extension ChatMessageFieldView : NSTextFieldDelegate {
         doCommandBy commandSelector: Selector
     ) -> Bool {
         if (commandSelector == #selector(NSResponder.insertNewline(_:))) {
-//            if sendButton.isEnabled {
-//                shouldSendMessage()
-//            }
+            shouldSendMessage()
             return true
         }
         return false

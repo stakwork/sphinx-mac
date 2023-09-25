@@ -331,10 +331,10 @@ class MediaLoader {
         }
     }
     
-    class func getDataFromUrl(videoURL: URL) -> Data? {
+    class func getDataFromUrl(url: URL) -> Data? {
         var videoData: Data?
         do {
-            videoData = try Data(contentsOf: videoURL as URL, options: Data.ReadingOptions.alwaysMapped)
+            videoData = try Data(contentsOf: url as URL, options: Data.ReadingOptions.alwaysMapped)
         } catch _ {
             videoData = nil
         }

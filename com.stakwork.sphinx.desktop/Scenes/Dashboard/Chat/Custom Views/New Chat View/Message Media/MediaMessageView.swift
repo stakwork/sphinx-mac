@@ -94,6 +94,7 @@ class MediaMessageView: NSView, LoadableNib {
             videoOverlay.isHidden = !messageMedia.isVideo || mediaData.failed
             mediaImageView.isHidden = (messageMedia.isGif || messageMedia.isGiphy) && !mediaData.failed
             
+            mediaImageView.image = nil
             mediaImageView.gravity = messageMedia.isPaymentTemplate ? .resizeAspect : .resizeAspectFill
             
             if messageMedia.isGif || messageMedia.isGiphy {

@@ -219,20 +219,16 @@ extension NewChatViewController : ChatBottomViewDelegate {
         chatBottomView.loadGiphySearchWith(delegate: self)
     }
     
-    func didClickSendButton() {
-        
-    }
-    
     func didClickMicButton() {
-        
+        newChatViewModel.shouldStartRecordingWith(delegate: self)
     }
     
     func didClickConfirmRecordingButton() {
-        
+        newChatViewModel.didClickConfirmRecordingButton()
     }
     
     func didClickCancelRecordingButton() {
-        
+        newChatViewModel.didClickCancelRecordingButton()
     }
     
     func didSelectSendPaymentMacro() {
@@ -281,6 +277,33 @@ extension NewChatViewController : ChatBottomViewDelegate {
 extension NewChatViewController : GiphySearchViewDelegate {
     func didSelectGiphy(object: GiphyObject, data: Data) {
         draggingView.showGiphyPreview(data: data, object: object)
+    }
+}
+
+extension NewChatViewController : AudioHelperDelegate {
+    func didStartRecording(_ success: Bool) {
+        if success {
+            chatBottomView.toggleRecordingViews(show: true)
+        }
+    }
+    
+    func didFinishRecording(_ success: Bool) {
+        if success {
+            newChatViewModel.didFinishRecording()
+        }
+        chatBottomView.toggleRecordingViews(show: false)
+    }
+    
+    func audioTooShort() {
+        messageBubbleHelper.showGenericMessageView(text: "audio.too.short".localized, in: self.view)
+    }
+    
+    func recordingProgress(minutes: String, seconds: String) {
+        chatBottomView.recordingProgress(minutes: minutes, seconds: seconds)
+    }
+    
+    func permissionDenied() {
+        chatBottomView.toggleRecordButton(enable: false)
     }
 }
 

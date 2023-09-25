@@ -340,7 +340,7 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="zNg-ds-7mx">
                                 <rect key="frame" x="713" y="0.0" width="140" height="60"/>
                                 <subviews>
-                                    <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="qUJ-v4-2XV">
+                                    <box boxType="custom" borderType="none" cornerRadius="20" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="qUJ-v4-2XV">
                                         <rect key="frame" x="84" y="10" width="40" height="40"/>
                                         <view key="contentView" id="S2M-xC-zFQ">
                                             <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -371,7 +371,7 @@
                                         </constraints>
                                         <color key="fillColor" name="PrimaryGreen"/>
                                     </box>
-                                    <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="gxY-sQ-j7K">
+                                    <box boxType="custom" borderType="none" cornerRadius="20" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="gxY-sQ-j7K">
                                         <rect key="frame" x="24" y="10" width="40" height="40"/>
                                         <view key="contentView" id="n32-RF-Gxn">
                                             <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>

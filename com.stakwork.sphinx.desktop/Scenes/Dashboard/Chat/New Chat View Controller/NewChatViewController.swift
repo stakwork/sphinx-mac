@@ -72,9 +72,7 @@ class NewChatViewController: DashboardSplittedViewController {
         super.viewDidLoad()
 
         addShimmeringView()
-        setupData()
         setupViews()
-        configureFetchResultsController()
         configureCollectionView()
     }
     
@@ -83,6 +81,8 @@ class NewChatViewController: DashboardSplittedViewController {
         
         fetchTribeData()
         configureMentionAutocompleteTableView()
+        setupData()
+        configureFetchResultsController()
     }
     
     override func viewWillDisappear() {
