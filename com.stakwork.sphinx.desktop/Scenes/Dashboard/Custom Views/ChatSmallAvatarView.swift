@@ -118,8 +118,11 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         picture: String?,
         radius: CGFloat? = nil,
         image: NSImage? = nil,
-        isPreload: Bool = false
+        isPreload: Bool = false,
+        delegate: ChatSmallAvatarViewDelegate? = nil
     ) {
+        self.delegate = delegate
+        
         profileImageView.sd_cancelCurrentImageLoad()
         profileImageView.radius = radius ?? profileImageView.frame.height / 2
         

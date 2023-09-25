@@ -45,7 +45,8 @@ extension NewMessageCollectionViewItem {
                 picture: avatarImage.imageUrl,
                 radius: kChatAvatarHeight / 2,
                 image: avatarImage.image,
-                isPreload: isPreload
+                isPreload: isPreload,
+                delegate: self
             )
         } else {
             chatAvatarView.resetView()
@@ -151,6 +152,14 @@ extension NewMessageCollectionViewItem {
             leftLineContainer.isHidden = false
             rightLineContainer.isHidden = false
             break
+        }
+    }
+}
+
+extension NewMessageCollectionViewItem : ChatSmallAvatarViewDelegate {
+    func didClickAvatarView() {
+        if let messageId = messageId {
+            delegate?.didTapAvatarViewFor(messageId: messageId, and: rowIndex)
         }
     }
 }

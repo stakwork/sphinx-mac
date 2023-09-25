@@ -83,8 +83,10 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
         
     }
     
-    func shouldShowLeaderboardFor(messageId: Int) {
-        
+    func shouldShowMemberPopupFor(messageId: Int) {
+        if let message = TransactionMessage.getMessageWith(id: messageId) {
+            childViewControllerContainer.showTribeMemberPopupViewOn(parentVC: self, with: message, delegate: self)
+        }
     }
     
     func shouldReplyToMessage(message: TransactionMessage) {

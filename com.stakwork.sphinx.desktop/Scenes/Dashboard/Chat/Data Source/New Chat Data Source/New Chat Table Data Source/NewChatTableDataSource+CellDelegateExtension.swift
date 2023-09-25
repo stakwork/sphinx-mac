@@ -710,7 +710,7 @@ extension NewChatTableDataSource {
         }
         
         if chat.isPublicGroup() {
-            showLeaderboardFor(messageId: messageId)
+            showMemberPopupFor(messageId: messageId)
         }
     }
     
@@ -963,8 +963,8 @@ extension NewChatTableDataSource {
 }
 
 extension NewChatTableDataSource {
-    func showLeaderboardFor(messageId: Int) {
-        delegate?.shouldShowLeaderboardFor(messageId: messageId)
+    func showMemberPopupFor(messageId: Int) {
+        delegate?.shouldShowMemberPopupFor(messageId: messageId)
     }
 }
 

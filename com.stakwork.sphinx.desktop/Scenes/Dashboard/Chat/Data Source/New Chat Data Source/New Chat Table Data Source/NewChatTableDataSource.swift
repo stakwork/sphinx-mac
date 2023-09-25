@@ -34,7 +34,7 @@ protocol NewChatTableDataSourceDelegate : AnyObject {
 //    func didLongPressOn(cell: UITableViewCell, with messageId: Int, bubbleViewRect: CGRect)
     
     ///Leaderboard
-    func shouldShowLeaderboardFor(messageId: Int)
+    func shouldShowMemberPopupFor(messageId: Int)
     
     ///Message reply
     func shouldReplyToMessage(message: TransactionMessage)

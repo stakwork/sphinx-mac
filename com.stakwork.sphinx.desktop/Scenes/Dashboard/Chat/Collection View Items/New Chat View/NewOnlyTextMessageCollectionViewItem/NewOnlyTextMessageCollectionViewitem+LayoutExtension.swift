@@ -88,7 +88,8 @@ extension NewOnlyTextMessageCollectionViewitem {
                 picture: avatarImage.imageUrl,
                 radius: kChatAvatarHeight / 2,
                 image: avatarImage.image,
-                isPreload: isPreload
+                isPreload: isPreload,
+                delegate: self
             )
         } else {
             chatAvatarView.resetView()
@@ -185,6 +186,14 @@ extension NewOnlyTextMessageCollectionViewitem {
             leftLineContainer.isHidden = false
             rightLineContainer.isHidden = false
             break
+        }
+    }
+}
+
+extension NewOnlyTextMessageCollectionViewitem : ChatSmallAvatarViewDelegate {
+    func didClickAvatarView() {
+        if let messageId = messageId {
+            delegate?.didTapAvatarViewFor(messageId: messageId, and: rowIndex)
         }
     }
 }
