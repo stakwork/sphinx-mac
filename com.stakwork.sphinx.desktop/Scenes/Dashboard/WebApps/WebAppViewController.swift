@@ -54,7 +54,6 @@ class WebAppViewController: NSViewController {
         webAppHelper.checkForExistingLsat(completion: { amount in
             print(amount)
         })
-        
     }
     
     @objc func showLsatList(){
@@ -94,6 +93,7 @@ class WebAppViewController: NSViewController {
         webView = WKWebView(frame: rect, configuration: configuration)
         webView.customUserAgent = "Sphinx"
         webView.isHidden = true
+        webView.navigationDelegate = self
         webView.setBackgroundColor(color: NSColor.clear)
         addLoadingView()
         finishLoadingTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(checkForWebViewDoneLoading), userInfo: nil, repeats: true)
@@ -154,6 +154,24 @@ class WebAppViewController: NSViewController {
     }
 }
 
+extension WebAppViewController : WKNavigationDelegate {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.navigationType == .linkActivated  {
+            if let url = navigationAction.request.url, url.absoluteString.contains("open=system") {
+                NSWorkspace.shared.open(url)
+                decisionHandler(.cancel)
+                return
+            } else {
+                decisionHandler(.allow)
+                return
+            }
+        } else {
+            decisionHandler(.allow)
+            return
+        }
+    }
+}
+
 extension WebAppViewController : AuthorizeAppViewDelegate {
     func shouldCloseAuthorizeView() {
         toggleAuthorizationView(show: false)
@@ -180,7 +198,7 @@ extension WebAppViewController : NSWindowDelegate {
     }
 }
 
-extension WebAppViewController:WebAppHelperDelegate{
+extension WebAppViewController: WebAppHelperDelegate{
     func setBudget(budget:Int){
         self.currentBudgetButton.title = "Remaining Budget: \(budget) sats"
     }
