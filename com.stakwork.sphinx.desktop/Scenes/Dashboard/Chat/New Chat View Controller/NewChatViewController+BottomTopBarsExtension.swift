@@ -50,8 +50,11 @@ extension NewChatViewController : ChatHeaderViewDelegate {
     }
     
     func didClickCallButton() {
-//        messageTextView.window?.makeFirstResponder(nil)
-//        childVCContainer.showCallOptionsMenuOn(parentVC: self, with: self.chat, delegate: self)
+        childViewControllerContainer.showCallOptionsMenuOn(
+            parentVC: self,
+            with: self.chat,
+            delegate: self
+        )
     }
     
     func didClickHeaderButton() {
@@ -308,26 +311,26 @@ extension NewChatViewController : AudioHelperDelegate {
 }
 
 extension NewChatViewController : ActionsDelegate {
-    func didCreateMessage(message: TransactionMessage) {
-        
-    }
+    func didCreateMessage(message: TransactionMessage) {}
     
     func didFailInvoiceOrPayment() {
-        
+        messageBubbleHelper.showGenericMessageView(text: "generic.error.message".localized, in: view)
     }
     
     func shouldCreateCall(mode: VideoCallHelper.CallMode) {
-        
+        let link = VideoCallHelper.createCallMessage(mode: mode)
+        newChatViewModel.sendCallMessage(link: link)
     }
     
     func shouldSendPaymentFor(
         paymentObject: PaymentViewModel.PaymentObject,
         callback: ((Bool) -> ())?
     ) {
-        
+        newChatViewModel.shouldSendPaymentFor(
+            paymentObject: paymentObject,
+            callback: callback
+        )
     }
     
-    func shouldReloadMuteState() {
-        
-    }
+    func shouldReloadMuteState() {}
 }

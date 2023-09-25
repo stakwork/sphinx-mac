@@ -202,8 +202,12 @@ extension NewChatViewModel {
         message: TransactionMessage
     ) {
         if message.isCallMessageType() {
-            if let callLink = message.messageContent {
-//                VideoCallManager.sharedInstance.startVideoCall(link: callLink)
+            if let link = message.messageContent {
+                let linkUrl = VoIPRequestMessage.getFromString(link)?.link ?? link
+                
+                if let url = URL(string: linkUrl) {
+                    NSWorkspace.shared.open(url)
+                }
             }
         }
     }
@@ -240,12 +244,6 @@ extension NewChatViewModel {
         sendMessage(provisionalMessage: nil, params: params, completion: { _ in
             callback?()
         })
-    }
-    
-    func createCallMessage() {
-//        VideoCallHelper.createCallMessage(button: sender, callback: { link in
-//            self.sendCallMessage(link: link)
-//        })
     }
     
     func sendCallMessage(link: String) {
