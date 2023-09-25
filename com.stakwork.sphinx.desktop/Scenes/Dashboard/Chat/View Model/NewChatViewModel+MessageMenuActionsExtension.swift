@@ -32,6 +32,30 @@ extension NewChatViewModel {
             completion: { _ in }
         )
     }
+    
+    func shouldTogglePinState(
+        message: TransactionMessage,
+        pin: Bool,
+        callback: @escaping (Bool) -> ()
+    ) {
+        guard let chat = self.chat else {
+            return
+        }
+        
+        API.sharedInstance.pinChatMessage(
+            messageUUID: (pin ? message.uuid : "_"),
+            chatId: chat.id,
+            callback: { pinnedMessageUUID in
+                self.chat?.pinnedMessageUUID = pinnedMessageUUID
+                self.chat?.saveChat()
+                
+                callback(true)
+            },
+            errorCallback: {
+                callback(false)
+            }
+        )
+    }
 }
 
 extension NewChatViewModel {
