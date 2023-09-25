@@ -57,6 +57,7 @@ class DashboardViewController: NSViewController {
         leftSplittedView.isHidden = windowState.menuCollapsed
         
         DistributedNotificationCenter.default().addObserver(self, selector: #selector(self.themeChangedNotification(notification:)), name: .onInterfaceThemeChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleImageNotification(_:)), name: .webViewImageClicked, object: nil)
     }
     
     override func viewWillAppear() {
@@ -64,6 +65,12 @@ class DashboardViewController: NSViewController {
         
         listViewController?.delegate = self
         detailViewController?.delegate = self
+    }
+    
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        
+        handleDeepLink()
     }
     
     override func viewWillDisappear() {
@@ -80,6 +87,14 @@ class DashboardViewController: NSViewController {
         NotificationCenter.default.removeObserver(self, name: .onAuthDeepLink, object: nil)
         NotificationCenter.default.removeObserver(self, name: .onPersonDeepLink, object: nil)
         NotificationCenter.default.removeObserver(self, name: .onSaveProfileDeepLink, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .webViewImageClicked, object: nil)
+    }
+    
+    func handleDeepLink() {
+        if let linkQuery: String = UserDefaults.Keys.linkQuery.get(), let url = URL(string: linkQuery) {
+            DeepLinksHandlerHelper.handleLinkQueryFrom(url: url)
+            UserDefaults.Keys.linkQuery.removeValue()
+        }
     }
     
     @objc func themeChangedNotification(notification: Notification) {
@@ -252,12 +267,7 @@ class DashboardViewController: NSViewController {
     }
     
     func resetChatIfDeleted() {
-        let contactFaulted = detailViewController?.contact?.isFault ?? false
-        let chatFaulted = detailViewController?.chat?.isFault ?? false
-        
-        if contactFaulted || chatFaulted {
-            detailViewController?.loadChatFor()
-        }
+        detailViewController?.loadChatFor()
     }
     
     func reloadView() {
@@ -456,6 +466,37 @@ extension DashboardViewController : DashboardVCDelegate {
             mediaFullScreenView.constraintTo(view: view)
             mediaFullScreenView.showWith(message: message)
             mediaFullScreenView.isHidden = false
+        }
+    }
+    
+    func goToMediaFullView(imageURL:URL,message:TransactionMessage){
+        if mediaFullScreenView == nil {
+            mediaFullScreenView = MediaFullScreenView()
+        }
+        
+        if let mediaFullScreenView = mediaFullScreenView{
+            view.addSubview(mediaFullScreenView)
+            mediaFullScreenView.showWith(imageURL: imageURL, message: message,completion: {
+                mediaFullScreenView.delegate = self
+                mediaFullScreenView.constraintTo(view: self.view)
+                mediaFullScreenView.currentMode = MediaFullScreenView.ViewMode.Viewing
+                mediaFullScreenView.loading = false
+                mediaFullScreenView.mediaImageView.alphaValue = 1.0
+                mediaFullScreenView.mediaImageView.gravity = .resizeAspect
+            })
+            mediaFullScreenView.isHidden = false
+            
+        }
+    }
+    
+    @objc func handleImageNotification(_ notification: Notification) {
+        if let imageURL = notification.userInfo?["imageURL"] as? URL,
+           let message = notification.userInfo?["transactionMessage"] as? TransactionMessage{
+            print("Received imageURL: \(imageURL)")
+            goToMediaFullView(imageURL: imageURL,message: message)
+        }
+        else{
+            NewMessageBubbleHelper().showGenericMessageView(text: "Error pulling image data.")
         }
     }
     

@@ -36,11 +36,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EhA-tl-CqJ" customClass="CCTextField" customModule="Sphinx" customModuleProvider="target">
-                                <rect key="frame" x="17" y="14" width="446" height="20"/>
+                                <rect key="frame" x="17" y="12" width="446" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="XVK-Lm-YEn"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" alignment="left" placeholderString="Set Nickname" id="pUb-ai-jxh" customClass="VerticallyCenteredTextFieldCell" customModule="Sphinx" customModuleProvider="target">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" alignment="left" placeholderString="Set Nickname" id="pUb-ai-jxh">
                                     <font key="font" size="14" name="Roboto-Regular"/>
                                     <color key="textColor" red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -48,7 +48,7 @@
                             </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="EhA-tl-CqJ" firstAttribute="centerY" secondItem="Ls9-kJ-QbZ" secondAttribute="centerY" id="9qY-Qc-Pvp"/>
+                            <constraint firstItem="EhA-tl-CqJ" firstAttribute="centerY" secondItem="Ls9-kJ-QbZ" secondAttribute="centerY" constant="2" id="9qY-Qc-Pvp"/>
                             <constraint firstAttribute="trailing" secondItem="EhA-tl-CqJ" secondAttribute="trailing" constant="19" id="Ujw-RT-fAJ"/>
                             <constraint firstItem="EhA-tl-CqJ" firstAttribute="leading" secondItem="Ls9-kJ-QbZ" secondAttribute="leading" constant="19" id="uw8-FR-b9m"/>
                         </constraints>

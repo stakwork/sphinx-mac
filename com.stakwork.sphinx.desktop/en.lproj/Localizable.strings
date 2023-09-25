@@ -10,7 +10,8 @@
 "generic.success.title" = "Success";
 "generic.error.title" = "Error";
 "generic.error.message" = "There was an error. Please try again later.";
-"generic.message.error" = "The message could not be sent due to an encryption error.";
+"generic.message.error" = "The message could not be sent. Please try again later";
+"generic.attachment.error" = "There was an problem uploading the file. Please try again later.";
 "confirm" = "Confirm";
 "authorize" = "Authorize";
 "warning" = "Warning";
@@ -332,7 +333,7 @@
 "resend.message" = "Resend";
 "received" = "received";
 "sent" = "sent";
-"message.x.deleted" = "Message %@ deleted";
+"message.x.deleted" = "Message deleted";
 "payment" = "Payment";
 "tribe.payment.sent" = "Payment of %@ sent to %@";
 "tribe.payment.received" = "%@ sent a payment of %@ to %@";
@@ -452,7 +453,7 @@
 "enter.code.placeholder" = "Enter code...";
 "keychain.restore" = "Restore from Keychain";
 "podcast.details" = "Podcast Details & Options";
-"my.lsats" = "My LSATs";
+"my.lsats" = "My L402s";
 "code.not.supported" = "Code not supported";
 "enter.restore.pin" = "Enter Restore PIN";
 "share.invite.code" = "Share Invite Code";

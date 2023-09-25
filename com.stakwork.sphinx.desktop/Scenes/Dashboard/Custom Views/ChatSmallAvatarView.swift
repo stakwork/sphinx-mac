@@ -28,6 +28,13 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         
         profileImageView.isHidden = true
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        initialsLabel.stringValue = ""
+        profileImageView.image = nil
+        avatarButton.isEnabled = false
+    }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -71,6 +78,7 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         profileImageView.isHidden = true
         profileInitialContainer.isHidden = true
         profileImageView.layer?.borderWidth = 0
+        avatarButton.isEnabled = true
         
         if !message.consecutiveMessages.previousMessage {
             

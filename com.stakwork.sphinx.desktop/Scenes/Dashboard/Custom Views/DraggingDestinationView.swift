@@ -312,6 +312,10 @@ class DraggingDestinationView: NSView, LoadableNib {
         if let urls = pasteBoard.readObjects(forClasses: [NSURL.self], options: options) as? [URL], urls.count == 1 {
             let url = urls[0]
             
+            if !url.absoluteString.starts(with: "file://") {
+                return false
+            }
+            
             if let data = getDataFrom(url: url) {
                 fileName = (url.absoluteString as NSString).lastPathComponent.percentNotEscaped
                 

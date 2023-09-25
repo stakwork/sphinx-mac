@@ -88,6 +88,8 @@ class ChatListViewController : DashboardSplittedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        contactsService.configureFetchResultsController()
+        
         prepareView()
         listenForPubKeyAndTribeJoin()
         
@@ -98,6 +100,8 @@ class ChatListViewController : DashboardSplittedViewController {
         
         NotificationCenter.default.removeObserver(self, name: .onContactsAndChatsChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(dataDidChange), name: .onContactsAndChatsChanged, object: nil)
+        
+        resetSearchField()
     }
     
     override func viewDidLayout() {

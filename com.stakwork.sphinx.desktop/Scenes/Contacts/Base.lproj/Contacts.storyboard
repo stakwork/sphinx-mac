@@ -156,7 +156,7 @@
                                             <rect key="frame" x="30" y="390" width="354" height="75"/>
                                             <subviews>
                                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mjl-Ie-3uv">
-                                                    <rect key="frame" x="-2" y="36" width="66" height="14"/>
+                                                    <rect key="frame" x="-2" y="36" width="67" height="14"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Nickname *" id="bfZ-y3-PQn">
                                                         <font key="font" size="12" name="Roboto-Regular"/>
                                                         <color key="textColor" name="SecondaryText"/>
@@ -480,15 +480,15 @@
                                                     <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtG-e0-IPW">
                                                         <rect key="frame" x="9" y="10" width="354" height="83"/>
                                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Q8e-RD-L1v">
-                                                            <rect key="frame" x="0.0" y="0.0" width="339" height="83"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="354" height="83"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" smartInsertDelete="YES" id="Voj-4p-sae" customClass="PlaceHolderTextView" customModule="Sphinx" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="339" height="83"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="354" height="83"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <color key="textColor" name="Text"/>
                                                                     <color key="backgroundColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <size key="minSize" width="339" height="83"/>
+                                                                    <size key="minSize" width="354" height="83"/>
                                                                     <size key="maxSize" width="354" height="10000000"/>
                                                                     <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                 </textView>
@@ -500,7 +500,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </scroller>
                                                         <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Qla-6W-8yi">
-                                                            <rect key="frame" x="339" y="0.0" width="15" height="83"/>
+                                                            <rect key="frame" x="338" y="0.0" width="16" height="83"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </scroller>
                                                     </scrollView>
@@ -568,7 +568,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fyo-gg-apm">
-                                                    <rect key="frame" x="-2" y="3" width="13" height="25"/>
+                                                    <rect key="frame" x="-2" y="3" width="14" height="25"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="-" id="Fuj-c5-RjV">
                                                         <font key="font" size="22" name="Roboto-Bold"/>
                                                         <color key="textColor" name="Text"/>
@@ -576,7 +576,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NsH-mO-gPm">
-                                                    <rect key="frame" x="12" y="3" width="34" height="24"/>
+                                                    <rect key="frame" x="13" y="3" width="34" height="24"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="sat" id="5FB-oi-tka">
                                                         <font key="font" size="21" name="Roboto-Regular"/>
                                                         <color key="textColor" name="SecondaryText"/>

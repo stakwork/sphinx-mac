@@ -11,6 +11,7 @@
 "generic.error.title"  = "Mali";
 "generic.error.message"  = "May mali. Paki ulit sa ilang saglit.";
 "generic.message.error" = "Hindi maipadala ang mensahe dahil sa isang error sa pag-encrypt.";
+"generic.attachment.error" = "There was an problem uploading the file. Please try again later.";
 "confirm"  = "Kumpirma";
 "authorize"  = "Authorize";
 "warning"  = "Babala";
@@ -331,7 +332,7 @@
 "resend.message" = "Ipadala ulit";
 "received"  = "natanggap";
 "sent"  = "naipadala";
-"message.x.deleted" = "Mensahe %@ tinanggal";
+"message.x.deleted" = "Mensahe tinanggal";
 "payment"  = "Pagbabayad";
 "tribe.payment.sent"  = "Ang pagbabayad ng %@ ay ipinadala sa %@";
 "tribe.payment.received"  = "Nagpadala si %@ ng bayad na %@ sa %@";
@@ -449,6 +450,7 @@
 "keychain.restore"  = "Keychain Restore";
 "podcast.details" = "Detalye at Options Podcast";
 "code.not.supported" = "Ang Code ay hindi suportado";
+"my.lsats" = "My L402s";
 "enter.restore.pin" = "I-Enter ang Restore PIN";
 "share.invite.code" = "I-Share ang Invite Code";
 "open.conversation" = "Magbukas ng pag-uusap para simulan ang paggamit ng Sphinx.";

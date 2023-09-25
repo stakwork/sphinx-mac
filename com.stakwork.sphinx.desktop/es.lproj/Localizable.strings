@@ -11,6 +11,7 @@
 "generic.error.title" = "Error";
 "generic.error.message" = "Ha habido un problema. Por favor vuelva a intentarlo más tarde.";
 "generic.message.error" = "El mensaje no pudo ser encriptado correctamente por lo cual no puede ser enviado.";
+"generic.attachment.error" = "Ha habido un problema subiendo el archivo. Por favor vuelva a intentarlo más tarde.";
 "confirm" = "Confirmar";
 "authorize" = "Autorizar";
 "warning" = "Atención";
@@ -453,7 +454,7 @@
 "enter.code.placeholder" = "Ingresa el código...";
 "keychain.restore" = "Restaurar desde Keychain";
 "podcast.details" = "Podcast Detalles & Opciones";
-"my.lsats" = "Mis LSATs";
+"my.lsats" = "Mis L402s";
 "code.not.supported" = "Código no soportado";
 "enter.restore.pin" = "Ingresa tu PIN";
 "share.invite.code" = "Compartir código de invitación";

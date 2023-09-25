@@ -52,6 +52,7 @@ class ChatMentionAutocompleteDataSource : NSObject {
     func updateMentionSuggestions(suggestions: [MentionOrMacroItem]) {
         self.scrollView.isHidden = (suggestions.isEmpty == true)
         self.suggestions = suggestions
+        
         selectedRow = suggestions.count - 1
         updateMentionTableHeight()
         tableView.reloadData()
@@ -60,9 +61,6 @@ class ChatMentionAutocompleteDataSource : NSObject {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
             if self.selectedRow == -1 { return }
-            
-            print("self.selectedRow \(self.selectedRow)")
-            
             self.tableView.animator().scrollToItems(at: [IndexPath(item: self.selectedRow, section: 0)], scrollPosition: .bottom)
         })
     }
