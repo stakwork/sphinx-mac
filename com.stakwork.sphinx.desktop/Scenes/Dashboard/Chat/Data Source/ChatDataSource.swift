@@ -650,6 +650,7 @@ extension ChatDataSource : NSCollectionViewDataSource {
  
     func collectionView(_ itemForRepresentedObjectAtcollectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
         let messageRow = messageRowsArray[indexPath.item]
+
         return chatHelper.getItemFor(
             messageRow: messageRow,
             indexPath: indexPath,
