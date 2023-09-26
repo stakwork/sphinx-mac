@@ -19,7 +19,8 @@ protocol ChatCollectionViewItemProtocol: AnyObject {
         delegate: ChatCollectionViewItemDelegate?,
         searchingTerm: String?,
         indexPath: IndexPath,
-        isPreload: Bool
+        isPreload: Bool,
+        collectionViewWidth: CGFloat
     )
 }
 

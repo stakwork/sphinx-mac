@@ -583,7 +583,7 @@ class ChatHelper {
         }
     }
     
-    func getRowHeightFor(
+    public static func getRowHeightFor(
         _ tableCellState: MessageTableCellState,
         linkData: MessageTableCellState.LinkData? = nil,
         tribeData: MessageTableCellState.TribeData? = nil,
@@ -634,7 +634,7 @@ class ChatHelper {
         
     }
     
-    func getStatusHeaderHeightFor(
+    public static func getStatusHeaderHeightFor(
         _ tableCellState: MessageTableCellState
     ) -> CGFloat {
         var mutableTableCellState = tableCellState
@@ -647,7 +647,7 @@ class ChatHelper {
         return statusHeaderheight
     }
     
-    func getTextMessageHeightFor(
+    public static func getTextMessageHeightFor(
         _ tableCellState: MessageTableCellState,
         linkData: MessageTableCellState.LinkData? = nil,
         tribeData: MessageTableCellState.TribeData? = nil,
@@ -725,7 +725,7 @@ class ChatHelper {
         return textHeight
     }
     
-    func getAdditionalViewsHeightFor(
+    public static func getAdditionalViewsHeightFor(
         _ tableCellState: MessageTableCellState,
         linkData: MessageTableCellState.LinkData? = nil,
         tribeData: MessageTableCellState.TribeData? = nil,

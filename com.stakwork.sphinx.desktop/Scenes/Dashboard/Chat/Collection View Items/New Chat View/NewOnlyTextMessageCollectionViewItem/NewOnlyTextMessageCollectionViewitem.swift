@@ -88,7 +88,8 @@ class NewOnlyTextMessageCollectionViewitem: CommonNewMessageCollectionViewitem, 
         delegate: ChatCollectionViewItemDelegate?,
         searchingTerm: String?,
         indexPath: IndexPath,
-        isPreload: Bool
+        isPreload: Bool,
+        collectionViewWidth: CGFloat
     ) {
         var mutableMessageCellState = messageCellState
         

@@ -21,6 +21,7 @@
                 <outlet property="fileDetailsView" destination="RIJ-Mw-fdZ" id="Fa4-Xi-erb"/>
                 <outlet property="invoicePaymentView" destination="RrX-yx-9JZ" id="8aI-eu-BiK"/>
                 <outlet property="invoiceView" destination="WPP-eo-Blt" id="U2X-oS-SZ6"/>
+                <outlet property="labelHeightConstraint" destination="hJB-h5-cNj" id="aZd-Jf-EMj"/>
                 <outlet property="leftLineContainer" destination="bCg-hP-Rew" id="2Tw-vf-hv3"/>
                 <outlet property="leftPaymentDot" destination="eMS-4g-VRf" id="O6e-uP-aZo"/>
                 <outlet property="linkPreviewView" destination="Q58-W9-lXF" id="RH2-RJ-jzU"/>
@@ -268,9 +269,9 @@
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="okv-Ag-SIE" secondAttribute="bottom" constant="16" id="6ji-Xz-5yd"/>
                                                 <constraint firstItem="okv-Ag-SIE" firstAttribute="leading" secondItem="4D1-XE-gCv" secondAttribute="leading" constant="16" id="90f-L3-Gf9"/>
                                                 <constraint firstAttribute="trailing" secondItem="okv-Ag-SIE" secondAttribute="trailing" constant="16" id="LFh-fd-Unr"/>
+                                                <constraint firstAttribute="height" constant="48" id="hJB-h5-cNj"/>
                                                 <constraint firstItem="okv-Ag-SIE" firstAttribute="top" secondItem="4D1-XE-gCv" secondAttribute="top" constant="16" id="mZ1-GE-TvO"/>
                                                 <constraint firstItem="okv-Ag-SIE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4D1-XE-gCv" secondAttribute="leading" constant="16" id="rf5-Ci-cmc"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="okv-Ag-SIE" secondAttribute="trailing" constant="16" id="yy8-Bg-mfI"/>

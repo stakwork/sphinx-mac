@@ -178,10 +178,26 @@ extension NewMessageCollectionViewItem {
     }
     
     func configureWith(
-        messageContent: BubbleMessageLayoutState.MessageContent?,
-        searchingTerm: String?
+        messageCellState: MessageTableCellState,
+        searchingTerm: String?,
+        linkData: MessageTableCellState.LinkData? = nil,
+        tribeData: MessageTableCellState.TribeData? = nil,
+        collectionViewWidth: CGFloat
     ) {
-        if let messageContent = messageContent {
+        var mutableMessageCellState = messageCellState
+        
+        if let messageContent = mutableMessageCellState.messageContent {
+            
+            let labelHeight = ChatHelper.getTextMessageHeightFor(
+                mutableMessageCellState,
+                linkData: linkData,
+                tribeData: tribeData,
+                collectionViewWidth: collectionViewWidth
+            )
+            
+            labelHeightConstraint.constant = labelHeight
+            textMessageView.superview?.layoutSubtreeIfNeeded()
+            
             if messageContent.linkMatches.isEmpty && searchingTerm == nil {
                 messageLabel.attributedStringValue = NSMutableAttributedString(string: "")
 

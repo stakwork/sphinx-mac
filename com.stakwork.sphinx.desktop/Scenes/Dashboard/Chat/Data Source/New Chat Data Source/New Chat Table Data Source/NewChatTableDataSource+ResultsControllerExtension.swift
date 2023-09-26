@@ -105,7 +105,8 @@ extension NewChatTableDataSource {
                 delegate: self,
                 searchingTerm: self.searchingTerm,
                 indexPath: indexPath,
-                isPreload: self.isPreload
+                isPreload: self.isPreload,
+                collectionViewWidth: collectionView.frame.width
             )
 
             return (cell as? NSCollectionViewItem) ?? NSCollectionViewItem()

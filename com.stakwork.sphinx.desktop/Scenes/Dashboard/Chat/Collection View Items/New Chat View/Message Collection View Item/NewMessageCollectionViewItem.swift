@@ -64,6 +64,7 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
     
     @IBOutlet weak var widthConstraint: NSLayoutConstraint!
     @IBOutlet weak var botResponseViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var labelHeightConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,7 +82,8 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
         delegate: ChatCollectionViewItemDelegate?,
         searchingTerm: String?,
         indexPath: IndexPath,
-        isPreload: Bool
+        isPreload: Bool,
+        collectionViewWidth: CGFloat
     ) {
         hideAllSubviews()
         
@@ -108,9 +110,12 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
         
         ///Message content
         configureWith(
-            messageContent: mutableMessageCellState.messageContent,
-            searchingTerm: searchingTerm
-        )
+            messageCellState: mutableMessageCellState,
+            searchingTerm: searchingTerm,
+            linkData: linkData,
+            tribeData: tribeData,
+            collectionViewWidth: collectionViewWidth
+        ) 
         
         ///Message Reply
         configureWith(messageReply: mutableMessageCellState.messageReply, and: bubble)
