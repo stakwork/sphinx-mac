@@ -41,4 +41,14 @@ class ChatShimmeringView: NSView, LoadableNib {
             })
         }
     }
+    
+    func toggle(show: Bool) {
+        if show {
+            self.isHidden = false
+            self.alphaValue = 0.15
+            self.startAnimating()
+        } else {
+            self.isHidden = true
+        }
+    }
 }

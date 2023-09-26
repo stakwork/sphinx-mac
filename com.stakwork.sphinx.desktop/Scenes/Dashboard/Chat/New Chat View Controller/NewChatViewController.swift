@@ -109,9 +109,7 @@ class NewChatViewController: DashboardSplittedViewController {
     
     func addShimmeringView() {
         if chat != nil || contact != nil {
-            shimmeringView.isHidden = false
-            shimmeringView.alphaValue = 0.15
-            shimmeringView.startAnimating()
+            shimmeringView.toggle(show: true)
         }
     }
     

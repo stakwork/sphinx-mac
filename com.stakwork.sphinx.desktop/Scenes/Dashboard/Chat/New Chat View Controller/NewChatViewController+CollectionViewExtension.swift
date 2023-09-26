@@ -19,6 +19,7 @@ extension NewChatViewController {
             }
         } else if chat == nil {
             chatCollectionView.alphaValue = 1.0
+            shimmeringView.toggle(show: false)
         }
         
         chatTableDataSource = NewChatTableDataSource(
