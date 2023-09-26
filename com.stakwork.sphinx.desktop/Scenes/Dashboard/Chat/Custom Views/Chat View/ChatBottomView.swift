@@ -25,6 +25,9 @@ protocol ChatBottomViewDelegate : AnyObject {
     func didSelectSendPaymentMacro()
     func didSelectReceivePaymentMacro()
     
+    ///UI
+    func isChatAtBottom() -> Bool
+    func shouldScrollToBottom()
     
     ///Sending message
     func shouldSendMessage(text: String, price: Int, completion: @escaping (Bool) -> ())

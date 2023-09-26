@@ -219,7 +219,13 @@ extension NewChatViewController : ChatBottomViewDelegate {
     }
     
     func didClickGiphyButton() {
+        let isAtBottom = isChatAtBottom()
+        
         chatBottomView.loadGiphySearchWith(delegate: self)
+        
+        if isAtBottom {
+            shouldScrollToBottom()
+        }
     }
     
     func didClickMicButton() {
@@ -274,6 +280,14 @@ extension NewChatViewController : ChatBottomViewDelegate {
     func didTapDownArrow() -> Bool {
         chatMentionAutocompleteDataSource?.moveSelectionDown()
         return chatMentionAutocompleteDataSource?.isTableVisible() ?? false
+    }
+    
+    func isChatAtBottom() -> Bool {
+        return chatCollectionView.isAtBottom()
+    }
+    
+    func shouldScrollToBottom() {
+        chatCollectionView.scrollToBottom(animated: false)
     }
 }
 

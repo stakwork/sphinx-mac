@@ -128,6 +128,8 @@ class ChatMessageFieldView: NSView, LoadableNib {
     }
     
     func updateBottomBarHeight() -> Bool {
+        let isAtBottom = delegate?.isChatAtBottom() ?? false
+        
         let messageFieldContentHeight = messageTextView.contentSize.height
         let updatedHeight = messageFieldContentHeight + kTextViewVerticalMargins
         let newFieldHeight = min(updatedHeight, kTextViewLineHeight * 6)
@@ -141,6 +143,10 @@ class ChatMessageFieldView: NSView, LoadableNib {
         messageContainerHeightConstraint.constant = newFieldHeight
         layoutSubtreeIfNeeded()
         scrollMessageTextViewToBottom()
+        
+        if isAtBottom {
+            delegate?.shouldScrollToBottom()
+        }
         
         return true
     }

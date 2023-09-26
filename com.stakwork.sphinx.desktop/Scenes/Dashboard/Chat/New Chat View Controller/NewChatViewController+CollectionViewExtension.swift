@@ -33,7 +33,7 @@ extension NewChatViewController {
             delegate: self
         )
         
-//        chatViewModel.setDataSource(chatTableDataSource)
+        newChatViewModel?.setDataSource(chatTableDataSource)
     }
     
     func getContactImage() -> NSImage? {
@@ -90,6 +90,8 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
     }
     
     func shouldReplyToMessage(message: TransactionMessage) {
+        let isAtBottom = isChatAtBottom()
+        
         newChatViewModel.replyingTo = message
         
         chatBottomView.configureReplyViewFor(
@@ -97,7 +99,10 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
             owner: self.owner,
             withDelegate: self
         )
-//        shouldAdjustTableViewTopInset()
+        
+        if isAtBottom {
+            shouldScrollToBottom()
+        }
     }
     
     func shouldOpenActivityVCFor(url: URL) {

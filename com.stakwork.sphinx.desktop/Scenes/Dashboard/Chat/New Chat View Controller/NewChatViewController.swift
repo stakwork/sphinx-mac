@@ -72,16 +72,18 @@ class NewChatViewController: DashboardSplittedViewController {
         super.viewDidLoad()
 
         addShimmeringView()
+        setupChatTopView()
         setupViews()
         configureCollectionView()
+        setupChatData()
     }
     
     override func viewDidAppear() {
         super.viewDidAppear()
         
+        setupChatBottomView()
         fetchTribeData()
         configureMentionAutocompleteTableView()
-        setupData()
         configureFetchResultsController()
     }
     
@@ -117,7 +119,7 @@ class NewChatViewController: DashboardSplittedViewController {
         draggingView.setup()
     }
     
-    func setupData() {
+    func setupChatTopView() {
         chatTopView.configureHeaderWith(
             chat: chat,
             contact: contact,
@@ -125,15 +127,21 @@ class NewChatViewController: DashboardSplittedViewController {
         )
         
         configurePinnedMessageView()
-        
+    }
+    
+    func setupChatBottomView() {
         chatBottomView.updateFieldStateFrom(
             chat,
             and: contact,
             with: self
-        )
-        
+        )        
+    }
+    
+    func setupChatData() {
         processChatAliases()
         
-//        showPendingApprovalMessage()
+        chat?.setChatMessagesAsSeen()
+        
+        showPendingApprovalMessage()
     }
 }

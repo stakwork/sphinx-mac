@@ -11,7 +11,6 @@ import Foundation
 extension NewChatViewController {
     
     func fetchTribeData() {
-//        configureMentions()
         configurePinnedMessageView()
         
         if chat?.isPublicGroup() == false {
@@ -34,6 +33,12 @@ extension NewChatViewController {
             ) {
 //                self.shouldAdjustTableViewTopInset()
             }
+        }
+    }
+    
+    func showPendingApprovalMessage() {
+        if chat?.isStatusPending() ?? false {
+            messageBubbleHelper.showGenericMessageView(text: "waiting.admin.approval".localized)
         }
     }
 }
