@@ -632,7 +632,7 @@ extension NewChatTableDataSource {
         ) {
             var mutableTableCellState = tableCellState
             
-            if let messageMedia = mutableTableCellState.1.messageMedia, !messageMedia.isPaymentTemplate {
+            if let messageMedia = mutableTableCellState.1.messageMedia, !messageMedia.isPaymentTemplate && !messageMedia.isPendingPayment() {
                 delegate?.shouldGoToMediaFullScreenFor(messageId: messageId)
             }
         }

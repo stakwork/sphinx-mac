@@ -99,6 +99,8 @@ class NewChatViewController: DashboardSplittedViewController {
     
     func resetVC() {
         stopPlayingClip()
+        
+        chat?.setChatMessagesAsSeen()
     }
     
     func stopPlayingClip() {
