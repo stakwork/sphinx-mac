@@ -661,11 +661,3 @@ extension ChatViewController : ChatMentionAutocompleteDelegate{
         mentionAutoCompleteEnclosingScrollView.layoutSubtreeIfNeeded()
     }
 }
-
-extension String {
-    func substring(range: NSRange) -> String {
-        let botIndex = self.index(self.startIndex, offsetBy: range.location)
-        let newRange = botIndex..<self.index(botIndex, offsetBy: range.length)
-        return String(self[newRange])
-   }
-}

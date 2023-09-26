@@ -845,6 +845,18 @@ extension String {
     func isNotEmptyString(with placeHolder: String) -> Bool {
         return !isEmpty && self != placeHolder
     }
+    
+    func substring(range: NSRange) -> String {
+        let botIndex = self.index(self.startIndex, offsetBy: range.location)
+        
+        if (botIndex.utf16Offset(in: self) + range.length) >= self.length {
+            let newRange = botIndex...
+            return String(self[newRange])
+        } else {
+            let newRange = botIndex..<self.index(botIndex, offsetBy: range.length)
+            return String(self[newRange])
+        }
+   }
 }
 
 
