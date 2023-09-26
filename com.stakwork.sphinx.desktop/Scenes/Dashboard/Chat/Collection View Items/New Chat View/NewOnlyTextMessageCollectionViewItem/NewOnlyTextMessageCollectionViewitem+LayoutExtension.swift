@@ -24,8 +24,6 @@ extension NewOnlyTextMessageCollectionViewitem {
         messageContent: BubbleMessageLayoutState.MessageContent?,
         searchingTerm: String?
     ) {
-        urlRanges = []
-
         if let messageContent = messageContent {
             if messageContent.linkMatches.isEmpty && searchingTerm == nil {
                 messageLabel.attributedStringValue = NSMutableAttributedString(string: "")
@@ -54,20 +52,34 @@ extension NewOnlyTextMessageCollectionViewitem {
                     , range: searchingTermRange
                 )
 
-                for match in messageContent.linkMatches {
+                var nsRanges = messageContent.linkMatches.map {
+                    return $0.range
+                }
+                
+                nsRanges = ChatHelper.removeDuplicatedContainedFrom(urlRanges: nsRanges)
 
-                    if let substring = messageContent.text?.substring(range: match.range), let url = URL(string: substring) {
-                        attributedString.setAttributes(
-                            [
-                                NSAttributedString.Key.foregroundColor: NSColor.Sphinx.PrimaryBlue,
-                                NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
-                                NSAttributedString.Key.font: messageContent.font,
-                                NSAttributedString.Key.link: url
-                            ],
-                            range: match.range
-                        )
+                for nsRange in nsRanges {
+                    
+                    if let text = messageContent.text, let range = Range(nsRange, in: text) {
+                        
+                        var substring = String(text[range])
+                        
+                        if substring.isPubKey || substring.isVirtualPubKey {
+                            substring = substring.shareContactDeepLink
+                        }
+                         
+                        if let url = URL(string: substring)  {
+                            attributedString.setAttributes(
+                                [
+                                    NSAttributedString.Key.foregroundColor: NSColor.Sphinx.PrimaryBlue,
+                                    NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
+                                    NSAttributedString.Key.font: messageContent.font,
+                                    NSAttributedString.Key.link: url
+                                ],
+                                range: nsRange
+                            )
 
-                        urlRanges.append(match.range)
+                        }
                     }
                 }
 

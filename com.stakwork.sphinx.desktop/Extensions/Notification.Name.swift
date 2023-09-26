@@ -29,6 +29,7 @@ extension Notification.Name {
     static let onRedeemSatsDeepLink = Notification.Name("onRedeemSatsDeepLink")
     static let onInvoiceDeepLink = Notification.Name("onInvoiceDeepLink")
     static let onShareContentDeeplink = Notification.Name("onShareContentDeeplink")
+    static let onShareContactDeeplink = Notification.Name("onShareContactDeeplink")
     
     static let onContactsAndChatsChanged = Notification.Name("onContactsAndChatsChanged")
 }

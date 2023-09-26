@@ -197,6 +197,19 @@ class DashboardViewController: NSViewController {
             guard let vc = self else { return }
             vc.processContentDeeplink(n: n)
         }
+        
+        NotificationCenter.default.addObserver(forName: .onShareContactDeeplink, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
+            guard let vc = self else { return }
+            vc.processContactDeepLink(n: n)
+        }
+    }
+    
+    func processContactDeepLink(n: Notification){
+        if let query = n.userInfo?["query"] as? String,
+           let pubkey = query.getLinkValueFor(key: "pubKey") {
+            let userInfo: [String: Any] = ["pub-key" : pubkey]
+            NotificationCenter.default.post(name: .onPubKeyClick, object: nil, userInfo: userInfo)
+        }
     }
     
     func processContentDeeplink(n: Notification){

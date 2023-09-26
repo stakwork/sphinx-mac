@@ -117,6 +117,12 @@ extension String {
         }
     }
     
+    var shareContactDeepLink : String {
+        get {
+            return "sphinx.chat://?action=share_contact&pubKey=\(self)"
+        }
+    }
+    
     func removeProtocol() -> String {
         return self.replacingOccurrences(of: "http://", with: "").replacingOccurrences(of: "https://", with: "")
     }
@@ -221,6 +227,7 @@ extension String {
         if !self.contains(".") {
             return []
         }
+        
         let types: NSTextCheckingResult.CheckingType = [.link]
         let detector = try? NSDataDetector(types: types.rawValue)
         let matches = detector!.matches(in: self, options: .reportCompletion, range: NSMakeRange(0, self.utf16.count))

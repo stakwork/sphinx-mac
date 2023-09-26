@@ -41,6 +41,9 @@ class DeepLinksHandlerHelper {
                 case "share_content":
                     let userInfo: [String: Any] = ["query" : query]
                     NotificationCenter.default.post(name: .onShareContentDeeplink, object: nil, userInfo: userInfo)
+                case "share_contact":
+                    let userInfo: [String: Any] = ["query" : query]
+                    NotificationCenter.default.post(name: .onShareContactDeeplink, object: nil, userInfo: userInfo)
                 default:
                     break
                 }

@@ -15,8 +15,6 @@ class CommonNewMessageCollectionViewitem : NSCollectionViewItem {
     var rowIndex: Int!
     var messageId: Int?
     
-    var urlRanges = [NSRange]()
-    
     let kChatAvatarHeight: CGFloat = 33
     
     static let kMaximumLabelBubbleWidth: CGFloat = 500
