@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="contentView" destination="c22-O7-iKe" id="W2h-Nh-dBc"/>
                 <outlet property="fileInfoView" destination="cFp-fd-7Nl" id="Rm1-bC-i08"/>
+                <outlet property="fileInfoViewBottomConstraint" destination="ZEg-6V-nHN" id="SMC-jY-kxS"/>
                 <outlet property="gifOverlay" destination="rSf-ho-Jb8" id="Q4D-4K-z0D"/>
                 <outlet property="gifView" destination="dDe-Fw-cUr" id="wTe-E5-nGE"/>
                 <outlet property="loadingContainer" destination="erf-QR-Lg1" id="h6s-FW-3gl"/>

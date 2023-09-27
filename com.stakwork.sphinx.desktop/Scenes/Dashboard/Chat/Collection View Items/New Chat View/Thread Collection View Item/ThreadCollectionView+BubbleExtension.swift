@@ -69,6 +69,7 @@ extension ThreadCollectionViewItem {
         
         let bubbleColor = isOutgoing ? NSColor.Sphinx.SentMsgBG : NSColor.Sphinx.ReceivedMsgBG
         bubbleAllViews.fillColor = bubbleColor
+        textMessageBubbleView.fillColor = bubbleColor
         
         let threadBubbleColor = isOutgoing ? NSColor.Sphinx.ReceivedMsgBG : NSColor.Sphinx.ThreadLastReply
         bubbleLastReplyView.fillColor = threadBubbleColor

@@ -35,6 +35,8 @@ class MediaMessageView: NSView, LoadableNib {
     
     @IBOutlet weak var mediaButton: CustomButton!
     
+    @IBOutlet weak var fileInfoViewBottomConstraint: NSLayoutConstraint!
+    
     static let kViewHeight: CGFloat = 300
 
     required init?(coder: NSCoder) {
@@ -82,9 +84,13 @@ class MediaMessageView: NSView, LoadableNib {
         messageMedia: BubbleMessageLayoutState.MessageMedia,
         mediaData: MessageTableCellState.MediaData?,
         bubble: BubbleMessageLayoutState.Bubble,
-        and delegate: MediaMessageViewDelegate?
+        and delegate: MediaMessageViewDelegate?,
+        isThreadRow: Bool = false
     ) {
         self.delegate = delegate
+        
+        fileInfoViewBottomConstraint.constant = isThreadRow ? 4 : 0
+        fileInfoView.superview?.layoutSubtreeIfNeeded()
         
         configureMediaNotAvailableIconWith(messageMedia: messageMedia)
         

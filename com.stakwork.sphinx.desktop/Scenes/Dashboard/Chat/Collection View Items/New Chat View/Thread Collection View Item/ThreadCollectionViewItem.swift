@@ -14,6 +14,7 @@ class ThreadCollectionViewItem: CommonNewMessageCollectionViewitem, ChatCollecti
     
     @IBOutlet weak var bubbleAllViews: NSBox!
     @IBOutlet weak var bubbleLastReplyView: NSBox!
+    @IBOutlet weak var textMessageBubbleView: NSBox!
     
     @IBOutlet weak var receivedArrow: NSView!
     @IBOutlet weak var sentArrow: NSView!
@@ -28,6 +29,7 @@ class ThreadCollectionViewItem: CommonNewMessageCollectionViewitem, ChatCollecti
     
     ///Second Container
     @IBOutlet weak var audioMessageView: AudioMessageView!
+    @IBOutlet weak var mediaMessageContainer: NSView!
     @IBOutlet weak var mediaMessageView: MediaMessageView!
     @IBOutlet weak var fileDetailsView: FileInfoView!
     

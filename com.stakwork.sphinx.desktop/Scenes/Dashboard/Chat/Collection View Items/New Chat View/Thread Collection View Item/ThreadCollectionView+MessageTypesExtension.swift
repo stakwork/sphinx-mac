@@ -71,9 +71,11 @@ extension ThreadCollectionViewItem {
                 messageMedia: originalMessageMedia,
                 mediaData: mediaData,
                 bubble: bubble,
-                and: self
+                and: self,
+                isThreadRow: true
             )
             mediaMessageView.isHidden = false
+            mediaMessageContainer.isHidden = false
             
             if let originalMessageId = originalMessageId, mediaData == nil {
                 let delayTime = DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)

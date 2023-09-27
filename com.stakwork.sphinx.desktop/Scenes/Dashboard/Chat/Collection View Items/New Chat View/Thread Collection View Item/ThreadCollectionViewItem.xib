@@ -25,6 +25,7 @@
                 <outlet property="lastReplyMessageLabelTrailingConstraint" destination="RWt-dY-vtN" id="ee9-sV-NRW"/>
                 <outlet property="lastReplyTextMessageView" destination="jgc-0k-iDb" id="d3J-dQ-Vec"/>
                 <outlet property="leftLineContainer" destination="bCg-hP-Rew" id="KoG-e5-74Q"/>
+                <outlet property="mediaMessageContainer" destination="gyx-Sw-rjN" id="AYf-kc-00s"/>
                 <outlet property="mediaMessageView" destination="HWv-ck-qic" id="Rz4-Si-34P"/>
                 <outlet property="messageContentStackView" destination="PqZ-pq-8i0" id="Xlx-0M-GJC"/>
                 <outlet property="messageLabel" destination="okv-Ag-SIE" id="BrW-Ct-7vu"/>
@@ -39,6 +40,7 @@
                 <outlet property="sentMessageMenuButton" destination="kVX-93-0gK" id="ETK-rX-Qbe"/>
                 <outlet property="statusHeaderView" destination="Kv2-Gm-iRV" id="MPD-kE-iNg"/>
                 <outlet property="statusHeaderViewContainer" destination="QIj-fa-qcL" id="azb-lj-f1T"/>
+                <outlet property="textMessageBubbleView" destination="Bhe-Ws-xQ5" id="y07-YY-AKR"/>
                 <outlet property="textMessageView" destination="4D1-XE-gCv" id="iiS-e1-OMJ"/>
                 <outlet property="threadLastMessageHeader" destination="LIg-v5-fUP" id="hcb-bI-YKf"/>
                 <outlet property="threadRepliesView" destination="Ybx-OY-dzA" id="4Lt-po-EAp"/>
@@ -162,10 +164,19 @@
                                                 <constraint firstAttribute="height" constant="60" id="YrW-MO-hT0"/>
                                             </constraints>
                                         </customView>
-                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="HWv-ck-qic" customClass="MediaMessageView" customModule="Sphinx" customModuleProvider="target">
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="gyx-Sw-rjN">
                                             <rect key="frame" x="0.0" y="570" width="400" height="170"/>
+                                            <subviews>
+                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="HWv-ck-qic" customClass="MediaMessageView" customModule="Sphinx" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="-9" width="400" height="179"/>
+                                                </customView>
+                                            </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="170" id="Dkj-QF-EDs"/>
+                                                <constraint firstAttribute="trailing" secondItem="HWv-ck-qic" secondAttribute="trailing" id="7op-OD-ozG"/>
+                                                <constraint firstItem="HWv-ck-qic" firstAttribute="top" secondItem="gyx-Sw-rjN" secondAttribute="top" id="AIv-xJ-6wU"/>
+                                                <constraint firstAttribute="bottom" secondItem="HWv-ck-qic" secondAttribute="bottom" constant="-9" id="LHf-eL-jnp"/>
+                                                <constraint firstAttribute="height" constant="170" id="sCM-1Q-uq4"/>
+                                                <constraint firstItem="HWv-ck-qic" firstAttribute="leading" secondItem="gyx-Sw-rjN" secondAttribute="leading" id="zWm-FJ-bdv"/>
                                             </constraints>
                                         </customView>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="RIJ-Mw-fdZ" customClass="FileInfoView" customModule="Sphinx" customModuleProvider="target">
@@ -177,6 +188,14 @@
                                         <customView horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="4D1-XE-gCv">
                                             <rect key="frame" x="0.0" y="460" width="400" height="48"/>
                                             <subviews>
+                                                <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="9" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Bhe-Ws-xQ5">
+                                                    <rect key="frame" x="0.0" y="0.0" width="400" height="48"/>
+                                                    <view key="contentView" id="PBa-l7-j8h">
+                                                        <rect key="frame" x="0.0" y="0.0" width="400" height="48"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    </view>
+                                                    <color key="fillColor" name="SentMsgBG"/>
+                                                </box>
                                                 <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="okv-Ag-SIE" customClass="CCTextField" customModule="Sphinx" customModuleProvider="target">
                                                     <rect key="frame" x="14" y="16" width="372" height="16"/>
                                                     <textFieldCell key="cell" truncatesLastVisibleLine="YES" selectable="YES" title="Label" id="XSl-mL-XOC">
@@ -187,8 +206,12 @@
                                                 </textField>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="Bhe-Ws-xQ5" firstAttribute="leading" secondItem="4D1-XE-gCv" secondAttribute="leading" id="6tS-uj-Kkk"/>
+                                                <constraint firstItem="Bhe-Ws-xQ5" firstAttribute="top" secondItem="4D1-XE-gCv" secondAttribute="top" id="7Sq-2f-Yi2"/>
                                                 <constraint firstItem="okv-Ag-SIE" firstAttribute="leading" secondItem="4D1-XE-gCv" secondAttribute="leading" constant="16" id="90f-L3-Gf9"/>
+                                                <constraint firstAttribute="bottom" secondItem="Bhe-Ws-xQ5" secondAttribute="bottom" id="IbJ-bK-Glo"/>
                                                 <constraint firstAttribute="trailing" secondItem="okv-Ag-SIE" secondAttribute="trailing" constant="16" id="LFh-fd-Unr"/>
+                                                <constraint firstAttribute="trailing" secondItem="Bhe-Ws-xQ5" secondAttribute="trailing" id="b1I-Pw-jz6"/>
                                                 <constraint firstAttribute="height" constant="48" id="hJB-h5-cNj"/>
                                                 <constraint firstItem="okv-Ag-SIE" firstAttribute="top" secondItem="4D1-XE-gCv" secondAttribute="top" constant="16" id="mZ1-GE-TvO"/>
                                                 <constraint firstItem="okv-Ag-SIE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4D1-XE-gCv" secondAttribute="leading" constant="16" id="rf5-Ci-cmc"/>
@@ -258,8 +281,6 @@
                                         <constraint firstItem="cx7-Ub-j6B" firstAttribute="leading" secondItem="PqZ-pq-8i0" secondAttribute="leading" id="Mcn-FY-4jG"/>
                                         <constraint firstAttribute="trailing" secondItem="Ybx-OY-dzA" secondAttribute="trailing" id="QQ8-Gs-dFX"/>
                                         <constraint firstItem="QIj-fa-qcL" firstAttribute="leading" secondItem="PqZ-pq-8i0" secondAttribute="leading" id="Um1-2v-SEQ"/>
-                                        <constraint firstAttribute="trailing" secondItem="HWv-ck-qic" secondAttribute="trailing" id="Vze-nE-ObO"/>
-                                        <constraint firstItem="HWv-ck-qic" firstAttribute="leading" secondItem="PqZ-pq-8i0" secondAttribute="leading" id="WLb-NX-NeG"/>
                                         <constraint firstItem="RIJ-Mw-fdZ" firstAttribute="leading" secondItem="PqZ-pq-8i0" secondAttribute="leading" id="YMq-KM-Zjq"/>
                                         <constraint firstAttribute="trailing" secondItem="jgc-0k-iDb" secondAttribute="trailing" id="aB8-dc-fXH"/>
                                         <constraint firstAttribute="trailing" secondItem="Gm0-An-OhM" secondAttribute="trailing" id="cO0-WH-1bn"/>
@@ -268,8 +289,10 @@
                                         <constraint firstAttribute="width" constant="400" id="jqz-cn-twZ"/>
                                         <constraint firstAttribute="trailing" secondItem="QIj-fa-qcL" secondAttribute="trailing" id="pk2-w5-y5m"/>
                                         <constraint firstItem="4D1-XE-gCv" firstAttribute="leading" secondItem="PqZ-pq-8i0" secondAttribute="leading" id="puL-4p-Oco"/>
+                                        <constraint firstAttribute="trailing" secondItem="gyx-Sw-rjN" secondAttribute="trailing" id="r85-cs-QN0"/>
                                         <constraint firstAttribute="trailing" secondItem="3st-ai-IfQ" secondAttribute="trailing" id="vog-hN-d9p"/>
                                         <constraint firstItem="Ybx-OY-dzA" firstAttribute="leading" secondItem="PqZ-pq-8i0" secondAttribute="leading" id="xCj-8X-Ghg"/>
+                                        <constraint firstItem="gyx-Sw-rjN" firstAttribute="leading" secondItem="PqZ-pq-8i0" secondAttribute="leading" id="xEi-iN-X9X"/>
                                         <constraint firstAttribute="trailing" secondItem="4D1-XE-gCv" secondAttribute="trailing" id="xau-A1-msa"/>
                                     </constraints>
                                     <visibilityPriorities>

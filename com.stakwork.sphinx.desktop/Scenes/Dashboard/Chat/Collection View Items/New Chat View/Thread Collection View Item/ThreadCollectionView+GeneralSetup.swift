@@ -43,6 +43,9 @@ extension ThreadCollectionViewItem {
         
         sentMessageMenuButton.cursor = .pointingHand
         receivedMessageMenuButton.cursor = .pointingHand
+        
+        mediaMessageContainer.wantsLayer = true
+        mediaMessageContainer.layer?.masksToBounds = false
     }
     
     func configureWidth() {
@@ -52,6 +55,7 @@ extension ThreadCollectionViewItem {
     
     func hideAllSubviews() {
         textMessageView.isHidden = true
+        mediaMessageContainer.isHidden = true
         mediaMessageView.isHidden = true
         fileDetailsView.isHidden = true
         audioMessageView.isHidden = true
