@@ -133,6 +133,20 @@ class ThreadCollectionViewItem: CommonNewMessageCollectionViewitem, ChatCollecti
             searchingTerm: searchingTerm,
             collectionViewWidth: collectionViewWidth
         )
+        configureLastReplyWith(
+            messageMedia: mutableMessageCellState.messageMedia,
+            mediaData: mediaData,
+            and: bubble
+        )
+        configureLastReplyWith(
+            audio: mutableMessageCellState.audio,
+            mediaData: mediaData,
+            and: bubble
+        )
+        configureLastReplyWith(
+            genericFile: mutableMessageCellState.genericFile,
+            mediaData: mediaData
+        )
         
         ///Thread
         configureWith(threadMessages: mutableMessageCellState.threadMessagesState, and: bubble)
