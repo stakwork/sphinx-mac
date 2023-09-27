@@ -83,9 +83,6 @@ extension ThreadCollectionViewItem {
     ) {
         let outgoing = direction == .Outgoing
         
-        receivedMessageMenuButton.isHidden = outgoing || bubbleState == MessageTableCellState.BubbleState.Empty
-        sentMessageMenuButton.isHidden = !outgoing || bubbleState == MessageTableCellState.BubbleState.Empty
-        
         switch (bubbleState) {
         case .Isolated:
             chatAvatarContainerView.alphaValue = outgoing ? 0.0 : 1.0

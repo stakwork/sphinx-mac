@@ -41,9 +41,6 @@ extension ThreadCollectionViewItem {
         leftLineContainer.wantsLayer = true
         leftLineContainer.layer?.addSublayer(leftLineLayer)
         
-        sentMessageMenuButton.cursor = .pointingHand
-        receivedMessageMenuButton.cursor = .pointingHand
-        
         mediaMessageContainer.wantsLayer = true
         mediaMessageContainer.layer?.masksToBounds = false
     }

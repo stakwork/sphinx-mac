@@ -230,10 +230,68 @@ extension ThreadCollectionViewItem {
             lastReplyLabelHeightConstraint.constant = labelHeight
             textMessageView.superview?.layoutSubtreeIfNeeded()
             
-            lastReplyMessageLabel.stringValue = text
-            lastReplyMessageLabel.font = messageContent.font
-            
             lastReplyTextMessageView.isHidden = false
+            
+            if messageContent.linkMatches.isEmpty && searchingTerm == nil {
+                lastReplyMessageLabel.attributedStringValue = NSMutableAttributedString(string: "")
+
+                lastReplyMessageLabel.stringValue = messageContent.text ?? ""
+                lastReplyMessageLabel.font = messageContent.font
+            } else {
+                let messageC = messageContent.text ?? ""
+                let term = searchingTerm ?? ""
+
+                let attributedString = NSMutableAttributedString(string: messageC)
+                attributedString.addAttributes(
+                    [
+                        NSAttributedString.Key.font: messageContent.font,
+                        NSAttributedString.Key.foregroundColor: NSColor.Sphinx.Text
+                    ]
+                    , range: messageC.nsRange
+                )
+
+                let searchingTermRange = (messageC.lowercased() as NSString).range(of: term.lowercased())
+                attributedString.addAttributes(
+                    [
+                        NSAttributedString.Key.backgroundColor: NSColor.Sphinx.PrimaryGreen
+                    ]
+                    , range: searchingTermRange
+                )
+                
+                var nsRanges = messageContent.linkMatches.map {
+                    return $0.range
+                }
+                
+                nsRanges = ChatHelper.removeDuplicatedContainedFrom(urlRanges: nsRanges)
+
+                for nsRange in nsRanges {
+                    
+                    if let text = messageContent.text, let range = Range(nsRange, in: text) {
+                        
+                        var substring = String(text[range])
+                        
+                        if substring.isPubKey || substring.isVirtualPubKey {
+                            substring = substring.shareContactDeepLink
+                        }
+                         
+                        if let url = URL(string: substring)  {
+                            attributedString.setAttributes(
+                                [
+                                    NSAttributedString.Key.foregroundColor: NSColor.Sphinx.PrimaryBlue,
+                                    NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
+                                    NSAttributedString.Key.font: messageContent.font,
+                                    NSAttributedString.Key.link: url
+                                ],
+                                range: nsRange
+                            )
+
+                        }
+                    }
+                }
+
+                lastReplyMessageLabel.attributedStringValue = attributedString
+                lastReplyMessageLabel.isEnabled = true
+            }
             
 //            if let messageId = messageId, messageContent.shouldLoadPaidText {
 //                let delayTime = DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)

@@ -55,9 +55,6 @@ class ThreadCollectionViewItem: CommonNewMessageCollectionViewitem, ChatCollecti
     @IBOutlet weak var leftLineContainer: NSBox!
     @IBOutlet weak var rightLineContainer: NSBox!
     
-    @IBOutlet weak var sentMessageMenuButton: CustomButton!
-    @IBOutlet weak var receivedMessageMenuButton: CustomButton!
-    
     @IBOutlet weak var widthConstraint: NSLayoutConstraint!
     @IBOutlet weak var labelHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var lastReplyLabelHeightConstraint: NSLayoutConstraint!
