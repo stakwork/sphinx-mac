@@ -91,6 +91,9 @@ extension NSColor {
         public static let SignupFieldBackground = color("SignupFieldBackground")
         public static let PinFieldBackground = color("PinFieldBackground")
         
+        public static let ThreadOriginalMsg = color("ThreadOriginalMsg")
+        public static let ThreadLastReply = color("ThreadLastReply")
+        
         private static func color(_ name: String) -> NSColor {
             return NSColor(named: NSColor.Name(name)) ?? NSColor.magenta
         }

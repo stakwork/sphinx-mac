@@ -145,6 +145,17 @@
 		473BC88F2600EEFF0070E519 /* NewEpisodeAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473BC88E2600EEFE0070E519 /* NewEpisodeAlertView.swift */; };
 		473BC8922600FB320070E519 /* NewEpisodeAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473BC8942600FB320070E519 /* NewEpisodeAlertView.xib */; };
 		473BC89D260284160070E519 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473BC89C260284160070E519 /* JSON.swift */; };
+		473E1F282AC458E600DC1CDC /* ThreadCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F262AC458E600DC1CDC /* ThreadCollectionViewItem.swift */; };
+		473E1F292AC458E600DC1CDC /* ThreadCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473E1F272AC458E600DC1CDC /* ThreadCollectionViewItem.xib */; };
+		473E1F2C2AC45BB500DC1CDC /* ThreadRepliesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F2B2AC45BB500DC1CDC /* ThreadRepliesView.swift */; };
+		473E1F2E2AC45BBD00DC1CDC /* ThreadRepliesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473E1F2D2AC45BBD00DC1CDC /* ThreadRepliesView.xib */; };
+		473E1F302AC468D400DC1CDC /* ThreadLastMessageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F2F2AC468D400DC1CDC /* ThreadLastMessageHeader.swift */; };
+		473E1F322AC468DB00DC1CDC /* ThreadLastMessageHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473E1F312AC468DB00DC1CDC /* ThreadLastMessageHeader.xib */; };
+		473E1F342AC46DB700DC1CDC /* ThreadCollectionView+GeneralSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F332AC46DB600DC1CDC /* ThreadCollectionView+GeneralSetup.swift */; };
+		473E1F362AC46DC400DC1CDC /* ThreadCollectionView+StatusHeaderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F352AC46DC400DC1CDC /* ThreadCollectionView+StatusHeaderExtension.swift */; };
+		473E1F382AC46DCF00DC1CDC /* ThreadCollectionView+BubbleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F372AC46DCF00DC1CDC /* ThreadCollectionView+BubbleExtension.swift */; };
+		473E1F3A2AC46DDF00DC1CDC /* ThreadCollectionView+MessageTypesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F392AC46DDF00DC1CDC /* ThreadCollectionView+MessageTypesExtension.swift */; };
+		473E1F3C2AC46DEB00DC1CDC /* ThreadCollectionView+DelegatesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F3B2AC46DEB00DC1CDC /* ThreadCollectionView+DelegatesExtension.swift */; };
 		474274A328EB7616000C3D51 /* CreateTribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474274A228EB7616000C3D51 /* CreateTribeViewController.swift */; };
 		474274A528EC7275000C3D51 /* TribeTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474274A428EC7275000C3D51 /* TribeTagsView.swift */; };
 		474274A728EC7289000C3D51 /* TribeTagsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 474274A628EC7289000C3D51 /* TribeTagsView.xib */; };
@@ -891,6 +902,17 @@
 		473BC8982600FB3A0070E519 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/NewEpisodeAlertView.strings; sourceTree = "<group>"; };
 		473BC89C260284160070E519 /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		473BC89E260284500070E519 /* com_stakwork_sphinx_desktop 16.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "com_stakwork_sphinx_desktop 16.xcdatamodel"; sourceTree = "<group>"; };
+		473E1F262AC458E600DC1CDC /* ThreadCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadCollectionViewItem.swift; sourceTree = "<group>"; };
+		473E1F272AC458E600DC1CDC /* ThreadCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadCollectionViewItem.xib; sourceTree = "<group>"; };
+		473E1F2B2AC45BB500DC1CDC /* ThreadRepliesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadRepliesView.swift; sourceTree = "<group>"; };
+		473E1F2D2AC45BBD00DC1CDC /* ThreadRepliesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadRepliesView.xib; sourceTree = "<group>"; };
+		473E1F2F2AC468D400DC1CDC /* ThreadLastMessageHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadLastMessageHeader.swift; sourceTree = "<group>"; };
+		473E1F312AC468DB00DC1CDC /* ThreadLastMessageHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadLastMessageHeader.xib; sourceTree = "<group>"; };
+		473E1F332AC46DB600DC1CDC /* ThreadCollectionView+GeneralSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadCollectionView+GeneralSetup.swift"; sourceTree = "<group>"; };
+		473E1F352AC46DC400DC1CDC /* ThreadCollectionView+StatusHeaderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadCollectionView+StatusHeaderExtension.swift"; sourceTree = "<group>"; };
+		473E1F372AC46DCF00DC1CDC /* ThreadCollectionView+BubbleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadCollectionView+BubbleExtension.swift"; sourceTree = "<group>"; };
+		473E1F392AC46DDF00DC1CDC /* ThreadCollectionView+MessageTypesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadCollectionView+MessageTypesExtension.swift"; sourceTree = "<group>"; };
+		473E1F3B2AC46DEB00DC1CDC /* ThreadCollectionView+DelegatesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadCollectionView+DelegatesExtension.swift"; sourceTree = "<group>"; };
 		473FC42C2481CE52000096C3 /* MaterialIcons-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaterialIcons-Regular.ttf"; sourceTree = "<group>"; };
 		474274A228EB7616000C3D51 /* CreateTribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTribeViewController.swift; sourceTree = "<group>"; };
 		474274A428EC7275000C3D51 /* TribeTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TribeTagsView.swift; sourceTree = "<group>"; };
@@ -2011,6 +2033,31 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		473E1F252AC458BF00DC1CDC /* Thread Collection View Item */ = {
+			isa = PBXGroup;
+			children = (
+				473E1F262AC458E600DC1CDC /* ThreadCollectionViewItem.swift */,
+				473E1F272AC458E600DC1CDC /* ThreadCollectionViewItem.xib */,
+				473E1F332AC46DB600DC1CDC /* ThreadCollectionView+GeneralSetup.swift */,
+				473E1F352AC46DC400DC1CDC /* ThreadCollectionView+StatusHeaderExtension.swift */,
+				473E1F372AC46DCF00DC1CDC /* ThreadCollectionView+BubbleExtension.swift */,
+				473E1F392AC46DDF00DC1CDC /* ThreadCollectionView+MessageTypesExtension.swift */,
+				473E1F3B2AC46DEB00DC1CDC /* ThreadCollectionView+DelegatesExtension.swift */,
+			);
+			path = "Thread Collection View Item";
+			sourceTree = "<group>";
+		};
+		473E1F2A2AC45B9E00DC1CDC /* Threads */ = {
+			isa = PBXGroup;
+			children = (
+				473E1F2B2AC45BB500DC1CDC /* ThreadRepliesView.swift */,
+				473E1F2D2AC45BBD00DC1CDC /* ThreadRepliesView.xib */,
+				473E1F2F2AC468D400DC1CDC /* ThreadLastMessageHeader.swift */,
+				473E1F312AC468DB00DC1CDC /* ThreadLastMessageHeader.xib */,
+			);
+			path = Threads;
+			sourceTree = "<group>";
+		};
 		4744FA5124698FDD00C5FD94 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
@@ -3048,6 +3095,7 @@
 		47DE1BF12A68138B0029597B /* New Chat View */ = {
 			isa = PBXGroup;
 			children = (
+				473E1F2A2AC45B9E00DC1CDC /* Threads */,
 				4794966C2AB8B50000C42D1E /* Invoices */,
 				479496592AB8A6ED00C42D1E /* Group Actions */,
 				479496502AB4BB6B00C42D1E /* Paid Content */,
@@ -3532,6 +3580,7 @@
 		47FEE21F2A66F59D00646C4E /* New Chat View */ = {
 			isa = PBXGroup;
 			children = (
+				473E1F252AC458BF00DC1CDC /* Thread Collection View Item */,
 				47DE1C0D2A69699C0029597B /* Message Collection View Item */,
 				47DE1C012A68811F0029597B /* MessageNoBubbleCollectionViewItem */,
 				47FEE22C2A670CFD00646C4E /* NewOnlyTextMessageCollectionViewItem */,
@@ -3696,6 +3745,7 @@
 				4726A44224C628DA005A66B4 /* horn.caf in Resources */,
 				4794964B2AB3A59C00C42D1E /* AudioMessageView.xib in Resources */,
 				4767AE942509BA8C00C82E5B /* GiphySearchView.xib in Resources */,
+				473E1F2E2AC45BBD00DC1CDC /* ThreadRepliesView.xib in Resources */,
 				479496742AB8B52600C42D1E /* InvoicePaymentView.xib in Resources */,
 				479A03F02587E73A0093DB30 /* TribeMemberInfoView.xib in Resources */,
 				47DE1C052A68813B0029597B /* MessageNoBubbleCollectionViewItem.xib in Resources */,
@@ -3711,6 +3761,7 @@
 				4797E8A124BCFE1C00D13270 /* DeletedMessageReceivedCollectionViewItem.xib in Resources */,
 				4787F8A2247C16C600CCE8B9 /* ChatSmallAvatarView.xib in Resources */,
 				47DE1BF02A67139D0029597B /* NewOnlyTextMessageCollectionViewitem.xib in Resources */,
+				473E1F322AC468DB00DC1CDC /* ThreadLastMessageHeader.xib in Resources */,
 				479E7D9825AE089B0092595B /* GroupPinView.xib in Resources */,
 				473633F22555DCF9007405F2 /* PodcastSatsView.xib in Resources */,
 				4797E85B24BCD44C00D13270 /* LoadingMoreCollectionViewItem.xib in Resources */,
@@ -3780,6 +3831,7 @@
 				47C1D609248EABFB00718B28 /* GroupContactCollectionViewItem.xib in Resources */,
 				474E333A247FF49200F7F603 /* PictureSentCollectionViewItem.xib in Resources */,
 				479751F0246DBF2B00D2106B /* ChatListCollectionViewItem.xib in Resources */,
+				473E1F292AC458E600DC1CDC /* ThreadCollectionViewItem.xib in Resources */,
 				479C793824EC3CCD009BA1CD /* test.html in Resources */,
 				4797E86924BCD58C00D13270 /* DraggingDestinationView.xib in Resources */,
 				4797E84624BCD36D00D13270 /* ExpiredInvoiceSentCollectionViewItem.xib in Resources */,
@@ -3973,6 +4025,7 @@
 				474567F82514FE3100D66268 /* FileBubbleView.swift in Sources */,
 				4720991624834E0000426028 /* CryptorRSAUtilities.swift in Sources */,
 				47D03DE4250BB9F40077A968 /* NewInviteViewController.swift in Sources */,
+				473E1F3C2AC46DEB00DC1CDC /* ThreadCollectionView+DelegatesExtension.swift in Sources */,
 				CE6BF5CA29E5BA38009BCFDE /* SendPaymentForInvoiceVC.swift in Sources */,
 				47FEE2092A66DB2E00646C4E /* NewChatTableDataSource+ResultsControllerExtension.swift in Sources */,
 				47DE1C202A697FC60029597B /* NewMessageCollectionViewItem+DelegatesExtension.swift in Sources */,
@@ -4007,6 +4060,7 @@
 				4797520B246F3FA000D2106B /* ChatViewModel.swift in Sources */,
 				474274A328EB7616000C3D51 /* CreateTribeViewController.swift in Sources */,
 				479751BF246C552500D2106B /* NSView.swift in Sources */,
+				473E1F342AC46DB700DC1CDC /* ThreadCollectionView+GeneralSetup.swift in Sources */,
 				47B5508A24898331000514BF /* IntegerValueFormatter.swift in Sources */,
 				47FEE2272A66F6BE00646C4E /* CommonNewMessageCollectionViewItem.swift in Sources */,
 				4731BE4024859AE700BCCA9E /* PaidInvoiceReceivedCollectionViewItem.swift in Sources */,
@@ -4030,6 +4084,7 @@
 				475B685E29917395000EF29C /* PodcastPlayerController.swift in Sources */,
 				479751D8246C986200D2106B /* LoadableNib.swift in Sources */,
 				473BC89D260284160070E519 /* JSON.swift in Sources */,
+				473E1F362AC46DC400DC1CDC /* ThreadCollectionView+StatusHeaderExtension.swift in Sources */,
 				475B685D29917395000EF29C /* PodcastPlayerController+Utils.swift in Sources */,
 				475B683D29915E08000EF29C /* PodcastEpisode+Computeds.swift in Sources */,
 				470396EC2537293E007F9C23 /* PodcastEpisodesDataSource.swift in Sources */,
@@ -4182,6 +4237,7 @@
 				474A668F24990643002C2D10 /* MenuOptionsView.swift in Sources */,
 				4794966B2AB8B03800C42D1E /* MessageNoBubbleCollectionViewItem+DelegatesExtension.swift in Sources */,
 				47393E652461DB2C00E6F93E /* String.swift in Sources */,
+				473E1F302AC468D400DC1CDC /* ThreadLastMessageHeader.swift in Sources */,
 				4787F8A4247C202500CCE8B9 /* ChatViewControllerSocketDelegate.swift in Sources */,
 				47F8825725656CB0002A7E71 /* SocketAnyEvent.swift in Sources */,
 				47AF0D4E2553099100C98398 /* NewPodcastPlayerViewController.swift in Sources */,
@@ -4270,6 +4326,7 @@
 				474E3339247FF49200F7F603 /* PictureSentCollectionViewItem.swift in Sources */,
 				47F8824E25656CB0002A7E71 /* SocketManagerSpec.swift in Sources */,
 				479751E9246D91B000D2106B /* ChatListViewController+DelegateExtension.swift in Sources */,
+				473E1F3A2AC46DDF00DC1CDC /* ThreadCollectionView+MessageTypesExtension.swift in Sources */,
 				479F65792487D0F40015A16A /* IntermitentAlphaAnimatedView.swift in Sources */,
 				4797E74D2785D24D0080B966 /* PersonModalView.swift in Sources */,
 				47D03DEA250FDCBA0077A968 /* PdfInfoView.swift in Sources */,
@@ -4323,6 +4380,7 @@
 				479751E5246D909F00D2106B /* WalletBalanceService.swift in Sources */,
 				470708A624B36C8A00A98DCA /* MetaDataCache.swift in Sources */,
 				4744FA9D2469CD0B00C5FD94 /* AttachmentsManager.swift in Sources */,
+				473E1F2C2AC45BB500DC1CDC /* ThreadRepliesView.swift in Sources */,
 				473BC88F2600EEFF0070E519 /* NewEpisodeAlertView.swift in Sources */,
 				4703F0482481983900282186 /* CustomAVPlayerView.swift in Sources */,
 				47F8825425656CB0002A7E71 /* SocketEnginePacketType.swift in Sources */,
@@ -4360,6 +4418,7 @@
 				47AF0D4125508FC900C98398 /* PodcastBoostSentCollectionViewItem.swift in Sources */,
 				4731BE202485309C00BCCA9E /* DirectPaymentSentCollectionViewItem.swift in Sources */,
 				47F8825625656CB0002A7E71 /* SocketIOClientConfiguration.swift in Sources */,
+				473E1F382AC46DCF00DC1CDC /* ThreadCollectionView+BubbleExtension.swift in Sources */,
 				478ED5B625D6BF6E00940132 /* WelcomeMobileViewController.swift in Sources */,
 				4720991924834E0000426028 /* CryptorRSAErrors.swift in Sources */,
 				474E3335247FF48200F7F603 /* PictureReceivedCollectionViewItem.swift in Sources */,
@@ -4401,6 +4460,7 @@
 				475B681829915D01000EF29C /* ContentFeed+Computeds.swift in Sources */,
 				475B681929915D01000EF29C /* ContentFeed+CoreDataProperties.swift in Sources */,
 				4744FA582469905100C5FD94 /* SignupHelper.swift in Sources */,
+				473E1F282AC458E600DC1CDC /* ThreadCollectionViewItem.swift in Sources */,
 				479751EB246DB6D700D2106B /* NSTextField.swift in Sources */,
 				478ED57F25D42B5E00940132 /* WelcomeInitialViewController.swift in Sources */,
 				474567F52514FA5300D66268 /* FileReceivedCollectionViewItem.swift in Sources */,

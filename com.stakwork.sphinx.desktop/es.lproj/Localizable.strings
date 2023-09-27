@@ -507,3 +507,6 @@
 "request.payment" = "Solicitar pago";
 "send.emoji" = "Enviar emoji";
 "record.voice" = "Recordar mensaje de audio";
+
+//THREAD
+"more-replies" = "respuestas más";

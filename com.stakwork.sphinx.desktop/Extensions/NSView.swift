@@ -248,6 +248,12 @@ extension NSView {
         self.layer?.addSublayer(messageArrowLayer)
     }
     
+    func setArrowColorTo(
+        color: NSColor
+    ) {
+        ((self.layer?.sublayers?.filter { $0.name == "arrow" })?.first as? CAShapeLayer)?.fillColor = color.cgColor
+    }
+    
     func drawSentBubbleArrow(
         color: NSColor,
         arrowWidth: CGFloat = 7

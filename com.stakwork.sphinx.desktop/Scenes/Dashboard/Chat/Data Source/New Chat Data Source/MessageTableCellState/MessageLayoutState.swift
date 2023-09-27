@@ -94,6 +94,63 @@ struct BubbleMessageLayoutState {
         }
     }
     
+    struct ThreadMessage {
+        var text: String?
+        var font: NSFont?
+        var senderPic: String?
+        var senderAlias: String?
+        var senderColor: NSColor?
+        var sendDate: Date?
+        
+        init(
+            text: String?,
+            font: NSFont?,
+            senderPic: String?,
+            senderAlias: String?,
+            senderColor: NSColor?,
+            sendDate: Date?
+        ) {
+            self.text = text
+            self.font = font
+            self.senderPic = senderPic
+            self.senderAlias = senderAlias
+            self.senderColor = senderColor
+            self.sendDate = sendDate
+        }
+    }
+    
+    struct ThreadMessages {
+        var originalMessage: ThreadMessage
+        var firstReplySenderIndo: (NSColor, String, String?)
+        var secondReplySenderInfo: (NSColor, String, String?)?
+        var moreRepliesCount: Int
+        
+        init(
+            originalMessage: ThreadMessage,
+            firstReplySenderIndo: (NSColor, String, String?),
+            secondReplySenderInfo: (NSColor, String, String?)?,
+            moreRepliesCount: Int
+        ) {
+            self.originalMessage = originalMessage
+            self.firstReplySenderIndo = firstReplySenderIndo
+            self.secondReplySenderInfo = secondReplySenderInfo
+            self.moreRepliesCount = moreRepliesCount
+        }
+    }
+    
+    struct ThreadLastReply {
+        var lastReplySenderInfo: (NSColor, String, String?)
+        var timestamp: String
+        
+        init(
+            lastReplySenderInfo: (NSColor, String, String?),
+            timestamp: String
+        ) {
+            self.lastReplySenderInfo = lastReplySenderInfo
+            self.timestamp = timestamp
+        }
+    }
+    
     struct MessageReply {
         var messageId: Int
         var color: NSColor

@@ -503,3 +503,6 @@
 "request.payment" = "Request Payment";
 "send.emoji" = "Send emoji";
 "record.voice" = "Record voice message";
+
+//THREAD
+"more-replies" = "more replies";

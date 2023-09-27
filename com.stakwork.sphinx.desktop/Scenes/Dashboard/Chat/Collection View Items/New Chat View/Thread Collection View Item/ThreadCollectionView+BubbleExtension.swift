@@ -1,14 +1,14 @@
 //
-//  NewMessageCollectionViewItem+BubbleExtension.swift
+//  ThreadCollectionView+BubbleExtension.swift
 //  Sphinx
 //
-//  Created by Tomas Timinskas on 20/07/2023.
+//  Created by Tomas Timinskas on 27/09/2023.
 //  Copyright © 2023 Tomas Timinskas. All rights reserved.
 //
 
 import Cocoa
 
-extension NewMessageCollectionViewItem {
+extension ThreadCollectionViewItem {
     func configureWith(
         avatarImage: BubbleMessageLayoutState.AvatarImage?,
         isPreload: Bool
@@ -29,16 +29,19 @@ extension NewMessageCollectionViewItem {
     }
     
     func configureWith(
-        bubble: BubbleMessageLayoutState.Bubble
+        bubble: BubbleMessageLayoutState.Bubble,
+        threadMessages: BubbleMessageLayoutState.ThreadMessages?
     ) {
-        configureWith(direction: bubble.direction)
+        configureWith(direction: bubble.direction, threadMessages: threadMessages)
         configureWith(bubbleState: bubble.grouping, direction: bubble.direction)
     }
     
     func configureWith(
-        direction: MessageTableCellState.MessageDirection
+        direction: MessageTableCellState.MessageDirection,
+        threadMessages: BubbleMessageLayoutState.ThreadMessages?
     ) {
         let isOutgoing = direction.isOutgoing()
+        let isThread = threadMessages != nil
 //        let textRightAligned = isOutgoing
         
         messageContentStackView.alignment = isOutgoing ? .trailing : .leading
@@ -47,13 +50,23 @@ extension NewMessageCollectionViewItem {
         receivedMessageMarginView.isHidden = isOutgoing
         
         receivedArrow.isHidden = isOutgoing
+        receivedArrow.setArrowColorTo(
+            color: isThread ? NSColor.Sphinx.ThreadOriginalMsg : NSColor.Sphinx.ReceivedMsgBG
+        )
+        
         sentArrow.isHidden = !isOutgoing
+        sentArrow.setArrowColorTo(
+            color: isThread ? NSColor.Sphinx.SentMsgBG : NSColor.Sphinx.SentMsgBG
+        )
         
 //        messageLabelLeadingConstraint.priority = NSLayoutConstraint.Priority(textRightAligned ? 1 : 1000)
 //        messageLabelTrailingConstraint.priority = NSLayoutConstraint.Priority(textRightAligned ? 1000 : 1)
         
         let bubbleColor = isOutgoing ? NSColor.Sphinx.SentMsgBG : NSColor.Sphinx.ReceivedMsgBG
         bubbleAllViews.fillColor = bubbleColor
+        
+        let threadBubbleColor = isOutgoing ? NSColor.Sphinx.ReceivedMsgBG : NSColor.Sphinx.ThreadLastReply
+        bubbleLastReplyView.fillColor = threadBubbleColor
         
         statusHeaderView.configureWith(direction: direction)
     }

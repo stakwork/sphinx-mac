@@ -32,56 +32,13 @@ class CommonNewMessageCollectionViewitem : NSCollectionViewItem {
     static let kMaximumPodcastAudioBubbleWidth: CGFloat = 400
     static let kMaximumPaidTextViewBubbleWidth: CGFloat = 400
     static let kMaximumInvoiceBubbleWidth: CGFloat = 300
+    static let kMaximumThreadBubbleWidth: CGFloat = 300
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-//    @objc func labelTapped(
-//        gesture: UITapGestureRecognizer
-//    ) {
-//        if let label = gesture.view as? UILabel, let text = label.text {
-//            for range in urlRanges {
-//                if gesture.didTapAttributedTextInLabel(
-//                    label,
-//                    inRange: range
-//                ) {
-//                    let link = (text as NSString).substring(with: range)
-//                    delegate?.didTapOnLink(link)
-//                }
-//            }
-//        }
-//    }
-//
-//
-//    func addLongPressRescognizer() {
-//        let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
-//        lpgr.minimumPressDuration = 0.5
-//        lpgr.delaysTouchesBegan = true
-//
-//        contentView.addGestureRecognizer(lpgr)
-//    }
-//
-//    @objc func handleLongPress(gestureReconizer: UILongPressGestureRecognizer) {
-//        if (gestureReconizer.state == .began) {
-//            if shouldPreventOtherGestures {
-//                return
-//            }
-//            didLongPressOnCell()
-//        }
-//    }
-    
     func getBubbleView() -> NSBox? {
         return nil
     }
-    
-//    func didLongPressOnCell() {
-//        if let messageId = messageId, let bubbleView = getBubbleView() {
-//            delegate?.didLongPressOn(
-//                cell: self,
-//                with: messageId,
-//                bubbleViewRect: bubbleView.frame
-//            )
-//        }
-//    }
 }

@@ -85,6 +85,7 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
         isPreload: Bool,
         collectionViewWidth: CGFloat
     ) {
+        
         hideAllSubviews()
         
         var mutableMessageCellState = messageCellState

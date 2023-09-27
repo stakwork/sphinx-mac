@@ -1,14 +1,14 @@
 //
-//  NewMessageCollectionViewItem+DelegatesExtension.swift
+//  ThreadCollectionView+DelegatesExtension.swift
 //  Sphinx
 //
-//  Created by Tomas Timinskas on 20/07/2023.
+//  Created by Tomas Timinskas on 27/09/2023.
 //  Copyright © 2023 Tomas Timinskas. All rights reserved.
 //
 
 import Foundation
 
-extension NewMessageCollectionViewItem : ChatSmallAvatarViewDelegate {
+extension ThreadCollectionViewItem : ChatSmallAvatarViewDelegate {
     func didClickAvatarView() {
         if let messageId = messageId {
             delegate?.didTapAvatarViewFor(messageId: messageId, and: rowIndex)
@@ -16,7 +16,7 @@ extension NewMessageCollectionViewItem : ChatSmallAvatarViewDelegate {
     }
 }
 
-extension NewMessageCollectionViewItem : NewMessageReplyViewDelegate {
+extension ThreadCollectionViewItem : NewMessageReplyViewDelegate {
     func didTapMessageReplyView() {
         if let messageId = messageId {
             delegate?.didTapMessageReplyFor(messageId: messageId, and: rowIndex)
@@ -24,7 +24,7 @@ extension NewMessageCollectionViewItem : NewMessageReplyViewDelegate {
     }
 }
 
-extension NewMessageCollectionViewItem : LinkPreviewDelegate {
+extension ThreadCollectionViewItem : LinkPreviewDelegate {
     func didTapOnTribeButton() {
         if let messageId = messageId {
             delegate?.didTapTribeButtonFor(messageId: messageId, and: rowIndex)
@@ -44,7 +44,7 @@ extension NewMessageCollectionViewItem : LinkPreviewDelegate {
     }
 }
 
-extension NewMessageCollectionViewItem : MediaMessageViewDelegate {
+extension ThreadCollectionViewItem : MediaMessageViewDelegate {
     func didTapMediaButton() {
         if let messageId = messageId {
             delegate?.didTapMediaButtonFor(messageId: messageId, and: rowIndex)
@@ -97,7 +97,7 @@ extension NewMessageCollectionViewItem : MediaMessageViewDelegate {
     }
 }
 
-extension NewMessageCollectionViewItem : JoinCallViewDelegate {
+extension ThreadCollectionViewItem : JoinCallViewDelegate {
     func didTapCopyLink() {
         if let messageId = messageId {
             delegate?.didTapCallLinkCopyFor(messageId: messageId, and: rowIndex)
@@ -117,7 +117,7 @@ extension NewMessageCollectionViewItem : JoinCallViewDelegate {
     }
 }
 
-extension NewMessageCollectionViewItem : FileInfoViewDelegate {
+extension ThreadCollectionViewItem : FileInfoViewDelegate {
     func didTouchDownloadButton() {
         if let messageId = messageId, let message = TransactionMessage.getMessageWith(id: messageId) {
             MediaDownloader.shouldSaveFile(message: message, completion: { (success, alertMessage) in
@@ -129,7 +129,7 @@ extension NewMessageCollectionViewItem : FileInfoViewDelegate {
     }
 }
 
-extension NewMessageCollectionViewItem : AudioMessageViewDelegate {
+extension ThreadCollectionViewItem : AudioMessageViewDelegate {
     func didTapPlayPauseButton() {
         if let messageId = messageId {
             delegate?.didTapPlayPauseButtonFor(messageId: messageId, and: rowIndex)
@@ -137,7 +137,7 @@ extension NewMessageCollectionViewItem : AudioMessageViewDelegate {
     }
 }
 
-extension NewMessageCollectionViewItem : PodcastAudioViewDelegate {
+extension ThreadCollectionViewItem : PodcastAudioViewDelegate {
     func didTapClipPlayPauseButtonAt(time: Double) {
         if let messageId = messageId {
             delegate?.didTapClipPlayPauseButtonFor(messageId: messageId, and: rowIndex, atTime: time)
@@ -151,7 +151,7 @@ extension NewMessageCollectionViewItem : PodcastAudioViewDelegate {
     }
 }
 
-extension NewMessageCollectionViewItem : PaidAttachmentViewDelegate {
+extension ThreadCollectionViewItem : PaidAttachmentViewDelegate {
     func didTapPayButton() {
         if let messageId = messageId {
             delegate?.didTapPayButtonFor(messageId: messageId, and: rowIndex)
@@ -159,7 +159,7 @@ extension NewMessageCollectionViewItem : PaidAttachmentViewDelegate {
     }
 }
 
-extension NewMessageCollectionViewItem : InvoiceViewDelegate {
+extension ThreadCollectionViewItem : InvoiceViewDelegate {
     func didTapInvoicePayButton() {
         if let messageId = messageId {
             delegate?.didTapInvoicePayButtonFor(messageId: messageId, and: rowIndex)
