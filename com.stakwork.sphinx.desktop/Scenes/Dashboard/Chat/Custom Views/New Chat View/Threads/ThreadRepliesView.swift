@@ -30,6 +30,10 @@ class ThreadRepliesView: NSView, LoadableNib {
     
     @IBOutlet weak var messageFakeContainer: NSView!
     @IBOutlet weak var messageFakeBubbleView: NSBox!
+    
+    static let kViewHeight1Reply: CGFloat = 29
+    static let kViewHeight2Replies: CGFloat = 49
+    static let kViewHeightSeveralReplies: CGFloat = 84
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -69,7 +73,7 @@ class ThreadRepliesView: NSView, LoadableNib {
         threadMessages: BubbleMessageLayoutState.ThreadMessages,
         direction: MessageTableCellState.MessageDirection
     ) {
-        let firstReplySenderInfo = threadMessages.firstReplySenderIndo
+        let firstReplySenderInfo = threadMessages.firstReplySenderInfo
         
         firstReplyAvatarView.configureForUserWith(
             color: firstReplySenderInfo.0,

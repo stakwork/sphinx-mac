@@ -583,6 +583,77 @@ class ChatHelper {
         }
     }
     
+    public static func getThreadRowHeightFor(
+        _ tableCellState: MessageTableCellState,
+        linkData: MessageTableCellState.LinkData? = nil,
+        tribeData: MessageTableCellState.TribeData? = nil,
+        botWebViewData: MessageTableCellState.BotWebViewData? = nil,
+        collectionViewWidth: CGFloat
+    ) -> CGFloat {
+        ///No Bubble message views
+        var mutableTableCellState = tableCellState
+        let kGeneralMargin: CGFloat = 2.0
+        
+        let statusHeaderheight: CGFloat = getStatusHeaderHeightFor(tableCellState)
+        
+        var originalMessageTextHeight: CGFloat = 0
+        var viewsHeight: CGFloat = 0.0
+        
+        if let threadState = mutableTableCellState.threadMessagesState {
+            let originalMessage = threadState.originalMessage
+            
+            if let text = originalMessage.text, text.isNotEmpty {
+                originalMessageTextHeight = ChatHelper.getThreadOriginalTextMessageHeightFor(
+                    text,
+                    collectionViewWidth: collectionViewWidth,
+                    maxHeight: 64.0
+                )
+            }
+            
+            if threadState.moreRepliesCount > 0 {
+                viewsHeight += ThreadRepliesView.kViewHeightSeveralReplies
+            } else if let _ = threadState.secondReplySenderInfo {
+                viewsHeight += ThreadRepliesView.kViewHeight2Replies
+            } else {
+                viewsHeight += ThreadRepliesView.kViewHeight1Reply
+            }
+        }
+        
+        if let _ = mutableTableCellState.audio {
+            viewsHeight += AudioMessageView.kViewHeight
+        }
+        
+        if let _ = mutableTableCellState.messageMedia {
+            viewsHeight += MediaMessageView.kThreadViewHeight
+        }
+        
+        if let _ = mutableTableCellState.genericFile {
+            viewsHeight += FileInfoView.kViewHeight
+        }
+        
+        if let _ = mutableTableCellState.threadOriginalMessageAudio {
+            viewsHeight += AudioMessageView.kViewHeight
+        }
+        
+        if let _ = mutableTableCellState.threadOriginalMessageMedia {
+            viewsHeight += MediaMessageView.kThreadViewHeight
+        }
+        
+        if let _ = mutableTableCellState.threadOriginalMessageGenericFile {
+            viewsHeight += FileInfoView.kViewHeight
+        }
+        
+        let textHeight: CGFloat = getTextMessageHeightFor(
+            tableCellState,
+            collectionViewWidth: collectionViewWidth
+        )
+        
+        viewsHeight += ThreadLastMessageHeader.kViewHeight
+        
+        return textHeight + originalMessageTextHeight + (kGeneralMargin * 2) + statusHeaderheight + viewsHeight
+        
+    }
+    
     public static func getRowHeightFor(
         _ tableCellState: MessageTableCellState,
         linkData: MessageTableCellState.LinkData? = nil,
@@ -593,7 +664,10 @@ class ChatHelper {
         var mutableTableCellState = tableCellState
         
         if mutableTableCellState.isThread {
-            return 600
+            return ChatHelper.getThreadRowHeightFor(
+                tableCellState,
+                collectionViewWidth: collectionViewWidth
+            )
         }
         
         ///No bubble message views

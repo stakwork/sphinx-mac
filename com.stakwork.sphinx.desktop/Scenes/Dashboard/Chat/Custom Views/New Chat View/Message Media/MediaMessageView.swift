@@ -38,6 +38,7 @@ class MediaMessageView: NSView, LoadableNib {
     @IBOutlet weak var fileInfoViewBottomConstraint: NSLayoutConstraint!
     
     static let kViewHeight: CGFloat = 300
+    static let kThreadViewHeight: CGFloat = 170
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)

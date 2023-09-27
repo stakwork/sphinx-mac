@@ -479,7 +479,7 @@ struct MessageTableCellState {
 
         return BubbleMessageLayoutState.ThreadMessages(
             originalMessage: originalThreadMessage,
-            firstReplySenderIndo: getSenderInfo(message: firstReplyMessage),
+            firstReplySenderInfo: getSenderInfo(message: firstReplyMessage),
             secondReplySenderInfo: secondReplySenderInfo,
             moreRepliesCount: threadMessages.count - 3
         )

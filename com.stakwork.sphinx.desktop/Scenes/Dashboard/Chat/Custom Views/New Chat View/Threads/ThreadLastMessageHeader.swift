@@ -15,6 +15,8 @@ class ThreadLastMessageHeader: NSView, LoadableNib {
     @IBOutlet weak var chatAvatarView: ChatSmallAvatarView!
     @IBOutlet weak var nameLabel: NSTextField!
     @IBOutlet weak var dateLabel: NSTextField!
+    
+    static let kViewHeight: CGFloat = 36
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
