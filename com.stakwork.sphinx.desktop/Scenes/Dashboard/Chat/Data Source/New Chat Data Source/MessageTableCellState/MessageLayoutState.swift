@@ -561,4 +561,29 @@ struct NoBubbleMessageLayoutState {
             self.timestamp = timestamp
         }
     }
+    
+    struct ThreadOriginalMessage {
+        var text: String
+        var linkMatches: [NSTextCheckingResult]
+        var senderPic: String?
+        var senderAlias: String
+        var senderColor: NSColor
+        var timestamp: String
+        
+        init(
+            text: String,
+            linkMatches: [NSTextCheckingResult],
+            senderPic: String?,
+            senderAlias: String,
+            senderColor: NSColor,
+            timestamp: String
+        ) {
+            self.text = text
+            self.linkMatches = linkMatches
+            self.senderPic = senderPic
+            self.senderAlias = senderAlias
+            self.senderColor = senderColor
+            self.timestamp = timestamp
+        }
+    }
 }

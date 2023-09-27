@@ -592,6 +592,10 @@ class ChatHelper {
     ) -> CGFloat {
         var mutableTableCellState = tableCellState
         
+        if mutableTableCellState.isThread {
+            return 600
+        }
+        
         ///No bubble message views
         if let _ = mutableTableCellState.dateSeparator {
             return DateSeparatorView.kViewHeight

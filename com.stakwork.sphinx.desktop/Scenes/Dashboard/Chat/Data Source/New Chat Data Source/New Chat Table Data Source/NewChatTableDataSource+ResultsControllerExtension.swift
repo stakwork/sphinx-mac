@@ -71,7 +71,12 @@ extension NewChatTableDataSource {
             var mutableDataSourceItem = dataSourceItem
 
             if let _ = mutableDataSourceItem.bubble {
-                if mutableDataSourceItem.isTextOnlyMessage {
+                if mutableDataSourceItem.isThread {
+                    cell = collectionView.makeItem(
+                        withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ThreadCollectionViewItem"),
+                        for: indexPath
+                    ) as? ThreadCollectionViewItem
+                } else if mutableDataSourceItem.isTextOnlyMessage {
                     cell = collectionView.makeItem(
                         withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "NewOnlyTextMessageCollectionViewitem"),
                         for: indexPath
@@ -139,29 +144,50 @@ extension NewChatTableDataSource {
         
         let replyingMessagesMap = getReplyingMessagesMapFor(messages: messages)
         let boostMessagesMap = getBoostMessagesMapFor(messages: messages)
+        let threadMessagesMap = getThreadMessagesFor(messages: messages)
         let purchaseMessagesMap = getPurchaseMessagesMapFor(messages: messages)
         let linkContactsArray = getLinkContactsArrayFor(messages: messages)
         let linkTribesArray = getLinkTribesArrayFor(messages: messages)
         let webLinksArray = getWebLinksArrayFor(messages: messages)
         
         var groupingDate: Date? = nil
-        
         var invoiceData: (Int, Int) = (0, 0)
         
         chat.processAliasesFrom(messages: messages)
 
-        for (index, message) in messages.enumerated() {
+        let filteredThreadMessages: [TransactionMessage] = filterThreadMessagesFrom(
+            messages: messages,
+            threadMessagesMap: threadMessagesMap
+        )
+        
+        let originalMessagesMap = getOriginalMessagesFor(
+            threadMessages: filteredThreadMessages,
+            threadMessagesMap: threadMessagesMap
+        )
+
+        for (index, message) in filteredThreadMessages.enumerated() {
             
             invoiceData = (
                 invoiceData.0 + ((message.isPayment() && message.isIncoming(ownerId: owner.id)) ? -1 : 0),
                 invoiceData.1 + ((message.isPayment() && message.isOutgoing(ownerId: owner.id)) ? -1 : 0)
             )
             
+            let replyingMessage = (message.replyUUID != nil) ? replyingMessagesMap[message.replyUUID!] : nil
+            let boostsMessages = (message.uuid != nil) ? (boostMessagesMap[message.uuid!] ?? []) : []
+            let threadMessages = (message.threadUUID != nil) ? (threadMessagesMap[message.threadUUID!] ?? []) : []
+            let threadOriginalMsg = (message.threadUUID != nil) ? originalMessagesMap[message.threadUUID!] : nil
+            let purchaseMessages = purchaseMessagesMap[message.getMUID()] ?? [:]
+            let linkContact = linkContactsArray[message.id]
+            let linkTribe = linkTribesArray[message.id]
+            let linkWeb = webLinksArray[message.id]
+            
             let bubbleStateAndDate = getBubbleBackgroundForMessage(
-                message: message,
+                msg: threadMessages.last ?? message,
                 with: index,
-                in: messages,
-                groupingDate: &groupingDate
+                in: filteredThreadMessages,
+                and: originalMessagesMap,
+                groupingDate: &groupingDate,
+                isThreadRow: threadMessages.count > 1
             )
             
             if let separatorDate = bubbleStateAndDate.1 {
@@ -177,15 +203,9 @@ extension NewChatTableDataSource {
                 )
             }
             
-            let replyingMessage = (message.replyUUID != nil) ? replyingMessagesMap[message.replyUUID!] : nil
-            let boostsMessages = (message.uuid != nil) ? (boostMessagesMap[message.uuid!] ?? []) : []
-            let purchaseMessages = purchaseMessagesMap[message.getMUID()] ?? [:]
-            let linkContact = linkContactsArray[message.id]
-            let linkTribe = linkTribesArray[message.id]
-            let linkWeb = webLinksArray[message.id]
-            
             let messageTableCellState = MessageTableCellState(
                 message: message,
+                threadOriginalMessage: threadOriginalMsg,
                 chat: chat,
                 owner: owner,
                 contact: contact,
@@ -194,6 +214,7 @@ extension NewChatTableDataSource {
                 bubbleState: bubbleStateAndDate.0,
                 contactImage: headerImage,
                 replyingMessage: replyingMessage,
+                threadMessages: threadMessages,
                 boostMessages: boostsMessages,
                 purchaseMessages: purchaseMessages,
                 linkContact: linkContact,
@@ -227,6 +248,43 @@ extension NewChatTableDataSource {
 //        finishSearchProcess()
     }
     
+    func filterThreadMessagesFrom(
+        messages: [TransactionMessage],
+        threadMessagesMap: [String: [TransactionMessage]]
+    ) -> [TransactionMessage] {
+        
+        var filteredThreadMessages: [TransactionMessage] = []
+        
+        for message in messages {
+            if let uuid = message.uuid {
+                ///Remove original message, just last reply will show
+                if let messagesInThread = threadMessagesMap[uuid], messagesInThread.count > 1 {
+                    continue
+                }
+            }
+            
+            guard let threadUUID = message.threadUUID else {
+                ///Message not on thread.
+                filteredThreadMessages.append(message)
+                continue
+            }
+            
+            if let messagesInThread = threadMessagesMap[threadUUID] {
+                if messagesInThread.count == 1 {
+                    ///Just 1 reply, then show it
+                    filteredThreadMessages.append(message)
+                } else if messagesInThread.last?.id == message.id, messagesInThread.count > 1 {
+                    ///More than 1 reply, show thread on last reply place
+                    filteredThreadMessages.append(message)
+                }
+            } else {
+                filteredThreadMessages.append(message)
+            }
+        }
+        
+        return filteredThreadMessages
+    }
+    
     func forceReload() {
         processMessages(messages: messagesArray)
     }
@@ -245,23 +303,36 @@ extension NewChatTableDataSource {
         return 0
     }
     
-    private func getBubbleBackgroundForMessage(
-        message: TransactionMessage,
+    func getBubbleBackgroundForMessage(
+        msg: TransactionMessage,
         with index: Int,
         in messages: [TransactionMessage],
-        groupingDate: inout Date?
+        and originalMessagesMap: [String: TransactionMessage],
+        groupingDate: inout Date?,
+        isThreadRow: Bool = false,
+        threadHeaderMessage: TransactionMessage? = nil
     ) -> (MessageTableCellState.BubbleState?, Date?) {
         
-        let previousMessage = (index > 0) ? messages[index - 1] : nil
-        let nextMessage = (index < messages.count - 1) ? messages[index + 1] : nil
+        var previousMessage = (index > 0) ? messages[index - 1] : nil
+        var nextMessage = (index < messages.count - 1) ? messages[index + 1] : nil
+        
+        let previousMessageDate = previousMessage?.date ?? threadHeaderMessage?.date
+        let msgDate = msg.date
+        
+        previousMessage = getActualMessageFrom(message: previousMessage, originalMessagesMap: originalMessagesMap)
+        nextMessage = getActualMessageFrom(message: nextMessage, originalMessagesMap: originalMessagesMap)
+        
+        guard let message = getActualMessageFrom(message: msg, originalMessagesMap: originalMessagesMap) else {
+            return (nil, nil)
+        }
         
         var separatorDate: Date? = nil
         
-        if let previousMessageDate = previousMessage?.date, let date = message.date {
+        if let previousMessageDate = previousMessageDate, let date = msgDate {
             if Date.isDifferentDay(firstDate: previousMessageDate, secondDate: date) {
-                separatorDate = message.date
+                separatorDate = date
             }
-        } else if index == 0 {
+        } else if previousMessage == nil {
             separatorDate = message.date
         }
         
@@ -275,6 +346,10 @@ extension NewChatTableDataSource {
         
         if message.isInvoice() && !message.isPaid() && !message.isExpired() {
             return (MessageTableCellState.BubbleState.Empty, separatorDate)
+        }
+        
+        if isThreadRow {
+            return (MessageTableCellState.BubbleState.Isolated, separatorDate)
         }
         
         let groupingMinutesLimit = 5
@@ -305,6 +380,16 @@ extension NewChatTableDataSource {
             return (MessageTableCellState.BubbleState.Middle, separatorDate)
         }
         return (MessageTableCellState.BubbleState.Isolated, separatorDate)
+    }
+    
+    func getActualMessageFrom(
+        message: TransactionMessage?,
+        originalMessagesMap: [String: TransactionMessage]
+    ) -> TransactionMessage? {
+        if let threadUUID = message?.threadUUID, let originalMsg = originalMessagesMap[threadUUID] {
+            return originalMsg
+        }
+        return message
     }
     
     func getReplyingMessagesMapFor(
@@ -372,6 +457,65 @@ extension NewChatTableDataSource {
         }
         
         return boostMessagesMap
+    }
+    
+    func getThreadMessagesFor(
+        messages: [TransactionMessage]
+    ) -> [String: [TransactionMessage]] {
+        
+        guard let chat = chat else {
+            return [:]
+        }
+        
+        if !chat.isPublicGroup() {
+            return [:]
+        }
+        
+        let messageUUIDs: [String] = messages.map({ $0.uuid ?? "" }).filter({ $0.isNotEmpty })
+        let threadMessages = TransactionMessage.getThreadMessagesFor(messageUUIDs, on: chat)
+        
+        var threadMessagesMap: [String: [TransactionMessage]] = [:]
+        
+        for threadMessage in threadMessages {
+            if let threadUUID = threadMessage.threadUUID {
+                if let map = threadMessagesMap[threadUUID], map.count > 0 {
+                    threadMessagesMap[threadUUID]?.append(threadMessage)
+                } else {
+                    threadMessagesMap[threadUUID] = [threadMessage]
+                }
+            }
+        }
+        
+        return threadMessagesMap
+    }
+    
+    func getOriginalMessagesFor(
+        threadMessages: [TransactionMessage],
+        threadMessagesMap: [String: [TransactionMessage]]
+    ) -> [String: TransactionMessage] {
+        
+        guard let chat = chat else {
+            return [:]
+        }
+        
+        if !chat.isPublicGroup() {
+            return [:]
+        }
+        
+        let messageThreadUUIDs: [String] = threadMessages.map({ $0.threadUUID ?? "" }).filter({ $0.isNotEmpty })
+        let originalMessages = TransactionMessage.getOriginalMessagesFor(messageThreadUUIDs, on: chat)
+        
+        var originalMessagesMap: [String: TransactionMessage] = [:]
+        
+        for originalMessage in originalMessages {
+            if let uuid = originalMessage.uuid {
+                if let threadMessages = threadMessagesMap[uuid], threadMessages.count > 1 {
+                    originalMessagesMap[uuid] = originalMessage
+                }
+            }
+        }
+        
+        return originalMessagesMap
     }
     
     func getLinkContactsArrayFor(

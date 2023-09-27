@@ -32,7 +32,7 @@ class CommonNewMessageCollectionViewitem : NSCollectionViewItem {
     static let kMaximumPodcastAudioBubbleWidth: CGFloat = 400
     static let kMaximumPaidTextViewBubbleWidth: CGFloat = 400
     static let kMaximumInvoiceBubbleWidth: CGFloat = 300
-    static let kMaximumThreadBubbleWidth: CGFloat = 300
+    static let kMaximumThreadBubbleWidth: CGFloat = 400
     
     override func viewDidLoad() {
         super.viewDidLoad()

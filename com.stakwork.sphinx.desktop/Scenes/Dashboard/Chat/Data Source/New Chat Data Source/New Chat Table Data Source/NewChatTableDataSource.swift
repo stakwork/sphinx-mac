@@ -160,5 +160,6 @@ class NewChatTableDataSource : NSObject {
         collectionView.registerItem(NewMessageCollectionViewItem.self)
         collectionView.registerItem(NewOnlyTextMessageCollectionViewitem.self)
         collectionView.registerItem(MessageNoBubbleCollectionViewItem.self)
+        collectionView.registerItem(ThreadCollectionViewItem.self)
     }
 }

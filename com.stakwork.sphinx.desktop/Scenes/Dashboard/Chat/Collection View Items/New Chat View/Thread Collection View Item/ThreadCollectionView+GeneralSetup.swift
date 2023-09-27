@@ -15,7 +15,7 @@ extension ThreadCollectionViewItem {
         
         lastReplyMessageLabel.setSelectionColor(color: NSColor.getTextSelectionColor())
         lastReplyMessageLabel.allowsEditingTextAttributes = true
-
+        
         receivedArrow.drawReceivedBubbleArrow(color: NSColor.Sphinx.ReceivedMsgBG)
         sentArrow.drawSentBubbleArrow(color: NSColor.Sphinx.SentMsgBG)
         
@@ -59,5 +59,8 @@ extension ThreadCollectionViewItem {
         lastReplyMediaMessageView.isHidden = true
         lastReplyFileDetailsView.isHidden = true
         lastReplyAudioMessageView.isHidden = true
+        
+        threadRepliesView.isHidden = true
+        threadLastMessageHeader.isHidden = true
     }
 }

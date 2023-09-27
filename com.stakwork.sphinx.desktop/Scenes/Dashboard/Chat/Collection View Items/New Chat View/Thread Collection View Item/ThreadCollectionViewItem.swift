@@ -62,6 +62,8 @@ class ThreadCollectionViewItem: CommonNewMessageCollectionViewitem, ChatCollecti
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupViews()
     }
     
     func configureWith(
@@ -77,6 +79,38 @@ class ThreadCollectionViewItem: CommonNewMessageCollectionViewitem, ChatCollecti
         isPreload: Bool,
         collectionViewWidth: CGFloat
     ) {
+        hideAllSubviews()
         
+        var mutableMessageCellState = messageCellState
+        
+        guard let bubble = mutableMessageCellState.bubble else {
+            return
+        }
+        
+        self.rowIndex = indexPath.item
+        self.messageId = mutableMessageCellState.message?.id
+        self.delegate = delegate
+        
+        ///Views Width
+        configureWidth()
+        
+        ///Status Header
+        configureWith(statusHeader: mutableMessageCellState.statusHeader, uploadProgressData: uploadProgressData)
+        
+        ///Avatar
+        configureWith(
+            avatarImage: mutableMessageCellState.avatarImage,
+            isPreload: isPreload
+        )
+        
+        ///Thread
+        configureWith(threadMessages: mutableMessageCellState.threadMessagesState, and: bubble)
+        configureWith(threadLastReply: mutableMessageCellState.threadLastReplyHeader, and: bubble)
+        
+        ///Direction and grouping
+        configureWith(bubble: bubble, threadMessages: mutableMessageCellState.threadMessagesState)
+        
+        ///Invoice Lines
+        configureWith(invoiceLines: mutableMessageCellState.invoicesLines)
     }
 }

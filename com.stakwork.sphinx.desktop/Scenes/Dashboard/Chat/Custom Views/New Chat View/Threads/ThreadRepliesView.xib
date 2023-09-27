@@ -46,14 +46,14 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="z1J-gW-z41" customClass="ChatSmallAvatarView" customModule="Sphinx" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="7" width="23" height="23"/>
+                                                <rect key="frame" x="16" y="10" width="23" height="23"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="23" id="HAE-GW-52y"/>
                                                     <constraint firstAttribute="height" constant="23" id="JOy-MB-bai"/>
                                                 </constraints>
                                             </customView>
                                             <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="11" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="VnK-Fm-Ghj">
-                                                <rect key="frame" x="16" y="7" width="23" height="23"/>
+                                                <rect key="frame" x="16" y="10" width="23" height="23"/>
                                                 <view key="contentView" id="kdW-SH-ykJ">
                                                     <rect key="frame" x="0.0" y="0.0" width="23" height="23"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -63,7 +63,7 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="VnK-Fm-Ghj" firstAttribute="bottom" secondItem="z1J-gW-z41" secondAttribute="bottom" id="4Et-4k-WIC"/>
-                                            <constraint firstItem="z1J-gW-z41" firstAttribute="top" secondItem="edL-Bj-jT3" secondAttribute="top" constant="8" id="GSs-21-qQ2"/>
+                                            <constraint firstItem="z1J-gW-z41" firstAttribute="top" secondItem="edL-Bj-jT3" secondAttribute="top" constant="5" id="GSs-21-qQ2"/>
                                             <constraint firstItem="z1J-gW-z41" firstAttribute="leading" secondItem="edL-Bj-jT3" secondAttribute="leading" constant="16" id="jUG-cW-hfa"/>
                                             <constraint firstItem="VnK-Fm-Ghj" firstAttribute="leading" secondItem="z1J-gW-z41" secondAttribute="leading" id="mfv-Qc-KHh"/>
                                             <constraint firstItem="VnK-Fm-Ghj" firstAttribute="top" secondItem="z1J-gW-z41" secondAttribute="top" id="vSD-kC-eh6"/>
@@ -94,14 +94,14 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="qoN-My-L2c" customClass="ChatSmallAvatarView" customModule="Sphinx" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="7" width="23" height="23"/>
+                                                <rect key="frame" x="16" y="10" width="23" height="23"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="23" id="IJZ-nm-pTk"/>
                                                     <constraint firstAttribute="height" constant="23" id="J8I-pd-PTk"/>
                                                 </constraints>
                                             </customView>
                                             <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="11" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="BZr-kK-z7C">
-                                                <rect key="frame" x="16" y="7" width="23" height="23"/>
+                                                <rect key="frame" x="16" y="10" width="23" height="23"/>
                                                 <view key="contentView" id="5vs-IO-fCH">
                                                     <rect key="frame" x="0.0" y="0.0" width="23" height="23"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -114,7 +114,7 @@
                                             <constraint firstItem="BZr-kK-z7C" firstAttribute="trailing" secondItem="qoN-My-L2c" secondAttribute="trailing" id="4yb-xS-Fel"/>
                                             <constraint firstItem="qoN-My-L2c" firstAttribute="leading" secondItem="esO-Zk-rBD" secondAttribute="leading" constant="16" id="MTL-W8-bJo"/>
                                             <constraint firstItem="BZr-kK-z7C" firstAttribute="leading" secondItem="qoN-My-L2c" secondAttribute="leading" id="O5h-1k-mzZ"/>
-                                            <constraint firstItem="qoN-My-L2c" firstAttribute="top" secondItem="esO-Zk-rBD" secondAttribute="top" constant="8" id="Rpl-kz-qiI"/>
+                                            <constraint firstItem="qoN-My-L2c" firstAttribute="top" secondItem="esO-Zk-rBD" secondAttribute="top" constant="5" id="Rpl-kz-qiI"/>
                                             <constraint firstItem="BZr-kK-z7C" firstAttribute="top" secondItem="qoN-My-L2c" secondAttribute="top" id="Xkl-NC-nT6"/>
                                         </constraints>
                                     </view>

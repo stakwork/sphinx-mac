@@ -67,13 +67,7 @@ class ThreadRepliesView: NSView, LoadableNib {
     
     func configureWith(
         threadMessages: BubbleMessageLayoutState.ThreadMessages,
-        originalMessageMedia: BubbleMessageLayoutState.MessageMedia?,
-        originalMessageGenericFile: BubbleMessageLayoutState.GenericFile?,
-        originalMessageAudio: BubbleMessageLayoutState.Audio?,
-        mediaData: MessageTableCellState.MediaData?,
-        bubble: BubbleMessageLayoutState.Bubble,
-        mediaDelegate: MediaMessageViewDelegate,
-        audioDelegate: AudioMessageViewDelegate
+        direction: MessageTableCellState.MessageDirection
     ) {
         let firstReplySenderInfo = threadMessages.firstReplySenderIndo
         
@@ -100,5 +94,9 @@ class ThreadRepliesView: NSView, LoadableNib {
         } else {
             moreRepliesContainer.isHidden = true
         }
+        
+        let isOutgoing = direction.isOutgoing()
+        let threadBubbleColor = isOutgoing ? NSColor.Sphinx.ReceivedMsgBG : NSColor.Sphinx.ThreadLastReply
+        messageFakeBubbleView.fillColor = threadBubbleColor
     }
 }

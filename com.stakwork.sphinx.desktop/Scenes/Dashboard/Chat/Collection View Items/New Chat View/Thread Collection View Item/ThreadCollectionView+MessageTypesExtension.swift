@@ -11,6 +11,30 @@ import Cocoa
 extension ThreadCollectionViewItem {
     
     func configureWith(
+        threadMessages: BubbleMessageLayoutState.ThreadMessages?,
+        and bubble: BubbleMessageLayoutState.Bubble
+    ) {
+        if let threadMessages = threadMessages {
+            threadRepliesView.configureWith(
+                threadMessages: threadMessages,
+                direction: bubble.direction
+            )
+            
+            threadRepliesView.isHidden = false
+        }
+    }
+    
+    func configureWith(
+        threadLastReply: BubbleMessageLayoutState.ThreadLastReply?,
+        and bubble: BubbleMessageLayoutState.Bubble
+    ) {
+        if let threadLastReply = threadLastReply {
+            threadLastMessageHeader.configureWith(threadLastReply: threadLastReply)
+            threadLastMessageHeader.isHidden = false
+        }
+    }
+    
+    func configureWith(
         audio: BubbleMessageLayoutState.Audio?,
         mediaData: MessageTableCellState.MediaData?,
         and bubble: BubbleMessageLayoutState.Bubble
