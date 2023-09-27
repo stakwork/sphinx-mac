@@ -327,7 +327,7 @@ struct MessageTableCellState {
     }()
     
     lazy var threadOriginalMessageMedia: BubbleMessageLayoutState.MessageMedia? = {
-        guard let message = threadOriginalMessage, message.isMediaAttachment() || message.isGiphy() else {
+        guard let message = threadOriginalMessage, message.isImageVideoOrPdf() || message.isGiphy() else {
             return nil
         }
         
@@ -391,10 +391,10 @@ struct MessageTableCellState {
         
         var urlAndKey: (URL?, String?) = (nil, nil)
         
-        if message.isMediaAttachment() {
-            urlAndKey = (message.getMediaUrlFromMediaToken(), message.mediaKey)
-        } else if message.isGiphy() {
+        if message.isGiphy() {
             urlAndKey = (message.getGiphyUrl(), nil)
+        } else if message.isMediaAttachment() {
+            urlAndKey = (message.getMediaUrlFromMediaToken(), message.mediaKey)
         }
         
         return urlAndKey
@@ -408,6 +408,18 @@ struct MessageTableCellState {
         return BubbleMessageLayoutState.GenericFile(
             url: message.getMediaUrlFromMediaToken(),
             mediaKey: message.mediaKey
+        )
+    }()
+    
+    lazy var threadOriginalMessageAudio: BubbleMessageLayoutState.Audio? = {
+        guard let message = threadOriginalMessage, message.isAudio() else {
+            return nil
+        }
+        
+        return BubbleMessageLayoutState.Audio(
+            url: message.getMediaUrlFromMediaToken(),
+            mediaKey: message.mediaKey,
+            bubbleWidth: CommonNewMessageCollectionViewitem.kMaximumThreadBubbleWidth
         )
     }()
     

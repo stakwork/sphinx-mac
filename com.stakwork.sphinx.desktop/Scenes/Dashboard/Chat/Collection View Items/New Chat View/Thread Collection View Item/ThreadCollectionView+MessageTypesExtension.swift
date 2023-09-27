@@ -61,44 +61,95 @@ extension ThreadCollectionViewItem {
     }
     
     func configureWith(
-        messageMedia: BubbleMessageLayoutState.MessageMedia?,
+        originalMessageMedia: BubbleMessageLayoutState.MessageMedia?,
         mediaData: MessageTableCellState.MediaData?,
         and bubble: BubbleMessageLayoutState.Bubble
     ) {
-        if let messageMedia = messageMedia {
+        if let originalMessageMedia = originalMessageMedia {
             
             mediaMessageView.configureWith(
-                messageMedia: messageMedia,
+                messageMedia: originalMessageMedia,
                 mediaData: mediaData,
                 bubble: bubble,
                 and: self
             )
             mediaMessageView.isHidden = false
             
-            if let messageId = messageId, mediaData == nil {
+            if let originalMessageId = originalMessageId, mediaData == nil {
                 let delayTime = DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
                 DispatchQueue.global().asyncAfter(deadline: delayTime) {
-                    if messageMedia.isImage {
+                    if originalMessageMedia.isImage {
                         self.delegate?.shouldLoadImageDataFor(
-                            messageId: messageId,
+                            messageId: originalMessageId,
                             and: self.rowIndex
                         )
-                    } else if messageMedia.isPdf {
+                    } else if originalMessageMedia.isPdf {
                         self.delegate?.shouldLoadPdfDataFor(
-                            messageId: messageId,
+                            messageId: originalMessageId,
                             and: self.rowIndex
                         )
-                    } else if messageMedia.isVideo {
+                    } else if originalMessageMedia.isVideo {
                         self.delegate?.shouldLoadVideoDataFor(
-                            messageId: messageId,
+                            messageId: originalMessageId,
                             and: self.rowIndex
                         )
-                    } else if messageMedia.isGiphy {
+                    } else if originalMessageMedia.isGiphy {
                         self.delegate?.shouldLoadGiphyDataFor(
-                            messageId: messageId,
+                            messageId: originalMessageId,
                             and: self.rowIndex
                         )
                     }
+                }
+            }
+        }
+    }
+    
+    func configureWith(
+        originalMessageAudio: BubbleMessageLayoutState.Audio?,
+        mediaData: MessageTableCellState.MediaData?,
+        and bubble: BubbleMessageLayoutState.Bubble
+    ) {
+        if let originalMessageAudio = originalMessageAudio {
+            audioMessageView.configureWith(
+                audio: originalMessageAudio,
+                mediaData: mediaData,
+                bubble: bubble,
+                and: self
+            )
+            audioMessageView.isHidden = false
+            
+            if let originalMessageId = originalMessageId, mediaData == nil {
+                let delayTime = DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+                DispatchQueue.global().asyncAfter(deadline: delayTime) {
+                    self.delegate?.shouldLoadAudioDataFor(
+                        messageId: originalMessageId,
+                        and: self.rowIndex
+                    )
+                }
+            }
+        }
+    }
+    
+    func configureWith(
+        originalMessaggeGenericFile: BubbleMessageLayoutState.GenericFile?,
+        mediaData: MessageTableCellState.MediaData?
+    ) {
+        if let _ = originalMessaggeGenericFile {
+            
+            fileDetailsView.configureWith(
+                mediaData: mediaData,
+                and: self
+            )
+            
+            fileDetailsView.isHidden = false
+            
+            if let originalMessageId = originalMessageId, mediaData == nil {
+                let delayTime = DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+                DispatchQueue.global().asyncAfter(deadline: delayTime) {
+                    self.delegate?.shouldLoadFileDataFor(
+                        messageId: originalMessageId,
+                        and: self.rowIndex
+                    )
                 }
             }
         }
@@ -281,102 +332,6 @@ extension ThreadCollectionViewItem {
 //                let delayTime = DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
 //                DispatchQueue.global().asyncAfter(deadline: delayTime) {
 //                    self.delegate?.shouldLoadFileDataFor(
-//                        messageId: messageId,
-//                        and: self.rowIndex
-//                    )
-//                }
-//            }
-        }
-    }
-    
-    func configureLastReplyWith(
-        messageCellState: MessageTableCellState,
-        searchingTerm: String?,
-        linkData: MessageTableCellState.LinkData? = nil,
-        tribeData: MessageTableCellState.TribeData? = nil,
-        collectionViewWidth: CGFloat
-    ) {
-        var mutableMessageCellState = messageCellState
-        
-        if let messageContent = mutableMessageCellState.messageContent {
-            
-            let labelHeight = ChatHelper.getTextMessageHeightFor(
-                mutableMessageCellState,
-                linkData: linkData,
-                tribeData: tribeData,
-                collectionViewWidth: collectionViewWidth
-            )
-            
-            lastReplyLabelHeightConstraint.constant = labelHeight
-            lastReplyTextMessageView.superview?.layoutSubtreeIfNeeded()
-            
-            if messageContent.linkMatches.isEmpty && searchingTerm == nil {
-                lastReplyMessageLabel.attributedStringValue = NSMutableAttributedString(string: "")
-
-                lastReplyMessageLabel.stringValue = messageContent.text ?? ""
-                lastReplyMessageLabel.font = messageContent.font
-            } else {
-                let messageC = messageContent.text ?? ""
-                let term = searchingTerm ?? ""
-
-                let attributedString = NSMutableAttributedString(string: messageC)
-                attributedString.addAttributes(
-                    [
-                        NSAttributedString.Key.font: messageContent.font,
-                        NSAttributedString.Key.foregroundColor: NSColor.Sphinx.Text
-                    ]
-                    , range: messageC.nsRange
-                )
-
-                let searchingTermRange = (messageC.lowercased() as NSString).range(of: term.lowercased())
-                attributedString.addAttributes(
-                    [
-                        NSAttributedString.Key.backgroundColor: NSColor.Sphinx.PrimaryGreen
-                    ]
-                    , range: searchingTermRange
-                )
-                
-                var nsRanges = messageContent.linkMatches.map {
-                    return $0.range
-                }
-                
-                nsRanges = ChatHelper.removeDuplicatedContainedFrom(urlRanges: nsRanges)
-
-                for nsRange in nsRanges {
-                    
-                    if let text = messageContent.text, let range = Range(nsRange, in: text) {
-                        
-                        var substring = String(text[range])
-                        
-                        if substring.isPubKey || substring.isVirtualPubKey {
-                            substring = substring.shareContactDeepLink
-                        }
-                         
-                        if let url = URL(string: substring)  {
-                            attributedString.setAttributes(
-                                [
-                                    NSAttributedString.Key.foregroundColor: NSColor.Sphinx.PrimaryBlue,
-                                    NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
-                                    NSAttributedString.Key.font: messageContent.font,
-                                    NSAttributedString.Key.link: url
-                                ],
-                                range: nsRange
-                            )
-
-                        }
-                    }
-                }
-
-                lastReplyMessageLabel.attributedStringValue = attributedString
-                lastReplyMessageLabel.isEnabled = true
-            }
-            
-            lastReplyTextMessageView.isHidden = false
-            
-//            if let messageId = messageId, messageContent.shouldLoadPaidText {
-//                let delayTime = DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-//                DispatchQueue.global().asyncAfter(deadline: delayTime) {
-//                    self.delegate?.shouldLoadTextDataFor(
 //                        messageId: messageId,
 //                        and: self.rowIndex
 //                    )

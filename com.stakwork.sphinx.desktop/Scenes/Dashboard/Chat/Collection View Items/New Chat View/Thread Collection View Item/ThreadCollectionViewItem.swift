@@ -69,6 +69,7 @@ class ThreadCollectionViewItem: CommonNewMessageCollectionViewitem, ChatCollecti
     func configureWith(
         messageCellState: MessageTableCellState,
         mediaData: MessageTableCellState.MediaData?,
+        threadOriginalMsgMediaData: MessageTableCellState.MediaData?,
         tribeData: MessageTableCellState.TribeData?,
         linkData: MessageTableCellState.LinkData?,
         botWebViewData: MessageTableCellState.BotWebViewData?,
@@ -89,6 +90,7 @@ class ThreadCollectionViewItem: CommonNewMessageCollectionViewitem, ChatCollecti
         
         self.rowIndex = indexPath.item
         self.messageId = mutableMessageCellState.message?.id
+        self.originalMessageId = mutableMessageCellState.threadOriginalMessage?.id
         self.delegate = delegate
         
         ///Views Width
@@ -109,6 +111,21 @@ class ThreadCollectionViewItem: CommonNewMessageCollectionViewitem, ChatCollecti
             searchingTerm: searchingTerm,
             collectionViewWidth: collectionViewWidth
         )
+        configureWith(
+            originalMessageMedia: mutableMessageCellState.threadOriginalMessageMedia,
+            mediaData: threadOriginalMsgMediaData,
+            and: bubble
+        )
+        configureWith(
+            originalMessageAudio: mutableMessageCellState.threadOriginalMessageAudio,
+            mediaData: threadOriginalMsgMediaData,
+            and: bubble
+        )
+        configureWith(
+            originalMessaggeGenericFile: mutableMessageCellState.threadOriginalMessageGenericFile,
+            mediaData: threadOriginalMsgMediaData
+        )
+        
         
         ///Last Reply
         configureLastReplyWith(

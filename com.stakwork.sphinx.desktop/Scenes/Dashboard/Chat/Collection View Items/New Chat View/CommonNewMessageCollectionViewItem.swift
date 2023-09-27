@@ -14,6 +14,7 @@ class CommonNewMessageCollectionViewitem : NSCollectionViewItem {
     
     var rowIndex: Int!
     var messageId: Int?
+    var originalMessageId: Int?
     
     let kChatAvatarHeight: CGFloat = 33
     
