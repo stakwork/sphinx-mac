@@ -129,99 +129,68 @@ extension ThreadCollectionViewItem {
         }
     }
     
-    func configureWith(
-        messageCellState: MessageTableCellState,
+    func configureOriginalMessageTextWith(
+        threadMessage: BubbleMessageLayoutState.ThreadMessages?,
         searchingTerm: String?,
-        linkData: MessageTableCellState.LinkData? = nil,
-        tribeData: MessageTableCellState.TribeData? = nil,
         collectionViewWidth: CGFloat
     ) {
-        var mutableMessageCellState = messageCellState
-        
-        if let messageContent = mutableMessageCellState.messageContent {
+        if let originalMessage = threadMessage?.originalMessage, let text = originalMessage.text, text.isNotEmpty {
             
-            let labelHeight = ChatHelper.getTextMessageHeightFor(
-                mutableMessageCellState,
-                linkData: linkData,
-                tribeData: tribeData,
-                collectionViewWidth: collectionViewWidth
+            let labelHeight = ChatHelper.getThreadOriginalTextMessageHeightFor(
+                text,
+                collectionViewWidth: collectionViewWidth,
+                maxHeight: 64.0
             )
             
             labelHeightConstraint.constant = labelHeight
             textMessageView.superview?.layoutSubtreeIfNeeded()
             
-            if messageContent.linkMatches.isEmpty && searchingTerm == nil {
-                messageLabel.attributedStringValue = NSMutableAttributedString(string: "")
-
-                messageLabel.stringValue = messageContent.text ?? ""
-                messageLabel.font = messageContent.font
-            } else {
-                let messageC = messageContent.text ?? ""
-                let term = searchingTerm ?? ""
-
-                let attributedString = NSMutableAttributedString(string: messageC)
-                attributedString.addAttributes(
-                    [
-                        NSAttributedString.Key.font: messageContent.font,
-                        NSAttributedString.Key.foregroundColor: NSColor.Sphinx.Text
-                    ]
-                    , range: messageC.nsRange
-                )
-
-                let searchingTermRange = (messageC.lowercased() as NSString).range(of: term.lowercased())
-                attributedString.addAttributes(
-                    [
-                        NSAttributedString.Key.backgroundColor: NSColor.Sphinx.PrimaryGreen
-                    ]
-                    , range: searchingTermRange
-                )
-                
-                var nsRanges = messageContent.linkMatches.map {
-                    return $0.range
-                }
-                
-                nsRanges = ChatHelper.removeDuplicatedContainedFrom(urlRanges: nsRanges)
-
-                for nsRange in nsRanges {
-                    
-                    if let text = messageContent.text, let range = Range(nsRange, in: text) {
-                        
-                        var substring = String(text[range])
-                        
-                        if substring.isPubKey || substring.isVirtualPubKey {
-                            substring = substring.shareContactDeepLink
-                        }
-                         
-                        if let url = URL(string: substring)  {
-                            attributedString.setAttributes(
-                                [
-                                    NSAttributedString.Key.foregroundColor: NSColor.Sphinx.PrimaryBlue,
-                                    NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
-                                    NSAttributedString.Key.font: messageContent.font,
-                                    NSAttributedString.Key.link: url
-                                ],
-                                range: nsRange
-                            )
-
-                        }
-                    }
-                }
-
-                messageLabel.attributedStringValue = attributedString
-                messageLabel.isEnabled = true
-            }
+            messageLabel.stringValue = text
+            messageLabel.font = originalMessage.font
             
             textMessageView.isHidden = false
             
-            if let messageId = messageId, messageContent.shouldLoadPaidText {
-                let delayTime = DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-                DispatchQueue.global().asyncAfter(deadline: delayTime) {
-                    self.delegate?.shouldLoadTextDataFor(
-                        messageId: messageId,
-                        and: self.rowIndex
-                    )
-                }
-            }
+//            if let messageId = messageId, messageContent.shouldLoadPaidText {
+//                let delayTime = DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+//                DispatchQueue.global().asyncAfter(deadline: delayTime) {
+//                    self.delegate?.shouldLoadTextDataFor(
+//                        messageId: messageId,
+//                        and: self.rowIndex
+//                    )
+//                }
+//            }
+        }
+    }
+    
+    func configureLastReplyWith(
+        messageContent: BubbleMessageLayoutState.MessageContent?,
+        searchingTerm: String?,
+        collectionViewWidth: CGFloat
+    ) {
+        if let messageContent = messageContent, let text = messageContent.text, text.isNotEmpty {
+            
+            let labelHeight = ChatHelper.getThreadOriginalTextMessageHeightFor(
+                text,
+                collectionViewWidth: collectionViewWidth
+            )
+            
+            lastReplyLabelHeightConstraint.constant = labelHeight
+            textMessageView.superview?.layoutSubtreeIfNeeded()
+            
+            lastReplyMessageLabel.stringValue = text
+            lastReplyMessageLabel.font = messageContent.font
+            
+            lastReplyTextMessageView.isHidden = false
+            
+//            if let messageId = messageId, messageContent.shouldLoadPaidText {
+//                let delayTime = DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+//                DispatchQueue.global().asyncAfter(deadline: delayTime) {
+//                    self.delegate?.shouldLoadTextDataFor(
+//                        messageId: messageId,
+//                        and: self.rowIndex
+//                    )
+//                }
+//            }
         }
     }
     

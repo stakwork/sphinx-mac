@@ -729,6 +729,31 @@ class ChatHelper {
         return textHeight
     }
     
+    public static func getThreadOriginalTextMessageHeightFor(
+        _ text: String?,
+        collectionViewWidth: CGFloat,
+        maxHeight: CGFloat? = nil
+    ) -> CGFloat {
+        var textHeight: CGFloat = 0.0
+        
+        let maxWidth = min(
+            CommonNewMessageCollectionViewitem.kMaximumThreadBubbleWidth,
+            collectionViewWidth - 80
+        )
+        
+        if let text = text, text.isNotEmpty {
+            textHeight = ChatHelper.getTextHeightFor(
+                text: text,
+                width: maxWidth
+            )
+        }
+        
+        if let maxHeight = maxHeight {
+            return min(textHeight, maxHeight)
+        }
+        return textHeight
+    }
+    
     public static func getAdditionalViewsHeightFor(
         _ tableCellState: MessageTableCellState,
         linkData: MessageTableCellState.LinkData? = nil,

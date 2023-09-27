@@ -10,6 +10,7 @@ import Cocoa
 
 extension ThreadCollectionViewItem {
     func setupViews() {
+        messageLabel.maximumNumberOfLines = 2
         messageLabel.setSelectionColor(color: NSColor.getTextSelectionColor())
         messageLabel.allowsEditingTextAttributes = true
         

@@ -41,6 +41,8 @@ extension ThreadCollectionViewItem {
         threadMessages: BubbleMessageLayoutState.ThreadMessages?
     ) {
         let isOutgoing = direction.isOutgoing()
+        let isIncoming = direction.isIncoming()
+        
         let isThread = threadMessages != nil
 //        let textRightAligned = isOutgoing
         
@@ -58,6 +60,9 @@ extension ThreadCollectionViewItem {
         sentArrow.setArrowColorTo(
             color: isThread ? NSColor.Sphinx.SentMsgBG : NSColor.Sphinx.SentMsgBG
         )
+        
+        messageLabel.textColor = isIncoming ? NSColor.Sphinx.MainBottomIcons : NSColor.Sphinx.TextMessages
+        messageLabel.alphaValue = isIncoming ? 1.0 : 0.6
         
 //        messageLabelLeadingConstraint.priority = NSLayoutConstraint.Priority(textRightAligned ? 1 : 1000)
 //        messageLabelTrailingConstraint.priority = NSLayoutConstraint.Priority(textRightAligned ? 1000 : 1)

@@ -103,6 +103,20 @@ class ThreadCollectionViewItem: CommonNewMessageCollectionViewitem, ChatCollecti
             isPreload: isPreload
         )
         
+        ///Original Message
+        configureOriginalMessageTextWith(
+            threadMessage: mutableMessageCellState.threadMessagesState,
+            searchingTerm: searchingTerm,
+            collectionViewWidth: collectionViewWidth
+        )
+        
+        ///Last Reply
+        configureLastReplyWith(
+            messageContent: mutableMessageCellState.messageContent,
+            searchingTerm: searchingTerm,
+            collectionViewWidth: collectionViewWidth
+        )
+        
         ///Thread
         configureWith(threadMessages: mutableMessageCellState.threadMessagesState, and: bubble)
         configureWith(threadLastReply: mutableMessageCellState.threadLastReplyHeader, and: bubble)
