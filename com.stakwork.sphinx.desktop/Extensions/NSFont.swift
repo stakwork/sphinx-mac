@@ -37,6 +37,10 @@ extension NSFont {
         return Constants.kEmojisFont
     }
     
+    static func getThreadHeaderFont() -> NSFont {
+        return NSFont(name: "Roboto-Regular", size: 16)!
+    }
+    
     static func getAmountFont() -> NSFont {
         return NSFont(name: "Roboto-Bold", size: 16)!
     }

@@ -25,20 +25,20 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="1136" height="97"/>
+        <customView misplaced="YES" id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="1136" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="6xK-O0-OVb">
-                    <rect key="frame" x="0.0" y="0.0" width="1136" height="97"/>
+                    <rect key="frame" x="0.0" y="0.0" width="1136" height="100"/>
                     <view key="contentView" id="4bb-PJ-5Pq">
-                        <rect key="frame" x="0.0" y="0.0" width="1136" height="97"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1136" height="100"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
                     <color key="fillColor" name="NewHeaderBG"/>
                 </box>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="rDL-y8-IEm">
-                    <rect key="frame" x="0.0" y="32" width="1136" height="65"/>
+                    <rect key="frame" x="0.0" y="35" width="1136" height="65"/>
                     <subviews>
                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="an0-0c-r6q" customClass="ChatSmallAvatarView" customModule="Sphinx" customModuleProvider="target">
                             <rect key="frame" x="16" y="15" width="36" height="36"/>
@@ -75,10 +75,10 @@
                     </constraints>
                 </customView>
                 <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6pb-0h-aP6">
-                    <rect key="frame" x="0.0" y="0.0" width="1136" height="32"/>
+                    <rect key="frame" x="0.0" y="0.0" width="1136" height="35"/>
                     <subviews>
                         <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aeV-xz-Szv">
-                            <rect key="frame" x="0.0" y="-62" width="1136" height="94"/>
+                            <rect key="frame" x="0.0" y="-59" width="1136" height="94"/>
                             <subviews>
                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="6O6-FM-fV0" customClass="FileInfoView" customModule="Sphinx" customModuleProvider="target">
                                     <rect key="frame" x="16" y="16" width="400" height="62"/>
@@ -106,10 +106,10 @@
                             </constraints>
                         </customView>
                         <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WdK-U0-xc0">
-                            <rect key="frame" x="0.0" y="0.0" width="1136" height="32"/>
+                            <rect key="frame" x="0.0" y="0.0" width="1136" height="35"/>
                             <subviews>
                                 <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xl7-aO-kUk">
-                                    <rect key="frame" x="0.0" y="-154" width="400" height="186"/>
+                                    <rect key="frame" x="0.0" y="-151" width="400" height="186"/>
                                     <subviews>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="6lH-Ev-Ucz" customClass="MediaMessageView" customModule="Sphinx" customModuleProvider="target">
                                             <rect key="frame" x="16" y="16" width="384" height="170"/>
@@ -125,15 +125,15 @@
                                     </constraints>
                                 </customView>
                                 <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YlO-at-1xE">
-                                    <rect key="frame" x="0.0" y="0.0" width="1136" height="32"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1136" height="35"/>
                                     <subviews>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="oDd-gg-HZ8">
-                                            <rect key="frame" x="0.0" y="0.0" width="1136" height="32"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1136" height="35"/>
                                             <subviews>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="o0s-gd-MXD">
-                                                    <rect key="frame" x="14" y="16" width="1108" height="16"/>
+                                                    <rect key="frame" x="14" y="16" width="1108" height="19"/>
                                                     <textFieldCell key="cell" title="Label" id="wQx-gQ-7cJ">
-                                                        <font key="font" size="14" name="Roboto-Regular"/>
+                                                        <font key="font" size="16" name="Roboto-Regular"/>
                                                         <color key="textColor" name="Text"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>

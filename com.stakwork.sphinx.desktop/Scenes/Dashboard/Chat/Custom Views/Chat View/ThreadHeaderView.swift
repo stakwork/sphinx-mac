@@ -101,7 +101,6 @@ class ThreadHeaderView: NSView, LoadableNib {
     func configureWith(
         threadOriginalMessage: NoBubbleMessageLayoutState.ThreadOriginalMessage?
     ) {
-        
         guard let threadOriginalMessage = threadOriginalMessage else {
             return
         }
@@ -123,7 +122,57 @@ class ThreadHeaderView: NSView, LoadableNib {
         mediaTextContainer.isHidden = false
         textContainer.isHidden = false
         
-        messageLabel.stringValue = threadOriginalMessage.text
+        if threadOriginalMessage.linkMatches.isEmpty {
+            messageLabel.attributedStringValue = NSMutableAttributedString(string: "")
+
+            messageLabel.stringValue = threadOriginalMessage.text
+            messageLabel.font = threadOriginalMessage.font
+        } else {
+            let messageC = threadOriginalMessage.text
+
+            let attributedString = NSMutableAttributedString(string: messageC)
+            attributedString.addAttributes(
+                [
+                    NSAttributedString.Key.font: threadOriginalMessage.font,
+                    NSAttributedString.Key.foregroundColor: NSColor.Sphinx.Text
+                ]
+                , range: messageC.nsRange
+            )
+            
+            var nsRanges = threadOriginalMessage.linkMatches.map {
+                return $0.range
+            }
+            
+            nsRanges = ChatHelper.removeDuplicatedContainedFrom(urlRanges: nsRanges)
+
+            for nsRange in nsRanges {
+                
+                if let range = Range(nsRange, in: messageC) {
+                    
+                    var substring = String(messageC[range])
+                    
+                    if substring.isPubKey || substring.isVirtualPubKey {
+                        substring = substring.shareContactDeepLink
+                    }
+                     
+                    if let url = URL(string: substring)  {
+                        attributedString.setAttributes(
+                            [
+                                NSAttributedString.Key.foregroundColor: NSColor.Sphinx.PrimaryBlue,
+                                NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
+                                NSAttributedString.Key.font: threadOriginalMessage.font,
+                                NSAttributedString.Key.link: url
+                            ],
+                            range: nsRange
+                        )
+
+                    }
+                }
+            }
+
+            messageLabel.attributedStringValue = attributedString
+            messageLabel.isEnabled = true
+        }
     }
     
     func configureWith(
