@@ -26,6 +26,8 @@ extension NewChatViewController {
             chatTableDataSource = ThreadTableDataSource(
                 chat: chat,
                 contact: contact,
+                owner: owner,
+                tribeAdmin: tribeAdmin,
                 threadUUID: threadUUID,
                 collectionView: chatCollectionView,
                 collectionViewScroll: chatScrollView,
@@ -39,6 +41,8 @@ extension NewChatViewController {
             chatTableDataSource = NewChatTableDataSource(
                 chat: chat,
                 contact: contact,
+                owner: owner,
+                tribeAdmin: tribeAdmin,
                 collectionView: chatCollectionView,
                 collectionViewScroll: chatScrollView,
                 shimmeringView: shimmeringView,
@@ -64,6 +68,10 @@ extension NewChatViewController {
 }
 
 extension NewChatViewController : NewChatTableDataSourceDelegate {
+    func shouldReloadThreadHeader() {
+        setupThreadHeaderView()
+    }
+    
     func configureNewMessagesIndicatorWith(newMsgCount: Int) {}
     
     func didScrollToBottom() {}
@@ -71,8 +79,13 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
     
     func shouldGoToMediaFullScreenFor(messageId: Int) {
         if let message = TransactionMessage.getMessageWith(id: messageId) {
-            delegate?.shouldShowFullMediaFor(message: message)
+            if isThread {
+                shouldShowFullMediaFor(message: message)
+            } else {
+                delegate?.shouldShowFullMediaFor(message: message)
+            }
         }
+        
     }
     
     func didTapOnContactWith(pubkey: String, and routeHint: String?) {
@@ -149,6 +162,35 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
                 from: button,
                 with: self
             )
+        }
+    }
+}
+
+extension NewChatViewController : MediaFullScreenDelegate {
+    
+    func shouldShowFullMediaFor(message: TransactionMessage) {
+        goToMediaFullView(message: message)
+    }
+    
+    func goToMediaFullView(message: TransactionMessage?) {
+        if mediaFullScreenView == nil {
+            mediaFullScreenView = MediaFullScreenView()
+        }
+        
+        if let mediaFullScreenView = mediaFullScreenView, let message = message {
+            view.addSubview(mediaFullScreenView)
+            
+            mediaFullScreenView.delegate = self
+            mediaFullScreenView.constraintTo(view: view)
+            mediaFullScreenView.showWith(message: message)
+            mediaFullScreenView.isHidden = false
+        }
+    }
+    
+    func willDismissView() {
+        if let mediaFullScreenView = mediaFullScreenView {
+            mediaFullScreenView.removeFromSuperview()
+            self.mediaFullScreenView = nil
         }
     }
 }

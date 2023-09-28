@@ -11,7 +11,7 @@ import SwiftLinkPreview
 import AVKit
 
 ///Loading content in background
-extension NewChatTableDataSource : ChatCollectionViewItemDelegate {
+extension NewChatTableDataSource : ChatCollectionViewItemDelegate, ThreadHeaderViewDelegate {
     func shouldReplyToMessageWith(messageId: Int, and rowIndex: Int) {
         if let tableCellState = getTableCellStateFor(
             messageId: messageId,
@@ -541,12 +541,18 @@ extension NewChatTableDataSource {
         messageId: Int,
         with updatedCachedMedia: MessageTableCellState.MediaData
     ) {
+        
+        mediaCached[messageId] = updatedCachedMedia
+        
+        if rowIndex == kThreadHeaderRowIndex {
+            delegate?.shouldReloadThreadHeader()
+            return
+        }
+        
         if let tableCellState = getTableCellStateFor(
             messageId: messageId,
             and: rowIndex
         ) {
-            mediaCached[messageId] = updatedCachedMedia
-            
             DispatchQueue.main.async {
                 var snapshot = self.dataSource.snapshot()
                 snapshot.reloadItems([tableCellState.1])
@@ -706,15 +712,13 @@ extension NewChatTableDataSource {
     }
     
     func didTapFileDownloadButtonFor(messageId: Int, and rowIndex: Int) {
-//        if
-//           let cacheData = mediaCached[messageId],
-//           let data = cacheData.data,
-//           let fileInfo = cacheData.fileInfo
-//        {
-//            if let url = MediaLoader.saveFileInMemory(data: data, name: fileInfo.fileName) {
-//                delegate?.shouldOpenActivityVCFor(url: url)
-//            }
-//        }
+        if let message = TransactionMessage.getMessageWith(id: messageId) {
+            MediaDownloader.shouldSaveFile(message: message, completion: { (success, alertMessage) in
+                DispatchQueue.main.async {
+                    NewMessageBubbleHelper().showGenericMessageView(text: alertMessage)
+                }
+            })
+        }
     }
     
     func didTapTribeButtonFor(messageId: Int, and rowIndex: Int) {
@@ -1063,6 +1067,10 @@ extension NewChatTableDataSource {
         and rowIndex: Int? = nil
     ) -> (Int, MessageTableCellState)? {
         
+        if rowIndex == kThreadHeaderRowIndex {
+            return getThreadOriginalMessageTableCellStateFor()
+        }
+        
         var tableCellState: (Int, MessageTableCellState)? = nil
         
         if let rowIndex = rowIndex, messageTableCellStateArray.count > rowIndex, messageTableCellStateArray[rowIndex].message?.id == messageId {
@@ -1081,6 +1089,18 @@ extension NewChatTableDataSource {
         }
         
         return tableCellState
+    }
+    
+    func getThreadOriginalMessageTableCellStateFor() -> (Int, MessageTableCellState)? {
+        guard let owner = owner, let tribeAdmin = tribeAdmin else {
+            return nil
+        }
+        
+        guard let messageStateAndMediaData = getThreadOriginalMessageStateAndMediaData(owner: owner, tribeAdmin: tribeAdmin) else {
+            return nil
+        }
+        
+        return (-1, messageStateAndMediaData.0)
     }
     
     func getTableCellStateFor(

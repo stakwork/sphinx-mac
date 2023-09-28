@@ -109,10 +109,17 @@ extension NSView {
         self.addSubview(backgroundColorBox)
     }
     
-    func addShadow(location: VerticalLocation, color: NSColor = .black, opacity: Float = 0.5, radius: CGFloat = 5.0, bottomhHeight: CGFloat = 3, cornerRadius: CGFloat = 0) {
+    func addShadow(
+        location: VerticalLocation,
+        color: NSColor = .black,
+        opacity: Float = 0.5,
+        radius: CGFloat = 5.0,
+        bottomhHeight: CGFloat = 3,
+        cornerRadius: CGFloat = 0
+    ) {
         switch location {
         case .bottom:
-            addShadow(offset: CGSize(width: 0, height: -bottomhHeight), color: color, opacity: opacity, radius: radius, cornerRadius: cornerRadius)
+            addShadow(offset: CGSize(width: 0, height: 3), color: color, opacity: opacity, radius: radius, cornerRadius: cornerRadius)
         case .bottomLeft:
             addShadow(offset: CGSize(width: -1, height: 2), color: color, opacity: opacity, radius: radius, cornerRadius: cornerRadius)
         case .top:

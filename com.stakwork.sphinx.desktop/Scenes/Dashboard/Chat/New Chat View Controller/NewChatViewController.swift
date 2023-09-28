@@ -15,6 +15,7 @@ class NewChatViewController: DashboardSplittedViewController {
     @IBOutlet weak var shimmeringView: ChatShimmeringView!
     
     @IBOutlet weak var chatTopView: ChatTopView!
+    @IBOutlet weak var threadHeaderView: ThreadHeaderView!
     @IBOutlet weak var chatBottomView: ChatBottomView!
     @IBOutlet weak var chatScrollView: NSScrollView!
     @IBOutlet weak var chatCollectionView: NSCollectionView!
@@ -29,9 +30,12 @@ class NewChatViewController: DashboardSplittedViewController {
     @IBOutlet weak var pinMessageDetailView: PinMessageDetailView!
     @IBOutlet weak var pinMessageNotificationView: PinNotificationView!
     
+    var mediaFullScreenView: MediaFullScreenView? = nil
+    
     var newChatViewModel: NewChatViewModel!
     
     var contact: UserContact?
+    var tribeAdmin: UserContact?
     var chat: Chat?
     var owner: UserContact!
     var deepLinkData : DeeplinkData? = nil
@@ -63,8 +67,12 @@ class NewChatViewController: DashboardSplittedViewController {
         
         let viewController = StoryboardScene.Dashboard.newChatViewController.instantiate()
         
+        let owner = UserContact.getOwner()
+        
         if let chatId = chatId {
-            viewController.chat = Chat.getChatWith(id: chatId)
+            let chat = Chat.getChatWith(id: chatId)
+            viewController.chat = chat
+            viewController.tribeAdmin = chat?.getAdmin() ?? owner
         }
         
         if let contactId = contactId {
@@ -73,7 +81,7 @@ class NewChatViewController: DashboardSplittedViewController {
         
         viewController.delegate = delegate
         viewController.deepLinkData = deepLinkData
-        viewController.owner = UserContact.getOwner()
+        viewController.owner = owner
         viewController.threadUUID = threadUUID
         
         viewController.newChatViewModel = NewChatViewModel(
@@ -88,9 +96,9 @@ class NewChatViewController: DashboardSplittedViewController {
         super.viewDidLoad()
 
         addShimmeringView()
-        setupChatTopView()
         setupViews()
         configureCollectionView()
+        setupChatTopView()
         setupChatData()
     }
     
@@ -136,13 +144,40 @@ class NewChatViewController: DashboardSplittedViewController {
     }
     
     func setupChatTopView() {
-        chatTopView.configureHeaderWith(
-            chat: chat,
-            contact: contact,
-            andDelegate: self
-        )
+        if isThread {
+            setupThreadHeaderView()
+            
+            chatTopView.isHidden = true
+            threadHeaderView.isHidden = false
+        } else {
+            chatTopView.configureHeaderWith(
+                chat: chat,
+                contact: contact,
+                andDelegate: self
+            )
+            
+            configurePinnedMessageView()
+            
+            chatTopView.isHidden = false
+            threadHeaderView.isHidden = true
+        }
+    }
+    
+    func setupThreadHeaderView() {
+        guard let tribeAdmin = tribeAdmin, let chatTableDataSource = chatTableDataSource else {
+            return
+        }
         
-        configurePinnedMessageView()
+        if let messageStateAndMediaData = chatTableDataSource.getThreadOriginalMessageStateAndMediaData(
+            owner: owner,
+            tribeAdmin: tribeAdmin
+        ) {
+            threadHeaderView.configureWith(
+                messageCellState: messageStateAndMediaData.0,
+                mediaData: messageStateAndMediaData.1,
+                delegate: chatTableDataSource
+            )
+        }
     }
     
     func setupChatBottomView() {

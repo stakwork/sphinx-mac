@@ -55,6 +55,7 @@ protocol NewChatTableDataSourceDelegate : AnyObject {
     
     ///Threads
     func shouldShowThreadFor(message: TransactionMessage)
+    func shouldReloadThreadHeader()
 }
 
 class NewChatTableDataSource : NSObject {
@@ -73,6 +74,8 @@ class NewChatTableDataSource : NSObject {
     ///Chat
     var chat: Chat?
     var contact: UserContact?
+    var tribeAdmin: UserContact?
+    var owner: UserContact?
     
     ///Data Source related
     var messagesResultsController: NSFetchedResultsController<TransactionMessage>!
@@ -115,9 +118,14 @@ class NewChatTableDataSource : NSObject {
     ///Chat Helper
     let chatHelper = ChatHelper()
     
+    ///Constants
+    let kThreadHeaderRowIndex = -1
+    
     init(
         chat: Chat?,
         contact: UserContact?,
+        owner: UserContact?,
+        tribeAdmin: UserContact?,
         collectionView : NSCollectionView,
         collectionViewScroll: NSScrollView,
         shimmeringView: ChatShimmeringView,
@@ -130,6 +138,8 @@ class NewChatTableDataSource : NSObject {
         
         self.chat = chat
         self.contact = contact
+        self.owner = owner
+        self.tribeAdmin = tribeAdmin
         
         self.collectionView = collectionView
         self.headerImage = headerImage
@@ -175,5 +185,12 @@ class NewChatTableDataSource : NSObject {
                 indexPath: indexPath
             )
         }
+    }
+    
+    func getThreadOriginalMessageStateAndMediaData(
+        owner: UserContact,
+        tribeAdmin: UserContact
+    ) -> (MessageTableCellState, MessageTableCellState.MediaData?)? {
+        return nil
     }
 }

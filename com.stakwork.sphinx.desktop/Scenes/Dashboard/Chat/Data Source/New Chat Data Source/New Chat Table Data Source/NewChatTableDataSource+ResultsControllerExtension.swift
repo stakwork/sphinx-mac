@@ -130,7 +130,7 @@ extension NewChatTableDataSource {
             return
         }
         
-        guard let owner = UserContact.getOwner() else {
+        guard let owner = owner else {
             return
         }
         
@@ -139,7 +139,6 @@ extension NewChatTableDataSource {
         var newMsgCount = 0
         var array: [MessageTableCellState] = []
         
-        let admin = chat.getAdmin()
         let contact = chat.getConversationContact()
         
         let replyingMessagesMap = getReplyingMessagesMapFor(messages: messages)
@@ -196,7 +195,7 @@ extension NewChatTableDataSource {
                         chat: chat,
                         owner: owner,
                         contact: contact,
-                        tribeAdmin: admin,
+                        tribeAdmin: tribeAdmin,
                         separatorDate: separatorDate,
                         invoiceData: (invoiceData.0 > 0, invoiceData.1 > 0)
                     )
@@ -209,7 +208,7 @@ extension NewChatTableDataSource {
                 chat: chat,
                 owner: owner,
                 contact: contact,
-                tribeAdmin: admin,
+                tribeAdmin: tribeAdmin,
                 separatorDate: nil,
                 bubbleState: bubbleStateAndDate.0,
                 contactImage: headerImage,

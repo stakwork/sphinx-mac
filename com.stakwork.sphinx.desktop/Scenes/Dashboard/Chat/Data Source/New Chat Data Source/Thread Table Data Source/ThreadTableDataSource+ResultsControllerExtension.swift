@@ -14,7 +14,7 @@ extension ThreadTableDataSource {
         indexPath: IndexPath
     ) -> NSCollectionViewItem {
 
-        if dataSourceItem.isThreadHeaderMessage {
+//        if dataSourceItem.isThreadHeaderMessage {
 //            let cell = tableView.dequeueReusableCell(
 //                withIdentifier: "ThreadHeaderTableViewCell",
 //                for: indexPath
@@ -34,7 +34,7 @@ extension ThreadTableDataSource {
 //            cell.contentView.transform = CGAffineTransform(scaleX: 1, y: -1)
 //
 //            return cell
-        }
+//        }
         
         return super.getCellFor(
             dataSourceItem: dataSourceItem,

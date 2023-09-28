@@ -158,6 +158,8 @@
 		473E1F3C2AC46DEB00DC1CDC /* ThreadCollectionView+DelegatesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F3B2AC46DEB00DC1CDC /* ThreadCollectionView+DelegatesExtension.swift */; };
 		473E1F3F2AC5B0CD00DC1CDC /* ThreadTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F3E2AC5B0CD00DC1CDC /* ThreadTableDataSource.swift */; };
 		473E1F432AC5B0F100DC1CDC /* ThreadTableDataSource+ResultsControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F422AC5B0F100DC1CDC /* ThreadTableDataSource+ResultsControllerExtension.swift */; };
+		473E1F472AC5BEB600DC1CDC /* ThreadHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F462AC5BEB600DC1CDC /* ThreadHeaderView.swift */; };
+		473E1F492AC5BEBF00DC1CDC /* ThreadHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473E1F482AC5BEBF00DC1CDC /* ThreadHeaderView.xib */; };
 		474274A328EB7616000C3D51 /* CreateTribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474274A228EB7616000C3D51 /* CreateTribeViewController.swift */; };
 		474274A528EC7275000C3D51 /* TribeTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474274A428EC7275000C3D51 /* TribeTagsView.swift */; };
 		474274A728EC7289000C3D51 /* TribeTagsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 474274A628EC7289000C3D51 /* TribeTagsView.xib */; };
@@ -917,6 +919,8 @@
 		473E1F3B2AC46DEB00DC1CDC /* ThreadCollectionView+DelegatesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadCollectionView+DelegatesExtension.swift"; sourceTree = "<group>"; };
 		473E1F3E2AC5B0CD00DC1CDC /* ThreadTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadTableDataSource.swift; sourceTree = "<group>"; };
 		473E1F422AC5B0F100DC1CDC /* ThreadTableDataSource+ResultsControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadTableDataSource+ResultsControllerExtension.swift"; sourceTree = "<group>"; };
+		473E1F462AC5BEB600DC1CDC /* ThreadHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadHeaderView.swift; sourceTree = "<group>"; };
+		473E1F482AC5BEBF00DC1CDC /* ThreadHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadHeaderView.xib; sourceTree = "<group>"; };
 		473FC42C2481CE52000096C3 /* MaterialIcons-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaterialIcons-Regular.ttf"; sourceTree = "<group>"; };
 		474274A228EB7616000C3D51 /* CreateTribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTribeViewController.swift; sourceTree = "<group>"; };
 		474274A428EC7275000C3D51 /* TribeTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TribeTagsView.swift; sourceTree = "<group>"; };
@@ -1826,6 +1830,8 @@
 				4708C21E2A58959900274AD4 /* ChatMessageFieldView.xib */,
 				47FEE1EE2A61A19E00646C4E /* ChatMessageFieldView+FieldsExtension.swift */,
 				47FEE1F02A61A1C200646C4E /* ChatMessageFieldView+MentionsMacrosExtension.swift */,
+				473E1F462AC5BEB600DC1CDC /* ThreadHeaderView.swift */,
+				473E1F482AC5BEBF00DC1CDC /* ThreadHeaderView.xib */,
 			);
 			path = "Chat View";
 			sourceTree = "<group>";
@@ -3871,6 +3877,7 @@
 				4726A43A24C628DA005A66B4 /* bamboo.caf in Resources */,
 				474274AB28EC77AE000C3D51 /* TribeTagView.xib in Resources */,
 				4731BE4924859BB800BCCA9E /* PaymentReceivedCollectionViewItem.xib in Resources */,
+				473E1F492AC5BEBF00DC1CDC /* ThreadHeaderView.xib in Resources */,
 				479496582AB88C6D00C42D1E /* NewPaidAttachmentView.xib in Resources */,
 				4726A43F24C628DA005A66B4 /* tri-tone.caf in Resources */,
 				478ED5BE25D6FCF000940132 /* ConnectingView.xib in Resources */,
@@ -4136,6 +4143,7 @@
 				479F657B2487D31C0015A16A /* ChatViewControllerMediaExtension.swift in Sources */,
 				47A4EFFE24B6321700117AE6 /* ConnectivityHelper.swift in Sources */,
 				4797E75A278607960080B966 /* PeopleTorActionsView.swift in Sources */,
+				473E1F472AC5BEB600DC1CDC /* ThreadHeaderView.swift in Sources */,
 				4708C2052A55CA4800274AD4 /* NSViewController.swift in Sources */,
 				4744FA642469A43600C5FD94 /* API+SubscriptionsExtension.swift in Sources */,
 				479496722AB8B51D00C42D1E /* InvoicePaymentView.swift in Sources */,

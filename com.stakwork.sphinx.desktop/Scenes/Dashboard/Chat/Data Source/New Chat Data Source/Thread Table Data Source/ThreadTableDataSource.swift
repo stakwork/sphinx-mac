@@ -12,10 +12,13 @@ import WebKit
 class ThreadTableDataSource : NewChatTableDataSource {
     
     var threadUUID: String!
+    var threadOriginalMessage: TransactionMessage? = nil
     
     init(
         chat: Chat?,
         contact: UserContact?,
+        owner: UserContact?,
+        tribeAdmin: UserContact?,
         threadUUID: String,
         collectionView: NSCollectionView,
         collectionViewScroll: NSScrollView,
@@ -31,6 +34,8 @@ class ThreadTableDataSource : NewChatTableDataSource {
         super.init(
             chat: chat,
             contact: contact,
+            owner: owner,
+            tribeAdmin: tribeAdmin,
             collectionView: collectionView,
             collectionViewScroll: collectionViewScroll,
             shimmeringView: shimmeringView,
@@ -69,5 +74,35 @@ class ThreadTableDataSource : NewChatTableDataSource {
                 indexPath: indexPath
             )
         }
+    }
+    
+    override func getThreadOriginalMessageStateAndMediaData(
+        owner: UserContact,
+        tribeAdmin: UserContact
+    ) -> (MessageTableCellState, MessageTableCellState.MediaData?)? {
+        guard let threadUUID = threadUUID, let chat = chat else {
+            return nil
+        }
+        
+        if threadOriginalMessage == nil {
+            threadOriginalMessage = TransactionMessage.getMessageWith(uuid: threadUUID)
+        }
+        
+        guard let threadOriginalMessage = threadOriginalMessage else {
+            return nil
+        }
+        
+        let messageTableCellState = MessageTableCellState(
+            message: threadOriginalMessage,
+            chat: chat,
+            owner: owner,
+            contact: contact,
+            tribeAdmin: tribeAdmin,
+            isThreadHeaderMessage: true
+        )
+        
+        let mediaData = self.mediaCached[threadOriginalMessage.id]
+        
+        return (messageTableCellState, mediaData)
     }
 }

@@ -10,8 +10,6 @@ import Cocoa
 
 protocol MediaMessageViewDelegate: AnyObject {
     func didTapMediaButton()
-    func shouldLoadOriginalMessageMediaDataFrom(originalMessageMedia: BubbleMessageLayoutState.MessageMedia)
-    func shouldLoadOriginalMessageFileDataFrom(originalMessageFile: BubbleMessageLayoutState.GenericFile)
 }
 
 class MediaMessageView: NSView, LoadableNib {

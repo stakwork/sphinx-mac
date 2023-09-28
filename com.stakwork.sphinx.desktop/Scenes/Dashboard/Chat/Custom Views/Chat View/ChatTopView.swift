@@ -22,11 +22,22 @@ class ChatTopView: NSView, LoadableNib {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         loadViewFromNib()
+        setup()
     }
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         loadViewFromNib()
+        setup()
+    }
+    
+    func setup() {
+        self.addShadow(
+            location: VerticalLocation.bottom,
+            color: NSColor.black,
+            opacity: 0.3,
+            radius: 5.0
+        )
     }
     
     func updateViewOnTribeFetch() {

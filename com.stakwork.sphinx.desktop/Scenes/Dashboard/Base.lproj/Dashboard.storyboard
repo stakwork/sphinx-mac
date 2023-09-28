@@ -1552,11 +1552,11 @@
             <objects>
                 <viewController storyboardIdentifier="NewChatViewController" id="Pz4-0N-V1w" customClass="NewChatViewController" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="rwT-W3-Ok3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="570"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="680"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <wkWebView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l2C-x4-swX">
-                                <rect key="frame" x="150" y="185" width="300" height="200"/>
+                                <rect key="frame" x="150" y="240" width="300" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="Mgy-N8-CUh"/>
                                     <constraint firstAttribute="width" constant="300" id="dF6-cX-ebD"/>
@@ -1567,46 +1567,52 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="hFm-gq-P1I">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="570"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="680"/>
                                 <subviews>
                                     <box boxType="custom" borderType="none" cornerRadius="4" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="MCJ-UN-ATU">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="570"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="680"/>
                                         <view key="contentView" id="fIT-gE-ZaX">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="570"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="680"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jge-lT-8sr">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="570"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="680"/>
                                                     <subviews>
                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="2af-x4-VYT">
-                                                            <rect key="frame" x="0.0" y="0.0" width="600" height="570"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="600" height="680"/>
                                                             <subviews>
                                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tEY-A3-U6q">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="570"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="680"/>
                                                                     <subviews>
                                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="ffC-9B-Cdx" customClass="ChatTopView" customModule="Sphinx" customModuleProvider="target">
-                                                                            <rect key="frame" x="0.0" y="460" width="600" height="110"/>
+                                                                            <rect key="frame" x="0.0" y="570" width="600" height="110"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" priority="750" constant="110" id="viS-Ik-0Uv"/>
                                                                             </constraints>
                                                                         </customView>
+                                                                        <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yNm-g6-sMK" customClass="ThreadHeaderView" customModule="Sphinx" customModuleProvider="target">
+                                                                            <rect key="frame" x="0.0" y="615" width="600" height="65"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" priority="750" constant="65" id="Gnv-nk-HpJ"/>
+                                                                            </constraints>
+                                                                        </customView>
                                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="hrp-5k-g3S">
-                                                                            <rect key="frame" x="0.0" y="60" width="600" height="400"/>
+                                                                            <rect key="frame" x="0.0" y="60" width="600" height="510"/>
                                                                             <subviews>
                                                                                 <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="X86-z6-O1z">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="510"/>
                                                                                     <view key="contentView" id="JBN-Ay-LgI">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="600" height="510"/>
                                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                         <subviews>
                                                                                             <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="pLa-eF-Xok">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="600" height="510"/>
                                                                                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="cj7-hf-EDH">
-                                                                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
+                                                                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="510"/>
                                                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                                     <subviews>
                                                                                                         <collectionView selectable="YES" id="i4b-mt-d3a">
-                                                                                                            <rect key="frame" x="0.0" y="0.0" width="595" height="336"/>
+                                                                                                            <rect key="frame" x="0.0" y="0.0" width="600" height="494"/>
                                                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                                                                             <collectionViewFlowLayout key="collectionViewLayout" id="8d6-rh-62X">
                                                                                                                 <size key="itemSize" width="50" height="50"/>
@@ -1655,7 +1661,7 @@
                                                                                                 </scroller>
                                                                                             </scrollView>
                                                                                             <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="00Y-N3-bPz" customClass="ChatShimmeringView" customModule="Sphinx" customModuleProvider="target">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="600" height="510"/>
                                                                                             </customView>
                                                                                         </subviews>
                                                                                         <constraints>
@@ -1672,13 +1678,12 @@
                                                                                             <constraint firstItem="00Y-N3-bPz" firstAttribute="leading" secondItem="JBN-Ay-LgI" secondAttribute="leading" id="wsq-Ha-kr1"/>
                                                                                         </constraints>
                                                                                     </view>
-                                                                                    <color key="fillColor" name="Body"/>
                                                                                 </box>
                                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="NL7-Ka-pQ0" customClass="DraggingDestinationView" customModule="Sphinx" customModuleProvider="target">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="510"/>
                                                                                 </customView>
                                                                                 <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wD4-1y-bkn" customClass="ChildVCContainer" customModule="Sphinx" customModuleProvider="target">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="510"/>
                                                                                 </customView>
                                                                             </subviews>
                                                                             <constraints>
@@ -1708,10 +1713,13 @@
                                                                         <constraint firstItem="ffC-9B-Cdx" firstAttribute="leading" secondItem="tEY-A3-U6q" secondAttribute="leading" id="6un-yZ-Wwz"/>
                                                                         <constraint firstItem="hrp-5k-g3S" firstAttribute="leading" secondItem="tEY-A3-U6q" secondAttribute="leading" id="U9Y-Yq-C8b"/>
                                                                         <constraint firstItem="VsO-VQ-Xhc" firstAttribute="leading" secondItem="tEY-A3-U6q" secondAttribute="leading" id="euw-PX-Rav"/>
+                                                                        <constraint firstItem="yNm-g6-sMK" firstAttribute="leading" secondItem="tEY-A3-U6q" secondAttribute="leading" id="nUR-I7-kP8"/>
                                                                         <constraint firstAttribute="trailing" secondItem="ffC-9B-Cdx" secondAttribute="trailing" id="sJd-c7-tJc"/>
                                                                         <constraint firstAttribute="trailing" secondItem="VsO-VQ-Xhc" secondAttribute="trailing" id="yIE-OC-vvt"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="yNm-g6-sMK" secondAttribute="trailing" id="z72-eq-gTZ"/>
                                                                     </constraints>
                                                                     <visibilityPriorities>
+                                                                        <integer value="1000"/>
                                                                         <integer value="1000"/>
                                                                         <integer value="1000"/>
                                                                         <integer value="1000"/>
@@ -1720,13 +1728,14 @@
                                                                         <real value="3.4028234663852886e+38"/>
                                                                         <real value="3.4028234663852886e+38"/>
                                                                         <real value="3.4028234663852886e+38"/>
+                                                                        <real value="3.4028234663852886e+38"/>
                                                                     </customSpacing>
                                                                 </stackView>
                                                                 <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ppD-YX-fSX" customClass="PinMessageDetailView" customModule="Sphinx" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="570"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="680"/>
                                                                 </customView>
                                                                 <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wch-GS-WUG" customClass="PinNotificationView" customModule="Sphinx" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="570"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="680"/>
                                                                 </customView>
                                                             </subviews>
                                                             <constraints>
@@ -1745,7 +1754,7 @@
                                                             </constraints>
                                                         </customView>
                                                         <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k2o-Hd-LQD">
-                                                            <rect key="frame" x="0.0" y="0.0" width="350" height="570"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="350" height="680"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="350" id="odq-Fz-IUn"/>
                                                             </constraints>
@@ -1809,6 +1818,7 @@
                         <outlet property="pinMessageNotificationView" destination="Wch-GS-WUG" id="HZL-W4-Vx9"/>
                         <outlet property="podcastPlayerView" destination="k2o-Hd-LQD" id="BVc-IC-n0J"/>
                         <outlet property="shimmeringView" destination="00Y-N3-bPz" id="mpz-I2-MeS"/>
+                        <outlet property="threadHeaderView" destination="yNm-g6-sMK" id="OFL-i0-KxR"/>
                     </connections>
                 </viewController>
                 <customObject id="Bnk-TP-Qxz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

@@ -54,7 +54,7 @@ struct MessageTableCellState {
         owner: UserContact,
         contact: UserContact?,
         tribeAdmin: UserContact?,
-        separatorDate: Date?,
+        separatorDate: Date? = nil,
         bubbleState: MessageTableCellState.BubbleState? = nil,
         contactImage: NSImage? = nil,
         replyingMessage: TransactionMessage? = nil,
@@ -64,7 +64,7 @@ struct MessageTableCellState {
         linkContact: LinkContact? = nil,
         linkTribe: LinkTribe? = nil,
         linkWeb: LinkWeb? = nil,
-        invoiceData: (Bool, Bool),
+        invoiceData: (Bool, Bool) = (false, false),
         isThreadHeaderMessage: Bool = false
     ) {
         self.message = message

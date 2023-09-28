@@ -11,7 +11,10 @@ import Cocoa
 extension NewChatTableDataSource: NSCollectionViewDelegate {
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
         
+        collectionView.deselectAll(nil)
+        
         if let indexPath = indexPaths.first {
+            
             if messageTableCellStateArray.count > indexPath.item {
                 let mutableTableCellStateArray = messageTableCellStateArray[indexPath.item]
                 

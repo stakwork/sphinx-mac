@@ -77,10 +77,14 @@ extension NewChatTableDataSource : AudioPlayerHelperDelegate {
                     )
                 )
                 
-                DispatchQueue.main.async {
-                    var snapshot = self.dataSource.snapshot()
-                    snapshot.reloadItems([tableCellState.1])
-                    self.dataSource.apply(snapshot, animatingDifferences: false)
+                if rowIndex == kThreadHeaderRowIndex {
+                    delegate?.shouldReloadThreadHeader()
+                } else {
+                    DispatchQueue.main.async {
+                        var snapshot = self.dataSource.snapshot()
+                        snapshot.reloadItems([tableCellState.1])
+                        self.dataSource.apply(snapshot, animatingDifferences: false)
+                    }
                 }
             }
         }
@@ -145,8 +149,6 @@ extension NewChatTableDataSource : PlayerDelegate {
         currentTime: Double?,
         clipInfo: PodcastData.ClipInfo? = nil
     ) {
-        print("PLAYING \(playing)")
-        
         guard let clipInfo = clipInfo else {
             return
         }
