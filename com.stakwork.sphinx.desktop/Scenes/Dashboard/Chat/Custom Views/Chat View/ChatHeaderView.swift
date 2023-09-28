@@ -10,6 +10,7 @@ import Cocoa
 import SDWebImage
 
 protocol ChatHeaderViewDelegate : AnyObject {
+    func didClickThreadsButton()
     func didClickWebAppButton()
     func didClickMuteButton()
     func didClickCallButton()
@@ -37,6 +38,7 @@ class ChatHeaderView: NSView, LoadableNib {
     @IBOutlet weak var webAppButton: CustomButton!
     @IBOutlet weak var callButton: CustomButton!
     @IBOutlet weak var headerButton: CustomButton!
+    @IBOutlet weak var threadsButton: CustomButton!
     
     var chat: Chat? = nil
     var contact: UserContact? = nil
@@ -62,6 +64,7 @@ class ChatHeaderView: NSView, LoadableNib {
         webAppButton.cursor = .pointingHand
         callButton.cursor = .pointingHand
         headerButton.cursor = .pointingHand
+        threadsButton.cursor = .pointingHand
     }
     
     func configureWith(
@@ -251,6 +254,10 @@ class ChatHeaderView: NSView, LoadableNib {
     
     func forceKeysExchange(contactId: Int) {
         UserContactsHelper.exchangeKeys(id: contactId)
+    }
+    
+    @IBAction func threadsButtonClicked(_ sender: Any) {
+        delegate?.didClickThreadsButton()
     }
     
     @IBAction func webAppButtonClicked(_ sender: Any) {

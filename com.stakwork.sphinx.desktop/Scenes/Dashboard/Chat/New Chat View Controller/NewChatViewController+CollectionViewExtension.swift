@@ -134,10 +134,6 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
         }
     }
     
-    func shouldOpenActivityVCFor(url: URL) {
-        
-    }
-    
     func shouldPayInvoiceFor(messageId: Int) {
         
     }

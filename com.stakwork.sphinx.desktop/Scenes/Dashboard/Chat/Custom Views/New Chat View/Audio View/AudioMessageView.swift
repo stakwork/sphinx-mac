@@ -30,6 +30,7 @@ class AudioMessageView: NSView, LoadableNib {
 //    @IBOutlet weak var tapHandlerView: UIView!
     
     static let kViewHeight: CGFloat = 60
+    static let kThreadsListViewHeight: CGFloat = 72
     
     let kDurationViewWidth: CGFloat = 174
 

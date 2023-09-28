@@ -173,6 +173,26 @@ extension TransactionMessage {
         return fetchRequest
     }
     
+    static func getThreadsFetchRequestOn(
+        chat: Chat
+    ) -> NSFetchRequest<TransactionMessage> {
+        
+        let predicate = NSPredicate(
+            format: "chat == %@ AND threadUUID != nil",
+            chat
+        )
+        
+        let sortDescriptors = [
+            NSSortDescriptor(key: "id", ascending: true)
+        ]
+        
+        let fetchRequest = NSFetchRequest<TransactionMessage>(entityName: "TransactionMessage")
+        fetchRequest.predicate = predicate
+        fetchRequest.sortDescriptors = sortDescriptors
+        
+        return fetchRequest
+    }
+    
     static func getAllMessagesCountFor(chat: Chat, lastMessageId: Int? = nil) -> Int {
         return CoreDataManager.sharedManager.getObjectsCountOfTypeWith(predicate: NSPredicate(format: "chat == %@ AND NOT (type IN %@)", chat, typesToExcludeFromChat), entityName: "TransactionMessage")
     }

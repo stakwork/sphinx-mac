@@ -160,6 +160,18 @@
 		473E1F432AC5B0F100DC1CDC /* ThreadTableDataSource+ResultsControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F422AC5B0F100DC1CDC /* ThreadTableDataSource+ResultsControllerExtension.swift */; };
 		473E1F472AC5BEB600DC1CDC /* ThreadHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F462AC5BEB600DC1CDC /* ThreadHeaderView.swift */; };
 		473E1F492AC5BEBF00DC1CDC /* ThreadHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473E1F482AC5BEBF00DC1CDC /* ThreadHeaderView.xib */; };
+		473E1F4C2AC5E59200DC1CDC /* ThreadsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F4B2AC5E59200DC1CDC /* ThreadsListViewController.swift */; };
+		473E1F4E2AC5E73300DC1CDC /* ThreadsListShimmeringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F4D2AC5E73300DC1CDC /* ThreadsListShimmeringView.swift */; };
+		473E1F502AC5E73C00DC1CDC /* ThreadsListShimmeringView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473E1F4F2AC5E73C00DC1CDC /* ThreadsListShimmeringView.xib */; };
+		473E1F542AC5EBAA00DC1CDC /* ThreadListCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F522AC5EBAA00DC1CDC /* ThreadListCollectionViewItem.swift */; };
+		473E1F552AC5EBAA00DC1CDC /* ThreadListCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473E1F532AC5EBAA00DC1CDC /* ThreadListCollectionViewItem.xib */; };
+		473E1F572AC5F15100DC1CDC /* ThreadListCollectionViewItem+MessageTypesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F562AC5F15100DC1CDC /* ThreadListCollectionViewItem+MessageTypesExtension.swift */; };
+		473E1F5A2AC5F22C00DC1CDC /* ThreadTableCellState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F592AC5F22C00DC1CDC /* ThreadTableCellState.swift */; };
+		473E1F5C2AC5F23500DC1CDC /* ThreadLayoutState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F5B2AC5F23400DC1CDC /* ThreadLayoutState.swift */; };
+		473E1F5F2AC5F3D500DC1CDC /* ThreadsListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F5E2AC5F3D500DC1CDC /* ThreadsListDataSource.swift */; };
+		473E1F612AC5F3E000DC1CDC /* ThreadsListDataSource+DelegatesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F602AC5F3E000DC1CDC /* ThreadsListDataSource+DelegatesExtension.swift */; };
+		473E1F632AC5F63B00DC1CDC /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F622AC5F63B00DC1CDC /* TimeInterval.swift */; };
+		473E1F652AC5F77B00DC1CDC /* ThreadsListDataSource+RowHeightExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F642AC5F77B00DC1CDC /* ThreadsListDataSource+RowHeightExtension.swift */; };
 		474274A328EB7616000C3D51 /* CreateTribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474274A228EB7616000C3D51 /* CreateTribeViewController.swift */; };
 		474274A528EC7275000C3D51 /* TribeTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474274A428EC7275000C3D51 /* TribeTagsView.swift */; };
 		474274A728EC7289000C3D51 /* TribeTagsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 474274A628EC7289000C3D51 /* TribeTagsView.xib */; };
@@ -921,6 +933,18 @@
 		473E1F422AC5B0F100DC1CDC /* ThreadTableDataSource+ResultsControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadTableDataSource+ResultsControllerExtension.swift"; sourceTree = "<group>"; };
 		473E1F462AC5BEB600DC1CDC /* ThreadHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadHeaderView.swift; sourceTree = "<group>"; };
 		473E1F482AC5BEBF00DC1CDC /* ThreadHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadHeaderView.xib; sourceTree = "<group>"; };
+		473E1F4B2AC5E59200DC1CDC /* ThreadsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsListViewController.swift; sourceTree = "<group>"; };
+		473E1F4D2AC5E73300DC1CDC /* ThreadsListShimmeringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsListShimmeringView.swift; sourceTree = "<group>"; };
+		473E1F4F2AC5E73C00DC1CDC /* ThreadsListShimmeringView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadsListShimmeringView.xib; sourceTree = "<group>"; };
+		473E1F522AC5EBAA00DC1CDC /* ThreadListCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadListCollectionViewItem.swift; sourceTree = "<group>"; };
+		473E1F532AC5EBAA00DC1CDC /* ThreadListCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreadListCollectionViewItem.xib; sourceTree = "<group>"; };
+		473E1F562AC5F15100DC1CDC /* ThreadListCollectionViewItem+MessageTypesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadListCollectionViewItem+MessageTypesExtension.swift"; sourceTree = "<group>"; };
+		473E1F592AC5F22C00DC1CDC /* ThreadTableCellState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadTableCellState.swift; sourceTree = "<group>"; };
+		473E1F5B2AC5F23400DC1CDC /* ThreadLayoutState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadLayoutState.swift; sourceTree = "<group>"; };
+		473E1F5E2AC5F3D500DC1CDC /* ThreadsListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsListDataSource.swift; sourceTree = "<group>"; };
+		473E1F602AC5F3E000DC1CDC /* ThreadsListDataSource+DelegatesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadsListDataSource+DelegatesExtension.swift"; sourceTree = "<group>"; };
+		473E1F622AC5F63B00DC1CDC /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
+		473E1F642AC5F77B00DC1CDC /* ThreadsListDataSource+RowHeightExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadsListDataSource+RowHeightExtension.swift"; sourceTree = "<group>"; };
 		473FC42C2481CE52000096C3 /* MaterialIcons-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaterialIcons-Regular.ttf"; sourceTree = "<group>"; };
 		474274A228EB7616000C3D51 /* CreateTribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTribeViewController.swift; sourceTree = "<group>"; };
 		474274A428EC7275000C3D51 /* TribeTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TribeTagsView.swift; sourceTree = "<group>"; };
@@ -2039,6 +2063,7 @@
 				475B684A29916552000EF29C /* Array.swift */,
 				4708C2042A55CA4800274AD4 /* NSViewController.swift */,
 				4708C2062A55EF5900274AD4 /* NSFont.swift */,
+				473E1F622AC5F63B00DC1CDC /* TimeInterval.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2075,6 +2100,43 @@
 				473E1F422AC5B0F100DC1CDC /* ThreadTableDataSource+ResultsControllerExtension.swift */,
 			);
 			path = "Thread Table Data Source";
+			sourceTree = "<group>";
+		};
+		473E1F4A2AC5E57D00DC1CDC /* Threads List View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				473E1F4B2AC5E59200DC1CDC /* ThreadsListViewController.swift */,
+			);
+			path = "Threads List View Controller";
+			sourceTree = "<group>";
+		};
+		473E1F512AC5EB9200DC1CDC /* Threads List */ = {
+			isa = PBXGroup;
+			children = (
+				473E1F522AC5EBAA00DC1CDC /* ThreadListCollectionViewItem.swift */,
+				473E1F532AC5EBAA00DC1CDC /* ThreadListCollectionViewItem.xib */,
+				473E1F562AC5F15100DC1CDC /* ThreadListCollectionViewItem+MessageTypesExtension.swift */,
+			);
+			path = "Threads List";
+			sourceTree = "<group>";
+		};
+		473E1F582AC5F21A00DC1CDC /* Thread Table Cell State */ = {
+			isa = PBXGroup;
+			children = (
+				473E1F592AC5F22C00DC1CDC /* ThreadTableCellState.swift */,
+				473E1F5B2AC5F23400DC1CDC /* ThreadLayoutState.swift */,
+			);
+			path = "Thread Table Cell State";
+			sourceTree = "<group>";
+		};
+		473E1F5D2AC5F3C400DC1CDC /* Threads List Data Source */ = {
+			isa = PBXGroup;
+			children = (
+				473E1F5E2AC5F3D500DC1CDC /* ThreadsListDataSource.swift */,
+				473E1F602AC5F3E000DC1CDC /* ThreadsListDataSource+DelegatesExtension.swift */,
+				473E1F642AC5F77B00DC1CDC /* ThreadsListDataSource+RowHeightExtension.swift */,
+			);
+			path = "Threads List Data Source";
 			sourceTree = "<group>";
 		};
 		4744FA5124698FDD00C5FD94 /* Configuration */ = {
@@ -2759,6 +2821,7 @@
 		479751E7246D91A100D2106B /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				473E1F4A2AC5E57D00DC1CDC /* Threads List View Controller */,
 				47E771352472E44600C9CFEB /* Custom Views */,
 				47E771272472C3CB00C9CFEB /* Chat Objects */,
 				47E771192472C1E200C9CFEB /* Collection View Items */,
@@ -3228,6 +3291,8 @@
 				47DE1C3C2A6AF6F10029597B /* ShimmeringSentMessageView.xib */,
 				47DE1C3E2A6AFA070029597B /* ChatShimmeringView.swift */,
 				47DE1C402A6AFA0F0029597B /* ChatShimmeringView.xib */,
+				473E1F4D2AC5E73300DC1CDC /* ThreadsListShimmeringView.swift */,
+				473E1F4F2AC5E73C00DC1CDC /* ThreadsListShimmeringView.xib */,
 			);
 			path = Shimmering;
 			sourceTree = "<group>";
@@ -3257,6 +3322,7 @@
 		47E771192472C1E200C9CFEB /* Collection View Items */ = {
 			isa = PBXGroup;
 			children = (
+				473E1F512AC5EB9200DC1CDC /* Threads List */,
 				47FEE21F2A66F59D00646C4E /* New Chat View */,
 				CE326B4C294A174700821A53 /* ChatMentionAutocompleteCell */,
 				47C6235E25091BE6005D265C /* Giphy Search */,
@@ -3554,6 +3620,8 @@
 		47FEE1FD2A66D35E00646C4E /* New Chat Data Source */ = {
 			isa = PBXGroup;
 			children = (
+				473E1F5D2AC5F3C400DC1CDC /* Threads List Data Source */,
+				473E1F582AC5F21A00DC1CDC /* Thread Table Cell State */,
 				473E1F3D2AC5B06800DC1CDC /* Thread Table Data Source */,
 				47FEE2182A66E2C800646C4E /* Helpers */,
 				47FEE2052A66DB0400646C4E /* New Chat Table Data Source */,
@@ -3886,6 +3954,7 @@
 				47BDEE0224F6A2CA001688F3 /* SettingsTabsView.xib in Resources */,
 				474F675D2486928500CE6016 /* PaidMessageSentCollectionViewItem.xib in Resources */,
 				476AAA962A1E71040092AC87 /* PinMessageDetailView.xib in Resources */,
+				473E1F552AC5EBAA00DC1CDC /* ThreadListCollectionViewItem.xib in Resources */,
 				4705D3A427A0707E009C0729 /* RestoreProgressView.xib in Resources */,
 				CE1FA9022A01B7330014360C /* LsatListTableCellView.xib in Resources */,
 				4794962B2AB343C600C42D1E /* TribeLinkView.xib in Resources */,
@@ -3912,6 +3981,7 @@
 				478ED57925D41ADF00940132 /* SignupButtonView.xib in Resources */,
 				47A93EF725DD79F70030DF14 /* lightningNetwork.gif in Resources */,
 				47C7D71B27874A44006D2809 /* PersonModalView.xib in Resources */,
+				473E1F502AC5E73C00DC1CDC /* ThreadsListShimmeringView.xib in Resources */,
 				479C793F24ED6A6C009BA1CD /* AuthorizeAppView.xib in Resources */,
 				47DE1C112A6969C50029597B /* NewMessageCollectionViewItem.xib in Resources */,
 				47DE1C0A2A6881FA0029597B /* DateSeparatorView.xib in Resources */,
@@ -4052,6 +4122,7 @@
 				47DE1C202A697FC60029597B /* NewMessageCollectionViewItem+DelegatesExtension.swift in Sources */,
 				4731BE2F24855E4600BCCA9E /* CommonInvoiceCollectionViewItem.swift in Sources */,
 				4708C2032A55C0DE00274AD4 /* Chat+FetchUtils.swift in Sources */,
+				473E1F542AC5EBAA00DC1CDC /* ThreadListCollectionViewItem.swift in Sources */,
 				47B550A9248BEB9A000514BF /* PaymentTemplatesViewController.swift in Sources */,
 				479751E0246D8FFB00D2106B /* ChatListViewController.swift in Sources */,
 				4703CF95251CE5F3007B685C /* PdfInfoBubbleView.swift in Sources */,
@@ -4078,6 +4149,7 @@
 				CE1FA8F82A0199C20014360C /* LSATObject.swift in Sources */,
 				479496672AB8A79B00C42D1E /* GroupRequestView.swift in Sources */,
 				475B681A29915D01000EF29C /* ContentFeed+FetchUtils.swift in Sources */,
+				473E1F5F2AC5F3D500DC1CDC /* ThreadsListDataSource.swift in Sources */,
 				4797520B246F3FA000D2106B /* ChatViewModel.swift in Sources */,
 				474274A328EB7616000C3D51 /* CreateTribeViewController.swift in Sources */,
 				479751BF246C552500D2106B /* NSView.swift in Sources */,
@@ -4089,6 +4161,7 @@
 				47FEE2072A66DB1800646C4E /* NewChatTableDataSource.swift in Sources */,
 				473437AF24DB12E000950F25 /* ContactViewController.swift in Sources */,
 				47E77141247326EE00C9CFEB /* NSCollectionView.swift in Sources */,
+				473E1F4E2AC5E73300DC1CDC /* ThreadsListShimmeringView.swift in Sources */,
 				479E7D9525AE02F80092595B /* GroupPinView.swift in Sources */,
 				4744FA932469CA2D00C5FD94 /* TransactionMessageMediaExtension.swift in Sources */,
 				478ED5A025D560A300940132 /* SphinxReady.swift in Sources */,
@@ -4168,6 +4241,7 @@
 				4797E7532785D2750080B966 /* CommonModalView.swift in Sources */,
 				47FEE2022A66D3C400646C4E /* MessageTableCellState.swift in Sources */,
 				47E771212472C26200C9CFEB /* MessageReceivedCollectionViewItem.swift in Sources */,
+				473E1F5C2AC5F23500DC1CDC /* ThreadLayoutState.swift in Sources */,
 				475723AF247ED3C0001ADC7E /* CustomAudioPlayer.swift in Sources */,
 				4794967E2AB9EF3700C42D1E /* NewChatViewModel+AttachmentsExtension.swift in Sources */,
 				475723A2247E96DF001ADC7E /* LoadingWheelHelper.swift in Sources */,
@@ -4178,6 +4252,7 @@
 				479496562AB88C6200C42D1E /* NewPaidAttachmentView.swift in Sources */,
 				47975207246F1A0F00D2106B /* ChatViewControllerDelegatesExtension.swift in Sources */,
 				475B683A29915DFE000EF29C /* PodcastDestination+Properties.swift in Sources */,
+				473E1F612AC5F3E000DC1CDC /* ThreadsListDataSource+DelegatesExtension.swift in Sources */,
 				4744FA6E2469A47100C5FD94 /* API+GroupsExtension.swift in Sources */,
 				475B680F29915CCA000EF29C /* MessageAction.swift in Sources */,
 				47543C5D2A951836003F8DEE /* Nonce.swift in Sources */,
@@ -4213,6 +4288,7 @@
 				474274A928EC77A5000C3D51 /* TribeTagView.swift in Sources */,
 				CE38D91329E0823800F271CD /* DisplayInvoiceVC.swift in Sources */,
 				4707089A24AE657700A98DCA /* MediaDownloader.swift in Sources */,
+				473E1F4C2AC5E59200DC1CDC /* ThreadsListViewController.swift in Sources */,
 				47FEE21C2A66E2EE00646C4E /* MessagesPreloaderHelper.swift in Sources */,
 				474E333E247FF5EA00F7F603 /* PictureBubbleView.swift in Sources */,
 				479496782AB9EEED00C42D1E /* NewChatViewModel.swift in Sources */,
@@ -4238,6 +4314,7 @@
 				474F675724867EC900CE6016 /* CommonVideoCallCollectionViewItem.swift in Sources */,
 				47C6236525091E6B005D265C /* GiphySearchDataSource.swift in Sources */,
 				475B682329915D25000EF29C /* ContentFeedItem+CoreDataClass.swift in Sources */,
+				473E1F572AC5F15100DC1CDC /* ThreadListCollectionViewItem+MessageTypesExtension.swift in Sources */,
 				47DE1C3B2A6AF6E70029597B /* ShimmeringSentMessageView.swift in Sources */,
 				479751CC246C750600D2106B /* NSWindow.swift in Sources */,
 				475B682A29915D72000EF29C /* ContentFeedPaymentDestination+CoreDataClass.swift in Sources */,
@@ -4279,6 +4356,7 @@
 				4720991824834E0000426028 /* SSLPointerTricks.swift in Sources */,
 				47F8825D25656CB0002A7E71 /* SocketIOStatus.swift in Sources */,
 				47DE1C372A6AF6D00029597B /* ShimmeringReceivedMessageView.swift in Sources */,
+				473E1F5A2AC5F22C00DC1CDC /* ThreadTableCellState.swift in Sources */,
 				47FEE1F12A61A1C200646C4E /* ChatMessageFieldView+MentionsMacrosExtension.swift in Sources */,
 				47B55099248BCDD7000514BF /* CreateInvoiceViewController.swift in Sources */,
 				47543C602A9519CD003F8DEE /* API+CrypterExtension.swift in Sources */,
@@ -4318,6 +4396,7 @@
 				4744FAA92469CF1A00C5FD94 /* PaymentRequestDecoder.swift in Sources */,
 				47B55085248958CB000514BF /* PaymentInvoiceFormViewController.swift in Sources */,
 				475B681B29915D01000EF29C /* ContentFeedKind.swift in Sources */,
+				473E1F632AC5F63B00DC1CDC /* TimeInterval.swift in Sources */,
 				473633F42555DEC0007405F2 /* CustomSliderCell.swift in Sources */,
 				4794965B2AB8A6FC00C42D1E /* GroupActionsView.swift in Sources */,
 				47FEE2112A66DB6D00646C4E /* NewChatTableDataSource+AttachmentsExtension.swift in Sources */,
@@ -4346,6 +4425,7 @@
 				473E1F3F2AC5B0CD00DC1CDC /* ThreadTableDataSource.swift in Sources */,
 				474C7A3A28D21116007A3E17 /* NotificationLevelView.swift in Sources */,
 				472B4E8F268BAF4E00E8D0FC /* OnionManager.swift in Sources */,
+				473E1F652AC5F77B00DC1CDC /* ThreadsListDataSource+RowHeightExtension.swift in Sources */,
 				474E3339247FF49200F7F603 /* PictureSentCollectionViewItem.swift in Sources */,
 				47F8824E25656CB0002A7E71 /* SocketManagerSpec.swift in Sources */,
 				473E1F432AC5B0F100DC1CDC /* ThreadTableDataSource+ResultsControllerExtension.swift in Sources */,

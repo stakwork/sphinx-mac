@@ -39,9 +39,6 @@ protocol NewChatTableDataSourceDelegate : AnyObject {
     ///Message reply
     func shouldReplyToMessage(message: TransactionMessage)
     
-    ///File download
-    func shouldOpenActivityVCFor(url: URL)
-    
     ///Invoices
     func shouldPayInvoiceFor(messageId: Int)
     

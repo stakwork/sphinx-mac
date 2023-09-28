@@ -22,6 +22,7 @@
                 <outlet property="lockSign" destination="T82-4F-A3v" id="rdr-J6-a39"/>
                 <outlet property="nameLabel" destination="uGI-oR-OOS" id="80M-Bb-Zfs"/>
                 <outlet property="profileImageView" destination="cKv-Wh-FUp" id="0ot-4i-RHM"/>
+                <outlet property="threadsButton" destination="XXC-Xz-jRX" id="9Ve-JN-mCC"/>
                 <outlet property="tribePriceLabel" destination="EME-3C-8RS" id="58y-MJ-kGk"/>
                 <outlet property="volumeButton" destination="kVc-1M-iiC" id="1Vr-tL-3Di"/>
                 <outlet property="webAppButton" destination="cuK-dZ-qgQ" id="SGm-Oy-J2P"/>
@@ -30,19 +31,19 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="800" height="60"/>
+            <rect key="frame" x="0.0" y="0.0" width="840" height="60"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="FCM-Em-kOT">
-                    <rect key="frame" x="0.0" y="0.0" width="800" height="60"/>
+                    <rect key="frame" x="0.0" y="0.0" width="840" height="60"/>
                     <view key="contentView" id="2zh-Je-6fK">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="60"/>
+                        <rect key="frame" x="0.0" y="0.0" width="840" height="60"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
                     <color key="fillColor" name="NewHeaderBG"/>
                 </box>
                 <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Omx-ky-pen">
-                    <rect key="frame" x="0.0" y="0.0" width="792" height="60"/>
+                    <rect key="frame" x="0.0" y="0.0" width="832" height="60"/>
                     <subviews>
                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="hc9-ue-1sf">
                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
@@ -91,7 +92,7 @@
                             </constraints>
                         </customView>
                         <customView horizontalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="DVp-3x-Zd0">
-                            <rect key="frame" x="60" y="0.0" width="612" height="60"/>
+                            <rect key="frame" x="60" y="0.0" width="615" height="60"/>
                             <subviews>
                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v9P-BL-ytY">
                                     <rect key="frame" x="16" y="11" width="339" height="39"/>
@@ -194,7 +195,7 @@
                                     </customSpacing>
                                 </stackView>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TUM-g0-3nc" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="612" height="60"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="615" height="60"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="60" id="8sH-yi-zXI"/>
                                     </constraints>
@@ -215,8 +216,22 @@
                                 <constraint firstItem="TUM-g0-3nc" firstAttribute="leading" secondItem="DVp-3x-Zd0" secondAttribute="leading" id="lHW-z4-5Ce"/>
                             </constraints>
                         </customView>
+                        <button translatesAutoresizingMaskIntoConstraints="NO" id="XXC-Xz-jRX" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                            <rect key="frame" x="675" y="0.0" width="37" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="37" id="6lj-ZA-uiI"/>
+                            </constraints>
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="threadsBubble" imagePosition="only" alignment="center" inset="2" id="4zc-gt-ZER">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" size="25" name="MaterialIcons-Regular"/>
+                            </buttonCell>
+                            <color key="contentTintColor" name="SecondaryText"/>
+                            <connections>
+                                <action selector="threadsButtonClicked:" target="-2" id="Mcb-ko-bqf"/>
+                            </connections>
+                        </button>
                         <button translatesAutoresizingMaskIntoConstraints="NO" id="cuK-dZ-qgQ" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                            <rect key="frame" x="672" y="0.0" width="40" height="60"/>
+                            <rect key="frame" x="712" y="0.0" width="40" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="eNZ-Pp-4Kx"/>
                             </constraints>
@@ -230,7 +245,7 @@
                             </connections>
                         </button>
                         <button translatesAutoresizingMaskIntoConstraints="NO" id="kVc-1M-iiC" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                            <rect key="frame" x="712" y="0.0" width="40" height="60"/>
+                            <rect key="frame" x="752" y="0.0" width="40" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="6Mu-H0-tDx"/>
                             </constraints>
@@ -244,7 +259,7 @@
                             </connections>
                         </button>
                         <button translatesAutoresizingMaskIntoConstraints="NO" id="VaF-EB-L4n" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                            <rect key="frame" x="752" y="0.0" width="40" height="60"/>
+                            <rect key="frame" x="792" y="0.0" width="40" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="c5q-xu-nhi"/>
                             </constraints>
@@ -261,10 +276,12 @@
                     <constraints>
                         <constraint firstItem="kVc-1M-iiC" firstAttribute="top" secondItem="Omx-ky-pen" secondAttribute="top" id="6ha-Jo-iQX"/>
                         <constraint firstAttribute="bottom" secondItem="VaF-EB-L4n" secondAttribute="bottom" id="9z0-84-SuO"/>
+                        <constraint firstItem="XXC-Xz-jRX" firstAttribute="top" secondItem="Omx-ky-pen" secondAttribute="top" id="Bmi-ZN-62A"/>
                         <constraint firstItem="VaF-EB-L4n" firstAttribute="top" secondItem="Omx-ky-pen" secondAttribute="top" id="HUq-xV-01p"/>
                         <constraint firstAttribute="bottom" secondItem="cuK-dZ-qgQ" secondAttribute="bottom" id="HXP-Al-qUm"/>
                         <constraint firstItem="cuK-dZ-qgQ" firstAttribute="top" secondItem="Omx-ky-pen" secondAttribute="top" id="eQw-NS-qog"/>
                         <constraint firstAttribute="bottom" secondItem="kVc-1M-iiC" secondAttribute="bottom" id="jVv-lD-c8m"/>
+                        <constraint firstAttribute="bottom" secondItem="XXC-Xz-jRX" secondAttribute="bottom" id="jhi-5I-17b"/>
                     </constraints>
                     <visibilityPriorities>
                         <integer value="1000"/>
@@ -272,8 +289,10 @@
                         <integer value="1000"/>
                         <integer value="1000"/>
                         <integer value="1000"/>
+                        <integer value="1000"/>
                     </visibilityPriorities>
                     <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
@@ -297,6 +316,7 @@
     </objects>
     <resources>
         <image name="muteOffIcon" width="18" height="18"/>
+        <image name="threadsBubble" width="22" height="20.5"/>
         <namedColor name="NewHeaderBG">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

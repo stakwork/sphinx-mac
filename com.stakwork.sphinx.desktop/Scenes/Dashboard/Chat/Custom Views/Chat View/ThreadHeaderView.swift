@@ -58,12 +58,16 @@ class ThreadHeaderView: NSView, LoadableNib {
     }
     
     func setupView() {
-        self.addShadow(
+        addShadow(
             location: VerticalLocation.bottom,
             color: NSColor.black,
             opacity: 0.3,
             radius: 5.0
         )
+        
+        fileInfoView.wantsLayer = true
+        fileInfoView.layer?.backgroundColor = NSColor.Sphinx.HeaderBG.cgColor
+        fileInfoView.layer?.cornerRadius = 9
     }
     
     func hideAllViews() {

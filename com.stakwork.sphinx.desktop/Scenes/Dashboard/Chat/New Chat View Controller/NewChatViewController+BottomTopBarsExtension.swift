@@ -15,6 +15,23 @@ extension NewChatViewController {
 }
 
 extension NewChatViewController : ChatHeaderViewDelegate {
+    func didClickThreadsButton() {
+        if let chatId = chat?.id {
+            let threadsListVC = ThreadsListViewController.instantiate(
+                chatId: chatId,
+                windowSize: self.view.window?.frame.size
+            )
+          
+            WindowsManager.sharedInstance.showNewWindow(
+                with: "threads-list".localized,
+                size: CGSize(width: 450, height: 700),
+                centeredIn: self.view.window,
+                identifier: "threads-list",
+                contentVC: threadsListVC
+            )
+        }
+    }
+    
     func didClickWebAppButton() {
         WindowsManager.sharedInstance.showWebAppWindow(
             chat: chat,

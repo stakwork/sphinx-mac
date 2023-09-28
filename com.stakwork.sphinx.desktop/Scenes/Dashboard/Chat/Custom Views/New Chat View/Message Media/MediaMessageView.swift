@@ -37,6 +37,7 @@ class MediaMessageView: NSView, LoadableNib {
     
     static let kViewHeight: CGFloat = 300
     static let kThreadViewHeight: CGFloat = 170
+    static let kThreadsListViewHeight: CGFloat = 269
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)

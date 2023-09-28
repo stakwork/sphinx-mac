@@ -1918,6 +1918,87 @@
             </objects>
             <point key="canvasLocation" x="429" y="2219"/>
         </scene>
+        <!--Threads List View Controller-->
+        <scene sceneID="g5t-cJ-mgZ">
+            <objects>
+                <viewController storyboardIdentifier="ThreadsListViewController" id="2Np-Ez-RAq" customClass="ThreadsListViewController" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="8px-8u-38G">
+                        <rect key="frame" x="0.0" y="0.0" width="402" height="605"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="1Z9-0a-4Fh">
+                                <rect key="frame" x="0.0" y="0.0" width="402" height="605"/>
+                                <view key="contentView" id="BoV-R7-pjT">
+                                    <rect key="frame" x="0.0" y="0.0" width="402" height="605"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <color key="fillColor" name="Body"/>
+                            </box>
+                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43I-sd-2AK">
+                                <rect key="frame" x="0.0" y="0.0" width="402" height="605"/>
+                                <clipView key="contentView" drawsBackground="NO" id="SVt-j8-5dV">
+                                    <rect key="frame" x="1" y="1" width="400" height="603"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <collectionView selectable="YES" id="vC5-Tp-tqG">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="158"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="q4e-ka-DwX">
+                                                <size key="itemSize" width="50" height="50"/>
+                                            </collectionViewFlowLayout>
+                                            <color key="primaryBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </collectionView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="ebP-2Z-5E0">
+                                    <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="tHt-kb-Oea">
+                                    <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yQO-k6-xal">
+                                <rect key="frame" x="141" y="294" width="121" height="18"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="No threads found" id="5ft-7S-C0k">
+                                    <font key="font" size="15" name="Roboto-Medium"/>
+                                    <color key="textColor" name="Text"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="OoJ-Iu-jIH" customClass="ThreadsListShimmeringView" customModule="Sphinx" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="402" height="605"/>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="1Z9-0a-4Fh" firstAttribute="top" secondItem="8px-8u-38G" secondAttribute="top" id="4T7-uD-hOI"/>
+                            <constraint firstItem="OoJ-Iu-jIH" firstAttribute="leading" secondItem="8px-8u-38G" secondAttribute="leading" id="5af-bb-GV2"/>
+                            <constraint firstItem="1Z9-0a-4Fh" firstAttribute="leading" secondItem="8px-8u-38G" secondAttribute="leading" id="BdG-Lm-jrm"/>
+                            <constraint firstAttribute="trailing" secondItem="43I-sd-2AK" secondAttribute="trailing" id="Bvd-XG-50x"/>
+                            <constraint firstAttribute="bottom" secondItem="1Z9-0a-4Fh" secondAttribute="bottom" id="Cou-F8-lsh"/>
+                            <constraint firstAttribute="bottom" secondItem="OoJ-Iu-jIH" secondAttribute="bottom" id="QLZ-B8-YMI"/>
+                            <constraint firstItem="43I-sd-2AK" firstAttribute="leading" secondItem="8px-8u-38G" secondAttribute="leading" id="V4j-kh-fZC"/>
+                            <constraint firstItem="43I-sd-2AK" firstAttribute="top" secondItem="8px-8u-38G" secondAttribute="top" id="Yuu-Oo-ax2"/>
+                            <constraint firstAttribute="trailing" secondItem="1Z9-0a-4Fh" secondAttribute="trailing" id="bmE-x7-8qa"/>
+                            <constraint firstAttribute="bottom" secondItem="43I-sd-2AK" secondAttribute="bottom" id="dxU-TA-PUL"/>
+                            <constraint firstItem="yQO-k6-xal" firstAttribute="centerX" secondItem="8px-8u-38G" secondAttribute="centerX" id="emr-xg-2io"/>
+                            <constraint firstAttribute="trailing" secondItem="OoJ-Iu-jIH" secondAttribute="trailing" id="mDc-uZ-DIf"/>
+                            <constraint firstItem="OoJ-Iu-jIH" firstAttribute="top" secondItem="8px-8u-38G" secondAttribute="top" id="raB-8x-d7T"/>
+                            <constraint firstItem="yQO-k6-xal" firstAttribute="centerY" secondItem="8px-8u-38G" secondAttribute="centerY" id="tLP-Uz-Ioe"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="noResultsFoundLabel" destination="yQO-k6-xal" id="DQ5-Qq-ts6"/>
+                        <outlet property="shimmeringView" destination="OoJ-Iu-jIH" id="afp-ex-7x2"/>
+                        <outlet property="threadsCollectionView" destination="vC5-Tp-tqG" id="tTZ-xb-Gh3"/>
+                    </connections>
+                </viewController>
+                <customObject id="f0M-cw-Wap" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1083" y="2216.5"/>
+        </scene>
         <!--Create Invoice View Controller-->
         <scene sceneID="rFM-AW-0V0">
             <objects>

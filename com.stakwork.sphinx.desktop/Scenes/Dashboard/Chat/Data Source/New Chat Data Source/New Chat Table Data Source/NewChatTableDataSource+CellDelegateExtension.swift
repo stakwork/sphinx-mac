@@ -1039,28 +1039,6 @@ extension NewChatTableDataSource {
     }
 }
 
-///Menu Long press
-extension NewChatTableDataSource {
-//    func didLongPressOn(cell: UITableViewCell, with messageId: Int, bubbleViewRect: CGRect) {
-//        if let indexPath = tableView.indexPath(for: cell) {
-//            if let tableCellState = getTableCellStateFor(
-//                messageId: messageId,
-//                and: indexPath.row
-//            ){
-//                var mutableTableCellState = tableCellState.1
-//
-//                if mutableTableCellState.bubble?.grouping == .Empty {
-//                    return
-//                }
-//            }
-//        }
-//
-//        SoundsPlayer.playHaptic()
-//
-//        delegate?.didLongPressOn(cell: cell, with: messageId, bubbleViewRect: bubbleViewRect)
-//    }
-}
-
 extension NewChatTableDataSource {
     func getTableCellStateFor(
         messageId: Int? = nil,

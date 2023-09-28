@@ -509,3 +509,5 @@
 
 //THREAD
 "more-replies" = "more replies";
+"thread-chat" = "Thread";
+"threads-list" = "Threads List";

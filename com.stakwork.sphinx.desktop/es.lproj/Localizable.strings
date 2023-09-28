@@ -510,3 +510,5 @@
 
 //THREAD
 "more-replies" = "respuestas más";
+"thread-chat" = "Hilo";
+"threads-list" = "Lista de Hilos";

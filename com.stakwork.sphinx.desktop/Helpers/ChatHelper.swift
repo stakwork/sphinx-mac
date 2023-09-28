@@ -583,6 +583,42 @@ class ChatHelper {
         }
     }
     
+    public static func getThreadListRowHeightFor(
+        _ tableCellState: ThreadTableCellState
+    ) -> CGFloat {
+        ///No Bubble message views
+        var mutableTableCellState = tableCellState
+        let kTopMargin: CGFloat = 44.0
+        let kBottomMargin: CGFloat = 52.0
+        
+        var textHeight: CGFloat = 0
+        var viewsHeight: CGFloat = 0.0
+        
+        if let originalThreadMessage = mutableTableCellState.threadMessagesState?.orignalThreadMessage {
+            
+            if originalThreadMessage.text.isNotEmpty {
+                textHeight = getThreadListTextMessageHeightFor(
+                    originalThreadMessage.text,
+                    width: 376
+                )
+            }
+        }
+        
+        if let _ = mutableTableCellState.audio {
+            viewsHeight += AudioMessageView.kThreadsListViewHeight
+        }
+        
+        if let _ = mutableTableCellState.messageMedia {
+            viewsHeight += MediaMessageView.kThreadsListViewHeight
+        }
+        
+        if let _ = mutableTableCellState.genericFile {
+            viewsHeight += FileInfoView.kThreadsListViewHeight
+        }
+        
+        return textHeight + viewsHeight + kTopMargin + kBottomMargin
+    }
+    
     public static func getThreadRowHeightFor(
         _ tableCellState: MessageTableCellState,
         linkData: MessageTableCellState.LinkData? = nil,
@@ -831,6 +867,24 @@ class ChatHelper {
         return textHeight
     }
     
+    public static func getThreadListTextMessageHeightFor(
+        _ text: String?,
+        width: CGFloat
+    ) -> CGFloat {
+        var textHeight: CGFloat = 0.0
+        
+        if let text = text, text.isNotEmpty {
+            textHeight = ChatHelper.getTextHeightFor(
+                text: text,
+                width: width,
+                font: NSFont(name: "Roboto-Regular", size: 17.0)!,
+                labelMargins: 0
+            )
+        }
+        
+        return textHeight
+    }
+    
     public static func getAdditionalViewsHeightFor(
         _ tableCellState: MessageTableCellState,
         linkData: MessageTableCellState.LinkData? = nil,
@@ -941,14 +995,16 @@ class ChatHelper {
     
     public static func getTextHeightFor(
         text: String,
-        width: CGFloat
+        width: CGFloat,
+        font: NSFont? = nil,
+        labelMargins: CGFloat? = nil
     ) -> CGFloat {
         let adaptedtext = (text.count > 1) ? String(text.dropLast()) : text
         
-        let attrs = [NSAttributedString.Key.font: Constants.kMessageFont]
+        let attrs = [NSAttributedString.Key.font: font ?? Constants.kMessageFont]
         let attributedString = NSAttributedString(string: adaptedtext, attributes: attrs)
         let kLabelHorizontalMargins: CGFloat = 32.0
-        let kLabelVerticalMargins: CGFloat = 32.0
+        let kLabelVerticalMargins: CGFloat = labelMargins ?? 32.0
         
         let textHeight = attributedString.height(
             forWidth: width - kLabelHorizontalMargins

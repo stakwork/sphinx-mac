@@ -24,6 +24,7 @@ class FileInfoView: NSView, LoadableNib {
     @IBOutlet weak var downloadingWheel: NSProgressIndicator!
     
     static let kViewHeight: CGFloat = 62
+    static let kThreadsListViewHeight: CGFloat = 72
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)

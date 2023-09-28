@@ -48,6 +48,7 @@ extension NSColor {
         public static let Shadow = color("Shadow")
         public static let BubbleShadow = color("BubbleShadow")
         public static let Divider = color("Divider")
+        public static let Divider2 = color("Divider2")
         public static let LightDivider = color("LightDivider")
         public static let SearchBorder = color("SearchBorder")
         public static let ExpiredInvoice = color("ExpiredInvoice")

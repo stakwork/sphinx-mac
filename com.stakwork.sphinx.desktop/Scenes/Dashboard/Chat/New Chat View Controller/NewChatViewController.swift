@@ -60,7 +60,7 @@ class NewChatViewController: DashboardSplittedViewController {
     static func instantiate(
         contactId: Int? = nil,
         chatId: Int? = nil,
-        delegate: DashboardVCDelegate?,
+        delegate: DashboardVCDelegate? = nil,
         deepLinkData : DeeplinkData? = nil,
         threadUUID: String? = nil
     ) -> NewChatViewController {
@@ -212,6 +212,5 @@ class NewChatViewController: DashboardSplittedViewController {
             centeredIn: self.view.window,
             contentVC: chatVC
         )
-
     }
 }
