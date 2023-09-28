@@ -597,13 +597,14 @@ class ChatHelper {
         let statusHeaderheight: CGFloat = getStatusHeaderHeightFor(tableCellState)
         
         var originalMessageTextHeight: CGFloat = 0
+        var lastReplyTextHeight: CGFloat = 0
         var viewsHeight: CGFloat = 0.0
         
         if let threadState = mutableTableCellState.threadMessagesState {
             let originalMessage = threadState.originalMessage
             
             if let text = originalMessage.text, text.isNotEmpty {
-                originalMessageTextHeight = ChatHelper.getThreadOriginalTextMessageHeightFor(
+                originalMessageTextHeight = getThreadOriginalTextMessageHeightFor(
                     text,
                     collectionViewWidth: collectionViewWidth,
                     maxHeight: 64.0
@@ -643,14 +644,16 @@ class ChatHelper {
             viewsHeight += FileInfoView.kViewHeight
         }
         
-        let textHeight: CGFloat = getTextMessageHeightFor(
-            tableCellState,
-            collectionViewWidth: collectionViewWidth
-        )
+        if let text = mutableTableCellState.messageContent?.text, text.isNotEmpty {
+            lastReplyTextHeight = getThreadOriginalTextMessageHeightFor(
+                text,
+                collectionViewWidth: collectionViewWidth
+            )
+        }
         
         viewsHeight += ThreadLastMessageHeader.kViewHeight
         
-        return textHeight + originalMessageTextHeight + (kGeneralMargin * 2) + statusHeaderheight + viewsHeight
+        return originalMessageTextHeight + lastReplyTextHeight + (kGeneralMargin * 2) + statusHeaderheight + viewsHeight
         
     }
     

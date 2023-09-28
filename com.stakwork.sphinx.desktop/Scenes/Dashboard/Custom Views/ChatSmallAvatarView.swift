@@ -22,6 +22,8 @@ class ChatSmallAvatarView: NSView, LoadableNib {
     @IBOutlet weak var profileInitialContainer: NSView!
     @IBOutlet weak var initialsLabel: NSTextField!
     @IBOutlet weak var avatarButton: CustomButton!
+    
+    var imageUrl: String? = nil
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -143,6 +145,13 @@ class ChatSmallAvatarView: NSView, LoadableNib {
     func showImageWith(
         url: URL
     ) {
+        if let imageUrl = imageUrl, imageUrl == url.absoluteString {
+            profileInitialContainer.isHidden = true
+            profileImageView.alphaValue = 0.0
+            profileImageView.isHidden = false
+            return
+        }
+        
         let transformer = SDImageResizingTransformer(
             size: CGSize(
                 width: profileImageView.bounds.size.width * 2,
@@ -151,8 +160,8 @@ class ChatSmallAvatarView: NSView, LoadableNib {
             scaleMode: .aspectFill
         )
         
-        self.profileInitialContainer.isHidden = true
-        self.profileImageView.alphaValue = 0.0
+        profileInitialContainer.isHidden = true
+        profileImageView.alphaValue = 0.0
         
         profileImageView.sd_setImage(
             with: url,
@@ -164,6 +173,7 @@ class ChatSmallAvatarView: NSView, LoadableNib {
                 if let image = image, error == nil {
                     self.profileImageView.image = image
                     self.profileImageView.isHidden = false
+                    self.imageUrl = url.absoluteString
                 }
             }
 
