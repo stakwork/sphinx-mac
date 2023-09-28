@@ -65,16 +65,18 @@ class WindowsManager {
         return WindowState(frame: initialFrame, minSize: size, menuCollapsed: false)
     }
 
-    func showNewWindow(with title: String,
-                            size: CGSize,
-                            minSize: CGSize? = nil,
-                            centeredIn w: NSWindow? = nil,
-                            position: CGPoint? = nil,
-                            identifier: String? = nil,
-                            chatIdentifier: Int? = nil,
-                            styleMask: NSWindow.StyleMask = [.closable, .titled, .resizable],
-                            contentVC: NSViewController,
-                            shouldClose: Bool = false) {
+    func showNewWindow(
+        with title: String,
+        size: CGSize,
+        minSize: CGSize? = nil,
+        centeredIn w: NSWindow? = nil,
+        position: CGPoint? = nil,
+        identifier: String? = nil,
+        chatIdentifier: Int? = nil,
+        styleMask: NSWindow.StyleMask = [.closable, .titled, .resizable],
+        contentVC: NSViewController,
+        shouldClose: Bool = false
+    ) {
         
         if let identifier = identifier {
             if !shouldClose && bringToFrontIfExists(identifier: identifier, chatIdentifier: chatIdentifier) {

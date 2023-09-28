@@ -36,6 +36,14 @@ class NewChatViewController: DashboardSplittedViewController {
     var owner: UserContact!
     var deepLinkData : DeeplinkData? = nil
     
+    var threadUUID: String? = nil
+    
+    var isThread: Bool {
+        get {
+            return threadUUID != nil
+        }
+    }
+    
     var contactResultsController: NSFetchedResultsController<UserContact>!
     var chatResultsController: NSFetchedResultsController<Chat>!
     
@@ -46,19 +54,27 @@ class NewChatViewController: DashboardSplittedViewController {
     var podcastPlayerVC: NewPodcastPlayerViewController? = nil
     
     static func instantiate(
-        contact: UserContact? = nil,
-        chat: Chat? = nil,
+        contactId: Int? = nil,
+        chatId: Int? = nil,
         delegate: DashboardVCDelegate?,
-        deepLinkData : DeeplinkData? = nil
+        deepLinkData : DeeplinkData? = nil,
+        threadUUID: String? = nil
     ) -> NewChatViewController {
         
         let viewController = StoryboardScene.Dashboard.newChatViewController.instantiate()
         
-        viewController.chat = chat
-        viewController.contact = contact
+        if let chatId = chatId {
+            viewController.chat = Chat.getChatWith(id: chatId)
+        }
+        
+        if let contactId = contactId {
+            viewController.contact = UserContact.getContactWith(id: contactId)
+        }
+        
         viewController.delegate = delegate
         viewController.deepLinkData = deepLinkData
         viewController.owner = UserContact.getOwner()
+        viewController.threadUUID = threadUUID
         
         viewController.newChatViewModel = NewChatViewModel(
             chat: viewController.chat,
@@ -143,5 +159,24 @@ class NewChatViewController: DashboardSplittedViewController {
         chat?.setChatMessagesAsSeen()
         
         showPendingApprovalMessage()
+    }
+    
+    func showThread(
+        threadID: String
+    ){
+        let chatVC = NewChatViewController.instantiate(
+            contactId: self.contact?.id,
+            chatId: self.chat?.id,
+            delegate: delegate,
+            threadUUID: threadID
+        )
+      
+        WindowsManager.sharedInstance.showNewWindow(
+            with: "thread-chat".localized,
+            size: self.view.window?.frame.size ?? CGSize(width: 800, height: 600),
+            centeredIn: self.view.window,
+            contentVC: chatVC
+        )
+
     }
 }

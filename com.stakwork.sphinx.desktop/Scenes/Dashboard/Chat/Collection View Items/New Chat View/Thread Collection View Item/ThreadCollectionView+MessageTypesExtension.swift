@@ -77,6 +77,8 @@ extension ThreadCollectionViewItem {
             mediaMessageView.isHidden = false
             mediaMessageContainer.isHidden = false
             
+            mediaMessageView.mediaButton.isEnabled = false
+            
             if let originalMessageId = originalMessageId, mediaData == nil {
                 let delayTime = DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
                 DispatchQueue.global().asyncAfter(deadline: delayTime) {
@@ -345,6 +347,7 @@ extension ThreadCollectionViewItem {
                 and: self
             )
             lastReplyMediaMessageView.isHidden = false
+            lastReplyMediaMessageView.mediaButton.isEnabled = false
             
             if let messageId = messageId, mediaData == nil {
                 let delayTime = DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)

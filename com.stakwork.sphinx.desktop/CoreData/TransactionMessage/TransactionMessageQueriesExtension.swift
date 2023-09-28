@@ -88,19 +88,44 @@ extension TransactionMessage {
         return messages.reversed()
     }
     
+    static func getPredicate(
+        chat: Chat,
+        threadUUID: String?,
+        typesToExclude: [Int]
+    ) -> NSPredicate {
+        if let tuid = threadUUID {
+            return NSPredicate(
+                format: "chat == %@ AND (NOT (type IN %@) || (type == %d && replyUUID = nil)) AND threadUUID == %@",
+                chat,
+                typesToExclude,
+                TransactionMessageType.boost.rawValue,
+                tuid,
+                tuid
+            )
+        }
+        else{//display general, non-thread results
+            return NSPredicate(
+                format: "chat == %@ AND (NOT (type IN %@) || (type == %d && replyUUID = nil))",
+                chat,
+                typesToExclude,
+                TransactionMessageType.boost.rawValue
+            )
+        }
+    }
+    
     static func getChatMessagesFetchRequest(
         for chat: Chat,
+        threadUUID: String? = nil,
         with limit: Int? = nil
     ) -> NSFetchRequest<TransactionMessage> {
         
         var typesToExclude = typesToExcludeFromChat
         typesToExclude.append(TransactionMessageType.boost.rawValue)
         
-        let predicate : NSPredicate = NSPredicate(
-            format: "chat == %@ AND (NOT (type IN %@) || (type == %d && replyUUID = nil))",
-            chat,
-            typesToExclude,
-            TransactionMessageType.boost.rawValue
+        let predicate = TransactionMessage.getPredicate(
+            chat: chat,
+            threadUUID: threadUUID,
+            typesToExclude: typesToExclude
         )
         
         let sortDescriptors = [

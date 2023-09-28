@@ -457,8 +457,8 @@ extension DashboardViewController : DashboardVCDelegate {
         let contact = contactId != nil ? UserContact.getContactWith(id: contactId!) : chat?.getConversationContact()
         
         let newChatVCController = NewChatViewController.instantiate(
-            contact: contact,
-            chat: chat,
+            contactId: contact?.id,
+            chatId: chat?.id,
             delegate: self,
             deepLinkData: deeplinkData
         )

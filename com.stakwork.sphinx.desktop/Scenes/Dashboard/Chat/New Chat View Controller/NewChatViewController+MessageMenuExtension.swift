@@ -9,6 +9,14 @@
 import Foundation
 
 extension NewChatViewController : MessageOptionsDelegate {
+    func shouldShowThreadFor(message: TransactionMessage) {
+        if let threadUUID = message.threadUUID {
+            self.showThread(threadID: threadUUID)
+        } else if let uuid = message.uuid {
+            self.showThread(threadID: uuid)
+        }
+    }
+    
     func shouldDeleteMessage(message: TransactionMessage) {
         newChatViewModel.shouldDeleteMessage(message: message)
     }

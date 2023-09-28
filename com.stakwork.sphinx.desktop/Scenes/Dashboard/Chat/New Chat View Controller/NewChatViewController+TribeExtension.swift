@@ -26,6 +26,10 @@ extension NewChatViewController {
     
     ///Pinned Message
     func configurePinnedMessageView() {
+        if isThread {
+            return
+        }
+        
         if let chatId = chat?.id {
             chatTopView.configurePinnedMessageViewWith(
                 chatId: chatId,

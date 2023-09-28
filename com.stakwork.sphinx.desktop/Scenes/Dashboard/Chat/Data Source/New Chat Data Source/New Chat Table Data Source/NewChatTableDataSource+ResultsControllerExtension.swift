@@ -62,68 +62,66 @@ extension NewChatTableDataSource {
         }
     }
     
-    func makeCellProvider(
-        for collectionView: NSCollectionView
-    ) -> DataSource.ItemProvider {
-        { (collectionView, indexPath, dataSourceItem) -> NSCollectionViewItem in
-            
-            var cell: ChatCollectionViewItemProtocol? = nil
-            var mutableDataSourceItem = dataSourceItem
+    func getCellFor(
+        dataSourceItem: MessageTableCellState,
+        indexPath: IndexPath
+    ) -> NSCollectionViewItem {
+        var cell: ChatCollectionViewItemProtocol? = nil
+        var mutableDataSourceItem = dataSourceItem
 
-            if let _ = mutableDataSourceItem.bubble {
-                if mutableDataSourceItem.isThread {
-                    cell = collectionView.makeItem(
-                        withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ThreadCollectionViewItem"),
-                        for: indexPath
-                    ) as? ThreadCollectionViewItem
-                } else if mutableDataSourceItem.isTextOnlyMessage {
-                    cell = collectionView.makeItem(
-                        withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "NewOnlyTextMessageCollectionViewitem"),
-                        for: indexPath
-                    ) as? ChatCollectionViewItemProtocol
-                } else {
-                    cell = collectionView.makeItem(
-                        withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "NewMessageCollectionViewItem"),
-                        for: indexPath
-                    ) as? ChatCollectionViewItemProtocol
-                }
+        if let _ = mutableDataSourceItem.bubble {
+            if mutableDataSourceItem.isThread {
+                cell = collectionView.makeItem(
+                    withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ThreadCollectionViewItem"),
+                    for: indexPath
+                ) as? ThreadCollectionViewItem
+            } else if mutableDataSourceItem.isTextOnlyMessage {
+                cell = collectionView.makeItem(
+                    withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "NewOnlyTextMessageCollectionViewitem"),
+                    for: indexPath
+                ) as? ChatCollectionViewItemProtocol
             } else {
                 cell = collectionView.makeItem(
-                    withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MessageNoBubbleCollectionViewItem"),
+                    withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "NewMessageCollectionViewItem"),
                     for: indexPath
                 ) as? ChatCollectionViewItemProtocol
             }
-
-            let mediaData = (dataSourceItem.messageId != nil) ? self.mediaCached[dataSourceItem.messageId!] : nil
-            let threadOriginalMessageMediaData = (dataSourceItem.threadOriginalMessage?.id != nil) ? self.mediaCached[dataSourceItem.threadOriginalMessage!.id] : nil
-            let tribeData = (dataSourceItem.linkTribe?.uuid != nil) ? self.preloaderHelper.tribesData[dataSourceItem.linkTribe!.uuid] : nil
-            let linkData = (dataSourceItem.linkWeb?.link != nil) ? self.preloaderHelper.linksData[dataSourceItem.linkWeb!.link] : nil
-            let botWebViewData = (dataSourceItem.messageId != nil) ? self.botsWebViewData[dataSourceItem.messageId!] : nil
-            let uploadProgressData = (dataSourceItem.messageId != nil) ? self.uploadingProgress[dataSourceItem.messageId!] : nil
-
-            cell?.configureWith(
-                messageCellState: dataSourceItem,
-                mediaData: mediaData,
-                threadOriginalMsgMediaData: threadOriginalMessageMediaData,
-                tribeData: tribeData,
-                linkData: linkData,
-                botWebViewData: botWebViewData,
-                uploadProgressData: uploadProgressData,
-                delegate: self,
-                searchingTerm: self.searchingTerm,
-                indexPath: indexPath,
-                isPreload: self.isPreload,
-                collectionViewWidth: collectionView.frame.width
-            )
-
-            return (cell as? NSCollectionViewItem) ?? NSCollectionViewItem()
+        } else {
+            cell = collectionView.makeItem(
+                withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MessageNoBubbleCollectionViewItem"),
+                for: indexPath
+            ) as? ChatCollectionViewItemProtocol
         }
+
+        let mediaData = (dataSourceItem.messageId != nil) ? self.mediaCached[dataSourceItem.messageId!] : nil
+        let threadOriginalMessageMediaData = (dataSourceItem.threadOriginalMessage?.id != nil) ? self.mediaCached[dataSourceItem.threadOriginalMessage!.id] : nil
+        let tribeData = (dataSourceItem.linkTribe?.uuid != nil) ? self.preloaderHelper.tribesData[dataSourceItem.linkTribe!.uuid] : nil
+        let linkData = (dataSourceItem.linkWeb?.link != nil) ? self.preloaderHelper.linksData[dataSourceItem.linkWeb!.link] : nil
+        let botWebViewData = (dataSourceItem.messageId != nil) ? self.botsWebViewData[dataSourceItem.messageId!] : nil
+        let uploadProgressData = (dataSourceItem.messageId != nil) ? self.uploadingProgress[dataSourceItem.messageId!] : nil
+
+        cell?.configureWith(
+            messageCellState: dataSourceItem,
+            mediaData: mediaData,
+            threadOriginalMsgMediaData: threadOriginalMessageMediaData,
+            tribeData: tribeData,
+            linkData: linkData,
+            botWebViewData: botWebViewData,
+            uploadProgressData: uploadProgressData,
+            delegate: self,
+            searchingTerm: self.searchingTerm,
+            indexPath: indexPath,
+            isPreload: self.isPreload,
+            collectionViewWidth: collectionView.frame.width
+        )
+
+        return (cell as? NSCollectionViewItem) ?? NSCollectionViewItem()
     }
 }
 
 extension NewChatTableDataSource {
     
-    func processMessages(
+    @objc func processMessages(
         messages: [TransactionMessage]
     ) {
         let chat = chat ?? contact?.getFakeChat()
@@ -291,7 +289,7 @@ extension NewChatTableDataSource {
         processMessages(messages: messagesArray)
     }
     
-    private func getNewMessageCountFor(
+    func getNewMessageCountFor(
         message: TransactionMessage,
         and owner: UserContact
     ) -> Int {
@@ -461,7 +459,7 @@ extension NewChatTableDataSource {
         return boostMessagesMap
     }
     
-    func getThreadMessagesFor(
+    @objc func getThreadMessagesFor(
         messages: [TransactionMessage]
     ) -> [String: [TransactionMessage]] {
         
@@ -619,6 +617,16 @@ extension NewChatTableDataSource : NSFetchedResultsControllerDelegate {
         messagesResultsController?.delegate = nil
     }
     
+    @objc func getFetchRequestFor(
+        chat: Chat,
+        with items: Int
+    ) -> NSFetchRequest<TransactionMessage> {
+        return TransactionMessage.getChatMessagesFetchRequest(
+            for: chat,
+            with: items
+        )
+    }
+    
     func configureResultsController(items: Int) {
         guard let chat = chat else {
             return
@@ -630,11 +638,8 @@ extension NewChatTableDataSource : NSFetchedResultsControllerDelegate {
         
         messagesCount = items
         
-        let fetchRequest = TransactionMessage.getChatMessagesFetchRequest(
-            for: chat,
-            with: items
-        )
-
+        let fetchRequest = getFetchRequestFor(chat: chat, with: items)
+        
         messagesResultsController = NSFetchedResultsController(
             fetchRequest: fetchRequest,
             managedObjectContext: CoreDataManager.sharedManager.persistentContainer.viewContext,

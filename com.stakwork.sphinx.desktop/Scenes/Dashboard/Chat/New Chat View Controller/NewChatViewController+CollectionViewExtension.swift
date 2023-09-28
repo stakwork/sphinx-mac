@@ -22,17 +22,32 @@ extension NewChatViewController {
             shimmeringView.toggle(show: false)
         }
         
-        chatTableDataSource = NewChatTableDataSource(
-            chat: chat,
-            contact: contact,
-            collectionView: chatCollectionView,
-            collectionViewScroll: chatScrollView,
-            shimmeringView: shimmeringView,
-            headerImage: getContactImage(),
-            bottomView: chatBottomView,
-            webView: botWebView,
-            delegate: self
-        )
+        if let threadUUID = threadUUID {
+            chatTableDataSource = ThreadTableDataSource(
+                chat: chat,
+                contact: contact,
+                threadUUID: threadUUID,
+                collectionView: chatCollectionView,
+                collectionViewScroll: chatScrollView,
+                shimmeringView: shimmeringView,
+                headerImage: getContactImage(),
+                bottomView: chatBottomView,
+                webView: botWebView,
+                delegate: self
+            )
+        } else {
+            chatTableDataSource = NewChatTableDataSource(
+                chat: chat,
+                contact: contact,
+                collectionView: chatCollectionView,
+                collectionViewScroll: chatScrollView,
+                shimmeringView: shimmeringView,
+                headerImage: getContactImage(),
+                bottomView: chatBottomView,
+                webView: botWebView,
+                delegate: self
+            )
+        }
         
         newChatViewModel?.setDataSource(chatTableDataSource)
     }

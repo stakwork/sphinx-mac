@@ -42,6 +42,7 @@ struct MessageTableCellState {
     var linkTribe: LinkTribe? = nil
     var linkWeb: LinkWeb? = nil
     var invoiceData: (Bool, Bool) = (false, false)
+    var isThreadHeaderMessage: Bool = false
     
     ///Generic rows Data
     var separatorDate: Date? = nil
@@ -63,7 +64,8 @@ struct MessageTableCellState {
         linkContact: LinkContact? = nil,
         linkTribe: LinkTribe? = nil,
         linkWeb: LinkWeb? = nil,
-        invoiceData: (Bool, Bool)
+        invoiceData: (Bool, Bool),
+        isThreadHeaderMessage: Bool = false
     ) {
         self.message = message
         self.threadOriginalMessage = threadOriginalMessage
@@ -87,6 +89,8 @@ struct MessageTableCellState {
         self.linkTribe = linkTribe
         self.linkWeb = linkWeb
         self.invoiceData = invoiceData
+        
+        self.isThreadHeaderMessage = isThreadHeaderMessage
     }
     
     ///Reply

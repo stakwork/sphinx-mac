@@ -156,6 +156,8 @@
 		473E1F382AC46DCF00DC1CDC /* ThreadCollectionView+BubbleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F372AC46DCF00DC1CDC /* ThreadCollectionView+BubbleExtension.swift */; };
 		473E1F3A2AC46DDF00DC1CDC /* ThreadCollectionView+MessageTypesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F392AC46DDF00DC1CDC /* ThreadCollectionView+MessageTypesExtension.swift */; };
 		473E1F3C2AC46DEB00DC1CDC /* ThreadCollectionView+DelegatesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F3B2AC46DEB00DC1CDC /* ThreadCollectionView+DelegatesExtension.swift */; };
+		473E1F3F2AC5B0CD00DC1CDC /* ThreadTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F3E2AC5B0CD00DC1CDC /* ThreadTableDataSource.swift */; };
+		473E1F432AC5B0F100DC1CDC /* ThreadTableDataSource+ResultsControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E1F422AC5B0F100DC1CDC /* ThreadTableDataSource+ResultsControllerExtension.swift */; };
 		474274A328EB7616000C3D51 /* CreateTribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474274A228EB7616000C3D51 /* CreateTribeViewController.swift */; };
 		474274A528EC7275000C3D51 /* TribeTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474274A428EC7275000C3D51 /* TribeTagsView.swift */; };
 		474274A728EC7289000C3D51 /* TribeTagsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 474274A628EC7289000C3D51 /* TribeTagsView.xib */; };
@@ -913,6 +915,8 @@
 		473E1F372AC46DCF00DC1CDC /* ThreadCollectionView+BubbleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadCollectionView+BubbleExtension.swift"; sourceTree = "<group>"; };
 		473E1F392AC46DDF00DC1CDC /* ThreadCollectionView+MessageTypesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadCollectionView+MessageTypesExtension.swift"; sourceTree = "<group>"; };
 		473E1F3B2AC46DEB00DC1CDC /* ThreadCollectionView+DelegatesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadCollectionView+DelegatesExtension.swift"; sourceTree = "<group>"; };
+		473E1F3E2AC5B0CD00DC1CDC /* ThreadTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadTableDataSource.swift; sourceTree = "<group>"; };
+		473E1F422AC5B0F100DC1CDC /* ThreadTableDataSource+ResultsControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadTableDataSource+ResultsControllerExtension.swift"; sourceTree = "<group>"; };
 		473FC42C2481CE52000096C3 /* MaterialIcons-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaterialIcons-Regular.ttf"; sourceTree = "<group>"; };
 		474274A228EB7616000C3D51 /* CreateTribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTribeViewController.swift; sourceTree = "<group>"; };
 		474274A428EC7275000C3D51 /* TribeTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TribeTagsView.swift; sourceTree = "<group>"; };
@@ -2056,6 +2060,15 @@
 				473E1F312AC468DB00DC1CDC /* ThreadLastMessageHeader.xib */,
 			);
 			path = Threads;
+			sourceTree = "<group>";
+		};
+		473E1F3D2AC5B06800DC1CDC /* Thread Table Data Source */ = {
+			isa = PBXGroup;
+			children = (
+				473E1F3E2AC5B0CD00DC1CDC /* ThreadTableDataSource.swift */,
+				473E1F422AC5B0F100DC1CDC /* ThreadTableDataSource+ResultsControllerExtension.swift */,
+			);
+			path = "Thread Table Data Source";
 			sourceTree = "<group>";
 		};
 		4744FA5124698FDD00C5FD94 /* Configuration */ = {
@@ -3535,6 +3548,7 @@
 		47FEE1FD2A66D35E00646C4E /* New Chat Data Source */ = {
 			isa = PBXGroup;
 			children = (
+				473E1F3D2AC5B06800DC1CDC /* Thread Table Data Source */,
 				47FEE2182A66E2C800646C4E /* Helpers */,
 				47FEE2052A66DB0400646C4E /* New Chat Table Data Source */,
 				47FEE1FE2A66D39E00646C4E /* MessageTableCellState */,
@@ -4321,10 +4335,12 @@
 				4744FA7A2469C94400C5FD94 /* CoreDataManager.swift in Sources */,
 				47543C5E2A951836003F8DEE /* CrypterManager.swift in Sources */,
 				478ED58C25D47C9700940132 /* FriendMessageView.swift in Sources */,
+				473E1F3F2AC5B0CD00DC1CDC /* ThreadTableDataSource.swift in Sources */,
 				474C7A3A28D21116007A3E17 /* NotificationLevelView.swift in Sources */,
 				472B4E8F268BAF4E00E8D0FC /* OnionManager.swift in Sources */,
 				474E3339247FF49200F7F603 /* PictureSentCollectionViewItem.swift in Sources */,
 				47F8824E25656CB0002A7E71 /* SocketManagerSpec.swift in Sources */,
+				473E1F432AC5B0F100DC1CDC /* ThreadTableDataSource+ResultsControllerExtension.swift in Sources */,
 				479751E9246D91B000D2106B /* ChatListViewController+DelegateExtension.swift in Sources */,
 				473E1F3A2AC46DDF00DC1CDC /* ThreadCollectionView+MessageTypesExtension.swift in Sources */,
 				479F65792487D0F40015A16A /* IntermitentAlphaAnimatedView.swift in Sources */,

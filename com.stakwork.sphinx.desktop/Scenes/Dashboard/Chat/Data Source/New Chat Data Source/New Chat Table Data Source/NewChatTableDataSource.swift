@@ -52,6 +52,9 @@ protocol NewChatTableDataSourceDelegate : AnyObject {
     func isOnStandardMode() -> Bool
     func didFinishSearchingWith(matchesCount: Int, index: Int)
     func shouldToggleSearchLoadingWheel(active: Bool)
+    
+    ///Threads
+    func shouldShowThreadFor(message: TransactionMessage)
 }
 
 class NewChatTableDataSource : NSObject {
@@ -161,5 +164,16 @@ class NewChatTableDataSource : NSObject {
         collectionView.registerItem(NewOnlyTextMessageCollectionViewitem.self)
         collectionView.registerItem(MessageNoBubbleCollectionViewItem.self)
         collectionView.registerItem(ThreadCollectionViewItem.self)
+    }
+    
+    func makeCellProvider(
+        for collectionView: NSCollectionView
+    ) -> DataSource.ItemProvider {
+        { (tableView, indexPath, dataSourceItem) -> NSCollectionViewItem in
+            return self.getCellFor(
+                dataSourceItem: dataSourceItem,
+                indexPath: indexPath
+            )
+        }
     }
 }

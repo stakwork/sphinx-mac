@@ -10,6 +10,10 @@ import Cocoa
 
 extension NewChatViewController: NSFetchedResultsControllerDelegate {
     func configureFetchResultsController() {
+        if isThread {
+            return
+        }
+        
         if let contact = contact {
             let fetchRequest = UserContact.FetchRequests.matching(id: contact.id)
 

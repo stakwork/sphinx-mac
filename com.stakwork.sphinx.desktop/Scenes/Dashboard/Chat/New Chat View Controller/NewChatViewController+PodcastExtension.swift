@@ -12,6 +12,10 @@ extension NewChatViewController {
     func addPodcastVC(
         deepLinkData: DeeplinkData? = nil
     ) {
+        if isThread {
+            return
+        }
+        
         guard let chat = chat else {
             return
         }

@@ -10,6 +10,16 @@ import Cocoa
 
 extension NewChatTableDataSource: NSCollectionViewDelegate {
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
+        
+        if let indexPath = indexPaths.first {
+            if messageTableCellStateArray.count > indexPath.item {
+                let mutableTableCellStateArray = messageTableCellStateArray[indexPath.item]
+                
+                if let message = mutableTableCellStateArray.message, mutableTableCellStateArray.isThread {
+                    delegate?.shouldShowThreadFor(message: message)
+                }
+            }
+        }
         MessageOptionsHelper.sharedInstance.hideMenu()
     }
     
@@ -93,7 +103,7 @@ extension NewChatTableDataSource: NSCollectionViewDelegate {
         loadMoreItems()
     }
     
-    func loadMoreItems() {
+    @objc func loadMoreItems() {
 //        DelayPerformedHelper.performAfterDelay(seconds: 0.5, completion: { [weak self] in
 //            guard let self = self else { return }
 //            self.configureResultsController(items: self.messagesCount + 50)
