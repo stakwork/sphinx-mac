@@ -86,7 +86,8 @@ class NewChatViewController: DashboardSplittedViewController {
         
         viewController.newChatViewModel = NewChatViewModel(
             chat: viewController.chat,
-            contact: viewController.contact
+            contact: viewController.contact,
+            threadUUID: threadUUID
         )
         
         return viewController
