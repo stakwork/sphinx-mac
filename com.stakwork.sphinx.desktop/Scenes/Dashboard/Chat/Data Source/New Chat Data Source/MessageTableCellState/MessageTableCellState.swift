@@ -188,6 +188,9 @@ struct MessageTableCellState {
             expirationTimestamp = String(format: "expires.in.elements".localized, timeElements.0, timeElements.1)
         }
         
+        let timestampFormat = isThread ? "EEE dd, hh:mm a" : "hh:mm a"
+        let timestamp = (message.date ?? Date()).getStringDate(format: timestampFormat)
+        
         var statusHeader = BubbleMessageLayoutState.StatusHeader(
             senderName: (chat.isConversation() ? nil : message.senderAlias),
             color: ChatHelper.getSenderColorFor(message: message),
@@ -199,7 +202,7 @@ struct MessageTableCellState {
             showExpiredSent: message.isInvoice() && !message.isPaid() && !isSent,
             showExpiredReceived: message.isInvoice() && !message.isPaid() && isSent,
             expirationTimestamp: expirationTimestamp,
-            timestamp: (message.date ?? Date()).getStringDate(format: "hh:mm a")
+            timestamp: timestamp
         )
         
         return statusHeader
