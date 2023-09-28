@@ -159,6 +159,7 @@ class AuthExternalView: CommonModalView, LoadableNib {
                 print(url)
                //NSWorkspace.shared.open(url)
             }
+            messageBubbleHelper.showGenericMessageView(text: "authorization.login".localized, delay: 7, textColor: NSColor.white, backColor: NSColor.Sphinx.PrimaryGreen, backAlpha: 1.0)
         } else {
             messageBubbleHelper.showGenericMessageView(text: "authorization.failed".localized, delay: 5, textColor: NSColor.white, backColor: NSColor.Sphinx.BadgeRed, backAlpha: 1.0)
         }
