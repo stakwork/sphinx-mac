@@ -45,6 +45,7 @@ class ChatMessageFieldView: NSView, LoadableNib {
     
     var chat: Chat? = nil
     var contact: UserContact? = nil
+    var isThread: Bool = false
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
@@ -162,7 +163,8 @@ class ChatMessageFieldView: NSView, LoadableNib {
     
     func updateFieldStateFrom(
         _ chat: Chat?,
-        and contact: UserContact?,
+        contact: UserContact?,
+        isThread: Bool,
         with delegate: ChatBottomViewDelegate?
     ) {
         self.chat = chat
@@ -175,7 +177,7 @@ class ChatMessageFieldView: NSView, LoadableNib {
         
         sendButton.isEnabled = active
         attachmentsButton.isEnabled = active
-        priceTextField.isEditable = active
+        priceTextField.isEditable = active && !isThread
         
         self.alphaValue = active ? 1.0 : 0.7
         

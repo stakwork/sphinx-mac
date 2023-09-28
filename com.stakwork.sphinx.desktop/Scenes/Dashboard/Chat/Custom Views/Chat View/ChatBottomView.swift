@@ -70,14 +70,16 @@ class ChatBottomView: NSView, LoadableNib {
     
     func updateFieldStateFrom(
         _ chat: Chat?,
-        and contact: UserContact?,
+        contact: UserContact?,
+        isThread: Bool,
         with delegate: ChatBottomViewDelegate?
     ) {
         self.isHidden = (chat == nil && contact == nil)
         
         messageFieldView.updateFieldStateFrom(
             chat,
-            and: contact,
+            contact: contact,
+            isThread: isThread,
             with: delegate
         )
     }

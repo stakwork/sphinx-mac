@@ -184,7 +184,8 @@ class NewChatViewController: DashboardSplittedViewController {
     func setupChatBottomView() {
         chatBottomView.updateFieldStateFrom(
             chat,
-            and: contact,
+            contact: contact,
+            isThread: isThread,
             with: self
         )        
     }
