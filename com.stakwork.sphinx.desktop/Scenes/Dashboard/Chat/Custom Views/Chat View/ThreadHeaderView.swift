@@ -42,7 +42,7 @@ class ThreadHeaderView: NSView, LoadableNib {
     @IBOutlet weak var messageMediaView: MediaMessageView!
     
     @IBOutlet weak var textContainer: NSView!
-    @IBOutlet weak var messageLabel: NSTextField!
+    @IBOutlet weak var messageLabel: CCTextField!
     
     
     required init?(coder: NSCoder) {
@@ -64,6 +64,9 @@ class ThreadHeaderView: NSView, LoadableNib {
             opacity: 0.3,
             radius: 5.0
         )
+        
+        messageLabel.setSelectionColor(color: NSColor.getTextSelectionColor())
+        messageLabel.allowsEditingTextAttributes = true
         
         fileInfoView.wantsLayer = true
         fileInfoView.layer?.backgroundColor = NSColor.Sphinx.Body.cgColor
