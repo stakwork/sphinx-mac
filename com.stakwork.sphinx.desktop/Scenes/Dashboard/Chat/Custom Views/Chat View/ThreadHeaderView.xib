@@ -128,10 +128,10 @@
                                     <rect key="frame" x="0.0" y="0.0" width="1136" height="35"/>
                                     <subviews>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="oDd-gg-HZ8">
-                                            <rect key="frame" x="0.0" y="0.0" width="1136" height="35"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="35"/>
                                             <subviews>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="o0s-gd-MXD" customClass="CCTextField" customModule="Sphinx" customModuleProvider="target">
-                                                    <rect key="frame" x="14" y="16" width="1108" height="19"/>
+                                                    <rect key="frame" x="14" y="16" width="572" height="19"/>
                                                     <textFieldCell key="cell" selectable="YES" title="Label" id="wQx-gQ-7cJ">
                                                         <font key="font" size="16" name="Roboto-Regular"/>
                                                         <color key="textColor" name="Text"/>
@@ -141,12 +141,16 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="o0s-gd-MXD" firstAttribute="leading" secondItem="oDd-gg-HZ8" secondAttribute="leading" constant="16" id="2Mb-Zo-EjO"/>
-                                                <constraint firstAttribute="trailing" secondItem="o0s-gd-MXD" secondAttribute="trailing" constant="16" id="A0v-PM-7rk"/>
+                                                <constraint firstAttribute="width" constant="600" id="4yS-pQ-tiJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="o0s-gd-MXD" secondAttribute="trailing" priority="750" constant="16" id="6oX-0I-Cv6"/>
                                                 <constraint firstItem="o0s-gd-MXD" firstAttribute="top" secondItem="oDd-gg-HZ8" secondAttribute="top" id="KwG-lv-xgB"/>
                                                 <constraint firstAttribute="bottom" secondItem="o0s-gd-MXD" secondAttribute="bottom" constant="16" id="cX0-DG-YiD"/>
                                             </constraints>
                                         </customView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="oDd-gg-HZ8" firstAttribute="leading" secondItem="YlO-at-1xE" secondAttribute="leading" id="zZA-JB-AAh"/>
+                                    </constraints>
                                     <visibilityPriorities>
                                         <integer value="1000"/>
                                     </visibilityPriorities>
