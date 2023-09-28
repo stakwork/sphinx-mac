@@ -66,7 +66,7 @@ class ThreadHeaderView: NSView, LoadableNib {
         )
         
         fileInfoView.wantsLayer = true
-        fileInfoView.layer?.backgroundColor = NSColor.Sphinx.HeaderBG.cgColor
+        fileInfoView.layer?.backgroundColor = NSColor.Sphinx.Body.cgColor
         fileInfoView.layer?.cornerRadius = 9
     }
     

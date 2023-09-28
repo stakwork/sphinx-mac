@@ -78,17 +78,17 @@
                     <rect key="frame" x="0.0" y="0.0" width="1136" height="32"/>
                     <subviews>
                         <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aeV-xz-Szv">
-                            <rect key="frame" x="0.0" y="-30" width="1136" height="62"/>
+                            <rect key="frame" x="0.0" y="-62" width="1136" height="94"/>
                             <subviews>
                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="6O6-FM-fV0" customClass="FileInfoView" customModule="Sphinx" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="62"/>
+                                    <rect key="frame" x="16" y="16" width="400" height="62"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="62" id="DCs-zC-qth"/>
                                         <constraint firstAttribute="width" constant="400" id="Mbh-W4-07A"/>
                                     </constraints>
                                 </customView>
                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="anB-jC-h00" customClass="AudioMessageView" customModule="Sphinx" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="62"/>
+                                    <rect key="frame" x="16" y="16" width="300" height="62"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="62" id="7nY-rf-6ro"/>
                                         <constraint firstAttribute="width" constant="300" id="fv8-5N-YbB"/>
@@ -96,13 +96,13 @@
                                 </customView>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="anB-jC-h00" firstAttribute="leading" secondItem="aeV-xz-Szv" secondAttribute="leading" id="2xm-1V-OzX"/>
-                                <constraint firstAttribute="bottom" secondItem="6O6-FM-fV0" secondAttribute="bottom" id="7h8-hJ-yuS"/>
-                                <constraint firstAttribute="bottom" secondItem="anB-jC-h00" secondAttribute="bottom" id="DmD-yh-zAZ"/>
-                                <constraint firstItem="6O6-FM-fV0" firstAttribute="leading" secondItem="aeV-xz-Szv" secondAttribute="leading" id="jr7-Jf-qJB"/>
-                                <constraint firstAttribute="height" constant="62" id="kDZ-Fz-jve"/>
-                                <constraint firstItem="6O6-FM-fV0" firstAttribute="top" secondItem="aeV-xz-Szv" secondAttribute="top" id="qS1-XC-dxy"/>
-                                <constraint firstItem="anB-jC-h00" firstAttribute="top" secondItem="aeV-xz-Szv" secondAttribute="top" id="r7r-lP-xx9"/>
+                                <constraint firstItem="anB-jC-h00" firstAttribute="leading" secondItem="aeV-xz-Szv" secondAttribute="leading" constant="16" id="2xm-1V-OzX"/>
+                                <constraint firstAttribute="bottom" secondItem="6O6-FM-fV0" secondAttribute="bottom" constant="16" id="7h8-hJ-yuS"/>
+                                <constraint firstAttribute="bottom" secondItem="anB-jC-h00" secondAttribute="bottom" constant="16" id="DmD-yh-zAZ"/>
+                                <constraint firstItem="6O6-FM-fV0" firstAttribute="leading" secondItem="aeV-xz-Szv" secondAttribute="leading" constant="16" id="jr7-Jf-qJB"/>
+                                <constraint firstAttribute="height" constant="94" id="kDZ-Fz-jve"/>
+                                <constraint firstItem="6O6-FM-fV0" firstAttribute="top" secondItem="aeV-xz-Szv" secondAttribute="top" constant="16" id="qS1-XC-dxy"/>
+                                <constraint firstItem="anB-jC-h00" firstAttribute="top" secondItem="aeV-xz-Szv" secondAttribute="top" constant="16" id="r7r-lP-xx9"/>
                             </constraints>
                         </customView>
                         <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WdK-U0-xc0">
