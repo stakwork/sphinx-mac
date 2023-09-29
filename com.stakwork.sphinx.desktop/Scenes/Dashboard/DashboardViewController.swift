@@ -89,6 +89,7 @@ class DashboardViewController: NSViewController {
         NotificationCenter.default.removeObserver(self, name: .onAuthDeepLink, object: nil)
         NotificationCenter.default.removeObserver(self, name: .onPersonDeepLink, object: nil)
         NotificationCenter.default.removeObserver(self, name: .onSaveProfileDeepLink, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .webViewImageClicked, object: nil)
     }
     
     func handleDeepLink() {
@@ -202,6 +203,11 @@ class DashboardViewController: NSViewController {
             guard let vc = self else { return }
             vc.processContactDeepLink(n: n)
         }
+        
+        NotificationCenter.default.addObserver(forName: .webViewImageClicked, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
+            guard let vc = self else { return }
+            vc.handleImageNotification(n: n)
+        }
     }
     
     func processContactDeepLink(n: Notification){
@@ -268,6 +274,40 @@ class DashboardViewController: NSViewController {
                     childVC.showWithQuery(query, and: self)
                 }
             }
+        }
+    }
+    
+    func handleImageNotification(n: Notification) {
+        if let imageURL = n.userInfo?["image_url"] as? URL,
+           let messageId = n.userInfo?["message_id"] as? Int,
+           let message = TransactionMessage.getMessageWith(id: messageId) {
+            
+            goToMediaFullView(imageURL: imageURL,message: message)
+        } else {
+            NewMessageBubbleHelper().showGenericMessageView(text: "Error pulling image data.")
+        }
+    }
+    
+    func goToMediaFullView(
+        imageURL: URL,
+        message: TransactionMessage
+    ){
+        if mediaFullScreenView == nil {
+            mediaFullScreenView = MediaFullScreenView()
+        }
+
+        if let mediaFullScreenView = mediaFullScreenView {
+            view.addSubview(mediaFullScreenView)
+            
+            mediaFullScreenView.showWith(imageURL: imageURL, message: message,completion: {
+                mediaFullScreenView.delegate = self
+                mediaFullScreenView.constraintTo(view: self.view)
+                mediaFullScreenView.currentMode = MediaFullScreenView.ViewMode.Viewing
+                mediaFullScreenView.loading = false
+                mediaFullScreenView.mediaImageView.alphaValue = 1.0
+                mediaFullScreenView.mediaImageView.gravity = .resizeAspect
+            })
+            mediaFullScreenView.isHidden = false
         }
     }
     

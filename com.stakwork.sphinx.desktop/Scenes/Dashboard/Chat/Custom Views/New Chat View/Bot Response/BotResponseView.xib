@@ -20,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <wkWebView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NKa-4H-w5m">
+                <wkWebView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NKa-4H-w5m" customClass="BotWebView" customModule="Sphinx" customModuleProvider="target">
                     <rect key="frame" x="16" y="16" width="448" height="240"/>
                     <wkWebViewConfiguration key="configuration">
                         <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>

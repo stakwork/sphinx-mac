@@ -449,7 +449,8 @@ struct MessageTableCellState {
         if let messageContent = message.bubbleMessageContentString, messageContent.isNotEmpty {
             
             var botContent = BubbleMessageLayoutState.BotHTMLContent(
-                html: messageContent
+                html: messageContent,
+                messageId: message.id
             )
             
             return botContent

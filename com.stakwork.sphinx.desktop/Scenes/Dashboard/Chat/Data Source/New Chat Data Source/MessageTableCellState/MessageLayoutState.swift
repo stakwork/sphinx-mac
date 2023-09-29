@@ -194,11 +194,14 @@ struct BubbleMessageLayoutState {
     
     struct BotHTMLContent {
         var html: String
+        var messageId: Int
         
         init(
-            html: String
+            html: String,
+            messageId: Int
         ) {
             self.html = html
+            self.messageId = messageId
         }
     }
     

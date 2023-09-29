@@ -13,7 +13,7 @@ class BotResponseView: NSView, LoadableNib {
 
     @IBOutlet var contentView: NSView!
     
-    @IBOutlet weak var webView: WKWebView!
+    @IBOutlet weak var webView: BotWebView!
     @IBOutlet weak var loadingWheel: NSProgressIndicator!
     
     let kWebViewContentPrefix = "<head><meta name=\"viewport\" content=\"width=device-width, height=device-height, shrink-to-fit=YES\"></head><body style=\"font-family: 'Roboto', sans-serif; color: %@; margin:0px !important; padding:0px!important; background: %@;\"><div id=\"bot-response-container\" style=\"background: %@;\">"
@@ -58,7 +58,7 @@ class BotResponseView: NSView, LoadableNib {
             let messageContent = botHTMLContent.html
             let content = "\(contentPrefix)\(messageContent)\(kWebViewContentSuffix)"
             
-            let _ = webView.loadHTMLString(content, baseURL: Bundle.main.bundleURL)
+            let _ = webView.loadHTMLString(content, messageId: botHTMLContent.messageId, baseURL: Bundle.main.bundleURL)
         } else {
             loadingWheel.startAnimation(nil)
             loadingWheel.isHidden = false
