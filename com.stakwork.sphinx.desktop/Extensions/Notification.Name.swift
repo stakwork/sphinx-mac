@@ -32,4 +32,5 @@ extension Notification.Name {
     
     static let onContactsAndChatsChanged = Notification.Name("onContactsAndChatsChanged")
     static let webViewImageClicked = Notification.Name("webViewImageClicked")
+    static let didReceiveContactKeyExchange = Notification.Name("didReceiveContactKeyExchange")
 }

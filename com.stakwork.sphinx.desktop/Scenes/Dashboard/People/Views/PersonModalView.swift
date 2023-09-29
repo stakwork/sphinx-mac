@@ -20,6 +20,7 @@ class PersonModalView: CommonModalView, LoadableNib {
     
     @IBOutlet weak var loadingWheel: NSProgressIndicator!
     @IBOutlet weak var loadingWheelContainer: NSBox!
+    var keyExchangeWDT : Timer? = nil
 
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
@@ -83,6 +84,17 @@ class PersonModalView: CommonModalView, LoadableNib {
         super.modalDidShow()
     }
     
+    @objc func handleKeyExchangeCompletion(){
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.didReceiveContactKeyExchange, object: nil)
+        self.sendInitialMessage()
+    }
+    
+    @objc func handleKeyExchangeTimeout(){
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.didReceiveContactKeyExchange, object: nil)
+        keyExchangeWDT = nil
+        showErrorMessage()
+    }
+    
     override func didTapConfirmButton() {
         super.didTapConfirmButton()
         
@@ -106,9 +118,7 @@ class PersonModalView: CommonModalView, LoadableNib {
             let contactsService = ContactsService()
             
             UserContactsHelper.createContact(nickname: nickname, pubKey: pubkey, routeHint: routeHint, contactKey: contactKey, callback: { (success) in
-                
                 if success {
-                    self.sendInitialMessage()
                     return
                 }
                 self.showErrorMessage()
