@@ -409,6 +409,7 @@
 "price.to.meet" = "Precio para conectar: ";
 "popup.authorize-with" = "¿Quieres autorizar a:";
 "popup.redeem-sats" = "Canjear %d sats de:";
+"authorization.login" = "Felicitaciones! Has iniciado sesión";
 
 "people.save-profile" = "Guardar Perfil de:";
 "people.delete-profile" = "Borrar Perfil de:";
