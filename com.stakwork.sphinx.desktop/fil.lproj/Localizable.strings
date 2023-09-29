@@ -501,8 +501,8 @@
 "start.video.call" = "Start Video Call";
 "send.payment" = "Send Payment";
 "request.payment" = "Request Payment";
-"send.emoji" = "Send emoji";
-"record.voice" = "Record voice message";
+"send.emoji" = "Send Emoji";
+"record.voice" = "Record Voice Message";
 
 //THREAD
 "more-replies" = "more replies";

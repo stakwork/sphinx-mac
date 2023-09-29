@@ -384,8 +384,6 @@
 
 //OTHER
 "create.call" = "Crear Llamada";
-"start.audio.call" = "Crear Llamada";
-"start.video.call" = "Crear Llamada con Video";
 "select.call.mode" = "Seleccionar Tipo de Llamada";
 "audio" = "Audio";
 "video.or.audio" = "Video o Audio";

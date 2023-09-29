@@ -1923,25 +1923,25 @@
             <objects>
                 <viewController storyboardIdentifier="ThreadsListViewController" id="2Np-Ez-RAq" customClass="ThreadsListViewController" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="8px-8u-38G">
-                        <rect key="frame" x="0.0" y="0.0" width="402" height="605"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="605"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="1Z9-0a-4Fh">
-                                <rect key="frame" x="0.0" y="0.0" width="402" height="605"/>
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="605"/>
                                 <view key="contentView" id="BoV-R7-pjT">
-                                    <rect key="frame" x="0.0" y="0.0" width="402" height="605"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="605"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <color key="fillColor" name="Body"/>
                             </box>
                             <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43I-sd-2AK">
-                                <rect key="frame" x="0.0" y="0.0" width="402" height="605"/>
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="605"/>
                                 <clipView key="contentView" drawsBackground="NO" id="SVt-j8-5dV">
-                                    <rect key="frame" x="1" y="1" width="400" height="603"/>
+                                    <rect key="frame" x="1" y="1" width="448" height="603"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView selectable="YES" id="vC5-Tp-tqG">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="158"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="448" height="158"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="q4e-ka-DwX">
                                                 <size key="itemSize" width="50" height="50"/>
@@ -1951,6 +1951,9 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </clipView>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="450" id="Zkp-HV-rMw"/>
+                                </constraints>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="ebP-2Z-5E0">
                                     <rect key="frame" x="1" y="144" width="233" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
@@ -1961,7 +1964,7 @@
                                 </scroller>
                             </scrollView>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yQO-k6-xal">
-                                <rect key="frame" x="141" y="294" width="121" height="18"/>
+                                <rect key="frame" x="165" y="294" width="121" height="18"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="No threads found" id="5ft-7S-C0k">
                                     <font key="font" size="15" name="Roboto-Medium"/>
                                     <color key="textColor" name="Text"/>
@@ -1969,7 +1972,7 @@
                                 </textFieldCell>
                             </textField>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="OoJ-Iu-jIH" customClass="ThreadsListShimmeringView" customModule="Sphinx" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="402" height="605"/>
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="605"/>
                             </customView>
                         </subviews>
                         <constraints>
@@ -1985,8 +1988,10 @@
                             <constraint firstAttribute="bottom" secondItem="43I-sd-2AK" secondAttribute="bottom" id="dxU-TA-PUL"/>
                             <constraint firstItem="yQO-k6-xal" firstAttribute="centerX" secondItem="8px-8u-38G" secondAttribute="centerX" id="emr-xg-2io"/>
                             <constraint firstAttribute="trailing" secondItem="OoJ-Iu-jIH" secondAttribute="trailing" id="mDc-uZ-DIf"/>
+                            <constraint firstAttribute="trailing" secondItem="43I-sd-2AK" secondAttribute="trailing" id="mTB-qE-lXy"/>
                             <constraint firstItem="OoJ-Iu-jIH" firstAttribute="top" secondItem="8px-8u-38G" secondAttribute="top" id="raB-8x-d7T"/>
                             <constraint firstItem="yQO-k6-xal" firstAttribute="centerY" secondItem="8px-8u-38G" secondAttribute="centerY" id="tLP-Uz-Ioe"/>
+                            <constraint firstItem="43I-sd-2AK" firstAttribute="leading" secondItem="8px-8u-38G" secondAttribute="leading" id="w0E-HU-xBR"/>
                         </constraints>
                     </view>
                     <connections>

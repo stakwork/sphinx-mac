@@ -24,6 +24,7 @@ protocol ChatBottomViewDelegate : AnyObject {
     func didTapDownArrow() -> Bool
     func didSelectSendPaymentMacro()
     func didSelectReceivePaymentMacro()
+    func shouldCreateCall(mode: VideoCallHelper.CallMode)
     
     ///UI
     func isChatAtBottom() -> Bool

@@ -158,7 +158,7 @@ extension ChatMessageFieldView {
                 displayText: "start.audio.call".localized,
                 icon: "call",
                 action: {
-//                    self.shouldCreateCall(mode: .Audio)
+                    self.delegate?.shouldCreateCall(mode: .Audio)
                 }
             ),
             MentionOrMacroItem(
@@ -166,7 +166,7 @@ extension ChatMessageFieldView {
                 displayText: "start.video.call".localized,
                 icon: "video_call",
                 action: {
-//                    self.shouldCreateCall(mode: .All)
+                    self.delegate?.shouldCreateCall(mode: .All)
                 }
             ),
             MentionOrMacroItem(
@@ -182,7 +182,7 @@ extension ChatMessageFieldView {
                 displayText: "record.voice".localized,
                 icon: "mic",
                 action: {
-//                    self.micButtonClicked(self)
+                    self.micButtonClicked(self)
                 }
             )
         ]
