@@ -508,3 +508,13 @@
 "more-replies" = "more replies";
 "thread-chat" = "Thread";
 "threads-list" = "Threads List";
+
+//TIME
+"time.in-the-future" = "sa hinaharap";
+"time.moments-ago" = "sandaling nakaraan";
+"time.a-minute-ago" = "minutong nakaraan";
+"time.minutes-ago" = "%d minutong nakaraan";
+"time.an-hour-ago" = "isang oras na nakaraan";
+"time.hours-ago" = "%d na oras na nakaraan";
+"time.yesterday" = "kahapon";
+"time.days-ago" = "%d araw na nakaraan";

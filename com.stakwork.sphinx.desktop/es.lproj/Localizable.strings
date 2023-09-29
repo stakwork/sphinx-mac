@@ -510,3 +510,13 @@
 "more-replies" = "respuestas más";
 "thread-chat" = "Hilo";
 "threads-list" = "Lista de Hilos";
+
+//TIME
+"time.in-the-future" = "en el futuro";
+"time.moments-ago" = "momentos atras";
+"time.a-minute-ago" = "un minuto atras";
+"time.minutes-ago" = "%d minutos atras";
+"time.an-hour-ago" = "una hora atras";
+"time.hours-ago" = "%d horas atras";
+"time.yesterday" = "ayer";
+"time.days-ago" = "%d días atras";
