@@ -58,7 +58,7 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
         inviteIconLabel.isHidden = true
         invitePriceContainer.isHidden = true
         
-        inviteImageView.contentTintColor = NSColor.white
+        inviteImageView.contentTintColor = NSColor.Sphinx.Text
         inviteImageView.image = NSImage(named: "inviteQrCode")
         inviteImageView.isHidden = true
     }
