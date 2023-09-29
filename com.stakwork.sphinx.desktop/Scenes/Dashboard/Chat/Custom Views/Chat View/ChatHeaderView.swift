@@ -110,6 +110,8 @@ class ChatHeaderView: NSView, LoadableNib {
     func configureHeaderBasicInfo() {
         nameLabel.stringValue = getHeaderName()
         callButton.isHidden = false
+        
+        threadsButton.isHidden = chat?.isConversation() ?? true
     }
     
     func configureEncryptionSign() {
