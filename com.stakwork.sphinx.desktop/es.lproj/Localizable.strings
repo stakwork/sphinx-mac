@@ -406,6 +406,7 @@
 "people.message.placeholder" = "Mensaje inicial para ";
 "authorization.succeeded" = "Autorización exitosa. Por favor vuelve a la página web para completar tu pérfil.";
 "authorization.failed" = "Fallo en la autorización";
+"authorization.success" = "Felicitaciones! Has sido autorizado";
 "already.connected" = "Ya estas conectado con esta persona";
 "price.to.meet" = "Precio para conectar: ";
 "popup.authorize-with" = "¿Quieres autorizar a:";

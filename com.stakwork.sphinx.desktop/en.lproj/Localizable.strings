@@ -405,6 +405,7 @@
 "people.message.placeholder" = "Initial message to ";
 "authorization.succeeded" = "Authorization Succeeded. Please go back to the website to complete your profile.";
 "authorization.failed" = "Authorization Failed";
+"authorization.success" = "Success! You’ve been logged in";
 "already.connected" = "You are already connected with this person";
 "price.to.meet" = "Price to meet: ";
 "popup.authorize-with" = "Do you want to authorize with:";

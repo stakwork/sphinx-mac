@@ -403,6 +403,7 @@
 "people.message.placeholder"  = "Paunang mensahe kay ";
 "authorization.succeeded"  = "Nagtagumpay ang Awtorisasyon. Mangyaring bumalik sa website upang kumpletuhin ang iyong profile.";
 "authorization.failed"  = "Nabigong Awtorisasyon";
+"authorization.success" = "Success! You’ve been logged in";
 "already.connected"  = "Naka konekta ka na sa taong ito";
 "price.to.meet"  = "Presyo dapat matugunan: ";
 "popup.authorize-with" = "Gusto mo bang i-authorize ang:";
