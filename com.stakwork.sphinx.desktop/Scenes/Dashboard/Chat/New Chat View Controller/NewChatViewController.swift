@@ -207,10 +207,16 @@ class NewChatViewController: DashboardSplittedViewController {
             delegate: delegate,
             threadUUID: threadID
         )
+        
+        var size = CGSize(width: 800, height: 600)
+        
+        if let currentWindowSize = self.view.window?.frame.size {
+            size = CGSize(width: currentWindowSize.width * 0.9, height: currentWindowSize.height * 0.9)
+        }
       
         WindowsManager.sharedInstance.showNewWindow(
             with: "thread-chat".localized,
-            size: self.view.window?.frame.size ?? CGSize(width: 800, height: 600),
+            size: size,
             centeredIn: self.view.window,
             contentVC: chatVC
         )
