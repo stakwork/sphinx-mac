@@ -116,8 +116,8 @@ class PersonModalView: CommonModalView, LoadableNib {
             let contactKey = authInfo?.jsonBody["owner_contact_key"].string ?? ""
             
             let contactsService = ContactsService()
-            
             UserContactsHelper.createContact(nickname: nickname, pubKey: pubkey, routeHint: routeHint, contactKey: contactKey, callback: { (success) in
+                self.keyExchangeWDT = Timer.scheduledTimer(timeInterval: 30.0, target: self, selector: #selector(self.handleKeyExchangeTimeout), userInfo: nil, repeats: false)
                 NotificationCenter.default.addObserver(self, selector: #selector(self.handleKeyExchangeCompletion), name: Notification.Name.didReceiveContactKeyExchange, object: nil)
                 if success {
                     return
