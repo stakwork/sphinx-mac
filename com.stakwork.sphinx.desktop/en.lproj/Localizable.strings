@@ -408,6 +408,7 @@
 "price.to.meet" = "Price to meet: ";
 "popup.authorize-with" = "Do you want to authorize with:";
 "popup.redeem-sats" = "Redeem %d sats from:";
+"authorization.login" = "You’ve been logged in successfully";
 
 "people.save-profile" = "Save Profile from:";
 "people.delete-profile" = "Delete Profile from:";
