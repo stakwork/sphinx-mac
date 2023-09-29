@@ -591,6 +591,9 @@ class ChatHelper {
         let kTopMargin: CGFloat = 44.0
         let kBottomMargin: CGFloat = 52.0
         
+        let kTextWidth: CGFloat = 376
+        let kTextMaxHeight: CGFloat = 40
+        
         var textHeight: CGFloat = 0
         var viewsHeight: CGFloat = 0.0
         
@@ -599,7 +602,8 @@ class ChatHelper {
             if originalThreadMessage.text.isNotEmpty {
                 textHeight = getThreadListTextMessageHeightFor(
                     originalThreadMessage.text,
-                    width: 376
+                    width: kTextWidth,
+                    maxHeight: kTextMaxHeight
                 )
             }
         }
@@ -869,7 +873,8 @@ class ChatHelper {
     
     public static func getThreadListTextMessageHeightFor(
         _ text: String?,
-        width: CGFloat
+        width: CGFloat,
+        maxHeight: CGFloat
     ) -> CGFloat {
         var textHeight: CGFloat = 0.0
         
@@ -882,7 +887,7 @@ class ChatHelper {
             )
         }
         
-        return textHeight
+        return min(textHeight, maxHeight)
     }
     
     public static func getAdditionalViewsHeightFor(
