@@ -118,6 +118,7 @@ class PersonModalView: CommonModalView, LoadableNib {
             let contactsService = ContactsService()
             
             UserContactsHelper.createContact(nickname: nickname, pubKey: pubkey, routeHint: routeHint, contactKey: contactKey, callback: { (success) in
+                NotificationCenter.default.addObserver(self, selector: #selector(self.handleKeyExchangeCompletion), name: Notification.Name.didReceiveContactKeyExchange, object: nil)
                 if success {
                     return
                 }
