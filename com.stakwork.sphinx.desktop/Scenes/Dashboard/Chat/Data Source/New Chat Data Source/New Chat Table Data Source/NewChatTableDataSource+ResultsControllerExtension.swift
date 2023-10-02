@@ -248,7 +248,11 @@ extension NewChatTableDataSource {
         messageTableCellStateArray = array
         
         updateSnapshot()
-        delegate?.configureNewMessagesIndicatorWith(newMsgCount: newMsgCount)
+        
+        delegate?.configureNewMessagesIndicatorWith(
+            newMsgCount: newMsgCount
+        )
+        
         preloadDataForItems()
         
 //        finishSearchProcess()
@@ -295,6 +299,13 @@ extension NewChatTableDataSource {
         processMessages(messages: messagesArray)
     }
     
+    func getMessagesCount() -> Int {
+        return (messageTableCellStateArray.filter {
+            var mutableState = $0
+            return mutableState.isMessageRow
+        }).count
+    }
+    
     func getNewMessageCountFor(
         message: TransactionMessage,
         and owner: UserContact
@@ -307,6 +318,24 @@ extension NewChatTableDataSource {
             return 1
         }
         return 0
+    }
+    
+    func getNewMessageCountFor(
+        message: TransactionMessage,
+        and owner: UserContact,
+        threadMessages: [TransactionMessage]
+    ) -> Int {
+        var newMsgsCount = 0
+        
+        if threadMessages.isEmpty {
+            newMsgsCount = getNewMessageCountFor(message: message, and: owner)
+        } else {
+            for msg in threadMessages {
+                newMsgsCount += getNewMessageCountFor(message: msg, and: owner)
+            }
+        }
+        
+        return newMsgsCount
     }
     
     func getBubbleBackgroundForMessage(

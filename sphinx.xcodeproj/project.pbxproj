@@ -236,6 +236,8 @@
 		474567FD251507F500D66268 /* FileSentCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474567FB251507F500D66268 /* FileSentCollectionViewItem.swift */; };
 		474567FE251507F500D66268 /* FileSentCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 474567FC251507F500D66268 /* FileSentCollectionViewItem.xib */; };
 		474568002515148A00D66268 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474567FF2515148A00D66268 /* URL.swift */; };
+		47469D5B2ACB6012004F0490 /* NewMessagesIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47469D5A2ACB6012004F0490 /* NewMessagesIndicatorView.swift */; };
+		47469D5D2ACB6019004F0490 /* NewMessagesIndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47469D5C2ACB6019004F0490 /* NewMessagesIndicatorView.xib */; };
 		474A66812497C4C1002C2D10 /* CommonReplyCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474A66802497C4C1002C2D10 /* CommonReplyCollectionViewItem.swift */; };
 		474A66842497CAFE002C2D10 /* MessageReplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474A66832497CAFE002C2D10 /* MessageReplyView.swift */; };
 		474A66862497CB0A002C2D10 /* MessageReplyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 474A66852497CB0A002C2D10 /* MessageReplyView.xib */; };
@@ -1010,6 +1012,8 @@
 		474567FB251507F500D66268 /* FileSentCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSentCollectionViewItem.swift; sourceTree = "<group>"; };
 		474567FC251507F500D66268 /* FileSentCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileSentCollectionViewItem.xib; sourceTree = "<group>"; };
 		474567FF2515148A00D66268 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		47469D5A2ACB6012004F0490 /* NewMessagesIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessagesIndicatorView.swift; sourceTree = "<group>"; };
+		47469D5C2ACB6019004F0490 /* NewMessagesIndicatorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewMessagesIndicatorView.xib; sourceTree = "<group>"; };
 		474A667F2497BBEF002C2D10 /* com_stakwork_sphinx_desktop 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "com_stakwork_sphinx_desktop 4.xcdatamodel"; sourceTree = "<group>"; };
 		474A66802497C4C1002C2D10 /* CommonReplyCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonReplyCollectionViewItem.swift; sourceTree = "<group>"; };
 		474A66832497CAFE002C2D10 /* MessageReplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageReplyView.swift; sourceTree = "<group>"; };
@@ -2879,6 +2883,8 @@
 				477ADCD32A1E5A7E004E74CE /* PinMessageBarView.swift */,
 				477ADCD52A1E5A85004E74CE /* PinMessageBarView.xib */,
 				4708C1FA2A55A31700274AD4 /* ChatsSegmentedControl.swift */,
+				47469D5A2ACB6012004F0490 /* NewMessagesIndicatorView.swift */,
+				47469D5C2ACB6019004F0490 /* NewMessagesIndicatorView.xib */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -3974,6 +3980,7 @@
 				474567F22513A03D00D66268 /* MessageWebViewReceivedCollectionViewItem.xib in Resources */,
 				47BDEDE924F46585001688F3 /* Profile.storyboard in Resources */,
 				4731BE1B2485303600BCCA9E /* DirectPaymentReceivedCollectionViewItem.xib in Resources */,
+				47469D5D2ACB6019004F0490 /* NewMessagesIndicatorView.xib in Resources */,
 				476A6C42282C2F2000CA213D /* TribeMemberPopupView.xib in Resources */,
 				470396F125372994007F9C23 /* PodcastEpisodeCollectionViewItem.xib in Resources */,
 				47E7713F2472F0BA00C9CFEB /* EmptyChatCollectionViewItem.xib in Resources */,
@@ -4412,6 +4419,7 @@
 				479A03FC258814240093DB30 /* DeepLinksHandlerHelper.swift in Sources */,
 				47C1D60E248EB4E800718B28 /* GroupAddedContactsDataSource.swift in Sources */,
 				CE1FA8FC2A01B4030014360C /* LsatListViewModel.swift in Sources */,
+				47469D5B2ACB6012004F0490 /* NewMessagesIndicatorView.swift in Sources */,
 				47C1F1D6248130F900A71610 /* VideoReceivedCollectionViewItem.swift in Sources */,
 				475B684329915E12000EF29C /* PodcastFeed+FetchUtils.swift in Sources */,
 				47A93EF925DD7C4B0030DF14 /* NSImageView.swift in Sources */,

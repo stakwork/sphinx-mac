@@ -39,12 +39,18 @@ extension NewChatTableDataSource: NSCollectionViewDelegate {
     func scrollViewDidScroll() {
         MessageOptionsHelper.sharedInstance.hideMenu()
         
-//        if let scrollViewDesiredOffset = scrollViewDesiredOffset {
-//            if scrollViewDesiredOffset == collectionViewScroll.documentYOffset {
+        if let scrollViewDesiredOffset = scrollViewDesiredOffset {
+            if scrollViewDesiredOffset == collectionViewScroll.documentYOffset {
                 shimmeringView.toggle(show: false)
                 collectionView.alphaValue = 1.0
-//            }
-//        }
+            }
+        }
+        
+        if (collectionView.getDistanceToBottom() < 20) {
+            didScrollToBottom()
+        } else {
+            didScrollOutOfBottomArea()
+        }
         
 //        let difference: CGFloat = 16
 //        let scrolledToTop = tableView.contentOffset.y > tableView.contentSize.height - tableView.frame.size.height - difference
@@ -95,5 +101,9 @@ extension NewChatTableDataSource: NSCollectionViewDelegate {
 //            guard let self = self else { return }
 //            self.configureResultsController(items: self.messagesCount + 50)
 //        })
+    }
+    
+    @objc func shouldHideNewMsgsIndicator() -> Bool {
+        return collectionView.getDistanceToBottom() < 20 || collectionView.alphaValue == 0
     }
 }

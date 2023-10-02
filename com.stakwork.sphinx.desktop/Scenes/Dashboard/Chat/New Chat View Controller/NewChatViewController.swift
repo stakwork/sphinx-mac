@@ -30,6 +30,8 @@ class NewChatViewController: DashboardSplittedViewController {
     @IBOutlet weak var pinMessageDetailView: PinMessageDetailView!
     @IBOutlet weak var pinMessageNotificationView: PinNotificationView!
     
+    @IBOutlet weak var newMsgsIndicatorView: NewMessagesIndicatorView!
+    
     var mediaFullScreenView: MediaFullScreenView? = nil
     
     var newChatViewModel: NewChatViewModel!
@@ -124,8 +126,6 @@ class NewChatViewController: DashboardSplittedViewController {
     
     func resetVC() {
         stopPlayingClip()
-        
-        chat?.setChatMessagesAsSeen()
     }
     
     func stopPlayingClip() {
@@ -192,9 +192,6 @@ class NewChatViewController: DashboardSplittedViewController {
     
     func setupChatData() {
         processChatAliases()
-        
-        chat?.setChatMessagesAsSeen()
-        
         showPendingApprovalMessage()
     }
     

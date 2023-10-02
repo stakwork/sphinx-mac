@@ -95,6 +95,8 @@ extension NSColor {
         public static let ThreadOriginalMsg = color("ThreadOriginalMsg")
         public static let ThreadLastReply = color("ThreadLastReply")
         
+        public static let NewMessageIndicator = color("NewMessageIndicator")
+        
         private static func color(_ name: String) -> NSColor {
             return NSColor(named: NSColor.Name(name)) ?? NSColor.magenta
         }

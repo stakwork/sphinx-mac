@@ -365,3 +365,9 @@ extension NewChatViewController : ActionsDelegate {
     
     func shouldReloadMuteState() {}
 }
+
+extension NewChatViewController : NewMessagesIndicatorViewDelegate {
+    func didTouchButton() {
+        chatCollectionView.scrollToBottom()
+    }
+}

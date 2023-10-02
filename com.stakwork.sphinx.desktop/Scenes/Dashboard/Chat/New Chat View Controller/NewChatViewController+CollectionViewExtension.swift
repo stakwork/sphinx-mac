@@ -72,10 +72,36 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
         setupThreadHeaderView()
     }
     
-    func configureNewMessagesIndicatorWith(newMsgCount: Int) {}
+    func configureNewMessagesIndicatorWith(newMsgCount: Int) {
+        DispatchQueue.main.async {
+            self.newMsgsIndicatorView.configureWith(
+                newMessagesCount: newMsgCount,
+                hidden: self.chatTableDataSource?.shouldHideNewMsgsIndicator() ?? true,
+                andDelegate: self
+            )
+        }
+    }
     
-    func didScrollToBottom() {}
-    func didScrollOutOfBottomArea() {}
+    func didScrollToBottom() {
+        self.configureNewMessagesIndicatorWith(
+            newMsgCount: 0
+        )
+        
+        if isThread {
+            return
+        }
+        
+        DelayPerformedHelper.performAfterDelay(seconds: 0.5, completion: {
+            self.chat?.setChatMessagesAsSeen()
+        })
+    }
+    
+    func didScrollOutOfBottomArea() {
+        newMsgsIndicatorView.configureWith(
+            newMessagesCount: isThread ? (chatTableDataSource?.getMessagesCount() ?? 0) : nil,
+            hidden: chatTableDataSource?.shouldHideNewMsgsIndicator() ?? true
+        )
+    }
     
     func shouldGoToMediaFullScreenFor(messageId: Int) {
         if let message = TransactionMessage.getMessageWith(id: messageId) {
