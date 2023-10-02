@@ -491,6 +491,8 @@ extension DashboardViewController : DashboardVCDelegate {
             detailViewController.resetVC()
             
             self.removeChildVC(child: detailViewController)
+            
+            newDetailViewController = nil
         }
         
         let chat = chatId != nil ? Chat.getChatWith(id: chatId!) : nil

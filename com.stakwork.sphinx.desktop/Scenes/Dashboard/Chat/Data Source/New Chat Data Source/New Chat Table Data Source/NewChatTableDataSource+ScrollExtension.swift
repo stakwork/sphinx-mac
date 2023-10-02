@@ -51,19 +51,6 @@ extension NewChatTableDataSource: NSCollectionViewDelegate {
         } else {
             didScrollOutOfBottomArea()
         }
-        
-//        let difference: CGFloat = 16
-//        let scrolledToTop = tableView.contentOffset.y > tableView.contentSize.height - tableView.frame.size.height - difference
-//        let scrolledToBottom = tableView.contentOffset.y < -10
-//        let didMoveOutOfBottomArea = tableView.contentOffset.y > -10
-//
-//        if scrolledToTop {
-//            didScrollToTop()
-//        } else if scrolledToBottom {
-//            didScrollToBottom()
-//        } else if didMoveOutOfBottomArea {
-//            didScrollOutOfBottomArea()
-//        }
     }
     
     func scrollViewShouldScrollToTop(_ scrollView: NSScrollView) -> Bool {

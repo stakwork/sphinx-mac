@@ -58,12 +58,18 @@ class ThreadTableDataSource : NewChatTableDataSource {
         ///Nothing to do
     }
 
-//    override func saveSnapshotCurrentState() {
-//    }
+    override func saveSnapshotCurrentState() {
+        ///Nothing to do
+    }
     
-//    override func restoreScrollLastPosition() {
-//
-//    }
+    override func restoreScrollLastPosition() {
+        let collectionViewContentSize = collectionView.collectionViewLayout?.collectionViewContentSize.height ?? 0
+        let offset = collectionViewContentSize - collectionViewScroll.frame.height + collectionViewScroll.contentInsets.top
+        scrollViewDesiredOffset = offset
+        collectionViewScroll.documentYOffset = offset
+        
+        delegate?.didScrollToBottom()
+    }
     
     override func makeCellProvider(
         for collectionView: NSCollectionView

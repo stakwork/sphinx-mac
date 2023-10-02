@@ -743,4 +743,9 @@ extension NewChatTableDataSource : NSFetchedResultsControllerDelegate {
             }
         }
     }
+    
+    func resetFetchedResultsControllers() {
+        additionMessagesResultsController = nil
+        messagesResultsController = nil
+    }
 }

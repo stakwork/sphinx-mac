@@ -13,29 +13,6 @@ extension ThreadTableDataSource {
         dataSourceItem: MessageTableCellState,
         indexPath: IndexPath
     ) -> NSCollectionViewItem {
-
-//        if dataSourceItem.isThreadHeaderMessage {
-//            let cell = tableView.dequeueReusableCell(
-//                withIdentifier: "ThreadHeaderTableViewCell",
-//                for: indexPath
-//            ) as! ThreadHeaderTableViewCell
-//
-//            let mediaData = (dataSourceItem.messageId != nil) ? self.mediaCached[dataSourceItem.messageId!] : nil
-//
-//            cell.configureWith(
-//                messageCellState: dataSourceItem,
-//                mediaData: mediaData,
-//                isHeaderExpanded: self.isHeaderExpanded,
-//                delegate: self,
-//                indexPath: indexPath,
-//                headerDifference: headerDifference
-//            )
-//
-//            cell.contentView.transform = CGAffineTransform(scaleX: 1, y: -1)
-//
-//            return cell
-//        }
-        
         return super.getCellFor(
             dataSourceItem: dataSourceItem,
             indexPath: indexPath
@@ -74,19 +51,6 @@ extension ThreadTableDataSource {
         var invoiceData: (Int, Int) = (0, 0)
         
         chat.processAliasesFrom(messages: messages)
-        
-//        if let threadOriginalMessage = threadOriginalMessage {
-//            array.append(
-//                MessageTableCellState(
-//                    message: threadOriginalMessage,
-//                    chat: chat,
-//                    owner: owner,
-//                    contact: contact,
-//                    tribeAdmin: admin,
-//                    isThreadHeaderMessage: true
-//                )
-//            )
-//        }
 
         for (index, message) in messages.enumerated() {
             

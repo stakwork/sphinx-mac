@@ -309,6 +309,7 @@ class ChildVCContainer: NSView, LoadableNib {
             childVC.removeFromParent()
             self.childVC = nil
         }
+        parentVC = nil
     }
 
     @IBAction func optionButtonClicked(_ sender: Any) {

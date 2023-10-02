@@ -48,6 +48,11 @@ extension NewChatViewController: NSFetchedResultsControllerDelegate {
             } catch {}
         }
     }
+    
+    func resetFetchedResultsControllers() {
+        contactResultsController = nil
+        chatResultsController = nil
+    }
 
     func controller(
         _ controller: NSFetchedResultsController<NSFetchRequestResult>,

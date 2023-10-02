@@ -53,8 +53,10 @@ extension NewChatViewController : ChatHeaderViewDelegate {
         } else {
             chatViewModel.toggleVolumeOn(
                 chat: chat,
-                completion: { chat in
+                completion: {[weak self] chat in
                     if let chat = chat, chat.isMuted(){
+                        guard let self = self else { return }
+                        
                         self.messageBubbleHelper.showGenericMessageView(
                             text: "chat.muted.message".localized,
                             in: self.view,

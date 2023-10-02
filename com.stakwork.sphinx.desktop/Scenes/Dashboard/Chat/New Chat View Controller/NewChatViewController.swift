@@ -126,6 +126,15 @@ class NewChatViewController: DashboardSplittedViewController {
     
     func resetVC() {
         stopPlayingClip()
+        resetFetchedResultsControllers()
+        
+        if let podcastPlayerVC = podcastPlayerVC {
+            self.removeChildVC(child: podcastPlayerVC)
+        }
+        
+        childViewControllerContainer.removeChildVC()
+        
+        chatTableDataSource?.stopListeningToResultsController()
     }
     
     func stopPlayingClip() {
