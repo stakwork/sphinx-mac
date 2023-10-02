@@ -145,6 +145,9 @@
 "nickname.address.required"  = "Kinakailangan ang Palayaw at Address.";
 "invalid.pubkey"  = "Di-wastong pampublikong Susi";
 "new.contact.error.alreadyExists" = "Ang isang contact na may public key na ito ay nag e-exists  sa iyong Address Book.";
+"delete.contact" = "Tanggalin ang Kontakto";
+"delete.contact.warning" = "Sigurado ka bang nais mong tanggalin ang kontakto na ito?";
+
 
 //INVITE
 "add.people"  = "Magdagdag ng mga Tao";
