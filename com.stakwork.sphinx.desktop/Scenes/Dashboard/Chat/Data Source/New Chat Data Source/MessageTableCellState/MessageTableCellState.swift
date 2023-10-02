@@ -926,7 +926,8 @@ extension MessageTableCellState : Hashable {
             mutableLhs.boostMessages.count    == mutableRhs.boostMessages.count &&
             mutableLhs.isTextOnlyMessage      == mutableRhs.isTextOnlyMessage &&
             mutableLhs.separatorDate          == mutableRhs.separatorDate &&
-            mutableLhs.paidContent?.status    == mutableRhs.paidContent?.status
+            mutableLhs.paidContent?.status    == mutableRhs.paidContent?.status &&
+            mutableLhs.threadMessages.count   == mutableRhs.threadMessages.count
     }
 
     func hash(into hasher: inout Hasher) {
@@ -934,6 +935,10 @@ extension MessageTableCellState : Hashable {
         hasher.combine(self.messageType)
         hasher.combine(self.messageStatus)
         hasher.combine(self.separatorDate)
+        hasher.combine(self.bubbleState)
+        hasher.combine(self.messageString)
+        hasher.combine(self.boostMessages.count)
+        hasher.combine(self.threadMessages.count)
     }
     
     func getUniqueIdentifier() -> Int {
