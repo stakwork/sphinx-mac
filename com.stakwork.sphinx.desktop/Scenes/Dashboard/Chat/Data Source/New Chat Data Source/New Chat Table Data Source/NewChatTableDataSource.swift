@@ -105,7 +105,6 @@ class NewChatTableDataSource : NSObject {
     var loadingMoreItems = false
     var scrolledAtBottom = false
     var scrollViewDesiredOffset: CGFloat? = nil
-    var distanceFromBottom: CGFloat? = nil
     var isPreload = true
     
     ///WebView Loading

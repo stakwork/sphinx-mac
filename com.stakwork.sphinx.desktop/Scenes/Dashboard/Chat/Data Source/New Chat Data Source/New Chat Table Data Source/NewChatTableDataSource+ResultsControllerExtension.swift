@@ -34,7 +34,7 @@ extension NewChatTableDataSource {
         
         DelayPerformedHelper.performAfterDelay(seconds: 0.1, completion: { [weak self] in
             guard let self = self else { return }
-            self.configureResultsController(items: max(self.dataSource.snapshot().numberOfItems, 500))
+            self.configureResultsController(items: max(self.dataSource.snapshot().numberOfItems, 100))
         })
     }
     
@@ -62,10 +62,17 @@ extension NewChatTableDataSource {
         }
     }
     
+    func updatePreloadedSnapshot() {
+        let snapshot = makeSnapshotForCurrentState()
+        self.dataSource.apply(snapshot, animatingDifferences: false)
+    }
+    
     func getCellFor(
         dataSourceItem: MessageTableCellState,
         indexPath: IndexPath
     ) -> NSCollectionViewItem {
+        print("RELOAD ITEM: \(indexPath.item)")
+        
         var cell: ChatCollectionViewItemProtocol? = nil
         var mutableDataSourceItem = dataSourceItem
 

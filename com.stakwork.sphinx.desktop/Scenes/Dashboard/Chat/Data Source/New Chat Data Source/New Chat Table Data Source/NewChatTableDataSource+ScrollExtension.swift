@@ -34,33 +34,17 @@ extension NewChatTableDataSource: NSCollectionViewDelegate {
         ) { [weak self] (n: Notification) in
             self?.scrollViewDidScroll()
         }
-        
-//        NotificationCenter.default.addObserver(
-//            forName: NSScrollView.willStartLiveScrollNotification,
-//            object: scrollView,
-//            queue: OperationQueue.main
-//        ) { [weak self] (n: Notification) in
-//            self?.isScrolling = true
-//        }
-//        
-//        NotificationCenter.default.addObserver(
-//            forName: NSScrollView.didEndLiveScrollNotification,
-//            object: scrollView,
-//            queue: OperationQueue.main
-//        ) { [weak self] (n: Notification) in
-//            self?.isScrolling = false
-//        }
     }
     
     func scrollViewDidScroll() {
         MessageOptionsHelper.sharedInstance.hideMenu()
         
-        if let scrollViewDesiredOffset = scrollViewDesiredOffset {
-            if scrollViewDesiredOffset == collectionViewScroll.documentYOffset {
+//        if let scrollViewDesiredOffset = scrollViewDesiredOffset {
+//            if scrollViewDesiredOffset == collectionViewScroll.documentYOffset {
                 shimmeringView.toggle(show: false)
                 collectionView.alphaValue = 1.0
-            }
-        }
+//            }
+//        }
         
 //        let difference: CGFloat = 16
 //        let scrolledToTop = tableView.contentOffset.y > tableView.contentSize.height - tableView.frame.size.height - difference

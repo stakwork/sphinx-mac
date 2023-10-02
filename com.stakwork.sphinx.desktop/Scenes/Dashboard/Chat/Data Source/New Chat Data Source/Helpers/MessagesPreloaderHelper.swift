@@ -18,32 +18,20 @@ class MessagesPreloaderHelper {
     }
     
     struct ScrollState {
-        var bottomFirstVisibleRow: Int
-        var bottomFirstVisibleRowOffset: CGFloat
-        var bottomFirstVisibleRowUniqueID: Int?
-        var numberOfItems: Int
-        var shouldAdjustScroll: Bool
-        var shouldPreventSetMessagesAsSeen: Bool
+        var firstRowId: Int
+        var difference: CGFloat
         
         init(
-            bottomFirstVisibleRow: Int,
-            bottomFirstVisibleRowOffset: CGFloat,
-            bottomFirstVisibleRowUniqueID: Int?,
-            numberOfItems: Int,
-            shouldAdjustScroll: Bool,
-            shouldPreventSetMessagesAsSeen: Bool
+            firstRowId: Int,
+            difference: CGFloat
         ) {
-            self.bottomFirstVisibleRow = bottomFirstVisibleRow
-            self.bottomFirstVisibleRowOffset = bottomFirstVisibleRowOffset
-            self.bottomFirstVisibleRowUniqueID = bottomFirstVisibleRowUniqueID
-            self.numberOfItems = numberOfItems
-            self.shouldAdjustScroll = shouldAdjustScroll
-            self.shouldPreventSetMessagesAsSeen = shouldPreventSetMessagesAsSeen
+            self.firstRowId = firstRowId
+            self.difference = difference
         }
     }
     
     var chatMessages: [Int: [MessageTableCellState]] = [:]
-    var chatLastPositions: [Int: ScrollState] = [:]
+    var chatScrollState: [Int: ScrollState] = [:]
     
     var tribesData: [String: MessageTableCellState.TribeData] = [:]
     var linksData: [String: MessageTableCellState.LinkData] = [:]
@@ -67,45 +55,21 @@ class MessagesPreloaderHelper {
     }
     
     func save(
-        bottomFirstVisibleRow: Int,
-        bottomFirstVisibleRowOffset: CGFloat,
-        bottomFirstVisibleRowUniqueID: Int?,
-        numberOfItems: Int,
+        firstRowId: Int,
+        difference: CGFloat,
         for chatId: Int
     ) {
-        self.chatLastPositions[chatId] = ScrollState(
-            bottomFirstVisibleRow: bottomFirstVisibleRow,
-            bottomFirstVisibleRowOffset: bottomFirstVisibleRowOffset,
-            bottomFirstVisibleRowUniqueID: bottomFirstVisibleRowUniqueID,
-            numberOfItems: numberOfItems,
-            shouldAdjustScroll: true,
-            shouldPreventSetMessagesAsSeen: true
+        self.chatScrollState[chatId] = ScrollState(
+            firstRowId: firstRowId,
+            difference: difference
         )
     }
     
     func getScrollState(
-        for chatId: Int,
-        with newItemIdentifiers: [MessageTableCellState]
+        for chatId: Int
     ) -> ScrollState? {
-        
-        if let scrollState = chatLastPositions[chatId] {
-            
-            if let firstItemBeforeUpdate = scrollState.bottomFirstVisibleRowUniqueID {
-                
-                let itemUniqueIdentifiers = newItemIdentifiers.map({ $0.getUniqueIdentifier() })
-                let difference = itemUniqueIdentifiers.firstIndex(of: firstItemBeforeUpdate) ?? 0
-                let destinationRow = scrollState.bottomFirstVisibleRow + difference
-                let shouldAdjustScroll = destinationRow > 1 || (destinationRow > 0 && scrollState.bottomFirstVisibleRowOffset > 0)
-                
-                return ScrollState(
-                    bottomFirstVisibleRow: destinationRow,
-                    bottomFirstVisibleRowOffset: scrollState.bottomFirstVisibleRowOffset,
-                    bottomFirstVisibleRowUniqueID: scrollState.bottomFirstVisibleRowUniqueID,
-                    numberOfItems: scrollState.numberOfItems,
-                    shouldAdjustScroll: shouldAdjustScroll,
-                    shouldPreventSetMessagesAsSeen: scrollState.numberOfItems == newItemIdentifiers.count
-                )
-            }
+        if let scrollState = chatScrollState[chatId] {
+            return scrollState
         }
         return nil
     }

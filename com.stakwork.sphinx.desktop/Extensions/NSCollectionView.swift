@@ -62,6 +62,19 @@ extension NSCollectionView {
         return difference == 0
     }
     
+    func getOffsetY() -> CGFloat {
+        let y = (enclosingScrollView?.contentView.bounds.origin.y ?? 0)
+        return y
+    }
+    
+    func getDistanceToBottom() -> CGFloat {
+        let y = (enclosingScrollView?.contentView.bounds.origin.y ?? 0)
+        let contentHeight = (bounds.height - (enclosingScrollView?.frame.size.height ?? 0)) + (enclosingScrollView?.contentInsets.bottom ?? 0)
+        let difference = contentHeight - y
+        
+        return difference
+    }
+    
     func shouldScrollToBottom() -> Bool {
         let y = (enclosingScrollView?.contentView.bounds.origin.y ?? 0)
         let contentHeight = (bounds.height - (enclosingScrollView?.frame.size.height ?? 0)) + (enclosingScrollView?.contentInsets.bottom ?? 0)

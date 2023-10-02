@@ -54,7 +54,7 @@ extension NewChatTableDataSource {
         
         if let messagesStateArray = preloaderHelper.getMessageStateArray(for: chat.id) {
             messageTableCellStateArray = messagesStateArray
-            updateSnapshot()
+            updatePreloadedSnapshot()
         }
     }
     
@@ -74,96 +74,68 @@ extension NewChatTableDataSource {
     }
     
     @objc func saveSnapshotCurrentState() {
-//        guard let chat = chat else {
-//            return
-//        }
-//
-//        if let firstVisibleRow = collectionView.indexPathsForVisibleItems().sorted().first {
-//
-//            let cellRectInTable = collectionView.rectForRow(at: firstVisibleRow)
-//            let cellOffset = tableView.convert(cellRectInTable.origin, to: bottomView)
-//
-//            preloaderHelper.save(
-//                bottomFirstVisibleRow: firstVisibleRow.row,
-//                bottomFirstVisibleRowOffset: cellOffset.y,
-//                bottomFirstVisibleRowUniqueID: dataSource.snapshot().itemIdentifiers.first?.getUniqueIdentifier(),
-//                numberOfItems: preloaderHelper.getPreloadedMessagesCount(for: chat.id),
-//                for: chat.id
-//            )
-//        }
-//
+        saveScrollPosition()
         saveMessagesToPreloader()
-        saveDistanceFromBottom()
     }
     
     @objc func restoreScrollLastPosition() {
-        if let distanceFromBottom = distanceFromBottom {
-            let collectionViewContentSize = collectionView.collectionViewLayout?.collectionViewContentSize.height ?? 0
-            let offset = (collectionViewContentSize - collectionViewScroll.frame.height - distanceFromBottom) - collectionViewScroll.contentInsets.top
-            collectionViewScroll.documentYOffset = offset
+        guard let chatId = chat?.id else { return }
+
+        if let scrollState = self.preloaderHelper.getScrollState(for: chatId) {
+
+            ///Find index of stored first visible item
+            if let index = messageTableCellStateArray.firstIndex(where: { $0.getUniqueIdentifier() == scrollState.firstRowId}) {
+                ///Scroll to stored first visible item
+                collectionView.scrollToItems(at: [IndexPath(item: index, section: 0)], scrollPosition: .top)
+
+                ///Get y position  of first visible item
+                if let collectionViewOffsetY = collectionView.item(at: index)?.view.frame.origin.y {
+
+                    ///Scroll to visible item offset
+                    let newOffset = collectionViewOffsetY + scrollState.difference - collectionViewScroll.contentInsets.top
+                    scrollViewDesiredOffset = newOffset
+                    collectionViewScroll.documentYOffset = newOffset
+
+                    if (index == 0 && scrollState.difference == 0) {
+                        scrollViewDidScroll()
+                    }
+                }
+            }
         } else {
             let collectionViewContentSize = collectionView.collectionViewLayout?.collectionViewContentSize.height ?? 0
-            scrollViewDesiredOffset = collectionViewContentSize - collectionViewScroll.frame.height + collectionViewScroll.contentInsets.top
-            collectionViewScroll.documentYOffset = scrollViewDesiredOffset ?? 0
+            let offset = collectionViewContentSize - collectionViewScroll.frame.height + collectionViewScroll.contentInsets.top
+            scrollViewDesiredOffset = offset
+            collectionViewScroll.documentYOffset = offset
+            
+            delegate?.didScrollToBottom()
         }
-        
-//        guard let chat = chat else {
-//            return
-//        }
-//        
-//        if let scrollState = preloaderHelper.getScrollState(
-//            for: chat.id,
-//            with: dataSource.snapshot().itemIdentifiers
-//        ) {
-//            let row = scrollState.bottomFirstVisibleRow
-//            let offset = scrollState.bottomFirstVisibleRowOffset
-//            
-//            if scrollState.shouldAdjustScroll && !loadingMoreItems {
-//                
-//                if tableView.numberOfRows(inSection: 0) > row {
-//                    
-//                    tableView.scrollToRow(
-//                        at: IndexPath(row: row, section: 0),
-//                        at: .top,
-//                        animated: false
-//                    )
-//                    
-//                    tableView.contentOffset.y = tableView.contentOffset.y + (offset + tableView.contentInset.top)
-//                }
-//            }
-//            
-//            if scrollState.shouldPreventSetMessagesAsSeen {
-//                return
-//            }
-//        }
-//        
-//        if tableView.contentOffset.y <= Constants.kChatTableContentInset {
-//            delegate?.didScrollToBottom()
-//        }
     }
     
-    func getCollectionViewContentSize() -> CGFloat {
-        guard let collectionViewLayout = collectionView.collectionViewLayout else {
-            return CGFloat.zero
-        }
-
-        return collectionViewLayout.collectionViewContentSize.height
-    }
-    
-    func saveDistanceFromBottom() {
-        guard let enclosingScrollView = collectionView.enclosingScrollView else { return }
-        
+    func saveScrollPosition() {
+        guard let _ = collectionView.enclosingScrollView else { return }
         if collectionView.alphaValue == 0 { return }
+        
+        guard let chatId = chat?.id else {
+            return
+        }
+        
+        let collectionViewOffsetY = collectionViewScroll.documentYOffset + collectionViewScroll.contentInsets.top
+        
+        ///Find first visible item
+        if let firstVisibleRow = collectionView.indexPathForItem(at: NSPoint(x: 0, y: collectionViewOffsetY))?.item {
+            ///Find first visible item y position
+            if let firstVisibleRowY = collectionView.item(at: firstVisibleRow)?.view.frame.origin.y {
+                ///Find unique identifier for first visible item
+                let firstRowId = messageTableCellStateArray[firstVisibleRow].getUniqueIdentifier()
                 
-        let contentHeight = getCollectionViewContentSize()
-        
-        if contentHeight == 0 { return }
-        
-        let scrollViewHeight = enclosingScrollView.bounds.height
-        let contentOffsetY = enclosingScrollView.contentView.bounds.origin.y
-        let topInset = enclosingScrollView.contentInsets.top
-        
-        self.distanceFromBottom = contentHeight - (contentOffsetY + scrollViewHeight) - topInset
+                ///Save scroll position based on visible item and offset
+                self.preloaderHelper.save(
+                    firstRowId: firstRowId,
+                    difference: collectionViewOffsetY - firstVisibleRowY,
+                    for: chatId
+                )
+            }
+        }
     }
 
 }
