@@ -9,10 +9,8 @@
 import Cocoa
 
 protocol NewChatListViewControllerDelegate: AnyObject {
-    func didClickRowAt(
-        chatId: Int?,
-        contactId: Int?
-    )
+    func didClickRowAt(chatId: Int?, contactId: Int?)
+    func shouldResetChatView(deletedContactId: Int)
 }
 
 class NewChatListViewController: NSViewController {
@@ -282,7 +280,8 @@ extension NewChatListViewController {
                 cell.render(
                     with: self.chatListObjects[indexPath.item],
                     owner: self.owner,
-                    selected: chatItem.selected
+                    selected: chatItem.selected,
+                    delegate: self
                 )
 
                 return cell
@@ -347,6 +346,9 @@ extension NewChatListViewController {
 
 extension NewChatListViewController : NSCollectionViewDelegate {
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
+        
+        collectionView.deselectAll(nil)
+        
         if let indexPath = indexPaths.first {
             
             if (tab == .Friends) {
@@ -365,6 +367,90 @@ extension NewChatListViewController : NSCollectionViewDelegate {
                     chatId: chat?.id,
                     contactId: contact?.id
                 )
+            })
+        }
+    }
+}
+
+extension NewChatListViewController: ChatListCollectionViewItemDelegate{
+    func didRightClick(contactId: Int) {
+        showContextMenu(contactId: contactId)
+    }
+    
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        if menuItem.action == #selector(handleMenuItemClick(_:)) {
+            /// You can conditionally enable/disable the menu item here
+            return true // Enable the menu item
+        }
+        return true // Disable the menu item by default
+    }
+    
+    func showContextMenu(contactId: Int) {
+        let contextMenu = NSMenu(title: "Context Menu")
+        contextMenu.autoenablesItems = true
+
+        // Create menu items
+        let menuItem1 = NSMenuItem(
+            title: "delete.contact".localized,
+            action: #selector(self.handleMenuItemClick(_:)),
+            keyEquivalent: ""
+        )
+        
+        // Set a unique tag for each menu item (you can use this to identify which item was clicked)
+        menuItem1.target = self
+        menuItem1.tag = contactId
+        menuItem1.isEnabled = true
+
+        // Add menu items to the context menu
+        contextMenu.addItem(menuItem1)
+
+        // Show the context menu at the mouse pointer location
+        contextMenu.popUp(
+            positioning: contextMenu.item(at: 0),
+            at: NSEvent.mouseLocation,
+            in: nil
+        )
+    }
+    
+    @objc func handleMenuItemClick(_ sender: NSMenuItem) {
+        // Handle the menu item click based on its tag
+        initiateDeletion(contactId: sender.tag)
+    }
+    
+    func initiateDeletion(contactId: Int){
+        let confirmDeletionCallback: (() -> ()) = {
+            self.shouldDeleteContact(contactId: contactId)
+        }
+                
+        AlertHelper.showTwoOptionsAlert(
+            title: "warning".localized,
+            message: "delete.contact.warning".localized,
+            confirm: confirmDeletionCallback
+        )
+    }
+    
+    func shouldDeleteContact(contactId: Int) {
+        DispatchQueue.global(qos: .background).async {
+            API.sharedInstance.deleteContact(id: contactId, callback: { success in
+                if success {
+                    // Update the snapshot with the new data (remove the deleted contact)
+                    if let contact = UserContact.getContactWith(id: contactId) {
+                        
+                        if let chat = contact.getChat(), chat.id == self.contactsService.getObjectIdForCurrentSelection().0 {
+                            self.delegate?.shouldResetChatView(deletedContactId: contactId)
+                        }
+                        
+                        CoreDataManager.sharedManager.deleteContactObjectsFor(contact)
+                    }
+                } else {
+                    // Handle the error case here
+                    DispatchQueue.main.async {
+                        AlertHelper.showAlert(
+                            title: "generic.error.title".localized,
+                            message: "generic.error.message".localized
+                        )
+                    }
+                }
             })
         }
     }

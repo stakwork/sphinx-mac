@@ -142,6 +142,9 @@
 "nickname.address.required" = "Alias y dirección son obligatorios";
 "invalid.pubkey" = "Clave Pública inválida";
 "new.contact.error.alreadyExists" = "Ya existe un contacto con esta clave pública en tu lista de contactos.";
+"delete.contact" = "Eliminar contacto";
+"delete.contact.warning" = "¿Estás seguro de que quieres eliminar este contacto?";
+
 
 //INVITE
 "group.details" = "Detalles del Grupo";
@@ -411,6 +414,7 @@
 "price.to.meet" = "Precio para conectar: ";
 "popup.authorize-with" = "¿Quieres autorizar a:";
 "popup.redeem-sats" = "Canjear %d sats de:";
+"authorization.login" = "Felicitaciones! Has iniciado sesión";
 
 "people.save-profile" = "Guardar Perfil de:";
 "people.delete-profile" = "Borrar Perfil de:";

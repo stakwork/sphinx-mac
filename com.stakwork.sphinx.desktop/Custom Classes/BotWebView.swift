@@ -33,8 +33,7 @@ class BotWebView : WKWebView {
         let srcPattern = #"src="([^"]+)""#
 
         // Create a regular expression object
-        if let regex = try? NSRegularExpression(pattern: srcPattern, options: .caseInsensitive),
-        let contentString = contentString {
+        if let regex = try? NSRegularExpression(pattern: srcPattern, options: .caseInsensitive), let contentString = contentString {
             // Find matches in the contentString
             let matches = regex.matches(in: contentString, options: [], range: NSRange(location: 0, length: contentString.utf16.count))
 

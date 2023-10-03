@@ -9,6 +9,10 @@
 import Cocoa
 import SDWebImage
 
+protocol ChatListCollectionViewItemDelegate : NSObject{
+    func didRightClick(contactId:Int)
+}
+
 class ChatListCollectionViewItem: NSCollectionViewItem {
     
     @IBOutlet weak var backgroundBox: NSBox!
@@ -28,6 +32,9 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
     @IBOutlet weak var mentionsBadgeLabel: NSTextField!
     @IBOutlet weak var unreadMessageBadgeContainer: NSBox!
     @IBOutlet weak var unreadMessageBadgeLabel: NSTextField!
+    
+    var delegate: ChatListCollectionViewItemDelegate? = nil
+    var contactId: Int? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,8 +73,12 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
     func render(
         with chatListObject: ChatListCommonObject,
         owner: UserContact,
-        selected: Bool
+        selected: Bool,
+        delegate: ChatListCollectionViewItemDelegate?
     ) {
+        self.delegate = delegate
+        self.contactId = chatListObject.getContact()?.id
+        
         backgroundBox.fillColor = selected ? NSColor.Sphinx.ChatListSelected : NSColor.Sphinx.HeaderBG
         nameLabel.font = Constants.kChatNameFont
         
@@ -330,12 +341,23 @@ extension ChatListCollectionViewItem {
         }
         return chatListObject?.getChat()?.getReceivedUnseenMentionsCount() ?? 0
     }
+    
+    override func rightMouseDown(with event: NSEvent) {
+        guard let contactId = self.contactId else{
+            return
+        }
+        delegate?.didRightClick(contactId: contactId)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.contactId = nil
+    }
 }
 
 // MARK: - Static Properties
 extension ChatListCollectionViewItem {
     static let reuseID = "ChatListCollectionViewItem"
-    
     static let nib: NSNib? = {
         NSNib(nibNamed: "ChatListCollectionViewItem", bundle: nil)
     }()

@@ -60,6 +60,7 @@ class DashboardViewController: NSViewController {
         leftSplittedView.isHidden = windowState.menuCollapsed
         
         DistributedNotificationCenter.default().addObserver(self, selector: #selector(self.themeChangedNotification(notification:)), name: .onInterfaceThemeChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleImageNotification(_:)), name: .webViewImageClicked, object: nil)
     }
     
     override func viewWillAppear() {
@@ -388,6 +389,15 @@ extension DashboardViewController : NSSplitViewDelegate {
 }
 
 extension DashboardViewController : DashboardVCDelegate {
+    func shouldResetChatView(deletedContactId: Int) {
+        contactsService.selectedFriendId = nil
+        
+        didClickOnChatRow(
+            chatId: nil,
+            contactId: nil
+        )
+    }
+    
     func didSwitchToTab() {
         let (chatId, contactId) = contactsService.getObjectIdForCurrentSelection()
         
@@ -532,6 +542,17 @@ extension DashboardViewController : DashboardVCDelegate {
             mediaFullScreenView.constraintTo(view: view)
             mediaFullScreenView.showWith(message: message)
             mediaFullScreenView.isHidden = false
+        }
+    }
+    
+    @objc func handleImageNotification(_ notification: Notification) {
+        if let imageURL = notification.userInfo?["imageURL"] as? URL,
+           let message = notification.userInfo?["transactionMessage"] as? TransactionMessage{
+            print("Received imageURL: \(imageURL)")
+            goToMediaFullView(imageURL: imageURL,message: message)
+        }
+        else{
+            NewMessageBubbleHelper().showGenericMessageView(text: "Error pulling image data.")
         }
     }
     

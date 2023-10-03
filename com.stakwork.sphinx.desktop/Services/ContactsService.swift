@@ -122,7 +122,7 @@ class ContactsService: NSObject {
         case .friends:
             if
                 let chatIdString = selectedFriendId?.replacingOccurrences(of: "chat-", with: ""),
-                let chatId = Int(chatIdString), selectedTribeId?.contains("chat-") == true
+                let chatId = Int(chatIdString)
             {
                 return (chatId, nil)
             }

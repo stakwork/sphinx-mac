@@ -155,7 +155,7 @@ class MediaFullScreenView: NSView, LoadableNib {
         completion: @escaping ()->()
     ){
         loading = true
-        
+
         mediaImageView.sd_setImage(with: imageURL, placeholderImage: nil, options: [.highPriority], completed: { image, _, _, _ in
             if let imageSize = image?.size {
                 let maxDimension = CGFloat(512 * 1.5)
@@ -175,7 +175,7 @@ class MediaFullScreenView: NSView, LoadableNib {
                     // Scale width based on the aspect ratio
                     newWidth = imageSize.width * (maxDimension / imageSize.height)
                 }
-
+                
                 let newSize = CGSize(width: newWidth, height: newHeight)
                 self.setViewSize(size: newSize)
             }
@@ -183,7 +183,7 @@ class MediaFullScreenView: NSView, LoadableNib {
             self.message = message
             self.currentMode = ViewMode.Viewing
             self.saveButton.isHidden = false
-            
+
             completion()
         })
 
@@ -411,6 +411,7 @@ class MediaFullScreenView: NSView, LoadableNib {
                 }
             )
         }
+        
     }
     
     @IBAction func closeButtonClicked(_ sender: Any) {

@@ -25,6 +25,19 @@ class ChatSmallAvatarView: NSView, LoadableNib {
     
     var imageUrl: String? = nil
 
+//    override func draw(_ dirtyRect: NSRect) {
+//        super.draw(dirtyRect)
+//
+//        profileImageView.isHidden = true
+//    }
+//
+//    override func prepareForReuse() {
+//        super.prepareForReuse()
+//        initialsLabel.stringValue = ""
+//        profileImageView.image = nil
+//        avatarButton.isEnabled = false
+//    }
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         loadViewFromNib()

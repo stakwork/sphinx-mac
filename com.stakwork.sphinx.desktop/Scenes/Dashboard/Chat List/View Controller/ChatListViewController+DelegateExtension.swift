@@ -134,6 +134,10 @@ extension ChatListViewController : ChildVCDelegate, ActionsDelegate, ChoosePayme
 
 extension ChatListViewController : NewChatListViewControllerDelegate {
     
+    func shouldResetChatView(deletedContactId: Int) {
+        delegate?.shouldResetChatView(deletedContactId: deletedContactId)
+    }
+    
     func didClickRowAt(
         chatId: Int?,
         contactId: Int?

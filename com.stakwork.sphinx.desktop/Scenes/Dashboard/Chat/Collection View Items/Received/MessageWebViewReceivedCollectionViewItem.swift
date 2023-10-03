@@ -50,6 +50,7 @@ class MessageWebViewReceivedCollectionViewItem: CommonReplyCollectionViewItem {
         bubbleView.clearBubbleView()
         let _ = webView.loadHTMLString("", baseURL: Bundle.main.bundleURL)
         webView.stopLoading()
+        webView.messageId = nil
     }
     
     override func configureMessageRow(messageRow: TransactionMessageRow, contact: UserContact?, chat: Chat?, chatWidth: CGFloat) {
@@ -92,6 +93,7 @@ class MessageWebViewReceivedCollectionViewItem: CommonReplyCollectionViewItem {
     func setWebViewContent() {
         webView.navigationDelegate = self
         webView.enclosingScrollView?.automaticallyAdjustsContentInsets = false
+        webView.messageId = messageRow?.transactionMessage.id
         
         let backgroundColor = NSColor.Sphinx.OldReceivedMsgBG.toHexString()
         let textColor = NSColor.Sphinx.Text.toHexString()

@@ -134,9 +134,7 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
         
     }
     
-    func didUpdateChat(_ chat: Chat) {
-        
-    }
+    func didUpdateChat(_ chat: Chat) {}
     
     func shouldShowMemberPopupFor(messageId: Int) {
         if let message = TransactionMessage.getMessageWith(id: messageId) {

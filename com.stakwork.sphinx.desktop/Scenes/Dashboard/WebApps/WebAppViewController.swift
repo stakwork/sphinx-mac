@@ -54,7 +54,6 @@ class WebAppViewController: NSViewController {
         webAppHelper.checkForExistingLsat(completion: { amount in
             print(amount)
         })
-        
     }
     
     @objc func showLsatList(){
@@ -199,7 +198,7 @@ extension WebAppViewController : NSWindowDelegate {
     }
 }
 
-extension WebAppViewController:WebAppHelperDelegate{
+extension WebAppViewController: WebAppHelperDelegate {
     func setBudget(budget:Int){
         self.currentBudgetButton.title = "Remaining Budget: \(budget) sats"
     }
