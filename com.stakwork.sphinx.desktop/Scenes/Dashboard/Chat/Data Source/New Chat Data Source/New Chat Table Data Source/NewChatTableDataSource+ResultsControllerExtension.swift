@@ -56,9 +56,10 @@ extension NewChatTableDataSource {
 
         DispatchQueue.main.async {
             self.saveSnapshotCurrentState()
-            self.dataSource.apply(snapshot, animatingDifferences: false)
-            self.restoreScrollLastPosition()
-            self.loadingMoreItems = false
+            self.dataSource.apply(snapshot, animatingDifferences: !self.loadingMoreItems) {
+                self.restoreScrollLastPosition()
+                self.loadingMoreItems = false
+            }
         }
     }
     

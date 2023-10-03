@@ -170,6 +170,9 @@ class NewChatTableDataSource : NSObject {
         collectionView.registerItem(NewOnlyTextMessageCollectionViewitem.self)
         collectionView.registerItem(MessageNoBubbleCollectionViewItem.self)
         collectionView.registerItem(ThreadCollectionViewItem.self)
+        
+        collectionViewScroll.verticalScrollElasticity = .none
+        collectionViewScroll.horizontalScrollElasticity = .none
     }
     
     func makeCellProvider(

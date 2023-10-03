@@ -20,13 +20,16 @@ class MessagesPreloaderHelper {
     struct ScrollState {
         var firstRowId: Int
         var difference: CGFloat
+        var isAtBottom: Bool
         
         init(
             firstRowId: Int,
-            difference: CGFloat
+            difference: CGFloat,
+            isAtBottom: Bool
         ) {
             self.firstRowId = firstRowId
             self.difference = difference
+            self.isAtBottom = isAtBottom
         }
     }
     
@@ -57,11 +60,13 @@ class MessagesPreloaderHelper {
     func save(
         firstRowId: Int,
         difference: CGFloat,
+        isAtBottom: Bool,
         for chatId: Int
     ) {
         self.chatScrollState[chatId] = ScrollState(
             firstRowId: firstRowId,
-            difference: difference
+            difference: difference,
+            isAtBottom: isAtBottom
         )
     }
     

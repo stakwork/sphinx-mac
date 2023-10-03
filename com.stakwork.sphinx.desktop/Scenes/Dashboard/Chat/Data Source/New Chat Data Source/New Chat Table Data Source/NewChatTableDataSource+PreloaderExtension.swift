@@ -81,7 +81,7 @@ extension NewChatTableDataSource {
     @objc func restoreScrollLastPosition() {
         guard let chatId = chat?.id else { return }
 
-        if let scrollState = self.preloaderHelper.getScrollState(for: chatId) {
+        if let scrollState = self.preloaderHelper.getScrollState(for: chatId), !scrollState.isAtBottom {
 
             ///Find index of stored first visible item
             if let index = messageTableCellStateArray.firstIndex(where: { $0.getUniqueIdentifier() == scrollState.firstRowId}) {
@@ -124,14 +124,22 @@ extension NewChatTableDataSource {
         ///Find first visible item
         if let firstVisibleRow = collectionView.indexPathForItem(at: NSPoint(x: 0, y: collectionViewOffsetY))?.item {
             ///Find first visible item y position
-            if let firstVisibleRowY = collectionView.item(at: firstVisibleRow)?.view.frame.origin.y {
+            if var firstVisibleRowY = collectionView.item(at: firstVisibleRow)?.view.frame.origin.y {
                 ///Find unique identifier for first visible item
-                let firstRowId = messageTableCellStateArray[firstVisibleRow].getUniqueIdentifier()
+                var firstVisibleItem = dataSource.snapshot().itemIdentifiers[firstVisibleRow]
+                var firstRowId = dataSource.snapshot().itemIdentifiers[firstVisibleRow].getUniqueIdentifier()
+                
+                ///If first visible row is date separator, then take next since date separator can change its position based on number of items displayed
+                if !firstVisibleItem.isMessageRow && dataSource.snapshot().itemIdentifiers.count > firstVisibleRow + 1 {
+                    firstRowId = dataSource.snapshot().itemIdentifiers[firstVisibleRow + 1].getUniqueIdentifier()
+                    firstVisibleRowY = collectionView.item(at: firstVisibleRow + 1)?.view.frame.origin.y ?? 0
+                }
                 
                 ///Save scroll position based on visible item and offset
                 self.preloaderHelper.save(
                     firstRowId: firstRowId,
                     difference: collectionViewOffsetY - firstVisibleRowY,
+                    isAtBottom: collectionView.isAtBottom(),
                     for: chatId
                 )
             }
