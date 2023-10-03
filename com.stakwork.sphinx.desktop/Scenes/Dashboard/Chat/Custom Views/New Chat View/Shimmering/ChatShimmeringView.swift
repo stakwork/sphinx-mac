@@ -27,11 +27,11 @@ class ChatShimmeringView: NSView, LoadableNib {
         
         if !self.isHidden {
             AnimationHelper.animateViewWith(duration: 0.2, animationsBlock: {
-                self.alphaValue = 0.05
+                self.alphaValue = 0.2
             }, completion: {
                 if !self.isHidden {
                     AnimationHelper.animateViewWith(duration: 0.2, animationsBlock: {
-                        self.alphaValue = 0.25
+                        self.alphaValue = 0.35
                     }, completion: {
                         if !self.isHidden {
                             self.startAnimating()
