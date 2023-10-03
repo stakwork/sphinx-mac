@@ -171,7 +171,6 @@ class AttachmentsManager {
         }, callback: { success, fileJSON in
             if let fileJSON = fileJSON, success {
                 self.uploadedImage = attachmentObject.image
-                self.delegate?.didUpdateUploadProgress?(progress: 100)
                 completion(fileJSON, attachmentObject)
             } else {
                 self.uploadFailed()

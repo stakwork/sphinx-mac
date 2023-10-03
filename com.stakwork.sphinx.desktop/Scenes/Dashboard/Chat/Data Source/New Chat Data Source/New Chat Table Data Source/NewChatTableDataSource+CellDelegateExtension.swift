@@ -594,16 +594,18 @@ extension NewChatTableDataSource {
         messageId: Int,
         with updatedUploadProgressData: MessageTableCellState.UploadProgressData
     ) {
-        if let tableCellState = getTableCellStateFor(
+        if let tableCellState = self.getTableCellStateFor(
             messageId: messageId,
             and: rowIndex
         ) {
-            uploadingProgress[messageId] = updatedUploadProgressData
-            
             DispatchQueue.main.async {
-                var snapshot = self.dataSource.snapshot()
-                snapshot.reloadItems([tableCellState.1])
-                self.dataSource.apply(snapshot, animatingDifferences: true)
+                if updatedUploadProgressData.progress < 100 {
+                    self.uploadingProgress[messageId] = updatedUploadProgressData
+                    
+                    var snapshot = self.dataSource.snapshot()
+                    snapshot.reloadItems([tableCellState.1])
+                    self.dataSource.apply(snapshot, animatingDifferences: true)
+                }
             }
         }
     }
