@@ -77,7 +77,7 @@ extension FriendMessageView : SignupButtonViewDelegate {
                     nickname: inviter.nickname,
                     pubKey: pubkey,
                     routeHint: inviter.routeHint,
-                    callback: { success in
+                    callback: { (success, _) in
                         
                     if success {
                         SignupHelper.step = SignupHelper.SignupStep.InviterContactCreated.rawValue

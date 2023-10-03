@@ -136,7 +136,7 @@ class UserContactsHelper {
         photoUrl: String? = nil,
         pin: String? = nil,
         contactKey: String? = nil,
-        callback: @escaping (Bool) -> ()
+        callback: @escaping (Bool, Int?) -> ()
     ) {
         
         var parameters = [String : AnyObject]()
@@ -157,10 +157,10 @@ class UserContactsHelper {
         }
         
         API.sharedInstance.createContact(params: parameters, callback: { contact in
-            let _ = self.insertContact(contact: contact, pin: pin)
-            callback(true)
+            let contactObject = self.insertContact(contact: contact, pin: pin)
+            callback(true, contactObject?.id)
         }, errorCallback: {
-            callback(false)
+            callback(false, nil)
         })
     }
     

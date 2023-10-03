@@ -186,7 +186,7 @@ class NewContactViewController: NSViewController {
         } else if nickname.isEmpty || pubkey.isEmpty {
             showErrorAlert(message: "nickname.address.required".localized)
         } else {
-            UserContactsHelper.createContact(nickname: nickname, pubKey: pubkey, routeHint: routeHint, pin: pin, callback: { success in
+            UserContactsHelper.createContact(nickname: nickname, pubKey: pubkey, routeHint: routeHint, pin: pin, callback: { (success, _) in
                 self.loading = false
 
                 if success {
