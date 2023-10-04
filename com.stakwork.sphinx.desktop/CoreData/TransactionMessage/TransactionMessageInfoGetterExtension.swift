@@ -482,6 +482,10 @@ extension TransactionMessage {
         return false
     }
     
+    func messageContainText() -> Bool {
+        return bubbleMessageContentString != nil && bubbleMessageContentString != ""
+    }
+    
     var isCopyTextActionAllowed: Bool {
         get {
             if let messageContent = bubbleMessageContentString {
@@ -616,65 +620,89 @@ extension TransactionMessage {
     func getActionsMenuOptions() -> [(tag: Int, icon: String?, iconImage: String?, label: String)] {
         var options = [(tag: Int, icon: String?, iconImage: String?, label: String)]()
         
-        if let messageContent = messageContent, messageContent != "" && !isGiphy() {
-            if !self.isCallLink() && !messageContent.isEncryptedString() {
-                options.append((MessageActionsItem.Copy.rawValue, "", nil, "copy.text".localized))
-            }
-            
-            if !self.isCallLink() && messageContent.stringLinks.count > 0 {
-                options.append((MessageActionsItem.CopyLink.rawValue, "link", nil, "copy.link".localized))
-            }
-            
-            if messageContent.pubKeyMatches.count > 0 {
-                options.append((MessageActionsItem.CopyPubKey.rawValue, "supervisor_account", nil, "copy.pub.key".localized))
-            }
-            
-            if self.isCallLink() {
-                options.append((MessageActionsItem.CopyCallLink.rawValue, "link", nil, "copy.call.link".localized))
-            }
-            
-            if isPinActionAllowed {
+        if isPodcastBoost() {
+            return options
+        }
+        
+        if messageContainText() {
+            if isCopyTextActionAllowed {
                 options.append(
-                    (MessageActionsItem.Pin.rawValue, "push_pin", nil, "pin.message".localized)
+                    (MessageActionsItem.Copy.rawValue, "", nil, "copy.text".localized)
                 )
             }
             
-            if isUnpinActionAllowed {
+            if isCopyLinkActionAllowed {
                 options.append(
-                    (MessageActionsItem.Unpin.rawValue, "push_pin", nil, "unpin.message".localized)
+                    (MessageActionsItem.CopyLink.rawValue, "link", nil, "copy.link".localized)
+                )
+            }
+            
+            if isCopyPublicKeyActionAllowed {
+                options.append(
+                    (MessageActionsItem.CopyPubKey.rawValue, "supervisor_account", nil, "copy.pub.key".localized)
+                )
+            }
+            
+            if isCopyCallLinkActionAllowed {
+                options.append(
+                    (MessageActionsItem.CopyCallLink.rawValue, "link", nil, "copy.call.link".localized)
                 )
             }
         }
         
-        if (isTextMessage() || isAttachment() || isBotResponse()) && !(uuid ?? "").isEmpty {
-            options.append((MessageActionsItem.Reply.rawValue, "", nil, "reply".localized))
+        if isReplyActionAllowed  {
+            options.append(
+                (MessageActionsItem.Reply.rawValue, "", nil, "reply".localized)
+            )
         }
         
-        if canBeDownloaded() {
-            options.append((MessageActionsItem.Save.rawValue, "", nil, "save.file".localized))
+        if isDownloadFileActionAllowed {
+            options.append(
+                (MessageActionsItem.Save.rawValue, "", nil, "save.file".localized)
+            )
         }
         
-        if (!isInvoice() || (isInvoice() && !isPaid())) && canBeDeleted() {
-            options.append((MessageActionsItem.Delete.rawValue, "delete", nil, "delete.message".localized))
+        if isResendActionAllowed {
+            options.append(
+                (MessageActionsItem.Resend.rawValue, "send", nil, "resend.message".localized)
+            )
         }
         
-        if shouldAllowBoost() {
-            options.append((MessageActionsItem.Boost.rawValue, nil, "boostIconGreen", "Boost"))
+        if isBoostActionAllowed {
+            options.append(
+                (MessageActionsItem.Boost.rawValue, nil, "boostIconGreen", "Boost")
+            )
         }
         
-        if failed() && isTextMessage() {
-            options.append((MessageActionsItem.Resend.rawValue, "send", nil, "resend.message".localized))
+        if isPinActionAllowed {
+            options.append(
+                (MessageActionsItem.Pin.rawValue, "push_pin", nil, "pin.message".localized)
+            )
+        }
+        
+        if isUnpinActionAllowed {
+            options.append(
+                (MessageActionsItem.Unpin.rawValue, "push_pin", nil, "unpin.message".localized)
+            )
+        }
+        
+        if isDeleteActionAllowed {
+            options.append(
+                (MessageActionsItem.Delete.rawValue, "delete", nil, "delete.message".localized)
+            )
         }
         
         return options
     }
     
-    func shouldAllowBoost() -> Bool {
-        return isIncoming() &&
-        !isInvoice() &&
-        !isDirectPayment() &&
-        !isCallLink() &&
-        !(uuid ?? "").isEmpty
+    var isBoostActionAllowed: Bool {
+        get {
+            return isIncoming() &&
+            !isInvoice() &&
+            !isDirectPayment() &&
+            !isCallLink() &&
+            !(uuid ?? "").isEmpty
+        }
     }
     
     func isNewUnseenMessage() -> Bool {
