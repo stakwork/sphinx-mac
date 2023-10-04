@@ -22,7 +22,6 @@ class PersonModalView: CommonModalView, LoadableNib {
     @IBOutlet weak var loadingWheelContainer: NSBox!
     
     var contactResultsController: NSFetchedResultsController<UserContact>!
-    
     var timeOutTimer : Timer? = nil
 
     override func draw(_ dirtyRect: NSRect) {
@@ -87,16 +86,14 @@ class PersonModalView: CommonModalView, LoadableNib {
         super.modalDidShow()
     }
     
-    @objc func handleKeyExchangeTimeout(){
+    @objc func handleKeyExchangeTimeout() {
         cleanupKeyExchange()
         showErrorMessage()
-        self.showErrorMessage()
     }
     
-    func cleanupKeyExchange(){
+    func cleanupKeyExchange() {
         timeOutTimer?.invalidate()
         resetFetchedResultsControllers()
-        showErrorMessage()
     }
     
     override func didTapConfirmButton() {
@@ -172,7 +169,7 @@ class PersonModalView: CommonModalView, LoadableNib {
     }
     
     func showErrorMessage() {
-        showMessage(message: "generic.error".localized, color: NSColor.Sphinx.BadgeRed)
+        showMessage(message: "generic.error.message".localized, color: NSColor.Sphinx.BadgeRed)
     }
     
     func showMessage(message: String, color: NSColor) {
@@ -216,7 +213,7 @@ extension PersonModalView: NSFetchedResultsControllerDelegate {
             
             if let contacts = firstSection.objects as? [UserContact], let _ = contacts.first {
                 sendInitialMessage()
-                resetFetchedResultsControllers()
+                cleanupKeyExchange()
             }
         }
     }
