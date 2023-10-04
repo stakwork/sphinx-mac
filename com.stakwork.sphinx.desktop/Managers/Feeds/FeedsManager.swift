@@ -117,60 +117,61 @@ class FeedsManager : NSObject {
         feedId: String,
         completion: ((() -> ()))? = nil
     ) {
-//        let dispatchQueue = DispatchQueue.global(qos: .userInitiated)
-//        dispatchQueue.async {
-//            self.restoreContentFeedStatusFor(feedId: feedId,completionCallback: completion)
-//        }
+        let dispatchQueue = DispatchQueue.global(qos: .userInitiated)
+        dispatchQueue.async {
+            self.restoreContentFeedStatusFor(feedId: feedId,completionCallback: completion)
+        }
     }
     
     func restoreContentFeedStatusFor(
         feedId: String,
         completionCallback: ((() -> ()))? = nil
     ){
-//        API.sharedInstance.getContentFeedStatusFor(
-//            feedId: feedId,
-//            callback: { result in
-//                self.restore(
-//                    contentFeedStatus: result,
-//                    with: CoreDataManager.sharedManager.persistentContainer.viewContext
-//                ) {
-//                    completionCallback?()
-//                }
-//            },
-//            errorCallback: {
-//                completionCallback?()
-//            }
-//        )
+        API.sharedInstance.getContentFeedStatusFor(
+            feedId: feedId,
+            callback: { result in
+                self.restore(
+                    contentFeedStatus: result,
+                    with: CoreDataManager.sharedManager.persistentContainer.viewContext
+                ) {
+                    completionCallback?()
+                }
+            },
+            errorCallback: {
+                completionCallback?()
+            }
+        )
+        completionCallback?()
     }
     
     func restoreContentFeedStatusInBackground() {
-//        let dispatchQueue = DispatchQueue.global(qos: .userInitiated)
-//        dispatchQueue.async {
-//            self.restoreContentFeedStatus()
-//        }
+        let dispatchQueue = DispatchQueue.global(qos: .userInitiated)
+        dispatchQueue.async {
+            self.restoreContentFeedStatus()
+        }
     }
     
     func restoreContentFeedStatus(
         progressCallback: ((Int) -> ())? = nil,
         completionCallback: (() -> ())? = nil
     ){
-//        API.sharedInstance.getAllContentFeedStatuses(
-//            callback: { results in
-//                self.restoreFeedStatuses(
-//                    from: results,
-//                    progressCallback: progressCallback,
-//                    completionCallback: {
-//                        self.refreshFeedUI()
-//                        completionCallback?()
-//
-//                        self.fetchNewItems()
-//                    }
-//                )
-//            },
-//            errorCallback: {
-//                completionCallback?()
-//            }
-//        )
+        API.sharedInstance.getAllContentFeedStatuses(
+            callback: { results in
+                self.restoreFeedStatuses(
+                    from: results,
+                    progressCallback: progressCallback,
+                    completionCallback: {
+                        self.refreshFeedUI()
+                        completionCallback?()
+
+                        self.fetchNewItems()
+                    }
+                )
+            },
+            errorCallback: {
+                completionCallback?()
+            }
+        )
     }
     
     func getRestoreProgress(totalFeeds:Int,syncedFeeds:Int)->Int{
@@ -350,7 +351,7 @@ class FeedsManager : NSObject {
                     
                     ContentFeed.fetchFeedItems(
                         feedUrl: url.absoluteString,
-                        contentFeedObjectID: feed.objectID,
+                        feedId: feed.feedID,
                         context: context,
                         completion: { _ in
                             dispatchSemaphore.signal()

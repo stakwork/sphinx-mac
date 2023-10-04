@@ -118,8 +118,7 @@ extension PodcastPlayerCollectionViewItem : BoostButtonViewDelegate {
     func didTouchButton() {
         let amount: Int = UserDefaults.Keys.tipAmount.get(defaultValue: 100)
         
-        if let episode = podcast.getCurrentEpisode(),
-           let objectID = episode.objectID {
+        if let episode = podcast.getCurrentEpisode() {
             
             let itemID = episode.itemID
             let currentTime = podcast.getCurrentEpisode()?.currentTime ?? 0
@@ -130,7 +129,7 @@ extension PodcastPlayerCollectionViewItem : BoostButtonViewDelegate {
                 
                 feedBoostHelper.sendBoostMessage(
                     message: boostMessage,
-                    itemObjectID: objectID,
+                    episodeId: episode.itemID,
                     amount: amount,
                     completion: { (message, success) in
                         guard let message = message else {

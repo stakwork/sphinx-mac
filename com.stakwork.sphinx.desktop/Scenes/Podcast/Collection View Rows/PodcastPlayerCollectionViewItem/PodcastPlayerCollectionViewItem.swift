@@ -85,9 +85,7 @@ class PodcastPlayerCollectionViewItem: NSCollectionViewItem {
         self.podcast = podcast
         self.delegate = delegate
         
-        if let objectID = podcast.objectID {
-            feedBoostHelper.configure(with: objectID, and: chat)
-        }
+        feedBoostHelper.configure(with: podcast.feedID, and: chat)
         
         podcastPlayerController.addDelegate(self, withKey: PodcastDelegateKeys.PodcastPlayerView.rawValue)
         

@@ -10,7 +10,6 @@ import SwiftyJSON
 
 public class PodcastFeed: NSObject {
     
-    public var objectID: NSManagedObjectID?
     public var feedID: String
     public var title: String?
     public var podcastDescription: String?
@@ -28,11 +27,9 @@ public class PodcastFeed: NSObject {
     
     
     init(
-        _ objectID: NSManagedObjectID?,
         _ feedID: String,
-        _ subscribed: Bool) {
-        
-        self.objectID = objectID
+        _ subscribed: Bool
+    ) {
         self.feedID = feedID
         self.subscribed = subscribed
     }
@@ -46,7 +43,6 @@ extension PodcastFeed {
     ) -> PodcastFeed {
         
         let podcastFeed = PodcastFeed(
-            contentFeed.objectID,
             contentFeed.feedID,
             contentFeed.subscribed
         )
@@ -96,7 +92,6 @@ extension PodcastFeed {
     ) -> PodcastFeed {
         
         let podcastFeed = PodcastFeed(
-            NSManagedObjectID.init(),
             searchResult[ContentFeed.CodingKeys.feedID.rawValue].stringValue,
             false
         )

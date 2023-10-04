@@ -155,11 +155,11 @@ public class ContentFeed: NSManagedObject {
     
     public static func fetchFeedItems(
         feedUrl: String,
-        contentFeedObjectID: NSManagedObjectID,
+        feedId: String,
         context: NSManagedObjectContext,
         completion: @escaping (Result<ContentFeed, Error>) -> ()
     ) {
-        let backgroundContentFeed: ContentFeed? = context.object(with: contentFeedObjectID) as? ContentFeed
+        let backgroundContentFeed: ContentFeed? = ContentFeed.getFeedById(feedId: feedId, managedContext: context)
         
         fetchContentFeedItems(
             at: feedUrl,
