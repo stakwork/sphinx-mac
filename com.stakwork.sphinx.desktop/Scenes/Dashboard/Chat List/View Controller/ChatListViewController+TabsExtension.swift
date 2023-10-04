@@ -32,7 +32,9 @@ extension ChatListViewController {
             loadFriendAndReload()
         }
         
-        delegate?.didSwitchToTab()
+        DispatchQueue.main.async {
+            self.delegate?.didSwitchToTab()
+        }
     }
     
     var indicesOfTabsWithNewMessages: [Int] {
