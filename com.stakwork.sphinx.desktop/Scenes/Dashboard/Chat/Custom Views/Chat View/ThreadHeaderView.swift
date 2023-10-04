@@ -42,7 +42,7 @@ class ThreadHeaderView: NSView, LoadableNib {
     @IBOutlet weak var messageMediaView: MediaMessageView!
     
     @IBOutlet weak var textContainer: NSView!
-    @IBOutlet weak var messageLabel: CCTextField!
+    @IBOutlet weak var messageLabel: MessageTextField!
     
     
     required init?(coder: NSCoder) {

@@ -10,10 +10,12 @@ import Cocoa
 
 extension ThreadCollectionViewItem {
     func setupViews() {
+        messageLabel.isSelectable = false
         messageLabel.maximumNumberOfLines = 2
         messageLabel.setSelectionColor(color: NSColor.getTextSelectionColor())
         messageLabel.allowsEditingTextAttributes = true
         
+        lastReplyMessageLabel.isSelectable = false
         lastReplyMessageLabel.setSelectionColor(color: NSColor.getTextSelectionColor())
         lastReplyMessageLabel.allowsEditingTextAttributes = true
         

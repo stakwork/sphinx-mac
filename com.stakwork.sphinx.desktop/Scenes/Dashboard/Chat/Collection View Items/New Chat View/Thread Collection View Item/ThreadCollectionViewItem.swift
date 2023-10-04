@@ -35,7 +35,7 @@ class ThreadCollectionViewItem: CommonNewMessageCollectionViewitem, ChatCollecti
     
     ///Thirs Container
     @IBOutlet weak var textMessageView: NSView!
-    @IBOutlet weak var messageLabel: CCTextField!
+    @IBOutlet weak var messageLabel: MessageTextField!
     @IBOutlet weak var messageLabelLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var messageLabelTrailingConstraint: NSLayoutConstraint!
     
@@ -48,7 +48,7 @@ class ThreadCollectionViewItem: CommonNewMessageCollectionViewitem, ChatCollecti
     @IBOutlet weak var lastReplyMediaMessageView: MediaMessageView!
     @IBOutlet weak var lastReplyFileDetailsView: FileInfoView!
     @IBOutlet weak var lastReplyTextMessageView: NSView!
-    @IBOutlet weak var lastReplyMessageLabel: CCTextField!
+    @IBOutlet weak var lastReplyMessageLabel: MessageTextField!
     @IBOutlet weak var lastReplyMessageLabelLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var lastReplyMessageLabelTrailingConstraint: NSLayoutConstraint!
     

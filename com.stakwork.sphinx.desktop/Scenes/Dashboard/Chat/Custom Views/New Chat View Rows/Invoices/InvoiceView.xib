@@ -79,7 +79,7 @@
                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="gbP-PC-lbV">
                             <rect key="frame" x="0.0" y="53" width="480" height="83"/>
                             <subviews>
-                                <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="7KE-q9-K1c" customClass="CCTextField" customModule="Sphinx" customModuleProvider="target">
+                                <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="7KE-q9-K1c" customClass="MessageTextField" customModule="Sphinx" customModuleProvider="target">
                                     <rect key="frame" x="14" y="16" width="39" height="67"/>
                                     <textFieldCell key="cell" selectable="YES" title="Label" id="dAe-pW-4mR">
                                         <font key="font" size="14" name="Roboto-Regular"/>

@@ -194,7 +194,7 @@
                                                     </view>
                                                     <color key="fillColor" name="SentMsgBG"/>
                                                 </box>
-                                                <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="okv-Ag-SIE" customClass="CCTextField" customModule="Sphinx" customModuleProvider="target">
+                                                <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="okv-Ag-SIE" customClass="MessageTextField" customModule="Sphinx" customModuleProvider="target">
                                                     <rect key="frame" x="14" y="16" width="372" height="16"/>
                                                     <textFieldCell key="cell" truncatesLastVisibleLine="YES" selectable="YES" title="Label" id="XSl-mL-XOC">
                                                         <font key="font" size="14" name="Roboto-Regular"/>
@@ -250,7 +250,7 @@
                                         <customView horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="jgc-0k-iDb">
                                             <rect key="frame" x="0.0" y="0.0" width="400" height="48"/>
                                             <subviews>
-                                                <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="KIy-KQ-GvG" customClass="CCTextField" customModule="Sphinx" customModuleProvider="target">
+                                                <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="KIy-KQ-GvG" customClass="MessageTextField" customModule="Sphinx" customModuleProvider="target">
                                                     <rect key="frame" x="14" y="16" width="372" height="16"/>
                                                     <textFieldCell key="cell" selectable="YES" title="Label" id="eHr-cU-JCc">
                                                         <font key="font" size="14" name="Roboto-Regular"/>

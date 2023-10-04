@@ -22,7 +22,7 @@ class InvoiceView: NSView, LoadableNib {
     @IBOutlet weak var amountLabel: NSTextField!
     @IBOutlet weak var unitLabel: NSTextField!
     @IBOutlet weak var memoContainerView: NSView!
-    @IBOutlet weak var memoLabel: CCTextField!
+    @IBOutlet weak var memoLabel: MessageTextField!
     @IBOutlet weak var payButtonContainer: NSView!
     @IBOutlet weak var payButtonView: NSBox!
     @IBOutlet weak var payButton: CustomButton!
@@ -45,6 +45,9 @@ class InvoiceView: NSView, LoadableNib {
     }
     
     func setup() {
+        memoLabel.setSelectionColor(color: NSColor.getTextSelectionColor())
+        memoLabel.allowsEditingTextAttributes = true
+        
         payButton.cursor = .pointingHand
     }
     

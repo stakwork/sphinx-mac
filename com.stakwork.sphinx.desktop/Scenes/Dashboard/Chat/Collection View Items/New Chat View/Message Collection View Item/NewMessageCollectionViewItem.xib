@@ -259,7 +259,7 @@
                                         <customView horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="4D1-XE-gCv">
                                             <rect key="frame" x="0.0" y="409" width="500" height="48"/>
                                             <subviews>
-                                                <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="okv-Ag-SIE" customClass="CCTextField" customModule="Sphinx" customModuleProvider="target">
+                                                <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="okv-Ag-SIE" customClass="MessageTextField" customModule="Sphinx" customModuleProvider="target">
                                                     <rect key="frame" x="14" y="16" width="472" height="16"/>
                                                     <textFieldCell key="cell" selectable="YES" title="Label" id="XSl-mL-XOC">
                                                         <font key="font" size="14" name="Roboto-Regular"/>
