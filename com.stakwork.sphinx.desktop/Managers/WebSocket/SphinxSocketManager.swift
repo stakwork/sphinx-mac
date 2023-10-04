@@ -10,10 +10,6 @@ import Foundation
 import SwiftyJSON
 
 @objc protocol SocketManagerDelegate: AnyObject {
-    @objc optional func didReceiveMessage(message: TransactionMessage, onChat: Bool)
-    @objc optional func didReceivePurchaseUpdate(message: TransactionMessage)
-    @objc optional func didReceiveConfirmation(message: TransactionMessage)
-    @objc optional func didUpdateContact(contact: UserContact)
     @objc optional func didUpdateChat(chat: Chat)
     @objc optional func didReceiveOrUpdateGroup()
 }
@@ -249,9 +245,7 @@ extension SphinxSocketManager {
     }
     
     func didReceivePurchaseMessage(type: String, messageJson: JSON) {
-        if let message = TransactionMessage.insertMessage(m: messageJson).0 {
-            delegate?.didReceivePurchaseUpdate?(message: message)
-        }
+        let _ = TransactionMessage.insertMessage(m: messageJson)
     }
     
     func didReceiveMessage(type: String, messageJson: JSON) {
@@ -271,14 +265,11 @@ extension SphinxSocketManager {
 
             let onChat = isOnChat(message: message)
 
-            if isConfirmation {
-                delegate?.didReceiveConfirmation?(message: message)
-            } else {
+            if !isConfirmation {
                 if message.isIncoming() && message.chat?.isPublicGroup() ?? false {
                      debounceMessageNotification(message: message, onChat: onChat)
                  } else {
                      sendNotification(message: message)
-                     delegate?.didReceiveMessage?(message: message, onChat: onChat)
                  }
             }
         }
@@ -300,7 +291,6 @@ extension SphinxSocketManager {
         if let userInfo = timer.userInfo as? [String: Any] {
             if let message = userInfo["message"] as? TransactionMessage, let onChat = userInfo["onChat"] as? Bool {
                 sendNotification(message: message)
-                delegate?.didReceiveMessage?(message: message, onChat: onChat)
             }
         }
     }
@@ -361,11 +351,7 @@ extension SphinxSocketManager {
     }
     
     func didReceiveContact(contactJson: JSON) {
-        if let contact = UserContact.insertContact(contact: contactJson) {
-            if shouldUpdateObjectsOnView(contact: contact) {
-                delegate?.didUpdateContact?(contact: contact)
-            }
-        }
+        let _ = UserContact.insertContact(contact: contactJson)
     }
     
     func didReceiveGroup(groupJson: JSON) {
@@ -435,13 +421,7 @@ extension SphinxSocketManager {
 
     
     func didReceiveInvite(inviteJson: JSON) {
-        if let invite = UserInvite.insertInvite(invite: inviteJson) {
-            if let contact = invite.contact {
-                if shouldUpdateObjectsOnView(contact: contact) {
-                    delegate?.didUpdateContact?(contact: contact)
-                }
-            }
-        }
+        let _ = UserInvite.insertInvite(invite: inviteJson)
     }
     
     func shouldUpdateObjectsOnView(contact: UserContact? = nil, chat: Chat? = nil) -> Bool {
@@ -456,7 +436,7 @@ extension SphinxSocketManager {
             return false
         }
 
-        if let del = delegate as? DashboardViewController, let vc = del.detailViewController {
+        if let del = delegate as? DashboardViewController, let vc = del.newDetailViewController {
             if let chat = vc.chat, let messageChatId = message.chat?.id {
                 if chat.id != messageChatId {
                     return false

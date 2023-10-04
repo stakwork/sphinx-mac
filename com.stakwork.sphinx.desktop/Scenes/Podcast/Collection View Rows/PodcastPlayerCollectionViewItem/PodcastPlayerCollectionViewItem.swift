@@ -40,7 +40,7 @@ class PodcastPlayerCollectionViewItem: NSCollectionViewItem {
     let podcastPlayerController = PodcastPlayerController.sharedInstance
     let feedBoostHelper = FeedBoostHelper()
     
-    var livePodcastDataSource: PodcastLiveDataSource? = nil
+//    var livePodcastDataSource: PodcastLiveDataSource? = nil
     var liveMessages: [Int: [TransactionMessage]] = [:]
     
     let kDurationLineMargins: CGFloat = 64
@@ -130,7 +130,7 @@ class PodcastPlayerCollectionViewItem: NSCollectionViewItem {
     }
     
     func seekTo(seconds: Double) {
-        livePodcastDataSource?.resetData()
+//        livePodcastDataSource?.resetData()
         
         var newTime = podcast.currentTime + Int(seconds)
         newTime = max(newTime, 0)

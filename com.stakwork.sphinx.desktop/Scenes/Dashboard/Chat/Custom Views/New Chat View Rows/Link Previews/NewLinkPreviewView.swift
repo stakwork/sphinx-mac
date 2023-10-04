@@ -9,6 +9,13 @@
 import Cocoa
 import SDWebImage
 
+protocol LinkPreviewDelegate: AnyObject {
+    func didTapOnTribeButton()
+    func didTapOnContactButton()
+    func didTapOnWebLinkButton()
+}
+
+
 class NewLinkPreviewView: NSView, LoadableNib {
     
     weak var delegate: LinkPreviewDelegate?

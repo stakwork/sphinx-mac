@@ -27,6 +27,10 @@ enum CornerRadius: String {
 extension NSView {    
     private static let kRotationAnimationKey = "rotationanimationkey"
     
+    public static let kBubbleLayerName: String = "bubble-layer"
+    public static let kInvoiceDashedLayerName: String = "dashed-line"
+
+    
     func rotate(duration: Double = 1) {
         self.layoutSubtreeIfNeeded()
         self.setAnchorPoint(anchorPoint: CGPoint(x: 0.5, y: 0.5))
@@ -175,7 +179,7 @@ extension NSView {
         shapeLayer.lineWidth = lineWidth
         shapeLayer.lineJoin = .round
         shapeLayer.lineDashPattern = dashPattern
-        shapeLayer.name = CommonBubbleView.kInvoiceDashedLayerName
+        shapeLayer.name = NSView.kInvoiceDashedLayerName
         shapeLayer.path = NSBezierPath(roundedRect: shapeRect, xRadius: radius, yRadius: radius).cgPath
         
         self.layer?.addSublayer(shapeLayer)
@@ -183,7 +187,7 @@ extension NSView {
     
     func removeDashBorder() {
         self.layer?.sublayers?.forEach {
-            if $0.name == CommonBubbleView.kInvoiceDashedLayerName {
+            if $0.name == NSView.kInvoiceDashedLayerName {
                 $0.removeFromSuperlayer()
             }
         }

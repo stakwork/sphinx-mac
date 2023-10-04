@@ -15,7 +15,7 @@ public enum MentionOrMacroType{
 }
 
 
-class MentionOrMacroItem: NSObject{
+class MentionOrMacroItem: NSObject {
     
     var type: MentionOrMacroType
     var displayText: String =  ""
@@ -39,5 +39,5 @@ class MentionOrMacroItem: NSObject{
         self.icon = icon
         self.imageLink = imageLink
     }
-    
 }
+

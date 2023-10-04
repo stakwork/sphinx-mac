@@ -11,7 +11,7 @@ import Foundation
 extension PodcastPlayerCollectionViewItem : MouseDraggableViewDelegate {
     func mouseDownOn(x: CGFloat) {
         dragging = true
-        livePodcastDataSource?.resetData()
+//        livePodcastDataSource?.resetData()
         
         mouseDraggedOn(x: x)
     }
@@ -135,8 +135,8 @@ extension PodcastPlayerCollectionViewItem : BoostButtonViewDelegate {
                         guard let message = message else {
                             return
                         }
-                        self.addToLiveMessages(message: message)
-                        self.livePodcastDataSource?.insert(messages: [message])
+//                        self.addToLiveMessages(message: message)
+//                        self.livePodcastDataSource?.insert(messages: [message])
                     }
                 )
             }

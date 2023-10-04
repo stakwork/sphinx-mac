@@ -72,8 +72,6 @@ extension NewChatTableDataSource {
         dataSourceItem: MessageTableCellState,
         indexPath: IndexPath
     ) -> NSCollectionViewItem {
-        print("RELOAD ITEM: \(indexPath.item)")
-        
         var cell: ChatCollectionViewItemProtocol? = nil
         var mutableDataSourceItem = dataSourceItem
 

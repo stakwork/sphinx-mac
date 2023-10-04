@@ -17,13 +17,11 @@ class DashboardViewController: NSViewController {
     
     var mediaFullScreenView: MediaFullScreenView? = nil
     
-    var chatViewModel: ChatViewModel! = nil
     var chatListViewModel: ChatListViewModel! = nil
     var deeplinkData: DeeplinkData? = nil
     
     let contactsService = ContactsService.sharedInstance
     
-    var detailViewController : ChatViewController? = nil
     var newDetailViewController : NewChatViewController? = nil
     var listViewController : ChatListViewController? = nil
     
@@ -51,9 +49,8 @@ class DashboardViewController: NSViewController {
         listerForNotifications()
         
         chatListViewModel = ChatListViewModel()
-        chatViewModel = ChatViewModel()
         
-        dashboardSplitView.delegate = self
+//        dashboardSplitView.delegate = self
         SphinxSocketManager.sharedInstance.setDelegate(delegate: self)
         
         let windowState = WindowsManager.sharedInstance.getWindowState()
@@ -67,7 +64,6 @@ class DashboardViewController: NSViewController {
         super.viewWillAppear()
         
         listViewController?.delegate = self
-        detailViewController?.delegate = self
     }
     
     override func viewDidAppear() {
@@ -80,7 +76,6 @@ class DashboardViewController: NSViewController {
         super.viewWillDisappear()
         
         listViewController?.delegate = nil
-        detailViewController?.delegate = nil
         
         NotificationCenter.default.removeObserver(self, name: .shouldUpdateDashboard, object: nil)
         NotificationCenter.default.removeObserver(self, name: .shouldTrackPosition, object: nil)
@@ -101,7 +96,7 @@ class DashboardViewController: NSViewController {
     }
     
     @objc func themeChangedNotification(notification: Notification) {
-        detailViewController?.chatCollectionView.reloadData()
+//        detailViewController?.chatCollectionView.reloadData()
         
         DelayPerformedHelper.performAfterDelay(seconds: 0.5, completion: {
             NSAppearance.current = self.view.effectiveAppearance
@@ -136,12 +131,8 @@ class DashboardViewController: NSViewController {
             self?.reloadView()
         }
         
-        NotificationCenter.default.addObserver(forName: .shouldTrackPosition, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
-            self?.detailViewController?.trackChatScrollPosition()
-        }
-        
         NotificationCenter.default.addObserver(forName: .shouldResetChat, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
-            self?.resetChatIfDeleted()
+            ///Reset chat view
         }
         
         NotificationCenter.default.addObserver(forName: .chatNotificationClicked, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
@@ -158,10 +149,6 @@ class DashboardViewController: NSViewController {
                 }
                 
                 vc.shouldGoToChat(chatId: chat.id)
-                
-                if let message = n.userInfo?["message"] as? String {
-                    vc.detailViewController?.sendMessageWith(text: message)
-                }
             }
         }
         
@@ -316,24 +303,17 @@ class DashboardViewController: NSViewController {
         self.listViewController?.selectRowFor(chatId: chatId)
     }
     
-    func resetChatIfDeleted() {
-        detailViewController?.loadChatFor()
-    }
-    
     func reloadView() {
-        self.detailViewController?.chatCollectionView.reloadData()
+        ///Reload chat list and message on size chanegd
     }
     
     func reloadData() {
         self.chatListViewModel.loadFriends { _ in
 
             self.chatListViewModel.syncMessages(
-                chatId: self.detailViewController?.chat?.id,
+                chatId: self.newDetailViewController?.chat?.id,
                 progressCallback: { (_, _) in }
-            ) { (_, count) in
-                if count > 0 {
-                    self.detailViewController?.initialLoad()
-                }
+            ) { (_, _) in
                 self.listViewController?.loading = false
 
                 if let appDelegate = NSApplication.shared.delegate as? AppDelegate {
@@ -344,49 +324,47 @@ class DashboardViewController: NSViewController {
     }
 }
 
-extension DashboardViewController : NSSplitViewDelegate {
-    func splitViewDidResizeSubviews(_ notification: Notification) {
-        if let window = view.window {
-            newDetailViewController?.view.frame = rightSplittedView.bounds
-            listViewController?.view.frame = leftSplittedView.bounds
-            
-            let (minWidth, _) = getWindowMinWidth(leftColumnVisible: !leftSplittedView.isHidden)
-            
-            window.minSize = CGSize(
-                width: minWidth,
-                height: kWindowMinHeight
-            )
-            
-            if window.frame.width < minWidth {
-                
-                let newFrame = CGRect(
-                    x: window.frame.origin.x,
-                    y: window.frame.origin.y,
-                    width: minWidth,
-                    height: window.frame.height
-                )
-                
-                view.window?.setFrame(newFrame, display: true)
-            }
-            
-            detailViewController?.toggleExpandMenuButton(show: leftSplittedView.isHidden)
-            
-            resizeTimer?.invalidate()
-            resizeTimer = Timer.scheduledTimer(
-                timeInterval: 0.05,
-                target: self,
-                selector: #selector(resizeSubviews),
-                userInfo: nil,
-                repeats: false
-            )
-        }
-    }
-    
-    @objc func resizeSubviews() {
-        newDetailViewController?.view.frame = rightSplittedView.bounds
-        listViewController?.view.frame = leftSplittedView.bounds
-    }
-}
+//extension DashboardViewController : NSSplitViewDelegate {
+//    func splitViewDidResizeSubviews(_ notification: Notification) {
+//        if let window = view.window {
+//            newDetailViewController?.view.frame = rightSplittedView.bounds
+//            listViewController?.view.frame = leftSplittedView.bounds
+//
+//            let (minWidth, _) = getWindowMinWidth(leftColumnVisible: !leftSplittedView.isHidden)
+//
+//            window.minSize = CGSize(
+//                width: minWidth,
+//                height: kWindowMinHeight
+//            )
+//
+//            if window.frame.width < minWidth {
+//
+//                let newFrame = CGRect(
+//                    x: window.frame.origin.x,
+//                    y: window.frame.origin.y,
+//                    width: minWidth,
+//                    height: window.frame.height
+//                )
+//
+//                view.window?.setFrame(newFrame, display: true)
+//            }
+//
+//            resizeTimer?.invalidate()
+//            resizeTimer = Timer.scheduledTimer(
+//                timeInterval: 0.05,
+//                target: self,
+//                selector: #selector(resizeSubviews),
+//                userInfo: nil,
+//                repeats: false
+//            )
+//        }
+//    }
+//
+//    @objc func resizeSubviews() {
+//        newDetailViewController?.view.frame = rightSplittedView.bounds
+//        listViewController?.view.frame = leftSplittedView.bounds
+//    }
+//}
 
 extension DashboardViewController : DashboardVCDelegate {
     func shouldResetChatView(deletedContactId: Int) {
@@ -443,9 +421,7 @@ extension DashboardViewController : DashboardVCDelegate {
     func payInvite(invite: UserInvite) {
         AlertHelper.showTwoOptionsAlert(title: "pay.invitation".localized, message: "", confirm: {
             self.chatListViewModel.payInvite(invite: invite, completion: { contact in
-                if let contact = contact {
-                    self.didUpdateContact(contact: contact)
-                } else {
+                if contact == nil {
                     AlertHelper.showAlert(title: "generic.error.title".localized, message: "payment.failed".localized)
                 }
             })
@@ -458,10 +434,6 @@ extension DashboardViewController : DashboardVCDelegate {
         }
         let shareInviteCodeVC = ShareInviteCodeViewController.instantiate(qrCodeString: inviteCode, viewMode: .Invite)
         WindowsManager.sharedInstance.showInviteCodeWindow(vc: shareInviteCodeVC, window: view.window)
-    }
-    
-    func didReloadDashboard() {
-        detailViewController?.reload()
     }
     
     func reloadChatListVC() {
@@ -556,31 +528,29 @@ extension DashboardViewController : DashboardVCDelegate {
         }
     }
     
-    func shouldToggleLeftView(show: Bool?) {
-        if let window = view.window {
-            let menuVisible = show ?? !isLeftMenuCollapsed()
-            let (minWidth, _) = getWindowMinWidth(leftColumnVisible: menuVisible)
-            leftSplittedView.isHidden = !menuVisible
-            window.minSize = CGSize(width: minWidth, height: kWindowMinHeight)
-            
-            let newWidth = menuVisible ? max(window.frame.width, minWidth) : window.frame.width
-            let newFrame = CGRect(x: window.frame.origin.x, y: window.frame.origin.y, width: newWidth, height: window.frame.height)
-            window.setFrame(newFrame, display: true)
-            
-            detailViewController?.toggleExpandMenuButton(show: !menuVisible)
-        }
-    }
-    
-    func isLeftMenuCollapsed() -> Bool {
-        return leftSplittedView.isHidden
-    }
-    
-    func getWindowMinWidth(leftColumnVisible: Bool) -> (CGFloat, CGFloat) {
-        let podcastPlayerWidth =  detailViewController?.podcastContainerWidth.constant ?? 0
-        let leftPanelWidth = leftSplittedView.frame.width
-        let minWidth: CGFloat = leftColumnVisible ? kWindowMinWidthWithoutLeftColumn + leftPanelWidth : kWindowMinWidthWithoutLeftColumn
-        return (minWidth + podcastPlayerWidth, leftPanelWidth)
-    }
+//    func shouldToggleLeftView(show: Bool?) {
+//        if let window = view.window {
+//            let menuVisible = show ?? !isLeftMenuCollapsed()
+//            let (minWidth, _) = getWindowMinWidth(leftColumnVisible: menuVisible)
+//            leftSplittedView.isHidden = !menuVisible
+//            window.minSize = CGSize(width: minWidth, height: kWindowMinHeight)
+//
+//            let newWidth = menuVisible ? max(window.frame.width, minWidth) : window.frame.width
+//            let newFrame = CGRect(x: window.frame.origin.x, y: window.frame.origin.y, width: newWidth, height: window.frame.height)
+//            window.setFrame(newFrame, display: true)
+//        }
+//    }
+//
+//    func isLeftMenuCollapsed() -> Bool {
+//        return leftSplittedView.isHidden
+//    }
+//
+//    func getWindowMinWidth(leftColumnVisible: Bool) -> (CGFloat, CGFloat) {
+//        let podcastPlayerWidth =  newDetailViewController?.podcastPlayerView.frame.width ?? 0
+//        let leftPanelWidth = leftSplittedView.frame.width
+//        let minWidth: CGFloat = leftColumnVisible ? kWindowMinWidthWithoutLeftColumn + leftPanelWidth : kWindowMinWidthWithoutLeftColumn
+//        return (minWidth + podcastPlayerWidth, leftPanelWidth)
+//    }
     
     func shouldShowRestoreModal(
         with progress: Int,
@@ -617,27 +587,8 @@ extension DashboardViewController : DashboardVCDelegate {
 }
 
 extension DashboardViewController : SocketManagerDelegate {
-    func didReceiveMessage(message: TransactionMessage, onChat: Bool) {
-        if onChat {
-            detailViewController?.didReceiveMessage(message: message)
-        }
-    }
-    
-    func didReceiveConfirmation(message: TransactionMessage) {
-        detailViewController?.didReceiveConfirmation(message: message)
-    }
-    
-    func didReceivePurchaseUpdate(message: TransactionMessage) {
-        detailViewController?.didReceivePurchaseUpdate(message: message)
-    }
-    
     func shouldShowAlert(message: String) {
         listViewController?.shouldShowAlert(message: message)
-        detailViewController?.shouldShowAlert(message: message)
-    }
-    
-    func didUpdateContact(contact: UserContact) {
-        detailViewController?.didUpdateContact(contact: contact)
     }
     
     func didReceiveOrUpdateGroup() {
@@ -645,7 +596,7 @@ extension DashboardViewController : SocketManagerDelegate {
     }
     
     func didUpdateChat(chat: Chat) {
-        detailViewController?.didUpdateChat(chat: chat)
+        newDetailViewController?.didUpdateChat(chat)
     }
 }
 

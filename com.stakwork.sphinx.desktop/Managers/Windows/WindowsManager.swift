@@ -19,7 +19,8 @@ class WindowsManager {
     
     func saveWindowState() {
         if let keyWindow = NSApplication.shared.keyWindow {
-            let menuCollapsed = (keyWindow.contentViewController as? DashboardViewController)?.isLeftMenuCollapsed() ?? false
+//            let menuCollapsed = (keyWindow.contentViewController as? DashboardViewController)?.isLeftMenuCollapsed() ?? false
+            let menuCollapsed = false
             let windowState = WindowState(frame: keyWindow.frame, minSize: keyWindow.minSize, menuCollapsed: menuCollapsed)
             
             let encoder = JSONEncoder()

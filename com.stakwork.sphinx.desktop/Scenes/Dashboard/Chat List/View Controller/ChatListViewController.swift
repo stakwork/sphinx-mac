@@ -294,7 +294,6 @@ class ChatListViewController : DashboardSplittedViewController {
         loading = true
         updateBalance()
         loadFriendAndReload()
-        delegate?.didReloadDashboard()
     }
     
     @IBAction func addContactButtonClicked(_ sender: Any) {
@@ -401,7 +400,7 @@ class ChatListViewController : DashboardSplittedViewController {
     }
     
     @IBAction func hideMenuButtonClicked(_ sender: Any) {
-        delegate?.shouldToggleLeftView(show: false)
+//        delegate?.shouldToggleLeftView(show: false)
     }
     
     @IBAction func clearButtonClicked(_ sender: Any) {

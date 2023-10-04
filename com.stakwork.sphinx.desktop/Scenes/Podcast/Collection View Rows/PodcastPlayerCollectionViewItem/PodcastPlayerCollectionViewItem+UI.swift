@@ -19,13 +19,13 @@ extension PodcastPlayerCollectionViewItem {
     }
     
     func addMessagesFor(ts: Int) {
-        if !podcastPlayerController.isPlaying {
-            return
-        }
-        
-        if let liveM = liveMessages[ts] {
-            livePodcastDataSource?.insert(messages: liveM)
-        }
+//        if !podcastPlayerController.isPlaying {
+//            return
+//        }
+//        
+//        if let liveM = liveMessages[ts] {
+//            livePodcastDataSource?.insert(messages: liveM)
+//        }
     }
     
     func showInfo() {
@@ -40,29 +40,29 @@ extension PodcastPlayerCollectionViewItem {
     }
     
     func loadMessages() {
-        liveMessages = [:]
-
-        guard let episodeId = podcast.getCurrentEpisode()?.itemID else {
-            return
-        }
-        let messages = TransactionMessage.getLiveMessagesFor(chat: chat, episodeId: episodeId)
-
-        for m in messages {
-            addToLiveMessages(message: m)
-        }
-
-        if livePodcastDataSource == nil {
-            livePodcastDataSource = PodcastLiveDataSource(collectionView: liveCollectionView, scrollView: liveScrollView, chat: chat)
-        }
-        livePodcastDataSource?.resetData()
+//        liveMessages = [:]
+//
+//        guard let episodeId = podcast.getCurrentEpisode()?.itemID else {
+//            return
+//        }
+//        let messages = TransactionMessage.getLiveMessagesFor(chat: chat, episodeId: episodeId)
+//
+//        for m in messages {
+//            addToLiveMessages(message: m)
+//        }
+//
+//        if livePodcastDataSource == nil {
+//            livePodcastDataSource = PodcastLiveDataSource(collectionView: liveCollectionView, scrollView: liveScrollView, chat: chat)
+//        }
+//        livePodcastDataSource?.resetData()
     }
     
     func addToLiveMessages(message: TransactionMessage) {
-        if let ts = message.getTimeStamp() {
-            var existingM = liveMessages[ts] ?? Array<TransactionMessage>()
-            existingM.append(message)
-            liveMessages[ts] = existingM
-        }
+//        if let ts = message.getTimeStamp() {
+//            var existingM = liveMessages[ts] ?? Array<TransactionMessage>()
+//            existingM.append(message)
+//            liveMessages[ts] = existingM
+//        }
     }
     
     func loadTime() {

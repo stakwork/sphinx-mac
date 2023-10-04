@@ -45,21 +45,17 @@ extension NewChatViewController : ChatHeaderViewDelegate {
         }
 
         if chat.isPublicGroup() {
-//            childVCContainer.showNotificaionLevelViewOn(
-//                parentVC: self,
-//                with: chat,
-//                delegate: self
-//            )
+            childViewControllerContainer.showNotificaionLevelViewOn(
+                parentVC: self,
+                with: chat,
+                delegate: self
+            )
         } else {
-            chatViewModel.toggleVolumeOn(
-                chat: chat,
-                completion: {[weak self] chat in
+            newChatViewModel.toggleVolume(
+                completion: { chat in
                     if let chat = chat, chat.isMuted(){
-                        guard let self = self else { return }
-                        
                         self.messageBubbleHelper.showGenericMessageView(
                             text: "chat.muted.message".localized,
-                            in: self.view,
                             delay: 2.5
                         )
                     }
