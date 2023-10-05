@@ -13,6 +13,11 @@ protocol NewChatListViewControllerDelegate: AnyObject {
     func shouldResetChatView(deletedContactId: Int)
 }
 
+public enum RightClickedContactActions : Int{
+    case deleteContact
+    case toggleReadUnread
+}
+
 class NewChatListViewController: NSViewController {
     
     weak var delegate: NewChatListViewControllerDelegate?
@@ -30,6 +35,8 @@ class NewChatListViewController: NSViewController {
     private var contactsService = ContactsService.sharedInstance
     
     private var owner: UserContact!
+    
+    var rightClickedContactId : Int? = nil
     
     public enum Tab: Int {
         case Friends
@@ -283,6 +290,9 @@ extension NewChatListViewController {
                     selected: chatItem.selected,
                     delegate: self
                 )
+                
+                cell.delegate = self
+                cell.contactId = self.chatListObjects[indexPath.item].getContact()?.id
 
                 return cell
             }
@@ -388,7 +398,8 @@ extension NewChatListViewController: ChatListCollectionViewItemDelegate{
     func showContextMenu(contactId: Int) {
         let contextMenu = NSMenu(title: "Context Menu")
         contextMenu.autoenablesItems = true
-
+        
+        rightClickedContactId = contactId
         // Create menu items
         let menuItem1 = NSMenuItem(
             title: "delete.contact".localized,
@@ -396,13 +407,25 @@ extension NewChatListViewController: ChatListCollectionViewItemDelegate{
             keyEquivalent: ""
         )
         
+        let menuItem2 = NSMenuItem(
+            title: "Mark as Unread",
+            action: #selector(self.handleMenuItemClick(_:)),
+            keyEquivalent: ""
+        )
+        
         // Set a unique tag for each menu item (you can use this to identify which item was clicked)
         menuItem1.target = self
-        menuItem1.tag = contactId
+        menuItem1.tag = RightClickedContactActions.deleteContact.rawValue
         menuItem1.isEnabled = true
-
+        
+        
+        menuItem2.target = self
+        menuItem2.tag = RightClickedContactActions.toggleReadUnread.rawValue
+        menuItem2.isEnabled = true
+        
         // Add menu items to the context menu
         contextMenu.addItem(menuItem1)
+        contextMenu.addItem(menuItem2)
 
         // Show the context menu at the mouse pointer location
         contextMenu.popUp(
@@ -413,9 +436,33 @@ extension NewChatListViewController: ChatListCollectionViewItemDelegate{
     }
     
     @objc func handleMenuItemClick(_ sender: NSMenuItem) {
-        // Handle the menu item click based on its tag
-        initiateDeletion(contactId: sender.tag)
+        guard let rightClickedContactId = rightClickedContactId else {
+            return
+        }
+        
+        // Convert the tag value back to the enum
+        if let action = RightClickedContactActions(rawValue: sender.tag) {
+            switch action {
+            case .deleteContact:
+                initiateDeletion(contactId: rightClickedContactId)
+                break
+            case .toggleReadUnread:
+                guard let chat = chatListObjects.filter({$0.getChat()?.getContact()?.id == rightClickedContactId}).first,
+                      let lastMessage = chat.lastMessage else{
+                    return
+                }
+                lastMessage.seen = !lastMessage.seen
+                if let chat = chat as? Chat{
+                    chat.seen = !chat.seen
+                    chat.saveChat()
+                }
+                break
+            }
+        }
+        
+        self.rightClickedContactId = nil
     }
+
     
     func initiateDeletion(contactId: Int){
         let confirmDeletionCallback: (() -> ()) = {
