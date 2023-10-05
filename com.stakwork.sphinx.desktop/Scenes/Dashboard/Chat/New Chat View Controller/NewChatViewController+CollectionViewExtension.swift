@@ -131,10 +131,12 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
     }
     
     func didDeleteTribe() {
-        
+        delegate?.shouldResetTribeView()
     }
     
-    func didUpdateChat(_ chat: Chat) {}
+    func didUpdateChat(_ chat: Chat) {
+        self.chat = chat
+    }
     
     func shouldShowMemberPopupFor(messageId: Int) {
         if let message = TransactionMessage.getMessageWith(id: messageId) {
@@ -158,9 +160,7 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
         }
     }
     
-    func shouldPayInvoiceFor(messageId: Int) {
-        
-    }
+    func shouldPayInvoiceFor(messageId: Int) {}
     
     func isOnStandardMode() -> Bool {
         return true

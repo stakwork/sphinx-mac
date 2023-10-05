@@ -367,8 +367,17 @@ class DashboardViewController: NSViewController {
 //}
 
 extension DashboardViewController : DashboardVCDelegate {
-    func shouldResetChatView(deletedContactId: Int) {
+    func shouldResetContactView(deletedContactId: Int) {
         contactsService.selectedFriendId = nil
+        
+        didClickOnChatRow(
+            chatId: nil,
+            contactId: nil
+        )
+    }
+    
+    func shouldResetTribeView() {
+        contactsService.selectedTribeId = nil
         
         didClickOnChatRow(
             chatId: nil,
@@ -591,12 +600,8 @@ extension DashboardViewController : SocketManagerDelegate {
         listViewController?.shouldShowAlert(message: message)
     }
     
-    func didReceiveOrUpdateGroup() {
-        listViewController?.didReceiveOrUpdateGroup()
-    }
-    
-    func didUpdateChat(chat: Chat) {
-        newDetailViewController?.didUpdateChat(chat)
+    func didUpdateChatFromMessage(_ chat: Chat) {
+        
     }
 }
 

@@ -101,13 +101,35 @@ extension NewChatViewController : ChatHeaderViewDelegate {
             )
         }
     }
+    
+    func didClickSearchButton() {
+        toggleSearchMode(active: true)
+    }
 }
 
 extension NewChatViewController : GroupDetailsDelegate {
     func shouldExitTribeOrGroup(
         completion: @escaping () -> ()
     ) {
+        exitAndDeleteGroup(completion: completion)
+    }
+    
+    func exitAndDeleteGroup(completion: @escaping () -> ()) {
+        let isPublicGroup = chat?.isPublicGroup() ?? false
+        let isMyPublicGroup = chat?.isMyPublicGroup() ?? false
+        let deleteLabel = (isPublicGroup ? "delete.tribe" : "delete.group").localized
+        let confirmDeleteLabel = (isMyPublicGroup ? "confirm.delete.tribe" : (isPublicGroup ? "confirm.exit.delete.tribe" : "confirm.exit.delete.group")).localized
         
+        AlertHelper.showTwoOptionsAlert(title: deleteLabel, message: confirmDeleteLabel, confirm: {
+            GroupsManager.sharedInstance.deleteGroup(chat: self.chat, completion: { success in
+                if success {
+                    self.delegate?.shouldResetTribeView()
+                    completion()
+                } else {
+                    AlertHelper.showAlert(title: "generic.error.title".localized, message: "generic.error.message".localized)
+                }
+            })
+        })
     }
 }
 

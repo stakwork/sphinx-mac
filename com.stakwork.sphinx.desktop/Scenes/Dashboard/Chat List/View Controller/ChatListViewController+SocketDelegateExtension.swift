@@ -12,8 +12,4 @@ extension ChatListViewController {
     func shouldShowAlert(message: String) {
         AlertHelper.showAlert(title: "Hey!", message: message)
     }
-    
-    func didReceiveOrUpdateGroup() {
-        loadFriendAndReload()
-    }
 }

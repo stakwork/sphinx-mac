@@ -10,7 +10,7 @@ import Cocoa
 
 protocol NewChatListViewControllerDelegate: AnyObject {
     func didClickRowAt(chatId: Int?, contactId: Int?)
-    func shouldResetChatView(deletedContactId: Int)
+    func shouldResetContactView(deletedContactId: Int)
 }
 
 class NewChatListViewController: NSViewController {
@@ -437,7 +437,7 @@ extension NewChatListViewController: ChatListCollectionViewItemDelegate{
                     if let contact = UserContact.getContactWith(id: contactId) {
                         
                         if let chat = contact.getChat(), chat.id == self.contactsService.getObjectIdForCurrentSelection().0 {
-                            self.delegate?.shouldResetChatView(deletedContactId: contactId)
+                            self.delegate?.shouldResetContactView(deletedContactId: contactId)
                         }
                         
                         CoreDataManager.sharedManager.deleteContactObjectsFor(contact)
