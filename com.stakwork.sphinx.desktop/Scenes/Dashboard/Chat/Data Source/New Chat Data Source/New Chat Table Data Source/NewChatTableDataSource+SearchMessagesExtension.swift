@@ -36,15 +36,17 @@ extension NewChatTableDataSource {
         }
         
         let isNewSearch = searchingTerm != term
+        let isNewPage = itemsCount > self.messagesArray.count
         
         searchingTerm = term
         
-        if (itemsCount > self.messagesArray.count) {
+        if isNewPage {
             ///Start listening with this limit to prevent scroll jump on search cancel
             ///If listening was set with lower count, then on cancel could jump since less items are available
             self.configureResultsController(items: itemsCount)
         }
-        if (itemsCount > self.messagesArray.count || isNewSearch) {
+        
+        if isNewPage || isNewSearch {
             ///Process messages if loading more items or doing a new search
             self.messagesArray = TransactionMessage.getAllMessagesFor(chat: chat, limit: itemsCount).reversed()
             self.processMessages(messages: self.messagesArray)
@@ -62,7 +64,7 @@ extension NewChatTableDataSource {
             index: currentSearchMatchIndex
         )
         
-        reloadAllVisibleRows()
+        reloadAllVisibleRows(animated: false)
     }
     
     func shouldEndSearch() {
@@ -97,88 +99,88 @@ extension NewChatTableDataSource {
     }
     
     func finishSearchProcess() {
-        //        guard let _ = searchingTerm else {
-        //            return
-        //        }
-        //
-        //        ///Invert indexes
-        //        let itemsCount = messageTableCellStateArray.count
-        //
-        //        for (index, indexAndMessageTableCellState) in searchMatches.enumerated() {
-        //            searchMatches[index] = (
-        //                itemsCount - indexAndMessageTableCellState.0 - 1,
-        //                indexAndMessageTableCellState.1
-        //            )
-        //        }
-        //
-        //        searchMatches = searchMatches.reversed()
-        //
-        //        ///should scroll to first results after current scroll position
-        //        currentSearchMatchIndex = searchMatches.firstIndex(where: { $0.0 >= (tableView.indexPathsForVisibleRows?.first?.row ?? 0) }) ?? 0
-        //
-        //        ///Show search results
-        //        DispatchQueue.main.async {
-        //            self.delegate?.didFinishSearchingWith(
-        //                matchesCount: self.searchMatches.count,
-        //                index: self.currentSearchMatchIndex
-        //            )
-        //
-        //            self.reloadAllVisibleRows()
-        //            self.scrollToSearchAt(index: self.currentSearchMatchIndex)
-        //        }
+        guard let _ = searchingTerm else {
+            return
+        }
+        
+        let isNewSearch = currentSearchMatchIndex == 0
+
+        searchMatches = searchMatches.reversed()
+
+        ///should scroll to first results after current scroll position
+        if isNewSearch {
+            currentSearchMatchIndex = searchMatches.firstIndex(where: { $0.0 <= (collectionView.indexPathsForVisibleItems().reversed().first?.item ?? 0) }) ?? 0
+        }
+
+        ///Show search results
+        DispatchQueue.main.async {
+            self.delegate?.didFinishSearchingWith(
+                matchesCount: self.searchMatches.count,
+                index: self.currentSearchMatchIndex
+            )
+
+            self.reloadAllVisibleRows() {
+                self.scrollToSearchAt(index: self.currentSearchMatchIndex)
+            }
+        }
     }
     
     func scrollToSearchAt(index: Int) {
-        //        if searchMatches.count > index && index >= 0 {
-        //            let searchMatchIndex = searchMatches[index].0
-        //
-        //            tableView.scrollToRow(
-        //                at: IndexPath(row: searchMatchIndex, section: 0),
-        //                at: .top,
-        //                animated: true
-        //            )
-        //
-        //            if index + 1 == searchMatches.count {
-        //                loadMoreItemForSearch()
-        //            }
-        //        }
+        if searchMatches.count > index && index >= 0 {
+            let searchMatchIndex = searchMatches[index].0
+            
+            collectionView.scrollToIndex(
+                targetIndex: searchMatchIndex,
+                animated: false,
+                position: NSCollectionView.ScrollPosition.top
+            )
+
+            if index + 1 == searchMatches.count {
+                loadMoreItemForSearch()
+            }
+        }
     }
     
     func loadMoreItemForSearch() {
-        //        if isLastSearchPage {
-        //            return
-        //        }
-        //
-        //        delegate?.shouldToggleSearchLoadingWheel(active: true)
-        //
-        //        DelayPerformedHelper.performAfterDelay(seconds: 1.0, completion: {
-        //            self.performSearch(
-        //                term: self.searchingTerm ?? "",
-        //                itemsCount: self.messagesArray.count + 500
-        //            )
-        //        })
+        if isLastSearchPage {
+            return
+        }
+
+        delegate?.shouldToggleSearchLoadingWheel(active: true)
+
+        DelayPerformedHelper.performAfterDelay(seconds: 1.0, completion: {
+            self.performSearch(
+                term: self.searchingTerm ?? "",
+                itemsCount: self.messagesArray.count + 500
+            )
+        })
     }
     
-    func reloadAllVisibleRows() {
-        //        let tableCellStates = getTableCellStatesForVisibleRows()
-        //
-        //        var snapshot = self.dataSource.snapshot()
-        //        snapshot.reloadItems(tableCellStates)
-        //        self.dataSource.apply(snapshot, animatingDifferences: false)
+    func reloadAllVisibleRows(
+        animated: Bool = true,
+        completion: (() -> ())? = nil
+    ) {
+        let tableCellStates = getTableCellStatesForVisibleRows()
+
+        var snapshot = self.dataSource.snapshot()
+        snapshot.reloadItems(tableCellStates)
+        self.dataSource.apply(snapshot, animatingDifferences: animated) {
+            completion?()
+        }
     }
     
-    //    func shouldNavigateOnSearchResultsWith(
-    //        button: ChatSearchResultsBar.NavigateArrowButton
-    //    ) {
-    //        switch(button) {
-    //        case ChatSearchResultsBar.NavigateArrowButton.Up:
-    //            currentSearchMatchIndex += 1
-    //            break
-    //        case ChatSearchResultsBar.NavigateArrowButton.Down:
-    //            currentSearchMatchIndex -= 1
-    //            break
-    //        }
-    //
-    //        scrollToSearchAt(index: currentSearchMatchIndex)
-    //    }
+    func shouldNavigateOnSearchResultsWith(
+        button: ChatSearchResultsBar.NavigateArrowButton
+    ) {
+        switch(button) {
+        case ChatSearchResultsBar.NavigateArrowButton.Up:
+            currentSearchMatchIndex += 1
+            break
+        case ChatSearchResultsBar.NavigateArrowButton.Down:
+            currentSearchMatchIndex -= 1
+            break
+        }
+
+        scrollToSearchAt(index: currentSearchMatchIndex)
+    }
 }

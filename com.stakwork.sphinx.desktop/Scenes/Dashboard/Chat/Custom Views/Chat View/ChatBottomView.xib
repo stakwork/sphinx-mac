@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ChatBottomView" customModule="Sphinx" customModuleProvider="target">
             <connections>
+                <outlet property="chatSearchView" destination="Y7Z-01-SQp" id="ngJ-iv-zrr"/>
                 <outlet property="contentView" destination="c22-O7-iKe" id="cOK-rr-9oR"/>
                 <outlet property="giphySearchView" destination="9hy-Ol-UOg" id="zCL-2L-VhG"/>
                 <outlet property="messageFieldView" destination="LZ5-k3-GhO" id="Jp6-y6-eZO"/>
@@ -41,8 +42,16 @@
                                 <constraint firstAttribute="height" priority="750" constant="60" id="8Bq-qX-bTP"/>
                             </constraints>
                         </customView>
+                        <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y7Z-01-SQp" customClass="ChatSearchResultsBar" customModule="Sphinx" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="835" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="60" id="xhS-eH-joe"/>
+                            </constraints>
+                        </customView>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="Y7Z-01-SQp" firstAttribute="leading" secondItem="pXa-h9-I4V" secondAttribute="leading" id="9L9-fj-fQW"/>
+                        <constraint firstAttribute="trailing" secondItem="Y7Z-01-SQp" secondAttribute="trailing" id="BK4-az-Svi"/>
                         <constraint firstItem="9hy-Ol-UOg" firstAttribute="leading" secondItem="pXa-h9-I4V" secondAttribute="leading" id="HEV-EG-5od"/>
                         <constraint firstAttribute="trailing" secondItem="7Ir-cU-gQ9" secondAttribute="trailing" id="KtP-Xg-C4M"/>
                         <constraint firstItem="7Ir-cU-gQ9" firstAttribute="leading" secondItem="pXa-h9-I4V" secondAttribute="leading" id="WnF-HT-OuX"/>
@@ -54,8 +63,10 @@
                         <integer value="1000"/>
                         <integer value="1000"/>
                         <integer value="1000"/>
+                        <integer value="1000"/>
                     </visibilityPriorities>
                     <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>

@@ -15,6 +15,7 @@ protocol ChatHeaderViewDelegate : AnyObject {
     func didClickMuteButton()
     func didClickCallButton()
     func didClickHeaderButton()
+    func didClickSearchButton()
 }
 
 class ChatHeaderView: NSView, LoadableNib {
@@ -39,6 +40,7 @@ class ChatHeaderView: NSView, LoadableNib {
     @IBOutlet weak var callButton: CustomButton!
     @IBOutlet weak var headerButton: CustomButton!
     @IBOutlet weak var threadsButton: CustomButton!
+    @IBOutlet weak var searchButton: CustomButton!
     
     var chat: Chat? = nil
     var contact: UserContact? = nil
@@ -65,6 +67,7 @@ class ChatHeaderView: NSView, LoadableNib {
         callButton.cursor = .pointingHand
         headerButton.cursor = .pointingHand
         threadsButton.cursor = .pointingHand
+        searchButton.cursor = .pointingHand
     }
     
     func configureWith(
@@ -95,6 +98,8 @@ class ChatHeaderView: NSView, LoadableNib {
         volumeButton.isHidden = true
         webAppButton.isHidden = true
         callButton.isHidden = true
+        threadsButton.isHidden = true
+        searchButton.isHidden = true
     }
     
     func setChatInfo() {
@@ -108,6 +113,9 @@ class ChatHeaderView: NSView, LoadableNib {
     }
     
     func configureHeaderBasicInfo() {
+        threadsButton.isHidden = false
+        searchButton.isHidden = false
+        
         nameLabel.stringValue = getHeaderName()
         callButton.isHidden = false
         
@@ -278,4 +286,7 @@ class ChatHeaderView: NSView, LoadableNib {
         delegate?.didClickHeaderButton()
     }
     
+    @IBAction func searchButtonClicked(_ sender: Any) {
+        delegate?.didClickSearchButton()
+    }
 }

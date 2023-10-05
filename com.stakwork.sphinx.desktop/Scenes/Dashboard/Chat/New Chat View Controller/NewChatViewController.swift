@@ -50,6 +50,13 @@ class NewChatViewController: DashboardSplittedViewController {
         }
     }
     
+    enum ViewMode: Int {
+        case Standard
+        case Search
+    }
+    
+    var viewMode = ViewMode.Standard
+    
     var contactResultsController: NSFetchedResultsController<UserContact>!
     var chatResultsController: NSFetchedResultsController<Chat>!
     
@@ -163,7 +170,8 @@ class NewChatViewController: DashboardSplittedViewController {
             chatTopView.configureHeaderWith(
                 chat: chat,
                 contact: contact,
-                andDelegate: self
+                andDelegate: self,
+                searchDelegate: self
             )
             
             configurePinnedMessageView()
@@ -195,7 +203,8 @@ class NewChatViewController: DashboardSplittedViewController {
             chat,
             contact: contact,
             isThread: isThread,
-            with: self
+            with: self,
+            and: self
         )        
     }
     

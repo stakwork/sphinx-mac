@@ -140,7 +140,7 @@ extension NewChatTableDataSource {
             return
         }
         
-//        startSearchProcess()
+        startSearchProcess()
         
         var newMsgCount = 0
         var array: [MessageTableCellState] = []
@@ -237,11 +237,11 @@ extension NewChatTableDataSource {
             
             newMsgCount += getNewMessageCountFor(message: message, and: owner)
             
-//            processForSearch(
-//                message: message,
-//                messageTableCellState: messageTableCellState,
-//                index: array.count - 1
-//            )
+            processForSearch(
+                message: message,
+                messageTableCellState: messageTableCellState,
+                index: array.count - 1
+            )
         }
         
         messageTableCellStateArray = array
@@ -254,7 +254,7 @@ extension NewChatTableDataSource {
         
         preloadDataForItems()
         
-//        finishSearchProcess()
+        finishSearchProcess()
     }
     
     func filterThreadMessagesFrom(

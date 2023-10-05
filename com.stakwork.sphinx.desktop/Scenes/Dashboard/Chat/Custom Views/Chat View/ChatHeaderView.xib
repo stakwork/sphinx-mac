@@ -22,6 +22,7 @@
                 <outlet property="lockSign" destination="T82-4F-A3v" id="rdr-J6-a39"/>
                 <outlet property="nameLabel" destination="uGI-oR-OOS" id="80M-Bb-Zfs"/>
                 <outlet property="profileImageView" destination="cKv-Wh-FUp" id="0ot-4i-RHM"/>
+                <outlet property="searchButton" destination="qgt-D2-gCl" id="6Jq-th-Rnl"/>
                 <outlet property="threadsButton" destination="XXC-Xz-jRX" id="9Ve-JN-mCC"/>
                 <outlet property="tribePriceLabel" destination="EME-3C-8RS" id="58y-MJ-kGk"/>
                 <outlet property="volumeButton" destination="kVc-1M-iiC" id="1Vr-tL-3Di"/>
@@ -31,19 +32,19 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="840" height="60"/>
+            <rect key="frame" x="0.0" y="0.0" width="877" height="60"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="FCM-Em-kOT">
-                    <rect key="frame" x="0.0" y="0.0" width="840" height="60"/>
+                    <rect key="frame" x="0.0" y="0.0" width="877" height="60"/>
                     <view key="contentView" id="2zh-Je-6fK">
-                        <rect key="frame" x="0.0" y="0.0" width="840" height="60"/>
+                        <rect key="frame" x="0.0" y="0.0" width="877" height="60"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
                     <color key="fillColor" name="NewHeaderBG"/>
                 </box>
                 <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Omx-ky-pen">
-                    <rect key="frame" x="0.0" y="0.0" width="832" height="60"/>
+                    <rect key="frame" x="0.0" y="0.0" width="869" height="60"/>
                     <subviews>
                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="hc9-ue-1sf">
                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
@@ -216,8 +217,22 @@
                                 <constraint firstItem="TUM-g0-3nc" firstAttribute="leading" secondItem="DVp-3x-Zd0" secondAttribute="leading" id="lHW-z4-5Ce"/>
                             </constraints>
                         </customView>
-                        <button translatesAutoresizingMaskIntoConstraints="NO" id="XXC-Xz-jRX" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                        <button translatesAutoresizingMaskIntoConstraints="NO" id="qgt-D2-gCl" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                             <rect key="frame" x="675" y="0.0" width="37" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="37" id="IxV-tM-fWU"/>
+                            </constraints>
+                            <buttonCell key="cell" type="square" title="search" bezelStyle="shadowlessSquare" alignment="center" inset="2" id="UKM-kN-kwR">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" size="27" name="MaterialIcons-Regular"/>
+                            </buttonCell>
+                            <color key="contentTintColor" name="SecondaryText"/>
+                            <connections>
+                                <action selector="searchButtonClicked:" target="-2" id="wV4-Bb-m93"/>
+                            </connections>
+                        </button>
+                        <button translatesAutoresizingMaskIntoConstraints="NO" id="XXC-Xz-jRX" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                            <rect key="frame" x="712" y="0.0" width="37" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="37" id="6lj-ZA-uiI"/>
                             </constraints>
@@ -231,7 +246,7 @@
                             </connections>
                         </button>
                         <button translatesAutoresizingMaskIntoConstraints="NO" id="cuK-dZ-qgQ" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                            <rect key="frame" x="712" y="0.0" width="40" height="60"/>
+                            <rect key="frame" x="749" y="0.0" width="40" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="eNZ-Pp-4Kx"/>
                             </constraints>
@@ -245,7 +260,7 @@
                             </connections>
                         </button>
                         <button translatesAutoresizingMaskIntoConstraints="NO" id="kVc-1M-iiC" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                            <rect key="frame" x="752" y="0.0" width="40" height="60"/>
+                            <rect key="frame" x="789" y="0.0" width="40" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="6Mu-H0-tDx"/>
                             </constraints>
@@ -259,7 +274,7 @@
                             </connections>
                         </button>
                         <button translatesAutoresizingMaskIntoConstraints="NO" id="VaF-EB-L4n" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                            <rect key="frame" x="792" y="0.0" width="40" height="60"/>
+                            <rect key="frame" x="829" y="0.0" width="40" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="c5q-xu-nhi"/>
                             </constraints>
@@ -275,10 +290,12 @@
                     </subviews>
                     <constraints>
                         <constraint firstItem="kVc-1M-iiC" firstAttribute="top" secondItem="Omx-ky-pen" secondAttribute="top" id="6ha-Jo-iQX"/>
+                        <constraint firstAttribute="bottom" secondItem="qgt-D2-gCl" secondAttribute="bottom" id="80R-hg-Py4"/>
                         <constraint firstAttribute="bottom" secondItem="VaF-EB-L4n" secondAttribute="bottom" id="9z0-84-SuO"/>
                         <constraint firstItem="XXC-Xz-jRX" firstAttribute="top" secondItem="Omx-ky-pen" secondAttribute="top" id="Bmi-ZN-62A"/>
                         <constraint firstItem="VaF-EB-L4n" firstAttribute="top" secondItem="Omx-ky-pen" secondAttribute="top" id="HUq-xV-01p"/>
                         <constraint firstAttribute="bottom" secondItem="cuK-dZ-qgQ" secondAttribute="bottom" id="HXP-Al-qUm"/>
+                        <constraint firstItem="qgt-D2-gCl" firstAttribute="top" secondItem="Omx-ky-pen" secondAttribute="top" id="TwJ-Nb-lGB"/>
                         <constraint firstItem="cuK-dZ-qgQ" firstAttribute="top" secondItem="Omx-ky-pen" secondAttribute="top" id="eQw-NS-qog"/>
                         <constraint firstAttribute="bottom" secondItem="kVc-1M-iiC" secondAttribute="bottom" id="jVv-lD-c8m"/>
                         <constraint firstAttribute="bottom" secondItem="XXC-Xz-jRX" secondAttribute="bottom" id="jhi-5I-17b"/>
@@ -290,8 +307,10 @@
                         <integer value="1000"/>
                         <integer value="1000"/>
                         <integer value="1000"/>
+                        <integer value="1000"/>
                     </visibilityPriorities>
                     <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>

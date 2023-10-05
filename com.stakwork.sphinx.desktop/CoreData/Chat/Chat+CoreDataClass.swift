@@ -325,12 +325,6 @@ public class Chat: NSManagedObject {
         }
     }
     
-    func findImageURLByAlias(alias:String)->URL?{
-        let allMessages = self.getAllMessages()
-        guard let picURLString = allMessages.first(where: {$0.senderAlias == alias})?.senderPic else { return nil }
-        return URL(string: picURLString)
-    }
-    
     static func getChatsWith(uuids: [String]) -> [Chat] {
         let predicate = NSPredicate(format: "uuid IN %@", uuids)
         let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
@@ -345,19 +339,13 @@ public class Chat: NSManagedObject {
     }
     
     func getAllMessages(
-        limit: Int? = 100,
-        messagesIdsToExclude: [Int] = [],
-        lastMessage: TransactionMessage? = nil,
-        firstMessage: TransactionMessage? = nil,
+        limit: Int? = nil,
         context: NSManagedObjectContext? = nil
     ) -> [TransactionMessage] {
         
         return TransactionMessage.getAllMessagesFor(
             chat: self,
             limit: limit,
-            messagesIdsToExclude: messagesIdsToExclude,
-            lastMessage: lastMessage,
-            firstMessage: firstMessage,
             context: context
         )
     }

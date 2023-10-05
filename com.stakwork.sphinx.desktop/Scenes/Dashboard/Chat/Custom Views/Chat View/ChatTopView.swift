@@ -9,11 +9,14 @@
 import Cocoa
 
 class ChatTopView: NSView, LoadableNib {
+    
+    weak var searchDelegate: ChatSearchTextFieldViewDelegate?
 
     @IBOutlet var contentView: NSView!
 
     @IBOutlet weak var chatHeaderView: ChatHeaderView!
-    @IBOutlet weak var pinMessageBarView: PinMessageBarView! 
+    @IBOutlet weak var pinMessageBarView: PinMessageBarView!
+    @IBOutlet weak var chatSearchView: ChatSearchTextFieldView!
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
@@ -65,13 +68,18 @@ class ChatTopView: NSView, LoadableNib {
     func configureHeaderWith(
         chat: Chat?,
         contact: UserContact?,
-        andDelegate delegate: ChatHeaderViewDelegate
+        andDelegate delegate: ChatHeaderViewDelegate,
+        searchDelegate: ChatSearchTextFieldViewDelegate? = nil
     ) {
         chatHeaderView.configureWith(
             chat: chat,
             contact: contact,
             delegate: delegate
         )
+        
+        self.searchDelegate = searchDelegate
+        
+        chatSearchView.setDelegate(self)
     }
     
     func configurePinnedMessageViewWith(
@@ -86,4 +94,26 @@ class ChatTopView: NSView, LoadableNib {
         )
     }
     
+    func configureSearchMode(
+        active: Bool
+    ) {
+        chatHeaderView.isHidden = active
+        chatSearchView.isHidden = !active
+        
+        if active {
+            chatSearchView.makeFieldActive()
+        }
+    }
+}
+
+extension ChatTopView : ChatSearchTextFieldViewDelegate {
+    func shouldSearchFor(term: String) {
+        searchDelegate?.shouldSearchFor(term: term)
+    }
+    
+    func didTapSearchCancelButton() {
+        configureSearchMode(active: false)
+        
+        searchDelegate?.didTapSearchCancelButton()
+    }
 }

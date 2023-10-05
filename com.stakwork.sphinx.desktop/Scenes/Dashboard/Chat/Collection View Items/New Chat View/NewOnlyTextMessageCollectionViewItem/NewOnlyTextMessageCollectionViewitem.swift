@@ -132,6 +132,4 @@ class NewOnlyTextMessageCollectionViewitem: CommonNewMessageCollectionViewitem, 
             delegate?.shouldShowOptionsFor(messageId: messageId, from: button)
         }
     }
-    
-    
 }

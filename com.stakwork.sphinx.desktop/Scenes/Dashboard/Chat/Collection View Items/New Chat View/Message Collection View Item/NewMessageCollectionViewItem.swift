@@ -86,7 +86,6 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
         isPreload: Bool,
         collectionViewWidth: CGFloat
     ) {
-        
         hideAllSubviews()
         
         var mutableMessageCellState = messageCellState
@@ -161,5 +160,4 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
             delegate?.shouldShowOptionsFor(messageId: messageId, from: button)
         }
     }
-    
 }

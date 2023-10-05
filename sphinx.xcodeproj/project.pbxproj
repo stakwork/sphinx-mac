@@ -191,6 +191,11 @@
 		47469D5B2ACB6012004F0490 /* NewMessagesIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47469D5A2ACB6012004F0490 /* NewMessagesIndicatorView.swift */; };
 		47469D5D2ACB6019004F0490 /* NewMessagesIndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47469D5C2ACB6019004F0490 /* NewMessagesIndicatorView.xib */; };
 		47469D602ACDDB13004F0490 /* MentionOrMacroItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47469D5F2ACDDB13004F0490 /* MentionOrMacroItem.swift */; };
+		47469D622ACEE73E004F0490 /* ChatSearchResultsBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47469D612ACEE73E004F0490 /* ChatSearchResultsBar.swift */; };
+		47469D642ACEE74B004F0490 /* ChatSearchResultsBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47469D632ACEE74B004F0490 /* ChatSearchResultsBar.xib */; };
+		47469D672ACEE892004F0490 /* ChatSearchTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47469D662ACEE892004F0490 /* ChatSearchTextFieldView.swift */; };
+		47469D692ACEE899004F0490 /* ChatSearchTextFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47469D682ACEE899004F0490 /* ChatSearchTextFieldView.xib */; };
+		47469D6B2ACEF53F004F0490 /* NewChatViewController+SearchMessagesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47469D6A2ACEF53F004F0490 /* NewChatViewController+SearchMessagesExtension.swift */; };
 		474A66842497CAFE002C2D10 /* MessageReplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474A66832497CAFE002C2D10 /* MessageReplyView.swift */; };
 		474A66862497CB0A002C2D10 /* MessageReplyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 474A66852497CB0A002C2D10 /* MessageReplyView.xib */; };
 		474A66882498F3E6002C2D10 /* MessageOptionsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474A66872498F3E6002C2D10 /* MessageOptionsHelper.swift */; };
@@ -844,6 +849,11 @@
 		47469D5A2ACB6012004F0490 /* NewMessagesIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessagesIndicatorView.swift; sourceTree = "<group>"; };
 		47469D5C2ACB6019004F0490 /* NewMessagesIndicatorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewMessagesIndicatorView.xib; sourceTree = "<group>"; };
 		47469D5F2ACDDB13004F0490 /* MentionOrMacroItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentionOrMacroItem.swift; sourceTree = "<group>"; };
+		47469D612ACEE73E004F0490 /* ChatSearchResultsBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSearchResultsBar.swift; sourceTree = "<group>"; };
+		47469D632ACEE74B004F0490 /* ChatSearchResultsBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatSearchResultsBar.xib; sourceTree = "<group>"; };
+		47469D662ACEE892004F0490 /* ChatSearchTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSearchTextFieldView.swift; sourceTree = "<group>"; };
+		47469D682ACEE899004F0490 /* ChatSearchTextFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatSearchTextFieldView.xib; sourceTree = "<group>"; };
+		47469D6A2ACEF53F004F0490 /* NewChatViewController+SearchMessagesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewChatViewController+SearchMessagesExtension.swift"; sourceTree = "<group>"; };
 		474A667F2497BBEF002C2D10 /* com_stakwork_sphinx_desktop 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "com_stakwork_sphinx_desktop 4.xcdatamodel"; sourceTree = "<group>"; };
 		474A66832497CAFE002C2D10 /* MessageReplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageReplyView.swift; sourceTree = "<group>"; };
 		474A66852497CB0A002C2D10 /* MessageReplyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageReplyView.xib; sourceTree = "<group>"; };
@@ -2050,6 +2060,17 @@
 			path = Objects;
 			sourceTree = "<group>";
 		};
+		47469D652ACEE751004F0490 /* Chat Search */ = {
+			isa = PBXGroup;
+			children = (
+				47469D612ACEE73E004F0490 /* ChatSearchResultsBar.swift */,
+				47469D632ACEE74B004F0490 /* ChatSearchResultsBar.xib */,
+				47469D662ACEE892004F0490 /* ChatSearchTextFieldView.swift */,
+				47469D682ACEE899004F0490 /* ChatSearchTextFieldView.xib */,
+			);
+			path = "Chat Search";
+			sourceTree = "<group>";
+		};
 		474A66822497CAE9002C2D10 /* Message Reply */ = {
 			isa = PBXGroup;
 			children = (
@@ -3061,6 +3082,7 @@
 				474E3344247FFAA300F7F603 /* Gif */,
 				474E3343247FFA9900F7F603 /* Paid Attachments */,
 				476A6C45282C2F3600CA213D /* MemberInfo */,
+				47469D652ACEE751004F0490 /* Chat Search */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -3165,6 +3187,7 @@
 				47FEE1FB2A65BA4F00646C4E /* NewChatViewController+MentionsExtension.swift */,
 				47FEE22D2A6710F500646C4E /* NewChatViewController+CollectionViewExtension.swift */,
 				479496752AB8CA7500C42D1E /* NewChatViewController+MessageMenuExtension.swift */,
+				47469D6A2ACEF53F004F0490 /* NewChatViewController+SearchMessagesExtension.swift */,
 			);
 			path = "New Chat View Controller";
 			sourceTree = "<group>";
@@ -3450,6 +3473,7 @@
 				479C793824EC3CCD009BA1CD /* test.html in Resources */,
 				4797E86924BCD58C00D13270 /* DraggingDestinationView.xib in Resources */,
 				478ED5AA25D5720600940132 /* SignupSecureFieldView.xib in Resources */,
+				47469D692ACEE899004F0490 /* ChatSearchTextFieldView.xib in Resources */,
 				4794965D2AB8A70500C42D1E /* GroupActionsView.xib in Resources */,
 				4726A43924C628DA005A66B4 /* synth.caf in Resources */,
 				474E466C2AB0BDD10098AD24 /* DeletedMessageView.xib in Resources */,
@@ -3490,6 +3514,7 @@
 				47BDEDE924F46585001688F3 /* Profile.storyboard in Resources */,
 				47469D5D2ACB6019004F0490 /* NewMessagesIndicatorView.xib in Resources */,
 				476A6C42282C2F2000CA213D /* TribeMemberPopupView.xib in Resources */,
+				47469D642ACEE74B004F0490 /* ChatSearchResultsBar.xib in Resources */,
 				470396F125372994007F9C23 /* PodcastEpisodeCollectionViewItem.xib in Resources */,
 				478ED5E125D6FDAC00940132 /* SphinxReady.xib in Resources */,
 				478ED57925D41ADF00940132 /* SignupButtonView.xib in Resources */,
@@ -3609,6 +3634,7 @@
 				47DE1C282A69DC410029597B /* NewMessageBoostView.swift in Sources */,
 				4787F8A0247C16B200CCE8B9 /* ChatSmallAvatarView.swift in Sources */,
 				47DE1C1A2A6976630029597B /* NewMessageCollectionViewItem+StatusHeaderExtension.swift in Sources */,
+				47469D672ACEE892004F0490 /* ChatSearchTextFieldView.swift in Sources */,
 				47C1D5F8248EA6F600718B28 /* GroupMembersViewController.swift in Sources */,
 				47F8825F25656CB0002A7E71 /* SocketAckEmitter.swift in Sources */,
 				475B683029915D8A000EF29C /* ContentFeedPaymentModel+CoreDataProperties.swift in Sources */,
@@ -3662,6 +3688,7 @@
 				478ED5AC25D5730A00940132 /* CCSecureTextField.swift in Sources */,
 				4744FA8A2469C9F800C5FD94 /* Subscription+CoreDataClass.swift in Sources */,
 				479496632AB8A78A00C42D1E /* GroupRemovedView.swift in Sources */,
+				47469D6B2ACEF53F004F0490 /* NewChatViewController+SearchMessagesExtension.swift in Sources */,
 				477ADCD02A1E5A5F004E74CE /* PinMessageDetailView.swift in Sources */,
 				474A6695249BE4BB002C2D10 /* DisabledScrollView.swift in Sources */,
 				47F8825825656CB0002A7E71 /* SocketIOClient.swift in Sources */,
@@ -3864,6 +3891,7 @@
 				47FEE20D2A66DB4E00646C4E /* NewChatTableDataSource+PreloaderExtension.swift in Sources */,
 				478F07D924E45E6000EE32A3 /* GiphyHelper.swift in Sources */,
 				47B550AC248C20EE000514BF /* PaymentTemplatesDataSource.swift in Sources */,
+				47469D622ACEE73E004F0490 /* ChatSearchResultsBar.swift in Sources */,
 				475B680529915C9E000EF29C /* ActionTrack+CoreDataClass.swift in Sources */,
 				475B682F29915D8A000EF29C /* ContentFeedPaymentModel+CoreDataClass.swift in Sources */,
 				CE326B4B294295C600821A53 /* ChatMentionAutocompleteDataSource.swift in Sources */,

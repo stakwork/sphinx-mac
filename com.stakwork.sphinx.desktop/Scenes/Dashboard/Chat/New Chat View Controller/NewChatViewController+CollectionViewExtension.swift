@@ -163,15 +163,7 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
     func shouldPayInvoiceFor(messageId: Int) {}
     
     func isOnStandardMode() -> Bool {
-        return true
-    }
-    
-    func didFinishSearchingWith(matchesCount: Int, index: Int) {
-        
-    }
-    
-    func shouldToggleSearchLoadingWheel(active: Bool) {
-        
+        return viewMode == ViewMode.Standard
     }
     
     func shouldShowOptionsFor(messageId: Int, from button: NSButton) {
