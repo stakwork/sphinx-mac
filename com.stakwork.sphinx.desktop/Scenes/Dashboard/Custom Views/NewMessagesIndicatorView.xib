@@ -55,7 +55,7 @@
                     </view>
                     <color key="fillColor" name="PrimaryBlue"/>
                 </box>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EyY-kh-T6r">
+                <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EyY-kh-T6r">
                     <rect key="frame" x="24" y="30" width="17" height="13"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="+1" id="6kp-49-Ufc">
                         <font key="font" size="11" name="Roboto-Medium"/>

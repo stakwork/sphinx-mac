@@ -30,7 +30,7 @@ extension NewChatTableDataSource {
     func configureDataSource() {
         dataSource = makeDataSource()
 
-        restorePreloadedMessages()        
+        restorePreloadedOrLoadMessages()        
     }
     
     func makeSnapshotForCurrentState() -> DataSourceSnapshot {

@@ -47,7 +47,7 @@ extension NewChatTableDataSource {
         }
     }
     
-    @objc func restorePreloadedMessages() {
+    @objc func restorePreloadedOrLoadMessages() {
         guard let chat = chat else {
             return
         }

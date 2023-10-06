@@ -429,9 +429,12 @@ extension NewChatTableDataSource : ChatCollectionViewItemDelegate, ThreadHeaderV
                         self.botsWebViewData[messageId] = MessageTableCellState.BotWebViewData(height: height)
                         
                         DispatchQueue.main.async {
+                            self.saveSnapshotCurrentState()
                             var snapshot = self.dataSource.snapshot()
                             snapshot.reloadItems([tableCellState.1])
-                            self.dataSource.apply(snapshot, animatingDifferences: true)
+                            self.dataSource.apply(snapshot, animatingDifferences: true) {
+                                self.restoreScrollLastPosition()
+                            }
                         }
                     }
                     
@@ -582,9 +585,12 @@ extension NewChatTableDataSource {
             )
 
             DispatchQueue.main.async {
+                self.saveSnapshotCurrentState()
                 var snapshot = self.dataSource.snapshot()
                 snapshot.reloadItems([tableCellState.1])
-                self.dataSource.apply(snapshot, animatingDifferences: true)
+                self.dataSource.apply(snapshot, animatingDifferences: true) {
+                    self.restoreScrollLastPosition()
+                }
             }
         }
     }
