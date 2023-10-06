@@ -28,7 +28,7 @@ class CommonNewMessageCollectionViewitem : NSCollectionViewItem {
     static let kMaximumDirectPaymentWithMediaBubbleWidth: CGFloat = 300
     static let kMaximumDirectPaymentWithTextBubbleWidth: CGFloat = 250
     static let kMaximumDirectPaymentBubbleWidth: CGFloat = 200
-    static let kMaximumWebViewBubbleWidth: CGFloat = 300
+    static let kMaximumWebViewBubbleWidth: CGFloat = 350
     static let kMaximumAudioBubbleWidth: CGFloat = 300
     static let kMaximumPodcastAudioBubbleWidth: CGFloat = 400
     static let kMaximumPaidTextViewBubbleWidth: CGFloat = 400
