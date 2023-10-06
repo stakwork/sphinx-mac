@@ -55,6 +55,13 @@ extension NewChatTableDataSource {
         if let messagesStateArray = preloaderHelper.getMessageStateArray(for: chat.id) {
             messageTableCellStateArray = messagesStateArray
             updatePreloadedSnapshot()
+            
+            DelayPerformedHelper.performAfterDelay(seconds: 1.0, completion: { [weak self] in
+                guard let self = self else { return }
+                self.configureResultsController(items: max(self.dataSource.snapshot().numberOfItems, 100))
+            })
+        } else {
+            configureResultsController(items: max(dataSource.snapshot().numberOfItems, 100))
         }
     }
     

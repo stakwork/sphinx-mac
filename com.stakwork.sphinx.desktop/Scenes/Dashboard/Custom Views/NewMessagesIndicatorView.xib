@@ -47,7 +47,7 @@
                     </constraints>
                     <color key="fillColor" name="NewMessageIndicator"/>
                 </box>
-                <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="9" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="d5Q-QQ-Sao">
+                <box hidden="YES" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="9" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="d5Q-QQ-Sao">
                     <rect key="frame" x="21" y="28" width="23" height="17"/>
                     <view key="contentView" id="jh9-bt-odb">
                         <rect key="frame" x="0.0" y="0.0" width="23" height="17"/>

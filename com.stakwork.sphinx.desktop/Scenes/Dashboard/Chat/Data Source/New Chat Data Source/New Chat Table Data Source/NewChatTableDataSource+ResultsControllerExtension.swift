@@ -30,12 +30,7 @@ extension NewChatTableDataSource {
     func configureDataSource() {
         dataSource = makeDataSource()
 
-        restorePreloadedMessages()
-        
-        DelayPerformedHelper.performAfterDelay(seconds: 0.1, completion: { [weak self] in
-            guard let self = self else { return }
-            self.configureResultsController(items: max(self.dataSource.snapshot().numberOfItems, 100))
-        })
+        restorePreloadedMessages()        
     }
     
     func makeSnapshotForCurrentState() -> DataSourceSnapshot {
@@ -53,12 +48,14 @@ extension NewChatTableDataSource {
     
     func updateSnapshot() {
         let snapshot = makeSnapshotForCurrentState()
+        let animated = !isFirstLoad && !loadingMoreItems
 
         DispatchQueue.main.async {
             self.saveSnapshotCurrentState()
-            self.dataSource.apply(snapshot, animatingDifferences: !self.loadingMoreItems) {
+            self.dataSource.apply(snapshot, animatingDifferences: animated) {
                 self.restoreScrollLastPosition()
                 self.loadingMoreItems = false
+                self.isFirstLoad = false
             }
         }
     }
@@ -66,6 +63,10 @@ extension NewChatTableDataSource {
     func updatePreloadedSnapshot() {
         let snapshot = makeSnapshotForCurrentState()
         self.dataSource.apply(snapshot, animatingDifferences: false)
+        
+        DelayPerformedHelper.performAfterDelay(seconds: 0.1, completion: {
+            self.restoreScrollLastPosition()
+        })
     }
     
     func getCellFor(
