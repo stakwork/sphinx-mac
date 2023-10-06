@@ -132,6 +132,9 @@ class TribeLinkView: NSView, LoadableNib {
                 }
             )
         } else {
+            tribeImageView.image = nil
+            tribeImageView.radius = 8
+            
             tribePlaceholderImageView.image = NSImage(named: "tribePlaceholder")
             tribePlaceholderImageView.isHidden = false
         }
