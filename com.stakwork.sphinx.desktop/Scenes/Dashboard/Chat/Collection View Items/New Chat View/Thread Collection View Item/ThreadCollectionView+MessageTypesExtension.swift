@@ -194,7 +194,7 @@ extension ThreadCollectionViewItem {
             let labelHeight = ChatHelper.getThreadOriginalTextMessageHeightFor(
                 text,
                 collectionViewWidth: collectionViewWidth,
-                maxHeight: 64.0
+                maxHeight: Constants.kMessageLineHeight * 2
             )
             
             labelHeightConstraint.constant = labelHeight

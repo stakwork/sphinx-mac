@@ -131,6 +131,10 @@ class NewChatViewController: DashboardSplittedViewController {
         chatTableDataSource?.updateFrame()
     }
     
+    func forceReload() {
+        chatTableDataSource?.forceReload()
+    }
+    
     func resetVC() {
         stopPlayingClip()
         resetFetchedResultsControllers()

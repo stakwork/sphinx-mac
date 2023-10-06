@@ -304,7 +304,9 @@ class DashboardViewController: NSViewController {
     }
     
     func reloadView() {
-        ///Reload chat list and message on size chanegd
+        self.listViewController?.contactChatsContainerViewController.forceReload()
+        self.listViewController?.tribeChatsContainerViewController.forceReload()
+        self.newDetailViewController?.forceReload()
     }
     
     func reloadData() {

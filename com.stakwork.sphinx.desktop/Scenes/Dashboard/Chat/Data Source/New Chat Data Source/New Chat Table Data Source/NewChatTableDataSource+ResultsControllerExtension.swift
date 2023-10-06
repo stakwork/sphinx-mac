@@ -296,6 +296,7 @@ extension NewChatTableDataSource {
     
     func forceReload() {
         processMessages(messages: messagesArray)
+        reloadAllVisibleRows(animated: false)
     }
     
     func getMessagesCount() -> Int {

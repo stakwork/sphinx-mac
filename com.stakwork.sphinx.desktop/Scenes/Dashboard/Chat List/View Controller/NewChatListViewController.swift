@@ -235,6 +235,12 @@ extension NewChatListViewController {
 // MARK: - Private Helpers
 extension NewChatListViewController {
     
+    func forceReload() {
+        dataSource = nil
+        
+        configureDataSource()
+    }
+    
     func reloadCollectionView() {
         loadChatsList()
     }

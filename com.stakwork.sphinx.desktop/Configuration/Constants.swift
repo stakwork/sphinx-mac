@@ -30,6 +30,7 @@ class Constants {
     public static var kChatNameFont = NSFont(name: "Roboto-Regular", size: 17.0)!
     
     //Colors
+    public static var kMessageLineHeight: CGFloat = 35
     public static let kMessageTextColor = NSColor.Sphinx.TextMessages
     public static let kEncryptionMessageColor = NSColor.Sphinx.PrimaryRed
     
@@ -80,6 +81,8 @@ class Constants {
             kNewMessagePreviewFont = NSFont(name: "Roboto-Bold", size: 12.0)!
             kChatNameFont = NSFont(name: "Roboto-Regular", size: 15.0)!
             
+            kMessageLineHeight = 31
+            
             kChatListRowHeight = 60
             kPictureBubbleHeight = 210.0
             kBubbleCurveSize = 7
@@ -98,6 +101,8 @@ class Constants {
             kNewMessagePreviewFont = NSFont(name: "Roboto-Bold", size: 13.0)!
             kChatNameFont = NSFont(name: "Roboto-Regular", size: 16.0)!
             
+            kMessageLineHeight = 32
+            
             kChatListRowHeight = 70
             kPictureBubbleHeight = 230.0
             kBubbleCurveSize = 8
@@ -115,6 +120,8 @@ class Constants {
             kMessagePreviewFont = NSFont(name: "Roboto-Regular", size: 14.0)!
             kNewMessagePreviewFont = NSFont(name: "Roboto-Bold", size: 14.0)!
             kChatNameFont = NSFont(name: "Roboto-Regular", size: 17.0)!
+            
+            kMessageLineHeight = 35
             
             kChatListRowHeight = 85
             kPictureBubbleHeight = 250.0
