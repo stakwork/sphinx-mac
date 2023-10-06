@@ -148,7 +148,8 @@
 "new.contact.error.alreadyExists" = "Ang isang contact na may public key na ito ay nag e-exists  sa iyong Address Book.";
 "delete.contact" = "Tanggalin ang Kontakto";
 "delete.contact.warning" = "Sigurado ka bang nais mong tanggalin ang kontakto na ito?";
-
+"mark.as.unread" = "Mark as Unread";
+"mark.as.read" = "Mark as Read";
 
 //INVITE
 "add.people"  = "Magdagdag ng mga Tao";

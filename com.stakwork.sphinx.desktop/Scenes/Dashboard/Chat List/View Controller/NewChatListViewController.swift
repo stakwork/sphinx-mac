@@ -14,8 +14,8 @@ protocol NewChatListViewControllerDelegate: AnyObject {
 }
 
 public enum RightClickedContactActions : Int{
-    case deleteContact
     case toggleReadUnread
+    case deleteContact
 }
 
 class NewChatListViewController: NSViewController {
@@ -36,7 +36,8 @@ class NewChatListViewController: NSViewController {
     
     private var owner: UserContact!
     
-    var rightClickedContactId : Int? = nil
+    var rightClickedObjectIdContactId : (String?,Int?) = (nil,nil)
+    
     
     public enum Tab: Int {
         case Friends
@@ -293,6 +294,7 @@ extension NewChatListViewController {
                 
                 cell.delegate = self
                 cell.contactId = self.chatListObjects[indexPath.item].getContact()?.id
+                cell.objectId = self.chatListObjects[indexPath.item].getObjectId()
 
                 return cell
             }
@@ -383,8 +385,8 @@ extension NewChatListViewController : NSCollectionViewDelegate {
 }
 
 extension NewChatListViewController: ChatListCollectionViewItemDelegate{
-    func didRightClick(contactId: Int) {
-        showContextMenu(contactId: contactId)
+    func didRightClick(contactId: Int?,objectId:String) {
+        showContextMenu(contactId: contactId,objectId: objectId)
     }
     
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
@@ -395,38 +397,55 @@ extension NewChatListViewController: ChatListCollectionViewItemDelegate{
         return true // Disable the menu item by default
     }
     
-    func showContextMenu(contactId: Int) {
+    func getToggleReadUnreadItem(isChatRead:Bool) -> NSMenuItem{
+        let toggleReadUnreadItem = NSMenuItem(
+            title: isChatRead ? "mark.as.unread".localized : "mark.as.read".localized,
+            action: #selector(self.handleMenuItemClick(_:)),
+            keyEquivalent: ""
+        )
+        toggleReadUnreadItem.target = self
+        toggleReadUnreadItem.tag = RightClickedContactActions.toggleReadUnread.rawValue
+        toggleReadUnreadItem.isEnabled = true
+        
+        return toggleReadUnreadItem
+    }
+    
+    
+    func showContextMenu(contactId: Int?,objectId:String) {
         let contextMenu = NSMenu(title: "Context Menu")
         contextMenu.autoenablesItems = true
+        contextMenu.items = []
+        var newItems = [NSMenuItem]()
+        rightClickedObjectIdContactId = (objectId, contactId)
+        guard let objectId = rightClickedObjectIdContactId.0 else{
+            return
+        }
         
-        rightClickedContactId = contactId
-        // Create menu items
-        let menuItem1 = NSMenuItem(
+        let contactID = rightClickedObjectIdContactId.1
+        let deleteContactItem = NSMenuItem(
             title: "delete.contact".localized,
             action: #selector(self.handleMenuItemClick(_:)),
             keyEquivalent: ""
         )
         
-        let menuItem2 = NSMenuItem(
-            title: "Mark as Unread",
-            action: #selector(self.handleMenuItemClick(_:)),
-            keyEquivalent: ""
-        )
+        deleteContactItem.target = self
+        deleteContactItem.tag = RightClickedContactActions.deleteContact.rawValue
+        deleteContactItem.isEnabled = true
         
         // Set a unique tag for each menu item (you can use this to identify which item was clicked)
-        menuItem1.target = self
-        menuItem1.tag = RightClickedContactActions.deleteContact.rawValue
-        menuItem1.isEnabled = true
         
+        if let chat = chatListObjects.filter({$0.getObjectId() == objectId}).first as? Chat{
+            if let lastMessage = chat.lastMessage,
+               lastMessage.isOutgoing() == false{
+                let isChatRead = lastMessage.seen
+                let toggleReadUnreadItem = getToggleReadUnreadItem(isChatRead: isChatRead)
+                newItems.append(toggleReadUnreadItem)
+            }
+            (chat.isGroup() == false) ? (newItems.append(deleteContactItem)) : ()
+        }
         
-        menuItem2.target = self
-        menuItem2.tag = RightClickedContactActions.toggleReadUnread.rawValue
-        menuItem2.isEnabled = true
+        contextMenu.items = newItems
         
-        // Add menu items to the context menu
-        contextMenu.addItem(menuItem1)
-        contextMenu.addItem(menuItem2)
-
         // Show the context menu at the mouse pointer location
         contextMenu.popUp(
             positioning: contextMenu.item(at: 0),
@@ -436,7 +455,7 @@ extension NewChatListViewController: ChatListCollectionViewItemDelegate{
     }
     
     @objc func handleMenuItemClick(_ sender: NSMenuItem) {
-        guard let rightClickedContactId = rightClickedContactId else {
+        guard let objectId = rightClickedObjectIdContactId.0 else {
             return
         }
         
@@ -444,23 +463,25 @@ extension NewChatListViewController: ChatListCollectionViewItemDelegate{
         if let action = RightClickedContactActions(rawValue: sender.tag) {
             switch action {
             case .deleteContact:
-                initiateDeletion(contactId: rightClickedContactId)
+                if let contactId = rightClickedObjectIdContactId.1{
+                    initiateDeletion(contactId: contactId)
+                }
                 break
             case .toggleReadUnread:
-                guard let chat = chatListObjects.filter({$0.getChat()?.getContact()?.id == rightClickedContactId}).first,
+                guard let chat = chatListObjects.filter({$0.getObjectId() == objectId}).first as? Chat ,
                       let lastMessage = chat.lastMessage else{
                     return
                 }
+                print("toggleReadUnread before: lastMessage.seen\(lastMessage.seen) chat.seen\(chat.seen)")
                 lastMessage.seen = !lastMessage.seen
-                if let chat = chat as? Chat{
-                    chat.seen = !chat.seen
-                    chat.saveChat()
-                }
+                chat.seen = !chat.seen
+                chat.saveChat()
+                print("toggleReadUnread after: lastMessage.seen\(lastMessage.seen) chat.seen\(chat.seen)")
                 break
             }
         }
         
-        self.rightClickedContactId = nil
+        self.rightClickedObjectIdContactId = (nil,nil)
     }
 
     

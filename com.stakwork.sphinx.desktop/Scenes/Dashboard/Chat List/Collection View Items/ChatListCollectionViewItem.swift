@@ -10,7 +10,7 @@ import Cocoa
 import SDWebImage
 
 protocol ChatListCollectionViewItemDelegate : NSObject{
-    func didRightClick(contactId:Int)
+    func didRightClick(contactId:Int?,objectId:String)
 }
 
 class ChatListCollectionViewItem: NSCollectionViewItem {
@@ -35,6 +35,7 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
     
     var delegate: ChatListCollectionViewItemDelegate? = nil
     var contactId: Int? = nil
+    var objectId: String? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -343,10 +344,11 @@ extension ChatListCollectionViewItem {
     }
     
     override func rightMouseDown(with event: NSEvent) {
-        guard let contactId = self.contactId else{
+        guard let objectId = self.objectId
+        else{
             return
         }
-        delegate?.didRightClick(contactId: contactId)
+        delegate?.didRightClick(contactId: contactId, objectId: objectId)
     }
     
     override func prepareForReuse() {
