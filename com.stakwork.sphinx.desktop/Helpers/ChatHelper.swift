@@ -354,6 +354,8 @@ class ChatHelper {
         
         let textHeight: CGFloat = getTextMessageHeightFor(
             tableCellState,
+            linkData: linkData,
+            tribeData: tribeData,
             collectionViewWidth: collectionViewWidth
         )
         
@@ -450,6 +452,7 @@ class ChatHelper {
         }
         
         if let text = mutableTableCellState.messageContent?.text, text.isNotEmpty {
+            
             textHeight = ChatHelper.getTextHeightFor(
                 text: text,
                 width: maxWidth
@@ -615,16 +618,17 @@ class ChatHelper {
         width: CGFloat,
         labelMargins: CGFloat? = nil
     ) -> CGFloat {
-        let adaptedtext = (text.count > 1) ? String(text.dropLast()) : text
+        let adaptedtext = text
         
         let attrs = [NSAttributedString.Key.font: Constants.kMessageFont]
         let attributedString = NSAttributedString(string: adaptedtext, attributes: attrs)
         let kLabelHorizontalMargins: CGFloat = 32.0
         let kLabelVerticalMargins: CGFloat = labelMargins ?? 32.0
         
-        let textHeight = attributedString.height(
-            forWidth: width - kLabelHorizontalMargins
-        ) + kLabelVerticalMargins
+        let textHeight = attributedString.boundingRect(
+            with: NSSize(width: width - kLabelHorizontalMargins, height: CGFLOAT_MAX),
+            options: [.usesLineFragmentOrigin, .usesFontLeading]
+        ).height + kLabelVerticalMargins
         
         return textHeight
     }
