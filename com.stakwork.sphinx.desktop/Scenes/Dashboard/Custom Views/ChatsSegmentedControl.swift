@@ -87,20 +87,24 @@ extension ChatsSegmentedControl {
         
         for (buttonIndex, button) in buttons.enumerated() {
             
-            button.attributedTitle = NSAttributedString(
-                string: button.attributedTitle.string,
-                attributes:
-                    [
-                        NSAttributedString.Key.foregroundColor : buttonTextColor,
-                        NSAttributedString.Key.font: buttonTitleFont
-                    ]
-            )
+            resetButton(button)
             
             if button == sender {
                 delegate?.segmentedControlDidSwitch(self, to: buttonIndex)
                 updateButtonsOnIndexChange()
             }
         }
+    }
+    
+    func resetButton(_ button: NSButton) {
+        button.attributedTitle = NSAttributedString(
+            string: button.attributedTitle.string,
+            attributes:
+                [
+                    NSAttributedString.Key.foregroundColor : buttonTextColor,
+                    NSAttributedString.Key.font: buttonTitleFont
+                ]
+        )
     }
 }
 
@@ -232,8 +236,11 @@ extension ChatsSegmentedControl {
         createButtonTitleBadges()
     }
     
-    
-    private func updateButtonsOnIndexChange() {
+    func updateButtonsOnIndexChange() {
+        for button in buttons {
+            resetButton(button)
+        }
+        
         AnimationHelper.animateViewWith(duration: 0.3, animationsBlock: {
             
             self.selectorView.frame.origin.x = self.selectorPosition

@@ -327,12 +327,16 @@ class ChatListViewController : DashboardSplittedViewController {
                     let chat = user.getChat()
                     
                     if chat?.isPublicGroup() == true {
+                        self.contactsService.selectedTab = .tribes
                         self.contactsService.selectedTribeId = chat?.getObjectId()
-                        self.setActiveTab(.tribes)
+                        self.setActiveTab(.tribes, shouldSwitchChat: false)
                     } else {
+                        self.contactsService.selectedTab = .friends
                         self.contactsService.selectedFriendId = chat?.getObjectId() ?? user.getObjectId()
-                        self.setActiveTab(.friends)
+                        self.setActiveTab(.friends, shouldSwitchChat: false)
                     }
+                    
+                    self.dashboardNavigationTabs.updateButtonsOnIndexChange()
                     
                     self.didClickRowAt(
                         chatId: chat?.id,
@@ -367,8 +371,10 @@ class ChatListViewController : DashboardSplittedViewController {
                 if let tribeInfo = GroupsManager.sharedInstance.getGroupInfo(query: tribeLink), let uuid = tribeInfo.uuid {
                     if let chat = Chat.getChatWith(uuid: uuid) {
                         
+                        self.contactsService.selectedTab = .tribes
                         self.contactsService.selectedTribeId = chat.getObjectId()
-                        self.setActiveTab(.tribes)
+                        self.dashboardNavigationTabs.updateButtonsOnIndexChange()
+                        self.setActiveTab(.tribes, shouldSwitchChat: false)
                         
                         self.didClickRowAt(
                             chatId: chat.id,
