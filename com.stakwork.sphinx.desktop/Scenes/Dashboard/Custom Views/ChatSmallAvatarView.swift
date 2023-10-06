@@ -133,7 +133,6 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         picture: String?,
         radius: CGFloat? = nil,
         image: NSImage? = nil,
-        isPreload: Bool = false,
         delegate: ChatSmallAvatarViewDelegate? = nil
     ) {
         self.delegate = delegate
@@ -150,7 +149,7 @@ class ChatSmallAvatarView: NSView, LoadableNib {
             profileInitialContainer.isHidden = true
             profileImageView.isHidden = false
             profileImageView.image = image
-        } else if let pic = picture, let url = URL(string: pic), !isPreload {
+        } else if let pic = picture, let url = URL(string: pic) {
             showImageWith(url: url)
         }
     }

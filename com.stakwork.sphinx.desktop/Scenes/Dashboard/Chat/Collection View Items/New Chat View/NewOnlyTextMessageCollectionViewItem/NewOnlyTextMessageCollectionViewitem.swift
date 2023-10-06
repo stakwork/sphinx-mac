@@ -89,7 +89,6 @@ class NewOnlyTextMessageCollectionViewitem: CommonNewMessageCollectionViewitem, 
         delegate: ChatCollectionViewItemDelegate?,
         searchingTerm: String?,
         indexPath: IndexPath,
-        isPreload: Bool,
         collectionViewWidth: CGFloat
     ) {
         var mutableMessageCellState = messageCellState
@@ -114,8 +113,7 @@ class NewOnlyTextMessageCollectionViewitem: CommonNewMessageCollectionViewitem, 
         
         ///Header and avatar
         configureWith(
-            avatarImage: mutableMessageCellState.avatarImage,
-            isPreload: isPreload
+            avatarImage: mutableMessageCellState.avatarImage
         )
         configureWith(bubble: bubble)
         

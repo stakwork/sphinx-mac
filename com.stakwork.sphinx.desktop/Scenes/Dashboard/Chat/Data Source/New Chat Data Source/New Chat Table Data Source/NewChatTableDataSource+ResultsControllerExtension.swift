@@ -118,7 +118,6 @@ extension NewChatTableDataSource {
             delegate: self,
             searchingTerm: self.searchingTerm,
             indexPath: indexPath,
-            isPreload: self.isPreload,
             collectionViewWidth: collectionView.frame.width
         )
 
@@ -720,8 +719,6 @@ extension NewChatTableDataSource : NSFetchedResultsControllerDelegate {
     ) {
         if let resultController = controller as? NSFetchedResultsController<NSManagedObject>,
             let firstSection = resultController.sections?.first {
-            
-            isPreload = false
             
             if controller == messagesResultsController {
                 if let messages = firstSection.objects as? [TransactionMessage] {

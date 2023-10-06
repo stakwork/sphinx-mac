@@ -90,8 +90,7 @@ extension NewOnlyTextMessageCollectionViewitem {
     }
     
     func configureWith(
-        avatarImage: BubbleMessageLayoutState.AvatarImage?,
-        isPreload: Bool
+        avatarImage: BubbleMessageLayoutState.AvatarImage?
     ) {
         if let avatarImage = avatarImage {
             chatAvatarView.configureForUserWith(
@@ -100,7 +99,6 @@ extension NewOnlyTextMessageCollectionViewitem {
                 picture: avatarImage.imageUrl,
                 radius: kChatAvatarHeight / 2,
                 image: avatarImage.image,
-                isPreload: isPreload,
                 delegate: self
             )
         } else {
