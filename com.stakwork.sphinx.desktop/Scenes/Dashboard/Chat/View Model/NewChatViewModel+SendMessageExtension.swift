@@ -74,7 +74,7 @@ extension NewChatViewModel {
             chat: chat
         )
         
-        DelayPerformedHelper.performAfterDelay(seconds: 0.5, completion: {
+        DelayPerformedHelper.performAfterDelay(seconds: 0.2, completion: {
             self.sendMessage(
                 provisionalMessage: provisionalMessage,
                 text: messageText,
