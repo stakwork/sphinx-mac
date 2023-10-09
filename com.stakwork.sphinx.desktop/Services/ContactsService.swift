@@ -77,7 +77,6 @@ class ContactsService: NSObject {
     }
     
     func configureFetchResultsController() {
-        resetObjects()
         updateLastMessages()
         
         ///Contacts results controller
