@@ -205,10 +205,13 @@ class ChatHelper {
         let kTopMargin: CGFloat = 44.0
         let kBottomMargin: CGFloat = 52.0
         
+        let kElementMargin: CGFloat = 12.0
+        let kMessageLineHeight: CGFloat = 20
         let kTextWidth: CGFloat = 376
         
         var textHeight: CGFloat = 0
         var viewsHeight: CGFloat = 0.0
+        
         
         if let originalThreadMessage = mutableTableCellState.threadMessagesState?.orignalThreadMessage {
             
@@ -216,8 +219,9 @@ class ChatHelper {
                 textHeight = getThreadListTextMessageHeightFor(
                     originalThreadMessage.text,
                     width: kTextWidth,
-                    maxHeight: Constants.kMessageLineHeight * 2
-                )
+                    maxHeight: kMessageLineHeight * 2,
+                    font: NSFont(name: "Roboto-Regular", size: 17.0)!
+                ) + kElementMargin
             }
         }
         
@@ -490,7 +494,8 @@ class ChatHelper {
     public static func getThreadListTextMessageHeightFor(
         _ text: String?,
         width: CGFloat,
-        maxHeight: CGFloat
+        maxHeight: CGFloat,
+        font: NSFont? = nil
     ) -> CGFloat {
         var textHeight: CGFloat = 0.0
         
@@ -498,6 +503,7 @@ class ChatHelper {
             textHeight = ChatHelper.getTextHeightFor(
                 text: text,
                 width: width,
+                font: font,
                 labelMargins: 0
             )
         }
@@ -616,11 +622,12 @@ class ChatHelper {
     public static func getTextHeightFor(
         text: String,
         width: CGFloat,
+        font: NSFont? = nil,
         labelMargins: CGFloat? = nil
     ) -> CGFloat {
         let adaptedtext = text
         
-        let attrs = [NSAttributedString.Key.font: Constants.kMessageFont]
+        let attrs = [NSAttributedString.Key.font: font ?? Constants.kMessageFont]
         let attributedString = NSAttributedString(string: adaptedtext, attributes: attrs)
         let kLabelHorizontalMargins: CGFloat = 32.0
         let kLabelVerticalMargins: CGFloat = labelMargins ?? 32.0
