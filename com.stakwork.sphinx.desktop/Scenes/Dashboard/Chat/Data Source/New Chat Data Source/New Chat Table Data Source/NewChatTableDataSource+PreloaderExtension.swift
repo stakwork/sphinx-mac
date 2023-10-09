@@ -56,7 +56,7 @@ extension NewChatTableDataSource {
             messageTableCellStateArray = messagesStateArray
             updatePreloadedSnapshot()
             
-            DelayPerformedHelper.performAfterDelay(seconds: 1.0, completion: { [weak self] in
+            DelayPerformedHelper.performAfterDelay(seconds: 0.5, completion: { [weak self] in
                 guard let self = self else { return }
                 self.configureResultsController(items: max(self.dataSource.snapshot().numberOfItems, 100))
             })
