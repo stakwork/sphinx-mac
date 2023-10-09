@@ -50,7 +50,7 @@ class DashboardViewController: NSViewController {
         
         chatListViewModel = ChatListViewModel()
         
-//        dashboardSplitView.delegate = self
+        dashboardSplitView.delegate = self
         SphinxSocketManager.sharedInstance.setDelegate(delegate: self)
         
         let windowState = WindowsManager.sharedInstance.getWindowState()
@@ -326,12 +326,12 @@ class DashboardViewController: NSViewController {
     }
 }
 
-//extension DashboardViewController : NSSplitViewDelegate {
-//    func splitViewDidResizeSubviews(_ notification: Notification) {
-//        if let window = view.window {
-//            newDetailViewController?.view.frame = rightSplittedView.bounds
-//            listViewController?.view.frame = leftSplittedView.bounds
-//
+extension DashboardViewController : NSSplitViewDelegate {
+    func splitViewDidResizeSubviews(_ notification: Notification) {
+        if let window = view.window {
+            newDetailViewController?.view.frame = rightSplittedView.bounds
+            listViewController?.view.frame = leftSplittedView.bounds
+
 //            let (minWidth, _) = getWindowMinWidth(leftColumnVisible: !leftSplittedView.isHidden)
 //
 //            window.minSize = CGSize(
@@ -350,23 +350,23 @@ class DashboardViewController: NSViewController {
 //
 //                view.window?.setFrame(newFrame, display: true)
 //            }
-//
-//            resizeTimer?.invalidate()
-//            resizeTimer = Timer.scheduledTimer(
-//                timeInterval: 0.05,
-//                target: self,
-//                selector: #selector(resizeSubviews),
-//                userInfo: nil,
-//                repeats: false
-//            )
-//        }
-//    }
-//
-//    @objc func resizeSubviews() {
-//        newDetailViewController?.view.frame = rightSplittedView.bounds
-//        listViewController?.view.frame = leftSplittedView.bounds
-//    }
-//}
+
+            resizeTimer?.invalidate()
+            resizeTimer = Timer.scheduledTimer(
+                timeInterval: 0.05,
+                target: self,
+                selector: #selector(resizeSubviews),
+                userInfo: nil,
+                repeats: false
+            )
+        }
+    }
+
+    @objc func resizeSubviews() {
+        newDetailViewController?.view.frame = rightSplittedView.bounds
+        listViewController?.view.frame = leftSplittedView.bounds
+    }
+}
 
 extension DashboardViewController : DashboardVCDelegate {
     func shouldResetContactView(deletedContactId: Int) {
