@@ -200,7 +200,11 @@ extension NewChatViewController : ChatBottomViewDelegate {
                 text: text,
                 type: TransactionMessage.TransactionMessageType.message.rawValue,
                 data: data,
-                completion: { success in
+                completion: { (success, chat) in
+                    if let chat = chat {
+                        self.didUpdateChatFromMessage(chat)
+                    }
+                    
                     completion(success)
                 }
             )
@@ -208,7 +212,11 @@ extension NewChatViewController : ChatBottomViewDelegate {
             newChatViewModel.shouldSendMessage(
                 text: text,
                 type: TransactionMessage.TransactionMessageType.message.rawValue,
-                completion: { success in
+                completion: { (success, chat) in
+                    if let chat = chat {
+                        self.didUpdateChatFromMessage(chat)
+                    }
+                    
                     completion(success)
                 }
             )

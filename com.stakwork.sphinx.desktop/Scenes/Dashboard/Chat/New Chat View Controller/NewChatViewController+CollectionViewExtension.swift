@@ -138,6 +138,17 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
         self.chat = chat
     }
     
+    func didUpdateChatFromMessage(_ chat: Chat) {
+        if self.chat == nil {
+            if let contact = self.contact, contact.id == chat.getContact()?.id {
+                self.chat = chat
+                
+                configureFetchResultsController()
+                configureCollectionView()
+            }
+        }
+    }
+    
     func shouldShowMemberPopupFor(messageId: Int) {
         if let message = TransactionMessage.getMessageWith(id: messageId) {
             childViewControllerContainer.showTribeMemberPopupViewOn(parentVC: self, with: message, delegate: self)

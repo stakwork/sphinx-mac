@@ -328,7 +328,7 @@ class DashboardViewController: NSViewController {
 
 extension DashboardViewController : NSSplitViewDelegate {
     func splitViewDidResizeSubviews(_ notification: Notification) {
-        if let window = view.window {
+        if let _ = view.window {
             newDetailViewController?.view.frame = rightSplittedView.bounds
             listViewController?.view.frame = leftSplittedView.bounds
 
@@ -603,7 +603,7 @@ extension DashboardViewController : SocketManagerDelegate {
     }
     
     func didUpdateChatFromMessage(_ chat: Chat) {
-        
+        newDetailViewController?.didUpdateChatFromMessage(chat)
     }
 }
 

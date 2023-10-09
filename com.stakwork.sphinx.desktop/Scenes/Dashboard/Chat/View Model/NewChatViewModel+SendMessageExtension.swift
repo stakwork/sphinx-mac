@@ -13,7 +13,7 @@ extension NewChatViewModel {
         text: String,
         type: Int,
         data: Data,
-        completion: @escaping (Bool) -> ()
+        completion: @escaping (Bool, Chat?) -> ()
     ) {
         chatDataSource?.setMediaDataForMessageWith(
             messageId: TransactionMessage.getProvisionalMessageId(),
@@ -34,7 +34,7 @@ extension NewChatViewModel {
     func shouldSendMessage(
         text: String,
         type: Int,
-        completion: @escaping (Bool) -> ()
+        completion: @escaping (Bool, Chat?) -> ()
     ) {
         var messageText = text
         
@@ -49,7 +49,7 @@ extension NewChatViewModel {
         let (botAmount, wrongAmount) = isWrongBotCommandAmount(text: messageText)
         
         if wrongAmount {
-            completion(false)
+            completion(false, nil)
             return
         }
         
@@ -65,7 +65,7 @@ extension NewChatViewModel {
         messageText: String,
         type: Int,
         botAmount: Int,
-        completion: @escaping (Bool) -> ()
+        completion: @escaping (Bool, Chat?) -> ()
     ) -> TransactionMessage? {
         
         let provisionalMessage = insertProvisionalMessage(
@@ -121,7 +121,7 @@ extension NewChatViewModel {
         provisionalMessage: TransactionMessage?,
         text: String,
         botAmount: Int = 0,
-        completion: @escaping (Bool) -> ()
+        completion: @escaping (Bool, Chat?) -> ()
     ) {
         let messageType = TransactionMessage.TransactionMessageType(fromRawValue: provisionalMessage?.type ?? 0)
         
@@ -134,7 +134,7 @@ extension NewChatViewModel {
             replyingMessage: replyingTo,
             threadUUID: provisionalMessage?.threadUUID
         ) else {
-            completion(false)
+            completion(false, nil)
             return
         }
         
@@ -148,7 +148,7 @@ extension NewChatViewModel {
     func sendMessage(
         provisionalMessage: TransactionMessage?,
         params: [String: AnyObject],
-        completion: @escaping (Bool) -> ()
+        completion: @escaping (Bool, Chat?) -> ()
     ) {
         API.sharedInstance.sendMessage(params: params, callback: { m in
             
@@ -164,6 +164,7 @@ extension NewChatViewModel {
                 
                 self.insertSentMessage(
                     message: message,
+                    chat: message.chat,
                     completion: completion
                 )
                 
@@ -189,13 +190,14 @@ extension NewChatViewModel {
 
     func insertSentMessage(
         message: TransactionMessage,
-        completion: @escaping (Bool) -> ()
+        chat: Chat? = nil,
+        completion: @escaping (Bool, Chat?) -> ()
     ) {
         chat?.resetOngoingMessage()
         joinIfCallMessage(message: message)
         resetReply()
         
-        completion(true)
+        completion(true, chat)
     }
 
     func joinIfCallMessage(
@@ -241,7 +243,7 @@ extension NewChatViewModel {
             return
         }
         
-        sendMessage(provisionalMessage: nil, params: params, completion: { _ in
+        sendMessage(provisionalMessage: nil, params: params, completion: { (_, _) in
             callback?()
         })
     }
@@ -266,7 +268,7 @@ extension NewChatViewModel {
         self.shouldSendMessage(
             text: messageText,
             type: type,
-            completion: { _ in }
+            completion: { (_, _) in }
         )
     }
 }
