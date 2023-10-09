@@ -74,12 +74,14 @@ extension NewChatViewModel {
             chat: chat
         )
         
-        sendMessage(
-            provisionalMessage: provisionalMessage,
-            text: messageText,
-            botAmount: botAmount,
-            completion: completion
-        )
+        DelayPerformedHelper.performAfterDelay(seconds: 0.5, completion: {
+            self.sendMessage(
+                provisionalMessage: provisionalMessage,
+                text: messageText,
+                botAmount: botAmount,
+                completion: completion
+            )
+        })
         
         return provisionalMessage
     }
