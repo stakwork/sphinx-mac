@@ -64,7 +64,7 @@ extension NewChatTableDataSource {
             index: currentSearchMatchIndex
         )
         
-        reloadAllVisibleRows(animated: false)
+        reloadAllVisibleRows()
     }
     
     func shouldEndSearch() {
@@ -120,20 +120,31 @@ extension NewChatTableDataSource {
             )
 
             self.reloadAllVisibleRows() {
-                self.scrollToSearchAt(index: self.currentSearchMatchIndex)
+                self.scrollToSearchAt(
+                    index: self.currentSearchMatchIndex,
+                    shouldActuallyScroll: isNewSearch
+                )
             }
         }
     }
     
-    func scrollToSearchAt(index: Int) {
+    func scrollToSearchAt(
+        index: Int,
+        animated: Bool = false,
+        shouldActuallyScroll: Bool = true
+    ) {
         if searchMatches.count > index && index >= 0 {
             let searchMatchIndex = searchMatches[index].0
             
-            collectionView.scrollToIndex(
-                targetIndex: searchMatchIndex,
-                animated: false,
-                position: NSCollectionView.ScrollPosition.top
-            )
+            
+            ///It won't scroll if it's loading more items in the past
+            if shouldActuallyScroll {
+                collectionView.scrollToIndex(
+                    targetIndex: searchMatchIndex,
+                    animated: animated,
+                    position: NSCollectionView.ScrollPosition.top
+                )
+            }
 
             if index + 1 == searchMatches.count {
                 loadMoreItemForSearch()
@@ -148,7 +159,7 @@ extension NewChatTableDataSource {
 
         delegate?.shouldToggleSearchLoadingWheel(active: true)
 
-        DelayPerformedHelper.performAfterDelay(seconds: 1.0, completion: {
+        DelayPerformedHelper.performAfterDelay(seconds: 0.5, completion: {
             self.performSearch(
                 term: self.searchingTerm ?? "",
                 itemsCount: self.messagesArray.count + 500
@@ -157,7 +168,7 @@ extension NewChatTableDataSource {
     }
     
     func reloadAllVisibleRows(
-        animated: Bool = true,
+        animated: Bool = false,
         completion: (() -> ())? = nil
     ) {
         let tableCellStates = getTableCellStatesForVisibleRows()
@@ -180,7 +191,9 @@ extension NewChatTableDataSource {
             currentSearchMatchIndex -= 1
             break
         }
-
-        scrollToSearchAt(index: currentSearchMatchIndex)
+        
+        scrollToSearchAt(
+            index: currentSearchMatchIndex
+        )
     }
 }
