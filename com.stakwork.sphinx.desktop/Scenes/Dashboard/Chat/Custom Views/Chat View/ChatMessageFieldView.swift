@@ -109,6 +109,7 @@ class ChatMessageFieldView: NSView, LoadableNib {
         priceContainer.wantsLayer = true
         priceContainer.layer?.cornerRadius = priceContainer.frame.height / 2
         priceTextField.color = NSColor.Sphinx.SphinxWhite
+        priceTextField.setColor(color: NSColor.Sphinx.SphinxWhite)
         priceTextField.formatter = IntegerValueFormatter()
         priceTextField.delegate = self
         priceTextField.isEditable = false
