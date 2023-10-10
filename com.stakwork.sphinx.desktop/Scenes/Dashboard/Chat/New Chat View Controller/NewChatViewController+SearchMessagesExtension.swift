@@ -35,8 +35,12 @@ extension NewChatViewController : ChatSearchTextFieldViewDelegate {
     }
     
     func didTapSearchCancelButton() {
-        chatTableDataSource?.shouldEndSearch()
-        toggleSearchMode(active: false)
+        chatBottomView.shouldToggleSearchLoadingWheel(active: true)
+        
+        DispatchQueue.main.async {
+            self.chatTableDataSource?.shouldEndSearch()
+            self.toggleSearchMode(active: false)
+        }
     }
 }
 
