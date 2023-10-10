@@ -105,7 +105,6 @@ class ChatHeaderView: NSView, LoadableNib {
     func setChatInfo() {
         configureHeaderBasicInfo()
         configureEncryptionSign()
-        configureWebAppButton()
         setVolumeState()
         configureImageOrInitials()
         configureContributionsAndPrices()
@@ -113,7 +112,6 @@ class ChatHeaderView: NSView, LoadableNib {
     }
     
     func configureHeaderBasicInfo() {
-        threadsButton.isHidden = false
         searchButton.isHidden = false
         
         nameLabel.stringValue = getHeaderName()
@@ -231,10 +229,6 @@ class ChatHeaderView: NSView, LoadableNib {
         
             contributedSatsLabel.stringValue = String(format: label, sats)
         }
-    }
-    
-    func configureWebAppButton() {
-        webAppButton.isHidden = true
     }
     
     func setVolumeState() {

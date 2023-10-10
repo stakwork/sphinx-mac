@@ -93,7 +93,7 @@
                             </constraints>
                         </customView>
                         <customView horizontalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="DVp-3x-Zd0">
-                            <rect key="frame" x="60" y="0.0" width="615" height="60"/>
+                            <rect key="frame" x="60" y="0.0" width="692" height="60"/>
                             <subviews>
                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v9P-BL-ytY">
                                     <rect key="frame" x="16" y="11" width="339" height="39"/>
@@ -196,7 +196,7 @@
                                     </customSpacing>
                                 </stackView>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TUM-g0-3nc" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="615" height="60"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="692" height="60"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="60" id="8sH-yi-zXI"/>
                                     </constraints>
@@ -218,7 +218,7 @@
                             </constraints>
                         </customView>
                         <button translatesAutoresizingMaskIntoConstraints="NO" id="qgt-D2-gCl" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                            <rect key="frame" x="675" y="0.0" width="37" height="60"/>
+                            <rect key="frame" x="752" y="0.0" width="37" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="37" id="IxV-tM-fWU"/>
                             </constraints>
@@ -231,8 +231,8 @@
                                 <action selector="searchButtonClicked:" target="-2" id="wV4-Bb-m93"/>
                             </connections>
                         </button>
-                        <button translatesAutoresizingMaskIntoConstraints="NO" id="XXC-Xz-jRX" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                            <rect key="frame" x="712" y="0.0" width="37" height="60"/>
+                        <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XXC-Xz-jRX" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="37" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="37" id="6lj-ZA-uiI"/>
                             </constraints>
@@ -245,8 +245,8 @@
                                 <action selector="threadsButtonClicked:" target="-2" id="Mcb-ko-bqf"/>
                             </connections>
                         </button>
-                        <button translatesAutoresizingMaskIntoConstraints="NO" id="cuK-dZ-qgQ" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                            <rect key="frame" x="749" y="0.0" width="40" height="60"/>
+                        <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cuK-dZ-qgQ" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="40" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="eNZ-Pp-4Kx"/>
                             </constraints>
