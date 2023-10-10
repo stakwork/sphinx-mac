@@ -190,8 +190,14 @@ extension ChatBottomView {
         )
     }
     
-    func shouldToggleSearchLoadingWheel(active: Bool) {
-        chatSearchView.toggleLoadingWheel(active: active)
+    func shouldToggleSearchLoadingWheel(
+        active: Bool,
+        showLabel: Bool = true
+    ) {
+        chatSearchView.toggleLoadingWheel(
+            active: active,
+            showLabel: showLabel
+        )
     }
 }
 

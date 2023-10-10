@@ -109,7 +109,11 @@ extension NewChatTableDataSource {
 
         ///should scroll to first results after current scroll position
         if isNewSearch {
-            currentSearchMatchIndex = searchMatches.firstIndex(where: { $0.0 <= (collectionView.indexPathsForVisibleItems().reversed().first?.item ?? 0) }) ?? 0
+            currentSearchMatchIndex = searchMatches.firstIndex(
+                where: {
+                    $0.0 <= (collectionView.indexPathsForVisibleItems().sorted(by: { return $0.item > $1.item }).first?.item ?? 0)
+                }
+            ) ?? 0
         }
 
         ///Show search results
@@ -159,7 +163,7 @@ extension NewChatTableDataSource {
 
         delegate?.shouldToggleSearchLoadingWheel(active: true)
 
-        DelayPerformedHelper.performAfterDelay(seconds: 0.3, completion: {
+        DelayPerformedHelper.performAfterDelay(seconds: 0.2, completion: {
             self.performSearch(
                 term: self.searchingTerm ?? "",
                 itemsCount: self.messagesArray.count + 500

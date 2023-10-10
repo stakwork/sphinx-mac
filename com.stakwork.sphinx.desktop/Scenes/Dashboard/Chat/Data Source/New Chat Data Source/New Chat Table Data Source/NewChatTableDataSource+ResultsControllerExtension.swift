@@ -46,7 +46,9 @@ extension NewChatTableDataSource {
         return snapshot
     }
     
-    func updateSnapshot() {
+    func updateSnapshot(
+        completion: (() -> ())? = nil
+    ) {
         let snapshot = makeSnapshotForCurrentState()
         let isSearching = !(self.delegate?.isOnStandardMode() ?? true)
         let animated = !isFirstLoad && !loadingMoreItems && !isSearching
@@ -57,6 +59,8 @@ extension NewChatTableDataSource {
                 self.restoreScrollLastPosition()
                 self.loadingMoreItems = false
                 self.isFirstLoad = false
+                
+                completion?()
             }
         }
     }
@@ -247,15 +251,15 @@ extension NewChatTableDataSource {
         
         messageTableCellStateArray = array
         
-        updateSnapshot()
-        
-        delegate?.configureNewMessagesIndicatorWith(
-            newMsgCount: newMsgCount
-        )
-        
-        preloadDataForItems()
-        
-        finishSearchProcess()
+        updateSnapshot() {
+            self.delegate?.configureNewMessagesIndicatorWith(
+                newMsgCount: newMsgCount
+            )
+            
+            DelayPerformedHelper.performAfterDelay(seconds: 0.1, completion: {
+                self.finishSearchProcess()
+            })
+        }
     }
     
     func filterThreadMessagesFrom(

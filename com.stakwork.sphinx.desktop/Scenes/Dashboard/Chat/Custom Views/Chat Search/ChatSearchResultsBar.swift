@@ -23,6 +23,7 @@ class ChatSearchResultsBar: NSView, LoadableNib {
     @IBOutlet weak var arrowUpButton: CustomButton!
     @IBOutlet weak var arrowDownButton: CustomButton!
     @IBOutlet weak var loadingWheel: NSProgressIndicator!
+    @IBOutlet weak var searchingLabel: NSTextField!
     
     public enum NavigateArrowButton: Int {
         case Up
@@ -45,13 +46,15 @@ class ChatSearchResultsBar: NSView, LoadableNib {
     }
     
     func setupView() {
-        
+        loadingWheel.set(tintColor: NSColor.Sphinx.SecondaryText)
     }
     
     func toggleLoadingWheel(
-        active: Bool
+        active: Bool,
+        showLabel: Bool = true
     ) {
         loadingWheel.isHidden = !active
+        searchingLabel.isHidden = !active || !showLabel
         
         if active {
             loadingWheel.startAnimation(nil)
