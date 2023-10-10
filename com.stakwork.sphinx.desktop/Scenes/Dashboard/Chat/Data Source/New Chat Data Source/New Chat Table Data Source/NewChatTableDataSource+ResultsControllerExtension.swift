@@ -48,7 +48,8 @@ extension NewChatTableDataSource {
     
     func updateSnapshot() {
         let snapshot = makeSnapshotForCurrentState()
-        let animated = !isFirstLoad && !loadingMoreItems
+        let isSearching = !(self.delegate?.isOnStandardMode() ?? true)
+        let animated = !isFirstLoad && !loadingMoreItems && !isSearching
 
         DispatchQueue.main.async {
             self.saveSnapshotCurrentState()
