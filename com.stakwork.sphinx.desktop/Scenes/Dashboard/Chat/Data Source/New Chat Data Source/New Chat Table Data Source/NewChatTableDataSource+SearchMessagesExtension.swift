@@ -103,7 +103,13 @@ extension NewChatTableDataSource {
             return
         }
         
+        if searchMatches.isEmpty {
+            loadMoreItemForSearch()
+            return
+        }
+        
         let isNewSearch = currentSearchMatchIndex == 0
+        let oldSearchIndex = currentSearchMatchIndex
 
         searchMatches = searchMatches.reversed()
 
@@ -115,6 +121,8 @@ extension NewChatTableDataSource {
                 }
             ) ?? 0
         }
+        
+        let isAtSameIndex = oldSearchIndex == currentSearchMatchIndex
 
         ///Show search results
         DispatchQueue.main.async {
@@ -122,11 +130,11 @@ extension NewChatTableDataSource {
                 matchesCount: self.searchMatches.count,
                 index: self.currentSearchMatchIndex
             )
-
+            
             self.reloadAllVisibleRows() {
                 self.scrollToSearchAt(
                     index: self.currentSearchMatchIndex,
-                    shouldActuallyScroll: isNewSearch
+                    shouldActuallyScroll: isNewSearch || !isAtSameIndex
                 )
             }
         }
@@ -139,7 +147,6 @@ extension NewChatTableDataSource {
     ) {
         if searchMatches.count > index && index >= 0 {
             let searchMatchIndex = searchMatches[index].0
-            
             
             ///It won't scroll if it's loading more items in the past
             if shouldActuallyScroll {
@@ -158,6 +165,7 @@ extension NewChatTableDataSource {
     
     func loadMoreItemForSearch() {
         if isLastSearchPage {
+            delegate?.shouldToggleSearchLoadingWheel(active: false)
             return
         }
 
