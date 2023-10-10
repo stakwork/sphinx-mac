@@ -460,14 +460,24 @@ extension WebAppHelper : WKScriptMessageHandler {
     }
     
     func getActiveLsat(_ dict: [String: AnyObject]) {
-        
-            API.sharedInstance.getActiveLsat(callback: { lsat in
+        if let issuer = dict["issuer"] as? String {
+            API.sharedInstance.getActiveLsat(issuer: issuer,callback: { lsat in
                 let newDict = self.decodeLsat(lsat: lsat, dict: dict)
                 self.getLsatResponse(dict: newDict, success: true)
             }, errorCallback: {
                 print("failed to retrieve and active LSAT")
                 self.getLsatResponse(dict: dict, success: false)
             })
+        }else {
+            API.sharedInstance.getActiveLsat( callback: { lsat in
+                let newDict = self.decodeLsat(lsat: lsat, dict: dict)
+                self.getLsatResponse(dict: newDict, success: true)
+            }, errorCallback: {
+                print("failed to retrieve and active LSAT")
+                self.getLsatResponse(dict: dict, success: false)
+            })
+        }
+        
            
         
     }

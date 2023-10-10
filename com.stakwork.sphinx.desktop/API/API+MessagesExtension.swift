@@ -256,11 +256,19 @@ extension API {
     }
     
     public func getActiveLsat(
+        issuer: String? = nil,
         callback: @escaping PayInvoiceCallback,
         errorCallback: @escaping EmptyCallback
     ) {
         print("requesting Lsat")
-        guard let request = getURLRequest(route: "/active_lsat", method: "GET") else {
+        
+        var urlString = "/active_lsat"
+        
+        if let issuer = issuer {
+                urlString += "?issuer=\(issuer)"
+            }
+        
+        guard let request = getURLRequest(route: urlString, method: "GET") else {
             errorCallback()
             return
         }
