@@ -159,7 +159,7 @@ extension NewChatTableDataSource {
 
         delegate?.shouldToggleSearchLoadingWheel(active: true)
 
-        DelayPerformedHelper.performAfterDelay(seconds: 0.5, completion: {
+        DelayPerformedHelper.performAfterDelay(seconds: 0.1, completion: {
             self.performSearch(
                 term: self.searchingTerm ?? "",
                 itemsCount: self.messagesArray.count + 500
