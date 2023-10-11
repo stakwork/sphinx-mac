@@ -25,19 +25,6 @@ class ChatSmallAvatarView: NSView, LoadableNib {
     
     var imageUrl: String? = nil
 
-//    override func draw(_ dirtyRect: NSRect) {
-//        super.draw(dirtyRect)
-//
-//        profileImageView.isHidden = true
-//    }
-//
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//        initialsLabel.stringValue = ""
-//        profileImageView.image = nil
-//        avatarButton.isEnabled = false
-//    }
-
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         loadViewFromNib()
@@ -58,12 +45,10 @@ class ChatSmallAvatarView: NSView, LoadableNib {
     }
     
     @IBAction func buttonClicked(_ sender: NSButton) {
+        if profileImageView.isHidden && profileInitialContainer.isHidden {
+            return
+        }
         delegate?.didClickAvatarView()
-    }
-    
-    func hideAllElements() {
-        profileImageView.isHidden = true
-        profileInitialContainer.isHidden = true
     }
     
     func configureFor(
@@ -178,7 +163,7 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         profileImageView.sd_setImage(
             with: url,
             placeholderImage: NSImage(named: "profile_avatar"),
-            options: [.scaleDownLargeImages, .avoidDecodeImage],
+            options: [.scaleDownLargeImages],
             context: [.imageTransformer: transformer],
             progress: nil,
             completed: { (image, error, _, _) in
