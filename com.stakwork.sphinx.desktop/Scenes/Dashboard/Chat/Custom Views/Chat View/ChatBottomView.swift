@@ -32,6 +32,7 @@ protocol ChatBottomViewDelegate : AnyObject {
     
     ///Sending message
     func shouldSendMessage(text: String, price: Int, completion: @escaping (Bool) -> ())
+    func shouldMainChatOngoingMessage()
 }
 
 class ChatBottomView: NSView, LoadableNib {

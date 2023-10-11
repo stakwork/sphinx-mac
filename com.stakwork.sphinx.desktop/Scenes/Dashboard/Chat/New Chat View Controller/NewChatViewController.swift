@@ -9,7 +9,13 @@
 import Cocoa
 import WebKit
 
+protocol NewChatViewControllerDelegate: AnyObject {
+    func shouldResetOngoingMessage()
+}
+
 class NewChatViewController: DashboardSplittedViewController {
+    
+    weak var chatVCDelegate: NewChatViewControllerDelegate?
     
     @IBOutlet weak var podcastPlayerView: NSView!
     @IBOutlet weak var shimmeringView: ChatShimmeringView!
@@ -70,6 +76,7 @@ class NewChatViewController: DashboardSplittedViewController {
         contactId: Int? = nil,
         chatId: Int? = nil,
         delegate: DashboardVCDelegate? = nil,
+        chatVCDelegate: NewChatViewControllerDelegate? = nil,
         deepLinkData : DeeplinkData? = nil,
         threadUUID: String? = nil
     ) -> NewChatViewController {
@@ -89,6 +96,7 @@ class NewChatViewController: DashboardSplittedViewController {
         }
         
         viewController.delegate = delegate
+        viewController.chatVCDelegate = chatVCDelegate
         viewController.deepLinkData = deepLinkData
         viewController.owner = owner
         viewController.threadUUID = threadUUID
@@ -224,6 +232,7 @@ class NewChatViewController: DashboardSplittedViewController {
             contactId: self.contact?.id,
             chatId: self.chat?.id,
             delegate: delegate,
+            chatVCDelegate: self,
             threadUUID: threadID
         )
         

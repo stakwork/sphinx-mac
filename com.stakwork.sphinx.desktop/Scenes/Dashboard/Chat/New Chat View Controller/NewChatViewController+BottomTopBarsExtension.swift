@@ -215,12 +215,16 @@ extension NewChatViewController : ChatBottomViewDelegate {
                 completion: { (success, chat) in
                     if let chat = chat {
                         self.didUpdateChatFromMessage(chat)
-                    }
+                    }                    
                     
                     completion(success)
                 }
             )
         }
+    }
+    
+    func shouldMainChatOngoingMessage() {
+        chatVCDelegate?.shouldResetOngoingMessage()
     }
     
     func giphyText(
@@ -397,5 +401,11 @@ extension NewChatViewController : ActionsDelegate {
 extension NewChatViewController : NewMessagesIndicatorViewDelegate {
     func didTouchButton() {
         chatCollectionView.scrollToBottom()
+    }
+}
+
+extension NewChatViewController : NewChatViewControllerDelegate {
+    func shouldResetOngoingMessage() {
+        chatBottomView.clearMessage()
     }
 }
