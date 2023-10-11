@@ -526,6 +526,10 @@ extension NewChatTableDataSource {
             }
         }
         
+        threadMessagesMap = threadMessagesMap.filter({
+            $0.value.count > 1
+        })
+        
         return threadMessagesMap
     }
     
