@@ -160,17 +160,18 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         profileInitialContainer.isHidden = true
         profileImageView.alphaValue = 0.0
         
+        self.imageUrl = url.absoluteString
+        
         profileImageView.sd_setImage(
             with: url,
             placeholderImage: NSImage(named: "profile_avatar"),
-            options: [.scaleDownLargeImages],
+            options: [.scaleDownLargeImages, .decodeFirstFrameOnly, .progressiveLoad],
             context: [.imageTransformer: transformer],
             progress: nil,
             completed: { (image, error, _, _) in
                 if let image = image, error == nil {
                     self.profileImageView.image = image
                     self.profileImageView.isHidden = false
-                    self.imageUrl = url.absoluteString
                 }
             }
 
