@@ -420,8 +420,6 @@ extension NewChatListViewController: ChatListCollectionViewItemDelegate{
         guard let objectId = rightClickedObjectIdContactId.0 else{
             return
         }
-        
-        let contactID = rightClickedObjectIdContactId.1
         let deleteContactItem = NSMenuItem(
             title: "delete.contact".localized,
             action: #selector(self.handleMenuItemClick(_:)),
@@ -472,11 +470,9 @@ extension NewChatListViewController: ChatListCollectionViewItemDelegate{
                       let lastMessage = chat.lastMessage else{
                     return
                 }
-                print("toggleReadUnread before: lastMessage.seen\(lastMessage.seen) chat.seen\(chat.seen)")
                 lastMessage.seen = !lastMessage.seen
                 chat.seen = !chat.seen
                 chat.saveChat()
-                print("toggleReadUnread after: lastMessage.seen\(lastMessage.seen) chat.seen\(chat.seen)")
                 break
             }
         }
