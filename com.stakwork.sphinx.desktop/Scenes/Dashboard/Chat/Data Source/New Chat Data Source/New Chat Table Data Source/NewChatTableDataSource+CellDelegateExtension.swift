@@ -535,6 +535,10 @@ extension NewChatTableDataSource : ChatCollectionViewItemDelegate, ThreadHeaderV
     func shouldShowOptionsFor(messageId: Int, from button: NSButton) {
         delegate?.shouldShowOptionsFor(messageId: messageId, from: button)
     }
+    
+    func shouldCloseThread() {
+        delegate?.shouldCloseThread()
+    }
 }
 
 ///Updating rows after content loaded
@@ -783,7 +787,7 @@ extension NewChatTableDataSource {
         }
     }
     
-    func didTapAvatarViewFor(messageId: Int, and rowIndex: Int) {
+    @objc func didTapAvatarViewFor(messageId: Int, and rowIndex: Int) {
         guard let chat = chat else {
             return
         }
@@ -1113,5 +1117,4 @@ extension NewChatTableDataSource {
         
         return tableCellStates
     }
-    
 }

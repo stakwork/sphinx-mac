@@ -11,6 +11,7 @@ import WebKit
 
 protocol NewChatViewControllerDelegate: AnyObject {
     func shouldResetOngoingMessage()
+    func shouldCloseThread()
 }
 
 class NewChatViewController: DashboardSplittedViewController {
@@ -33,6 +34,7 @@ class NewChatViewController: DashboardSplittedViewController {
     @IBOutlet weak var mentionsScrollViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var childViewControllerContainer: ChildVCContainer!
+    @IBOutlet weak var threadVCContainer: ThreadVCContainer!
     @IBOutlet weak var pinMessageDetailView: PinMessageDetailView!
     @IBOutlet weak var pinMessageNotificationView: PinNotificationView!
     
@@ -70,7 +72,9 @@ class NewChatViewController: DashboardSplittedViewController {
     
     var chatTableDataSource: NewChatTableDataSource? = nil
     var chatMentionAutocompleteDataSource : ChatMentionAutocompleteDataSource? = nil
+    
     var podcastPlayerVC: NewPodcastPlayerViewController? = nil
+    var threadVC: NewChatViewController? = nil
     
     static func instantiate(
         contactId: Int? = nil,
@@ -228,7 +232,7 @@ class NewChatViewController: DashboardSplittedViewController {
     func showThread(
         threadID: String
     ){
-        let chatVC = NewChatViewController.instantiate(
+        threadVC = NewChatViewController.instantiate(
             contactId: self.contact?.id,
             chatId: self.chat?.id,
             delegate: delegate,
@@ -236,17 +240,12 @@ class NewChatViewController: DashboardSplittedViewController {
             threadUUID: threadID
         )
         
-        var size = CGSize(width: 800, height: 600)
-        
-        if let currentWindowSize = self.view.window?.frame.size {
-            size = CGSize(width: currentWindowSize.width * 0.9, height: currentWindowSize.height * 0.9)
+        guard let threadVC = threadVC else {
+            return
         }
-      
-        WindowsManager.sharedInstance.showNewWindow(
-            with: "thread-chat".localized,
-            size: size,
-            centeredIn: self.view.window,
-            contentVC: chatVC
-        )
+
+        addChildVC(child: threadVC, container: threadVCContainer)
+
+        threadVCContainer.isHidden = false
     }
 }

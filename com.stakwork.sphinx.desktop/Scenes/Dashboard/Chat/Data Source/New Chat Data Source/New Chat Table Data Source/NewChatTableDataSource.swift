@@ -53,6 +53,7 @@ protocol NewChatTableDataSourceDelegate : AnyObject {
     ///Threads
     func shouldShowThreadFor(message: TransactionMessage)
     func shouldReloadThreadHeader()
+    func shouldCloseThread()
 }
 
 class NewChatTableDataSource : NSObject {

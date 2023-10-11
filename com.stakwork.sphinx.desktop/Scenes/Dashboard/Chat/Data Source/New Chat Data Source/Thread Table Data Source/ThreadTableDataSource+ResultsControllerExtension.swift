@@ -138,4 +138,8 @@ extension ThreadTableDataSource {
     ) -> [String: [TransactionMessage]] {
         return [:]
     }
+    
+    override func didTapAvatarViewFor(messageId: Int, and rowIndex: Int) {
+        ///Nothing to do
+    }
 }

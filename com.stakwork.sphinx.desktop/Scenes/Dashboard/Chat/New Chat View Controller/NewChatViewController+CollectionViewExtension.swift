@@ -187,6 +187,22 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
             )
         }
     }
+    
+    func shouldCloseThread() {
+        if let chatVCDelegate = chatVCDelegate {
+            chatVCDelegate.shouldCloseThread()
+        } else {
+            guard let threadVC = threadVC else {
+                return
+            }
+            
+            removeChildVC(child: threadVC)
+            
+            self.threadVC = nil
+            
+            threadVCContainer.isHidden = true
+        }
+    }
 }
 
 extension NewChatViewController : MediaFullScreenDelegate {
