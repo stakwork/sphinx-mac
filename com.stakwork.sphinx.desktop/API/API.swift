@@ -40,6 +40,7 @@ typealias TransportKeyCallback = ((String) -> ())
 typealias HMACKeyCallback = ((String) -> ())
 typealias GetPersonDataCallback = ((JSON) -> ())
 typealias PinMessageCallback = ((String) -> ())
+typealias ErrorCallback = ((String) -> ())
 
 //HUB calls
 typealias SignupWithCodeCallback = ((JSON, String, String) -> ())

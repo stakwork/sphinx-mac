@@ -113,7 +113,7 @@ extension API {
     func sendDirectPayment(
         params: [String: AnyObject],
         callback:@escaping DirectPaymentResultsCallback,
-        errorCallback:@escaping EmptyCallback
+        errorCallback:@escaping ErrorCallback
     ) {
         
         guard let request = getURLRequest(route: "/payment", params: params as NSDictionary?, method: "POST") else {
@@ -136,9 +136,11 @@ extension API {
                         }
                     }
                 }
-                errorCallback()
+                errorCallback(
+                    ((data as? NSDictionary)?["error"] as? String) ?? "Unknown reason"
+                )
             case .failure(_):
-                errorCallback()
+                errorCallback("Unknown reason")
             }
         }
     }
@@ -177,11 +179,11 @@ extension API {
     public func payInvoice(
         parameters: [String : AnyObject],
         callback: @escaping PayInvoiceCallback,
-        errorCallback: @escaping EmptyCallback
+        errorCallback: @escaping ErrorCallback
     ) {
         
         guard let request = getURLRequest(route: "/invoices", params: parameters as NSDictionary?, method: "PUT") else {
-            errorCallback()
+            errorCallback("Unknown reason")
             return
         }
         
@@ -191,12 +193,14 @@ extension API {
                 if let json = data as? NSDictionary {
                     if let success = json["success"] as? Bool, let response = json["response"] as? NSDictionary, success {
                         callback(JSON(response))
-                    } else {
-                        errorCallback()
+                        return
                     }
                 }
+                errorCallback(
+                    ((data as? NSDictionary)?["error"] as? String) ?? "Unknown reason"
+                )
             case .failure(_):
-                errorCallback()
+                errorCallback("Unknown reason")
             }
         }
     }

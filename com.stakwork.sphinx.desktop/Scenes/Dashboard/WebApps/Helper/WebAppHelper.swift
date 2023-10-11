@@ -219,7 +219,7 @@ extension WebAppHelper : WKScriptMessageHandler {
             }
             API.sharedInstance.sendDirectPayment(params: params, callback: { payment in
                 self.sendKeySendResponse(dict: dict, success: true)
-            }, errorCallback: {
+            }, errorCallback: { _ in
                 self.sendKeySendResponse(dict: dict, success: false)
             })
         }
@@ -262,7 +262,7 @@ extension WebAppHelper : WKScriptMessageHandler {
                 
                 API.sharedInstance.payInvoice(parameters: params, callback: { payment in
                     self.sendPaymentResponse(dict: dict, success: true)
-                }, errorCallback: {
+                }, errorCallback: { _ in
                     self.sendPaymentResponse(dict: dict, success: false)
                 })
             } else {
