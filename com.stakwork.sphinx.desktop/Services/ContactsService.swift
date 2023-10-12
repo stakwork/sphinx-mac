@@ -67,13 +67,19 @@ class ContactsService: NSObject {
         return API.sharedInstance.lastSeenMessagesDate == nil
     }
     
-    func resetObjects() {
-        self.contacts = []
-        self.allContacts = []
-        self.chats = []
+    func reset() {
+        contacts = []
+        allContacts = []
+        chats = []
         
         selectedFriendId = nil
         selectedTribeId = nil
+        
+        contactsResultsController?.delegate = nil
+        contactsResultsController = nil
+        
+        chatsResultsController?.delegate = nil
+        chatsResultsController = nil
     }
     
     func configureFetchResultsController() {

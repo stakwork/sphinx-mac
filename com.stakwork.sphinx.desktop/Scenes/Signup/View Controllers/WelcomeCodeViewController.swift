@@ -230,6 +230,7 @@ extension WelcomeCodeViewController : SignupButtonViewDelegate {
                 return
             }
         }
+        self.pinView.reset()
         self.messageBubbleHelper.showGenericMessageView(text: "invalid.pin".localized, in: self.view)
         self.loading = false
     }
