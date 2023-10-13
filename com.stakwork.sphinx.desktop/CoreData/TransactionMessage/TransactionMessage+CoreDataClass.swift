@@ -189,6 +189,7 @@ public class TransactionMessage: NSManagedObject {
         let mediaToken:String? = m["media_token"].string
         let mediaType:String? = m["media_type"].string
         let originalMuid:String? = m["original_muid"].string
+        let errorMessage:String? = m["error_message"].string
         
         var mediaKey:String? = nil
         if let mk = m["media_key"].string, mk != "" {
@@ -249,6 +250,7 @@ public class TransactionMessage: NSManagedObject {
             mediaKey: mediaKey,
             mediaType: mediaType,
             originalMuid: originalMuid,
+            errorMessage: errorMessage,
             seen: messageSeen,
             push: push,
             messageEncrypted: messageEncrypted,
@@ -297,6 +299,7 @@ public class TransactionMessage: NSManagedObject {
         mediaKey: String? = nil,
         mediaType: String? = nil,
         originalMuid: String? = nil,
+        errorMessage: String? = nil,
         seen: Bool,
         push: Bool,
         messageEncrypted: Bool,
@@ -326,6 +329,7 @@ public class TransactionMessage: NSManagedObject {
         message.originalMuid = originalMuid
         message.mediaKey = mediaKey
         message.mediaType = mediaType
+        message.errorMessage = errorMessage
         message.seen = seen
         message.push = push
         message.encrypted = isContentEncrypted(messageEncrypted: messageEncrypted, type: type, mediaKey: mediaKey)

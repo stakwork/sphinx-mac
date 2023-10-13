@@ -164,7 +164,7 @@ extension NewChatViewModel {
             if let message = TransactionMessage.insertMessage(m: m, existingMessage: provisionalMessage).0 {
                 message.setPaymentInvoiceAsPaid()
                 
-                self.insertSentMessage(
+                self.messageSent(
                     message: message,
                     chat: message.chat,
                     completion: completion
@@ -182,7 +182,7 @@ extension NewChatViewModel {
                  
                 provisionalMessage.status = TransactionMessage.TransactionMessageStatus.failed.rawValue
                  
-                self.insertSentMessage(
+                self.messageSent(
                     message: provisionalMessage,
                     completion: completion
                 )
@@ -190,7 +190,7 @@ extension NewChatViewModel {
         })
     }
 
-    func insertSentMessage(
+    func messageSent(
         message: TransactionMessage,
         chat: Chat? = nil,
         completion: @escaping (Bool, Chat?) -> ()
