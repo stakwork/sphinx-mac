@@ -101,9 +101,7 @@ class NewOnlyTextMessageCollectionViewitem: CommonNewMessageCollectionViewitem, 
         self.rowIndex = indexPath.item
         self.messageId = mutableMessageCellState.messageId
         
-        if let statusHeader = mutableMessageCellState.statusHeader {
-            configureWith(statusHeader: statusHeader)
-        }
+        configureWith(statusHeader: mutableMessageCellState.statusHeader)
         
         ///Text message content
         configureWith(

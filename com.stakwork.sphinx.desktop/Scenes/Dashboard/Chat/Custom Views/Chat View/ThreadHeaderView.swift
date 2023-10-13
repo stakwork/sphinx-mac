@@ -163,7 +163,7 @@ class ThreadHeaderView: NSView, LoadableNib {
                         substring = substring.shareContactDeepLink
                     }
                      
-                    if let url = URL(string: substring)  {
+                    if let url = URL(string: substring.withProtocol(protocolString: "http"))  {
                         attributedString.setAttributes(
                             [
                                 NSAttributedString.Key.foregroundColor: NSColor.Sphinx.PrimaryBlue,
