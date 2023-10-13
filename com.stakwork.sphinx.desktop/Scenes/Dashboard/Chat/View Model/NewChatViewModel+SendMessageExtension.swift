@@ -122,6 +122,7 @@ extension NewChatViewModel {
     func sendMessage(
         provisionalMessage: TransactionMessage?,
         text: String,
+        isResend: Bool = false,
         botAmount: Int = 0,
         completion: @escaping (Bool, Chat?) -> ()
     ) {
@@ -141,7 +142,7 @@ extension NewChatViewModel {
         }
         
         sendMessage(
-            provisionalMessage: provisionalMessage,
+            provisionalMessage: isResend ? nil : provisionalMessage,
             params: params,
             completion: completion
         )
