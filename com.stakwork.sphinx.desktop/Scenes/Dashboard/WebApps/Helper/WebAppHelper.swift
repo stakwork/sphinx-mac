@@ -77,6 +77,9 @@ extension WebAppHelper : WKScriptMessageHandler {
                 case "SIGN":
                     signMessage(dict)
                     break
+                case "GETBUDGET":
+                    getBudget(dict)
+                    break
                 default:
                     defaultAction(dict)
                     break
@@ -505,6 +508,23 @@ extension WebAppHelper : WKScriptMessageHandler {
         })
     }
     
+    func getBudgetResponse(dict: [String: AnyObject], success: Bool) {
+        var params: [String: AnyObject] = [:]
+        setTypeApplicationAndPassword(params: &params, dict: dict)
+        params["budget"] = dict["budget"] as AnyObject
+        params["success"] = success as AnyObject
+    
+        sendMessage(dict: params)
+    }
+    
+    func getBudget(_ dict: [String: AnyObject]) {
+        let savedBudget: Int? = getValue(withKey: "budget")
+        var newDict = dict
+        newDict["budget"] = savedBudget as AnyObject
+        
+        self.getBudgetResponse(dict: newDict, success: true)
+    }
+    
     func defaultAction(_ dict: [String: AnyObject]){
         self.defaultActionResponse(dict: dict)
     }
@@ -542,8 +562,6 @@ extension WebAppHelper : WKScriptMessageHandler {
             saveValue(newBudget as AnyObject, for: "budget")
             return true
         }
-        
         return false
     }
-
 }
