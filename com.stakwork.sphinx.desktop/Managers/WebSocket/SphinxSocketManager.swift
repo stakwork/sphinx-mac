@@ -249,33 +249,39 @@ extension SphinxSocketManager {
     
     func didReceiveMessage(type: String, messageJson: JSON) {
         let isConfirmation = type == "confirmation"
-
-        if let message = TransactionMessage.insertMessage(
-            m: messageJson
-        ).0 {
-            message.setPaymentInvoiceAsPaid()
-            
-            if let chat = message.chat {
-                delegate?.didUpdateChatFromMessage?(chat)
-            }
-            
-            setSeen(
-                message: message,
-                value: false
-            )
-            
-            updateBalanceIfNeeded(type: type)
-
-            let onChat = isOnChat(message: message)
-
-            if !isConfirmation {
-                if message.isIncoming() && message.chat?.isPublicGroup() ?? false {
-                     debounceMessageNotification(message: message, onChat: onChat)
-                 } else {
-                     sendNotification(message: message)
-                 }
-            }
+        
+        if let contactJson = messageJson["contact"].dictionary {
+            let _ = UserContact.getOrCreateContact(contact: JSON(contactJson))
         }
+
+        DelayPerformedHelper.performAfterDelay(seconds: isConfirmation ? 1.0 : 0.0, completion: {
+            if let message = TransactionMessage.insertMessage(
+                m: messageJson
+            ).0 {
+                message.setPaymentInvoiceAsPaid()
+                
+                if let chat = message.chat {
+                    self.delegate?.didUpdateChatFromMessage?(chat)
+                }
+                
+                self.setSeen(
+                    message: message,
+                    value: false
+                )
+                
+                self.updateBalanceIfNeeded(type: type)
+
+                let onChat = self.isOnChat(message: message)
+
+                if !isConfirmation {
+                    if message.isIncoming() && message.chat?.isPublicGroup() ?? false {
+                        self.debounceMessageNotification(message: message, onChat: onChat)
+                     } else {
+                         self.sendNotification(message: message)
+                     }
+                }
+            }
+        })
     }
     
     func debounceMessageNotification(message: TransactionMessage, onChat: Bool) {
