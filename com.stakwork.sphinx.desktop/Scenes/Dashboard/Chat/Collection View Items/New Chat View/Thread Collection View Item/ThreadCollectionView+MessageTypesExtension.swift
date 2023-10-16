@@ -274,9 +274,11 @@ extension ThreadCollectionViewItem {
                         
                         if substring.isPubKey || substring.isVirtualPubKey {
                             substring = substring.shareContactDeepLink
+                        } else {
+                            substring = substring.withProtocol(protocolString: "http")
                         }
                          
-                        if let url = URL(string: substring.withProtocol(protocolString: "http"))  {
+                        if let url = URL(string: substring)  {
                             attributedString.setAttributes(
                                 [
                                     NSAttributedString.Key.foregroundColor: NSColor.Sphinx.PrimaryBlue,
