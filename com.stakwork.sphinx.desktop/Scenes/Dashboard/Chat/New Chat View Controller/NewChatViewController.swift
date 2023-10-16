@@ -75,16 +75,7 @@ class NewChatViewController: DashboardSplittedViewController {
     var chatMentionAutocompleteDataSource : ChatMentionAutocompleteDataSource? = nil
     
     var podcastPlayerVC: NewPodcastPlayerViewController? = nil
-    var threadVC: NewChatViewController? = nil{
-        didSet{
-            if(threadVC != nil){
-                addEscapeMonitor()
-            }
-            else{
-                self.escapeMonitor = nil
-            }
-        }
-    }
+    var threadVC: NewChatViewController? = nil
     
     static func instantiate(
         contactId: Int? = nil,
@@ -149,6 +140,10 @@ class NewChatViewController: DashboardSplittedViewController {
         
         chatTableDataSource?.saveSnapshotCurrentState()
         self.shouldCloseThread()
+        
+        if let escapeMonitor = escapeMonitor{
+            NSEvent.removeMonitor(escapeMonitor)
+        }
         escapeMonitor = nil
     }
     
@@ -158,6 +153,9 @@ class NewChatViewController: DashboardSplittedViewController {
     
     func addEscapeMonitor(){
         //add event monitor in case user never clicks the textfield
+            if let escapeMonitor = escapeMonitor{
+                NSEvent.removeMonitor(escapeMonitor)
+            }
             escapeMonitor = nil
             self.escapeMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (event) in
                 if event.keyCode == 53 { // 53 is the key code for the Escape key
