@@ -22,6 +22,7 @@ protocol ChatBottomViewDelegate : AnyObject {
     func shouldGetSelectedMacroAction() -> (() -> ())?
     func didTapUpArrow() -> Bool
     func didTapDownArrow() -> Bool
+    func didTapEscape()
     func didSelectSendPaymentMacro()
     func didSelectReceivePaymentMacro()
     func shouldCreateCall(mode: VideoCallHelper.CallMode)

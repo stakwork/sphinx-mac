@@ -51,6 +51,7 @@ class NewChatViewController: DashboardSplittedViewController {
     var deepLinkData : DeeplinkData? = nil
     
     var threadUUID: String? = nil
+    var escapeMonitor: Any? = nil
     
     var isThread: Bool {
         get {
@@ -74,7 +75,16 @@ class NewChatViewController: DashboardSplittedViewController {
     var chatMentionAutocompleteDataSource : ChatMentionAutocompleteDataSource? = nil
     
     var podcastPlayerVC: NewPodcastPlayerViewController? = nil
-    var threadVC: NewChatViewController? = nil
+    var threadVC: NewChatViewController? = nil{
+        didSet{
+            if(threadVC != nil){
+                addEscapeMonitor()
+            }
+            else{
+                self.escapeMonitor = nil
+            }
+        }
+    }
     
     static func instantiate(
         contactId: Int? = nil,
@@ -131,16 +141,33 @@ class NewChatViewController: DashboardSplittedViewController {
         fetchTribeData()
         configureMentionAutocompleteTableView()
         configureFetchResultsController()
+        addEscapeMonitor()
     }
     
     override func viewWillDisappear() {
         super.viewWillDisappear()
         
         chatTableDataSource?.saveSnapshotCurrentState()
+        self.shouldCloseThread()
+        escapeMonitor = nil
     }
     
     override func viewDidLayout() {
         chatTableDataSource?.updateFrame()
+    }
+    
+    func addEscapeMonitor(){
+        //add event monitor in case user never clicks the textfield
+            escapeMonitor = nil
+            self.escapeMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (event) in
+                if event.keyCode == 53 { // 53 is the key code for the Escape key
+                    // Perform your action when the Escape key is pressed
+                    self.shouldCloseThread()
+                    return nil // Discard the event
+                }
+                return event
+            }
+       
     }
     
     func forceReload() {
@@ -195,6 +222,7 @@ class NewChatViewController: DashboardSplittedViewController {
             chatTopView.isHidden = false
             threadHeaderView.isHidden = true
         }
+        
     }
     
     func setupThreadHeaderView() {
@@ -247,5 +275,12 @@ class NewChatViewController: DashboardSplittedViewController {
         addChildVC(child: threadVC, container: threadVCContainer)
 
         threadVCContainer.isHidden = false
+    }
+    
+    override func keyDown(with event: NSEvent) {
+        if(event.keyCode == 53){
+            shouldCloseThread()
+        }
+        super.keyDown(with: event)
     }
 }

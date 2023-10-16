@@ -129,6 +129,10 @@ extension ChatMessageFieldView {
         }
     }
     
+    func didTapEscape() {
+        delegate?.didTapEscape()
+    }
+    
     func didTapUpArrow() -> Bool {
         return delegate?.didTapUpArrow() ?? false
     }
