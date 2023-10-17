@@ -8,11 +8,17 @@
 
 import Cocoa
 
+protocol ThreadsListViewControllerDelegate : AnyObject {
+    func didSelectThreadWith(uuid: String)
+}
+
 class ThreadsListViewController: NSViewController {
     
     @IBOutlet weak var shimmeringView: ThreadsListShimmeringView!
     @IBOutlet weak var threadsCollectionView: NSCollectionView!
     @IBOutlet weak var noResultsFoundLabel: NSTextField!
+    
+    weak var delegate: ThreadsListViewControllerDelegate?
     
     var threadsListDataSource: ThreadsListDataSource? = nil
     
@@ -23,11 +29,13 @@ class ThreadsListViewController: NSViewController {
     
     static func instantiate(
         chatId: Int,
+        delegate: ThreadsListViewControllerDelegate?,
         windowSize: CGSize?
     ) -> ThreadsListViewController {
         let viewController = StoryboardScene.Dashboard.threadsListViewController.instantiate()
         
         viewController.chat = Chat.getChatWith(id: chatId)
+        viewController.delegate = delegate
         viewController.windowSize = windowSize
         
         return viewController
@@ -65,17 +73,9 @@ class ThreadsListViewController: NSViewController {
 
 extension ThreadsListViewController : ThreadsListDataSourceDelegate {
     func didSelectThreadWith(uuid: String) {
-        let chatVC = NewChatViewController.instantiate(
-            chatId: self.chat?.id,
-            threadUUID: uuid
-        )
         windowsManager.closeIfExists(identifier: "threads-list")
-        windowsManager.showNewWindow(
-            with: "thread-chat".localized,
-            size: windowSize ?? CGSize(width: 800, height: 600),
-            centeredIn: self.view.window,
-            contentVC: chatVC
-        )
+
+        delegate?.didSelectThreadWith(uuid: uuid)        
     }
     
     func shouldGoToAttachmentViewFor(messageId: Int, isPdf: Bool) {}

@@ -19,6 +19,7 @@ extension NewChatViewController : ChatHeaderViewDelegate {
         if let chatId = chat?.id {
             let threadsListVC = ThreadsListViewController.instantiate(
                 chatId: chatId,
+                delegate: self,
                 windowSize: self.view.window?.frame.size
             )
           
@@ -409,5 +410,11 @@ extension NewChatViewController : NewMessagesIndicatorViewDelegate {
 extension NewChatViewController : NewChatViewControllerDelegate {
     func shouldResetOngoingMessage() {
         chatBottomView.clearMessage()
+    }
+}
+
+extension NewChatViewController : ThreadsListViewControllerDelegate {
+    func didSelectThreadWith(uuid: String) {
+        showThread(threadID: uuid)
     }
 }
