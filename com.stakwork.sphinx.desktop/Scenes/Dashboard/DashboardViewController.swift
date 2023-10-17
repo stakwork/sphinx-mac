@@ -329,8 +329,7 @@ class DashboardViewController: NSViewController {
 extension DashboardViewController : NSSplitViewDelegate {
     func splitViewDidResizeSubviews(_ notification: Notification) {
         if let _ = view.window {
-            newDetailViewController?.view.frame = rightSplittedView.bounds
-            listViewController?.view.frame = leftSplittedView.bounds
+            resizeSubviews()
 
 //            let (minWidth, _) = getWindowMinWidth(leftColumnVisible: !leftSplittedView.isHidden)
 //
@@ -363,7 +362,8 @@ extension DashboardViewController : NSSplitViewDelegate {
     }
 
     @objc func resizeSubviews() {
-        newDetailViewController?.view.frame = rightSplittedView.bounds
+        newDetailViewController?.resizeSubviews(frame: rightSplittedView.bounds)
+        
         listViewController?.view.frame = leftSplittedView.bounds
     }
 }

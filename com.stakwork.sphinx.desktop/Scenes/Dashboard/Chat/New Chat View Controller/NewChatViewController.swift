@@ -248,4 +248,10 @@ class NewChatViewController: DashboardSplittedViewController {
 
         threadVCContainer.isHidden = false
     }
+    
+    func resizeSubviews(frame: NSRect) {
+        view.frame = frame
+        
+        threadVC?.view.frame = frame
+    }
 }
