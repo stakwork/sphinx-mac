@@ -530,11 +530,9 @@ extension DashboardViewController : DashboardVCDelegate {
     
     @objc func handleImageNotification(_ notification: Notification) {
         if let imageURL = notification.userInfo?["imageURL"] as? URL,
-           let message = notification.userInfo?["transactionMessage"] as? TransactionMessage{
-            print("Received imageURL: \(imageURL)")
+           let message = notification.userInfo?["transactionMessage"] as? TransactionMessage {
             goToMediaFullView(imageURL: imageURL,message: message)
-        }
-        else{
+        } else {
             NewMessageBubbleHelper().showGenericMessageView(text: "Error pulling image data.")
         }
     }
