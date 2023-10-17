@@ -16,7 +16,6 @@ class WebAppViewController: NSViewController {
     @IBOutlet weak var authorizeAppViewHeight: NSLayoutConstraint!
     @IBOutlet weak var loadingView: NSImageView!
     @IBOutlet weak var loadingIndicator: NSProgressIndicator!
-    @IBOutlet weak var currentBudgetButton: CustomButton!
     
     var webView: WKWebView!
     var gameURL: String! = nil
@@ -24,7 +23,6 @@ class WebAppViewController: NSViewController {
     var finishLoadingTimer : Timer? = nil
     
     let webAppHelper = WebAppHelper()
-
     
     static func instantiate(chat: Chat) -> WebAppViewController {
         let viewController = StoryboardScene.Dashboard.webAppViewController.instantiate()
@@ -45,14 +43,11 @@ class WebAppViewController: NSViewController {
         authorizeModalContainer.alphaValue = 0.0
         addWebView()
         loadPage()
-    
-        
-        currentBudgetButton.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(showLsatList)))
     }
     
     func checkForLSAT(){
         webAppHelper.checkForExistingLsat(completion: { amount in
-            print(amount)
+            print(amount ?? 0)
         })
     }
     
@@ -113,7 +108,6 @@ class WebAppViewController: NSViewController {
     func removeLoadingView(){
         loadingView.isHidden = true
         loadingIndicator.isHidden = true
-        self.view.bringSubviewToFront(currentBudgetButton)
     }
     
     @objc func checkForWebViewDoneLoading(){
@@ -199,7 +193,7 @@ extension WebAppViewController : NSWindowDelegate {
 }
 
 extension WebAppViewController: WebAppHelperDelegate {
-    func setBudget(budget:Int){
-        self.currentBudgetButton.title = "Remaining Budget: \(budget) sats"
+    func setBudget(budget: Int) {
+        print(budget)
     }
 }
