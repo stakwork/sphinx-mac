@@ -365,10 +365,6 @@ import WebKit
         setBadge(count: 0)
         
         AlertHelper.showTwoOptionsAlert(title: "logout".localized, message: "logout.text".localized, confirm: {
-            UserData.sharedInstance.clearData()
-            ContactsService.sharedInstance.reset()
-            SphinxSocketManager.sharedInstance.clearSocket()
-            
             let frame = WindowsManager.sharedInstance.getCenteredFrameFor(size: CGSize(width: 800, height: 500))
             let keyWindow = NSApplication.shared.keyWindow
             keyWindow?.styleMask = [.titled, .miniaturizable, .fullSizeContentView]
@@ -376,6 +372,10 @@ import WebKit
             keyWindow?.titlebarAppearsTransparent = true
             keyWindow?.replaceContentBy(vc: SplashViewController.instantiate())
             keyWindow?.setFrame(frame, display: true, animate: true)
+            
+            ContactsService.sharedInstance.reset()
+            SphinxSocketManager.sharedInstance.clearSocket()
+            UserData.sharedInstance.clearData()
         })
     }
     
