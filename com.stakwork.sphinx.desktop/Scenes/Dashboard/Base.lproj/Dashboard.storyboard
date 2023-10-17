@@ -1077,30 +1077,16 @@
                                     <constraint firstAttribute="height" constant="16" id="Xic-Rh-cn0"/>
                                 </constraints>
                             </progressIndicator>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kp7-Jr-qM9" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                                <rect key="frame" x="347" y="8" width="233" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="U62-MQ-ssQ"/>
-                                    <constraint firstAttribute="width" constant="233" id="ZSm-kT-1S0"/>
-                                </constraints>
-                                <buttonCell key="cell" type="square" title="Remaining Budget: N/A" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="pkb-dj-XTY" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" size="17" name="Roboto-Regular"/>
-                                </buttonCell>
-                                <color key="contentTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="AAr-qu-Zrw" firstAttribute="leading" secondItem="lyA-mJ-xUz" secondAttribute="leading" id="3wm-xk-f4Q"/>
                             <constraint firstAttribute="bottom" secondItem="AAr-qu-Zrw" secondAttribute="bottom" id="41Q-Jt-1Zc"/>
                             <constraint firstAttribute="bottom" secondItem="b1t-Y6-fiA" secondAttribute="bottom" id="8tw-vA-Lsz"/>
                             <constraint firstAttribute="trailing" secondItem="AAr-qu-Zrw" secondAttribute="trailing" id="9aT-Fh-mVo"/>
-                            <constraint firstAttribute="bottom" secondItem="kp7-Jr-qM9" secondAttribute="bottom" constant="8" id="9kN-qT-XFZ"/>
                             <constraint firstItem="b1t-Y6-fiA" firstAttribute="top" secondItem="lyA-mJ-xUz" secondAttribute="top" id="IIr-Tp-JqG"/>
                             <constraint firstItem="AAr-qu-Zrw" firstAttribute="top" secondItem="lyA-mJ-xUz" secondAttribute="top" id="Lct-90-PS9"/>
                             <constraint firstAttribute="trailing" secondItem="b1t-Y6-fiA" secondAttribute="trailing" id="SB6-WY-Au9"/>
                             <constraint firstItem="uE1-k2-bqp" firstAttribute="centerX" secondItem="AAr-qu-Zrw" secondAttribute="centerX" id="aLS-Fg-YYU"/>
-                            <constraint firstAttribute="trailing" secondItem="kp7-Jr-qM9" secondAttribute="trailing" constant="120" id="iwa-XF-YTh"/>
                             <constraint firstItem="uE1-k2-bqp" firstAttribute="centerY" secondItem="AAr-qu-Zrw" secondAttribute="centerY" multiplier="1.5" id="orq-rB-03m"/>
                             <constraint firstItem="b1t-Y6-fiA" firstAttribute="leading" secondItem="lyA-mJ-xUz" secondAttribute="leading" id="rzx-Lf-A5f"/>
                         </constraints>
@@ -1109,7 +1095,6 @@
                         <outlet property="authorizeAppView" destination="6er-6h-8RI" id="6n7-Hb-QYh"/>
                         <outlet property="authorizeAppViewHeight" destination="hRb-T3-or6" id="eqX-VG-IfB"/>
                         <outlet property="authorizeModalContainer" destination="b1t-Y6-fiA" id="Q7p-LT-5eI"/>
-                        <outlet property="currentBudgetButton" destination="kp7-Jr-qM9" id="Ja2-nG-J4O"/>
                         <outlet property="loadingIndicator" destination="uE1-k2-bqp" id="3hs-mP-MFi"/>
                         <outlet property="loadingView" destination="AAr-qu-Zrw" id="5OL-Bf-8nd"/>
                     </connections>

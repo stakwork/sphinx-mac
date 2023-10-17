@@ -279,13 +279,14 @@ class NewChatViewController: DashboardSplittedViewController {
 
         addChildVC(child: threadVC, container: threadVCContainer)
 
+        threadVC.setMessageFieldActive()
+        
         threadVCContainer.isHidden = false
     }
     
-    override func keyDown(with event: NSEvent) {
-        if(event.keyCode == 53){
-            shouldCloseThread()
-        }
-        super.keyDown(with: event)
+    func resizeSubviews(frame: NSRect) {
+        view.frame = frame
+        
+        threadVC?.view.frame = frame
     }
 }
