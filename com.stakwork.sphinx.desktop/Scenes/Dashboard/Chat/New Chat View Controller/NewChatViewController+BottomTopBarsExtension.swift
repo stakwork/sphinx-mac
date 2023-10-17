@@ -322,7 +322,7 @@ extension NewChatViewController : ChatBottomViewDelegate {
     }
     
     func didTapEscape() {
-        self.shouldCloseThread()
+        shouldCloseThread()
     }
     
     func didTapUpArrow() -> Bool {
