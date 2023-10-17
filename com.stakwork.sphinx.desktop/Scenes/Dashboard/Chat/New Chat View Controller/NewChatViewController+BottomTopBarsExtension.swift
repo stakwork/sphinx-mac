@@ -324,6 +324,10 @@ extension NewChatViewController : ChatBottomViewDelegate {
         return chatMentionAutocompleteDataSource?.getSelectedAction()
     }
     
+    func didTapEscape() {
+        shouldCloseThread()
+    }
+    
     func didTapUpArrow() -> Bool {
         chatMentionAutocompleteDataSource?.moveSelectionUp()
         return chatMentionAutocompleteDataSource?.isTableVisible() ?? false

@@ -51,6 +51,7 @@ class NewChatViewController: DashboardSplittedViewController {
     var deepLinkData : DeeplinkData? = nil
     
     var threadUUID: String? = nil
+    var escapeMonitor: Any? = nil
     
     var isThread: Bool {
         get {
@@ -131,16 +132,47 @@ class NewChatViewController: DashboardSplittedViewController {
         fetchTribeData()
         configureMentionAutocompleteTableView()
         configureFetchResultsController()
+        addEscapeMonitor()
     }
     
     override func viewWillDisappear() {
         super.viewWillDisappear()
         
         chatTableDataSource?.saveSnapshotCurrentState()
+        
+        closeThreadAndResetEscapeMonitor()
     }
     
     override func viewDidLayout() {
         chatTableDataSource?.updateFrame()
+    }
+    
+    func closeThreadAndResetEscapeMonitor() {
+        shouldCloseThread()
+        
+        if let escapeMonitor = escapeMonitor {
+            NSEvent.removeMonitor(escapeMonitor)
+        }
+        
+        escapeMonitor = nil
+    }
+    
+    func addEscapeMonitor() {
+        //add event monitor in case user never clicks the textfield
+        if let escapeMonitor = escapeMonitor {
+            NSEvent.removeMonitor(escapeMonitor)
+        }
+    
+        escapeMonitor = nil
+    
+        self.escapeMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (event) in
+            if event.keyCode == 53 { // 53 is the key code for the Escape key
+                // Perform your action when the Escape key is pressed
+                self.shouldCloseThread()
+                return nil // Discard the event
+            }
+            return event
+        }
     }
     
     func forceReload() {
@@ -195,6 +227,7 @@ class NewChatViewController: DashboardSplittedViewController {
             chatTopView.isHidden = false
             threadHeaderView.isHidden = true
         }
+        
     }
     
     func setupThreadHeaderView() {

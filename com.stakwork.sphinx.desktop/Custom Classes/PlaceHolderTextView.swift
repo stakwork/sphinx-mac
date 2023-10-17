@@ -13,6 +13,7 @@ protocol MessageFieldDelegate: AnyObject {
     func didTapUpArrow() -> Bool
     func didTapDownArrow() -> Bool
     func didTapTab()
+    func didTapEscape()
     func didDetectImagePaste(pasteBoard: NSPasteboard) -> Bool
 }
 
@@ -22,6 +23,7 @@ final class PlaceHolderTextView: NSTextView {
     
     let enterKeyCodes: [UInt16] = [76, 36]
     let tabKey : UInt16 = 48
+    let escapeKey : UInt16 = 53
     let downArrow : UInt16 = 125
     let upArrow : UInt16 = 126
     
@@ -82,6 +84,9 @@ final class PlaceHolderTextView: NSTextView {
         }
         else if(event.keyCode == tabKey){
             fieldDelegate?.didTapTab()
+        }
+        else if(event.keyCode == escapeKey){
+            fieldDelegate?.didTapEscape()
         }
         super.keyDown(with: event)
     }
