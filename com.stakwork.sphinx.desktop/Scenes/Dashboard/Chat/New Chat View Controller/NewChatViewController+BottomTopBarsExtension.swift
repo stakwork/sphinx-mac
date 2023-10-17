@@ -19,6 +19,7 @@ extension NewChatViewController : ChatHeaderViewDelegate {
         if let chatId = chat?.id {
             let threadsListVC = ThreadsListViewController.instantiate(
                 chatId: chatId,
+                delegate: self,
                 windowSize: self.view.window?.frame.size
             )
           
@@ -308,6 +309,8 @@ extension NewChatViewController : ChatBottomViewDelegate {
     }
     
     func shouldUpdateMentionSuggestionsWith(_ object: [MentionOrMacroItem]) {
+        chatMentionAutocompleteDataSource?.setViewWidth(viewWidth: self.chatCollectionView.frame.width)
+        
         chatMentionAutocompleteDataSource?.updateMentionSuggestions(
             suggestions: object
         )
@@ -407,5 +410,11 @@ extension NewChatViewController : NewMessagesIndicatorViewDelegate {
 extension NewChatViewController : NewChatViewControllerDelegate {
     func shouldResetOngoingMessage() {
         chatBottomView.clearMessage()
+    }
+}
+
+extension NewChatViewController : ThreadsListViewControllerDelegate {
+    func didSelectThreadWith(uuid: String) {
+        showThread(threadID: uuid)
     }
 }

@@ -23,6 +23,7 @@ extension NewChatViewController {
         chatMentionAutocompleteDataSource = ChatMentionAutocompleteDataSource(
             tableView: mentionsCollectionView,
             scrollView: mentionsScrollView,
+            viewWidth: self.chatCollectionView.frame.width,
             delegate: self
         )
     }
@@ -39,6 +40,8 @@ extension NewChatViewController : ChatMentionAutocompleteDelegate {
     func processGeneralPurposeMacro(
         action: @escaping ()->()
     ) {
+        chatMentionAutocompleteDataSource?.setViewWidth(viewWidth: self.chatCollectionView.frame.width)
+        
         chatBottomView.processGeneralPurposeMacro(action: action)
         chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: [])
     }

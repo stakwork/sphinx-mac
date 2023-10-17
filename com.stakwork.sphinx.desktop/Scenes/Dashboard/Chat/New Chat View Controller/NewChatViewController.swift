@@ -246,6 +246,14 @@ class NewChatViewController: DashboardSplittedViewController {
 
         addChildVC(child: threadVC, container: threadVCContainer)
 
+        threadVC.setMessageFieldActive()
+        
         threadVCContainer.isHidden = false
+    }
+    
+    func resizeSubviews(frame: NSRect) {
+        view.frame = frame
+        
+        threadVC?.view.frame = frame
     }
 }
