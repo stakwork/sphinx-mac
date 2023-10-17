@@ -139,33 +139,40 @@ class NewChatViewController: DashboardSplittedViewController {
         super.viewWillDisappear()
         
         chatTableDataSource?.saveSnapshotCurrentState()
-        self.shouldCloseThread()
         
-        if let escapeMonitor = escapeMonitor{
-            NSEvent.removeMonitor(escapeMonitor)
-        }
-        escapeMonitor = nil
+        closeThreadAndResetEscapeMonitor()
     }
     
     override func viewDidLayout() {
         chatTableDataSource?.updateFrame()
     }
     
-    func addEscapeMonitor(){
+    func closeThreadAndResetEscapeMonitor() {
+        shouldCloseThread()
+        
+        if let escapeMonitor = escapeMonitor {
+            NSEvent.removeMonitor(escapeMonitor)
+        }
+        
+        escapeMonitor = nil
+    }
+    
+    func addEscapeMonitor() {
         //add event monitor in case user never clicks the textfield
-            if let escapeMonitor = escapeMonitor{
-                NSEvent.removeMonitor(escapeMonitor)
+        if let escapeMonitor = escapeMonitor {
+            NSEvent.removeMonitor(escapeMonitor)
+        }
+    
+        escapeMonitor = nil
+    
+        self.escapeMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (event) in
+            if event.keyCode == 53 { // 53 is the key code for the Escape key
+                // Perform your action when the Escape key is pressed
+                self.shouldCloseThread()
+                return nil // Discard the event
             }
-            escapeMonitor = nil
-            self.escapeMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (event) in
-                if event.keyCode == 53 { // 53 is the key code for the Escape key
-                    // Perform your action when the Escape key is pressed
-                    self.shouldCloseThread()
-                    return nil // Discard the event
-                }
-                return event
-            }
-       
+            return event
+        }
     }
     
     func forceReload() {
