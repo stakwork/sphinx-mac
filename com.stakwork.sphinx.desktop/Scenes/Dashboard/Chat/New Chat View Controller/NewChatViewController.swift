@@ -246,6 +246,8 @@ class NewChatViewController: DashboardSplittedViewController {
 
         addChildVC(child: threadVC, container: threadVCContainer)
 
+        threadVC.setMessageFieldActive()
+        
         threadVCContainer.isHidden = false
     }
     
