@@ -308,6 +308,8 @@ extension NewChatViewController : ChatBottomViewDelegate {
     }
     
     func shouldUpdateMentionSuggestionsWith(_ object: [MentionOrMacroItem]) {
+        chatMentionAutocompleteDataSource?.setViewWidth(viewWidth: self.chatCollectionView.frame.width)
+        
         chatMentionAutocompleteDataSource?.updateMentionSuggestions(
             suggestions: object
         )
