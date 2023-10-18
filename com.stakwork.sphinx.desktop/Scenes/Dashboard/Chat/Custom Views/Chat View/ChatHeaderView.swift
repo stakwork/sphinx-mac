@@ -108,7 +108,6 @@ class ChatHeaderView: NSView, LoadableNib {
         setVolumeState()
         configureImageOrInitials()
         configureContributionsAndPrices()
-        checkRoute()
     }
     
     func configureHeaderBasicInfo() {

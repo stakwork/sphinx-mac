@@ -38,16 +38,13 @@ extension API {
                         let subscriptionsArray = JSON(jsonResponse["subscriptions"]).arrayValue
                         
                         if contactsArray.count > 0 || chatsArray.count > 0 {
-                            self.cleanCancellableRequest()
                             callback(contactsArray, chatsArray, subscriptionsArray, [])
                             return
                         }
                     }
                 }
-                self.cleanCancellableRequest()
                 callback([], [], [], [])
             case .failure(_):
-                self.cleanCancellableRequest()
                 callback([], [], [], [])
             }
         }
@@ -88,8 +85,6 @@ extension API {
                         
                         if contactsArray.count > 0 || chatsArray.count > 0 || invitesArray.count > 0 || subscriptionsArray.count > 0 {
                             
-                            self.cancellableRequest = nil
-                            
                             if contactsArray.count == itemsPerPage || chatsArray.count == itemsPerPage {
                                 nextPageCallback(contactsArray, chatsArray, subscriptionsArray, invitesArray)
                             } else {
@@ -102,10 +97,8 @@ extension API {
                         }
                     }
                 }
-                self.cleanCancellableRequest()
                 callback([], [], [], [])
             case .failure(_):
-                self.cleanCancellableRequest()
                 callback([], [], [], [])
             }
         }

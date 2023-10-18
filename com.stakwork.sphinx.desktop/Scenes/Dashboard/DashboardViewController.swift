@@ -44,7 +44,7 @@ class DashboardViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AttachmentsManager.sharedInstance.runAuthentication()
+        AttachmentsManager.sharedInstance.runAuthentication(forceAuthenticate: true)
         
         listerForNotifications()
         
@@ -629,7 +629,6 @@ extension DashboardViewController : RestoreModalViewControllerDelegate {
     func didFinishRestoring() {
         modalsContainerView.isHidden = true
         
-        listViewController?.updateBalanceAndCheckVersion()
         listViewController?.finishLoading()
     }
 }

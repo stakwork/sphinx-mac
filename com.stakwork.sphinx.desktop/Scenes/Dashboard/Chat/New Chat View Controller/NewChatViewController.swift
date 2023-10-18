@@ -122,6 +122,8 @@ class NewChatViewController: DashboardSplittedViewController {
         configureCollectionView()
         setupChatTopView()
         setupChatData()
+        
+        chatTopView.checkRoute()
     }
     
     override func viewDidAppear() {
