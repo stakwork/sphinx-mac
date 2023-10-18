@@ -211,14 +211,14 @@ class ChatListViewController : DashboardSplittedViewController {
         
         CoreDataManager.sharedManager.saveContext()
         
-        feedsManager.restoreContentFeedStatus(
-            progressCallback: { contentProgress in
-                progressCallback(contentProgress)
-            },
-            completionCallback: {
-                completionCallback()
-            }
-        )
+//        feedsManager.restoreContentFeedStatus(
+//            progressCallback: { contentProgress in
+//                progressCallback(contentProgress)
+//            },
+//            completionCallback: {
+//                completionCallback()
+//            }
+//        )
     }
     
     func loadFriendAndReload() {

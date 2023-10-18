@@ -253,7 +253,7 @@ import WebKit
         
         if UserData.sharedInstance.isUserLogged() && !ChatListViewModel.isRestoreRunning() {
             reloadDataAndConnectSocket()
-            feedsManager.restoreContentFeedStatusInBackground()
+//            feedsManager.restoreContentFeedStatusInBackground()
         }
     }
     
