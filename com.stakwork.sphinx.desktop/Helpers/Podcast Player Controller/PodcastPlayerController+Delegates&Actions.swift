@@ -44,15 +44,14 @@ extension PodcastPlayerController {
 extension PodcastPlayerController {
     
     func preloadAll() {
-        
-        for feed in PodcastFeed.getAll() {
-            let podcast = PodcastFeed.convertFrom(contentFeed: feed)
-            let episodes = podcast.getEpisodesToCache()
-            
-            for episode in episodes {
-                preloadEpisode(episode)
-            }
-        }
+//        for feed in PodcastFeed.getAll() {
+//            let podcast = PodcastFeed.convertFrom(contentFeed: feed)
+//            let episodes = podcast.getEpisodesToCache()
+//
+//            for episode in episodes {
+//                preloadEpisode(episode)
+//            }
+//        }
     }
 
     func preloadEpisode(_ episode: PodcastEpisode) {

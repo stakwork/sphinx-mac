@@ -65,6 +65,10 @@ class ChatTopView: NSView, LoadableNib {
         chatHeaderView.toggleWebAppIcon()
     }
     
+    func checkRoute() {
+        chatHeaderView.checkRoute()
+    }
+    
     func configureHeaderWith(
         chat: Chat?,
         contact: UserContact?,

@@ -233,14 +233,11 @@ class API {
     
     var connectionStatus = ConnectionStatus.Connecting
     
-    var cancellableRequest: DataRequest?
-    var currentRequestType : API.CancellableRequestType = API.CancellableRequestType.messages
-    
     func sphinxRequest(
         _ urlRequest: URLRequest,
         completionHandler: @escaping (AFDataResponse<Any>) -> Void
     ) {
-        let _ = self.unauthorizedHandledRequest(urlRequest, completionHandler: completionHandler)
+        unauthorizedHandledRequest(urlRequest, completionHandler: completionHandler)
     }
     
     func cancellableRequest(
@@ -248,32 +245,21 @@ class API {
         type: CancellableRequestType,
         completionHandler: @escaping (AFDataResponse<Any>) -> Void
     ) {
-        if let cancellableRequest = cancellableRequest, currentRequestType == type {
-            cancellableRequest.cancel()
-        }
-        
-        let request = self.unauthorizedHandledRequest(urlRequest) { (response) in
+        unauthorizedHandledRequest(urlRequest) { (response) in
             self.postConnectionStatusChange()
             
             completionHandler(response)
         }
-        
-        self.currentRequestType = type
-        self.cancellableRequest = request
-    }
-    
-    func cleanCancellableRequest() {
-        cancellableRequest = nil
     }
     
     func unauthorizedHandledRequest(
         _ urlRequest: URLRequest,
         completionHandler: @escaping (AFDataResponse<Any>) -> Void
-    ) -> DataRequest? {
+    ) {
         
         if onionConnector.usingTor() && !onionConnector.isReady() {
             onionConnector.startIfNeeded()
-            return nil
+            return
         }
         
         var mutableUrlRequest = urlRequest
@@ -282,7 +268,7 @@ class API {
             mutableUrlRequest.setValue(value, forHTTPHeaderField: key)
         }
         
-        let request = session()?.request(mutableUrlRequest).responseJSON { (response) in
+        session()?.request(mutableUrlRequest).responseJSON { (response) in
             let statusCode = (response.response?.statusCode ?? -1)
             
             switch statusCode {
@@ -292,6 +278,8 @@ class API {
                 UserData.sharedInstance.fetchAndSaveTransportKey(completion: { _ in })
                 
                 self.connectionStatus = .Unauthorize
+                
+                completionHandler(response)
             default:
                 if response.response == nil ||
                     statusCode == self.notFoundStatusCode  ||
@@ -320,7 +308,6 @@ class API {
                 completionHandler(response)
             }
         }
-        return request
     }
     
 //    func getHMACKeyAndRetry(

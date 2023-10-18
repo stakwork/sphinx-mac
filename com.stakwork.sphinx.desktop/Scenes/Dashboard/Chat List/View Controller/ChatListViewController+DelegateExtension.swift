@@ -141,8 +141,6 @@ extension ChatListViewController : NewChatListViewControllerDelegate {
         chatId: Int?,
         contactId: Int?
     ) {
-        updateBalance()
-        
         contactChatsContainerViewController.updateSnapshot()
         tribeChatsContainerViewController.updateSnapshot()
         

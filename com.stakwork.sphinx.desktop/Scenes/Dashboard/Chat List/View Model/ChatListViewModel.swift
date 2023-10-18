@@ -206,7 +206,15 @@ final class ChatListViewModel: NSObject {
                     completion(0, 0)
                 }
             }, errorCallback: {
-                completion(0, 0)
+                DelayPerformedHelper.performAfterDelay(seconds: 1.0, completion: {
+                    self.getMessagesPaginated(
+                        prevPageNewMessages: prevPageNewMessages,
+                        chatId: chatId,
+                        date: date,
+                        progressCallback: progressCallback,
+                        completion: completion
+                    )
+                })
             })
     }
     

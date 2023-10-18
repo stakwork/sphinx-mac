@@ -253,7 +253,7 @@ import WebKit
         
         if UserData.sharedInstance.isUserLogged() && !ChatListViewModel.isRestoreRunning() {
             reloadDataAndConnectSocket()
-            feedsManager.restoreContentFeedStatusInBackground()
+//            feedsManager.restoreContentFeedStatusInBackground()
         }
     }
     
@@ -365,6 +365,8 @@ import WebKit
         setBadge(count: 0)
         
         AlertHelper.showTwoOptionsAlert(title: "logout".localized, message: "logout.text".localized, confirm: {
+            self.stopListeningToMessages()
+            
             let frame = WindowsManager.sharedInstance.getCenteredFrameFor(size: CGSize(width: 800, height: 500))
             let keyWindow = NSApplication.shared.keyWindow
             keyWindow?.styleMask = [.titled, .miniaturizable, .fullSizeContentView]
@@ -378,6 +380,12 @@ import WebKit
             UserData.sharedInstance.clearData()
         })
     }
+     
+     func stopListeningToMessages() {
+         if let dashboard = NSApplication.shared.keyWindow?.contentViewController as? DashboardViewController {
+             dashboard.newDetailViewController?.resetVC()
+         }
+     }
     
     func logoutButtonClicked() {
         ContactsService.sharedInstance.reset()

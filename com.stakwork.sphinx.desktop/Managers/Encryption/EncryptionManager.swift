@@ -274,7 +274,7 @@ class EncryptionManager {
     }
     
     func encryptToken(token: String, key: CryptorRSA.PublicKey) -> String? {
-        let (encrypted, encryptedToken) = encryptMessage(message: token, key: key)
+        let (encrypted, encryptedToken) = encrypt(token: token, with: key.reference)
         if encrypted {
             return encryptedToken
         }
@@ -308,7 +308,29 @@ class EncryptionManager {
         return encrypt(message: message, with: key.reference)
     }
     
-    public func encrypt(message: String, with key: SecKey) -> (Bool, String) {
+    public func encrypt(
+        token: String,
+        with key: SecKey
+    ) -> (Bool, String) {
+        let blockSize = SecKeyGetBlockSize(key)
+
+        guard let messageData = token.data(using: String.Encoding.utf8) else {
+            return (false, token)
+        }
+        
+        guard let encryptData = SecKeyCreateEncryptedData(key, SecKeyAlgorithm.rsaEncryptionPKCS1, messageData as CFData, nil) else {
+            return (false, token)
+        }
+
+        let encryptedData = encryptData as Data
+        let encrypted = CryptorRSA.createEncrypted(with: encryptedData)
+        return (true, encrypted.base64String)
+    }
+    
+    public func encrypt(
+        message: String,
+        with key: SecKey
+    ) -> (Bool, String) {
         let blockSize = SecKeyGetBlockSize(key)
         let maxChunkSize: Int = blockSize - 11
         
