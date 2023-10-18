@@ -131,6 +131,10 @@ class ChatHeaderView: NSView, LoadableNib {
     }
     
     func configureImageOrInitials() {
+        if let _ = profileImageView.image {
+            return
+        }
+        
         imageContainer.isHidden = false
         profileImageView.isHidden = true
         initialsContainer.isHidden = true
