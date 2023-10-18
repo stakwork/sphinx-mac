@@ -204,12 +204,14 @@ class ChatListViewController : DashboardSplittedViewController {
         progressCallback: @escaping (Int) -> (),
         completionCallback: @escaping () -> ()
     ) {
-        if !restoring {
-            completionCallback()
-            return
-        }
+//        if !restoring {
+//            completionCallback()
+//            return
+//        }
+//        
+//        CoreDataManager.sharedManager.saveContext()
         
-        CoreDataManager.sharedManager.saveContext()
+        completionCallback()
         
 //        feedsManager.restoreContentFeedStatus(
 //            progressCallback: { contentProgress in
