@@ -204,23 +204,21 @@ class ChatListViewController : DashboardSplittedViewController {
         progressCallback: @escaping (Int) -> (),
         completionCallback: @escaping () -> ()
     ) {
-//        if !restoring {
-//            completionCallback()
-//            return
-//        }
-//        
-//        CoreDataManager.sharedManager.saveContext()
+        if !restoring {
+            completionCallback()
+            return
+        }
         
-        completionCallback()
+        CoreDataManager.sharedManager.saveContext()
         
-//        feedsManager.restoreContentFeedStatus(
-//            progressCallback: { contentProgress in
-//                progressCallback(contentProgress)
-//            },
-//            completionCallback: {
-//                completionCallback()
-//            }
-//        )
+        feedsManager.restoreContentFeedStatus(
+            progressCallback: { contentProgress in
+                progressCallback(contentProgress)
+            },
+            completionCallback: {
+                completionCallback()
+            }
+        )
     }
     
     func loadFriendAndReload() {
