@@ -131,7 +131,7 @@ class DashboardViewController: NSViewController {
             self?.reloadView()
         }
         
-        NotificationCenter.default.addObserver(forName: .shouldResetChat, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
+        NotificationCenter.default.addObserver(forName: .shouldResetChat, object: nil, queue: OperationQueue.main) { _ in
             ///Reset chat view
         }
         

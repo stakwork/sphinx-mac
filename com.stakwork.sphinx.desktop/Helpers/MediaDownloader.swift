@@ -110,7 +110,7 @@ class MediaDownloader {
         
          MediaLoader.loadImage(url: url, message: message, completion: { (_, image) in
              if let imgData = image.tiffRepresentation(using: .jpeg, factor: 1) {
-                 let success = saveFile(data: imgData, name: "\(String(describing: fileName)).jpg")
+                 let _ = saveFile(data: imgData, name: "\(String(describing: fileName)).jpg")
                  completion()
              } else {
                  errorCompletion()

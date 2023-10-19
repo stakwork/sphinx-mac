@@ -47,9 +47,8 @@ extension SignupCommonSecureFieldView : NSTextFieldDelegate {
     }
     
     func toggleActiveState(_ active: Bool) {
-        fieldBox.borderType = active ? .lineBorder : .noBorder
         fieldBox.borderWidth = active ? 2 : 0
-        fieldBox.borderColor = NSColor.Sphinx.ReceivedIcon
+        fieldBox.borderColor = active ? NSColor.Sphinx.ReceivedIcon : NSColor.clear
         
         topLabel.textColor = active ? NSColor.Sphinx.ReceivedIcon : NSColor.Sphinx.SecondaryText
     }

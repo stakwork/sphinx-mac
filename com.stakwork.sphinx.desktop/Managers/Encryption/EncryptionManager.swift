@@ -312,8 +312,6 @@ class EncryptionManager {
         token: String,
         with key: SecKey
     ) -> (Bool, String) {
-        let blockSize = SecKeyGetBlockSize(key)
-
         guard let messageData = token.data(using: String.Encoding.utf8) else {
             return (false, token)
         }

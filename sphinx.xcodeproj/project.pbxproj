@@ -19,7 +19,6 @@
 		470397042538C158007F9C23 /* PodcastRowAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470397032538C158007F9C23 /* PodcastRowAudioPlayer.swift */; };
 		4703F046248195AE00282186 /* CachingPlayerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703F045248195AE00282186 /* CachingPlayerItem.swift */; };
 		4703F0482481983900282186 /* CustomAVPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703F0472481983900282186 /* CustomAVPlayerView.swift */; };
-		4703F0502481A70200282186 /* CustomSwiftLinkPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703F04F2481A70200282186 /* CustomSwiftLinkPreview.swift */; };
 		4705D3A127A06597009C0729 /* RestoreProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4705D3A027A06597009C0729 /* RestoreProgressView.swift */; };
 		4705D3A427A0707E009C0729 /* RestoreProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4705D3A627A0707E009C0729 /* RestoreProgressView.xib */; };
 		4707089A24AE657700A98DCA /* MediaDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4707089924AE657700A98DCA /* MediaDownloader.swift */; };
@@ -657,7 +656,6 @@
 		4703CF9125191A58007B685C /* com_stakwork_sphinx_desktop 11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "com_stakwork_sphinx_desktop 11.xcdatamodel"; sourceTree = "<group>"; };
 		4703F045248195AE00282186 /* CachingPlayerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingPlayerItem.swift; sourceTree = "<group>"; };
 		4703F0472481983900282186 /* CustomAVPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAVPlayerView.swift; sourceTree = "<group>"; };
-		4703F04F2481A70200282186 /* CustomSwiftLinkPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSwiftLinkPreview.swift; sourceTree = "<group>"; };
 		4703F0562481C61A00282186 /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.otf"; sourceTree = "<group>"; };
 		4703F0572481C61A00282186 /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.otf"; sourceTree = "<group>"; };
 		4703F0582481C61A00282186 /* Montserrat-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.otf"; sourceTree = "<group>"; };
@@ -2025,7 +2023,6 @@
 				47E771312472D04F00C9CFEB /* Cache.swift */,
 				4703F045248195AE00282186 /* CachingPlayerItem.swift */,
 				4703F0472481983900282186 /* CustomAVPlayerView.swift */,
-				4703F04F2481A70200282186 /* CustomSwiftLinkPreview.swift */,
 				47B5507D2487F2E2000514BF /* CustomButton.swift */,
 				47B5508924898330000514BF /* IntegerValueFormatter.swift */,
 				47B5508D24898A0D000514BF /* VerticallyCenteredTextFieldCell.swift */,
@@ -4050,7 +4047,6 @@
 				47FEE2132A66DD8400646C4E /* NewChatTableDataSource+BotWebViewExtension.swift in Sources */,
 				478ED57B25D41AFD00940132 /* SignupFieldView.swift in Sources */,
 				47C1D608248EABFB00718B28 /* GroupContactCollectionViewItem.swift in Sources */,
-				4703F0502481A70200282186 /* CustomSwiftLinkPreview.swift in Sources */,
 				4708C21B2A588F7A00274AD4 /* NewChatViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
