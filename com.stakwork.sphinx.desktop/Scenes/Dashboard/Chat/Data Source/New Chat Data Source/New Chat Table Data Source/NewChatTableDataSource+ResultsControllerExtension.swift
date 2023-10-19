@@ -655,10 +655,12 @@ extension NewChatTableDataSource : NSFetchedResultsControllerDelegate {
     
     func startListeningToResultsController() {
         messagesResultsController?.delegate = self
+        additionMessagesResultsController?.delegate = self
     }
     
     func stopListeningToResultsController() {
         messagesResultsController?.delegate = nil
+        additionMessagesResultsController?.delegate = nil
     }
     
     @objc func getFetchRequestFor(
