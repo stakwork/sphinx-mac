@@ -108,10 +108,11 @@ class UserData {
     }
     
     func getAndSaveHMACKey(
+        forceGet: Bool = false,
         completion: (() -> ())? = nil,
         noKeyCompletion: (() -> ())? = nil
     ) {
-        if let hmacKey = getHmacKey(), !hmacKey.isEmpty {
+        if let hmacKey = getHmacKey(), !hmacKey.isEmpty && !forceGet {
             completion?()
             return
         }
@@ -128,14 +129,16 @@ class UserData {
     }
     
     func getOrCreateHMACKey(
+        forceGet: Bool = false,
         completion: (() -> ())? = nil
     ) {
-        if let hmacKey = getHmacKey(), !hmacKey.isEmpty {
+        if let hmacKey = getHmacKey(), !hmacKey.isEmpty && !forceGet {
             completion?()
             return
         }
 
         getAndSaveHMACKey(
+            forceGet: forceGet,
             completion: completion,
             noKeyCompletion: {
                 self.createHMACKey(completion: completion)
