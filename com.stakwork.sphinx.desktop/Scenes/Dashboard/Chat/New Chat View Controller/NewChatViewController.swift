@@ -134,7 +134,9 @@ class NewChatViewController: DashboardSplittedViewController {
         fetchTribeData()
         configureMentionAutocompleteTableView()
         configureFetchResultsController()
-        addEscapeMonitor()
+        if(self.isThread){
+            addEscapeMonitor()
+        }
     }
     
     override func viewWillDisappear() {
@@ -170,7 +172,14 @@ class NewChatViewController: DashboardSplittedViewController {
         self.escapeMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (event) in
             if event.keyCode == 53 { // 53 is the key code for the Escape key
                 // Perform your action when the Escape key is pressed
-                self.shouldCloseThread()
+                if let mediaFullScreenView = self.mediaFullScreenView{
+                    mediaFullScreenView.gifView.layer?.removeAllAnimations()
+                    mediaFullScreenView.delegate?.willDismissView()
+                    mediaFullScreenView.hideMediaFullScreenView()
+                }
+                else{
+                    self.shouldCloseThread()
+                }
                 return nil // Discard the event
             }
             return event

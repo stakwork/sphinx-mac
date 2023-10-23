@@ -509,11 +509,11 @@ extension DashboardViewController : DashboardVCDelegate {
         deeplinkData = nil
     }
     
-    func shouldShowFullMediaFor(message: TransactionMessage) {
-        goToMediaFullView(message: message)
+    func shouldShowFullMediaFor(message: TransactionMessage)->MediaFullScreenView? {
+        return goToMediaFullView(message: message)
     }
     
-    func goToMediaFullView(message: TransactionMessage?) {
+    func goToMediaFullView(message: TransactionMessage?)->MediaFullScreenView?{
         if mediaFullScreenView == nil {
             mediaFullScreenView = MediaFullScreenView()
         }
@@ -526,6 +526,7 @@ extension DashboardViewController : DashboardVCDelegate {
             mediaFullScreenView.showWith(message: message)
             mediaFullScreenView.isHidden = false
         }
+        return mediaFullScreenView
     }
     
     @objc func handleImageNotification(_ notification: Notification) {
