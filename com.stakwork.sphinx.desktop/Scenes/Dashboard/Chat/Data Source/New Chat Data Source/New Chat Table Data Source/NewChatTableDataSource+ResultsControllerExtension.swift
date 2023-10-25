@@ -52,8 +52,10 @@ extension NewChatTableDataSource {
         let snapshot = makeSnapshotForCurrentState()
         let isSearching = !(self.delegate?.isOnStandardMode() ?? true)
         let animated = !isFirstLoad && !loadingMoreItems && !isSearching
-
+        
         DispatchQueue.main.async {
+            CoreDataManager.sharedManager.saveContext()
+            
             self.saveSnapshotCurrentState()
             self.dataSource.apply(snapshot, animatingDifferences: animated) {
                 self.restoreScrollLastPosition()
