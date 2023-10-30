@@ -58,6 +58,8 @@ class MessageNoBubbleCollectionViewItem: NSCollectionViewItem, ChatCollectionVie
         leftLineContainer.layer?.addSublayer(leftLineLayer)
     }
     
+    func releaseMemory() {}
+    
     func configureWith(
         messageCellState: MessageTableCellState,
         mediaData: MessageTableCellState.MediaData?,

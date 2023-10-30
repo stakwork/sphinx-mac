@@ -141,8 +141,13 @@ class NewChatViewController: DashboardSplittedViewController {
         super.viewWillDisappear()
         
         chatTableDataSource?.saveSnapshotCurrentState()
+        chatTableDataSource?.releaseMemory()
         
         closeThreadAndResetEscapeMonitor()
+    }
+    
+    deinit {
+        botWebView = nil
     }
     
     override func viewDidLayout() {
@@ -192,6 +197,9 @@ class NewChatViewController: DashboardSplittedViewController {
         childViewControllerContainer.removeChildVC()
         
         chatTableDataSource?.stopListeningToResultsController()
+        chatTableDataSource?.releaseMemory()
+        
+        botWebView = nil
     }
     
     func stopPlayingClip() {

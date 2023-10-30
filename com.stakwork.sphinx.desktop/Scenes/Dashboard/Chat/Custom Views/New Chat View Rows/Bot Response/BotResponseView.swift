@@ -36,6 +36,14 @@ class BotResponseView: NSView, LoadableNib {
         setup()
     }
     
+    func releaseMemory() {
+        webView = nil
+    }
+    
+    deinit {
+        webView = nil
+    }
+    
     func setup() {}
     
     func configureWith(

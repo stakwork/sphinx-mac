@@ -46,6 +46,12 @@ class MessagesPreloaderHelper {
         }
     }
     
+    func releaseMemory() {
+        tribesData = [:]
+        linksData = [:]
+        chatMessages = [:]
+    }
+    
     var chatMessages: [Int: PreloadedMessagesState] = [:]
     var chatScrollState: [Int: ScrollState] = [:]
     

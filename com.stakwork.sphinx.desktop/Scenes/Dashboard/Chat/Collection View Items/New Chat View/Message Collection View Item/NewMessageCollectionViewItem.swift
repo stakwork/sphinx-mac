@@ -72,6 +72,10 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
         setupViews()
     }
     
+    func releaseMemory() {
+        botResponseView.releaseMemory()
+    }
+    
     func configureWith(
         messageCellState: MessageTableCellState,
         mediaData: MessageTableCellState.MediaData?,

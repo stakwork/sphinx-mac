@@ -22,6 +22,8 @@ protocol ChatCollectionViewItemProtocol: AnyObject {
         indexPath: IndexPath,
         collectionViewWidth: CGFloat
     )
+    
+    func releaseMemory()
 }
 
 protocol ChatCollectionViewItemDelegate: AnyObject {
