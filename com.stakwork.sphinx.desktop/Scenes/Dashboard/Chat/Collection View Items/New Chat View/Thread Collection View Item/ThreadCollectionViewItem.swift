@@ -65,6 +65,8 @@ class ThreadCollectionViewItem: CommonNewMessageCollectionViewitem, ChatCollecti
         setupViews()
     }
     
+    func releaseMemory() {}
+    
     func configureWith(
         messageCellState: MessageTableCellState,
         mediaData: MessageTableCellState.MediaData?,

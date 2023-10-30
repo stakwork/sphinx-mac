@@ -160,6 +160,16 @@ class NewChatTableDataSource : NSObject {
         return self.chat != nil
     }
     
+    func releaseMemory() {
+        preloaderHelper.releaseMemory()
+        
+        for item in collectionView.visibleItems() {
+            if let item = item as? ChatCollectionViewItemProtocol {
+                item.releaseMemory()
+            }
+        }
+    }
+    
     func configureTableView() {
         collectionView.alphaValue = 0.0
         
