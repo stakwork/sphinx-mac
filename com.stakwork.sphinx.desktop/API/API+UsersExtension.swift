@@ -56,7 +56,7 @@ extension API {
         nextPageCallback: @escaping ContactsResultsCallback,
         callback: @escaping ContactsResultsCallback
     ){
-        let itemsPerPage = 1000
+        let itemsPerPage = 500
         var route = "/latest_contacts"
         let offset = (page - 1) * itemsPerPage
         let limit = itemsPerPage
@@ -83,18 +83,15 @@ extension API {
                         let chatsArray = JSON(jsonResponse["chats"]).arrayValue
                         let subscriptionsArray = JSON(jsonResponse["subscriptions"]).arrayValue
                         
-                        if contactsArray.count > 0 || chatsArray.count > 0 || invitesArray.count > 0 || subscriptionsArray.count > 0 {
+                        if contactsArray.count == itemsPerPage || chatsArray.count == itemsPerPage {
+                            nextPageCallback(contactsArray, chatsArray, subscriptionsArray, invitesArray)
+                        } else {
+                            self.lastSeenContactsDate = date
                             
-                            if contactsArray.count == itemsPerPage || chatsArray.count == itemsPerPage {
-                                nextPageCallback(contactsArray, chatsArray, subscriptionsArray, invitesArray)
-                            } else {
-                                self.lastSeenContactsDate = date
-                                
-                                callback(contactsArray, chatsArray, subscriptionsArray, invitesArray)
-                            }
-                            
-                            return
+                            callback(contactsArray, chatsArray, subscriptionsArray, invitesArray)
                         }
+                        
+                        return
                     }
                 }
                 callback([], [], [], [])
