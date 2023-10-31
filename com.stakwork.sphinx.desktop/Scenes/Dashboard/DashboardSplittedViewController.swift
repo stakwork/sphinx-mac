@@ -12,7 +12,7 @@ protocol DashboardVCDelegate: AnyObject {
     func didClickOnChatRow(chatId: Int?, contactId: Int?)
     func shouldShowRestoreModal(with progress: Int, label: String, buttonEnabled: Bool)
     func shouldHideRetoreModal()
-    func shouldShowFullMediaFor(message: TransactionMessage)-> MediaFullScreenView?
+    func shouldShowFullMediaFor(message: TransactionMessage)
 //    func shouldToggleLeftView(show: Bool?)
     func didSwitchToTab()
     func shouldResetContactView(deletedContactId: Int)

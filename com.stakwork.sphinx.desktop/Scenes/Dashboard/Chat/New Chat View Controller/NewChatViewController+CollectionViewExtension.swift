@@ -108,7 +108,7 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
             if isThread {
                 shouldShowFullMediaFor(message: message)
             } else {
-                self.mediaFullScreenView = delegate?.shouldShowFullMediaFor(message: message)
+                delegate?.shouldShowFullMediaFor(message: message)
             }
         }
         
