@@ -48,6 +48,7 @@ class ContactLinkView: NSView, LoadableNib {
         addContactButtonView.wantsLayer = true
         addContactButtonView.layer?.cornerRadius = 3
         
+        contactImageView.wantsLayer = true
         contactImageView.gravity = .resizeAspectFill
         contactImageView.rounded = true
         

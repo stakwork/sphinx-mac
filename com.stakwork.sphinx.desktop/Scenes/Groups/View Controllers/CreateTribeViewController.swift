@@ -55,6 +55,10 @@ class CreateTribeViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tribeImageView.wantsLayer = true
+        tribeImageView.rounded = true
+        tribeImageView.layer?.cornerRadius = tribeImageView.frame.height / 2
+        
         self.viewModel = CreateTribeViewModel(chat: chat, successCallback: {
             self.view.window?.close()
         }, errorCallback: {

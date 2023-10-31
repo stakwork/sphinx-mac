@@ -102,5 +102,6 @@ class ThreadRepliesView: NSView, LoadableNib {
         let isOutgoing = direction.isOutgoing()
         let threadBubbleColor = isOutgoing ? NSColor.Sphinx.ReceivedMsgBG : NSColor.Sphinx.ThreadLastReply
         messageFakeBubbleView.fillColor = threadBubbleColor
+        messageFakeBubbleView.borderWidth = 0
     }
 }

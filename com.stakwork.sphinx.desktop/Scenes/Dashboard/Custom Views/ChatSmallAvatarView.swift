@@ -32,11 +32,14 @@ class ChatSmallAvatarView: NSView, LoadableNib {
     }
     
     private func setup() {
+        profileImageView.wantsLayer = true
+        profileImageView.rounded = true
+        profileImageView.layer?.cornerRadius = profileImageView.frame.height / 2
+        
         profileInitialContainer.wantsLayer = true
         profileInitialContainer.layer?.cornerRadius = self.bounds.height/2
         profileInitialContainer.layer?.masksToBounds = true
      
-        profileImageView.rounded = true
         avatarButton.cursor = .pointingHand
     }
     

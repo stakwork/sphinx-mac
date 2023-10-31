@@ -31,7 +31,9 @@ class MessageBoostImageView: NSView, LoadableNib {
     }
     
     func setup() {
-        
+        imageView.wantsLayer = true
+        imageView.rounded = true
+        imageView.layer?.cornerRadius = imageView.frame.height / 2
     }
     
     func configureWith(

@@ -48,6 +48,7 @@ class TribeLinkView: NSView, LoadableNib {
         tribeButtonView.wantsLayer = true
         tribeButtonView.layer?.cornerRadius = 3
         
+        tribeImageView.wantsLayer = true
         tribeImageView.gravity = .resizeAspectFill
         tribeImageView.radius = 40
         tribeImageView.rounded = true

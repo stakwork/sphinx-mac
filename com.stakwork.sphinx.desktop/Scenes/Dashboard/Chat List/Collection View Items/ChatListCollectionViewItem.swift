@@ -43,6 +43,7 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
     
     func setupViews() {
         ///General setup
+        chatImageView.wantsLayer = true
         chatImageView.rounded = true
         chatImageView.gravity = .resizeAspectFill
         
