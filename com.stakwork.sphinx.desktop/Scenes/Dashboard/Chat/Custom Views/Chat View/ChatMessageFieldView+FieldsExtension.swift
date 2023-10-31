@@ -81,6 +81,7 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
     }
     
     func didDetectImagePaste(pasteBoard: NSPasteboard) -> Bool {
+        NotificationCenter.default.post(name: .onImagePaste, object: nil)
         return false
     }
 }
