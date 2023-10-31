@@ -175,6 +175,8 @@ class NewChatViewController: DashboardSplittedViewController {
                 // Perform your action when the Escape key is pressed
                 if let mediaFullScreenView = self.mediaFullScreenView {
                     mediaFullScreenView.closeView()
+                } else if self.draggingView.isSendingMedia() {
+                    self.draggingView.setup()
                 } else {
                     self.shouldCloseThread()
                 }
