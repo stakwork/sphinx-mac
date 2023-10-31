@@ -390,7 +390,7 @@ extension TransactionMessage {
     }
     
     func isPayment() -> Bool {
-        return type == TransactionMessageType.payment.rawValue
+        return type == TransactionMessageType.payment.rawValue || (self.messageContent?.isLNDInvoice ?? false)
     }
     
     func isUnknownType() -> Bool {
@@ -398,7 +398,7 @@ extension TransactionMessage {
     }
     
     func isInvoice() -> Bool {
-        return type == TransactionMessageType.invoice.rawValue
+        return type == TransactionMessageType.invoice.rawValue || (self.messageContent?.isLNDInvoice ?? false)
     }
     
     func isBoosted() -> Bool {

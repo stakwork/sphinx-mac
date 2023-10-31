@@ -49,6 +49,7 @@ class InvoiceView: NSView, LoadableNib {
         memoLabel.allowsEditingTextAttributes = true
         
         payButton.cursor = .pointingHand
+        
     }
     
     func configureWith(
@@ -129,5 +130,7 @@ class InvoiceView: NSView, LoadableNib {
     @IBAction func payButtonClicked(_ sender: Any) {
         delegate?.didTapInvoicePayButton()
     }
+    
+    
     
 }

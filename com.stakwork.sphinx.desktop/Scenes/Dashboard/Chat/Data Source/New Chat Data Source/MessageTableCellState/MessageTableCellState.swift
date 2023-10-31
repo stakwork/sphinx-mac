@@ -670,6 +670,71 @@ struct MessageTableCellState {
     
     lazy var invoice: BubbleMessageLayoutState.Invoice? = {
         
+        //if it's just a BOLT11 string just decode that and make a view
+        if let message = message,
+           let messageContent = message.messageContent,
+           (messageContent.isLNDInvoice){
+            print("text invoice!")
+            let prDecoder = PaymentRequestDecoder()
+            prDecoder.decodePaymentRequest(paymentRequest: messageContent)
+            let pr = prDecoder.decodedPR
+            print(pr)
+            if let dict = pr as? NSDictionary,
+               let humanReadablePart = dict["human_readable_part"] as? NSDictionary,
+               let amountString = humanReadablePart["amount"] as? String,
+               let amount = Int(amountString){
+                
+               let dateFormatter = DateFormatter()
+               dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
+               var issuanceDate = Date()
+//               if let date = dateFormatter.date(from: timestampString) {
+//                   // Now, `date` contains the parsed date value.
+//                   // You can use `date` to set the `date` property of your `BubbleMessageLayoutState.Invoice`.
+//                   issuanceDate = date
+//               }
+
+                // Extracting the description
+                var extractedDescription: String?
+                if let tags = dict["data"] as? NSDictionary, let tagArray = tags["tags"] as? [NSDictionary] {
+                    for tag in tagArray {
+                        if let description = tag["description"] as? String, let value = tag["value"] as? String {
+                            // Process `description` and `value` as needed
+                            extractedDescription = description
+                        }
+                    }
+                }
+
+                // Calculate the current date and time
+                let currentDate = Date()
+
+                // Calculate whether the invoice has expired based on the time_stamp and minFinalCltvExpiry (if available)
+                let minFinalCltvExpiry = dict["minFinalCltvExpiry"] as? Int ?? 0
+                let issuanceTimestamp = issuanceDate
+                let expirationTimestamp = issuanceTimestamp.addingTimeInterval(TimeInterval(minFinalCltvExpiry))
+                let isExpired = currentDate > expirationTimestamp
+
+                // Create an Invoice object
+                let invoice = BubbleMessageLayoutState.Invoice(
+                    date: issuanceTimestamp, // Set the issuance timestamp as the invoice date
+                    amount: amount/1000,
+                    memo: extractedDescription,
+                    font: NSFont.getMessageFont(), // You should provide a valid NSFont here
+                    isPaid: false, // You may set the paid status as needed
+                    isExpired: isExpired, // Set the expired status based on the calculation
+                    bubbleWidth: 300.0 // You may set the bubbleWidth as needed
+                )
+
+                // Now you have the corrected Invoice object
+                print(invoice)
+                
+                return invoice
+            }
+            
+            
+            return nil
+        }
+        
+        //Legacy case of specific invoice messages:
         guard let message = message, message.isInvoice(), let date = message.date, let amount = message.amount?.intValue else {
             return nil
         }
