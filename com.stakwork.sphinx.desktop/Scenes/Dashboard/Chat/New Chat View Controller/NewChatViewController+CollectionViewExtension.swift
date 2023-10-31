@@ -190,11 +190,6 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
     
     func shouldCloseThread() {
         if let chatVCDelegate = chatVCDelegate {
-            //Close All Media Full Screen Views
-            let mediaFullScreenViews: [MediaFullScreenView] = self.findAllViewsOnScreen(ofType: MediaFullScreenView.self)
-            for view in mediaFullScreenViews{
-                view.closeView()
-            }
             chatVCDelegate.shouldCloseThread()
         } else {
             guard let threadVC = threadVC else {
@@ -238,29 +233,5 @@ extension NewChatViewController : MediaFullScreenDelegate {
             mediaFullScreenView.removeFromSuperview()
             self.mediaFullScreenView = nil
         }
-    }
-}
-
-
-extension NSViewController {
-    func findAllSubviews<T: NSView>(ofType type: T.Type, inView view: NSView) -> [T] {
-        var views: [T] = []
-
-        // Check if the current view is of the desired type
-        if let view = view as? T {
-            views.append(view)
-        }
-
-        // Check all subviews of the current view
-        for subview in view.subviews {
-            views += findAllSubviews(ofType: type, inView: subview)
-        }
-
-        return views
-    }
-    
-    func findAllViewsOnScreen<T: NSView>(ofType type: T.Type) -> [T] {
-        let rootView = self.view
-        return findAllSubviews(ofType: type, inView: rootView)
     }
 }
