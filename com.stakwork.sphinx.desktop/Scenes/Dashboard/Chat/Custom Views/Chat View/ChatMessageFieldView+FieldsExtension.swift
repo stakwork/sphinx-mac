@@ -80,10 +80,16 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
 //        }
     }
     
-    func didDetectImagePaste(pasteBoard: NSPasteboard) -> Bool {
-        NotificationCenter.default.post(name: .onImagePaste, object: nil)
-        return false
+    func didDetectFilePaste(pasteBoard: NSPasteboard) -> Bool {
+        let hasFiles = ClipboardHelper().clipboardHasFiles(pasteBoard: pasteBoard)
+        
+        if hasFiles == true {
+            NotificationCenter.default.post(name: .onFilePaste, object: nil)
+        }
+
+        return hasFiles
     }
+
 }
 
 extension ChatMessageFieldView : NSTextFieldDelegate {
