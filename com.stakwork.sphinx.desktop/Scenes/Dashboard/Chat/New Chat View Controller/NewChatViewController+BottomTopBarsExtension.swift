@@ -185,7 +185,7 @@ extension NewChatViewController : ChatBottomViewDelegate {
             if let attachmentObject = attachmentObject {
                 chatBottomView.resetReplyView()
                 
-                newChatViewModel.insertPrivisionalAttachmentMessageAndUpload(
+                newChatViewModel.insertProvisionalAttachmentMessageAndUpload(
                     attachmentObject: attachmentObject, chat: chat
                 )
             } else {
