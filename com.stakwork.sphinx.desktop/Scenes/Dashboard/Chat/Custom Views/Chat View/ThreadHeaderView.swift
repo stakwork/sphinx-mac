@@ -19,6 +19,8 @@ import Cocoa
     func didTapMediaButtonFor(messageId: Int, and rowIndex: Int)
     func didTapFileDownloadButtonFor(messageId: Int, and rowIndex: Int)
     func didTapPlayPauseButtonFor(messageId: Int, and rowIndex: Int)
+    
+    func shouldCloseThread()
 }
 
 class ThreadHeaderView: NSView, LoadableNib {
@@ -44,6 +46,7 @@ class ThreadHeaderView: NSView, LoadableNib {
     @IBOutlet weak var textContainer: NSView!
     @IBOutlet weak var messageLabel: MessageTextField!
     
+    @IBOutlet weak var closeButton: CustomButton!
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -58,6 +61,8 @@ class ThreadHeaderView: NSView, LoadableNib {
     }
     
     func setupView() {
+        closeButton.cursor = .pointingHand
+        
         addShadow(
             location: VerticalLocation.bottom,
             color: NSColor.black,
@@ -158,7 +163,7 @@ class ThreadHeaderView: NSView, LoadableNib {
                         substring = substring.shareContactDeepLink
                     }
                      
-                    if let url = URL(string: substring)  {
+                    if let url = URL(string: substring.withProtocol(protocolString: "http"))  {
                         attributedString.setAttributes(
                             [
                                 NSAttributedString.Key.foregroundColor: NSColor.Sphinx.PrimaryBlue,
@@ -279,6 +284,9 @@ class ThreadHeaderView: NSView, LoadableNib {
         }
     }
     
+    @IBAction func closeButtonClicked(_ sender: Any) {
+        delegate?.shouldCloseThread()
+    }
 }
 
 extension ThreadHeaderView : MediaMessageViewDelegate {

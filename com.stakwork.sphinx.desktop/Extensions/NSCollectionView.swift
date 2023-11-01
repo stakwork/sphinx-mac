@@ -33,7 +33,11 @@ extension NSCollectionView {
         }
     }
     
-    func scrollToIndex(targetIndex:Int, animated:Bool, position:NSCollectionView.ScrollPosition = .bottom){
+    func scrollToIndex(
+        targetIndex: Int,
+        animated: Bool,
+        position: NSCollectionView.ScrollPosition = .bottom
+    ){
         let sections = self.numberOfSections
         if sections > 0 {
             let items = self.numberOfItems(inSection: sections - 1)

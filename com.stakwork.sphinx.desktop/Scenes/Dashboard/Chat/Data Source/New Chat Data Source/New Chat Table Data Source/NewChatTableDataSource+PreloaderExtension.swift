@@ -9,57 +9,65 @@
 import Foundation
 
 extension NewChatTableDataSource {
-    func preloadDataForItems() {
-        for index in stride(from: messageTableCellStateArray.count - 1, through: 0, by: -1) {
-            let item = messageTableCellStateArray[index]
-            
-            if let messageId = item.message?.id {
-                DispatchQueue.global(qos: .userInteractive).async {
-                    self.preloadDataFor(
-                        rowIndex: index,
-                        messageId: messageId
-                    )
-                }
-            }
-        }
-    }
-    
-    func preloadDataFor(
-        rowIndex: Int,
-        messageId: Int
-    ) {
-        if let tableCellState = getTableCellStateFor(
-            messageId: messageId,
-            and: rowIndex
-        ) {
-            var mutableCellState = tableCellState
-            
-            if let link = mutableCellState.1.webLink?.link {
-                let linkData = preloaderHelper.linksData[link]
-                
-                if linkData == nil {
-//                    loadLinkDataFor(
-//                        messageId: messageId,
-//                        and: rowIndex
+//    func preloadDataForItems() {
+//        for index in stride(from: messageTableCellStateArray.count - 1, through: 0, by: -1) {
+//            let item = messageTableCellStateArray[index]
+//            
+//            if let messageId = item.message?.id {
+//                DispatchQueue.global(qos: .userInteractive).async {
+//                    self.preloadDataFor(
+//                        rowIndex: index,
+//                        messageId: messageId
 //                    )
-                }
-            }
-        }
-    }
+//                }
+//            }
+//        }
+//    }
+//    
+//    func preloadDataFor(
+//        rowIndex: Int,
+//        messageId: Int
+//    ) {
+//        if let tableCellState = getTableCellStateFor(
+//            messageId: messageId,
+//            and: rowIndex
+//        ) {
+//            var mutableCellState = tableCellState
+//            
+//            if let link = mutableCellState.1.webLink?.link {
+//                let linkData = preloaderHelper.linksData[link]
+//                
+//                if linkData == nil {
+////                    loadLinkDataFor(
+////                        messageId: messageId,
+////                        and: rowIndex
+////                    )
+//                }
+//            }
+//        }
+//    }
     
-    @objc func restorePreloadedMessages() {
+    @objc func restorePreloadedOrLoadMessages() {
         guard let chat = chat else {
             return
         }
         
-        if let messagesStateArray = preloaderHelper.getMessageStateArray(for: chat.id) {
-            messageTableCellStateArray = messagesStateArray
+        if let preloadedMessagesState = preloaderHelper.getPreloadedMessagesState(for: chat.id) {
+            messageTableCellStateArray = preloadedMessagesState.messageCellStates
             updatePreloadedSnapshot()
+            
+            DelayPerformedHelper.performAfterDelay(seconds: 0.5, completion: { [weak self] in
+                guard let self = self else { return }
+                self.configureResultsController(items: max(self.dataSource.snapshot().numberOfItems, preloadedMessagesState.resultsControllerCount))
+            })
+        } else {
+            configureResultsController(items: max(dataSource.snapshot().numberOfItems, 100))
         }
     }
     
     @objc func saveMessagesToPreloader() {
-        let firstVisibleItem = collectionView.indexPathsForVisibleItems().sorted().first?.item ?? 0
+        let collectionViewOffsetY = collectionViewScroll.documentYOffset + collectionViewScroll.contentInsets.top
+        let firstVisibleItem = collectionView.indexPathForItem(at: NSPoint(x: 0, y: collectionViewOffsetY))?.item ?? 0
         
         guard let chat = chat, collectionView.numberOfSections > 0 && firstVisibleItem > 0 else {
             return
@@ -69,6 +77,7 @@ extension NewChatTableDataSource {
         
         preloaderHelper.add(
             messageStateArray: messageTableCellStateArray.endSubarray(size: (numberOfItems - firstVisibleItem) + 10),
+            resultsControllerCount: messagesCount,
             for: chat.id
         )
     }
@@ -100,15 +109,17 @@ extension NewChatTableDataSource {
                         scrollViewDidScroll()
                     }
                 }
+                return
             }
-        } else {
-            let collectionViewContentSize = collectionView.collectionViewLayout?.collectionViewContentSize.height ?? 0
-            let offset = collectionViewContentSize - collectionViewScroll.frame.height + collectionViewScroll.contentInsets.top
-            scrollViewDesiredOffset = offset
-            collectionViewScroll.documentYOffset = offset
-            
-            delegate?.didScrollToBottom()
         }
+        
+        ///Scroll to bottom if it didn't scroll to spefici position
+        let collectionViewContentSize = collectionView.collectionViewLayout?.collectionViewContentSize.height ?? 0
+        let offset = collectionViewContentSize - collectionViewScroll.frame.height + collectionViewScroll.contentInsets.top
+        scrollViewDesiredOffset = offset
+        collectionViewScroll.documentYOffset = offset
+        
+        delegate?.didScrollToBottom()
     }
     
     func saveScrollPosition() {

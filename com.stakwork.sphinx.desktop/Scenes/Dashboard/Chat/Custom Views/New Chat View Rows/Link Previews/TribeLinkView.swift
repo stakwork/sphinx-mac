@@ -17,6 +17,7 @@ class TribeLinkView: NSView, LoadableNib {
     @IBOutlet weak var borderView: NSView!
     @IBOutlet weak var containerButton: CustomButton!
     @IBOutlet weak var tribeImageView: AspectFillNSImageView!
+    @IBOutlet weak var tribePlaceholderImageView: NSImageView!
     @IBOutlet weak var tribeNameLabel: NSTextField!
     @IBOutlet weak var tribeDescriptionLabel: NSTextField!
     @IBOutlet weak var tribeButtonContainer: NSView!
@@ -91,6 +92,7 @@ class TribeLinkView: NSView, LoadableNib {
         
         tribeImageView.borderColor = color.cgColor
         tribeImageView.bordered = true
+        tribeImageView.contentTintColor = color
         
         let buttonColor = incoming ? NSColor.Sphinx.LinkReceivedButtonColor : NSColor.Sphinx.LinkSentButtonColor
         tribeButtonView.fillColor = buttonColor
@@ -100,6 +102,8 @@ class TribeLinkView: NSView, LoadableNib {
         imageUrl: String?,
         rounded: Bool
     ) {
+        tribePlaceholderImageView.isHidden = false
+        
         tribeImageView.radius = rounded ? 40 : 8
         tribeImageView.sd_cancelCurrentImageLoad()
         
@@ -115,15 +119,24 @@ class TribeLinkView: NSView, LoadableNib {
             tribeImageView.sd_setImage(
                 with: url,
                 placeholderImage: NSImage(named: "tribePlaceholder"),
-                options: [.lowPriority, .avoidDecodeImage],
+                options: [.lowPriority, .progressiveLoad],
                 context: [.imageTransformer: transformer],
                 progress: nil,
                 completed: { (image, error, _, _) in
-                    self.tribeImageView.image = (error == nil) ? image : NSImage(named: "tribePlaceholder")
+                    if error == nil {
+                        self.tribeImageView.image = image
+                        self.tribePlaceholderImageView.isHidden = true
+                    } else {
+                        self.tribePlaceholderImageView.isHidden = false
+                    }
                 }
             )
         } else {
-            tribeImageView.image = NSImage(named: "tribePlaceholder")
+            tribeImageView.image = nil
+            tribeImageView.radius = 8
+            
+            tribePlaceholderImageView.image = NSImage(named: "tribePlaceholder")
+            tribePlaceholderImageView.isHidden = false
         }
     }
     

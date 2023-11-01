@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import SwiftLinkPreview
 import AVKit
 
 ///Loading content in background
@@ -69,61 +68,61 @@ extension NewChatTableDataSource : ChatCollectionViewItemDelegate, ThreadHeaderV
             messageId: messageId,
             and: rowIndex
         ),
-           let link = tableCellState.1.webLink?.link
+           let _ = tableCellState.1.webLink?.link
         {
-            if let cached = linkPreviewsLoader.cache.slp_getCachedResponse(url: link) {
-                updateMessageTableCellStateFor(
-                    rowIndex: rowIndex,
-                    messageId: messageId,
-                    with: MessageTableCellState.LinkData(
-                        link: link,
-                        icon: cached.icon,
-                        title: cached.title ?? "",
-                        description: cached.description ?? "",
-                        image: cached.image,
-                        failed: (
-                            cached.title == nil ||
-                            cached.description == nil ||
-                            cached.title?.isEmpty == true ||
-                            cached.description?.isEmpty == true
-                        )
-                    ),
-                    reloadCell: reloadCell
-                )
-            } else  {
-                linkPreviewsLoader.preview(link, onSuccess: { result in
-                    self.updateMessageTableCellStateFor(
-                        rowIndex: rowIndex,
-                        messageId: messageId,
-                        with: MessageTableCellState.LinkData(
-                            link: link,
-                            icon: result.icon,
-                            title: result.title ?? "",
-                            description: result.description ?? "",
-                            image: result.image,
-                            failed: (
-                                result.title == nil ||
-                                result.description == nil ||
-                                result.title?.isEmpty == true ||
-                                result.description?.isEmpty == true
-                            )
-                        ),
-                        reloadCell: reloadCell
-                    )
-                }, onError: { error in
-                    self.updateMessageTableCellStateFor(
-                        rowIndex: rowIndex,
-                        messageId: messageId,
-                        with: MessageTableCellState.LinkData(
-                            link: link,
-                            title: "",
-                            description: "",
-                            failed: true
-                        ),
-                        reloadCell: reloadCell
-                    )
-                })
-            }
+//            if let cached = linkPreviewsLoader.cache.slp_getCachedResponse(url: link) {
+//                updateMessageTableCellStateFor(
+//                    rowIndex: rowIndex,
+//                    messageId: messageId,
+//                    with: MessageTableCellState.LinkData(
+//                        link: link,
+//                        icon: cached.icon,
+//                        title: cached.title ?? "",
+//                        description: cached.description ?? "",
+//                        image: cached.image,
+//                        failed: (
+//                            cached.title == nil ||
+//                            cached.description == nil ||
+//                            cached.title?.isEmpty == true ||
+//                            cached.description?.isEmpty == true
+//                        )
+//                    ),
+//                    reloadCell: reloadCell
+//                )
+//            } else  {
+//                linkPreviewsLoader.preview(link, onSuccess: { result in
+//                    self.updateMessageTableCellStateFor(
+//                        rowIndex: rowIndex,
+//                        messageId: messageId,
+//                        with: MessageTableCellState.LinkData(
+//                            link: link,
+//                            icon: result.icon,
+//                            title: result.title ?? "",
+//                            description: result.description ?? "",
+//                            image: result.image,
+//                            failed: (
+//                                result.title == nil ||
+//                                result.description == nil ||
+//                                result.title?.isEmpty == true ||
+//                                result.description?.isEmpty == true
+//                            )
+//                        ),
+//                        reloadCell: reloadCell
+//                    )
+//                }, onError: { error in
+//                    self.updateMessageTableCellStateFor(
+//                        rowIndex: rowIndex,
+//                        messageId: messageId,
+//                        with: MessageTableCellState.LinkData(
+//                            link: link,
+//                            title: "",
+//                            description: "",
+//                            failed: true
+//                        ),
+//                        reloadCell: reloadCell
+//                    )
+//                })
+//            }
         }
     }
     
@@ -429,9 +428,12 @@ extension NewChatTableDataSource : ChatCollectionViewItemDelegate, ThreadHeaderV
                         self.botsWebViewData[messageId] = MessageTableCellState.BotWebViewData(height: height)
                         
                         DispatchQueue.main.async {
+                            self.saveSnapshotCurrentState()
                             var snapshot = self.dataSource.snapshot()
                             snapshot.reloadItems([tableCellState.1])
-                            self.dataSource.apply(snapshot, animatingDifferences: true)
+                            self.dataSource.apply(snapshot, animatingDifferences: true) {
+                                self.restoreScrollLastPosition()
+                            }
                         }
                     }
                     
@@ -532,6 +534,10 @@ extension NewChatTableDataSource : ChatCollectionViewItemDelegate, ThreadHeaderV
     func shouldShowOptionsFor(messageId: Int, from button: NSButton) {
         delegate?.shouldShowOptionsFor(messageId: messageId, from: button)
     }
+    
+    func shouldCloseThread() {
+        delegate?.shouldCloseThread()
+    }
 }
 
 ///Updating rows after content loaded
@@ -582,9 +588,12 @@ extension NewChatTableDataSource {
             )
 
             DispatchQueue.main.async {
+                self.saveSnapshotCurrentState()
                 var snapshot = self.dataSource.snapshot()
                 snapshot.reloadItems([tableCellState.1])
-                self.dataSource.apply(snapshot, animatingDifferences: true)
+                self.dataSource.apply(snapshot, animatingDifferences: true) {
+                    self.restoreScrollLastPosition()
+                }
             }
         }
     }
@@ -777,7 +786,7 @@ extension NewChatTableDataSource {
         }
     }
     
-    func didTapAvatarViewFor(messageId: Int, and rowIndex: Int) {
+    @objc func didTapAvatarViewFor(messageId: Int, and rowIndex: Int) {
         guard let chat = chat else {
             return
         }
@@ -1107,5 +1116,4 @@ extension NewChatTableDataSource {
         
         return tableCellStates
     }
-    
 }

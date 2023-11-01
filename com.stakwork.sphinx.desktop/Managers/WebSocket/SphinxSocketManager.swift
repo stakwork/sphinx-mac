@@ -10,8 +10,7 @@ import Foundation
 import SwiftyJSON
 
 @objc protocol SocketManagerDelegate: AnyObject {
-    @objc optional func didUpdateChat(chat: Chat)
-    @objc optional func didReceiveOrUpdateGroup()
+    @objc optional func didUpdateChatFromMessage(_ chat: Chat)
 }
 
 class SphinxSocketManager {
@@ -250,29 +249,39 @@ extension SphinxSocketManager {
     
     func didReceiveMessage(type: String, messageJson: JSON) {
         let isConfirmation = type == "confirmation"
-
-        if let message = TransactionMessage.insertMessage(
-            m: messageJson
-        ).0 {
-            message.setPaymentInvoiceAsPaid()
-            
-            setSeen(
-                message: message,
-                value: false
-            )
-            
-            updateBalanceIfNeeded(type: type)
-
-            let onChat = isOnChat(message: message)
-
-            if !isConfirmation {
-                if message.isIncoming() && message.chat?.isPublicGroup() ?? false {
-                     debounceMessageNotification(message: message, onChat: onChat)
-                 } else {
-                     sendNotification(message: message)
-                 }
-            }
+        
+        if let contactJson = messageJson["contact"].dictionary {
+            let _ = UserContact.getOrCreateContact(contact: JSON(contactJson))
         }
+
+        DelayPerformedHelper.performAfterDelay(seconds: isConfirmation ? 1.0 : 0.0, completion: {
+            if let message = TransactionMessage.insertMessage(
+                m: messageJson
+            ).0 {
+                message.setPaymentInvoiceAsPaid()
+                
+                if let chat = message.chat {
+                    self.delegate?.didUpdateChatFromMessage?(chat)
+                }
+                
+                self.setSeen(
+                    message: message,
+                    value: false
+                )
+                
+                self.updateBalanceIfNeeded(type: type)
+
+                let onChat = self.isOnChat(message: message)
+
+                if !isConfirmation {
+                    if message.isIncoming() && message.chat?.isPublicGroup() ?? false {
+                        self.debounceMessageNotification(message: message, onChat: onChat)
+                     } else {
+                         self.sendNotification(message: message)
+                     }
+                }
+            }
+        })
     }
     
     func debounceMessageNotification(message: TransactionMessage, onChat: Bool) {
@@ -289,7 +298,7 @@ extension SphinxSocketManager {
     
     @objc func sendDelayedNotification(timer: Timer) {
         if let userInfo = timer.userInfo as? [String: Any] {
-            if let message = userInfo["message"] as? TransactionMessage, let onChat = userInfo["onChat"] as? Bool {
+            if let message = userInfo["message"] as? TransactionMessage, let _ = userInfo["onChat"] as? Bool {
                 sendNotification(message: message)
             }
         }
@@ -310,10 +319,6 @@ extension SphinxSocketManager {
         
         if let chat = Chat.insertChat(chat: chatJson) {
             chat.setChatMessagesAsSeen(shouldSync: false, shouldSave: false, forceSeen: true)
-            
-            if shouldUpdateObjectsOnView(chat: chat) {
-                delegate?.didUpdateChat?(chat: chat)
-            }
             
             setAppBadgeCount()
         }
@@ -362,8 +367,6 @@ extension SphinxSocketManager {
         }
 
         let _ = Chat.getOrCreateChat(chat: groupJson["chat"])
-
-        delegate?.didReceiveOrUpdateGroup?()
     }
     
     func tribeDeletedOrkickedFromGroup(type: String, json: JSON) {
@@ -381,20 +384,9 @@ extension SphinxSocketManager {
     }
     
     func didJoinOrLeaveGroup(type: String, json: JSON) {
-        var chat : Chat? = nil
-        
         if let _ = json["contact"].dictionary, let chatJson = json["chat"].dictionary {
-            if let chatObject = Chat.insertChat(chat: JSON(chatJson)) {
-                chat = chatObject
-
-                if let chat = chat {
-                    if shouldUpdateObjectsOnView(chat: chat) {
-                        delegate?.didUpdateChat?(chat: chat)
-                    }
-                }
-            }
+            let _ = Chat.insertChat(chat: JSON(chatJson))
         }
-        delegate?.didReceiveOrUpdateGroup?()
 
         if let message = json["message"].dictionary {
             didReceiveMessage(type: type, messageJson: JSON(message))
@@ -411,9 +403,7 @@ extension SphinxSocketManager {
     func memberRequestResponse(type: String, json: JSON) {
         if let message = json["message"].dictionary {
             
-            if let chat = Chat.insertChat(chat: json["chat"]) {
-                delegate?.didUpdateChat?(chat: chat)
-            }
+            let _ = Chat.insertChat(chat: json["chat"])
             
             didReceiveMessage(type: type, messageJson: JSON(message))
         }

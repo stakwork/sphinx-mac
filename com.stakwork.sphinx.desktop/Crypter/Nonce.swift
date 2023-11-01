@@ -62,7 +62,7 @@ public struct Nonce: CustomStringConvertible {
     
     /// The raw value of random bytes.
     public var data: Data {
-        return Data(bytes: bytes)
+        return Data(bytes)
     }
     
     /// The random bytes represented in hexadecimal notation.

@@ -22,6 +22,7 @@ protocol ChatBottomViewDelegate : AnyObject {
     func shouldGetSelectedMacroAction() -> (() -> ())?
     func didTapUpArrow() -> Bool
     func didTapDownArrow() -> Bool
+    func didTapEscape()
     func didSelectSendPaymentMacro()
     func didSelectReceivePaymentMacro()
     func shouldCreateCall(mode: VideoCallHelper.CallMode)
@@ -32,15 +33,19 @@ protocol ChatBottomViewDelegate : AnyObject {
     
     ///Sending message
     func shouldSendMessage(text: String, price: Int, completion: @escaping (Bool) -> ())
+    func shouldMainChatOngoingMessage()
 }
 
 class ChatBottomView: NSView, LoadableNib {
+    
+    weak var searchDelegate: ChatSearchResultsBarDelegate?
 
     @IBOutlet var contentView: NSView!
 
     @IBOutlet weak var messageReplyView: NewMessageReplyView!
     @IBOutlet weak var giphySearchView: GiphySearchView!
     @IBOutlet weak var messageFieldView: ChatMessageFieldView!
+    @IBOutlet weak var chatSearchView: ChatSearchResultsBar!
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
@@ -73,8 +78,11 @@ class ChatBottomView: NSView, LoadableNib {
         _ chat: Chat?,
         contact: UserContact?,
         isThread: Bool,
-        with delegate: ChatBottomViewDelegate?
+        with delegate: ChatBottomViewDelegate?,
+        and searchDelegate: ChatSearchResultsBarDelegate? = nil
     ) {
+        self.searchDelegate = searchDelegate
+        
         self.isHidden = (chat == nil && contact == nil)
         
         messageFieldView.updateFieldStateFrom(
@@ -159,5 +167,44 @@ class ChatBottomView: NSView, LoadableNib {
     
     func recordingProgress(minutes: String, seconds: String) {
         messageFieldView.recordingProgress(minutes: minutes, seconds: seconds)
+    }
+}
+
+//Search Mode
+extension ChatBottomView {
+    func configureSearchWith(
+        active: Bool,
+        loading: Bool,
+        matchesCount: Int? = nil,
+        matchIndex: Int = 0
+    ) {
+        messageReplyView.isHidden = true
+        giphySearchView.isHidden = true
+        messageFieldView.isHidden = active
+        
+        chatSearchView.isHidden = !active
+        
+        chatSearchView.configureWith(
+            matchesCount: matchesCount,
+            matchIndex: matchIndex,
+            loading: loading,
+            delegate: self
+        )
+    }
+    
+    func shouldToggleSearchLoadingWheel(
+        active: Bool,
+        showLabel: Bool = true
+    ) {
+        chatSearchView.toggleLoadingWheel(
+            active: active,
+            showLabel: showLabel
+        )
+    }
+}
+
+extension ChatBottomView : ChatSearchResultsBarDelegate {
+    func didTapNavigateArrowButton(button: ChatSearchResultsBar.NavigateArrowButton) {
+        searchDelegate?.didTapNavigateArrowButton(button: button)
     }
 }

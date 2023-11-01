@@ -132,8 +132,8 @@ class PaymentViewModel : NSObject {
                 }
             }
             errorCallback(nil)
-        }, errorCallback: {
-            errorCallback(nil)
+        }, errorCallback: { error in
+            errorCallback(error)
         })
     }
     

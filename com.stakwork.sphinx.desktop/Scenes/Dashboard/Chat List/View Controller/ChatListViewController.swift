@@ -116,7 +116,6 @@ class ChatListViewController : DashboardSplittedViewController {
         loadingChatList = true
         loading = true
         
-        updateBalanceAndCheckVersion()
         configureHeaderAndBottomBar()
     }
     
@@ -124,7 +123,6 @@ class ChatListViewController : DashboardSplittedViewController {
         super.viewDidAppear()
         
         listenForNotifications()
-        updateBalance()
         loadFriendAndReload()
         
         DelayPerformedHelper.performAfterDelay(seconds: 0.5, completion: {
@@ -148,8 +146,6 @@ class ChatListViewController : DashboardSplittedViewController {
     func loadMessages(
         contactsProgress: Float = 0
     ) {
-        updateBalanceAndCheckVersion()
-        
         let restoring = chatListViewModel.isRestoring()
         var contentProgressShare : Float = 0.0
         
@@ -196,7 +192,6 @@ class ChatListViewController : DashboardSplittedViewController {
                         
                     }) { (_, _) in
                         DispatchQueue.main.async {
-                            self.updateBalanceAndCheckVersion()
                             self.finishLoading()
                         }
                     }
@@ -227,6 +222,8 @@ class ChatListViewController : DashboardSplittedViewController {
     }
     
     func loadFriendAndReload() {
+        updateBalanceAndCheckVersion()
+        
         if chatListViewModel.isRestoring() {
             DispatchQueue.main.async {
                 self.delegate?.shouldShowRestoreModal(
@@ -292,7 +289,6 @@ class ChatListViewController : DashboardSplittedViewController {
     
     @IBAction func refreshButtonClicked(_ sender: Any) {
         loading = true
-        updateBalance()
         loadFriendAndReload()
     }
     
@@ -327,12 +323,16 @@ class ChatListViewController : DashboardSplittedViewController {
                     let chat = user.getChat()
                     
                     if chat?.isPublicGroup() == true {
+                        self.contactsService.selectedTab = .tribes
                         self.contactsService.selectedTribeId = chat?.getObjectId()
-                        self.setActiveTab(.tribes)
+                        self.setActiveTab(.tribes, shouldSwitchChat: false)
                     } else {
+                        self.contactsService.selectedTab = .friends
                         self.contactsService.selectedFriendId = chat?.getObjectId() ?? user.getObjectId()
-                        self.setActiveTab(.friends)
+                        self.setActiveTab(.friends, shouldSwitchChat: false)
                     }
+                    
+                    self.dashboardNavigationTabs.updateButtonsOnIndexChange()
                     
                     self.didClickRowAt(
                         chatId: chat?.id,
@@ -367,8 +367,10 @@ class ChatListViewController : DashboardSplittedViewController {
                 if let tribeInfo = GroupsManager.sharedInstance.getGroupInfo(query: tribeLink), let uuid = tribeInfo.uuid {
                     if let chat = Chat.getChatWith(uuid: uuid) {
                         
+                        self.contactsService.selectedTab = .tribes
                         self.contactsService.selectedTribeId = chat.getObjectId()
-                        self.setActiveTab(.tribes)
+                        self.dashboardNavigationTabs.updateButtonsOnIndexChange()
+                        self.setActiveTab(.tribes, shouldSwitchChat: false)
                         
                         self.didClickRowAt(
                             chatId: chat.id,

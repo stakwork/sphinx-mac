@@ -238,6 +238,8 @@ extension NewMessageCollectionViewItem {
                         
                         if substring.isPubKey || substring.isVirtualPubKey {
                             substring = substring.shareContactDeepLink
+                        } else {
+                            substring = substring.withProtocol(protocolString: "http")
                         }
                          
                         if let url = URL(string: substring)  {

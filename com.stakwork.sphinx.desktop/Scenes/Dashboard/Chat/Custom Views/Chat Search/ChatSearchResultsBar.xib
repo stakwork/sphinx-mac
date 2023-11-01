@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="ChatSearchResultsBar" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="arrowDownButton" destination="r2q-qe-Dyo" id="cTz-VZ-GXY"/>
+                <outlet property="arrowUpButton" destination="6vh-GT-8R3" id="dpA-hM-Ont"/>
+                <outlet property="contentView" destination="c22-O7-iKe" id="yU8-O4-p1u"/>
+                <outlet property="loadingWheel" destination="GMh-tk-63x" id="wEI-HB-jLf"/>
+                <outlet property="matchIndexLabel" destination="Ycj-5d-p3H" id="K9W-f9-d7j"/>
+                <outlet property="matchesCountLabel" destination="nnk-jq-QdW" id="YUz-0Y-AIO"/>
+                <outlet property="searchingLabel" destination="OMO-V8-dS4" id="RSF-U9-Odo"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="793" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="EJZ-XW-Tqb">
+                    <rect key="frame" x="0.0" y="0.0" width="793" height="60"/>
+                    <view key="contentView" id="0E3-Cn-xoI">
+                        <rect key="frame" x="0.0" y="0.0" width="793" height="60"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6vh-GT-8R3" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                                <rect key="frame" x="16" y="0.0" width="40" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="UM4-tn-g0A"/>
+                                    <constraint firstAttribute="width" constant="40" id="erH-nT-Sws"/>
+                                </constraints>
+                                <buttonCell key="cell" type="square" title="expand_less" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="cYc-jr-iOB">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="35" name="MaterialIcons-Regular"/>
+                                </buttonCell>
+                                <color key="contentTintColor" name="Text"/>
+                                <connections>
+                                    <action selector="navigateArrowButtonTouched:" target="-2" id="drp-hH-8Ru"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="r2q-qe-Dyo" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                                <rect key="frame" x="56" y="0.0" width="40" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="2BE-aX-7VW"/>
+                                    <constraint firstAttribute="height" constant="60" id="tcL-lC-VPq"/>
+                                </constraints>
+                                <buttonCell key="cell" type="square" title="expand_more" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="iMl-J6-P55">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="35" name="MaterialIcons-Regular"/>
+                                </buttonCell>
+                                <color key="contentTintColor" name="Text"/>
+                                <connections>
+                                    <action selector="navigateArrowButtonTouched:" target="-2" id="bFO-0H-L0R"/>
+                                </connections>
+                            </button>
+                            <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u8I-r1-YAq">
+                                <rect key="frame" x="364" y="0.0" width="66" height="60"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ycj-5d-p3H">
+                                        <rect key="frame" x="-2" y="22" width="18" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="0/" id="KaU-VG-R7K">
+                                            <font key="font" size="14" name="Roboto-Medium"/>
+                                            <color key="textColor" name="PrimaryGreen"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nnk-jq-QdW">
+                                        <rect key="frame" x="12" y="22" width="56" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="1 match" id="4M6-uE-S5M">
+                                            <font key="font" size="14" name="Roboto-Medium"/>
+                                            <color key="textColor" name="Text"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Ycj-5d-p3H" firstAttribute="centerY" secondItem="u8I-r1-YAq" secondAttribute="centerY" id="13o-yc-9Yo"/>
+                                    <constraint firstItem="nnk-jq-QdW" firstAttribute="centerY" secondItem="u8I-r1-YAq" secondAttribute="centerY" id="osj-3f-x2Y"/>
+                                </constraints>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                            <progressIndicator maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="GMh-tk-63x">
+                                <rect key="frame" x="761" y="22" width="16" height="16"/>
+                            </progressIndicator>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OMO-V8-dS4">
+                                <rect key="frame" x="681" y="23" width="74" height="15"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Searching..." id="pWr-xe-iXI">
+                                    <font key="font" size="13" name="Roboto-Regular"/>
+                                    <color key="textColor" name="SecondaryText"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="GMh-tk-63x" firstAttribute="centerY" secondItem="0E3-Cn-xoI" secondAttribute="centerY" id="3ER-Yl-ftS"/>
+                            <constraint firstItem="r2q-qe-Dyo" firstAttribute="top" secondItem="0E3-Cn-xoI" secondAttribute="top" id="Kff-UJ-Wsz"/>
+                            <constraint firstAttribute="trailing" secondItem="GMh-tk-63x" secondAttribute="trailing" constant="16" id="L1B-FG-PKg"/>
+                            <constraint firstItem="u8I-r1-YAq" firstAttribute="centerX" secondItem="0E3-Cn-xoI" secondAttribute="centerX" id="MIC-qL-mTM"/>
+                            <constraint firstItem="6vh-GT-8R3" firstAttribute="leading" secondItem="0E3-Cn-xoI" secondAttribute="leading" constant="16" id="WHq-Fl-imB"/>
+                            <constraint firstAttribute="bottom" secondItem="u8I-r1-YAq" secondAttribute="bottom" id="fDR-Ap-lLC"/>
+                            <constraint firstItem="r2q-qe-Dyo" firstAttribute="leading" secondItem="6vh-GT-8R3" secondAttribute="trailing" id="gB3-Sg-YrN"/>
+                            <constraint firstItem="6vh-GT-8R3" firstAttribute="top" secondItem="0E3-Cn-xoI" secondAttribute="top" id="kM9-6E-ExO"/>
+                            <constraint firstItem="OMO-V8-dS4" firstAttribute="centerY" secondItem="GMh-tk-63x" secondAttribute="centerY" id="pPu-xs-lxP"/>
+                            <constraint firstItem="u8I-r1-YAq" firstAttribute="top" secondItem="0E3-Cn-xoI" secondAttribute="top" id="q03-77-gNm"/>
+                            <constraint firstItem="GMh-tk-63x" firstAttribute="leading" secondItem="OMO-V8-dS4" secondAttribute="trailing" constant="8" id="zJw-fs-Z7V"/>
+                        </constraints>
+                    </view>
+                    <color key="fillColor" name="HeaderBG"/>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstItem="EJZ-XW-Tqb" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="1r6-fx-O2K"/>
+                <constraint firstAttribute="bottom" secondItem="EJZ-XW-Tqb" secondAttribute="bottom" id="KbS-Eg-wvC"/>
+                <constraint firstItem="EJZ-XW-Tqb" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="idv-KA-AU6"/>
+                <constraint firstAttribute="trailing" secondItem="EJZ-XW-Tqb" secondAttribute="trailing" id="rdG-2l-7pf"/>
+            </constraints>
+            <point key="canvasLocation" x="156.5" y="154"/>
+        </customView>
+    </objects>
+    <resources>
+        <namedColor name="HeaderBG">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PrimaryGreen">
+            <color red="0.28627450980392155" green="0.78823529411764703" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SecondaryText">
+            <color red="0.55686274509803924" green="0.58823529411764708" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text">
+            <color red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -9,7 +9,14 @@
 import Cocoa
 import WebKit
 
+protocol NewChatViewControllerDelegate: AnyObject {
+    func shouldResetOngoingMessage()
+    func shouldCloseThread()
+}
+
 class NewChatViewController: DashboardSplittedViewController {
+    
+    weak var chatVCDelegate: NewChatViewControllerDelegate?
     
     @IBOutlet weak var podcastPlayerView: NSView!
     @IBOutlet weak var shimmeringView: ChatShimmeringView!
@@ -27,6 +34,7 @@ class NewChatViewController: DashboardSplittedViewController {
     @IBOutlet weak var mentionsScrollViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var childViewControllerContainer: ChildVCContainer!
+    @IBOutlet weak var threadVCContainer: ThreadVCContainer!
     @IBOutlet weak var pinMessageDetailView: PinMessageDetailView!
     @IBOutlet weak var pinMessageNotificationView: PinNotificationView!
     
@@ -43,12 +51,20 @@ class NewChatViewController: DashboardSplittedViewController {
     var deepLinkData : DeeplinkData? = nil
     
     var threadUUID: String? = nil
+    var escapeMonitor: Any? = nil
     
     var isThread: Bool {
         get {
             return threadUUID != nil
         }
     }
+    
+    enum ViewMode: Int {
+        case Standard
+        case Search
+    }
+    
+    var viewMode = ViewMode.Standard
     
     var contactResultsController: NSFetchedResultsController<UserContact>!
     var chatResultsController: NSFetchedResultsController<Chat>!
@@ -57,12 +73,15 @@ class NewChatViewController: DashboardSplittedViewController {
     
     var chatTableDataSource: NewChatTableDataSource? = nil
     var chatMentionAutocompleteDataSource : ChatMentionAutocompleteDataSource? = nil
+    
     var podcastPlayerVC: NewPodcastPlayerViewController? = nil
+    var threadVC: NewChatViewController? = nil
     
     static func instantiate(
         contactId: Int? = nil,
         chatId: Int? = nil,
         delegate: DashboardVCDelegate? = nil,
+        chatVCDelegate: NewChatViewControllerDelegate? = nil,
         deepLinkData : DeeplinkData? = nil,
         threadUUID: String? = nil
     ) -> NewChatViewController {
@@ -82,6 +101,7 @@ class NewChatViewController: DashboardSplittedViewController {
         }
         
         viewController.delegate = delegate
+        viewController.chatVCDelegate = chatVCDelegate
         viewController.deepLinkData = deepLinkData
         viewController.owner = owner
         viewController.threadUUID = threadUUID
@@ -103,6 +123,8 @@ class NewChatViewController: DashboardSplittedViewController {
         configureCollectionView()
         setupChatTopView()
         setupChatData()
+        
+        chatTopView.checkRoute()
     }
     
     override func viewDidAppear() {
@@ -112,16 +134,56 @@ class NewChatViewController: DashboardSplittedViewController {
         fetchTribeData()
         configureMentionAutocompleteTableView()
         configureFetchResultsController()
+        addEscapeMonitor()
     }
     
     override func viewWillDisappear() {
         super.viewWillDisappear()
         
         chatTableDataSource?.saveSnapshotCurrentState()
+        chatTableDataSource?.releaseMemory()
+        
+        closeThreadAndResetEscapeMonitor()
+    }
+    
+    deinit {
+        botWebView = nil
     }
     
     override func viewDidLayout() {
         chatTableDataSource?.updateFrame()
+    }
+    
+    func closeThreadAndResetEscapeMonitor() {
+        shouldCloseThread()
+        
+        if let escapeMonitor = escapeMonitor {
+            NSEvent.removeMonitor(escapeMonitor)
+        }
+        
+        escapeMonitor = nil
+    }
+    
+    func addEscapeMonitor() {
+        //add event monitor in case user never clicks the textfield
+        if let escapeMonitor = escapeMonitor {
+            NSEvent.removeMonitor(escapeMonitor)
+        }
+    
+        escapeMonitor = nil
+    
+        self.escapeMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (event) in
+            if event.keyCode == 53 { // 53 is the key code for the Escape key
+                // Perform your action when the Escape key is pressed
+                self.shouldCloseThread()
+                return nil // Discard the event
+            }
+            return event
+        }
+    }
+    
+    func forceReload() {
+        chatTableDataSource?.forceReload()
     }
     
     func resetVC() {
@@ -135,6 +197,9 @@ class NewChatViewController: DashboardSplittedViewController {
         childViewControllerContainer.removeChildVC()
         
         chatTableDataSource?.stopListeningToResultsController()
+        chatTableDataSource?.releaseMemory()
+        
+        botWebView = nil
     }
     
     func stopPlayingClip() {
@@ -163,7 +228,8 @@ class NewChatViewController: DashboardSplittedViewController {
             chatTopView.configureHeaderWith(
                 chat: chat,
                 contact: contact,
-                andDelegate: self
+                andDelegate: self,
+                searchDelegate: self
             )
             
             configurePinnedMessageView()
@@ -171,6 +237,7 @@ class NewChatViewController: DashboardSplittedViewController {
             chatTopView.isHidden = false
             threadHeaderView.isHidden = true
         }
+        
     }
     
     func setupThreadHeaderView() {
@@ -195,7 +262,8 @@ class NewChatViewController: DashboardSplittedViewController {
             chat,
             contact: contact,
             isThread: isThread,
-            with: self
+            with: self,
+            and: self
         )        
     }
     
@@ -207,24 +275,28 @@ class NewChatViewController: DashboardSplittedViewController {
     func showThread(
         threadID: String
     ){
-        let chatVC = NewChatViewController.instantiate(
+        threadVC = NewChatViewController.instantiate(
             contactId: self.contact?.id,
             chatId: self.chat?.id,
             delegate: delegate,
+            chatVCDelegate: self,
             threadUUID: threadID
         )
         
-        var size = CGSize(width: 800, height: 600)
-        
-        if let currentWindowSize = self.view.window?.frame.size {
-            size = CGSize(width: currentWindowSize.width * 0.9, height: currentWindowSize.height * 0.9)
+        guard let threadVC = threadVC else {
+            return
         }
-      
-        WindowsManager.sharedInstance.showNewWindow(
-            with: "thread-chat".localized,
-            size: size,
-            centeredIn: self.view.window,
-            contentVC: chatVC
-        )
+
+        addChildVC(child: threadVC, container: threadVCContainer)
+
+        threadVC.setMessageFieldActive()
+        
+        threadVCContainer.isHidden = false
+    }
+    
+    func resizeSubviews(frame: NSRect) {
+        view.frame = frame
+        
+        threadVC?.view.frame = frame
     }
 }

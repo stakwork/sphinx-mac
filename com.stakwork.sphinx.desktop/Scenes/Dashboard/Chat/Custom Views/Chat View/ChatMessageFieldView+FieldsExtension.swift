@@ -38,9 +38,9 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
     func shouldSendMessage() {
         if sendButton.isEnabled {
             delegate?.shouldSendMessage(
-                text: messageTextView.string,
+                text: messageTextView.string.trim(),
                 price: Int(priceTextField.stringValue) ?? 0,
-                completion: { _ in}
+                completion: { _ in }
             )
             
             clearMessage()
@@ -51,6 +51,8 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
         messageTextView.string = ""
         priceTextField.stringValue = ""
         textDidChange(Notification(name: NSControl.textDidChangeNotification))
+        
+        delegate?.shouldMainChatOngoingMessage()
     }
     
     func textDidChange(_ notification: Notification) {

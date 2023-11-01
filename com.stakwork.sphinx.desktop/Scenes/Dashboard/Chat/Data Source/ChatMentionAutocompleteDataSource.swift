@@ -23,6 +23,7 @@ class ChatMentionAutocompleteDataSource : NSObject {
     var suggestions : [MentionOrMacroItem] = [MentionOrMacroItem]()
     var tableView : NSCollectionView!
     var scrollView: NSScrollView!
+    var viewWidth: CGFloat = 0.0
     var delegate: ChatMentionAutocompleteDelegate!
     var mentionCellHeight :CGFloat = 50.0
     var selectedRow : Int = 0
@@ -30,6 +31,7 @@ class ChatMentionAutocompleteDataSource : NSObject {
     init(
         tableView: NSCollectionView,
         scrollView: NSScrollView,
+        viewWidth: CGFloat,
         delegate: ChatMentionAutocompleteDelegate
     ){
         super.init()
@@ -37,6 +39,7 @@ class ChatMentionAutocompleteDataSource : NSObject {
         self.tableView = tableView
         self.delegate = delegate
         self.scrollView = scrollView
+        self.viewWidth = viewWidth
         self.tableView.backgroundColors = [NSColor.Sphinx.HeaderBG]
         
         self.tableView.delegate = self
@@ -46,8 +49,22 @@ class ChatMentionAutocompleteDataSource : NSObject {
         updateMentionSuggestions(suggestions: [])
     }
     
+    func setViewWidth(viewWidth: CGFloat) {
+        self.viewWidth = viewWidth
+        
+        if let collectionViewFlowLayout = self.tableView.collectionViewLayout as? NSCollectionViewFlowLayout {
+            collectionViewFlowLayout.itemSize = NSSize(width: self.viewWidth, height: mentionCellHeight)
+            collectionViewFlowLayout.headerReferenceSize = NSSize(width: self.viewWidth, height: 0)
+        }
+    }
+    
     func updateMentionSuggestions(suggestions: [MentionOrMacroItem]) {
-        self.scrollView.isHidden = (suggestions.isEmpty == true)
+        if suggestions.isEmpty == true {
+            self.scrollView.isHidden = true
+            return
+        }
+        
+        self.scrollView.isHidden = false
         self.suggestions = suggestions
         
         selectedRow = suggestions.count - 1
@@ -83,8 +100,8 @@ class ChatMentionAutocompleteDataSource : NSObject {
         flowLayout.minimumInteritemSpacing = 0.0
         flowLayout.minimumLineSpacing = 0.0
         flowLayout.sectionHeadersPinToVisibleBounds = true
-        flowLayout.itemSize = NSSize(width: tableView.frame.width, height: mentionCellHeight)
-        flowLayout.headerReferenceSize = NSSize(width: tableView.frame.width, height: 0)
+        flowLayout.itemSize = NSSize(width: self.viewWidth, height: mentionCellHeight)
+        flowLayout.headerReferenceSize = NSSize(width: self.viewWidth, height: 0)
         tableView.collectionViewLayout = flowLayout
     }
     

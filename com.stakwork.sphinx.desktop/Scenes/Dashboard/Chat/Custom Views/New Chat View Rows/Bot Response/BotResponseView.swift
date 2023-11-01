@@ -22,7 +22,7 @@ class BotResponseView: NSView, LoadableNib {
     let kDocumentReadyJSCommand = "document.readyState"
     let kGetContainerJSCommand = "document.getElementById(\"bot-response-container\").clientHeight"
     
-    static let kViewHeight: CGFloat = 150
+    static let kViewHeight: CGFloat = 250
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -34,6 +34,14 @@ class BotResponseView: NSView, LoadableNib {
         super.init(frame: frameRect)
         loadViewFromNib()
         setup()
+    }
+    
+    func releaseMemory() {
+        webView = nil
+    }
+    
+    deinit {
+        webView = nil
     }
     
     func setup() {}

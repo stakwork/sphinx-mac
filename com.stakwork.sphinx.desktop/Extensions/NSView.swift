@@ -107,7 +107,8 @@ extension NSView {
     func setBackgroundColor(color: NSColor) {
         let backgroundColorBox = NSBox(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
         backgroundColorBox.title = ""
-        backgroundColorBox.borderType = .noBorder
+        backgroundColorBox.borderWidth = 0
+        backgroundColorBox.borderColor = .clear
         backgroundColorBox.boxType = .custom
         backgroundColorBox.fillColor = color
         self.addSubview(backgroundColorBox)

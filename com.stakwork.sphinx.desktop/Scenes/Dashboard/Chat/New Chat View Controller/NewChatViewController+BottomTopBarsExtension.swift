@@ -19,6 +19,7 @@ extension NewChatViewController : ChatHeaderViewDelegate {
         if let chatId = chat?.id {
             let threadsListVC = ThreadsListViewController.instantiate(
                 chatId: chatId,
+                delegate: self,
                 windowSize: self.view.window?.frame.size
             )
           
@@ -101,13 +102,35 @@ extension NewChatViewController : ChatHeaderViewDelegate {
             )
         }
     }
+    
+    func didClickSearchButton() {
+        toggleSearchMode(active: true)
+    }
 }
 
 extension NewChatViewController : GroupDetailsDelegate {
     func shouldExitTribeOrGroup(
         completion: @escaping () -> ()
     ) {
+        exitAndDeleteGroup(completion: completion)
+    }
+    
+    func exitAndDeleteGroup(completion: @escaping () -> ()) {
+        let isPublicGroup = chat?.isPublicGroup() ?? false
+        let isMyPublicGroup = chat?.isMyPublicGroup() ?? false
+        let deleteLabel = (isPublicGroup ? "delete.tribe" : "delete.group").localized
+        let confirmDeleteLabel = (isMyPublicGroup ? "confirm.delete.tribe" : (isPublicGroup ? "confirm.exit.delete.tribe" : "confirm.exit.delete.group")).localized
         
+        AlertHelper.showTwoOptionsAlert(title: deleteLabel, message: confirmDeleteLabel, confirm: {
+            GroupsManager.sharedInstance.deleteGroup(chat: self.chat, completion: { success in
+                if success {
+                    self.delegate?.shouldResetTribeView()
+                    completion()
+                } else {
+                    AlertHelper.showAlert(title: "generic.error.title".localized, message: "generic.error.message".localized)
+                }
+            })
+        })
     }
 }
 
@@ -178,7 +201,11 @@ extension NewChatViewController : ChatBottomViewDelegate {
                 text: text,
                 type: TransactionMessage.TransactionMessageType.message.rawValue,
                 data: data,
-                completion: { success in
+                completion: { (success, chat) in
+                    if let chat = chat {
+                        self.didUpdateChatFromMessage(chat)
+                    }
+                    
                     completion(success)
                 }
             )
@@ -186,11 +213,19 @@ extension NewChatViewController : ChatBottomViewDelegate {
             newChatViewModel.shouldSendMessage(
                 text: text,
                 type: TransactionMessage.TransactionMessageType.message.rawValue,
-                completion: { success in
+                completion: { (success, chat) in
+                    if let chat = chat {
+                        self.didUpdateChatFromMessage(chat)
+                    }                    
+                    
                     completion(success)
                 }
             )
         }
+    }
+    
+    func shouldMainChatOngoingMessage() {
+        chatVCDelegate?.shouldResetOngoingMessage()
     }
     
     func giphyText(
@@ -274,6 +309,8 @@ extension NewChatViewController : ChatBottomViewDelegate {
     }
     
     func shouldUpdateMentionSuggestionsWith(_ object: [MentionOrMacroItem]) {
+        chatMentionAutocompleteDataSource?.setViewWidth(viewWidth: self.chatCollectionView.frame.width)
+        
         chatMentionAutocompleteDataSource?.updateMentionSuggestions(
             suggestions: object
         )
@@ -285,6 +322,10 @@ extension NewChatViewController : ChatBottomViewDelegate {
     
     func shouldGetSelectedMacroAction() -> (() -> ())? {
         return chatMentionAutocompleteDataSource?.getSelectedAction()
+    }
+    
+    func didTapEscape() {
+        shouldCloseThread()
     }
     
     func didTapUpArrow() -> Bool {
@@ -367,5 +408,17 @@ extension NewChatViewController : ActionsDelegate {
 extension NewChatViewController : NewMessagesIndicatorViewDelegate {
     func didTouchButton() {
         chatCollectionView.scrollToBottom()
+    }
+}
+
+extension NewChatViewController : NewChatViewControllerDelegate {
+    func shouldResetOngoingMessage() {
+        chatBottomView.clearMessage()
+    }
+}
+
+extension NewChatViewController : ThreadsListViewControllerDelegate {
+    func didSelectThreadWith(uuid: String) {
+        showThread(threadID: uuid)
     }
 }

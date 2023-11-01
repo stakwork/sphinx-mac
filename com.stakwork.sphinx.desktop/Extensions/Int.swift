@@ -61,6 +61,16 @@ extension Int {
         
         return "\(hours):\(minutes):\(seconds)"
     }
+    
+    var searchMatchesString : String {
+        get {
+            if self == 1 {
+                return "\(self) \("match".localized)"
+            } else {
+                return "\(self) \("matches".localized)"
+            }
+        }
+    }
 }
 
 extension Formatter {

@@ -72,6 +72,10 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
         setupViews()
     }
     
+    func releaseMemory() {
+        botResponseView.releaseMemory()
+    }
+    
     func configureWith(
         messageCellState: MessageTableCellState,
         mediaData: MessageTableCellState.MediaData?,
@@ -83,10 +87,8 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
         delegate: ChatCollectionViewItemDelegate?,
         searchingTerm: String?,
         indexPath: IndexPath,
-        isPreload: Bool,
         collectionViewWidth: CGFloat
     ) {
-        
         hideAllSubviews()
         
         var mutableMessageCellState = messageCellState
@@ -124,8 +126,8 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
 
         ///Paid Content
         configureWith(paidContent: mutableMessageCellState.paidContent, and: bubble)
-//
-//        ///Message types
+        
+        ///Message types
         configureWith(payment: mutableMessageCellState.payment, and: bubble)
         configureWith(invoice: mutableMessageCellState.invoice, and: bubble)
         configureWith(directPayment: mutableMessageCellState.directPayment, and: bubble)
@@ -144,10 +146,7 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
 //        configureWith(webLink: mutableMessageCellState.webLink, linkData: linkData)
         
         ///Avatar
-        configureWith(
-            avatarImage: mutableMessageCellState.avatarImage,
-            isPreload: isPreload
-        )
+        configureWith(avatarImage: mutableMessageCellState.avatarImage)
         
         ///Direction and grouping
         configureWith(bubble: bubble)
@@ -161,5 +160,4 @@ class NewMessageCollectionViewItem: CommonNewMessageCollectionViewitem, ChatColl
             delegate?.shouldShowOptionsFor(messageId: messageId, from: button)
         }
     }
-    
 }

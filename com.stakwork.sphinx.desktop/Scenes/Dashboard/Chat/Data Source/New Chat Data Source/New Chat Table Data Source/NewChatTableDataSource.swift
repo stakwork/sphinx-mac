@@ -53,6 +53,7 @@ protocol NewChatTableDataSourceDelegate : AnyObject {
     ///Threads
     func shouldShowThreadFor(message: TransactionMessage)
     func shouldReloadThreadHeader()
+    func shouldCloseThread()
 }
 
 class NewChatTableDataSource : NSObject {
@@ -83,7 +84,6 @@ class NewChatTableDataSource : NSObject {
     
     ///Helpers
     var preloaderHelper = MessagesPreloaderHelper.sharedInstance
-    let linkPreviewsLoader = CustomSwiftLinkPreview.sharedInstance
     let messageBubbleHelper = NewMessageBubbleHelper()
     let audioPlayerHelper = NewAudioPlayerHelper()
     var podcastPlayerController = PodcastPlayerController.sharedInstance
@@ -105,7 +105,7 @@ class NewChatTableDataSource : NSObject {
     var loadingMoreItems = false
     var scrolledAtBottom = false
     var scrollViewDesiredOffset: CGFloat? = nil
-    var isPreload = true
+    var isFirstLoad = true
     
     ///WebView Loading
     let webViewSemaphore = DispatchSemaphore(value: 1)
@@ -158,6 +158,16 @@ class NewChatTableDataSource : NSObject {
     
     func isFinalDS() -> Bool {
         return self.chat != nil
+    }
+    
+    func releaseMemory() {
+        preloaderHelper.releaseMemory()
+        
+        for item in collectionView.visibleItems() {
+            if let item = item as? ChatCollectionViewItemProtocol {
+                item.releaseMemory()
+            }
+        }
     }
     
     func configureTableView() {

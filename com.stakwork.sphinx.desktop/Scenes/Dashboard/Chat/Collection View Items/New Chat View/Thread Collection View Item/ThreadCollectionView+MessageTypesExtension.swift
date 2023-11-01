@@ -194,7 +194,7 @@ extension ThreadCollectionViewItem {
             let labelHeight = ChatHelper.getThreadOriginalTextMessageHeightFor(
                 text,
                 collectionViewWidth: collectionViewWidth,
-                maxHeight: 64.0
+                maxHeight: Constants.kMessageLineHeight * 2
             )
             
             labelHeightConstraint.constant = labelHeight
@@ -274,6 +274,8 @@ extension ThreadCollectionViewItem {
                         
                         if substring.isPubKey || substring.isVirtualPubKey {
                             substring = substring.shareContactDeepLink
+                        } else {
+                            substring = substring.withProtocol(protocolString: "http")
                         }
                          
                         if let url = URL(string: substring)  {

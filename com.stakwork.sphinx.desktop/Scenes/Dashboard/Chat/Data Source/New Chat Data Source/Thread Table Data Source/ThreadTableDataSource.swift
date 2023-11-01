@@ -50,8 +50,8 @@ class ThreadTableDataSource : NewChatTableDataSource {
         ///Nothing to do
     }
     
-    override func restorePreloadedMessages() {
-        ///Nothing to do
+    override func restorePreloadedOrLoadMessages() {
+        configureResultsController(items: max(dataSource.snapshot().numberOfItems, 100))
     }
 
     override func saveMessagesToPreloader() {

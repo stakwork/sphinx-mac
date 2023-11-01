@@ -21,7 +21,7 @@ extension NewChatViewModel {
         sendMessage(
             provisionalMessage: nil,
             params: params,
-            completion: { _ in }
+            completion: { (_, _) in }
         )
     }
     
@@ -29,7 +29,8 @@ extension NewChatViewModel {
         sendMessage(
             provisionalMessage: message,
             text: message.messageContent ?? "",
-            completion: { _ in }
+            isResend: true,
+            completion: { (_, _) in }
         )
     }
     

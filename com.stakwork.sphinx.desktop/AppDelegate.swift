@@ -90,7 +90,7 @@ import WebKit
     func getRelayKeys() {
         if UserData.sharedInstance.isUserLogged() {
             UserData.sharedInstance.getAndSaveTransportKey()
-            UserData.sharedInstance.getOrCreateHMACKey()
+            UserData.sharedInstance.getOrCreateHMACKey(forceGet: true)
         }
     }
     
@@ -156,11 +156,10 @@ import WebKit
             profileMenuItem,
             newContactMenuItem,
             logoutMenuItem,
-            removeAccountMenuItem
+            removeAccountMenuItem,
+            createTribeMenuItem
         ]
         .forEach { $0?.isHidden = shouldEnableItems == false }
-        
-        createTribeMenuItem.isHidden = !shouldEnableItems || UserContact.getOwner()?.isVirtualNode() == true
     }
     
     
@@ -254,7 +253,7 @@ import WebKit
         
         if UserData.sharedInstance.isUserLogged() && !ChatListViewModel.isRestoreRunning() {
             reloadDataAndConnectSocket()
-            feedsManager.restoreContentFeedStatusInBackground()
+//            feedsManager.restoreContentFeedStatusInBackground()
         }
     }
     
@@ -366,8 +365,7 @@ import WebKit
         setBadge(count: 0)
         
         AlertHelper.showTwoOptionsAlert(title: "logout".localized, message: "logout.text".localized, confirm: {
-            UserData.sharedInstance.clearData()
-            SphinxSocketManager.sharedInstance.clearSocket()
+            self.stopListeningToMessages()
             
             let frame = WindowsManager.sharedInstance.getCenteredFrameFor(size: CGSize(width: 800, height: 500))
             let keyWindow = NSApplication.shared.keyWindow
@@ -376,10 +374,21 @@ import WebKit
             keyWindow?.titlebarAppearsTransparent = true
             keyWindow?.replaceContentBy(vc: SplashViewController.instantiate())
             keyWindow?.setFrame(frame, display: true, animate: true)
+            
+            ContactsService.sharedInstance.reset()
+            SphinxSocketManager.sharedInstance.clearSocket()
+            UserData.sharedInstance.clearData()
         })
     }
+     
+     func stopListeningToMessages() {
+         if let dashboard = NSApplication.shared.keyWindow?.contentViewController as? DashboardViewController {
+             dashboard.newDetailViewController?.resetVC()
+         }
+     }
     
     func logoutButtonClicked() {
+        ContactsService.sharedInstance.reset()
         GroupsPinManager.sharedInstance.logout()
         presentPIN()
     }

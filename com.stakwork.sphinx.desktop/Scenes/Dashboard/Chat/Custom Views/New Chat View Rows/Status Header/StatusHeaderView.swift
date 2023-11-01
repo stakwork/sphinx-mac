@@ -56,7 +56,6 @@ class StatusHeaderView: NSView, LoadableNib {
         
         receivedStatusHeader.isHidden = outgoing
         sentStatusHeader.isHidden = !outgoing
-        sentFailureHeader.isHidden = true
     }
     
     func configureWith(
@@ -78,12 +77,14 @@ class StatusHeaderView: NSView, LoadableNib {
         receivedLockIcon.isHidden = !statusHeader.showLockIcon
         
         sentFailureHeader.isHidden = !statusHeader.showFailedContainer
+        sentErrorMessage.stringValue = statusHeader.errorMessage
         
         receivedDateLabel.stringValue = statusHeader.timestamp
         sentDateLabel.stringValue = statusHeader.timestamp
         
         expiredInvoiceSentHeader.isHidden = !statusHeader.showExpiredSent
         expiredInvoiceReceivedHeader.isHidden = !statusHeader.showExpiredReceived
+        
         configureWith(expirationTimestamp: statusHeader.expirationTimestamp)
         
         if let uploadProgressData = uploadProgressData {

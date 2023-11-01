@@ -44,14 +44,6 @@ extension NewChatViewModel: AttachmentsManagerDelegate {
 
             chatDataSource?.setProgressForProvisional(messageId: message.id, progress: 0)
 
-//            let dataSourceThreadUUID = (chatDataSource as? ThreadTableDataSource)?.threadUUID
-
-//            attachmentsManager.uploadAndSendAttachment(
-//                attachmentObject: attachmentObject,
-//                replyingMessage: replyingTo,
-//                threadUUID: dataSourceThreadUUID ?? replyingTo?.threadUUID ?? replyingTo?.uuid
-//            )
-
             attachmentsManager.uploadAndSendAttachment(
                 attachmentObject: attachmentObject,
                 replyingMessage: replyingTo,
@@ -84,9 +76,12 @@ extension NewChatViewModel: AttachmentsManagerDelegate {
     }
     
     func didSuccessSendingAttachment(message: TransactionMessage, image: NSImage?) {
-        insertSentMessage(
+        chatDataSource?.resetProgressForProvisional(messageId: -1)
+        
+        messageSent(
             message: message,
-            completion: { _ in }
+            chat: message.chat,
+            completion: { (_, _) in }
         )
     }
 }
@@ -162,7 +157,7 @@ extension NewChatViewModel {
             return
         }
         
-        sendMessage(provisionalMessage: nil, params: params, completion: { success in
+        sendMessage(provisionalMessage: nil, params: params, completion: { (success, _) in
             callback?(success)
         })
     }

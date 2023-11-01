@@ -165,12 +165,13 @@ class SendPaymentForInvoiceVC:NSViewController{
 
         API.sharedInstance.payInvoice(parameters: parameters, callback: { payment in
             AlertHelper.showAlert(title: "generic.success.title".localized, message: "invoice.paid".localized)
+            
             DelayPerformedHelper.performAfterDelay(seconds: 0.25, completion: {
                 WindowsManager.sharedInstance.closeIfExists(identifier: "invoice-management-window")
             })
-        }, errorCallback: {
-            //self.invoiceLoading = false
-            AlertHelper.showAlert(title: "generic.error.title".localized, message: "generic.error.message".localized)
+        }, errorCallback: { error in
+            AlertHelper.showAlert(title: "generic.error.title".localized, message: error)
+            
             self.animatePaymentContainer(show:false)
         })
     }

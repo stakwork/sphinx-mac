@@ -77,6 +77,9 @@ extension WebAppHelper : WKScriptMessageHandler {
                 case "SIGN":
                     signMessage(dict)
                     break
+                case "GETBUDGET":
+                    getBudget(dict)
+                    break
                 default:
                     defaultAction(dict)
                     break
@@ -219,7 +222,7 @@ extension WebAppHelper : WKScriptMessageHandler {
             }
             API.sharedInstance.sendDirectPayment(params: params, callback: { payment in
                 self.sendKeySendResponse(dict: dict, success: true)
-            }, errorCallback: {
+            }, errorCallback: { _ in
                 self.sendKeySendResponse(dict: dict, success: false)
             })
         }
@@ -244,19 +247,25 @@ extension WebAppHelper : WKScriptMessageHandler {
     
     func sendPayment(_ dict: [String: AnyObject]) {
         if let paymentRequest = dict["paymentRequest"] as? String {
+            
             let params = ["payment_request": paymentRequest as AnyObject]
+            
             let prDecoder = PaymentRequestDecoder()
             prDecoder.decodePaymentRequest(paymentRequest: paymentRequest)
+            
             let amount = prDecoder.getAmount()
+            
             if let amount = amount {
                 let canPay: DarwinBoolean = checkCanPay(amount: amount)
-                if(canPay == false){
+                
+                if (canPay == false) {
                     self.sendPaymentResponse(dict: dict, success: false)
                     return
                 }
+                
                 API.sharedInstance.payInvoice(parameters: params, callback: { payment in
                     self.sendPaymentResponse(dict: dict, success: true)
-                }, errorCallback: {
+                }, errorCallback: { _ in
                     self.sendPaymentResponse(dict: dict, success: false)
                 })
             } else {
@@ -312,16 +321,18 @@ extension WebAppHelper : WKScriptMessageHandler {
     }
     
     func saveLSAT(_ dict: [String: AnyObject]) {
-
         if let paymentRequest = dict["paymentRequest"] as? String, let macaroon = dict["macaroon"] as? String, let issuer = dict["issuer"] as? String {
+            
             let params = ["paymentRequest": paymentRequest as AnyObject, "macaroon": macaroon as AnyObject, "issuer": issuer as AnyObject]
             
             let prDecoder = PaymentRequestDecoder()
             prDecoder.decodePaymentRequest(paymentRequest: paymentRequest)
+            
             let amount = prDecoder.getAmount()
+            
             if let amount = amount {
                 let canPay: DarwinBoolean = checkCanPay(amount: amount)
-                if(canPay == false){
+                if (canPay == false) {
                     self.sendLsatResponse(dict: dict, success: false)
                     return
                 }
@@ -354,26 +365,22 @@ extension WebAppHelper : WKScriptMessageHandler {
     }
     
     func saveGraphData(_ dict: [String: AnyObject]) {
-      
-
         if let data = dict["data"] {
-            
             if let type = data["type"] as? Int, let metaData = data["metaData"] as? AnyObject {
                 
             
-            let params = ["type": type as AnyObject,
-                          "meta_data": metaData as AnyObject
-            ]
-                            API.sharedInstance.saveGraphData(parameters: params, callback: { graphData in
-                let newDict = dict
+                let params = [
+                    "type": type as AnyObject,
+                    "meta_data": metaData as AnyObject
+                ]
                 
-                
-                self.sendLsatResponse(dict: newDict, success: true)
-            }, errorCallback: {
-                self.sendLsatResponse(dict: dict, success: false)
-            })
-           
-        }
+                API.sharedInstance.saveGraphData(parameters: params, callback: { graphData in
+                    let newDict = dict
+                    self.sendLsatResponse(dict: newDict, success: true)
+                }, errorCallback: {
+                    self.sendLsatResponse(dict: dict, success: false)
+                })
+            }
         }
     }
     
@@ -401,13 +408,16 @@ extension WebAppHelper : WKScriptMessageHandler {
     }
     
     func updateLsat(_ dict: [String: AnyObject]) {
-            if let identifier = dict["identifier"] as? String, let status = dict["status"] as? String {
+        if let identifier = dict["identifier"] as? String, let status = dict["status"] as? String {
             let params = ["status": status as AnyObject]
-                API.sharedInstance.updateLsat(identifier:identifier, parameters: params, callback: { lsat in
+            
+            API.sharedInstance.updateLsat(identifier:identifier, parameters: params, callback: { lsat in
                 var newDict = dict
-                    if let lsat = lsat["lsat"].string {
-                        newDict["lsat"] = lsat as AnyObject
-                    }
+                
+                if let lsat = lsat["lsat"].string {
+                    newDict["lsat"] = lsat as AnyObject
+                }
+                
                 self.updateLsatResponse(dict: newDict, success: true)
             }, errorCallback: {
                 self.updateLsatResponse(dict: dict, success: false)
@@ -423,7 +433,6 @@ extension WebAppHelper : WKScriptMessageHandler {
                 let prDecoder = PaymentRequestDecoder()
                 prDecoder.decodePaymentRequest(paymentRequest: paymentRequest)
                 let amount = prDecoder.getAmount()
-                print(amount)
                 completion(amount)
             }
         }, errorCallback: {
@@ -460,40 +469,63 @@ extension WebAppHelper : WKScriptMessageHandler {
     }
     
     func getActiveLsat(_ dict: [String: AnyObject]) {
-        
-            API.sharedInstance.getActiveLsat(callback: { lsat in
+        if let issuer = dict["issuer"] as? String {
+            API.sharedInstance.getActiveLsat(issuer: issuer,callback: { lsat in
                 let newDict = self.decodeLsat(lsat: lsat, dict: dict)
                 self.getLsatResponse(dict: newDict, success: true)
             }, errorCallback: {
                 print("failed to retrieve and active LSAT")
                 self.getLsatResponse(dict: dict, success: false)
             })
-           
-        
+        } else {
+            API.sharedInstance.getActiveLsat( callback: { lsat in
+                let newDict = self.decodeLsat(lsat: lsat, dict: dict)
+                self.getLsatResponse(dict: newDict, success: true)
+            }, errorCallback: {
+                print("failed to retrieve and active LSAT")
+                self.getLsatResponse(dict: dict, success: false)
+            })
+        }
     }
     
     func getPersonData(_ dict: [String: AnyObject]) {
-            API.sharedInstance.getPersonData(callback: { person in
+        API.sharedInstance.getPersonData(callback: { person in
             var newDict = dict
-                if let alias = person["alias"].string, let publicKey = person["publicKey"].string{
-                   
+            
+            if let alias = person["alias"].string, let publicKey = person["publicKey"].string {
                 newDict["alias"] = alias as AnyObject
                 newDict["publicKey"] = publicKey as AnyObject
-                    if let photoUrl = person["photoUrl"].string {
-                        newDict["photoUrl"] = photoUrl as AnyObject
-                    }
-                    else {
-                        newDict["photoUrl"] = "" as AnyObject
-                    }
+                
+                if let photoUrl = person["photoUrl"].string {
+                    newDict["photoUrl"] = photoUrl as AnyObject
+                } else {
+                    newDict["photoUrl"] = "" as AnyObject
                 }
-                self.getPersonDataResponse(dict: newDict, success: true)
-            }, errorCallback: {
-                self.getPersonDataResponse(dict: dict, success: false)
-            })
+            }
+            self.getPersonDataResponse(dict: newDict, success: true)
+        }, errorCallback: {
+            self.getPersonDataResponse(dict: dict, success: false)
+        })
+    }
+    
+    func getBudgetResponse(dict: [String: AnyObject], success: Bool) {
+        var params: [String: AnyObject] = [:]
+        setTypeApplicationAndPassword(params: &params, dict: dict)
+        params["budget"] = dict["budget"] as AnyObject
+        params["success"] = success as AnyObject
+
+        sendMessage(dict: params)
+    }
+
+    func getBudget(_ dict: [String: AnyObject]) {
+        let savedBudget: Int? = getValue(withKey: "budget")
+        var newDict = dict
+        newDict["budget"] = savedBudget as AnyObject
+
+        self.getBudgetResponse(dict: newDict, success: true)
     }
     
     func defaultAction(_ dict: [String: AnyObject]){
-       
         self.defaultActionResponse(dict: dict)
     }
 
@@ -520,14 +552,17 @@ extension WebAppHelper : WKScriptMessageHandler {
     
     func checkCanPay(amount: Int) -> DarwinBoolean {
         let savedBudget: Int? = getValue(withKey: "budget")
-        if((savedBudget ?? 0) < amount || amount == -1){
+        
+        if ((savedBudget ?? 0) < amount || amount == -1) {
             return false
         }
+        
         if let savedBudget = savedBudget {
             let newBudget = savedBudget - amount
             saveValue(newBudget as AnyObject, for: "budget")
             return true
         }
+        
         return false
     }
 

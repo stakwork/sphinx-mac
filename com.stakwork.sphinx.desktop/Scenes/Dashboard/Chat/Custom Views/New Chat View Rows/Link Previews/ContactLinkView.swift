@@ -116,7 +116,7 @@ class ContactLinkView: NSView, LoadableNib {
             contactImageView.sd_setImage(
                 with: url,
                 placeholderImage: NSImage(named: "profileAvatar"),
-                options: [.lowPriority, .avoidDecodeImage],
+                options: [.lowPriority],
                 context: [.imageTransformer: transformer],
                 progress: nil,
                 completed: { (image, error, _, _) in

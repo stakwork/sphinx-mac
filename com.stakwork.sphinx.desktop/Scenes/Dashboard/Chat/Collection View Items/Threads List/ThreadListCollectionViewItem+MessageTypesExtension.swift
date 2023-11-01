@@ -19,6 +19,7 @@ extension ThreadListCollectionViewItem {
         let originalMessageSenderInfo = threadLayoutState.orignalThreadMessage.senderInfo
         
         if threadLayoutState.orignalThreadMessage.text.isNotEmpty {
+            originalMessageTextLabel.maximumNumberOfLines = 2
             originalMessageTextLabel.stringValue = threadLayoutState.orignalThreadMessage.text
             originalMessageTextLabel.isHidden = false
         }

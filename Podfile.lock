@@ -19,7 +19,6 @@ PODS:
   - SDWebImage/Core (5.18.2)
   - secp256k1.swift (0.1.4)
   - Starscream (3.1.1)
-  - SwiftLinkPreview (3.1.0)
   - SwiftyJSON (5.0.1)
   - Tor (405.8.1)
 
@@ -34,7 +33,6 @@ DEPENDENCIES:
   - RNCryptor (~> 5.0)
   - SDWebImage
   - Starscream (~> 3.1)
-  - SwiftLinkPreview (~> 3.1.0)
   - SwiftyJSON
   - Tor (from `https://raw.githubusercontent.com/iCepa/Tor.framework/v405.8.1/Tor.podspec`)
 
@@ -53,7 +51,6 @@ SPEC REPOS:
     - SDWebImage
     - secp256k1.swift
     - Starscream
-    - SwiftLinkPreview
     - SwiftyJSON
 
 EXTERNAL SOURCES:
@@ -74,10 +71,9 @@ SPEC CHECKSUMS:
   SDWebImage: c0de394d7cf7f9838aed1fd6bb6037654a4572e4
   secp256k1.swift: a7e7a214f6db6ce5db32cc6b2b45e5c4dd633634
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
-  SwiftLinkPreview: 3d924eeaae8d17410a827a4b37675713af1a0a8a
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   Tor: fad2cec0e7ef5f889fecdaf69e5edd6df0438326
 
-PODFILE CHECKSUM: eb55d4ed38e56d5586062c07e9e14ad08ae0c3a8
+PODFILE CHECKSUM: 106806f4ff12d7caaebeb48e22456997124d6ce9
 
 COCOAPODS: 1.11.3

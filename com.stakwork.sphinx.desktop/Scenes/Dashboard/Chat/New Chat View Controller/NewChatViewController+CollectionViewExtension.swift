@@ -131,10 +131,23 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
     }
     
     func didDeleteTribe() {
-        
+        delegate?.shouldResetTribeView()
     }
     
-    func didUpdateChat(_ chat: Chat) {}
+    func didUpdateChat(_ chat: Chat) {
+        self.chat = chat
+    }
+    
+    func didUpdateChatFromMessage(_ chat: Chat) {
+        if self.chat == nil {
+            if let contact = self.contact, contact.id == chat.getContact()?.id {
+                self.chat = chat
+                
+                configureFetchResultsController()
+                configureCollectionView()
+            }
+        }
+    }
     
     func shouldShowMemberPopupFor(messageId: Int) {
         if let message = TransactionMessage.getMessageWith(id: messageId) {
@@ -158,20 +171,10 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
         }
     }
     
-    func shouldPayInvoiceFor(messageId: Int) {
-        
-    }
+    func shouldPayInvoiceFor(messageId: Int) {}
     
     func isOnStandardMode() -> Bool {
-        return true
-    }
-    
-    func didFinishSearchingWith(matchesCount: Int, index: Int) {
-        
-    }
-    
-    func shouldToggleSearchLoadingWheel(active: Bool) {
-        
+        return viewMode == ViewMode.Standard
     }
     
     func shouldShowOptionsFor(messageId: Int, from button: NSButton) {
@@ -182,6 +185,24 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
                 from: button,
                 with: self
             )
+        }
+    }
+    
+    func shouldCloseThread() {
+        if let chatVCDelegate = chatVCDelegate {
+            chatVCDelegate.shouldCloseThread()
+        } else {
+            guard let threadVC = threadVC else {
+                return
+            }
+            
+            removeChildVC(child: threadVC)
+            
+            self.threadVC = nil
+            
+            threadVCContainer.isHidden = true
+            
+            setMessageFieldActive()
         }
     }
 }

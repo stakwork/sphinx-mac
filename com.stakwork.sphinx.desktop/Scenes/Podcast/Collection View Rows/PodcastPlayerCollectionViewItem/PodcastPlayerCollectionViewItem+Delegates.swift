@@ -132,7 +132,7 @@ extension PodcastPlayerCollectionViewItem : BoostButtonViewDelegate {
                     episodeId: episode.itemID,
                     amount: amount,
                     completion: { (message, success) in
-                        guard let message = message else {
+                        guard let _ = message else {
                             return
                         }
 //                        self.addToLiveMessages(message: message)

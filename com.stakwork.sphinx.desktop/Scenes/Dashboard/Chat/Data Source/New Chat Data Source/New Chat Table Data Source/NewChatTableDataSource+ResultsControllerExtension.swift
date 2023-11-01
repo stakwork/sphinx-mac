@@ -30,12 +30,7 @@ extension NewChatTableDataSource {
     func configureDataSource() {
         dataSource = makeDataSource()
 
-        restorePreloadedMessages()
-        
-        DelayPerformedHelper.performAfterDelay(seconds: 0.1, completion: { [weak self] in
-            guard let self = self else { return }
-            self.configureResultsController(items: max(self.dataSource.snapshot().numberOfItems, 100))
-        })
+        restorePreloadedOrLoadMessages()        
     }
     
     func makeSnapshotForCurrentState() -> DataSourceSnapshot {
@@ -51,14 +46,23 @@ extension NewChatTableDataSource {
         return snapshot
     }
     
-    func updateSnapshot() {
+    func updateSnapshot(
+        completion: (() -> ())? = nil
+    ) {
         let snapshot = makeSnapshotForCurrentState()
-
+        let isSearching = !(self.delegate?.isOnStandardMode() ?? true)
+        let animated = !isFirstLoad && !loadingMoreItems && !isSearching
+        
         DispatchQueue.main.async {
+            CoreDataManager.sharedManager.saveContext()
+            
             self.saveSnapshotCurrentState()
-            self.dataSource.apply(snapshot, animatingDifferences: !self.loadingMoreItems) {
+            self.dataSource.apply(snapshot, animatingDifferences: animated) {
                 self.restoreScrollLastPosition()
                 self.loadingMoreItems = false
+                self.isFirstLoad = false
+                
+                completion?()
             }
         }
     }
@@ -66,6 +70,10 @@ extension NewChatTableDataSource {
     func updatePreloadedSnapshot() {
         let snapshot = makeSnapshotForCurrentState()
         self.dataSource.apply(snapshot, animatingDifferences: false)
+        
+        DelayPerformedHelper.performAfterDelay(seconds: 0.1, completion: {
+            self.restoreScrollLastPosition()
+        })
     }
     
     func getCellFor(
@@ -117,7 +125,6 @@ extension NewChatTableDataSource {
             delegate: self,
             searchingTerm: self.searchingTerm,
             indexPath: indexPath,
-            isPreload: self.isPreload,
             collectionViewWidth: collectionView.frame.width
         )
 
@@ -140,7 +147,7 @@ extension NewChatTableDataSource {
             return
         }
         
-//        startSearchProcess()
+        startSearchProcess()
         
         var newMsgCount = 0
         var array: [MessageTableCellState] = []
@@ -237,24 +244,24 @@ extension NewChatTableDataSource {
             
             newMsgCount += getNewMessageCountFor(message: message, and: owner)
             
-//            processForSearch(
-//                message: message,
-//                messageTableCellState: messageTableCellState,
-//                index: array.count - 1
-//            )
+            processForSearch(
+                message: message,
+                messageTableCellState: messageTableCellState,
+                index: array.count - 1
+            )
         }
         
         messageTableCellStateArray = array
         
-        updateSnapshot()
-        
-        delegate?.configureNewMessagesIndicatorWith(
-            newMsgCount: newMsgCount
-        )
-        
-        preloadDataForItems()
-        
-//        finishSearchProcess()
+        updateSnapshot() {
+            self.delegate?.configureNewMessagesIndicatorWith(
+                newMsgCount: newMsgCount
+            )
+            
+            DelayPerformedHelper.performAfterDelay(seconds: 0.1, completion: {
+                self.finishSearchProcess()
+            })
+        }
     }
     
     func filterThreadMessagesFrom(
@@ -296,6 +303,7 @@ extension NewChatTableDataSource {
     
     func forceReload() {
         processMessages(messages: messagesArray)
+        reloadAllVisibleRows()
     }
     
     func getMessagesCount() -> Int {
@@ -520,6 +528,10 @@ extension NewChatTableDataSource {
             }
         }
         
+        threadMessagesMap = threadMessagesMap.filter({
+            $0.value.count > 1
+        })
+        
         return threadMessagesMap
     }
     
@@ -645,10 +657,12 @@ extension NewChatTableDataSource : NSFetchedResultsControllerDelegate {
     
     func startListeningToResultsController() {
         messagesResultsController?.delegate = self
+        additionMessagesResultsController?.delegate = self
     }
     
     func stopListeningToResultsController() {
         messagesResultsController?.delegate = nil
+        additionMessagesResultsController?.delegate = nil
     }
     
     @objc func getFetchRequestFor(
@@ -719,8 +733,6 @@ extension NewChatTableDataSource : NSFetchedResultsControllerDelegate {
     ) {
         if let resultController = controller as? NSFetchedResultsController<NSManagedObject>,
             let firstSection = resultController.sections?.first {
-            
-            isPreload = false
             
             if controller == messagesResultsController {
                 if let messages = firstSection.objects as? [TransactionMessage] {

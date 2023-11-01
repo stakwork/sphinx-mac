@@ -20,9 +20,10 @@ protocol ChatCollectionViewItemProtocol: AnyObject {
         delegate: ChatCollectionViewItemDelegate?,
         searchingTerm: String?,
         indexPath: IndexPath,
-        isPreload: Bool,
         collectionViewWidth: CGFloat
     )
+    
+    func releaseMemory()
 }
 
 protocol ChatCollectionViewItemDelegate: AnyObject {

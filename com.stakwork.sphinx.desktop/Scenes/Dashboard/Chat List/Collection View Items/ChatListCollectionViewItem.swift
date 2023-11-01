@@ -230,7 +230,7 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
                 chatImageView.sd_setImage(
                     with: imageURL,
                     placeholderImage: NSImage(named: "profile_avatar"),
-                    options: [.lowPriority, .avoidDecodeImage],
+                    options: [.lowPriority],
                     context: [.imageTransformer: transformer],
                     progress: nil,
                     completed: { [unowned self] (image, error,_,_) in

@@ -41,10 +41,14 @@ class UserData {
         if let transportK = transportKey ?? getTransportKey(),
            let transportEncryptionKey = EncryptionManager.sharedInstance.getPublicKeyFromBase64String(base64String: transportK) {
 
-            let time = Int(NSDate().timeIntervalSince1970*1000)
+            let timestamp = (NSDate().timeIntervalSince1970*1000)
+            let time = Int(ceil(timestamp))
             let tokenAndTime = "\(t)|\(time)"
-
-            if let encryptedToken = EncryptionManager.sharedInstance.encryptToken(token: tokenAndTime, key: transportEncryptionKey) {
+            
+            if let encryptedToken = EncryptionManager.sharedInstance.encryptToken(
+                token: tokenAndTime,
+                key: transportEncryptionKey
+            ) {
                 return ["x-transport-token": encryptedToken]
             }
 
@@ -104,10 +108,11 @@ class UserData {
     }
     
     func getAndSaveHMACKey(
+        forceGet: Bool = false,
         completion: (() -> ())? = nil,
         noKeyCompletion: (() -> ())? = nil
     ) {
-        if let hmacKey = getHmacKey(), !hmacKey.isEmpty {
+        if let hmacKey = getHmacKey(), !hmacKey.isEmpty && !forceGet {
             completion?()
             return
         }
@@ -124,14 +129,16 @@ class UserData {
     }
     
     func getOrCreateHMACKey(
+        forceGet: Bool = false,
         completion: (() -> ())? = nil
     ) {
-        if let hmacKey = getHmacKey(), !hmacKey.isEmpty {
+        if let hmacKey = getHmacKey(), !hmacKey.isEmpty && !forceGet {
             completion?()
             return
         }
 
         getAndSaveHMACKey(
+            forceGet: forceGet,
             completion: completion,
             noKeyCompletion: {
                 self.createHMACKey(completion: completion)

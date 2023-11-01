@@ -58,6 +58,8 @@ class MessageNoBubbleCollectionViewItem: NSCollectionViewItem, ChatCollectionVie
         leftLineContainer.layer?.addSublayer(leftLineLayer)
     }
     
+    func releaseMemory() {}
+    
     func configureWith(
         messageCellState: MessageTableCellState,
         mediaData: MessageTableCellState.MediaData?,
@@ -69,7 +71,6 @@ class MessageNoBubbleCollectionViewItem: NSCollectionViewItem, ChatCollectionVie
         delegate: ChatCollectionViewItemDelegate?,
         searchingTerm: String?,
         indexPath: IndexPath,
-        isPreload: Bool,
         collectionViewWidth: CGFloat
     ) {
         hideAllSubviews()

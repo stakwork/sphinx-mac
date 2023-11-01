@@ -15,7 +15,8 @@ protocol DashboardVCDelegate: AnyObject {
     func shouldShowFullMediaFor(message: TransactionMessage)
 //    func shouldToggleLeftView(show: Bool?)
     func didSwitchToTab()
-    func shouldResetChatView(deletedContactId: Int)
+    func shouldResetContactView(deletedContactId: Int)
+    func shouldResetTribeView()
 }
 
 class DashboardSplittedViewController: NSViewController {

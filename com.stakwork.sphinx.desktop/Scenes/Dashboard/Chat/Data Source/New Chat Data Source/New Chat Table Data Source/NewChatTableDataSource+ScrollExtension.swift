@@ -95,6 +95,6 @@ extension NewChatTableDataSource: NSCollectionViewDelegate {
     }
     
     @objc func shouldHideNewMsgsIndicator() -> Bool {
-        return collectionView.getDistanceToBottom() < 20 || collectionView.alphaValue == 0
+        return collectionView.getDistanceToBottom() < 20
     }
 }

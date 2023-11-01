@@ -25,19 +25,6 @@ class ChatSmallAvatarView: NSView, LoadableNib {
     
     var imageUrl: String? = nil
 
-//    override func draw(_ dirtyRect: NSRect) {
-//        super.draw(dirtyRect)
-//
-//        profileImageView.isHidden = true
-//    }
-//
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//        initialsLabel.stringValue = ""
-//        profileImageView.image = nil
-//        avatarButton.isEnabled = false
-//    }
-
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         loadViewFromNib()
@@ -58,12 +45,10 @@ class ChatSmallAvatarView: NSView, LoadableNib {
     }
     
     @IBAction func buttonClicked(_ sender: NSButton) {
+        if profileImageView.isHidden && profileInitialContainer.isHidden {
+            return
+        }
         delegate?.didClickAvatarView()
-    }
-    
-    func hideAllElements() {
-        profileImageView.isHidden = true
-        profileInitialContainer.isHidden = true
     }
     
     func configureFor(
@@ -133,7 +118,6 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         picture: String?,
         radius: CGFloat? = nil,
         image: NSImage? = nil,
-        isPreload: Bool = false,
         delegate: ChatSmallAvatarViewDelegate? = nil
     ) {
         self.delegate = delegate
@@ -150,7 +134,7 @@ class ChatSmallAvatarView: NSView, LoadableNib {
             profileInitialContainer.isHidden = true
             profileImageView.isHidden = false
             profileImageView.image = image
-        } else if let pic = picture, let url = URL(string: pic), !isPreload {
+        } else if let pic = picture, let url = URL(string: pic) {
             showImageWith(url: url)
         }
     }
@@ -176,17 +160,18 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         profileInitialContainer.isHidden = true
         profileImageView.alphaValue = 0.0
         
+        self.imageUrl = url.absoluteString
+        
         profileImageView.sd_setImage(
             with: url,
             placeholderImage: NSImage(named: "profile_avatar"),
-            options: [.scaleDownLargeImages, .avoidDecodeImage],
+            options: [.scaleDownLargeImages, .decodeFirstFrameOnly, .progressiveLoad],
             context: [.imageTransformer: transformer],
             progress: nil,
             completed: { (image, error, _, _) in
                 if let image = image, error == nil {
                     self.profileImageView.image = image
                     self.profileImageView.isHidden = false
-                    self.imageUrl = url.absoluteString
                 }
             }
 

@@ -10,7 +10,7 @@ import Cocoa
 
 protocol NewChatListViewControllerDelegate: AnyObject {
     func didClickRowAt(chatId: Int?, contactId: Int?)
-    func shouldResetChatView(deletedContactId: Int)
+    func shouldResetContactView(deletedContactId: Int)
 }
 
 public enum RightClickedContactActions : Int{
@@ -135,12 +135,6 @@ extension NewChatListViewController {
 
         func hash(into hasher: inout Hasher) {
             hasher.combine(objectId)
-            hasher.combine(messageId)
-            hasher.combine(messageSeen)
-            hasher.combine(contactStatus)
-            hasher.combine(inviteStatus)
-            hasher.combine(muted)
-            hasher.combine(selected)
         }
     }
 
@@ -242,6 +236,12 @@ extension NewChatListViewController {
 
 // MARK: - Private Helpers
 extension NewChatListViewController {
+    
+    func forceReload() {
+        dataSource = nil
+        
+        configureDataSource()
+    }
     
     func reloadCollectionView() {
         loadChatsList()
@@ -501,7 +501,7 @@ extension NewChatListViewController: ChatListCollectionViewItemDelegate{
                     if let contact = UserContact.getContactWith(id: contactId) {
                         
                         if let chat = contact.getChat(), chat.id == self.contactsService.getObjectIdForCurrentSelection().0 {
-                            self.delegate?.shouldResetChatView(deletedContactId: contactId)
+                            self.delegate?.shouldResetContactView(deletedContactId: contactId)
                         }
                         
                         CoreDataManager.sharedManager.deleteContactObjectsFor(contact)

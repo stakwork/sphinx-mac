@@ -205,11 +205,13 @@ class ChatHelper {
         let kTopMargin: CGFloat = 44.0
         let kBottomMargin: CGFloat = 52.0
         
+        let kElementMargin: CGFloat = 12.0
+        let kMessageLineHeight: CGFloat = 20
         let kTextWidth: CGFloat = 376
-        let kTextMaxHeight: CGFloat = 40
         
         var textHeight: CGFloat = 0
         var viewsHeight: CGFloat = 0.0
+        
         
         if let originalThreadMessage = mutableTableCellState.threadMessagesState?.orignalThreadMessage {
             
@@ -217,8 +219,9 @@ class ChatHelper {
                 textHeight = getThreadListTextMessageHeightFor(
                     originalThreadMessage.text,
                     width: kTextWidth,
-                    maxHeight: kTextMaxHeight
-                )
+                    maxHeight: kMessageLineHeight * 2,
+                    font: NSFont(name: "Roboto-Regular", size: 17.0)!
+                ) + kElementMargin
             }
         }
         
@@ -261,7 +264,7 @@ class ChatHelper {
                 originalMessageTextHeight = getThreadOriginalTextMessageHeightFor(
                     text,
                     collectionViewWidth: collectionViewWidth,
-                    maxHeight: 64.0
+                    maxHeight: Constants.kMessageLineHeight * 2
                 )
             }
             
@@ -355,6 +358,8 @@ class ChatHelper {
         
         let textHeight: CGFloat = getTextMessageHeightFor(
             tableCellState,
+            linkData: linkData,
+            tribeData: tribeData,
             collectionViewWidth: collectionViewWidth
         )
         
@@ -451,6 +456,7 @@ class ChatHelper {
         }
         
         if let text = mutableTableCellState.messageContent?.text, text.isNotEmpty {
+            
             textHeight = ChatHelper.getTextHeightFor(
                 text: text,
                 width: maxWidth
@@ -488,7 +494,8 @@ class ChatHelper {
     public static func getThreadListTextMessageHeightFor(
         _ text: String?,
         width: CGFloat,
-        maxHeight: CGFloat
+        maxHeight: CGFloat,
+        font: NSFont? = nil
     ) -> CGFloat {
         var textHeight: CGFloat = 0.0
         
@@ -496,7 +503,7 @@ class ChatHelper {
             textHeight = ChatHelper.getTextHeightFor(
                 text: text,
                 width: width,
-                font: NSFont(name: "Roboto-Regular", size: 17.0)!,
+                font: font,
                 labelMargins: 0
             )
         }
@@ -618,16 +625,17 @@ class ChatHelper {
         font: NSFont? = nil,
         labelMargins: CGFloat? = nil
     ) -> CGFloat {
-        let adaptedtext = (text.count > 1) ? String(text.dropLast()) : text
+        let adaptedtext = text
         
         let attrs = [NSAttributedString.Key.font: font ?? Constants.kMessageFont]
         let attributedString = NSAttributedString(string: adaptedtext, attributes: attrs)
         let kLabelHorizontalMargins: CGFloat = 32.0
         let kLabelVerticalMargins: CGFloat = labelMargins ?? 32.0
         
-        let textHeight = attributedString.height(
-            forWidth: width - kLabelHorizontalMargins
-        ) + kLabelVerticalMargins
+        let textHeight = attributedString.boundingRect(
+            with: NSSize(width: width - kLabelHorizontalMargins, height: CGFLOAT_MAX),
+            options: [.usesLineFragmentOrigin, .usesFontLeading]
+        ).height + kLabelVerticalMargins
         
         return textHeight
     }

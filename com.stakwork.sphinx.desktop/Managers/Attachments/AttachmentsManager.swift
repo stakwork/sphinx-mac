@@ -53,11 +53,26 @@ class AttachmentsManager {
         self.uploadedImage = nil
     }
     
-    func runAuthentication() {
-        self.authenticate(completion: {_ in }, errorCompletion: {})
+    func runAuthentication(
+        forceAuthenticate: Bool = false
+    ) {
+        self.authenticate(
+            forceAuthenticate: forceAuthenticate,
+            completion: {_ in },
+            errorCompletion: {}
+        )
     }
     
-    func authenticate(completion: @escaping (String) -> (), errorCompletion: @escaping () -> ()) {
+    func authenticate(
+        forceAuthenticate: Bool = false,
+        completion: @escaping (String) -> (),
+        errorCompletion: @escaping () -> ()
+    ) {
+        if let token: String = UserDefaults.Keys.attachmentsToken.get(), !forceAuthenticate {
+            completion(token)
+            return
+        }
+        
         API.sharedInstance.askAuthentication(callback: { id, challenge in
             if let id = id, let challenge = challenge {
                 self.delegate?.didUpdateUploadProgress?(progress: 10)

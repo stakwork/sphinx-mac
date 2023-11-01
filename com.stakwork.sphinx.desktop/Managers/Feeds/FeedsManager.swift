@@ -141,7 +141,6 @@ class FeedsManager : NSObject {
                 completionCallback?()
             }
         )
-        completionCallback?()
     }
     
     func restoreContentFeedStatusInBackground() {

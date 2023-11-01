@@ -33,7 +33,26 @@ class MessagesPreloaderHelper {
         }
     }
     
-    var chatMessages: [Int: [MessageTableCellState]] = [:]
+    struct PreloadedMessagesState {
+        var messageCellStates: [MessageTableCellState]
+        var resultsControllerCount: Int
+        
+        init(
+            messageCellStates: [MessageTableCellState],
+            resultsControllerCount: Int
+        ) {
+            self.messageCellStates = messageCellStates
+            self.resultsControllerCount = resultsControllerCount
+        }
+    }
+    
+    func releaseMemory() {
+        tribesData = [:]
+        linksData = [:]
+        chatMessages = [:]
+    }
+    
+    var chatMessages: [Int: PreloadedMessagesState] = [:]
     var chatScrollState: [Int: ScrollState] = [:]
     
     var tribesData: [String: MessageTableCellState.TribeData] = [:]
@@ -41,18 +60,18 @@ class MessagesPreloaderHelper {
     
     func add(
         messageStateArray: [MessageTableCellState],
+        resultsControllerCount: Int,
         for chatId: Int
     ) {
-        self.chatMessages[chatId] = messageStateArray
+        self.chatMessages[chatId] = PreloadedMessagesState(
+            messageCellStates: messageStateArray,
+            resultsControllerCount: resultsControllerCount
+        )
     }
     
-    func getPreloadedMessagesCount(for chatId: Int) -> Int {
-        return chatMessages[chatId]?.count ?? 0
-    }
-    
-    func getMessageStateArray(for chatId: Int) -> [MessageTableCellState]? {
-        if let messageStateArray = chatMessages[chatId], messageStateArray.count > 0 {
-            return messageStateArray
+    func getPreloadedMessagesState(for chatId: Int) -> PreloadedMessagesState? {
+        if let preloadedMessagesState = chatMessages[chatId], preloadedMessagesState.messageCellStates.count > 0 {
+            return preloadedMessagesState
         }
         return nil
     }

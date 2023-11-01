@@ -25,9 +25,8 @@ class CommonPaymentView: NSView, LoadableNib {
     
     @IBOutlet weak var closeButton: NSButton!
     @IBOutlet weak var titleLabel: NSTextField!
-    @IBOutlet weak var amountField: NSTextField!
+    @IBOutlet weak var amountField: CCTextField!
     @IBOutlet weak var amountFieldWidth: NSLayoutConstraint!
-    @IBOutlet weak var groupTotalLabel: NSTextField!
     @IBOutlet var messageTextView: PlaceHolderTextView!
     @IBOutlet weak var messageTextViewHeight: NSLayoutConstraint!
     @IBOutlet weak var confirmButtonContainer: NSBox!
@@ -63,6 +62,8 @@ class CommonPaymentView: NSView, LoadableNib {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         loadViewFromNib()
+        
+        amountField.setColor(color: NSColor.Sphinx.Text)
     }
     
     func configureView(paymentViewModel: PaymentViewModel, delegate: CommonPaymentViewDelegate) {
@@ -88,11 +89,8 @@ class CommonPaymentView: NSView, LoadableNib {
     }
     
     func set(message: String, amount: Int) {
-        let totalAmount = amount * paymentViewModel.currentPayment.contacts.count
-        
         messageTextView.string = message
         amountField.stringValue = (amount > 0) ? "\(amount)" : ""
-        groupTotalLabel.stringValue = (totalAmount > amount) ? "Total \(totalAmount)" : ""
         buttonEnabled = (amount > 0)
         updateBottomBarHeight()
         updateAmountFieldWidth()
@@ -138,8 +136,6 @@ extension CommonPaymentView : NSTextFieldDelegate {
             amountField.stringValue = String(currentString.dropLast())
             return
         }
-        
-        groupTotalLabel.stringValue = (totalAmount > amount) ? "Total \(totalAmount)" : ""
         
         buttonEnabled = (amount > 0)
         updateAmountFieldWidth()

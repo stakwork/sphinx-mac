@@ -12,6 +12,7 @@
                 <outlet property="audioFileContainer" destination="aeV-xz-Szv" id="FnT-F8-DEF"/>
                 <outlet property="audioMessageView" destination="anB-jC-h00" id="yrS-2F-wYA"/>
                 <outlet property="chatAvatarView" destination="an0-0c-r6q" id="FIi-Lt-Pc8"/>
+                <outlet property="closeButton" destination="xTN-ih-vgo" id="Mag-Qa-Hho"/>
                 <outlet property="contentView" destination="c22-O7-iKe" id="qRz-cx-MGB"/>
                 <outlet property="dateLabel" destination="pLk-vm-4AH" id="pMF-Ae-Luw"/>
                 <outlet property="fileInfoView" destination="6O6-FM-fV0" id="lJW-Yu-PSM"/>
@@ -26,13 +27,13 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="1136" height="100"/>
+            <rect key="frame" x="0.0" y="0.0" width="1198" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="6xK-O0-OVb">
-                    <rect key="frame" x="0.0" y="0.0" width="1136" height="100"/>
+                    <rect key="frame" x="0.0" y="0.0" width="1198" height="100"/>
                     <view key="contentView" id="4bb-PJ-5Pq">
-                        <rect key="frame" x="0.0" y="0.0" width="1136" height="100"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1198" height="100"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
                     <color key="fillColor" name="NewHeaderBG"/>
@@ -189,15 +190,28 @@
                         <real value="3.4028234663852886e+38"/>
                     </customSpacing>
                 </stackView>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xTN-ih-vgo" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="1148" y="35" width="34" height="30"/>
+                    <buttonCell key="cell" type="square" title="close" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="L95-Hj-Xnu">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="30" name="MaterialIcons-Regular"/>
+                    </buttonCell>
+                    <color key="contentTintColor" name="Text"/>
+                    <connections>
+                        <action selector="closeButtonClicked:" target="-2" id="qpQ-F2-bP8"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="6pb-0h-aP6" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="79o-Lw-oKL"/>
-                <constraint firstAttribute="trailing" secondItem="rDL-y8-IEm" secondAttribute="trailing" id="9Ia-MA-Jrx"/>
+                <constraint firstAttribute="trailing" secondItem="rDL-y8-IEm" secondAttribute="trailing" constant="62" id="9Ia-MA-Jrx"/>
                 <constraint firstItem="rDL-y8-IEm" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="IHi-TV-0qh"/>
+                <constraint firstItem="xTN-ih-vgo" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="Sww-CA-fCC"/>
                 <constraint firstAttribute="bottom" secondItem="6xK-O0-OVb" secondAttribute="bottom" id="U7W-tP-MvG"/>
                 <constraint firstAttribute="bottom" secondItem="6pb-0h-aP6" secondAttribute="bottom" id="WMZ-ai-4Zb"/>
                 <constraint firstItem="rDL-y8-IEm" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="p2z-lc-yp0"/>
-                <constraint firstAttribute="trailing" secondItem="6pb-0h-aP6" secondAttribute="trailing" id="pj3-TF-RfW"/>
+                <constraint firstAttribute="trailing" secondItem="6pb-0h-aP6" secondAttribute="trailing" constant="62" id="pj3-TF-RfW"/>
+                <constraint firstAttribute="trailing" secondItem="xTN-ih-vgo" secondAttribute="trailing" constant="16" id="q48-HG-1px"/>
                 <constraint firstItem="6xK-O0-OVb" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="qjC-my-6XK"/>
                 <constraint firstAttribute="trailing" secondItem="6xK-O0-OVb" secondAttribute="trailing" id="r3s-R6-t2l"/>
                 <constraint firstItem="6pb-0h-aP6" firstAttribute="top" secondItem="rDL-y8-IEm" secondAttribute="bottom" id="yOa-oe-jsF"/>

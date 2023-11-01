@@ -53,6 +53,7 @@ class PinView: NSView, LoadableNib {
     func reset() {
         pinFieldView.getTextField().stringValue = ""
         pinFieldView.getTextField().isEnabled = true
+        pinFieldView.getTextField().becomeFirstResponder()
     }
     
     func makeFieldFirstResponder() {

@@ -108,7 +108,7 @@ extension NamePinView : SignupButtonViewDelegate {
         let parameters = ["alias" : nickname as AnyObject]
         
         API.sharedInstance.updateUser(id: id, params: parameters, callback: { contact in
-            UserContactsHelper.insertContact(contact: contact)
+            let _ = UserContactsHelper.insertContact(contact: contact)
             self.goToProfilePictureView()
         }, errorCallback: {
             self.showError()

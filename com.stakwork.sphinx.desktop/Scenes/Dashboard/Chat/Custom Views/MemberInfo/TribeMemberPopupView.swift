@@ -23,7 +23,7 @@ class TribeMemberPopupView: NSView, LoadableNib {
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-    }
+    }    
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)

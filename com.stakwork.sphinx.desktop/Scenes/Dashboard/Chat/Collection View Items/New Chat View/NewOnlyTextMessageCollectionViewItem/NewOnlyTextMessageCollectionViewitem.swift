@@ -46,6 +46,8 @@ class NewOnlyTextMessageCollectionViewitem: CommonNewMessageCollectionViewitem, 
         setupViews()
     }
     
+    func releaseMemory() {}
+    
     func setupViews() {
         receivedArrow.drawReceivedBubbleArrow(color: NSColor.Sphinx.ReceivedMsgBG)
         sentArrow.drawSentBubbleArrow(color: NSColor.Sphinx.SentMsgBG)
@@ -89,7 +91,6 @@ class NewOnlyTextMessageCollectionViewitem: CommonNewMessageCollectionViewitem, 
         delegate: ChatCollectionViewItemDelegate?,
         searchingTerm: String?,
         indexPath: IndexPath,
-        isPreload: Bool,
         collectionViewWidth: CGFloat
     ) {
         var mutableMessageCellState = messageCellState
@@ -102,9 +103,7 @@ class NewOnlyTextMessageCollectionViewitem: CommonNewMessageCollectionViewitem, 
         self.rowIndex = indexPath.item
         self.messageId = mutableMessageCellState.messageId
         
-        if let statusHeader = mutableMessageCellState.statusHeader {
-            configureWith(statusHeader: statusHeader)
-        }
+        configureWith(statusHeader: mutableMessageCellState.statusHeader)
         
         ///Text message content
         configureWith(
@@ -114,8 +113,7 @@ class NewOnlyTextMessageCollectionViewitem: CommonNewMessageCollectionViewitem, 
         
         ///Header and avatar
         configureWith(
-            avatarImage: mutableMessageCellState.avatarImage,
-            isPreload: isPreload
+            avatarImage: mutableMessageCellState.avatarImage
         )
         configureWith(bubble: bubble)
         
@@ -132,6 +130,4 @@ class NewOnlyTextMessageCollectionViewitem: CommonNewMessageCollectionViewitem, 
             delegate?.shouldShowOptionsFor(messageId: messageId, from: button)
         }
     }
-    
-    
 }

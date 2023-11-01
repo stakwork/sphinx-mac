@@ -44,13 +44,13 @@ class DashboardViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AttachmentsManager.sharedInstance.runAuthentication()
+        AttachmentsManager.sharedInstance.runAuthentication(forceAuthenticate: true)
         
         listerForNotifications()
         
         chatListViewModel = ChatListViewModel()
         
-//        dashboardSplitView.delegate = self
+        dashboardSplitView.delegate = self
         SphinxSocketManager.sharedInstance.setDelegate(delegate: self)
         
         let windowState = WindowsManager.sharedInstance.getWindowState()
@@ -131,7 +131,7 @@ class DashboardViewController: NSViewController {
             self?.reloadView()
         }
         
-        NotificationCenter.default.addObserver(forName: .shouldResetChat, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
+        NotificationCenter.default.addObserver(forName: .shouldResetChat, object: nil, queue: OperationQueue.main) { _ in
             ///Reset chat view
         }
         
@@ -304,7 +304,9 @@ class DashboardViewController: NSViewController {
     }
     
     func reloadView() {
-        ///Reload chat list and message on size chanegd
+        self.listViewController?.contactChatsContainerViewController.forceReload()
+        self.listViewController?.tribeChatsContainerViewController.forceReload()
+        self.newDetailViewController?.forceReload()
     }
     
     func reloadData() {
@@ -324,12 +326,11 @@ class DashboardViewController: NSViewController {
     }
 }
 
-//extension DashboardViewController : NSSplitViewDelegate {
-//    func splitViewDidResizeSubviews(_ notification: Notification) {
-//        if let window = view.window {
-//            newDetailViewController?.view.frame = rightSplittedView.bounds
-//            listViewController?.view.frame = leftSplittedView.bounds
-//
+extension DashboardViewController : NSSplitViewDelegate {
+    func splitViewDidResizeSubviews(_ notification: Notification) {
+        if let _ = view.window {
+            resizeSubviews()
+
 //            let (minWidth, _) = getWindowMinWidth(leftColumnVisible: !leftSplittedView.isHidden)
 //
 //            window.minSize = CGSize(
@@ -348,27 +349,37 @@ class DashboardViewController: NSViewController {
 //
 //                view.window?.setFrame(newFrame, display: true)
 //            }
-//
-//            resizeTimer?.invalidate()
-//            resizeTimer = Timer.scheduledTimer(
-//                timeInterval: 0.05,
-//                target: self,
-//                selector: #selector(resizeSubviews),
-//                userInfo: nil,
-//                repeats: false
-//            )
-//        }
-//    }
-//
-//    @objc func resizeSubviews() {
-//        newDetailViewController?.view.frame = rightSplittedView.bounds
-//        listViewController?.view.frame = leftSplittedView.bounds
-//    }
-//}
+
+            resizeTimer?.invalidate()
+            resizeTimer = Timer.scheduledTimer(
+                timeInterval: 0.05,
+                target: self,
+                selector: #selector(resizeSubviews),
+                userInfo: nil,
+                repeats: false
+            )
+        }
+    }
+
+    @objc func resizeSubviews() {
+        newDetailViewController?.resizeSubviews(frame: rightSplittedView.bounds)
+        
+        listViewController?.view.frame = leftSplittedView.bounds
+    }
+}
 
 extension DashboardViewController : DashboardVCDelegate {
-    func shouldResetChatView(deletedContactId: Int) {
+    func shouldResetContactView(deletedContactId: Int) {
         contactsService.selectedFriendId = nil
+        
+        didClickOnChatRow(
+            chatId: nil,
+            contactId: nil
+        )
+    }
+    
+    func shouldResetTribeView() {
+        contactsService.selectedTribeId = nil
         
         didClickOnChatRow(
             chatId: nil,
@@ -519,11 +530,9 @@ extension DashboardViewController : DashboardVCDelegate {
     
     @objc func handleImageNotification(_ notification: Notification) {
         if let imageURL = notification.userInfo?["imageURL"] as? URL,
-           let message = notification.userInfo?["transactionMessage"] as? TransactionMessage{
-            print("Received imageURL: \(imageURL)")
+           let message = notification.userInfo?["transactionMessage"] as? TransactionMessage {
             goToMediaFullView(imageURL: imageURL,message: message)
-        }
-        else{
+        } else {
             NewMessageBubbleHelper().showGenericMessageView(text: "Error pulling image data.")
         }
     }
@@ -591,12 +600,8 @@ extension DashboardViewController : SocketManagerDelegate {
         listViewController?.shouldShowAlert(message: message)
     }
     
-    func didReceiveOrUpdateGroup() {
-        listViewController?.didReceiveOrUpdateGroup()
-    }
-    
-    func didUpdateChat(chat: Chat) {
-        newDetailViewController?.didUpdateChat(chat)
+    func didUpdateChatFromMessage(_ chat: Chat) {
+        newDetailViewController?.didUpdateChatFromMessage(chat)
     }
 }
 
@@ -624,7 +629,6 @@ extension DashboardViewController : RestoreModalViewControllerDelegate {
     func didFinishRestoring() {
         modalsContainerView.isHidden = true
         
-        listViewController?.updateBalanceAndCheckVersion()
         listViewController?.finishLoading()
     }
 }

@@ -65,6 +65,8 @@ class ThreadCollectionViewItem: CommonNewMessageCollectionViewitem, ChatCollecti
         setupViews()
     }
     
+    func releaseMemory() {}
+    
     func configureWith(
         messageCellState: MessageTableCellState,
         mediaData: MessageTableCellState.MediaData?,
@@ -76,7 +78,6 @@ class ThreadCollectionViewItem: CommonNewMessageCollectionViewitem, ChatCollecti
         delegate: ChatCollectionViewItemDelegate?,
         searchingTerm: String?,
         indexPath: IndexPath,
-        isPreload: Bool,
         collectionViewWidth: CGFloat
     ) {
         hideAllSubviews()
@@ -99,10 +100,7 @@ class ThreadCollectionViewItem: CommonNewMessageCollectionViewitem, ChatCollecti
         configureWith(statusHeader: mutableMessageCellState.statusHeader, uploadProgressData: uploadProgressData)
         
         ///Avatar
-        configureWith(
-            avatarImage: mutableMessageCellState.avatarImage,
-            isPreload: isPreload
-        )
+        configureWith(avatarImage: mutableMessageCellState.avatarImage)
         
         ///Original Message
         configureOriginalMessageTextWith(
