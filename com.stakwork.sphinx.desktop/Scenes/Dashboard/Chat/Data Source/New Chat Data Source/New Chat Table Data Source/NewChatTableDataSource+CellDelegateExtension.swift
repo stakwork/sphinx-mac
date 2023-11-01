@@ -550,7 +550,7 @@ extension NewChatTableDataSource {
         
         mediaCached[messageId] = updatedCachedMedia
         
-        if rowIndex == kThreadHeaderRowIndex {
+        if rowIndex == NewChatTableDataSource.kThreadHeaderRowIndex {
             delegate?.shouldReloadThreadHeader()
             return
         }
@@ -1056,7 +1056,7 @@ extension NewChatTableDataSource {
         and rowIndex: Int? = nil
     ) -> (Int, MessageTableCellState)? {
         
-        if rowIndex == kThreadHeaderRowIndex {
+        if rowIndex == NewChatTableDataSource.kThreadHeaderRowIndex {
             return getThreadOriginalMessageTableCellStateFor()
         }
         

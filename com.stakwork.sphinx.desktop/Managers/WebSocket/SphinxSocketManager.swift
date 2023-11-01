@@ -244,7 +244,10 @@ extension SphinxSocketManager {
     }
     
     func didReceivePurchaseMessage(type: String, messageJson: JSON) {
-        let _ = TransactionMessage.insertMessage(m: messageJson)
+        let _ = TransactionMessage.insertMessage(
+            m: messageJson,
+            existingMessage: TransactionMessage.getMessageWith(id: messageJson["id"].intValue)
+        )
     }
     
     func didReceiveMessage(type: String, messageJson: JSON) {
@@ -256,7 +259,8 @@ extension SphinxSocketManager {
 
         DelayPerformedHelper.performAfterDelay(seconds: isConfirmation ? 1.0 : 0.0, completion: {
             if let message = TransactionMessage.insertMessage(
-                m: messageJson
+                m: messageJson,
+                existingMessage: TransactionMessage.getMessageWith(id: messageJson["id"].intValue)
             ).0 {
                 message.setPaymentInvoiceAsPaid()
                 
@@ -442,7 +446,10 @@ extension SphinxSocketManager {
     }
     
     func keysendReceived(json: JSON) {
-        let _ = TransactionMessage.insertMessage(m: json)
+        let _ = TransactionMessage.insertMessage(
+            m: json,
+            existingMessage: TransactionMessage.getMessageWith(id: json["id"].intValue)
+        )
         let amt = json["amount"].intValue
         
         if amt > 0 {

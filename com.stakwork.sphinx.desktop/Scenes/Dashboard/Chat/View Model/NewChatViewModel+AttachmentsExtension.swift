@@ -71,18 +71,36 @@ extension NewChatViewModel: AttachmentsManagerDelegate {
         }
     }
     
-    func didUpdateUploadProgress(progress: Int) {
-        chatDataSource?.setProgressForProvisional(messageId: -1, progress: progress)
+    func didUpdateUploadProgress(
+        progress: Int,
+        provisionalMessageId: Int
+    ) {
+        chatDataSource?.setProgressForProvisional(
+            messageId: provisionalMessageId,
+            progress: progress
+        )
     }
     
-    func didSuccessSendingAttachment(message: TransactionMessage, image: NSImage?) {
-        chatDataSource?.resetProgressForProvisional(messageId: -1)
+    func didSuccessSendingAttachment(
+        message: TransactionMessage,
+        image: NSImage?,
+        provisionalMessageId: Int
+    ) {
+        chatDataSource?.resetProgressForProvisional(messageId: provisionalMessageId)
         
         messageSent(
             message: message,
             chat: message.chat,
             completion: { (_, _) in }
         )
+    }
+    
+    func didFailSendingAttachment(provisionalMessage: TransactionMessage?) {
+        if let provisionalMessage = provisionalMessage {
+            CoreDataManager.sharedManager.deleteObject(object: provisionalMessage)
+            
+            AlertHelper.showAlert(title: "generic.error.title".localized, message: "generic.error.message".localized)
+        }
     }
 }
 
