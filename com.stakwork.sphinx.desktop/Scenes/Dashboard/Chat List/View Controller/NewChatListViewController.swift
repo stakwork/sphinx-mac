@@ -467,11 +467,20 @@ extension NewChatListViewController: ChatListCollectionViewItemDelegate{
                 break
             case .toggleReadUnread:
                 guard let chat = chatListObjects.filter({$0.getObjectId() == objectId}).first as? Chat ,
-                      let lastMessage = chat.lastMessage else{
-                    return
-                }
-                lastMessage.seen = !lastMessage.seen
-                chat.seen = !chat.seen
+                    let lastMessage = chat.lastMessage,
+                    let params = TransactionMessage.getMessageParams(
+                          chat: chat,
+                          type: TransactionMessage.TransactionMessageType.message
+                        )
+                  else{
+                      return
+                  }
+                  let desiredState = !lastMessage.seen
+                  API.sharedInstance.toggleChatReadUnread(chatId: chat.id, params: params as NSDictionary, shouldMarkAsUnread: desiredState == false, callback: {success in
+                      print(success)
+                  })
+                  lastMessage.seen = desiredState
+                chat.seen = desiredState
                 chat.saveChat()
                 break
             }
