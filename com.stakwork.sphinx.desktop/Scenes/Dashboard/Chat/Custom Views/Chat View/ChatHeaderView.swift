@@ -62,6 +62,11 @@ class ChatHeaderView: NSView, LoadableNib {
     }
     
     func setupView() {
+        profileImageView.wantsLayer = true
+        profileImageView.rounded = true
+        profileImageView.layer?.cornerRadius = profileImageView.frame.height / 2
+        profileImageView.gravity = .resizeAspectFill
+        
         volumeButton.cursor = .pointingHand
         webAppButton.cursor = .pointingHand
         callButton.cursor = .pointingHand

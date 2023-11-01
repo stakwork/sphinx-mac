@@ -96,6 +96,10 @@ class ProfileViewController: NSViewController {
         
         qrButton.cursor = .pointingHand
         
+        profileImageView.wantsLayer = true
+        profileImageView.rounded = true
+        profileImageView.layer?.cornerRadius = profileImageView.frame.height / 2
+        
         profilePictureDraggingView.configureForProfilePicture()
         profilePictureDraggingView.delegate = self
         profilePictureDraggingView.setup()

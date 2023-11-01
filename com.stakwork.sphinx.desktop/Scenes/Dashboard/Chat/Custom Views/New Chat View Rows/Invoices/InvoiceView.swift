@@ -121,6 +121,7 @@ class InvoiceView: NSView, LoadableNib {
                 color: bubble.direction.isIncoming() ? NSColor.Sphinx.PrimaryGreen : NSColor.Sphinx.SecondaryText,
                 fillColor: NSColor.Sphinx.Body,
                 size: CGSize(width: CommonNewMessageCollectionViewitem.kMaximumInvoiceBubbleWidth, height: viewsHeight),
+                lineWidth: 2,
                 radius: 8
             )
         }

@@ -28,6 +28,14 @@ class ChatAvatarView: NSView, LoadableNib {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         loadViewFromNib()
+        
+        setupViews()
+    }
+    
+    func setupViews() {
+        profileImageView.wantsLayer = true
+        profileImageView.rounded = true
+        profileImageView.layer?.cornerRadius = profileImageView.frame.height / 2
     }
     
     func configureSize(width: CGFloat, height: CGFloat, fontSize: CGFloat) {

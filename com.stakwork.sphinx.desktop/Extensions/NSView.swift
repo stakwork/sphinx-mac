@@ -183,6 +183,7 @@ extension NSView {
         shapeLayer.name = NSView.kInvoiceDashedLayerName
         shapeLayer.path = NSBezierPath(roundedRect: shapeRect, xRadius: radius, yRadius: radius).cgPath
         
+        self.wantsLayer = true
         self.layer?.addSublayer(shapeLayer)
     }
     

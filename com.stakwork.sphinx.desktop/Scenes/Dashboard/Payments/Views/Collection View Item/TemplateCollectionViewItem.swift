@@ -25,6 +25,7 @@ class TemplateCollectionViewItem: NSCollectionViewItem {
         templateImageBack.layer?.cornerRadius = templateImageBack.frame.size.width / 2
         templateImageBack.layer?.backgroundColor = NSColor.Sphinx.Body.cgColor
         
+        templateImageView.wantsLayer = true
         templateImageView.radius = templateImageView.frame.size.width / 2
         templateImageView.image = nil
         addShadow()

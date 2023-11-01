@@ -62,6 +62,10 @@ class JoinTribeViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tribeImageView.wantsLayer = true
+        tribeImageView.rounded = true
+        tribeImageView.layer?.cornerRadius = tribeImageView.frame.height / 2
+        
         loadGroupDetails()
     }
     

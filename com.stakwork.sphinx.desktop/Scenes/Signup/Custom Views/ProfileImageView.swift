@@ -43,6 +43,13 @@ class ProfileImageView: NSView, LoadableNib {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         loadViewFromNib()
+        setupViews()
+    }
+    
+    func setupViews() {
+        profileImageView.wantsLayer = true
+        profileImageView.rounded = true
+        profileImageView.layer?.cornerRadius = profileImageView.frame.height / 2
     }
     
     init(
@@ -55,6 +62,8 @@ class ProfileImageView: NSView, LoadableNib {
         self.delegate = delegate
         
         loadViewFromNib()
+        setupViews()
+        
         configureView(nickname: nickname)
     }
     
