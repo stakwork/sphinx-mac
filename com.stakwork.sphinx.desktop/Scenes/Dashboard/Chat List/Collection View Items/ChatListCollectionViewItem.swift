@@ -343,6 +343,15 @@ extension ChatListCollectionViewItem {
         return chatListObject?.getChat()?.getReceivedUnseenMentionsCount() ?? 0
     }
     
+    override func mouseDown(with event: NSEvent) {
+        if event.modifierFlags.contains(.control) {
+            self.rightMouseDown(with: event)
+        } else {
+            super.mouseDown(with: event)
+        }
+    }
+
+    
     override func rightMouseDown(with event: NSEvent) {
         guard let objectId = self.objectId
         else{
