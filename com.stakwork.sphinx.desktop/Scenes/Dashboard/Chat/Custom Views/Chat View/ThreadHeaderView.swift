@@ -207,22 +207,22 @@ class ThreadHeaderView: NSView, LoadableNib {
                     if messageMedia.isImage {
                         self.delegate?.shouldLoadImageDataFor?(
                             messageId: messageId,
-                            and: -1
+                            and: NewChatTableDataSource.kThreadHeaderRowIndex
                         )
                     } else if messageMedia.isPdf {
                         self.delegate?.shouldLoadPdfDataFor?(
                             messageId: messageId,
-                            and: -1
+                            and: NewChatTableDataSource.kThreadHeaderRowIndex
                         )
                     } else if messageMedia.isVideo {
                         self.delegate?.shouldLoadVideoDataFor?(
                             messageId: messageId,
-                            and: -1
+                            and: NewChatTableDataSource.kThreadHeaderRowIndex
                         )
                     } else if messageMedia.isGiphy {
                         self.delegate?.shouldLoadGiphyDataFor?(
                             messageId: messageId,
-                            and: -1
+                            and: NewChatTableDataSource.kThreadHeaderRowIndex
                         )
                     }
                 }
@@ -249,7 +249,7 @@ class ThreadHeaderView: NSView, LoadableNib {
                 DispatchQueue.global().asyncAfter(deadline: delayTime) {
                     self.delegate?.shouldLoadFileDataFor?(
                         messageId: messageId,
-                        and: -1
+                        and: NewChatTableDataSource.kThreadHeaderRowIndex
                     )
                 }
             }
@@ -277,7 +277,7 @@ class ThreadHeaderView: NSView, LoadableNib {
                 DispatchQueue.global().asyncAfter(deadline: delayTime) {
                     self.delegate?.shouldLoadAudioDataFor?(
                         messageId: messageId,
-                        and: -1
+                        and: NewChatTableDataSource.kThreadHeaderRowIndex
                     )
                 }
             }
@@ -292,7 +292,7 @@ class ThreadHeaderView: NSView, LoadableNib {
 extension ThreadHeaderView : MediaMessageViewDelegate {
     func didTapMediaButton() {
         if let messageId = messageId {
-            delegate?.didTapMediaButtonFor(messageId: messageId, and: -1)
+            delegate?.didTapMediaButtonFor(messageId: messageId, and: NewChatTableDataSource.kThreadHeaderRowIndex)
         }
     }
 }
@@ -300,7 +300,7 @@ extension ThreadHeaderView : MediaMessageViewDelegate {
 extension ThreadHeaderView : FileInfoViewDelegate {
     func didTouchDownloadButton() {
         if let messageId = messageId {
-            delegate?.didTapFileDownloadButtonFor(messageId: messageId, and: -1)
+            delegate?.didTapFileDownloadButtonFor(messageId: messageId, and: NewChatTableDataSource.kThreadHeaderRowIndex)
         }
     }
 }
@@ -308,7 +308,7 @@ extension ThreadHeaderView : FileInfoViewDelegate {
 extension ThreadHeaderView : AudioMessageViewDelegate {
     func didTapPlayPauseButton() {
         if let messageId = messageId {
-            delegate?.didTapPlayPauseButtonFor(messageId: messageId, and: -1)
+            delegate?.didTapPlayPauseButtonFor(messageId: messageId, and: NewChatTableDataSource.kThreadHeaderRowIndex)
         }
     }
 }

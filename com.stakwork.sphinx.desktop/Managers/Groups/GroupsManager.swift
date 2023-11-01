@@ -479,7 +479,10 @@ class GroupsManager {
     ) {
         API.sharedInstance.requestAction(messageId: message.id, contactId: message.senderId, action: action, callback: { json in
             if let chat = Chat.insertChat(chat: json["chat"]),
-                let message = TransactionMessage.insertMessage(m: json["message"]).0 {
+                let message = TransactionMessage.insertMessage(
+                    m: json["message"],
+                    existingMessage: TransactionMessage.getMessageWith(id: json["message"]["id"].intValue)
+                ).0 {
                 
                 CoreDataManager.sharedManager.saveContext()
                 

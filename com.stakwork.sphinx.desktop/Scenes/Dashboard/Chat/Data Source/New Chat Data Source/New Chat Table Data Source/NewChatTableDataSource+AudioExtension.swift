@@ -77,7 +77,7 @@ extension NewChatTableDataSource : AudioPlayerHelperDelegate {
                     )
                 )
                 
-                if rowIndex == kThreadHeaderRowIndex {
+                if rowIndex == NewChatTableDataSource.kThreadHeaderRowIndex {
                     delegate?.shouldReloadThreadHeader()
                 } else {
                     DispatchQueue.main.async {
