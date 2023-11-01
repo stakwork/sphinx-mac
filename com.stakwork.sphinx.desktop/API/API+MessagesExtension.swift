@@ -435,6 +435,40 @@ extension API {
         }
     }
     
+    public func toggleChatReadUnread(
+        chatId: Int,
+        params: NSDictionary,
+        shouldMarkAsUnread:Bool,
+        callback: @escaping SuccessCallback
+    ) {
+        // Step 1: Convert params to NSMutableDictionary
+        var finalParams = params.mutableCopy() as! NSMutableDictionary
+        // Step 2: Add the new parameter
+        //finalParams["shouldMarkAsUnread"] = shouldMarkAsUnread
+        finalParams = ["shouldMarkAsUnread" : shouldMarkAsUnread]
+        
+        guard let request = getURLRequest(route: "/messages/\(chatId)/toggleChatReadUnread", params: finalParams, method: "POST") else {
+            callback(false)
+            return
+        }
+        
+        sphinxRequest(request) { response in
+            switch response.result {
+            case .success(let data):
+                if let json = data as? NSDictionary {
+                    if let success = json["success"] as? Bool, success {
+                        callback(true)
+                    } else {
+                        callback(false)
+                    }
+                }
+            case .failure(let error):
+                print("toggleChatReadUnread error:\(error)")
+                callback(false)
+            }
+        }
+    }
+    
     func getMessageBy(
         messageUUID: String,
         callback: @escaping MessageObjectCallback,

@@ -144,7 +144,8 @@
 "new.contact.error.alreadyExists" = "Ya existe un contacto con esta clave pública en tu lista de contactos.";
 "delete.contact" = "Eliminar contacto";
 "delete.contact.warning" = "¿Estás seguro de que quieres eliminar este contacto?";
-
+"mark.as.unread" = "Marcar como no leído";
+"mark.as.read" = "Marcar como leído";
 
 //INVITE
 "group.details" = "Detalles del Grupo";
