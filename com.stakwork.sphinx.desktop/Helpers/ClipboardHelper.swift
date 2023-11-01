@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import UniformTypeIdentifiers
 
 class ClipboardHelper {
     
@@ -78,6 +79,44 @@ class ClipboardHelper {
     func CreateTimeStamp() -> Int32
     {
         return Int32(Date().timeIntervalSince1970)
+    }
+    
+    func clipboardHasFiles(pasteBoard: NSPasteboard) -> Bool {
+        let imageTypes: [NSPasteboard.PasteboardType] = [
+                .tiff,
+                .png,
+                NSPasteboard.PasteboardType(kUTTypeJPEG as String)
+            ]
+            
+        let videoTypes: [NSPasteboard.PasteboardType] = [
+            NSPasteboard.PasteboardType(kUTTypeQuickTimeMovie as String),
+            NSPasteboard.PasteboardType(kUTTypeMPEG4 as String),
+            NSPasteboard.PasteboardType("public.avi" as String),
+            NSPasteboard.PasteboardType("public.mpeg" as String)
+        ]
+        
+        let pdfType: NSPasteboard.PasteboardType = .pdf
+        
+        let audioTypes: [NSPasteboard.PasteboardType] = [
+                NSPasteboard.PasteboardType(kUTTypeMP3 as String),
+                NSPasteboard.PasteboardType(kUTTypeWaveformAudio as String), // .wav files
+                NSPasteboard.PasteboardType(kUTTypeMPEG4Audio as String),     // .m4a files
+                NSPasteboard.PasteboardType(kUTTypeAudio as String)          // generic audio type
+            ]
+        
+        for type in imageTypes + videoTypes + audioTypes {
+            if pasteBoard.data(forType: type) != nil {
+                NotificationCenter.default.post(name: .onFilePaste, object: nil)
+                return true
+            }
+        }
+        
+        if pasteBoard.data(forType: pdfType) != nil {
+            NotificationCenter.default.post(name: .onFilePaste, object: nil)
+            return true
+        }
+
+        return false
     }
 }
 

@@ -14,7 +14,7 @@ protocol MessageFieldDelegate: AnyObject {
     func didTapDownArrow() -> Bool
     func didTapTab()
     func didTapEscape()
-    func didDetectImagePaste(pasteBoard: NSPasteboard) -> Bool
+    func didDetectFilePaste(pasteBoard: NSPasteboard) -> Bool
 }
 
 final class PlaceHolderTextView: NSTextView {
@@ -111,7 +111,7 @@ final class PlaceHolderTextView: NSTextView {
             if (event.modifierFlags.rawValue & NSEvent.ModifierFlags.deviceIndependentFlagsMask.rawValue) == commandKey {
                 switch event.charactersIgnoringModifiers! {
                 case "v":
-                    if fieldDelegate?.didDetectImagePaste(pasteBoard: NSPasteboard.general) == true {
+                    if fieldDelegate?.didDetectFilePaste(pasteBoard: NSPasteboard.general) == true {
                        return true
                     }
                 default:
