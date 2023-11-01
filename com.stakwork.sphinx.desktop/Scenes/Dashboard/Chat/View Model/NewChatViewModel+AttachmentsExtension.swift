@@ -10,7 +10,7 @@ import Cocoa
 
 extension NewChatViewModel: AttachmentsManagerDelegate {
     
-    func insertPrivisionalAttachmentMessageAndUpload(
+    func insertProvisionalAttachmentMessageAndUpload(
         attachmentObject: AttachmentObject,
         chat: Chat?,
         audioDuration: Double? = nil
@@ -47,7 +47,7 @@ extension NewChatViewModel: AttachmentsManagerDelegate {
             attachmentsManager.uploadAndSendAttachment(
                 attachmentObject: attachmentObject,
                 replyingMessage: replyingTo,
-                threadUUID: replyingTo?.threadUUID ?? replyingTo?.uuid
+                threadUUID: threadUUID ?? replyingTo?.threadUUID ?? replyingTo?.uuid
             )
         }
 
@@ -124,7 +124,7 @@ extension NewChatViewModel {
                     type: AttachmentsManager.AttachmentType.Audio
                 )
 
-                insertPrivisionalAttachmentMessageAndUpload(
+                insertProvisionalAttachmentMessageAndUpload(
                     attachmentObject: attachmentObject,
                     chat: chat,
                     audioDuration: audioData.1
