@@ -171,7 +171,31 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
         }
     }
     
-    func shouldPayInvoiceFor(messageId: Int) {}
+    func shouldPayInvoiceFor(messageId: Int) {
+        if let message = self.chatTableDataSource?.messagesArray.filter({$0.id == messageId}).first as? TransactionMessage,
+           let amount = message.amount as? Int,
+           amount > 0 {
+            AlertHelper.showTwoOptionsAlert(title: "confirm".localized, message: "confirm.pay.invoice".localized, confirm: {
+                self.finalizeInvoicePayment(message: message)
+            })
+        }
+    }
+    
+    func finalizeInvoicePayment(message:TransactionMessage){
+        guard let invoice = message.invoice else {
+            return
+        }
+        let parameters: [String : AnyObject] = ["payment_request" : invoice as AnyObject]
+        API.sharedInstance.payInvoice(parameters: parameters, callback: { payment in
+            if let message = TransactionMessage.insertMessage(m: payment).0 {
+                message.setPaymentInvoiceAsPaid()
+                self.chatTableDataSource?.reloadAllVisibleRows()
+            }
+        }, errorCallback: {_ in
+            AlertHelper.showAlert(title: "generic.error.title".localized, message: "generic.error.message".localized)
+            self.chatTableDataSource?.reloadAllVisibleRows()
+        })
+    }
     
     func isOnStandardMode() -> Bool {
         return viewMode == ViewMode.Standard
