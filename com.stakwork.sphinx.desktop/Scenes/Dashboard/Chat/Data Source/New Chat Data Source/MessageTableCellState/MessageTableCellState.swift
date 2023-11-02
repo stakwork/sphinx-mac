@@ -684,38 +684,39 @@ struct MessageTableCellState {
                let amountString = humanReadablePart["amount"] as? String,
                let amount = Int(amountString){
                 
-               let dateFormatter = DateFormatter()
-               dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
-               var issuanceDate = Date()
-//               if let date = dateFormatter.date(from: timestampString) {
-//                   // Now, `date` contains the parsed date value.
-//                   // You can use `date` to set the `date` property of your `BubbleMessageLayoutState.Invoice`.
-//                   issuanceDate = date
-//               }
-
+                var issuanceDate: Date?
                 // Extracting the description
                 var extractedDescription: String?
+                var expiry: Int?
                 if let tags = dict["data"] as? NSDictionary, let tagArray = tags["tags"] as? [NSDictionary] {
                     for tag in tagArray {
-                        if let description = tag["description"] as? String, let value = tag["value"] as? String {
+                        if let description = tag["description"] as? String, let value = tag["value"] as? Any {
                             // Process `description` and `value` as needed
-                            extractedDescription = description
+                            if description == "expiry"{
+                                expiry = value as? Int
+                            }
+                            else if description == "description"{
+                                extractedDescription = value as? String
+                            }
                         }
+                    }
+                    if let timestamp = tags["time_stamp"] as? Date {
+                        print(timestamp)
+                        issuanceDate = timestamp
                     }
                 }
 
-                // Calculate the current date and time
-                let currentDate = Date()
-
-                // Calculate whether the invoice has expired based on the time_stamp and minFinalCltvExpiry (if available)
-                let minFinalCltvExpiry = dict["minFinalCltvExpiry"] as? Int ?? 0
-                let issuanceTimestamp = issuanceDate
-                let expirationTimestamp = issuanceTimestamp.addingTimeInterval(TimeInterval(minFinalCltvExpiry))
-                let isExpired = currentDate > expirationTimestamp
+                guard let issuanceDateUnwrapped = issuanceDate, let expiryUnwrapped = expiry else {
+                    return nil
+                }
+                
+                let expirationTimestamp = issuanceDateUnwrapped.addingTimeInterval(TimeInterval(expiryUnwrapped))
+                let isExpired = Date() > expirationTimestamp
+                print("expiry:\(expiry)")
 
                 // Create an Invoice object
                 let invoice = BubbleMessageLayoutState.Invoice(
-                    date: issuanceTimestamp, // Set the issuance timestamp as the invoice date
+                    date: issuanceDateUnwrapped, // Set the issuance timestamp as the invoice date
                     amount: amount/1000,
                     memo: extractedDescription,
                     font: NSFont.getMessageFont(), // You should provide a valid NSFont here
@@ -729,7 +730,6 @@ struct MessageTableCellState {
                 
                 return invoice
             }
-            
             
             return nil
         }
@@ -751,6 +751,7 @@ struct MessageTableCellState {
             bubbleWidth: bubbleWidth
         )
     }()
+
     
     
     ///No Bubble States
