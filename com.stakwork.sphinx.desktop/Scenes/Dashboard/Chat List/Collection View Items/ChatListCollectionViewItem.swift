@@ -10,7 +10,7 @@ import Cocoa
 import SDWebImage
 
 protocol ChatListCollectionViewItemDelegate : NSObject{
-    func didRightClick(contactId:Int?,objectId:String)
+    func didRightClickOn(item: NSCollectionViewItem)
 }
 
 class ChatListCollectionViewItem: NSCollectionViewItem {
@@ -34,8 +34,6 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
     @IBOutlet weak var unreadMessageBadgeLabel: NSTextField!
     
     var delegate: ChatListCollectionViewItemDelegate? = nil
-    var contactId: Int? = nil
-    var objectId: String? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,7 +77,6 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
         delegate: ChatListCollectionViewItemDelegate?
     ) {
         self.delegate = delegate
-        self.contactId = chatListObject.getContact()?.id
         
         backgroundBox.fillColor = selected ? NSColor.Sphinx.ChatListSelected : NSColor.Sphinx.HeaderBG
         nameLabel.font = Constants.kChatNameFont
@@ -354,16 +351,11 @@ extension ChatListCollectionViewItem {
 
     
     override func rightMouseDown(with event: NSEvent) {
-        guard let objectId = self.objectId
-        else{
-            return
-        }
-        delegate?.didRightClick(contactId: contactId, objectId: objectId)
+        delegate?.didRightClickOn(item: self)
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.contactId = nil
     }
 }
 

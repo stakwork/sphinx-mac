@@ -437,17 +437,17 @@ extension API {
     
     public func toggleChatReadUnread(
         chatId: Int,
-        params: NSDictionary,
         shouldMarkAsUnread:Bool,
         callback: @escaping SuccessCallback
     ) {
-        // Step 1: Convert params to NSMutableDictionary
-        var finalParams = params.mutableCopy() as! NSMutableDictionary
-        // Step 2: Add the new parameter
-        //finalParams["shouldMarkAsUnread"] = shouldMarkAsUnread
-        finalParams = ["shouldMarkAsUnread" : shouldMarkAsUnread]
+        var params: [String: AnyObject] = [:]
+        params["shouldMarkAsUnread"] = shouldMarkAsUnread as AnyObject
         
-        guard let request = getURLRequest(route: "/messages/\(chatId)/toggleChatReadUnread", params: finalParams, method: "POST") else {
+        guard let request = getURLRequest(
+            route: "/messages/\(chatId)/toggleChatReadUnread",
+            params: params as NSDictionary,
+            method: "POST"
+        ) else {
             callback(false)
             return
         }
@@ -462,8 +462,7 @@ extension API {
                         callback(false)
                     }
                 }
-            case .failure(let error):
-                print("toggleChatReadUnread error:\(error)")
+            case .failure(_):
                 callback(false)
             }
         }
