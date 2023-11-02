@@ -187,10 +187,10 @@ struct MessageTableCellState {
             let timeElements = Int(secondsDiff).getTimeElements(zeroPrefix: false)
             expirationTimestamp = String(format: "expires.in.elements".localized, timeElements.0, timeElements.1)
         }
-        else if let secondsDiff = extractInvoiceFromBolt11String(bolt11: messageContent).1{
-            let timeElements = Int(secondsDiff).getTimeElements(zeroPrefix: false)
-            expirationTimestamp = String(format: "expires.in.elements".localized, timeElements.0, timeElements.1)
-        }
+//        else if let secondsDiff = extractInvoiceFromBolt11String(bolt11: messageContent).1{
+//            let timeElements = Int(secondsDiff).getTimeElements(zeroPrefix: false)
+//            expirationTimestamp = String(format: "expires.in.elements".localized, timeElements.0, timeElements.1)
+//        }
         
         let timestampFormat = isThread ? "EEE dd, hh:mm a" : "hh:mm a"
         let timestamp = (message.date ?? Date()).getStringDate(format: timestampFormat)
