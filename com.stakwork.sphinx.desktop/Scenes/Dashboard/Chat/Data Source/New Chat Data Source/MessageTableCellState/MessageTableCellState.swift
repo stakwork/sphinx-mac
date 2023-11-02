@@ -187,6 +187,10 @@ struct MessageTableCellState {
             let timeElements = Int(secondsDiff).getTimeElements(zeroPrefix: false)
             expirationTimestamp = String(format: "expires.in.elements".localized, timeElements.0, timeElements.1)
         }
+        else if let secondsDiff = extractInvoiceFromBolt11String(bolt11: messageContent).1{
+            let timeElements = Int(secondsDiff).getTimeElements(zeroPrefix: false)
+            expirationTimestamp = String(format: "expires.in.elements".localized, timeElements.0, timeElements.1)
+        }
         
         let timestampFormat = isThread ? "EEE dd, hh:mm a" : "hh:mm a"
         let timestamp = (message.date ?? Date()).getStringDate(format: timestampFormat)
@@ -668,6 +672,66 @@ struct MessageTableCellState {
         )
     }()
     
+    func extractInvoiceFromBolt11String(bolt11:String)->(BubbleMessageLayoutState.Invoice?,TimeInterval?){
+        let prDecoder = PaymentRequestDecoder()
+        prDecoder.decodePaymentRequest(paymentRequest: bolt11)
+        let pr = prDecoder.decodedPR
+        if let dict = pr as? NSDictionary,
+           let humanReadablePart = dict["human_readable_part"] as? NSDictionary,
+           let amountString = humanReadablePart["amount"] as? String,
+           let amount = Int(amountString){
+            
+            var issuanceDate: Date?
+            // Extracting the description
+            var extractedDescription: String?
+            var expiry: Int?
+            if let tags = dict["data"] as? NSDictionary, let tagArray = tags["tags"] as? [NSDictionary] {
+                for tag in tagArray {
+                    if let description = tag["description"] as? String, let value = tag["value"] as? Any {
+                        // Process `description` and `value` as needed
+                        if description == "expiry"{
+                            expiry = value as? Int
+                        }
+                        else if description == "description"{
+                            extractedDescription = value as? String
+                        }
+                    }
+                }
+                if let timestamp = tags["time_stamp"] as? Date {
+                    print(timestamp)
+                    issuanceDate = timestamp
+                }
+            }
+
+            guard let issuanceDateUnwrapped = issuanceDate, let expiryUnwrapped = expiry else {
+                return (nil,nil)
+            }
+            
+            let expirationTimestamp = issuanceDateUnwrapped.addingTimeInterval(TimeInterval(expiryUnwrapped))
+            let isExpired = Date() > expirationTimestamp
+
+            // Create an Invoice object
+            let invoice = BubbleMessageLayoutState.Invoice(
+                date: issuanceDateUnwrapped, // Set the issuance timestamp as the invoice date
+                amount: amount/1000,
+                memo: extractedDescription,
+                font: NSFont.getMessageFont(), // You should provide a valid NSFont here
+                isPaid: false, // You may set the paid status as needed
+                isExpired: isExpired, // Set the expired status based on the calculation
+                bubbleWidth: 300.0 // You may set the bubbleWidth as needed
+            )
+
+            // Now you have the corrected Invoice object
+            print(invoice)
+            
+            let secondsDiff = expirationTimestamp.timeIntervalSince1970 - Date().timeIntervalSince1970
+            
+            return (invoice,secondsDiff)
+        }
+        
+        return (nil,nil)
+    }
+    
     lazy var invoice: BubbleMessageLayoutState.Invoice? = {
         
         //if it's just a BOLT11 string just decode that and make a view
@@ -675,63 +739,7 @@ struct MessageTableCellState {
            let messageContent = message.messageContent,
            (messageContent.isLNDInvoice){
             print("text invoice!")
-            let prDecoder = PaymentRequestDecoder()
-            prDecoder.decodePaymentRequest(paymentRequest: messageContent)
-            let pr = prDecoder.decodedPR
-            print(pr)
-            if let dict = pr as? NSDictionary,
-               let humanReadablePart = dict["human_readable_part"] as? NSDictionary,
-               let amountString = humanReadablePart["amount"] as? String,
-               let amount = Int(amountString){
-                
-                var issuanceDate: Date?
-                // Extracting the description
-                var extractedDescription: String?
-                var expiry: Int?
-                if let tags = dict["data"] as? NSDictionary, let tagArray = tags["tags"] as? [NSDictionary] {
-                    for tag in tagArray {
-                        if let description = tag["description"] as? String, let value = tag["value"] as? Any {
-                            // Process `description` and `value` as needed
-                            if description == "expiry"{
-                                expiry = value as? Int
-                            }
-                            else if description == "description"{
-                                extractedDescription = value as? String
-                            }
-                        }
-                    }
-                    if let timestamp = tags["time_stamp"] as? Date {
-                        print(timestamp)
-                        issuanceDate = timestamp
-                    }
-                }
-
-                guard let issuanceDateUnwrapped = issuanceDate, let expiryUnwrapped = expiry else {
-                    return nil
-                }
-                
-                let expirationTimestamp = issuanceDateUnwrapped.addingTimeInterval(TimeInterval(expiryUnwrapped))
-                let isExpired = Date() > expirationTimestamp
-                print("expiry:\(expiry)")
-
-                // Create an Invoice object
-                let invoice = BubbleMessageLayoutState.Invoice(
-                    date: issuanceDateUnwrapped, // Set the issuance timestamp as the invoice date
-                    amount: amount/1000,
-                    memo: extractedDescription,
-                    font: NSFont.getMessageFont(), // You should provide a valid NSFont here
-                    isPaid: false, // You may set the paid status as needed
-                    isExpired: isExpired, // Set the expired status based on the calculation
-                    bubbleWidth: 300.0 // You may set the bubbleWidth as needed
-                )
-
-                // Now you have the corrected Invoice object
-                print(invoice)
-                
-                return invoice
-            }
-            
-            return nil
+            return extractInvoiceFromBolt11String(bolt11: messageContent).0
         }
         
         //Legacy case of specific invoice messages:
