@@ -179,12 +179,21 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
                 self.finalizeInvoicePayment(message: message)
             })
         }
+        else{
+            AlertHelper.showAlert(title: "generic.error.title".localized, message: "generic.error.message".localized)
+        }
     }
     
     func finalizeInvoicePayment(message:TransactionMessage){
-        guard let invoice = message.invoice else {
+        var invoice = message.invoice
+        if let content = message.messageContent,
+           content.isLNDInvoice == true{
+            invoice = content
+        }
+        guard let invoice = invoice else {
             return
         }
+        
         let parameters: [String : AnyObject] = ["payment_request" : invoice as AnyObject]
         API.sharedInstance.payInvoice(parameters: parameters, callback: { payment in
             if let message = TransactionMessage.insertMessage(m: payment).0 {

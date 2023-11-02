@@ -530,6 +530,7 @@ class ChatHelper {
         }
         
         if let invoice = mutableTableCellState.invoice {
+            mutableTableCellState.message?.amount = NSDecimalNumber(value: invoice.amount)            
             if mutableTableCellState.bubble?.direction == .Incoming && !invoice.isPaid {
                 viewsHeight += InvoiceView.kViewIncomingHeight
             } else {
