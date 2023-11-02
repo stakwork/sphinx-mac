@@ -620,7 +620,7 @@ extension TransactionMessage {
     func getActionsMenuOptions() -> [(tag: Int, icon: String?, iconImage: String?, label: String)] {
         var options = [(tag: Int, icon: String?, iconImage: String?, label: String)]()
         
-        if isPodcastBoost() {
+        if isPodcastBoost() || isBotResponse() {
             return options
         }
         
