@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -147,7 +147,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="24" height="23"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZWJ-Do-TAP">
+                                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZWJ-Do-TAP">
                                                             <rect key="frame" x="6" y="4" width="12" height="15"/>
                                                             <textFieldCell key="cell" lineBreakMode="clipping" title="9" id="WHZ-Wx-ew2">
                                                                 <font key="font" size="13" name="Roboto-Bold"/>
@@ -167,7 +167,7 @@
                                                 </constraints>
                                                 <color key="fillColor" name="Text"/>
                                             </box>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="00Q-yD-UI9">
+                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="00Q-yD-UI9">
                                                 <rect key="frame" x="54" y="23" width="71" height="14"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="more replies" id="Y2I-sC-Ipi">
                                                     <font key="font" size="12" name="Roboto-Medium"/>
@@ -201,14 +201,15 @@
                             <rect key="frame" x="0.0" y="0.0" width="480" height="9"/>
                             <subviews>
                                 <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="9" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="bis-8g-FBd">
-                                    <rect key="frame" x="0.0" y="-9" width="480" height="18"/>
+                                    <rect key="frame" x="0.0" y="-21" width="480" height="30"/>
                                     <view key="contentView" id="Tfb-Dk-TjD">
-                                        <rect key="frame" x="0.0" y="0.0" width="480" height="18"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="480" height="30"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </view>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="18" id="x86-U8-rD2"/>
+                                        <constraint firstAttribute="height" constant="30" id="x86-U8-rD2"/>
                                     </constraints>
+                                    <color key="borderColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="fillColor" name="ReceivedMsgBG"/>
                                 </box>
                             </subviews>

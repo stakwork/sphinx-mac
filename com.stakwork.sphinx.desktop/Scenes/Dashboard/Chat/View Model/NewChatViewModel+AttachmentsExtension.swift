@@ -10,7 +10,7 @@ import Cocoa
 
 extension NewChatViewModel: AttachmentsManagerDelegate {
     
-    func insertPrivisionalAttachmentMessageAndUpload(
+    func insertProvisionalAttachmentMessageAndUpload(
         attachmentObject: AttachmentObject,
         chat: Chat?,
         audioDuration: Double? = nil
@@ -47,7 +47,7 @@ extension NewChatViewModel: AttachmentsManagerDelegate {
             attachmentsManager.uploadAndSendAttachment(
                 attachmentObject: attachmentObject,
                 replyingMessage: replyingTo,
-                threadUUID: replyingTo?.threadUUID ?? replyingTo?.uuid
+                threadUUID: threadUUID ?? replyingTo?.threadUUID ?? replyingTo?.uuid
             )
         }
 
@@ -71,18 +71,36 @@ extension NewChatViewModel: AttachmentsManagerDelegate {
         }
     }
     
-    func didUpdateUploadProgress(progress: Int) {
-        chatDataSource?.setProgressForProvisional(messageId: -1, progress: progress)
+    func didUpdateUploadProgress(
+        progress: Int,
+        provisionalMessageId: Int
+    ) {
+        chatDataSource?.setProgressForProvisional(
+            messageId: provisionalMessageId,
+            progress: progress
+        )
     }
     
-    func didSuccessSendingAttachment(message: TransactionMessage, image: NSImage?) {
-        chatDataSource?.resetProgressForProvisional(messageId: -1)
+    func didSuccessSendingAttachment(
+        message: TransactionMessage,
+        image: NSImage?,
+        provisionalMessageId: Int
+    ) {
+        chatDataSource?.resetProgressForProvisional(messageId: provisionalMessageId)
         
         messageSent(
             message: message,
             chat: message.chat,
             completion: { (_, _) in }
         )
+    }
+    
+    func didFailSendingAttachment(provisionalMessage: TransactionMessage?) {
+        if let provisionalMessage = provisionalMessage {
+            CoreDataManager.sharedManager.deleteObject(object: provisionalMessage)
+            
+            AlertHelper.showAlert(title: "generic.error.title".localized, message: "generic.error.message".localized)
+        }
     }
 }
 
@@ -124,7 +142,7 @@ extension NewChatViewModel {
                     type: AttachmentsManager.AttachmentType.Audio
                 )
 
-                insertPrivisionalAttachmentMessageAndUpload(
+                insertProvisionalAttachmentMessageAndUpload(
                     attachmentObject: attachmentObject,
                     chat: chat,
                     audioDuration: audioData.1

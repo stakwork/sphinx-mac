@@ -67,6 +67,10 @@ class GroupDetailsViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        groupImageView.wantsLayer = true
+        groupImageView.rounded = true
+        groupImageView.layer?.cornerRadius = groupImageView.frame.height / 2
+        
         self.loading = true
         
         optionsButton.cursor = .pointingHand

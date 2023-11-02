@@ -38,6 +38,14 @@ class TribeMemberInfoView: NSView, LoadableNib {
         draggingDestinationView.configureForTribeImage()
         draggingDestinationView.delegate = self
         draggingDestinationView.setup()
+        
+        setupViews()
+    }
+    
+    func setupViews() {
+        pictureImageView.wantsLayer = true
+        pictureImageView.rounded = true
+        pictureImageView.layer?.cornerRadius = pictureImageView.frame.height / 2
     }
     
     func configureWith(

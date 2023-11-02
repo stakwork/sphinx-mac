@@ -125,6 +125,7 @@ class NewChatViewController: DashboardSplittedViewController {
         setupChatData()
         
         chatTopView.checkRoute()
+        NotificationCenter.default.addObserver(self, selector: #selector(handleImagePaste), name: .onFilePaste, object: nil)
     }
     
     override func viewDidAppear() {
@@ -134,7 +135,10 @@ class NewChatViewController: DashboardSplittedViewController {
         fetchTribeData()
         configureMentionAutocompleteTableView()
         configureFetchResultsController()
-        addEscapeMonitor()
+        
+        if (self.isThread) {
+            addEscapeMonitor()
+        }
     }
     
     override func viewWillDisappear() {
@@ -144,6 +148,8 @@ class NewChatViewController: DashboardSplittedViewController {
         chatTableDataSource?.releaseMemory()
         
         closeThreadAndResetEscapeMonitor()
+        
+        NotificationCenter.default.removeObserver(self, name: .onFilePaste, object: nil)
     }
     
     deinit {
@@ -175,7 +181,13 @@ class NewChatViewController: DashboardSplittedViewController {
         self.escapeMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (event) in
             if event.keyCode == 53 { // 53 is the key code for the Escape key
                 // Perform your action when the Escape key is pressed
-                self.shouldCloseThread()
+                if let mediaFullScreenView = self.mediaFullScreenView {
+                    mediaFullScreenView.closeView()
+                } else if self.draggingView.isSendingMedia() {
+                    self.draggingView.setup()
+                } else {
+                    self.shouldCloseThread()
+                }
                 return nil // Discard the event
             }
             return event
@@ -298,5 +310,13 @@ class NewChatViewController: DashboardSplittedViewController {
         view.frame = frame
         
         threadVC?.view.frame = frame
+    }
+    
+    @objc func handleImagePaste(){
+        if let _ = threadVC {
+            return
+        }
+        let success = draggingView.performPasteOperation(pasteBoard: NSPasteboard.general)
+        print(success)
     }
 }

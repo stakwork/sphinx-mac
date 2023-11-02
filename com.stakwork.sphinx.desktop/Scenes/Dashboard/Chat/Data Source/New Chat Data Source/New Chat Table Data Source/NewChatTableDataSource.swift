@@ -115,7 +115,7 @@ class NewChatTableDataSource : NSObject {
     let chatHelper = ChatHelper()
     
     ///Constants
-    let kThreadHeaderRowIndex = -1
+    static let kThreadHeaderRowIndex = -10
     
     init(
         chat: Chat?,

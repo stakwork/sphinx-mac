@@ -32,5 +32,6 @@ extension Notification.Name {
     static let onShareContactDeeplink = Notification.Name("onShareContactDeeplink")
     
     static let onContactsAndChatsChanged = Notification.Name("onContactsAndChatsChanged")
+    static let onFilePaste = Notification.Name("onImagePaste")
     static let webViewImageClicked = Notification.Name("webViewImageClicked")
 }

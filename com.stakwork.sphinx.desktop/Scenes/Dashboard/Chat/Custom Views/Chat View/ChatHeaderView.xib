@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -58,6 +58,9 @@
                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" id="fOM-R0-7rW"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                            <real key="value" value="22"/>
+                                        </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </imageView>
                                 <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="22" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="4i4-rg-aZX">
@@ -66,7 +69,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="alC-kC-ETc">
+                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="alC-kC-ETc">
                                                 <rect key="frame" x="10" y="12" width="24" height="20"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="TT" id="HhY-xH-ZQJ">
                                                     <font key="font" size="17" name="Montserrat-Regular"/>
@@ -101,7 +104,7 @@
                                         <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kct-k1-Eby">
                                             <rect key="frame" x="0.0" y="19" width="339" height="20"/>
                                             <subviews>
-                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="uGI-oR-OOS">
+                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="uGI-oR-OOS">
                                                     <rect key="frame" x="-2" y="0.0" width="309" height="20"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Open a conversation to start messaging" id="GWR-bo-qRK">
                                                         <font key="font" size="17" name="Roboto-Medium"/>
@@ -109,7 +112,7 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="T82-4F-A3v">
+                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="T82-4F-A3v">
                                                     <rect key="frame" x="305" y="2" width="19" height="15"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="lock" id="fcg-eb-t63">
                                                         <font key="font" size="15" name="MaterialIcons-Regular"/>
@@ -117,7 +120,7 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JNa-8X-CaO">
+                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JNa-8X-CaO">
                                                     <rect key="frame" x="322" y="2" width="19" height="15"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="flash_on" id="9h4-lv-oIq">
                                                         <font key="font" size="15" name="MaterialIcons-Regular"/>
@@ -144,7 +147,7 @@
                                         <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bfe-Pb-g4b">
                                             <rect key="frame" x="0.0" y="0.0" width="268" height="15"/>
                                             <subviews>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EME-3C-8RS">
+                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EME-3C-8RS">
                                                     <rect key="frame" x="-2" y="1" width="138" height="13"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Price per message: 60 sats" id="Xwh-je-93m" customClass="VerticallyCenteredTextFieldCell" customModule="Sphinx" customModuleProvider="target">
                                                         <font key="font" size="11" name="Roboto-Medium"/>
@@ -152,7 +155,7 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IHe-SB-qGm">
+                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IHe-SB-qGm">
                                                     <rect key="frame" x="138" y="1" width="111" height="13"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Contributed: 500 sats" id="ikN-nL-EN3">
                                                         <font key="font" size="11" name="Roboto-Medium"/>
@@ -160,7 +163,7 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z5U-q1-dkr">
+                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z5U-q1-dkr">
                                                     <rect key="frame" x="251" y="0.0" width="19" height="15"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="verified_user" id="1Wm-i9-AFa">
                                                         <font key="font" size="15" name="MaterialIcons-Regular"/>
@@ -197,13 +200,13 @@
                                 </stackView>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TUM-g0-3nc" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="692" height="60"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="60" id="8sH-yi-zXI"/>
-                                    </constraints>
                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" transparent="YES" imageScaling="proportionallyDown" inset="2" id="oku-zd-bBE">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="60" id="8sH-yi-zXI"/>
+                                    </constraints>
                                     <connections>
                                         <action selector="headerButtonClicked:" target="-2" id="vhp-83-LZK"/>
                                     </connections>
@@ -219,70 +222,70 @@
                         </customView>
                         <button translatesAutoresizingMaskIntoConstraints="NO" id="qgt-D2-gCl" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                             <rect key="frame" x="752" y="0.0" width="37" height="60"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="37" id="IxV-tM-fWU"/>
-                            </constraints>
                             <buttonCell key="cell" type="square" title="search" bezelStyle="shadowlessSquare" alignment="center" inset="2" id="UKM-kN-kwR">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" size="27" name="MaterialIcons-Regular"/>
                             </buttonCell>
                             <color key="contentTintColor" name="SecondaryText"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="37" id="IxV-tM-fWU"/>
+                            </constraints>
                             <connections>
                                 <action selector="searchButtonClicked:" target="-2" id="wV4-Bb-m93"/>
                             </connections>
                         </button>
                         <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XXC-Xz-jRX" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="37" height="60"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="37" id="6lj-ZA-uiI"/>
-                            </constraints>
                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="threadsBubble" imagePosition="only" alignment="center" inset="2" id="4zc-gt-ZER">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" size="25" name="MaterialIcons-Regular"/>
                             </buttonCell>
                             <color key="contentTintColor" name="SecondaryText"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="37" id="6lj-ZA-uiI"/>
+                            </constraints>
                             <connections>
                                 <action selector="threadsButtonClicked:" target="-2" id="Mcb-ko-bqf"/>
                             </connections>
                         </button>
                         <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cuK-dZ-qgQ" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="40" height="60"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="40" id="eNZ-Pp-4Kx"/>
-                            </constraints>
                             <buttonCell key="cell" type="square" title="apps" bezelStyle="shadowlessSquare" alignment="center" inset="2" id="hUT-EO-44m">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" size="25" name="MaterialIcons-Regular"/>
                             </buttonCell>
                             <color key="contentTintColor" name="SecondaryText"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="eNZ-Pp-4Kx"/>
+                            </constraints>
                             <connections>
                                 <action selector="webAppButtonClicked:" target="-2" id="Wh7-cN-bns"/>
                             </connections>
                         </button>
                         <button translatesAutoresizingMaskIntoConstraints="NO" id="kVc-1M-iiC" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                             <rect key="frame" x="789" y="0.0" width="40" height="60"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="40" id="6Mu-H0-tDx"/>
-                            </constraints>
                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="muteOffIcon" imagePosition="only" alignment="center" inset="2" id="UUn-Sp-0wS">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                             <color key="contentTintColor" name="SecondaryText"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="6Mu-H0-tDx"/>
+                            </constraints>
                             <connections>
                                 <action selector="muteButtonClicked:" target="-2" id="GYq-RR-GQa"/>
                             </connections>
                         </button>
                         <button translatesAutoresizingMaskIntoConstraints="NO" id="VaF-EB-L4n" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                             <rect key="frame" x="829" y="0.0" width="40" height="60"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="40" id="c5q-xu-nhi"/>
-                            </constraints>
                             <buttonCell key="cell" type="square" title="" bezelStyle="shadowlessSquare" alignment="center" inset="2" id="7tZ-HX-JHd">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" size="25" name="MaterialIcons-Regular"/>
                             </buttonCell>
                             <color key="contentTintColor" name="SecondaryText"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="c5q-xu-nhi"/>
+                            </constraints>
                             <connections>
                                 <action selector="callButtonClicked:" target="-2" id="UuS-Z1-DI1"/>
                             </connections>

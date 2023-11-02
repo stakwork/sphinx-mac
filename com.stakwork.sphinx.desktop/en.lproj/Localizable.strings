@@ -149,6 +149,8 @@
 "new.contact.error.alreadyExists" = "A contact with this public key already exists in your Address Book.";
 "delete.contact" = "Delete Contact";
 "delete.contact.warning" = "Are you sure you want to delete this contact?";
+"mark.as.unread" = "Mark as Unread";
+"mark.as.read" = "Mark as Read";
 
 //INVITE
 "add.people" = "Add People";
