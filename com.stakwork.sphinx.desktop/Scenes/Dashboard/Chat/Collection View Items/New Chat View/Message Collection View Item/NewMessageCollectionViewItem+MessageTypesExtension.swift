@@ -197,7 +197,7 @@ extension NewMessageCollectionViewItem {
             
             labelHeightConstraint.constant = labelHeight
             textMessageView.superview?.layoutSubtreeIfNeeded()
-            
+                        
             if messageContent.linkMatches.isEmpty && searchingTerm == nil {
                 messageLabel.attributedStringValue = NSMutableAttributedString(string: "")
 
