@@ -94,6 +94,11 @@ class MessageOptionsHelper {
         let hPosition: HorizontalPosition = (frameInView.origin.x > (view.frame.width - (menuOptionsWidth / 2) - 12)) ? .Right : .Center
         
         let messageOptions = getActionsMenuOptions()
+        
+        if messageOptions.isEmpty {
+            return
+        }
+        
         let optionsCount = messageOptions.count
         let bubbleColor = getBubbleColor(message: message)
         
