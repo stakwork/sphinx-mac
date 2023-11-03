@@ -456,13 +456,14 @@ extension NewChatListViewController: ChatListCollectionViewItemDelegate {
                     return
                 }
                 
+                let desiredState = !chat.seen
                 API.sharedInstance.toggleChatReadUnread(
                     chatId: chat.id,
-                    shouldMarkAsUnread: lastMessage.seen,
+                    shouldMarkAsUnread: desiredState == false,
                     callback: { success in
                         if success {
-                            lastMessage.seen = !lastMessage.seen
-                            chat.seen = !chat.seen
+                            lastMessage.seen = desiredState
+                            chat.seen = desiredState
                             chat.saveChat()
                         } else {
                             DispatchQueue.main.async {
