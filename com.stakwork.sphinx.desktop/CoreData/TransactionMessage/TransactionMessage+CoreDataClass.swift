@@ -443,7 +443,8 @@ public class TransactionMessage: NSManagedObject {
             return
         }
         
-        if let paymentHash = self.paymentHash, self.type == TransactionMessage.TransactionMessageType.payment.rawValue {
+        if let paymentHash = self.paymentHash,
+            self.type == TransactionMessage.TransactionMessageType.payment.rawValue {
             if let message = TransactionMessage.getInvoiceWith(paymentHash: paymentHash) {
                 message.status = TransactionMessage.TransactionMessageStatus.confirmed.rawValue
             }

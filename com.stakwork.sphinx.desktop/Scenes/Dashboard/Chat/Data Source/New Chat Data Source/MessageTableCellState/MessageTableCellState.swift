@@ -716,7 +716,7 @@ struct MessageTableCellState {
                 amount: amount/1000,
                 memo: extractedDescription,
                 font: NSFont.getMessageFont(), // You should provide a valid NSFont here
-                isPaid: false, // You may set the paid status as needed
+                isPaid: self.message?.status == TransactionMessage.TransactionMessageStatus.confirmed.rawValue, // You may set the paid status as needed
                 isExpired: isExpired, // Set the expired status based on the calculation
                 bubbleWidth: 300.0 // You may set the bubbleWidth as needed
             )
