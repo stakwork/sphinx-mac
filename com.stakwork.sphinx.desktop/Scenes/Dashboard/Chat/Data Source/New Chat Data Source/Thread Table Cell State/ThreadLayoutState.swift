@@ -6,7 +6,7 @@
 //  Copyright © 2023 Tomas Timinskas. All rights reserved.
 //
 
-import Foundation
+import Cocoa
 
 struct ThreadLayoutState {
     
@@ -34,15 +34,18 @@ struct ThreadLayoutState {
     
     struct ThreadOriginalMessage {
         var text: String
+        var linkMatches: [NSTextCheckingResult]
         var timestamp: String
         var senderInfo: (NSColor, String, String?)
         
         init(
             text: String,
+            linkMatches: [NSTextCheckingResult],
             timestamp: String,
             senderInfo: (NSColor, String, String?)
         ) {
             self.text = text
+            self.linkMatches = linkMatches
             self.timestamp = timestamp
             self.senderInfo = senderInfo
         }

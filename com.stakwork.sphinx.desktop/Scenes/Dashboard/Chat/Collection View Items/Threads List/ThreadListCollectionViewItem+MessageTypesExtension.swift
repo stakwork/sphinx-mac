@@ -19,8 +19,7 @@ extension ThreadListCollectionViewItem {
         let originalMessageSenderInfo = threadLayoutState.orignalThreadMessage.senderInfo
         
         if threadLayoutState.orignalThreadMessage.text.isNotEmpty {
-            originalMessageTextLabel.maximumNumberOfLines = 2
-            originalMessageTextLabel.stringValue = threadLayoutState.orignalThreadMessage.text
+            configureMessageContentWith(threadOriginalMessage: threadLayoutState.orignalThreadMessage)
             originalMessageTextLabel.isHidden = false
         }
         
@@ -134,6 +133,36 @@ extension ThreadListCollectionViewItem {
             reply6CountLabel.stringValue = "+\(threadLayoutState.threadPeopleCount-6)"
         } else {
             reply6CountContainer.isHidden = true
+        }
+    }
+    
+    func configureMessageContentWith(
+        threadOriginalMessage: ThreadLayoutState.ThreadOriginalMessage
+    ) {
+        originalMessageTextLabel.maximumNumberOfLines = 2
+        
+        if threadOriginalMessage.linkMatches.isEmpty {
+            originalMessageTextLabel.stringValue = threadOriginalMessage.text
+            originalMessageTextLabel.font = Constants.kThreadHeaderFont
+        } else {
+            let messageC = threadOriginalMessage.text
+            
+            let attributedString = NSMutableAttributedString(string: messageC)
+            attributedString.addAttributes([NSAttributedString.Key.font: Constants.kThreadHeaderFont], range: messageC.nsRange)
+            
+            for match in threadOriginalMessage.linkMatches {
+                
+                attributedString.setAttributes(
+                    [
+                        NSAttributedString.Key.foregroundColor: NSColor.Sphinx.PrimaryBlue,
+                        NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
+                        NSAttributedString.Key.font: Constants.kThreadHeaderFont
+                    ],
+                    range: match.range
+                )
+            }
+            
+            originalMessageTextLabel.attributedStringValue = attributedString
         }
     }
     

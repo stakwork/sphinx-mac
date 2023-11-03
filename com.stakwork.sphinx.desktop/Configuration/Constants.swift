@@ -28,6 +28,7 @@ class Constants {
     public static var kMessagePreviewFont = NSFont(name: "Roboto-Regular", size: 14.0)!
     public static var kNewMessagePreviewFont = NSFont(name: "Roboto-Bold", size: 14.0)!
     public static var kChatNameFont = NSFont(name: "Roboto-Regular", size: 17.0)!
+    public static var kThreadHeaderFont = NSFont(name: "Roboto-Regular", size: 17.0)!
     
     //Colors
     public static var kMessageLineHeight: CGFloat = 35
