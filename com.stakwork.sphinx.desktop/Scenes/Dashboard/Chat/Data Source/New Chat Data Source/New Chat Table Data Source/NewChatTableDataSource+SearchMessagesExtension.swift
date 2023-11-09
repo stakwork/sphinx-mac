@@ -49,7 +49,7 @@ extension NewChatTableDataSource {
         if isNewPage || isNewSearch {
             ///Process messages if loading more items or doing a new search
             self.messagesArray = TransactionMessage.getAllMessagesFor(chat: chat, limit: itemsCount).reversed()
-            self.processMessages(messages: self.messagesArray)
+            self.processMessages(messages: self.messagesArray, UIUpdateIndex: self.UIUpdateIndex)
             self.isLastSearchPage = self.messagesArray.count < itemsCount
         }
     }

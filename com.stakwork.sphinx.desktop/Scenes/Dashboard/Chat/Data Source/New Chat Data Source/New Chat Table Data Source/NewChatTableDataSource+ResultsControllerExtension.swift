@@ -47,11 +47,16 @@ extension NewChatTableDataSource {
     }
     
     func updateSnapshot(
+        UIUpdateIndex: Int,
         completion: (() -> ())? = nil
     ) {
         let snapshot = makeSnapshotForCurrentState()
         let isSearching = !(self.delegate?.isOnStandardMode() ?? true)
         let animated = !isFirstLoad && !loadingMoreItems && !isSearching
+        
+        if UIUpdateIndex < self.UIUpdateIndex {
+            return
+        }
         
         DispatchQueue.main.async {
             CoreDataManager.sharedManager.saveContext()
@@ -135,7 +140,8 @@ extension NewChatTableDataSource {
 extension NewChatTableDataSource {
     
     @objc func processMessages(
-        messages: [TransactionMessage]
+        messages: [TransactionMessage],
+        UIUpdateIndex: Int
     ) {
         let chat = chat ?? contact?.getFakeChat()
         
@@ -253,7 +259,9 @@ extension NewChatTableDataSource {
         
         messageTableCellStateArray = array
         
-        updateSnapshot() {
+        updateSnapshot(
+            UIUpdateIndex: UIUpdateIndex
+        ) {
             self.delegate?.configureNewMessagesIndicatorWith(
                 newMsgCount: newMsgCount
             )
@@ -302,7 +310,7 @@ extension NewChatTableDataSource {
     }
     
     func forceReload() {
-        processMessages(messages: messagesArray)
+        processMessages(messages: messagesArray, UIUpdateIndex: self.UIUpdateIndex)
         reloadAllVisibleRows()
     }
     
@@ -742,15 +750,19 @@ extension NewChatTableDataSource : NSFetchedResultsControllerDelegate {
                         return
                     }
                     
-                    self.processMessages(messages: self.messagesArray)
+                    self.UIUpdateIndex += 1
+                    
+                    self.processMessages(messages: self.messagesArray, UIUpdateIndex: self.UIUpdateIndex)
                     self.configureBoostAndPurchaseResultsController()
                 }
             } else {
                 if !(self.delegate?.isOnStandardMode() ?? true) {
                     return
                 }
-
-                self.processMessages(messages: self.messagesArray)
+                
+                self.UIUpdateIndex += 1
+                
+                self.processMessages(messages: self.messagesArray, UIUpdateIndex: self.UIUpdateIndex)
             }
         }
     }
