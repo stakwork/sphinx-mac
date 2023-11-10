@@ -24,13 +24,21 @@ class WebAppViewController: NSViewController {
     
     let webAppHelper = WebAppHelper()
     
-    static func instantiate(chat: Chat) -> WebAppViewController {
+    static func instantiate(chat: Chat) -> WebAppViewController? {
         let viewController = StoryboardScene.Dashboard.webAppViewController.instantiate()
         viewController.chat = chat
         
-        if let tribeInfo = chat.tribeInfo, let gameURL = tribeInfo.appUrl, !gameURL.isEmpty {
-            viewController.gameURL = gameURL
+        guard let tribeInfo = chat.tribeInfo,
+            let gameURL = tribeInfo.appUrl,
+            let tribeUUID = tribeInfo.uuid,
+            let tribeHost = chat.host,
+            !gameURL.isEmpty else {
+            return nil //don't spin up if we don't have requisite data
         }
+        // Construct the new gameURL with tribeHost and tribeUUID as parameters
+        let updatedGameURL = "\(gameURL)?host=\(tribeHost)&uuid=\(tribeUUID)"
+
+        viewController.gameURL = updatedGameURL
         
         return viewController
     }
