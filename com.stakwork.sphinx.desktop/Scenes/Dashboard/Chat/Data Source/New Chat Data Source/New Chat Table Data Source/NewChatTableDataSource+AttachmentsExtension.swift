@@ -13,7 +13,7 @@ extension NewChatTableDataSource {
         message: TransactionMessage
     ) {
         if messagesArray.isEmpty {
-            processMessages(messages: [message])
+            processMessages(messages: [message], UIUpdateIndex: self.UIUpdateIndex)
         }
     }
 }

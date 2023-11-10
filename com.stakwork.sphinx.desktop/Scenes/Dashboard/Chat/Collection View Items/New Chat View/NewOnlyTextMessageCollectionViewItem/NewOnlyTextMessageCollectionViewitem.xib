@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,7 +12,6 @@
                 <outlet property="bubbleOnlyText" destination="ahx-cg-gFk" id="jEW-8q-2eE"/>
                 <outlet property="chatAvatarContainerView" destination="4lQ-yH-mp7" id="LCt-vb-3N0"/>
                 <outlet property="chatAvatarView" destination="KSM-nR-A3G" id="VLz-do-s7N"/>
-                <outlet property="contentStackView" destination="XTD-1c-I4W" id="FR0-4g-udk"/>
                 <outlet property="leftLineContainer" destination="Ew2-CA-NMt" id="v43-bV-Kd1"/>
                 <outlet property="messageLabel" destination="7nT-GT-4h9" id="a38-wz-6nd"/>
                 <outlet property="messageLabelLeadingConstraint" destination="w2g-8z-QSW" id="YxI-G4-TEo"/>
@@ -136,7 +135,7 @@
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="d54-Qo-HA4">
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="251"/>
                                             <subviews>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="7nT-GT-4h9" customClass="MessageTextField" customModule="Sphinx" customModuleProvider="target">
+                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="7nT-GT-4h9" customClass="MessageTextField" customModule="Sphinx" customModuleProvider="target">
                                                     <rect key="frame" x="14" y="16" width="172" height="219"/>
                                                     <textFieldCell key="cell" selectable="YES" alignment="left" title="Label" id="Agh-jn-c7r">
                                                         <font key="font" size="14" name="Roboto-Regular"/>

@@ -20,7 +20,8 @@ extension ThreadTableDataSource {
     }
     
     override func processMessages(
-        messages: [TransactionMessage]
+        messages: [TransactionMessage],
+        UIUpdateIndex: Int
     ) {
         let chat = chat ?? contact?.getFakeChat()
         
@@ -118,7 +119,7 @@ extension ThreadTableDataSource {
         
         messageTableCellStateArray = array
         
-        updateSnapshot()
+        updateSnapshot(UIUpdateIndex: UIUpdateIndex)
         delegate?.configureNewMessagesIndicatorWith(newMsgCount: messages.count)
     }
     

@@ -114,6 +114,9 @@ class NewChatTableDataSource : NSObject {
     ///Chat Helper
     let chatHelper = ChatHelper()
     
+    ///Semaphore for UI update
+    var UIUpdateIndex = 0
+    
     ///Constants
     static let kThreadHeaderRowIndex = -10
     
