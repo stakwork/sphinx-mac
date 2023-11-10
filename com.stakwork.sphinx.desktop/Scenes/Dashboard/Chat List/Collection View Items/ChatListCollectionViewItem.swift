@@ -23,6 +23,7 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
     @IBOutlet weak var nameLabel: NSTextField!
     @IBOutlet weak var lockSignLabel: NSTextField!
     @IBOutlet weak var inviteIconLabel: NSTextField!
+    @IBOutlet weak var failedMessageIcon: NSTextField!
     @IBOutlet weak var messageLabel: NSTextField!
     @IBOutlet weak var muteImageView: NSImageView!
     @IBOutlet weak var dateLabel: NSTextField!
@@ -64,6 +65,7 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
         muteImageView.isHidden = true
         inviteIconLabel.isHidden = true
         invitePriceContainer.isHidden = true
+        failedMessageIcon.isHidden = true
         
         inviteImageView.contentTintColor = NSColor.Sphinx.Text
         inviteImageView.image = NSImage(named: "inviteQrCode")
@@ -267,6 +269,7 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
             inviteIconLabel.stringValue = icon
             inviteIconLabel.textColor = iconColor
             inviteIconLabel.isHidden = false
+            failedMessageIcon.isHidden = true
             
             messageLabel.superview?.isHidden = false
             messageLabel.stringValue = text
@@ -278,16 +281,23 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
         } else {
             
             inviteIconLabel.isHidden = true
+            failedMessageIcon.isHidden = true
             
             if let lastMessage = chatListObject.lastMessage {
+                
+                let isFailedMessage = lastMessage.failed()
 
                 messageLabel.font = hasUnreadMessages ?
                     Constants.kNewMessagePreviewFont
                     : Constants.kMessagePreviewFont
                 
-                messageLabel.textColor = hasUnreadMessages ?
-                    .Sphinx.TextMessages
-                    : .Sphinx.SecondaryText
+                if isFailedMessage {
+                    messageLabel.textColor = .Sphinx.PrimaryRed
+                } else {
+                    messageLabel.textColor = hasUnreadMessages ?
+                        .Sphinx.TextMessages
+                        : .Sphinx.SecondaryText
+                }
                 
                 messageLabel.stringValue = lastMessage.getMessageContentPreview(
                     owner: owner,
@@ -298,6 +308,8 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
                 
                 messageLabel.superview?.isHidden = false
                 dateLabel.isHidden = false
+                
+                failedMessageIcon.isHidden = !isFailedMessage
             } else {
                 messageLabel.superview?.isHidden = true
                 dateLabel.isHidden = true

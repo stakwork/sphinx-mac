@@ -14,6 +14,7 @@
                 <outlet property="chatInitialsLabel" destination="inh-ff-0bK" id="T00-zr-DSD"/>
                 <outlet property="chatInitialsView" destination="6fn-Ml-eGP" id="uvx-81-qLz"/>
                 <outlet property="dateLabel" destination="lCr-zc-pEk" id="XnQ-eY-TNz"/>
+                <outlet property="failedMessageIcon" destination="EVb-5c-qLp" id="QRm-pQ-7gi"/>
                 <outlet property="inviteIconLabel" destination="NbI-90-UUd" id="yLV-1a-ajM"/>
                 <outlet property="inviteImageView" destination="g3b-VE-306" id="9aw-yN-89p"/>
                 <outlet property="invitePriceContainer" destination="kk4-Xz-eHc" id="LTE-i4-IWp"/>
@@ -101,13 +102,13 @@
                             </constraints>
                         </customView>
                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="4" horizontalStackHuggingPriority="248.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="749" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zvz-rW-kZ8">
-                            <rect key="frame" x="61" y="2" width="377" height="42"/>
+                            <rect key="frame" x="61" y="1" width="377" height="43"/>
                             <subviews>
                                 <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tfQ-XL-WAx">
-                                    <rect key="frame" x="0.0" y="22" width="168" height="20"/>
+                                    <rect key="frame" x="0.0" y="22" width="168" height="21"/>
                                     <subviews>
                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DGs-Cx-Khc">
-                                            <rect key="frame" x="-2" y="0.0" width="155" height="20"/>
+                                            <rect key="frame" x="-2" y="1" width="155" height="20"/>
                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" title="Tomas A Timinskas" id="NOf-kO-8h0">
                                                 <font key="font" size="17" name="Roboto-Regular"/>
                                                 <color key="textColor" name="PrimaryText"/>
@@ -115,7 +116,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Zj-Kl-BUt">
-                                            <rect key="frame" x="151" y="2" width="19" height="15"/>
+                                            <rect key="frame" x="151" y="3" width="19" height="15"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="lock" id="B17-Ba-ow7">
                                                 <font key="font" size="15" name="MaterialIcons-Regular"/>
                                                 <color key="textColor" name="SecondaryText"/>
@@ -140,7 +141,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="85" height="18"/>
                                     <subviews>
                                         <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="NbI-90-UUd">
-                                            <rect key="frame" x="-2" y="1" width="21" height="17"/>
+                                            <rect key="frame" x="-2" y="1" width="21" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="warning" id="1e6-fn-Spl">
                                                 <font key="font" size="17" name="MaterialIcons-Regular"/>
                                                 <color key="textColor" name="PrimaryGreen"/>
@@ -158,16 +159,29 @@
                                                 <color key="backgroundColor" name="sphinxWhite"/>
                                             </textFieldCell>
                                         </textField>
+                                        <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="EVb-5c-qLp">
+                                            <rect key="frame" x="-2" y="1" width="18" height="14"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="error" id="1xp-7y-WQ6">
+                                                <font key="font" size="14" name="MaterialIcons-Regular"/>
+                                                <color key="textColor" name="PrimaryRed"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="lXx-aV-dLV" firstAttribute="centerY" secondItem="NbI-90-UUd" secondAttribute="centerY" id="rG2-1k-f7P"/>
+                                        <constraint firstItem="lXx-aV-dLV" firstAttribute="top" secondItem="yWz-dQ-yMG" secondAttribute="top" constant="1" id="u1O-IO-W39"/>
                                         <constraint firstItem="lXx-aV-dLV" firstAttribute="centerY" secondItem="yWz-dQ-yMG" secondAttribute="centerY" id="v3f-qf-KMf"/>
+                                        <constraint firstItem="EVb-5c-qLp" firstAttribute="bottom" secondItem="lXx-aV-dLV" secondAttribute="bottom" id="xuf-fA-rwD"/>
                                         <constraint firstItem="lXx-aV-dLV" firstAttribute="bottom" secondItem="NbI-90-UUd" secondAttribute="bottom" id="yU5-Ry-b8t"/>
                                     </constraints>
                                     <visibilityPriorities>
                                         <integer value="1000"/>
                                         <integer value="1000"/>
+                                        <integer value="1000"/>
                                     </visibilityPriorities>
                                     <customSpacing>
+                                        <real value="3.4028234663852886e+38"/>
                                         <real value="3.4028234663852886e+38"/>
                                         <real value="3.4028234663852886e+38"/>
                                     </customSpacing>
@@ -328,7 +342,9 @@
                     </subviews>
                     <constraints>
                         <constraint firstItem="804-BU-vML" firstAttribute="centerY" secondItem="oAd-56-9Te" secondAttribute="centerY" id="b5b-KE-LsL"/>
+                        <constraint firstItem="Zvz-rW-kZ8" firstAttribute="top" secondItem="oAd-56-9Te" secondAttribute="top" constant="1" id="gQ5-V4-L87"/>
                         <constraint firstItem="Zvz-rW-kZ8" firstAttribute="centerY" secondItem="oAd-56-9Te" secondAttribute="centerY" id="lRZ-jP-Aqo"/>
+                        <constraint firstAttribute="trailing" secondItem="Zvz-rW-kZ8" secondAttribute="trailing" constant="66" id="oyO-cz-sKX"/>
                     </constraints>
                     <visibilityPriorities>
                         <integer value="1000"/>
@@ -381,6 +397,9 @@
         </namedColor>
         <namedColor name="PrimaryGreen">
             <color red="0.28627450980392155" green="0.78823529411764703" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PrimaryRed">
+            <color red="0.92941176470588238" green="0.45490196078431372" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="PrimaryText">
             <color red="0.16078431372549021" green="0.17254901960784313" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
