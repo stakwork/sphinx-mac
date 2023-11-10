@@ -192,9 +192,13 @@ class WindowsManager {
     }
     
     func showWebAppWindow(chat: Chat?, view: NSView) {
-        if let chat = chat, let tribeInfo = chat.tribeInfo, let gameURL = tribeInfo.appUrl, !gameURL.isEmpty && gameURL.isValidURL {            
+        if let chat = chat,
+            let tribeInfo = chat.tribeInfo,
+            let gameURL = tribeInfo.appUrl,
+            !gameURL.isEmpty && gameURL.isValidURL,
+           let webGameVC = WebAppViewController.instantiate(chat: chat){
             let appTitle = chat.name ?? ""
-            let webGameVC = WebAppViewController.instantiate(chat: chat)
+            
             
             let screen = NSApplication.shared.keyWindow
             let frame : CGRect = screen?.frame ?? view.frame
@@ -208,6 +212,9 @@ class WindowsManager {
                           identifier: chat.getWebAppIdentifier(),
                           styleMask: [.titled, .resizable, .closable],
                           contentVC: webGameVC)
+        }
+        else{
+            AlertHelper.showAlert(title: "generic.error.title".localized, message: "generic.error.message".localized)
         }
     }
     
