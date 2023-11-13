@@ -229,28 +229,35 @@ public class Chat: NSManagedObject {
     }
     
     public static func getAllExcluding(ids: [Int]) -> [Chat] {
-        var predicate: NSPredicate! = nil
+        let predicate = NSPredicate(format: "NOT (id IN %@)", ids)
         
-        if GroupsPinManager.sharedInstance.isStandardPIN {
-            predicate = NSPredicate(format: "NOT (id IN %@) AND pin == null", ids)
-        } else {
-            let currentPin = GroupsPinManager.sharedInstance.currentPin
-            predicate = NSPredicate(format: "NOT (id IN %@) AND pin = %@", ids, currentPin)
-        }
+//        var predicate: NSPredicate! = nil
+        
+//        if GroupsPinManager.sharedInstance.isStandardPIN {
+//            predicate = NSPredicate(format: "NOT (id IN %@) AND pin == null", ids)
+//        } else {
+//            let currentPin = GroupsPinManager.sharedInstance.currentPin
+//            predicate = NSPredicate(format: "NOT (id IN %@) AND pin = %@", ids, currentPin)
+//        }
         
         let chats: [Chat] = CoreDataManager.sharedManager.getObjectsOfTypeWith(predicate: predicate, sortDescriptors: [], entityName: "Chat")
         return chats
     }
     
     static func getAllGroups() -> [Chat] {
-        var predicate: NSPredicate! = nil
+        let predicate = NSPredicate(
+            format: "type IN %@",
+            [Chat.ChatType.privateGroup.rawValue, Chat.ChatType.publicGroup.rawValue]
+        )
         
-        if GroupsPinManager.sharedInstance.isStandardPIN {
-            predicate = NSPredicate(format: "type IN %@ AND pin == null", [Chat.ChatType.privateGroup.rawValue, Chat.ChatType.publicGroup.rawValue])
-        } else {
-            let currentPin = GroupsPinManager.sharedInstance.currentPin
-            predicate = NSPredicate(format: "type IN %@ AND pin = %@", [Chat.ChatType.privateGroup.rawValue, Chat.ChatType.publicGroup.rawValue], currentPin)
-        }
+//        var predicate: NSPredicate! = nil
+//        
+//        if GroupsPinManager.sharedInstance.isStandardPIN {
+//            predicate = NSPredicate(format: "type IN %@ AND pin == null", [Chat.ChatType.privateGroup.rawValue, Chat.ChatType.publicGroup.rawValue])
+//        } else {
+//            let currentPin = GroupsPinManager.sharedInstance.currentPin
+//            predicate = NSPredicate(format: "type IN %@ AND pin = %@", [Chat.ChatType.privateGroup.rawValue, Chat.ChatType.publicGroup.rawValue], currentPin)
+//        }
         
         let sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         let chats:[Chat] = CoreDataManager.sharedManager.getObjectsOfTypeWith(predicate: predicate, sortDescriptors: sortDescriptors, entityName: "Chat")
