@@ -251,6 +251,10 @@ class ChatHeaderView: NSView, LoadableNib {
     }
     
     func checkRoute() {
+        if self.chat == nil && self.contact == nil {
+            return
+        }
+        
         boltSign.isHidden = false
         
         API.sharedInstance.checkRoute(
