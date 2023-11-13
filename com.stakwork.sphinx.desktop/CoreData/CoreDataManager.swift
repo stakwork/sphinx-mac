@@ -167,7 +167,7 @@ class CoreDataManager {
     }
     
     func getObjectsOfTypeWith<T>(
-        predicate: NSPredicate,
+        predicate: NSPredicate?,
         sortDescriptors: [NSSortDescriptor],
         entityName: String,
         fetchLimit: Int? = nil,
@@ -177,7 +177,11 @@ class CoreDataManager {
         var objects:[T] = [T]()
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"\(entityName)")
-        fetchRequest.predicate = predicate
+        
+        if let predicate = predicate {
+            fetchRequest.predicate = predicate
+        }
+        
         fetchRequest.sortDescriptors = sortDescriptors
         
         if let fetchLimit = fetchLimit {
