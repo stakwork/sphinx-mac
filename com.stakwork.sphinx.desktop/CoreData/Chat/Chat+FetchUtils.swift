@@ -37,15 +37,13 @@ extension Chat {
             )
         }
         
-        public static func all() -> NSPredicate? {
-            return nil
-            
-//            if GroupsPinManager.sharedInstance.isStandardPIN {
-//                return NSPredicate(format: "pin == null")
-//            } else {
-//                let currentPin = GroupsPinManager.sharedInstance.currentPin
-//                return NSPredicate(format: "pin = %@", currentPin)
-//            }
+        public static func all() -> NSPredicate {            
+            if GroupsPinManager.sharedInstance.isStandardPIN {
+                return NSPredicate(format: "pin == null")
+            } else {
+                let currentPin = GroupsPinManager.sharedInstance.currentPin
+                return NSPredicate(format: "pin = %@", currentPin)
+            }
         }
     }
 }
