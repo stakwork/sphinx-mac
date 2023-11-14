@@ -202,11 +202,16 @@ class NewChatViewController: DashboardSplittedViewController {
     
     func summarizeThread()->String?{
         var llmPrompt = ""
-        llmPrompt += "The following is a transcript of a text message thread. Please succinctly summarize the key points down into about 3 to 4 sentences or less if possible:"
-        guard let datasource = self.newChatViewModel.chatDataSource else{
+        llmPrompt += "The following is a transcript of a text message thread. Please succinctly summarize the key points down into at most one sentence and about 3 to 4 bullet points or less if possible:"
+        guard let datasource = self.newChatViewModel.chatDataSource,
+        let uuid = threadUUID,
+        let chat = chat,
+        let originalMessage = TransactionMessage.getOriginalMessagesFor([uuid], on: chat).first else{
             return nil
         }
-//        let originalMessage = self.threadHeaderView.messageLabel
+        
+        llmPrompt += "\n\(originalMessage.senderAlias ?? "unknown"):\(originalMessage.messageContent ?? "")"
+        
         for message in datasource.messagesArray{
             llmPrompt += "\n\(message.senderAlias ?? "unknown"):\(message.messageContent ?? "")"
             print("summarizeThread message sender:\(message.senderAlias)")
