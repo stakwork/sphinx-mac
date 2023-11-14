@@ -138,6 +138,12 @@ class NewChatViewController: DashboardSplittedViewController {
         
         if (self.isThread) {
             addEscapeMonitor()
+            guard let transcript = self.summarizeThread() else{
+                return
+            }
+            API.sharedInstance.askForChatSummary(threadTranscript: transcript,completion: { summary in
+                print(summary)//TODO update UI accordingly...
+            })
         }
     }
     
@@ -192,6 +198,22 @@ class NewChatViewController: DashboardSplittedViewController {
             }
             return event
         }
+    }
+    
+    func summarizeThread()->String?{
+        var llmPrompt = ""
+        llmPrompt += "The following is a transcript of a text message thread. Please succinctly summarize the key points down into about 3 to 4 sentences or less if possible:"
+        guard let datasource = self.newChatViewModel.chatDataSource else{
+            return nil
+        }
+//        let originalMessage = self.threadHeaderView.messageLabel
+        for message in datasource.messagesArray{
+            llmPrompt += "\n\(message.senderAlias ?? "unknown"):\(message.messageContent ?? "")"
+            print("summarizeThread message sender:\(message.senderAlias)")
+            print("summarizeThread message content:\(message.messageContent)")
+        }
+        print("summarizeThread llmPrompt:\(llmPrompt)")
+        return llmPrompt
     }
     
     func forceReload() {

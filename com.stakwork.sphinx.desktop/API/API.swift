@@ -100,6 +100,61 @@ class API {
     
     public static let kTribesServerBaseURL = "https://tribes.sphinx.chat"
     
+    func askForChatSummary(threadTranscript:String, completion: @escaping (String?) -> Void){
+        let apiUrl = "https://api.openai.com/v1/chat/completions"
+        let apiKey = "INSERT KEY HERE" // Replace with your API key
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json",
+            "Authorization": "Bearer \(apiKey)"
+        ]
+
+        let parameters: [String: Any] = [
+            "model": "gpt-3.5-turbo",
+            "messages": [
+                [
+                    "role": "system",
+                    "content": "You are a helpful assistant."
+                ],
+                [
+                    "role": "user",
+                    "content": "\(threadTranscript)'"
+                ]
+            ]
+        ]
+
+        AF.request(apiUrl, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+            .responseJSON { response in
+                switch response.result {
+                case .success(let value):
+                    if let responseData = value as? [String: Any] {
+                        // Handle successful response here
+                        print(responseData)
+                        if let responseData = value as? [String: Any],
+                           let choices = responseData["choices"] as? [[String: Any]],
+                           let firstChoice = choices.first,
+                           let message = firstChoice["message"] as? [String: Any],
+                           let content = message["content"] as? String {
+                               // You can now use the `content` variable
+                               print(content)
+                            completion(content)
+                        } else {
+                            // Handle unexpected response format
+                            print("Unexpected response format")
+                            completion(nil)
+                        }
+                    } else {
+                        // Handle unexpected response format
+                        print("Unexpected response format")
+                        completion(nil)
+                    }
+                case .failure(let error):
+                    // Handle the error
+                    print("ERROR: \(error.localizedDescription)")
+                    completion(nil)
+                }
+            }
+    }
+    
     public static var kAttachmentsServerUrl : String {
         get {
             if let fileServerURL = UserDefaults.Keys.fileServerURL.get(defaultValue: ""), fileServerURL != "" {
