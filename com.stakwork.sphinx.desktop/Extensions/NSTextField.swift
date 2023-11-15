@@ -10,10 +10,23 @@ import Cocoa
 
 extension NSTextField {
     
-    func setPlaceHolder(color: NSColor, font: NSFont, string: String) {
-        let attrs = [NSAttributedString.Key.foregroundColor: color,
-                     NSAttributedString.Key.font: font]
+    func setPlaceHolder(
+        color: NSColor,
+        font: NSFont,
+        string: String,
+        lineHeight: CGFloat? = nil
+    ) {
+        let style = NSMutableParagraphStyle()
+        style.lineSpacing = lineHeight ?? font.pointSize
+        style.minimumLineHeight = lineHeight ?? font.pointSize
+        
+        let attrs = [
+            NSAttributedString.Key.foregroundColor: color,
+            NSAttributedString.Key.font: font,
+            NSAttributedString.Key.paragraphStyle: style
+        ]
         let placeholderString = NSAttributedString(string: string, attributes: attrs)
+        
         self.placeholderAttributedString = placeholderString
     }
     

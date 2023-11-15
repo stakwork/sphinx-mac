@@ -12,13 +12,14 @@ class SignupSecureFieldView: SignupCommonSecureFieldView {
     
     let pinLength = 6
     
-    func configureWith(placeHolder: String,
-                       label: String,
-                       backgroundColor: NSColor = NSColor(hex: "#101317"),
-                       color: NSColor = NSColor.white,
-                       placeHolderColor: NSColor = NSColor(hex: "#3B4755"),
-                       field: NamePinView.Fields,
-                       delegate: SignupFieldViewDelegate
+    func configureWith(
+        placeHolder: String,
+        label: String,
+        backgroundColor: NSColor = NSColor(hex: "#101317"),
+        color: NSColor = NSColor.white,
+        placeHolderColor: NSColor = NSColor(hex: "#3B4755"),
+        field: NamePinView.Fields,
+        delegate: SignupFieldViewDelegate
     ) {
         self.field = field
         self.delegate = delegate
@@ -27,13 +28,22 @@ class SignupSecureFieldView: SignupCommonSecureFieldView {
         
         topLabel.stringValue = label
         topLabel.alphaValue = 0.0
-        textField.setPlaceHolder(color: placeHolderColor, font: NSFont(name: "Roboto-Regular", size: 14.0)!, string: placeHolder)
+        
+        textField.setPlaceHolder(
+            color: placeHolderColor,
+            font: NSFont(name: "Roboto-Regular", size: 14.0)!,
+            string: placeHolder,
+            lineHeight: 21.0
+        )
+        
         textField.color = color
         textField.textColor = color
         textField.delegate = self
+        
         textField.onFocusChange = { active in
             super.toggleActiveState(active)
         }
+        
         textField.window?.makeFirstResponder(textField)
     }
 }
