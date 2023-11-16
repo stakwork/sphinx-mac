@@ -42,7 +42,10 @@ class WebAppViewController: NSViewController {
         webAppHelper.delegate = self
         view.wantsLayer = true
         view.layer?.backgroundColor = NSColor.Sphinx.Body.cgColor
+        
+        authorizeModalContainer.isHidden = true
         authorizeModalContainer.alphaValue = 0.0
+        
         addWebView()
         loadPage()
     }
@@ -178,9 +181,17 @@ extension WebAppViewController : AuthorizeAppViewDelegate {
     }
     
     func toggleAuthorizationView(show: Bool) {
+        if show {
+            authorizeModalContainer.isHidden = false
+        }
+        
         AnimationHelper.animateViewWith(duration: 0.3, animationsBlock: {
             self.authorizeModalContainer.alphaValue = show ? 1.0 : 0.0
-        })
+        }) {
+            if !show {
+                self.authorizeModalContainer.isHidden = true
+            }
+        }
     }
     
     func shouldAuthorizeWith(amount: Int, dict: [String: AnyObject]) {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,6 +11,7 @@
             <connections>
                 <outlet property="amountTextField" destination="gje-wP-RJN" id="4fY-HD-wUY"/>
                 <outlet property="appNameLabel" destination="0Zc-1V-VjA" id="7E6-DD-qfA"/>
+                <outlet property="closeButton" destination="G4l-r3-cV5" id="CeX-jD-ywm"/>
                 <outlet property="confirmButton" destination="OB9-sZ-5y2" id="TfF-Tz-zrI"/>
                 <outlet property="confirmButtonContainer" destination="jNq-gT-jRB" id="VQY-vQ-IOb"/>
                 <outlet property="confirmButtonLabel" destination="wPt-Hh-uvG" id="T2O-S0-cTv"/>
@@ -33,22 +34,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="300" height="500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="G4l-r3-cV5">
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="G4l-r3-cV5" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                                 <rect key="frame" x="240" y="440" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="7Rw-eA-X8h"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="cgk-b0-AGL"/>
-                                </constraints>
                                 <buttonCell key="cell" type="bevel" title="close" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="Lgi-ir-8RX">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="18" name="MaterialIcons-Regular"/>
                                 </buttonCell>
                                 <color key="contentTintColor" name="PrimaryRed"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="7Rw-eA-X8h"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="cgk-b0-AGL"/>
+                                </constraints>
                                 <connections>
                                     <action selector="closeButtonClicked:" target="-2" id="HnG-f3-EwE"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bAc-9p-itn">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bAc-9p-itn">
                                 <rect key="frame" x="121" y="395" width="59" height="55"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="verified_user" id="Fjm-Vd-VK2">
                                     <font key="font" size="55" name="MaterialIcons-Regular"/>
@@ -56,7 +57,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uF4-Ob-MZg">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uF4-Ob-MZg">
                                 <rect key="frame" x="84" y="345" width="133" height="35"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Authorize" id="S8f-3c-6I7">
                                     <font key="font" size="30" name="Roboto-Regular"/>
@@ -64,7 +65,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0Zc-1V-VjA">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0Zc-1V-VjA">
                                 <rect key="frame" x="141" y="283" width="19" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" id="Qhz-qg-oht"/>
@@ -75,7 +76,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rc7-5k-2FA">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rc7-5k-2FA">
                                 <rect key="frame" x="89" y="250" width="122" height="18"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="to withdraw up to" id="qZH-uF-qTf">
                                     <font key="font" size="15" name="Roboto-Regular"/>
@@ -109,7 +110,7 @@
                                 </constraints>
                                 <color key="borderColor" name="LightDivider"/>
                             </box>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dd8-RG-Caz">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dd8-RG-Caz">
                                 <rect key="frame" x="64" y="152" width="173" height="18"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="sats before reauthorizing" id="QF9-Re-Eh4">
                                     <font key="font" size="15" name="Roboto-Regular"/>
@@ -123,7 +124,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wPt-Hh-uvG">
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wPt-Hh-uvG">
                                             <rect key="frame" x="76" y="16" width="89" height="18"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="AUTHORIZE" id="Cjt-5d-UoB">
                                                 <font key="font" size="14" name="Montserrat-SemiBold"/>
@@ -131,7 +132,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OB9-sZ-5y2">
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OB9-sZ-5y2" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
                                             <buttonCell key="cell" type="bevel" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="57X-uI-phy">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -167,6 +168,7 @@
                             <constraint firstAttribute="trailing" secondItem="jNq-gT-jRB" secondAttribute="trailing" constant="30" id="1cE-Pz-Ml3"/>
                             <constraint firstItem="Rc7-5k-2FA" firstAttribute="top" secondItem="0Zc-1V-VjA" secondAttribute="bottom" constant="15" id="3Y8-1e-IXI"/>
                             <constraint firstItem="0Zc-1V-VjA" firstAttribute="centerX" secondItem="h7I-jo-F1L" secondAttribute="centerX" id="3rk-HJ-dGX"/>
+                            <constraint firstItem="0Zc-1V-VjA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="h7I-jo-F1L" secondAttribute="leading" constant="15" id="6p0-n5-NBW"/>
                             <constraint firstAttribute="trailing" secondItem="G4l-r3-cV5" secondAttribute="trailing" id="8gp-oC-syc"/>
                             <constraint firstItem="dd8-RG-Caz" firstAttribute="top" secondItem="28a-Df-4lN" secondAttribute="bottom" constant="15" id="EPN-n0-jkT"/>
                             <constraint firstItem="28a-Df-4lN" firstAttribute="top" secondItem="Rc7-5k-2FA" secondAttribute="bottom" constant="15" id="IJ2-mW-wPL"/>
@@ -181,6 +183,7 @@
                             <constraint firstItem="dd8-RG-Caz" firstAttribute="centerX" secondItem="h7I-jo-F1L" secondAttribute="centerX" id="hjc-jq-DWn"/>
                             <constraint firstItem="uF4-Ob-MZg" firstAttribute="centerX" secondItem="bAc-9p-itn" secondAttribute="centerX" id="mOF-pT-Vc1"/>
                             <constraint firstItem="0Zc-1V-VjA" firstAttribute="top" secondItem="uF4-Ob-MZg" secondAttribute="bottom" constant="42" id="tAD-PY-TlO"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0Zc-1V-VjA" secondAttribute="trailing" constant="15" id="uSN-Zz-TyA"/>
                             <constraint firstItem="28a-Df-4lN" firstAttribute="leading" secondItem="h7I-jo-F1L" secondAttribute="leading" constant="20" id="yV7-Me-XtE"/>
                         </constraints>
                     </view>
