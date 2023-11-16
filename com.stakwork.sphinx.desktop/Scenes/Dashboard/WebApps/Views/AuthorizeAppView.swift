@@ -22,11 +22,12 @@ class AuthorizeAppView: NSView, LoadableNib {
     @IBOutlet weak var amountTextField: NSTextField!
     @IBOutlet weak var confirmButtonContainer: NSBox!
     @IBOutlet weak var confirmButtonLabel: NSTextField!
-    @IBOutlet weak var confirmButton: NSButton!
+    @IBOutlet weak var confirmButton: CustomButton!
     @IBOutlet weak var loadingWheel: NSProgressIndicator!
     @IBOutlet weak var fieldContainer: NSBox!
     @IBOutlet weak var fieldTopLabel: NSTextField!
     @IBOutlet weak var fieldBottomLabel: NSTextField!
+    @IBOutlet weak var closeButton: CustomButton!
     
     var dict : [String: AnyObject] = [:]
     
@@ -53,6 +54,9 @@ class AuthorizeAppView: NSView, LoadableNib {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         loadViewFromNib()
+        
+        closeButton.cursor = .pointingHand
+        confirmButton.cursor = .pointingHand
         
         confirmButtonContainer.wantsLayer = true
         confirmButtonContainer.layer?.cornerRadius = confirmButtonContainer.frame.height / 2
