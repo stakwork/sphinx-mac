@@ -211,7 +211,7 @@ public class Chat: NSManagedObject {
         var predicate: NSPredicate! = nil
         
         if GroupsPinManager.sharedInstance.isStandardPIN {
-            predicate = NSPredicate(format: "pin == null")
+            predicate = NSPredicate(format: "pin = nil")
         } else {
             let currentPin = GroupsPinManager.sharedInstance.currentPin
             predicate = NSPredicate(format: "pin = %@", currentPin)
@@ -232,7 +232,7 @@ public class Chat: NSManagedObject {
         var predicate: NSPredicate! = nil
         
         if GroupsPinManager.sharedInstance.isStandardPIN {
-            predicate = NSPredicate(format: "NOT (id IN %@) AND pin == null", ids)
+            predicate = NSPredicate(format: "NOT (id IN %@) AND pin = nil", ids)
         } else {
             let currentPin = GroupsPinManager.sharedInstance.currentPin
             predicate = NSPredicate(format: "NOT (id IN %@) AND pin = %@", ids, currentPin)
@@ -246,7 +246,7 @@ public class Chat: NSManagedObject {
         var predicate: NSPredicate! = nil
         
         if GroupsPinManager.sharedInstance.isStandardPIN {
-            predicate = NSPredicate(format: "type IN %@ AND pin == null", [Chat.ChatType.privateGroup.rawValue, Chat.ChatType.publicGroup.rawValue])
+            predicate = NSPredicate(format: "type IN %@ AND pin = nil", [Chat.ChatType.privateGroup.rawValue, Chat.ChatType.publicGroup.rawValue])
         } else {
             let currentPin = GroupsPinManager.sharedInstance.currentPin
             predicate = NSPredicate(format: "type IN %@ AND pin = %@", [Chat.ChatType.privateGroup.rawValue, Chat.ChatType.publicGroup.rawValue], currentPin)

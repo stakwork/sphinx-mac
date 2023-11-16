@@ -52,7 +52,7 @@ extension UserContact {
         public static func chatList() -> NSPredicate {
             if GroupsPinManager.sharedInstance.isStandardPIN {
                 return NSPredicate(
-                    format: "isOwner == %@ AND fromGroup == %@ AND pin == null",
+                    format: "isOwner == %@ AND fromGroup == %@ AND pin = nil",
                     NSNumber(value: false),
                     NSNumber(value: false)
                 )

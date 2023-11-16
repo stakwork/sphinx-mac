@@ -234,7 +234,7 @@ extension TransactionMessage {
         
         let predicate = NSPredicate(
             format:
-                "senderId != %d AND seen == %@ AND chat != null AND id >= 0 AND chat.seen == %@ AND (chat.notify == %d OR (chat.notify == %d AND push == %@))",
+                "senderId != %d AND seen == %@ AND chat != nil AND id >= 0 AND chat.seen == %@ AND (chat.notify == %d OR (chat.notify == %d AND push == %@))",
             userId,
             NSNumber(booleanLiteral: false),
             NSNumber(booleanLiteral: false),

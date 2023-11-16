@@ -158,7 +158,7 @@ public class UserContact: NSManagedObject {
         var predicate: NSPredicate! = nil
         
         if GroupsPinManager.sharedInstance.isStandardPIN {
-            predicate = NSPredicate(format: "pin == null")
+            predicate = NSPredicate(format: "pin = nil")
         } else {
             let currentPin = GroupsPinManager.sharedInstance.currentPin
             predicate = NSPredicate(format: "pin = %@", currentPin)
@@ -177,7 +177,7 @@ public class UserContact: NSManagedObject {
         var predicate: NSPredicate! = nil
         
         if GroupsPinManager.sharedInstance.isStandardPIN {
-            predicate = NSPredicate(format: "NOT (id IN %@) AND pin == null", ids)
+            predicate = NSPredicate(format: "NOT (id IN %@) AND pin = nil", ids)
         } else {
             let currentPin = GroupsPinManager.sharedInstance.currentPin
             predicate = NSPredicate(format: "NOT (id IN %@) AND pin = %@", ids, currentPin)
@@ -196,7 +196,7 @@ public class UserContact: NSManagedObject {
     }
     
     public static func getPrivateContacts() -> [UserContact] {
-        let predicate = NSPredicate(format: "pin != null")
+        let predicate = NSPredicate(format: "pin != nil")
         let contacts: [UserContact] = CoreDataManager.sharedManager.getObjectsOfTypeWith(predicate: predicate, sortDescriptors: [], entityName: "UserContact")
         return contacts
     }
