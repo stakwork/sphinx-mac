@@ -428,6 +428,11 @@ class ChatHelper {
                 CommonNewMessageCollectionViewitem.kMaximumFileBubbleWidth,
                 collectionViewWidth - 80
             )
+        } else if let _ = mutableTableCellState.audio {
+            maxWidth = min(
+                CommonNewMessageCollectionViewitem.kMaximumAudioBubbleWidth,
+                collectionViewWidth - 80
+            )
         } else if let _ = linkData {
             maxWidth = min(
                 CommonNewMessageCollectionViewitem.kMaximumLinksBubbleWidth,
