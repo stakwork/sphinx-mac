@@ -212,6 +212,8 @@ extension ContactsService : NSFetchedResultsControllerDelegate {
             let conversations = chats.filter({ $0.isConversation() })
             let contactIds = ((conversations.map { $0.contactIds }).flatMap { $0 }).map { $0.intValue }
             self.contacts = self.allContacts.filter({ !contactIds.contains($0.id) && !$0.isExpiredInvite() })
+        } else {
+            self.contacts = []
         }
         
         processChatListObjects()
