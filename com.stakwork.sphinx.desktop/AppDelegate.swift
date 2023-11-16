@@ -155,11 +155,13 @@ import WebKit
         [
             profileMenuItem,
             newContactMenuItem,
-            logoutMenuItem,
+//            logoutMenuItem,
             removeAccountMenuItem,
             createTribeMenuItem
         ]
         .forEach { $0?.isHidden = shouldEnableItems == false }
+        
+        logoutMenuItem.isHidden = true
     }
     
     

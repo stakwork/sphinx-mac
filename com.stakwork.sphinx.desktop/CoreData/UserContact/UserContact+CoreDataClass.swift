@@ -155,14 +155,16 @@ public class UserContact: NSManagedObject {
     public static func getAll() -> [UserContact] {
         let sortDescriptors = [NSSortDescriptor(key: "status", ascending: true), NSSortDescriptor(key: "nickname", ascending: true)]
         
-        var predicate: NSPredicate! = nil
+        let predicate: NSPredicate? = nil
         
-        if GroupsPinManager.sharedInstance.isStandardPIN {
-            predicate = NSPredicate(format: "pin = nil")
-        } else {
-            let currentPin = GroupsPinManager.sharedInstance.currentPin
-            predicate = NSPredicate(format: "pin = %@", currentPin)
-        }
+//        var predicate: NSPredicate! = nil
+//        
+//        if GroupsPinManager.sharedInstance.isStandardPIN {
+//            predicate = NSPredicate(format: "pin = nil")
+//        } else {
+//            let currentPin = GroupsPinManager.sharedInstance.currentPin
+//            predicate = NSPredicate(format: "pin = %@", currentPin)
+//        }
         
         let contacts: [UserContact] = CoreDataManager.sharedManager.getObjectsOfTypeWith(
             predicate: predicate,
@@ -174,14 +176,16 @@ public class UserContact: NSManagedObject {
     }
     
     public static func getAllExcluding(ids: [Int]) -> [UserContact] {
-        var predicate: NSPredicate! = nil
+        let predicate = NSPredicate(format: "NOT (id IN %@)", ids)
         
-        if GroupsPinManager.sharedInstance.isStandardPIN {
-            predicate = NSPredicate(format: "NOT (id IN %@) AND pin = nil", ids)
-        } else {
-            let currentPin = GroupsPinManager.sharedInstance.currentPin
-            predicate = NSPredicate(format: "NOT (id IN %@) AND pin = %@", ids, currentPin)
-        }
+//        var predicate: NSPredicate! = nil
+//        
+//        if GroupsPinManager.sharedInstance.isStandardPIN {
+//            predicate = NSPredicate(format: "NOT (id IN %@) AND pin = nil", ids)
+//        } else {
+//            let currentPin = GroupsPinManager.sharedInstance.currentPin
+//            predicate = NSPredicate(format: "NOT (id IN %@) AND pin = %@", ids, currentPin)
+//        }
         
         let sortDescriptors = [NSSortDescriptor(key: "status", ascending: true), NSSortDescriptor(key: "nickname", ascending: true)]
         let contacts: [UserContact] = CoreDataManager.sharedManager.getObjectsOfTypeWith(predicate: predicate, sortDescriptors: sortDescriptors, entityName: "UserContact")
