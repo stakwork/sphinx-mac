@@ -710,6 +710,10 @@ extension NewChatTableDataSource {
         messageId: Int,
         and rowIndex: Int
     ) {
+        if messageId < 0 {
+            return
+        }
+        
         if let tableCellState = getTableCellStateFor(
             messageId: messageId,
             and: rowIndex
