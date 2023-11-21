@@ -86,7 +86,7 @@ class ChatMentionAutocompleteDataSource : NSObject {
     }
     
     func isTableVisible() -> Bool {
-        return suggestions.count > 0
+        return suggestions.count > 0 && !self.scrollView.isHidden
     }
     
     func updateMentionTableHeight() {
