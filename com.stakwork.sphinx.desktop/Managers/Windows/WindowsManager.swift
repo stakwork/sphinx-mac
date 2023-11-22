@@ -152,6 +152,14 @@ class WindowsManager {
                       contentVC: vc)
     }
     
+    func showTransationsListWindow(vc: NSViewController, window: NSWindow?) {
+        showNewWindow(with: "transactions".localized,
+                      size: CGSize(width: 400, height: 750),
+                      centeredIn: window,
+                      identifier: "transactions-window",
+                      contentVC: vc)
+    }
+    
     func showContactWindow(vc: NSViewController, window: NSWindow?, title: String, identifier: String, size: CGSize) {
         showNewWindow(with: title,
                       size: size,

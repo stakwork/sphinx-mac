@@ -411,6 +411,7 @@
 		4797E87024BCD5B500D13270 /* ChildVCContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4797E87224BCD5B500D13270 /* ChildVCContainer.xib */; };
 		4797E87E24BCD69F00D13270 /* CommonPaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4797E88024BCD69F00D13270 /* CommonPaymentView.xib */; };
 		4797E88524BCD6D700D13270 /* PaymentTemplatesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4797E88724BCD6D700D13270 /* PaymentTemplatesView.xib */; };
+		4797F6492B0E330900A19C58 /* TransactionsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797F6482B0E330900A19C58 /* TransactionsListViewController.swift */; };
 		479A03EB2583D2290093DB30 /* JoinTribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479A03EA2583D2290093DB30 /* JoinTribeViewController.swift */; };
 		479A03ED2587ACE10093DB30 /* TribeMemberInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479A03EC2587ACE10093DB30 /* TribeMemberInfoView.swift */; };
 		479A03F02587E73A0093DB30 /* TribeMemberInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479A03F22587E73A0093DB30 /* TribeMemberInfoView.xib */; };
@@ -1143,6 +1144,7 @@
 		4797E88624BCD6D700D13270 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PaymentTemplatesView.xib; sourceTree = "<group>"; };
 		4797E88924BCD6DB00D13270 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PaymentTemplatesView.strings; sourceTree = "<group>"; };
 		4797E88B24BCD6DD00D13270 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PaymentTemplatesView.strings; sourceTree = "<group>"; };
+		4797F6482B0E330900A19C58 /* TransactionsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsListViewController.swift; sourceTree = "<group>"; };
 		479A03EA2583D2290093DB30 /* JoinTribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTribeViewController.swift; sourceTree = "<group>"; };
 		479A03EC2587ACE10093DB30 /* TribeMemberInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TribeMemberInfoView.swift; sourceTree = "<group>"; };
 		479A03F12587E73A0093DB30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TribeMemberInfoView.xib; sourceTree = "<group>"; };
@@ -2722,6 +2724,7 @@
 				47B55098248BCDD7000514BF /* CreateInvoiceViewController.swift */,
 				47B5509D248BD256000514BF /* SendPaymentViewController.swift */,
 				47B550A8248BEB9A000514BF /* PaymentTemplatesViewController.swift */,
+				4797F6482B0E330900A19C58 /* TransactionsListViewController.swift */,
 			);
 			path = Payments;
 			sourceTree = "<group>";
@@ -3656,6 +3659,7 @@
 				479751E0246D8FFB00D2106B /* ChatListViewController.swift in Sources */,
 				478ED59825D55C6B00940132 /* NamePinView.swift in Sources */,
 				47B5508E24898A0D000514BF /* VerticallyCenteredTextFieldCell.swift in Sources */,
+				4797F6492B0E330900A19C58 /* TransactionsListViewController.swift in Sources */,
 				4707089E24AE65CB00A98DCA /* UserContactChatListExtension.swift in Sources */,
 				475B684629915E12000EF29C /* PodcastFeed+Properties.swift in Sources */,
 				47F8825125656CB0002A7E71 /* SocketEngineWebsocket.swift in Sources */,

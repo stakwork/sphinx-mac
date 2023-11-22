@@ -29,6 +29,7 @@
 "today" = "Hoy";
 "contact" = "Contacto";
 "profile" = "Perfil";
+"transactions" = "Transacciones";
 "profile.saved" = "Los cambios en el perfil han sido guardados con éxito";
 "search" = "Buscar";
 "submit" = "Enviar";
