@@ -42,6 +42,11 @@ class CommonPaymentView: NSView, LoadableNib {
     let kCharacterLimit = 200
     let kMaximumAmount = 9999999
     
+    public enum PaymentViewMode: Int {
+        case View
+        case Window
+    }
+    
     var loading = false {
         didSet {
             LoadingWheelHelper.toggleLoadingWheel(loading: loading, loadingWheel: loadingWheel, color: NSColor.white, controls: [confirmButton])
@@ -66,11 +71,16 @@ class CommonPaymentView: NSView, LoadableNib {
         amountField.setColor(color: NSColor.Sphinx.Text)
     }
     
-    func configureView(paymentViewModel: PaymentViewModel, delegate: CommonPaymentViewDelegate) {
+    func configureView(
+        paymentViewModel: PaymentViewModel,
+        delegate: CommonPaymentViewDelegate,
+        mode: PaymentViewMode = .View
+    ) {
         self.paymentViewModel = paymentViewModel
         self.delegate = delegate
         
         closeButton.title = (getChat()?.isGroup() ?? false) ? "" : ""
+        closeButton.isHidden = mode == .Window
         
         amountField.delegate = self
         amountField.formatter = IntegerValueFormatter()

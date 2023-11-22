@@ -402,17 +402,28 @@ import WebKit
     
     func profileButtonClicked() {
         if let profile = UserContact.getOwner(), profile.id > 0 {
-            WindowsManager.sharedInstance.showProfileWindow(vc: ProfileViewController.instantiate(), window: NSApplication.shared.keyWindow)
+            WindowsManager.sharedInstance.showProfileWindow(
+                vc: ProfileViewController.instantiate(),
+                window: NSApplication.shared.keyWindow
+            )
         }
     }
      
      func transactionsButtonClicked() {
-         WindowsManager.sharedInstance.showTransationsListWindow(vc: TransactionsListViewController.instantiate(), window: NSApplication.shared.keyWindow)
+         WindowsManager.sharedInstance.showTransationsListWindow(
+            vc: TransactionsListViewController.instantiate(),
+            window: NSApplication.shared.keyWindow
+         )
      }
     
     func createTribeButtonClicked() {
         let createTribeVC = CreateTribeViewController.instantiate()
-        WindowsManager.sharedInstance.showCreateTribeWindow(title: "Create Tribe", vc: createTribeVC, window: NSApplication.shared.keyWindow)
+        
+        WindowsManager.sharedInstance.showCreateTribeWindow(
+            title: "Create Tribe",
+            vc: createTribeVC,
+            window: NSApplication.shared.keyWindow
+        )
     }
     
     func selectItemWith(tag: Int, in menu: NSMenu) {

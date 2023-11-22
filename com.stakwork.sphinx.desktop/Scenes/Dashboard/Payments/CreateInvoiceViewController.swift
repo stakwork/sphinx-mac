@@ -12,16 +12,20 @@ class CreateInvoiceViewController : PaymentInvoiceFormViewController {
     
     @IBOutlet weak var paymentView: CommonPaymentView!
     
+    var mode = CommonPaymentView.PaymentViewMode.View
+    
     static func instantiate(
         childVCDelegate: ChildVCDelegate,
         viewModel: PaymentViewModel,
-        delegate: ActionsDelegate?
+        delegate: ActionsDelegate?,
+        mode: CommonPaymentView.PaymentViewMode = .View
     ) -> CreateInvoiceViewController {
         
         let viewController = StoryboardScene.Dashboard.createInvoiceViewController.instantiate()
         viewController.childVCDelegate = childVCDelegate
         viewController.paymentViewModel = viewModel
         viewController.delegate = delegate
+        viewController.mode = mode
         
         return viewController
     }
@@ -33,7 +37,7 @@ class CreateInvoiceViewController : PaymentInvoiceFormViewController {
     }
     
     func configureView() {
-        paymentView.configureView(paymentViewModel: paymentViewModel, delegate: self)
+        paymentView.configureView(paymentViewModel: paymentViewModel, delegate: self, mode: mode)
         paymentView.setTitle(title: "request.amount.upper".localized, placeHolder: "memo".localized, buttonLabel: "confirm.upper".localized)
     }
     
