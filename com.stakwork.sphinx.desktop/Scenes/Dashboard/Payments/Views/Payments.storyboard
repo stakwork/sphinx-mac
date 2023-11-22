@@ -190,27 +190,31 @@
             <objects>
                 <viewController storyboardIdentifier="TransactionsListViewController" id="noz-jg-I55" customClass="TransactionsListViewController" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="xH5-Ym-h8V">
-                        <rect key="frame" x="0.0" y="0.0" width="407" height="617"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="617"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Wf-HX-D0G">
-                                <rect key="frame" x="0.0" y="0.0" width="407" height="617"/>
-                                <clipView key="contentView" id="l5a-Ik-hZ0">
-                                    <rect key="frame" x="1" y="1" width="405" height="615"/>
+                            <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Wf-HX-D0G">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="617"/>
+                                <clipView key="contentView" drawsBackground="NO" id="l5a-Ik-hZ0">
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="617"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <collectionView id="qt0-wT-FuI">
-                                            <rect key="frame" x="0.0" y="0.0" width="405" height="158"/>
+                                        <collectionView selectable="YES" id="qt0-wT-FuI">
+                                            <rect key="frame" x="0.0" y="0.0" width="450" height="158"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="Af8-dx-yTb">
+                                            <collectionViewFlowLayout key="collectionViewLayout" id="Af8-dx-yTb">
                                                 <size key="itemSize" width="50" height="50"/>
                                             </collectionViewFlowLayout>
-                                            <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="primaryBackgroundColor" name="Body"/>
                                         </collectionView>
                                     </subviews>
+                                    <color key="backgroundColor" name="Body"/>
                                 </clipView>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="450" id="Eed-Ya-ohd"/>
+                                </constraints>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Nxx-Dj-cJZ">
-                                    <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                    <rect key="frame" x="0.0" y="601" width="400" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="g9I-Cb-doJ">
@@ -218,14 +222,34 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xsx-2D-UNw">
+                                <rect key="frame" x="158" y="301" width="135" height="15"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="No transactions found" id="0pr-TK-bNe">
+                                    <font key="font" size="13" name="Roboto-Regular"/>
+                                    <color key="textColor" name="Text"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <progressIndicator maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="Qus-wn-iZF">
+                                <rect key="frame" x="217" y="301" width="16" height="16"/>
+                            </progressIndicator>
                         </subviews>
                         <constraints>
                             <constraint firstItem="2Wf-HX-D0G" firstAttribute="leading" secondItem="xH5-Ym-h8V" secondAttribute="leading" id="58v-vB-gR1"/>
                             <constraint firstAttribute="trailing" secondItem="2Wf-HX-D0G" secondAttribute="trailing" id="8xs-EG-qAn"/>
+                            <constraint firstItem="Qus-wn-iZF" firstAttribute="centerX" secondItem="xH5-Ym-h8V" secondAttribute="centerX" id="Aim-W4-ed2"/>
+                            <constraint firstItem="xsx-2D-UNw" firstAttribute="centerX" secondItem="xH5-Ym-h8V" secondAttribute="centerX" id="Vdo-op-VR3"/>
                             <constraint firstItem="2Wf-HX-D0G" firstAttribute="top" secondItem="xH5-Ym-h8V" secondAttribute="top" id="WBi-U0-nru"/>
                             <constraint firstAttribute="bottom" secondItem="2Wf-HX-D0G" secondAttribute="bottom" id="Z5s-Rv-FfN"/>
+                            <constraint firstItem="Qus-wn-iZF" firstAttribute="centerY" secondItem="xH5-Ym-h8V" secondAttribute="centerY" id="cDR-xK-rBG"/>
+                            <constraint firstItem="xsx-2D-UNw" firstAttribute="centerY" secondItem="xH5-Ym-h8V" secondAttribute="centerY" id="drt-O6-4Q3"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="loadingWheel" destination="Qus-wn-iZF" id="cln-rf-NmL"/>
+                        <outlet property="noResultsLabel" destination="xsx-2D-UNw" id="c4k-64-X1x"/>
+                        <outlet property="transactionsCollectionView" destination="qt0-wT-FuI" id="XHN-f0-FMK"/>
+                    </connections>
                 </viewController>
                 <customObject id="MYb-Fj-jHT" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -665,6 +689,9 @@
     </scenes>
     <resources>
         <image name="extraIcon" width="100" height="100"/>
+        <namedColor name="Body">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="DashboardWashedOutText">
             <color red="0.63921568627450975" green="0.75686274509803919" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

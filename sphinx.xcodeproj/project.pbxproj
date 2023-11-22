@@ -412,6 +412,10 @@
 		4797E87E24BCD69F00D13270 /* CommonPaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4797E88024BCD69F00D13270 /* CommonPaymentView.xib */; };
 		4797E88524BCD6D700D13270 /* PaymentTemplatesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4797E88724BCD6D700D13270 /* PaymentTemplatesView.xib */; };
 		4797F6492B0E330900A19C58 /* TransactionsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797F6482B0E330900A19C58 /* TransactionsListViewController.swift */; };
+		4797F64C2B0E36B800A19C58 /* TransactionsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797F64B2B0E36B800A19C58 /* TransactionsDataSource.swift */; };
+		4797F64E2B0E36C800A19C58 /* PaymentTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797F64D2B0E36C800A19C58 /* PaymentTransaction.swift */; };
+		4797F6512B0E395C00A19C58 /* TransactionCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797F6502B0E395C00A19C58 /* TransactionCollectionViewItem.swift */; };
+		4797F6532B0E396700A19C58 /* TransactionCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4797F6522B0E396700A19C58 /* TransactionCollectionViewItem.xib */; };
 		479A03EB2583D2290093DB30 /* JoinTribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479A03EA2583D2290093DB30 /* JoinTribeViewController.swift */; };
 		479A03ED2587ACE10093DB30 /* TribeMemberInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479A03EC2587ACE10093DB30 /* TribeMemberInfoView.swift */; };
 		479A03F02587E73A0093DB30 /* TribeMemberInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479A03F22587E73A0093DB30 /* TribeMemberInfoView.xib */; };
@@ -1145,6 +1149,10 @@
 		4797E88924BCD6DB00D13270 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PaymentTemplatesView.strings; sourceTree = "<group>"; };
 		4797E88B24BCD6DD00D13270 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PaymentTemplatesView.strings; sourceTree = "<group>"; };
 		4797F6482B0E330900A19C58 /* TransactionsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsListViewController.swift; sourceTree = "<group>"; };
+		4797F64B2B0E36B800A19C58 /* TransactionsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsDataSource.swift; sourceTree = "<group>"; };
+		4797F64D2B0E36C800A19C58 /* PaymentTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTransaction.swift; sourceTree = "<group>"; };
+		4797F6502B0E395C00A19C58 /* TransactionCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCollectionViewItem.swift; sourceTree = "<group>"; };
+		4797F6522B0E396700A19C58 /* TransactionCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionCollectionViewItem.xib; sourceTree = "<group>"; };
 		479A03EA2583D2290093DB30 /* JoinTribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTribeViewController.swift; sourceTree = "<group>"; };
 		479A03EC2587ACE10093DB30 /* TribeMemberInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TribeMemberInfoView.swift; sourceTree = "<group>"; };
 		479A03F12587E73A0093DB30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TribeMemberInfoView.xib; sourceTree = "<group>"; };
@@ -2649,6 +2657,26 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
+		4797F64A2B0E368F00A19C58 /* Transactions List */ = {
+			isa = PBXGroup;
+			children = (
+				4797F64F2B0E394200A19C58 /* Collection View Item */,
+				4797F6482B0E330900A19C58 /* TransactionsListViewController.swift */,
+				4797F64B2B0E36B800A19C58 /* TransactionsDataSource.swift */,
+				4797F64D2B0E36C800A19C58 /* PaymentTransaction.swift */,
+			);
+			path = "Transactions List";
+			sourceTree = "<group>";
+		};
+		4797F64F2B0E394200A19C58 /* Collection View Item */ = {
+			isa = PBXGroup;
+			children = (
+				4797F6502B0E395C00A19C58 /* TransactionCollectionViewItem.swift */,
+				4797F6522B0E396700A19C58 /* TransactionCollectionViewItem.xib */,
+			);
+			path = "Collection View Item";
+			sourceTree = "<group>";
+		};
 		479C792C24EAD1FB009BA1CD /* Tor */ = {
 			isa = PBXGroup;
 			children = (
@@ -2718,13 +2746,13 @@
 		47B55083248958B3000514BF /* Payments */ = {
 			isa = PBXGroup;
 			children = (
+				4797F64A2B0E368F00A19C58 /* Transactions List */,
 				47B5509F248BD9D5000514BF /* Views */,
 				47B5509A248BD01C000514BF /* View Model */,
 				47B55084248958CB000514BF /* PaymentInvoiceFormViewController.swift */,
 				47B55098248BCDD7000514BF /* CreateInvoiceViewController.swift */,
 				47B5509D248BD256000514BF /* SendPaymentViewController.swift */,
 				47B550A8248BEB9A000514BF /* PaymentTemplatesViewController.swift */,
-				4797F6482B0E330900A19C58 /* TransactionsListViewController.swift */,
 			);
 			path = Payments;
 			sourceTree = "<group>";
@@ -3431,6 +3459,7 @@
 				4726A43D24C628DA005A66B4 /* tweet.caf in Resources */,
 				47975203246F018300D2106B /* ChatAvatarView.xib in Resources */,
 				47DE1BF62A6813C50029597B /* StatusHeaderView.xib in Resources */,
+				4797F6532B0E396700A19C58 /* TransactionCollectionViewItem.xib in Resources */,
 				474F67532486779D00CE6016 /* JoinVideoCallView.xib in Resources */,
 				474E46782AB0BFB50098AD24 /* FileInfoView.xib in Resources */,
 				478ED5CC25D6FD3400940132 /* FriendMessageView.xib in Resources */,
@@ -3719,6 +3748,7 @@
 				4744FAE1246C2B7400C5FD94 /* KeychainRestoreCollectionViewItem.swift in Sources */,
 				4744FAD5246B2D0200C5FD94 /* AnimationHelper.swift in Sources */,
 				4744FAA72469CEE100C5FD94 /* Int.swift in Sources */,
+				4797F64C2B0E36B800A19C58 /* TransactionsDataSource.swift in Sources */,
 				474E46692AB0BC6D0098AD24 /* MediaMessageView.swift in Sources */,
 				47FEE2042A66D3D700646C4E /* MessageTableCellState+DataTypeExtension.swift in Sources */,
 				4708C2172A5885CB00274AD4 /* ChatTopView.swift in Sources */,
@@ -3744,6 +3774,7 @@
 				475F0BA224F7D97D0032EDC4 /* NewContactViewController.swift in Sources */,
 				475B680329915C9E000EF29C /* ActionTrack+CoreDataProperties.swift in Sources */,
 				470396E9253721D7007F9C23 /* API+PodcastExtension.swift in Sources */,
+				4797F6512B0E395C00A19C58 /* TransactionCollectionViewItem.swift in Sources */,
 				475B684429915E12000EF29C /* PodcastFeed+PlayerPodcastData.swift in Sources */,
 				4787F89E247C14FD00CCE8B9 /* CGFloat.swift in Sources */,
 				476A6C44282C2F3000CA213D /* TribeMemberPopupView.swift in Sources */,
@@ -4036,6 +4067,7 @@
 				4744FA582469905100C5FD94 /* SignupHelper.swift in Sources */,
 				473E1F282AC458E600DC1CDC /* ThreadCollectionViewItem.swift in Sources */,
 				479751EB246DB6D700D2106B /* NSTextField.swift in Sources */,
+				4797F64E2B0E36C800A19C58 /* PaymentTransaction.swift in Sources */,
 				478ED57F25D42B5E00940132 /* WelcomeInitialViewController.swift in Sources */,
 				47E7712D2472C5F100C9CFEB /* ChatHelper.swift in Sources */,
 				475B684529915E12000EF29C /* PodcastFeed+Computeds.swift in Sources */,
