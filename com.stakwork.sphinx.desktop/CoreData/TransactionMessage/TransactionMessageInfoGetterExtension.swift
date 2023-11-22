@@ -740,7 +740,8 @@ extension TransactionMessage {
     //Message description
     func getMessageContentPreview(
         owner: UserContact,
-        contact: UserContact?
+        contact: UserContact?,
+        includeSender: Bool = true
     ) -> String {
         let amount = self.amount ?? NSDecimalNumber(value: 0)
         let amountString = Int(truncating: amount).formattedWithSeparator
@@ -759,7 +760,11 @@ extension TransactionMessage {
             if self.isGiphy() {
                 return "\("gif.capitalize".localized) \(directionString)"
             } else {
-                return "\(senderAlias): \(self.getMessageDescription())"
+                if includeSender {
+                    return "\(senderAlias): \(self.getMessageDescription())"
+                } else {
+                    return self.getMessageDescription()
+                }
             }
         case TransactionMessage.TransactionMessageType.invoice.rawValue:
             return  "\("invoice".localized) \(directionString): \(amountString) sats"
