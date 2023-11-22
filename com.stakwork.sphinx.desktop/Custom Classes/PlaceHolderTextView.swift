@@ -95,8 +95,13 @@ final class PlaceHolderTextView: NSTextView {
         if enterKeyCodes.contains(event.keyCode) {
             if event.modifierFlags.intersection(.deviceIndependentFlagsMask).contains(.shift) {
                 if let cursorPosition = self.cursorPosition {
-                    self.string.insert("\n", at: self.string.index(self.string.startIndex, offsetBy: cursorPosition))
-                    self.setSelectedRange(NSRange(location: cursorPosition + 1, length: 0))
+                    if cursorPosition > self.string.length {
+                        self.string.insert("\n", at: self.string.index(self.string.startIndex, offsetBy: self.string.length))
+                        self.setSelectedRange(NSRange(location: self.string.length + 1, length: 0))
+                    } else {
+                        self.string.insert("\n", at: self.string.index(self.string.startIndex, offsetBy: cursorPosition))
+                        self.setSelectedRange(NSRange(location: cursorPosition + 1, length: 0))
+                    }
                     return true
                 }
             }
