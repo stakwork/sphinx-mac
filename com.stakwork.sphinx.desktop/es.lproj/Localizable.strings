@@ -29,6 +29,7 @@
 "today" = "Hoy";
 "contact" = "Contacto";
 "profile" = "Perfil";
+"transactions" = "Transacciones";
 "profile.saved" = "Los cambios en el perfil han sido guardados con éxito";
 "search" = "Buscar";
 "submit" = "Enviar";
@@ -274,6 +275,7 @@
 //HISTORY
 "error.loading.transactions" = "Ocurrió un problema cargando la lista de transacciones. Por favor vuelva a intentarlo más tarde.";
 "loading.more.transactions" = "Cargando más transacciones...";
+"transactions.failure-reason" = "Causa de la falla:";
 
 //QR CODE SCANNER
 "scan.qr.code.upper" = "ESCANEA UN CÓDIGO QR";

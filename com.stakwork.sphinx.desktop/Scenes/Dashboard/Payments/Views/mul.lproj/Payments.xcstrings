@@ -1,0 +1,246 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "0pr-TK-bNe.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"No transactions found\"; ObjectID = \"0pr-TK-bNe\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "No transactions found"
+          }
+        }
+      }
+    },
+    "4Fo-tq-oPZ.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"photo\"; ObjectID = \"4Fo-tq-oPZ\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "photo"
+          }
+        }
+      }
+    },
+    "cxg-Wu-wXt.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \" \"; ObjectID = \"cxg-Wu-wXt\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : " "
+          }
+        }
+      }
+    },
+    "dy9-Sq-zAd.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Copy QR Code Image\"; ObjectID = \"dy9-Sq-zAd\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Copy QR Code Image"
+          }
+        }
+      }
+    },
+    "Ea7-H2-7Dh.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Invoice Amount:\"; ObjectID = \"Ea7-H2-7Dh\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Invoice Amount:"
+          }
+        }
+      }
+    },
+    "EGe-As-lHQ.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"content_copy\"; ObjectID = \"EGe-As-lHQ\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "content_copy"
+          }
+        }
+      }
+    },
+    "f1b-6R-thb.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Payment Request\"; ObjectID = \"f1b-6R-thb\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Payment Request"
+          }
+        }
+      }
+    },
+    "GF6-UA-JAl.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"close\"; ObjectID = \"GF6-UA-JAl\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "close"
+          }
+        }
+      }
+    },
+    "hhh-m3-2w8.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Memo:\"; ObjectID = \"hhh-m3-2w8\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Memo:"
+          }
+        }
+      }
+    },
+    "ic3-5t-TBt.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Invalid Expiration\"; ObjectID = \"ic3-5t-TBt\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Invalid Expiration"
+          }
+        }
+      }
+    },
+    "LUL-D5-qRg.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Expiration Date:\"; ObjectID = \"LUL-D5-qRg\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Expiration Date:"
+          }
+        }
+      }
+    },
+    "mJ1-kK-Dwy.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Invalid Amount\"; ObjectID = \"mJ1-kK-Dwy\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Invalid Amount"
+          }
+        }
+      }
+    },
+    "NXD-Ix-g5w.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Receive Invoice Details\"; ObjectID = \"NXD-Ix-g5w\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Receive Invoice Details"
+          }
+        }
+      }
+    },
+    "RUZ-2d-88J.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Invalid Memo\"; ObjectID = \"RUZ-2d-88J\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Invalid Memo"
+          }
+        }
+      }
+    },
+    "RWs-aR-MeD.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"INVOICE STRING\"; ObjectID = \"RWs-aR-MeD\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "INVOICE STRING"
+          }
+        }
+      }
+    },
+    "tA6-sn-INu.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Copy Invoice String\"; ObjectID = \"tA6-sn-INu\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Copy Invoice String"
+          }
+        }
+      }
+    },
+    "TPC-Xj-wL1.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Verify\"; ObjectID = \"TPC-Xj-wL1\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Verify"
+          }
+        }
+      }
+    },
+    "wNu-2z-sZt.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Receive Invoice Details\"; ObjectID = \"wNu-2z-sZt\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Receive Invoice Details"
+          }
+        }
+      }
+    },
+    "Y0k-xk-ZIY.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Pay\"; ObjectID = \"Y0k-xk-ZIY\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Pay"
+          }
+        }
+      }
+    },
+    "yRh-f6-Lic.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Pay Invoice\"; ObjectID = \"yRh-f6-Lic\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Pay Invoice"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

@@ -27,6 +27,9 @@ class ChatListViewController : DashboardSplittedViewController {
     @IBOutlet weak var upgradeBox: NSBox!
     @IBOutlet weak var upgradeButton: NSButton!
     @IBOutlet weak var chatListVCContainer: NSView!
+    @IBOutlet weak var receiveButton: CustomButton!
+    @IBOutlet weak var transactionsButton: CustomButton!
+    @IBOutlet weak var sendButton: CustomButton!
     
     @IBOutlet weak var dashboardNavigationTabs: ChatsSegmentedControl! {
         didSet {
@@ -106,7 +109,7 @@ class ChatListViewController : DashboardSplittedViewController {
     
     override func viewDidLayout() {
         for childVC in self.children {
-            childVC.view.frame = chatListVCContainer.frame
+            childVC.view.frame = chatListVCContainer.bounds
         }
     }
     
@@ -135,6 +138,10 @@ class ChatListViewController : DashboardSplittedViewController {
     }
     
     func prepareView() {
+        receiveButton.cursor = .pointingHand
+        sendButton.cursor = .pointingHand
+        transactionsButton.cursor = .pointingHand
+        
         searchField.setPlaceHolder(color: NSColor.Sphinx.PlaceholderText, font: NSFont(name: "Roboto-Regular", size: 14.0)!, string: "search".localized)
         searchField.delegate = self
         
@@ -407,6 +414,21 @@ class ChatListViewController : DashboardSplittedViewController {
     
     @IBAction func clearButtonClicked(_ sender: Any) {
         resetSearchField()
+    }
+    
+    @IBAction func receiveButtonClicked(_ sender: Any) {
+        handleReceiveClick()
+    }
+    
+    @IBAction func sendButtonClicked(_ sender: Any) {
+        handleSentClick()
+    }
+    
+    @IBAction func transactionsButtonClicked(_ sender: Any) {
+        WindowsManager.sharedInstance.showTransationsListWindow(
+            vc: TransactionsListViewController.instantiate(),
+            window: NSApplication.shared.keyWindow
+        )
     }
 }
 

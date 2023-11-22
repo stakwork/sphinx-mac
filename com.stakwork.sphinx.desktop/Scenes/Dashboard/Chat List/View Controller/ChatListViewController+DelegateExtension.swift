@@ -24,7 +24,6 @@ extension ChatListViewController {
     
     func listenForNotifications() {
         healthCheckView.listenForEvents()
-        balanceLabel.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(handleBalanceClick)))
         
         NotificationCenter.default.addObserver(
             forName: .onBalanceDidChange,
@@ -52,34 +51,21 @@ extension ChatListViewController {
             self.searchField?.isEnabled = true
         })
     }
-    
-    @objc func handleBalanceClick(){
-        let vc = ChoosePaymentModeVC.instantiate(delegate: self)
-        
-        WindowsManager.sharedInstance.showContactWindow(
-            vc: vc,
-            window: view.window,
-            title: "Manage Payments",
-            identifier: "invoice-management-window",
-            size: CGSize(width: 414, height: 350)
-        )
-        
-    }
-    
 }
 
-extension ChatListViewController : ChildVCDelegate, ActionsDelegate, ChoosePaymentModeVCDelegate{
+extension ChatListViewController : ChildVCDelegate, ActionsDelegate {
     func handleReceiveClick() {
         let vc = CreateInvoiceViewController.instantiate(
             childVCDelegate: self,
             viewModel: PaymentViewModel(mode: .Request),
-            delegate: self
+            delegate: self,
+            mode: .Window
         )
         
         WindowsManager.sharedInstance.showContactWindow(
             vc: vc,
             window: view.window,
-            title: "Manage Payments",
+            title: "Payments",
             identifier: "invoice-management-window",
             size: CGSize(width: 414, height: 600)
         )
@@ -95,9 +81,9 @@ extension ChatListViewController : ChildVCDelegate, ActionsDelegate, ChoosePayme
         WindowsManager.sharedInstance.showContactWindow(
             vc: vc,
             window: view.window,
-            title: "Manage Payments",
+            title: "Payments",
             identifier: "invoice-management-window",
-            size: CGSize(width: 414, height: 325)
+            size: CGSize(width: 450, height: 350)
         )
     }
     
@@ -115,7 +101,7 @@ extension ChatListViewController : ChildVCDelegate, ActionsDelegate, ChoosePayme
         WindowsManager.sharedInstance.showContactWindow(
             vc: vc,
             window: view.window,
-            title: "Manage Payments",
+            title: "Payments",
             identifier: "invoice-management-window",
             size: CGSize(width: 414, height: 700)
         )

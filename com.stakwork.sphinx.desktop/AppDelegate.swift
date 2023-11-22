@@ -29,6 +29,7 @@ import WebKit
     @IBOutlet weak var messagesSizeMenu: NSMenu!
     
     @IBOutlet weak var profileMenuItem: NSMenuItem!
+    @IBOutlet weak var transactionsMenuItem: NSMenuItem!
     @IBOutlet weak var newContactMenuItem: NSMenuItem!
     @IBOutlet weak var createTribeMenuItem: NSMenuItem!
     @IBOutlet weak var logoutMenuItem: NSMenuItem!
@@ -40,10 +41,11 @@ import WebKit
     
     public enum SphinxMenuButton: Int {
         case Profile = 0
-        case NewContact = 1
-        case Logout = 2
-        case RemoveAccount = 3
-        case CreateTribe = 4
+        case Transactions = 1
+        case NewContact = 2
+        case CreateTribe = 3
+        case Logout = 4
+        case RemoveAccount = 5
     }
     
     var lastClearSDMemoryDate: Date? {
@@ -154,10 +156,11 @@ import WebKit
     func setAppMenuVisibility(shouldEnableItems: Bool) {
         [
             profileMenuItem,
+            transactionsMenuItem,
             newContactMenuItem,
+            createTribeMenuItem,
 //            logoutMenuItem,
             removeAccountMenuItem,
-            createTribeMenuItem
         ]
         .forEach { $0?.isHidden = shouldEnableItems == false }
         
@@ -344,6 +347,8 @@ import WebKit
         switch(sender.tag) {
         case SphinxMenuButton.Profile.rawValue:
             profileButtonClicked()
+        case SphinxMenuButton.Transactions.rawValue:
+            transactionsButtonClicked()
         case SphinxMenuButton.NewContact.rawValue:
             newContactButtonClicked()
         case SphinxMenuButton.CreateTribe.rawValue:
@@ -397,13 +402,28 @@ import WebKit
     
     func profileButtonClicked() {
         if let profile = UserContact.getOwner(), profile.id > 0 {
-            WindowsManager.sharedInstance.showProfileWindow(vc: ProfileViewController.instantiate(), window: NSApplication.shared.keyWindow)
+            WindowsManager.sharedInstance.showProfileWindow(
+                vc: ProfileViewController.instantiate(),
+                window: NSApplication.shared.keyWindow
+            )
         }
     }
+     
+     func transactionsButtonClicked() {
+         WindowsManager.sharedInstance.showTransationsListWindow(
+            vc: TransactionsListViewController.instantiate(),
+            window: NSApplication.shared.keyWindow
+         )
+     }
     
     func createTribeButtonClicked() {
         let createTribeVC = CreateTribeViewController.instantiate()
-        WindowsManager.sharedInstance.showCreateTribeWindow(title: "Create Tribe", vc: createTribeVC, window: NSApplication.shared.keyWindow)
+        
+        WindowsManager.sharedInstance.showCreateTribeWindow(
+            title: "Create Tribe",
+            vc: createTribeVC,
+            window: NSApplication.shared.keyWindow
+        )
     }
     
     func selectItemWith(tag: Int, in menu: NSMenu) {

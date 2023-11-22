@@ -411,6 +411,12 @@
 		4797E87024BCD5B500D13270 /* ChildVCContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4797E87224BCD5B500D13270 /* ChildVCContainer.xib */; };
 		4797E87E24BCD69F00D13270 /* CommonPaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4797E88024BCD69F00D13270 /* CommonPaymentView.xib */; };
 		4797E88524BCD6D700D13270 /* PaymentTemplatesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4797E88724BCD6D700D13270 /* PaymentTemplatesView.xib */; };
+		4797F6492B0E330900A19C58 /* TransactionsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797F6482B0E330900A19C58 /* TransactionsListViewController.swift */; };
+		4797F64C2B0E36B800A19C58 /* TransactionsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797F64B2B0E36B800A19C58 /* TransactionsDataSource.swift */; };
+		4797F64E2B0E36C800A19C58 /* PaymentTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797F64D2B0E36C800A19C58 /* PaymentTransaction.swift */; };
+		4797F6512B0E395C00A19C58 /* TransactionCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4797F6502B0E395C00A19C58 /* TransactionCollectionViewItem.swift */; };
+		4797F6532B0E396700A19C58 /* TransactionCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4797F6522B0E396700A19C58 /* TransactionCollectionViewItem.xib */; };
+		4797F6542B0E727700A19C58 /* Payments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4797F6562B0E727700A19C58 /* Payments.storyboard */; };
 		479A03EB2583D2290093DB30 /* JoinTribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479A03EA2583D2290093DB30 /* JoinTribeViewController.swift */; };
 		479A03ED2587ACE10093DB30 /* TribeMemberInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479A03EC2587ACE10093DB30 /* TribeMemberInfoView.swift */; };
 		479A03F02587E73A0093DB30 /* TribeMemberInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479A03F22587E73A0093DB30 /* TribeMemberInfoView.xib */; };
@@ -589,9 +595,7 @@
 		CE326B4B294295C600821A53 /* ChatMentionAutocompleteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE326B4A294295C600821A53 /* ChatMentionAutocompleteDataSource.swift */; };
 		CE326B51294A179200821A53 /* ChatMentionAutocompleteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE326B4F294A179200821A53 /* ChatMentionAutocompleteCell.swift */; };
 		CE326B52294A179200821A53 /* ChatMentionAutocompleteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE326B50294A179200821A53 /* ChatMentionAutocompleteCell.xib */; };
-		CE38D91129E0821A00F271CD /* Payments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE38D91029E0821A00F271CD /* Payments.storyboard */; };
 		CE38D91329E0823800F271CD /* DisplayInvoiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE38D91229E0823800F271CD /* DisplayInvoiceVC.swift */; };
-		CE6BF5C829E59905009BCFDE /* ChoosePaymentModeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6BF5C729E59905009BCFDE /* ChoosePaymentModeVC.swift */; };
 		CE6BF5CA29E5BA38009BCFDE /* SendPaymentForInvoiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6BF5C929E5BA38009BCFDE /* SendPaymentForInvoiceVC.swift */; };
 		CE9BA45F29D76A8E000C8837 /* PodcastDetailSelectionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BA45E29D76A8E000C8837 /* PodcastDetailSelectionVM.swift */; };
 		CE9BA46229D772BD000C8837 /* PodcastDetailActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9BA46029D772BD000C8837 /* PodcastDetailActionCell.swift */; };
@@ -1143,6 +1147,15 @@
 		4797E88624BCD6D700D13270 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PaymentTemplatesView.xib; sourceTree = "<group>"; };
 		4797E88924BCD6DB00D13270 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PaymentTemplatesView.strings; sourceTree = "<group>"; };
 		4797E88B24BCD6DD00D13270 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PaymentTemplatesView.strings; sourceTree = "<group>"; };
+		4797F6482B0E330900A19C58 /* TransactionsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsListViewController.swift; sourceTree = "<group>"; };
+		4797F64B2B0E36B800A19C58 /* TransactionsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsDataSource.swift; sourceTree = "<group>"; };
+		4797F64D2B0E36C800A19C58 /* PaymentTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTransaction.swift; sourceTree = "<group>"; };
+		4797F6502B0E395C00A19C58 /* TransactionCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCollectionViewItem.swift; sourceTree = "<group>"; };
+		4797F6522B0E396700A19C58 /* TransactionCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionCollectionViewItem.xib; sourceTree = "<group>"; };
+		4797F6552B0E727700A19C58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Payments.storyboard; sourceTree = "<group>"; };
+		4797F6592B0E729C00A19C58 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Payments.strings; sourceTree = "<group>"; };
+		4797F65B2B0E729D00A19C58 /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/Payments.strings; sourceTree = "<group>"; };
+		4797F65D2B0E729E00A19C58 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Payments.strings; sourceTree = "<group>"; };
 		479A03EA2583D2290093DB30 /* JoinTribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTribeViewController.swift; sourceTree = "<group>"; };
 		479A03EC2587ACE10093DB30 /* TribeMemberInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TribeMemberInfoView.swift; sourceTree = "<group>"; };
 		479A03F12587E73A0093DB30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TribeMemberInfoView.xib; sourceTree = "<group>"; };
@@ -1346,7 +1359,6 @@
 		CE326B4A294295C600821A53 /* ChatMentionAutocompleteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMentionAutocompleteDataSource.swift; sourceTree = "<group>"; };
 		CE326B4F294A179200821A53 /* ChatMentionAutocompleteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMentionAutocompleteCell.swift; sourceTree = "<group>"; };
 		CE326B50294A179200821A53 /* ChatMentionAutocompleteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatMentionAutocompleteCell.xib; sourceTree = "<group>"; };
-		CE38D91029E0821A00F271CD /* Payments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payments.storyboard; sourceTree = "<group>"; };
 		CE38D91229E0823800F271CD /* DisplayInvoiceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayInvoiceVC.swift; sourceTree = "<group>"; };
 		CE59E70F2A004BF30089D496 /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/NewEpisodeAlertView.strings; sourceTree = "<group>"; };
 		CE59E7102A004BF30089D496 /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/Podcast.strings; sourceTree = "<group>"; };
@@ -1383,7 +1395,6 @@
 		CE59E7362A004BF50089D496 /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/PaymentTemplatesView.strings; sourceTree = "<group>"; };
 		CE59E7372A004BF50089D496 /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/AuthorizeAppView.strings; sourceTree = "<group>"; };
 		CE59E7382A004BF50089D496 /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/Localizable.strings; sourceTree = "<group>"; };
-		CE6BF5C729E59905009BCFDE /* ChoosePaymentModeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosePaymentModeVC.swift; sourceTree = "<group>"; };
 		CE6BF5C929E5BA38009BCFDE /* SendPaymentForInvoiceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPaymentForInvoiceVC.swift; sourceTree = "<group>"; };
 		CE9BA45E29D76A8E000C8837 /* PodcastDetailSelectionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailSelectionVM.swift; sourceTree = "<group>"; };
 		CE9BA46029D772BD000C8837 /* PodcastDetailActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailActionCell.swift; sourceTree = "<group>"; };
@@ -2647,6 +2658,26 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
+		4797F64A2B0E368F00A19C58 /* Transactions List */ = {
+			isa = PBXGroup;
+			children = (
+				4797F64F2B0E394200A19C58 /* Collection View Item */,
+				4797F6482B0E330900A19C58 /* TransactionsListViewController.swift */,
+				4797F64B2B0E36B800A19C58 /* TransactionsDataSource.swift */,
+				4797F64D2B0E36C800A19C58 /* PaymentTransaction.swift */,
+			);
+			path = "Transactions List";
+			sourceTree = "<group>";
+		};
+		4797F64F2B0E394200A19C58 /* Collection View Item */ = {
+			isa = PBXGroup;
+			children = (
+				4797F6502B0E395C00A19C58 /* TransactionCollectionViewItem.swift */,
+				4797F6522B0E396700A19C58 /* TransactionCollectionViewItem.xib */,
+			);
+			path = "Collection View Item";
+			sourceTree = "<group>";
+		};
 		479C792C24EAD1FB009BA1CD /* Tor */ = {
 			isa = PBXGroup;
 			children = (
@@ -2716,6 +2747,7 @@
 		47B55083248958B3000514BF /* Payments */ = {
 			isa = PBXGroup;
 			children = (
+				4797F64A2B0E368F00A19C58 /* Transactions List */,
 				47B5509F248BD9D5000514BF /* Views */,
 				47B5509A248BD01C000514BF /* View Model */,
 				47B55084248958CB000514BF /* PaymentInvoiceFormViewController.swift */,
@@ -2758,8 +2790,7 @@
 				47B550A0248BD9E7000514BF /* CommonPaymentView.swift */,
 				CE38D91229E0823800F271CD /* DisplayInvoiceVC.swift */,
 				CE6BF5C929E5BA38009BCFDE /* SendPaymentForInvoiceVC.swift */,
-				CE6BF5C729E59905009BCFDE /* ChoosePaymentModeVC.swift */,
-				CE38D91029E0821A00F271CD /* Payments.storyboard */,
+				4797F6562B0E727700A19C58 /* Payments.storyboard */,
 				4797E88024BCD69F00D13270 /* CommonPaymentView.xib */,
 				47B550A4248BEB0E000514BF /* PaymentTemplatesView.swift */,
 				4797E88724BCD6D700D13270 /* PaymentTemplatesView.xib */,
@@ -3428,6 +3459,7 @@
 				4726A43D24C628DA005A66B4 /* tweet.caf in Resources */,
 				47975203246F018300D2106B /* ChatAvatarView.xib in Resources */,
 				47DE1BF62A6813C50029597B /* StatusHeaderView.xib in Resources */,
+				4797F6532B0E396700A19C58 /* TransactionCollectionViewItem.xib in Resources */,
 				474F67532486779D00CE6016 /* JoinVideoCallView.xib in Resources */,
 				474E46782AB0BFB50098AD24 /* FileInfoView.xib in Resources */,
 				478ED5CC25D6FD3400940132 /* FriendMessageView.xib in Resources */,
@@ -3448,7 +3480,7 @@
 				4726A44024C628DA005A66B4 /* bell.caf in Resources */,
 				478ED5B225D59E1400940132 /* ellipse.gif in Resources */,
 				478ED5E825D6FDD800940132 /* PinView.xib in Resources */,
-				CE38D91129E0821A00F271CD /* Payments.storyboard in Resources */,
+				4797F6542B0E727700A19C58 /* Payments.storyboard in Resources */,
 				4708C2192A5885D200274AD4 /* ChatTopView.xib in Resources */,
 				479496702AB8B51400C42D1E /* InvoiceView.xib in Resources */,
 				47C7D71127874A12006D2809 /* AuthExternalView.xib in Resources */,
@@ -3656,6 +3688,7 @@
 				479751E0246D8FFB00D2106B /* ChatListViewController.swift in Sources */,
 				478ED59825D55C6B00940132 /* NamePinView.swift in Sources */,
 				47B5508E24898A0D000514BF /* VerticallyCenteredTextFieldCell.swift in Sources */,
+				4797F6492B0E330900A19C58 /* TransactionsListViewController.swift in Sources */,
 				4707089E24AE65CB00A98DCA /* UserContactChatListExtension.swift in Sources */,
 				475B684629915E12000EF29C /* PodcastFeed+Properties.swift in Sources */,
 				47F8825125656CB0002A7E71 /* SocketEngineWebsocket.swift in Sources */,
@@ -3715,6 +3748,7 @@
 				4744FAE1246C2B7400C5FD94 /* KeychainRestoreCollectionViewItem.swift in Sources */,
 				4744FAD5246B2D0200C5FD94 /* AnimationHelper.swift in Sources */,
 				4744FAA72469CEE100C5FD94 /* Int.swift in Sources */,
+				4797F64C2B0E36B800A19C58 /* TransactionsDataSource.swift in Sources */,
 				474E46692AB0BC6D0098AD24 /* MediaMessageView.swift in Sources */,
 				47FEE2042A66D3D700646C4E /* MessageTableCellState+DataTypeExtension.swift in Sources */,
 				4708C2172A5885CB00274AD4 /* ChatTopView.swift in Sources */,
@@ -3740,6 +3774,7 @@
 				475F0BA224F7D97D0032EDC4 /* NewContactViewController.swift in Sources */,
 				475B680329915C9E000EF29C /* ActionTrack+CoreDataProperties.swift in Sources */,
 				470396E9253721D7007F9C23 /* API+PodcastExtension.swift in Sources */,
+				4797F6512B0E395C00A19C58 /* TransactionCollectionViewItem.swift in Sources */,
 				475B684429915E12000EF29C /* PodcastFeed+PlayerPodcastData.swift in Sources */,
 				4787F89E247C14FD00CCE8B9 /* CGFloat.swift in Sources */,
 				476A6C44282C2F3000CA213D /* TribeMemberPopupView.swift in Sources */,
@@ -3805,7 +3840,6 @@
 				4744FAD7246B2FDE00C5FD94 /* KeychainRestoreViewController.swift in Sources */,
 				474A668B24990188002C2D10 /* MessageOptionView.swift in Sources */,
 				4794967C2AB9EF2600C42D1E /* NewChatViewModel+MessageMenuActionsExtension.swift in Sources */,
-				CE6BF5C829E59905009BCFDE /* ChoosePaymentModeVC.swift in Sources */,
 				4744FA8E2469C9F800C5FD94 /* UserInvite+CoreDataProperties.swift in Sources */,
 				4703F046248195AE00282186 /* CachingPlayerItem.swift in Sources */,
 				47F8824D25656CB0002A7E71 /* SocketPacket.swift in Sources */,
@@ -4032,6 +4066,7 @@
 				4744FA582469905100C5FD94 /* SignupHelper.swift in Sources */,
 				473E1F282AC458E600DC1CDC /* ThreadCollectionViewItem.swift in Sources */,
 				479751EB246DB6D700D2106B /* NSTextField.swift in Sources */,
+				4797F64E2B0E36C800A19C58 /* PaymentTransaction.swift in Sources */,
 				478ED57F25D42B5E00940132 /* WelcomeInitialViewController.swift in Sources */,
 				47E7712D2472C5F100C9CFEB /* ChatHelper.swift in Sources */,
 				475B684529915E12000EF29C /* PodcastFeed+Computeds.swift in Sources */,
@@ -4421,6 +4456,17 @@
 				CE59E7362A004BF50089D496 /* fil */,
 			);
 			name = PaymentTemplatesView.xib;
+			sourceTree = "<group>";
+		};
+		4797F6562B0E727700A19C58 /* Payments.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4797F6552B0E727700A19C58 /* Base */,
+				4797F6592B0E729C00A19C58 /* en */,
+				4797F65B2B0E729D00A19C58 /* fil */,
+				4797F65D2B0E729E00A19C58 /* es */,
+			);
+			name = Payments.storyboard;
 			sourceTree = "<group>";
 		};
 		479A03F22587E73A0093DB30 /* TribeMemberInfoView.xib */ = {
