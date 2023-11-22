@@ -151,10 +151,17 @@ class NotificationsHelper : NSObject {
             
             let messageDescription = message.getMessageContentPreview(
                 owner: owner,
-                contact: sender
+                contact: sender,
+                includeSender: false
             )
             
-            notification.title = senderNickName
+            if message.chat?.isPublicGroup() ?? false {
+                notification.title = message.chat?.getName() ?? ""
+                notification.subtitle = senderNickName
+            } else {
+                notification.title = senderNickName
+            }
+            
             notification.informativeText = messageDescription
             notification.userInfo = ["chat-id" : chatId]
             notification.hasReplyButton = true
