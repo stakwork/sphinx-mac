@@ -74,7 +74,7 @@ extension UserContact : ChatListCommonObject {
     }
     
     public func getOrderDate() -> Date? {
-        return lastMessage?.date ?? createdAt
+        return lastMessage?.date ?? createdAt ?? Date()
     }
     
     public func getName() -> String {

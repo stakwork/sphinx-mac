@@ -110,7 +110,8 @@ class GroupDetailsViewController: NSViewController {
         
         groupNameLabel.stringValue = chat.name ?? "unknown.group".localized
         
-        let createdOn = String(format: "created.on".localized, chat.createdAt.getStringDate(format: "EEE MMM dd HH:mm"))
+        let date = chat.createdAt ?? Date()
+        let createdOn = String(format: "created.on".localized, date.getStringDate(format: "EEE MMM dd HH:mm"))
         groupDateLabel.stringValue = createdOn
         
         updateTribePrices()

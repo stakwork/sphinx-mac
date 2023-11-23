@@ -21,7 +21,7 @@ extension Chat {
     @NSManaged public var photoUrl: String?
     @NSManaged public var type: Int
     @NSManaged public var status: Int
-    @NSManaged public var createdAt: Date
+    @NSManaged public var createdAt: Date?
     @NSManaged public var muted: Bool
     @NSManaged public var seen: Bool
     @NSManaged public var host: String?
