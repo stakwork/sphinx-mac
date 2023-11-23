@@ -528,3 +528,9 @@
 "time.hours-ago" = "%d horas atras";
 "time.yesterday" = "ayer";
 "time.days-ago" = "%d días atras";
+
+//NOTIFICATIONS
+"notification.invoice-payment.title" = "Pago de Solicitud Recibido";
+"notification.keysend.title" = "Keysend Recibido";
+"notification.amount" = "Monto:";
+"notification.memo" = "Memo:";

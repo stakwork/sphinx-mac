@@ -215,21 +215,29 @@ extension SphinxSocketManager {
     }
     
     func didReceiveInvoicePayment(json: JSON) {
-//        if let string = json["invoice"].string {
-//            let prDecoder = PaymentRequestDecoder()
-//            prDecoder.decodePaymentRequest(paymentRequest: string)
-//
-//            if prDecoder.isPaymentRequest() {
-//                let amount = prDecoder.getAmount() ?? 0
-//
-//                var message = "Amount: \(amount)"
-//                if let memo = prDecoder.getMemo() {
-//                    message = message + "\nMemo: \(memo)"
-//                }
-//                newMessageBubbleHelper.showMessageView(title: "Invoice Paid", text: message)
-//                togglePaidInvoiceIfNeeded(string: string)
-//            }
-//        }
+        if let string = json["invoice"].string {
+            
+            let prDecoder = PaymentRequestDecoder()
+            prDecoder.decodePaymentRequest(paymentRequest: string)
+
+            if prDecoder.isPaymentRequest() {
+                let amount = prDecoder.getAmount() ?? 0
+
+                var message = "\("notification.amount".localized) \(amount) sats"
+                
+                if let memo = prDecoder.getMemo() {
+                    message = message + "\n\("notification.memo".localized) \(memo)"
+                }
+                
+                if let appDelegate = NSApplication.shared.delegate as? AppDelegate {
+                    appDelegate.sendNotification(
+                        title: "notification.invoice-payment.title".localized,
+                        subtitle: nil,
+                        text: message
+                    )
+                }
+            }
+        }
     }
     
     func togglePaidInvoiceIfNeeded(string: String) {
@@ -466,6 +474,14 @@ extension SphinxSocketManager {
         
         if amt > 0 {
             updateBalanceIfNeeded(type: "keysend")
+        }
+        
+        if let appDelegate = NSApplication.shared.delegate as? AppDelegate {
+            appDelegate.sendNotification(
+                title: "notification.keysend.title".localized,
+                subtitle: nil,
+                text: "\("notification.amount".localized) \(amt) sats"
+            )
         }
     }
     
