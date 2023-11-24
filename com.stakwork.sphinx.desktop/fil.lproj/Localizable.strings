@@ -526,3 +526,9 @@
 "time.hours-ago" = "%d na oras na nakaraan";
 "time.yesterday" = "kahapon";
 "time.days-ago" = "%d araw na nakaraan";
+
+//NOTIFICATIONS
+"notification.invoice-payment.title" = "Invoice Payment Received";
+"notification.keysend.title" = "Keysend Received";
+"notification.amount" = "Amount:";
+"notification.memo" = "Memo:";

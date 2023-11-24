@@ -86,6 +86,24 @@ class NotificationsHelper : NSObject {
         return 0
     }
     
+    func sendNotification(
+        title: String,
+        subtitle: String? = nil,
+        text: String
+    ) -> Void {
+        if let notification = createNotificationFrom(
+            title: title,
+            subtitle: subtitle,
+            text: text
+        ) {
+            sendNotification(notification)
+            
+            if shouldPlaySound() {
+                SoundsPlayer.playSound(name: getNotificationSoundFile())
+            }
+        }
+    }
+    
     func sendNotification(message: TransactionMessage) -> Void {
         if isOff() {
             return
@@ -129,6 +147,24 @@ class NotificationsHelper : NSObject {
     func shouldShowBanner() -> Bool {
         return UserDefaults.Keys.notificationType.get(defaultValue: 0) == NotificationType.Banner.rawValue ||
                UserDefaults.Keys.notificationType.get(defaultValue: 0) == NotificationType.BannerAndSound.rawValue
+    }
+    
+    func createNotificationFrom(
+        title: String,
+        subtitle: String? = nil,
+        text: String
+    ) -> NSUserNotification? {
+        let notification = NSUserNotification()
+        
+        notification.title = title
+        
+        if let subtitle = subtitle {
+            notification.subtitle = subtitle
+        }
+        
+        notification.informativeText = text
+        
+        return notification
     }
     
     func createNotificationFrom(_ message: TransactionMessage) -> NSUserNotification? {

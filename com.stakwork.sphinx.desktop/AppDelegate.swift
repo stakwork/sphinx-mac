@@ -321,6 +321,18 @@ import WebKit
     func sendNotification(message: TransactionMessage) -> Void {
         notificationsHelper.sendNotification(message: message)
     }
+     
+     func sendNotification(
+        title: String,
+        subtitle: String? = nil,
+        text: String
+     ) -> Void {
+         notificationsHelper.sendNotification(
+            title: title,
+            subtitle: subtitle,
+            text: text
+         )
+     }
     
     @IBAction func appearenceButtonClicked(_ sender: NSMenuItem) {        
         setAppearanceFrom(value: sender.tag, shouldUpdate: true)
