@@ -64,7 +64,6 @@ import WebKit
         SDImageCache.shared.clearMemory()
         SDImageCache.shared.config.maxMemoryCount = 100
         
-        addStatusBarItem()
         listenToSleepEvents()
         connectTor()
         connectMQTT()
@@ -129,7 +128,7 @@ import WebKit
     func addStatusBarItem() {
         let statusBar = NSStatusBar.system
         statusBarItem = statusBar.statusItem(withLength: NSStatusItem.squareLength)
-        statusBarItem.button?.image = NSImage(named: "extraIconBadge")
+        statusBarItem.button?.image = NSImage(named: "extraIcon")
         statusBarItem.button?.imageScaling = .scaleProportionallyDown
         statusBarItem.button?.action = #selector(activateApp)
     }
@@ -200,6 +199,8 @@ import WebKit
         window.window?.setFrame(windowState.frame, display: true)
         window.window?.makeKey()
         window.showWindow(self)
+        
+        addStatusBarItem()
     }
     
     func getDashboardWindow() -> NSWindow? {
@@ -291,6 +292,8 @@ import WebKit
             windowState: WindowsManager.sharedInstance.getWindowState(),
             closeOther: true
         )
+        
+        setBadge(count: TransactionMessage.getReceivedUnseenMessagesCount())
     }
     
     func applicationWillResignActive(_ notification: Notification) {
@@ -314,6 +317,7 @@ import WebKit
     
     func setBadge(count: Int) {
         statusBarItem.button?.image = NSImage(named: count > 0 ? "extraIconBadge" : "extraIcon")
+        
         let title = count > 0 ? "\(count)" : ""
         NSApp.dockTile.badgeLabel = title
     }
