@@ -59,7 +59,7 @@ extension Chat : ChatListCommonObject {
             date = webAppLastDate
         }
         
-        return date ?? createdAt
+        return date ?? createdAt ?? Date()
     }
     
     func getConversationContact() -> UserContact? {

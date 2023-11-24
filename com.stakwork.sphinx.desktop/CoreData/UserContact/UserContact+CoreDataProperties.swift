@@ -22,7 +22,7 @@ extension UserContact {
     @NSManaged public var nodeAlias: String?
     @NSManaged public var avatarUrl: String?
     @NSManaged public var status: Int
-    @NSManaged public var createdAt: Date
+    @NSManaged public var createdAt: Date?
     @NSManaged public var email: String?
     @NSManaged public var isOwner: Bool
     @NSManaged public var phoneNumber: String?
