@@ -425,6 +425,7 @@ extension TransactionMessage {
         return type == TransactionMessageType.groupJoin.rawValue ||
                type == TransactionMessageType.groupLeave.rawValue ||
                type == TransactionMessageType.groupKick.rawValue ||
+               type == TransactionMessageType.groupDelete.rawValue ||
                type == TransactionMessageType.memberRequest.rawValue ||
                type == TransactionMessageType.memberApprove.rawValue ||
                type == TransactionMessageType.memberReject.rawValue
