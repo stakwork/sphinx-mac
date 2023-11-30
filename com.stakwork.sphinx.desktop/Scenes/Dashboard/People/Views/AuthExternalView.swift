@@ -105,6 +105,8 @@ class AuthExternalView: CommonModalView, LoadableNib {
                 self.authInfo?.token = token
                 self.authInfo?.info = info
                 self.signBase64()
+            } else {
+                self.showErrorAlert()
             }
         })
     }
@@ -132,6 +134,8 @@ class AuthExternalView: CommonModalView, LoadableNib {
             if let sig = sig {
                 self.authInfo?.verificationSignature = sig
                 self.authorize()
+            } else {
+                self.showErrorAlert()
             }
         })
     }
@@ -146,23 +150,34 @@ class AuthExternalView: CommonModalView, LoadableNib {
             info["url"] = UserData.sharedInstance.getNodeIP() as AnyObject
             info["verification_signature"] = verificationSignature as AnyObject
             
-            API.sharedInstance.authorizeExternal(host: host, challenge: challenge, token: token, params: info, callback: { success in
-                self.authorizationDone(success: success, host: host)
-            })
+            API.sharedInstance.authorizeExternal(
+                host: host,
+                challenge: challenge,
+                token: token,
+                params: info,
+                callback: { success in
+                    self.authorizationDone(success: success, host: host)
+                }
+            )
+        } else {
+            showErrorAlert()
         }
     }
     
     func authorizationDone(success: Bool, host: String) {
         if success {
-            if let host = authInfo?.host, let challenge = authInfo?.challenge, let _ = URL(string: "https://\(host)?challenge=\(challenge)") {
-                //NSWorkspace.shared.open(url)
-                messageBubbleHelper.showGenericMessageView(text: "authorization.login".localized, delay: 7, textColor: NSColor.white, backColor: NSColor.Sphinx.PrimaryGreen, backAlpha: 1.0)
-            }
-            messageBubbleHelper.showGenericMessageView(text: "authorization.login".localized, delay: 7, textColor: NSColor.white, backColor: NSColor.Sphinx.PrimaryGreen, backAlpha: 1.0)
+            messageBubbleHelper.showGenericMessageView(
+                text: "authorization.login".localized,
+                delay: 7,
+                textColor: NSColor.white,
+                backColor: NSColor.Sphinx.PrimaryGreen, 
+                backAlpha: 1.0
+            )
+            
+            delegate?.shouldDismissModals()
         } else {
-            messageBubbleHelper.showGenericMessageView(text: "authorization.success".localized, delay: 5, textColor: NSColor.white, backColor: NSColor.Sphinx.BadgeRed, backAlpha: 1.0)
+            showErrorAlert()
         }
-        delegate?.shouldDismissModals()
     }
     
     func showErrorAlert() {
