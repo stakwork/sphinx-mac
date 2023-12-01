@@ -32,6 +32,7 @@ class SphinxSocketManager {
     var preventReconnection = false
     
     var newMessageBubbleHelper = NewMessageBubbleHelper()
+    var confirmationIds: [Int] = []
     
     func setDelegate(delegate: SocketManagerDelegate) {
         self.delegate = delegate
@@ -258,6 +259,14 @@ extension SphinxSocketManager {
         )
     }
     
+    func didReceiveConfirmationWith(id: Int) {
+        confirmationIds.append(id)
+        
+        if confirmationIds.count > 20 {
+            confirmationIds.removeFirst()
+        }
+    }
+    
     func didReceiveMessage(type: String, messageJson: JSON) {
         let isConfirmation = type == "confirmation"
         
@@ -266,13 +275,22 @@ extension SphinxSocketManager {
         }
         
         var delay: Double = 0.0
+        var existingMessages: TransactionMessage? = nil
         
         if isConfirmation {
-            ///Handles case where confirmation of message is received before the send message endpoint returns.
-            ///Adding delay to prevent provisional message not being overwritten (duplicated bubble issue)
-            let existingMessages = TransactionMessage.getMessageWith(id: messageJson["id"].intValue)
+            let messageId = messageJson["id"].intValue
+            
+            if confirmationIds.contains(messageId) {
+                return
+            }
+            
+            didReceiveConfirmationWith(id: messageId)
+            
+            existingMessages = TransactionMessage.getMessageWith(id: messageId)
             
             if existingMessages == nil {
+                ///Handles case where confirmation of message is received before the send message endpoint returns.
+                ///Adding delay to prevent provisional message not being overwritten (duplicated bubble issue)
                 delay =  1.5
             }
         }
@@ -280,7 +298,7 @@ extension SphinxSocketManager {
         DelayPerformedHelper.performAfterDelay(seconds: delay, completion: {
             if let message = TransactionMessage.insertMessage(
                 m: messageJson,
-                existingMessage: TransactionMessage.getMessageWith(id: messageJson["id"].intValue)
+                existingMessage: existingMessages ?? TransactionMessage.getMessageWith(id: messageJson["id"].intValue)
             ).0 {
                 message.setPaymentInvoiceAsPaid()
                 
