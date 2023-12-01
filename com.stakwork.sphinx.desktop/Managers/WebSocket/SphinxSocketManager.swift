@@ -270,10 +270,6 @@ extension SphinxSocketManager {
     func didReceiveMessage(type: String, messageJson: JSON) {
         let isConfirmation = type == "confirmation"
         
-        if let contactJson = messageJson["contact"].dictionary {
-            let _ = UserContact.getOrCreateContact(contact: JSON(contactJson))
-        }
-        
         var delay: Double = 0.0
         var existingMessages: TransactionMessage? = nil
         
@@ -293,6 +289,10 @@ extension SphinxSocketManager {
                 ///Adding delay to prevent provisional message not being overwritten (duplicated bubble issue)
                 delay =  1.5
             }
+        }
+        
+        if let contactJson = messageJson["contact"].dictionary {
+            let _ = UserContact.getOrCreateContact(contact: JSON(contactJson))
         }
 
         DelayPerformedHelper.performAfterDelay(seconds: delay, completion: {
