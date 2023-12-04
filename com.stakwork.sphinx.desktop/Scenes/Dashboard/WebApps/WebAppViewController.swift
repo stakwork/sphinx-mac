@@ -101,7 +101,7 @@ class WebAppViewController: NSViewController {
         self.view.addSubview(webView, positioned: .below, relativeTo: authorizeModalContainer)
         addWebViewConstraints()
 
-        webAppHelper.setWebView(webView, authorizeHandler: configureAuthorizeView)
+        webAppHelper.setWebView(webView, authorizeHandler: configureAuthorizeView, authorizeBudgetHandler: configureBudgetView)
     }
     
     func addLoadingView(){
@@ -123,9 +123,15 @@ class WebAppViewController: NSViewController {
         }
     }
     
-    
     func configureAuthorizeView(_ dict: [String: AnyObject]) {
-        let viewHeight = authorizeAppView.configureFor(url: gameURL, delegate: self, dict: dict)
+        let viewHeight = authorizeAppView.configureFor(url: gameURL, delegate: self, dict: dict, showBudgetField: false)
+        authorizeAppViewHeight.constant = viewHeight
+        authorizeAppView.layoutSubtreeIfNeeded()
+        toggleAuthorizationView(show: true)
+    }
+    
+    func configureBudgetView(_ dict: [String: AnyObject]) {
+        let viewHeight = authorizeAppView.configureFor(url: gameURL, delegate: self, dict: dict, showBudgetField: true)
         authorizeAppViewHeight.constant = viewHeight
         authorizeAppView.layoutSubtreeIfNeeded()
         toggleAuthorizationView(show: true)
@@ -194,11 +200,15 @@ extension WebAppViewController : AuthorizeAppViewDelegate {
         }
     }
     
-    func shouldAuthorizeWith(amount: Int, dict: [String: AnyObject]) {
+    func shouldAuthorizeBudgetWith(amount: Int, dict: [String : AnyObject]) {
         webAppHelper.authorizeWebApp(amount: amount, dict: dict, completion: {
             self.chat.updateWebAppLastDate()
             self.shouldCloseAuthorizeView()
         })
+    }
+    
+    func shouldAuthorizeWith(dict: [String : AnyObject]) {
+        ///Authorize with no budget
     }
 }
 

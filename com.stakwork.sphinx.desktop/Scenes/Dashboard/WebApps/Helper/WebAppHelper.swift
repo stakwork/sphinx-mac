@@ -22,15 +22,21 @@ class WebAppHelper : NSObject {
     
     var webView : WKWebView! = nil
     var authorizeHandler: (([String: AnyObject]) -> ())! = nil
+    var authorizeBudgetHandler: (([String: AnyObject]) -> ())! = nil
     
     var persistingValues: [String: AnyObject] = [:]
     var delegate : WebAppHelperDelegate? = nil
     
     var lsatList = [LSATObject]()
     
-    func setWebView(_ webView: WKWebView, authorizeHandler: @escaping (([String: AnyObject]) -> ())) {
+    func setWebView(
+        _ webView: WKWebView,
+        authorizeHandler: @escaping (([String: AnyObject]) -> ()),
+        authorizeBudgetHandler: @escaping (([String: AnyObject]) -> ())
+    ) {
         self.webView = webView
         self.authorizeHandler = authorizeHandler
+        self.authorizeBudgetHandler = authorizeBudgetHandler
     }
 }
 
@@ -44,8 +50,12 @@ extension WebAppHelper : WKScriptMessageHandler {
             if let type = dict["type"] as? String {
                 switch(type) {
                 case "AUTHORIZE":
-                    saveValue(dict["amount"] as AnyObject, for: "budget")
+//                    saveValue(dict["amount"] as AnyObject, for: "budget")
                     authorizeHandler(dict)
+                    break
+                case "SETBUDGET":
+                    saveValue(dict["amount"] as AnyObject, for: "budget")
+                    authorizeBudgetHandler(dict)
                     break
                 case "KEYSEND":
                     sendKeySend(dict)
