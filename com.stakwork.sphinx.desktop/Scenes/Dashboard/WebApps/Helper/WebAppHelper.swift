@@ -150,19 +150,27 @@ extension WebAppHelper : WKScriptMessageHandler {
         }
     }
     
-    func sendAuthorizeMessage(amount: Int, signature: String? = nil, dict: [String: AnyObject], completion: @escaping () -> ()) {
+    // AUTHORIZE Without Budget
+    func authorizeNoBudget( dict: [String: AnyObject], completion: @escaping () -> ()) {
+        sendAuthorizeMessage( dict: dict, completion: completion)
+    }
+    
+    func sendAuthorizeMessage(amount: Int? = nil, signature: String? = nil, dict: [String: AnyObject], completion: @escaping () -> ()) {
         if let pubKey = UserData.sharedInstance.getUserPubKey() {
             var params: [String: AnyObject] = [:]
             setTypeApplicationAndPassword(params: &params, dict: dict)
             
-            params["budget"] = amount as AnyObject
             params["pubkey"] = pubKey as AnyObject
             
-            saveValue(amount as AnyObject, for: "budget")
             saveValue(pubKey as AnyObject, for: "pubkey")
             
             if let signature = signature {
                 params["signature"] = signature as AnyObject
+            }
+            
+            if let amount = amount {
+                params["budget"] = amount as AnyObject
+                saveValue(amount as AnyObject, for: "budget")
             }
             
             sendMessage(dict: params)
