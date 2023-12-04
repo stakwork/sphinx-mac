@@ -93,11 +93,18 @@ class AuthorizeAppView: NSView, LoadableNib {
         
         if noBudget || !showBudgetField {
             configureWithNoBudget()
-            
             return kHeightWithoutBudgetField
+        } else {
+            configureWithBudget()
+            return kHeightWithBudgetField
         }
-        
-        return kHeightWithBudgetField
+    }
+    
+    func configureWithBudget() {
+        confirmButtonEnabled = false
+        fieldContainer.isHidden = false
+        fieldTopLabel.isHidden = false
+        fieldBottomLabel.isHidden = false
     }
     
     func configureWithNoBudget() {
