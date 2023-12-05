@@ -208,7 +208,6 @@ extension WebAppViewController : AuthorizeAppViewDelegate {
     }
     
     func shouldAuthorizeWith(dict: [String : AnyObject]) {
-        ///Authorize with no budget
         webAppHelper.authorizeNoBudget(dict: dict, completion: {
             self.chat.updateWebAppLastDate()
             self.shouldCloseAuthorizeView()

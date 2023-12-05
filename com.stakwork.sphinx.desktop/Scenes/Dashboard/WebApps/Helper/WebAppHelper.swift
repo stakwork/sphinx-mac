@@ -50,7 +50,6 @@ extension WebAppHelper : WKScriptMessageHandler {
             if let type = dict["type"] as? String {
                 switch(type) {
                 case "AUTHORIZE":
-//                    saveValue(dict["amount"] as AnyObject, for: "budget")
                     authorizeHandler(dict)
                     break
                 case "SETBUDGET":
