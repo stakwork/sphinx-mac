@@ -450,7 +450,7 @@ extension MediaLoader {
         url: URL,
         message: TransactionMessage,
         mediaKey: String?,
-        completion: @escaping (Int, NSImage) -> (),
+        completion: @escaping (Int, NSImage?, Data?) -> (),
         errorCompletion: @escaping (Int) -> ()
     ) {
         let messageId = message.id
@@ -460,13 +460,16 @@ extension MediaLoader {
             clearImageCacheFor(url: url.absoluteString)
             errorCompletion(messageId)
             return
-        } else if let cachedImage = getImageFromCachedUrl(url: url.absoluteString) {
-            if !isGif || (isGif && getMediaDataFromCachedUrl(url: url.absoluteString) != nil) {
-                DispatchQueue.main.async {
-                    completion(messageId, cachedImage)
-                }
-                return
+        } else if let cachedImage = getImageFromCachedUrl(url: url.absoluteString), !isGif {
+            DispatchQueue.main.async {
+                completion(messageId, cachedImage, nil)
             }
+            return
+        } else if let cachedData = getMediaDataFromCachedUrl(url: url.absoluteString), isGif {
+            DispatchQueue.main.async {
+                completion(messageId, nil, cachedData)
+            }
+            return
         }
         
         loadDataFrom(URL: url, completion: { (data, fileName) in
@@ -494,7 +497,7 @@ extension MediaLoader {
         url: URL,
         message: TransactionMessage,
         mediaKey: String?,
-        completion: @escaping (Int, NSImage) -> (),
+        completion: @escaping (Int, NSImage?, Data?) -> (),
         errorCompletion: @escaping (Int) -> ()
     ) {
         let messageId = message.id
@@ -522,7 +525,7 @@ extension MediaLoader {
             )
             
             DispatchQueue.main.async {
-                completion(messageId, decryptedImage)
+                completion(messageId, decryptedImage, nil)
             }
         } else {
             DispatchQueue.main.async {
