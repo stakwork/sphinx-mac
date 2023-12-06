@@ -162,6 +162,8 @@ extension NewChatViewModel {
                 )
             }
             
+            let provisionalMessageId = provisionalMessage?.id
+            
             if let message = TransactionMessage.insertMessage(
                 m: m,
                 existingMessage: provisionalMessage
@@ -174,6 +176,8 @@ extension NewChatViewModel {
                     chat: message.chat,
                     completion: completion
                 )
+                
+                self.deleteMessageWith(id: provisionalMessageId)
                 
                 ActionsManager.sharedInstance.trackMessageSent(message: message)
             }
@@ -193,6 +197,14 @@ extension NewChatViewModel {
                 )
              }
         })
+    }
+    
+    func deleteMessageWith(
+        id: Int?
+    ) {
+        if let id = id {
+            TransactionMessage.deleteMessageWith(id: id)
+        }
     }
 
     func messageSent(

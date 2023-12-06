@@ -266,7 +266,12 @@ class AttachmentsManager {
         })
     }
     
-    func createLocalMessage(message: JSON, attachmentObject: AttachmentObject) {
+    func createLocalMessage(
+        message: JSON,
+        attachmentObject: AttachmentObject
+    ) {
+        let provisionalMessageId = provisionalMessage?.id
+        
         if let message = TransactionMessage.insertMessage(
             m: message,
             existingMessage: provisionalMessage
@@ -277,6 +282,14 @@ class AttachmentsManager {
             )
             cacheImageAndMediaData(message: message, attachmentObject: attachmentObject)
             uploadSucceed(message: message)
+            
+            self.deleteMessageWith(id: provisionalMessageId)
+        }
+    }
+    
+    func deleteMessageWith(id: Int?) {
+        if let id = id {
+            TransactionMessage.deleteMessageWith(id: id)
         }
     }
     
