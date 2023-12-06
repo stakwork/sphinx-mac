@@ -51,6 +51,7 @@ class ContactsService: NSObject {
     var contactsSearchQuery: String = ""
     var chatsSearchQuery: String = ""
     
+    var ownerResultsController: NSFetchedResultsController<UserContact>!
     var contactsResultsController: NSFetchedResultsController<UserContact>!
     var chatsResultsController: NSFetchedResultsController<Chat>!
     
@@ -60,7 +61,7 @@ class ContactsService: NSObject {
     override init() {
         super.init()
         
-        updateOwner()
+        configureOwnerFetchResultsController()
     }
     
     func isRestoring() -> Bool {
@@ -80,6 +81,27 @@ class ContactsService: NSObject {
         
         chatsResultsController?.delegate = nil
         chatsResultsController = nil
+    }
+    
+    func configureOwnerFetchResultsController() {
+        if let _ = ownerResultsController {
+            return
+        }
+        
+        let ownerFetchRequest = UserContact.FetchRequests.owner()
+
+        ownerResultsController = NSFetchedResultsController(
+            fetchRequest: ownerFetchRequest,
+            managedObjectContext: CoreDataManager.sharedManager.persistentContainer.viewContext,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
+        
+        ownerResultsController.delegate = self
+        
+        do {
+            try ownerResultsController.performFetch()
+        } catch {}
     }
     
     func configureFetchResultsController() {
@@ -160,6 +182,11 @@ extension ContactsService : NSFetchedResultsControllerDelegate {
             let resultController = controller as? NSFetchedResultsController<NSManagedObject>,
             let firstSection = resultController.sections?.first {
             
+            if resultController == ownerResultsController {
+                self.owner = firstSection.objects?.first as? UserContact
+                return
+            }
+            
             if resultController == contactsResultsController {
                 didCollectContacts = true
             } else if resultController == chatsResultsController {
@@ -188,7 +215,7 @@ extension ContactsService : NSFetchedResultsControllerDelegate {
     }
     
     func updateOwner() {
-        if owner == nil || owner.isFault {
+        if owner == nil {
             owner = UserContact.getOwner()
         }
     }
