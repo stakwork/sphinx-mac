@@ -19,9 +19,10 @@ extension ThreadsListDataSource : ThreadListTableViewCellDelegate {
         {
             let mediaKey = tableCellState.1.messageMedia?.mediaKey
             
-            MediaLoader.loadImage(url: imageUrl, message: message, mediaKey: mediaKey, completion: { messageId, image in
+            MediaLoader.loadImage(url: imageUrl, message: message, mediaKey: mediaKey, completion: { messageId, image, gifData in
                 let updatedMediaData = MessageTableCellState.MediaData(
-                    image: image
+                    image: image,
+                    data: gifData
                 )
                 self.updateMessageTableCellStateFor(rowIndex: rowIndex, messageId: messageId, with: updatedMediaData)
             }, errorCompletion: { messageId in
