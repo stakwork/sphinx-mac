@@ -421,6 +421,14 @@ public class TransactionMessage: NSManagedObject {
         return message
     }
     
+    static func deleteMessageWith(
+        id: Int
+    ) {
+        if let message = TransactionMessage.getMessageWith(id: id) {
+            CoreDataManager.sharedManager.deleteObject(object: message)
+        }
+    }
+    
     static func isDifferentDayMessage(lastMessage: TransactionMessage?, newMessage: TransactionMessage?) -> Bool {
         if let newMessageDate = newMessage?.date as Date? {
             return isDifferentDay(lastMessage: lastMessage, newMessageDate: newMessageDate)
