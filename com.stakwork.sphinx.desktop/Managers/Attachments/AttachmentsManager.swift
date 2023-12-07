@@ -282,8 +282,7 @@ class AttachmentsManager {
             )
             cacheImageAndMediaData(message: message, attachmentObject: attachmentObject)
             uploadSucceed(message: message)
-            
-            self.deleteMessageWith(id: provisionalMessageId)
+            deleteMessageWith(id: provisionalMessageId)
         }
     }
     
