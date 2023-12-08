@@ -76,6 +76,8 @@ class API {
         return Static.instance
     }
     
+    let interceptor = SphinxInterceptor()
+    
     var onionConnector = SphinxOnionConnector.sharedInstance
     
     var uploadRequest: UploadRequest?
@@ -269,14 +271,17 @@ class API {
             mutableUrlRequest.setValue(value, forHTTPHeaderField: key)
         }
         
-        session()?.request(mutableUrlRequest).responseJSON { (response) in
+        session()?.request(
+            mutableUrlRequest,
+            interceptor: interceptor
+        ).responseJSON { (response) in
             let statusCode = (response.response?.statusCode ?? -1)
             
             switch statusCode {
             case self.successStatusCode:
                 self.connectionStatus = .Connected
             case self.unauthorizedStatusCode:
-//                self.getRelaykeys()
+                self.getRelaykeys()
                 
                 self.connectionStatus = .Unauthorize
                 
@@ -481,5 +486,18 @@ class API {
         } else {
             return nil
         }
+    }
+}
+
+class SphinxInterceptor : RequestInterceptor {
+    public func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
+        completion(.success(urlRequest))
+    }
+
+    public func retry(_ request: Request,
+                      for session: Session,
+                      dueTo error: Error,
+                      completion: @escaping (RetryResult) -> Void) {
+        completion(.doNotRetry)
     }
 }
