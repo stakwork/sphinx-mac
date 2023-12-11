@@ -68,7 +68,6 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         
         profileImageView.isHidden = true
         profileInitialContainer.isHidden = true
-        profileImageView.layer?.borderWidth = 0
         
         if !message.consecutiveMessages.previousMessage {
             
@@ -147,7 +146,6 @@ class ChatSmallAvatarView: NSView, LoadableNib {
     ) {
         if let imageUrl = imageUrl, imageUrl == url.absoluteString {
             profileInitialContainer.isHidden = true
-            profileImageView.alphaValue = 0.0
             profileImageView.isHidden = false
             return
         }
@@ -161,8 +159,6 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         )
         
         profileInitialContainer.isHidden = true
-        profileImageView.alphaValue = 0.0
-        
         self.imageUrl = url.absoluteString
         
         profileImageView.sd_setImage(
