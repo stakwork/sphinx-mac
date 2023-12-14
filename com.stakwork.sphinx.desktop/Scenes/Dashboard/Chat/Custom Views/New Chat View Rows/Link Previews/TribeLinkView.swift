@@ -52,6 +52,7 @@ class TribeLinkView: NSView, LoadableNib {
         tribeImageView.gravity = .resizeAspectFill
         tribeImageView.radius = 40
         tribeImageView.rounded = true
+        tribeImageView.clipsToBounds = true
         
         borderView.wantsLayer = true
     }

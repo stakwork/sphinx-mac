@@ -53,6 +53,7 @@ class AspectFillNSImageView: NSImageView {
     
     open override var image: NSImage? {
         set {
+            self.layer = CALayer()
             self.customizeLayer()
             self.layer?.contents = newValue
             super.image = newValue
@@ -66,6 +67,7 @@ class AspectFillNSImageView: NSImageView {
     open var imageWithName: String {
         set {
             let image = NSImage(named: newValue)
+            self.layer = CALayer()
             self.customizeLayer()
             self.layer?.contents = image
             super.image = image
