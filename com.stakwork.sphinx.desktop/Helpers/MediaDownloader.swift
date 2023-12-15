@@ -86,8 +86,11 @@ class MediaDownloader {
     static func saveImage(message: TransactionMessage, fileName: String, completion: @escaping (Bool) -> ()) {
         if let url = message.getMediaUrl() {
             MediaLoader.loadImage(url: url, message: message, completion: { (_, image) in
-                if let imgData = image.tiffRepresentation(using: .jpeg, factor: 1) {
-                    let success = saveFile(data: imgData, name: "\(fileName).jpg")
+                if let tiffRepresentation = image.tiffRepresentation,
+                    let bitmapImage = NSBitmapImageRep(data: tiffRepresentation),
+                    let pngData = bitmapImage.representation(using: .png, properties: [:])
+                {
+                    let success = saveFile(data: pngData, name: "\(fileName).png")
                     completion(success)
                 } else {
                     completion(false)
