@@ -120,7 +120,9 @@ extension ThreadTableDataSource {
         messageTableCellStateArray = array
         
         updateSnapshot(UIUpdateIndex: UIUpdateIndex)
+        
         delegate?.configureNewMessagesIndicatorWith(newMsgCount: messages.count)
+        delegate?.shouldReloadThreadHeader()
     }
     
     override func getFetchRequestFor(

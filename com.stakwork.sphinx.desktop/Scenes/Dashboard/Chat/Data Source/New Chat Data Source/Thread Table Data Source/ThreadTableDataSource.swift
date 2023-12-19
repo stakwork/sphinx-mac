@@ -98,12 +98,17 @@ class ThreadTableDataSource : NewChatTableDataSource {
             return nil
         }
         
+        let boostMessagesMap = getBoostMessagesMapFor(messages: [threadOriginalMessage])
+        let boostMessages = (threadOriginalMessage.uuid != nil) ? (boostMessagesMap[threadOriginalMessage.uuid!] ?? []) : []
+        
         let messageTableCellState = MessageTableCellState(
             message: threadOriginalMessage,
             chat: chat,
             owner: owner,
             contact: contact,
             tribeAdmin: tribeAdmin,
+            bubbleState: MessageTableCellState.BubbleState.Isolated,
+            boostMessages: boostMessages,
             isThreadHeaderMessage: true
         )
         

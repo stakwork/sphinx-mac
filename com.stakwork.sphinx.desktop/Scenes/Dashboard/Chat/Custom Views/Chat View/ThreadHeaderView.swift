@@ -21,6 +21,8 @@ import Cocoa
     func didTapPlayPauseButtonFor(messageId: Int, and rowIndex: Int)
     
     func shouldCloseThread()
+    
+    func shouldShowOptionsFor(messageId: Int, from button: NSButton)
 }
 
 class ThreadHeaderView: NSView, LoadableNib {
@@ -42,11 +44,14 @@ class ThreadHeaderView: NSView, LoadableNib {
     @IBOutlet weak var mediaTextContainer: NSStackView!
     @IBOutlet weak var messageMediaContainer: NSView!
     @IBOutlet weak var messageMediaView: MediaMessageView!
+    @IBOutlet weak var messageBoostView: NewMessageBoostView!
+    @IBOutlet weak var messageBoostViewContainer: NSView!
     
     @IBOutlet weak var textContainer: NSView!
     @IBOutlet weak var messageLabel: MessageTextField!
     
     @IBOutlet weak var closeButton: CustomButton!
+    @IBOutlet weak var optionsButton: CustomButton!
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -62,6 +67,7 @@ class ThreadHeaderView: NSView, LoadableNib {
     
     func setupView() {
         closeButton.cursor = .pointingHand
+        optionsButton.cursor = .pointingHand
         
         addShadow(
             location: VerticalLocation.bottom,
@@ -86,6 +92,7 @@ class ThreadHeaderView: NSView, LoadableNib {
         messageMediaContainer.isHidden = true
         messageMediaView.isHidden = true
         textContainer.isHidden = true
+        messageBoostViewContainer.isHidden = true
     }
     
     func configureWith(
@@ -104,6 +111,10 @@ class ThreadHeaderView: NSView, LoadableNib {
         configureWith(messageMedia: mutableMessageCellState.messageMedia, mediaData: mediaData)
         configureWith(genericFile: mutableMessageCellState.genericFile, mediaData: mediaData)
         configureWith(audio: mutableMessageCellState.audio, mediaData: mediaData)
+        
+        if let bubble = mutableMessageCellState.bubble {
+            configureWith(boosts: mutableMessageCellState.boosts, and: bubble)
+        }
     }
     
     func configureWith(
@@ -281,6 +292,22 @@ class ThreadHeaderView: NSView, LoadableNib {
                     )
                 }
             }
+        }
+    }
+    
+    func configureWith(
+        boosts: BubbleMessageLayoutState.Boosts?,
+        and bubble: BubbleMessageLayoutState.Bubble
+    ) {
+        if let boosts = boosts {
+            messageBoostView.configureWith(boosts: boosts, and: bubble)
+            messageBoostViewContainer.isHidden = false
+        }
+    }
+    
+    @IBAction func optionsButtonClicked(_ sender: Any) {
+        if let button = sender as? NSButton, let messageId = messageId {
+            delegate?.shouldShowOptionsFor(messageId: messageId, from: button)
         }
     }
     
