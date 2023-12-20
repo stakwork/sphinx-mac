@@ -546,6 +546,15 @@ extension TransactionMessage {
     
     var isDeleteActionAllowed: Bool {
         get {
+            if let uuid = self.uuid, let chat = self.chat {
+                ///Remove delete for thread original message
+                let threadMessages = TransactionMessage.getThreadMessagesFor([uuid], on: chat)
+                
+                if threadMessages.count > 1 {
+                    return false
+                }
+            }
+            
             return (!isInvoice() || (isInvoice() && !isPaid())) && canBeDeleted()
         }
     }
