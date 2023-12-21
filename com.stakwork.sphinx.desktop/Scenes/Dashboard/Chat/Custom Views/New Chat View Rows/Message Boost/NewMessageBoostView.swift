@@ -49,13 +49,14 @@ class NewMessageBoostView: NSView, LoadableNib {
     
     func configureWith(
         boosts: BubbleMessageLayoutState.Boosts,
-        and bubble: BubbleMessageLayoutState.Bubble
+        and bubble: BubbleMessageLayoutState.Bubble,
+        isThreadHeader: Bool = false
     ) {
         resetViews()
         
         configureBoostIcon(active: bubble.direction.isOutgoing() || boosts.boostedByMe)
         configureWith(direction: bubble.direction)
-        configureWith(boosts: boosts.boosts, and: bubble.direction)
+        configureWith(boosts: boosts.boosts, and: bubble.direction, isThreadHeader: isThreadHeader)
         
         amountLabel.stringValue = boosts.totalAmount.formattedWithSeparator
         
@@ -66,20 +67,21 @@ class NewMessageBoostView: NSView, LoadableNib {
     
     func configureWith(
         boosts: [BubbleMessageLayoutState.Boost],
-        and direction: MessageTableCellState.MessageDirection
+        and direction: MessageTableCellState.MessageDirection,
+        isThreadHeader: Bool = false
     ) {
         let nonDuplicatedBoosts = boosts.unique(selector: { $0.senderAlias == $1.senderAlias })
         
         if nonDuplicatedBoosts.count > 0 {
-            boostUserView1.configureWith(boost: nonDuplicatedBoosts[0], and: direction)
+            boostUserView1.configureWith(boost: nonDuplicatedBoosts[0], and: direction, isThreadHeader: isThreadHeader)
         }
         
         if nonDuplicatedBoosts.count > 1 {
-            boostUserView2.configureWith(boost: nonDuplicatedBoosts[1], and: direction)
+            boostUserView2.configureWith(boost: nonDuplicatedBoosts[1], and: direction, isThreadHeader: isThreadHeader)
         }
         
         if nonDuplicatedBoosts.count > 2 {
-            boostUserView3.configureWith(boost: nonDuplicatedBoosts[2], and: direction)
+            boostUserView3.configureWith(boost: nonDuplicatedBoosts[2], and: direction, isThreadHeader: isThreadHeader)
         }
     }
     
