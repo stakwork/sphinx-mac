@@ -94,6 +94,11 @@ class WebAppViewController: NSViewController {
         webView.customUserAgent = "Sphinx"
         webView.isHidden = true
         webView.navigationDelegate = self
+        
+        if #available(macOS 13.3, *) {
+            webView.isInspectable = true
+        }
+        
         webView.setBackgroundColor(color: NSColor.clear)
         addLoadingView()
         finishLoadingTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(checkForWebViewDoneLoading), userInfo: nil, repeats: true)
