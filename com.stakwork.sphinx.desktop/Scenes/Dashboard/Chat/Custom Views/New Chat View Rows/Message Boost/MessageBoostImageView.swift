@@ -38,9 +38,11 @@ class MessageBoostImageView: NSView, LoadableNib {
     
     func configureWith(
         boost: BubbleMessageLayoutState.Boost,
-        and direction: MessageTableCellState.MessageDirection
+        and direction: MessageTableCellState.MessageDirection,
+        isThreadHeader: Bool = false
     ) {
-        let bubbleColor = direction.isOutgoing() ? NSColor.Sphinx.SentMsgBG : NSColor.Sphinx.ReceivedMsgBG
+        
+        let bubbleColor = isThreadHeader ? NSColor.Sphinx.NewHeaderBG : ( direction.isOutgoing() ? NSColor.Sphinx.SentMsgBG : NSColor.Sphinx.ReceivedMsgBG )
         circularBorderView.fillColor = bubbleColor
 
         circularView.fillColor = boost.senderColor ?? NSColor.Sphinx.SecondaryText
@@ -52,7 +54,7 @@ class MessageBoostImageView: NSView, LoadableNib {
         if let senderPic = boost.senderPic, let url = URL(string: senderPic) {
 
             let transformer = SDImageResizingTransformer(
-                size: imageView.bounds.size,
+                size: CGSize(width: imageView.bounds.size.width * 2, height: imageView.bounds.size.height * 2),
                 scaleMode: .aspectFill
             )
 
@@ -60,7 +62,7 @@ class MessageBoostImageView: NSView, LoadableNib {
             imageView.sd_setImage(
                 with: url,
                 placeholderImage: NSImage(named: "profile_avatar"),
-                options: [.scaleDownLargeImages, .decodeFirstFrameOnly, .lowPriority],
+                options: [.scaleDownLargeImages, .decodeFirstFrameOnly, .progressiveLoad],
                 context: [.imageTransformer: transformer],
                 progress: nil,
                 completed: { (image, error, _, _) in

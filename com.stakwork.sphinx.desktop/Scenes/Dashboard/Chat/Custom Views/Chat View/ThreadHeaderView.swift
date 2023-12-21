@@ -300,7 +300,7 @@ class ThreadHeaderView: NSView, LoadableNib {
         and bubble: BubbleMessageLayoutState.Bubble
     ) {
         if let boosts = boosts {
-            messageBoostView.configureWith(boosts: boosts, and: bubble)
+            messageBoostView.configureWith(boosts: boosts, and: bubble, isThreadHeader: true)
             messageBoostViewContainer.isHidden = false
         }
     }
