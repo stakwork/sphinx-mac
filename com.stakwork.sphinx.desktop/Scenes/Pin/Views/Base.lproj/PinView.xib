@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,17 +31,17 @@
                     <color key="fillColor" name="Body"/>
                 </box>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yqK-aK-2UG">
-                    <rect key="frame" x="160" y="252" width="80" height="80"/>
+                    <rect key="frame" x="160" y="251" width="80" height="80"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="UVH-lg-nf8"/>
                         <constraint firstAttribute="height" constant="80" id="f5h-9a-WLV"/>
                     </constraints>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="appPinIcon" id="eH3-Zh-LK0"/>
                 </imageView>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ioW-OJ-WQh">
-                    <rect key="frame" x="121" y="201" width="158" height="34"/>
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ioW-OJ-WQh">
+                    <rect key="frame" x="131" y="201" width="139" height="33"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="ENTER PIN" id="uLH-75-XWO">
-                        <font key="font" size="28" name="Montserrat-Regular"/>
+                        <font key="font" metaFont="system" size="28"/>
                         <color key="textColor" name="Text"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -53,7 +53,7 @@
                         <constraint firstAttribute="width" constant="260" id="c1T-9r-d1S"/>
                     </constraints>
                 </customView>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="i6U-8R-OAb">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="i6U-8R-OAb">
                     <rect key="frame" x="68" y="90" width="264" height="16"/>
                     <textFieldCell key="cell" alignment="center" id="B9A-tC-4uS">
                         <font key="font" metaFont="system"/>

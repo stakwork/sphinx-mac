@@ -3,11 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1AD578FF09B63C227165D4DA /* Pods_Sphinx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C242433501D81263FED4C2 /* Pods_Sphinx.framework */; };
+		0F2AD867E8A65F1A8A610EE5 /* Pods_Sphinx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8177914FE04F985B6D18BF17 /* Pods_Sphinx.framework */; };
 		4702BCF0248FE5C400EE9394 /* ShareInviteCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4702BCEF248FE5C400EE9394 /* ShareInviteCodeViewController.swift */; };
 		4702BCF2248FE6B700EE9394 /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4702BCF1248FE6B700EE9394 /* NSImage.swift */; };
 		470396E525371EF3007F9C23 /* PodcastPlayerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470396E425371EF3007F9C23 /* PodcastPlayerHelper.swift */; };
@@ -508,7 +508,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1728D33343FCD0F3C86E770D /* Pods-Sphinx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sphinx.release.xcconfig"; path = "Target Support Files/Pods-Sphinx/Pods-Sphinx.release.xcconfig"; sourceTree = "<group>"; };
 		4702BCEF248FE5C400EE9394 /* ShareInviteCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInviteCodeViewController.swift; sourceTree = "<group>"; };
 		4702BCF1248FE6B700EE9394 /* NSImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImage.swift; sourceTree = "<group>"; };
 		470396E425371EF3007F9C23 /* PodcastPlayerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastPlayerHelper.swift; sourceTree = "<group>"; };
@@ -1059,10 +1058,9 @@
 		47F8824625656CB0002A7E71 /* SocketAckEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckEmitter.swift; sourceTree = "<group>"; };
 		47F88262256D397E002A7E71 /* MessageBoostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBoostView.swift; sourceTree = "<group>"; };
 		47F88264256D398B002A7E71 /* MessageBoostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageBoostView.xib; sourceTree = "<group>"; };
-		5EA81AB599AD947A8862A100 /* Pods-Sphinx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sphinx.debug.xcconfig"; path = "Target Support Files/Pods-Sphinx/Pods-Sphinx.debug.xcconfig"; sourceTree = "<group>"; };
-		82C242433501D81263FED4C2 /* Pods_Sphinx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sphinx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		97A6F8CB5E1D14A28D7C7A67 /* Pods-com.stakwork.sphinx.desktop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-com.stakwork.sphinx.desktop.release.xcconfig"; path = "Target Support Files/Pods-com.stakwork.sphinx.desktop/Pods-com.stakwork.sphinx.desktop.release.xcconfig"; sourceTree = "<group>"; };
-		F90398F47E0448445B11E3B5 /* Pods-com.stakwork.sphinx.desktop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-com.stakwork.sphinx.desktop.debug.xcconfig"; path = "Target Support Files/Pods-com.stakwork.sphinx.desktop/Pods-com.stakwork.sphinx.desktop.debug.xcconfig"; sourceTree = "<group>"; };
+		8177914FE04F985B6D18BF17 /* Pods_Sphinx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sphinx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A451B1697DF4FE25E4B7BBD1 /* Pods-Sphinx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sphinx.release.xcconfig"; path = "Target Support Files/Pods-Sphinx/Pods-Sphinx.release.xcconfig"; sourceTree = "<group>"; };
+		E5F65834D2514AF0BA2F354C /* Pods-Sphinx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sphinx.debug.xcconfig"; path = "Target Support Files/Pods-Sphinx/Pods-Sphinx.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1071,7 +1069,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47D03DE7250FC8B90077A968 /* PDFKit.framework in Frameworks */,
-				1AD578FF09B63C227165D4DA /* Pods_Sphinx.framework in Frameworks */,
+				0F2AD867E8A65F1A8A610EE5 /* Pods_Sphinx.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1096,7 +1094,7 @@
 			isa = PBXGroup;
 			children = (
 				47D03DE6250FC8B90077A968 /* PDFKit.framework */,
-				82C242433501D81263FED4C2 /* Pods_Sphinx.framework */,
+				8177914FE04F985B6D18BF17 /* Pods_Sphinx.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2397,10 +2395,8 @@
 		90CB5EBD497A4B4F39AB48EE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F90398F47E0448445B11E3B5 /* Pods-com.stakwork.sphinx.desktop.debug.xcconfig */,
-				97A6F8CB5E1D14A28D7C7A67 /* Pods-com.stakwork.sphinx.desktop.release.xcconfig */,
-				5EA81AB599AD947A8862A100 /* Pods-Sphinx.debug.xcconfig */,
-				1728D33343FCD0F3C86E770D /* Pods-Sphinx.release.xcconfig */,
+				E5F65834D2514AF0BA2F354C /* Pods-Sphinx.debug.xcconfig */,
+				A451B1697DF4FE25E4B7BBD1 /* Pods-Sphinx.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -2412,13 +2408,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4734D3BB2417E3D600D6957E /* Build configuration list for PBXNativeTarget "Sphinx" */;
 			buildPhases = (
-				79D01615633138DB27132C48 /* [CP] Check Pods Manifest.lock */,
+				288F2902DC3AFE17B1EB3342 /* [CP] Check Pods Manifest.lock */,
 				4734D38E2417E3D400D6957E /* Sources */,
 				4734D38F2417E3D400D6957E /* Frameworks */,
 				4734D3902417E3D400D6957E /* Resources */,
-				D1E991D217B4B052B9EB71DE /* [CP] Embed Pods Frameworks */,
 				4703F0622481C63C00282186 /* CopyFiles */,
 				479C793324EAD51E009BA1CD /* ShellScript */,
+				BB705C5BF47491D075DBCE58 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2649,24 +2645,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		479C793324EAD51E009BA1CD /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellScript = "
-";
-		};
-		79D01615633138DB27132C48 /* [CP] Check Pods Manifest.lock */ = {
+		288F2902DC3AFE17B1EB3342 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2688,7 +2667,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D1E991D217B4B052B9EB71DE /* [CP] Embed Pods Frameworks */ = {
+		479C793324EAD51E009BA1CD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellScript = "\n";
+		};
+		BB705C5BF47491D075DBCE58 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3562,7 +3557,7 @@
 		};
 		4734D3BC2417E3D600D6957E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5EA81AB599AD947A8862A100 /* Pods-Sphinx.debug.xcconfig */;
+			baseConfigurationReference = E5F65834D2514AF0BA2F354C /* Pods-Sphinx.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_SECURITY_KEYCHAIN_API = YES;
@@ -3571,7 +3566,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 189;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = JRRKZ5BX2D;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = com.stakwork.sphinx.desktop/Info.plist;
@@ -3579,7 +3574,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MARKETING_VERSION = 1.0.23;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gl.sphinx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3591,7 +3586,7 @@
 		};
 		4734D3BD2417E3D600D6957E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1728D33343FCD0F3C86E770D /* Pods-Sphinx.release.xcconfig */;
+			baseConfigurationReference = A451B1697DF4FE25E4B7BBD1 /* Pods-Sphinx.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_SECURITY_KEYCHAIN_API = YES;
@@ -3600,7 +3595,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 189;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = JRRKZ5BX2D;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = com.stakwork.sphinx.desktop/Info.plist;
@@ -3608,7 +3603,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MARKETING_VERSION = 1.0.23;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gl.sphinx;
 				PRODUCT_NAME = "$(TARGET_NAME)";

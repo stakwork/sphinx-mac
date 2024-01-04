@@ -21,7 +21,7 @@ class SignupCommonFieldView: NSView, LoadableNib {
     @IBOutlet var contentView: NSView!
     @IBOutlet weak var topLabel: NSTextField!
     @IBOutlet weak var fieldBox: NSBox!
-    @IBOutlet weak var textField: CCTextField!
+    @IBOutlet weak var textField: NSSecureTextField!
     
     var field: NamePinView.Fields = .Name
     
