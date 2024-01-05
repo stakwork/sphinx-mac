@@ -361,6 +361,8 @@ extension ChatViewController : SearchTopViewDelegate {
     }
 }
 
+// Chat reply extension:
+
 extension ChatViewController : MessageOptionsDelegate {
     func shouldDeleteMessage(message: TransactionMessage) {
         if message.id < 0 {
@@ -385,12 +387,34 @@ extension ChatViewController : MessageOptionsDelegate {
         sendMessage(provisionalMessage: nil, params: params)
     }
     
+    // logic to reply a message
+    
     func shouldReplyToMessage(message: TransactionMessage) {
+        if replyableMessages.isEmpty {
+            replyableMessages.append(message)
+        } else {
+            replyableMessages.forEach { msg in
+                if msg.chat?.id != chat?.id {
+                    replyableMessages.append(message)
+                } else if msg.chat?.id == chat?.id {
+                    replyableMessages.removeAll(where: {$0.chat?.id == chat?.id})
+                    replyableMessages.append(message)
+                }
+                    
+            }
+        }
+        
         bottomBar.removeShadow()
         messageReplyView.configureForKeyboard(with: message, and: self)
         willReplay()
     }
     
+    func updateMessageReplyView(message: TransactionMessage) {
+        bottomBar.removeShadow()
+        messageReplyView.configureForKeyboard(with: message, and: self)
+        willReplay()
+    }
+ 
     func willReplay() {
         toggleMessageReplyView()
         if chatCollectionView.shouldScrollToBottom() { chatCollectionView.scrollToBottom(animated: false) }

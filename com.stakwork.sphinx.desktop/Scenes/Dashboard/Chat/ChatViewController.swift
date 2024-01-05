@@ -74,6 +74,8 @@ class ChatViewController: DashboardSplittedViewController {
     var chat: Chat?
     var chatDataSource : ChatDataSource? = nil
     
+    var replyableMessages: [TransactionMessage] = []
+    
     var audioRecorderHelper = AudioRecorderHelper()
     let attachmentsManager = AttachmentsManager.sharedInstance
     var messageOptionsHelper = MessageOptionsHelper.sharedInstance
@@ -276,7 +278,14 @@ class ChatViewController: DashboardSplittedViewController {
     }
     
     func initialLoad(forceReload: Bool = false) {
-        hideMessageReplyView()
+        let replyableMessage = replyableMessages.filter { $0.chat?.id == chat?.id }.first
+        
+        if replyableMessage != Optional.none {
+            updateMessageReplyView(message: replyableMessage!) 
+        } else {
+            hideMessageReplyView()
+        }
+        
         hideGiphySearchView()
         chatDataSource?.setDataAndReload(contact: contact, chat: chat, forceReload: forceReload)
         chatCollectionView.scrollToBottom(animated: false)
@@ -397,6 +406,7 @@ class ChatViewController: DashboardSplittedViewController {
     
     @IBAction func sendMessageButtonTouched(_ sender: Any) {
         shouldSendMessage()
+        replyableMessages.removeAll(where: { $0.chat?.id == chat?.id})
     }
     
     @IBAction func micButtonClicked(_ sender: Any) {

@@ -102,7 +102,7 @@ class MessageReplyView: NSView, LoadableNib {
         configureView(with: message, and: delegate, isRow: true, isIncoming: isIncoming)
     }
     
-    func configureForKeyboard(with message: TransactionMessage, and delegate: SearchTopViewDelegate) {
+    func configureForKeyboard(with message: TransactionMessage?, and delegate: SearchTopViewDelegate) {
         self.layer?.backgroundColor = NSColor.Sphinx.HeaderBG.cgColor
         configureView(with: message, and: delegate, isRow: false, isIncoming: false)
     }

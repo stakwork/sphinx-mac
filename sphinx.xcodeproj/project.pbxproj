@@ -2681,7 +2681,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellScript = "\n";
+			shellScript = "
+";
 		};
 		BB705C5BF47491D075DBCE58 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3566,7 +3567,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 189;
-				DEVELOPMENT_TEAM = JRRKZ5BX2D;
+				DEVELOPMENT_TEAM = 3VB5DWBARW;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = com.stakwork.sphinx.desktop/Info.plist;
@@ -3576,7 +3577,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MARKETING_VERSION = 1.0.23;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gl.sphinx;
+				PRODUCT_BUNDLE_IDENTIFIER = com.saif;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -3595,7 +3596,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 189;
-				DEVELOPMENT_TEAM = JRRKZ5BX2D;
+				DEVELOPMENT_TEAM = 3VB5DWBARW;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = com.stakwork.sphinx.desktop/Info.plist;
@@ -3605,7 +3606,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MARKETING_VERSION = 1.0.23;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gl.sphinx;
+				PRODUCT_BUNDLE_IDENTIFIER = com.saif;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";

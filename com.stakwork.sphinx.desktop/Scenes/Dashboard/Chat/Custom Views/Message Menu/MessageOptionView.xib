@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,13 +23,13 @@
             <rect key="frame" x="0.0" y="0.0" width="140" height="40"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yPh-VX-7ER">
-                    <rect key="frame" x="-2" y="12" width="44" height="17"/>
+                <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yPh-VX-7ER">
+                    <rect key="frame" x="-2" y="10" width="44" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="FUm-sY-75Z"/>
                     </constraints>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="delete" id="N3b-p6-E3v">
-                        <font key="font" size="17" name="MaterialIcons-Regular"/>
+                        <font key="font" metaFont="system" size="17"/>
                         <color key="textColor" name="Text"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -42,10 +42,10 @@
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="0dZ-RR-65A"/>
                     <color key="contentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </imageView>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="P6q-kG-Uhp">
-                    <rect key="frame" x="38" y="13" width="104" height="14"/>
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="P6q-kG-Uhp">
+                    <rect key="frame" x="38" y="13" width="104" height="15"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Delete" id="3mY-1T-74U">
-                        <font key="font" size="12" name="Roboto-Regular"/>
+                        <font key="font" metaFont="cellTitle"/>
                         <color key="textColor" name="Text"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -63,13 +63,13 @@
                 </box>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="J1k-or-C5u" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="140" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="UuA-wW-IMs"/>
-                    </constraints>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="Vid-oz-R7j">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="UuA-wW-IMs"/>
+                    </constraints>
                     <connections>
                         <action selector="buttonClicked:" target="-2" id="Ao9-mU-Mf6"/>
                     </connections>
