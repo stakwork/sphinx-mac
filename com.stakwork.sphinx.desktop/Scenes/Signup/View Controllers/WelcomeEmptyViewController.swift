@@ -100,9 +100,17 @@ class WelcomeEmptyViewController: WelcomeTorConnectionViewController {
             guard let self = self else { return }
             
             self.userData.getOrCreateHMACKey(forceGet: true) { [weak self] in
-                guard let self = self else { return }
                 
-                self.shouldContinueTo(mode: WelcomeEmptyViewController.WelcomeViewMode.Welcome.rawValue)
+                API.sharedInstance.getWalletLocalAndRemote(callback: { local, remote in
+                    guard let self = self else { return }
+                    
+                    self.shouldContinueTo(mode: WelcomeEmptyViewController.WelcomeViewMode.Welcome.rawValue)
+                }, errorCallback: {
+                    guard let self = self else { return }
+                    
+                    self.shouldGoBackToWelcome()
+                })
+                
             }
         })
     }
@@ -182,6 +190,15 @@ class WelcomeEmptyViewController: WelcomeTorConnectionViewController {
             return
         }
         shouldGoBack()
+    }
+    
+    func shouldGoBackToWelcome() {
+        UserDefaults.Keys.ownerPubKey.removeValue()
+        messageBubbleHelper.showGenericMessageView(text: "generic.error.message".localized)
+        
+        DelayPerformedHelper.performAfterDelay(seconds: 1.5, completion: {
+            self.view.window?.replaceContentBy(vc: WelcomeCodeViewController.instantiate(mode: .ExistingUser))
+        })
     }
     
     func shouldGoBack() {
