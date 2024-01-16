@@ -275,17 +275,16 @@ class API {
             mutableUrlRequest,
             interceptor: interceptor
         ).responseJSON { (response) in
+            
             let statusCode = (response.response?.statusCode ?? -1)
             
             switch statusCode {
             case self.successStatusCode:
                 self.connectionStatus = .Connected
             case self.unauthorizedStatusCode:
-                self.getRelaykeys()
+//                self.getRelaykeys()
                 
                 self.connectionStatus = .Unauthorize
-                
-                completionHandler(response)
             default:
                 if response.response == nil ||
                     statusCode == self.notFoundStatusCode  ||
