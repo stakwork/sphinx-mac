@@ -48,12 +48,6 @@ extension NewChatViewController : NewMessageReplyViewDelegate {
     func didCloseReplyView() {
         newChatViewModel.resetReply()
         chatBottomView.resetReplyView()
-        deleteReplyableMessage(with: chat)
-//        shouldAdjustTableViewTopInset()
-    }
-    
-    internal func deleteReplyableMessage(with chat: Chat?) {
         ChatHandler.shared.deleteReplyableMessage(with: chat)
     }
-    
 }

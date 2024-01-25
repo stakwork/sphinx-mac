@@ -172,7 +172,8 @@ extension NewChatViewController : ChatBottomViewDelegate {
         completion: @escaping (Bool) -> ()
     ) {
         chatBottomView.resetReplyView()
-        deleteReplyableMessage(with: chat)
+        ChatHandler.shared.deleteReplyableMessage(with: chat)
+        
         if shouldUploadMedia() {
             
             let attachmentObject = getAttachmentObject(
@@ -183,8 +184,6 @@ extension NewChatViewController : ChatBottomViewDelegate {
             draggingView.setup()
             
             if let attachmentObject = attachmentObject {
-                chatBottomView.resetReplyView()
-                
                 newChatViewModel.insertProvisionalAttachmentMessageAndUpload(
                     attachmentObject: attachmentObject, chat: chat
                 )

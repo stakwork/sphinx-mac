@@ -324,16 +324,26 @@ class NewChatViewController: DashboardSplittedViewController {
         let replyableMessage = ChatHandler.shared.replyableMessages.filter {
             $0.chat?.id == chat?.id
         }.first
+        
         if replyableMessage != Optional.none {
             newChatViewModel.replyingTo = replyableMessage
+            
+            let isAtBottom = isChatAtBottom()
+            
             chatBottomView.configureReplyViewFor(
                 message: replyableMessage,
                 owner: self.owner,
                 withDelegate: self
             )
-            if isChatAtBottom() {
+            
+            if isAtBottom {
                 shouldScrollToBottom()
+                
+                configureNewMessagesIndicatorWith(
+                    newMsgCount: 0
+                )
             }
+            
         } else {
             chatBottomView.resetReplyView()
         }
