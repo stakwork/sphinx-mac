@@ -172,7 +172,7 @@ extension NewChatViewController : ChatBottomViewDelegate {
         completion: @escaping (Bool) -> ()
     ) {
         chatBottomView.resetReplyView()
-        
+        deleteReplyableMessage(with: chat)
         if shouldUploadMedia() {
             
             let attachmentObject = getAttachmentObject(

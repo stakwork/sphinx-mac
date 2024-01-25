@@ -159,7 +159,8 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
         let isAtBottom = isChatAtBottom()
         
         newChatViewModel.replyingTo = message
-        
+        ChatHandler.shared.saveReplyableMessages(with: message,
+                                                 chat: chat)
         chatBottomView.configureReplyViewFor(
             message: message,
             owner: self.owner,

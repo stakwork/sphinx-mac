@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DB56AAF2B6285F000B7098E /* ChatHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB56AAE2B6285F000B7098E /* ChatHandler.swift */; };
 		1AD578FF09B63C227165D4DA /* Pods_Sphinx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C242433501D81263FED4C2 /* Pods_Sphinx.framework */; };
 		4702BCF0248FE5C400EE9394 /* ShareInviteCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4702BCEF248FE5C400EE9394 /* ShareInviteCodeViewController.swift */; };
 		4702BCF2248FE6B700EE9394 /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4702BCF1248FE6B700EE9394 /* NSImage.swift */; };
@@ -647,6 +648,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0DB56AAE2B6285F000B7098E /* ChatHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHandler.swift; sourceTree = "<group>"; };
 		1728D33343FCD0F3C86E770D /* Pods-Sphinx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sphinx.release.xcconfig"; path = "Target Support Files/Pods-Sphinx/Pods-Sphinx.release.xcconfig"; sourceTree = "<group>"; };
 		4702BCEF248FE5C400EE9394 /* ShareInviteCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInviteCodeViewController.swift; sourceTree = "<group>"; };
 		4702BCF1248FE6B700EE9394 /* NSImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImage.swift; sourceTree = "<group>"; };
@@ -1430,6 +1432,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0DB56AAD2B6285D400B7098E /* Chat Handler */ = {
+			isa = PBXGroup;
+			children = (
+				0DB56AAE2B6285F000B7098E /* ChatHandler.swift */,
+			);
+			path = "Chat Handler";
+			sourceTree = "<group>";
+		};
 		3E664B87C7B66A1253E2E109 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2564,6 +2574,7 @@
 		479751E7246D91A100D2106B /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				0DB56AAD2B6285D400B7098E /* Chat Handler */,
 				473E1F4A2AC5E57D00DC1CDC /* Threads List View Controller */,
 				47E771352472E44600C9CFEB /* Custom Views */,
 				47E771192472C1E200C9CFEB /* Collection View Items */,
@@ -3782,6 +3793,7 @@
 				474E334A2480009E00F7F603 /* AttachmentPriceView.swift in Sources */,
 				474F67512486779200CE6016 /* JoinVideoCallView.swift in Sources */,
 				479751DC246D815500D2106B /* SoundsPlayer.swift in Sources */,
+				0DB56AAF2B6285F000B7098E /* ChatHandler.swift in Sources */,
 				4797E7532785D2750080B966 /* CommonModalView.swift in Sources */,
 				47469D6F2AD7101C004F0490 /* ThreadVCContainer.swift in Sources */,
 				47FEE2022A66D3C400646C4E /* MessageTableCellState.swift in Sources */,
@@ -4705,7 +4717,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 329;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 8297M44YTW;
+				DEVELOPMENT_TEAM = 97FC3HYA5B;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = com.stakwork.sphinx.desktop/Info.plist;
@@ -4719,7 +4731,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gl.sphinx;
+				PRODUCT_BUNDLE_IDENTIFIER = com.saif;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/com.stakwork.sphinx.desktop/Crypter/Sphinxrs-Bridging-Header.h";
@@ -4741,7 +4753,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 329;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 8297M44YTW;
+				DEVELOPMENT_TEAM = 97FC3HYA5B;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = com.stakwork.sphinx.desktop/Info.plist;
@@ -4755,7 +4767,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gl.sphinx;
+				PRODUCT_BUNDLE_IDENTIFIER = com.saif;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/com.stakwork.sphinx.desktop/Crypter/Sphinxrs-Bridging-Header.h";
