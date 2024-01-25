@@ -161,7 +161,7 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
         newChatViewModel.replyingTo = message
         
         ChatTrackingHandler.shared.saveReplyableMessage(
-            with: message,
+            with: message.id,
             chatId: chat?.id
         )
         

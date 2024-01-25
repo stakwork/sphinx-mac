@@ -17,7 +17,7 @@ class ChatTrackingHandler {
         return Static.instance
     }
     
-    var replyableMessages: [Int: TransactionMessage] = [:]
+    var replyableMessages: [Int: Int] = [:]
     var ongoingMessages : [Int: String] = [:]
     
     func deleteReplyableMessage(with chatId: Int?) {
@@ -27,18 +27,18 @@ class ChatTrackingHandler {
     }
     
     func saveReplyableMessage(
-        with message: TransactionMessage,
+        with messageId: Int,
         chatId: Int?
     ) {
         guard let chatId = chatId else { return }
         
-        replyableMessages[chatId] = message
+        replyableMessages[chatId] = messageId
     }
     
     func getReplyableMessageFor(chatId: Int?) -> TransactionMessage? {
         guard let chatId = chatId else { return nil }
         
-        if let message = replyableMessages[chatId] {
+        if let messageId = replyableMessages[chatId], let message = TransactionMessage.getMessageWith(id: messageId) {
             return message
         }
         
