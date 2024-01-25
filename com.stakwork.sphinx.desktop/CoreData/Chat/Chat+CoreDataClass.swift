@@ -16,7 +16,6 @@ public class Chat: NSManagedObject {
     public var conversationContact : UserContact? = nil
     public var tribeAdmin: UserContact? = nil
     
-    public var ongoingMessage : String? = nil
     var tribeInfo: GroupsManager.TribeInfo? = nil
     var aliasesAndPics: [(String, String)] = []
     
@@ -696,14 +695,6 @@ public class Chat: NSManagedObject {
             let params: [String: AnyObject] = ["name" : self.name as AnyObject, "img": self.photoUrl as AnyObject]
             API.sharedInstance.editGroup(id: self.id, params: params, callback: { _ in }, errorCallback: {})
         }
-    }
-    
-    func setOngoingMessage(text: String?) {
-        self.ongoingMessage = text
-    }
-    
-    func resetOngoingMessage() {
-        self.ongoingMessage = nil
     }
     
     func shouldShowPrice() -> Bool {

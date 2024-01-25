@@ -172,7 +172,7 @@ extension NewChatViewController : ChatBottomViewDelegate {
         completion: @escaping (Bool) -> ()
     ) {
         chatBottomView.resetReplyView()
-        ChatHandler.shared.deleteReplyableMessage(with: chat)
+        ChatTrackingHandler.shared.deleteReplyableMessage(with: chat?.id)
         
         if shouldUploadMedia() {
             

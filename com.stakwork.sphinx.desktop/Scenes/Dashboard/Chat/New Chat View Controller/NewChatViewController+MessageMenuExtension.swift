@@ -48,6 +48,6 @@ extension NewChatViewController : NewMessageReplyViewDelegate {
     func didCloseReplyView() {
         newChatViewModel.resetReply()
         chatBottomView.resetReplyView()
-        ChatHandler.shared.deleteReplyableMessage(with: chat)
+        ChatTrackingHandler.shared.deleteReplyableMessage(with: chat?.id)
     }
 }

@@ -212,7 +212,8 @@ extension NewChatViewModel {
         chat: Chat? = nil,
         completion: @escaping (Bool, Chat?) -> ()
     ) {
-        chat?.resetOngoingMessage()
+        ChatTrackingHandler.shared.deleteOngoingMessage(with: chat?.id)
+        
         joinIfCallMessage(message: message)
         resetReply()
         

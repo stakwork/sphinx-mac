@@ -321,11 +321,7 @@ class NewChatViewController: DashboardSplittedViewController {
     }
     
     private func loadReplyableMeesage() {
-        let replyableMessage = ChatHandler.shared.replyableMessages.filter {
-            $0.chat?.id == chat?.id
-        }.first
-        
-        if replyableMessage != Optional.none {
+        if let replyableMessage = ChatTrackingHandler.shared.getReplyableMessageFor(chatId: chat?.id) {
             newChatViewModel.replyingTo = replyableMessage
             
             let isAtBottom = isChatAtBottom()
@@ -343,7 +339,6 @@ class NewChatViewController: DashboardSplittedViewController {
                     newMsgCount: 0
                 )
             }
-            
         } else {
             chatBottomView.resetReplyView()
         }
