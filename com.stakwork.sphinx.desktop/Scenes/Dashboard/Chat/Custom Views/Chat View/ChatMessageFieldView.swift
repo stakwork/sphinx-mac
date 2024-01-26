@@ -184,17 +184,19 @@ class ChatMessageFieldView: NSView, LoadableNib {
         
         initializeMacros()
         
-        self.setOngoingMessage(text: chat?.ongoingMessage ?? "")
+        self.setOngoingMessage()
     }
     
-    func setOngoingMessage(text: String) {
-        if text.isEmpty {
-            return
+    func setOngoingMessage() {
+        if let text = ChatTrackingHandler.shared.getOngoingMessageFor(chatId: chat?.id) {
+            if text.isEmpty {
+                return
+            }
+            
+            messageTextView.string = text
+            
+            self.textDidChange(Notification(name: NSControl.textDidChangeNotification))
         }
-        
-        messageTextView.string = text
-        
-        self.textDidChange(Notification(name: NSControl.textDidChangeNotification))
     }
     
     func isPaidTextMessage() -> Bool {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DB56AAF2B6285F000B7098E /* ChatTrackingHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB56AAE2B6285F000B7098E /* ChatTrackingHandler.swift */; };
 		1AD578FF09B63C227165D4DA /* Pods_Sphinx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C242433501D81263FED4C2 /* Pods_Sphinx.framework */; };
 		4702BCF0248FE5C400EE9394 /* ShareInviteCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4702BCEF248FE5C400EE9394 /* ShareInviteCodeViewController.swift */; };
 		4702BCF2248FE6B700EE9394 /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4702BCF1248FE6B700EE9394 /* NSImage.swift */; };
@@ -647,6 +648,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0DB56AAE2B6285F000B7098E /* ChatTrackingHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTrackingHandler.swift; sourceTree = "<group>"; };
 		1728D33343FCD0F3C86E770D /* Pods-Sphinx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sphinx.release.xcconfig"; path = "Target Support Files/Pods-Sphinx/Pods-Sphinx.release.xcconfig"; sourceTree = "<group>"; };
 		4702BCEF248FE5C400EE9394 /* ShareInviteCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInviteCodeViewController.swift; sourceTree = "<group>"; };
 		4702BCF1248FE6B700EE9394 /* NSImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImage.swift; sourceTree = "<group>"; };
@@ -1901,6 +1903,7 @@
 				4789E27B24F45BC3003991BE /* RelayURLUpdateHelper.swift */,
 				479A03FB258814240093DB30 /* DeepLinksHandlerHelper.swift */,
 				4708C1FE2A55BCE300274AD4 /* UserContactsHelper.swift */,
+				0DB56AAE2B6285F000B7098E /* ChatTrackingHandler.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -3782,6 +3785,7 @@
 				474E334A2480009E00F7F603 /* AttachmentPriceView.swift in Sources */,
 				474F67512486779200CE6016 /* JoinVideoCallView.swift in Sources */,
 				479751DC246D815500D2106B /* SoundsPlayer.swift in Sources */,
+				0DB56AAF2B6285F000B7098E /* ChatTrackingHandler.swift in Sources */,
 				4797E7532785D2750080B966 /* CommonModalView.swift in Sources */,
 				47469D6F2AD7101C004F0490 /* ThreadVCContainer.swift in Sources */,
 				47FEE2022A66D3C400646C4E /* MessageTableCellState.swift in Sources */,
@@ -4703,7 +4707,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 327;
+				CURRENT_PROJECT_VERSION = 330;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 8297M44YTW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -4739,7 +4743,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 327;
+				CURRENT_PROJECT_VERSION = 330;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 8297M44YTW;
 				ENABLE_HARDENED_RUNTIME = YES;

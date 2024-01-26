@@ -135,7 +135,7 @@ class NewChatViewController: DashboardSplittedViewController {
         fetchTribeData()
         configureMentionAutocompleteTableView()
         configureFetchResultsController()
-        
+        loadReplyableMeesage()
         addEscapeMonitor()
     }
     
@@ -318,5 +318,29 @@ class NewChatViewController: DashboardSplittedViewController {
         }
         let success = draggingView.performPasteOperation(pasteBoard: NSPasteboard.general)
         print(success)
+    }
+    
+    private func loadReplyableMeesage() {
+        if let replyableMessage = ChatTrackingHandler.shared.getReplyableMessageFor(chatId: chat?.id) {
+            newChatViewModel.replyingTo = replyableMessage
+            
+            let isAtBottom = isChatAtBottom()
+            
+            chatBottomView.configureReplyViewFor(
+                message: replyableMessage,
+                owner: self.owner,
+                withDelegate: self
+            )
+            
+            if isAtBottom {
+                shouldScrollToBottom()
+                
+                configureNewMessagesIndicatorWith(
+                    newMsgCount: 0
+                )
+            }
+        } else {
+            chatBottomView.resetReplyView()
+        }
     }
 }

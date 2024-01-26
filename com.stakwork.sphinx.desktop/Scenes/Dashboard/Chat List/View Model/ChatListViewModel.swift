@@ -148,6 +148,7 @@ final class ChatListViewModel: NSObject {
         prevPageNewMessages: Int,
         chatId: Int? = nil,
         date: Date,
+        retry: Int = 0,
         progressCallback: @escaping (Double, Bool) -> (),
         completion: @escaping (Int, Int) -> ()
     ) {
@@ -206,15 +207,18 @@ final class ChatListViewModel: NSObject {
                     completion(0, 0)
                 }
             }, errorCallback: {
-                DelayPerformedHelper.performAfterDelay(seconds: 1.0, completion: {
-                    self.getMessagesPaginated(
-                        prevPageNewMessages: prevPageNewMessages,
-                        chatId: chatId,
-                        date: date,
-                        progressCallback: progressCallback,
-                        completion: completion
-                    )
-                })
+                if retry < 5 {
+                    DelayPerformedHelper.performAfterDelay(seconds: 1.0, completion: {
+                        self.getMessagesPaginated(
+                            prevPageNewMessages: prevPageNewMessages,
+                            chatId: chatId,
+                            date: date,
+                            retry: retry + 1,
+                            progressCallback: progressCallback,
+                            completion: completion
+                        )
+                    })
+                }
             })
     }
     
