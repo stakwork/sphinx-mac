@@ -23,11 +23,11 @@ public class UserContact: NSManagedObject {
     
     public static var kTipAmount : Int {
         get {
-            let amount = UserDefaults.Keys.meetingPmtAmount.get(defaultValue: 100)
+            let amount = UserDefaults.Keys.tipAmount.get(defaultValue: 100)
             return amount
         }
         set {
-            UserDefaults.Keys.meetingPmtAmount.set(newValue)
+            UserDefaults.Keys.tipAmount.set(newValue)
             updateTipAmount(amount: newValue)
         }
     }

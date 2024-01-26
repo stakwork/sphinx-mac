@@ -55,7 +55,6 @@ extension UserDefaults {
         public static let inviteServerURL = DefaultKey<String>("inviteServerURL")
         public static let fileServerURL = DefaultKey<String>("fileServerURL")
         public static let meetingServerURL = DefaultKey<String>("meetingServerURL")
-        public static let meetingPmtAmount = DefaultKey<Int>("meetingPmtAmount")
         public static let previousIP = DefaultKey<String>("previousIP")
 
         public static let tipAmount = DefaultKey<Int>("tipAmount")
