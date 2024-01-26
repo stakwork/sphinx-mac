@@ -46,6 +46,7 @@ class ProfileViewController: NSViewController {
     @IBOutlet weak var trackActionsSwitchButton: CustomButton!
     
     @IBOutlet weak var meetingServerField: NSTextField!
+    @IBOutlet weak var meetingAmountField: NSTextField!
     @IBOutlet weak var serverURLField: NSTextField!
     @IBOutlet weak var exportKeysButton: CustomButton!
     @IBOutlet weak var privacyPinButton: CustomButton!
@@ -132,6 +133,7 @@ class ProfileViewController: NSViewController {
         
         userNameField.delegate = self
         meetingServerField.delegate = self
+        meetingAmountField.delegate = self
         serverURLField.delegate = self
     }
     
@@ -172,6 +174,7 @@ class ProfileViewController: NSViewController {
             }
             
             meetingServerField.stringValue = API.kVideoCallServer
+            meetingAmountField.stringValue = "\(UserContact.kTipAmount)"
             privacyPinButton.stringValue = (GroupsPinManager.sharedInstance.isPrivacyPinSet() ? "change.privacy.pin" : "set.privacy.pin").localized
         }
         
@@ -304,6 +307,7 @@ class ProfileViewController: NSViewController {
         
         API.sharedInstance.updateUser(id: profile.id, params: parameters, callback: { contact in
             API.kVideoCallServer = self.meetingServerField.stringValue
+            UserContact.kTipAmount = self.meetingAmountField.integerValue
             let _ = UserContactsHelper.insertContact(contact: contact)
             self.saveFinished(success: true)
         }, errorCallback: {
@@ -322,8 +326,9 @@ class ProfileViewController: NSViewController {
         let didUpdatePhoto = profileImageUrl != nil
         let didChangePinTimeout = UserData.sharedInstance.getPINHours() != pinTimeoutView.getPinHours()
         let actionsTrackingUpdated = isTrackActionsSwitchOn() != UserDefaults.Keys.shouldTrackActions.get(defaultValue: false)
+        let didChangeTipAmount = meetingAmountField.integerValue != UserContact.kTipAmount
         
-        return didChangeName || didChangeRouteHint || didUpdatePrivatePhoto || didUpdatePhoto || didChangePinTimeout || actionsTrackingUpdated
+        return didChangeName || didChangeRouteHint || didUpdatePrivatePhoto || didUpdatePhoto || didChangePinTimeout || actionsTrackingUpdated || didChangeTipAmount
     }
     
     func saveFinished(success: Bool) {
