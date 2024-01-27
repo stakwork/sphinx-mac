@@ -12,7 +12,7 @@ protocol MessageFieldDelegate: AnyObject {
     func textDidChange(_ notification: Notification)
     func didTapUpArrow() -> Bool
     func didTapDownArrow() -> Bool
-    func didTapTab()
+    @discardableResult func didTapTab() -> Bool
     func didTapEscape()
     func didDetectFilePaste(pasteBoard: NSPasteboard) -> Bool
 }
@@ -87,6 +87,11 @@ final class PlaceHolderTextView: NSTextView {
         }
         else if(event.keyCode == escapeKey){
             fieldDelegate?.didTapEscape()
+        }
+        else if(enterKeyCodes.contains(event.keyCode)) {
+            if (fieldDelegate?.didTapTab() ?? false) {
+                return
+            }
         }
         super.keyDown(with: event)
     }

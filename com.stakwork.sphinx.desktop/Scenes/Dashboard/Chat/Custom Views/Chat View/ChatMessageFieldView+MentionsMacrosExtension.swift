@@ -22,13 +22,12 @@ extension ChatMessageFieldView {
             
             let startIndex = text.index(text.startIndex, offsetBy: (initialPosition ?? 0) - typedMentionText.count)
             let endIndex = text.index(text.startIndex, offsetBy: (initialPosition ?? 0))
-            
-            messageTextView.string = text.replacingOccurrences(
-                of: typedMentionText,
-                with: "@\(autocompleteText) ",
-                options: [],
-                range: startIndex..<endIndex
-            )
+                                    
+            // insertText triggers the textDidChange delegate method
+            // whereas setting the string directly does not, which is
+            // needed when autocompleting based on enter/return key press
+            let range = NSRange((startIndex..<endIndex), in: messageTextView.string)
+            messageTextView.insertText("@\(autocompleteText) ", replacementRange: range)
             
             DispatchQueue.main.asyncAfter(
                 deadline: .now() + 0.01,
@@ -117,16 +116,20 @@ extension ChatMessageFieldView {
 }
 
 extension ChatMessageFieldView {
-    func didTapTab(){
+    @discardableResult func didTapTab() -> Bool {
         if let selectedMention = delegate?.shouldGetSelectedMention() {
             populateMentionAutocomplete(
                 autocompleteText: selectedMention
             )
+            return true
         } else if let action = delegate?.shouldGetSelectedMacroAction() {
             self.processGeneralPurposeMacro(
                 action: action
             )
+            return true
         }
+        
+        return false
     }
     
     func didTapEscape() {
