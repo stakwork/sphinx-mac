@@ -61,7 +61,7 @@ class MessageBoostImageView: NSView, LoadableNib {
             imageView.rounded = true
             imageView.sd_setImage(
                 with: url,
-                placeholderImage: NSImage(named: "profile_avatar"),
+                placeholderImage: NSImage(named: "profileAvatar"),
                 options: [.scaleDownLargeImages, .decodeFirstFrameOnly, .progressiveLoad],
                 context: [.imageTransformer: transformer],
                 progress: nil,

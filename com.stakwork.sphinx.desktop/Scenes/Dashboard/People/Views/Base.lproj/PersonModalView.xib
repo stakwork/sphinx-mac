@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -41,7 +41,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="242" height="50"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2ki-dq-LUa">
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2ki-dq-LUa">
                                             <rect key="frame" x="84" y="16" width="75" height="18"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="CONNECT" id="boK-z6-ylz">
                                                 <font key="font" size="14" name="Montserrat-SemiBold"/>
@@ -81,20 +81,20 @@
                             </box>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ENh-zp-DmF" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                                 <rect key="frame" x="240" y="440" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="Chu-r9-nlk"/>
-                                    <constraint firstAttribute="height" constant="60" id="W79-M4-ENN"/>
-                                </constraints>
                                 <buttonCell key="cell" type="bevel" title="close" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="IR5-JT-hny">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="18" name="MaterialIcons-Regular"/>
                                 </buttonCell>
                                 <color key="contentTintColor" name="PrimaryRed"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="Chu-r9-nlk"/>
+                                    <constraint firstAttribute="height" constant="60" id="W79-M4-ENN"/>
+                                </constraints>
                                 <connections>
                                     <action selector="closeButtonTouched:" target="-2" id="DOw-lv-Rkz"/>
                                 </connections>
                             </button>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PJe-X3-b7u">
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PJe-X3-b7u" customClass="AspectFillNSImageView" customModule="Sphinx" customModuleProvider="target">
                                 <rect key="frame" x="100" y="350" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="5i8-Hb-eVz"/>
@@ -102,7 +102,7 @@
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="profileAvatar" id="2nv-c4-bez"/>
                             </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wdf-Dp-39v">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wdf-Dp-39v">
                                 <rect key="frame" x="14" y="290" width="272" height="21"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Unknown" id="by2-wU-d7V">
                                     <font key="font" size="18" name="Roboto-Medium"/>
@@ -110,7 +110,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DsZ-kX-y9x">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DsZ-kX-y9x">
                                 <rect key="frame" x="14" y="271" width="272" height="13"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Price to meet: 0 sats" id="10T-Yj-zOa">
                                     <font key="font" size="11" name="Roboto-Regular"/>
@@ -118,18 +118,18 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bS9-9X-16j">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bS9-9X-16j">
                                 <rect key="frame" x="14" y="201" width="272" height="40"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" alignment="center" id="i2d-VL-AJG">
+                                <textFieldCell key="cell" truncatesLastVisibleLine="YES" alignment="center" id="i2d-VL-AJG">
                                     <font key="font" size="15" name="Roboto-Light"/>
                                     <string key="title">This is the description
-test</string>
+test to see how it works with a long text</string>
                                     <color key="textColor" name="MainBottomIcons"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="4Ym-gg-GxP">
-                                <rect key="frame" x="29" y="121" width="242" height="50"/>
+                                <rect key="frame" x="29" y="136" width="242" height="50"/>
                                 <view key="contentView" id="Ega-b0-piH">
                                     <rect key="frame" x="0.0" y="0.0" width="242" height="50"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -190,6 +190,7 @@ test</string>
                             <constraint firstItem="PJe-X3-b7u" firstAttribute="centerX" secondItem="GoH-OO-1hM" secondAttribute="centerX" id="1mf-Wp-MYM"/>
                             <constraint firstItem="bS9-9X-16j" firstAttribute="top" secondItem="DsZ-kX-y9x" secondAttribute="bottom" constant="30" id="BHK-Si-sIl"/>
                             <constraint firstItem="bS9-9X-16j" firstAttribute="leading" secondItem="GoH-OO-1hM" secondAttribute="leading" constant="16" id="BMJ-WV-gow"/>
+                            <constraint firstItem="bgL-gS-ZRb" firstAttribute="top" relation="greaterThanOrEqual" secondItem="4Ym-gg-GxP" secondAttribute="bottom" constant="15" id="GxS-1R-7Wu"/>
                             <constraint firstItem="ENh-zp-DmF" firstAttribute="top" secondItem="GoH-OO-1hM" secondAttribute="top" id="Gz4-Tx-VnT"/>
                             <constraint firstItem="DsZ-kX-y9x" firstAttribute="top" secondItem="Wdf-Dp-39v" secondAttribute="bottom" constant="6" id="HHs-fX-z7d"/>
                             <constraint firstAttribute="trailing" secondItem="bgL-gS-ZRb" secondAttribute="trailing" constant="29" id="V68-nr-sOO"/>
@@ -199,7 +200,7 @@ test</string>
                             <constraint firstItem="Wdf-Dp-39v" firstAttribute="centerX" secondItem="GoH-OO-1hM" secondAttribute="centerX" id="Z4u-Ml-ULM"/>
                             <constraint firstItem="P4d-BF-byL" firstAttribute="top" secondItem="GoH-OO-1hM" secondAttribute="top" id="ZWa-0s-aAE"/>
                             <constraint firstAttribute="bottom" secondItem="bgL-gS-ZRb" secondAttribute="bottom" constant="29" id="Zon-Nn-PLa"/>
-                            <constraint firstItem="4Ym-gg-GxP" firstAttribute="top" secondItem="bS9-9X-16j" secondAttribute="bottom" constant="30" id="dhS-xp-SUP"/>
+                            <constraint firstItem="4Ym-gg-GxP" firstAttribute="top" secondItem="bS9-9X-16j" secondAttribute="bottom" constant="15" id="dhS-xp-SUP"/>
                             <constraint firstItem="bgL-gS-ZRb" firstAttribute="leading" secondItem="GoH-OO-1hM" secondAttribute="leading" constant="29" id="elZ-xZ-0YA"/>
                             <constraint firstItem="Wdf-Dp-39v" firstAttribute="top" secondItem="PJe-X3-b7u" secondAttribute="bottom" constant="39" id="gaI-JI-qPY"/>
                             <constraint firstAttribute="trailing" secondItem="P4d-BF-byL" secondAttribute="trailing" id="gtt-TC-GK0"/>
