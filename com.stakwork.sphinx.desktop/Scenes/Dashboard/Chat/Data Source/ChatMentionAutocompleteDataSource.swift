@@ -60,6 +60,7 @@ class ChatMentionAutocompleteDataSource : NSObject {
     
     func updateMentionSuggestions(suggestions: [MentionOrMacroItem]) {
         if suggestions.isEmpty == true {
+            self.suggestions = []
             self.scrollView.isHidden = true
             return
         }

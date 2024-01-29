@@ -123,7 +123,7 @@ extension ChatMessageFieldView {
             )
             return true
         } else if let action = delegate?.shouldGetSelectedMacroAction() {
-            self.processGeneralPurposeMacro(
+            processGeneralPurposeMacro(
                 action: action
             )
             return true

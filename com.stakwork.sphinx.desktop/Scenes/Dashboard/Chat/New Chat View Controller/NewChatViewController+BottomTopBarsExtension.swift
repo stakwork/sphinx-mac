@@ -316,11 +316,19 @@ extension NewChatViewController : ChatBottomViewDelegate {
     }
     
     func shouldGetSelectedMention() -> String? {
-        return chatMentionAutocompleteDataSource?.getSelectedValue()
+        if let selectedValue = chatMentionAutocompleteDataSource?.getSelectedValue() {
+            chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: [])
+            return selectedValue
+        }
+        return nil
     }
     
     func shouldGetSelectedMacroAction() -> (() -> ())? {
-        return chatMentionAutocompleteDataSource?.getSelectedAction()
+        if let selectedAction = chatMentionAutocompleteDataSource?.getSelectedAction() {
+            chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: [])
+            return selectedAction
+        }
+        return nil
     }
     
     func didTapEscape() {
