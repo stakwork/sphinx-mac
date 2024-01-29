@@ -81,7 +81,7 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
                 
                 avatarImage.sd_setImage(
                     with: url,
-                    placeholderImage: NSImage(named: "profile_avatar"),
+                    placeholderImage: NSImage(named: "profileAvatar"),
                     options: [SDWebImageOptions.progressiveLoad],
                     context: [.imageTransformer: transformer],
                     progress: nil,

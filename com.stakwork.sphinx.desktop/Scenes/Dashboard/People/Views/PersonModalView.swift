@@ -12,7 +12,7 @@ import SwiftyJSON
 class PersonModalView: CommonModalView, LoadableNib {
     
     @IBOutlet var contentView: NSView!
-    @IBOutlet weak var imageView: NSImageView!
+    @IBOutlet weak var imageView: AspectFillNSImageView!
     @IBOutlet weak var nicknameLabel: NSTextField!
     @IBOutlet weak var messageLabel: NSTextField!
     @IBOutlet weak var priceLabel: NSTextField!
@@ -28,6 +28,8 @@ class PersonModalView: CommonModalView, LoadableNib {
         super.draw(dirtyRect)
         
         imageView.wantsLayer = true
+        imageView.rounded = true
+        imageView.gravity = .resizeAspectFill
         imageView.layer?.cornerRadius = imageView.frame.height / 2
     }
 
@@ -68,9 +70,9 @@ class PersonModalView: CommonModalView, LoadableNib {
         authInfo?.jsonBody = person
         
         if let imageUrl = person["img"].string, let nsUrl = URL(string: imageUrl), imageUrl != "" {
-            MediaLoader.asyncLoadImage(imageView: imageView, nsUrl: nsUrl, placeHolderImage: NSImage(named: "profile_avatar"))
+            MediaLoader.asyncLoadImage(imageView: imageView, nsUrl: nsUrl, placeHolderImage: NSImage(named: "profileAvatar"))
         } else {
-            imageView.image = NSImage(named: "profile_avatar")
+            imageView.image = NSImage(named: "profileAvatar")
         }
         
         nicknameLabel.stringValue = person["owner_alias"].string ?? "Unknown"

@@ -109,7 +109,7 @@ class ChatSmallAvatarView: NSView, LoadableNib {
     
     func resetView() {
         profileImageView.isHidden = false
-        profileImageView.image = NSImage(named: "profile_avatar")
+        profileImageView.image = NSImage(named: "profileAvatar")
         
         profileInitialContainer.isHidden = true
     }
@@ -163,7 +163,7 @@ class ChatSmallAvatarView: NSView, LoadableNib {
         
         profileImageView.sd_setImage(
             with: url,
-            placeholderImage: NSImage(named: "profile_avatar"),
+            placeholderImage: NSImage(named: "profileAvatar"),
             options: [.scaleDownLargeImages, .decodeFirstFrameOnly, .progressiveLoad],
             context: [.imageTransformer: transformer],
             progress: nil,

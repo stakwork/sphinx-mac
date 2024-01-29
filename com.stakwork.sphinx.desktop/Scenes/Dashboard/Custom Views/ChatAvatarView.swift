@@ -109,7 +109,7 @@ class ChatAvatarView: NSView, LoadableNib {
             
             imageView.sd_setImage(
                 with: url,
-                placeholderImage: NSImage(named: "profile_avatar"),
+                placeholderImage: NSImage(named: "profileAvatar"),
                 options: [.lowPriority],
                 context: [.imageTransformer: transformer],
                 progress: nil,

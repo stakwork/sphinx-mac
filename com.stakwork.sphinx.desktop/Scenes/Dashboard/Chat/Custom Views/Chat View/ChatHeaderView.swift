@@ -153,7 +153,7 @@ class ChatHeaderView: NSView, LoadableNib {
         if let imageUrl = getImageUrl()?.trim(), let nsUrl = URL(string: imageUrl) {
             profileImageView.sd_setImage(
                 with: nsUrl,
-                placeholderImage: NSImage(named: "profile_avatar"),
+                placeholderImage: NSImage(named: "profileAvatar"),
                 options: [.scaleDownLargeImages, .decodeFirstFrameOnly],
                 progress: nil,
                 completed: { (image, error, _, _) in
