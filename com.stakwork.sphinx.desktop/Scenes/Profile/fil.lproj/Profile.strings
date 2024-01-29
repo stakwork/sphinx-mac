@@ -20,8 +20,11 @@
 /* Class = "NSTextFieldCell"; title = "Sync more devices"; ObjectID = "RnC-xs-5Nh"; */
 "RnC-xs-5Nh.title" = "Sync more devices";
 
-/* Class = "NSTextFieldCell"; title = "Meeting Server"; ObjectID = "Tci-hQ-YkV"; */
-"Tci-hQ-YkV.title" = "Meeting Server";
+/* Class = "NSTextFieldCell"; title = "Default tip amount"; ObjectID = "Tci-hQ-YkV"; */
+"Tci-hQ-YkV.title" = "Default tip amount";
+
+/* Class = "NSTextFieldCell"; title = "Meeting Server"; ObjectID = "Uvb-lZ-Yc2"; */
+"Uvb-lZ-Yc2.title" = "Meeting Server";
 
 /* Class = "NSTextFieldCell"; title = "-"; ObjectID = "bzD-P8-zhu"; */
 "bzD-P8-zhu.title" = "-";

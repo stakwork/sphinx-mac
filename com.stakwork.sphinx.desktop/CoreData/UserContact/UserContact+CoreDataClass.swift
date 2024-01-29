@@ -21,6 +21,17 @@ public class UserContact: NSManagedObject {
     public var lastMessage : TransactionMessage? = nil
     var conversation: Chat? = nil
     
+    public static var kTipAmount : Int {
+        get {
+            let amount = UserDefaults.Keys.tipAmount.get(defaultValue: 100)
+            return amount
+        }
+        set {
+            UserDefaults.Keys.tipAmount.set(newValue)
+            updateTipAmount(amount: newValue)
+        }
+    }
+    
     public static func getContactInstance(id: Int, managedContext: NSManagedObjectContext) -> UserContact {
         if let c = UserContact.getContactWith(id: id) {
             return c
@@ -367,5 +378,16 @@ public class UserContact: NSManagedObject {
             return publicKey
         }
         return nil
+    }
+    
+    public static func updateTipAmount(amount: Int) {
+        let parameters : [String: AnyObject] = ["tip_amount" : amount as AnyObject]
+        let id = UserData.sharedInstance.getUserId()
+
+        if let owner = UserContact.getOwner() {
+            API.sharedInstance.updateUser(id: id, params: parameters, callback: { success in
+                owner.tipAmount = amount
+            }, errorCallback: { })
+        }
     }
 }
