@@ -105,13 +105,16 @@ class CoreDataManager {
     }
     
     func deleteChatObjectsFor(_ chat: Chat) {
-        if let messagesSet = chat.messages, let groupMessages = Array<Any>(messagesSet) as? [TransactionMessage] {
-            for m in groupMessages {
-                MediaLoader.clearMessageMediaCache(message: m)
-                deleteObject(object: m)
+        let managedContext = persistentContainer.viewContext
+        managedContext.performAndWait {
+            if let messagesSet = chat.messages, let groupMessages = Array<Any>(messagesSet) as? [TransactionMessage] {
+                for m in groupMessages {
+                    MediaLoader.clearMessageMediaCache(message: m)
+                    managedContext.delete(m)
+                }
             }
+            managedContext.delete(chat)
         }
-        deleteObject(object: chat)
         saveContext()
     }
     
