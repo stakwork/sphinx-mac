@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,30 +33,30 @@
             <subviews>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Usy-1M-iFD">
                     <rect key="frame" x="10" y="530" width="60" height="60"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="60" id="Ugu-Th-PfZ"/>
-                        <constraint firstAttribute="height" constant="60" id="hUR-X0-2B8"/>
-                    </constraints>
                     <buttonCell key="cell" type="bevel" title="" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="3Ax-o9-jdz">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" size="18" name="MaterialIcons-Regular"/>
                     </buttonCell>
                     <color key="contentTintColor" name="WashedOutReceivedText"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="Ugu-Th-PfZ"/>
+                        <constraint firstAttribute="height" constant="60" id="hUR-X0-2B8"/>
+                    </constraints>
                     <connections>
                         <action selector="backButtonClicked:" target="-2" id="aqE-Vw-NcI"/>
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cMi-Ij-tS9">
                     <rect key="frame" x="330" y="530" width="60" height="60"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="60" id="II4-hJ-sgH"/>
-                        <constraint firstAttribute="width" constant="60" id="ii3-4x-MZT"/>
-                    </constraints>
                     <buttonCell key="cell" type="bevel" title="close" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="gfd-7p-o1n">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" size="18" name="MaterialIcons-Regular"/>
                     </buttonCell>
                     <color key="contentTintColor" name="WashedOutReceivedText"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="II4-hJ-sgH"/>
+                        <constraint firstAttribute="width" constant="60" id="ii3-4x-MZT"/>
+                    </constraints>
                     <connections>
                         <action selector="closeButtonClicked:" target="-2" id="lzs-u1-0Zz"/>
                     </connections>
@@ -114,7 +114,7 @@
                         <progressIndicator wantsLayer="YES" maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="Bdr-X4-j9a">
                             <rect key="frame" x="108" y="157" width="16" height="16"/>
                         </progressIndicator>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Et-HZ-4vY">
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Et-HZ-4vY">
                             <rect key="frame" x="137" y="158" width="126" height="15"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="Loading Templates..." id="zc2-lD-C8u">
                                 <font key="font" size="13" name="Roboto-Regular"/>
@@ -136,7 +136,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="180" height="50"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rdt-Nv-Hyb">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rdt-Nv-Hyb">
                                 <rect key="frame" x="54" y="16" width="72" height="18"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="CONFIRM" id="IKy-H0-QKs">
                                     <font key="font" size="14" name="Montserrat-SemiBold"/>
@@ -178,7 +178,7 @@
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="yeG-SP-btk">
                     <rect key="frame" x="0.0" y="465" width="400" height="75"/>
                     <subviews>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YHd-fi-dRf">
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YHd-fi-dRf">
                             <rect key="frame" x="170" y="17" width="61" height="58"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="50" id="gLy-ZV-M7H">
                                 <font key="font" size="50" name="Roboto-Regular"/>
@@ -186,7 +186,7 @@
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4UY-l8-Zxi">
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4UY-l8-Zxi">
                             <rect key="frame" x="247" y="33" width="32" height="26"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="sat" id="tgh-1h-b2G">
                                 <font key="font" size="20" name="Roboto-Light"/>
@@ -206,7 +206,7 @@
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="iW6-2r-Hqm">
                     <rect key="frame" x="0.0" y="420" width="400" height="45"/>
                     <subviews>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="75y-VD-kSB">
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="75y-VD-kSB">
                             <rect key="frame" x="18" y="26" width="364" height="19"/>
                             <textFieldCell key="cell" lineBreakMode="truncatingTail" alignment="center" placeholderString="No Message" id="pCK-ae-5ZB">
                                 <font key="font" size="16" name="Roboto-Regular"/>
