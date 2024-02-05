@@ -172,6 +172,7 @@ import WebKit
             mainWindow.replaceContentBy(vc: DashboardViewController.instantiate())
         } else {
             if UserData.sharedInstance.isUserLogged() {
+                ContactsService.sharedInstance.setSelectedChat()
                 presentPIN()
             } else {
                 let splashVC = SplashViewController.instantiate()
@@ -246,6 +247,7 @@ import WebKit
         SphinxSocketManager.sharedInstance.disconnectWebsocket()
         WindowsManager.sharedInstance.saveWindowState()
         CoreDataManager.sharedManager.saveContext()
+        ContactsService.sharedInstance.saveSelectedChat()
     }
     
     func applicationWillBecomeActive(_ notification: Notification) {
