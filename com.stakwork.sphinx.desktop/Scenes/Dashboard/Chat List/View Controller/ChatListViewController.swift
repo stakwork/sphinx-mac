@@ -389,12 +389,20 @@ class ChatListViewController : DashboardSplittedViewController {
                             delegate: self
                         )
                         
+                        var defaultHeight: CGFloat = 768  // A conservative default height
+                        
+                        if let mainScreen = NSScreen.main {
+                            defaultHeight = min(mainScreen.visibleFrame.height, defaultHeight)
+                        }
+                                                
+                        let initialSize = CGSize(width: 414, height: defaultHeight)
+
                         WindowsManager.sharedInstance.showContactWindow(
                             vc: joinTribeVC,
                             window: self.view.window,
                             title: "join.tribe".localized.uppercased(),
                             identifier: "join-tribe-window",
-                            size: CGSize(width: 414, height: 870)
+                            size: initialSize
                         )
                     }
                 }

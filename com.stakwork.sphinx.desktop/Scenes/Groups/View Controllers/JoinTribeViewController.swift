@@ -24,6 +24,7 @@ class JoinTribeViewController: NSViewController {
     @IBOutlet weak var loadingWheel: NSProgressIndicator!
     @IBOutlet weak var uploadedLabel: NSTextField!
     @IBOutlet weak var joinTribeButton: NSButton!
+    @IBOutlet weak var joinTribeView: NSView!
     
     @IBOutlet weak var loadingTribeContainer: NSBox!
     @IBOutlet weak var loadingTribeLabel: NSTextField!
@@ -67,6 +68,29 @@ class JoinTribeViewController: NSViewController {
         tribeImageView.layer?.cornerRadius = tribeImageView.frame.height / 2
         
         loadGroupDetails()
+        
+        let scrollView = NSScrollView()
+        scrollView.autoresizingMask = [.height]
+        scrollView.documentView = view
+        view = scrollView
+    }
+    
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        
+        guard let window = view.window, let screen = NSScreen.main else { return }
+        
+        let screenHeight = screen.visibleFrame.size.height
+        let minHeight = joinTribeView.fittingSize.height / 2
+        
+        let maxHeight = min(joinTribeView.fittingSize.height, screenHeight)
+        
+        var windowFrame = window.frame
+        windowFrame.size.height = maxHeight
+        
+        window.minSize = CGSize(width: joinTribeView.fittingSize.width, height: minHeight)
+        window.maxSize = CGSize(width: joinTribeView.fittingSize.width, height: maxHeight)
+        window.setFrame(windowFrame, display: true)
     }
     
     func loadGroupDetails() {
