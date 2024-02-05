@@ -24,6 +24,7 @@ class JoinTribeViewController: NSViewController {
     @IBOutlet weak var loadingWheel: NSProgressIndicator!
     @IBOutlet weak var uploadedLabel: NSTextField!
     @IBOutlet weak var joinTribeButton: NSButton!
+    @IBOutlet weak var joinTribeBox: NSBox!
     @IBOutlet weak var joinTribeView: NSView!
     
     @IBOutlet weak var loadingTribeContainer: NSBox!
@@ -69,10 +70,22 @@ class JoinTribeViewController: NSViewController {
         
         loadGroupDetails()
         
+        let newView = NSView(frame: view.frame)
+        
         let scrollView = NSScrollView()
         scrollView.autoresizingMask = [.height]
         scrollView.documentView = view
-        view = scrollView
+        scrollView.frame = newView.bounds
+        newView.addSubview(scrollView)
+
+        joinTribeBox.removeFromSuperview()
+        newView.addSubview(joinTribeBox)
+        
+        joinTribeBox.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        joinTribeBox.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        joinTribeBox.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+
+        view = newView
     }
     
     override func viewDidAppear() {

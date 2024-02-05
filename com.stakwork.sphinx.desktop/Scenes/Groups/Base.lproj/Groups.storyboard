@@ -1122,73 +1122,89 @@
                                                 <constraint firstAttribute="height" constant="130" id="tMc-Sh-u2i"/>
                                             </constraints>
                                         </customView>
-                                        <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="25" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="a6E-OA-rkx">
-                                            <rect key="frame" x="93" y="55" width="230" height="50"/>
-                                            <view key="contentView" id="nft-6F-o1P">
-                                                <rect key="frame" x="0.0" y="0.0" width="230" height="50"/>
+                                        <box ambiguous="YES" boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="96f-QT-90X">
+                                            <rect key="frame" x="377" y="0.0" width="39" height="132"/>
+                                            <view key="contentView" ambiguous="YES" id="RTN-6S-UoI">
+                                                <rect key="frame" x="0.0" y="0.0" width="39" height="132"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="M4X-tq-PUp">
-                                                        <rect key="frame" x="0.0" y="0.0" width="230" height="50"/>
-                                                        <buttonCell key="cell" type="square" title="JOIN TRIBE" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="PnB-qY-PbV" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
-                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" size="14" name="Montserrat-Bold"/>
-                                                        </buttonCell>
-                                                        <color key="contentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <box ambiguous="YES" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="25" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="a6E-OA-rkx">
+                                                        <rect key="frame" x="-106" y="62" width="230" height="50"/>
+                                                        <view key="contentView" id="nft-6F-o1P">
+                                                            <rect key="frame" x="0.0" y="0.0" width="230" height="50"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="M4X-tq-PUp">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="230" height="50"/>
+                                                                    <buttonCell key="cell" type="square" title="JOIN TRIBE" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="PnB-qY-PbV" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" size="14" name="Montserrat-Bold"/>
+                                                                    </buttonCell>
+                                                                    <color key="contentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="230" id="dpD-6y-xTk"/>
+                                                                        <constraint firstAttribute="height" constant="50" id="eXg-j8-CqQ"/>
+                                                                    </constraints>
+                                                                    <connections>
+                                                                        <action selector="joinTribeButtonTouched:" target="xWn-Mq-hEJ" id="iXe-yt-o63"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <progressIndicator hidden="YES" wantsLayer="YES" maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="KRz-OO-UQ9">
+                                                                    <rect key="frame" x="194" y="17" width="16" height="16"/>
+                                                                </progressIndicator>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="M4X-tq-PUp" firstAttribute="top" secondItem="nft-6F-o1P" secondAttribute="top" id="7ne-te-TLm"/>
+                                                                <constraint firstItem="M4X-tq-PUp" firstAttribute="leading" secondItem="nft-6F-o1P" secondAttribute="leading" id="G8M-hl-uiy"/>
+                                                                <constraint firstAttribute="trailing" secondItem="KRz-OO-UQ9" secondAttribute="trailing" constant="20" id="UyP-l5-8WC"/>
+                                                                <constraint firstAttribute="trailing" secondItem="M4X-tq-PUp" secondAttribute="trailing" id="uCf-nt-uQE"/>
+                                                                <constraint firstAttribute="bottom" secondItem="M4X-tq-PUp" secondAttribute="bottom" id="uTa-j6-D0Z"/>
+                                                                <constraint firstItem="KRz-OO-UQ9" firstAttribute="centerY" secondItem="nft-6F-o1P" secondAttribute="centerY" id="x1T-gb-ZPu"/>
+                                                            </constraints>
+                                                        </view>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="230" id="dpD-6y-xTk"/>
-                                                            <constraint firstAttribute="height" constant="50" id="eXg-j8-CqQ"/>
+                                                            <constraint firstAttribute="height" constant="50" id="sa4-po-tr2"/>
+                                                            <constraint firstAttribute="width" constant="230" id="sgC-9F-MYA"/>
                                                         </constraints>
-                                                        <connections>
-                                                            <action selector="joinTribeButtonTouched:" target="xWn-Mq-hEJ" id="iXe-yt-o63"/>
-                                                        </connections>
-                                                    </button>
-                                                    <progressIndicator hidden="YES" wantsLayer="YES" maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="KRz-OO-UQ9">
-                                                        <rect key="frame" x="194" y="17" width="16" height="16"/>
-                                                    </progressIndicator>
+                                                        <color key="fillColor" name="PrimaryBlue"/>
+                                                    </box>
+                                                    <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ecQ-3L-MRG">
+                                                        <rect key="frame" x="-34" y="36" width="85" height="16"/>
+                                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Uploaded 0%" id="tVz-Fy-24p">
+                                                            <font key="font" size="14" name="Roboto-Regular"/>
+                                                            <color key="textColor" name="SecondaryText"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="M4X-tq-PUp" firstAttribute="top" secondItem="nft-6F-o1P" secondAttribute="top" id="7ne-te-TLm"/>
-                                                    <constraint firstItem="M4X-tq-PUp" firstAttribute="leading" secondItem="nft-6F-o1P" secondAttribute="leading" id="G8M-hl-uiy"/>
-                                                    <constraint firstAttribute="trailing" secondItem="KRz-OO-UQ9" secondAttribute="trailing" constant="20" id="UyP-l5-8WC"/>
-                                                    <constraint firstAttribute="trailing" secondItem="M4X-tq-PUp" secondAttribute="trailing" id="uCf-nt-uQE"/>
-                                                    <constraint firstAttribute="bottom" secondItem="M4X-tq-PUp" secondAttribute="bottom" id="uTa-j6-D0Z"/>
-                                                    <constraint firstItem="KRz-OO-UQ9" firstAttribute="centerY" secondItem="nft-6F-o1P" secondAttribute="centerY" id="x1T-gb-ZPu"/>
+                                                    <constraint firstItem="ecQ-3L-MRG" firstAttribute="centerX" secondItem="RTN-6S-UoI" secondAttribute="centerX" id="HFH-ua-pUI"/>
+                                                    <constraint firstItem="ecQ-3L-MRG" firstAttribute="top" secondItem="a6E-OA-rkx" secondAttribute="bottom" constant="10" id="Hz4-yw-QcW"/>
+                                                    <constraint firstItem="a6E-OA-rkx" firstAttribute="top" secondItem="RTN-6S-UoI" secondAttribute="top" constant="20" symbolic="YES" id="Yrg-er-FAg"/>
+                                                    <constraint firstItem="a6E-OA-rkx" firstAttribute="centerX" secondItem="RTN-6S-UoI" secondAttribute="centerX" id="laG-dQ-IgX"/>
                                                 </constraints>
                                             </view>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="50" id="sa4-po-tr2"/>
-                                                <constraint firstAttribute="width" constant="230" id="sgC-9F-MYA"/>
+                                                <constraint firstAttribute="height" constant="132" id="0ix-QG-5rB"/>
                                             </constraints>
-                                            <color key="fillColor" name="PrimaryBlue"/>
+                                            <color key="borderColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="fillColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </box>
-                                        <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ecQ-3L-MRG">
-                                            <rect key="frame" x="166" y="29" width="85" height="16"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Uploaded 0%" id="tVz-Fy-24p">
-                                                <font key="font" size="14" name="Roboto-Regular"/>
-                                                <color key="textColor" name="SecondaryText"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="ED5-re-MrQ" firstAttribute="leading" secondItem="eG5-Yh-RqI" secondAttribute="leading" constant="50" id="9eD-jp-ozy"/>
-                                        <constraint firstItem="a6E-OA-rkx" firstAttribute="top" secondItem="ED5-re-MrQ" secondAttribute="bottom" constant="53" id="CTU-us-804"/>
                                         <constraint firstAttribute="trailing" secondItem="ED5-re-MrQ" secondAttribute="trailing" constant="50" id="INf-HJ-9gQ"/>
                                         <constraint firstItem="0PR-LG-A1w" firstAttribute="top" secondItem="y1D-cQ-PmI" secondAttribute="bottom" constant="25" id="JvJ-ae-Z0N"/>
-                                        <constraint firstAttribute="bottom" secondItem="a6E-OA-rkx" secondAttribute="bottom" constant="55" id="L0q-RH-9dU"/>
                                         <constraint firstItem="0PR-LG-A1w" firstAttribute="leading" secondItem="eG5-Yh-RqI" secondAttribute="leading" constant="20" id="NTK-l5-hZU"/>
                                         <constraint firstItem="rMY-jX-9z8" firstAttribute="leading" secondItem="eG5-Yh-RqI" secondAttribute="leading" constant="20" id="QNF-kP-554"/>
                                         <constraint firstItem="y1D-cQ-PmI" firstAttribute="centerX" secondItem="eG5-Yh-RqI" secondAttribute="centerX" id="SNK-z9-SGk"/>
                                         <constraint firstItem="y1D-cQ-PmI" firstAttribute="top" secondItem="eG5-Yh-RqI" secondAttribute="top" constant="35" id="VDX-HM-ZIU"/>
-                                        <constraint firstItem="ecQ-3L-MRG" firstAttribute="centerX" secondItem="eG5-Yh-RqI" secondAttribute="centerX" id="XsI-ox-0BB"/>
-                                        <constraint firstItem="a6E-OA-rkx" firstAttribute="centerX" secondItem="eG5-Yh-RqI" secondAttribute="centerX" id="bdJ-Nf-E8s"/>
                                         <constraint firstAttribute="trailing" secondItem="cBz-yq-v4S" secondAttribute="trailing" constant="50" id="brC-XM-nZh"/>
                                         <constraint firstItem="cBz-yq-v4S" firstAttribute="leading" secondItem="eG5-Yh-RqI" secondAttribute="leading" constant="50" id="dyX-W1-NgI"/>
-                                        <constraint firstItem="ecQ-3L-MRG" firstAttribute="top" secondItem="a6E-OA-rkx" secondAttribute="bottom" constant="10" id="iF1-xC-Gwl"/>
                                         <constraint firstItem="ED5-re-MrQ" firstAttribute="top" secondItem="cBz-yq-v4S" secondAttribute="bottom" constant="28" id="j6M-8n-iz7"/>
                                         <constraint firstAttribute="trailing" secondItem="0PR-LG-A1w" secondAttribute="trailing" constant="20" id="kTg-x6-7G4"/>
                                         <constraint firstItem="rMY-jX-9z8" firstAttribute="top" secondItem="0PR-LG-A1w" secondAttribute="bottom" constant="20" id="kco-QG-Ilg"/>
+                                        <constraint firstAttribute="bottom" secondItem="ED5-re-MrQ" secondAttribute="bottom" constant="158" id="rsc-1d-I5z"/>
                                         <constraint firstAttribute="trailing" secondItem="rMY-jX-9z8" secondAttribute="trailing" constant="20" id="td8-rQ-xVu"/>
                                         <constraint firstItem="cBz-yq-v4S" firstAttribute="top" secondItem="rMY-jX-9z8" secondAttribute="bottom" constant="27" id="wfJ-H2-lko"/>
                                     </constraints>
@@ -1236,6 +1252,7 @@
                     </view>
                     <connections>
                         <outlet property="amountToStake" destination="2I6-6Z-0hB" id="0Tf-k9-FyR"/>
+                        <outlet property="joinTribeBox" destination="96f-QT-90X" id="u20-f1-7qO"/>
                         <outlet property="joinTribeButton" destination="M4X-tq-PUp" id="aUN-ng-u0d"/>
                         <outlet property="joinTribeView" destination="XJj-Qs-dp9" id="qBT-zr-vxo"/>
                         <outlet property="loadingTribeContainer" destination="e08-Wn-tYe" id="DDl-fS-oV8"/>
