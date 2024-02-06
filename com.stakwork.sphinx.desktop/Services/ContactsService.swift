@@ -45,6 +45,60 @@ class ContactsService: NSObject {
         }
     }
     
+    var selectedChat: String? {
+        get {
+            if let selectedChat: String = UserDefaults.Keys.selectedChat.get() {
+                return selectedChat
+            }
+            return nil
+        }
+        set {
+            UserDefaults.Keys.selectedChat.set(newValue)
+        }
+    }
+    
+    func saveSelectedChat() {
+        var tab: String? = nil
+        var selectedChatId: String? = nil
+        
+        switch (selectedTab) {
+        case .friends:
+            tab = "Friends"
+            selectedChatId = selectedFriendId
+        case .tribes:
+            tab = "Tribes"
+            selectedChatId = selectedTribeId
+        }
+        
+        if let tab = tab, let selectedChatId = selectedChatId {
+            selectedChat = "\(tab)-\(selectedChatId)"
+        }
+    }
+    
+    func setSelectedChat() {
+        if let selectedChat = self.selectedChat {
+            let elements = selectedChat.components(separatedBy: "-")
+            if elements.count > 2 {
+                
+                let tab = elements[0]
+                let chat = "\(elements[1])-\(elements[2])"
+                
+                switch (tab) {
+                case "Friends":
+                    selectedTab = .friends
+                    selectedFriendId = chat
+                    break
+                case "Tribes":
+                    selectedTab = .tribes
+                    selectedTribeId = chat
+                    break
+                default:
+                    break
+                }
+            }
+        }
+    }
+    
     var contactsHasNewMessages = false
     var chatsHasNewMessages = false
     
