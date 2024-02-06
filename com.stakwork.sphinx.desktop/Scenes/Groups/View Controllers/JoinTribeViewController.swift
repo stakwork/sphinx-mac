@@ -9,6 +9,32 @@
 import Cocoa
 import SwiftyJSON
 
+
+// Used to prevent moving view content during resize
+// unless the scollview becomes larger than the content
+// during which this code will keep the scrollview
+// content vertically centered.
+final class VerticallyCenteringClipView: NSClipView {
+    override func constrainBoundsRect(_ proposedBounds: NSRect) -> NSRect {
+        var constrainedClipViewBounds = super.constrainBoundsRect(proposedBounds)
+
+        guard let documentView else {
+            return constrainedClipViewBounds
+        }
+
+        let documentViewSize = documentView.fittingSize
+        
+        let correctedY = floor((proposedBounds.height - documentViewSize.height) / 2.0)
+        if documentViewSize.height < proposedBounds.height {
+            constrainedClipViewBounds.origin.y = correctedY
+        } else {
+            constrainedClipViewBounds.origin.y = bounds.origin.y
+        }
+
+        return constrainedClipViewBounds
+    }
+}
+
 class JoinTribeViewController: NSViewController {
     
     weak var delegate: NewContactChatDelegate?
@@ -69,43 +95,8 @@ class JoinTribeViewController: NSViewController {
         tribeImageView.layer?.cornerRadius = tribeImageView.frame.height / 2
         
         loadGroupDetails()
-        
-        let newView = NSView(frame: view.frame)
-        
-        let scrollView = NSScrollView()
-        scrollView.autoresizingMask = [.height]
-        scrollView.documentView = view
-        scrollView.frame = newView.bounds
-        newView.addSubview(scrollView)
-
-        joinTribeBox.removeFromSuperview()
-        newView.addSubview(joinTribeBox)
-        
-        joinTribeBox.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        joinTribeBox.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        joinTribeBox.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-
-        view = newView
     }
-    
-    override func viewDidAppear() {
-        super.viewDidAppear()
         
-        guard let window = view.window, let screen = NSScreen.main else { return }
-        
-        let screenHeight = screen.visibleFrame.size.height
-        let minHeight = joinTribeView.fittingSize.height / 2
-        
-        let maxHeight = min(joinTribeView.fittingSize.height, screenHeight)
-        
-        var windowFrame = window.frame
-        windowFrame.size.height = maxHeight
-        
-        window.minSize = CGSize(width: joinTribeView.fittingSize.width, height: minHeight)
-        window.maxSize = CGSize(width: joinTribeView.fittingSize.width, height: maxHeight)
-        window.setFrame(windowFrame, display: true)
-    }
-    
     func loadGroupDetails() {
         loadingGroup = true
         
