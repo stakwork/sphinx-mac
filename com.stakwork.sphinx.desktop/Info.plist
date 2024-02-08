@@ -51,7 +51,7 @@
 	<key>NSMainStoryboardFile</key>
 	<string>Main</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Sphinx would like to use your microphone to record audio messages and to join Jitsi calls</string>
+	<string>Sphinx would like to use your microphone to record audio messages and join calls</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>NSSupportsAutomaticTermination</key>
@@ -75,6 +75,6 @@
 		<string>Roboto-Italic.ttf</string>
 	</array>
 	<key>NSCameraUsageDescription</key>
-	<string>Sphinx would like to use your camera on Jitsi calls</string>
+	<string>Sphinx would like to use your camera on video calls</string>
 </dict>
 </plist>
