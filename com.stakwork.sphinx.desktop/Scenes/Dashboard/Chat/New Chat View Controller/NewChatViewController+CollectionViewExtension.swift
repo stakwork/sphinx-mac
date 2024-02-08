@@ -234,6 +234,10 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
             setMessageFieldActive()
         }
     }
+    
+    func shouldStartCallWith(link: String) {
+        WindowsManager.sharedInstance.showCallWindow(link: link)
+    }
 }
 
 extension NewChatViewController : MediaFullScreenDelegate {

@@ -968,9 +968,7 @@ extension NewChatTableDataSource {
             linkUrl = "\(linkUrl)#config.startAudioOnly=true"
         }
         
-        if let url = URL(string: linkUrl) {
-            NSWorkspace.shared.open(url)
-        }
+        delegate?.shouldStartCallWith(link: linkUrl)                
     }
 }
 

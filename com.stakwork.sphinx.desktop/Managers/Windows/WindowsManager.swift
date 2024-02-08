@@ -200,14 +200,10 @@ class WindowsManager {
     }
     
     func showWebAppWindow(chat: Chat?, view: NSView) {
-        if let chat = chat,
-            let tribeInfo = chat.tribeInfo,
-            let gameURL = tribeInfo.appUrl,
-            !gameURL.isEmpty && gameURL.isValidURL,
-           let webGameVC = WebAppViewController.instantiate(chat: chat){
+        if let chat = chat, let tribeInfo = chat.tribeInfo, let gameURL = tribeInfo.appUrl, !gameURL.isEmpty && gameURL.isValidURL,
+           let webGameVC = WebAppViewController.instantiate(chat: chat) {
+            
             let appTitle = chat.name ?? ""
-            
-            
             let screen = NSApplication.shared.keyWindow
             let frame : CGRect = screen?.frame ?? view.frame
 
@@ -223,6 +219,29 @@ class WindowsManager {
         }
         else{
             AlertHelper.showAlert(title: "generic.error.title".localized, message: "generic.error.message".localized)
+        }
+    }
+    
+    func showCallWindow(link: String) {
+        if let jitsiCallVC = JitsiCallWebViewController.instantiate(link: link) {
+            let appTitle = "Sphinx Call"
+            
+            let screen = NSApplication.shared.keyWindow
+            let frame : CGRect = screen?.frame ?? CGRect(x: 0, y: 0, width: 400, height: 400)
+
+            let position = (screen?.frame.origin) ?? CGPoint(x: 0.0, y: 0.0)
+            
+            showNewWindow(with: appTitle,
+                          size: CGSize(width: frame.width, height: frame.height),
+                          minSize: CGSize(width: 350, height: 550),
+                          position: position,
+                          identifier: link,
+                          styleMask: [.titled, .resizable, .closable],
+                          contentVC: jitsiCallVC)
+        } else {
+            if let url = URL(string: link) {
+                NSWorkspace.shared.open(url)
+            }
         }
     }
     
