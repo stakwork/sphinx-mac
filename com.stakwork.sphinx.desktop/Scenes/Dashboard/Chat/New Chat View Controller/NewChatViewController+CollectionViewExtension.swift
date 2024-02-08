@@ -236,7 +236,7 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
     }
     
     func shouldStartCallWith(link: String) {
-        WindowsManager.sharedInstance.showCallWindow(link: link, view: self.view)
+        WindowsManager.sharedInstance.showCallWindow(link: link)
     }
 }
 
