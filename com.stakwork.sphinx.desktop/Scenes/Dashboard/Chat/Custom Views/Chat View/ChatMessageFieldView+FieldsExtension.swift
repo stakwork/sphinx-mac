@@ -40,7 +40,14 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
             delegate?.shouldSendMessage(
                 text: messageTextView.string.trim(),
                 price: Int(priceTextField.stringValue) ?? 0,
-                completion: { _ in }
+                completion: { success in
+                    if !success {
+                        AlertHelper.showAlert(
+                            title: "generic.error.title".localized,
+                            message: "generic.message.error".localized
+                        )
+                    }
+                }
             )
             
             clearMessage()
