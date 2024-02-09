@@ -1102,6 +1102,19 @@
             </objects>
             <point key="canvasLocation" x="429" y="2219"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="B3V-Df-YRb">
+            <objects>
+                <viewController id="Mg3-jq-RWa" sceneMemberID="viewController">
+                    <view key="view" id="aYt-2e-74j">
+                        <rect key="frame" x="0.0" y="0.0" width="686" height="434"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="esq-hg-Xn5" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="416" y="2868"/>
+        </scene>
         <!--Threads List View Controller-->
         <scene sceneID="g5t-cJ-mgZ">
             <objects>
@@ -1368,14 +1381,39 @@
             </objects>
             <point key="canvasLocation" x="2171" y="686"/>
         </scene>
-        <!--View Controller-->
+        <!--Jitsi Call Web View Controller-->
         <scene sceneID="LDN-nY-EzK">
             <objects>
-                <viewController id="lRT-Vg-z18" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="JitsiCallWebViewController" id="lRT-Vg-z18" customClass="JitsiCallWebViewController" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="MYE-Qx-ezO">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bry-fj-bYH">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="ZzS-Q9-EuD"/>
+                            </imageView>
+                            <progressIndicator maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="cgQ-hu-5L0">
+                                <rect key="frame" x="217" y="67" width="16" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="huj-af-leY"/>
+                                    <constraint firstAttribute="width" constant="16" id="jZF-LU-KUq"/>
+                                </constraints>
+                            </progressIndicator>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Bry-fj-bYH" firstAttribute="leading" secondItem="MYE-Qx-ezO" secondAttribute="leading" id="0Jk-Zv-mZg"/>
+                            <constraint firstItem="cgQ-hu-5L0" firstAttribute="centerX" secondItem="Bry-fj-bYH" secondAttribute="centerX" id="Bbv-iI-77V"/>
+                            <constraint firstAttribute="bottom" secondItem="Bry-fj-bYH" secondAttribute="bottom" id="JzG-hJ-kyr"/>
+                            <constraint firstItem="Bry-fj-bYH" firstAttribute="top" secondItem="MYE-Qx-ezO" secondAttribute="top" id="fGl-Mh-660"/>
+                            <constraint firstAttribute="trailing" secondItem="Bry-fj-bYH" secondAttribute="trailing" id="gsI-q3-FB9"/>
+                            <constraint firstItem="cgQ-hu-5L0" firstAttribute="centerY" secondItem="Bry-fj-bYH" secondAttribute="centerY" multiplier="1.5" id="rFC-AU-lgK"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="loadingIndicator" destination="cgQ-hu-5L0" id="97D-5W-Ahb"/>
+                        <outlet property="loadingView" destination="Bry-fj-bYH" id="Ael-wP-Lqk"/>
+                    </connections>
                 </viewController>
                 <customObject id="dGf-HG-nxM" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

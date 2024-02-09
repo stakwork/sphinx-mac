@@ -226,10 +226,7 @@ extension NewChatViewModel {
         if message.isCallMessageType() {
             if let link = message.messageContent {
                 let linkUrl = VoIPRequestMessage.getFromString(link)?.link ?? link
-                
-                if let url = URL(string: linkUrl) {
-                    NSWorkspace.shared.open(url)
-                }
+                WindowsManager.sharedInstance.showCallWindow(link: linkUrl)
             }
         }
     }

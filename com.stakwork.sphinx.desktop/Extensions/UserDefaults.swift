@@ -79,6 +79,7 @@ extension UserDefaults {
         public static let lssNonce = DefaultKey<String>("lssNonce")
         public static let signerKeys = DefaultKey<String>("signerKeys")
         public static let sequence = DefaultKey<String>("sequence")
+        public static let selectedChat = DefaultKey<String>("selectedChat")
     }
 
     class func resetUserDefaults() {

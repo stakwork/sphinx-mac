@@ -57,6 +57,7 @@
 		4720991C24834E0000426028 /* CryptorRSA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4720991424834E0000426028 /* CryptorRSA.swift */; };
 		4720991D24834E0000426028 /* CryptorRSADigest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4720991524834E0000426028 /* CryptorRSADigest.swift */; };
 		4724BC1A25474BE70012BD76 /* Podcast.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4724BC1C25474BE70012BD76 /* Podcast.storyboard */; };
+		472504092B73F47000A12DE3 /* JitsiCallWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472504082B73F47000A12DE3 /* JitsiCallWebViewController.swift */; };
 		4725DA752481DAB40099A00B /* MaterialIcons-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 473FC42C2481CE52000096C3 /* MaterialIcons-Regular.ttf */; };
 		4725DA762481DAB40099A00B /* Montserrat-Black.otf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4703F0562481C61A00282186 /* Montserrat-Black.otf */; };
 		4725DA772481DAB40099A00B /* Montserrat-Bold.otf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4703F05C2481C61B00282186 /* Montserrat-Bold.otf */; };
@@ -715,6 +716,7 @@
 		4724BC1B25474BE70012BD76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Podcast.storyboard; sourceTree = "<group>"; };
 		4724BC1E25474BE90012BD76 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Podcast.strings; sourceTree = "<group>"; };
 		4724BC2025474BEB0012BD76 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Podcast.strings; sourceTree = "<group>"; };
+		472504082B73F47000A12DE3 /* JitsiCallWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JitsiCallWebViewController.swift; sourceTree = "<group>"; };
 		4726A41024C0D165005A66B4 /* HealthCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthCheckView.swift; sourceTree = "<group>"; };
 		4726A41224C0D173005A66B4 /* HealthCheckView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HealthCheckView.xib; sourceTree = "<group>"; };
 		4726A42924C62729005A66B4 /* NotificationsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsHelper.swift; sourceTree = "<group>"; };
@@ -1622,6 +1624,14 @@
 			path = BlueRSA;
 			sourceTree = "<group>";
 		};
+		472504072B73F44E00A12DE3 /* Jitsi Calls */ = {
+			isa = PBXGroup;
+			children = (
+				472504082B73F47000A12DE3 /* JitsiCallWebViewController.swift */,
+			);
+			path = "Jitsi Calls";
+			sourceTree = "<group>";
+		};
 		4726A42B24C628AF005A66B4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -2509,6 +2519,7 @@
 		479751C2246C72C100D2106B /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				472504072B73F44E00A12DE3 /* Jitsi Calls */,
 				4797E7482785D1560080B966 /* People */,
 				4797E83B24BCC10D00D13270 /* Dashboard.storyboard */,
 				479751C9246C732C00D2106B /* DashboardViewController.swift */,
@@ -3941,6 +3952,7 @@
 				CE1FA8FC2A01B4030014360C /* LsatListViewModel.swift in Sources */,
 				47469D5B2ACB6012004F0490 /* NewMessagesIndicatorView.swift in Sources */,
 				475B684329915E12000EF29C /* PodcastFeed+FetchUtils.swift in Sources */,
+				472504092B73F47000A12DE3 /* JitsiCallWebViewController.swift in Sources */,
 				47A93EF925DD7C4B0030DF14 /* NSImageView.swift in Sources */,
 				4744FA682469A44B00C5FD94 /* API+WalletExtension.swift in Sources */,
 				475B683729915DF5000EF29C /* PodcastModel+Computeds.swift in Sources */,
@@ -4707,7 +4719,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 332;
+				CURRENT_PROJECT_VERSION = 334;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 8297M44YTW;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -4743,7 +4755,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 332;
+				CURRENT_PROJECT_VERSION = 334;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 8297M44YTW;
 				ENABLE_HARDENED_RUNTIME = YES;
