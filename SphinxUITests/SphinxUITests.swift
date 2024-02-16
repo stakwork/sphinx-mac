@@ -141,6 +141,21 @@ final class SphinxUITests: XCTestCase {
         
     }
     
+    func testProfileViewQRCode() {
+        let qrcodeButton = app.windows["Profile"].groups
+            .containing(.button, identifier:"Save changes")
+            .children(matching: .group).element(boundBy: 3)
+            .children(matching: .group).element(boundBy: 0)
+            .children(matching: .button).element(boundBy: 1)
+        qrcodeButton.click()
+        
+        let publicKeyWindow = app.windows["Public Key"]
+        let copyButton = publicKeyWindow.children(matching: .button).element(boundBy: 0)
+        copyButton.click()
+        publicKeyWindow.buttons[XCUIIdentifierCloseWindow].click()
+        
+    }
+    
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
             // This measures how long it takes to launch your application.
