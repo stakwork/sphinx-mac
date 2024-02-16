@@ -587,6 +587,8 @@
 		47FEE2292A66F75800646C4E /* NewOnlyTextMessageCollectionViewitem+LayoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE2282A66F75800646C4E /* NewOnlyTextMessageCollectionViewitem+LayoutExtension.swift */; };
 		47FEE22B2A66F76E00646C4E /* NewOnlyTextMessageCollectionViewitem+DelegateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE22A2A66F76E00646C4E /* NewOnlyTextMessageCollectionViewitem+DelegateExtension.swift */; };
 		47FEE22E2A6710F500646C4E /* NewChatViewController+CollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE22D2A6710F500646C4E /* NewChatViewController+CollectionViewExtension.swift */; };
+		93A83E6A2B7FC298005158FB /* SphinxUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A83E692B7FC298005158FB /* SphinxUITests.swift */; };
+		93A83E6C2B7FC298005158FB /* SphinxUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A83E6B2B7FC298005158FB /* SphinxUITestsLaunchTests.swift */; };
 		AA1C7BC427657C4800A5B959 /* SignupCommonSecureFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1C7BC327657C4800A5B959 /* SignupCommonSecureFieldView.swift */; };
 		CE07F40529D72B7700EB0EC1 /* PodcastDetailSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07F40429D72B7700EB0EC1 /* PodcastDetailSelectionVC.swift */; };
 		CE1FA8F82A0199C20014360C /* LSATObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1FA8F72A0199C20014360C /* LSATObject.swift */; };
@@ -618,6 +620,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 4734D3912417E3D400D6957E;
 			remoteInfo = com.stakwork.sphinx.desktop;
+		};
+		93A83E6D2B7FC298005158FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4734D38A2417E3D400D6957E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4734D3912417E3D400D6957E;
+			remoteInfo = Sphinx;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -1352,6 +1361,9 @@
 		47FEE22D2A6710F500646C4E /* NewChatViewController+CollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewChatViewController+CollectionViewExtension.swift"; sourceTree = "<group>"; };
 		5EA81AB599AD947A8862A100 /* Pods-Sphinx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sphinx.debug.xcconfig"; path = "Target Support Files/Pods-Sphinx/Pods-Sphinx.debug.xcconfig"; sourceTree = "<group>"; };
 		82C242433501D81263FED4C2 /* Pods_Sphinx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sphinx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A83E672B7FC297005158FB /* SphinxUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SphinxUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A83E692B7FC298005158FB /* SphinxUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SphinxUITests.swift; sourceTree = "<group>"; };
+		93A83E6B2B7FC298005158FB /* SphinxUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SphinxUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		97A6F8CB5E1D14A28D7C7A67 /* Pods-com.stakwork.sphinx.desktop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-com.stakwork.sphinx.desktop.release.xcconfig"; path = "Target Support Files/Pods-com.stakwork.sphinx.desktop/Pods-com.stakwork.sphinx.desktop.release.xcconfig"; sourceTree = "<group>"; };
 		AA1C7BC327657C4800A5B959 /* SignupCommonSecureFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupCommonSecureFieldView.swift; sourceTree = "<group>"; };
 		CE07F40429D72B7700EB0EC1 /* PodcastDetailSelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailSelectionVC.swift; sourceTree = "<group>"; };
@@ -1425,6 +1437,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4734D3AF2417E3D600D6957E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93A83E642B7FC297005158FB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1686,6 +1705,7 @@
 				4734D3942417E3D400D6957E /* com.stakwork.sphinx.desktop */,
 				4734D3AA2417E3D500D6957E /* com.stakwork.sphinx.desktopTests */,
 				4734D3B52417E3D600D6957E /* com.stakwork.sphinx.desktopUITests */,
+				93A83E682B7FC297005158FB /* SphinxUITests */,
 				4734D3932417E3D400D6957E /* Products */,
 				90CB5EBD497A4B4F39AB48EE /* Pods */,
 				3E664B87C7B66A1253E2E109 /* Frameworks */,
@@ -1698,6 +1718,7 @@
 				4734D3922417E3D400D6957E /* Sphinx.app */,
 				4734D3A72417E3D500D6957E /* sphinxTests.xctest */,
 				4734D3B22417E3D600D6957E /* sphinxUITests.xctest */,
+				93A83E672B7FC297005158FB /* SphinxUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3321,6 +3342,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		93A83E682B7FC297005158FB /* SphinxUITests */ = {
+			isa = PBXGroup;
+			children = (
+				93A83E692B7FC298005158FB /* SphinxUITests.swift */,
+				93A83E6B2B7FC298005158FB /* SphinxUITestsLaunchTests.swift */,
+			);
+			path = SphinxUITests;
+			sourceTree = "<group>";
+		};
 		CE326B4C294A174700821A53 /* ChatMentionAutocompleteCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -3390,13 +3420,31 @@
 			productReference = 4734D3B22417E3D600D6957E /* sphinxUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		93A83E662B7FC297005158FB /* SphinxUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 93A83E712B7FC298005158FB /* Build configuration list for PBXNativeTarget "SphinxUITests" */;
+			buildPhases = (
+				93A83E632B7FC297005158FB /* Sources */,
+				93A83E642B7FC297005158FB /* Frameworks */,
+				93A83E652B7FC297005158FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				93A83E6E2B7FC298005158FB /* PBXTargetDependency */,
+			);
+			name = SphinxUITests;
+			productName = SphinxUITests;
+			productReference = 93A83E672B7FC297005158FB /* SphinxUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		4734D38A2417E3D400D6957E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1130;
+				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1420;
 				ORGANIZATIONNAME = "Tomas Timinskas";
 				TargetAttributes = {
@@ -3410,6 +3458,10 @@
 					};
 					4734D3B12417E3D600D6957E = {
 						CreatedOnToolsVersion = 11.3;
+						TestTargetID = 4734D3912417E3D400D6957E;
+					};
+					93A83E662B7FC297005158FB = {
+						CreatedOnToolsVersion = 15.2;
 						TestTargetID = 4734D3912417E3D400D6957E;
 					};
 				};
@@ -3432,6 +3484,7 @@
 				4734D3912417E3D400D6957E /* Sphinx */,
 				4734D3A62417E3D500D6957E /* sphinxTests */,
 				4734D3B12417E3D600D6957E /* sphinxUITests */,
+				93A83E662B7FC297005158FB /* SphinxUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -3586,6 +3639,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4734D3B02417E3D600D6957E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93A83E652B7FC297005158FB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -4118,6 +4178,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		93A83E632B7FC297005158FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93A83E6C2B7FC298005158FB /* SphinxUITestsLaunchTests.swift in Sources */,
+				93A83E6A2B7FC298005158FB /* SphinxUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -4130,6 +4199,11 @@
 			isa = PBXTargetDependency;
 			target = 4734D3912417E3D400D6957E /* Sphinx */;
 			targetProxy = 4734D3B32417E3D600D6957E /* PBXContainerItemProxy */;
+		};
+		93A83E6E2B7FC298005158FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4734D3912417E3D400D6957E /* Sphinx */;
+			targetProxy = 93A83E6D2B7FC298005158FB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -4874,6 +4948,51 @@
 			};
 			name = Release;
 		};
+		93A83E6F2B7FC298005158FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NHDBVA4HXP;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.profk.SphinxUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Sphinx;
+			};
+			name = Debug;
+		};
+		93A83E702B7FC298005158FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NHDBVA4HXP;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.profk.SphinxUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Sphinx;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -4909,6 +5028,15 @@
 			buildConfigurations = (
 				4734D3C22417E3D600D6957E /* Debug */,
 				4734D3C32417E3D600D6957E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		93A83E712B7FC298005158FB /* Build configuration list for PBXNativeTarget "SphinxUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93A83E6F2B7FC298005158FB /* Debug */,
+				93A83E702B7FC298005158FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
