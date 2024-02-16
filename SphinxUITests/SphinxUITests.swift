@@ -93,7 +93,54 @@ final class SphinxUITests: XCTestCase {
         sleep(5)
         
     }
-
+    
+    func testProfileAdvanceTab() {
+        let profileWindow = app.windows["Profile"]
+        let advanceTab = profileWindow/*@START_MENU_TOKEN@*/.buttons["Advanced"]/*[[".groups.buttons[\"Advanced\"]",".buttons[\"Advanced\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        advanceTab.click()
+        
+        //MARK: Changing Pin Timeout slider
+        let profileSlider = profileWindow.groups.containing(.button, identifier:"Save changes").children(matching: .group).element(boundBy: 3).children(matching: .group).element(boundBy: 1).children(matching: .slider).element
+        profileSlider.click()
+        profileSlider.adjust(toNormalizedSliderPosition: 0.8)
+        let tempSliderValue = profileSlider.value as! Int
+        sleep(5)
+        
+        //MARK: Tapping on Change Pin
+        let changePin = profileWindow/*@START_MENU_TOKEN@*/.buttons["Change PIN"]/*[[".groups.buttons[\"Change PIN\"]",".buttons[\"Change PIN\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        changePin.click()
+        let changePinView = app.windows["Standard PIN"]
+        XCTAssertTrue(changePinView.exists)
+        changePinView.buttons[XCUIIdentifierCloseWindow].click()
+        
+        //MARK: Tapping on Change Privacy Pin
+        let changePrivacyPin = profileWindow/*@START_MENU_TOKEN@*/.buttons["Change Privacy PIN"]/*[[".groups.buttons[\"Change Privacy PIN\"]",".buttons[\"Change Privacy PIN\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        changePrivacyPin.click()
+        let changePrivacyPinView = app.windows["Privacy PIN"]
+        XCTAssertTrue(changePrivacyPinView.exists)
+        changePrivacyPinView.buttons[XCUIIdentifierCloseWindow].click()
+        
+        let xcuiProfileFullwindowButton = profileWindow.buttons[XCUIIdentifierFullScreenWindow]
+        xcuiProfileFullwindowButton.click()
+        
+        // Click on Save Changes
+        let saveChangesButton = app.windows["Profile"]/*@START_MENU_TOKEN@*/.buttons["Save changes"]/*[[".groups.buttons[\"Save changes\"]",".buttons[\"Save changes\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        saveChangesButton.click()
+        profileWindow.typeKey(.escape, modifierFlags:[])
+        sleep(5)
+        
+        // Click on Close Button
+        let xcuiProfileClosewindowButton = profileWindow.buttons[XCUIIdentifierCloseWindow]
+        xcuiProfileClosewindowButton.click()
+        
+        app.menuBars.menuBarItems["Sphinx"].click()
+        app.menuBars/*@START_MENU_TOKEN@*/.menuItems["Profile"]/*[[".menuBarItems[\"Sphinx\"]",".menus.menuItems[\"Profile\"]",".menuItems[\"Profile\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.click()
+        advanceTab.click()
+        
+        XCTAssertEqual(tempSliderValue, profileSlider.value as! Int)
+        
+    }
+    
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
             // This measures how long it takes to launch your application.
