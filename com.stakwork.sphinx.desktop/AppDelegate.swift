@@ -108,6 +108,27 @@ import WebKit
             }
         }
     }
+     
+    func application(
+        _ application: NSApplication,
+        continue userActivity: NSUserActivity,
+        restorationHandler: @escaping ([NSUserActivityRestoring]) -> Void
+    ) -> Bool {
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb, 
+                let url = userActivity.webpageURL,
+                let _ = URLComponents(url: url, resolvingAgainstBaseURL: true) else
+        {
+            return false
+        }
+        
+        if let _ = getDashboardWindow() {
+            WindowsManager.sharedInstance.showCallWindow(link: url.absoluteString)
+        } else {
+            UserDefaults.Keys.linkQuery.set(url.absoluteString)
+        }
+         
+        return true
+    }
     
     func connectTor() {
         if !SignupHelper.isLogged() { return }

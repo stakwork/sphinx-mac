@@ -10,7 +10,16 @@ import Foundation
 
 class DeepLinksHandlerHelper {
     static func handleLinkQueryFrom(url: URL) {
-        if let query = url.query, UserData.sharedInstance.isUserLogged() {
+        if !UserData.sharedInstance.isUserLogged() {
+            return
+        }
+        
+        if url.absoluteString.starts(with: "https://jitsi.sphinx.chat") {
+            WindowsManager.sharedInstance.showCallWindow(link: url.absoluteString)
+            return
+        }
+        
+        if let query = url.query {
             if let action = url.getLinkAction() {
                 switch(action) {
                 case "tribe":
