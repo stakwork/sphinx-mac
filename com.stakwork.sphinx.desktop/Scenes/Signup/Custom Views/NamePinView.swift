@@ -22,7 +22,6 @@ class NamePinView: NSView, LoadableNib {
     
     let messageBubbleHelper = NewMessageBubbleHelper()
     let userData = UserData.sharedInstance
-    var contactsService: ContactsService! = nil
     
     var loading = false {
         didSet {
@@ -47,13 +46,15 @@ class NamePinView: NSView, LoadableNib {
         loadViewFromNib()
     }
     
-    init(frame frameRect: NSRect, contactsService: ContactsService, delegate: WelcomeEmptyViewDelegate) {
+    init(
+        frame frameRect: NSRect,
+        delegate: WelcomeEmptyViewDelegate
+    ) {
         super.init(frame: frameRect)
-        loadViewFromNib()
         
-        self.contactsService = contactsService
         self.delegate = delegate
         
+        loadViewFromNib()
         configureView()
     }
     
@@ -89,7 +90,7 @@ extension NamePinView : SignupButtonViewDelegate {
         if !nameField.getFieldValue().isEmpty {
             loading = true
             
-            API.sharedInstance.getContacts(callback: {(contacts, _, _) -> () in
+            API.sharedInstance.getContacts(callback: {(contacts, _, _, _) -> () in
                 self.insertAndUpdateOwner(contacts: contacts)
             })
         } else {
@@ -100,14 +101,14 @@ extension NamePinView : SignupButtonViewDelegate {
     func insertAndUpdateOwner(contacts: [JSON]) {
         let nickname = nameField.getFieldValue()
         
-        contactsService.insertContacts(contacts: contacts, shouldSyncDeleted: false)
+        UserContactsHelper.insertContacts(contacts: contacts)
         UserData.sharedInstance.saveNewNodeOnKeychain()
         
         let id = UserData.sharedInstance.getUserId()
         let parameters = ["alias" : nickname as AnyObject]
         
         API.sharedInstance.updateUser(id: id, params: parameters, callback: { contact in
-            self.contactsService.insertContact(contact: contact)
+            let _ = UserContactsHelper.insertContact(contact: contact)
             self.goToProfilePictureView()
         }, errorCallback: {
             self.showError()

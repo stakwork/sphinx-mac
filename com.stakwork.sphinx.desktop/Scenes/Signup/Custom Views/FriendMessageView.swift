@@ -22,8 +22,6 @@ class FriendMessageView: NSView, LoadableNib {
     @IBOutlet weak var initialsCircle: NSBox!
     @IBOutlet weak var initialsLabel: NSTextField!
     
-    var contactsService: ContactsService! = nil
-    
     var loading = false {
         didSet {
             LoadingWheelHelper.toggleLoadingWheel(loading: loading, loadingWheel: loadingWheel, color: NSColor.white, controls: [continueButtonView.getButton()])
@@ -39,13 +37,15 @@ class FriendMessageView: NSView, LoadableNib {
         loadViewFromNib()
     }
     
-    init(frame frameRect: NSRect, contactsService: ContactsService, delegate: WelcomeEmptyViewDelegate) {
+    init(
+        frame frameRect: NSRect,
+        delegate: WelcomeEmptyViewDelegate
+    ) {
         super.init(frame: frameRect)
-        loadViewFromNib()
         
-        self.contactsService = contactsService
         self.delegate = delegate
         
+        loadViewFromNib()
         configureView()
     }
     
@@ -68,15 +68,28 @@ extension FriendMessageView : SignupButtonViewDelegate {
     }
     
     func createInviterContact() {
-        if let inviter = SignupHelper.getInviter(), SignupHelper.step == SignupHelper.SignupStep.IPAndTokenSet.rawValue {
-            contactsService.createContact(nickname: inviter.nickname, pubKey: inviter.pubkey, routeHint: inviter.routeHint, callback: { success in
-                if success {
-                    SignupHelper.step = SignupHelper.SignupStep.InviterContactCreated.rawValue
-                    self.delegate?.shouldContinueTo?(mode: -1)
-                } else {
-                    self.didFailCreatingContact()
-                }
-            })
+        if let inviter = SignupHelper.getInviter(),
+            SignupHelper.step == SignupHelper.SignupStep.IPAndTokenSet.rawValue {
+            
+            if let pubkey = inviter.pubkey {
+                
+                UserContactsHelper.createContact(
+                    nickname: inviter.nickname,
+                    pubKey: pubkey,
+                    routeHint: inviter.routeHint,
+                    callback: { (success, _) in
+                        
+                    if success {
+                        SignupHelper.step = SignupHelper.SignupStep.InviterContactCreated.rawValue
+                        self.delegate?.shouldContinueTo?(mode: -1)
+                    } else {
+                        self.didFailCreatingContact()
+                    }
+                })
+            } else {
+                SignupHelper.step = SignupHelper.SignupStep.InviterContactCreated.rawValue
+                self.delegate?.shouldContinueTo?(mode: -1)
+            }
         } else {
             delegate?.shouldContinueTo?(mode: -1)
         }

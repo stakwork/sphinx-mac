@@ -22,6 +22,7 @@ class MessageOptionView: NSView, LoadableNib {
     @IBOutlet weak var titleLabel: NSTextField!
     @IBOutlet weak var separator: NSBox!
     @IBOutlet weak var optionButton: CustomButton!
+    @IBOutlet weak var labelLeadingConstraint: NSLayoutConstraint!
     
     var buttonTag: Int = -1
     
@@ -90,10 +91,6 @@ class MessageOptionView: NSView, LoadableNib {
         loadViewFromNib()
     }
     
-    func isDelete(tag: Int) -> Bool {
-        return tag == TransactionMessage.MessageActionsItem.Delete.rawValue
-    }
-    
     func configure(option: Option, delegate: MessageOptionViewDelegate) {
         self.delegate = delegate
         self.buttonTag = option.tag
@@ -117,6 +114,10 @@ class MessageOptionView: NSView, LoadableNib {
         separator.isHidden = !option.showLine
         
         separator.fillColor = NSColor.Sphinx.Text.withAlphaComponent(0.2)
+        
+        let hasIcon = (option.icon != nil || option.iconImage != nil)
+        labelLeadingConstraint.constant = hasIcon ? 40 : 10
+        self.layoutSubtreeIfNeeded()
     }
     
     @IBAction func buttonClicked(_ sender: Any) {

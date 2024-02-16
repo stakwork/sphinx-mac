@@ -22,6 +22,7 @@ class ShareInviteCodeViewController: NSViewController {
         case PubKey = 1
         case TribeQR = 2
         case RouteHint = 3
+        case Invoice = 4
     }
     
     var viewMode = ViewMode.Invite
@@ -57,6 +58,9 @@ class ShareInviteCodeViewController: NSViewController {
         case .RouteHint:
             viewTitle.stringValue = "route.hint".localized.uppercased()
             copiedStrind = "route.hint.copied.clipboard".localized
+        case .Invoice:
+            viewTitle.stringValue = "invoice".localized.uppercased()
+            copiedStrind = "invoice.copied.clipboard".localized
         }
     }
     

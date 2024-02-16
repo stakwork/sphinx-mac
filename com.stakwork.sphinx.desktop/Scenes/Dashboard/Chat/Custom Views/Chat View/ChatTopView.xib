@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="ChatTopView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="chatHeaderView" destination="rY5-rD-4BP" id="ZGw-cg-Qfo"/>
+                <outlet property="chatSearchView" destination="tj6-6S-luA" id="Jz4-Qw-cmb"/>
+                <outlet property="contentView" destination="c22-O7-iKe" id="Y4E-Go-czs"/>
+                <outlet property="pinMessageBarView" destination="js5-kf-HQD" id="u07-GJ-aCS"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="626" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1g6-66-yCk">
+                    <rect key="frame" x="0.0" y="0.0" width="626" height="60"/>
+                    <subviews>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="rY5-rD-4BP" customClass="ChatHeaderView" customModule="Sphinx" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="626" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="60" id="JJr-nl-8E7"/>
+                            </constraints>
+                        </customView>
+                        <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tj6-6S-luA" customClass="ChatSearchTextFieldView" customModule="Sphinx" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="626" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="60" id="juJ-pj-Dy4"/>
+                            </constraints>
+                        </customView>
+                        <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="js5-kf-HQD" customClass="PinMessageBarView" customModule="Sphinx" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="10" width="626" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="PX8-Nx-uij"/>
+                            </constraints>
+                        </customView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="rY5-rD-4BP" firstAttribute="leading" secondItem="1g6-66-yCk" secondAttribute="leading" id="KB5-iZ-MVg"/>
+                        <constraint firstAttribute="trailing" secondItem="js5-kf-HQD" secondAttribute="trailing" id="jMY-WV-ykX"/>
+                        <constraint firstItem="js5-kf-HQD" firstAttribute="leading" secondItem="1g6-66-yCk" secondAttribute="leading" id="ymP-PE-wmI"/>
+                        <constraint firstAttribute="trailing" secondItem="rY5-rD-4BP" secondAttribute="trailing" id="z09-3e-9oD"/>
+                    </constraints>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="1g6-66-yCk" secondAttribute="trailing" id="Uhs-c2-eUe"/>
+                <constraint firstAttribute="bottom" secondItem="1g6-66-yCk" secondAttribute="bottom" id="oFq-Kg-mLk"/>
+                <constraint firstItem="1g6-66-yCk" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="tbX-sA-5Lh"/>
+                <constraint firstItem="1g6-66-yCk" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="uTB-wN-hjz"/>
+            </constraints>
+            <point key="canvasLocation" x="100" y="-36"/>
+        </customView>
+    </objects>
+</document>

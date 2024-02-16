@@ -19,7 +19,8 @@ class WindowsManager {
     
     func saveWindowState() {
         if let keyWindow = NSApplication.shared.keyWindow {
-            let menuCollapsed = (keyWindow.contentViewController as? DashboardViewController)?.isLeftMenuCollapsed() ?? false
+//            let menuCollapsed = (keyWindow.contentViewController as? DashboardViewController)?.isLeftMenuCollapsed() ?? false
+            let menuCollapsed = false
             let windowState = WindowState(frame: keyWindow.frame, minSize: keyWindow.minSize, menuCollapsed: menuCollapsed)
             
             let encoder = JSONEncoder()
@@ -65,16 +66,18 @@ class WindowsManager {
         return WindowState(frame: initialFrame, minSize: size, menuCollapsed: false)
     }
 
-    func showNewWindow(with title: String,
-                            size: CGSize,
-                            minSize: CGSize? = nil,
-                            centeredIn w: NSWindow? = nil,
-                            position: CGPoint? = nil,
-                            identifier: String? = nil,
-                            chatIdentifier: Int? = nil,
-                            styleMask: NSWindow.StyleMask = [.closable, .titled, .resizable],
-                            contentVC: NSViewController,
-                            shouldClose: Bool = false) {
+    func showNewWindow(
+        with title: String,
+        size: CGSize,
+        minSize: CGSize? = nil,
+        centeredIn w: NSWindow? = nil,
+        position: CGPoint? = nil,
+        identifier: String? = nil,
+        chatIdentifier: Int? = nil,
+        styleMask: NSWindow.StyleMask = [.closable, .titled, .resizable],
+        contentVC: NSViewController,
+        shouldClose: Bool = false
+    ) {
         
         if let identifier = identifier {
             if !shouldClose && bringToFrontIfExists(identifier: identifier, chatIdentifier: chatIdentifier) {
@@ -88,6 +91,7 @@ class WindowsManager {
                                      backing: .buffered,
                                      defer: false)
         
+        newWindow.title = title
         newWindow.minSize = minSize ?? size
         newWindow.isOpaque = false
         newWindow.isMovableByWindowBackground = false
@@ -148,6 +152,14 @@ class WindowsManager {
                       contentVC: vc)
     }
     
+    func showTransationsListWindow(vc: NSViewController, window: NSWindow?) {
+        showNewWindow(with: "transactions".localized,
+                      size: CGSize(width: 450, height: 750),
+                      centeredIn: window,
+                      identifier: "transactions-window",
+                      contentVC: vc)
+    }
+    
     func showContactWindow(vc: NSViewController, window: NSWindow?, title: String, identifier: String, size: CGSize) {
         showNewWindow(with: title,
                       size: size,
@@ -165,22 +177,71 @@ class WindowsManager {
                       contentVC: vc)
     }
     
+    func showInvoiceWindow(vc: NSViewController, window: NSWindow?) {
+        showNewWindow(with: "invoice".localized,
+                      size: CGSize(width: 400, height: 600),
+                      centeredIn: window,
+                      identifier: "invoice-window",
+                      contentVC: vc,
+                      shouldClose: true)
+    }
+    
+    func showCreateTribeWindow(
+        title: String,
+        vc: NSViewController,
+        window: NSWindow?
+    ) {
+        showNewWindow(with: title,
+                      size: CGSize(width: 400, height: 700),
+                      centeredIn: window,
+                      identifier: "create-tribe-window",
+                      styleMask: [.closable, .titled],
+                      contentVC: vc)
+    }
+    
     func showWebAppWindow(chat: Chat?, view: NSView) {
-        if let chat = chat, let tribeInfo = chat.tribesInfo, let gameURL = tribeInfo.appUrl, !gameURL.isEmpty {            
-            let appTitle = chat.name ?? ""
-            let webGameVC = WebAppViewController.instantiate(chat: chat)
+        if let chat = chat, let tribeInfo = chat.tribeInfo, let gameURL = tribeInfo.appUrl, !gameURL.isEmpty && gameURL.isValidURL,
+           let webGameVC = WebAppViewController.instantiate(chat: chat) {
             
-            let rectInWindow = view.convert(view.frame, to: nil).origin
-            let windowInScreen = view.window?.convertToScreen(view.frame).origin
-            let position = CGPoint(x: rectInWindow.x + (windowInScreen?.x ?? 0), y: rectInWindow.y + (windowInScreen?.y ?? 0) + 60)
+            let appTitle = chat.name ?? ""
+            let screen = NSApplication.shared.keyWindow
+            let frame : CGRect = screen?.frame ?? view.frame
+
+            let position = (screen?.frame.origin) ?? CGPoint(x: 0.0, y: 0.0)
             
             showNewWindow(with: appTitle,
-                          size: CGSize(width: view.frame.width, height: view.frame.height - 120),
+                          size: CGSize(width: frame.width, height: frame.height),
                           minSize: CGSize(width: 350, height: 550),
                           position: position,
                           identifier: chat.getWebAppIdentifier(),
                           styleMask: [.titled, .resizable, .closable],
                           contentVC: webGameVC)
+        }
+        else{
+            AlertHelper.showAlert(title: "generic.error.title".localized, message: "generic.error.message".localized)
+        }
+    }
+    
+    func showCallWindow(link: String) {
+        if let jitsiCallVC = JitsiCallWebViewController.instantiate(link: link) {
+            let appTitle = "Sphinx Call"
+            
+            let screen = NSApplication.shared.keyWindow
+            let frame : CGRect = screen?.frame ?? CGRect(x: 0, y: 0, width: 400, height: 400)
+
+            let position = (screen?.frame.origin) ?? CGPoint(x: 0.0, y: 0.0)
+            
+            showNewWindow(with: appTitle,
+                          size: CGSize(width: frame.width, height: frame.height),
+                          minSize: CGSize(width: 350, height: 550),
+                          position: position,
+                          identifier: link,
+                          styleMask: [.titled, .resizable, .closable],
+                          contentVC: jitsiCallVC)
+        } else {
+            if let url = URL(string: link) {
+                NSWorkspace.shared.open(url)
+            }
         }
     }
     

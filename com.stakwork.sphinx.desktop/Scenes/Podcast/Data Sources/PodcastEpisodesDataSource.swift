@@ -12,6 +12,7 @@ import Cocoa
 protocol PodcastEpisodesDSDelegate : AnyObject {
     func shouldShareClip(comment: PodcastComment)
     func shouldSendBoost(message: String, amount: Int, animation: Bool) -> TransactionMessage?
+    func shouldCopyShareLink(link:String)
 }
 
 class PodcastEpisodesDataSource : NSObject {
@@ -20,28 +21,29 @@ class PodcastEpisodesDataSource : NSObject {
     
     public static let kPlayerRowHeight: CGFloat = 670
     
-    let kRowHeight: CGFloat = 64
+    let kRowHeight: CGFloat = 200
     let kHeaderHeight: CGFloat = 60
     
     var collectionView: NSCollectionView! = nil
-    var playerHelper: PodcastPlayerHelper! = nil
-    var episodes: [PodcastEpisode] = []
-    var chat: Chat! = nil
     
-    init(collectionView: NSCollectionView,
-         chat: Chat,
-         episodes: [PodcastEpisode],
-         playerHelper: PodcastPlayerHelper,
-         delegate: PodcastEpisodesDSDelegate) {
+    var chat: Chat! = nil
+    var podcast: PodcastFeed! = nil
+    
+    let podcastPlayerController = PodcastPlayerController.sharedInstance
+    let feedsManager = FeedsManager.sharedInstance
+    
+    init(
+        collectionView: NSCollectionView,
+        chat: Chat,
+        podcastFeed: PodcastFeed,
+        delegate: PodcastEpisodesDSDelegate
+    ) {
         
         super.init()
         
-        PodcastEpisodeCollectionViewItem.podcastImage = nil
-        
         self.chat = chat
-        self.playerHelper = playerHelper
+        self.podcast = podcastFeed
         self.collectionView = collectionView
-        self.episodes = episodes
         self.delegate = delegate
         
         let flowLayout = NSCollectionViewFlowLayout()
@@ -67,7 +69,7 @@ extension PodcastEpisodesDataSource : NSCollectionViewDataSource {
         if section == 0 {
             return 1
         }
-        return episodes.count
+        return podcast.episodesArray.count
     }
   
     func collectionView(_ itemForRepresentedObjectAtcollectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
@@ -76,17 +78,23 @@ extension PodcastEpisodesDataSource : NSCollectionViewDataSource {
             return item
         }
         let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PodcastEpisodeCollectionViewItem"), for: indexPath)
+        
         return item
     }
     
     func collectionView(_ collectionView: NSCollectionView, willDisplay item: NSCollectionViewItem, forRepresentedObjectAt indexPath: IndexPath) {
         if let collectionViewItem = item as? PodcastEpisodeCollectionViewItem {
-            let episode = episodes[indexPath.item]
-            let isLastRow = indexPath.item == episodes.count - 1
-            let isPlaying = (playerHelper.currentEpisode == indexPath.item && playerHelper.isPlaying())
-            collectionViewItem.configureWidth(podcast: playerHelper.podcast, and: episode, isLastRow: isLastRow, playing: isPlaying)
+            
+            let episode = podcast.episodesArray[indexPath.item]
+            let isLastRow = indexPath.item == podcast.episodesArray.count - 1
+            let isPlaying = podcastPlayerController.isPlaying(episodeId: episode.itemID)
+            
+            collectionViewItem.configureWith(podcast: podcast, and: episode, isLastRow: isLastRow, playing: isPlaying)
+            collectionViewItem.delegate = self
+            
         } else if let collectionViewItem = item as? PodcastPlayerCollectionViewItem {
-            collectionViewItem.configureWith(playerHelper: playerHelper, chat: chat, delegate: self)
+            
+            collectionViewItem.configureWith(chat: chat, podcast: podcast, delegate: self)
         }
     }
 }
@@ -107,19 +115,29 @@ extension PodcastEpisodesDataSource : NSCollectionViewDelegate, NSCollectionView
     }
     
     func collectionView(_ collectionView: NSCollectionView, viewForSupplementaryElementOfKind kind: NSCollectionView.SupplementaryElementKind, at indexPath: IndexPath) -> NSView {
-        let view = collectionView.makeSupplementaryView(ofKind: NSCollectionView.elementKindSectionHeader, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PodcastEpisodesHeaderView"), for: indexPath) as! PodcastEpisodesHeaderView
-        view.configureWith(count: episodes.count)
+        let view = collectionView.makeSupplementaryView(
+            ofKind: NSCollectionView.elementKindSectionHeader,
+            withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PodcastEpisodesHeaderView"),
+            for: indexPath
+        ) as! PodcastEpisodesHeaderView
+        
+        view.configureWith(count: podcast.episodesArray.count)
         view.addShadow(location: VerticalLocation.bottom, color: NSColor.black, opacity: 0.2, radius: 3.0)
+        
         return view
     }
     
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
         if let indexPath = indexPaths.first {
             if indexPath.section == 0 { return }
-            
-            if let playerView = collectionView.item(at: IndexPath(item: 0, section: 0)) as? PodcastPlayerCollectionViewItem {
-                playerView.didTapEpisodeAt(index: indexPath.item)
-            }
+            playEpisode(atIndexPath: indexPath)
+        }
+    }
+    
+    
+    func playEpisode(atIndexPath:IndexPath){
+        if let playerView = collectionView.item(at: IndexPath(item: 0, section: 0)) as? PodcastPlayerCollectionViewItem {
+            playerView.didTapEpisodeAt(index: atIndexPath.item)
         }
     }
 }
@@ -138,6 +156,29 @@ extension PodcastEpisodesDataSource : PodcastPlayerViewDelegate {
     }
     
     func shouldSyncPodcast() {
-        chat?.updateMetaData()
+        feedsManager.saveContentFeedStatus(for: podcast.feedID)
+    }
+}
+
+
+extension PodcastEpisodesDataSource:PodcastEpisodeCollectionViewItemDelegate{
+    func episodeShareTapped(episode: PodcastEpisode) {
+            AlertHelper.showTwoOptionsAlert(
+                title: "Share from beginning or current time?",
+                message: "",
+                confirm: {
+                    if let link = episode.constructShareLink(){
+                        self.delegate?.shouldCopyShareLink(link: link)
+                    }
+                },
+                cancel: {
+                    if let link = episode.constructShareLink(useTimestamp: true){
+                        self.delegate?.shouldCopyShareLink(link: link)
+                    }
+                },
+                confirmLabel: "Share from Beginning",
+                cancelLabel: "Share from Current Time"
+            )
+            
     }
 }

@@ -21,7 +21,6 @@ class EncryptionManager {
         return Static.instance
     }
     
-    var contactsService = ContactsService()
     let userData = UserData.sharedInstance
     
     var ownPrivateKey: SecKey? {
@@ -176,7 +175,7 @@ class EncryptionManager {
                 return
             }
 
-            contactsService.updateContact(contact: owner, contactKey: base64PublicKey, callback: { _ in
+            UserContactsHelper.updateContact(contact: owner, contactKey: base64PublicKey, callback: { _ in
                 completion?()
             })
         }
@@ -274,6 +273,14 @@ class EncryptionManager {
         return false
     }
     
+    func encryptToken(token: String, key: CryptorRSA.PublicKey) -> String? {
+        let (encrypted, encryptedToken) = encrypt(token: token, with: key.reference)
+        if encrypted {
+            return encryptedToken
+        }
+        return nil
+    }
+    
     //Encrypting messages
     func encryptMessageForOwner(message: String) -> String {
         if let owner = UserContact.getOwner() {
@@ -301,7 +308,27 @@ class EncryptionManager {
         return encrypt(message: message, with: key.reference)
     }
     
-    public func encrypt(message: String, with key: SecKey) -> (Bool, String) {
+    public func encrypt(
+        token: String,
+        with key: SecKey
+    ) -> (Bool, String) {
+        guard let messageData = token.data(using: String.Encoding.utf8) else {
+            return (false, token)
+        }
+        
+        guard let encryptData = SecKeyCreateEncryptedData(key, SecKeyAlgorithm.rsaEncryptionPKCS1, messageData as CFData, nil) else {
+            return (false, token)
+        }
+
+        let encryptedData = encryptData as Data
+        let encrypted = CryptorRSA.createEncrypted(with: encryptedData)
+        return (true, encrypted.base64String)
+    }
+    
+    public func encrypt(
+        message: String,
+        with key: SecKey
+    ) -> (Bool, String) {
         let blockSize = SecKeyGetBlockSize(key)
         let maxChunkSize: Int = blockSize - 11
         
@@ -374,7 +401,13 @@ class EncryptionManager {
     }
     
     public static func randomString(length: Int) -> String {
-        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        return String((0..<length).map{ _ in letters.randomElement()! })
+        let uuidString = UUID().uuidString.replacingOccurrences(of: "-", with: "")
+        
+        return String(
+            Data(uuidString.utf8)
+            .base64EncodedString()
+            .replacingOccurrences(of: "=", with: "")
+            .prefix(length)
+        )
     }
 }

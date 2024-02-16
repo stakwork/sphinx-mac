@@ -13,11 +13,16 @@ class LoadingMoreCollectionViewItem: NSCollectionViewItem {
     public static let kLoadingHeight: CGFloat = 50.0
     
     @IBOutlet weak var loadingWheel: NSProgressIndicator!
+    @IBOutlet weak var loadingMoreLabel: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loadingWheel.set(tintColor: NSColor.Sphinx.SecondaryText)
+    }
+    
+    func configureCell(text: String) {
+        loadingMoreLabel.stringValue = text
         loadingWheel.startAnimation(nil)
     }
     

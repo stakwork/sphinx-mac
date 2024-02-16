@@ -89,21 +89,19 @@ extension SphinxReady : SignupButtonViewDelegate {
         if let inviteString: String = UserDefaults.Keys.inviteString.get() {
             API.sharedInstance.finishInvite(inviteString: inviteString, callback: { success in
                 if success {
-                    self.joinDefaultTribe()
+                    self.finishSignup()
                 } else {
                     self.didClickButton(tag: -1)
                 }
             })
         } else {
-            self.joinDefaultTribe()
+            self.finishSignup()
         }
     }
     
-    func joinDefaultTribe() {
+    func finishSignup() {
         let (_, _) = EncryptionManager.sharedInstance.getOrCreateKeys() {
-            GroupsManager.sharedInstance.getAndJoinDefaultTribe {
-                self.handleInviteActions()
-            }
+            self.handleInviteActions()
         }
     }
     

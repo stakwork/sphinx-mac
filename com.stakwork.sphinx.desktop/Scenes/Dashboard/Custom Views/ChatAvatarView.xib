@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -10,14 +10,6 @@
         <customObject id="-2" userLabel="File's Owner" customClass="ChatAvatarView" customModule="Sphinx" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="c22-O7-iKe" id="RX8-Mz-fop"/>
-                <outlet property="groupImage1" destination="nan-bS-e55" id="Aw0-r7-MP0"/>
-                <outlet property="groupImage2" destination="SxL-2t-sVC" id="rOM-T1-sj9"/>
-                <outlet property="groupImage2Container" destination="uCq-8T-FkA" id="7at-OZ-7ku"/>
-                <outlet property="groupImagesContainer" destination="2o8-8m-9Um" id="qbL-Ih-yye"/>
-                <outlet property="initialsContainer1" destination="12d-yG-vPo" id="DLb-aZ-AgM"/>
-                <outlet property="initialsContainer2" destination="s9L-vD-zRf" id="k07-jb-Rgg"/>
-                <outlet property="initialsLabel1" destination="TZC-Zi-Zoq" id="4fc-Wp-Nh7"/>
-                <outlet property="initialsLabel2" destination="vWo-mk-hRs" id="KeV-yz-Var"/>
                 <outlet property="profileImageContainer" destination="rLf-rq-Pdy" id="chQ-pd-tNx"/>
                 <outlet property="profileImageHeight" destination="IvX-zB-vbs" id="PTw-MA-IEl"/>
                 <outlet property="profileImageView" destination="WAK-Q0-XpQ" id="WdD-D2-wsD"/>
@@ -29,14 +21,14 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="75" height="85"/>
+            <rect key="frame" x="0.0" y="0.0" width="77" height="85"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="rLf-rq-Pdy">
-                    <rect key="frame" x="0.0" y="0.0" width="75" height="85"/>
+                    <rect key="frame" x="0.0" y="0.0" width="77" height="85"/>
                     <subviews>
                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WAK-Q0-XpQ" customClass="AspectFillNSImageView" customModule="Sphinx" customModuleProvider="target">
-                            <rect key="frame" x="15" y="20" width="45" height="45"/>
+                            <rect key="frame" x="16" y="20" width="45" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="IvX-zB-vbs"/>
                                 <constraint firstAttribute="width" constant="45" id="OTh-4Z-iyb"/>
@@ -47,7 +39,7 @@
                             </userDefinedRuntimeAttributes>
                         </imageView>
                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="Qmb-Ig-wi8">
-                            <rect key="frame" x="15" y="20" width="45" height="45"/>
+                            <rect key="frame" x="16" y="20" width="45" height="45"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="990-B8-bwg">
                                     <rect key="frame" x="21" y="13" width="4" height="20"/>
@@ -68,135 +60,23 @@
                         <constraint firstItem="Qmb-Ig-wi8" firstAttribute="top" secondItem="WAK-Q0-XpQ" secondAttribute="top" id="4Ah-p9-6J8"/>
                         <constraint firstItem="Qmb-Ig-wi8" firstAttribute="bottom" secondItem="WAK-Q0-XpQ" secondAttribute="bottom" id="BTO-gB-J1Y"/>
                         <constraint firstItem="WAK-Q0-XpQ" firstAttribute="centerX" secondItem="rLf-rq-Pdy" secondAttribute="centerX" id="Jnx-Pn-9SQ"/>
-                        <constraint firstAttribute="width" constant="75" id="NpR-ah-Nu7"/>
+                        <constraint firstAttribute="width" constant="77" id="NpR-ah-Nu7"/>
                         <constraint firstItem="WAK-Q0-XpQ" firstAttribute="centerY" secondItem="rLf-rq-Pdy" secondAttribute="centerY" id="Z2M-ac-bJf"/>
                         <constraint firstItem="Qmb-Ig-wi8" firstAttribute="trailing" secondItem="WAK-Q0-XpQ" secondAttribute="trailing" id="Z6J-D1-9K8"/>
                         <constraint firstItem="Qmb-Ig-wi8" firstAttribute="leading" secondItem="WAK-Q0-XpQ" secondAttribute="leading" id="qGV-Vc-yCL"/>
                     </constraints>
                 </customView>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="2o8-8m-9Um">
-                    <rect key="frame" x="0.0" y="0.0" width="75" height="85"/>
-                    <subviews>
-                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="hlG-z2-LnZ">
-                            <rect key="frame" x="0.0" y="17" width="75" height="52"/>
-                            <subviews>
-                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nan-bS-e55" customClass="AspectFillNSImageView" customModule="Sphinx" customModuleProvider="target">
-                                    <rect key="frame" x="29" y="17" width="35" height="35"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="35" id="g7S-QB-KHk"/>
-                                        <constraint firstAttribute="width" constant="35" id="pYR-VN-CSD"/>
-                                    </constraints>
-                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" id="Acu-h1-SAf"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
-                                    </userDefinedRuntimeAttributes>
-                                </imageView>
-                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="12d-yG-vPo">
-                                    <rect key="frame" x="29" y="17" width="35" height="35"/>
-                                    <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TZC-Zi-Zoq">
-                                            <rect key="frame" x="16" y="8" width="4" height="18"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" id="mMF-SY-Fng">
-                                                <font key="font" size="14" name="Montserrat-Regular"/>
-                                                <color key="textColor" name="sphinxWhite"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="TZC-Zi-Zoq" firstAttribute="centerX" secondItem="12d-yG-vPo" secondAttribute="centerX" id="CqI-SA-3va"/>
-                                        <constraint firstItem="TZC-Zi-Zoq" firstAttribute="centerY" secondItem="12d-yG-vPo" secondAttribute="centerY" id="duU-Y8-gfb"/>
-                                    </constraints>
-                                </customView>
-                                <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="uCq-8T-FkA">
-                                    <rect key="frame" x="12" y="-2" width="39" height="39"/>
-                                    <view key="contentView" id="oDG-wN-NgL">
-                                        <rect key="frame" x="0.0" y="0.0" width="39" height="39"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <subviews>
-                                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SxL-2t-sVC" customClass="AspectFillNSImageView" customModule="Sphinx" customModuleProvider="target">
-                                                <rect key="frame" x="2" y="2" width="35" height="35"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="35" id="IIa-SU-Dgy"/>
-                                                    <constraint firstAttribute="width" constant="35" id="inK-Mi-hkL"/>
-                                                </constraints>
-                                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" id="1ya-uL-Q39"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </imageView>
-                                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="s9L-vD-zRf">
-                                                <rect key="frame" x="2" y="2" width="35" height="35"/>
-                                                <subviews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vWo-mk-hRs">
-                                                        <rect key="frame" x="16" y="8" width="4" height="18"/>
-                                                        <textFieldCell key="cell" lineBreakMode="clipping" id="3Mx-D1-pSt">
-                                                            <font key="font" size="14" name="Montserrat-Regular"/>
-                                                            <color key="textColor" name="sphinxWhite"/>
-                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="vWo-mk-hRs" firstAttribute="centerY" secondItem="s9L-vD-zRf" secondAttribute="centerY" id="Duo-ud-GpK"/>
-                                                    <constraint firstItem="vWo-mk-hRs" firstAttribute="centerX" secondItem="s9L-vD-zRf" secondAttribute="centerX" id="Rw1-j7-wbJ"/>
-                                                </constraints>
-                                            </customView>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="s9L-vD-zRf" firstAttribute="leading" secondItem="SxL-2t-sVC" secondAttribute="leading" id="8ay-lI-KBm"/>
-                                            <constraint firstItem="s9L-vD-zRf" firstAttribute="trailing" secondItem="SxL-2t-sVC" secondAttribute="trailing" id="ECY-Yb-gqF"/>
-                                            <constraint firstItem="s9L-vD-zRf" firstAttribute="bottom" secondItem="SxL-2t-sVC" secondAttribute="bottom" id="M5i-5j-bha"/>
-                                            <constraint firstItem="SxL-2t-sVC" firstAttribute="centerY" secondItem="oDG-wN-NgL" secondAttribute="centerY" id="WXw-be-dLi"/>
-                                            <constraint firstItem="SxL-2t-sVC" firstAttribute="centerX" secondItem="oDG-wN-NgL" secondAttribute="centerX" id="bzn-Ru-mS3"/>
-                                            <constraint firstItem="s9L-vD-zRf" firstAttribute="top" secondItem="SxL-2t-sVC" secondAttribute="top" id="h1t-YD-9jq"/>
-                                        </constraints>
-                                    </view>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="39" id="DT8-ML-oI5"/>
-                                        <constraint firstAttribute="width" constant="39" id="MLM-Nf-eRN"/>
-                                    </constraints>
-                                    <color key="fillColor" name="HeaderBG"/>
-                                </box>
-                            </subviews>
-                            <constraints>
-                                <constraint firstItem="12d-yG-vPo" firstAttribute="top" secondItem="nan-bS-e55" secondAttribute="top" id="4ev-D4-CR3"/>
-                                <constraint firstItem="12d-yG-vPo" firstAttribute="bottom" secondItem="nan-bS-e55" secondAttribute="bottom" id="893-Cz-k7c"/>
-                                <constraint firstItem="12d-yG-vPo" firstAttribute="leading" secondItem="nan-bS-e55" secondAttribute="leading" id="BDU-Ug-CeF"/>
-                                <constraint firstItem="nan-bS-e55" firstAttribute="top" secondItem="hlG-z2-LnZ" secondAttribute="top" id="E41-Rf-ADV"/>
-                                <constraint firstAttribute="trailing" secondItem="nan-bS-e55" secondAttribute="trailing" constant="11" id="NkQ-S6-x9f"/>
-                                <constraint firstAttribute="bottom" secondItem="uCq-8T-FkA" secondAttribute="bottom" constant="-2" id="Tf8-Lz-UgB"/>
-                                <constraint firstItem="12d-yG-vPo" firstAttribute="trailing" secondItem="nan-bS-e55" secondAttribute="trailing" id="VJa-kw-krD"/>
-                                <constraint firstItem="uCq-8T-FkA" firstAttribute="leading" secondItem="hlG-z2-LnZ" secondAttribute="leading" constant="12" id="bWx-oo-uO3"/>
-                                <constraint firstAttribute="height" constant="52" id="fZC-Cj-czU"/>
-                            </constraints>
-                        </customView>
-                    </subviews>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="75" id="7uJ-89-jHZ"/>
-                        <constraint firstItem="hlG-z2-LnZ" firstAttribute="leading" secondItem="2o8-8m-9Um" secondAttribute="leading" id="raH-Ng-iRD"/>
-                        <constraint firstAttribute="trailing" secondItem="hlG-z2-LnZ" secondAttribute="trailing" id="sja-XC-ziI"/>
-                        <constraint firstItem="hlG-z2-LnZ" firstAttribute="centerY" secondItem="2o8-8m-9Um" secondAttribute="centerY" id="wLo-TD-tGP"/>
-                    </constraints>
-                </customView>
             </subviews>
             <constraints>
                 <constraint firstItem="rLf-rq-Pdy" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="3eS-p1-wf7"/>
-                <constraint firstItem="2o8-8m-9Um" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="8LM-jT-cG1"/>
                 <constraint firstAttribute="trailing" secondItem="rLf-rq-Pdy" secondAttribute="trailing" id="Ak1-iV-OIl"/>
                 <constraint firstAttribute="bottom" secondItem="rLf-rq-Pdy" secondAttribute="bottom" id="QC8-zx-0Zw"/>
-                <constraint firstAttribute="bottom" secondItem="2o8-8m-9Um" secondAttribute="bottom" id="QxN-Qj-513"/>
-                <constraint firstItem="2o8-8m-9Um" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="dpI-YP-g8L"/>
                 <constraint firstItem="rLf-rq-Pdy" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="kBb-Jg-WWz"/>
-                <constraint firstAttribute="trailing" secondItem="2o8-8m-9Um" secondAttribute="trailing" id="uQt-Nc-JL6"/>
             </constraints>
             <point key="canvasLocation" x="139" y="154"/>
         </customView>
     </objects>
     <resources>
-        <namedColor name="HeaderBG">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="sphinxWhite">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

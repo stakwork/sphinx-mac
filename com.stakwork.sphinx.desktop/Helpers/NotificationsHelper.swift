@@ -86,6 +86,24 @@ class NotificationsHelper : NSObject {
         return 0
     }
     
+    func sendNotification(
+        title: String,
+        subtitle: String? = nil,
+        text: String
+    ) -> Void {
+        if let notification = createNotificationFrom(
+            title: title,
+            subtitle: subtitle,
+            text: text
+        ) {
+            sendNotification(notification)
+            
+            if shouldPlaySound() {
+                SoundsPlayer.playSound(name: getNotificationSoundFile())
+            }
+        }
+    }
+    
     func sendNotification(message: TransactionMessage) -> Void {
         if isOff() {
             return
@@ -104,7 +122,7 @@ class NotificationsHelper : NSObject {
         }
         
         if shouldPlaySound() {
-            PlayAudioHelper().playSound(name: getNotificationSoundFile())
+            SoundsPlayer.playSound(name: getNotificationSoundFile())
         }
     }
     
@@ -131,24 +149,61 @@ class NotificationsHelper : NSObject {
                UserDefaults.Keys.notificationType.get(defaultValue: 0) == NotificationType.BannerAndSound.rawValue
     }
     
+    func createNotificationFrom(
+        title: String,
+        subtitle: String? = nil,
+        text: String
+    ) -> NSUserNotification? {
+        let notification = NSUserNotification()
+        
+        notification.title = title
+        
+        if let subtitle = subtitle {
+            notification.subtitle = subtitle
+        }
+        
+        notification.informativeText = text
+        
+        return notification
+    }
+    
     func createNotificationFrom(_ message: TransactionMessage) -> NSUserNotification? {
+        guard let owner = UserContact.getOwner() else {
+            return nil
+        }
+        
         if shouldShowBanner() {
             let notification = NSUserNotification()
             
             let chatName = message.chat?.name ?? ""
             let chatId = message.chat?.id ?? -1
             
-            if chatName.isEmpty {
-                notification.title = message.getMessageSenderNickname()
+            let sender = message.getMessageSender()
+            
+            let senderNickName = message.getMessageSenderNickname(
+                owner: owner,
+                contact: sender
+            )
+            
+            let messageDescription = message.getMessageContentPreview(
+                owner: owner,
+                contact: sender,
+                includeSender: false
+            )
+            
+            if message.chat?.isPublicGroup() ?? false {
+                notification.title = message.chat?.getName() ?? ""
+                notification.subtitle = senderNickName
             } else {
-                notification.title = chatName
+                notification.title = senderNickName
             }
-            notification.informativeText = message.getMessageDescription()
+            
+            notification.informativeText = messageDescription
             notification.userInfo = ["chat-id" : chatId]
             notification.hasReplyButton = true
             notification.responsePlaceholder = "message.placeholder".localized
 
-            if let sender = message.getMessageSender(), let cachedImage = sender.getCachedImage() {
+            if let sender = sender, let cachedImage = sender.getCachedImage() {
                 notification.contentImage = cachedImage
             } else if let chat = message.chat, let cachedImage = chat.getCachedImage() {
                 notification.contentImage = cachedImage

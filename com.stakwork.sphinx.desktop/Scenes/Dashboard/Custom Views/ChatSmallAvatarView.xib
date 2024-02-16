@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ChatSmallAvatarView" customModule="Sphinx" customModuleProvider="target">
             <connections>
+                <outlet property="avatarButton" destination="b8h-ag-L0G" id="sFM-7X-t2Y"/>
                 <outlet property="contentView" destination="c22-O7-iKe" id="xo2-W3-7HU"/>
                 <outlet property="initialsLabel" destination="CAX-gQ-IWg" id="g7u-WQ-cVY"/>
                 <outlet property="profileImageView" destination="8QU-qL-8Ku" id="vms-eX-ZXl"/>
@@ -18,25 +19,21 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="56" height="56"/>
+            <rect key="frame" x="0.0" y="0.0" width="68" height="68"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8QU-qL-8Ku" customClass="AspectFillNSImageView" customModule="Sphinx" customModuleProvider="target">
-                    <rect key="frame" x="15" y="19" width="33" height="33"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="33" id="tmI-d9-jfr"/>
-                        <constraint firstAttribute="width" constant="33" id="wiX-Pe-z0r"/>
-                    </constraints>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="profileAvatar" id="yzl-yT-TwQ"/>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8QU-qL-8Ku" customClass="AspectFillNSImageView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="68" height="68"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="profileAvatar" id="yzl-yT-TwQ"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </imageView>
                 <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YYh-BM-9Dh">
-                    <rect key="frame" x="15" y="19" width="33" height="33"/>
+                    <rect key="frame" x="0.0" y="0.0" width="68" height="68"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CAX-gQ-IWg">
-                            <rect key="frame" x="6" y="10" width="21" height="18"/>
+                            <rect key="frame" x="24" y="25" width="21" height="18"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="TT" id="poB-6C-4Wx">
                                 <font key="font" size="14" name="Montserrat-Regular"/>
                                 <color key="textColor" name="sphinxWhite"/>
@@ -45,18 +42,34 @@
                         </textField>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="33" id="ZiR-H9-dh0"/>
-                        <constraint firstAttribute="width" constant="33" id="gIc-WV-DnE"/>
                         <constraint firstItem="CAX-gQ-IWg" firstAttribute="centerX" secondItem="YYh-BM-9Dh" secondAttribute="centerX" id="pSQ-GV-oSJ"/>
-                        <constraint firstItem="CAX-gQ-IWg" firstAttribute="centerY" secondItem="YYh-BM-9Dh" secondAttribute="centerY" constant="-2" id="pUP-0o-GGt"/>
+                        <constraint firstItem="CAX-gQ-IWg" firstAttribute="centerY" secondItem="YYh-BM-9Dh" secondAttribute="centerY" id="pUP-0o-GGt"/>
                     </constraints>
                 </customView>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="b8h-ag-L0G" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="68" height="68"/>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="nnK-cS-ioG">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="buttonClicked:" target="-2" id="O6b-mW-SK0"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
-                <constraint firstItem="YYh-BM-9Dh" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="15" id="LcI-4R-fk9"/>
-                <constraint firstItem="8QU-qL-8Ku" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="15" id="amt-X9-cpk"/>
-                <constraint firstItem="8QU-qL-8Ku" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="4" id="b4f-fK-J3w"/>
-                <constraint firstItem="YYh-BM-9Dh" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="4" id="heR-Wp-XWN"/>
+                <constraint firstAttribute="trailing" secondItem="YYh-BM-9Dh" secondAttribute="trailing" id="2hc-9u-ovz"/>
+                <constraint firstAttribute="bottom" secondItem="8QU-qL-8Ku" secondAttribute="bottom" id="6H1-AM-8gc"/>
+                <constraint firstItem="b8h-ag-L0G" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="IQs-Me-mCz"/>
+                <constraint firstItem="YYh-BM-9Dh" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="LcI-4R-fk9"/>
+                <constraint firstAttribute="trailing" secondItem="8QU-qL-8Ku" secondAttribute="trailing" id="QKC-Kf-6eO"/>
+                <constraint firstAttribute="trailing" secondItem="b8h-ag-L0G" secondAttribute="trailing" id="Qlf-YF-SUG"/>
+                <constraint firstAttribute="bottom" secondItem="YYh-BM-9Dh" secondAttribute="bottom" id="WGP-cn-qAD"/>
+                <constraint firstAttribute="bottom" secondItem="b8h-ag-L0G" secondAttribute="bottom" id="YgJ-cd-8Io"/>
+                <constraint firstItem="8QU-qL-8Ku" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="amt-X9-cpk"/>
+                <constraint firstItem="8QU-qL-8Ku" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="b4f-fK-J3w"/>
+                <constraint firstItem="b8h-ag-L0G" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="go0-F4-fEC"/>
+                <constraint firstItem="YYh-BM-9Dh" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="heR-Wp-XWN"/>
             </constraints>
             <point key="canvasLocation" x="139" y="154"/>
         </customView>

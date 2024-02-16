@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,6 +12,7 @@
                 <outlet property="contentView" destination="c22-O7-iKe" id="2dr-w6-e66"/>
                 <outlet property="iconImageView" destination="x0d-IJ-yPO" id="lCL-Ea-0nm"/>
                 <outlet property="iconLabel" destination="yPh-VX-7ER" id="Hvn-Vk-egF"/>
+                <outlet property="labelLeadingConstraint" destination="YZA-q3-hfa" id="b4E-2u-frd"/>
                 <outlet property="optionButton" destination="J1k-or-C5u" id="dNm-HS-L5l"/>
                 <outlet property="separator" destination="Vmo-JF-IVj" id="9y6-1P-b4P"/>
                 <outlet property="titleLabel" destination="P6q-kG-Uhp" id="Wrh-a9-xQT"/>
@@ -35,9 +36,10 @@
                     </textFieldCell>
                 </textField>
                 <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x0d-IJ-yPO">
-                    <rect key="frame" x="6" y="0.0" width="28" height="40"/>
+                    <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="51E-42-gvF"/>
+                        <constraint firstAttribute="width" constant="40" id="lEW-p9-eCk"/>
                     </constraints>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="0dZ-RR-65A"/>
                     <color key="contentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -81,10 +83,10 @@
                 <constraint firstItem="yPh-VX-7ER" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="HW2-ha-8DX"/>
                 <constraint firstAttribute="trailing" secondItem="P6q-kG-Uhp" secondAttribute="trailing" id="K29-N6-y5I"/>
                 <constraint firstAttribute="bottom" secondItem="x0d-IJ-yPO" secondAttribute="bottom" id="O9W-9j-eLG"/>
-                <constraint firstItem="x0d-IJ-yPO" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="6" id="TUa-Gx-Zni"/>
+                <constraint firstItem="x0d-IJ-yPO" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="TUa-Gx-Zni"/>
                 <constraint firstItem="P6q-kG-Uhp" firstAttribute="centerY" secondItem="yPh-VX-7ER" secondAttribute="centerY" id="WC9-7Y-fOB"/>
                 <constraint firstAttribute="bottom" secondItem="Vmo-JF-IVj" secondAttribute="bottom" id="WnW-UZ-D8I"/>
-                <constraint firstItem="P6q-kG-Uhp" firstAttribute="leading" secondItem="x0d-IJ-yPO" secondAttribute="trailing" constant="6" id="Wry-kV-FUY"/>
+                <constraint firstItem="P6q-kG-Uhp" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="40" id="YZA-q3-hfa"/>
                 <constraint firstItem="J1k-or-C5u" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="nZD-Bn-MzV"/>
                 <constraint firstAttribute="trailing" secondItem="J1k-or-C5u" secondAttribute="trailing" id="r7T-YS-LjL"/>
                 <constraint firstItem="yPh-VX-7ER" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="sV3-aV-O69"/>

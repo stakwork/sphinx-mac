@@ -1,0 +1,59 @@
+
+/* Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "3Qv-80-S8i"; */
+"3Qv-80-S8i.title" = "User Name";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "55s-p9-FFw"; */
+"55s-p9-FFw.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = ""; ObjectID = "Fnv-vP-ePi"; */
+"Fnv-vP-ePi.title" = "";
+
+/* Class = "NSButtonCell"; title = "Change Privacy PIN"; ObjectID = "ISn-bT-TNB"; */
+"ISn-bT-TNB.title" = "Baguhin ang Privacy PIN";
+
+/* Class = "NSButtonCell"; title = "Change PIN"; ObjectID = "JQz-vv-8Tw"; */
+"JQz-vv-8Tw.title" = "Baguhin ang PIN";
+
+/* Class = "NSTextFieldCell"; title = "Track actions"; ObjectID = "Pmy-Ba-4bp"; */
+"Pmy-Ba-4bp.title" = "Track actions";
+
+/* Class = "NSTextFieldCell"; title = "Sync more devices"; ObjectID = "RnC-xs-5Nh"; */
+"RnC-xs-5Nh.title" = "Sync more devices";
+
+/* Class = "NSTextFieldCell"; title = "Default tip amount"; ObjectID = "Tci-hQ-YkV"; */
+"Tci-hQ-YkV.title" = "Default tip amount";
+
+/* Class = "NSTextFieldCell"; title = "Meeting Server"; ObjectID = "Uvb-lZ-Yc2"; */
+"Uvb-lZ-Yc2.title" = "Meeting Server";
+
+/* Class = "NSTextFieldCell"; title = "-"; ObjectID = "bzD-P8-zhu"; */
+"bzD-P8-zhu.title" = "-";
+
+/* Class = "NSTextFieldCell"; title = "sat"; ObjectID = "fcV-0k-vw1"; */
+"fcV-0k-vw1.title" = "sat";
+
+/* Class = "NSTextFieldCell"; title = "Address"; ObjectID = "gvM-01-89w"; */
+"gvM-01-89w.title" = "Address";
+
+/* Class = "NSButtonCell"; title = "Backup your key"; ObjectID = "hwD-l5-buT"; */
+"hwD-l5-buT.title" = "Backup your key";
+
+/* Class = "NSTextFieldCell"; title = "Route Hint"; ObjectID = "lhX-D8-z6l"; */
+"lhX-D8-z6l.title" = "Route Hint";
+
+/* Class = "NSTextFieldCell"; title = "Share my profile photo\nwith contacts"; ObjectID = "pmw-w3-a0T"; */
+"pmw-w3-a0T.title" = "Share my profile photo\nwith contacts";
+
+/* Class = "NSButtonCell"; title = "Save changes"; ObjectID = "qhk-bW-FZv"; */
+"qhk-bW-FZv.title" = "Save changes";
+
+/* Class = "NSTextFieldCell"; title = "Server URL"; ObjectID = "wRd-MN-U8t"; */
+"wRd-MN-U8t.title" = "Server URL";
+
+"JQz-vv-8Tw.title" = "Change PIN";
+
+"ISn-bT-TNB.title" = "Change Privacy PIN";
+
+"GQo-KW-3sa.title" = "Setup Signer";
+
+"lmK-Cf-g9b.title" = "Disconnect MQTT";

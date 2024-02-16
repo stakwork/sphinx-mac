@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-struct PodcastFeed {
+struct OldPodcastFeed {
     var chatId:Int? = nil
     var id:Int? = nil
     var title: String? = nil
@@ -17,12 +17,12 @@ struct PodcastFeed {
     var author: String? = nil
     var image: String? = nil
     
-    var model: PodcastModel? = nil
-    var episodes: [PodcastEpisode] = []
-    var destinations: [PodcastDestination] = []
+    var model: OldPodcastModel? = nil
+    var episodes: [OldPodcastEpisode] = []
+    var destinations: [OldPodcastDestination] = []
 }
 
-struct PodcastEpisode {
+struct OldPodcastEpisode {
     var id:Int? = nil
     var title: String? = nil
     var description: String? = nil
@@ -31,21 +31,21 @@ struct PodcastEpisode {
     var link: String? = nil
 }
 
-struct PodcastDestination {
+struct OldPodcastDestination {
     var address: String? = nil
     var split: Double? = nil
     var type: String? = nil
 }
 
-struct PodcastModel {
+struct OldPodcastModel {
     var type: String? = nil
     var suggested: Double? = nil
     var suggestedSats: Int? = nil
 }
 
 struct PodcastComment {
-    var feedId:Int? = nil
-    var itemId:Int? = nil
+    var feedId:String? = nil
+    var itemId:String? = nil
     var timestamp:Int? = nil
     var title: String? = nil
     var text: String? = nil
@@ -78,14 +78,18 @@ struct PodcastComment {
                 
         if #available(OSX 10.15, *) {
             if let strJson = JSON(json).rawString(.utf8, options: .withoutEscapingSlashes) {
-                return "\(PodcastPlayerHelper.kClipPrefix)\(strJson)"
+                return "\(PodcastFeed.kClipPrefix)\(strJson)"
             }
         } else {
             if let strJson = JSON(json).rawString() {
-                return "\(PodcastPlayerHelper.kClipPrefix)\(strJson)"
+                return "\(PodcastFeed.kClipPrefix)\(strJson)"
             }
         }
 
         return nil
+    }
+    
+    func isValid() -> Bool {
+        return timestamp != nil && title != nil && url != nil
     }
 }

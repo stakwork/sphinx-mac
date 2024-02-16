@@ -1,0 +1,21 @@
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "3Mn-LM-Pqb"; */
+"3Mn-LM-Pqb.title" = "Box";
+
+/* Class = "NSTextFieldCell"; title = "verified_user"; ObjectID = "64w-Tz-dAP"; */
+"64w-Tz-dAP.title" = "verified_user";
+
+/* Class = "NSTextFieldCell"; title = "SAVE"; ObjectID = "FOK-nd-KTW"; */
+"FOK-nd-KTW.title" = "I-SAVE";
+
+/* Class = "NSButtonCell"; title = "close"; ObjectID = "Ywi-Pb-cfG"; */
+"Ywi-Pb-cfG.title" = "close";
+
+/* Class = "NSTextFieldCell"; title = "Save Profile"; ObjectID = "iXL-LM-pMT"; */
+"iXL-LM-pMT.title" = "Save Profile";
+
+/* Class = "NSTextFieldCell"; title = "..."; ObjectID = "tYf-hb-fxd"; */
+"tYf-hb-fxd.title" = "...";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "xme-1o-hcJ"; */
+"xme-1o-hcJ.title" = "Box";

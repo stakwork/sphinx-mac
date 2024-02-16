@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="StatusHeaderView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="c22-O7-iKe" id="LgV-UE-EFp"/>
+                <outlet property="expiredInvoiceReceivedHeader" destination="yb5-zD-KVD" id="mEX-fD-aVG"/>
+                <outlet property="expiredInvoiceReceivedLabel" destination="Udc-sL-dna" id="gDa-sT-hqg"/>
+                <outlet property="expiredInvoiceSentHeader" destination="oER-PN-xZM" id="1U4-oI-Mkw"/>
+                <outlet property="expiredInvoiceSentLabel" destination="hpk-p9-TWS" id="vKO-qY-aex"/>
+                <outlet property="receivedDateLabel" destination="e0M-rk-RZ3" id="B9W-nB-86R"/>
+                <outlet property="receivedLockIcon" destination="ZXl-Nk-CBe" id="rpk-ic-jtj"/>
+                <outlet property="receivedSenderLabel" destination="TfG-jr-Pu0" id="CXU-wZ-gbr"/>
+                <outlet property="receivedStatusHeader" destination="haw-vJ-q8h" id="jOI-eh-5VO"/>
+                <outlet property="sentDateLabel" destination="zny-2h-q5u" id="RLe-4H-FRY"/>
+                <outlet property="sentErrorIcon" destination="6dM-NL-tMC" id="nID-Sk-acq"/>
+                <outlet property="sentErrorMessage" destination="dWg-bw-UBP" id="V3F-AJ-o8Z"/>
+                <outlet property="sentFailureHeader" destination="tgq-G2-WE2" id="wn9-Dq-6tG"/>
+                <outlet property="sentLightningIcon" destination="YKJ-uG-DQM" id="hTS-XK-pKW"/>
+                <outlet property="sentLockIcon" destination="UzQ-dk-kR0" id="v0w-Pp-gU2"/>
+                <outlet property="sentStatusHeader" destination="fhb-Wf-0yd" id="1gV-PW-3Fo"/>
+                <outlet property="uploadingHeader" destination="W9g-TS-wkh" id="abR-19-F9q"/>
+                <outlet property="uploadingLabel" destination="iGt-tX-PkF" id="YE2-CU-71s"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="17"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <stackView hidden="YES" distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W9g-TS-wkh">
+                    <rect key="frame" x="0.0" y="0.0" width="62" height="17"/>
+                    <subviews>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iGt-tX-PkF">
+                            <rect key="frame" x="-2" y="3" width="66" height="11"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Uploading 0%" id="qMf-En-KNQ">
+                                <font key="font" size="10" name="Roboto-Regular"/>
+                                <color key="textColor" name="SecondaryText"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+                <stackView hidden="YES" distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oER-PN-xZM">
+                    <rect key="frame" x="232" y="0.0" width="68" height="17"/>
+                    <subviews>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hpk-p9-TWS">
+                            <rect key="frame" x="-2" y="3" width="72" height="11"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Expired Invoice" id="2Nc-9W-Mjq">
+                                <font key="font" size="10" name="Roboto-Regular"/>
+                                <color key="textColor" name="SecondaryText"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+                <stackView hidden="YES" distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yb5-zD-KVD">
+                    <rect key="frame" x="0.0" y="0.0" width="68" height="17"/>
+                    <subviews>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Udc-sL-dna">
+                            <rect key="frame" x="-2" y="3" width="72" height="11"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Expired Invoice" id="Idp-fy-Hpz">
+                                <font key="font" size="10" name="Roboto-Regular"/>
+                                <color key="textColor" name="SecondaryText"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+                <stackView hidden="YES" distribution="fill" orientation="horizontal" alignment="centerY" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="haw-vJ-q8h">
+                    <rect key="frame" x="0.0" y="0.0" width="116" height="17"/>
+                    <subviews>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TfG-jr-Pu0">
+                            <rect key="frame" x="-2" y="3" width="24" height="11"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Tom" id="Mbi-Gg-24c">
+                                <font key="font" size="10" name="Roboto-Medium"/>
+                                <color key="textColor" name="Text"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="e0M-rk-RZ3">
+                            <rect key="frame" x="22" y="3" width="80" height="11"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Monday 6:05 AM" id="95u-pD-TRj">
+                                <font key="font" size="10" name="Roboto-Regular"/>
+                                <color key="textColor" name="SecondaryText"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZXl-Nk-CBe">
+                            <rect key="frame" x="102" y="3" width="16" height="12"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="lock" id="wYb-4H-rgU">
+                                <font key="font" size="12" name="MaterialIcons-Regular"/>
+                                <color key="textColor" name="SecondaryText"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+                <stackView hidden="YES" distribution="fill" orientation="horizontal" alignment="centerY" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fhb-Wf-0yd">
+                    <rect key="frame" x="192" y="0.0" width="108" height="17"/>
+                    <subviews>
+                        <stackView hidden="YES" distribution="fill" orientation="horizontal" alignment="centerY" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tgq-G2-WE2">
+                            <rect key="frame" x="0.0" y="0.0" width="99" height="17"/>
+                            <subviews>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6dM-NL-tMC">
+                                    <rect key="frame" x="-2" y="3" width="16" height="12"/>
+                                    <textFieldCell key="cell" lineBreakMode="clipping" title="error" id="HgK-WG-8Pj">
+                                        <font key="font" size="12" name="MaterialIcons-Regular"/>
+                                        <color key="textColor" name="BadgeRed"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dWg-bw-UBP">
+                                    <rect key="frame" x="16" y="3" width="75" height="11"/>
+                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Message Failed" id="KSy-DP-XDZ">
+                                        <font key="font" size="10" name="Roboto-Italic"/>
+                                        <color key="textColor" name="PrimaryRed"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="CRz-WL-0MT">
+                                    <rect key="frame" x="95" y="0.0" width="4" height="17"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="17" id="7c2-8k-BKB"/>
+                                        <constraint firstAttribute="width" constant="4" id="WiL-25-2Dj"/>
+                                    </constraints>
+                                </customView>
+                            </subviews>
+                            <visibilityPriorities>
+                                <integer value="1000"/>
+                                <integer value="1000"/>
+                                <integer value="1000"/>
+                            </visibilityPriorities>
+                            <customSpacing>
+                                <real value="3.4028234663852886e+38"/>
+                                <real value="3.4028234663852886e+38"/>
+                                <real value="3.4028234663852886e+38"/>
+                            </customSpacing>
+                        </stackView>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YKJ-uG-DQM">
+                            <rect key="frame" x="-2" y="3" width="16" height="12"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="flash_on" id="LK7-2m-cYR">
+                                <font key="font" size="12" name="MaterialIcons-Regular"/>
+                                <color key="textColor" name="PrimaryGreen"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UzQ-dk-kR0">
+                            <rect key="frame" x="14" y="3" width="16" height="12"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="lock" id="1Jn-Gf-82k">
+                                <font key="font" size="12" name="MaterialIcons-Regular"/>
+                                <color key="textColor" name="SecondaryText"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zny-2h-q5u">
+                            <rect key="frame" x="30" y="3" width="80" height="11"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Monday 6:05 AM" id="Wyd-MD-GPp">
+                                <font key="font" size="10" name="Roboto-Regular"/>
+                                <color key="textColor" name="SecondaryText"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="yb5-zD-KVD" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="0Js-hm-ome"/>
+                <constraint firstAttribute="trailing" secondItem="fhb-Wf-0yd" secondAttribute="trailing" id="3EY-LU-nGH"/>
+                <constraint firstItem="oER-PN-xZM" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="3ze-0p-Nab"/>
+                <constraint firstAttribute="bottom" secondItem="yb5-zD-KVD" secondAttribute="bottom" id="6Ob-Hx-3pu"/>
+                <constraint firstItem="haw-vJ-q8h" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="93v-Uz-zDx"/>
+                <constraint firstAttribute="trailing" secondItem="oER-PN-xZM" secondAttribute="trailing" id="CtI-if-dsD"/>
+                <constraint firstItem="W9g-TS-wkh" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="Ddn-Z7-kzo"/>
+                <constraint firstAttribute="bottom" secondItem="fhb-Wf-0yd" secondAttribute="bottom" id="GbR-WU-uJU"/>
+                <constraint firstAttribute="bottom" secondItem="oER-PN-xZM" secondAttribute="bottom" id="KOm-Uh-wmQ"/>
+                <constraint firstItem="yb5-zD-KVD" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="Lly-lC-bp7"/>
+                <constraint firstItem="haw-vJ-q8h" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="Meb-cw-0vt"/>
+                <constraint firstItem="W9g-TS-wkh" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="RoK-MU-HE7"/>
+                <constraint firstItem="fhb-Wf-0yd" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="gFI-7C-jAX"/>
+                <constraint firstAttribute="bottom" secondItem="haw-vJ-q8h" secondAttribute="bottom" id="pBu-tB-BSq"/>
+                <constraint firstAttribute="bottom" secondItem="W9g-TS-wkh" secondAttribute="bottom" id="q1d-Wg-kwd"/>
+            </constraints>
+            <point key="canvasLocation" x="134" y="-36"/>
+        </customView>
+    </objects>
+    <resources>
+        <namedColor name="BadgeRed">
+            <color red="1" green="0.32156862745098042" blue="0.32156862745098042" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PrimaryGreen">
+            <color red="0.28627450980392155" green="0.78823529411764703" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PrimaryRed">
+            <color red="0.92941176470588238" green="0.45490196078431372" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SecondaryText">
+            <color red="0.55686274509803924" green="0.58823529411764708" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text">
+            <color red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

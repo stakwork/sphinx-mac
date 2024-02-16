@@ -10,21 +10,29 @@ import Foundation
 import CoreData
 
 extension TransactionMessage {
-    static func getMessageParams(contact: UserContact? = nil,
-                                 chat: Chat? = nil,
-                                 file: NSDictionary? = nil,
-                                 type: TransactionMessageType = .message,
-                                 text: String? = nil,
-                                 mediaKey: String? = nil,
-                                 price: Int? = nil,
-                                 botAmount: Int = 0,
-                                 replyingMessage: TransactionMessage? = nil) -> [String: AnyObject]? {
+    static func getMessageParams(
+        contact: UserContact? = nil,
+        chat: Chat? = nil,
+        file: NSDictionary? = nil,
+        type: TransactionMessageType = .message,
+        text: String? = nil,
+        mediaKey: String? = nil,
+        price: Int? = nil,
+        botAmount: Int = 0,
+        priceToMeet: Int? = nil,
+        replyingMessage: TransactionMessage? = nil,
+        threadUUID: String? = nil
+    ) -> [String: AnyObject]? {
         
         var parameters = [String : AnyObject]()
         var contacts = [UserContact]()
         
         if type == .boost {
             parameters["boost"] = true as AnyObject?
+        }
+        
+        if type == .call {
+            parameters["call"] = true as AnyObject?
         }
         
         if let chat = chat {
@@ -44,16 +52,22 @@ extension TransactionMessage {
         
         if pricePerMessage + escrowAmount + botAmount > 0 {
             parameters["amount"] = pricePerMessage + escrowAmount + botAmount as AnyObject?
+        } else if let priceToMeet = priceToMeet, priceToMeet > 0 {
+            parameters["amount"] = priceToMeet as AnyObject?
         }
         
         if let replyingMessage = replyingMessage, let replyUUID = replyingMessage.uuid, !replyUUID.isEmpty {
             parameters["reply_uuid"] = replyUUID as AnyObject?
         }
         
-        let success = addTextParams(parameters: &parameters, chat: chat, contacts: contacts, text: text)
-        if !success {
+        if let threadUUID = threadUUID {
+            parameters["thread_uuid"] = threadUUID as AnyObject?
+        }
+        
+        if !addTextParams(parameters: &parameters, chat: chat, contacts: contacts, text: text) {
             return nil
         }
+        
         addMediaParams(parameters: &parameters, chat: chat, contacts: contacts, mediaKey: mediaKey, file: file, price: price)
         
         return parameters
@@ -188,4 +202,34 @@ extension TransactionMessage {
         }
         return nil
     }
+    
+    static func getTribePaymentParams(
+            chat: Chat? = nil,
+            messageUUID: String,
+            amount: Int,
+            text: String
+        ) -> [String: AnyObject]? {
+
+            var parameters = [String : AnyObject]()
+
+            parameters["pay"] = true as AnyObject?
+            parameters["reply_uuid"] = messageUUID as AnyObject?
+
+            if let chat = chat {
+                parameters["chat_id"] = chat.id as AnyObject?
+            }
+
+            let pricePerMessage = (chat?.pricePerMessage?.intValue ?? 0)
+            let escrowAmount = (chat?.escrowAmount?.intValue ?? 0)
+
+            parameters["amount"] = pricePerMessage + escrowAmount + amount as AnyObject?
+            parameters["message_price"] = pricePerMessage + escrowAmount as AnyObject?
+
+
+            if !addTextParams(parameters: &parameters, chat: chat, contacts: [], text: text) {
+                return nil
+            }
+
+            return parameters
+        }
 }

@@ -46,8 +46,8 @@ class PodcastSatsView: NSView, LoadableNib {
     func configureWith(chat: Chat) {
         self.chat = chat
         
-        if let podcast = chat.podcastPlayer?.podcast {
-            if let storedAmount = UserDefaults.standard.value(forKey: "podcast-sats-\(chat.id)") as? Int {
+        if let podcast = chat.getPodcastFeed() {
+            if let storedAmount = podcast.satsPerMinute {
                 setSliderValue(value: storedAmount)
             } else {
                 let suggested = podcast.model?.suggestedSats ?? 0
@@ -77,9 +77,10 @@ class PodcastSatsView: NSView, LoadableNib {
         let sliderValue = Int(ceil(sender.doubleValue))
         let realValue = sliderValues[sliderValue]
         amountLabel.stringValue = "\(realValue)"
-
-        UserDefaults.standard.set(realValue, forKey: "podcast-sats-\(chat.id)")
-        UserDefaults.standard.synchronize()
+        
+        if let podcast = chat.getPodcastFeed() {
+            podcast.satsPerMinute = realValue
+        }
 
         setOutOfRangeLabel(value: realValue)
         
@@ -87,7 +88,9 @@ class PodcastSatsView: NSView, LoadableNib {
     }
     
     @objc func didFinishDragging() {
-        chat.updateMetaData()
+        if let podcast = chat.getPodcastFeed() {
+            FeedsManager.sharedInstance.saveContentFeedStatus(for: podcast.feedID)
+        }
     }
     
     func configureSlider() {

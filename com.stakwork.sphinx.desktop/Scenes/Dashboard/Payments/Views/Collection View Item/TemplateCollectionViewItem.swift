@@ -20,11 +20,19 @@ class TemplateCollectionViewItem: NSCollectionViewItem {
         self.view.layer?.masksToBounds = false
     }
     
-    func configure(itemIndex: Int, imageTemplate: ImageTemplate?) {
+    func configureAsMargin() {
+        self.view.alphaValue = 0.0
+    }
+    
+    func configure(
+        itemIndex: Int,
+        imageTemplate: ImageTemplate?
+    ) {
         templateImageBack.wantsLayer = true
         templateImageBack.layer?.cornerRadius = templateImageBack.frame.size.width / 2
         templateImageBack.layer?.backgroundColor = NSColor.Sphinx.Body.cgColor
         
+        templateImageView.wantsLayer = true
         templateImageView.radius = templateImageView.frame.size.width / 2
         templateImageView.image = nil
         addShadow()

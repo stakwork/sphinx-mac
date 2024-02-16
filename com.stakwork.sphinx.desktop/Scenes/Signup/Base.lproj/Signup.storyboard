@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -52,9 +52,9 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xQc-CC-NMY">
-                                            <rect key="frame" x="119" y="370" width="163" height="37"/>
+                                            <rect key="frame" x="125" y="370" width="150" height="35"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="WELCOME" id="eH5-XY-6Op">
-                                                <font key="font" size="30" name="Montserrat-Regular"/>
+                                                <font key="font" metaFont="system" size="30"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -235,16 +235,16 @@
                                             </constraints>
                                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="71s-U8-awX">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" size="21" name="MaterialIcons-Regular"/>
+                                                <font key="font" metaFont="system" size="21"/>
                                             </buttonCell>
                                             <connections>
                                                 <action selector="backButtonClicked:" target="hOz-Yn-m4U" id="lmf-nZ-6DU"/>
                                             </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rbf-4G-CSt">
-                                            <rect key="frame" x="115" y="319" width="171" height="37"/>
+                                            <rect key="frame" x="124" y="319" width="152" height="35"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="NEW USER" id="e8E-A8-6fc">
-                                                <font key="font" size="30" name="Montserrat-Regular"/>
+                                                <font key="font" metaFont="system" size="30"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -489,9 +489,9 @@ lightning network!</string>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dwJ-mx-9Zd">
-                                                                    <rect key="frame" x="18" y="22" width="45" height="43"/>
+                                                                    <rect key="frame" x="17" y="23" width="46" height="41"/>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="TT" id="CbK-so-PKZ">
-                                                                        <font key="font" size="35" name="Montserrat-Regular"/>
+                                                                        <font key="font" metaFont="system" size="35"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <color key="backgroundColor" red="1" green="0.32156862749999998" blue="0.32156862749999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </textFieldCell>

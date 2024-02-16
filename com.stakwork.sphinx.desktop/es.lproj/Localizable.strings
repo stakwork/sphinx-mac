@@ -11,7 +11,9 @@
 "generic.error.title" = "Error";
 "generic.error.message" = "Ha habido un problema. Por favor vuelva a intentarlo más tarde.";
 "generic.message.error" = "El mensaje no pudo ser encriptado correctamente por lo cual no puede ser enviado.";
+"generic.attachment.error" = "Ha habido un problema subiendo el archivo. Por favor vuelva a intentarlo más tarde.";
 "confirm" = "Confirmar";
+"authorize" = "Autorizar";
 "warning" = "Atención";
 "done.upper" = "LISTO";
 "next.upper" = "SIGUIENTE";
@@ -27,10 +29,15 @@
 "today" = "Hoy";
 "contact" = "Contacto";
 "profile" = "Perfil";
+"transactions" = "Transacciones";
 "profile.saved" = "Los cambios en el perfil han sido guardados con éxito";
 "search" = "Buscar";
 "submit" = "Enviar";
 "finish" = "finalizar";
+"verify.upper" = "Verificar";
+"pay.upper" = "Pagar";
+"make.payment" = "Hacer el Pago";
+"expired.invoice" = "Solicitud caducada";
 
 "connected.to.node" = "Conectado al Nodo";
 "socket.disconnected" = "Actualizaciones en tiempo real\nno disponibles";
@@ -49,6 +56,10 @@
 "support.logs.copied" = "Registros copiados al portapapeles";
 "message.sent" = "Su mensaje ha sido enviado";
 
+//Dashboard
+"dashboard.tabs.friends" = "Amigos";
+"dashboard.tabs.tribes" = "Tribus";
+
 //GROUPS
 "unselect.all.upper" = "DESELECCIONAR TODOS";
 "select.all.upper" = "SELECCIONAR TODOS";
@@ -58,6 +69,7 @@
 "select.option" = "Por favor selecciona una opción";
 "required.fields.empty" = "Algunos de los campos obligatorios están vacíos";
 "add.contacts" = "Agregar Contactos";
+"pub.key.options-send.payment" = "Enviar Pago";
 "select.contacts" = "Seleccionar Contactos";
 "contacts.upper" = "CONTACTOS";
 "member.join.soon" = "Los nuevos miembros se unirán pronto";
@@ -97,6 +109,8 @@
 "confirm.exit.tribe" = "¿Estás seguro que deseas abadonar esta tribu?";
 "share.group" = "Compartir código QR";
 "delete.tribe" = "Eliminar Tribu";
+"edit.tribe" = "Modificar Tribu";
+"alias.allowed-characters" = "Solo se permiten letras, números y\nguiones bajos en el alias de la tribu";
 
 //SUBSCRIPTIONS
 "leave.lose.unsaved.changed" = "¿Estás seguro que deseas salir? Los cambios no guardado se perderán";
@@ -117,6 +131,8 @@
 //INVOICE DETAILS
 "x.copied.clipboard" = "%@ copiado al portapapeles";
 "payment.request" = "Solicitud de Pago";
+"copy.invoice.string" = "Copiar Texto";
+"copy.invoice.image" = "Copiar Imagen";
 
 //ADDRESS BOOK
 "new.contact" = "Nuevo Contacto";
@@ -126,6 +142,11 @@
 "subscribe.upper" = "SUSCRIBIRSE";
 "nickname.address.required" = "Alias y dirección son obligatorios";
 "invalid.pubkey" = "Clave Pública inválida";
+"new.contact.error.alreadyExists" = "Ya existe un contacto con esta clave pública en tu lista de contactos.";
+"delete.contact" = "Eliminar contacto";
+"delete.contact.warning" = "¿Estás seguro de que quieres eliminar este contacto?";
+"mark.as.unread" = "Marcar como no leído";
+"mark.as.read" = "Marcar como leído";
 
 //INVITE
 "group.details" = "Detalles del Grupo";
@@ -134,7 +155,7 @@
 "whoops" = "Ups!";
 "welcome" = "Bienvenido";
 "welcome!" = "Bienvenido!";
-"contact.support" = "Ha habido un problema.\n\nPor favor contacta con soporte en\nsupport@sphinx.chat";
+"contact.support" = "Ha habido un problema.\n\nPor favor contacta con soporte en\nsupport@stakwork.com";
 "paste.invite.text" = "Pega el código de invitación\no escanea el código QR";
 "paste.invitation.code" = "Pega el código de invitación...";
 "paste.keys" = "Pega aquí tus claves...";
@@ -163,6 +184,7 @@
 "invalid.code.pubkey" = "Parece que has ingresado una clave pública, para registrarte necesitarás un código de invitación. Obtenlo en https://sphinx.chat";
 "invalid.code.invoice" = "Parece que has ingresado una solicitud de pago, para registrarte necesitarás un código de invitación. Obtenlo en https://sphinx.chat";
 "invalid.code" = "El código ingresado no es válido, para registrarte necesitarás un código de invitación. Obtenlo en https://sphinx.chat";
+"invalid.code.claim" = "There was an error claiming this QR code. Please try again.";
 "tor.connection.failed" = "Error conectando a Tor";
 "establishing.tor.circuit" = "Estableciendo circuito con Tor...";
 "wait.tor.request" = "Por favor espera. Este proceso puede tardar algunos minutos...";
@@ -190,6 +212,43 @@
 "route.hint" = "Pista de Ruta";
 "pubkey.upper" = "CLAVE PÚBLICA";
 
+"profile.setup-signing-device" = "Configurar Dispositivo de firma";
+"profile.configure-signing-device" = "Configurar Dispositivo de firma";
+"profile.lightning-url-title" = "URL del nodo de lightning";
+"profile.lightning-url-message" = "Ingresa la URL de tu nodo de lightning";
+"profile.lightning-url-error" = "La URL no puede ser vacía";
+"profile.lightning-port-title" = "Puerto del nodo de lightning";
+"profile.lightning-port-message" = "Ingresa el número de puerto de tu nodo de lightning";
+"profile.lightning-port-error" = "El Puerto no puede ser vacío";
+"profile.wifi-network-title" = "Red WiFi";
+"profile.wifi-network-message" = "Por favor especifica tu red WiFi";
+"profile.wifi-network-error" = "La red WiFi no puede ser vacía";
+"profile.wifi-password-title" = "Contraseña de WiFi";
+"profile.wifi-password-message" = "Ingresa la contraseña de WiFi para %@";
+"profile.wifi-password-error" = "La contraseña de WiFi no puede ser vacía";
+"profile.seed-sent-successfully" = "Seed envíado al dispositivo con éxito";
+"profile.error-sending-seed" = "Ocurrió un error enviando el seed al dispositivo";
+"profile.error-getting-hardware-public-key" = "Ocurrió un error al intentar obtener la clave pública del dispositivo";
+"profile.store-mnemonic" = "Guarda tus palabras de seguridad cuidadosamente";
+"profile.network-check-title" = "Verifica tu conexión WiFi";
+"profile.network-check-message" = "Antes de comenzar tenes que conectarte a la red WiFi \"sphinxkey\". De lo contrario no vas a poder configurar tu dispositivo. ¿Estás actualmente conectado a esta red?";
+"profile.mnemonic-copied" = "Palabras de seguridad copiadas al portapapeles";
+"profile.bitcoin-network" = "Red de Bitcoin";
+"profile.select-bitcoin-network" = "Seleccioná la red de Bitcoin";
+"profile.mnemonic-generation-title" = "Generación de palabras de seguridad";
+"profile.mnemonic-generation-description" = "Elegí la opción de tu preferencia";
+"profile.mnemonic-enter-title" = "Palabras de seguridad";
+"profile.mnemonic-enter-description" = "Ingresá 12 o 24 palabras de seguridad separadas por un espacio";
+"profile.mnemonic-enter-error" = "Las palabras ingresadas no son válidas";
+"profile.mnemonic-enter" = "Ingresá tus 12/24 palabras de seguridad";
+"profile.mnemonic-generate" = "Generar palabras de seguridad al azar";
+"profile.signer-setup-title" = "Configuración";
+"profile.signer-setup-message" = "Configurar hardware o computer signer";
+"profile.harware-option" = "Hardware";
+"profile.phone-signer-option" = "Computer Signer";
+"profile.signer-qr-code.title" = "Código QR";
+"profile.signer-qr-code.message" = "Ingresá el contenido del código QR";
+
 //PIN
 "privacy.pin" = "PIN de Privacidad";
 "standard.pin" = "PIN Estandar";
@@ -216,6 +275,7 @@
 //HISTORY
 "error.loading.transactions" = "Ocurrió un problema cargando la lista de transacciones. Por favor vuelva a intentarlo más tarde.";
 "loading.more.transactions" = "Cargando más transacciones...";
+"transactions.failure-reason" = "Causa de la falla:";
 
 //QR CODE SCANNER
 "scan.qr.code.upper" = "ESCANEA UN CÓDIGO QR";
@@ -229,6 +289,10 @@
 "expired" = "Caducado: ";
 "invoice" = "Solicitud";
 "confirm.pay.invoice" = "¿Estás seguro que deseas pagar esta solicitud?";
+"invoice.amount" = "Ingresar monto: ";
+"expiration.date" = "Fecha de expiración: ";
+"invoice.string" = "Ingresar Solicitud de Pago";
+
 
 //CHAT
 "payment.failed.upper" = "PAGO FALLIDO";
@@ -237,7 +301,9 @@
 "pay.invitation" = "Pagar la invitación";
 "payment.failed" = "Pago fallido, inténtalo nuevamente más tarde";
 "expires.in" = "Caduca en %@ minutos";
+"expires.in.elements" = "Caduca en %@ horas y %@ minutos";
 "invoice.paid.on" = "Solicitud pagada el %@";
+"invoice.amount.paid.on" = "Solicitud de %@ sats pagada el %@";
 "media.terms.expired" = "Archivo caducado";
 "message.failed" = "Mensaje fallido";
 "invite.name" = "Invitación: %@";
@@ -255,6 +321,7 @@
 "call.link.copied.clipboard" = "Enlace de llamada copiado al portapapeles";
 "pubkey.copied.clipboard" = "Clave Pública copiada al portapapeles";
 "route.hint.copied.clipboard" = "Pista de Ruta copiada al portapapeles";
+"invoice.copied.clipboard" = "Invoice copiado al portapapeles";
 "fetching.old.messages" = "Cargando mensajes antiguos\nEspera, por favor...";
 "fetching.new.messages" = "Cargando mensajes nuevos\nEspera, por favor ...";
 "group.price.text" = "Precio por mensaje: %@ sat - Cantidad a retener: %@ sat";
@@ -271,10 +338,13 @@
 "reply" = "Responder";
 "save.file" = "Descargar";
 "delete.message" = "Eliminar Mensaje";
+"resend.message" = "Mandar otra vez";
 "received" = "recibido/a";
 "sent" = "enviado/a";
 "message.x.deleted" = "Mensaje eliminado";
 "payment" = "Pago";
+"tribe.payment.sent" = "Pago de %@ enviado a %@";
+"tribe.payment.received" = "%@ ha enviado un pago de %@ a %@";
 "picture.capitalize" = "Imagen";
 "gif.capitalize" = "Gif";
 "video.capitalize" = "Video";
@@ -282,7 +352,7 @@
 "paid.message.capitalize" = "Mensaje Pago";
 "message.not.supported" = "Formato no válido";
 "from.lower" = "de";
-"purchase.item.description" = "Mensaje pago %@";
+"purchase.item.description" = "Mensaje pago";
 "item.purchased" = "Pago de artículo";
 "item.purchase.denied" = "Pago de artículo denegado";
 "confirm.purchase" = "Confirmar Compra";
@@ -293,12 +363,14 @@
 "amount.too.low" = "Importe demasiado bajo";
 "amount.too.high" = "Importe demasiado alto";
 "link.not.supported" = "Enlace no válido";
+"bot.response.preview" = "Respuesta de Bot";
 
 "users" = "users";
 "optional.message.placeholder" = "Mensaje opcional...";
 "price.required" = "Precio requerido";
 "message.required" = "Mensaje requerido";
 "send.gif.upper" = "ENVIAR GIF";
+"find.and.share.gif" ="Buscar y enviar un gif";
 "send.image.upper" = "ENVIAR IMAGEN";
 "send.paid.message.upper" = "ENVIAR MENSAJE PAGO";
 "send.video.upper" = "ENVIAR VIDEO";
@@ -307,6 +379,7 @@
 "from" = "De";
 "send.payment.upper" = "ENVIAR PAGO";
 "request.amount.upper" = "SOLICITAR PAGO";
+"request.payment.create.invoice" = "Solicitar Pago (Crear Pagada)";
 "balance.too.low" = "Balance demasiado bajo";
 "total" = "Total";
 "payment.successfully.sent" = "Tu pago fue enviado con éxito.";
@@ -334,6 +407,28 @@
 "camera" = "Cámara";
 "photo.library" = "Librería de Fotos";
 "no.camera.available" = "No hay cámara disponible en este dispositivo";
+"redeem.sats.from" = "Canjear %d sats de:";
+"keysend.received" = "Has receibido un pago de %d sats";
+"people.message.placeholder" = "Mensaje inicial para ";
+"authorization.succeeded" = "Autorización exitosa. Por favor vuelve a la página web para completar tu pérfil.";
+"authorization.failed" = "Fallo en la autorización";
+"authorization.success" = "Felicitaciones! Has sido autorizado";
+"already.connected" = "Ya estas conectado con esta persona";
+"price.to.meet" = "Precio para conectar: ";
+"popup.authorize-with" = "¿Quieres autorizar a:";
+"popup.redeem-sats" = "Canjear %d sats de:";
+"authorization.login" = "Felicitaciones! Has iniciado sesión";
+
+"people.save-profile" = "Guardar Perfil de:";
+"people.delete-profile" = "Borrar Perfil de:";
+"people.save-failed" = "No se ha podido guardar el Perfil";
+"people.delete-failed" = "No se ha podido eliminar el Perfil";
+"people.save-succeed" = "Perfil guardado con éxito";
+"people.delete-succeed" = "Perfil borrado con éxito";
+"people.claim-on-liquid" = "Canjear tokens de:";
+"people.claim-on-liquid-succeed" = "No se ha podido canjear los tokens";
+"people.claim-on-liquid-failed" = "Tokens canjeados con éxito";
+
 
 //TRANSACTION MESSAGE
 "purchase.succeeded" = "Compra exitosa";
@@ -367,12 +462,19 @@
 "logout.text" = "Estas seguro que deseas desonectarse? La información y preferencias de tu cuenta serán eliminadas.";
 "enter.code.placeholder" = "Ingresa el código...";
 "keychain.restore" = "Restaurar desde Keychain";
+"podcast.details" = "Podcast Detalles & Opciones";
+"my.lsats" = "Mis L402s";
 "code.not.supported" = "Código no soportado";
 "enter.restore.pin" = "Ingresa tu PIN";
 "share.invite.code" = "Compartir código de invitación";
 "open.conversation" = "Abre una conversación para comenzar a usar Sphinx";
 "drag.attachment" = "Arrastra una imagen o video en la conversación para enviar. Enviar y recibir pagos no esta permitido en los grupos por el momento";
 "audio.too.short" = "Audio demasiado corto";
+"resume-restoring" = "Resumiendo Restauración...";
+"restoring-progress" = "Restaurando:";
+"restoring-content" = "Restaurando contenido:";
+"restoring-messages" = "Restaurando mensajes:";
+"restoring-contacts" = "Restaurando contactos:";
 
 //PODCAST
 "episodes" = "episodios";
@@ -381,3 +483,54 @@
 "earned.sats" = "Recibidod: %d sats";
 "sats.per.minute" = "Podcast: sats por minuto";
 "suggested.out.range" = "Monto sugerido (%d sats) por encima del máximo";
+"download" = "Descargar";
+"copy.link" = "Copiar Enlace";
+"mark.as.played" = "Marcar como leído";
+"share" = "Compartir";
+"mark.as.unplayed" = "Marcar como no leído";
+"erase.from.device" = "Borrar del despositivo";
+
+//PIN MESSAGE
+"message.pinned" = "Mensaje Fijado";
+"message.unpinned" = "Mensaje Removido";
+"pin.message" = "Fijar Mensaje";
+"unpin.message" = "Remover Mensaje";
+"pinned.message" = "Mensaje Fijado";
+
+//PIN Settings
+"never.require.pin" = "Nunca solicitar PIN";
+"always.require.pin" = "Siempre solicitar PIN";
+
+//Deeplinks
+"deeplink.issue.title" = "Problema con el Enlace";
+"deeplink.issue.message" = "Ha habido un problema con el enlace. Por favor vuelve a intentarlo más tarde.";
+
+//MACRO
+"send.giphy" = "Enviar Giphy";
+"start.audio.call" = "Iniciar llamada de audio";
+"start.video.call" = "Iniciar video llamada";
+"send.payment" = "Enviar pago";
+"request.payment" = "Solicitar pago";
+"send.emoji" = "Enviar emoji";
+"record.voice" = "Recordar mensaje de audio";
+
+//THREAD
+"more-replies" = "respuestas más";
+"thread-chat" = "Hilo";
+"threads-list" = "Lista de Hilos";
+
+//TIME
+"time.in-the-future" = "en el futuro";
+"time.moments-ago" = "momentos atras";
+"time.a-minute-ago" = "un minuto atras";
+"time.minutes-ago" = "%d minutos atras";
+"time.an-hour-ago" = "una hora atras";
+"time.hours-ago" = "%d horas atras";
+"time.yesterday" = "ayer";
+"time.days-ago" = "%d días atras";
+
+//NOTIFICATIONS
+"notification.invoice-payment.title" = "Pago de Solicitud Recibido";
+"notification.keysend.title" = "Keysend Recibido";
+"notification.amount" = "Monto:";
+"notification.memo" = "Memo:";

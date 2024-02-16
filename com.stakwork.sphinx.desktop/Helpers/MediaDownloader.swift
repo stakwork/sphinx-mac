@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AppKit
 
 class MediaDownloader {
     
@@ -59,8 +60,10 @@ class MediaDownloader {
                 MediaLoader.loadFileData(url: url, message: message, completion: { (_, data) in
                     let success = saveFile(data: data, name: fileName)
                     completion(success)
+                    NewMessageBubbleHelper().hideLoadingWheel()
                 }, errorCompletion: { _ in
                     completion(false)
+                    NewMessageBubbleHelper().hideLoadingWheel()
                 })
             }
         } else {
@@ -84,8 +87,11 @@ class MediaDownloader {
     static func saveImage(message: TransactionMessage, fileName: String, completion: @escaping (Bool) -> ()) {
         if let url = message.getMediaUrl() {
             MediaLoader.loadImage(url: url, message: message, completion: { (_, image) in
-                if let imgData = image.tiffRepresentation(using: .jpeg, factor: 1) {
-                    let success = saveFile(data: imgData, name: "\(fileName).jpg")
+                if let tiffRepresentation = image.tiffRepresentation,
+                    let bitmapImage = NSBitmapImageRep(data: tiffRepresentation),
+                    let pngData = bitmapImage.representation(using: .png, properties: [:])
+                {
+                    let success = saveFile(data: pngData, name: "\(fileName).png")
                     completion(success)
                 } else {
                     completion(false)
@@ -97,6 +103,26 @@ class MediaDownloader {
             completion(false)
         }
     }
+    
+    static func saveImage(
+        url:URL,
+        message:TransactionMessage,
+        completion:@escaping ()->(),
+        errorCompletion:@escaping ()->()
+    ){
+         let fileName = getFileName()
+        
+         MediaLoader.loadImage(url: url, message: message, completion: { (_, image) in
+             if let imgData = image.tiffRepresentation(using: .jpeg, factor: 1) {
+                 let _ = saveFile(data: imgData, name: "\(String(describing: fileName)).jpg")
+                 completion()
+             } else {
+                 errorCompletion()
+             }
+         }, errorCompletion: { _ in
+             errorCompletion()
+         })
+     }
     
     static func getGifUrlFrom(message: TransactionMessage) -> URL? {
         if let url = message.getMediaUrl() {

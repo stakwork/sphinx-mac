@@ -9,7 +9,13 @@
 import Cocoa
 
 protocol AuthorizeAppViewDelegate: AnyObject {
-    func shouldAuthorizeWith(amount: Int, dict: [String: AnyObject])
+    func shouldAuthorizeWith(
+        dict: [String: AnyObject]
+    )
+    func shouldAuthorizeBudgetWith(
+        amount: Int,
+        dict: [String: AnyObject]
+    )
     func shouldCloseAuthorizeView()
 }
 
@@ -22,11 +28,12 @@ class AuthorizeAppView: NSView, LoadableNib {
     @IBOutlet weak var amountTextField: NSTextField!
     @IBOutlet weak var confirmButtonContainer: NSBox!
     @IBOutlet weak var confirmButtonLabel: NSTextField!
-    @IBOutlet weak var confirmButton: NSButton!
+    @IBOutlet weak var confirmButton: CustomButton!
     @IBOutlet weak var loadingWheel: NSProgressIndicator!
     @IBOutlet weak var fieldContainer: NSBox!
     @IBOutlet weak var fieldTopLabel: NSTextField!
     @IBOutlet weak var fieldBottomLabel: NSTextField!
+    @IBOutlet weak var closeButton: CustomButton!
     
     var dict : [String: AnyObject] = [:]
     
@@ -54,6 +61,9 @@ class AuthorizeAppView: NSView, LoadableNib {
         super.init(coder: coder)
         loadViewFromNib()
         
+        closeButton.cursor = .pointingHand
+        confirmButton.cursor = .pointingHand
+        
         confirmButtonContainer.wantsLayer = true
         confirmButtonContainer.layer?.cornerRadius = confirmButtonContainer.frame.height / 2
         
@@ -61,7 +71,12 @@ class AuthorizeAppView: NSView, LoadableNib {
         amountTextField.formatter = IntegerValueFormatter()
     }
     
-    func configureFor(url: String, delegate: AuthorizeAppViewDelegate, dict: [String: AnyObject]) -> CGFloat {
+    func configureFor(
+        url: String,
+        delegate: AuthorizeAppViewDelegate,
+        dict: [String: AnyObject],
+        showBudgetField: Bool
+    ) -> CGFloat {
         self.delegate = delegate
         self.dict = dict
         
@@ -74,12 +89,22 @@ class AuthorizeAppView: NSView, LoadableNib {
             appNameLabel.stringValue = url
         }
         
-        if let noBudget = dict["noBudget"] as? Bool, noBudget {
+        let noBudget = (dict["noBudget"] as? Bool) ?? false
+        
+        if noBudget || !showBudgetField {
             configureWithNoBudget()
             return kHeightWithoutBudgetField
+        } else {
+            configureWithBudget()
+            return kHeightWithBudgetField
         }
-        
-        return kHeightWithBudgetField
+    }
+    
+    func configureWithBudget() {
+        confirmButtonEnabled = false
+        fieldContainer.isHidden = false
+        fieldTopLabel.isHidden = false
+        fieldBottomLabel.isHidden = false
     }
     
     func configureWithNoBudget() {
@@ -96,33 +121,44 @@ class AuthorizeAppView: NSView, LoadableNib {
     @IBAction func confirmButtonClicked(_ sender: NSButton) {
         loading = true
         
-        let amount = getCurrentAmount()
-        delegate?.shouldAuthorizeWith(amount: amount, dict: dict)
+        if let amount = getCurrentAmount() {
+            delegate?.shouldAuthorizeBudgetWith(
+                amount: amount,
+                dict: dict
+            )
+        } else {
+            delegate?.shouldAuthorizeWith(dict: dict)
+        }
     }
 }
 
 extension AuthorizeAppView : NSTextFieldDelegate {
     func controlTextDidChange(_ obj: Notification) {
-        let amount = getCurrentAmount()
-        let walletBalance = WalletBalanceService().balance
-        
-        if amount > walletBalance {
-            NewMessageBubbleHelper().showGenericMessageView(text: "balance.too.low".localized, in: self)
-            amountTextField.stringValue = String(amountTextField.stringValue.dropLast())
-            return
+        if let amount = getCurrentAmount() {
+            let walletBalance = WalletBalanceService().balance
+            
+            if amount > walletBalance {
+                NewMessageBubbleHelper().showGenericMessageView(text: "balance.too.low".localized, in: self)
+                amountTextField.stringValue = String(amountTextField.stringValue.dropLast())
+                return
+            }
+            
+            if amount > 100000 {
+                amountTextField.stringValue = String(amountTextField.stringValue.dropLast())
+                return
+            }
+            
+            confirmButtonEnabled = (amount > 0)
         }
-        
-        if amount > 100000 {
-            amountTextField.stringValue = String(amountTextField.stringValue.dropLast())
-            return
-        }
-        
-        confirmButtonEnabled = (amount > 0)
     }
     
-    func getCurrentAmount() -> Int {
-        let currentString = amountTextField.stringValue
-        let amount = Int(currentString) ?? 0
-        return amount
+    func getCurrentAmount() -> Int? {
+        if fieldContainer.isHidden {
+            return nil
+        } else {
+            let currentString = amountTextField.stringValue
+            let amount = Int(currentString) ?? 0
+            return amount
+        }
     }
 }

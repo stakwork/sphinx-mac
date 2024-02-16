@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,8 +15,10 @@
                 <outlet property="containerWidth" destination="iqB-5g-Ht4" id="eJ3-0d-tXC"/>
                 <outlet property="contentBox" destination="x6S-BP-wOd" id="A8w-Gd-Trb"/>
                 <outlet property="contentView" destination="c22-O7-iKe" id="Swf-kD-Wb6"/>
+                <outlet property="notificationLevelView" destination="BzQ-8E-7dU" id="Xkc-mI-wYe"/>
                 <outlet property="optionsMenuContainer" destination="UaL-4V-ltV" id="fEm-lG-Lkr"/>
                 <outlet property="requestOptionContainer" destination="ezJ-iH-IeH" id="9rp-k9-cFC"/>
+                <outlet property="tribeMemberPopupView" destination="blH-jt-Y9U" id="Ifo-C2-nD1"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -372,20 +374,34 @@
                                                         <constraint firstAttribute="bottom" secondItem="Hi7-U7-rCd" secondAttribute="bottom" id="qGZ-Lh-jtV"/>
                                                     </constraints>
                                                 </customView>
+                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="blH-jt-Y9U" customClass="TribeMemberPopupView" customModule="Sphinx" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="170"/>
+                                                </customView>
                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="Djn-al-XgO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="170"/>
+                                                </customView>
+                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="BzQ-8E-7dU" customClass="NotificationLevelView" customModule="Sphinx" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="300" height="170"/>
                                                 </customView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="ah0-36-ZEf" secondAttribute="trailing" id="2gT-en-18f"/>
                                                 <constraint firstItem="UaL-4V-ltV" firstAttribute="leading" secondItem="Iz9-zm-QqL" secondAttribute="leading" id="30I-BE-a2f"/>
+                                                <constraint firstItem="BzQ-8E-7dU" firstAttribute="top" secondItem="Iz9-zm-QqL" secondAttribute="top" id="4lw-Sg-Ufa"/>
+                                                <constraint firstAttribute="trailing" secondItem="BzQ-8E-7dU" secondAttribute="trailing" id="6bw-iP-wCM"/>
+                                                <constraint firstItem="blH-jt-Y9U" firstAttribute="top" secondItem="Iz9-zm-QqL" secondAttribute="top" id="7h5-Z6-TOn"/>
                                                 <constraint firstItem="UaL-4V-ltV" firstAttribute="top" secondItem="Iz9-zm-QqL" secondAttribute="top" id="HEm-6e-h5k"/>
+                                                <constraint firstAttribute="trailing" secondItem="blH-jt-Y9U" secondAttribute="trailing" id="I3v-Mu-IwS"/>
                                                 <constraint firstAttribute="bottom" secondItem="UaL-4V-ltV" secondAttribute="bottom" id="I5v-n0-9Ao"/>
                                                 <constraint firstAttribute="bottom" secondItem="ah0-36-ZEf" secondAttribute="bottom" id="LMF-Bv-LqJ"/>
+                                                <constraint firstAttribute="bottom" secondItem="BzQ-8E-7dU" secondAttribute="bottom" id="P4Z-w0-ZQ2"/>
+                                                <constraint firstItem="BzQ-8E-7dU" firstAttribute="leading" secondItem="Iz9-zm-QqL" secondAttribute="leading" id="Qhm-zh-mls"/>
                                                 <constraint firstItem="ah0-36-ZEf" firstAttribute="top" secondItem="Iz9-zm-QqL" secondAttribute="top" id="VAu-He-sZU"/>
                                                 <constraint firstAttribute="bottom" secondItem="Djn-al-XgO" secondAttribute="bottom" id="VcE-5C-OPZ"/>
+                                                <constraint firstItem="blH-jt-Y9U" firstAttribute="leading" secondItem="Iz9-zm-QqL" secondAttribute="leading" id="esd-Kw-B1P"/>
                                                 <constraint firstAttribute="trailing" secondItem="UaL-4V-ltV" secondAttribute="trailing" id="fhf-6Y-xck"/>
                                                 <constraint firstItem="ah0-36-ZEf" firstAttribute="leading" secondItem="Iz9-zm-QqL" secondAttribute="leading" id="ioA-rD-d7U"/>
+                                                <constraint firstAttribute="bottom" secondItem="blH-jt-Y9U" secondAttribute="bottom" id="lDo-1I-de9"/>
                                                 <constraint firstAttribute="trailing" secondItem="Djn-al-XgO" secondAttribute="trailing" id="m2O-Zz-Rcj"/>
                                                 <constraint firstItem="Djn-al-XgO" firstAttribute="top" secondItem="Iz9-zm-QqL" secondAttribute="top" id="vws-Bi-ui5"/>
                                                 <constraint firstItem="Djn-al-XgO" firstAttribute="leading" secondItem="Iz9-zm-QqL" secondAttribute="leading" id="xrj-98-Myh"/>
@@ -403,7 +419,7 @@
                                     <constraint firstItem="x6S-BP-wOd" firstAttribute="centerY" secondItem="6At-fp-C8a" secondAttribute="centerY" constant="30" id="3n5-DI-pa9"/>
                                 </constraints>
                             </view>
-                            <color key="fillColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="fillColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </box>
                     </subviews>
                     <constraints>

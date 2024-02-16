@@ -19,7 +19,18 @@ public class UserContact: NSManagedObject {
     }
     
     public var lastMessage : TransactionMessage? = nil
-    public var objectPicture : NSImage? = nil
+    var conversation: Chat? = nil
+    
+    public static var kTipAmount : Int {
+        get {
+            let amount = UserDefaults.Keys.tipAmount.get(defaultValue: 100)
+            return amount
+        }
+        set {
+            UserDefaults.Keys.tipAmount.set(newValue)
+            updateTipAmount(amount: newValue)
+        }
+    }
     
     public static func getContactInstance(id: Int, managedContext: NSManagedObjectContext) -> UserContact {
         if let c = UserContact.getContactWith(id: id) {
@@ -29,7 +40,21 @@ public class UserContact: NSManagedObject {
         }
     }
     
-    public static func insertContact(contact: JSON, referenceDate: Date? = nil) -> (UserContact?, Int?) {
+    func getFakeChat() -> Chat {
+        let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        context.parent = CoreDataManager.sharedManager.persistentContainer.viewContext
+        
+        let chat = Chat(context: context)
+        chat.name = self.getName()
+        chat.id = -1
+        chat.photoUrl = self.avatarUrl
+        chat.type = Chat.ChatType.conversation.rawValue
+        chat.status = Chat.ChatStatus.approved.rawValue
+        
+        return chat
+    }
+    
+    public static func insertContact(contact: JSON) -> UserContact? {
         let id: Int? = contact.getJSONId()
         
         if let id = id {
@@ -44,12 +69,7 @@ public class UserContact: NSManagedObject {
             let privatePhoto = contact["private_photo"].boolValue
             let tipAmount = contact["tip_amount"].int
             let routeHint = contact["route_hint"].string
-            let updatedAtDate = Date.getDateFromString(dateString: contact["updated_at"].stringValue)
             let date = Date.getDateFromString(dateString: contact["created_at"].stringValue) ?? Date()
-            
-            if let referenceDate = referenceDate, let updatedAtDate = updatedAtDate, updatedAtDate < referenceDate {
-                return (nil, id)
-            }
             
             var inviteString: String?
             var welcomeMessage: String?
@@ -76,28 +96,30 @@ public class UserContact: NSManagedObject {
             
             let contact = UserContact.createObject(id: id, publicKey: publicKey, nodeAlias: nodeAlias, nickname: nickname, avatarUrl: avatarUrl, isOwner: isOwner, fromGroup: fromGroup, status: status, contactKey: contactKey, privatePhoto: privatePhoto, tipAmount: tipAmount, routeHint: routeHint, inviteString: inviteString, welcomeMessage: welcomeMessage, inviteStatus: inviteStatus, invitePrice: invitePrice, date: date)
             
-            return (contact, contact?.id)
+            return contact
         }
         
-        return (nil, nil)
+        return nil
     }
     
-    public static func createObject(id: Int,
-                                    publicKey: String,
-                                    nodeAlias: String?,
-                                    nickname: String?,
-                                    avatarUrl: String?,
-                                    isOwner: Bool,
-                                    fromGroup: Bool,
-                                    status: Int,
-                                    contactKey: String?,
-                                    privatePhoto: Bool,
-                                    tipAmount: Int?,
-                                    routeHint: String?,
-                                    inviteString: String?,
-                                    welcomeMessage: String?,
-                                    inviteStatus: Int,
-                                    invitePrice: NSDecimalNumber? = nil, date: Date) -> UserContact? {
+    public static func createObject(
+        id: Int,
+        publicKey: String,
+        nodeAlias: String?,
+        nickname: String?,
+        avatarUrl: String?,
+        isOwner: Bool,
+        fromGroup: Bool,
+        status: Int,
+        contactKey: String?,
+        privatePhoto: Bool,
+        tipAmount: Int?,
+        routeHint: String?,
+        inviteString: String?,
+        welcomeMessage: String?,
+        inviteStatus: Int,
+        invitePrice: NSDecimalNumber? = nil, date: Date
+    ) -> UserContact? {
         
         let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
         
@@ -130,48 +152,66 @@ public class UserContact: NSManagedObject {
             contact.tipAmount = tipAmount
             UserDefaults.Keys.tipAmount.set(tipAmount)
         }
-
-        managedContext.mergePolicy = NSMergePolicy.overwrite
         
-        do {
-            try managedContext.save()
-            return contact
-        } catch {
-            return nil
-        }
+        return contact
+    }
+    
+    public func setContactConversation() {
+        let userId = UserData.sharedInstance.getUserId()
+        let predicate = NSPredicate(format: "(contactIds == %@ OR contactIds == %@) AND type = %d", [userId, self.id], [self.id, userId], Chat.ChatType.conversation.rawValue)
+        let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+        conversation = CoreDataManager.sharedManager.getObjectOfTypeWith(predicate: predicate, sortDescriptors: sortDescriptors, entityName: "Chat")
     }
 
     public static func getAll() -> [UserContact] {
         let sortDescriptors = [NSSortDescriptor(key: "status", ascending: true), NSSortDescriptor(key: "nickname", ascending: true)]
-        var predicate: NSPredicate! = nil
         
-        if GroupsPinManager.sharedInstance.isStandardPIN {
-            predicate = NSPredicate(format: "pin == null")
-        } else {
-            let currentPin = GroupsPinManager.sharedInstance.currentPin
-            predicate = NSPredicate(format: "pin = %@", currentPin)
-        }
-        let contacts: [UserContact] = CoreDataManager.sharedManager.getObjectsOfTypeWith(predicate: predicate, sortDescriptors: sortDescriptors, entityName: "UserContact")
+        let predicate: NSPredicate? = nil
+        
+//        var predicate: NSPredicate! = nil
+//        
+//        if GroupsPinManager.sharedInstance.isStandardPIN {
+//            predicate = NSPredicate(format: "pin = nil")
+//        } else {
+//            let currentPin = GroupsPinManager.sharedInstance.currentPin
+//            predicate = NSPredicate(format: "pin = %@", currentPin)
+//        }
+        
+        let contacts: [UserContact] = CoreDataManager.sharedManager.getObjectsOfTypeWith(
+            predicate: predicate,
+            sortDescriptors: sortDescriptors,
+            entityName: "UserContact"
+        )
+        
         return contacts
     }
     
     public static func getAllExcluding(ids: [Int]) -> [UserContact] {
-        var predicate: NSPredicate! = nil
+        let predicate = NSPredicate(format: "NOT (id IN %@)", ids)
         
-        if GroupsPinManager.sharedInstance.isStandardPIN {
-            predicate = NSPredicate(format: "NOT (id IN %@) AND pin == null", ids)
-        } else {
-            let currentPin = GroupsPinManager.sharedInstance.currentPin
-            predicate = NSPredicate(format: "NOT (id IN %@) AND pin = %@", ids, currentPin)
-        }
+//        var predicate: NSPredicate! = nil
+//        
+//        if GroupsPinManager.sharedInstance.isStandardPIN {
+//            predicate = NSPredicate(format: "NOT (id IN %@) AND pin = nil", ids)
+//        } else {
+//            let currentPin = GroupsPinManager.sharedInstance.currentPin
+//            predicate = NSPredicate(format: "NOT (id IN %@) AND pin = %@", ids, currentPin)
+//        }
         
+        let sortDescriptors = [NSSortDescriptor(key: "status", ascending: true), NSSortDescriptor(key: "nickname", ascending: true)]
+        let contacts: [UserContact] = CoreDataManager.sharedManager.getObjectsOfTypeWith(predicate: predicate, sortDescriptors: sortDescriptors, entityName: "UserContact")
+        return contacts
+    }
+    
+    public static func chatList() -> [UserContact] {
+        let predicate: NSPredicate = UserContact.Predicates.chatList()
         let sortDescriptors = [NSSortDescriptor(key: "status", ascending: true), NSSortDescriptor(key: "nickname", ascending: true)]
         let contacts: [UserContact] = CoreDataManager.sharedManager.getObjectsOfTypeWith(predicate: predicate, sortDescriptors: sortDescriptors, entityName: "UserContact")
         return contacts
     }
     
     public static func getPrivateContacts() -> [UserContact] {
-        let predicate = NSPredicate(format: "pin != null")
+        let predicate = NSPredicate(format: "pin != nil")
         let contacts: [UserContact] = CoreDataManager.sharedManager.getObjectsOfTypeWith(predicate: predicate, sortDescriptors: [], entityName: "UserContact")
         return contacts
     }
@@ -200,13 +240,12 @@ public class UserContact: NSManagedObject {
             let updated = c.updateFromGroup(contact: contact)
             return (c, updated)
         }
-        return (UserContact.insertContact(contact: contact).0, false)
+        return (UserContact.insertContact(contact: contact), false)
     }
     
     func updateFromGroup(contact: JSON) -> Bool {
         if self.fromGroup != contact["from_group"].boolValue {
             self.fromGroup = contact["from_group"].boolValue
-            self.saveContact()
             return true
         }
         return false
@@ -236,6 +275,19 @@ public class UserContact: NSManagedObject {
         let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
         let contact:UserContact? = CoreDataManager.sharedManager.getObjectOfTypeWith(predicate: predicate, sortDescriptors: sortDescriptors, entityName: "UserContact")
         return contact
+    }
+    
+    public static func getContactsWith(pubkeys: [String]) -> [UserContact] {
+        let predicate = NSPredicate(format: "publicKey IN %@ AND isOwner == %@", pubkeys, NSNumber(value: false))
+        let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+        
+        let contacts: [UserContact] = CoreDataManager.sharedManager.getObjectsOfTypeWith(
+            predicate: predicate,
+            sortDescriptors: sortDescriptors,
+            entityName: "UserContact"
+        )
+        
+        return contacts
     }
     
     public static func getOwner() -> UserContact? {
@@ -303,6 +355,16 @@ public class UserContact: NSManagedObject {
         return self.status == UserContact.Status.Pending.rawValue
     }
     
+    func isExpiredInvite() -> Bool {
+        return
+            self.status != UserContact.Status.Confirmed.rawValue &&
+            self.invite?.status == UserInvite.Status.Expired.rawValue
+    }
+    
+    func isVirtualNode() -> Bool {
+        return !(self.routeHint ?? "").isEmpty
+    }
+    
     public func shouldBeExcluded() -> Bool {
         if fromGroup { return true }
         if let invite = self.invite {
@@ -318,7 +380,14 @@ public class UserContact: NSManagedObject {
         return nil
     }
     
-    public func saveContact() {
-        CoreDataManager.sharedManager.saveContext()
+    public static func updateTipAmount(amount: Int) {
+        let parameters : [String: AnyObject] = ["tip_amount" : amount as AnyObject]
+        let id = UserData.sharedInstance.getUserId()
+
+        if let owner = UserContact.getOwner() {
+            API.sharedInstance.updateUser(id: id, params: parameters, callback: { success in
+                owner.tipAmount = amount
+            }, errorCallback: { })
+        }
     }
 }

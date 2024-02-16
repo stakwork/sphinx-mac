@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="InvoicePaymentView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="c22-O7-iKe" id="W8e-FL-3lH"/>
+                <outlet property="invoiceDetailsLabel" destination="Zxa-xF-xEd" id="V68-kn-Rc9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="20"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Zxa-xF-xEd">
+                    <rect key="frame" x="-2" y="4" width="484" height="13"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Invoice Paid on Saturday, Nov 7th" id="OXP-Pg-YOY">
+                        <font key="font" size="11" name="Roboto-Regular"/>
+                        <color key="textColor" name="Text"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Zxa-xF-xEd" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="As7-Yi-YNy"/>
+                <constraint firstItem="Zxa-xF-xEd" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="it0-vf-TEr"/>
+                <constraint firstAttribute="trailing" secondItem="Zxa-xF-xEd" secondAttribute="trailing" id="wKg-lF-c7x"/>
+            </constraints>
+            <point key="canvasLocation" x="83" y="-36"/>
+        </customView>
+    </objects>
+    <resources>
+        <namedColor name="Text">
+            <color red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

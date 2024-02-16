@@ -15,6 +15,11 @@ public enum MessagesSize: Int {
 }
 
 class Constants {
+    
+    public static var kMaxPinTimeoutValue : Int = 25
+    
+    public static var kMargin: CGFloat = 16.0
+    
     //Fonts
     public static var kMessageFont = NSFont(name: "Roboto-Regular", size: 16.0)!
     public static var kEmojisFont = NSFont(name: "Roboto-Regular", size: 40.0)!
@@ -23,8 +28,10 @@ class Constants {
     public static var kMessagePreviewFont = NSFont(name: "Roboto-Regular", size: 14.0)!
     public static var kNewMessagePreviewFont = NSFont(name: "Roboto-Bold", size: 14.0)!
     public static var kChatNameFont = NSFont(name: "Roboto-Regular", size: 17.0)!
+    public static var kThreadHeaderFont = NSFont(name: "Roboto-Regular", size: 17.0)!
     
     //Colors
+    public static var kMessageLineHeight: CGFloat = 35
     public static let kMessageTextColor = NSColor.Sphinx.TextMessages
     public static let kEncryptionMessageColor = NSColor.Sphinx.PrimaryRed
     
@@ -75,6 +82,8 @@ class Constants {
             kNewMessagePreviewFont = NSFont(name: "Roboto-Bold", size: 12.0)!
             kChatNameFont = NSFont(name: "Roboto-Regular", size: 15.0)!
             
+            kMessageLineHeight = 31
+            
             kChatListRowHeight = 60
             kPictureBubbleHeight = 210.0
             kBubbleCurveSize = 7
@@ -92,6 +101,8 @@ class Constants {
             kMessagePreviewFont = NSFont(name: "Roboto-Regular", size: 13.0)!
             kNewMessagePreviewFont = NSFont(name: "Roboto-Bold", size: 13.0)!
             kChatNameFont = NSFont(name: "Roboto-Regular", size: 16.0)!
+            
+            kMessageLineHeight = 32
             
             kChatListRowHeight = 70
             kPictureBubbleHeight = 230.0
@@ -111,6 +122,8 @@ class Constants {
             kNewMessagePreviewFont = NSFont(name: "Roboto-Bold", size: 14.0)!
             kChatNameFont = NSFont(name: "Roboto-Regular", size: 17.0)!
             
+            kMessageLineHeight = 35
+            
             kChatListRowHeight = 85
             kPictureBubbleHeight = 250.0
             kBubbleCurveSize = 10
@@ -126,4 +139,8 @@ class Constants {
             break
         }
     }
+}
+
+extension Constants {
+    static let satoshisInBTC = 100_000_000
 }

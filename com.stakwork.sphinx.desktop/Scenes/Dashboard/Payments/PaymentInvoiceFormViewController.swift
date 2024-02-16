@@ -9,12 +9,6 @@
 import Cocoa
 import SwiftyJSON
 
-protocol ActionsDelegate: AnyObject {
-    func didCreateMessage(message: TransactionMessage)
-    func didFailInvoiceOrPayment()
-    func shouldCreateCall(mode: VideoCallHelper.CallMode)
-}
-
 class PaymentInvoiceFormViewController: NSViewController {
     
     weak var childVCDelegate: ChildVCDelegate?
@@ -60,6 +54,12 @@ class PaymentInvoiceFormViewController: NSViewController {
     func performConfirmAction() {}
     
     func saveMessage(message: String) {}
+    
+    func handleInvoiceCreation(invoice:String,amount:Int){
+        if let delegate = delegate as? ChatListViewController{
+            delegate.handleInvoiceCreation(invoice: invoice,amount: amount)
+        }
+    }
 }
 
 extension PaymentInvoiceFormViewController : CommonPaymentViewDelegate {

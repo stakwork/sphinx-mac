@@ -55,7 +55,7 @@ class PaymentTemplatesView: NSView, LoadableNib {
         
         let sideInset = self.bounds.width / 2 - PaymentTemplatesDataSource.kCellWidth / 2
         templatesScrollView.automaticallyAdjustsContentInsets = false
-        templatesScrollView.contentInsets = NSEdgeInsets(top: 0, left: sideInset, bottom: 0, right: sideInset)
+//        templatesScrollView.contentInsets = NSEdgeInsets(top: 0, left: sideInset, bottom: 0, right: sideInset)
         templatesScrollView.horizontalScroller?.alphaValue = 0.0
     }
     

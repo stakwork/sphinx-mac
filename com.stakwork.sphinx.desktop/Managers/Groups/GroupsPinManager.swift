@@ -30,12 +30,15 @@ class GroupsPinManager {
     
     var isStandardPIN : Bool {
         get {
-            return currentPin == userData.getAppPin() || currentPin.isEmpty
+            if let privacyPin = userData.getPrivacyPin() {
+                return currentPin != privacyPin
+            }
+            return true
         }
     }
     
     func shouldAskForPin() -> Bool {
-        if !UserData.sharedInstance.isUserLogged() {
+        if !UserData.sharedInstance.isUserLogged() || UserData.sharedInstance.getPINNeverOverride() {
             return false
         }
         if let date: Date = UserDefaults.Keys.lastPinDate.get() {

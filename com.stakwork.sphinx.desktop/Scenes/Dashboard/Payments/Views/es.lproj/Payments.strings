@@ -1,0 +1,47 @@
+/* Class = "NSTextFieldCell"; title = "No transactions found"; ObjectID = "0pr-TK-bNe"; */
+"0pr-TK-bNe.title" = "No se encontraron transacciones";
+
+/* Class = "NSTextFieldCell"; title = "Invoice Amount:"; ObjectID = "Ea7-H2-7Dh"; */
+"Ea7-H2-7Dh.title" = "Monto:";
+
+/* Class = "NSTextFieldCell"; title = "Expiration Date:"; ObjectID = "LUL-D5-qRg"; */
+"LUL-D5-qRg.title" = "Fecha de caducidad:";
+
+/* Class = "NSTextFieldCell"; title = "Receive Invoice Details"; ObjectID = "NXD-Ix-g5w"; */
+"NXD-Ix-g5w.title" = "Detalles de la Solicitud";
+
+/* Class = "NSTextFieldCell"; title = "Invalid Memo"; ObjectID = "RUZ-2d-88J"; */
+"RUZ-2d-88J.title" = "Memo";
+
+/* Class = "NSTextFieldCell"; title = "INVOICE STRING"; ObjectID = "RWs-aR-MeD"; */
+"RWs-aR-MeD.title" = "INVOICE STRING";
+
+/* Class = "NSButtonCell"; title = "Verify"; ObjectID = "TPC-Xj-wL1"; */
+"TPC-Xj-wL1.title" = "Verificar";
+
+/* Class = "NSButtonCell"; title = "Pay"; ObjectID = "Y0k-xk-ZIY"; */
+"Y0k-xk-ZIY.title" = "Pagar";
+
+/* Class = "NSButtonCell"; title = "Copy QR Code Image"; ObjectID = "dy9-Sq-zAd"; */
+"dy9-Sq-zAd.title" = "Copiar Código QR";
+
+/* Class = "NSTextFieldCell"; title = "Payment Request"; ObjectID = "f1b-6R-thb"; */
+"f1b-6R-thb.title" = "Solicitud de Pago";
+
+/* Class = "NSTextFieldCell"; title = "Memo:"; ObjectID = "hhh-m3-2w8"; */
+"hhh-m3-2w8.title" = "Memo:";
+
+/* Class = "NSTextFieldCell"; title = "Invalid Expiration"; ObjectID = "ic3-5t-TBt"; */
+"ic3-5t-TBt.title" = "Fecha de Caducidad inválida";
+
+/* Class = "NSTextFieldCell"; title = "Invalid Amount"; ObjectID = "mJ1-kK-Dwy"; */
+"mJ1-kK-Dwy.title" = "Monto inválido";
+
+/* Class = "NSButtonCell"; title = "Copy Invoice String"; ObjectID = "tA6-sn-INu"; */
+"tA6-sn-INu.title" = "Copiar Solicitud de Pago";
+
+/* Class = "NSTextFieldCell"; title = "Receive Invoice Details"; ObjectID = "wNu-2z-sZt"; */
+"wNu-2z-sZt.title" = "Detalles de la Solicitud";
+
+/* Class = "NSTextFieldCell"; title = "Pay Invoice"; ObjectID = "yRh-f6-Lic"; */
+"yRh-f6-Lic.title" = "Pagar Solicitud";

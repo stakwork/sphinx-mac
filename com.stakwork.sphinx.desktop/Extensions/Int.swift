@@ -26,10 +26,22 @@ extension Int {
         }
     }
     
-    func getTimeElements() -> (String, String, String) {
-        let hours = Int((self % 86400) / 3600).timeString
-        let minutes = Int((self % 3600) / 60).timeString
-        let seconds = Int((self % 3600) % 60).timeString
+    func getTimeString(
+        zeroPrefix: Bool = true
+    ) -> String {
+        if zeroPrefix {
+            return timeString
+        } else {
+            return "\(self)"
+        }
+    }
+    
+    func getTimeElements(
+        zeroPrefix: Bool = true
+    ) -> (String, String, String) {
+        let hours = Int((self % 86400) / 3600).getTimeString(zeroPrefix: zeroPrefix)
+        let minutes = Int((self % 3600) / 60).getTimeString(zeroPrefix: zeroPrefix)
+        let seconds = Int((self % 3600) % 60).getTimeString(zeroPrefix: zeroPrefix)
         
         return (hours, minutes, seconds)
     }
@@ -40,6 +52,24 @@ extension Int {
     
     var millisFromHours : Int {
         return self * 60 * 60 * 1000
+    }
+    
+    func getPodcastTimeString() -> String {
+        let hours = Int((self % 86400) / 3600).timeString
+        let minutes = Int((self % 3600) / 60).timeString
+        let seconds = Int((self % 3600) % 60).timeString
+        
+        return "\(hours):\(minutes):\(seconds)"
+    }
+    
+    var searchMatchesString : String {
+        get {
+            if self == 1 {
+                return "\(self) \("match".localized)"
+            } else {
+                return "\(self) \("matches".localized)"
+            }
+        }
     }
 }
 

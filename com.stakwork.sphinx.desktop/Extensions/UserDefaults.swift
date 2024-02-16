@@ -13,17 +13,20 @@ extension UserDefaults {
         public static let appVersion = DefaultKey<Int>("appVersion")
         public static let lastSeenHistoryDate = DefaultKey<Date>("lastSeenHistoryDate")
         public static let lastSeenMessagesDate = DefaultKey<Date>("lastSeenMessagesDate")
-        public static let lastContactsUpdateDate = DefaultKey<Date>("lastContactsUpdateDate")
+        public static let lastSeenContactsDate = DefaultKey<Date>("lastSeenContactsDate")
         public static let clearSDMemoryDate = DefaultKey<Date>("clearSDMemoryDate")
         public static let channelBalance = DefaultKey<Int>("channelBalance")
         public static let remoteBalance = DefaultKey<Int>("remoteBalance")
         public static let currentIP = DefaultKey<String>("currentIP")
         public static let authToken = DefaultKey<String>("authToken")
+        public static let transportKey = DefaultKey<String>("transportKey")
+        public static let hmacKey = DefaultKey<String>("hmacKey")
         public static let ownerId = DefaultKey<Int>("ownerId")
         public static let ownerPubKey = DefaultKey<Int>("ownerPubKey")
         public static let inviteString = DefaultKey<String>("inviteString")
         public static let deviceId = DefaultKey<String>("deviceId")
         public static let chatId = DefaultKey<Int>("chatId")
+        public static let contactId = DefaultKey<Int>("contactId")
         public static let subscriptionQuery = DefaultKey<String>("subscriptionQuery")
         public static let invoiceQuery = DefaultKey<String>("invoiceQuery")
         public static let stakworkPaymentQuery = DefaultKey<String>("stakworkPaymentQuery")
@@ -37,8 +40,10 @@ extension UserDefaults {
         public static let signupStep = DefaultKey<Int>("signupStep")
         public static let didShowDeleteMessageConfirmation = DefaultKey<Bool>("didShowDeleteMessageConfirmation")
         public static let paymentProcessedInvites = DefaultKey<[String]>("paymentProcessedInvites")
-        public static let didJustRestore = DefaultKey<Bool>("didJustRestore")
         public static let isRestoring = DefaultKey<Bool>("isRestoring")
+        public static let messagesFetchPage = DefaultKey<Int>("messagesFetchPage")
+        public static let lastViewedMessageID = DefaultKey<Int>("lastViewedMessageID")
+        public static let linkQuery = DefaultKey<String>("linkQuery")
         
         public static let defaultPIN = DefaultKey<String>("currentPin")
         public static let privacyPIN = DefaultKey<String>("privacyPIN")
@@ -62,6 +67,19 @@ extension UserDefaults {
 
         public static let giphyUserId = DefaultKey<String>("giphyUserId")
         public static let webViewsHeight = DefaultKey<Int>("webViewsHeight")
+        
+        public static let shouldTrackActions = DefaultKey<Bool>("shouldTrackActions")
+        
+        public static let setupSigningDevice = DefaultKey<Bool>("setupSigningDevice")
+        public static let setupPhoneSigner = DefaultKey<Bool>("setupPhoneSigner")
+        public static let phoneSignerHost = DefaultKey<String>("phoneSignerHost")
+        public static let phoneSignerNetwork = DefaultKey<String>("phoneSignerNetwork")
+        public static let mnemonic = DefaultKey<String>("mnemonic")
+        public static let clientID = DefaultKey<String>("clientID")
+        public static let lssNonce = DefaultKey<String>("lssNonce")
+        public static let signerKeys = DefaultKey<String>("signerKeys")
+        public static let sequence = DefaultKey<String>("sequence")
+        public static let selectedChat = DefaultKey<String>("selectedChat")
     }
 
     class func resetUserDefaults() {

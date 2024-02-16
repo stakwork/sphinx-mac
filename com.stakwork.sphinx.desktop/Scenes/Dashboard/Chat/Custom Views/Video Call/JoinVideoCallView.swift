@@ -21,10 +21,12 @@ class JoinVideoCallView: NSView, LoadableNib {
     @IBOutlet var contentView: NSView!
     @IBOutlet weak var videoButtonContainer: NSBox!
     @IBOutlet weak var audioButtonContainer: NSBox!
-    @IBOutlet weak var buttonsContainerHeight: NSLayoutConstraint!
+    @IBOutlet weak var audioButton: CustomButton!
+    @IBOutlet weak var videoButton: CustomButton!
+    @IBOutlet weak var copyButton: CustomButton!
     
-    let kOneButtonHeight: CGFloat = 38
-    let kTwoButtonsHeight: CGFloat = 90
+    static let kViewHeight: CGFloat = 206
+    static let kViewAudioOnlyHeight: CGFloat = 158
     
     public enum CallButton: Int {
         case Audio
@@ -44,6 +46,19 @@ class JoinVideoCallView: NSView, LoadableNib {
 
         videoButtonContainer.wantsLayer = true
         videoButtonContainer.layer?.cornerRadius = 8
+        
+        audioButton.cursor = .pointingHand
+        videoButton.cursor = .pointingHand
+        copyButton.cursor = .pointingHand
+    }
+    
+    func configureWith(
+        callLink: BubbleMessageLayoutState.CallLink,
+        and delegate: JoinCallViewDelegate
+    ) {
+        self.delegate = delegate
+        
+        videoButtonContainer.isHidden = callLink.callMode == .Audio
     }
     
     func configure(delegate: JoinCallViewDelegate, link: String) {
@@ -55,21 +70,16 @@ class JoinVideoCallView: NSView, LoadableNib {
     func configureWith(link: String) {
         let mode = VideoCallHelper.getCallMode(link: link)
         
-        var containerHeight: CGFloat = kTwoButtonsHeight
         audioButtonContainer.isHidden = false
         videoButtonContainer.isHidden = false
         
         switch (mode) {
         case .Audio:
-            containerHeight = kOneButtonHeight
             videoButtonContainer.isHidden = true
             break
         default:
             break
         }
-        
-        buttonsContainerHeight.constant = containerHeight
-        self.layoutSubtreeIfNeeded()
     }
     
     @IBAction func callButtonTouched(_ sender: Any) {

@@ -90,7 +90,7 @@ class SplashViewController: NSViewController {
             return
         }
         setWindowStyleMask()
-        let welcomeLightningVC = WelcomeLightningViewController.instantiate(mode: .NamePin, contactsService: ContactsService())
+        let welcomeLightningVC = WelcomeLightningViewController.instantiate(mode: .NamePin)
         view.window?.replaceContentBy(vc: welcomeLightningVC)
     }
     
@@ -99,7 +99,7 @@ class SplashViewController: NSViewController {
             return
         }
         setWindowStyleMask()
-        let welcomeLightningVC = WelcomeLightningViewController.instantiate(mode: .Image, contactsService: ContactsService())
+        let welcomeLightningVC = WelcomeLightningViewController.instantiate(mode: .Image)
         view.window?.replaceContentBy(vc: welcomeLightningVC)
     }
     
@@ -108,7 +108,7 @@ class SplashViewController: NSViewController {
             return
         }
         setWindowStyleMask()
-        let welcomeLightningVC = WelcomeLightningViewController.instantiate(mode: .Ready, contactsService: ContactsService())
+        let welcomeLightningVC = WelcomeLightningViewController.instantiate(mode: .Ready)
         view.window?.replaceContentBy(vc: welcomeLightningVC)
     }
     

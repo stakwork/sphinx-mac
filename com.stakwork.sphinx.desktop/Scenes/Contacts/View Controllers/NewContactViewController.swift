@@ -32,7 +32,6 @@ class NewContactViewController: NSViewController {
     @IBOutlet weak var saveButton: CustomButton!
     @IBOutlet weak var groupPinView: GroupPinView!
     
-    var contactsService : ContactsService!
     var contact: UserContact? = nil
     var pubkey: String? = nil
     var messageBubbleHelper = NewMessageBubbleHelper()
@@ -50,16 +49,17 @@ class NewContactViewController: NSViewController {
         }
     }
     
-    static func instantiate(contactsService: ContactsService,
-                            delegate: NewContactChatDelegate? = nil,
-                            contact: UserContact? = nil,
-                            pubkey: String? = nil) -> NewContactViewController {
+    static func instantiate(
+        delegate: NewContactChatDelegate? = nil,
+        contact: UserContact? = nil,
+        pubkey: String? = nil
+    ) -> NewContactViewController {
         
         let viewController = StoryboardScene.Contacts.newContactViewController.instantiate()
         viewController.contact = contact
         viewController.delegate = delegate
         viewController.pubkey = pubkey
-        viewController.contactsService = contactsService
+
         return viewController
     }
     
@@ -88,7 +88,7 @@ class NewContactViewController: NSViewController {
         if let contact = contact {
             qrButton.cursor = .pointingHand
             contactAvatarView.configureSize(width: 100, height: 100, fontSize: 25)
-            contactAvatarView.setImages(object: contact)
+            contactAvatarView.loadWith(contact)
             userNameLabel.stringValue = userNameLabel.stringValue.replacingOccurrences(of: " *", with: "")
             addressLabel.stringValue = addressLabel.stringValue.replacingOccurrences(of: " *", with: "")
             userNameField.stringValue = contact.getName()
@@ -153,18 +153,22 @@ class NewContactViewController: NSViewController {
         let pin = groupPinView.getPin()
         
         if contact.id > 0 && (nicknameDidChange || routeHintDidChange || groupPinView.didChangePin) {
-            contactsService.updateContact(contact: contact, nickname: userNameField.stringValue, routeHint: routeHintField.stringValue, pin: pin, callback: { success in
-                self.loading = false
-                
-                NotificationCenter.default.post(name: .shouldReloadChatsList, object: nil)
-
-                if success {
-                    self.delegate?.shouldReloadContacts()
-                    self.closeWindow()
-                } else {
-                    self.showErrorAlert(message: "generic.error.message".localized)
+            UserContactsHelper.updateContact(
+                contact: contact,
+                nickname: userNameField.stringValue,
+                routeHint: routeHintField.stringValue,
+                pin: pin,
+                callback: { success in
+                    self.loading = false
+                    
+                    if success {
+                        self.delegate?.shouldReloadContacts()
+                        self.closeWindow()
+                    } else {
+                        self.showErrorAlert(message: "generic.error.message".localized)
+                    }
                 }
-            })
+            )
         } else {
             loading = false
             userNameField.stringValue = contact.getName()
@@ -182,7 +186,7 @@ class NewContactViewController: NSViewController {
         } else if nickname.isEmpty || pubkey.isEmpty {
             showErrorAlert(message: "nickname.address.required".localized)
         } else {
-            contactsService.createContact(nickname: nickname, pubKey: pubkey, routeHint: routeHint, pin: pin, callback: { success in
+            UserContactsHelper.createContact(nickname: nickname, pubKey: pubkey, routeHint: routeHint, pin: pin, callback: { (success, _) in
                 self.loading = false
 
                 if success {
@@ -196,6 +200,7 @@ class NewContactViewController: NSViewController {
     }
     
     func closeWindow() {
+        CoreDataManager.sharedManager.saveContext()
         self.view.window?.close()
     }
 

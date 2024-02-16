@@ -32,6 +32,16 @@ internal enum StoryboardScene {
         internal static let shareInviteCodeViewController = SceneType<ShareInviteCodeViewController>(storyboard: Invite.self, identifier: "ShareInviteCodeViewController")
     }
     
+    internal enum Payments : StoryboardType{
+        internal static let storyboardName = "Payments"
+        
+        internal static let displayInvoiceVC = SceneType<DisplayInvoiceVC>(storyboard: Payments.self, identifier: "DisplayInvoiceVC")
+        
+        internal static let sendPaymentVC = SceneType<SendPaymentForInvoiceVC>(storyboard: Payments.self, identifier: "SendPaymentVC")
+        
+        internal static let transactionsListVC = SceneType<TransactionsListViewController>(storyboard: Payments.self, identifier: "TransactionsListViewController")
+    }
+    
     internal enum Dashboard: StoryboardType {
         internal static let storyboardName = "Dashboard"
         
@@ -39,7 +49,10 @@ internal enum StoryboardScene {
         
         internal static let chatListViewController = SceneType<ChatListViewController>(storyboard: Dashboard.self, identifier: "ChatListViewController")
         
-        internal static let chatViewController = SceneType<ChatViewController>(storyboard: Dashboard.self, identifier: "ChatViewController")
+        @available(macOS 10.15.1, *)
+        internal static let newChatListViewController = SceneType<NewChatListViewController>(storyboard: Dashboard.self, identifier: "NewChatListViewController")
+        
+        internal static let newChatViewController = SceneType<NewChatViewController>(storyboard: Dashboard.self, identifier: "NewChatViewController")
         
         internal static let createInvoiceViewController = SceneType<CreateInvoiceViewController>(storyboard: Dashboard.self, identifier: "CreateInvoiceViewController")
         
@@ -50,6 +63,14 @@ internal enum StoryboardScene {
         internal static let contactViewController = SceneType<ContactViewController>(storyboard: Dashboard.self, identifier: "ContactViewController")
         
         internal static let webAppViewController = SceneType<WebAppViewController>(storyboard: Dashboard.self, identifier: "WebAppViewController")
+        
+        internal static let dashboardModalsViewController = SceneType<DashboardModalsViewController>(storyboard: Dashboard.self, identifier: "DashboardModalsViewController")
+        
+        internal static let lsatListViewController = SceneType<LsatListViewController>(storyboard: Dashboard.self, identifier: "LsatListViewController")
+        
+        internal static let threadsListViewController = SceneType<ThreadsListViewController>(storyboard: Dashboard.self, identifier: "ThreadsListViewController")
+        
+        internal static let jitsiCallWebViewController = SceneType<JitsiCallWebViewController>(storyboard: Dashboard.self, identifier: "JitsiCallWebViewController")
     }
     
     internal enum Groups: StoryboardType {
@@ -60,6 +81,8 @@ internal enum StoryboardScene {
         internal static let joinTribeViewController = SceneType<JoinTribeViewController>(storyboard: Groups.self, identifier: "JoinTribeViewController")
         
         internal static let groupDetailsViewController = SceneType<GroupDetailsViewController>(storyboard: Groups.self, identifier: "GroupDetailsViewController")
+        
+        internal static let createTribeViewController = SceneType<CreateTribeViewController>(storyboard: Groups.self, identifier: "CreateTribeViewController")
     }
     
     internal enum Profile: StoryboardType {
@@ -96,6 +119,8 @@ internal enum StoryboardScene {
         internal static let storyboardName = "Podcast"
         
         internal static let newPodcastPlayerViewController = SceneType<NewPodcastPlayerViewController>(storyboard: Podcast.self, identifier: "NewPodcastPlayerViewController")
+        
+        internal static let podcastDetailSelectionViewController = SceneType<PodcastDetailSelectionVC>(storyboard: Podcast.self, identifier: "PodcastDetailSelectionVC")
     }
 }
 

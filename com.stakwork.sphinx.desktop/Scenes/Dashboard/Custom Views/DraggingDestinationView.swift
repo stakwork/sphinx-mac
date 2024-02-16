@@ -284,11 +284,37 @@ class DraggingDestinationView: NSView, LoadableNib {
     override func performDragOperation(_ draggingInfo: NSDraggingInfo) -> Bool {
         isReceivingDrag = false
         let pasteBoard = draggingInfo.draggingPasteboard
+        
+        let urlResult = processURLs(pasteBoard: pasteBoard)
+        if(urlResult == true){
+            return true
+        }
+        
+        resetView()
+        return false
+    }
+    
+    func performPasteOperation(pasteBoard:NSPasteboard)->Bool{
+        isReceivingDrag = false
+        
+        let urlResult = processURLs(pasteBoard: pasteBoard)
+        if (urlResult == true) {
+            return true
+        }
+        
+        return false
+    }
+    
+    func processURLs(pasteBoard:NSPasteboard) -> Bool{
         let filteringOptionsCount = filteringOptions[NSPasteboard.ReadingOptionKey.urlReadingContentsConformToTypes]?.count ?? 0
         let options = filteringOptionsCount > 0 ? filteringOptions : nil
 
         if let urls = pasteBoard.readObjects(forClasses: [NSURL.self], options: options) as? [URL], urls.count == 1 {
             let url = urls[0]
+            
+            if !url.absoluteString.starts(with: "file://") {
+                return false
+            }
             
             if let data = getDataFrom(url: url) {
                 fileName = (url.absoluteString as NSString).lastPathComponent.percentNotEscaped
@@ -306,6 +332,17 @@ class DraggingDestinationView: NSView, LoadableNib {
                 } else {
                     showFilePreview(data: data, url: url)
                 }
+                return true
+            }
+        }
+        if let images = pasteBoard.readObjects(forClasses: [NSImage.self]),
+            images.count > 0,
+            let image = images[0] as? NSImage,
+            let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil) {
+            
+            let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
+            if let jpegData = bitmapRep.representation(using: NSBitmapImageRep.FileType.jpeg, properties: [:]) {
+                showImagePreview(data: jpegData, image: image)
                 return true
             }
         }

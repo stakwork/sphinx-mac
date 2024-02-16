@@ -72,7 +72,13 @@ class MessageReplyView: NSView, LoadableNib {
     private func setup() {        
         toggleMediaContainer(show: false, width: 0)
         
-        isHidden = true
+//        isHidden = true
+    }
+    
+    func resetAndHideView() {
+        self.podcastComment = nil
+        self.message = nil
+        self.isHidden = true
     }
     
     func resetView() {
@@ -166,12 +172,20 @@ class MessageReplyView: NSView, LoadableNib {
     }
     
     func configureMessage(isIncoming: Bool = true) {
-        guard let message = self.message else {
+        guard let message = self.message, let owner = UserContact.getOwner() else {
             return
         }
         
         leftBar.fillColor = ChatHelper.getSenderColorFor(message: message)
-        configureWith(title: message.getMessageSenderNickname(), message: message.getReplyMessageContent(), isIncoming: isIncoming)
+        
+        configureWith(
+            title: message.getMessageSenderNickname(
+                owner: owner,
+                contact: nil
+            ),
+            message: message.getReplyMessageContent(),
+            isIncoming: isIncoming
+        )
     }
     
     func configureWith(title: String, message: String, isIncoming: Bool = true) {
@@ -277,9 +291,9 @@ class MessageReplyView: NSView, LoadableNib {
     }
     
     func toggleMediaContainer(show: Bool, width: CGFloat) {
-        imageContainerWidth.constant = show ? width : 0
-        imageContainer.superview?.layoutSubtreeIfNeeded()
-        imageContainer.isHidden = !show
+//        imageContainerWidth.constant = show ? width : 0
+//        imageContainer.superview?.layoutSubtreeIfNeeded()
+//        imageContainer.isHidden = !show
     }
     
     func toggleOverlay(show: Bool, color: NSColor, icon: String, textColor: NSColor) {

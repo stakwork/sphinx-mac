@@ -12,6 +12,15 @@ protocol ChildVCDelegate: AnyObject {
     func shouldDimiss()
     func shouldGoForward(paymentViewModel: PaymentViewModel)
     func shouldGoBack(paymentViewModel: PaymentViewModel)
+    func shouldSendPaymentFor(paymentObject: PaymentViewModel.PaymentObject)
+}
+
+protocol ActionsDelegate: AnyObject {
+    func didCreateMessage(message: TransactionMessage)
+    func didFailInvoiceOrPayment()
+    func shouldCreateCall(mode: VideoCallHelper.CallMode)
+    func shouldSendPaymentFor(paymentObject: PaymentViewModel.PaymentObject, callback: ((Bool) -> ())?)
+    func shouldReloadMuteState()
 }
 
 class ChildVCContainer: NSView, LoadableNib {
@@ -23,8 +32,10 @@ class ChildVCContainer: NSView, LoadableNib {
     @IBOutlet weak var contentBox: NSBox!
     @IBOutlet weak var optionsMenuContainer: NSView!
     @IBOutlet weak var callOptionsContainer: NSView!
+    @IBOutlet weak var tribeMemberPopupView: TribeMemberPopupView!
     @IBOutlet weak var childVCContainer: NSView!
     @IBOutlet weak var requestOptionContainer: NSView!
+    @IBOutlet weak var notificationLevelView: NotificationLevelView!
     
     @IBOutlet weak var containerHeight: NSLayoutConstraint!
     @IBOutlet weak var containerWidth: NSLayoutConstraint!
@@ -34,13 +45,16 @@ class ChildVCContainer: NSView, LoadableNib {
     let invoicePaymentSize = CGSize(width: 380, height: 500)
     let groupMembersSize = CGSize(width: 380, height: 620)
     let paymentTemplatesSize = CGSize(width: 560, height: 620)
+    let tribeMemberPopupSize = CGSize(width: 280, height: 350)
+    let notificationLevelPopupSize = CGSize(width: 280, height: 202)
     
     var parentVC : NSViewController? = nil
     var childVC : NSViewController? = nil
     
     var chat : Chat? = nil
+    var message: TransactionMessage? = nil
     
-    enum OptionsMenuButton: Int {
+    public enum ChildVCOptionsMenuButton: Int {
         case Request
         case Send
         case Audio
@@ -74,34 +88,116 @@ class ChildVCContainer: NSView, LoadableNib {
         optionsMenuContainer.isHidden = true
         callOptionsContainer.isHidden = true
         childVCContainer.isHidden = true
+        tribeMemberPopupView.isHidden = true
+        notificationLevelView.isHidden = true
         
+        alphaValue = 0.0
+        isHidden = true
+    }
+    
+    func prepareMenuViewSize() {
         let menuSize = getMenuSize()
         containerWidth.constant = menuSize.width
         containerHeight.constant = menuSize.height
         requestOptionContainer.isHidden = (chat?.isPrivateGroup() ?? false)
         
         layoutSubtreeIfNeeded()
-        alphaValue = 0.0
-        isHidden = true
     }
     
-    func prepareMenuOn(parentVC: NSViewController, with chat: Chat?, delegate: ActionsDelegate) {
+    func prepareTribeMemberPopupSize() {
+        containerWidth.constant = tribeMemberPopupSize.width
+        containerHeight.constant = tribeMemberPopupSize.height
+        
+        layoutSubtreeIfNeeded()
+    }
+    
+    func prepareNotificationLevelPopupSize() {
+        containerWidth.constant = notificationLevelPopupSize.width
+        containerHeight.constant = notificationLevelPopupSize.height
+        
+        layoutSubtreeIfNeeded()
+    }
+    
+    func preparePopupOn(
+        parentVC: NSViewController,
+        with chat: Chat?,
+        and message: TransactionMessage?,
+        delegate: ActionsDelegate
+    ) {
         self.parentVC = parentVC
         self.chat = chat
+        self.message = message
         self.delegate = delegate
         
         resetAllViews()
     }
 
-    func showPmtOptionsMenuOn(parentVC: NSViewController, with chat: Chat?, delegate: ActionsDelegate) {
-        prepareMenuOn(parentVC: parentVC, with: chat, delegate: delegate)
+    func showPmtOptionsMenuOn(
+        parentVC: NSViewController,
+        with chat: Chat?,
+        delegate: ActionsDelegate
+    ) {
+        prepareMenuViewSize()
+        preparePopupOn(parentVC: parentVC, with: chat, and: nil, delegate: delegate)
         optionsMenuContainer.isHidden = false
         showView()
     }
     
+    func showPaymentModeWith(
+        parentVC: NSViewController,
+        with chat: Chat?,
+        delegate: ActionsDelegate,
+        mode: ChildVCContainer.ChildVCOptionsMenuButton
+    ) {
+        switch (mode) {
+        case ChildVCOptionsMenuButton.Request:
+            showChildVC(
+                mode: ViewMode.RequestAmount
+            )
+        case ChildVCOptionsMenuButton.Send:
+            if chat?.isPrivateGroup() ?? false {
+                showChildVC(
+                    mode: ViewMode.GroupMembers
+                )
+            } else {
+                showChildVC(
+                    mode: ViewMode.SendAmount
+                )
+            }
+        default:
+            break
+        }
+        
+        showView()
+    }
+    
     func showCallOptionsMenuOn(parentVC: NSViewController, with chat: Chat?, delegate: ActionsDelegate) {
-        prepareMenuOn(parentVC: parentVC, with: chat, delegate: delegate)
+        prepareMenuViewSize()
+        preparePopupOn(parentVC: parentVC, with: chat, and: nil, delegate: delegate)
         callOptionsContainer.isHidden = false
+        showView()
+    }
+    
+    func showTribeMemberPopupViewOn(parentVC: NSViewController, with message: TransactionMessage, delegate: ActionsDelegate) {
+        prepareTribeMemberPopupSize()
+        preparePopupOn(parentVC: parentVC, with: chat, and: message, delegate: delegate)
+        
+        tribeMemberPopupView.configureFor(message: message, with: self)
+        tribeMemberPopupView.isHidden = false
+        
+        showView()
+    }
+    
+    func showNotificaionLevelViewOn(parentVC: NSViewController, with chat: Chat, delegate: ActionsDelegate) {
+        prepareNotificationLevelPopupSize()
+        preparePopupOn(parentVC: parentVC, with: chat, and: message, delegate: delegate)
+        
+        notificationLevelView.configureWith(chat: chat) {
+            self.shouldDimiss()
+            self.delegate?.shouldReloadMuteState()
+        }
+        notificationLevelView.isHidden = false
+        
         showView()
     }
     
@@ -123,6 +219,7 @@ class ChildVCContainer: NSView, LoadableNib {
     
     func animateSizeTo(size: CGSize, completion: @escaping () -> ()) {
         optionsMenuContainer.isHidden = true
+        tribeMemberPopupView.isHidden = true
         childVCContainer.isHidden = true
         
         AnimationHelper.animateViewWith(duration: 0.3, animationsBlock: {
@@ -153,22 +250,30 @@ class ChildVCContainer: NSView, LoadableNib {
     func getVCFor(mode: ViewMode, paymentVM: PaymentViewModel) -> NSViewController {
         switch(mode) {
         case ViewMode.RequestAmount:
-            return CreateInvoiceViewController.instantiate(childVCDelegate: self,
-                                                           viewModel: paymentVM,
-                                                           delegate: delegate)
+            return CreateInvoiceViewController.instantiate(
+                childVCDelegate: self,
+                viewModel: paymentVM,
+                delegate: delegate
+            )
         case ViewMode.SendAmount:
-            return SendPaymentViewController.instantiate(childVCDelegate: self,
-                                                         viewModel: paymentVM,
-                                                         delegate: delegate)
+            return SendPaymentViewController.instantiate(
+                childVCDelegate: self,
+                viewModel: paymentVM,
+                delegate: delegate
+            )
         case ViewMode.GroupMembers:
-            return GroupMembersViewController.instantiate(childVCDelegate: self,
-                                                          viewModel: paymentVM,
-                                                          chat: chat!,
-                                                          delegate: delegate)
+            return GroupMembersViewController.instantiate(
+                childVCDelegate: self,
+                viewModel: paymentVM,
+                chat: chat!,
+                delegate: delegate
+            )
         case ViewMode.PaymentTemplates:
-            return PaymentTemplatesViewController.instantiate(childVCDelegate: self,
-                                                              viewModel: paymentVM,
-                                                              delegate: delegate)
+            return PaymentTemplatesViewController.instantiate(
+                childVCDelegate: self,
+                viewModel: paymentVM,
+                delegate: delegate
+            )
         }
         
     }
@@ -184,7 +289,7 @@ class ChildVCContainer: NSView, LoadableNib {
     func addViewController(for mode: ViewMode) {
         let contact: UserContact? = (mode == .GroupMembers) ? nil : self.chat?.getContact()
         let paymentMode: PaymentViewModel.PaymentMode = (mode == .GroupMembers || mode == .SendAmount) ? .Payment : .Request
-        let paymentViewModel = PaymentViewModel(chat: self.chat, contact: contact, mode: paymentMode)
+        let paymentViewModel = PaymentViewModel(chat: chat, contact: contact, message: message, mode: paymentMode)
         let vc = getVCFor(mode: mode, paymentVM: paymentViewModel)
         addChildVC(vc: vc)
     }
@@ -204,30 +309,31 @@ class ChildVCContainer: NSView, LoadableNib {
             childVC.removeFromParent()
             self.childVC = nil
         }
+        parentVC = nil
     }
 
     @IBAction func optionButtonClicked(_ sender: Any) {
         if let sender = sender as? NSButton {
             switch(sender.tag) {
-            case OptionsMenuButton.Request.rawValue:
+            case ChildVCOptionsMenuButton.Request.rawValue:
                 showChildVC(mode: ViewMode.RequestAmount)
                 break
-            case OptionsMenuButton.Send.rawValue:
+            case ChildVCOptionsMenuButton.Send.rawValue:
                 if chat?.isPrivateGroup() ?? false {
                     showChildVC(mode: ViewMode.GroupMembers)
                 } else {
                     showChildVC(mode: ViewMode.SendAmount)
                 }
                 break
-            case OptionsMenuButton.Audio.rawValue:
+            case ChildVCOptionsMenuButton.Audio.rawValue:
                 delegate?.shouldCreateCall(mode: .Audio)
                 hideView()
                 break
-            case OptionsMenuButton.Video.rawValue:
+            case ChildVCOptionsMenuButton.Video.rawValue:
                 delegate?.shouldCreateCall(mode: .All)
                 hideView()
                 break
-            case OptionsMenuButton.Cancel.rawValue:
+            case ChildVCOptionsMenuButton.Cancel.rawValue:
                 hideView()
                 break
             default:
@@ -274,5 +380,25 @@ extension ChildVCContainer : ChildVCDelegate {
     func replaceChildVC(by vc: NSViewController) {
         self.removeChildVC()
         self.addChildVC(vc: vc)
+    }
+    
+    func shouldSendPaymentFor(paymentObject: PaymentViewModel.PaymentObject) {
+        delegate?.shouldSendPaymentFor(paymentObject: paymentObject, callback: { success in
+            self.shouldDismissTribeMemberPopup()
+        })
+    }
+}
+
+extension ChildVCContainer : TribeMemberPopupViewDelegate {
+    func shouldGoToSendPayment() {
+        guard let _ = message else {
+            return
+        }
+        showChildVC(mode: ViewMode.SendAmount)
+    }
+    
+    func shouldDismissTribeMemberPopup() {
+        removeChildVC()
+        hideView()
     }
 }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="21507"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="BotResponseView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="c22-O7-iKe" id="Ak3-6A-sE4"/>
+                <outlet property="loadingWheel" destination="IQu-Cg-NbR" id="DOt-TV-AWY"/>
+                <outlet property="webView" destination="NKa-4H-w5m" id="So6-3T-MVL"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <wkWebView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NKa-4H-w5m" customClass="BotWebView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="16" y="16" width="448" height="240"/>
+                    <wkWebViewConfiguration key="configuration">
+                        <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                        <wkPreferences key="preferences"/>
+                    </wkWebViewConfiguration>
+                </wkWebView>
+                <progressIndicator maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="IQu-Cg-NbR">
+                    <rect key="frame" x="232" y="128" width="16" height="16"/>
+                </progressIndicator>
+            </subviews>
+            <constraints>
+                <constraint firstItem="NKa-4H-w5m" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="16" id="B2F-AD-67G"/>
+                <constraint firstAttribute="trailing" secondItem="NKa-4H-w5m" secondAttribute="trailing" constant="16" id="Dii-sO-IZJ"/>
+                <constraint firstItem="IQu-Cg-NbR" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="F1g-9i-bSZ"/>
+                <constraint firstItem="NKa-4H-w5m" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="16" id="KJe-Qj-dwl"/>
+                <constraint firstItem="IQu-Cg-NbR" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="c6m-2r-2P1"/>
+                <constraint firstAttribute="bottom" secondItem="NKa-4H-w5m" secondAttribute="bottom" constant="16" id="uyT-3W-enu"/>
+            </constraints>
+            <point key="canvasLocation" x="78" y="154"/>
+        </customView>
+    </objects>
+</document>

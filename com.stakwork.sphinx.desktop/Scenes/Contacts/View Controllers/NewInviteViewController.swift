@@ -20,13 +20,15 @@ class NewInviteViewController: NSViewController {
     @IBOutlet weak var saveButton: CustomButton!
     @IBOutlet weak var loadingWheel: NSProgressIndicator!
     
-    var contactsService : ContactsService!
     let walletBalanceService = WalletBalanceService()
     
-    static func instantiate(contactsService: ContactsService, delegate: NewContactChatDelegate? = nil) -> NewInviteViewController {
+    static func instantiate(
+        delegate: NewContactChatDelegate? = nil
+    ) -> NewInviteViewController {
+        
         let viewController = StoryboardScene.Contacts.newInviteViewController.instantiate()
-        viewController.contactsService = contactsService
         viewController.delegate = delegate
+        
         return viewController
     }
     
@@ -104,7 +106,7 @@ class NewInviteViewController: NSViewController {
             loading = true
             
             API.sharedInstance.createUserInvite(parameters: parameters, callback: { contact in
-                self.contactsService.insertContact(contact: contact)
+                let _ = UserContactsHelper.insertContact(contact: contact)
                 
                 if let invite = contact["invite"].dictionary, let inviteString = invite["invite_string"]?.string, !inviteString.isEmpty {
                     self.delegate?.shouldReloadContacts()

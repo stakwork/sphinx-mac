@@ -10,29 +10,76 @@ import Cocoa
 import CoreData
 
 extension Chat : ChatListCommonObject {
+    public func getContactStatus() -> Int? {
+        return UserContact.Status.Confirmed.rawValue
+    }
+    
+    public func getInviteStatus() -> Int? {
+        return UserInvite.Status.Complete.rawValue
+    }
+    
+    public func getObjectId() -> String {
+        return "chat-\(self.id)"
+    }
+    
+    public func isSeen(ownerId: Int) -> Bool {
+        if self.lastMessage?.isOutgoing(ownerId: ownerId) ?? true {
+            return true
+        }
+        
+        if self.lastMessage?.isSeen(ownerId: ownerId) ?? true {
+            return true
+        }
+        
+        return self.seen
+    }
+    
+    public func getChat() -> Chat? {
+        self
+    }
+    
+    public func getInvite() -> UserInvite? {
+        return nil
+    }
+    
     public func getObjectId() -> Int {
         return self.id
     }
     
     public func getOrderDate() -> Date? {
-        var date = createdAt
+        var date: Date? = nil
         
         if let lastMessage = lastMessage {
             date = lastMessage.date
         }
         
-        if let webAppLastDate = webAppLastDate, webAppLastDate > date {
+        if let webAppLastDate = webAppLastDate,
+           let savedDate = date, webAppLastDate > savedDate {
+            
             date = webAppLastDate
         }
         
-        return date
+        return date ?? createdAt ?? Date()
     }
     
     func getConversationContact() -> UserContact? {
-        if conversationContact == nil {
-            conversationContact = getContact()
+        if isGroup() {
+            return nil
         }
+        
+        if conversationContact == nil {
+            let contacts = getContacts(includeOwner: false)
+            conversationContact = contacts.first
+        }
+        
         return conversationContact
+    }
+    
+    public func getContact() -> UserContact? {
+        if self.type == Chat.ChatType.conversation.rawValue {
+            return getConversationContact()
+        }
+        return nil
     }
     
     public func getName() -> String {
@@ -58,6 +105,18 @@ extension Chat : ChatListCommonObject {
         return false
     }
     
+    public func isMuted() -> Bool {
+        return self.notify == NotificationLevel.MuteChat.rawValue
+    }
+    
+    public func isPublicGroup() -> Bool {
+        return type == Chat.ChatType.publicGroup.rawValue
+    }
+    
+    public func isConversation() -> Bool {
+        return type == Chat.ChatType.conversation.rawValue
+    }
+    
     public func shouldShowSingleImage() -> Bool {
         if isPublicGroup() || isConversation() {
             return true
@@ -79,7 +138,7 @@ extension Chat : ChatListCommonObject {
         if let url = getPhotoUrl(), let cachedImage = MediaLoader.getImageFromCachedUrl(url: url) {
             return cachedImage
         }
-        return objectPicture
+        return nil
     }
     
     public func getChatContacts() -> [UserContact] {

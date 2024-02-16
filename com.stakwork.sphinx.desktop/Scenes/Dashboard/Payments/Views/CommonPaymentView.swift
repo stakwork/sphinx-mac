@@ -25,9 +25,8 @@ class CommonPaymentView: NSView, LoadableNib {
     
     @IBOutlet weak var closeButton: NSButton!
     @IBOutlet weak var titleLabel: NSTextField!
-    @IBOutlet weak var amountField: NSTextField!
+    @IBOutlet weak var amountField: CCTextField!
     @IBOutlet weak var amountFieldWidth: NSLayoutConstraint!
-    @IBOutlet weak var groupTotalLabel: NSTextField!
     @IBOutlet var messageTextView: PlaceHolderTextView!
     @IBOutlet weak var messageTextViewHeight: NSLayoutConstraint!
     @IBOutlet weak var confirmButtonContainer: NSBox!
@@ -41,6 +40,12 @@ class CommonPaymentView: NSView, LoadableNib {
     let kAmountFieldPadding: CGFloat = 20
     
     let kCharacterLimit = 200
+    let kMaximumAmount = 9999999
+    
+    public enum PaymentViewMode: Int {
+        case View
+        case Window
+    }
     
     var loading = false {
         didSet {
@@ -62,13 +67,20 @@ class CommonPaymentView: NSView, LoadableNib {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         loadViewFromNib()
+        
+        amountField.setColor(color: NSColor.Sphinx.Text)
     }
     
-    func configureView(paymentViewModel: PaymentViewModel, delegate: CommonPaymentViewDelegate) {
+    func configureView(
+        paymentViewModel: PaymentViewModel,
+        delegate: CommonPaymentViewDelegate,
+        mode: PaymentViewMode = .View
+    ) {
         self.paymentViewModel = paymentViewModel
         self.delegate = delegate
         
         closeButton.title = (getChat()?.isGroup() ?? false) ? "" : ""
+        closeButton.isHidden = mode == .Window
         
         amountField.delegate = self
         amountField.formatter = IntegerValueFormatter()
@@ -87,11 +99,8 @@ class CommonPaymentView: NSView, LoadableNib {
     }
     
     func set(message: String, amount: Int) {
-        let totalAmount = amount * paymentViewModel.currentPayment.contacts.count
-        
         messageTextView.string = message
         amountField.stringValue = (amount > 0) ? "\(amount)" : ""
-        groupTotalLabel.stringValue = (totalAmount > amount) ? "Total \(totalAmount)" : ""
         buttonEnabled = (amount > 0)
         updateBottomBarHeight()
         updateAmountFieldWidth()
@@ -133,12 +142,10 @@ extension CommonPaymentView : NSTextFieldDelegate {
             return
         }
         
-        if amount > 100000 {
+        if amount > kMaximumAmount {
             amountField.stringValue = String(currentString.dropLast())
             return
         }
-        
-        groupTotalLabel.stringValue = (totalAmount > amount) ? "Total \(totalAmount)" : ""
         
         buttonEnabled = (amount > 0)
         updateAmountFieldWidth()

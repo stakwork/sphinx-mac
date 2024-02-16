@@ -1,36 +1,56 @@
 PODS:
-  - Alamofire (5.0.5)
+  - Alamofire (5.6.4)
+  - CocoaMQTT (2.1.6):
+    - CocoaMQTT/Core (= 2.1.6)
+  - CocoaMQTT/Core (2.1.6):
+    - MqttCocoaAsyncSocket (~> 1.0.8)
+  - CryptoSwift (1.0.0)
+  - HDWalletKit (0.3.6):
+    - CryptoSwift (~> 1.0.0)
+    - secp256k1.swift (~> 0.1.4)
   - KeychainAccess (4.2.2)
+  - MessagePack.swift (4.0.0)
+  - MqttCocoaAsyncSocket (1.0.8)
+  - ObjectMapper (4.2.0)
   - ReachabilitySwift (5.0.0)
   - RNCryptor (5.1.0)
-  - SDWebImage (5.11.1):
-    - SDWebImage/Core (= 5.11.1)
-  - SDWebImage/Core (5.11.1)
+  - SDWebImage (5.18.2):
+    - SDWebImage/Core (= 5.18.2)
+  - SDWebImage/Core (5.18.2)
+  - secp256k1.swift (0.1.4)
   - Starscream (3.1.1)
-  - SwiftLinkPreview (3.1.0)
   - SwiftyJSON (5.0.1)
   - Tor (405.8.1)
 
 DEPENDENCIES:
-  - Alamofire (~> 5.0.0-rc.3)
+  - Alamofire (~> 5.6.4)
+  - CocoaMQTT
+  - HDWalletKit
   - KeychainAccess
+  - MessagePack.swift (~> 4.0)
+  - ObjectMapper
   - ReachabilitySwift
   - RNCryptor (~> 5.0)
-  - SDWebImage (~> 5.0)
+  - SDWebImage
   - Starscream (~> 3.1)
-  - SwiftLinkPreview (~> 3.1.0)
   - SwiftyJSON
   - Tor (from `https://raw.githubusercontent.com/iCepa/Tor.framework/v405.8.1/Tor.podspec`)
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - CocoaMQTT
+    - CryptoSwift
+    - HDWalletKit
     - KeychainAccess
+    - MessagePack.swift
+    - MqttCocoaAsyncSocket
+    - ObjectMapper
     - ReachabilitySwift
     - RNCryptor
     - SDWebImage
+    - secp256k1.swift
     - Starscream
-    - SwiftLinkPreview
     - SwiftyJSON
 
 EXTERNAL SOURCES:
@@ -38,16 +58,22 @@ EXTERNAL SOURCES:
     :podspec: https://raw.githubusercontent.com/iCepa/Tor.framework/v405.8.1/Tor.podspec
 
 SPEC CHECKSUMS:
-  Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
+  Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
+  CocoaMQTT: 1f206228b29318eabdacad0c2e4e88575922c27a
+  CryptoSwift: d81eeaa59dc5a8d03720fe919a6fd07b51f7439f
+  HDWalletKit: 6d97a15404b2edfe3418e3dc064faa967e51dac4
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
+  MessagePack.swift: 417f6b6e27a86ad4f19a0ee47093b3985cd77323
+  MqttCocoaAsyncSocket: 77d3b74f76228dd5a05d1f9526eab101d415b30c
+  ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   RNCryptor: a369134686cd2ad391323cc856b62e591193ba79
-  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
+  SDWebImage: c0de394d7cf7f9838aed1fd6bb6037654a4572e4
+  secp256k1.swift: a7e7a214f6db6ce5db32cc6b2b45e5c4dd633634
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
-  SwiftLinkPreview: 3d924eeaae8d17410a827a4b37675713af1a0a8a
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   Tor: fad2cec0e7ef5f889fecdaf69e5edd6df0438326
 
-PODFILE CHECKSUM: d1414800df3de699934e720cc72a7f4595ca79f8
+PODFILE CHECKSUM: 1a3801a2d15ecfb72701b97f4ed6f663c5fff6a4
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.11.3

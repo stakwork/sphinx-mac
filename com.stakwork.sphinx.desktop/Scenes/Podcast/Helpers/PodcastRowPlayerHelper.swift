@@ -9,6 +9,15 @@
 import Foundation
 import AVKit
 
+@objc protocol PodcastPlayerDelegate : AnyObject {
+    func shouldUpdateLabels(duration: Int, currentTime: Int)
+    func shouldToggleLoadingWheel(loading: Bool)
+    @objc optional func shouldUpdatePlayButton()
+    @objc optional func shouldUpdateEpisodeInfo()
+    @objc optional func shouldInsertMessagesFor(currentTime: Int)
+}
+
+
 class PodcastRowPlayerHelper {
     
     weak var delegate: PodcastPlayerDelegate?
@@ -33,6 +42,8 @@ class PodcastRowPlayerHelper {
     
     let customAudioPlayer = PodcastRowAudioPlayer.sharedInstance
     
+    public static let kSecondsBeforePMT = 60
+    
     func createPlayerItemWith(podcastComment: PodcastComment,
                               podcast: PodcastFeed?,
                               delegate: PodcastPlayerDelegate,
@@ -45,21 +56,35 @@ class PodcastRowPlayerHelper {
         
         if let urlString = podcastComment.url, let url = URL(string: urlString) {
             
-            if self.item != nil {
-                let _ = self.getAudioDuration()
+            if let _ = self.item {
                 completion(messageId)
                 return
             }
             
             let asset = AVAsset(url: url)
-            asset.loadValuesAsynchronously(forKeys: ["duration"], completionHandler: {
+            
+            loadAudioDurationFor(asset: asset, completion: {
                 if self.item == nil {
                     self.item = AVPlayerItem(asset: asset)
                 }
-                let _ = self.getAudioDuration()
                 DispatchQueue.main.async {
                     completion(messageId)
                 }
+            })
+        }
+    }
+    
+    func loadAudioDurationFor(
+        asset: AVAsset,
+        completion: @escaping () -> ()
+    ) {
+        let duration = getAudioDuration()
+        
+        if duration > 0 {
+            completion()
+        } else {
+            asset.loadValuesAsynchronously(forKeys: ["duration"], completionHandler: {
+                completion()
             })
         }
     }
@@ -78,6 +103,10 @@ class PodcastRowPlayerHelper {
     func getAudioDuration() -> Double {
         if let duration = duration {
             return duration
+        }
+        if let itemId = podcastComment?.itemId, let duration = podcast?.getEpisodeWith(id: itemId)?.duration {
+            self.duration = Double(duration)
+            return self.duration!
         }
         guard let item = item else {
             return 0
@@ -179,7 +208,7 @@ class PodcastRowPlayerHelper {
         
         playedSeconds = playedSeconds + 1
         
-        if playedSeconds > 0 && playedSeconds % PodcastPlayerHelper.kSecondsBeforePMT == 0 {
+        if playedSeconds > 0 && playedSeconds % PodcastRowPlayerHelper.kSecondsBeforePMT == 0 {
             DispatchQueue.global().async {
                 self.processPayment()
             }
@@ -187,10 +216,17 @@ class PodcastRowPlayerHelper {
     }
     
     func processPayment() {
-        let itemId = self.podcastComment?.itemId ?? 0
+        let itemId = self.podcastComment?.itemId ?? ""
         let clipSenderPK = self.podcastComment?.pubkey
         let uuid = self.podcastComment?.uuid
-        self.podcastPaymentsHelper.processPaymentsFor(podcastFeed: self.podcast, itemId: itemId, currentTime: Int(self.currentTime), clipSenderPubKey: clipSenderPK, uuid: uuid)
+        
+        self.podcastPaymentsHelper.processPaymentsFor(
+            podcastFeed: self.podcast,
+            itemId: itemId,
+            currentTime: Int(self.currentTime),
+            clipSenderPubKey: clipSenderPK,
+            uuid: uuid
+        )
     }
     
     func audioDidFinishPlaying() {

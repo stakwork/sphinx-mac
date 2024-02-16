@@ -67,6 +67,10 @@ class GroupDetailsViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        groupImageView.wantsLayer = true
+        groupImageView.rounded = true
+        groupImageView.layer?.cornerRadius = groupImageView.frame.height / 2
+        
         self.loading = true
         
         optionsButton.cursor = .pointingHand
@@ -77,7 +81,19 @@ class GroupDetailsViewController: NSViewController {
         })
     }
     
-    func setGroupInfo() {
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.setGroupInfo), name: .shouldReloadTribeData, object: nil)
+    }
+    
+    override func viewWillDisappear() {
+        super.viewWillDisappear()
+        
+        NotificationCenter.default.removeObserver(self, name: .shouldReloadTribeData, object: nil)
+    }
+    
+    @objc func setGroupInfo() {
         groupPinView.configureWith(view: view, chat: chat)
         
         let placeHolderImage = NSImage(named: chat.isPublicGroup() ? "tribePlaceHolder" : "profileAvatar")?.image(withTintColor: NSColor.Sphinx.SecondaryText)
@@ -94,7 +110,8 @@ class GroupDetailsViewController: NSViewController {
         
         groupNameLabel.stringValue = chat.name ?? "unknown.group".localized
         
-        let createdOn = String(format: "created.on".localized, chat.createdAt.getStringDate(format: "EEE MMM dd HH:mm"))
+        let date = chat.createdAt ?? Date()
+        let createdOn = String(format: "created.on".localized, date.getStringDate(format: "EEE MMM dd HH:mm"))
         groupDateLabel.stringValue = createdOn
         
         updateTribePrices()
@@ -119,7 +136,13 @@ class GroupDetailsViewController: NSViewController {
             let photoUrl = chat.myPhotoUrl ?? owner.getPhotoUrl()
             
             tribeMemberInfoContainerHeight.constant = 160
-            tribeMemberInfoView.configureWith(vc: self, alias: alias, picture: photoUrl)
+            
+            tribeMemberInfoView.configureWith(
+                vc: self,
+                alias: alias,
+                picture: photoUrl
+            )
+            
             tribeMemberInfoContainer.isHidden = false
         }
     }
@@ -184,18 +207,22 @@ extension GroupDetailsViewController : MessageOptionsDelegate {
     func shouldReplyToMessage(message: TransactionMessage) {}
     func shouldBoostMessage(message: TransactionMessage) {}
     
-    func shouldPerformChatAction(action: TransactionMessage.MessageActionsItem) {
-        switch(action) {
-        case .Share:
-            goToTribeQRCode()
-            break
-        case .Delete, .Exit:
-            delegate?.shouldExitTribeOrGroup(completion: {
-                self.view.window?.close()
-            })
-            break
-        default:
-            break
+    func shouldPerformChatAction(action: Int) {
+        if let action = MessageOptionsHelper.ChatActionsItem(rawValue: action) {
+            switch(action) {
+            case .Share:
+                goToTribeQRCode()
+                break
+            case .Delete, .Exit:
+                delegate?.shouldExitTribeOrGroup(completion: {
+                    self.view.window?.close()
+                })
+                break
+            case .Edit:
+                let createTribeVC = CreateTribeViewController.instantiate(chat: chat)
+                WindowsManager.sharedInstance.showCreateTribeWindow(title: "Create Tribe", vc: createTribeVC, window: NSApplication.shared.keyWindow)
+                break
+            }
         }
     }
     

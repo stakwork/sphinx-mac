@@ -52,6 +52,8 @@ class PinView: NSView, LoadableNib {
     
     func reset() {
         pinFieldView.getTextField().stringValue = ""
+        pinFieldView.getTextField().isEnabled = true
+        pinFieldView.getTextField().becomeFirstResponder()
     }
     
     func makeFieldFirstResponder() {
@@ -63,6 +65,7 @@ extension PinView : SignupFieldViewDelegate {
     func didChangeText(text: String) {}
     
     func didConfirmPin(text: String) {
+        pinFieldView.getTextField().isEnabled = false
         doneCompletion?(text)
     }
 }
