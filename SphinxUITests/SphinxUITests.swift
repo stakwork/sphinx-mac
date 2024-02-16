@@ -156,6 +156,17 @@ final class SphinxUITests: XCTestCase {
         
     }
     
+    func testProfileViewBackupYourKeys() {
+        let backupButton = app.windows["Profile"]/*@START_MENU_TOKEN@*/.buttons["Backup your key"]/*[[".groups.buttons[\"Backup your key\"]",".buttons[\"Backup your key\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        backupButton.click()
+        let secureField = app.windows["Enter Restore PIN"].windows["SecureFields"].secureTextFields["SecureFields"]
+            secureField.click()
+        secureField.typeText("333330")
+        
+        let confirmButton = app/*@START_MENU_TOKEN@*/.buttons["action-button-1"]/*[[".dialogs[\"alert\"]",".buttons[\"Confirm\"]",".buttons[\"action-button-1\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/
+        confirmButton.click()
+    }
+    
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
             // This measures how long it takes to launch your application.
