@@ -1,0 +1,15 @@
+
+/* Class = "NSButtonCell"; title = "help_outline"; ObjectID = "I3u-wq-Nuh"; */
+"I3u-wq-Nuh.title" = "help_outline";
+
+/* Class = "NSTextFieldCell"; title = "Select PIN"; ObjectID = "lGG-7r-gki"; */
+"lGG-7r-gki.title" = "Select PIN";
+
+/* Class = "NSSegmentedCell"; pHJ-om-snn.ibShadowedLabels[0] = "Standard"; ObjectID = "pHJ-om-snn"; */
+"pHJ-om-snn.ibShadowedLabels[0]" = "Standard";
+
+/* Class = "NSSegmentedCell"; pHJ-om-snn.ibShadowedLabels[1] = "Private"; ObjectID = "pHJ-om-snn"; */
+"pHJ-om-snn.ibShadowedLabels[1]" = "Private";
+
+/* Class = "NSTextFieldCell"; title = "Privacy Setting"; ObjectID = "ur0-rT-nUp"; */
+"ur0-rT-nUp.title" = "Privacy Setting";

@@ -1,0 +1,21 @@
+
+/* Class = "NSTextFieldCell"; title = ""; ObjectID = "JyJ-Gl-5uK"; */
+"JyJ-Gl-5uK.title" = "";
+
+/* Class = "NSButtonCell"; title = "SELECT ALL"; ObjectID = "Zqp-JM-Q4y"; */
+"Zqp-JM-Q4y.title" = "SELECT ALL";
+
+/* Class = "NSTextFieldCell"; title = "GROUP PAYMENT"; ObjectID = "egw-dG-KeU"; */
+"egw-dG-KeU.title" = "GROUP PAYMENT";
+
+/* Class = "NSTextFieldCell"; title = "NEXT"; ObjectID = "meo-cf-LVB"; */
+"meo-cf-LVB.title" = "NEXT";
+
+/* Class = "NSButtonCell"; title = ""; ObjectID = "pa9-N7-MBt"; */
+"pa9-N7-MBt.title" = "";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Search Group Members"; ObjectID = "vUE-ed-Edw"; */
+"vUE-ed-Edw.placeholderString" = "Search Group Members";
+
+/* Class = "NSTextFieldCell"; title = "GROUP MEMBERS"; ObjectID = "wLK-aH-PyB"; */
+"wLK-aH-PyB.title" = "GROUP MEMBERS";

@@ -1,0 +1,51 @@
+
+/* Class = "NSButtonCell"; title = "cached"; ObjectID = "2uK-co-z7u"; */
+"2uK-co-z7u.title" = "cached";
+
+/* Class = "NSTextFieldCell"; title = "No threads found"; ObjectID = "5ft-7S-C0k"; */
+"5ft-7S-C0k.title" = "スレッドが見つかりませんでした";
+
+/* Class = "NSButtonCell"; title = "UPGRADE"; ObjectID = "6dY-Cn-C9x"; */
+"6dY-Cn-C9x.title" = "アップグレード";
+
+/* Class = "NSTextFieldCell"; title = "CLICK TO COPY"; ObjectID = "JLX-aR-llf"; */
+"JLX-aR-llf.title" = "クリックしてコピー";
+
+/* Class = "NSTextFieldCell"; title = "Contact Name"; ObjectID = "Jwy-W5-tXa"; */
+"Jwy-W5-tXa.title" = "連絡先の名前";
+
+/* Class = "NSButtonCell"; title = "person_add"; ObjectID = "KYe-xy-Rdn"; */
+"KYe-xy-Rdn.title" = "person_add";
+
+/* Class = "NSTextFieldCell"; title = "sat"; ObjectID = "NHE-h7-M3R"; */
+"NHE-h7-M3R.title" = "sat";
+
+/* Class = "NSTextFieldCell"; title = "asdjhasdkjh128376123gsdjaksdjhh3271623gasdjhasdkjh128"; ObjectID = "O7m-Pk-COY"; */
+"O7m-Pk-COY.title" = "asdjhasdkjh128376123gsdjaksdjhh3271623gasdjhasdkjh128";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "SRe-nU-MEm"; */
+"SRe-nU-MEm.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = "L402 List"; ObjectID = "UVj-jc-rQh"; */
+"UVj-jc-rQh.title" = "L402リスト";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "YOg-n0-8Yf"; */
+"YOg-n0-8Yf.title" = "ボックス";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "Z6P-yR-1id"; */
+"Z6P-yR-1id.title" = "テーブルビューセル";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "l0X-I0-Lgt"; */
+"l0X-I0-Lgt.title" = "テキストセル";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Search"; ObjectID = "rha-Yr-Htc"; */
+"rha-Yr-Htc.placeholderString" = "検索";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "wna-oI-X6X"; */
+"wna-oI-X6X.title" = "ボックス";
+
+/* Class = "NSTextFieldCell"; title = ""; ObjectID = "yeu-kc-mDH"; */
+"yeu-kc-mDH.title" = "";
+
+/* Class = "NSButtonCell"; title = "navigate_before"; ObjectID = "z2J-2S-9ia"; */
+"z2J-2S-9ia.title" = "navigate_before";

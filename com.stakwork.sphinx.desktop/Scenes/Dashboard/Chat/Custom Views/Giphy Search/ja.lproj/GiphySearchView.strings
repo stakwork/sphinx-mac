@@ -1,0 +1,21 @@
+
+/* Class = "NSTextFieldCell"; title = ""; ObjectID = "9Lc-me-3G2"; */
+"9Lc-me-3G2.title" = "";
+
+/* Class = "NSButtonCell"; title = "STICKERS"; ObjectID = "Eb0-68-dEN"; */
+"Eb0-68-dEN.title" = "STICKERS";
+
+/* Class = "NSButtonCell"; title = "RECENT"; ObjectID = "ICg-3L-5XT"; */
+"ICg-3L-5XT.title" = "RECENT";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Search GIFs on Giphy"; ObjectID = "J9d-0e-Zcb"; */
+"J9d-0e-Zcb.placeholderString" = "Search GIFs on Giphy";
+
+/* Class = "NSTextFieldCell"; title = "Powered by"; ObjectID = "R0W-ez-1nN"; */
+"R0W-ez-1nN.title" = "Powered by";
+
+/* Class = "NSButtonCell"; title = "close"; ObjectID = "c7E-cB-JyY"; */
+"c7E-cB-JyY.title" = "close";
+
+/* Class = "NSButtonCell"; title = "GIFS"; ObjectID = "ffR-Mh-NVQ"; */
+"ffR-Mh-NVQ.title" = "GIFS";

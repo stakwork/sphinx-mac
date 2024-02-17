@@ -1,0 +1,28 @@
+
+/* Class = "NSTextFieldCell"; title = "Mute Chat"; ObjectID = "Bkl-v9-wXE"; */
+"Bkl-v9-wXE.title" = "チャットをミュート";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "Fev-5w-h0e"; */
+"Fev-5w-h0e.title" = "ボックス";
+
+/* Class = "NSTextFieldCell"; title = "Notification Level"; ObjectID = "S5K-9N-wMN"; */
+"S5K-9N-wMN.title" = "通知レベル";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "SLX-LR-QPQ"; */
+"SLX-LR-QPQ.title" = "ボックス";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "ek2-dX-pFN"; */
+"ek2-dX-pFN.title" = "ボックス";
+
+/* Class = "NSButtonCell"; title = "close"; ObjectID = "etd-aE-iPh"; */
+"etd-aE-iPh.title" = "閉じる";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "kN2-XY-pv5"; */
+"kN2-XY-pv5.title" = "ボックス";
+
+/* Class = "NSTextFieldCell"; title = "See All"; ObjectID = "mTH-O6-gID"; */
+"mTH-O6-gID.title" = "すべて表示";
+
+/* Class = "NSTextFieldCell"; title = "Only Mentions"; ObjectID = "vqa-8i-9eZ"; */
+"vqa-8i-9eZ.title" = "メンションのみ";
+
