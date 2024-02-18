@@ -1,105 +1,105 @@
 
 /* Class = "NSTextFieldCell"; title = "Group Name"; ObjectID = "3Ml-Gk-kH1"; */
-"3Ml-Gk-kH1.title" = "Group Name";
+"3Ml-Gk-kH1.title" = "群组名称";
 
 /* Class = "NSTextFieldCell"; title = "Description *"; ObjectID = "4xc-dn-4c9"; */
-"4xc-dn-4c9.title" = "Description *";
+"4xc-dn-4c9.title" = "描述 *";
 
 /* Class = "NSTextFieldCell"; title = "Time to stake: (hours)"; ObjectID = "5Mx-Tg-RiK"; */
-"5Mx-Tg-RiK.title" = "Time to stake: (hours)";
+"5Mx-Tg-RiK.title" = "质押时间：（小时）";
 
 /* Class = "NSTextFieldCell"; title = "Approve each membership request?"; ObjectID = "7zZ-36-zq9"; */
-"7zZ-36-zq9.title" = "Approve each membership request?";
+"7zZ-36-zq9.title" = "批准每个成员请求？";
 
 /* Class = "NSTextFieldCell"; title = "Price per Message"; ObjectID = "BZI-9s-vtk"; */
-"BZI-9s-vtk.title" = "Price per Message";
+"BZI-9s-vtk.title" = "每条消息的价格";
 
 /* Class = "NSTextFieldCell"; title = "Price per message:"; ObjectID = "IDt-GP-9ir"; */
-"IDt-GP-9ir.title" = "Price per message:";
+"IDt-GP-9ir.title" = "每条消息的价格：";
 
 /* Class = "NSTextFieldCell"; title = "..."; ObjectID = "K7j-En-bxK"; */
 "K7j-En-bxK.title" = "...";
 
 /* Class = "NSButtonCell"; title = "SAVE TRIBE"; ObjectID = "MlG-NU-gvK"; */
-"MlG-NU-gvK.title" = "SAVE TRIBE";
+"MlG-NU-gvK.title" = "保存部落";
 
 /* Class = "NSBox"; title = "Box"; ObjectID = "N7v-vR-tcQ"; */
-"N7v-vR-tcQ.title" = "Box";
+"N7v-vR-tcQ.title" = "盒子";
 
 /* Class = "NSTextFieldCell"; title = "App Url"; ObjectID = "PBt-DD-vJn"; */
-"PBt-DD-vJn.title" = "App Url";
+"PBt-DD-vJn.title" = "应用网址";
 
 /* Class = "NSButtonCell"; title = "JOIN TRIBE"; ObjectID = "PnB-qY-PbV"; */
-"PnB-qY-PbV.title" = "JOIN TRIBE";
+"PnB-qY-PbV.title" = "加入部落";
 
 /* Class = "NSTextFieldCell"; title = "0"; ObjectID = "PtV-tc-Kg6"; */
 "PtV-tc-Kg6.title" = "0";
 
 /* Class = "NSTextFieldCell"; title = "Created on..."; ObjectID = "QlS-aW-Ovp"; */
-"QlS-aW-Ovp.title" = "Created on...";
+"QlS-aW-Ovp.title" = "创建于...";
 
 /* Class = "NSTextFieldCell"; title = "Tags"; ObjectID = "R9c-DX-E9G"; */
-"R9c-DX-E9G.title" = "Tags";
+"R9c-DX-E9G.title" = "标签";
 
 /* Class = "NSTextFieldCell"; title = "Amount to Stake"; ObjectID = "RfR-WJ-3c7"; */
-"RfR-WJ-3c7.title" = "Amount to Stake";
+"RfR-WJ-3c7.title" = "质押金额";
 
 /* Class = "NSTextFieldCell"; title = "Amount to stake:"; ObjectID = "RlC-nx-gKp"; */
-"RlC-nx-gKp.title" = "Amount to stake:";
+"RlC-nx-gKp.title" = "质押金额：";
 
 /* Class = "NSTextFieldCell"; title = "Image"; ObjectID = "S5M-do-OMG"; */
-"S5M-do-OMG.title" = "Image";
+"S5M-do-OMG.title" = "图片";
 
 /* Class = "NSTextFieldCell"; title = "0"; ObjectID = "Sod-RT-GGM"; */
 "Sod-RT-GGM.title" = "0";
 
 /* Class = "NSTextFieldCell"; title = "Uploaded 0%"; ObjectID = "Td6-nF-374"; */
-"Td6-nF-374.title" = "Uploaded 0%";
+"Td6-nF-374.title" = "已上传 0%";
 
 /* Class = "NSTextFieldCell"; title = "Feed Url"; ObjectID = "aYx-6Y-No1"; */
-"aYx-6Y-No1.title" = "Feed Url";
+"aYx-6Y-No1.title" = "订阅源网址";
 
 /* Class = "NSTextFieldCell"; title = "Price to Join"; ObjectID = "amo-6J-VEd"; */
-"amo-6J-VEd.title" = "Price to Join";
+"amo-6J-VEd.title" = "加入价格";
 
 /* Class = "NSTextFieldCell"; title = "..."; ObjectID = "e8W-tI-OEy"; */
 "e8W-tI-OEy.title" = "...";
 
 /* Class = "NSBox"; title = "Box"; ObjectID = "eKC-UU-qat"; */
-"eKC-UU-qat.title" = "Box";
+"eKC-UU-qat.title" = "盒子";
 
 /* Class = "NSTextFieldCell"; title = "0"; ObjectID = "eZH-e0-Be5"; */
 "eZH-e0-Be5.title" = "0";
 
 /* Class = "NSTextFieldCell"; title = "Price to join:"; ObjectID = "fC4-f3-yQO"; */
-"fC4-f3-yQO.title" = "Price to join:";
+"fC4-f3-yQO.title" = "加入价格：";
 
 /* Class = "NSTextFieldCell"; title = "Time to Stake (hours)"; ObjectID = "iio-v7-V2C"; */
-"iio-v7-V2C.title" = "Time to Stake (hours)";
+"iio-v7-V2C.title" = "质押时间（小时）";
 
 /* Class = "NSTextFieldCell"; title = "0"; ObjectID = "iyu-tY-SWg"; */
 "iyu-tY-SWg.title" = "0";
 
 /* Class = "NSTextFieldCell"; title = "Name *"; ObjectID = "oYj-fw-X3k"; */
-"oYj-fw-X3k.title" = "Name *";
+"oYj-fw-X3k.title" = "名称 *";
 
 /* Class = "NSTextFieldCell"; title = "List on tribes.sphinx.chat?"; ObjectID = "qB7-uk-cfh"; */
-"qB7-uk-cfh.title" = "List on tribes.sphinx.chat?";
+"qB7-uk-cfh.title" = "在tribes.sphinx.chat上列出？";
 
 /* Class = "NSTextFieldCell"; title = "Uploaded 0%"; ObjectID = "tVz-Fy-24p"; */
-"tVz-Fy-24p.title" = "Uploaded 0%";
+"tVz-Fy-24p.title" = "已上传0%";
 
 /* Class = "NSButtonCell"; title = "SAVE"; ObjectID = "uGH-BU-eSo"; */
-"uGH-BU-eSo.title" = "SAVE";
+"uGH-BU-eSo.title" = "保存";
 
 /* Class = "NSTextFieldCell"; title = "Feed Content Type"; ObjectID = "uTl-0t-F3h"; */
-"uTl-0t-F3h.title" = "Feed Content Type";
+"uTl-0t-F3h.title" = "Feed内容类型";
 
 /* Class = "NSTextFieldCell"; title = "Loading Tribe info..."; ObjectID = "ubU-9I-jji"; */
-"ubU-9I-jji.title" = "Loading Tribe info...";
+"ubU-9I-jji.title" = "正在加载部落信息...";
 
 /* Class = "NSTextFieldCell"; title = "Loading Info..."; ObjectID = "vz1-9I-udo"; */
-"vz1-9I-udo.title" = "Loading Info...";
+"vz1-9I-udo.title" = "正在加载信息...";
 
 /* Class = "NSButtonCell"; title = ""; ObjectID = "zIw-tr-9sm"; */
 "zIw-tr-9sm.title" = "";

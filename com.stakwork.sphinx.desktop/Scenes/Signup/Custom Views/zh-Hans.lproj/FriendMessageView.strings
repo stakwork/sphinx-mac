@@ -1,12 +1,12 @@
 
 /* Class = "NSTextFieldCell"; title = "A message from your friend..."; ObjectID = "Gt2-97-fdI"; */
-"Gt2-97-fdI.title" = "A message from your friend...";
+"Gt2-97-fdI.title" = "来自朋友的消息...";
 
 /* Class = "NSTextFieldCell"; title = "Susan Johnson"; ObjectID = "HiF-wN-XLl"; */
-"HiF-wN-XLl.title" = "Susan Johnson";
+"HiF-wN-XLl.title" = "苏珊·约翰逊";
 
 /* Class = "NSTextFieldCell"; title = "Welcome to Sphinx!"; ObjectID = "MCO-GD-uZt"; */
-"MCO-GD-uZt.title" = "Welcome to Sphinx!";
+"MCO-GD-uZt.title" = "欢迎使用 Sphinx！";
 
 /* Class = "NSTextFieldCell"; title = "TT"; ObjectID = "kLe-Hp-pAO"; */
-"kLe-Hp-pAO.title" = "TT";
+"kLe-Hp-pAO.title" = "TT"; 

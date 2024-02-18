@@ -1,15 +1,14 @@
-
 /* Class = "NSTextFieldCell"; title = "lock"; ObjectID = "3Ka-OK-LlV"; */
-"3Ka-OK-LlV.title" = "lock";
+"3Ka-OK-LlV.title" = "锁"; 
 
 /* Class = "NSTextFieldCell"; title = "videocam"; ObjectID = "91b-OS-rRl"; */
-"91b-OS-rRl.title" = "videocam";
+"91b-OS-rRl.title" = "摄像头";
 
 /* Class = "NSTextFieldCell"; title = "Pay to Unlock"; ObjectID = "NVo-QT-LFv"; */
-"NVo-QT-LFv.title" = "Pay to Unlock";
+"NVo-QT-LFv.title" = "付费解锁";
 
 /* Class = "NSButtonCell"; title = "play_circle_outline"; ObjectID = "b6m-0J-18X"; */
 "b6m-0J-18X.title" = "play_circle_outline";
 
 /* Class = "NSButtonCell"; title = "Button"; ObjectID = "bp6-cY-obp"; */
-"bp6-cY-obp.title" = "Button";
+"bp6-cY-obp.title" = "按钮";
