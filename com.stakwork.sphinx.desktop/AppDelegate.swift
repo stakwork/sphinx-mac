@@ -90,7 +90,7 @@ import WebKit
     
     func getRelayKeys() {
         if UserData.sharedInstance.isUserLogged() {
-            UserData.sharedInstance.getAndSaveTransportKey()
+            UserData.sharedInstance.getAndSaveTransportKey(forceGet: true)
             UserData.sharedInstance.getOrCreateHMACKey(forceGet: true)
         }
     }

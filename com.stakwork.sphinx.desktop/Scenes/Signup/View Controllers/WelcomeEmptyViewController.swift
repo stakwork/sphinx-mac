@@ -96,7 +96,7 @@ class WelcomeEmptyViewController: WelcomeTorConnectionViewController {
     }
     
     func continueRestore() {
-        userData.getAndSaveTransportKey(completion: { [weak self] _ in
+        userData.getAndSaveTransportKey(forceGet: true) { [weak self] _ in
             guard let self = self else { return }
             
             self.userData.getOrCreateHMACKey(forceGet: true) { [weak self] in
@@ -112,7 +112,7 @@ class WelcomeEmptyViewController: WelcomeTorConnectionViewController {
                 })
                 
             }
-        })
+        }
     }
     
     func continueSignup() {
