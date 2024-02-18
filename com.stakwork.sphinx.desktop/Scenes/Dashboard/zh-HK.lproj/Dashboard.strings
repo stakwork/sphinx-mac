@@ -3,16 +3,16 @@
 "2uK-co-z7u.title" = "cached";
 
 /* Class = "NSTextFieldCell"; title = "No threads found"; ObjectID = "5ft-7S-C0k"; */
-"5ft-7S-C0k.title" = "No threads found";
+"5ft-7S-C0k.title" = "未找到主題";
 
 /* Class = "NSButtonCell"; title = "UPGRADE"; ObjectID = "6dY-Cn-C9x"; */
-"6dY-Cn-C9x.title" = "UPGRADE";
+"6dY-Cn-C9x.title" = "升級";
 
 /* Class = "NSTextFieldCell"; title = "CLICK TO COPY"; ObjectID = "JLX-aR-llf"; */
-"JLX-aR-llf.title" = "CLICK TO COPY";
+"JLX-aR-llf.title" = "點擊複製";
 
 /* Class = "NSTextFieldCell"; title = "Contact Name"; ObjectID = "Jwy-W5-tXa"; */
-"Jwy-W5-tXa.title" = "Contact Name";
+"Jwy-W5-tXa.title" = "聯絡人名稱";
 
 /* Class = "NSButtonCell"; title = "person_add"; ObjectID = "KYe-xy-Rdn"; */
 "KYe-xy-Rdn.title" = "person_add";
@@ -27,22 +27,22 @@
 "SRe-nU-MEm.title" = "0";
 
 /* Class = "NSTextFieldCell"; title = "L402 List"; ObjectID = "UVj-jc-rQh"; */
-"UVj-jc-rQh.title" = "L402 List";
+"UVj-jc-rQh.title" = "L402 列表";
 
 /* Class = "NSBox"; title = "Box"; ObjectID = "YOg-n0-8Yf"; */
-"YOg-n0-8Yf.title" = "Box";
+"YOg-n0-8Yf.title" = "盒子";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "Z6P-yR-1id"; */
-"Z6P-yR-1id.title" = "Table View Cell";
+"Z6P-yR-1id.title" = "表格視圖單元格";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "l0X-I0-Lgt"; */
-"l0X-I0-Lgt.title" = "Text Cell";
+"l0X-I0-Lgt.title" = "文字單元格";
 
 /* Class = "NSTextFieldCell"; placeholderString = "Search"; ObjectID = "rha-Yr-Htc"; */
-"rha-Yr-Htc.placeholderString" = "Search";
+"rha-Yr-Htc.placeholderString" = "搜索";
 
 /* Class = "NSBox"; title = "Box"; ObjectID = "wna-oI-X6X"; */
-"wna-oI-X6X.title" = "Box";
+"wna-oI-X6X.title" = "盒子";
 
 /* Class = "NSTextFieldCell"; title = ""; ObjectID = "yeu-kc-mDH"; */
 "yeu-kc-mDH.title" = "";

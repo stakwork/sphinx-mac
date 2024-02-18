@@ -1,12 +1,11 @@
-
 /* Class = "NSTextFieldCell"; title = ""; ObjectID = "I76-8s-S1P"; */
-"I76-8s-S1P.title" = "";
+"I76-8s-S1P.title" = ""; // No traduzco este valor porque es un símbolo
 
 /* Class = "NSTextFieldCell"; title = "Tomas Timinskas"; ObjectID = "SND-qi-gnu"; */
 "SND-qi-gnu.title" = "Tomas Timinskas";
 
-/* Class = "NSTextFieldCell"; title = "Back"; ObjectID = "T6D-wp-DCt"; */
-"T6D-wp-DCt.title" = "Back";
+/* Class = "NSTextFieldCell"; title = "返回"; ObjectID = "T6D-wp-DCt"; */
+"T6D-wp-DCt.title" = "返回";
 
-/* Class = "NSTextFieldCell"; title = "Drag and drop Image"; ObjectID = "tso-SX-REb"; */
-"tso-SX-REb.title" = "Drag and drop Image";
+/* Class = "NSTextFieldCell"; title = "拖放图片"; ObjectID = "tso-SX-REb"; */
+"tso-SX-REb.title" = "拖放图片";

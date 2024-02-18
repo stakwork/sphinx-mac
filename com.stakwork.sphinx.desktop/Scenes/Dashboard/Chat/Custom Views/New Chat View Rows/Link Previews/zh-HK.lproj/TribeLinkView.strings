@@ -1,12 +1,11 @@
-
 /* Class = "NSTextFieldCell"; title = ""; ObjectID = "BEC-R3-QHG"; */
 "BEC-R3-QHG.title" = "";
 
 /* Class = "NSTextFieldCell"; title = "asdkjaskjhsakdjhaskdj1287"; ObjectID = "CU4-vL-0DL"; */
 "CU4-vL-0DL.title" = "asdkjaskjhsakdjhaskdj1287";
 
-/* Class = "NSTextFieldCell"; title = "SEE TRIBE"; ObjectID = "I0k-4d-j8e"; */
-"I0k-4d-j8e.title" = "SEE TRIBE";
+/* Class = "NSTextFieldCell"; title = "查看部落"; ObjectID = "I0k-4d-j8e"; */
+"I0k-4d-j8e.title" = "查看部落";
 
-/* Class = "NSTextFieldCell"; title = "Test"; ObjectID = "p3g-pN-5lB"; */
-"p3g-pN-5lB.title" = "Test";
+/* Class = "NSTextFieldCell"; title = "測試"; ObjectID = "p3g-pN-5lB"; */
+"p3g-pN-5lB.title" = "測試";

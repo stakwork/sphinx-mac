@@ -1,24 +1,23 @@
-
 /* Class = "NSTextFieldCell"; title = "Audio"; ObjectID = "4py-kj-WSc"; */
-"4py-kj-WSc.title" = "Audio";
+"4py-kj-WSc.title" = "音頻";
 
 /* Class = "NSTextFieldCell"; title = "Send"; ObjectID = "6nj-Kc-WVc"; */
-"6nj-Kc-WVc.title" = "Send";
+"6nj-Kc-WVc.title" = "發送";
 
-/* Class = "NSTextFieldCell"; title = "CANCEL"; ObjectID = "DDa-Up-Zo6"; */
-"DDa-Up-Zo6.title" = "CANCEL";
+/* Class = "NSTextFieldCell"; title = "取消"; ObjectID = "DDa-Up-Zo6"; */
+"DDa-Up-Zo6.title" = "取消";
 
-/* Class = "NSTextFieldCell"; title = "CANCEL"; ObjectID = "cgv-4a-Bc8"; */
-"cgv-4a-Bc8.title" = "CANCEL";
+/* Class = "NSTextFieldCell"; title = "取消"; ObjectID = "cgv-4a-Bc8"; */
+"cgv-4a-Bc8.title" = "取消";
 
 /* Class = "NSTextFieldCell"; title = ""; ObjectID = "jah-bh-TNz"; */
 "jah-bh-TNz.title" = "";
 
-/* Class = "NSTextFieldCell"; title = "Video or Audio"; ObjectID = "jaw-cy-Dda"; */
-"jaw-cy-Dda.title" = "Video or Audio";
+/* Class = "NSTextFieldCell"; title = "視頻或音頻"; ObjectID = "jaw-cy-Dda"; */
+"jaw-cy-Dda.title" = "視頻或音頻";
 
 /* Class = "NSTextFieldCell"; title = ""; ObjectID = "rM3-nE-Mwm"; */
 "rM3-nE-Mwm.title" = "";
 
-/* Class = "NSTextFieldCell"; title = "Request"; ObjectID = "uwE-hz-Zc1"; */
-"uwE-hz-Zc1.title" = "Request";
+/* Class = "NSTextFieldCell"; title = "請求"; ObjectID = "uwE-hz-Zc1"; */
+"uwE-hz-Zc1.title" = "請求";

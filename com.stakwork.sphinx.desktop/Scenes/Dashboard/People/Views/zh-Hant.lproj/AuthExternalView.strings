@@ -1,18 +1,17 @@
+/* Class = "NSBox"; title = "框"; ObjectID = "1bG-nF-yVH"; */
+"1bG-nF-yVH.title" = "框";
 
-/* Class = "NSBox"; title = "Box"; ObjectID = "1bG-nF-yVH"; */
-"1bG-nF-yVH.title" = "Box";
-
-/* Class = "NSButtonCell"; title = "close"; ObjectID = "Bfe-3r-Ni9"; */
-"Bfe-3r-Ni9.title" = "close";
+/* Class = "NSButtonCell"; title = "关闭"; ObjectID = "Bfe-3r-Ni9"; */
+"Bfe-3r-Ni9.title" = "关闭";
 
 /* Class = "NSTextFieldCell"; title = "verified_user"; ObjectID = "PFl-fQ-GSv"; */
-"PFl-fQ-GSv.title" = "verified_user";
+"PFl-fQ-GSv.title" = "verified_user"; // No traduzco este valor porque contiene un guión bajo "_"
 
 /* Class = "NSTextFieldCell"; title = "..."; ObjectID = "RlS-mq-WEc"; */
-"RlS-mq-WEc.title" = "...";
+"RlS-mq-WEc.title" = "..."; // No traduzco este valor porque contiene puntos suspensivos "..."
 
-/* Class = "NSTextFieldCell"; title = "AUTHORIZE"; ObjectID = "e25-DE-JZe"; */
-"e25-DE-JZe.title" = "AUTHORIZE";
+/* Class = "NSTextFieldCell"; title = "授权"; ObjectID = "e25-DE-JZe"; */
+"e25-DE-JZe.title" = "授权";
 
-/* Class = "NSTextFieldCell"; title = "Do you want to authorize with"; ObjectID = "yWk-Ya-2Rc"; */
-"yWk-Ya-2Rc.title" = "Do you want to authorize with";
+/* Class = "NSTextFieldCell"; title = "你想用"; ObjectID = "yWk-Ya-2Rc"; */
+"yWk-Ya-2Rc.title" = "你想用";
