@@ -8,6 +8,27 @@
 
 import Cocoa
 
+class ThreadCollectionViewItemContentView: NSView {
+    @IBOutlet weak var messageView: NSView!
+    @IBOutlet weak var repliesView: ThreadRepliesView!
+    @IBOutlet weak var lastMessageHeaderView: ThreadLastMessageHeader!
+    @IBOutlet weak var lastReplyTextMessageView: NSView!
+        
+    override func mouseDown(with event: NSEvent) {
+        guard let superview = messageView.superview else { return }
+        
+        let pointInView = superview.convert(event.locationInWindow, from: nil)
+        
+        if messageView.hitTest(pointInView) != nil ||
+            repliesView.hitTest(pointInView) != nil ||
+            lastMessageHeaderView.hitTest(pointInView) != nil ||
+            lastReplyTextMessageView.hitTest(pointInView) != nil
+        {
+            super.mouseDown(with: event)
+        }
+    }
+}
+
 class ThreadCollectionViewItem: CommonNewMessageCollectionViewitem, ChatCollectionViewItemProtocol {
     
     @IBOutlet weak var messageContentStackView: NSStackView!
