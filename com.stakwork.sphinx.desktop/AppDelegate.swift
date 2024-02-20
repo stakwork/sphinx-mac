@@ -222,6 +222,17 @@ import WebKit
         window.window?.makeKey()
         window.showWindow(self)
         
+        // MARK: - For Testing Purpose
+        let view = vc.view
+        if let newWindow = window.window {
+            newWindow.setAccessibilityEnabled(true)
+            newWindow.setAccessibilityRole(.window)
+            newWindow.setAccessibilityIdentifier("MainWindow")
+        }
+        window.window?.setAccessibilityChildren([view])
+        view.setAccessibilityRole(.window)
+        view.setAccessibilityIdentifier("MainView")
+        // MARK: - End
         addStatusBarItem()
     }
     

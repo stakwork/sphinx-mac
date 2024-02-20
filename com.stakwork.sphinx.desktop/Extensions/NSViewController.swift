@@ -26,4 +26,14 @@ extension NSViewController {
             child.view.removeFromSuperview()
         }
     }
+    
+    func configureVCForTesting(_ views: [NSView], identifiers: [String], _ rootView: NSView) {
+        rootView.setAccessibilityChildren(views)
+        views.forEach { newView in
+            newView.setAccessibilityEnabled(true)
+            newView.setAccessibilityRole(.window)
+            let viewIdentifier = "\(identifiers[views.firstIndex(of: newView) ?? 0])"
+            newView.setAccessibilityIdentifier(viewIdentifier)
+        }
+    }
 }
