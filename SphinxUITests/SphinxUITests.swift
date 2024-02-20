@@ -41,8 +41,9 @@ final class SphinxUITests: XCTestCase {
         let newTipAmount = "19"
         let profileWindow = app.windows["Profile"]
         
-        //MARK: Editing User name
-        let textField = profileWindow.groups.containing(.button, identifier:"Save changes").children(matching: .group).element(boundBy: 3).children(matching: .group).element(boundBy: 0).children(matching: .textField).element
+//        //MARK: Editing User name
+        let textField = profileWindow.groups.containing(.button, identifier:"Save changes").children(matching: .group).element(boundBy: 3).children(matching: .group).element(boundBy: 0).children(matching: .textField).element(boundBy: 0)
+        
         textField.click()
         textField.typeText("1")
         textField.typeKey(.escape, modifierFlags:[])
@@ -86,7 +87,11 @@ final class SphinxUITests: XCTestCase {
         app.menuBars.menuBarItems["Sphinx"].click()
         app.menuBars/*@START_MENU_TOKEN@*/.menuItems["Profile"]/*[[".menuBarItems[\"Sphinx\"]",".menus.menuItems[\"Profile\"]",".menuItems[\"Profile\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.click()
         
-        let newtextField = profileWindow.groups.containing(.button, identifier:"Save changes").children(matching: .group).element(boundBy: 3).children(matching: .group).element(boundBy: 0).children(matching: .textField).element
+        let newtextField = profileWindow.groups
+            .containing(.button, identifier:"Save changes")
+            .children(matching: .group).element(boundBy: 3)
+            .children(matching: .group).element(boundBy: 0)
+            .children(matching: .textField).element(boundBy: 0)
         
         XCTAssertEqual(newtextField.value as! String, username)
         XCTAssertEqual(tipTextField.value as! String, newTipAmount)

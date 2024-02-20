@@ -92,7 +92,6 @@
 		4734D39B2417E3D400D6957E /* com_stakwork_sphinx_desktop.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4734D3992417E3D400D6957E /* com_stakwork_sphinx_desktop.xcdatamodeld */; };
 		4734D39D2417E3D500D6957E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4734D39C2417E3D500D6957E /* Assets.xcassets */; };
 		4734D3AC2417E3D500D6957E /* com_stakwork_sphinx_desktopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4734D3AB2417E3D500D6957E /* com_stakwork_sphinx_desktopTests.swift */; };
-		4734D3B72417E3D600D6957E /* com_stakwork_sphinx_desktopUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4734D3B62417E3D600D6957E /* com_stakwork_sphinx_desktopUITests.swift */; };
 		4734D3C52417E48600D6957E /* EncryptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4734D3C42417E48600D6957E /* EncryptionManager.swift */; };
 		473633DF2554464C007405F2 /* Asn1Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473633DE2554464C007405F2 /* Asn1Parser.swift */; };
 		473633E125548E40007405F2 /* BoostButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473633E025548E40007405F2 /* BoostButtonView.swift */; };
@@ -614,13 +613,6 @@
 			remoteGlobalIDString = 4734D3912417E3D400D6957E;
 			remoteInfo = com.stakwork.sphinx.desktop;
 		};
-		4734D3B32417E3D600D6957E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4734D38A2417E3D400D6957E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4734D3912417E3D400D6957E;
-			remoteInfo = com.stakwork.sphinx.desktop;
-		};
 		93A83E6D2B7FC298005158FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4734D38A2417E3D400D6957E /* Project object */;
@@ -758,7 +750,6 @@
 		4734D3A72417E3D500D6957E /* sphinxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sphinxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4734D3AB2417E3D500D6957E /* com_stakwork_sphinx_desktopTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = com_stakwork_sphinx_desktopTests.swift; sourceTree = "<group>"; };
 		4734D3AD2417E3D500D6957E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4734D3B22417E3D600D6957E /* sphinxUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sphinxUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4734D3B62417E3D600D6957E /* com_stakwork_sphinx_desktopUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = com_stakwork_sphinx_desktopUITests.swift; sourceTree = "<group>"; };
 		4734D3B82417E3D600D6957E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4734D3C42417E48600D6957E /* EncryptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionManager.swift; sourceTree = "<group>"; };
@@ -1436,13 +1427,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4734D3AF2417E3D600D6957E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		93A83E642B7FC297005158FB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1717,7 +1701,6 @@
 			children = (
 				4734D3922417E3D400D6957E /* Sphinx.app */,
 				4734D3A72417E3D500D6957E /* sphinxTests.xctest */,
-				4734D3B22417E3D600D6957E /* sphinxUITests.xctest */,
 				93A83E672B7FC297005158FB /* SphinxUITests.xctest */,
 			);
 			name = Products;
@@ -3402,24 +3385,6 @@
 			productReference = 4734D3A72417E3D500D6957E /* sphinxTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		4734D3B12417E3D600D6957E /* sphinxUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4734D3C12417E3D600D6957E /* Build configuration list for PBXNativeTarget "sphinxUITests" */;
-			buildPhases = (
-				4734D3AE2417E3D600D6957E /* Sources */,
-				4734D3AF2417E3D600D6957E /* Frameworks */,
-				4734D3B02417E3D600D6957E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4734D3B42417E3D600D6957E /* PBXTargetDependency */,
-			);
-			name = sphinxUITests;
-			productName = com.stakwork.sphinx.desktopUITests;
-			productReference = 4734D3B22417E3D600D6957E /* sphinxUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 		93A83E662B7FC297005158FB /* SphinxUITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 93A83E712B7FC298005158FB /* Build configuration list for PBXNativeTarget "SphinxUITests" */;
@@ -3456,10 +3421,6 @@
 						CreatedOnToolsVersion = 11.3;
 						TestTargetID = 4734D3912417E3D400D6957E;
 					};
-					4734D3B12417E3D600D6957E = {
-						CreatedOnToolsVersion = 11.3;
-						TestTargetID = 4734D3912417E3D400D6957E;
-					};
 					93A83E662B7FC297005158FB = {
 						CreatedOnToolsVersion = 15.2;
 						TestTargetID = 4734D3912417E3D400D6957E;
@@ -3483,7 +3444,6 @@
 			targets = (
 				4734D3912417E3D400D6957E /* Sphinx */,
 				4734D3A62417E3D500D6957E /* sphinxTests */,
-				4734D3B12417E3D600D6957E /* sphinxUITests */,
 				93A83E662B7FC297005158FB /* SphinxUITests */,
 			);
 		};
@@ -3632,13 +3592,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4734D3A52417E3D500D6957E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4734D3B02417E3D600D6957E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -4170,14 +4123,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4734D3AE2417E3D600D6957E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4734D3B72417E3D600D6957E /* com_stakwork_sphinx_desktopUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		93A83E632B7FC297005158FB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4194,11 +4139,6 @@
 			isa = PBXTargetDependency;
 			target = 4734D3912417E3D400D6957E /* Sphinx */;
 			targetProxy = 4734D3A82417E3D500D6957E /* PBXContainerItemProxy */;
-		};
-		4734D3B42417E3D600D6957E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4734D3912417E3D400D6957E /* Sphinx */;
-			targetProxy = 4734D3B32417E3D600D6957E /* PBXContainerItemProxy */;
 		};
 		93A83E6E2B7FC298005158FB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -4902,52 +4842,6 @@
 			};
 			name = Release;
 		};
-		4734D3C22417E3D600D6957E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 8297M44YTW;
-				INFOPLIST_FILE = com.stakwork.sphinx.desktopUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.stakwork.com-stakwork-sphinx-desktopUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = com.stakwork.sphinx.desktop;
-			};
-			name = Debug;
-		};
-		4734D3C32417E3D600D6957E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 8297M44YTW;
-				INFOPLIST_FILE = com.stakwork.sphinx.desktopUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.stakwork.com-stakwork-sphinx-desktopUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = com.stakwork.sphinx.desktop;
-			};
-			name = Release;
-		};
 		93A83E6F2B7FC298005158FB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4955,14 +4849,14 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = NHDBVA4HXP;
+				DEVELOPMENT_TEAM = 8297M44YTW;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.profk.SphinxUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gl.SphinxUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -4978,14 +4872,14 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = NHDBVA4HXP;
+				DEVELOPMENT_TEAM = 8297M44YTW;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.profk.SphinxUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gl.SphinxUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -5019,15 +4913,6 @@
 			buildConfigurations = (
 				4734D3BF2417E3D600D6957E /* Debug */,
 				4734D3C02417E3D600D6957E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4734D3C12417E3D600D6957E /* Build configuration list for PBXNativeTarget "sphinxUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4734D3C22417E3D600D6957E /* Debug */,
-				4734D3C32417E3D600D6957E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
