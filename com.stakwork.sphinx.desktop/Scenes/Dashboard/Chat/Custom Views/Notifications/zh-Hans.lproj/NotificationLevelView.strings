@@ -2,23 +2,8 @@
 /* Class = "NSTextFieldCell"; title = "Mute Chat"; ObjectID = "Bkl-v9-wXE"; */
 "Bkl-v9-wXE.title" = "静音聊天";
 
-/* Class = "NSBox"; title = "Box"; ObjectID = "Fev-5w-h0e"; */
-"Fev-5w-h0e.title" = "框";
-
 /* Class = "NSTextFieldCell"; title = "Notification Level"; ObjectID = "S5K-9N-wMN"; */
 "S5K-9N-wMN.title" = "通知级别";
-
-/* Class = "NSBox"; title = "Box"; ObjectID = "SLX-LR-QPQ"; */
-"SLX-LR-QPQ.title" = "框";
-
-/* Class = "NSBox"; title = "Box"; ObjectID = "ek2-dX-pFN"; */
-"ek2-dX-pFN.title" = "框";
-
-/* Class = "NSButtonCell"; title = "close"; ObjectID = "etd-aE-iPh"; */
-"etd-aE-iPh.title" = "关闭";
-
-/* Class = "NSBox"; title = "Box"; ObjectID = "kN2-XY-pv5"; */
-"kN2-XY-pv5.title" = "框";
 
 /* Class = "NSTextFieldCell"; title = "See All"; ObjectID = "mTH-O6-gID"; */
 "mTH-O6-gID.title" = "查看全部";

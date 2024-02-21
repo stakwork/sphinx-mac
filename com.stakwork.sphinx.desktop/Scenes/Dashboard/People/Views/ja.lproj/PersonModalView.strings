@@ -1,26 +1,3 @@
-/* Class = "NSTextFieldCell"; title = "Price to meet: 0 sats"; ObjectID = "10T-Yj-zOa"; */
-"10T-Yj-zOa.title" = "ミートする価格：0 sats";
-
-/* Class = "NSBox"; title = "Box"; ObjectID = "Ab8-7Q-TbO"; */
-"Ab8-7Q-TbO.title" = "ボックス";
-
-/* Class = "NSButtonCell"; title = "close"; ObjectID = "IR5-JT-hny"; */
-"IR5-JT-hny.title" = "閉じる";
-
-/* Class = "NSTextFieldCell"; placeholderString = "Initial message to Unknown"; ObjectID = "NJy-bL-lBZ"; */
-"NJy-bL-lBZ.placeholderString" = "Unknownへの最初のメッセージ";
-
-/* Class = "NSBox"; title = "Box"; ObjectID = "P4d-BF-byL"; */
-"P4d-BF-byL.title" = "ボックス";
 
 /* Class = "NSTextFieldCell"; title = "CONNECT"; ObjectID = "boK-z6-ylz"; */
 "boK-z6-ylz.title" = "接続";
-
-/* Class = "NSTextFieldCell"; title = "Unknown"; ObjectID = "by2-wU-d7V"; */
-"by2-wU-d7V.title" = "Unknown"; 
-
-/* Class = "NSBox"; title = "Box"; ObjectID = "f3W-3l-UfQ"; */
-"f3W-3l-UfQ.title" = "ボックス";
-
-/* Class = "NSTextFieldCell"; title = "This is the description\ntest to see how it works with a long text"; ObjectID = "i2d-VL-AJG"; */
-"i2d-VL-AJG.title" = "これは説明です\n長いテキストでどのように機能するかをテストします";

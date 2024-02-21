@@ -10,15 +10,8 @@
 
 /* Class = "NSTextFieldCell"; title = "CANCEL"; ObjectID = "cgv-4a-Bc8"; */
 "cgv-4a-Bc8.title" = "キャンセル";
-
-/* Class = "NSTextFieldCell"; title = ""; ObjectID = "jah-bh-TNz"; */
-"jah-bh-TNz.title" = "";
-
 /* Class = "NSTextFieldCell"; title = "Video or Audio"; ObjectID = "jaw-cy-Dda"; */
 "jaw-cy-Dda.title" = "ビデオまたはオーディオ";
-
-/* Class = "NSTextFieldCell"; title = ""; ObjectID = "rM3-nE-Mwm"; */
-"rM3-nE-Mwm.title" = "";
 
 /* Class = "NSTextFieldCell"; title = "Request"; ObjectID = "uwE-hz-Zc1"; */
 "uwE-hz-Zc1.title" = "リクエスト"; 

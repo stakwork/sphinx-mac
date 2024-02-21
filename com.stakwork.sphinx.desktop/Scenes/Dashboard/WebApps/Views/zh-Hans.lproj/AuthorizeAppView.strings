@@ -1,18 +1,8 @@
 
-/* Class = "NSTextFieldCell"; placeholderString = "0"; ObjectID = "AFp-GI-5K7"; */
-"AFp-GI-5K7.placeholderString" = "0";
-
 /* Class = "NSTextFieldCell"; title = "AUTHORIZE"; ObjectID = "Cjt-5d-UoB"; */
 "Cjt-5d-UoB.title" = "授權";
 
-/* Class = "NSTextFieldCell"; title = "verified_user"; ObjectID = "Fjm-Vd-VK2"; */
-"Fjm-Vd-VK2.title" = "verified_user";
 
-/* Class = "NSTextFieldCell"; title = "..."; ObjectID = "G75-HE-tSL"; */
-"G75-HE-tSL.title" = "...";
-
-/* Class = "NSButtonCell"; title = "close"; ObjectID = "Lgi-ir-8RX"; */
-"Lgi-ir-8RX.title" = "关闭";
 
 /* Class = "NSTextFieldCell"; title = "sats before reauthorizing"; ObjectID = "QF9-Re-Eh4"; */
 "QF9-Re-Eh4.title" = "重新授权前需要 sats";

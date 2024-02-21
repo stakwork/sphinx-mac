@@ -2,12 +2,6 @@
 /* Class = "NSTextFieldCell"; title = "No transactions found"; ObjectID = "0pr-TK-bNe"; */
 "0pr-TK-bNe.title" = "未找到交易";
 
-/* Class = "NSTextFieldCell"; title = "photo"; ObjectID = "4Fo-tq-oPZ"; */
-"4Fo-tq-oPZ.title" = "照片";
-
-/* Class = "NSTextFieldCell"; title = "content_copy"; ObjectID = "EGe-As-lHQ"; */
-"EGe-As-lHQ.title" = "content_copy";
-
 /* Class = "NSTextFieldCell"; title = "Invoice Amount:"; ObjectID = "Ea7-H2-7Dh"; */
 "Ea7-H2-7Dh.title" = "發票金額：";
 
@@ -31,9 +25,6 @@
 
 /* Class = "NSButtonCell"; title = "Pay"; ObjectID = "Y0k-xk-ZIY"; */
 "Y0k-xk-ZIY.title" = "支付";
-
-/* Class = "NSTextFieldCell"; title = " "; ObjectID = "cxg-Wu-wXt"; */
-"cxg-Wu-wXt.title" = " ";
 
 /* Class = "NSButtonCell"; title = "Copy QR Code Image"; ObjectID = "dy9-Sq-zAd"; */
 "dy9-Sq-zAd.title" = "複製 QR 碼圖片";

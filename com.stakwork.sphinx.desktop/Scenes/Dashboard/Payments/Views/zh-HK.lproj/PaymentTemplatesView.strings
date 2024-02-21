@@ -1,21 +1,7 @@
-
-/* Class = "NSButtonCell"; title = ""; ObjectID = "3Ax-o9-jdz"; */
-"3Ax-o9-jdz.title" = "";
-
 /* Class = "NSTextFieldCell"; title = "CONFIRM"; ObjectID = "IKy-H0-QKs"; */
 "IKy-H0-QKs.title" = "確認";
-
-/* Class = "NSTextFieldCell"; title = "50"; ObjectID = "gLy-ZV-M7H"; */
-"gLy-ZV-M7H.title" = "50";
-
-/* Class = "NSButtonCell"; title = "close"; ObjectID = "gfd-7p-o1n"; */
-"gfd-7p-o1n.title" = "關閉";
-
 /* Class = "NSTextFieldCell"; placeholderString = "No Message"; ObjectID = "pCK-ae-5ZB"; */
 "pCK-ae-5ZB.placeholderString" = "無訊息";
-
-/* Class = "NSTextFieldCell"; title = "sat"; ObjectID = "tgh-1h-b2G"; */
-"tgh-1h-b2G.title" = "sat";
 
 /* Class = "NSTextFieldCell"; title = "Loading Templates..."; ObjectID = "zc2-lD-C8u"; */
 "zc2-lD-C8u.title" = "正在加載模板...";

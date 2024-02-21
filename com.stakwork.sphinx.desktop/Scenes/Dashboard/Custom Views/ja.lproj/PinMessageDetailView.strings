@@ -1,21 +1,6 @@
 
-/* Class = "NSBox"; title = "Box"; ObjectID = "FwG-ds-BBA"; */
-"FwG-ds-BBA.title" = "ボックス";
-
-/* Class = "NSTextFieldCell"; title = "push_pin"; ObjectID = "HSP-ZO-YCh"; */
-"HSP-ZO-YCh.title" = "push_pin";
-
-/* Class = "NSTextFieldCell"; title = "push_pin"; ObjectID = "NHg-El-L0l"; */
-"NHg-El-L0l.title" = "push_pin";
-
 /* Class = "NSTextFieldCell"; title = "Unpin Message"; ObjectID = "UNL-E8-MSQ"; */
 "UNL-E8-MSQ.title" = "メッセージのピン解除";
 
 /* Class = "NSTextFieldCell"; title = "Pinned Message"; ObjectID = "WYy-Mn-DRx"; */
 "WYy-Mn-DRx.title" = "ピン留めされたメッセージ";
-
-/* Class = "NSTextFieldCell"; title = "This is a message"; ObjectID = "kr9-cA-LNR"; */
-"kr9-cA-LNR.title" = "これはメッセージです";
-
-/* Class = "NSTextFieldCell"; title = "Username"; ObjectID = "tdx-ap-CwX"; */
-"tdx-ap-CwX.title" = "ユーザー名";

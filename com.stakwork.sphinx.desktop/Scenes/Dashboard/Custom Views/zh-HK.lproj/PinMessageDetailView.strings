@@ -1,20 +1,6 @@
-/* Class = "NSBox"; title = "Box"; ObjectID = "FwG-ds-BBA"; */
-"FwG-ds-BBA.title" = "框";
-
-/* Class = "NSTextFieldCell"; title = "push_pin"; ObjectID = "HSP-ZO-YCh"; */
-"HSP-ZO-YCh.title" = "圖釘";
-
-/* Class = "NSTextFieldCell"; title = "push_pin"; ObjectID = "NHg-El-L0l"; */
-"NHg-El-L0l.title" = "圖釘";
 
 /* Class = "NSTextFieldCell"; title = "取消置頂訊息"; ObjectID = "UNL-E8-MSQ"; */
 "UNL-E8-MSQ.title" = "取消置頂訊息";
 
 /* Class = "NSTextFieldCell"; title = "置頂訊息"; ObjectID = "WYy-Mn-DRx"; */
 "WYy-Mn-DRx.title" = "置頂訊息";
-
-/* Class = "NSTextFieldCell"; title = "這是一則訊息"; ObjectID = "kr9-cA-LNR"; */
-"kr9-cA-LNR.title" = "這是一則訊息";
-
-/* Class = "NSTextFieldCell"; title = "用戶名"; ObjectID = "tdx-ap-CwX"; */
-"tdx-ap-CwX.title" = "用戶名";
