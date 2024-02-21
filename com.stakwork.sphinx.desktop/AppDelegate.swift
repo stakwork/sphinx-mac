@@ -424,6 +424,7 @@ import WebKit
             ContactsService.sharedInstance.reset()
             SphinxSocketManager.sharedInstance.clearSocket()
             UserData.sharedInstance.clearData()
+            SphinxCache().removeAll()
         })
     }
      
