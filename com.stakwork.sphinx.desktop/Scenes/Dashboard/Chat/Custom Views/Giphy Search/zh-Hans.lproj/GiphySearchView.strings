@@ -1,0 +1,5 @@
+/* Class = "NSButtonCell"; title = "RECENT"; ObjectID = "ICg-3L-5XT"; */
+"ICg-3L-5XT.title" = "最近使用";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Search GIFs on Giphy"; ObjectID = "J9d-0e-Zcb"; */
+"J9d-0e-Zcb.placeholderString" = "在 Giphy 中搜索 GIF";

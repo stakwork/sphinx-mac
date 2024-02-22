@@ -1,0 +1,5 @@
+/* Class = "NSTextFieldCell"; title = "EPISODES"; ObjectID = "U8m-nM-05C"; */
+"U8m-nM-05C.title" = "剧集";
+
+/* Class = "NSTextFieldCell"; title = "SATS EARNED"; ObjectID = "t5V-xF-QuU"; */
+"t5V-xF-QuU.title" = "已赚取的聪"; //  Assuming 'SATS' refers to 'Satoshis'

@@ -1,0 +1,11 @@
+
+/* Class = "NSTextFieldCell"; title = "Mute Chat"; ObjectID = "Bkl-v9-wXE"; */
+"Bkl-v9-wXE.title" = "チャットをミュート";
+/* Class = "NSTextFieldCell"; title = "Notification Level"; ObjectID = "S5K-9N-wMN"; */
+"S5K-9N-wMN.title" = "通知レベル";
+/* Class = "NSTextFieldCell"; title = "See All"; ObjectID = "mTH-O6-gID"; */
+"mTH-O6-gID.title" = "すべて表示";
+
+/* Class = "NSTextFieldCell"; title = "Only Mentions"; ObjectID = "vqa-8i-9eZ"; */
+"vqa-8i-9eZ.title" = "メンションのみ";
+

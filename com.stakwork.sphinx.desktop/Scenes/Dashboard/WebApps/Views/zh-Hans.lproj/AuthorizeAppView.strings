@@ -1,0 +1,14 @@
+
+/* Class = "NSTextFieldCell"; title = "AUTHORIZE"; ObjectID = "Cjt-5d-UoB"; */
+"Cjt-5d-UoB.title" = "授權";
+
+
+
+/* Class = "NSTextFieldCell"; title = "sats before reauthorizing"; ObjectID = "QF9-Re-Eh4"; */
+"QF9-Re-Eh4.title" = "重新授权前需要 sats";
+
+/* Class = "NSTextFieldCell"; title = "Authorize"; ObjectID = "S8f-3c-6I7"; */
+"S8f-3c-6I7.title" = "授权";
+
+/* Class = "NSTextFieldCell"; title = "to withdraw up to"; ObjectID = "qZH-uF-qTf"; */
+"qZH-uF-qTf.title" = "最高可提现"; 
