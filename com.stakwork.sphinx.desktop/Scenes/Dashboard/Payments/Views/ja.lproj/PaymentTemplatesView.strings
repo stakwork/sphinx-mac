@@ -1,0 +1,9 @@
+
+/* Class = "NSTextFieldCell"; title = "CONFIRM"; ObjectID = "IKy-H0-QKs"; */
+"IKy-H0-QKs.title" = "確認する";
+
+/* Class = "NSTextFieldCell"; placeholderString = "No Message"; ObjectID = "pCK-ae-5ZB"; */
+"pCK-ae-5ZB.placeholderString" = "メッセージなし";
+
+/* Class = "NSTextFieldCell"; title = "Loading Templates..."; ObjectID = "zc2-lD-C8u"; */
+"zc2-lD-C8u.title" = "テンプレートの読み込み...";

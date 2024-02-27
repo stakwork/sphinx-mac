@@ -1,0 +1,5 @@
+/* Class = "NSTextFieldCell"; title = "EPISODES"; ObjectID = "U8m-nM-05C"; */
+"U8m-nM-05C.title" = "エピソード"; // Episōdo
+
+/* Class = "NSTextFieldCell"; title = "SATS EARNED"; ObjectID = "t5V-xF-QuU"; */
+"t5V-xF-QuU.title" = "獲得したSATS";  // Kakutoku shita SATS

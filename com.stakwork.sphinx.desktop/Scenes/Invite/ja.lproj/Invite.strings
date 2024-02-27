@@ -1,0 +1,19 @@
+
+
+/* Class = "NSTextFieldCell"; title = "Restore from Keychain"; ObjectID = "3DL-hF-nFE"; */
+"3DL-hF-nFE.title" = "レストランデスデキーホルダー";
+
+/* Class = "NSTextFieldCell"; title = "CLICK TO COPY"; ObjectID = "AYv-M7-noR"; */
+"AYv-M7-noR.title" = "クリックしてコピー";
+
+/* Class = "NSTextFieldCell"; title = "Welcome"; ObjectID = "S80-ik-bJB"; */
+"S80-ik-bJB.title" = "ビエンベニド";
+
+/* Class = "NSTextFieldCell"; title = "SHARE INVITATION CODE"; ObjectID = "Zyb-tS-AOZ"; */
+"Zyb-tS-AOZ.title" = "招待コードを共有";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Enter code..."; ObjectID = "x3j-Gt-UrL"; */
+"x3j-Gt-UrL.placeholderString" = "イングレッサールコーディゴ...";
+
+/* Class = "NSTextFieldCell"; title = "Paste the invitation text\nor scan the QR code"; ObjectID = "yrm-PP-DJV"; */
+"yrm-PP-DJV.title" = "招待状をペガ\no エスカネア エル コディゴ QR";

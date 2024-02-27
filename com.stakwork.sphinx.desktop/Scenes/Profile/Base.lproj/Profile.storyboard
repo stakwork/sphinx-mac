@@ -11,7 +11,7 @@
         <scene sceneID="6mP-la-eFK">
             <objects>
                 <viewController storyboardIdentifier="ProfileViewController" id="nVT-b1-Xti" customClass="ProfileViewController" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="DCL-gk-gFq">
+                    <view key="view" id="DCL-gk-gFq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="970"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -60,7 +60,7 @@
                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="55" id="OVT-RO-FAz"/>
                                                     </constraints>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="-" id="bzD-P8-zhu">
-                                                        <font key="font" size="20" name="Montserrat-Bold"/>
+                                                        <font key="font" metaFont="system" size="20"/>
                                                         <color key="textColor" name="Text"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -68,7 +68,7 @@
                                                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qww-ku-CHE">
                                                     <rect key="frame" x="145" y="63" width="12" height="15"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="0" id="55s-p9-FFw">
-                                                        <font key="font" size="12" name="Montserrat-Regular"/>
+                                                        <font key="font" metaFont="cellTitle"/>
                                                         <color key="textColor" name="Text"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -76,7 +76,7 @@
                                                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bpk-CQ-VVf">
                                                     <rect key="frame" x="158" y="63" width="22" height="15"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="sat" id="fcV-0k-vw1">
-                                                        <font key="font" size="12" name="Montserrat-Regular"/>
+                                                        <font key="font" metaFont="cellTitle"/>
                                                         <color key="textColor" name="SecondaryText"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -620,9 +620,9 @@ with contacts</string>
                                                                                     <color key="fillColor" name="PrimaryBlue"/>
                                                                                 </box>
                                                                                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dmw-k3-yeZ">
-                                                                                    <rect key="frame" x="288" y="19" width="26" height="22"/>
+                                                                                    <rect key="frame" x="284" y="17" width="30" height="26"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="" id="Fnv-vP-ePi">
-                                                                                        <font key="font" size="22" name="MaterialIcons-Regular"/>
+                                                                                        <font key="font" metaFont="system" size="22"/>
                                                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                     </textFieldCell>
