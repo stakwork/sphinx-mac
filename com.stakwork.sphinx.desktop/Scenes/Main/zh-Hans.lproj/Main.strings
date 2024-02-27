@@ -413,6 +413,30 @@
 /* Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "z6F-FW-3nz"; */
 "z6F-FW-3nz.title" = "显示替换";
 
+/* Class = "NSMenuItem"; title = "Profile"; ObjectID = "tFr-rO-lm5"; */
+"tFr-rO-lm5.title" = "轮廓";
+
+/* Class = "NSMenuItem"; title = "Transactions"; ObjectID = "4o0-kS-bqR"; */
+"4o0-kS-bqR.title" = "交易";
+
+/* Class = "NSMenuItem"; title = "Create Tribe"; ObjectID = "bio-m7-1xh"; */
+"bio-m7-1xh.title" = "创建部落";
+
+/* Class = "NSMenu"; title = "Notifications"; ObjectID = "gyU-2K-4vs"; */
+"gyU-2K-4vs.title" = "通知";
+
+/* Class = "NSMenu"; title = "Notification Type"; ObjectID = "hLH-rD-Zt1"; */
+"hLH-rD-Zt1.title" = "通知类型";
+
+/* Class = "NSMenuItem"; title = "Notification Type"; ObjectID = "xpD-1n-Wri"; */
+"xpD-1n-Wri.title" = "通知类型";
+
+/* Class = "NSMenu"; title = "Notification Sound"; ObjectID = "XW4-xG-UAh"; */
+"XW4-xG-UAh.title" = "通知声音";
+
+/* Class = "NSMenuItem"; title = "Notification Sound"; ObjectID = "XmO-TI-kPD"; */
+"XmO-TI-kPD.title" = "通知声音";
+
 "T6V-hr-6Uw.title" = "大小";
 
 "YFG-Nu-8JB.title" = "大";
