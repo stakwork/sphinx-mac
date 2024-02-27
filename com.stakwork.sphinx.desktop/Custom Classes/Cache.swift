@@ -74,6 +74,28 @@ extension SphinxCache {
         
         return nil
     }
+    
+    func removeAll(using fileManager: FileManager = .default) {
+        let folderURLs = fileManager.urls (
+            for: .cachesDirectory,
+            in: .userDomainMask
+        )
+        
+        if folderURLs.count > 0 {
+            do {
+                let fileURLs = try FileManager.default.contentsOfDirectory(
+                    at: folderURLs[0],
+                    includingPropertiesForKeys: nil,
+                    options: .skipsHiddenFiles
+                )
+                
+                for fileURL in fileURLs {
+                    try FileManager.default.removeItem(at: fileURL)
+                }
+                
+            } catch  { print(error) }
+        }
+    }
 }
 
 extension SphinxCache {
