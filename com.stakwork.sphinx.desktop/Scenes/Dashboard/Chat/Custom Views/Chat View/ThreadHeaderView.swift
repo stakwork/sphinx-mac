@@ -172,6 +172,10 @@ class ThreadHeaderView: NSView, LoadableNib {
                     
                     if substring.isPubKey || substring.isVirtualPubKey {
                         substring = substring.shareContactDeepLink
+                    } else if substring.starts(with: "https://jitsi.sphinx.chat") {
+                        substring = substring.callLinkDeepLink
+                    } else if !substring.isTribeJoinLink {
+                        substring = substring.withProtocol(protocolString: "http")
                     }
                      
                     if let url = URL(string: substring.withProtocol(protocolString: "http"))  {
