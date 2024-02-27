@@ -301,14 +301,16 @@ class ProfileViewController: NSViewController {
         parameters["private_photo"] = !isPhotoSwitchOn() as AnyObject?
         parameters["route_hint"] = routeHintField.stringValue as AnyObject?
         
+        let tempTip = self.meetingAmountField.integerValue
+        
         if let photoUrl = profileImageUrl, !photoUrl.isEmpty {
             parameters["photo_url"] = photoUrl as AnyObject?
         }
         
         API.sharedInstance.updateUser(id: profile.id, params: parameters, callback: { contact in
             API.kVideoCallServer = self.meetingServerField.stringValue
-            UserContact.kTipAmount = self.meetingAmountField.integerValue
             let _ = UserContactsHelper.insertContact(contact: contact)
+            UserContact.kTipAmount = tempTip
             self.saveFinished(success: true)
         }, errorCallback: {
             self.saveFinished(success: false)
