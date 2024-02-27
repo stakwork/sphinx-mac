@@ -123,6 +123,12 @@ extension String {
         }
     }
     
+    var callLinkDeepLink : String {
+        get {
+            return "sphinx.chat://?action=call&link=\(self)"
+        }
+    }
+    
     func removeProtocol() -> String {
         return self.replacingOccurrences(of: "http://", with: "").replacingOccurrences(of: "https://", with: "")
     }
