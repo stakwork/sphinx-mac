@@ -9,12 +9,13 @@
 import Foundation
 
 class DeepLinksHandlerHelper {
+    
     static func handleLinkQueryFrom(url: URL) {
         if !UserData.sharedInstance.isUserLogged() {
             return
         }
         
-        if url.absoluteString.starts(with: "https://jitsi.sphinx.chat") {
+        if url.absoluteString.starts(with: API.kVideoCallServer) {
             WindowsManager.sharedInstance.showCallWindow(link: url.absoluteString)
             return
         }
