@@ -1,0 +1,18 @@
+
+/* Class = "NSTextFieldCell"; title = "Restore from Keychain"; ObjectID = "3DL-hF-nFE"; */
+"3DL-hF-nFE.title" = "餐廳鑰匙扣";
+
+/* Class = "NSTextFieldCell"; title = "CLICK TO COPY"; ObjectID = "AYv-M7-noR"; */
+"AYv-M7-noR.title" = "點選複製";
+
+/* Class = "NSTextFieldCell"; title = "Welcome"; ObjectID = "S80-ik-bJB"; */
+"S80-ik-bJB.title" = "比恩韋尼多";
+
+/* Class = "NSTextFieldCell"; title = "SHARE INVITATION CODE"; ObjectID = "Zyb-tS-AOZ"; */
+"Zyb-tS-AOZ.title" = "分享邀請碼";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Enter code..."; ObjectID = "x3j-Gt-UrL"; */
+"x3j-Gt-UrL.placeholderString" = "英格薩爾·科迪戈...";
+
+/* Class = "NSTextFieldCell"; title = "Paste the invitation text\nor scan the QR code"; ObjectID = "yrm-PP-DJV"; */
+"yrm-PP-DJV.title" = "邀請碼\無二維碼碼";

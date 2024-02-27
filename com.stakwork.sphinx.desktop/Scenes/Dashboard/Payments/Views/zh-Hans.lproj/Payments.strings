@@ -1,0 +1,50 @@
+/* Class = "NSTextFieldCell"; title = "No transactions found"; ObjectID = "0pr-TK-bNe"; */
+"0pr-TK-bNe.title" = "未找到交易";
+
+/* Class = "NSTextFieldCell"; title = "Invoice Amount:"; ObjectID = "Ea7-H2-7Dh"; */
+"Ea7-H2-7Dh.title" = "发票金额：";
+
+/* Class = "NSButtonCell"; title = "close"; ObjectID = "GF6-UA-JAl"; */
+"GF6-UA-JAl.title" = "关闭";
+
+/* Class = "NSTextFieldCell"; title = "Expiration Date:"; ObjectID = "LUL-D5-qRg"; */
+"LUL-D5-qRg.title" = "到期日期：";
+
+/* Class = "NSTextFieldCell"; title = "Receive Invoice Details"; ObjectID = "NXD-Ix-g5w"; */
+"NXD-Ix-g5w.title" = "接收发票详情";
+
+/* Class = "NSTextFieldCell"; title = "Invalid Memo"; ObjectID = "RUZ-2d-88J"; */
+"RUZ-2d-88J.title" = "无效备忘录";
+
+/* Class = "NSTextFieldCell"; title = "INVOICE STRING"; ObjectID = "RWs-aR-MeD"; */
+"RWs-aR-MeD.title" = "发票字符串";
+
+/* Class = "NSButtonCell"; title = "Verify"; ObjectID = "TPC-Xj-wL1"; */
+"TPC-Xj-wL1.title" = "验证";
+
+/* Class = "NSButtonCell"; title = "Pay"; ObjectID = "Y0k-xk-ZIY"; */
+"Y0k-xk-ZIY.title" = "支付";
+
+/* Class = "NSButtonCell"; title = "Copy QR Code Image"; ObjectID = "dy9-Sq-zAd"; */
+"dy9-Sq-zAd.title" = "复制二维码图片";
+
+/* Class = "NSTextFieldCell"; title = "Payment Request"; ObjectID = "f1b-6R-thb"; */
+"f1b-6R-thb.title" = "支付请求";
+
+/* Class = "NSTextFieldCell"; title = "Memo:"; ObjectID = "hhh-m3-2w8"; */
+"hhh-m3-2w8.title" = "备忘录：";
+
+/* Class = "NSTextFieldCell"; title = "Invalid Expiration"; ObjectID = "ic3-5t-TBt"; */
+"ic3-5t-TBt.title" = "无效的到期时间";
+
+/* Class = "NSTextFieldCell"; title = "Invalid Amount"; ObjectID = "mJ1-kK-Dwy"; */
+"mJ1-kK-Dwy.title" = "无效金额";
+
+/* Class = "NSButtonCell"; title = "Copy Invoice String"; ObjectID = "tA6-sn-INu"; */
+"tA6-sn-INu.title" = "复制发票字符串";
+
+/* Class = "NSTextFieldCell"; title = "Receive Invoice Details"; ObjectID = "wNu-2z-sZt"; */
+"wNu-2z-sZt.title" = "接收发票详情";
+
+/* Class = "NSTextFieldCell"; title = "Pay Invoice"; ObjectID = "yRh-f6-Lic"; */
+"yRh-f6-Lic.title" = "支付发票";

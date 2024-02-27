@@ -274,7 +274,9 @@ extension ThreadCollectionViewItem {
                         
                         if substring.isPubKey || substring.isVirtualPubKey {
                             substring = substring.shareContactDeepLink
-                        } else {
+                        } else if substring.starts(with: API.kVideoCallServer) {
+                            substring = substring.callLinkDeepLink
+                        } else if !substring.isTribeJoinLink {
                             substring = substring.withProtocol(protocolString: "http")
                         }
                          
