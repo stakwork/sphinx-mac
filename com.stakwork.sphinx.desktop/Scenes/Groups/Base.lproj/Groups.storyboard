@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -67,7 +67,7 @@
                                                                             <rect key="frame" x="30" y="1075" width="340" height="75"/>
                                                                             <subviews>
                                                                                 <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6eq-Rx-TdP">
-                                                                                    <rect key="frame" x="-2" y="36" width="45" height="14"/>
+                                                                                    <rect key="frame" x="-2" y="36" width="44" height="14"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Name *" id="oYj-fw-X3k">
                                                                                         <font key="font" size="12" name="Roboto-Regular"/>
                                                                                         <color key="textColor" name="SecondaryText"/>
@@ -203,7 +203,7 @@
                                                                             <rect key="frame" x="30" y="925" width="340" height="75"/>
                                                                             <subviews>
                                                                                 <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6dD-V3-g50">
-                                                                                    <rect key="frame" x="-2" y="36" width="73" height="14"/>
+                                                                                    <rect key="frame" x="-2" y="36" width="74" height="14"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Description *" id="4xc-dn-4c9">
                                                                                         <font key="font" size="12" name="Roboto-Regular"/>
                                                                                         <color key="textColor" name="SecondaryText"/>
@@ -250,7 +250,7 @@
                                                                             <rect key="frame" x="30" y="850" width="340" height="75"/>
                                                                             <subviews>
                                                                                 <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b2z-KL-JPe">
-                                                                                    <rect key="frame" x="-2" y="36" width="30" height="14"/>
+                                                                                    <rect key="frame" x="-2" y="36" width="31" height="14"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Tags" id="R9c-DX-E9G">
                                                                                         <font key="font" size="12" name="Roboto-Regular"/>
                                                                                         <color key="textColor" name="SecondaryText"/>
@@ -311,7 +311,7 @@
                                                                             <rect key="frame" x="30" y="775" width="340" height="75"/>
                                                                             <subviews>
                                                                                 <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rWA-oI-3VU">
-                                                                                    <rect key="frame" x="-2" y="36" width="71" height="14"/>
+                                                                                    <rect key="frame" x="-2" y="36" width="72" height="14"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Price to Join" id="amo-6J-VEd">
                                                                                         <font key="font" size="12" name="Roboto-Regular"/>
                                                                                         <color key="textColor" name="SecondaryText"/>
@@ -405,7 +405,7 @@
                                                                             <rect key="frame" x="30" y="625" width="340" height="75"/>
                                                                             <subviews>
                                                                                 <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hdk-NT-LKX">
-                                                                                    <rect key="frame" x="-2" y="36" width="93" height="14"/>
+                                                                                    <rect key="frame" x="-2" y="36" width="94" height="14"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Amount to Stake" id="RfR-WJ-3c7">
                                                                                         <font key="font" size="12" name="Roboto-Regular"/>
                                                                                         <color key="textColor" name="SecondaryText"/>
@@ -452,7 +452,7 @@
                                                                             <rect key="frame" x="30" y="550" width="340" height="75"/>
                                                                             <subviews>
                                                                                 <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Je0-5F-jpa">
-                                                                                    <rect key="frame" x="-2" y="36" width="119" height="14"/>
+                                                                                    <rect key="frame" x="-2" y="36" width="121" height="14"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Time to Stake (hours)" id="iio-v7-V2C">
                                                                                         <font key="font" size="12" name="Roboto-Regular"/>
                                                                                         <color key="textColor" name="SecondaryText"/>
@@ -546,7 +546,7 @@
                                                                             <rect key="frame" x="30" y="400" width="340" height="75"/>
                                                                             <subviews>
                                                                                 <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="14Z-BH-vnS">
-                                                                                    <rect key="frame" x="-2" y="36" width="48" height="14"/>
+                                                                                    <rect key="frame" x="-2" y="36" width="49" height="14"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Feed Url" id="aYx-6Y-No1">
                                                                                         <font key="font" size="12" name="Roboto-Regular"/>
                                                                                         <color key="textColor" name="SecondaryText"/>
@@ -593,7 +593,7 @@
                                                                             <rect key="frame" x="30" y="325" width="340" height="75"/>
                                                                             <subviews>
                                                                                 <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="41E-Gd-u76">
-                                                                                    <rect key="frame" x="-2" y="36" width="104" height="14"/>
+                                                                                    <rect key="frame" x="-2" y="36" width="105" height="14"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Feed Content Type" id="uTl-0t-F3h">
                                                                                         <font key="font" size="12" name="Roboto-Regular"/>
                                                                                         <color key="textColor" name="SecondaryText"/>
@@ -654,7 +654,7 @@
                                                                             <rect key="frame" x="30" y="250" width="340" height="75"/>
                                                                             <subviews>
                                                                                 <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KxO-1E-KqS">
-                                                                                    <rect key="frame" x="-2" y="28" width="202" height="20"/>
+                                                                                    <rect key="frame" x="-2" y="28" width="205" height="20"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="List on tribes.sphinx.chat?" id="qB7-uk-cfh">
                                                                                         <font key="font" size="17" name="Roboto-Regular"/>
                                                                                         <color key="textColor" name="Text"/>
@@ -681,7 +681,7 @@
                                                                             <rect key="frame" x="30" y="175" width="340" height="75"/>
                                                                             <subviews>
                                                                                 <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a1e-9T-yZ0">
-                                                                                    <rect key="frame" x="-2" y="28" width="276" height="20"/>
+                                                                                    <rect key="frame" x="-2" y="28" width="278" height="20"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Approve each membership request?" id="7zZ-36-zq9">
                                                                                         <font key="font" size="17" name="Roboto-Regular"/>
                                                                                         <color key="textColor" name="Text"/>
@@ -949,7 +949,7 @@
                                                                                 <rect key="frame" x="0.0" y="150" width="314" height="50"/>
                                                                                 <subviews>
                                                                                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SLC-Yw-hwM">
-                                                                                        <rect key="frame" x="13" y="18" width="87" height="18"/>
+                                                                                        <rect key="frame" x="13" y="18" width="88" height="18"/>
                                                                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Price to join:" id="fC4-f3-yQO">
                                                                                             <font key="font" size="15" name="Roboto-Regular"/>
                                                                                             <color key="textColor" name="SecondaryText"/>
@@ -993,7 +993,7 @@
                                                                                 <rect key="frame" x="0.0" y="100" width="314" height="50"/>
                                                                                 <subviews>
                                                                                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m2T-J1-0pU">
-                                                                                        <rect key="frame" x="13" y="18" width="132" height="18"/>
+                                                                                        <rect key="frame" x="13" y="18" width="133" height="18"/>
                                                                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Price per message:" id="IDt-GP-9ir">
                                                                                             <font key="font" size="15" name="Roboto-Regular"/>
                                                                                             <color key="textColor" name="SecondaryText"/>
@@ -1037,7 +1037,7 @@
                                                                                 <rect key="frame" x="0.0" y="50" width="314" height="50"/>
                                                                                 <subviews>
                                                                                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i4p-FQ-htn">
-                                                                                        <rect key="frame" x="13" y="18" width="118" height="18"/>
+                                                                                        <rect key="frame" x="13" y="18" width="119" height="18"/>
                                                                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Amount to stake:" id="RlC-nx-gKp">
                                                                                             <font key="font" size="15" name="Roboto-Regular"/>
                                                                                             <color key="textColor" name="SecondaryText"/>
@@ -1081,7 +1081,7 @@
                                                                                 <rect key="frame" x="0.0" y="0.0" width="314" height="50"/>
                                                                                 <subviews>
                                                                                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="y42-CH-12m">
-                                                                                        <rect key="frame" x="13" y="18" width="151" height="18"/>
+                                                                                        <rect key="frame" x="13" y="18" width="152" height="18"/>
                                                                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Time to stake: (hours)" id="5Mx-Tg-RiK">
                                                                                             <font key="font" size="15" name="Roboto-Regular"/>
                                                                                             <color key="textColor" name="SecondaryText"/>
@@ -1193,7 +1193,7 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="230" height="50"/>
                                                                     <buttonCell key="cell" type="square" title="JOIN TRIBE" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="PnB-qY-PbV" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                        <font key="font" metaFont="system" size="14"/>
+                                                                        <font key="font" size="14" name="Montserrat-Bold"/>
                                                                     </buttonCell>
                                                                     <color key="contentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
@@ -1224,7 +1224,7 @@
                                                         <color key="fillColor" name="PrimaryBlue"/>
                                                     </box>
                                                     <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ecQ-3L-MRG">
-                                                        <rect key="frame" x="166" y="16" width="85" height="16"/>
+                                                        <rect key="frame" x="165" y="16" width="86" height="16"/>
                                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Uploaded 0%" id="tVz-Fy-24p">
                                                             <font key="font" size="14" name="Roboto-Regular"/>
                                                             <color key="textColor" name="SecondaryText"/>
@@ -1268,7 +1268,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kyr-7J-tnN">
-                                            <rect key="frame" x="149" y="373" width="119" height="15"/>
+                                            <rect key="frame" x="148" y="373" width="120" height="15"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Loading Tribe info..." id="ubU-9I-jji">
                                                 <font key="font" size="13" name="Roboto-Regular"/>
                                                 <color key="textColor" name="SecondaryText"/>
@@ -1393,10 +1393,10 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1DF-17-5t8" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                                                    <rect key="frame" x="374" y="49" width="25" height="21"/>
+                                                    <rect key="frame" x="377" y="50" width="22" height="18"/>
                                                     <buttonCell key="cell" type="bevel" title="" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="zIw-tr-9sm" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system" size="18"/>
+                                                        <font key="font" size="18" name="MaterialIcons-Regular"/>
                                                     </buttonCell>
                                                     <color key="contentTintColor" name="WashedOutReceivedText"/>
                                                     <connections>
@@ -1466,7 +1466,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
                                                         <buttonCell key="cell" type="square" title="SAVE" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="uGH-BU-eSo" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system" size="14"/>
+                                                            <font key="font" size="14" name="Montserrat-Bold"/>
                                                         </buttonCell>
                                                         <color key="contentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -1497,7 +1497,7 @@
                                             <color key="fillColor" name="PrimaryBlue"/>
                                         </box>
                                         <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fhA-TS-JQN">
-                                            <rect key="frame" x="165" y="14" width="85" height="16"/>
+                                            <rect key="frame" x="164" y="14" width="86" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Uploaded 0%" id="Td6-nF-374">
                                                 <font key="font" size="14" name="Roboto-Regular"/>
                                                 <color key="textColor" name="SecondaryText"/>
@@ -1530,7 +1530,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fTF-wf-L56">
-                                            <rect key="frame" x="164" y="346" width="87" height="15"/>
+                                            <rect key="frame" x="163" y="346" width="88" height="15"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Loading Info..." id="vz1-9I-udo">
                                                 <font key="font" size="13" name="Roboto-Regular"/>
                                                 <color key="textColor" name="SecondaryText"/>
