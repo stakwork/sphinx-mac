@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -74,9 +74,9 @@
                                 <color key="fillColor" name="Body"/>
                             </box>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WXj-PR-03x">
-                                <rect key="frame" x="114" y="553" width="172" height="17"/>
+                                <rect key="frame" x="107" y="552" width="186" height="18"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="SHARE INVITATION CODE" id="Zyb-tS-AOZ">
-                                    <font key="font" metaFont="system" size="14"/>
+                                    <font key="font" size="14" name="Montserrat-SemiBold"/>
                                     <color key="textColor" name="Text"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -90,9 +90,9 @@
                                         <color key="contentTintColor" name="SecondaryText"/>
                                     </imageView>
                                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rk8-rx-55Q">
-                                        <rect key="frame" x="25" y="14" width="82" height="13"/>
+                                        <rect key="frame" x="26" y="14" width="81" height="13"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="CLICK TO COPY" id="AYv-M7-noR">
-                                            <font key="font" metaFont="system" size="10"/>
+                                            <font key="font" size="10" name="Montserrat-Regular"/>
                                             <color key="textColor" name="SecondaryText"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -172,7 +172,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="tapToCopy" width="19" height="32"/>
+        <image name="tapToCopy" width="18.5" height="32"/>
         <namedColor name="Body">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
