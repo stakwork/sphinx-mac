@@ -15,7 +15,7 @@ protocol ChatSearchTextFieldViewDelegate : AnyObject {
 
 class ChatSearchTextFieldView: NSView, LoadableNib {
     
-    var delegate: ChatSearchTextFieldViewDelegate?
+    weak var delegate: ChatSearchTextFieldViewDelegate?
 
     @IBOutlet var contentView: NSView!
     
