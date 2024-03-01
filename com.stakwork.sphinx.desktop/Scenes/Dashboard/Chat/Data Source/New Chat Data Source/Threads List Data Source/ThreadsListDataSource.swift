@@ -126,7 +126,10 @@ class ThreadsListDataSource : NSObject {
     func makeCellProvider(
         for collectionView: NSCollectionView
     ) -> DataSource.ItemProvider {
-        { (tableView, indexPath, dataSourceItem) -> NSCollectionViewItem in
+        { [weak self] (tableView, indexPath, dataSourceItem) -> NSCollectionViewItem? in
+            guard let self else {
+                return nil
+            }
             
             let cell = collectionView.makeItem(
                 withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ThreadListCollectionViewItem"),
