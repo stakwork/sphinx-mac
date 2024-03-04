@@ -195,7 +195,11 @@ class NewChatTableDataSource : NSObject {
         for collectionView: NSCollectionView
     ) -> DataSource.ItemProvider {
         { [weak self] (tableView, indexPath, dataSourceItem) -> NSCollectionViewItem? in
-            return self?.getCellFor(
+            guard let self else {
+                return nil
+            }
+            
+            return self.getCellFor(
                 dataSourceItem: dataSourceItem,
                 indexPath: indexPath
             )
