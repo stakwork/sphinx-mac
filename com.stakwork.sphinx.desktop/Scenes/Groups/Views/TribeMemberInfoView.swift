@@ -46,6 +46,12 @@ class TribeMemberInfoView: NSView, LoadableNib {
         pictureImageView.wantsLayer = true
         pictureImageView.rounded = true
         pictureImageView.layer?.cornerRadius = pictureImageView.frame.height / 2
+        
+        pictureTextField.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(handleCopy)))
+    }
+    
+    @objc func handleCopy() {
+        ClipboardHelper.copyToClipboard(text: pictureTextField.stringValue, message: "text.copied.clipboard".localized)
     }
     
     func configureWith(

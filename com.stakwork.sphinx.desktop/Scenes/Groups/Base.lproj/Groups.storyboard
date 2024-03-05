@@ -663,9 +663,6 @@
                                                                                 </textField>
                                                                                 <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" baseWritingDirection="leftToRight" alignment="left" state="on" translatesAutoresizingMaskIntoConstraints="NO" id="KqM-7w-RBK">
                                                                                     <rect key="frame" x="300" y="25" width="42" height="25"/>
-                                                                                    <connections>
-                                                                                        <action selector="listSwitchChanged:" target="vVt-hC-FbN" id="Dkr-J3-LOT"/>
-                                                                                    </connections>
                                                                                 </switch>
                                                                             </subviews>
                                                                             <constraints>
@@ -690,9 +687,6 @@
                                                                                 </textField>
                                                                                 <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="hCm-fw-ggX">
                                                                                     <rect key="frame" x="300" y="25" width="42" height="25"/>
-                                                                                    <connections>
-                                                                                        <action selector="approveSwitchChanged:" target="vVt-hC-FbN" id="afD-bs-Fvd"/>
-                                                                                    </connections>
                                                                                 </switch>
                                                                             </subviews>
                                                                             <constraints>
@@ -853,26 +847,20 @@
                         <outlet property="appUrlField" destination="VPI-3z-4SG" id="Snz-vh-VFC"/>
                         <outlet property="approveRequestSwitch" destination="hCm-fw-ggX" id="0G4-by-daw"/>
                         <outlet property="descriptionField" destination="OCs-aK-4Fc" id="jui-eb-2fM"/>
-                        <outlet property="descriptionTextField" destination="OCs-aK-4Fc" id="ZHH-3R-esB"/>
                         <outlet property="feedTypeButton" destination="wYg-iZ-ifB" id="Rd0-2V-fhH"/>
                         <outlet property="feedTypeField" destination="pvf-lj-MN0" id="dcj-VC-qZW"/>
                         <outlet property="feedUrlField" destination="YqS-GB-fIJ" id="Ila-x3-90J"/>
                         <outlet property="formScrollView" destination="hTL-uC-N86" id="xlg-Zr-3zr"/>
                         <outlet property="imageDraggingView" destination="dVQ-95-0fE" id="bSd-Yn-hLd"/>
                         <outlet property="imageField" destination="GDn-YX-Ghy" id="QB7-BE-Mxy"/>
-                        <outlet property="imageTextField" destination="GDn-YX-Ghy" id="Tfh-GZ-5uT"/>
                         <outlet property="listSwitch" destination="KqM-7w-RBK" id="1N9-Qf-H5C"/>
                         <outlet property="nameField" destination="Yny-ll-3cs" id="eLt-S9-YzJ"/>
-                        <outlet property="nameTextField" destination="Yny-ll-3cs" id="NJ7-LM-4lg"/>
                         <outlet property="pricePerMessageField" destination="cFu-pR-WTH" id="8JT-YJ-5o5"/>
-                        <outlet property="pricePerMessageTextField" destination="cFu-pR-WTH" id="aaW-U7-tlw"/>
                         <outlet property="priceToJoinField" destination="rut-Lh-02R" id="ANI-NC-xPr"/>
-                        <outlet property="priceToJoinTextField" destination="rut-Lh-02R" id="mHn-TM-Uby"/>
                         <outlet property="saveButtonContainer" destination="0If-pS-W7s" id="zud-sN-8De"/>
                         <outlet property="saveButtonLabel" destination="fTq-9N-Jkp" id="yBJ-Tx-3FE"/>
                         <outlet property="saveButtonLoadingWheel" destination="JLD-io-CJw" id="206-uu-yY0"/>
                         <outlet property="tagsField" destination="OYp-D9-YmP" id="I3j-Cy-c1F"/>
-                        <outlet property="tagsTextField" destination="OYp-D9-YmP" id="2xe-G7-JIu"/>
                         <outlet property="timeToStakeField" destination="f1T-wH-c93" id="DTK-kG-Avu"/>
                         <outlet property="tribeImageView" destination="mHB-qX-7Nu" id="Vsr-Rf-j10"/>
                         <outlet property="tribeTagsView" destination="f9l-BM-HmV" id="p27-QZ-cd1"/>
@@ -1437,6 +1425,7 @@
                                             <constraints>
                                                 <constraint firstItem="tix-lT-SOU" firstAttribute="top" secondItem="BmW-hY-63S" secondAttribute="top" id="0I8-wo-Hws"/>
                                                 <constraint firstAttribute="height" id="7Jz-hl-F0a"/>
+                                                <constraint firstAttribute="width" constant="414" id="Ulf-3q-h1R"/>
                                                 <constraint firstAttribute="trailing" secondItem="tix-lT-SOU" secondAttribute="trailing" constant="30" id="ctd-2f-quE"/>
                                                 <constraint firstItem="tix-lT-SOU" firstAttribute="leading" secondItem="BmW-hY-63S" secondAttribute="leading" constant="30" id="hqo-P8-blg"/>
                                             </constraints>
