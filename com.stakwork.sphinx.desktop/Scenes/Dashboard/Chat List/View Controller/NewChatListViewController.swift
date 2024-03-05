@@ -270,7 +270,11 @@ extension NewChatListViewController {
 extension NewChatListViewController {
 
     func makeCellProvider() -> DataSource.ItemProvider {
-        { (collectionView, indexPath, chatItem) -> NSCollectionViewItem? in
+        { [weak self] (collectionView, indexPath, chatItem) -> NSCollectionViewItem? in
+            guard let self else {
+                return nil
+            }
+            
             let section = CollectionViewSection.allCases[indexPath.section]
 
             switch section {
