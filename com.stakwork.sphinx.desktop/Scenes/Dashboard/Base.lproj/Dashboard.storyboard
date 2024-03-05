@@ -1010,7 +1010,6 @@
                         <outlet property="mentionsCollectionView" destination="llZ-ed-gHt" id="7m9-3j-WqT"/>
                         <outlet property="mentionsScrollView" destination="YNj-1S-7Oo" id="Dm4-w9-saU"/>
                         <outlet property="mentionsScrollViewHeightConstraint" destination="sLd-GY-zc3" id="b3D-2u-qRi"/>
-                        <outlet property="newMsgIndicatorView" destination="Yw2-rL-g5p" id="39T-tq-gDi"/>
                         <outlet property="newMsgsIndicatorView" destination="Yw2-rL-g5p" id="UTw-Ur-4Bf"/>
                         <outlet property="pinMessageDetailView" destination="ppD-YX-fSX" id="Ohq-B5-AhN"/>
                         <outlet property="pinMessageNotificationView" destination="Wch-GS-WUG" id="HZL-W4-Vx9"/>
