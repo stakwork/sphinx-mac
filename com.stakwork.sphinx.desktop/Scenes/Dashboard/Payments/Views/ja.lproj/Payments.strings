@@ -1,0 +1,51 @@
+
+/* Class = "NSTextFieldCell"; title = "No transactions found"; ObjectID = "0pr-TK-bNe"; */
+"0pr-TK-bNe.title" = "トランザクションが見つかりませんでした";
+
+/* Class = "NSTextFieldCell"; title = "Invoice Amount:"; ObjectID = "Ea7-H2-7Dh"; */
+"Ea7-H2-7Dh.title" = "請求金額:";
+
+/* Class = "NSButtonCell"; title = "close"; ObjectID = "GF6-UA-JAl"; */
+"GF6-UA-JAl.title" = "近い";
+
+/* Class = "NSTextFieldCell"; title = "Expiration Date:"; ObjectID = "LUL-D5-qRg"; */
+"LUL-D5-qRg.title" = "有効期限:";
+
+/* Class = "NSTextFieldCell"; title = "Receive Invoice Details"; ObjectID = "NXD-Ix-g5w"; */
+"NXD-Ix-g5w.title" = "請求書の詳細を受け取る";
+
+/* Class = "NSTextFieldCell"; title = "Invalid Memo"; ObjectID = "RUZ-2d-88J"; */
+"RUZ-2d-88J.title" = "無効なメモ";
+
+/* Class = "NSTextFieldCell"; title = "INVOICE STRING"; ObjectID = "RWs-aR-MeD"; */
+"RWs-aR-MeD.title" = "請求書文字列";
+
+/* Class = "NSButtonCell"; title = "Verify"; ObjectID = "TPC-Xj-wL1"; */
+"TPC-Xj-wL1.title" = "確認する";
+
+/* Class = "NSButtonCell"; title = "Pay"; ObjectID = "Y0k-xk-ZIY"; */
+"Y0k-xk-ZIY.title" = "支払う";
+
+/* Class = "NSButtonCell"; title = "Copy QR Code Image"; ObjectID = "dy9-Sq-zAd"; */
+"dy9-Sq-zAd.title" = "QRコード画像をコピー";
+
+/* Class = "NSTextFieldCell"; title = "Payment Request"; ObjectID = "f1b-6R-thb"; */
+"f1b-6R-thb.title" = "支払いリクエスト";
+
+/* Class = "NSTextFieldCell"; title = "Memo:"; ObjectID = "hhh-m3-2w8"; */
+"hhh-m3-2w8.title" = "メモ:";
+
+/* Class = "NSTextFieldCell"; title = "Invalid Expiration"; ObjectID = "ic3-5t-TBt"; */
+"ic3-5t-TBt.title" = "無効な有効期限";
+
+/* Class = "NSTextFieldCell"; title = "Invalid Amount"; ObjectID = "mJ1-kK-Dwy"; */
+"mJ1-kK-Dwy.title" = "無効な金額";
+
+/* Class = "NSButtonCell"; title = "Copy Invoice String"; ObjectID = "tA6-sn-INu"; */
+"tA6-sn-INu.title" = "請求書文字列をコピー";
+
+/* Class = "NSTextFieldCell"; title = "Receive Invoice Details"; ObjectID = "wNu-2z-sZt"; */
+"wNu-2z-sZt.title" = "請求書の詳細を受け取る";
+
+/* Class = "NSTextFieldCell"; title = "Pay Invoice"; ObjectID = "yRh-f6-Lic"; */
+"yRh-f6-Lic.title" = "請求書の支払い";

@@ -1,0 +1,24 @@
+/* Class = "NSTextFieldCell"; title = "Address"; ObjectID = "Jsc-Su-47q"; */
+"Jsc-Su-47q.title" = "アドレス *";
+
+/* Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "bfZ-y3-PQn"; */
+"bfZ-y3-PQn.title" = "ニックネーム *";
+
+"aRB-lU-d5K.title" = "ルートヒント";
+
+/* Class = "NSButtonCell"; title = "SAVE TO CONTACTS"; ObjectID = "qpE-NU-eH4"; */
+"qpE-NU-eH4.title" = "連絡先に保存";
+
+"7G5-aj-aaF.title" = "Sphinx初心者";
+
+"ocm-ie-0pU.title" = "Sphinxをすでにご利用中";
+
+"OeN-5Y-GaV.text" = "ニックネーム";
+
+"YQe-Lu-Lzg.text" = "メッセージを含める";
+
+"I6B-p7-hv8.text" = "推定コスト";
+
+"NsH-mO-gPm.text" = "sat";  // Assuming 'sat' refers to 'Satoshis'
+
+"MQf-ub-eCW.title" = "招待を作成する";  

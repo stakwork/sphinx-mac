@@ -1,0 +1,15 @@
+
+/* Class = "NSButtonCell"; title = "SELECT ALL"; ObjectID = "Zqp-JM-Q4y"; */
+"Zqp-JM-Q4y.title" = "すべて選択";
+
+/* Class = "NSTextFieldCell"; title = "GROUP PAYMENT"; ObjectID = "egw-dG-KeU"; */
+"egw-dG-KeU.title" = "グループ支払い";
+
+/* Class = "NSTextFieldCell"; title = "NEXT"; ObjectID = "meo-cf-LVB"; */
+"meo-cf-LVB.title" = "次へ";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Search Group Members"; ObjectID = "vUE-ed-Edw"; */
+"vUE-ed-Edw.placeholderString" = "グループメンバーを検索";
+
+/* Class = "NSTextFieldCell"; title = "GROUP MEMBERS"; ObjectID = "wLK-aH-PyB"; */
+"wLK-aH-PyB.title" = "グループメンバー";
