@@ -16,9 +16,19 @@ class NotificationLevelView: NSView, LoadableNib {
     @IBOutlet weak var onlyMentionsBox: NSBox!
     @IBOutlet weak var muteChatBox: NSBox!
     
+    @IBOutlet weak var seeAllDivider: NSBox!
+    @IBOutlet weak var onlyMentionsDivider: NSBox!
+    @IBOutlet weak var muteChatDivider: NSBox!
+    
+    @IBOutlet weak var seeAllLabel: NSTextField!
+    @IBOutlet weak var onlyMentionsLabel: NSTextField!
+    @IBOutlet weak var muteChatLabel: NSTextField!
+    
     @IBOutlet weak var closeButton: CustomButton!
     
     var boxes: [NSBox] = []
+    var dividers: [NSBox] = []
+    var labels: [NSTextField] = []
     
     var notificationLevelOptions: [NotificationLevel] = [
         NotificationLevel(title: "see-all".localized, selected: true),
@@ -58,6 +68,8 @@ class NotificationLevelView: NSView, LoadableNib {
         closeButton.cursor = .pointingHand
         
         boxes = [seeAllBox, onlyMentionsBox, muteChatBox]
+        dividers = [seeAllDivider, onlyMentionsDivider, muteChatDivider]
+        labels = [seeAllLabel, onlyMentionsLabel, muteChatLabel]
     }
     
     @IBAction func closeButtonClicked(_ sender: CustomButton) {
@@ -95,9 +107,14 @@ class NotificationLevelView: NSView, LoadableNib {
     }
     
     func reloadViews(selectedLevel: Int) {
-        for (index, box) in boxes.enumerated() {
+        for (index, divider) in dividers.enumerated() {
             let selected = index == selectedLevel
-            box.fillColor = selected ? NSColor.Sphinx.PrimaryBlue : NSColor.clear
+            divider.fillColor = selected ? NSColor.Sphinx.PrimaryBlue : NSColor.Sphinx.LightDivider
+        }
+        
+        for (index, label) in labels.enumerated() {
+            let selected = index == selectedLevel
+            label.textColor = selected ? NSColor.Sphinx.Text : NSColor.Sphinx.SecondaryText
         }
     }
 }

@@ -1,0 +1,6 @@
+
+/* Class = "NSTextFieldCell"; title = "Unpin Message"; ObjectID = "UNL-E8-MSQ"; */
+"UNL-E8-MSQ.title" = "取消固定消息";
+
+/* Class = "NSTextFieldCell"; title = "Pinned Message"; ObjectID = "WYy-Mn-DRx"; */
+"WYy-Mn-DRx.title" = "已固定的消息";

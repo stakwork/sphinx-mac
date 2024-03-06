@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner">
+        <customObject id="-2" userLabel="File's Owner" customClass="PodcastPlayerCollectionViewItem" customModule="Sphinx" customModuleProvider="target">
             <connections>
                 <outlet property="audioLoadingWheel" destination="tj6-2r-uMr" id="oY6-Cn-ORE"/>
-                <outlet property="boostButtonView" destination="cvm-EV-YVC" id="AUR-cc-qTe"/>
+                <outlet property="boostButtonView" destination="cvm-EV-YVC" id="H8o-mQ-66i"/>
                 <outlet property="currentTimeDot" destination="Gje-cP-dDc" id="3ot-Dz-GHF"/>
                 <outlet property="currentTimeLabel" destination="j3a-5W-Ger" id="AxP-7T-Lsx"/>
                 <outlet property="durationLabel" destination="aCz-Sz-VhK" id="LhT-Ea-oEv"/>
@@ -74,7 +74,7 @@
                         <constraint firstAttribute="height" constant="76" id="mcu-AB-GA9"/>
                     </constraints>
                 </customView>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" mirrorLayoutDirectionWhenInternationalizing="never" translatesAutoresizingMaskIntoConstraints="NO" id="u4B-WC-vJh">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" mirrorLayoutDirectionWhenInternationalizing="never" translatesAutoresizingMaskIntoConstraints="NO" id="u4B-WC-vJh">
                     <rect key="frame" x="30" y="194" width="340" height="26"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="xfc-8c-N9L"/>
@@ -129,7 +129,7 @@
                 <progressIndicator hidden="YES" wantsLayer="YES" maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="tj6-2r-uMr">
                     <rect key="frame" x="294" y="122" width="16" height="16"/>
                 </progressIndicator>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="j3a-5W-Ger">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="j3a-5W-Ger">
                     <rect key="frame" x="30" y="122" width="57" height="15"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="00:00:00" id="RzW-4K-am1">
                         <font key="font" metaFont="cellTitle"/>
@@ -137,7 +137,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aCz-Sz-VhK">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aCz-Sz-VhK">
                     <rect key="frame" x="313" y="122" width="57" height="15"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="00:00:00" id="p6h-tj-Fjl">
                         <font key="font" metaFont="cellTitle"/>
@@ -147,15 +147,15 @@
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="epe-yP-uMg" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                     <rect key="frame" x="32" y="20" width="28" height="58"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="58" id="0cN-8g-fhg"/>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="28" id="Yic-lH-qeX"/>
-                    </constraints>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="clipIcon" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="wew-Xo-uZm">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system" size="40"/>
                     </buttonCell>
                     <color key="contentTintColor" name="MainBottomIcons"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="58" id="0cN-8g-fhg"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="28" id="Yic-lH-qeX"/>
+                    </constraints>
                     <connections>
                         <action selector="controlButtonTouched:" target="-2" id="eYU-B8-1n9"/>
                     </connections>
@@ -163,17 +163,17 @@
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="wkU-Xv-7th">
                     <rect key="frame" x="60" y="20" width="111" height="57"/>
                     <subviews>
-                        <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="ZIV-Ih-Thl">
+                        <button tag="1" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZIV-Ih-Thl">
                             <rect key="frame" x="31" y="4" width="50" height="50"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="50" id="KtE-Sf-601"/>
-                                <constraint firstAttribute="height" constant="50" id="X50-Pw-IUG"/>
-                            </constraints>
                             <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="back15Icon" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="1dS-Vb-dDq">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                             <color key="contentTintColor" name="MainBottomIcons"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="KtE-Sf-601"/>
+                                <constraint firstAttribute="height" constant="50" id="X50-Pw-IUG"/>
+                            </constraints>
                             <connections>
                                 <action selector="controlButtonTouched:" target="-2" id="olk-NF-OpZ"/>
                             </connections>
@@ -195,17 +195,17 @@
                     </constraints>
                     <color key="fillColor" name="ReceivedIcon"/>
                 </box>
-                <button verticalHuggingPriority="750" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="una-Hn-RvR" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                <button tag="3" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="una-Hn-RvR" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                     <rect key="frame" x="171" y="20" width="58" height="57"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="57" id="kN5-bE-bYt"/>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="58" id="ktH-Ya-Q3K"/>
-                    </constraints>
                     <buttonCell key="cell" type="square" title="pause" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="gbR-Nf-Cou" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" size="40" name="MaterialIcons-Regular"/>
                     </buttonCell>
                     <color key="contentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="57" id="kN5-bE-bYt"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="58" id="ktH-Ya-Q3K"/>
+                    </constraints>
                     <connections>
                         <action selector="controlButtonTouched:" target="-2" id="wdt-BH-ySk"/>
                     </connections>
@@ -213,17 +213,17 @@
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="zXx-n0-mtn">
                     <rect key="frame" x="229" y="20" width="106" height="57"/>
                     <subviews>
-                        <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="hLr-fc-ffX">
+                        <button tag="2" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hLr-fc-ffX">
                             <rect key="frame" x="28" y="4" width="50" height="50"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="50" id="4cl-4m-9aC"/>
-                                <constraint firstAttribute="height" constant="50" id="uo8-JA-pbq"/>
-                            </constraints>
                             <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="forw30Icon" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="udi-Jo-tOU">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                             <color key="contentTintColor" name="MainBottomIcons"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="4cl-4m-9aC"/>
+                                <constraint firstAttribute="height" constant="50" id="uo8-JA-pbq"/>
+                            </constraints>
                             <connections>
                                 <action selector="controlButtonTouched:" target="-2" id="OA2-UB-U1b"/>
                             </connections>
@@ -243,9 +243,6 @@
                 </customView>
                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EfV-pV-zKD">
                     <rect key="frame" x="170" y="83" width="62" height="25"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="55" id="qCk-Sy-k6W"/>
-                    </constraints>
                     <popUpButtonCell key="cell" type="push" title="1.5x" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="vvz-nS-T2e" id="nWR-JK-nFl">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -257,6 +254,9 @@
                             </items>
                         </menu>
                     </popUpButtonCell>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="55" id="qCk-Sy-k6W"/>
+                    </constraints>
                     <connections>
                         <action selector="speedValueChanged:" target="-2" id="nLs-pO-r0R"/>
                     </connections>

@@ -1,0 +1,5 @@
+/* Class = "NSButtonCell"; title = "RECENT"; ObjectID = "ICg-3L-5XT"; */
+"ICg-3L-5XT.title" = "最近";   //  最近 (saikin)
+
+/* Class = "NSTextFieldCell"; placeholderString = "Search GIFs on Giphy"; ObjectID = "J9d-0e-Zcb"; */
+"J9d-0e-Zcb.placeholderString" = "GiphyでGIFを検索";  // GiphyでGIFを検索 (Giphy de GIF o kensaku)

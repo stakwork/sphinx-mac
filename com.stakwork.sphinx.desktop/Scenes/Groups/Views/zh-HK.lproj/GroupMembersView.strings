@@ -1,0 +1,14 @@
+/* Class = "NSButtonCell"; title = "全选"; ObjectID = "Zqp-JM-Q4y"; */
+"Zqp-JM-Q4y.title" = "全选";
+
+/* Class = "NSTextFieldCell"; title = "群组付款"; ObjectID = "egw-dG-KeU"; */
+"egw-dG-KeU.title" = "群组付款";
+
+/* Class = "NSTextFieldCell"; title = "下一步"; ObjectID = "meo-cf-LVB"; */
+"meo-cf-LVB.title" = "下一步";
+
+/* Class = "NSTextFieldCell"; placeholderString = "搜索群组成员"; ObjectID = "vUE-ed-Edw"; */
+"vUE-ed-Edw.placeholderString" = "搜索群组成员";
+
+/* Class = "NSTextFieldCell"; title = "群组成员"; ObjectID = "wLK-aH-PyB"; */
+"wLK-aH-PyB.title" = "群组成员";

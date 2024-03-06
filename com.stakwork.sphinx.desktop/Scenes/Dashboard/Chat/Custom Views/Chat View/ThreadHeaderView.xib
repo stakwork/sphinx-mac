@@ -215,7 +215,7 @@
                     </customSpacing>
                 </stackView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="L6P-gE-jRx" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                    <rect key="frame" x="1148" y="164" width="26" height="22"/>
+                    <rect key="frame" x="1158" y="115" width="26" height="22"/>
                     <buttonCell key="cell" type="bevel" title="" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="1lQ-0m-pTW" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" size="22" name="MaterialIcons-Regular"/>
@@ -244,14 +244,14 @@
                 <constraint firstItem="xTN-ih-vgo" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="Sww-CA-fCC"/>
                 <constraint firstAttribute="bottom" secondItem="6xK-O0-OVb" secondAttribute="bottom" id="U7W-tP-MvG"/>
                 <constraint firstAttribute="bottom" secondItem="6pb-0h-aP6" secondAttribute="bottom" id="WMZ-ai-4Zb"/>
-                <constraint firstItem="L6P-gE-jRx" firstAttribute="top" secondItem="6pb-0h-aP6" secondAttribute="top" id="Ygl-VV-cte"/>
-                <constraint firstItem="L6P-gE-jRx" firstAttribute="trailing" secondItem="6pb-0h-aP6" secondAttribute="trailing" id="mXd-gF-8Rb"/>
+                <constraint firstItem="L6P-gE-jRx" firstAttribute="trailing" secondItem="6pb-0h-aP6" secondAttribute="trailing" constant="10" id="mXd-gF-8Rb"/>
                 <constraint firstItem="rDL-y8-IEm" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="p2z-lc-yp0"/>
                 <constraint firstAttribute="trailing" secondItem="6pb-0h-aP6" secondAttribute="trailing" constant="62" id="pj3-TF-RfW"/>
                 <constraint firstAttribute="trailing" secondItem="xTN-ih-vgo" secondAttribute="trailing" constant="16" id="q48-HG-1px"/>
                 <constraint firstItem="6xK-O0-OVb" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="qjC-my-6XK"/>
                 <constraint firstAttribute="trailing" secondItem="6xK-O0-OVb" secondAttribute="trailing" id="r3s-R6-t2l"/>
                 <constraint firstItem="6pb-0h-aP6" firstAttribute="top" secondItem="rDL-y8-IEm" secondAttribute="bottom" id="yOa-oe-jsF"/>
+                <constraint firstItem="L6P-gE-jRx" firstAttribute="centerY" secondItem="xTN-ih-vgo" secondAttribute="centerY" id="zM8-1q-bwc"/>
                 <constraint firstItem="6xK-O0-OVb" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="zdO-El-pGa"/>
             </constraints>
             <point key="canvasLocation" x="-10.5" y="153.5"/>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -48,7 +48,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView id="Hz6-mo-xeY">
+        <customView id="Hz6-mo-xeY" customClass="ThreadCollectionViewItemContentView" customModule="Sphinx" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="930" height="1658"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
@@ -393,6 +393,12 @@
                 <constraint firstItem="Viu-pF-fdW" firstAttribute="top" secondItem="YWa-SY-0um" secondAttribute="top" id="vhW-uG-LUF"/>
                 <constraint firstItem="2Bm-CJ-TFa" firstAttribute="bottom" secondItem="PqZ-pq-8i0" secondAttribute="bottom" id="xQD-mN-BLE"/>
             </constraints>
+            <connections>
+                <outlet property="lastMessageHeaderView" destination="LIg-v5-fUP" id="Sco-Ds-ok1"/>
+                <outlet property="lastReplyTextMessageView" destination="jgc-0k-iDb" id="Sga-hg-kzS"/>
+                <outlet property="messageView" destination="4D1-XE-gCv" id="Lui-Lo-vTo"/>
+                <outlet property="repliesView" destination="Ybx-OY-dzA" id="P7X-hO-0mh"/>
+            </connections>
             <point key="canvasLocation" x="68" y="212.5"/>
         </customView>
         <customObject id="AeR-1v-L9M" customClass="ThreadCollectionViewItem" customModule="Sphinx" customModuleProvider="target"/>

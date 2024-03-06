@@ -9,8 +9,18 @@
 import Foundation
 
 class DeepLinksHandlerHelper {
+    
     static func handleLinkQueryFrom(url: URL) {
-        if let query = url.query, UserData.sharedInstance.isUserLogged() {
+        if !UserData.sharedInstance.isUserLogged() {
+            return
+        }
+        
+        if url.absoluteString.starts(with: API.kVideoCallServer) {
+            WindowsManager.sharedInstance.showCallWindow(link: url.absoluteString)
+            return
+        }
+        
+        if let query = url.query {
             if let action = url.getLinkAction() {
                 switch(action) {
                 case "tribe":
@@ -44,6 +54,10 @@ class DeepLinksHandlerHelper {
                 case "share_contact":
                     let userInfo: [String: Any] = ["query" : query]
                     NotificationCenter.default.post(name: .onShareContactDeeplink, object: nil, userInfo: userInfo)
+                case "call":
+                    if let link = url.getCallLink() {
+                        WindowsManager.sharedInstance.showCallWindow(link: link)
+                    }
                 default:
                     break
                 }

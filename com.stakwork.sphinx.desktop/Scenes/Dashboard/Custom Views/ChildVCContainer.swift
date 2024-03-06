@@ -46,7 +46,7 @@ class ChildVCContainer: NSView, LoadableNib {
     let groupMembersSize = CGSize(width: 380, height: 620)
     let paymentTemplatesSize = CGSize(width: 560, height: 620)
     let tribeMemberPopupSize = CGSize(width: 280, height: 350)
-    let notificationLevelPopupSize = CGSize(width: 280, height: 202)
+    let notificationLevelPopupSize = CGSize(width: 300, height: 230)
     
     var parentVC : NSViewController? = nil
     var childVC : NSViewController? = nil

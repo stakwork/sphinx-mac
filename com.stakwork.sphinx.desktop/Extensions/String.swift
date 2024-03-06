@@ -123,6 +123,12 @@ extension String {
         }
     }
     
+    var callLinkDeepLink : String {
+        get {
+            return "sphinx.chat://?action=call&link=\(self)"
+        }
+    }
+    
     func removeProtocol() -> String {
         return self.replacingOccurrences(of: "http://", with: "").replacingOccurrences(of: "https://", with: "")
     }
@@ -445,7 +451,10 @@ extension String {
     
     var callRoom : String {
         if let range = self.lowerClean.range(of: "sphinx.call.") {
-            let room = self.lowerClean[range.lowerBound..<self.endIndex]
+            let endIndex = self.index(of: "#") ?? self.endIndex
+            let roomWithParams = String(self.lowerClean[range.lowerBound..<endIndex])
+            let queryEndIndex = roomWithParams.index(of: "?") ?? self.endIndex
+            let room = roomWithParams.lowerClean[roomWithParams.startIndex..<queryEndIndex]
             return String(room)
         }
         return self.lowerClean

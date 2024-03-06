@@ -38,6 +38,17 @@ extension URL {
         return nil
     }
     
+    func getCallLink() -> String? {
+        let link = self.absoluteString
+        let components = link.components(separatedBy: "link=")
+        
+        if components.count > 1 {
+            return components[1]
+        }
+        
+        return link
+    }
+    
     var domain: String? {
         get {
             if let hostName = self.host  {

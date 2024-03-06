@@ -9,7 +9,7 @@
 import Foundation
 import AppKit
 
-protocol ChatMentionAutocompleteDelegate{
+protocol ChatMentionAutocompleteDelegate: AnyObject {
     func processAutocomplete(text:String)
     func processGeneralPurposeMacro(action: @escaping ()->())
     func shouldUpdateTableHeightTo(value: CGFloat)
@@ -24,7 +24,7 @@ class ChatMentionAutocompleteDataSource : NSObject {
     var tableView : NSCollectionView!
     var scrollView: NSScrollView!
     var viewWidth: CGFloat = 0.0
-    var delegate: ChatMentionAutocompleteDelegate!
+    weak var delegate: ChatMentionAutocompleteDelegate!
     var mentionCellHeight :CGFloat = 50.0
     var selectedRow : Int = 0
     

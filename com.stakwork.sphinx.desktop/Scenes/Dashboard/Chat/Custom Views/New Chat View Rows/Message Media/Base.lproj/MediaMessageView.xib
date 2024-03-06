@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,7 +21,6 @@
                 <outlet property="mediaNotAvailableIcon" destination="gC9-kS-sqv" id="ZbT-9K-MnP"/>
                 <outlet property="mediaNotAvailableView" destination="5r8-y2-HKf" id="Wwd-E4-NsG"/>
                 <outlet property="paidContentOverlay" destination="dtH-2D-HLo" id="3gO-at-Tk9"/>
-                <outlet property="trailingMarginConstraint" destination="nyH-ki-1Mx" id="ydW-lA-Mre"/>
                 <outlet property="videoOverlay" destination="v91-6y-tbk" id="dmp-YK-4Td"/>
             </connections>
         </customObject>
@@ -41,7 +40,7 @@
                         <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dtH-2D-HLo">
                             <rect key="frame" x="0.0" y="0.0" width="296" height="296"/>
                             <subviews>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zF2-5t-5h3">
+                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zF2-5t-5h3">
                                     <rect key="frame" x="134" y="136" width="29" height="25"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" title="lock" id="3Ka-OK-LlV">
                                         <font key="font" size="25" name="MaterialIcons-Regular"/>
@@ -49,7 +48,7 @@
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dIW-j4-hzf">
+                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dIW-j4-hzf">
                                     <rect key="frame" x="115" y="120" width="66" height="11"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Pay to Unlock" id="NVo-QT-LFv">
                                         <font key="font" size="10" name="Roboto-Medium"/>
@@ -99,15 +98,15 @@
                             <subviews>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K9h-Ea-qev">
                                     <rect key="frame" x="116" y="119" width="64" height="58"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="58" id="1mg-JO-zdB"/>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="58" id="SBh-9D-Omw"/>
-                                    </constraints>
                                     <buttonCell key="cell" type="square" title="play_circle_outline" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="b6m-0J-18X">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" size="60" name="MaterialIcons-Regular"/>
                                     </buttonCell>
                                     <color key="contentTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="58" id="1mg-JO-zdB"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="58" id="SBh-9D-Omw"/>
+                                    </constraints>
                                 </button>
                             </subviews>
                             <constraints>
@@ -118,7 +117,7 @@
                         <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5r8-y2-HKf">
                             <rect key="frame" x="0.0" y="0.0" width="296" height="296"/>
                             <subviews>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gC9-kS-sqv">
+                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gC9-kS-sqv">
                                     <rect key="frame" x="126" y="128" width="44" height="40"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" title="videocam" id="91b-OS-rRl">
                                         <font key="font" size="40" name="MaterialIcons-Regular"/>
@@ -169,13 +168,13 @@
                 </customView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="01I-5Q-iVg" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="300" id="fOu-Nh-3tw"/>
-                    </constraints>
                     <buttonCell key="cell" type="square" title="Button" bezelStyle="shadowlessSquare" alignment="center" transparent="YES" imageScaling="proportionallyDown" inset="2" id="bp6-cY-obp">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="300" id="fOu-Nh-3tw"/>
+                    </constraints>
                     <connections>
                         <action selector="mediaButtonClicked:" target="-2" id="Ytd-Qm-7XA"/>
                     </connections>
