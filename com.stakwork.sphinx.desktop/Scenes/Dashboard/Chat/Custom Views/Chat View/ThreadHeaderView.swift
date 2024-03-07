@@ -50,6 +50,8 @@ class ThreadHeaderView: NSView, LoadableNib {
     @IBOutlet weak var textContainer: NSView!
     @IBOutlet weak var messageLabel: MessageTextField!
     
+    @IBOutlet weak var newMessageLabelScrollView: DisabledScrollView!
+    @IBOutlet var newMessageLabel: NSTextView!
     @IBOutlet weak var closeButton: CustomButton!
     @IBOutlet weak var optionsButton: CustomButton!
     
@@ -140,10 +142,13 @@ class ThreadHeaderView: NSView, LoadableNib {
         
         mediaTextContainer.isHidden = false
         textContainer.isHidden = false
+        messageLabel.isHidden = true
+        newMessageLabel.isEditable = false
         
         if threadOriginalMessage.linkMatches.isEmpty {
             messageLabel.attributedStringValue = NSMutableAttributedString(string: "")
-
+            newMessageLabel.string = threadOriginalMessage.text
+            newMessageLabel.font = threadOriginalMessage.font
             messageLabel.stringValue = threadOriginalMessage.text
             messageLabel.font = threadOriginalMessage.font
         } else {
@@ -195,6 +200,8 @@ class ThreadHeaderView: NSView, LoadableNib {
 
             messageLabel.attributedStringValue = attributedString
             messageLabel.isEnabled = true
+            newMessageLabel.string = attributedString.string
+            newMessageLabel.textStorage?.setAttributedString(attributedString)
         }
     }
     
@@ -202,6 +209,8 @@ class ThreadHeaderView: NSView, LoadableNib {
         messageMedia: BubbleMessageLayoutState.MessageMedia?,
         mediaData: MessageTableCellState.MediaData?
     ) {
+        newMessageLabelScrollView.disabled = true
+        
         if let messageMedia = messageMedia {
             
             messageMediaView.configureWith(
@@ -211,6 +220,7 @@ class ThreadHeaderView: NSView, LoadableNib {
                 and: self
             )
             
+            newMessageLabelScrollView.disabled = false
             messageMediaView.isHidden = false
             mediaTextContainer.isHidden = false
             messageMediaContainer.isHidden = false

@@ -22,6 +22,8 @@
                 <outlet property="messageLabel" destination="o0s-gd-MXD" id="Pu0-oy-q0M"/>
                 <outlet property="messageMediaContainer" destination="Xl7-aO-kUk" id="53n-89-SG8"/>
                 <outlet property="messageMediaView" destination="6lH-Ev-Ucz" id="CM8-q7-LBp"/>
+                <outlet property="newMessageLabel" destination="8wc-Bi-exs" id="yLD-SM-vHG"/>
+                <outlet property="newMessageLabelScrollView" destination="yRy-te-G3m" id="tc7-Jy-gBA"/>
                 <outlet property="optionsButton" destination="L6P-gE-jRx" id="asx-9p-HNl"/>
                 <outlet property="textContainer" destination="oDd-gg-HZ8" id="9cG-Gn-1iY"/>
                 <outlet property="userNameLabel" destination="9SH-Z3-1PP" id="9qx-H8-tLr"/>
@@ -52,17 +54,17 @@
                             </constraints>
                         </customView>
                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9SH-Z3-1PP">
-                            <rect key="frame" x="66" y="34" width="44" height="15"/>
+                            <rect key="frame" x="66" y="33" width="44" height="16"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="Tomas" id="Jx9-3T-N61">
-                                <font key="font" size="13" name="Roboto-Medium"/>
+                                <font key="font" metaFont="system"/>
                                 <color key="textColor" name="Text"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pLk-vm-4AH">
-                            <rect key="frame" x="66" y="17" width="51" height="13"/>
+                            <rect key="frame" x="66" y="17" width="54" height="14"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="12:00 PM" id="slQ-kw-9cH">
-                                <font key="font" size="11" name="Roboto-Regular"/>
+                                <font key="font" metaFont="smallSystem"/>
                                 <color key="textColor" name="SecondaryText"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
@@ -134,10 +136,48 @@
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="oDd-gg-HZ8">
                                             <rect key="frame" x="0.0" y="50" width="758" height="136"/>
                                             <subviews>
+                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="clM-Wn-u17">
+                                                    <rect key="frame" x="10" y="0.0" width="748" height="136"/>
+                                                    <subviews>
+                                                        <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRy-te-G3m" customClass="DisabledScrollView" customModule="Sphinx" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="16" width="748" height="120"/>
+                                                            <clipView key="contentView" drawsBackground="NO" id="aRe-Am-Wey">
+                                                                <rect key="frame" x="0.0" y="0.0" width="748" height="120"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                <subviews>
+                                                                    <textView wantsLayer="YES" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="8wc-Bi-exs">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="732" height="120"/>
+                                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" red="0.109803915" green="0.13333332540000001" blue="0.1725490093" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                        <size key="minSize" width="732" height="120"/>
+                                                                        <size key="maxSize" width="781" height="10000000"/>
+                                                                        <color key="insertionPointColor" name="textInsertionPointColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textView>
+                                                                </subviews>
+                                                            </clipView>
+                                                            <edgeInsets key="contentInsets" left="0.0" right="16" top="0.0" bottom="0.0"/>
+                                                            <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="x6L-L0-blS">
+                                                                <rect key="frame" x="-100" y="-100" width="240" height="16"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                            </scroller>
+                                                            <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="1ie-lh-WP7">
+                                                                <rect key="frame" x="716" y="0.0" width="16" height="120"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                            </scroller>
+                                                        </scrollView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="yRy-te-G3m" secondAttribute="trailing" id="5CE-YO-JV3"/>
+                                                        <constraint firstItem="yRy-te-G3m" firstAttribute="top" secondItem="clM-Wn-u17" secondAttribute="top" id="7MG-sv-Ok7"/>
+                                                        <constraint firstItem="yRy-te-G3m" firstAttribute="leading" secondItem="clM-Wn-u17" secondAttribute="leading" id="BPW-Gh-LLi"/>
+                                                        <constraint firstAttribute="bottom" secondItem="yRy-te-G3m" secondAttribute="bottom" constant="16" id="VQw-wF-bKM"/>
+                                                    </constraints>
+                                                </customView>
                                                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="o0s-gd-MXD" customClass="MessageTextField" customModule="Sphinx" customModuleProvider="target">
                                                     <rect key="frame" x="14" y="16" width="746" height="120"/>
                                                     <textFieldCell key="cell" selectable="YES" title="Label" id="wQx-gQ-7cJ">
-                                                        <font key="font" size="16" name="Roboto-Regular"/>
+                                                        <font key="font" metaFont="system" size="16"/>
                                                         <color key="textColor" name="Text"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -148,6 +188,10 @@
                                                 <constraint firstAttribute="trailing" secondItem="o0s-gd-MXD" secondAttribute="trailing" id="6oX-0I-Cv6"/>
                                                 <constraint firstItem="o0s-gd-MXD" firstAttribute="top" secondItem="oDd-gg-HZ8" secondAttribute="top" id="KwG-lv-xgB"/>
                                                 <constraint firstAttribute="bottom" secondItem="o0s-gd-MXD" secondAttribute="bottom" constant="16" id="cX0-DG-YiD"/>
+                                                <constraint firstItem="clM-Wn-u17" firstAttribute="top" secondItem="oDd-gg-HZ8" secondAttribute="top" id="oAn-rN-olt"/>
+                                                <constraint firstAttribute="bottom" secondItem="clM-Wn-u17" secondAttribute="bottom" id="oxc-6y-cak"/>
+                                                <constraint firstItem="clM-Wn-u17" firstAttribute="leading" secondItem="oDd-gg-HZ8" secondAttribute="leading" constant="10" id="taq-97-Ibp"/>
+                                                <constraint firstAttribute="trailing" secondItem="clM-Wn-u17" secondAttribute="trailing" id="zzp-AG-dqc"/>
                                             </constraints>
                                         </customView>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="02m-U3-tfS">
@@ -254,7 +298,7 @@
                 <constraint firstItem="L6P-gE-jRx" firstAttribute="centerY" secondItem="xTN-ih-vgo" secondAttribute="centerY" id="zM8-1q-bwc"/>
                 <constraint firstItem="6xK-O0-OVb" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="zdO-El-pGa"/>
             </constraints>
-            <point key="canvasLocation" x="-10.5" y="153.5"/>
+            <point key="canvasLocation" x="-11" y="153.5"/>
         </customView>
     </objects>
     <resources>
