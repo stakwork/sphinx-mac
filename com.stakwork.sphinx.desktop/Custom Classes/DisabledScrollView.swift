@@ -9,12 +9,18 @@
 import Cocoa
 
 class DisabledScrollView: NSScrollView {
+    
+    var disabled = true
 
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
     }
     
     override func scrollWheel(with event: NSEvent) {
-        nextResponder?.scrollWheel(with: event)
+        if disabled {
+            nextResponder?.scrollWheel(with: event)
+        } else {
+            super.scrollWheel(with: event)
+        }
     }
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,6 +23,7 @@
                 <outlet property="messageMediaContainer" destination="Xl7-aO-kUk" id="53n-89-SG8"/>
                 <outlet property="messageMediaView" destination="6lH-Ev-Ucz" id="CM8-q7-LBp"/>
                 <outlet property="newMessageLabel" destination="8wc-Bi-exs" id="yLD-SM-vHG"/>
+                <outlet property="newMessageLabelScrollView" destination="yRy-te-G3m" id="tc7-Jy-gBA"/>
                 <outlet property="optionsButton" destination="L6P-gE-jRx" id="asx-9p-HNl"/>
                 <outlet property="textContainer" destination="oDd-gg-HZ8" id="9cG-Gn-1iY"/>
                 <outlet property="userNameLabel" destination="9SH-Z3-1PP" id="9qx-H8-tLr"/>
@@ -138,38 +139,39 @@
                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="clM-Wn-u17">
                                                     <rect key="frame" x="10" y="0.0" width="748" height="136"/>
                                                     <subviews>
-                                                        <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRy-te-G3m">
-                                                            <rect key="frame" x="0.0" y="9" width="742" height="127"/>
+                                                        <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRy-te-G3m" customClass="DisabledScrollView" customModule="Sphinx" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="16" width="748" height="120"/>
                                                             <clipView key="contentView" drawsBackground="NO" id="aRe-Am-Wey">
-                                                                <rect key="frame" x="0.0" y="0.0" width="742" height="127"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="748" height="120"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
                                                                     <textView wantsLayer="YES" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="8wc-Bi-exs">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="742" height="127"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="732" height="120"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" red="0.109803915" green="0.13333332540000001" blue="0.1725490093" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                        <size key="minSize" width="742" height="127"/>
+                                                                        <size key="minSize" width="732" height="120"/>
                                                                         <size key="maxSize" width="781" height="10000000"/>
                                                                         <color key="insertionPointColor" name="textInsertionPointColor" catalog="System" colorSpace="catalog"/>
                                                                     </textView>
                                                                 </subviews>
                                                             </clipView>
+                                                            <edgeInsets key="contentInsets" left="0.0" right="16" top="0.0" bottom="0.0"/>
                                                             <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="x6L-L0-blS">
                                                                 <rect key="frame" x="-100" y="-100" width="240" height="16"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </scroller>
                                                             <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="1ie-lh-WP7">
-                                                                <rect key="frame" x="726" y="0.0" width="16" height="127"/>
+                                                                <rect key="frame" x="716" y="0.0" width="16" height="120"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </scroller>
                                                         </scrollView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="yRy-te-G3m" secondAttribute="trailing" constant="6" id="5CE-YO-JV3"/>
+                                                        <constraint firstAttribute="trailing" secondItem="yRy-te-G3m" secondAttribute="trailing" id="5CE-YO-JV3"/>
                                                         <constraint firstItem="yRy-te-G3m" firstAttribute="top" secondItem="clM-Wn-u17" secondAttribute="top" id="7MG-sv-Ok7"/>
                                                         <constraint firstItem="yRy-te-G3m" firstAttribute="leading" secondItem="clM-Wn-u17" secondAttribute="leading" id="BPW-Gh-LLi"/>
-                                                        <constraint firstAttribute="bottom" secondItem="yRy-te-G3m" secondAttribute="bottom" constant="9" id="VQw-wF-bKM"/>
+                                                        <constraint firstAttribute="bottom" secondItem="yRy-te-G3m" secondAttribute="bottom" constant="16" id="VQw-wF-bKM"/>
                                                     </constraints>
                                                 </customView>
                                                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="o0s-gd-MXD" customClass="MessageTextField" customModule="Sphinx" customModuleProvider="target">
@@ -257,10 +259,10 @@
                     </customSpacing>
                 </stackView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="L6P-gE-jRx" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                    <rect key="frame" x="1154" y="113" width="30" height="26"/>
+                    <rect key="frame" x="1158" y="115" width="26" height="22"/>
                     <buttonCell key="cell" type="bevel" title="" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="1lQ-0m-pTW" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system" size="22"/>
+                        <font key="font" size="22" name="MaterialIcons-Regular"/>
                     </buttonCell>
                     <color key="contentTintColor" name="WashedOutReceivedText"/>
                     <connections>
@@ -268,10 +270,10 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xTN-ih-vgo" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                    <rect key="frame" x="1147" y="108" width="73" height="35"/>
+                    <rect key="frame" x="1186" y="111" width="34" height="30"/>
                     <buttonCell key="cell" type="square" title="close" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="L95-Hj-Xnu">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system" size="30"/>
+                        <font key="font" size="30" name="MaterialIcons-Regular"/>
                     </buttonCell>
                     <color key="contentTintColor" name="Text"/>
                     <connections>
