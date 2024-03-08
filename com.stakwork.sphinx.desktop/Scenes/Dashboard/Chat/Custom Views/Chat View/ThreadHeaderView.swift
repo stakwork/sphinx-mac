@@ -145,7 +145,7 @@ class ThreadHeaderView: NSView, LoadableNib {
         messageLabel.isHidden = true
         newMessageLabel.isEditable = false
         
-        if threadOriginalMessage.linkMatches.isEmpty {
+        if threadOriginalMessage.linkMatches.isEmpty && threadOriginalMessage.highlightedMatches.isEmpty {
             messageLabel.attributedStringValue = NSMutableAttributedString(string: "")
             newMessageLabel.string = threadOriginalMessage.text
             newMessageLabel.font = threadOriginalMessage.font
@@ -206,8 +206,8 @@ class ThreadHeaderView: NSView, LoadableNib {
                 
                 attributedString.setAttributes(
                     [
-                        NSAttributedString.Key.foregroundColor: NSColor.Sphinx.Text,
-                        NSAttributedString.Key.backgroundColor: NSColor(hex: "#FFFFFF").withAlphaComponent(0.25),
+                        NSAttributedString.Key.foregroundColor: NSColor.Sphinx.HighlightedText,
+                        NSAttributedString.Key.backgroundColor: NSColor.Sphinx.HighlightedTextBackground,
                         NSAttributedString.Key.font: threadOriginalMessage.highlightedFont
                     ],
                     range: nsRange

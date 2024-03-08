@@ -817,7 +817,7 @@ struct MessageTableCellState {
         let messageContent = message.bubbleMessageContentString ?? ""
         
         return NoBubbleMessageLayoutState.ThreadOriginalMessage(
-            text: messageContent,
+            text: messageContent.replacingOccurrences(of: "`", with: " "),
             font: NSFont.getThreadHeaderFont(),
             highlightedFont: NSFont.getHighlightedMessageFont(),
             linkMatches: messageContent.stringLinks + messageContent.pubKeyMatches + messageContent.mentionMatches,

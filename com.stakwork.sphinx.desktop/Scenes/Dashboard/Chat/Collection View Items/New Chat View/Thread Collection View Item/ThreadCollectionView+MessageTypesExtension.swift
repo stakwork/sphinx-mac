@@ -234,7 +234,7 @@ extension ThreadCollectionViewItem {
             
             lastReplyTextMessageView.isHidden = false
             
-            if messageContent.linkMatches.isEmpty && searchingTerm == nil {
+            if messageContent.linkMatches.isEmpty && messageContent.highlightedMatches.isEmpty && searchingTerm == nil {
                 lastReplyMessageLabel.attributedStringValue = NSMutableAttributedString(string: "")
 
                 lastReplyMessageLabel.stringValue = messageContent.text ?? ""
@@ -303,8 +303,8 @@ extension ThreadCollectionViewItem {
                     
                     attributedString.setAttributes(
                         [
-                            NSAttributedString.Key.foregroundColor: NSColor.Sphinx.Text,
-                            NSAttributedString.Key.backgroundColor: NSColor(hex: "#FFFFFF").withAlphaComponent(0.25),
+                            NSAttributedString.Key.foregroundColor: NSColor.Sphinx.HighlightedText,
+                            NSAttributedString.Key.backgroundColor: NSColor.Sphinx.HighlightedTextBackground,
                             NSAttributedString.Key.font: messageContent.highlightedFont
                         ],
                         range: nsRange

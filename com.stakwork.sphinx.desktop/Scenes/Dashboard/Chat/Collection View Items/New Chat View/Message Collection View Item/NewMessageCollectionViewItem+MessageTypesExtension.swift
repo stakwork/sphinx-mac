@@ -198,7 +198,7 @@ extension NewMessageCollectionViewItem {
             labelHeightConstraint.constant = labelHeight
             textMessageView.superview?.layoutSubtreeIfNeeded()
                         
-            if messageContent.linkMatches.isEmpty && searchingTerm == nil {
+            if messageContent.linkMatches.isEmpty && messageContent.highlightedMatches.isEmpty && searchingTerm == nil {
                 messageLabel.attributedStringValue = NSMutableAttributedString(string: "")
 
                 messageLabel.stringValue = messageContent.text ?? ""
@@ -267,8 +267,8 @@ extension NewMessageCollectionViewItem {
                     
                     attributedString.setAttributes(
                         [
-                            NSAttributedString.Key.foregroundColor: NSColor.Sphinx.Text,
-                            NSAttributedString.Key.backgroundColor: NSColor(hex: "#FFFFFF").withAlphaComponent(0.25),
+                            NSAttributedString.Key.foregroundColor: NSColor.Sphinx.HighlightedText,
+                            NSAttributedString.Key.backgroundColor: NSColor.Sphinx.HighlightedTextBackground,
                             NSAttributedString.Key.font: messageContent.highlightedFont
                         ],
                         range: nsRange

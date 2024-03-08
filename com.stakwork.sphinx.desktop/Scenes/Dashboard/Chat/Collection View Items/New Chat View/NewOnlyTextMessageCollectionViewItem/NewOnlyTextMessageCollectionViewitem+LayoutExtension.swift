@@ -89,7 +89,7 @@ extension NewOnlyTextMessageCollectionViewitem {
                 
                 let highlightedNsRanges = messageContent.highlightedMatches.map {
                     return $0.range
-                }
+                }                
                 
                 for nsRange in highlightedNsRanges {
                     
