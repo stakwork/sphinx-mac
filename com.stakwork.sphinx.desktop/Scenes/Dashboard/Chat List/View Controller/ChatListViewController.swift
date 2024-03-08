@@ -91,6 +91,8 @@ class ChatListViewController : DashboardSplittedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadingChatList = true
+        
         contactsService.configureFetchResultsController()
         
         prepareView()
@@ -116,7 +118,6 @@ class ChatListViewController : DashboardSplittedViewController {
     override func viewWillAppear() {
         super.viewWillAppear()
         
-        loadingChatList = true
         loading = true
         
         configureHeaderAndBottomBar()
@@ -417,7 +418,7 @@ class ChatListViewController : DashboardSplittedViewController {
     }
     
     @IBAction func hideMenuButtonClicked(_ sender: Any) {
-//        delegate?.shouldToggleLeftView(show: false)
+        delegate?.shouldToggleLeftView(show: false)
     }
     
     @IBAction func clearButtonClicked(_ sender: Any) {

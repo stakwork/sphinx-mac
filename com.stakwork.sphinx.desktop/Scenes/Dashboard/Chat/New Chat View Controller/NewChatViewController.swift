@@ -39,6 +39,7 @@ class NewChatViewController: DashboardSplittedViewController {
     @IBOutlet weak var pinMessageNotificationView: PinNotificationView!
     
     @IBOutlet weak var newMsgsIndicatorView: NewMessagesIndicatorView!
+    @IBOutlet weak var expandMenuButtonView: NSView!
     
     var mediaFullScreenView: MediaFullScreenView? = nil
     
@@ -342,5 +343,13 @@ class NewChatViewController: DashboardSplittedViewController {
         } else {
             chatBottomView.resetReplyView()
         }
+    }
+    
+    func toggleExpandMenuButton(show: Bool) {
+        expandMenuButtonView.isHidden = !show
+    }
+    
+    @IBAction func expandMenuButtonClicked(_ sender: Any) {
+        delegate?.shouldToggleLeftView(show: true)
     }
 }

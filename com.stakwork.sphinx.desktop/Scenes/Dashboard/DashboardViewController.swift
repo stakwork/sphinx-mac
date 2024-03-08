@@ -537,29 +537,30 @@ extension DashboardViewController : DashboardVCDelegate {
         }
     }
     
-//    func shouldToggleLeftView(show: Bool?) {
-//        if let window = view.window {
-//            let menuVisible = show ?? !isLeftMenuCollapsed()
-//            let (minWidth, _) = getWindowMinWidth(leftColumnVisible: menuVisible)
-//            leftSplittedView.isHidden = !menuVisible
-//            window.minSize = CGSize(width: minWidth, height: kWindowMinHeight)
-//
-//            let newWidth = menuVisible ? max(window.frame.width, minWidth) : window.frame.width
-//            let newFrame = CGRect(x: window.frame.origin.x, y: window.frame.origin.y, width: newWidth, height: window.frame.height)
-//            window.setFrame(newFrame, display: true)
-//        }
-//    }
-//
-//    func isLeftMenuCollapsed() -> Bool {
-//        return leftSplittedView.isHidden
-//    }
-//
-//    func getWindowMinWidth(leftColumnVisible: Bool) -> (CGFloat, CGFloat) {
-//        let podcastPlayerWidth =  newDetailViewController?.podcastPlayerView.frame.width ?? 0
-//        let leftPanelWidth = leftSplittedView.frame.width
-//        let minWidth: CGFloat = leftColumnVisible ? kWindowMinWidthWithoutLeftColumn + leftPanelWidth : kWindowMinWidthWithoutLeftColumn
-//        return (minWidth + podcastPlayerWidth, leftPanelWidth)
-//    }
+    func shouldToggleLeftView(show: Bool?) {
+        if let window = view.window {
+            let menuVisible = show ?? !isLeftMenuCollapsed()
+            newDetailViewController?.toggleExpandMenuButton(show: !menuVisible)
+            let (minWidth, _) = getWindowMinWidth(leftColumnVisible: menuVisible)
+            leftSplittedView.isHidden = !menuVisible
+            window.minSize = CGSize(width: minWidth, height: kWindowMinHeight)
+
+            let newWidth = menuVisible ? max(window.frame.width, minWidth) : window.frame.width
+            let newFrame = CGRect(x: window.frame.origin.x, y: window.frame.origin.y, width: newWidth, height: window.frame.height)
+            window.setFrame(newFrame, display: true)
+        }
+    }
+
+    func isLeftMenuCollapsed() -> Bool {
+        return leftSplittedView.isHidden
+    }
+
+    func getWindowMinWidth(leftColumnVisible: Bool) -> (CGFloat, CGFloat) {
+        let podcastPlayerWidth =  newDetailViewController?.podcastPlayerView.frame.width ?? 0
+        let leftPanelWidth = leftSplittedView.frame.width
+        let minWidth: CGFloat = leftColumnVisible ? kWindowMinWidthWithoutLeftColumn + leftPanelWidth : kWindowMinWidthWithoutLeftColumn
+        return (minWidth + podcastPlayerWidth, leftPanelWidth)
+    }
     
     func shouldShowRestoreModal(
         with progress: Int,
