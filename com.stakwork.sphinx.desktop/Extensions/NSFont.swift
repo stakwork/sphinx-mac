@@ -33,6 +33,10 @@ extension NSFont {
         return Constants.kMessageFont
     }
     
+    static func getHighlightedMessageFont() -> NSFont {
+        return Constants.kMessageHighlightedFont
+    }
+    
     static func getEmojisFont() -> NSFont {
         return Constants.kEmojisFont
     }

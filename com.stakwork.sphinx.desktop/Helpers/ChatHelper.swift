@@ -468,6 +468,10 @@ class ChatHelper {
             )
         }
         
+        if mutableTableCellState.messageContent?.highlightedMatches.count ?? 0 > 0 {
+            textHeight = textHeight + CommonNewMessageCollectionViewitem.kHighlightedTextVerticalExtraPadding
+        }
+        
         return textHeight
     }
     

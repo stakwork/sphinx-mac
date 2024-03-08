@@ -258,6 +258,22 @@ extension NewMessageCollectionViewItem {
                         }
                     }
                 }
+                
+                let highlightedNsRanges = messageContent.highlightedMatches.map {
+                    return $0.range
+                }
+                
+                for nsRange in highlightedNsRanges {
+                    
+                    attributedString.setAttributes(
+                        [
+                            NSAttributedString.Key.foregroundColor: NSColor.Sphinx.Text,
+                            NSAttributedString.Key.backgroundColor: NSColor(hex: "#FFFFFF").withAlphaComponent(0.25),
+                            NSAttributedString.Key.font: messageContent.highlightedFont
+                        ],
+                        range: nsRange
+                    )
+                }
 
                 messageLabel.attributedStringValue = attributedString
                 messageLabel.isEnabled = true

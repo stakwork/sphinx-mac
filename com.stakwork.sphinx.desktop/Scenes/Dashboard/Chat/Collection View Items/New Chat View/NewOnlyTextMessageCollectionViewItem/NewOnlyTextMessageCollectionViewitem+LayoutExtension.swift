@@ -25,7 +25,7 @@ extension NewOnlyTextMessageCollectionViewitem {
         searchingTerm: String?
     ) {
         if let messageContent = messageContent {
-            if messageContent.linkMatches.isEmpty && searchingTerm == nil {
+            if messageContent.linkMatches.isEmpty && messageContent.highlightedMatches.isEmpty && searchingTerm == nil {
                 messageLabel.attributedStringValue = NSMutableAttributedString(string: "")
 
                 messageLabel.stringValue = messageContent.text ?? ""
@@ -85,6 +85,22 @@ extension NewOnlyTextMessageCollectionViewitem {
 
                         }
                     }
+                }
+                
+                let highlightedNsRanges = messageContent.highlightedMatches.map {
+                    return $0.range
+                }
+                
+                for nsRange in highlightedNsRanges {
+                    
+                    attributedString.setAttributes(
+                        [
+                            NSAttributedString.Key.foregroundColor: NSColor.Sphinx.HighlightedText,
+                            NSAttributedString.Key.backgroundColor: NSColor.Sphinx.HighlightedTextBackground,
+                            NSAttributedString.Key.font: messageContent.highlightedFont
+                        ],
+                        range: nsRange
+                    )
                 }
 
                 messageLabel.attributedStringValue = attributedString
