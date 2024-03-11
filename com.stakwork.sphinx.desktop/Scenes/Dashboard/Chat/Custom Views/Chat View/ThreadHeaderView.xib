@@ -53,7 +53,7 @@
                                 <constraint firstAttribute="width" constant="36" id="ucD-VR-bam"/>
                             </constraints>
                         </customView>
-                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9SH-Z3-1PP">
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9SH-Z3-1PP">
                             <rect key="frame" x="66" y="33" width="44" height="16"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="Tomas" id="Jx9-3T-N61">
                                 <font key="font" metaFont="system"/>
@@ -61,7 +61,7 @@
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pLk-vm-4AH">
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pLk-vm-4AH">
                             <rect key="frame" x="66" y="17" width="54" height="14"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="12:00 PM" id="slQ-kw-9cH">
                                 <font key="font" metaFont="smallSystem"/>
@@ -174,7 +174,7 @@
                                                         <constraint firstAttribute="bottom" secondItem="yRy-te-G3m" secondAttribute="bottom" constant="16" id="VQw-wF-bKM"/>
                                                     </constraints>
                                                 </customView>
-                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="o0s-gd-MXD" customClass="MessageTextField" customModule="Sphinx" customModuleProvider="target">
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="o0s-gd-MXD" customClass="MessageTextField" customModule="Sphinx" customModuleProvider="target">
                                                     <rect key="frame" x="14" y="16" width="746" height="120"/>
                                                     <textFieldCell key="cell" selectable="YES" title="Label" id="wQx-gQ-7cJ">
                                                         <font key="font" metaFont="system" size="16"/>
