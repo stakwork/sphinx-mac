@@ -29,7 +29,10 @@ class Constants {
     public static var kMessagePreviewFont = NSFont(name: "Roboto-Regular", size: 14.0)!
     public static var kNewMessagePreviewFont = NSFont(name: "Roboto-Bold", size: 14.0)!
     public static var kChatNameFont = NSFont(name: "Roboto-Regular", size: 17.0)!
-    public static var kThreadHeaderFont = NSFont(name: "Roboto-Regular", size: 17.0)!
+    public static var kThreadHeaderFont = NSFont(name: "Roboto-Regular", size: 16.0)!
+    public static var kThreadHeaderHighlightedFont = NSFont(name: "Roboto-Light", size: 16.0)!
+    public static var kThreadListFont = NSFont(name: "Roboto-Regular", size: 17.0)!
+    public static var kThreadListHighlightedFont = NSFont(name: "Roboto-Light", size: 17.0)!
     
     //Colors
     public static var kMessageLineHeight: CGFloat = 35

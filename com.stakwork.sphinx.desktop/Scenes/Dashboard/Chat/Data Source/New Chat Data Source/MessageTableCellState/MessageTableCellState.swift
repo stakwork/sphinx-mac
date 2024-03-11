@@ -247,7 +247,7 @@ struct MessageTableCellState {
         
         if let messageContent = message.bubbleMessageContentString, messageContent.isNotEmpty {
             return BubbleMessageLayoutState.MessageContent(
-                text: messageContent.replacingOccurrences(of: "`", with: " "),
+                text: messageContent.replacingHightlightedChars,
                 font: NSFont.getMessageFont(),
                 highlightedFont: NSFont.getHighlightedMessageFont(),
                 linkMatches: messageContent.stringLinks + messageContent.pubKeyMatches + messageContent.mentionMatches,
@@ -476,7 +476,7 @@ struct MessageTableCellState {
         
         let originalMessageSenderInfo: (NSColor, String, String?) = getSenderInfo(message: message)
         let originalThreadMessage = BubbleMessageLayoutState.ThreadMessage(
-            text: message.bubbleMessageContentString,
+            text: message.bubbleMessageContentString?.withoutHightlightedChars,
             font: NSFont.getMessageFont(),
             senderPic: originalMessageSenderInfo.2,
             senderAlias: originalMessageSenderInfo.1,
@@ -817,9 +817,9 @@ struct MessageTableCellState {
         let messageContent = message.bubbleMessageContentString ?? ""
         
         return NoBubbleMessageLayoutState.ThreadOriginalMessage(
-            text: messageContent.replacingOccurrences(of: "`", with: " "),
+            text: messageContent.replacingHightlightedChars,
             font: NSFont.getThreadHeaderFont(),
-            highlightedFont: NSFont.getHighlightedMessageFont(),
+            highlightedFont: NSFont.getThreadHeaderHightlightedFont(),
             linkMatches: messageContent.stringLinks + messageContent.pubKeyMatches + messageContent.mentionMatches,
             highlightedMatches: messageContent.highlightedMatches,
             senderPic: senderInfo.2,

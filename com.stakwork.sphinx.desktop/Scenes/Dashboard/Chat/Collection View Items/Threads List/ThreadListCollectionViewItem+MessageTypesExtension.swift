@@ -141,14 +141,14 @@ extension ThreadListCollectionViewItem {
     ) {
         originalMessageTextLabel.maximumNumberOfLines = 2
         
-        if threadOriginalMessage.linkMatches.isEmpty {
+        if threadOriginalMessage.linkMatches.isEmpty && threadOriginalMessage.highlightedMatches.isEmpty {
             originalMessageTextLabel.stringValue = threadOriginalMessage.text
-            originalMessageTextLabel.font = Constants.kThreadHeaderFont
+            originalMessageTextLabel.font = NSFont.getThreadListFont()
         } else {
             let messageC = threadOriginalMessage.text
             
             let attributedString = NSMutableAttributedString(string: messageC)
-            attributedString.addAttributes([NSAttributedString.Key.font: Constants.kThreadHeaderFont], range: messageC.nsRange)
+            attributedString.addAttributes([NSAttributedString.Key.font: NSFont.getThreadListFont()], range: messageC.nsRange)
             
             for match in threadOriginalMessage.linkMatches {
                 
@@ -156,7 +156,19 @@ extension ThreadListCollectionViewItem {
                     [
                         NSAttributedString.Key.foregroundColor: NSColor.Sphinx.PrimaryBlue,
                         NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
-                        NSAttributedString.Key.font: Constants.kThreadHeaderFont
+                        NSAttributedString.Key.font: NSFont.getThreadListFont()
+                    ],
+                    range: match.range
+                )
+            }
+            
+            for match in threadOriginalMessage.highlightedMatches {
+                
+                attributedString.setAttributes(
+                    [
+                        NSAttributedString.Key.foregroundColor: NSColor.Sphinx.HighlightedText,
+                        NSAttributedString.Key.backgroundColor: NSColor.Sphinx.HighlightedTextBackground,
+                        NSAttributedString.Key.font: NSFont.getThreadListHightlightedFont()
                     ],
                     range: match.range
                 )
