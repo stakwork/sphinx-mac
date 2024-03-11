@@ -234,7 +234,7 @@ extension ThreadCollectionViewItem {
             
             lastReplyTextMessageView.isHidden = false
             
-            if messageContent.linkMatches.isEmpty && searchingTerm == nil {
+            if messageContent.linkMatches.isEmpty && messageContent.highlightedMatches.isEmpty && searchingTerm == nil {
                 lastReplyMessageLabel.attributedStringValue = NSMutableAttributedString(string: "")
 
                 lastReplyMessageLabel.stringValue = messageContent.text ?? ""
@@ -293,6 +293,26 @@ extension ThreadCollectionViewItem {
 
                         }
                     }
+                }
+                
+                let highlightedNsRanges = messageContent.highlightedMatches.map {
+                    return $0.range
+                }
+                
+                for (index, nsRange) in highlightedNsRanges.enumerated() {
+                    
+                    ///Subtracting the previous matches delimiter characters since they have been removed from the string
+                    let substractionNeeded = index * 2
+                    let adaptedRange = NSRange(location: nsRange.location - substractionNeeded, length: nsRange.length - 2)
+                    
+                    attributedString.setAttributes(
+                        [
+                            NSAttributedString.Key.foregroundColor: NSColor.Sphinx.HighlightedText,
+                            NSAttributedString.Key.backgroundColor: NSColor.Sphinx.HighlightedTextBackground,
+                            NSAttributedString.Key.font: messageContent.highlightedFont
+                        ],
+                        range: adaptedRange
+                    )
                 }
 
                 lastReplyMessageLabel.attributedStringValue = attributedString

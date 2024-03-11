@@ -141,14 +141,14 @@ extension ThreadListCollectionViewItem {
     ) {
         originalMessageTextLabel.maximumNumberOfLines = 2
         
-        if threadOriginalMessage.linkMatches.isEmpty {
+        if threadOriginalMessage.linkMatches.isEmpty && threadOriginalMessage.highlightedMatches.isEmpty {
             originalMessageTextLabel.stringValue = threadOriginalMessage.text
-            originalMessageTextLabel.font = Constants.kThreadHeaderFont
+            originalMessageTextLabel.font = NSFont.getThreadListFont()
         } else {
             let messageC = threadOriginalMessage.text
             
             let attributedString = NSMutableAttributedString(string: messageC)
-            attributedString.addAttributes([NSAttributedString.Key.font: Constants.kThreadHeaderFont], range: messageC.nsRange)
+            attributedString.addAttributes([NSAttributedString.Key.font: NSFont.getThreadListFont()], range: messageC.nsRange)
             
             for match in threadOriginalMessage.linkMatches {
                 
@@ -156,9 +156,29 @@ extension ThreadListCollectionViewItem {
                     [
                         NSAttributedString.Key.foregroundColor: NSColor.Sphinx.PrimaryBlue,
                         NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
-                        NSAttributedString.Key.font: Constants.kThreadHeaderFont
+                        NSAttributedString.Key.font: NSFont.getThreadListFont()
                     ],
                     range: match.range
+                )
+            }
+            
+            let highlightedNsRanges = threadOriginalMessage.highlightedMatches.map {
+                return $0.range
+            }
+                
+            for (index, nsRange) in highlightedNsRanges.enumerated() {
+                
+                ///Subtracting the previous matches delimiter characters since they have been removed from the string
+                let substractionNeeded = index * 2
+                let adaptedRange = NSRange(location: nsRange.location - substractionNeeded, length: nsRange.length - 2)
+                
+                attributedString.setAttributes(
+                    [
+                        NSAttributedString.Key.foregroundColor: NSColor.Sphinx.HighlightedText,
+                        NSAttributedString.Key.backgroundColor: NSColor.Sphinx.HighlightedTextBackground,
+                        NSAttributedString.Key.font: NSFont.getThreadListHightlightedFont()
+                    ],
+                    range: adaptedRange
                 )
             }
             

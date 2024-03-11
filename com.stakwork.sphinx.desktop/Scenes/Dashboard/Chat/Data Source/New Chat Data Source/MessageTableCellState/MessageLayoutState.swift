@@ -179,18 +179,24 @@ struct BubbleMessageLayoutState {
     struct MessageContent {
         var text: String?
         var font: NSFont
+        var highlightedFont: NSFont
         var linkMatches: [NSTextCheckingResult]
+        var highlightedMatches: [NSTextCheckingResult]
         var shouldLoadPaidText: Bool
         
         init(
             text: String?,
             font: NSFont,
+            highlightedFont: NSFont,
             linkMatches: [NSTextCheckingResult],
+            highlightedMatches: [NSTextCheckingResult],
             shouldLoadPaidText: Bool
         ) {
             self.text = text
             self.font = font
+            self.highlightedFont = highlightedFont
             self.linkMatches = linkMatches
+            self.highlightedMatches = highlightedMatches
             self.shouldLoadPaidText = shouldLoadPaidText
         }
     }
@@ -571,7 +577,9 @@ struct NoBubbleMessageLayoutState {
     struct ThreadOriginalMessage {
         var text: String
         var font: NSFont
+        var highlightedFont: NSFont
         var linkMatches: [NSTextCheckingResult]
+        var highlightedMatches: [NSTextCheckingResult]
         var senderPic: String?
         var senderAlias: String
         var senderColor: NSColor
@@ -580,7 +588,9 @@ struct NoBubbleMessageLayoutState {
         init(
             text: String,
             font: NSFont,
+            highlightedFont: NSFont,
             linkMatches: [NSTextCheckingResult],
+            highlightedMatches: [NSTextCheckingResult],
             senderPic: String?,
             senderAlias: String,
             senderColor: NSColor,
@@ -588,7 +598,9 @@ struct NoBubbleMessageLayoutState {
         ) {
             self.text = text
             self.font = font
+            self.highlightedFont = highlightedFont
             self.linkMatches = linkMatches
+            self.highlightedMatches = highlightedMatches
             self.senderPic = senderPic
             self.senderAlias = senderAlias
             self.senderColor = senderColor

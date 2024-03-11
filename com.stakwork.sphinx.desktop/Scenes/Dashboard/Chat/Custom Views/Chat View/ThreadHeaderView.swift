@@ -145,7 +145,7 @@ class ThreadHeaderView: NSView, LoadableNib {
         messageLabel.isHidden = true
         newMessageLabel.isEditable = false
         
-        if threadOriginalMessage.linkMatches.isEmpty {
+        if threadOriginalMessage.linkMatches.isEmpty && threadOriginalMessage.highlightedMatches.isEmpty {
             messageLabel.attributedStringValue = NSMutableAttributedString(string: "")
             newMessageLabel.string = threadOriginalMessage.text
             newMessageLabel.font = threadOriginalMessage.font
@@ -196,6 +196,26 @@ class ThreadHeaderView: NSView, LoadableNib {
 
                     }
                 }
+            }
+            
+            let highlightedNsRanges = threadOriginalMessage.highlightedMatches.map {
+                return $0.range
+            }
+            
+            for (index, nsRange) in highlightedNsRanges.enumerated() {
+                
+                ///Subtracting the previous matches delimiter characters since they have been removed from the string
+                let substractionNeeded = index * 2
+                let adaptedRange = NSRange(location: nsRange.location - substractionNeeded, length: nsRange.length - 2)
+                
+                attributedString.setAttributes(
+                    [
+                        NSAttributedString.Key.foregroundColor: NSColor.Sphinx.HighlightedText,
+                        NSAttributedString.Key.backgroundColor: NSColor.Sphinx.HighlightedTextBackground,
+                        NSAttributedString.Key.font: threadOriginalMessage.highlightedFont
+                    ],
+                    range: adaptedRange
+                )
             }
 
             messageLabel.attributedStringValue = attributedString

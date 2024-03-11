@@ -97,6 +97,9 @@ extension NSColor {
         
         public static let NewMessageIndicator = color("NewMessageIndicator")
         
+        public static let HighlightedText = color("HighlightedText")
+        public static let HighlightedTextBackground = color("HighlightedTextBackground")
+        
         private static func color(_ name: String) -> NSColor {
             return NSColor(named: NSColor.Name(name)) ?? NSColor.magenta
         }

@@ -220,7 +220,7 @@ class ChatHelper {
                     originalThreadMessage.text,
                     width: kTextWidth,
                     maxHeight: kMessageLineHeight * 2,
-                    font: NSFont(name: "Roboto-Regular", size: 17.0)!
+                    font: NSFont.getThreadListFont()
                 ) + kElementMargin
             }
         }
@@ -464,7 +464,8 @@ class ChatHelper {
             
             textHeight = ChatHelper.getTextHeightFor(
                 text: text,
-                width: maxWidth
+                width: maxWidth,
+                highlightedMatches: mutableTableCellState.messageContent?.highlightedMatches
             )
         }
         
@@ -628,12 +629,22 @@ class ChatHelper {
         text: String,
         width: CGFloat,
         font: NSFont? = nil,
+        highlightedMatches: [NSTextCheckingResult]? = [],
         labelMargins: CGFloat? = nil
     ) -> CGFloat {
-        let adaptedtext = text
-        
         let attrs = [NSAttributedString.Key.font: font ?? Constants.kMessageFont]
-        let attributedString = NSAttributedString(string: adaptedtext, attributes: attrs)
+        let attributedString = NSMutableAttributedString(string: text, attributes: attrs)
+        
+        for match in highlightedMatches ?? [] {
+            
+            attributedString.setAttributes(
+                [
+                    NSAttributedString.Key.font: Constants.kMessageHighlightedFont
+                ],
+                range: match.range
+            )
+        }
+        
         let kLabelHorizontalMargins: CGFloat = 32.0
         let kLabelVerticalMargins: CGFloat = labelMargins ?? 32.0
         

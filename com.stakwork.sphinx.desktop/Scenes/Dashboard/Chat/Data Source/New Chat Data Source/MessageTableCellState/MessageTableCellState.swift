@@ -247,16 +247,20 @@ struct MessageTableCellState {
         
         if let messageContent = message.bubbleMessageContentString, messageContent.isNotEmpty {
             return BubbleMessageLayoutState.MessageContent(
-                text: messageContent,
+                text: messageContent.replacingHightlightedChars,
                 font: NSFont.getMessageFont(),
+                highlightedFont: NSFont.getHighlightedMessageFont(),
                 linkMatches: messageContent.stringLinks + messageContent.pubKeyMatches + messageContent.mentionMatches,
+                highlightedMatches: messageContent.highlightedMatches,
                 shouldLoadPaidText: false
             )
         } else if message.isPaidMessage() {
             return BubbleMessageLayoutState.MessageContent(
                 text: paidMessageContent,
                 font: NSFont.getEncryptionErrorFont(),
+                highlightedFont: NSFont.getHighlightedMessageFont(),
                 linkMatches: [],
+                highlightedMatches: [],
                 shouldLoadPaidText: message.messageContent == nil && (paidContent?.isPurchaseAccepted() == true || bubble?.direction.isOutgoing() == true)
             )
         }
@@ -472,7 +476,7 @@ struct MessageTableCellState {
         
         let originalMessageSenderInfo: (NSColor, String, String?) = getSenderInfo(message: message)
         let originalThreadMessage = BubbleMessageLayoutState.ThreadMessage(
-            text: message.bubbleMessageContentString,
+            text: message.bubbleMessageContentString?.replacingHightlightedChars,
             font: NSFont.getMessageFont(),
             senderPic: originalMessageSenderInfo.2,
             senderAlias: originalMessageSenderInfo.1,
@@ -813,9 +817,11 @@ struct MessageTableCellState {
         let messageContent = message.bubbleMessageContentString ?? ""
         
         return NoBubbleMessageLayoutState.ThreadOriginalMessage(
-            text: messageContent,
+            text: messageContent.replacingHightlightedChars,
             font: NSFont.getThreadHeaderFont(),
+            highlightedFont: NSFont.getThreadHeaderHightlightedFont(),
             linkMatches: messageContent.stringLinks + messageContent.pubKeyMatches + messageContent.mentionMatches,
+            highlightedMatches: messageContent.highlightedMatches,
             senderPic: senderInfo.2,
             senderAlias: senderInfo.1,
             senderColor: senderInfo.0,
