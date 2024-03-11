@@ -262,8 +262,11 @@ extension NewMessageCollectionViewItem {
                 let highlightedNsRanges = messageContent.highlightedMatches.map {
                     return $0.range
                 }
-                
-                for nsRange in highlightedNsRanges {
+                    
+                for (index, nsRange) in highlightedNsRanges.enumerated() {
+                    
+                    let substractNeeded = index * 2
+                    let adaptedRange = NSRange(location: nsRange.location - substractNeeded, length: nsRange.length - 2)
                     
                     attributedString.setAttributes(
                         [
@@ -271,7 +274,7 @@ extension NewMessageCollectionViewItem {
                             NSAttributedString.Key.backgroundColor: NSColor.Sphinx.HighlightedTextBackground,
                             NSAttributedString.Key.font: messageContent.highlightedFont
                         ],
-                        range: nsRange
+                        range: adaptedRange
                     )
                 }
 

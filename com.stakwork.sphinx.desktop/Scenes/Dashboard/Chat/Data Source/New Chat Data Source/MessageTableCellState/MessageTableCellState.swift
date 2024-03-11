@@ -476,7 +476,7 @@ struct MessageTableCellState {
         
         let originalMessageSenderInfo: (NSColor, String, String?) = getSenderInfo(message: message)
         let originalThreadMessage = BubbleMessageLayoutState.ThreadMessage(
-            text: message.bubbleMessageContentString?.withoutHightlightedChars,
+            text: message.bubbleMessageContentString?.replacingHightlightedChars,
             font: NSFont.getMessageFont(),
             senderPic: originalMessageSenderInfo.2,
             senderAlias: originalMessageSenderInfo.1,
