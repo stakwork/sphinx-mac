@@ -635,14 +635,20 @@ class ChatHelper {
         let attrs = [NSAttributedString.Key.font: font ?? Constants.kMessageFont]
         let attributedString = NSMutableAttributedString(string: text, attributes: attrs)
         
-        for match in highlightedMatches ?? [] {
+        for (index, match) in (highlightedMatches ?? []).enumerated() {
+            
+            ///Subtracting the previous matches delimiter characters since they have been removed from the string
+            ///Subtracting the \` characters from the length since removing the chars caused the range to be 2 less chars
+            let substractionNeeded = index * 2
+            let adaptedRange = NSRange(location: match.range.location - substractionNeeded, length: match.range.length - 2)
             
             attributedString.setAttributes(
                 [
                     NSAttributedString.Key.font: Constants.kMessageHighlightedFont
                 ],
-                range: match.range
+                range: adaptedRange
             )
+            
         }
         
         let kLabelHorizontalMargins: CGFloat = 32.0
