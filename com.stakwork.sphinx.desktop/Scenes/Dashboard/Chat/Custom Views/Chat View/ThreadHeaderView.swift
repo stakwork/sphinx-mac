@@ -205,6 +205,7 @@ class ThreadHeaderView: NSView, LoadableNib {
             for (index, nsRange) in highlightedNsRanges.enumerated() {
                 
                 ///Subtracting the previous matches delimiter characters since they have been removed from the string
+                ///Subtracting the \` characters from the length since removing the chars caused the range to be 2 less chars
                 let substractionNeeded = index * 2
                 let adaptedRange = NSRange(location: nsRange.location - substractionNeeded, length: nsRange.length - 2)
                 
