@@ -32,8 +32,6 @@ extension NewOnlyTextMessageCollectionViewitem {
                 messageLabel.font = messageContent.font
             } else {
                 let messageC = messageContent.text ?? ""
-                let term = searchingTerm ?? ""
-
                 let attributedString = NSMutableAttributedString(string: messageC)
                 
                 attributedString.addAttributes(
@@ -43,15 +41,30 @@ extension NewOnlyTextMessageCollectionViewitem {
                     ]
                     , range: messageC.nsRange
                 )
+                
+                ///Highlighted text formatting
+                let highlightedNsRanges = messageContent.highlightedMatches.map {
+                    return $0.range
+                }
+                
+                for (index, nsRange) in highlightedNsRanges.enumerated() {
+                    
+                    ///Subtracting the previous matches delimiter characters since they have been removed from the string
+                    ///Subtracting the \` characters from the length since removing the chars caused the range to be 2 less chars
+                    let substractionNeeded = index * 2
+                    let adaptedRange = NSRange(location: nsRange.location - substractionNeeded, length: nsRange.length - 2)
+                    
+                    attributedString.addAttributes(
+                        [
+                            NSAttributedString.Key.foregroundColor: NSColor.Sphinx.HighlightedText,
+                            NSAttributedString.Key.backgroundColor: NSColor.Sphinx.HighlightedTextBackground,
+                            NSAttributedString.Key.font: messageContent.highlightedFont
+                        ],
+                        range: adaptedRange
+                    )
+                }
 
-                let searchingTermRange = (messageC.lowercased() as NSString).range(of: term.lowercased())
-                attributedString.addAttributes(
-                    [
-                        NSAttributedString.Key.backgroundColor: NSColor.Sphinx.PrimaryGreen
-                    ]
-                    , range: searchingTermRange
-                )
-
+                ///Links formatting
                 var nsRanges = messageContent.linkMatches.map {
                     return $0.range
                 }
@@ -73,12 +86,12 @@ extension NewOnlyTextMessageCollectionViewitem {
                         }
                          
                         if let url = URL(string: substring)  {
-                            attributedString.setAttributes(
+                            attributedString.addAttributes(
                                 [
+                                    NSAttributedString.Key.link: url,
                                     NSAttributedString.Key.foregroundColor: NSColor.Sphinx.PrimaryBlue,
                                     NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
-                                    NSAttributedString.Key.font: messageContent.font,
-                                    NSAttributedString.Key.link: url
+                                    NSAttributedString.Key.font: messageContent.font
                                 ],
                                 range: nsRange
                             )
@@ -87,26 +100,16 @@ extension NewOnlyTextMessageCollectionViewitem {
                     }
                 }
                 
-                let highlightedNsRanges = messageContent.highlightedMatches.map {
-                    return $0.range
-                }                
-                
-                for (index, nsRange) in highlightedNsRanges.enumerated() {
-                    
-                    ///Subtracting the previous matches delimiter characters since they have been removed from the string
-                    ///Subtracting the \` characters from the length since removing the chars caused the range to be 2 less chars
-                    let substractionNeeded = index * 2
-                    let adaptedRange = NSRange(location: nsRange.location - substractionNeeded, length: nsRange.length - 2)
-                    
-                    attributedString.setAttributes(
-                        [
-                            NSAttributedString.Key.foregroundColor: NSColor.Sphinx.HighlightedText,
-                            NSAttributedString.Key.backgroundColor: NSColor.Sphinx.HighlightedTextBackground,
-                            NSAttributedString.Key.font: messageContent.highlightedFont
-                        ],
-                        range: adaptedRange
-                    )
-                }
+                ///Search term formatting
+                let term = searchingTerm ?? ""
+
+                let searchingTermRange = (messageC.lowercased() as NSString).range(of: term.lowercased())
+                attributedString.addAttributes(
+                    [
+                        NSAttributedString.Key.backgroundColor: NSColor.Sphinx.PrimaryGreen
+                    ]
+                    , range: searchingTermRange
+                )
 
                 messageLabel.attributedStringValue = attributedString
                 messageLabel.isEnabled = true
