@@ -163,6 +163,29 @@ class ThreadHeaderView: NSView, LoadableNib {
                 , range: messageC.nsRange
             )
             
+            ///Highlighted text formatting
+            let highlightedNsRanges = threadOriginalMessage.highlightedMatches.map {
+                return $0.range
+            }
+            
+            for (index, nsRange) in highlightedNsRanges.enumerated() {
+                
+                ///Subtracting the previous matches delimiter characters since they have been removed from the string
+                ///Subtracting the \` characters from the length since removing the chars caused the range to be 2 less chars
+                let substractionNeeded = index * 2
+                let adaptedRange = NSRange(location: nsRange.location - substractionNeeded, length: nsRange.length - 2)
+                
+                attributedString.addAttributes(
+                    [
+                        NSAttributedString.Key.foregroundColor: NSColor.Sphinx.HighlightedText,
+                        NSAttributedString.Key.backgroundColor: NSColor.Sphinx.HighlightedTextBackground,
+                        NSAttributedString.Key.font: threadOriginalMessage.highlightedFont
+                    ],
+                    range: adaptedRange
+                )
+            }
+            
+            ///Links formatting
             var nsRanges = threadOriginalMessage.linkMatches.map {
                 return $0.range
             }
@@ -184,7 +207,7 @@ class ThreadHeaderView: NSView, LoadableNib {
                     }
                      
                     if let url = URL(string: substring.withProtocol(protocolString: "http"))  {
-                        attributedString.setAttributes(
+                        attributedString.addAttributes(
                             [
                                 NSAttributedString.Key.foregroundColor: NSColor.Sphinx.PrimaryBlue,
                                 NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
@@ -196,27 +219,6 @@ class ThreadHeaderView: NSView, LoadableNib {
 
                     }
                 }
-            }
-            
-            let highlightedNsRanges = threadOriginalMessage.highlightedMatches.map {
-                return $0.range
-            }
-            
-            for (index, nsRange) in highlightedNsRanges.enumerated() {
-                
-                ///Subtracting the previous matches delimiter characters since they have been removed from the string
-                ///Subtracting the \` characters from the length since removing the chars caused the range to be 2 less chars
-                let substractionNeeded = index * 2
-                let adaptedRange = NSRange(location: nsRange.location - substractionNeeded, length: nsRange.length - 2)
-                
-                attributedString.setAttributes(
-                    [
-                        NSAttributedString.Key.foregroundColor: NSColor.Sphinx.HighlightedText,
-                        NSAttributedString.Key.backgroundColor: NSColor.Sphinx.HighlightedTextBackground,
-                        NSAttributedString.Key.font: threadOriginalMessage.highlightedFont
-                    ],
-                    range: adaptedRange
-                )
             }
 
             messageLabel.attributedStringValue = attributedString
