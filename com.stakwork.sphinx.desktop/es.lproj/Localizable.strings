@@ -12,6 +12,7 @@
 "generic.error.message" = "Ha habido un problema. Por favor vuelva a intentarlo más tarde.";
 "generic.message.error" = "El mensaje no pudo ser encriptado correctamente por lo cual no puede ser enviado.";
 "generic.attachment.error" = "Ha habido un problema subiendo el archivo. Por favor vuelva a intentarlo más tarde.";
+"boost.error.title" = "Boost error";
 "confirm" = "Confirmar";
 "authorize" = "Autorizar";
 "warning" = "Atención";
