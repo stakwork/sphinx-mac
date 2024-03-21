@@ -215,6 +215,7 @@ extension NewChatViewModel {
         ChatTrackingHandler.shared.deleteOngoingMessage(with: chat?.id)
         
         joinIfCallMessage(message: message)
+        showBoostErrorAlert(message: message)
         resetReply()
         
         completion(true, chat)
@@ -228,6 +229,14 @@ extension NewChatViewModel {
                 let linkUrl = VoIPRequestMessage.getFromString(link)?.link ?? link
                 WindowsManager.sharedInstance.showCallWindow(link: linkUrl)
             }
+        }
+    }
+    
+    func showBoostErrorAlert(
+        message: TransactionMessage
+    ) {
+        if message.isMessageBoost() && message.isFailedOrMediaExpired() {
+            AlertHelper.showAlert(title: "boost.error.title".localized, message: message.errorMessage ?? "generic.error.message".localized)
         }
     }
 
