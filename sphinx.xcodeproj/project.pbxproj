@@ -277,6 +277,8 @@
 		475B68682991A1A2000EF29C /* FeedBoostHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475B68672991A1A2000EF29C /* FeedBoostHelper.swift */; };
 		475B686A2991A909000EF29C /* PodcastPlayerCollectionViewItem+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475B68692991A909000EF29C /* PodcastPlayerCollectionViewItem+UI.swift */; };
 		475B686C2991A91D000EF29C /* PodcastPlayerCollectionViewItem+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475B686B2991A91D000EF29C /* PodcastPlayerCollectionViewItem+Delegates.swift */; };
+		475B72192BB1CC2C003AD969 /* Server+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475B72182BB1CC2C003AD969 /* Server+CoreDataProperties.swift */; };
+		475B721B2BB1CC39003AD969 /* Server+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475B721A2BB1CC39003AD969 /* Server+CoreDataClass.swift */; };
 		475F0BA224F7D97D0032EDC4 /* NewContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475F0BA124F7D97D0032EDC4 /* NewContactViewController.swift */; };
 		475F0BA324F7EBCD0032EDC4 /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 475F0BA524F7EBCD0032EDC4 /* Contacts.storyboard */; };
 		4767AE942509BA8C00C82E5B /* GiphySearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4767AE962509BA8C00C82E5B /* GiphySearchView.xib */; };
@@ -1125,6 +1127,9 @@
 		475B68672991A1A2000EF29C /* FeedBoostHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedBoostHelper.swift; sourceTree = "<group>"; };
 		475B68692991A909000EF29C /* PodcastPlayerCollectionViewItem+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PodcastPlayerCollectionViewItem+UI.swift"; sourceTree = "<group>"; };
 		475B686B2991A91D000EF29C /* PodcastPlayerCollectionViewItem+Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PodcastPlayerCollectionViewItem+Delegates.swift"; sourceTree = "<group>"; };
+		475B72142BB1CA55003AD969 /* com_stakwork_sphinx_desktop 25.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "com_stakwork_sphinx_desktop 25.xcdatamodel"; sourceTree = "<group>"; };
+		475B72182BB1CC2C003AD969 /* Server+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Server+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		475B721A2BB1CC39003AD969 /* Server+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Server+CoreDataClass.swift"; sourceTree = "<group>"; };
 		475F0BA124F7D97D0032EDC4 /* NewContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactViewController.swift; sourceTree = "<group>"; };
 		475F0BA424F7EBCD0032EDC4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Contacts.storyboard; sourceTree = "<group>"; };
 		475F0BA724F7EBD20032EDC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Contacts.strings; sourceTree = "<group>"; };
@@ -2122,6 +2127,7 @@
 		4744FA782469C55A00C5FD94 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				475B72172BB1CC19003AD969 /* Server */,
 				475B67FD29915C65000EF29C /* Podcast */,
 				475B67FC29915C4C000EF29C /* Actions */,
 				475B67FB29915C3B000EF29C /* ContentFeedPaymentDestination */,
@@ -2130,12 +2136,10 @@
 				475B67F829915C28000EF29C /* ContentFeed */,
 				4734D3992417E3D400D6957E /* com_stakwork_sphinx_desktop.xcdatamodeld */,
 				4707089B24AE65B200A98DCA /* Chat */,
-				4744FA802469C9F700C5FD94 /* Subscription+CoreDataClass.swift */,
-				4744FA862469C9F700C5FD94 /* Subscription+CoreDataProperties.swift */,
+				475B72152BB1CC04003AD969 /* Subscription */,
 				4744FA912469CA1000C5FD94 /* TransactionMessage */,
 				4707089C24AE65BB00A98DCA /* UserContact */,
-				4744FA822469C9F700C5FD94 /* UserInvite+CoreDataClass.swift */,
-				4744FA842469C9F700C5FD94 /* UserInvite+CoreDataProperties.swift */,
+				475B72162BB1CC0F003AD969 /* UserInvite */,
 				4744FA792469C94400C5FD94 /* CoreDataManager.swift */,
 				4744FA7B2469C99600C5FD94 /* NSManagedObjectContext.swift */,
 				4744FA9A2469CB2400C5FD94 /* ChatListCommonObject.swift */,
@@ -2501,6 +2505,33 @@
 				475B686B2991A91D000EF29C /* PodcastPlayerCollectionViewItem+Delegates.swift */,
 			);
 			path = PodcastPlayerCollectionViewItem;
+			sourceTree = "<group>";
+		};
+		475B72152BB1CC04003AD969 /* Subscription */ = {
+			isa = PBXGroup;
+			children = (
+				4744FA802469C9F700C5FD94 /* Subscription+CoreDataClass.swift */,
+				4744FA862469C9F700C5FD94 /* Subscription+CoreDataProperties.swift */,
+			);
+			path = Subscription;
+			sourceTree = "<group>";
+		};
+		475B72162BB1CC0F003AD969 /* UserInvite */ = {
+			isa = PBXGroup;
+			children = (
+				4744FA822469C9F700C5FD94 /* UserInvite+CoreDataClass.swift */,
+				4744FA842469C9F700C5FD94 /* UserInvite+CoreDataProperties.swift */,
+			);
+			path = UserInvite;
+			sourceTree = "<group>";
+		};
+		475B72172BB1CC19003AD969 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				475B72182BB1CC2C003AD969 /* Server+CoreDataProperties.swift */,
+				475B721A2BB1CC39003AD969 /* Server+CoreDataClass.swift */,
+			);
+			path = Server;
 			sourceTree = "<group>";
 		};
 		475F0B9D24F7D9330032EDC4 /* Contacts */ = {
@@ -3911,6 +3942,7 @@
 				4744FA932469CA2D00C5FD94 /* TransactionMessageMediaExtension.swift in Sources */,
 				478ED5A025D560A300940132 /* SphinxReady.swift in Sources */,
 				478ED5AC25D5730A00940132 /* CCSecureTextField.swift in Sources */,
+				475B72192BB1CC2C003AD969 /* Server+CoreDataProperties.swift in Sources */,
 				4744FA8A2469C9F800C5FD94 /* Subscription+CoreDataClass.swift in Sources */,
 				479496632AB8A78A00C42D1E /* GroupRemovedView.swift in Sources */,
 				47469D6B2ACEF53F004F0490 /* NewChatViewController+SearchMessagesExtension.swift in Sources */,
@@ -3947,6 +3979,7 @@
 				4744FA8F2469C9F800C5FD94 /* Chat+CoreDataProperties.swift in Sources */,
 				47F8825525656CB0002A7E71 /* SocketEngine.swift in Sources */,
 				479496522AB4BB7900C42D1E /* SentPaidDetails.swift in Sources */,
+				475B721B2BB1CC39003AD969 /* Server+CoreDataClass.swift in Sources */,
 				47FEE2292A66F75800646C4E /* NewOnlyTextMessageCollectionViewitem+LayoutExtension.swift in Sources */,
 				478ED5A825D571F900940132 /* SignupSecureFieldView.swift in Sources */,
 				4744FA882469C9F800C5FD94 /* TransactionMessage+CoreDataProperties.swift in Sources */,
@@ -5260,6 +5293,7 @@
 		4734D3992417E3D400D6957E /* com_stakwork_sphinx_desktop.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				475B72142BB1CA55003AD969 /* com_stakwork_sphinx_desktop 25.xcdatamodel */,
 				47469D702AD98B89004F0490 /* com_stakwork_sphinx_desktop 24.xcdatamodel */,
 				4735969B2A70670D00489606 /* com_stakwork_sphinx_desktop 23.xcdatamodel */,
 				4708C1F92A559D6F00274AD4 /* com_stakwork_sphinx_desktop 22.xcdatamodel */,
@@ -5285,7 +5319,7 @@
 				4787F89C247C0C2300CCE8B9 /* com_stakwork_sphinx_desktop 2.xcdatamodel */,
 				4734D39A2417E3D400D6957E /* com_stakwork_sphinx_desktop.xcdatamodel */,
 			);
-			currentVersion = 47469D702AD98B89004F0490 /* com_stakwork_sphinx_desktop 24.xcdatamodel */;
+			currentVersion = 475B72142BB1CA55003AD969 /* com_stakwork_sphinx_desktop 25.xcdatamodel */;
 			path = com_stakwork_sphinx_desktop.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

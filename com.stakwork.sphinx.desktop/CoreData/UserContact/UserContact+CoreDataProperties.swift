@@ -33,6 +33,9 @@ extension UserContact {
     @NSManaged public var tipAmount: Int
     @NSManaged public var pin: String?
     @NSManaged public var routeHint: String?
+    @NSManaged public var scid: String?
+    @NSManaged public var index: Int
+    @NSManaged public var sentInviteCode : String?
     
     @NSManaged public var invite: UserInvite?
     @NSManaged public var subscriptions: NSSet?
