@@ -290,11 +290,66 @@ public class UserContact: NSManagedObject {
         return contacts
     }
     
+    public static func getContactWithInvitCode(
+        inviteCode: String,
+        managedContext: NSManagedObjectContext? = nil
+    ) -> UserContact? {
+        let predicate = NSPredicate(format: "sentInviteCode == %@", inviteCode)
+        let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+        
+        let contact:UserContact? = CoreDataManager.sharedManager.getObjectOfTypeWith(
+            predicate: predicate,
+            sortDescriptors: sortDescriptors,
+            entityName: "UserContact",
+            managedContext: managedContext
+        )
+        
+        return contact
+    }
+    
+    public static func getContactWithDisregardStatus(
+        pubkey: String,
+        managedContext: NSManagedObjectContext? = nil
+    ) -> UserContact? {
+        let predicate = NSPredicate(format: "publicKey == %@", pubkey)
+        let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+        
+        let contact:UserContact? = CoreDataManager.sharedManager.getObjectOfTypeWith(
+            predicate: predicate,
+            sortDescriptors: sortDescriptors,
+            entityName: "UserContact",
+            managedContext: managedContext
+        )
+        
+        return contact
+    }
+    
     public static func getOwner() -> UserContact? {
         let predicate = NSPredicate(format: "isOwner == %@", NSNumber(value: true))
         let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
         let contact:UserContact? = CoreDataManager.sharedManager.getObjectOfTypeWith(predicate: predicate, sortDescriptors: sortDescriptors, entityName: "UserContact")
         return contact
+    }
+    
+    public static func getSelfContact() -> UserContact? {
+        return self.getContactWith(indices: [0]).first
+    }
+    
+    public static func getContactWith(
+        indices: [Int],
+        managedContext: NSManagedObjectContext? = nil
+    ) -> [UserContact] {
+        var predicate: NSPredicate! = nil
+        predicate = NSPredicate(format: "index IN %@", indices)
+        let sortDescriptors = [NSSortDescriptor(key: "index", ascending: false)]
+        
+        let contacts: [UserContact] = CoreDataManager.sharedManager.getObjectsOfTypeWith(
+            predicate: predicate,
+            sortDescriptors: sortDescriptors,
+            entityName: "UserContact",
+            managedContext: managedContext
+        )
+        return contacts
     }
     
     func getAddress() -> String? {

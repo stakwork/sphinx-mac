@@ -529,6 +529,37 @@ class UserData {
         let _ = getAppPin()
     }
     
+    func save(walletMnemonic: String) {
+        let _ = keychainManager.save(value: walletMnemonic, forComposedKey: KeychainManager.KeychainKeys.walletMnemonic.rawValue)
+    }
+    
+    func getMnemonic() -> String? {
+        if let value = keychainManager.getValueFor(composedKey: KeychainManager.KeychainKeys.walletMnemonic.rawValue), !value.isEmpty {
+            return value
+        }
+        return nil
+    }
+    
+    func save(balance: UInt64){
+        let _ = keychainManager.save(value: String(balance), forComposedKey: KeychainManager.KeychainKeys.balance_msats.rawValue)
+    }
+    
+    func getBalanceSats() -> Int?{
+        if let value = keychainManager.getValueFor(composedKey: KeychainManager.KeychainKeys.balance_msats.rawValue), !value.isEmpty,
+         let intValue = Int(value){
+            return intValue/1000 //convert to sats
+        }
+        return nil
+    }
+    
+    func setLastMessageIndex(index:Int){
+        UserDefaults.Keys.lastV2MessageIndex.set(index)
+    }
+    
+    func getLastMessageIndex() -> Int? {
+        return UserDefaults.Keys.lastV2MessageIndex.get()
+    }
+    
     func clearData() {
         onionConnector.nodeIp = nil
         EncryptionManager.sharedInstance.deleteOldKeys()

@@ -528,6 +528,14 @@
 		47DE1C3D2A6AF6F10029597B /* ShimmeringSentMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47DE1C3C2A6AF6F10029597B /* ShimmeringSentMessageView.xib */; };
 		47DE1C3F2A6AFA070029597B /* ChatShimmeringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE1C3E2A6AFA070029597B /* ChatShimmeringView.swift */; };
 		47DE1C412A6AFA0F0029597B /* ChatShimmeringView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47DE1C402A6AFA0F0029597B /* ChatShimmeringView.xib */; };
+		47E19DD42BB1FD1700A0E596 /* WordsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E19DD32BB1FD1700A0E596 /* WordsList.swift */; };
+		47E19DD72BB1FE0100A0E596 /* SphinxOnionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E19DD62BB1FE0100A0E596 /* SphinxOnionManager.swift */; };
+		47E19DD92BB1FE0C00A0E596 /* SphinOnionManager+InvoicesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E19DD82BB1FE0C00A0E596 /* SphinOnionManager+InvoicesExtension.swift */; };
+		47E19DDB2BB1FE1300A0E596 /* SphinxOnionManager+ChatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E19DDA2BB1FE1300A0E596 /* SphinxOnionManager+ChatExtension.swift */; };
+		47E19DDD2BB1FE1B00A0E596 /* SphinxOnionManager+InvitesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E19DDC2BB1FE1B00A0E596 /* SphinxOnionManager+InvitesExtension.swift */; };
+		47E19DDF2BB1FE2500A0E596 /* SphinxOnionManager+TribesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E19DDE2BB1FE2500A0E596 /* SphinxOnionManager+TribesExtension.swift */; };
+		47E19DE12BB1FE2D00A0E596 /* SphinxOnionManager+ContactExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E19DE02BB1FE2D00A0E596 /* SphinxOnionManager+ContactExtension.swift */; };
+		47E19DE32BB1FE3500A0E596 /* SphinxOnionManager+HandleStateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E19DE22BB1FE3500A0E596 /* SphinxOnionManager+HandleStateExtension.swift */; };
 		47E7712B2472C51500C9CFEB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E7712A2472C51500C9CFEB /* Constants.swift */; };
 		47E7712D2472C5F100C9CFEB /* ChatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E7712C2472C5F100C9CFEB /* ChatHelper.swift */; };
 		47E771322472D04F00C9CFEB /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E771312472D04F00C9CFEB /* Cache.swift */; };
@@ -1457,6 +1465,14 @@
 		47DE1C3C2A6AF6F10029597B /* ShimmeringSentMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShimmeringSentMessageView.xib; sourceTree = "<group>"; };
 		47DE1C3E2A6AFA070029597B /* ChatShimmeringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatShimmeringView.swift; sourceTree = "<group>"; };
 		47DE1C402A6AFA0F0029597B /* ChatShimmeringView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatShimmeringView.xib; sourceTree = "<group>"; };
+		47E19DD32BB1FD1700A0E596 /* WordsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsList.swift; sourceTree = "<group>"; };
+		47E19DD62BB1FE0100A0E596 /* SphinxOnionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SphinxOnionManager.swift; sourceTree = "<group>"; };
+		47E19DD82BB1FE0C00A0E596 /* SphinOnionManager+InvoicesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SphinOnionManager+InvoicesExtension.swift"; sourceTree = "<group>"; };
+		47E19DDA2BB1FE1300A0E596 /* SphinxOnionManager+ChatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SphinxOnionManager+ChatExtension.swift"; sourceTree = "<group>"; };
+		47E19DDC2BB1FE1B00A0E596 /* SphinxOnionManager+InvitesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SphinxOnionManager+InvitesExtension.swift"; sourceTree = "<group>"; };
+		47E19DDE2BB1FE2500A0E596 /* SphinxOnionManager+TribesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SphinxOnionManager+TribesExtension.swift"; sourceTree = "<group>"; };
+		47E19DE02BB1FE2D00A0E596 /* SphinxOnionManager+ContactExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SphinxOnionManager+ContactExtension.swift"; sourceTree = "<group>"; };
+		47E19DE22BB1FE3500A0E596 /* SphinxOnionManager+HandleStateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SphinxOnionManager+HandleStateExtension.swift"; sourceTree = "<group>"; };
 		47E7712A2472C51500C9CFEB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		47E7712C2472C5F100C9CFEB /* ChatHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHelper.swift; sourceTree = "<group>"; };
 		47E771312472D04F00C9CFEB /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
@@ -2324,11 +2340,13 @@
 		47543C562A9517C5003F8DEE /* Crypter */ = {
 			isa = PBXGroup;
 			children = (
+				47E19DD52BB1FDF300A0E596 /* SphinxOnionManager */,
 				47543C5B2A951836003F8DEE /* CrypterManager.swift */,
 				47543C592A951836003F8DEE /* Nonce.swift */,
 				47543C572A951836003F8DEE /* Sphinxrs-Bridging-Header.h */,
 				47543C582A951836003F8DEE /* sphinxrs.swift */,
 				47543C5A2A951836003F8DEE /* sphinxrsFFI.h */,
+				47E19DD32BB1FD1700A0E596 /* WordsList.swift */,
 			);
 			path = Crypter;
 			sourceTree = "<group>";
@@ -3256,6 +3274,20 @@
 			path = Shimmering;
 			sourceTree = "<group>";
 		};
+		47E19DD52BB1FDF300A0E596 /* SphinxOnionManager */ = {
+			isa = PBXGroup;
+			children = (
+				47E19DD62BB1FE0100A0E596 /* SphinxOnionManager.swift */,
+				47E19DD82BB1FE0C00A0E596 /* SphinOnionManager+InvoicesExtension.swift */,
+				47E19DDA2BB1FE1300A0E596 /* SphinxOnionManager+ChatExtension.swift */,
+				47E19DDC2BB1FE1B00A0E596 /* SphinxOnionManager+InvitesExtension.swift */,
+				47E19DDE2BB1FE2500A0E596 /* SphinxOnionManager+TribesExtension.swift */,
+				47E19DE02BB1FE2D00A0E596 /* SphinxOnionManager+ContactExtension.swift */,
+				47E19DE22BB1FE3500A0E596 /* SphinxOnionManager+HandleStateExtension.swift */,
+			);
+			path = SphinxOnionManager;
+			sourceTree = "<group>";
+		};
 		47E771152472C1A700C9CFEB /* Data Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -3930,6 +3962,7 @@
 				473E1F5F2AC5F3D500DC1CDC /* ThreadsListDataSource.swift in Sources */,
 				474274A328EB7616000C3D51 /* CreateTribeViewController.swift in Sources */,
 				479751BF246C552500D2106B /* NSView.swift in Sources */,
+				47E19DE12BB1FE2D00A0E596 /* SphinxOnionManager+ContactExtension.swift in Sources */,
 				473E1F342AC46DB700DC1CDC /* ThreadCollectionView+GeneralSetup.swift in Sources */,
 				47B5508A24898331000514BF /* IntegerValueFormatter.swift in Sources */,
 				47FEE2272A66F6BE00646C4E /* CommonNewMessageCollectionViewItem.swift in Sources */,
@@ -3974,6 +4007,7 @@
 				4797F64C2B0E36B800A19C58 /* TransactionsDataSource.swift in Sources */,
 				474E46692AB0BC6D0098AD24 /* MediaMessageView.swift in Sources */,
 				47FEE2042A66D3D700646C4E /* MessageTableCellState+DataTypeExtension.swift in Sources */,
+				47E19DD72BB1FE0100A0E596 /* SphinxOnionManager.swift in Sources */,
 				4708C2172A5885CB00274AD4 /* ChatTopView.swift in Sources */,
 				4789E27C24F45BC3003991BE /* RelayURLUpdateHelper.swift in Sources */,
 				4744FA8F2469C9F800C5FD94 /* Chat+CoreDataProperties.swift in Sources */,
@@ -4115,6 +4149,7 @@
 				47FEE1F12A61A1C200646C4E /* ChatMessageFieldView+MentionsMacrosExtension.swift in Sources */,
 				47B55099248BCDD7000514BF /* CreateInvoiceViewController.swift in Sources */,
 				47543C602A9519CD003F8DEE /* API+CrypterExtension.swift in Sources */,
+				47E19DDF2BB1FE2500A0E596 /* SphinxOnionManager+TribesExtension.swift in Sources */,
 				4744FA742469A4BA00C5FD94 /* DelayPerformerHelper.swift in Sources */,
 				47DE1C0C2A6886020029597B /* NewChatTableDataSource+RowHeightExtension.swift in Sources */,
 				CE326B51294A179200821A53 /* ChatMentionAutocompleteCell.swift in Sources */,
@@ -4191,6 +4226,7 @@
 				4702BCF2248FE6B700EE9394 /* NSImage.swift in Sources */,
 				479751EF246DBF2B00D2106B /* ChatListCollectionViewItem.swift in Sources */,
 				479751BD246C540A00D2106B /* NewMessageBubbleHelper.swift in Sources */,
+				47E19DDD2BB1FE1B00A0E596 /* SphinxOnionManager+InvitesExtension.swift in Sources */,
 				4708C20C2A5700CF00274AD4 /* ChatListViewController+SocketDelegateExtension.swift in Sources */,
 				470396F025372994007F9C23 /* PodcastEpisodeCollectionViewItem.swift in Sources */,
 				479C793C24ED61E2009BA1CD /* AuthorizeAppView.swift in Sources */,
@@ -4198,6 +4234,7 @@
 				47FEE2152A66DD9700646C4E /* NewChatTableDataSource+AudioExtension.swift in Sources */,
 				4734D39B2417E3D400D6957E /* com_stakwork_sphinx_desktop.xcdatamodeld in Sources */,
 				478ED5A425D567CF00940132 /* PinView.swift in Sources */,
+				47E19DDB2BB1FE1300A0E596 /* SphinxOnionManager+ChatExtension.swift in Sources */,
 				478ED5F025DAB6AA00940132 /* SignupCommonFieldView.swift in Sources */,
 				47F8824925656CB0002A7E71 /* SocketExtensions.swift in Sources */,
 				475B680E29915CCA000EF29C /* PodcastClipAction.swift in Sources */,
@@ -4267,6 +4304,7 @@
 				471F3AC1255C748100E2AC79 /* InviteActionsHelper.swift in Sources */,
 				4726A42A24C62729005A66B4 /* NotificationsHelper.swift in Sources */,
 				4744FA6C2469A46300C5FD94 /* API+ChatsExtension.swift in Sources */,
+				47E19DD92BB1FE0C00A0E596 /* SphinOnionManager+InvoicesExtension.swift in Sources */,
 				478ED58425D47C4900940132 /* ConnectingView.swift in Sources */,
 				475723AB247ED3AC001ADC7E /* AudioPlayerHelper.swift in Sources */,
 				474568002515148A00D66268 /* URL.swift in Sources */,
@@ -4275,6 +4313,8 @@
 				47F8825025656CB0002A7E71 /* SocketEngineClient.swift in Sources */,
 				477ADCD42A1E5A7E004E74CE /* PinMessageBarView.swift in Sources */,
 				47B55095248A9A9D000514BF /* GroupsManager.swift in Sources */,
+				47E19DD42BB1FD1700A0E596 /* WordsList.swift in Sources */,
+				47E19DE32BB1FE3500A0E596 /* SphinxOnionManager+HandleStateExtension.swift in Sources */,
 				47DE1C1E2A6977730029597B /* NewMessageCollectionViewItem+MessageTypesExtension.swift in Sources */,
 				47B550B3248C46E8000514BF /* CustomScrollView.swift in Sources */,
 				475B680429915C9E000EF29C /* ActionTrack+FetchUtils.swift in Sources */,

@@ -34,4 +34,13 @@ extension Notification.Name {
     static let onContactsAndChatsChanged = Notification.Name("onContactsAndChatsChanged")
     static let onFilePaste = Notification.Name("onImagePaste")
     static let webViewImageClicked = Notification.Name("webViewImageClicked")
+    
+    static let onMQTTConnectionStatusChanged = Notification.Name("onMQTTConnectionStatusChanged")
+    static let keyExchangeResponseMessageWasConstructed = Notification.Name("keyExchangeMessageWasConstructed")
+    static let newContactWasRegisteredWithServer = Notification.Name("newContactWasRegisteredWithServer")
+    static let newContactKeyExchangeResponseWasReceived = Notification.Name("newContactKeyExchangeResponseWasReceived")
+    static let newOnionMessageWasReceived = Notification.Name("newOnionMessageWasReceived")
+    static let newTribeCreationComplete = Notification.Name("newTribeCreationComplete")
+    static let newTribeMemberListRetrieved = Notification.Name("newTribeMemberListRetrieved")
+    static let invoiceIPaidSettled = Notification.Name("invoiceIPaidSettled")
 }
