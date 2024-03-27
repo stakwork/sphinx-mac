@@ -456,29 +456,39 @@ extension NewChatListViewController: ChatListCollectionViewItemDelegate {
                 }
                 initiateDeletion(contactId: contactId)
             case .toggleReadUnread:
+//                guard let chat = (sender.representedObject as? Chat), let lastMessage = chat.lastMessage else {
+//                    return
+//                }
+//                
+//                let desiredState = !chat.seen
+//                API.sharedInstance.toggleChatReadUnread(
+//                    chatId: chat.id,
+//                    shouldMarkAsUnread: desiredState == false,
+//                    callback: { success in
+//                        if success {
+//                            lastMessage.seen = desiredState
+//                            chat.seen = desiredState
+//                            chat.saveChat()
+//                        } else {
+//                            DispatchQueue.main.async {
+//                                AlertHelper.showAlert(
+//                                    title: "generic.error.title".localized,
+//                                    message: "generic.error.message".localized
+//                                )
+//                            }
+//                        }
+//                    }
+//                )
+                
                 guard let chat = (sender.representedObject as? Chat), let lastMessage = chat.lastMessage else {
                     return
                 }
                 
-                let desiredState = !chat.seen
-                API.sharedInstance.toggleChatReadUnread(
-                    chatId: chat.id,
-                    shouldMarkAsUnread: desiredState == false,
-                    callback: { success in
-                        if success {
-                            lastMessage.seen = desiredState
-                            chat.seen = desiredState
-                            chat.saveChat()
-                        } else {
-                            DispatchQueue.main.async {
-                                AlertHelper.showAlert(
-                                    title: "generic.error.title".localized,
-                                    message: "generic.error.message".localized
-                                )
-                            }
-                        }
-                    }
-                )
+                let desiredState = !chat.seen //store this immutable value and always sync both based on chat status
+                
+                lastMessage.seen = desiredState
+                chat.seen = desiredState
+                chat.saveChat()
             }
         }
     }
