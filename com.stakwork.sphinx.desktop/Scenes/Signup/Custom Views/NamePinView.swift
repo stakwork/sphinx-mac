@@ -23,6 +23,8 @@ class NamePinView: NSView, LoadableNib {
     let messageBubbleHelper = NewMessageBubbleHelper()
     let userData = UserData.sharedInstance
     
+    var isSphinxV2 = false
+    
     var loading = false {
         didSet {
             LoadingWheelHelper.toggleLoadingWheel(loading: loading, loadingWheel: loadingWheel, color: NSColor.white, controls: [continueButton.getButton()])
@@ -48,11 +50,13 @@ class NamePinView: NSView, LoadableNib {
     
     init(
         frame frameRect: NSRect,
-        delegate: WelcomeEmptyViewDelegate
+        delegate: WelcomeEmptyViewDelegate,
+        isSphinxV2: Bool = false
     ) {
         super.init(frame: frameRect)
         
         self.delegate = delegate
+        self.isSphinxV2 = isSphinxV2
         
         loadViewFromNib()
         configureView()
@@ -90,9 +94,20 @@ extension NamePinView : SignupButtonViewDelegate {
         if !nameField.getFieldValue().isEmpty {
             loading = true
             
-            API.sharedInstance.getContacts(callback: {(contacts, _, _, _) -> () in
-                self.insertAndUpdateOwner(contacts: contacts)
-            })
+            if isSphinxV2,
+                let selfContact = SphinxOnionManager.sharedInstance.pendingContact,
+                selfContact.isOwner == true
+            {
+                let nickname = nameField.getFieldValue()
+                selfContact.nickname = nickname
+                self.goToProfilePictureView()
+            } else if !isSphinxV2 {
+                API.sharedInstance.getContacts(callback: {(contacts, _, _, _) -> () in
+                    self.insertAndUpdateOwner(contacts: contacts)
+                })
+            } else {
+                showError()
+            }
         } else {
             showError()
         }

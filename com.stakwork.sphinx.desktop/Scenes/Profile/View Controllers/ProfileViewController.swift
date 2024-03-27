@@ -233,9 +233,13 @@ class ProfileViewController: NSViewController {
             if let keyJSONString = UserData.sharedInstance.exportKeysJSON(pin: pin) {
                 pinCodeVC.view.window?.close()
                 
-                AlertHelper.showTwoOptionsAlert(title: "export.keys".localized, message: "keys.will.copy.clipboard".localized, confirm: {
-                    ClipboardHelper.copyToClipboard(text: keyJSONString, message: "keys.copied.clipboard".localized)
-                })
+                if let mnemonic = UserData.sharedInstance.getMnemonic() {
+                    SphinxOnionManager.sharedInstance.vc = self
+                    SphinxOnionManager.sharedInstance.showMnemonicToUser(mnemonic: mnemonic, callback: {})
+                    SphinxOnionManager.sharedInstance.vc = nil
+                } else {
+                    AlertHelper.showAlert(title: "generic.error.title".localized, message: "generic.error.message".localized)
+                }
             } else {
                 AlertHelper.showAlert(title: "generic.error.title".localized, message: "generic.error.message".localized)
             }

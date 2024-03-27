@@ -33,6 +33,8 @@ class ProfileImageView: NSView, LoadableNib {
         }
     }
     
+    var isSphinxV2 = false
+    
     var imageSet = false
     let messageBubbleHelper = NewMessageBubbleHelper()
     
@@ -55,11 +57,13 @@ class ProfileImageView: NSView, LoadableNib {
     init(
         frame frameRect: NSRect,
         nickname: String,
-        delegate: WelcomeEmptyViewDelegate
+        delegate: WelcomeEmptyViewDelegate,
+        isSphinxV2: Bool = false
     ) {
         super.init(frame: frameRect)
         
         self.delegate = delegate
+        self.isSphinxV2 = isSphinxV2
         
         loadViewFromNib()
         setupViews()
@@ -92,7 +96,7 @@ class ProfileImageView: NSView, LoadableNib {
     }
     
     func uploadImage(image: NSImage) {
-        if let profile = UserContact.getOwner(), profile.id > 0, let imgData = image.sd_imageData(as: .JPEG, compressionQuality: 0.5) {
+        if let imgData = image.sd_imageData(as: .JPEG, compressionQuality: 0.5) {
             let uploadMessage = String(format: "uploaded.progress".localized, 0)
             
             self.uploadingLabel.isHidden = false
@@ -110,17 +114,28 @@ class ProfileImageView: NSView, LoadableNib {
     }
     
     func updateProfile(photoUrl: String) {
-        let id = UserData.sharedInstance.getUserId()
-        let parameters = ["photo_url" : photoUrl as AnyObject]
-        
-        API.sharedInstance.updateUser(id: id, params: parameters, callback: { contact in
+        if isSphinxV2,
+           let selfContact = SphinxOnionManager.sharedInstance.pendingContact
+        {
+            selfContact.avatarUrl = photoUrl //TODO: we need to figure out where avatars actually get stored now!
             self.loading = false
-            let _ = UserContactsHelper.insertContact(contact: contact)
             self.goToSphinxReady()
-        }, errorCallback: {
+        } else if !isSphinxV2 {
+            let id = UserData.sharedInstance.getUserId()
+            let parameters = ["photo_url" : photoUrl as AnyObject]
+            
+            API.sharedInstance.updateUser(id: id, params: parameters, callback: { contact in
+                self.loading = false
+                let _ = UserContactsHelper.insertContact(contact: contact)
+                self.goToSphinxReady()
+            }, errorCallback: {
+                self.loading = false
+                self.messageBubbleHelper.showGenericMessageView(text: "generic.error.message".localized)
+            })
+        } else {
             self.loading = false
             self.messageBubbleHelper.showGenericMessageView(text: "generic.error.message".localized)
-        })
+        }
     }
 }
 

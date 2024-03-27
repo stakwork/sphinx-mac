@@ -310,29 +310,30 @@ class SphinxOnionManager : NSObject {
 
 extension SphinxOnionManager {//Sign Up UI Related:
     func chooseImportOrGenerateSeed(completion:@escaping (Bool)->()){
-//        let requestEnteredMneumonicCallback: (() -> ()) = {
-//            self.importSeedPhrase()
-//        }
-//        
-//        let generateSeedCallback: (() -> ()) = {
-//            guard let mneomnic = self.generateMnemonic(),
-//                  let _ = self.vc as? NewUserSignupFormViewController else{
-//                completion(false)
-//                return
-//            }
-//            self.showMnemonicToUser(mnemonic: mneomnic, callback: {
-//                completion(true)
-//            })
-//        }
-//        
-//        AlertHelper.showTwoOptionsAlert(
-//            title: "profile.mnemonic-generate-or-import-title".localized,
-//            message: "profile.mnemonic-generate-or-import-prompt".localized,
-//            confirmButtonTitle: "profile.mnemonic-generate-prompt".localized,
-//            cancelButtonTitle: "profile.mnemonic-import-prompt".localized,
-//            confirm: generateSeedCallback,
-//            cancel: requestEnteredMneumonicCallback
-//        )
+        let requestEnteredMneumonicCallback: (() -> ()) = {
+            self.importSeedPhrase()
+        }
+        
+        let generateSeedCallback: (() -> ()) = {
+            guard let mneomnic = self.generateMnemonic(),
+                  let _ = self.vc as? WelcomeEmptyViewController else {
+                completion(false)
+                return
+            }
+            
+            self.showMnemonicToUser(mnemonic: mneomnic, callback: {
+                completion(true)
+            })
+        }
+        
+        AlertHelper.showTwoOptionsAlert(
+            title: "profile.mnemonic-generate-or-import-title".localized,
+            message: "profile.mnemonic-generate-or-import-prompt".localized,
+            confirm: generateSeedCallback,
+            cancel: requestEnteredMneumonicCallback,
+            confirmLabel: "profile.mnemonic-generate-prompt".localized,
+            cancelLabel: "profile.mnemonic-import-prompt".localized
+        )
     }
     
     func importSeedPhrase(){
@@ -342,29 +343,20 @@ extension SphinxOnionManager {//Sign Up UI Related:
     }
     
     func showMnemonicToUser(mnemonic: String, callback: @escaping () -> ()) {
-//        guard let vc = vc else {
-//            callback()
-//            return
-//        }
-//        
-//        let copyAction = UIAlertAction(
-//            title: "Copy",
-//            style: .default,
-//            handler: { _ in
-//                ClipboardHelper.copyToClipboard(text: mnemonic, message: "profile.mnemonic-copied".localized)
-//                callback()
-//            }
-//        )
-//        
-//        AlertHelper.showAlert(
-//            title: "profile.store-mnemonic".localized,
-//            message: mnemonic,
-//            on: vc,
-//            additionAlertAction: copyAction,
-//            completion: {
-//                callback()
-//            }
-//        )
+        guard let vc = vc else {
+            callback()
+            return
+        }
+        
+        AlertHelper.showAlert(
+            title: "profile.store-mnemonic".localized,
+            message: mnemonic,
+            confirmLabel: "Copy",
+            confirm: {
+                ClipboardHelper.copyToClipboard(text: mnemonic, message: "profile.mnemonic-copied".localized)
+                callback()
+            }
+        )
     }
 }
 

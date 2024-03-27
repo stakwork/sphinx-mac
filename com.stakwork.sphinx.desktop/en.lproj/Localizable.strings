@@ -255,6 +255,10 @@
 "profile.phone-signer-option" = "Computer Signer";
 "profile.signer-qr-code.title" = "QR code";
 "profile.signer-qr-code.message" = "Enter QR code content";
+"profile.mnemonic-generate-or-import-title" = "Choose Your Seed Method";
+"profile.mnemonic-generate-or-import-prompt" = "Would you like to generate a new seed phrase or import an existing one?";
+"profile.mnemonic-generate-prompt" = "Generate";
+"profile.mnemonic-import-prompt" = "Import";
 
 //PIN
 "privacy.pin" = "Privacy PIN";

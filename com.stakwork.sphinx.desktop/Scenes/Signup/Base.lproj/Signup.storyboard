@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -51,7 +51,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="400" height="500"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xQc-CC-NMY">
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xQc-CC-NMY">
                                             <rect key="frame" x="125" y="370" width="150" height="35"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="WELCOME" id="eH5-XY-6Op">
                                                 <font key="font" metaFont="system" size="30"/>
@@ -88,7 +88,7 @@
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="mIB-X7-RcX">
                                             <rect key="frame" x="118" y="43" width="165" height="40"/>
                                             <subviews>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IIL-9s-m0c">
+                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IIL-9s-m0c">
                                                     <rect key="frame" x="8" y="13" width="126" height="14"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Restore from Keychain" id="Xje-kZ-oFQ">
                                                         <font key="font" size="12" name="Roboto-Regular"/>
@@ -96,7 +96,7 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zW5-Fp-STN">
+                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zW5-Fp-STN">
                                                     <rect key="frame" x="138" y="12" width="19" height="15"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="" id="Gh1-4O-adl">
                                                         <font key="font" size="15" name="MaterialIcons-Regular"/>
@@ -186,7 +186,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="400" height="500"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="existingUserImage" id="Qf0-TV-UWg"/>
                                         </imageView>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NXR-6C-tlI">
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NXR-6C-tlI">
                                             <rect key="frame" x="107" y="40" width="186" height="38"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Copy your keys from your  mobile app and paste it here." id="ZaY-Zu-xZL">
                                                 <font key="font" size="14" name="Roboto-Light"/>
@@ -212,7 +212,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="400" height="500"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vz0-A4-pZ9">
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vz0-A4-pZ9">
                                             <rect key="frame" x="18" y="451" width="25" height="21"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="" id="gon-nX-nNq">
                                                 <font key="font" size="21" name="MaterialIcons-Regular"/>
@@ -220,7 +220,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CI3-cc-BAH">
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CI3-cc-BAH">
                                             <rect key="frame" x="54" y="452" width="40" height="19"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Back" id="iVM-95-iVo">
                                                 <font key="font" size="16" name="Roboto-Regular"/>
@@ -230,18 +230,18 @@
                                         </textField>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bHq-fN-jmp" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                                             <rect key="frame" x="5" y="436" width="102" height="50"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="50" id="cfd-GH-pny"/>
-                                            </constraints>
                                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="71s-U8-awX">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system" size="21"/>
                                             </buttonCell>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="cfd-GH-pny"/>
+                                            </constraints>
                                             <connections>
                                                 <action selector="backButtonClicked:" target="hOz-Yn-m4U" id="lmf-nZ-6DU"/>
                                             </connections>
                                         </button>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rbf-4G-CSt">
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rbf-4G-CSt">
                                             <rect key="frame" x="124" y="319" width="152" height="35"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="NEW USER" id="e8E-A8-6fc">
                                                 <font key="font" metaFont="system" size="30"/>
@@ -304,7 +304,7 @@
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="8tw-Jv-Xem">
                                         <rect key="frame" x="5" y="436" width="102" height="50"/>
                                         <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jX8-uo-9LV">
+                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jX8-uo-9LV">
                                                 <rect key="frame" x="13" y="15" width="25" height="21"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="" id="Yzm-9h-pet">
                                                     <font key="font" size="21" name="MaterialIcons-Regular"/>
@@ -312,7 +312,7 @@
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JkZ-2b-NIu">
+                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JkZ-2b-NIu">
                                                 <rect key="frame" x="49" y="16" width="40" height="19"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Back" id="CYv-ex-9ej">
                                                     <font key="font" size="16" name="Roboto-Regular"/>
@@ -322,13 +322,13 @@
                                             </textField>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pi9-N2-TfG" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="102" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="4KQ-iA-zF3"/>
-                                                </constraints>
                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="TQY-mO-O6d">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" size="21" name="MaterialIcons-Regular"/>
                                                 </buttonCell>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="4KQ-iA-zF3"/>
+                                                </constraints>
                                                 <connections>
                                                     <action selector="pinBackButtonClicked:" target="hOz-Yn-m4U" id="RxH-gP-b2A"/>
                                                 </connections>
@@ -408,7 +408,7 @@
                             <progressIndicator hidden="YES" wantsLayer="YES" maxValue="100" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="B1q-fG-m1a">
                                 <rect key="frame" x="384" y="84" width="32" height="32"/>
                             </progressIndicator>
-                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Nyo-b0-QSG">
+                            <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Nyo-b0-QSG">
                                 <rect key="frame" x="396" y="55" width="8" height="19"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" id="pGV-c8-Sui">
                                     <font key="font" size="16" name="Roboto-Regular"/>
@@ -459,7 +459,7 @@
                                             </constraints>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" id="u2j-CT-zau"/>
                                         </imageView>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wbO-2J-UCK">
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wbO-2J-UCK">
                                             <rect key="frame" x="267" y="362" width="267" height="70"/>
                                             <textFieldCell key="cell" alignment="center" id="eGy-W4-tDU">
                                                 <font key="font" size="30" name="Roboto-Regular"/>
@@ -488,7 +488,7 @@ lightning network!</string>
                                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dwJ-mx-9Zd">
+                                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dwJ-mx-9Zd">
                                                                     <rect key="frame" x="17" y="23" width="46" height="41"/>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="TT" id="CbK-so-PKZ">
                                                                         <font key="font" metaFont="system" size="35"/>
@@ -520,7 +520,7 @@ lightning network!</string>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </imageView>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rKK-zw-c0x">
+                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rKK-zw-c0x">
                                                         <rect key="frame" x="100" y="23" width="123" height="48"/>
                                                         <textFieldCell key="cell" alignment="left" title="Tomas Timinskas" id="9OT-SX-tEF">
                                                             <font key="font" size="20" name="Roboto-Regular"/>
@@ -633,7 +633,7 @@ lightning network!</string>
                                             </constraints>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="sphinxPhoneView" id="FhR-3r-cYs"/>
                                         </imageView>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mnx-fC-7uu">
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mnx-fC-7uu">
                                             <rect key="frame" x="148" y="411" width="504" height="39"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Don't you have Sphinx on your phone?" id="qRn-81-yca">
                                                 <font key="font" size="30" name="Roboto-Light"/>

@@ -254,6 +254,10 @@
 "profile.phone-signer-option" = "コンピュータ署名者";
 "profile.signer-qr-code.title" = "QRコード";
 "profile.signer-qr-code.message" = "QRコードの内容を入力してください";
+"profile.mnemonic-generate-or-import-title" = "Choose Your Seed Method";
+"profile.mnemonic-generate-or-import-prompt" = "Would you like to generate a new seed phrase or import an existing one?";
+"profile.mnemonic-generate-prompt" = "Generate";
+"profile.mnemonic-import-prompt" = "Import";
 
 //PIN
 "privacy.pin" = "プライバシーPIN";

@@ -31,6 +31,7 @@ class WelcomeEmptyViewController: WelcomeTorConnectionViewController {
     var viewMode: WelcomeViewMode = .Connecting
     
     var generateTokenRetries = 0
+    var isSphinxV2 = false
     
     var isNewUser: Bool {
         get {
@@ -52,12 +53,14 @@ class WelcomeEmptyViewController: WelcomeTorConnectionViewController {
     static func instantiate(
         mode: SignupHelper.SignupMode,
         viewMode: WelcomeViewMode,
-        token: String? = nil
+        token: String? = nil,
+        isSphinxV2: Bool = false
     ) -> WelcomeEmptyViewController {
         let viewController = StoryboardScene.Signup.welcomeEmptyViewController.instantiate()
         viewController.mode = mode
         viewController.viewMode = viewMode
         viewController.token = token
+        viewController.isSphinxV2 = isSphinxV2
         return viewController
     }
 
@@ -74,7 +77,7 @@ class WelcomeEmptyViewController: WelcomeTorConnectionViewController {
         case .Welcome:
             subView = WelcomeView(frame: NSRect.zero, delegate: self)
         case .FriendMessage:
-            subView = FriendMessageView(frame: NSRect.zero, delegate: self)
+            subView = FriendMessageView(frame: NSRect.zero, delegate: self, isSphinxV2: isSphinxV2)
         }
         
         self.view.addSubview(subView!)
@@ -85,11 +88,9 @@ class WelcomeEmptyViewController: WelcomeTorConnectionViewController {
         if viewMode == .Connecting {
             if isNewUser {
                 continueSignup()
-            }
-            else if isSwarmClaimUser {
+            } else if isSwarmClaimUser {
                 continueWithToken()
-            }
-            else {
+            } else {
                 continueRestore()
             }
         }
@@ -116,10 +117,14 @@ class WelcomeEmptyViewController: WelcomeTorConnectionViewController {
     }
     
     func continueSignup() {
-        if connectTorIfNeeded() {
-            return
+        if isSphinxV2 {
+            self.shouldContinueTo(mode: WelcomeViewMode.FriendMessage.rawValue)
+        } else {
+            if connectTorIfNeeded() {
+                return
+            }
+            generateTokenAndProceed(password: userData.getPassword())
         }
-        generateTokenAndProceed(password: userData.getPassword())
     }
     
     func continueWithToken() {
@@ -241,7 +246,11 @@ extension WelcomeEmptyViewController : WelcomeEmptyViewDelegate {
         }
 
         if isNewUser {
-            view.window?.replaceContentBy(vc: WelcomeLightningViewController.instantiate())
+            view.window?.replaceContentBy(
+                vc: WelcomeLightningViewController.instantiate(
+                    isSphinxV2: isSphinxV2
+                )
+            )
         } else {
             GroupsPinManager.sharedInstance.loginPin()
             SignupHelper.completeSignup()

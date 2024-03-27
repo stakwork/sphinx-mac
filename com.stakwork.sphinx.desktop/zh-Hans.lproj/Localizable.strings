@@ -254,6 +254,10 @@
 "profile.phone-signer-option" = "计算机签名者";
 "profile.signer-qr-code.title" = "二维码";
 "profile.signer-qr-code.message" = "输入二维码内容";
+"profile.mnemonic-generate-or-import-title" = "Choose Your Seed Method";
+"profile.mnemonic-generate-or-import-prompt" = "Would you like to generate a new seed phrase or import an existing one?";
+"profile.mnemonic-generate-prompt" = "Generate";
+"profile.mnemonic-import-prompt" = "Import";
 
 //PIN
 "privacy.pin" = "隐私PIN码";

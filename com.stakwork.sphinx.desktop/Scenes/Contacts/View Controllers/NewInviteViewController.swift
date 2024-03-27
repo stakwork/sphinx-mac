@@ -100,7 +100,7 @@ class NewInviteViewController: NSViewController {
     
     @IBAction func createInvitationButtonClicked(_ sender: Any) {
         let nickname = nicknameField.stringValue
-//        let message = messageTextView.string.isEmpty ? "welcome.to.sphinx".localized : messageTextView.string    
+//        let message = messageTextView.string.isEmpty ? "welcome.to.sphinx".localized : messageTextView.string
         let amount = amountField.stringValue
         
         if let amountSats = Int(amount) {

@@ -55,10 +55,15 @@ class SphinxReady: NSView, LoadableNib {
     func loadBalances() {
         loading = true
         
-        let (_, _) = walletBalanceService.getBalanceAll(completion: { local, remote in
-            self.loading = false
-            self.setAttributedTitles(local: local, remote: remote)
-        })
+//        let (_, _) = walletBalanceService.getBalanceAll(completion: { local, remote in
+//            self.loading = false
+//            self.setAttributedTitles(local: local, remote: remote)
+//        })
+        
+        if let storedBalance = walletBalanceService.getBalance() {
+            loading = false
+            self.setAttributedTitles(local: storedBalance, remote: 0)
+        }
     }
     
     func setAttributedTitles(local: Int, remote: Int) {

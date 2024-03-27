@@ -250,6 +250,10 @@
 "profile.phone-signer-option" = "Computer Signer";
 "profile.signer-qr-code.title" = "Código QR";
 "profile.signer-qr-code.message" = "Ingresá el contenido del código QR";
+"profile.mnemonic-generate-or-import-title" = "Elige tu método de semilla";
+"profile.mnemonic-generate-prompt" = "Generar";
+"profile.mnemonic-import-prompt" = "Importar";
+"profile.mnemonic-generate-or-import-prompt" = "¿Deseas generar una nueva frase mnemotécnica o importar una existente?";
 
 //PIN
 "privacy.pin" = "PIN de Privacidad";

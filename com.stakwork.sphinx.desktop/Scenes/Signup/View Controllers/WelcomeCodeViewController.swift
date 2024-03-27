@@ -104,10 +104,13 @@ extension WelcomeCodeViewController : SignupButtonViewDelegate {
         if validateCode(code: code) {
             loading = true
             
-            if code.isRelayQRCode || code.isInviteCode || code.isSwarmConnectCode || code.isSwarmClaimCode {
+            if code.isRelayQRCode ||
+                code.isInviteCode ||
+                code.isSwarmConnectCode ||
+                code.isSwarmClaimCode
+            {
                 startSignup(code: code)
-            }
-            else {
+            } else {
                 showPINView(encryptedKeys: code)
             }
         }
@@ -121,11 +124,11 @@ extension WelcomeCodeViewController : SignupButtonViewDelegate {
             }
         } else if code.isInviteCode {
             signupWith(code: code)
-        }
-        else if code.isSwarmConnectCode{
+        } else if code.isV2InviteCode {
+            signupWith(sphinxV2Code: code)
+        } else if code.isSwarmConnectCode {
             signupWith(swarmConnectCode: code)
-        }
-        else if code.isSwarmClaimCode{
+        } else if code.isSwarmClaimCode {
             signupWith(withSwarmClaimCode: code)
         }
     }
@@ -164,6 +167,46 @@ extension WelcomeCodeViewController : SignupButtonViewDelegate {
             self.messageBubbleHelper.showGenericMessageView(text: "generic.error.message".localized)
             self.loading = false
         })
+    }
+    
+    func signupWith(sphinxV2Code: String) {
+        SphinxOnionManager.sharedInstance.vc = self
+        SphinxOnionManager.sharedInstance.chooseImportOrGenerateSeed(completion: {success in
+            if (success) {
+                self.handleInviteCodeV2SignUp(code: sphinxV2Code)
+            } else {
+                AlertHelper.showAlert(title: "Error redeeming invite", message: "Please try again or ask for another invite.")
+            }
+            SphinxOnionManager.sharedInstance.vc = nil
+        })
+    }
+    
+    func handleInviteCodeV2SignUp(code:String){
+        if let mnemonic = UserData.sharedInstance.getMnemonic(), 
+            SphinxOnionManager.sharedInstance.createMyAccount(mnemonic: mnemonic)
+        {
+            SphinxOnionManager.sharedInstance.redeemInvite(inviteCode: code)
+            self.signup_v2_with_test_server()
+        }
+    }
+    
+    func signup_v2_with_test_server(){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
+            let som = SphinxOnionManager.sharedInstance
+            if let contact = som.pendingContact, contact.isOwner == true {
+                
+//                if let vc = self as? NewUserSignupFormViewController{
+//                    vc.isV2 = true
+//                }
+                
+                som.isV2InitialSetup = true
+                self.continueToConnectingView(mode: .NewUser, isSphinxV2: true)
+            } else {
+//                self.navigationController?.popViewController(animated: true)
+                AlertHelper.showAlert(title: "Error", message: "Unable to connect to Sphinx V2 Test Server")
+            }
+        })
+        
     }
     
     func connectToNode(ip: String, password: String="", pubKey:String="") {
@@ -237,10 +280,18 @@ extension WelcomeCodeViewController : SignupButtonViewDelegate {
     
     func continueToConnectingView(
         mode: SignupHelper.SignupMode,
-        token: String? = nil
+        token: String? = nil,
+        isSphinxV2: Bool = false
     ) {
         UserDefaults.Keys.lastPinDate.set(Date())
-        view.window?.replaceContentBy(vc: WelcomeEmptyViewController.instantiate(mode: mode, viewMode: .Connecting, token: token))
+        view.window?.replaceContentBy(
+            vc: WelcomeEmptyViewController.instantiate(
+                mode: mode,
+                viewMode: .Connecting,
+                token: token,
+                isSphinxV2: isSphinxV2
+            )
+        )
     }
 }
 
