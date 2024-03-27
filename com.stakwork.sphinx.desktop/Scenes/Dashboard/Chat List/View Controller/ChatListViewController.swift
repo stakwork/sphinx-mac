@@ -387,7 +387,8 @@ class ChatListViewController : DashboardSplittedViewController {
                     } else {
                         let joinTribeVC = JoinTribeViewController.instantiate(
                             tribeInfo: tribeInfo,
-                            delegate: self
+                            delegate: self,
+                            isTribeV2: tribeLink.isTribeV2
                         )
                         
                         var defaultHeight: CGFloat = 768  // A conservative default height

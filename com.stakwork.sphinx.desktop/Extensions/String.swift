@@ -421,6 +421,10 @@ extension String {
      }
     
     //uses _ instead of :
+    var isTribeV2 : Bool {
+        return qrString.contains("action=tribeV2") && qrString.contains("pubkey=")
+    }
+    
     var isV2RouteHint: Bool {
         get {
             // Adjust the number inside the curly braces {18} to match the expected length of digits.

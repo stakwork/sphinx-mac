@@ -246,6 +246,7 @@ class GroupsManager {
                         break
                     case "pubkey":
                         tribeInfo.ownerPubkey = value
+                        tribeInfo.uuid = value
                         break
                     default:
                         break
@@ -521,37 +522,6 @@ class GroupsManager {
         return chatJSON
     }
     
-    func getV2Pubkey(qrString: String) -> String? {
-        if let url = URL(string: "\(API.kHUBServerUrl)?\(qrString)"),
-            let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
-            let queryItems = components.queryItems,
-            let pubkey = queryItems.first(where: { $0.name == "pubkey" })?.value
-        {
-            return cleanPubKey(pubkey)
-        }
-        return nil
-    }
-    
-    func getV2Host(qrString: String) -> String? {
-        if let url = URL(string: "\(API.kHUBServerUrl)?\(qrString)"),
-            let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
-            let queryItems = components.queryItems,
-            let host = queryItems.first(where: { $0.name == "host" })?.value
-        {
-            return cleanPubKey(host)
-        }
-        return nil
-    }
-    
-    func cleanPubKey(_ key: String) -> String {
-        let trimmed = key.trimmingCharacters(in: .whitespacesAndNewlines)
-        if trimmed.hasSuffix("\")") {
-            return String(trimmed.dropLast(2))
-        } else {
-            return trimmed
-        }
-    }
-    
     func fetchTribeInfo(
         host: String,
         uuid: String,
@@ -571,9 +541,9 @@ class GroupsManager {
         )
     }
     
-    func finalizeTribeJoin(tribeInfo:TribeInfo,qrString:String){
-        if let pubkey = getV2Pubkey(qrString: qrString),
-           let chatJSON = getChatJSON(tribeInfo:tribeInfo),
+    func finalizeTribeJoin(tribeInfo: TribeInfo) {
+        if let pubkey = tribeInfo.ownerPubkey,
+           let chatJSON = getChatJSON(tribeInfo: tribeInfo),
            let routeHint = tribeInfo.ownerRouteHint,
            let chat = Chat.insertChat(chat: chatJSON)
         {

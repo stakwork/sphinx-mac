@@ -60,6 +60,7 @@ class JoinTribeViewController: NSViewController {
     var groupsManager = GroupsManager.sharedInstance
     var tribeInfo: GroupsManager.TribeInfo! = nil
     let owner = UserContact.getOwner()
+    var isTribeV2 = false
     
     var loading = false {
         didSet {
@@ -80,10 +81,15 @@ class JoinTribeViewController: NSViewController {
         }
     }
     
-    static func instantiate(tribeInfo: GroupsManager.TribeInfo, delegate: NewContactChatDelegate) -> JoinTribeViewController {
+    static func instantiate(
+        tribeInfo: GroupsManager.TribeInfo,
+        delegate: NewContactChatDelegate,
+        isTribeV2: Bool
+    ) -> JoinTribeViewController {
         let viewController = StoryboardScene.Groups.joinTribeViewController.instantiate()
         viewController.tribeInfo = tribeInfo
         viewController.delegate = delegate
+        viewController.isTribeV2 = isTribeV2
         return viewController
     }
     
@@ -101,11 +107,16 @@ class JoinTribeViewController: NSViewController {
         loadingGroup = true
         
         if let tribeInfo = tribeInfo {
-            API.sharedInstance.getTribeInfo(host: tribeInfo.host, uuid: tribeInfo.uuid, callback: { groupInfo in
-                self.completeDataAndShow(groupInfo: groupInfo)
-            }, errorCallback: {
-                self.showErrorAndDismiss()
-            })
+            API.sharedInstance.getTribeInfo(
+                host: tribeInfo.host,
+                uuid: tribeInfo.uuid,
+                useSSL: !isTribeV2,
+                callback: { groupInfo in
+                    self.completeDataAndShow(groupInfo: groupInfo)
+                }, errorCallback: {
+                    self.showErrorAndDismiss()
+                }
+            )
         } else {
             showErrorAndDismiss()
         }
@@ -159,7 +170,17 @@ class JoinTribeViewController: NSViewController {
         })
     }
     
-    func joinTribe(name: String?, imageUrl: String?) {
+    func joinTribe(
+        name: String?,
+        imageUrl: String?
+    ) {
+        if isTribeV2, let tribeInfo = tribeInfo {
+            groupsManager.finalizeTribeJoin(tribeInfo: tribeInfo)
+            self.delegate?.shouldReloadContacts()
+            self.view.window?.close()
+            return
+        }
+        
         guard let name = name, !name.isEmpty else {
             loading = false
             AlertHelper.showAlert(title: "generic.error.title".localized, message: "alias.cannot.empty".localized)
