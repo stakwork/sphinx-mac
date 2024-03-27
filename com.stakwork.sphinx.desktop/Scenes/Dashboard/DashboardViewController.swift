@@ -70,6 +70,62 @@ class DashboardViewController: NSViewController {
         super.viewDidAppear()
         
         handleDeepLink()
+        
+        DelayPerformedHelper.performAfterDelay(seconds: 0.5, completion: {
+            self.connectToV2Server()
+        })
+    }
+    
+    func connectToV2Server(){
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleNewKeyExchangeReceived),
+            name: .newContactKeyExchangeResponseWasReceived,
+            object: nil
+        )
+        
+        
+        let som = SphinxOnionManager.sharedInstance
+        
+        guard let seed = som.getAccountSeed(),
+              let myPubkey = som.getAccountOnlyKeysendPubkey(seed: seed),
+              let my_xpub = som.getAccountXpub(seed: seed) else
+        {
+            //possibly send error message?
+            AlertHelper.showAlert(title: "Error", message: "Could not connect to server")
+            return
+        }
+        som.disconnectMqtt()
+        
+        DelayPerformedHelper.performAfterDelay(seconds: 2.0, completion: {
+            let success = som.connectToBroker(seed: seed, xpub: my_xpub)
+            
+            if !success {
+                AlertHelper.showAlert(title: "Error", message: "Could not connect to MQTT Broker.")
+                return
+            }
+            som.mqtt.didConnectAck = {_, _ in
+                som.subscribeAndPublishMyTopics(pubkey: myPubkey, idx: 0)
+                som.getAllUnreadMessages()
+            }
+        })
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+            if som.isV2InitialSetup {
+                som.doInitialInviteSetup()
+            }
+            
+            self.newDetailViewController?.forceReload()
+            self.listViewController?.shouldReloadContacts()
+        })
+    }
+    
+    @objc func handleNewKeyExchangeReceived(){
+        DelayPerformedHelper.performAfterDelay(seconds: 1.0, completion: {
+            //slight delay to ensure new DB write goes through first
+            self.newDetailViewController?.forceReload()
+            self.listViewController?.shouldReloadContacts()
+        })
     }
     
     override func viewWillDisappear() {
@@ -96,8 +152,6 @@ class DashboardViewController: NSViewController {
     }
     
     @objc func themeChangedNotification(notification: Notification) {
-//        detailViewController?.chatCollectionView.reloadData()
-        
         DelayPerformedHelper.performAfterDelay(seconds: 0.5, completion: {
             NSAppearance.current = self.view.effectiveAppearance
             self.listViewController?.configureHeaderAndBottomBar()
