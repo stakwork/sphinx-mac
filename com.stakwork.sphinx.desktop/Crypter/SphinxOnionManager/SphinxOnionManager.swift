@@ -337,13 +337,13 @@ extension SphinxOnionManager {//Sign Up UI Related:
     }
     
     func importSeedPhrase(){
-//        if let vc = self.vc as? ImportSeedViewDelegate {
-//            vc.showImportSeedView()
-//        }
+        if let vc = self.vc as? ImportSeedViewDelegate {
+            vc.showImportSeedView()
+        }
     }
     
     func showMnemonicToUser(mnemonic: String, callback: @escaping () -> ()) {
-        guard let vc = vc else {
+        guard let _ = vc else {
             callback()
             return
         }

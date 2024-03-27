@@ -353,12 +353,18 @@
                                     <constraint firstItem="8tw-Jv-Xem" firstAttribute="top" secondItem="EIR-2i-CMM" secondAttribute="top" constant="14" id="ocr-yK-jxS"/>
                                 </constraints>
                             </customView>
+                            <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h2j-79-bjX" customClass="ImportSeedView" customModule="Sphinx" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="800" height="500"/>
+                            </customView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="h2j-79-bjX" firstAttribute="leading" secondItem="aT6-yD-LWA" secondAttribute="leading" id="39Z-g4-cni"/>
                             <constraint firstItem="EIR-2i-CMM" firstAttribute="top" secondItem="JqN-dt-F8F" secondAttribute="top" id="3ie-Vf-h0Y"/>
                             <constraint firstItem="JqN-dt-F8F" firstAttribute="leading" secondItem="Cff-zO-n2n" secondAttribute="trailing" id="BTZ-9V-oL2"/>
                             <constraint firstAttribute="bottom" secondItem="Cff-zO-n2n" secondAttribute="bottom" id="Bj4-11-27Q"/>
+                            <constraint firstItem="h2j-79-bjX" firstAttribute="top" secondItem="aT6-yD-LWA" secondAttribute="top" id="Czq-IH-FiP"/>
                             <constraint firstAttribute="trailing" secondItem="JqN-dt-F8F" secondAttribute="trailing" id="EwL-xN-yUm"/>
+                            <constraint firstAttribute="bottom" secondItem="h2j-79-bjX" secondAttribute="bottom" id="KzL-H3-9Qx"/>
                             <constraint firstItem="EIR-2i-CMM" firstAttribute="bottom" secondItem="JqN-dt-F8F" secondAttribute="bottom" id="YKt-D7-TiJ"/>
                             <constraint firstItem="Cff-zO-n2n" firstAttribute="leading" secondItem="aT6-yD-LWA" secondAttribute="leading" id="aS7-kR-Bhu"/>
                             <constraint firstItem="JqN-dt-F8F" firstAttribute="top" secondItem="aT6-yD-LWA" secondAttribute="top" id="cpz-Yb-FAw"/>
@@ -366,12 +372,14 @@
                             <constraint firstAttribute="bottom" secondItem="JqN-dt-F8F" secondAttribute="bottom" id="k5T-Pm-hWq"/>
                             <constraint firstItem="EIR-2i-CMM" firstAttribute="leading" secondItem="JqN-dt-F8F" secondAttribute="leading" id="nmh-LR-2Cu"/>
                             <constraint firstItem="EIR-2i-CMM" firstAttribute="trailing" secondItem="JqN-dt-F8F" secondAttribute="trailing" id="o9b-qO-PJd"/>
+                            <constraint firstAttribute="trailing" secondItem="h2j-79-bjX" secondAttribute="trailing" id="psr-i1-eTc"/>
                             <constraint firstItem="Cff-zO-n2n" firstAttribute="top" secondItem="aT6-yD-LWA" secondAttribute="top" id="r5P-VG-TLq"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="backButton" destination="bHq-fN-jmp" id="XXb-q3-tUy"/>
                         <outlet property="codeField" destination="woO-cf-0FC" id="IWx-hI-Rx0"/>
+                        <outlet property="importSeedView" destination="h2j-79-bjX" id="jVU-fB-VzJ"/>
                         <outlet property="leftContainer" destination="JWQ-dq-eTK" id="iTC-NG-3Eq"/>
                         <outlet property="leftContainerLabel" destination="NXR-6C-tlI" id="kap-d1-UW1"/>
                         <outlet property="leftImageView" destination="bBr-li-CzT" id="0ol-1Q-OXq"/>

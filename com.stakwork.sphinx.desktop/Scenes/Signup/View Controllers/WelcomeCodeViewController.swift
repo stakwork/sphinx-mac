@@ -23,6 +23,7 @@ class WelcomeCodeViewController: NSViewController {
     @IBOutlet weak var submitButton: SignupButtonView!
     @IBOutlet weak var loadingWheel: NSProgressIndicator!
     @IBOutlet weak var pinView: PinView!
+    @IBOutlet weak var importSeedView: ImportSeedView!
     
     var loading = false {
         didSet {
@@ -35,7 +36,14 @@ class WelcomeCodeViewController: NSViewController {
     let messageBubbleHelper = NewMessageBubbleHelper()
     let userData = UserData.sharedInstance
     
-    static func instantiate(mode: SignupHelper.SignupMode) -> WelcomeCodeViewController {
+    var isSphinxV2 = false
+    var server : Server? = nil
+    var balance : String? = nil
+    
+    static func instantiate(
+        mode: SignupHelper.SignupMode,
+        isSphinxV2: Bool = false
+    ) -> WelcomeCodeViewController {
         let viewController = StoryboardScene.Signup.welcomeCodeViewController.instantiate()
         viewController.mode = mode
         return viewController
@@ -181,8 +189,8 @@ extension WelcomeCodeViewController : SignupButtonViewDelegate {
         })
     }
     
-    func handleInviteCodeV2SignUp(code:String){
-        if let mnemonic = UserData.sharedInstance.getMnemonic(), 
+    func handleInviteCodeV2SignUp(code: String){
+        if let mnemonic = UserData.sharedInstance.getMnemonic(),
             SphinxOnionManager.sharedInstance.createMyAccount(mnemonic: mnemonic)
         {
             SphinxOnionManager.sharedInstance.redeemInvite(inviteCode: code)
@@ -194,11 +202,6 @@ extension WelcomeCodeViewController : SignupButtonViewDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
             let som = SphinxOnionManager.sharedInstance
             if let contact = som.pendingContact, contact.isOwner == true {
-                
-//                if let vc = self as? NewUserSignupFormViewController{
-//                    vc.isV2 = true
-//                }
-                
                 som.isV2InitialSetup = true
                 self.continueToConnectingView(mode: .NewUser, isSphinxV2: true)
             } else {
@@ -332,4 +335,55 @@ extension WelcomeCodeViewController : SignupFieldViewDelegate {
         messageBubbleHelper.showGenericMessageView(text: errorMessage, position: .Bottom, delay: 7, textColor: NSColor.white, backColor: NSColor.Sphinx.BadgeRed, backAlpha: 1.0, withLink: "https://sphinx.chat")
         return false
     }
+}
+
+extension WelcomeCodeViewController : ImportSeedViewDelegate {
+    func showImportSeedView() {
+        importSeedView.delegate = self
+        importSeedView.isHidden = false
+    }
+    
+    @objc func handleServerNotification(n: Notification) {
+        if let server = n.userInfo?["server"] as? Server{
+            self.server = server
+            server.managedObjectContext?.saveContext()
+        }
+    }
+    
+    @objc func handleBalanceNotification(n:Notification){
+        if let balance = n.userInfo?["balance"] as? String{
+            self.balance = balance
+        }
+    }
+    
+    
+    func showImportSeedView(
+        network: String,
+        host: String,
+        relay: String
+    ){
+        importSeedView.showWith(
+            delegate: self,
+            network: network,
+            host: host,
+            relay: relay
+        )
+        importSeedView.isHidden = false
+    }
+    
+    func didTapCancelImportSeed() {
+        importSeedView.isHidden = true
+    }
+    
+    func didTapConfirm() {
+        importSeedView.isHidden = true
+        UserData.sharedInstance.save(walletMnemonic: importSeedView.getMnemonicWords())
+        
+        let code = codeField.getFieldValue()
+        
+        if validateCode(code: code) {
+            handleInviteCodeV2SignUp(code: code)
+        }
+    }
+    
 }

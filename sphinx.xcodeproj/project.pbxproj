@@ -536,6 +536,8 @@
 		47E19DDF2BB1FE2500A0E596 /* SphinxOnionManager+TribesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E19DDE2BB1FE2500A0E596 /* SphinxOnionManager+TribesExtension.swift */; };
 		47E19DE12BB1FE2D00A0E596 /* SphinxOnionManager+ContactExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E19DE02BB1FE2D00A0E596 /* SphinxOnionManager+ContactExtension.swift */; };
 		47E19DE32BB1FE3500A0E596 /* SphinxOnionManager+HandleStateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E19DE22BB1FE3500A0E596 /* SphinxOnionManager+HandleStateExtension.swift */; };
+		47E19DE52BB4A22E00A0E596 /* ImportSeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E19DE42BB4A22E00A0E596 /* ImportSeedView.swift */; };
+		47E19DE72BB4A23B00A0E596 /* ImportSeedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47E19DE62BB4A23B00A0E596 /* ImportSeedView.xib */; };
 		47E7712B2472C51500C9CFEB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E7712A2472C51500C9CFEB /* Constants.swift */; };
 		47E7712D2472C5F100C9CFEB /* ChatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E7712C2472C5F100C9CFEB /* ChatHelper.swift */; };
 		47E771322472D04F00C9CFEB /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E771312472D04F00C9CFEB /* Cache.swift */; };
@@ -1473,6 +1475,8 @@
 		47E19DDE2BB1FE2500A0E596 /* SphinxOnionManager+TribesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SphinxOnionManager+TribesExtension.swift"; sourceTree = "<group>"; };
 		47E19DE02BB1FE2D00A0E596 /* SphinxOnionManager+ContactExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SphinxOnionManager+ContactExtension.swift"; sourceTree = "<group>"; };
 		47E19DE22BB1FE3500A0E596 /* SphinxOnionManager+HandleStateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SphinxOnionManager+HandleStateExtension.swift"; sourceTree = "<group>"; };
+		47E19DE42BB4A22E00A0E596 /* ImportSeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportSeedView.swift; sourceTree = "<group>"; };
+		47E19DE62BB4A23B00A0E596 /* ImportSeedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImportSeedView.xib; sourceTree = "<group>"; };
 		47E7712A2472C51500C9CFEB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		47E7712C2472C5F100C9CFEB /* ChatHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHelper.swift; sourceTree = "<group>"; };
 		47E771312472D04F00C9CFEB /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
@@ -2635,6 +2639,8 @@
 				478ED5DC25D6FD6B00940132 /* ProfileImageView.xib */,
 				478ED59F25D560A300940132 /* SphinxReady.swift */,
 				478ED5E325D6FDAC00940132 /* SphinxReady.xib */,
+				47E19DE42BB4A22E00A0E596 /* ImportSeedView.swift */,
+				47E19DE62BB4A23B00A0E596 /* ImportSeedView.xib */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -3745,6 +3751,7 @@
 				47DE1C2E2A69E0C10029597B /* MessageBoostImageView.xib in Resources */,
 				4797E82B24BCC0F200D13270 /* Invite.storyboard in Resources */,
 				479496342AB343EF00C42D1E /* ContactLinkView.xib in Resources */,
+				47E19DE72BB4A23B00A0E596 /* ImportSeedView.xib in Resources */,
 				4797E87024BCD5B500D13270 /* ChildVCContainer.xib in Resources */,
 				4724BC1A25474BE70012BD76 /* Podcast.storyboard in Resources */,
 				479E7D8925ADD6DD0092595B /* PinTimeoutView.xib in Resources */,
@@ -4128,6 +4135,7 @@
 				4708C2012A55C0AA00274AD4 /* UserContact+FetchUtils.swift in Sources */,
 				474A668F24990643002C2D10 /* MenuOptionsView.swift in Sources */,
 				4794966B2AB8B03800C42D1E /* MessageNoBubbleCollectionViewItem+DelegatesExtension.swift in Sources */,
+				47E19DE52BB4A22E00A0E596 /* ImportSeedView.swift in Sources */,
 				47393E652461DB2C00E6F93E /* String.swift in Sources */,
 				473E1F302AC468D400DC1CDC /* ThreadLastMessageHeader.swift in Sources */,
 				47F8825725656CB0002A7E71 /* SocketAnyEvent.swift in Sources */,
