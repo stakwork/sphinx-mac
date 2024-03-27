@@ -8,6 +8,7 @@
 
 import Cocoa
 import SDWebImage
+import SwiftyJSON
 
 class CreateTribeViewModel {
     
@@ -107,16 +108,71 @@ class CreateTribeViewModel {
         }
     }
     
-    func createGroup(params: [String: AnyObject]) {
-        API.sharedInstance.createGroup(params: params, callback: { chatJson in
-            if let _ = Chat.insertChat(chat: chatJson) {
-                self.didSuccessSavingTribe()
-            } else {
-                self.didFailSavingTribe()
-            }
-        }, errorCallback: {
+    func mapChatJSON(
+        rawTribeJSON:[String:Any]
+    ) -> JSON?
+    {
+        guard let name = rawTribeJSON["name"] as? String,
+              let ownerPubkey = rawTribeJSON["pubkey"] as? String,
+              ownerPubkey.isPubKey else
+        {
             self.didFailSavingTribe()
-        })
+            return nil
+        }
+        var chatDict = rawTribeJSON
+        
+        let mappedFields : [String:Any] = [
+            "id": CrypterManager.sharedInstance.generateCryptographicallySecureRandomInt(upperBound: Int(1e5)) as Any,
+            "owner_pubkey": ownerPubkey,
+            "name" : name,
+            "is_tribe_i_created": true,
+            "type": Chat.ChatType.publicGroup.rawValue
+        ]
+        
+        for key in mappedFields.keys {
+            chatDict[key] = mappedFields[key]
+        }
+        
+        let chatJSON = JSON(chatDict)
+        return chatJSON
+    }
+    
+    func createGroup(params: [String: AnyObject]) {
+        guard let _ = params["name"] as? String,
+              let _ = params["description"] as? String else
+        {
+            self.didFailSavingTribe()
+            return
+        }
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleNewTribeNotification(_:)),
+            name: .newTribeCreationComplete,
+            object: nil
+        )
+        
+        SphinxOnionManager.sharedInstance.createTribe(params: params)
+    }
+    
+
+    @objc func handleNewTribeNotification(_ notification: Notification) {
+        NotificationCenter.default.removeObserver(
+            self,
+            name: .newTribeCreationComplete,
+            object: nil
+        )
+        
+        if let tribeJSONString = notification.userInfo?["tribeJSON"] as? String,
+           let tribeJSON = try? tribeJSONString.toDictionary(),
+           let chatJSON = mapChatJSON(rawTribeJSON: tribeJSON),
+           let chat = Chat.insertChat(chat: chatJSON)
+        {
+            chat.managedObjectContext?.saveContext()
+            self.didSuccessSavingTribe()
+            return
+        }
+        self.didFailSavingTribe()
     }
     
     func editGroup(id: Int, params: [String: AnyObject]) {
