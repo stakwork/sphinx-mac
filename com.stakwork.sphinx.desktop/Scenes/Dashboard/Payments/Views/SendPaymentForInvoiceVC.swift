@@ -129,25 +129,40 @@ class SendPaymentForInvoiceVC:NSViewController{
         })
     }
     
-    func payInvoice(invoice: String){
-        var parameters = [String : AnyObject]()
-        parameters["payment_request"] = invoice as AnyObject?
-
-        API.sharedInstance.payInvoice(
-            parameters: parameters,
-            callback: { payment in
-                AlertHelper.showAlert(title: "generic.success.title".localized, message: "invoice.paid".localized)
-            
-                DelayPerformedHelper.performAfterDelay(seconds: 0.25, completion: {
-                    WindowsManager.sharedInstance.closeIfExists(identifier: "invoice-management-window")
-                })
-            }, 
-            errorCallback: { error in
-                AlertHelper.showAlert(title: "generic.error.title".localized, message: error)
-            
-                self.animatePaymentContainer(show:false)
-            }
-        )
+    func payInvoice(invoice: String) {
+//        var parameters = [String : AnyObject]()
+//        parameters["payment_request"] = invoice as AnyObject?
+//
+//        API.sharedInstance.payInvoice(
+//            parameters: parameters,
+//            callback: { payment in
+//                AlertHelper.showAlert(title: "generic.success.title".localized, message: "invoice.paid".localized)
+//            
+//                DelayPerformedHelper.performAfterDelay(seconds: 0.25, completion: {
+//                    WindowsManager.sharedInstance.closeIfExists(identifier: "invoice-management-window")
+//                })
+//            }, 
+//            errorCallback: { error in
+//                AlertHelper.showAlert(title: "generic.error.title".localized, message: error)
+//            
+//                self.animatePaymentContainer(show:false)
+//            }
+//        )
+        
+        if invoice.isEmpty {
+            return
+        }
+        
+        let prd = PaymentRequestDecoder()
+        prd.decodePaymentRequest(paymentRequest: invoice)
+        
+        SphinxOnionManager.sharedInstance.payInvoice(invoice: invoice)
+        
+//        AlertHelper.showAlert(title: "generic.success.title".localized, message: "invoice.paid".localized)
+//
+//        DelayPerformedHelper.performAfterDelay(seconds: 0.25, completion: {
+//            WindowsManager.sharedInstance.closeIfExists(identifier: "invoice-management-window")
+//        })
     }
     
     @IBAction func closeTapped(_ sender: Any) {
