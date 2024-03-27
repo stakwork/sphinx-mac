@@ -422,7 +422,7 @@ extension String {
     
     //uses _ instead of :
     var isTribeV2 : Bool {
-        return qrString.contains("action=tribeV2") && qrString.contains("pubkey=")
+        return self.contains("action=tribeV2") && self.contains("pubkey=")
     }
     
     var isV2RouteHint: Bool {
