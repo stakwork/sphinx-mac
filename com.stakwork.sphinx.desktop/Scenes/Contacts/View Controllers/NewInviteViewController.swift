@@ -13,6 +13,7 @@ class NewInviteViewController: NSViewController {
     weak var delegate: NewContactChatDelegate?
     
     @IBOutlet weak var nicknameField: NSTextField!
+    @IBOutlet weak var amountField: NSTextField!
     @IBOutlet var messageTextView: PlaceHolderTextView!
     @IBOutlet weak var estimatedCostLabel: NSTextField!
     @IBOutlet weak var estimatedCostContainer: NSView!
@@ -67,6 +68,9 @@ class NewInviteViewController: NSViewController {
         
         nicknameField.delegate = self
         
+        amountField.delegate = self
+        amountField.formatter = IntegerValueFormatter()
+        
         messageTextView.isEditable = true
         messageTextView.setPlaceHolder(color: NSColor.Sphinx.PlaceholderText, font: NSFont(name: "Roboto-Regular", size: 17.0)!, string: "welcome.to.sphinx".localized, alignment: .center)
         messageTextView.font = NSFont(name: "Roboto-Regular", size: 17.0)!
@@ -96,26 +100,25 @@ class NewInviteViewController: NSViewController {
     
     @IBAction func createInvitationButtonClicked(_ sender: Any) {
         let nickname = nicknameField.stringValue
-        let message = messageTextView.string.isEmpty ? "welcome.to.sphinx".localized : messageTextView.string
+//        let message = messageTextView.string.isEmpty ? "welcome.to.sphinx".localized : messageTextView.string    
+        let amount = amountField.stringValue
         
-        if !nickname.isEmpty && !message.isEmpty {
-            var parameters = [String : AnyObject]()
-            parameters["nickname"] = nickname as AnyObject?
-            parameters["welcome_message"] = message as AnyObject?
-            
+        if let amountSats = Int(amount) {
             loading = true
             
-            API.sharedInstance.createUserInvite(parameters: parameters, callback: { contact in
-                let _ = UserContactsHelper.insertContact(contact: contact)
+            if let code = SphinxOnionManager.sharedInstance.issueInvite(amountMsat: amountSats * 1000) {
+                loading = false
                 
-                if let invite = contact["invite"].dictionary, let inviteString = invite["invite_string"]?.string, !inviteString.isEmpty {
-                    self.delegate?.shouldReloadContacts()
-                    self.view.window?.close()
-                }
-            }, errorCallback: {
-                self.loading = false
+                self.delegate?.shouldReloadContacts()
+                self.view.window?.close()
+                
+                SphinxOnionManager.sharedInstance.createContactForInvite(code: code, nickname: nickname)
+                ClipboardHelper.copyToClipboard(text: code)
+            } else {
                 AlertHelper.showAlert(title: "generic.error.title".localized, message: "generic.error.message".localized)
-            })
+            }
+        } else {
+            AlertHelper.showAlert(title: "generic.error.title".localized, message: "amount.cannot.empty".localized)
         }
     }
 }
@@ -126,6 +129,6 @@ extension NewInviteViewController : NSTextFieldDelegate {
     }
     
     func shouldEnableSaveButton() -> Bool {
-        return nicknameField.stringValue != ""
+        return nicknameField.stringValue.isNotEmpty && amountField.stringValue.isNotEmpty
     }
 }
