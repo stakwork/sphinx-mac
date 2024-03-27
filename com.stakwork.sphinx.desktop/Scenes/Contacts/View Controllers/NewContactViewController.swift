@@ -98,7 +98,7 @@ class NewContactViewController: NSViewController {
             groupPinView.configureWith(view: view, contact: contact, delegate: self)
         } else {
             if let pubkey = pubkey {
-                let (pk, rh) = pubkey.pubkeyComponents
+                let (pk, rh) = (pubkey.isV2Pubkey) ? pubkey.v2PubkeyComponents : pubkey.pubkeyComponents
                 addressField.stringValue = pk
                 routeHintField.stringValue = rh
             }
@@ -139,6 +139,8 @@ class NewContactViewController: NSViewController {
         
         if let _ = contact {
             updateProfile()
+        } else if routeHintField.stringValue.isV2RouteHint {
+            createV2Contact()
         } else {
             createContact()
         }
