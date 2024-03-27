@@ -113,8 +113,7 @@ extension SphinxOnionManager {//tribes related
                 )
                 
                 GroupsManager.sharedInstance.finalizeTribeJoin(
-                    tribeInfo: tribeInfo,
-                    qrString: qrString
+                    tribeInfo: tribeInfo
                 )
             },
             errorCallback: {}
