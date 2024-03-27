@@ -67,36 +67,16 @@ class PaymentViewModel : NSObject {
         return currentPayment.transactionMessage != nil
     }
     
-    func validateInvoice(isKeySend:Bool=true) -> Bool {
+    func validateInvoice() -> Bool {
         guard let memo = currentPayment.memo else {
             return true
         }
         
-        if memo.count > 50 || (currentPayment.contacts.count != 1 && isKeySend){
-            return false
-        }
-        if(isKeySend == false){
-            currentPayment.encryptedMemo = memo
-            currentPayment.remoteEncryptedMemo = memo
+        guard let contact = currentPayment.contacts.first else {
             return memo.isValidLengthMemo()
         }
-        else{
-            let contact = currentPayment.contacts[0]
-            let encryptionManager = EncryptionManager.sharedInstance
-            let encryptedOwnMessage = encryptionManager.encryptMessageForOwner(message: memo)
-            let (contactIsEncrypted, encryptedContactMessage) = encryptionManager.encryptMessage(message: memo, for: contact)
-            
-            if contactIsEncrypted && !encryptedContactMessage.isValidLengthMemo() {
-                return memo.isValidLengthMemo()
-            }
-            
-            if contactIsEncrypted {
-                currentPayment.encryptedMemo = encryptedOwnMessage
-                currentPayment.remoteEncryptedMemo = encryptedContactMessage
-            }
-        }
         
-        return true
+        return false
     }
     
     func validatePayment() -> Bool {
@@ -132,30 +112,37 @@ class PaymentViewModel : NSObject {
         })
     }
     
-    func shouldCreateInvoice(isKeySend:Bool=true,callback: @escaping (TransactionMessage?,String?) -> (), shouldDisplayAsQR:Bool=false, errorCallback: @escaping (String?) -> ()) {
-        if !validateInvoice(isKeySend: isKeySend) {
+    func shouldCreateInvoice(
+        callback: @escaping (String?) -> (),
+        shouldDisplayAsQR: Bool = false,
+        errorCallback: @escaping (String?) -> ()
+    ) {
+        if !validateInvoice() {
             errorCallback("memo.too.large".localized)
             return
         }
-            
+        
         let parameters = getParams()
         
-        API.sharedInstance.createInvoice(parameters: parameters, callback: { message, invoice in
-            if let message = message {
-                let (messageObject, success) = self.createLocalMessages(message: message)
-                if let messageObject = messageObject, success {
-                    callback(messageObject,nil)
-                    return
-                }
+        if let paymentAmount = currentPayment.amount,
+           let invoice = SphinxOnionManager.sharedInstance.createInvoice(
+            amountMsat: paymentAmount * 1000,
+            description: currentPayment.memo ?? ""
+           )
+        {
+            if let contact = currentPayment.contacts.first, let chat = currentPayment.chat {
+                SphinxOnionManager.sharedInstance.sendInvoiceMessage(
+                    contact: contact,
+                    chat: chat,
+                    invoiceString: invoice
+                )
+                callback(nil)
+            } else {
+                callback(invoice)
             }
-            else if let invoice = invoice{
-                callback(nil,invoice)
-                return
-            }
-            errorCallback(nil)
-        }, errorCallback: {
-            errorCallback(nil)
-        })
+        } else {
+            errorCallback("generic.error.message".localized)
+        }
     }
     
     func createLocalMessages(message: JSON?) -> (TransactionMessage?, Bool) {
