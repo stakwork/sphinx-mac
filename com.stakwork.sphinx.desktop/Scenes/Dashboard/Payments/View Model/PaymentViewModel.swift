@@ -115,25 +115,20 @@ class PaymentViewModel : NSObject {
         return true
     }
     
-    func shouldSendDirectPayment(callback: @escaping (TransactionMessage) -> (), errorCallback: @escaping (String?) -> ()) {
-        if !validatePayment() {
+    func shouldSendDirectPayment(callback: @escaping () -> (), errorCallback: @escaping (String?) -> ()) {
+        guard let chat = currentPayment.chat else {
             errorCallback("generic.error.message".localized)
             return
         }
         
         let parameters = getParams()
         
-        API.sharedInstance.sendDirectPayment(params: parameters, callback: { payment in
-            if let payment = payment {
-                let (messageObject, success) = self.createLocalMessages(message: payment)
-                if let messageObject = messageObject, success {
-                    callback(messageObject)
-                    return
-                }
+        SphinxOnionManager.sharedInstance.sendDirectPaymentMessage(params: parameters, chat: chat, completion: { success, _ in
+            if (success){
+                callback()
+            } else {
+                errorCallback("generic.error.message".localized)
             }
-            errorCallback(nil)
-        }, errorCallback: { error in
-            errorCallback(error)
         })
     }
     

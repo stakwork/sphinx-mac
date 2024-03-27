@@ -768,7 +768,7 @@ struct MessageTableCellState {
     lazy var groupKickRemovedOrDeclined: NoBubbleMessageLayoutState.GroupKickRemovedOrDeclined? = {
         
         guard let message = message, let ownerPubKey = owner.publicKey,
-                message.isGroupKickMessage() ||
+                message.isGroupKickMessage() && (message.chat?.isTribeICreated != true) ||
                 message.isGroupDeletedMessage() ||
                 (message.isDeclinedRequest() && !chat.isMyPublicGroup(ownerPubKey: ownerPubKey)) else {
             
@@ -892,15 +892,7 @@ extension MessageTableCellState {
             nil
         )
         
-        let isSent = message.isOutgoing(ownerId: owner.id)
-        
-        if isSent {
-            senderInfo = (
-                owner.getColor(),
-                owner.nickname ?? "Unknow",
-                owner.avatarUrl
-            )
-        } else if chat.isPublicGroup() {
+        if chat.isPublicGroup() {
             senderInfo = (
                 ChatHelper.getSenderColorFor(message: message),
                 message.senderAlias ?? "Unknow",

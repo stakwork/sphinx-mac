@@ -23,6 +23,10 @@ public class PaymentRequestDecoder {
         return decodedPR != nil
     }
     
+    func isZeroAmountInvoice(invoice:String)->Bool{
+        return invoice.starts(with: "lnbc1pj7t")
+    }
+    
     func getAmount() -> Int? {
         guard let pr = decodedPR else {
             return nil

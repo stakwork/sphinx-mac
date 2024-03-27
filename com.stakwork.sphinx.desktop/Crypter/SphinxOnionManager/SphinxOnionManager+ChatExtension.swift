@@ -640,7 +640,6 @@ extension SphinxOnionManager{
     func sendDirectPaymentMessage(
         params: [String: Any],
         chat: Chat,
-        image: NSImage,
         completion: @escaping (Bool, TransactionMessage?) -> ()
     ) {
         let muid = params["muid"] as? String ?? "YkZJhKWUYWcSRM5JmFhqwq7SJpeV_ayx1Feiu6oq3CE="

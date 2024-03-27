@@ -160,7 +160,11 @@ class MessageReplyView: NSView, LoadableNib {
         }
     }
     
-    func commonConfiguration(message: TransactionMessage?, delegate: SearchTopViewDelegate) {
+    func commonConfiguration(
+        message: TransactionMessage?,
+        delegate: SearchTopViewDelegate,
+        isIncoming: Bool = true
+    ) {
         guard let message = message else {
             return
         }

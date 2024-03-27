@@ -73,32 +73,32 @@ class AttachmentsManager {
             return
         }
         
+        guard let pubkey = UserContact.getOwner()?.publicKey else {
+            errorCompletion()
+            return
+        }
+        
         API.sharedInstance.askAuthentication(callback: { id, challenge in
             if let id = id, let challenge = challenge {
-                self.delegate?.didUpdateUploadProgress?(
-                    progress: 10,
-                    provisionalMessageId: self.provisionalMessage?.id ?? -1
-                )
                 
-                API.sharedInstance.signChallenge(challenge: challenge, callback: { sig in
-                    if let sig = sig {
-                        self.delegate?.didUpdateUploadProgress?(
-                            progress: 15,
-                            provisionalMessageId: self.provisionalMessage?.id ?? -1
-                        )
-                        
-                        API.sharedInstance.verifyAuthentication(id: id, sig: sig, callback: { token in
-                            if let token = token {
-                                UserDefaults.Keys.attachmentsToken.set(token)
-                                completion(token)
-                            } else {
-                                errorCompletion()
-                            }
-                        })
+                self.delegate?.didUpdateUploadProgress?(progress: 10, provisionalMessageId: self.provisionalMessage?.id ?? -1)
+                
+                guard let sig = SphinxOnionManager.sharedInstance.signChallenge(challenge: challenge) else{
+                    errorCompletion()
+                    return
+                }
+                
+                self.delegate?.didUpdateUploadProgress?(progress: 15, provisionalMessageId: self.provisionalMessage?.id ?? -1)
+                
+                API.sharedInstance.verifyAuthentication(id: id, sig: sig, pubkey: pubkey, callback: { token in
+                    if let token = token {
+                        UserDefaults.Keys.attachmentsToken.set(token)
+                        completion(token)
                     } else {
                         errorCompletion()
                     }
                 })
+                
             } else {
                 errorCompletion()
             }
@@ -158,6 +158,7 @@ class AttachmentsManager {
     
     func uploadAndSendAttachment(
         attachmentObject: AttachmentObject,
+        chat: Chat?,
         replyingMessage: TransactionMessage? = nil,
         threadUUID: String? = nil
     ) {
@@ -172,6 +173,7 @@ class AttachmentsManager {
             self.authenticate(completion: { token in
                 self.uploadAndSendAttachment(
                     attachmentObject: attachmentObject,
+                    chat: chat,
                     replyingMessage: replyingMessage,
                     threadUUID: threadUUID
                 )
@@ -191,6 +193,7 @@ class AttachmentsManager {
             uploadData(attachmentObject: attachmentObject, token: token) { fileJSON, AttachmentObject in
                 self.sendAttachment(
                     file: fileJSON,
+                    chat: chat,
                     attachmentObject: attachmentObject,
                     replyingMessage: replyingMessage,
                     threadUUID: threadUUID
@@ -208,6 +211,8 @@ class AttachmentsManager {
                 provisionalMessageId: self.provisionalMessage?.id ?? -1
             )
         }, callback: { success, fileJSON in
+            AttachmentsManager.sharedInstance.uploading = false
+            
             if let fileJSON = fileJSON, success {
                 self.uploadedImage = attachmentObject.image
                 completion(fileJSON, attachmentObject)
@@ -219,33 +224,18 @@ class AttachmentsManager {
     
     func sendAttachment(
         file: NSDictionary,
+        chat: Chat?,
         attachmentObject: AttachmentObject,
         replyingMessage: TransactionMessage? = nil,
         threadUUID: String? = nil
     ) {
-        guard let params = TransactionMessage.getMessageParams(
-            contact: contact,
-            chat: chat,
+        let _ = SphinxOnionManager.sharedInstance.sendAttachment(
             file: file,
-            text: attachmentObject.text,
-            mediaKey: attachmentObject.mediaKey,
-            price: attachmentObject.price,
+            attachmentObject: attachmentObject,
+            chat: chat,
             replyingMessage: replyingMessage,
             threadUUID: threadUUID
-        ) else {
-            uploadFailed()
-            return
-        }
-        
-        API.sharedInstance.sendAttachment(params: params, callback: { message in
-            self.delegate?.didUpdateUploadProgress?(
-                progress: 100,
-                provisionalMessageId: self.provisionalMessage?.id ?? -1
-            )
-            self.createLocalMessage(message: message, attachmentObject: attachmentObject)
-        }, errorCallback: {
-            self.uploadFailed()
-        })
+        )
     }
     
     func payAttachment(message: TransactionMessage, chat: Chat?, callback: @escaping (TransactionMessage?) -> ()) {

@@ -41,8 +41,8 @@ class PaymentTemplatesViewController: PaymentInvoiceFormViewController {
     }
     
     private func sendDirectPayment() {
-        paymentViewModel.shouldSendDirectPayment(callback: { message in
-            self.didCreateMessage(message: message)
+        paymentViewModel.shouldSendDirectPayment(callback: {
+            self.didCreateMessage()
         }, errorCallback: { errorMessage in
             self.paymentTemplatesView.loading = false
             self.didFailWith(message: errorMessage)

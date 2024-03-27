@@ -107,7 +107,7 @@ extension ChatListViewController : ChildVCDelegate, ActionsDelegate {
         )
     }
     
-    func didCreateMessage(message: TransactionMessage) {}
+    func didCreateMessage() {}
     func didFailInvoiceOrPayment() {}
     func shouldCreateCall(mode: VideoCallHelper.CallMode) {}
     func shouldSendPaymentFor(paymentObject: PaymentViewModel.PaymentObject, callback: ((Bool) -> ())?) {}

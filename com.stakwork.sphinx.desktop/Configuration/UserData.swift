@@ -21,6 +21,11 @@ class UserData {
     let onionConnector = SphinxOnionConnector.sharedInstance
     
     func isUserLogged() -> Bool {
+        ///v2
+        if (getMnemonic() != nil && getAppPin() != ""){
+            return SignupHelper.isLogged()
+        }
+        ///v1
         return getAppPin() != "" &&
             getNodeIP() != "" &&
             getAuthToken() != "" &&
@@ -540,19 +545,24 @@ class UserData {
         return nil
     }
     
-    func save(balance: UInt64){
-        let _ = keychainManager.save(value: String(balance), forComposedKey: KeychainManager.KeychainKeys.balance_msats.rawValue)
+    func save(balance: UInt64) {
+        let _ = keychainManager.save(
+            value: String(balance),
+            forComposedKey: KeychainManager.KeychainKeys.balance_msats.rawValue
+        )
     }
     
-    func getBalanceSats() -> Int?{
-        if let value = keychainManager.getValueFor(composedKey: KeychainManager.KeychainKeys.balance_msats.rawValue), !value.isEmpty,
-         let intValue = Int(value){
-            return intValue/1000 //convert to sats
+    func getBalanceSats() -> Int? {
+        if let value = keychainManager.getValueFor(
+            composedKey: KeychainManager.KeychainKeys.balance_msats.rawValue
+        ), !value.isEmpty, let intValue = Int(value)
+        {
+            return intValue / 1000 //convert to sats
         }
         return nil
     }
     
-    func setLastMessageIndex(index:Int){
+    func setLastMessageIndex(index: Int){
         UserDefaults.Keys.lastV2MessageIndex.set(index)
     }
     

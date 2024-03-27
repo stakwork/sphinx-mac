@@ -74,10 +74,13 @@ extension API {
         }
     }
     
-    public func verifyAuthentication(id: String, sig: String, callback: @escaping verifyAuthenticationCallback) {
-        let hexEncodedPubKey = UserData.sharedInstance.getUserPubKey() ?? ""
-        
-        let url = "\(API.kAttachmentsServerUrl)/verify?id=\(id)&sig=\(sig)&pubkey=\(hexEncodedPubKey)"
+    public func verifyAuthentication(
+        id: String,
+        sig: String,
+        pubkey: String,
+        callback: @escaping verifyAuthenticationCallback
+    ) {
+        let url = "\(API.kAttachmentsServerUrl)/verify?id=\(id)&sig=\(sig)&pubkey=\(pubkey)"
         
         guard let request = createRequest(url, params: nil, method: "POST", contentType: "multipart/form-data") else {
             callback(nil)

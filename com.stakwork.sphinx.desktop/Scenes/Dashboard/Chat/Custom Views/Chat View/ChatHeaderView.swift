@@ -125,7 +125,7 @@ class ChatHeaderView: NSView, LoadableNib {
     }
     
     func configureEncryptionSign() {
-        let isEncrypted = (chat?.isEncrypted() ?? contact?.hasEncryptionKey()) ?? false
+        let isEncrypted = (contact?.status == UserContact.Status.Confirmed.rawValue) || (chat?.status == Chat.ChatStatus.approved.rawValue)
         lockSign.stringValue = isEncrypted ? "lock" : "lock_open"
         lockSign.isHidden = false
         
@@ -256,16 +256,9 @@ class ChatHeaderView: NSView, LoadableNib {
         }
         
         boltSign.isHidden = false
-        
-        API.sharedInstance.checkRoute(
-            chat: self.chat,
-            contact: self.contact,
-            callback: { success in
-                
-            DispatchQueue.main.async {
-                self.boltSign.textColor = success ? HealthCheckView.kConnectedColor : HealthCheckView.kNotConnectedColor
-            }
-        })
+
+        let success = (contact?.status == UserContact.Status.Confirmed.rawValue) || (chat?.status == Chat.ChatStatus.approved.rawValue)
+        self.boltSign.textColor = success ? HealthCheckView.kConnectedColor : HealthCheckView.kNotConnectedColor
     }
     
     func forceKeysExchange(contactId: Int) {

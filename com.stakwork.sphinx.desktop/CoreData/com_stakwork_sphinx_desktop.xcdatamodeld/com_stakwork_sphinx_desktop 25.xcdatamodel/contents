@@ -12,7 +12,7 @@
         <attribute name="groupKey" optional="YES" attributeType="String"/>
         <attribute name="host" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="isMyTribe" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isTribeICreated" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="muted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="myAlias" optional="YES" attributeType="String"/>
         <attribute name="myPhotoUrl" optional="YES" attributeType="String"/>

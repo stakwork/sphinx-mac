@@ -244,6 +244,9 @@ class GroupsManager {
                     case "host":
                         tribeInfo.host = value
                         break
+                    case "pubkey":
+                        tribeInfo.ownerPubkey = value
+                        break
                     default:
                         break
                     }
@@ -252,6 +255,10 @@ class GroupsManager {
         }
         
         if let _ = tribeInfo.uuid, let _ = tribeInfo.host {
+            ///v1
+            return tribeInfo
+        } else if let _ = tribeInfo.ownerPubkey, let _ = tribeInfo.host {
+            ///v2
             return tribeInfo
         }
         return nil
@@ -260,6 +267,7 @@ class GroupsManager {
     func getNewGroupParams() -> [String: AnyObject] {
         var parameters = [String : AnyObject]()
         
+        parameters["owner_alias"] = (UserContact.getOwner()?.nickname ?? "anon") as AnyObject
         parameters["name"] = (newGroupInfo.name ?? "") as AnyObject
         parameters["price_per_message"] = (newGroupInfo.pricePerMessage ?? 0) as AnyObject
         parameters["price_to_join"] = (newGroupInfo.priceToJoin ?? 0) as AnyObject
@@ -354,7 +362,7 @@ class GroupsManager {
         tribeInfo.appUrl = json["app_url"].string ?? tribeInfo.appUrl
         tribeInfo.feedUrl = json["feed_url"].string ?? tribeInfo.feedUrl
         tribeInfo.feedContentType = json["feed_type"].int?.toFeedContentType ?? tribeInfo.feedContentType
-        tribeInfo.ownerRouteHint = json["owner_route_hint"].string ?? tribeInfo.ownerRouteHint
+        tribeInfo.ownerRouteHint = json["owner_route_hint"].string ?? json["route_hint"].string ?? tribeInfo.ownerRouteHint
         
         var tags = getGroupTags()
         if let jsonTags = json["tags"].arrayObject as? [String] {
@@ -496,49 +504,10 @@ class GroupsManager {
     }
     
     ///Sphinx v2
-    func fetchTribeInfo(
-        host: String,
-        uuid: String,
-        useSSL: Bool,
-        completion: @escaping CreateGroupCallback,
-        errorCallback: @escaping EmptyCallback
-    ){
-        API.sharedInstance.getTribeInfo(
-            host: host,
-            uuid: uuid,
-            useSSL: useSSL,
-            callback: { groupInfo in
-                completion(groupInfo)
-            }, errorCallback: {
-                errorCallback()
-            }
-        )
-    }
-    
-    func finalizeTribeJoin(tribeInfo:TribeInfo,qrString:String){
-        if let pubkey = getV2Pubkey(qrString: qrString),
-           let chatJSON = getChatJSON(tribeInfo:tribeInfo),
-           let routeHint = tribeInfo.ownerRouteHint,
-           let chat = Chat.insertChat(chat: chatJSON)
-        {
-            let isPrivate = tribeInfo.privateTribe
-            SphinxOnionManager.sharedInstance.joinTribe(
-                tribePubkey: pubkey,
-                routeHint: routeHint,
-                alias: UserContact.getOwner()?.nickname,
-                isPrivate: isPrivate
-            )
-            chat.status = (isPrivate) ? Chat.ChatStatus.pending.rawValue : Chat.ChatStatus.approved.rawValue
-            chat.type = (isPrivate) ? Chat.ChatType.privateGroup.rawValue : Chat.ChatType.publicGroup.rawValue
-            
-            chat.managedObjectContext?.saveContext()
-        }
-    }
-    
     func getChatJSON(
         tribeInfo: TribeInfo
     ) -> JSON? {
-        var chatDict : [String: Any] = [
+        let chatDict : [String: Any] = [
             "id": CrypterManager.sharedInstance.generateCryptographicallySecureRandomInt(upperBound: Int(1e5)) as Any,
             "owner_pubkey": tribeInfo.ownerPubkey as Any,
             "name" : tribeInfo.name ?? "Unknown Name",
@@ -580,6 +549,45 @@ class GroupsManager {
             return String(trimmed.dropLast(2))
         } else {
             return trimmed
+        }
+    }
+    
+    func fetchTribeInfo(
+        host: String,
+        uuid: String,
+        useSSL: Bool,
+        completion: @escaping CreateGroupCallback,
+        errorCallback: @escaping EmptyCallback
+    ){
+        API.sharedInstance.getTribeInfo(
+            host: host,
+            uuid: uuid,
+            useSSL: useSSL,
+            callback: { groupInfo in
+                completion(groupInfo)
+            }, errorCallback: {
+                errorCallback()
+            }
+        )
+    }
+    
+    func finalizeTribeJoin(tribeInfo:TribeInfo,qrString:String){
+        if let pubkey = getV2Pubkey(qrString: qrString),
+           let chatJSON = getChatJSON(tribeInfo:tribeInfo),
+           let routeHint = tribeInfo.ownerRouteHint,
+           let chat = Chat.insertChat(chat: chatJSON)
+        {
+            let isPrivate = tribeInfo.privateTribe
+            SphinxOnionManager.sharedInstance.joinTribe(
+                tribePubkey: pubkey,
+                routeHint: routeHint,
+                alias: UserContact.getOwner()?.nickname,
+                isPrivate: isPrivate
+            )
+            chat.status = (isPrivate) ? Chat.ChatStatus.pending.rawValue : Chat.ChatStatus.approved.rawValue
+            chat.type = (isPrivate) ? Chat.ChatType.privateGroup.rawValue : Chat.ChatType.publicGroup.rawValue
+            
+            chat.managedObjectContext?.saveContext()
         }
     }
 }

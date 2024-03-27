@@ -227,9 +227,10 @@ extension GroupDetailsViewController : MessageOptionsDelegate {
     }
     
     func goToTribeQRCode() {
-        let link = chat.getJoinChatLink()
-        let shareTribeQRVC = ShareInviteCodeViewController.instantiate(qrCodeString: link, viewMode: .TribeQR)
-        WindowsManager.sharedInstance.showTribeQRWindow(vc: shareTribeQRVC, window: view.window)
+        if let link = chat.getJoinChatLink() {
+            let shareTribeQRVC = ShareInviteCodeViewController.instantiate(qrCodeString: link, viewMode: .TribeQR)
+            WindowsManager.sharedInstance.showTribeQRWindow(vc: shareTribeQRVC, window: view.window)
+        }
     }
 }
 

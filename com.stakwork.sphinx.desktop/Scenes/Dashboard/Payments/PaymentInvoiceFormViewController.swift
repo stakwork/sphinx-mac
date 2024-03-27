@@ -20,21 +20,7 @@ class PaymentInvoiceFormViewController: NSViewController {
         super.viewDidLoad()
     }
     
-    func createLocalMessages(message: JSON?) {
-        let (messageObject, success) = paymentViewModel.createLocalMessages(message: message)
-        
-        NotificationCenter.default.post(name: .onBalanceDidChange, object: nil)
-        
-        if let messageObject = messageObject, success {
-            delegate?.didCreateMessage(message: messageObject)
-            childVCDelegate?.shouldDimiss()
-        } else {
-            shouldDismissOnFail()
-        }
-    }
-    
-    func didCreateMessage(message: TransactionMessage) {
-        delegate?.didCreateMessage(message: message)
+    func didCreateMessage() {
         childVCDelegate?.shouldDimiss()
     }
     

@@ -23,7 +23,7 @@ class DeepLinksHandlerHelper {
         if let query = url.query {
             if let action = url.getLinkAction() {
                 switch(action) {
-                case "tribe":
+                case "tribe", "tribeV2":
                     let userInfo: [String: Any] = ["tribe_link" : url.absoluteString]
                     NotificationCenter.default.post(name: .onJoinTribeClick, object: nil, userInfo: userInfo)
                     break

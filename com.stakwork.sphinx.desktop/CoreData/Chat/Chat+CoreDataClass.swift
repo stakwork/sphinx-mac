@@ -60,7 +60,7 @@ public class Chat: NSManagedObject {
     static func insertChat(chat: JSON) -> Chat? {
         if let id = chat.getJSONId() {
             let name = chat["name"].string ?? ""
-            let photoUrl = chat["photo_url"].string ?? ""
+            let photoUrl = chat["photo_url"].string ?? chat["img"].string ?? ""
             let uuid = chat["uuid"].stringValue
             let type = chat["type"].intValue
             let muted = chat["is_muted"].boolValue
@@ -76,6 +76,7 @@ public class Chat: NSManagedObject {
             let status = chat["status"].intValue
             let pinnedMessageUUID = chat["pin"].string
             let date = Date.getDateFromString(dateString: chat["created_at"].stringValue) ?? Date()
+            let isTribeICreated = chat["is_tribe_i_created"].boolValue
             
             var notify = muted ? NotificationLevel.MuteChat.rawValue : NotificationLevel.SeeAll.rawValue
             
@@ -107,6 +108,7 @@ public class Chat: NSManagedObject {
                 contactIds: contactIds,
                 pendingContactIds: pendingContactIds,
                 date: date,
+                isTribeICreated: isTribeICreated,
                 metaData: metaData
             )
             
@@ -136,6 +138,7 @@ public class Chat: NSManagedObject {
         contactIds: [NSNumber],
         pendingContactIds: [NSNumber],
         date: Date,
+        isTribeICreated: Bool = false,
         metaData: String?
     ) -> Chat? {
         
@@ -157,6 +160,7 @@ public class Chat: NSManagedObject {
         chat.myAlias = myAlias
         chat.myPhotoUrl = myPhotoUrl
         chat.notify = notify
+        chat.isTribeICreated = isTribeICreated
         chat.contactIds = contactIds
         chat.pendingContactIds = pendingContactIds
         chat.subscription = chat.getContact()?.getCurrentSubscription()
@@ -262,7 +266,7 @@ public class Chat: NSManagedObject {
         return chats
     }
     
-    static func getTribeChatWithOwnerPubkey(ownerPubkey:String) -> Chat? {
+    static func getTribeChatWithOwnerPubkey(ownerPubkey: String) -> Chat? {
         let predicate = NSPredicate(format: "type == %d AND ownerPubkey == %@", Chat.ChatType.publicGroup.rawValue, ownerPubkey)
         
 //        var predicate: NSPredicate! = nil
@@ -605,15 +609,15 @@ public class Chat: NSManagedObject {
     }
     
     func updateTribeInfo(completion: @escaping () -> ()) {
-        if
-            let host = host,
-            let uuid = uuid,
+        let host = API.kTestV2TribesServer.replacingOccurrences(of: "http://", with: "") //TODO: update if we need to handle v1 and v2
+        if let uuid = ownerPubkey,
             host.isEmpty == false,
             isPublicGroup()
         {
             API.sharedInstance.getTribeInfo(
                 host: host,
                 uuid: uuid,
+                useSSL: false, //TODO: change this
                 callback: { chatJson in
                     self.tribeInfo = GroupsManager.sharedInstance.getTribesInfoFrom(json: chatJson)
                     self.updateChatFromTribesInfo()
@@ -623,11 +627,6 @@ public class Chat: NSManagedObject {
                             if let feedId = feedId {
                                 self.contentFeed = ContentFeed.getFeedById(feedId: feedId)
                                 self.saveChat()
-                                
-                                FeedsManager.sharedInstance.restoreContentFeedStatusFor(feedId: feedId, completionCallback: {
-                                    completion()
-                                })
-                                return
                             }
                             completion()
                         }
@@ -643,8 +642,6 @@ public class Chat: NSManagedObject {
             )
         }
     }
-    
-    
     
     func updateChatFromTribesInfo() {
         if self.isMyPublicGroup() {
@@ -733,7 +730,7 @@ public class Chat: NSManagedObject {
     func isMyPublicGroup(
         ownerPubKey: String? = nil
     ) -> Bool {
-        return isPublicGroup() && ownerPubkey == (ownerPubKey ?? UserData.sharedInstance.getUserPubKey())
+        return isPublicGroup() && isTribeICreated == true
     }
     
     func isEncrypted() -> Bool {
@@ -781,8 +778,11 @@ public class Chat: NSManagedObject {
         return options
     }
     
-    func getJoinChatLink() -> String {
-        return "sphinx.chat://?action=tribe&uuid=\(self.uuid ?? "")&host=\(self.host ?? "")"
+    func getJoinChatLink() -> String? {
+        if let pubkey = self.ownerPubkey {
+            return "sphinx.chat://?action=tribeV2&pubkey=\(pubkey)&host=34.229.52.200:8801"
+        }
+        return nil
     }
     
     func getPodcastFeed() -> PodcastFeed? {

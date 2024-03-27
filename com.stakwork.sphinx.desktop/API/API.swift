@@ -103,6 +103,8 @@ class API {
     
     public static let kTribesServerBaseURL = "https://tribes.sphinx.chat"
     
+    public static let kTestV2TribesServer = "http://34.229.52.200:8801"
+    
     public static var kAttachmentsServerUrl : String {
         get {
             if let fileServerURL = UserDefaults.Keys.fileServerURL.get(defaultValue: ""), fileServerURL != "" {

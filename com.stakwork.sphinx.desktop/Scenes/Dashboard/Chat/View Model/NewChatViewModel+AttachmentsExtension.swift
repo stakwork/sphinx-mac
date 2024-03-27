@@ -27,29 +27,15 @@ extension NewChatViewModel: AttachmentsManagerDelegate {
                 failed: false
             )
         )
+        
+        let dataSourceThreadUUID = (chatDataSource as? ThreadTableDataSource)?.threadUUID
 
-        if let message = TransactionMessage.createProvisionalAttachmentMessage(
+        attachmentsManager.uploadAndSendAttachment(
             attachmentObject: attachmentObject,
-            date: Date(),
             chat: chat,
-            replyUUID: replyingTo?.uuid,
-            threadUUID: threadUUID ?? replyingTo?.threadUUID ?? replyingTo?.uuid
-        ) {
-            attachmentsManager.setData(
-                delegate: self,
-                contact: contact,
-                chat: chat,
-                provisionalMessage: message
-            )
-
-            chatDataSource?.setProgressForProvisional(messageId: message.id, progress: 0)
-
-            attachmentsManager.uploadAndSendAttachment(
-                attachmentObject: attachmentObject,
-                replyingMessage: replyingTo,
-                threadUUID: threadUUID ?? replyingTo?.threadUUID ?? replyingTo?.uuid
-            )
-        }
+            replyingMessage: replyingTo,
+            threadUUID: dataSourceThreadUUID ?? replyingTo?.threadUUID ?? replyingTo?.uuid
+        )
 
         resetReply()
     }

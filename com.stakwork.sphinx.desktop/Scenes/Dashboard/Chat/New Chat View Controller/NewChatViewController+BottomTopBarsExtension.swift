@@ -157,7 +157,8 @@ extension NewChatViewController : ChatBottomViewDelegate {
                         type: .Text,
                         text: nil,
                         paidMessage: text,
-                        price: price
+                        price: price,
+                        contactPubkey: chat?.getContact()?.publicKey
                     )
                     return attachmentObject
                 }
@@ -388,7 +389,7 @@ extension NewChatViewController : AudioHelperDelegate {
 }
 
 extension NewChatViewController : ActionsDelegate {
-    func didCreateMessage(message: TransactionMessage) {}
+    func didCreateMessage() {}
     
     func didFailInvoiceOrPayment() {
         messageBubbleHelper.showGenericMessageView(text: "generic.error.message".localized, in: view)

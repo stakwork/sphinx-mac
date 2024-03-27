@@ -25,6 +25,19 @@ extension TransactionMessage {
         return message
     }
     
+    static func getMessageWith(muid: String) -> TransactionMessage? {
+        let predicate = NSPredicate(format: "muid == %@", muid)
+        let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+        
+        let message: TransactionMessage? = CoreDataManager.sharedManager.getObjectOfTypeWith(
+            predicate: predicate,
+            sortDescriptors: sortDescriptors,
+            entityName: "TransactionMessage"
+        )
+        
+        return message
+    }
+    
     static func getMessageWith(uuid: String) -> TransactionMessage? {
         let predicate = NSPredicate(format: "uuid == %@", uuid)
         let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
@@ -195,6 +208,14 @@ extension TransactionMessage {
     
     static func getNewMessagesCountFor(chat: Chat, lastMessageId: Int) -> Int {
         return CoreDataManager.sharedManager.getObjectsCountOfTypeWith(predicate: NSPredicate(format: "chat == %@ AND id > %d", chat, lastMessageId), entityName: "TransactionMessage")
+    }
+    
+    static func getPaymentOfInvoiceWith(paymentHash: String) -> TransactionMessage? {
+        let predicate = NSPredicate(format: "type == %d AND paymentHash == %@", TransactionMessageType.payment.rawValue, paymentHash)
+        let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+        let invoice: TransactionMessage? = CoreDataManager.sharedManager.getObjectOfTypeWith(predicate: predicate, sortDescriptors: sortDescriptors, entityName: "TransactionMessage")
+        
+        return invoice
     }
     
     static func getInvoiceWith(paymentHash: String) -> TransactionMessage? {
