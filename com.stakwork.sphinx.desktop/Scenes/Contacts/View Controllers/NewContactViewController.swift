@@ -149,10 +149,13 @@ class NewContactViewController: NSViewController {
             return
         }
         let nicknameDidChange = !userNameField.stringValue.isEmpty && userNameField.stringValue != contact.nickname
-        let routeHintDidChange = routeHintField.stringValue != contact.nickname
+        let routeHint = routeHintField.stringValue
+        let routeHintDidChange = routeHint != contact.routeHint
         let pin = groupPinView.getPin()
         
-        if contact.id > 0 && (nicknameDidChange || routeHintDidChange || groupPinView.didChangePin) {
+        if !routeHint.isEmpty && !routeHint.isRouteHint && !routeHint.isV2RouteHint {
+            showErrorAlert(message: "invalid.route.hint".localized)
+        } else if contact.id > 0 && (nicknameDidChange || routeHintDidChange || groupPinView.didChangePin) {
             UserContactsHelper.updateContact(
                 contact: contact,
                 nickname: userNameField.stringValue,
@@ -174,6 +177,32 @@ class NewContactViewController: NSViewController {
             userNameField.stringValue = contact.getName()
         }
     }
+    
+    func createV2Contact(){
+        let nickname = userNameField.stringValue
+        let pubkey = addressField.stringValue
+        let routeHint = routeHintField.stringValue
+        let pin = groupPinView.getPin()
+        
+        if !pubkey.isEmpty && !pubkey.isPubKey {
+            showErrorAlert(message: "invalid.pubkey".localized)
+        } else if !routeHint.isEmpty && !routeHint.isV2RouteHint {
+            showErrorAlert(message: "invalid.route.hint".localized)
+        } else if nickname.isEmpty || pubkey.isEmpty {
+            showErrorAlert(message: "nickname.address.required".localized)
+        } else {
+            UserContactsHelper.createV2Contact(nickname: nickname, pubKey: pubkey, routeHint: routeHint,pin: pin, callback: { (success, _) in
+                self.loading = false
+                
+                if success {
+                    self.delegate?.shouldReloadContacts()
+                    self.closeWindow()
+                } else {
+                    self.showErrorAlert(message: "generic.error.message".localized)
+                }
+            })
+        }
+    }
 
     func createContact() {
         let nickname = userNameField.stringValue
@@ -183,6 +212,8 @@ class NewContactViewController: NSViewController {
 
         if !pubkey.isEmpty && !pubkey.isPubKey {
             showErrorAlert(message: "invalid.pubkey".localized)
+        } else if !routeHint.isEmpty && !routeHint.isRouteHint && !routeHint.isV2RouteHint {
+            showErrorAlert(message: "invalid.route.hint".localized)
         } else if nickname.isEmpty || pubkey.isEmpty {
             showErrorAlert(message: "nickname.address.required".localized)
         } else {

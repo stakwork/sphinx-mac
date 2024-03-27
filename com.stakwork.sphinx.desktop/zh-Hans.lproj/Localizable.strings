@@ -148,6 +148,7 @@
 "subscribe.upper" = "订阅";
 "nickname.address.required" = "昵称和地址是必需的。";
 "invalid.pubkey" = "无效的公钥";
+"invalid.route.hint" = "Invalid Route Hint";
 "new.contact.error.alreadyExists" = "您的地址簿中已存在此公钥的联系人。";
 "delete.contact" = "删除联系人";
 "delete.contact.warning" = "您确定要删除此联系人吗？";

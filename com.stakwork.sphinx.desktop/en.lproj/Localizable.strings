@@ -148,6 +148,7 @@
 "subscribe.upper" = "SUBSCRIBE";
 "nickname.address.required" = "Nickname and Address are required.";
 "invalid.pubkey" = "Invalid Public Key";
+"invalid.route.hint" = "Invalid Route Hint";
 "new.contact.error.alreadyExists" = "A contact with this public key already exists in your Address Book.";
 "delete.contact" = "Delete Contact";
 "delete.contact.warning" = "Are you sure you want to delete this contact?";

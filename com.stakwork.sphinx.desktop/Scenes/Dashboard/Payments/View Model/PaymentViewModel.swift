@@ -122,8 +122,6 @@ class PaymentViewModel : NSObject {
             return
         }
         
-        let parameters = getParams()
-        
         if let paymentAmount = currentPayment.amount,
            let invoice = SphinxOnionManager.sharedInstance.createInvoice(
             amountMsat: paymentAmount * 1000,
