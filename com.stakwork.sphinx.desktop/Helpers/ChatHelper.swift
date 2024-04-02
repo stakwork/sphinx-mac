@@ -304,7 +304,8 @@ class ChatHelper {
         if let text = mutableTableCellState.messageContent?.text, text.isNotEmpty {
             lastReplyTextHeight = getThreadOriginalTextMessageHeightFor(
                 text,
-                collectionViewWidth: collectionViewWidth
+                collectionViewWidth: collectionViewWidth,
+                highlightedMatches: mutableTableCellState.messageContent?.highlightedMatches
             )
         }
         
@@ -475,7 +476,8 @@ class ChatHelper {
     public static func getThreadOriginalTextMessageHeightFor(
         _ text: String?,
         collectionViewWidth: CGFloat,
-        maxHeight: CGFloat? = nil
+        maxHeight: CGFloat? = nil,
+        highlightedMatches: [NSTextCheckingResult]? = []
     ) -> CGFloat {
         var textHeight: CGFloat = 0.0
         
@@ -487,7 +489,8 @@ class ChatHelper {
         if let text = text, text.isNotEmpty {
             textHeight = ChatHelper.getTextHeightFor(
                 text: text,
-                width: maxWidth
+                width: maxWidth,
+                highlightedMatches: highlightedMatches
             )
         }
         
@@ -632,6 +635,10 @@ class ChatHelper {
         highlightedMatches: [NSTextCheckingResult]? = [],
         labelMargins: CGFloat? = nil
     ) -> CGFloat {
+        if text.contains("Testing threads with hightlighted text") {
+            print("test")
+        }
+        
         let attrs = [NSAttributedString.Key.font: font ?? Constants.kMessageFont]
         let attributedString = NSMutableAttributedString(string: text, attributes: attrs)
         
@@ -642,9 +649,10 @@ class ChatHelper {
             let substractionNeeded = index * 2
             let adaptedRange = NSRange(location: match.range.location - substractionNeeded, length: match.range.length - 2)
             
-            attributedString.setAttributes(
+            attributedString.addAttributes(
                 [
-                    NSAttributedString.Key.font: Constants.kMessageHighlightedFont
+                    NSAttributedString.Key.font: Constants.kMessageHighlightedFont,
+                    NSAttributedString.Key.backgroundColor: NSColor.Sphinx.HighlightedTextBackground
                 ],
                 range: adaptedRange
             )

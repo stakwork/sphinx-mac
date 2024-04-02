@@ -226,7 +226,8 @@ extension ThreadCollectionViewItem {
             
             let labelHeight = ChatHelper.getThreadOriginalTextMessageHeightFor(
                 text,
-                collectionViewWidth: collectionViewWidth
+                collectionViewWidth: collectionViewWidth,
+                highlightedMatches: messageContent.highlightedMatches
             )
             
             lastReplyLabelHeightConstraint.constant = labelHeight
