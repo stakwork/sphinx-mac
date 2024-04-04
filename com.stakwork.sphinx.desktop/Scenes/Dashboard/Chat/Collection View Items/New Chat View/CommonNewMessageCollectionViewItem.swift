@@ -35,6 +35,8 @@ class CommonNewMessageCollectionViewitem : NSCollectionViewItem {
     static let kMaximumInvoiceBubbleWidth: CGFloat = 300
     static let kMaximumThreadBubbleWidth: CGFloat = 400
     
+    static let kHighlightedTextVerticalExtraPadding: CGFloat = 12
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

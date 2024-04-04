@@ -13,7 +13,7 @@ protocol DashboardVCDelegate: AnyObject {
     func shouldShowRestoreModal(with progress: Int, label: String, buttonEnabled: Bool)
     func shouldHideRetoreModal()
     func shouldShowFullMediaFor(message: TransactionMessage)
-//    func shouldToggleLeftView(show: Bool?)
+    func shouldToggleLeftView(show: Bool?)
     func didSwitchToTab()
     func shouldResetContactView(deletedContactId: Int)
     func shouldResetTribeView()

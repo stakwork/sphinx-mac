@@ -220,7 +220,7 @@ class ChatHelper {
                     originalThreadMessage.text,
                     width: kTextWidth,
                     maxHeight: kMessageLineHeight * 2,
-                    font: NSFont(name: "Roboto-Regular", size: 17.0)!
+                    font: NSFont.getThreadListFont()
                 ) + kElementMargin
             }
         }
@@ -304,7 +304,8 @@ class ChatHelper {
         if let text = mutableTableCellState.messageContent?.text, text.isNotEmpty {
             lastReplyTextHeight = getThreadOriginalTextMessageHeightFor(
                 text,
-                collectionViewWidth: collectionViewWidth
+                collectionViewWidth: collectionViewWidth,
+                highlightedMatches: mutableTableCellState.messageContent?.highlightedMatches
             )
         }
         
@@ -464,7 +465,8 @@ class ChatHelper {
             
             textHeight = ChatHelper.getTextHeightFor(
                 text: text,
-                width: maxWidth
+                width: maxWidth,
+                highlightedMatches: mutableTableCellState.messageContent?.highlightedMatches
             )
         }
         
@@ -474,7 +476,8 @@ class ChatHelper {
     public static func getThreadOriginalTextMessageHeightFor(
         _ text: String?,
         collectionViewWidth: CGFloat,
-        maxHeight: CGFloat? = nil
+        maxHeight: CGFloat? = nil,
+        highlightedMatches: [NSTextCheckingResult]? = []
     ) -> CGFloat {
         var textHeight: CGFloat = 0.0
         
@@ -486,7 +489,8 @@ class ChatHelper {
         if let text = text, text.isNotEmpty {
             textHeight = ChatHelper.getTextHeightFor(
                 text: text,
-                width: maxWidth
+                width: maxWidth,
+                highlightedMatches: highlightedMatches
             )
         }
         
@@ -628,12 +632,33 @@ class ChatHelper {
         text: String,
         width: CGFloat,
         font: NSFont? = nil,
+        highlightedMatches: [NSTextCheckingResult]? = [],
         labelMargins: CGFloat? = nil
     ) -> CGFloat {
-        let adaptedtext = text
+        if text.contains("Testing threads with hightlighted text") {
+            print("test")
+        }
         
         let attrs = [NSAttributedString.Key.font: font ?? Constants.kMessageFont]
-        let attributedString = NSAttributedString(string: adaptedtext, attributes: attrs)
+        let attributedString = NSMutableAttributedString(string: text, attributes: attrs)
+        
+        for (index, match) in (highlightedMatches ?? []).enumerated() {
+            
+            ///Subtracting the previous matches delimiter characters since they have been removed from the string
+            ///Subtracting the \` characters from the length since removing the chars caused the range to be 2 less chars
+            let substractionNeeded = index * 2
+            let adaptedRange = NSRange(location: match.range.location - substractionNeeded, length: match.range.length - 2)
+            
+            attributedString.addAttributes(
+                [
+                    NSAttributedString.Key.font: Constants.kMessageHighlightedFont,
+                    NSAttributedString.Key.backgroundColor: NSColor.Sphinx.HighlightedTextBackground
+                ],
+                range: adaptedRange
+            )
+            
+        }
+        
         let kLabelHorizontalMargins: CGFloat = 32.0
         let kLabelVerticalMargins: CGFloat = labelMargins ?? 32.0
         

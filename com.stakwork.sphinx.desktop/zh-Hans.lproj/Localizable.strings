@@ -12,6 +12,7 @@
 "generic.error.message" = "出现错误。请稍后再试。";
 "generic.message.error" = "消息无法发送。请稍后再试";
 "generic.attachment.error" = "上传文件时出现问题。请稍后再试。";
+"boost.error.title" = "Boost error";
 "confirm" = "确认";
 "authorize" = "授权";
 "warning" = "警告";

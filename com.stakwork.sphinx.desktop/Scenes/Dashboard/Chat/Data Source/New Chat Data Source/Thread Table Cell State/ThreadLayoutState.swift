@@ -35,17 +35,20 @@ struct ThreadLayoutState {
     struct ThreadOriginalMessage {
         var text: String
         var linkMatches: [NSTextCheckingResult]
+        var highlightedMatches: [NSTextCheckingResult]
         var timestamp: String
         var senderInfo: (NSColor, String, String?)
         
         init(
             text: String,
             linkMatches: [NSTextCheckingResult],
+            highlightedMatches: [NSTextCheckingResult],
             timestamp: String,
             senderInfo: (NSColor, String, String?)
         ) {
             self.text = text
             self.linkMatches = linkMatches
+            self.highlightedMatches = highlightedMatches
             self.timestamp = timestamp
             self.senderInfo = senderInfo
         }

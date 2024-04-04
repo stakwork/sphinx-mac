@@ -384,6 +384,10 @@ extension TransactionMessage {
         return (self.messageContent ?? "").isPodcastComment
     }
     
+    func isMessageBoost() -> Bool {
+        return (type == TransactionMessageType.boost.rawValue && replyUUID != nil)
+    }
+    
     func isPodcastBoost() -> Bool {
         return (self.messageContent ?? "").isPodcastBoost ||
                (type == TransactionMessageType.boost.rawValue && replyUUID == nil)

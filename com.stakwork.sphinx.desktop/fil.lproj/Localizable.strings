@@ -12,6 +12,7 @@
 "generic.error.message"  = "May mali. Paki ulit sa ilang saglit.";
 "generic.message.error" = "Hindi maipadala ang mensahe dahil sa isang error sa pag-encrypt.";
 "generic.attachment.error" = "There was an problem uploading the file. Please try again later.";
+"boost.error.title" = "Boost error";
 "confirm"  = "Kumpirma";
 "authorize"  = "Authorize";
 "warning"  = "Babala";

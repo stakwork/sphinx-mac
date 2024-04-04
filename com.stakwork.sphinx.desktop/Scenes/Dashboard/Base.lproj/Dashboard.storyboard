@@ -211,7 +211,7 @@
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" size="30" name="MaterialIcons-Regular"/>
                                                     </buttonCell>
-                                                    <color key="contentTintColor" name="PrimaryBlue"/>
+                                                    <color key="contentTintColor" name="MainBottomIcons"/>
                                                     <connections>
                                                         <action selector="hideMenuButtonClicked:" target="GLJ-mb-R6q" id="Unk-Dv-oCK"/>
                                                     </connections>
@@ -851,14 +851,58 @@
                                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                                     </scroller>
                                                                                 </scrollView>
+                                                                                <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dgH-Af-a01">
+                                                                                    <rect key="frame" x="-8" y="671" width="40" height="40"/>
+                                                                                    <subviews>
+                                                                                        <box boxType="custom" borderType="none" cornerRadius="6" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="X82-jY-h78">
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                                                            <view key="contentView" id="Qy4-dc-KeD">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                                                <subviews>
+                                                                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="l0r-GN-D9c">
+                                                                                                        <rect key="frame" x="8" y="0.0" width="32" height="40"/>
+                                                                                                        <buttonCell key="cell" type="bevel" title="navigate_next" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="duM-VV-St2" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
+                                                                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                                                            <font key="font" size="30" name="MaterialIcons-Regular"/>
+                                                                                                        </buttonCell>
+                                                                                                        <color key="contentTintColor" name="MainBottomIcons"/>
+                                                                                                        <constraints>
+                                                                                                            <constraint firstAttribute="width" constant="32" id="PlR-9R-oQX"/>
+                                                                                                        </constraints>
+                                                                                                        <connections>
+                                                                                                            <action selector="expandMenuButtonClicked:" target="Pz4-0N-V1w" id="pmD-yn-dwy"/>
+                                                                                                        </connections>
+                                                                                                    </button>
+                                                                                                </subviews>
+                                                                                                <constraints>
+                                                                                                    <constraint firstItem="l0r-GN-D9c" firstAttribute="top" secondItem="Qy4-dc-KeD" secondAttribute="top" id="CtT-3t-5As"/>
+                                                                                                    <constraint firstAttribute="trailing" secondItem="l0r-GN-D9c" secondAttribute="trailing" id="Ogo-tn-9S3"/>
+                                                                                                    <constraint firstAttribute="bottom" secondItem="l0r-GN-D9c" secondAttribute="bottom" id="whq-yu-bXN"/>
+                                                                                                </constraints>
+                                                                                            </view>
+                                                                                            <color key="fillColor" name="NewMessageIndicator"/>
+                                                                                        </box>
+                                                                                    </subviews>
+                                                                                    <constraints>
+                                                                                        <constraint firstItem="X82-jY-h78" firstAttribute="top" secondItem="dgH-Af-a01" secondAttribute="top" id="4CI-Oq-WQP"/>
+                                                                                        <constraint firstItem="X82-jY-h78" firstAttribute="leading" secondItem="dgH-Af-a01" secondAttribute="leading" id="EJF-0s-Maw"/>
+                                                                                        <constraint firstAttribute="height" constant="40" id="K7c-yP-Ota"/>
+                                                                                        <constraint firstAttribute="trailing" secondItem="X82-jY-h78" secondAttribute="trailing" id="Qyk-fS-PEd"/>
+                                                                                        <constraint firstAttribute="bottom" secondItem="X82-jY-h78" secondAttribute="bottom" id="bbR-4b-Tck"/>
+                                                                                        <constraint firstAttribute="width" constant="40" id="fwZ-tS-ujw"/>
+                                                                                    </constraints>
+                                                                                </customView>
                                                                             </subviews>
                                                                             <constraints>
                                                                                 <constraint firstItem="YNj-1S-7Oo" firstAttribute="bottom" secondItem="X86-z6-O1z" secondAttribute="bottom" id="0Bg-NF-GOu"/>
                                                                                 <constraint firstItem="NL7-Ka-pQ0" firstAttribute="leading" secondItem="hrp-5k-g3S" secondAttribute="leading" id="0by-hj-GYI"/>
                                                                                 <constraint firstItem="X86-z6-O1z" firstAttribute="leading" secondItem="hrp-5k-g3S" secondAttribute="leading" id="3NF-cF-tgz"/>
                                                                                 <constraint firstAttribute="trailing" secondItem="X86-z6-O1z" secondAttribute="trailing" id="9OY-v0-gCf"/>
+                                                                                <constraint firstItem="dgH-Af-a01" firstAttribute="top" secondItem="hrp-5k-g3S" secondAttribute="top" constant="8" id="9U9-Mt-eA3"/>
                                                                                 <constraint firstAttribute="bottom" secondItem="X86-z6-O1z" secondAttribute="bottom" id="HLU-vw-sfa"/>
                                                                                 <constraint firstItem="YNj-1S-7Oo" firstAttribute="leading" secondItem="hrp-5k-g3S" secondAttribute="leading" id="MTR-SZ-YyY"/>
+                                                                                <constraint firstItem="dgH-Af-a01" firstAttribute="leading" secondItem="hrp-5k-g3S" secondAttribute="leading" constant="-8" id="R8j-Qp-qxr"/>
                                                                                 <constraint firstAttribute="bottom" secondItem="NL7-Ka-pQ0" secondAttribute="bottom" id="T87-IE-P4F"/>
                                                                                 <constraint firstItem="wD4-1y-bkn" firstAttribute="leading" secondItem="hrp-5k-g3S" secondAttribute="leading" id="Uwk-B7-iEf"/>
                                                                                 <constraint firstItem="X86-z6-O1z" firstAttribute="top" secondItem="hrp-5k-g3S" secondAttribute="top" id="Xbw-fu-14U"/>
@@ -1007,6 +1051,7 @@
                         <outlet property="chatTopView" destination="ffC-9B-Cdx" id="YPh-Ow-0Fs"/>
                         <outlet property="childViewControllerContainer" destination="wD4-1y-bkn" id="X43-AB-cYK"/>
                         <outlet property="draggingView" destination="NL7-Ka-pQ0" id="rGI-OE-UPs"/>
+                        <outlet property="expandMenuButtonView" destination="dgH-Af-a01" id="0kl-CG-J6E"/>
                         <outlet property="mentionsCollectionView" destination="llZ-ed-gHt" id="7m9-3j-WqT"/>
                         <outlet property="mentionsScrollView" destination="YNj-1S-7Oo" id="Dm4-w9-saU"/>
                         <outlet property="mentionsScrollViewHeightConstraint" destination="sLd-GY-zc3" id="b3D-2u-qRi"/>
@@ -1528,11 +1573,11 @@
         <namedColor name="MainBottomIcons">
             <color red="0.37254901960784315" green="0.38823529411764707" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="NewMessageIndicator">
+            <color red="0.90980392156862744" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="PlaceholderText">
             <color red="0.81568627450980391" green="0.83529411764705885" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="PrimaryBlue">
-            <color red="0.38039215686274508" green="0.54117647058823526" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="PrimaryGreen">
             <color red="0.28627450980392155" green="0.78823529411764703" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

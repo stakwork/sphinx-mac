@@ -33,16 +33,32 @@ extension NSFont {
         return Constants.kMessageFont
     }
     
+    static func getHighlightedMessageFont() -> NSFont {
+        return Constants.kMessageHighlightedFont
+    }
+    
     static func getEmojisFont() -> NSFont {
         return Constants.kEmojisFont
     }
     
     static func getThreadHeaderFont() -> NSFont {
-        return NSFont(name: "Roboto-Regular", size: 16)!
+        return Constants.kThreadHeaderFont
+    }
+    
+    static func getThreadHeaderHightlightedFont() -> NSFont {
+        return Constants.kThreadHeaderHighlightedFont
+    }
+    
+    static func getThreadListFont() -> NSFont {
+        return Constants.kThreadListFont
+    }
+    
+    static func getThreadListHightlightedFont() -> NSFont {
+        return Constants.kThreadListHighlightedFont
     }
     
     static func getAmountFont() -> NSFont {
-        return NSFont(name: "Roboto-Bold", size: 16)!
+        return Constants.kAmountFont
     }
     
     static func getEncryptionErrorFont() -> NSFont {

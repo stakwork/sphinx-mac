@@ -50,6 +50,8 @@ class ThreadHeaderView: NSView, LoadableNib {
     @IBOutlet weak var textContainer: NSView!
     @IBOutlet weak var messageLabel: MessageTextField!
     
+    @IBOutlet weak var newMessageLabelScrollView: DisabledScrollView!
+    @IBOutlet var newMessageLabel: NSTextView!
     @IBOutlet weak var closeButton: CustomButton!
     @IBOutlet weak var optionsButton: CustomButton!
     
@@ -140,10 +142,13 @@ class ThreadHeaderView: NSView, LoadableNib {
         
         mediaTextContainer.isHidden = false
         textContainer.isHidden = false
+        messageLabel.isHidden = true
+        newMessageLabel.isEditable = false
         
-        if threadOriginalMessage.linkMatches.isEmpty {
+        if threadOriginalMessage.linkMatches.isEmpty && threadOriginalMessage.highlightedMatches.isEmpty {
             messageLabel.attributedStringValue = NSMutableAttributedString(string: "")
-
+            newMessageLabel.string = threadOriginalMessage.text
+            newMessageLabel.font = threadOriginalMessage.font
             messageLabel.stringValue = threadOriginalMessage.text
             messageLabel.font = threadOriginalMessage.font
         } else {
@@ -158,6 +163,29 @@ class ThreadHeaderView: NSView, LoadableNib {
                 , range: messageC.nsRange
             )
             
+            ///Highlighted text formatting
+            let highlightedNsRanges = threadOriginalMessage.highlightedMatches.map {
+                return $0.range
+            }
+            
+            for (index, nsRange) in highlightedNsRanges.enumerated() {
+                
+                ///Subtracting the previous matches delimiter characters since they have been removed from the string
+                ///Subtracting the \` characters from the length since removing the chars caused the range to be 2 less chars
+                let substractionNeeded = index * 2
+                let adaptedRange = NSRange(location: nsRange.location - substractionNeeded, length: nsRange.length - 2)
+                
+                attributedString.addAttributes(
+                    [
+                        NSAttributedString.Key.foregroundColor: NSColor.Sphinx.HighlightedText,
+                        NSAttributedString.Key.backgroundColor: NSColor.Sphinx.HighlightedTextBackground,
+                        NSAttributedString.Key.font: threadOriginalMessage.highlightedFont
+                    ],
+                    range: adaptedRange
+                )
+            }
+            
+            ///Links formatting
             var nsRanges = threadOriginalMessage.linkMatches.map {
                 return $0.range
             }
@@ -179,7 +207,7 @@ class ThreadHeaderView: NSView, LoadableNib {
                     }
                      
                     if let url = URL(string: substring.withProtocol(protocolString: "http"))  {
-                        attributedString.setAttributes(
+                        attributedString.addAttributes(
                             [
                                 NSAttributedString.Key.foregroundColor: NSColor.Sphinx.PrimaryBlue,
                                 NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
@@ -195,6 +223,8 @@ class ThreadHeaderView: NSView, LoadableNib {
 
             messageLabel.attributedStringValue = attributedString
             messageLabel.isEnabled = true
+            newMessageLabel.string = attributedString.string
+            newMessageLabel.textStorage?.setAttributedString(attributedString)
         }
     }
     
@@ -202,6 +232,8 @@ class ThreadHeaderView: NSView, LoadableNib {
         messageMedia: BubbleMessageLayoutState.MessageMedia?,
         mediaData: MessageTableCellState.MediaData?
     ) {
+        newMessageLabelScrollView.disabled = true
+        
         if let messageMedia = messageMedia {
             
             messageMediaView.configureWith(
@@ -211,6 +243,7 @@ class ThreadHeaderView: NSView, LoadableNib {
                 and: self
             )
             
+            newMessageLabelScrollView.disabled = false
             messageMediaView.isHidden = false
             mediaTextContainer.isHidden = false
             messageMediaContainer.isHidden = false
