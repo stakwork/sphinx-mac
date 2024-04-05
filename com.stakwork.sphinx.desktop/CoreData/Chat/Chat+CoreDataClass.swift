@@ -690,6 +690,10 @@ public class Chat: NSManagedObject {
         return tribeInfo?.appUrl != nil && tribeInfo?.appUrl?.isEmpty == false
     }
     
+    func hasSecondBrainApp() -> Bool {
+        return tribeInfo?.secondBrainUrl != nil && tribeInfo?.secondBrainUrl?.isEmpty == false
+    }
+    
     func syncTribeWithServer() {
         DispatchQueue.global().async {
             let params: [String: AnyObject] = ["name" : self.name as AnyObject, "img": self.photoUrl as AnyObject]

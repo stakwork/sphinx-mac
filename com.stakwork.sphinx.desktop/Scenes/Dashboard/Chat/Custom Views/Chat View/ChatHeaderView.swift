@@ -16,6 +16,7 @@ protocol ChatHeaderViewDelegate : AnyObject {
     func didClickCallButton()
     func didClickHeaderButton()
     func didClickSearchButton()
+    func didClickSecondBrainAppButton()
 }
 
 class ChatHeaderView: NSView, LoadableNib {
@@ -37,6 +38,7 @@ class ChatHeaderView: NSView, LoadableNib {
     @IBOutlet weak var boltSign: NSTextField!
     @IBOutlet weak var volumeButton: CustomButton!
     @IBOutlet weak var webAppButton: CustomButton!
+    @IBOutlet weak var secondBrainButton: CustomButton!
     @IBOutlet weak var callButton: CustomButton!
     @IBOutlet weak var headerButton: CustomButton!
     @IBOutlet weak var threadsButton: CustomButton!
@@ -69,6 +71,7 @@ class ChatHeaderView: NSView, LoadableNib {
         
         volumeButton.cursor = .pointingHand
         webAppButton.cursor = .pointingHand
+        secondBrainButton.cursor = .pointingHand
         callButton.cursor = .pointingHand
         headerButton.cursor = .pointingHand
         threadsButton.cursor = .pointingHand
@@ -102,6 +105,7 @@ class ChatHeaderView: NSView, LoadableNib {
         boltSign.isHidden = true
         volumeButton.isHidden = true
         webAppButton.isHidden = true
+        secondBrainButton.isHidden = true
         callButton.isHidden = true
         threadsButton.isHidden = true
         searchButton.isHidden = true
@@ -250,6 +254,10 @@ class ChatHeaderView: NSView, LoadableNib {
         webAppButton.isHidden = !(chat?.hasWebApp() ?? false)
     }
     
+    func toggleSecondBrainAppIcon() {
+        secondBrainButton.isHidden = !(chat?.hasSecondBrainApp() ?? false)
+    }
+    
     func checkRoute() {
         if self.chat == nil && self.contact == nil {
             return
@@ -278,6 +286,10 @@ class ChatHeaderView: NSView, LoadableNib {
     
     @IBAction func webAppButtonClicked(_ sender: Any) {
         delegate?.didClickWebAppButton()
+    }
+    
+    @IBAction func secondBrainAppButtonClicked(_ sender: Any) {
+        delegate?.didClickSecondBrainAppButton()
     }
     
     @IBAction func muteButtonClicked(_ sender: Any) {
