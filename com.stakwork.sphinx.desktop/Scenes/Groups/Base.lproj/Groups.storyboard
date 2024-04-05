@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -546,8 +546,8 @@
                                                                             <rect key="frame" x="30" y="400" width="340" height="75"/>
                                                                             <subviews>
                                                                                 <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8gr-3I-Hdf">
-                                                                                    <rect key="frame" x="-2" y="36" width="91" height="14"/>
-                                                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="SecondBrain Url" id="pdg-dx-btt">
+                                                                                    <rect key="frame" x="-2" y="36" width="94" height="14"/>
+                                                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Second Brain Url" id="pdg-dx-btt">
                                                                                         <font key="font" size="12" name="Roboto-Regular"/>
                                                                                         <color key="textColor" name="SecondaryText"/>
                                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -862,7 +862,7 @@
                                                 <rect key="frame" x="-100" y="-100" width="400" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
-                                            <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.58628841607565008" horizontal="NO" id="uQO-dW-PVl">
+                                            <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="uQO-dW-PVl">
                                                 <rect key="frame" x="384" y="0.0" width="16" height="727"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
