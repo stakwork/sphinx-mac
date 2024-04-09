@@ -635,10 +635,6 @@ class ChatHelper {
         highlightedMatches: [NSTextCheckingResult]? = [],
         labelMargins: CGFloat? = nil
     ) -> CGFloat {
-        if text.contains("Testing threads with hightlighted text") {
-            print("test")
-        }
-        
         let attrs = [NSAttributedString.Key.font: font ?? Constants.kMessageFont]
         let attributedString = NSMutableAttributedString(string: text, attributes: attrs)
         
