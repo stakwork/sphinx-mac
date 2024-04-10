@@ -668,13 +668,13 @@ extension NewChatTableDataSource {
         
         if result.isEmpty {
             restorePreloadedOrLoadMessages()
-            
-            DelayPerformedHelper.performAfterDelay(seconds: 2.0, completion: {
-                self.pinnedMessageId = nil
-            })
         } else {
             restoreScrollLastPosition()
         }
+        
+        DelayPerformedHelper.performAfterDelay(seconds: 2.0, completion: {
+            self.pinnedMessageId = nil
+        })
     }
 }
 
