@@ -199,9 +199,9 @@ class WindowsManager {
                       contentVC: vc)
     }
     
-    func showWebAppWindow(chat: Chat?, view: NSView) {
-        if let chat = chat, let tribeInfo = chat.tribeInfo, let gameURL = tribeInfo.appUrl, !gameURL.isEmpty && gameURL.isValidURL,
-           let webGameVC = WebAppViewController.instantiate(chat: chat) {
+    func showWebAppWindow(chat: Chat?, view: NSView, isAppURL: Bool = true) {
+        if let chat = chat, let tribeInfo = chat.tribeInfo, let gameURL = isAppURL ? tribeInfo.appUrl : tribeInfo.secondBrainUrl, !gameURL.isEmpty && gameURL.isValidURL,
+           let webGameVC = WebAppViewController.instantiate(chat: chat, isAppURL: isAppURL) {
             
             let appTitle = chat.name ?? ""
             let screen = NSApplication.shared.keyWindow

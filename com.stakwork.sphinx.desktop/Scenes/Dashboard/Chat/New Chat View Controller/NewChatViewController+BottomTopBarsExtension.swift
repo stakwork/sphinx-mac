@@ -40,6 +40,14 @@ extension NewChatViewController : ChatHeaderViewDelegate {
         )
     }
     
+    func didClickSecondBrainAppButton() {
+        WindowsManager.sharedInstance.showWebAppWindow(
+            chat: chat,
+            view: view,
+            isAppURL: false
+        )
+    }
+    
     func didClickMuteButton() {
         guard let chat = chat else {
             return

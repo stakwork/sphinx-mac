@@ -50,6 +50,8 @@
 /* Class = "NSTextFieldCell"; title = "App URL"; ObjectID = "PBt-DD-vJn"; */
 "PBt-DD-vJn.title" = "アプリURL";
 
+"pdg-dx-btt.title" = "Second Brain Url";
+
 /* Class = "NSTextFieldCell"; title = "Feed URL"; ObjectID = "aYx-6Y-No1"; */
 "aYx-6Y-No1.title" = "フィードURL";
 
