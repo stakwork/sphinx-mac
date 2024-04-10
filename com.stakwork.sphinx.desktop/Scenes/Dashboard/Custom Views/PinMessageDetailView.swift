@@ -20,6 +20,8 @@ class PinMessageDetailView: NSView, LoadableNib {
     @IBOutlet weak var messageLabel: NSTextField!
     @IBOutlet weak var arrowView: NSView!
     @IBOutlet weak var unpinButtonContainer: NSView!
+    @IBOutlet weak var unpinButton: CustomButton!
+    @IBOutlet weak var containerButton: CustomButton!
     
     var messageId: Int? = nil
     
@@ -38,6 +40,9 @@ class PinMessageDetailView: NSView, LoadableNib {
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         loadViewFromNib()
+        
+        unpinButton.cursor = .pointingHand
+        containerButton.cursor = .pointingHand
         
         drawArrow()
         addClickEvent()
@@ -108,6 +113,13 @@ class PinMessageDetailView: NSView, LoadableNib {
             
             self.isHidden = false
         }
+    }
+    
+    @IBAction func containerButtonClicked(_ sender: Any) {
+        if let messageId = self.messageId {
+            delegate?.shouldNavigateTo(messageId: messageId)
+        }
+        shouldDismissView()
     }
     
     @IBAction func unpinMessageButtoniClicked(_ sender: Any) {

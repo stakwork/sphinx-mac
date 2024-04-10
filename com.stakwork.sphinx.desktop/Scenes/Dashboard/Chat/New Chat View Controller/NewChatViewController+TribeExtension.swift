@@ -98,4 +98,8 @@ extension NewChatViewController : PinnedMessageViewDelegate {
             delegate: self
         )
     }
+    
+    func shouldNavigateTo(messageId: Int) {
+        chatTableDataSource?.reloadWith(pinnedMessageId: messageId)
+    }
 }

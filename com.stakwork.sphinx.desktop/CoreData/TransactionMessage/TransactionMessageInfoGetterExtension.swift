@@ -565,7 +565,7 @@ extension TransactionMessage {
     
     var isPinActionAllowed: Bool {
         get {
-            return (self.chat?.isMyPublicGroup() ?? false) && !isMessagePinned
+            return (self.chat?.isMyPublicGroup() ?? false) && isCopyTextActionAllowed && !isMessagePinned
         }
     }
     
