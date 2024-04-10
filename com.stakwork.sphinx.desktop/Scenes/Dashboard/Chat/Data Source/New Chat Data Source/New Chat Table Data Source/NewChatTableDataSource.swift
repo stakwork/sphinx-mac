@@ -77,6 +77,7 @@ class NewChatTableDataSource : NSObject {
     var contact: UserContact?
     var tribeAdmin: UserContact?
     var owner: UserContact?
+    var pinnedMessageId: Int? = nil
     
     ///Data Source related
     var messagesResultsController: NSFetchedResultsController<TransactionMessage>!
