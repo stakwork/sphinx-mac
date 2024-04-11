@@ -90,7 +90,10 @@ extension NewChatTableDataSource {
     @objc func restoreScrollLastPosition() {
         guard let chatId = chat?.id else { return }
 
-        if let scrollState = self.preloaderHelper.getScrollState(for: chatId), !scrollState.isAtBottom {
+        if let scrollState = self.preloaderHelper.getScrollState(
+            for: chatId,
+            pinnedMessageId: pinnedMessageId
+        ), !scrollState.isAtBottom {
 
             ///Find index of stored first visible item
             if let index = messageTableCellStateArray.firstIndex(where: { $0.getUniqueIdentifier() == scrollState.firstRowId}) {

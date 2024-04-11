@@ -114,6 +114,7 @@ class GroupsManager {
         amountToStake: Int? = nil,
         timeToStake: Int? = nil,
         appUrl: String? = nil,
+        secondBrainUrl: String? = nil,
         feedUrl: String? = nil,
         feedType: FeedContentType? = nil,
         listInTribes: Bool,
@@ -128,6 +129,7 @@ class GroupsManager {
         newGroupInfo.amountToStake = amountToStake ?? newGroupInfo.amountToStake
         newGroupInfo.timeToStake = timeToStake ?? newGroupInfo.timeToStake
         newGroupInfo.appUrl = appUrl ?? newGroupInfo.appUrl
+        newGroupInfo.secondBrainUrl = secondBrainUrl ?? newGroupInfo.secondBrainUrl
         newGroupInfo.feedUrl = feedUrl ?? newGroupInfo.feedUrl
         newGroupInfo.feedContentType = feedType ?? newGroupInfo.feedContentType
         newGroupInfo.unlisted = !listInTribes
@@ -158,6 +160,7 @@ class GroupsManager {
         var deleted : Bool = false
         var appUrl : String? = nil
         var feedUrl : String? = nil
+        var secondBrainUrl : String? = nil
         var feedContentType : FeedContentType? = nil
         var ownerRouteHint : String? = nil
         var bots : [Bot] = []
@@ -285,6 +288,7 @@ class GroupsManager {
         parameters["private"] = newGroupInfo.privateTribe as AnyObject
         parameters["app_url"] = newGroupInfo.appUrl as AnyObject
         parameters["feed_url"] = newGroupInfo.feedUrl as AnyObject
+        parameters["second_brain_url"] = newGroupInfo.secondBrainUrl as AnyObject
         
         if let feedContentType = newGroupInfo.feedContentType {
             parameters["feed_type"] = feedContentType.id as AnyObject
@@ -352,6 +356,7 @@ class GroupsManager {
         tribeInfo.privateTribe = json["private"].boolValue
         tribeInfo.deleted = json["deleted"].boolValue
         tribeInfo.appUrl = json["app_url"].string ?? tribeInfo.appUrl
+        tribeInfo.secondBrainUrl = json["second_brain_url"].string ?? tribeInfo.secondBrainUrl
         tribeInfo.feedUrl = json["feed_url"].string ?? tribeInfo.feedUrl
         tribeInfo.feedContentType = json["feed_type"].int?.toFeedContentType ?? tribeInfo.feedContentType
         tribeInfo.ownerRouteHint = json["owner_route_hint"].string ?? tribeInfo.ownerRouteHint

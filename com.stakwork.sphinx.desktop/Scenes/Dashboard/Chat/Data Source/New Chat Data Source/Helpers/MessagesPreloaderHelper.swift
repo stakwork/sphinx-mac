@@ -90,8 +90,16 @@ class MessagesPreloaderHelper {
     }
     
     func getScrollState(
-        for chatId: Int
+        for chatId: Int,
+        pinnedMessageId: Int? = nil
     ) -> ScrollState? {
+        if let pinnedMessageId = pinnedMessageId {
+            return ScrollState(
+                firstRowId: pinnedMessageId,
+                difference: 0,
+                isAtBottom: false
+            )
+        }
         if let scrollState = chatScrollState[chatId] {
             return scrollState
         }

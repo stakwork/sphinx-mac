@@ -24,11 +24,11 @@ class WebAppViewController: NSViewController {
     
     let webAppHelper = WebAppHelper()
     
-    static func instantiate(chat: Chat) -> WebAppViewController? {
+    static func instantiate(chat: Chat, isAppURL: Bool = true) -> WebAppViewController? {
         let viewController = StoryboardScene.Dashboard.webAppViewController.instantiate()
         viewController.chat = chat
         
-        guard let tribeInfo = chat.tribeInfo, let gameURL = tribeInfo.appUrl, !gameURL.isEmpty else {
+        guard let tribeInfo = chat.tribeInfo, let gameURL = isAppURL ? tribeInfo.appUrl : tribeInfo.secondBrainUrl, !gameURL.isEmpty else {
             return nil
         }
         
