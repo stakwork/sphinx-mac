@@ -8,18 +8,20 @@
 
 import Cocoa
 
-protocol DashboardPresenterDelegate: AnyObject {
-    func dismissPresenter()
-}
-
 class DashboardPresenterViewController: NSViewController {
-
-    @IBOutlet weak var vcTitle: NSText!
-    weak var delegate: DashboardPresenterDelegate?
+    
+    @IBOutlet weak var mainContentView: NSView!
+    weak var contentVC: NSViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
+        view.setBackgroundColor(color: NSColor.Sphinx.SecondaryRed)
+    }
+    
+    static func instantiate() -> DashboardPresenterViewController {
+        let viewController = StoryboardScene.Dashboard.dashboardPresenterViewController.instantiate()
+        return viewController
     }
     
     override func viewWillAppear() {
@@ -31,16 +33,31 @@ class DashboardPresenterViewController: NSViewController {
         
     }
     
-    func configurePresenterVC() {
+    func configurePresenterVC(_ contentVC: NSViewController?) {
         
+        if let vc = self.contentVC {
+            self.removeChildVC(child: vc)
+        }
+        self.contentVC = contentVC
+        if let contentVC {
+            self.addChildVC(child: contentVC, container: self.view)
+        }
     }
     
     func dismissVC() {
-        delegate?.dismissPresenter()
+        if let vc = self.contentVC {
+            self.removeChildVC(child: vc)
+        }
+    }
+}
+
+class TransparentView: NSView {
+    override func hitTest(_ point: NSPoint) -> NSView? {
+        let view = super.hitTest(point)
+        return view == self ? nil : view
     }
     
-    deinit {
-        print("I am going to sleep")
-    }
-    
+    override func mouseDown(with event: NSEvent) {
+            // Do nothing to intercept the mouse event
+        }
 }

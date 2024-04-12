@@ -14,6 +14,14 @@ class DashboardViewController: NSViewController {
     @IBOutlet weak var leftSplittedView: NSView!
     @IBOutlet weak var rightSplittedView: NSView!
     @IBOutlet weak var modalsContainerView: NSView!
+    @IBOutlet weak var presenterHeaderView: NSBox!
+    @IBOutlet weak var presenterContainerView: NSView!
+    @IBOutlet weak var presenterContainerBGView: NSView!
+    @IBOutlet weak var presenterBGView: NSBox!
+    @IBOutlet weak var presenterTitleLabel: NSTextField!
+    weak var presenter: DashboardPresenterViewController?
+    
+    var presenterIdentifier: String?
     
     var mediaFullScreenView: MediaFullScreenView? = nil
     
@@ -58,6 +66,14 @@ class DashboardViewController: NSViewController {
         
         DistributedNotificationCenter.default().addObserver(self, selector: #selector(self.themeChangedNotification(notification:)), name: .onInterfaceThemeChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleImageNotification(_:)), name: .webViewImageClicked, object: nil)
+        
+        presenter = DashboardPresenterViewController.instantiate()
+        if let presenter {
+            self.addChildVC(child: presenter,
+                            container: self.presenterContainerView)
+            self.presenterContainerBGView.isHidden = true
+            self.presenterBGView.isHidden = false
+        }
     }
     
     override func viewWillAppear() {
@@ -93,6 +109,12 @@ class DashboardViewController: NSViewController {
             DeepLinksHandlerHelper.handleLinkQueryFrom(url: url)
             UserDefaults.Keys.linkQuery.removeValue()
         }
+    }
+    
+    @IBAction func closeButtonTapped(_ sender: NSButton) {
+        presenterContainerBGView.isHidden = true
+        presenterIdentifier = nil
+        presenter?.dismissVC()
     }
     
     @objc func themeChangedNotification(notification: Notification) {
