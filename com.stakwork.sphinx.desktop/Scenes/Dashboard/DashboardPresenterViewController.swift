@@ -24,15 +24,6 @@ class DashboardPresenterViewController: NSViewController {
         return viewController
     }
     
-    override func viewWillAppear() {
-        super.viewWillAppear()
-        
-    }
-    
-    func configureHeaderTitle(tittle: String) {
-        
-    }
-    
     func configurePresenterVC(_ contentVC: NSViewController?) {
         
         if let vc = self.contentVC {
