@@ -15,9 +15,8 @@ class DashboardViewController: NSViewController {
     @IBOutlet weak var rightSplittedView: NSView!
     @IBOutlet weak var modalsContainerView: NSView!
     @IBOutlet weak var presenterHeaderView: NSBox!
-    
     @IBOutlet weak var presenterContainerView: NSView!
-    @IBOutlet weak var presenterContainerBGView: NSView!
+    @IBOutlet weak var presenterContainerBGView: NSBox!
     @IBOutlet weak var presenterContentBox: NSBox!
     @IBOutlet weak var presenterContainerMainView: NSView!
     @IBOutlet weak var presenterTitleLabel: NSTextField!

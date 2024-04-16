@@ -73,10 +73,7 @@
                                     <real value="250"/>
                                 </holdingPriorities>
                             </splitView>
-                            <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tYC-c9-YjD" customClass="TransparentView" customModule="Sphinx" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="1000" height="499"/>
-                            </customView>
-                            <box borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="aKn-HY-c5B">
+                            <box hidden="YES" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="aKn-HY-c5B">
                                 <rect key="frame" x="0.0" y="0.0" width="1000" height="499"/>
                                 <view key="contentView" id="von-js-Xt4" customClass="TransparentView" customModule="Sphinx" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="1000" height="499"/>
@@ -263,16 +260,12 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="PrF-LO-tpi" secondAttribute="bottom" id="1s2-ZT-Mng"/>
                             <constraint firstAttribute="bottom" secondItem="aKn-HY-c5B" secondAttribute="bottom" id="8l0-Ve-juZ"/>
-                            <constraint firstItem="tYC-c9-YjD" firstAttribute="leading" secondItem="hFQ-Ab-J3C" secondAttribute="leading" id="Bnj-hI-Qz7"/>
-                            <constraint firstAttribute="bottom" secondItem="tYC-c9-YjD" secondAttribute="bottom" id="Jix-ln-mzR"/>
                             <constraint firstItem="PrF-LO-tpi" firstAttribute="top" secondItem="hFQ-Ab-J3C" secondAttribute="top" id="K6W-le-LYp"/>
-                            <constraint firstItem="tYC-c9-YjD" firstAttribute="top" secondItem="hFQ-Ab-J3C" secondAttribute="top" id="OJ9-3l-g7k"/>
                             <constraint firstItem="aKn-HY-c5B" firstAttribute="top" secondItem="hFQ-Ab-J3C" secondAttribute="top" id="PXg-sV-axh"/>
                             <constraint firstItem="aKn-HY-c5B" firstAttribute="leading" secondItem="hFQ-Ab-J3C" secondAttribute="leading" id="SdW-dy-LyS"/>
                             <constraint firstItem="PrF-LO-tpi" firstAttribute="leading" secondItem="hFQ-Ab-J3C" secondAttribute="leading" id="X5M-A4-iY6"/>
                             <constraint firstAttribute="trailing" secondItem="PrF-LO-tpi" secondAttribute="trailing" id="fgH-IK-Ee4"/>
                             <constraint firstAttribute="trailing" secondItem="aKn-HY-c5B" secondAttribute="trailing" id="vin-eH-11d"/>
-                            <constraint firstAttribute="trailing" secondItem="tYC-c9-YjD" secondAttribute="trailing" id="wY7-1R-OHt"/>
                         </constraints>
                     </view>
                     <connections>
@@ -281,7 +274,7 @@
                         <outlet property="modalsContainerView" destination="dbw-3D-RbV" id="UXb-da-QeH"/>
                         <outlet property="presenterBackButton" destination="Jpp-5d-Yjg" id="b0J-v1-BeV"/>
                         <outlet property="presenterCloseButton" destination="lTV-ps-QZy" id="H2V-Vj-Ghu"/>
-                        <outlet property="presenterContainerBGView" destination="von-js-Xt4" id="dTq-VM-Pci"/>
+                        <outlet property="presenterContainerBGView" destination="aKn-HY-c5B" id="r2y-SP-QmM"/>
                         <outlet property="presenterContainerMainView" destination="JiY-8z-NLk" id="H1l-wR-a4F"/>
                         <outlet property="presenterContainerView" destination="Gmx-38-5rm" id="zfL-6L-zPH"/>
                         <outlet property="presenterContentBox" destination="7vz-4S-bKU" id="7It-nq-DWk"/>
