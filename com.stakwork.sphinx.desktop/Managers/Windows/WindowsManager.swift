@@ -117,6 +117,7 @@ class WindowsManager {
             if let dashboardVC = keyWindow.contentViewController as? DashboardViewController {
                 dashboardVC.presenterContainerBGView.isHidden = true
                 dashboardVC.presenter?.view.isHidden = true
+                dashboardVC.presenterIdentifier = nil
                 dashboardVC.presenter?.dismissVC()
                 
                 dashboardVC.newDetailViewController?.setMessageFieldActive()
@@ -136,6 +137,7 @@ class WindowsManager {
         if let keyWindow = NSApplication.shared.keyWindow {
             if let dashboardVC = keyWindow.contentViewController as? DashboardViewController {
                 dashboardVC.presenterContainerBGView.isHidden = false
+                dashboardVC.presenter?.view.isHidden = false
                 
                 dashboardVC.presenterContentBox.layer?.cornerRadius = 12
                 

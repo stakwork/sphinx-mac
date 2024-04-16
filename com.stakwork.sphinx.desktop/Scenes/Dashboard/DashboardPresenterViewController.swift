@@ -68,10 +68,8 @@ class TransparentView: NSView {
     override func hitTest(_ point: NSPoint) -> NSView? {
         let view = super.hitTest(point)
         if view == self {
-            print("HIT TEST NIL")
             return nil
         }
-        print("HIT TEST VIEW")
         return view
     }
     

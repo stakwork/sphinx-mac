@@ -420,6 +420,10 @@ extension NewChatViewController : ActionsDelegate {
     }
     
     func shouldReloadMuteState() {}
+    
+    func didDismissView() {
+        setMessageFieldActive()
+    }
 }
 
 extension NewChatViewController : NewMessagesIndicatorViewDelegate {

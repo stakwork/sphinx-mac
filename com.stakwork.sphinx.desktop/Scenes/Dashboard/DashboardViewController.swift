@@ -151,9 +151,7 @@ class DashboardViewController: NSViewController {
     }
     
     func closePresenter() {
-        presenterContainerBGView.isHidden = true
-        presenterIdentifier = nil
-        presenter?.dismissVC()
+        WindowsManager.sharedInstance.dismissViewFromCurrentWindow()
     }
     
     @IBAction func presenterBackButtonTapped(_ sender: NSButton) {
