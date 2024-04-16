@@ -308,7 +308,7 @@ class ChatListViewController : DashboardSplittedViewController {
             window: view.window,
             title: "new.contact".localized,
             identifier: "new-contact-window",
-            size: CGSize(width: 414, height: 600)
+            size: CGSize(width: 414, height: 500)
         )
     }
     
@@ -358,7 +358,7 @@ class ChatListViewController : DashboardSplittedViewController {
                         window: self.view.window,
                         title: "new.contact".localized,
                         identifier: "new-contact-window",
-                        size: CGSize(width: 414, height: 600)
+                        size: CGSize(width: 414, height: 500)
                     )
                 }
             }
@@ -390,7 +390,7 @@ class ChatListViewController : DashboardSplittedViewController {
                             delegate: self
                         )
                         
-                        var defaultHeight: CGFloat = 768  // A conservative default height
+                        var defaultHeight: CGFloat = 500  // A conservative default height
                         
                         if let mainScreen = NSScreen.main {
                             defaultHeight = min(mainScreen.visibleFrame.height, defaultHeight)

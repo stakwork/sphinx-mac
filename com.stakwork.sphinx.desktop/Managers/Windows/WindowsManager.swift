@@ -208,7 +208,7 @@ class WindowsManager {
         showOnCurrentWindow(with: title.localized,
                             identifier: "contact-custom-window",
                             contentVC: vc,
-                            height: 447)
+                            height: size.height)
     }
     
     func showInviteCodeWindow(vc: NSViewController, window: NSWindow?) {
