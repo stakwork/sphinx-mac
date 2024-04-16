@@ -11,12 +11,13 @@ import Cocoa
 class DashboardPresenterViewController: NSViewController {
     
     @IBOutlet weak var mainContentView: NSView!
-    weak var contentVC: NSViewController?
+    var contentVC: [NSViewController?]?
+    weak var parentVC: NSViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        view.setBackgroundColor(color: NSColor.Sphinx.SecondaryRed)
+        view.setBackgroundColor(color: NSColor.Sphinx.Body)
     }
     
     static func instantiate() -> DashboardPresenterViewController {
@@ -25,21 +26,38 @@ class DashboardPresenterViewController: NSViewController {
     }
     
     func configurePresenterVC(_ contentVC: NSViewController?) {
-        
-        if let vc = self.contentVC {
-            self.removeChildVC(child: vc)
+        if self.contentVC == nil {
+            self.contentVC = []
         }
-        self.contentVC = contentVC
+        self.contentVC?.append(contentVC)
+        
         if let contentVC {
             self.addChildVC(child: contentVC, container: self.view)
         }
     }
     
     func dismissVC() {
-        if let vc = self.contentVC {
-            self.removeChildVC(child: vc)
+        guard self.contentVC != nil && self.contentVC?.count ?? 0 > 0,
+                let contentVC = self.contentVC else {
+            return
+        }
+        contentVC.forEach { vc in
+            self.removeChildVC(child: vc!)
+        }
+        self.contentVC?.removeAll()
+    }
+    
+    func getParentVC() -> NSViewController? {
+        return parentVC
+    }
+    
+    func setParentVC() {
+        if let contentVC, contentVC.count >= 1 {
+            let parentIndex = contentVC.count - 1
+            self.parentVC = contentVC[parentIndex]
         }
     }
+    
 }
 
 class TransparentView: NSView {

@@ -11,12 +11,15 @@ import Cocoa
 class AddFriendViewController: NSViewController {
     
     weak var delegate: NewContactChatDelegate?
+    weak var dismissDelegate: NewContactDismissDelegate?
     
     static func instantiate(
-        delegate: NewContactChatDelegate? = nil
+        delegate: NewContactChatDelegate? = nil,
+        dismissDelegate: NewContactDismissDelegate? = nil
     ) -> AddFriendViewController {
         let viewController = StoryboardScene.Contacts.addFriendViewController.instantiate()
         viewController.delegate = delegate
+        viewController.dismissDelegate = dismissDelegate
         return viewController
     }
 
@@ -25,12 +28,14 @@ class AddFriendViewController: NSViewController {
     }
     
     @IBAction func newToSphinxButtonClicked(_ sender: Any) {
-        let inviteVC = NewInviteViewController.instantiate(delegate: self.delegate)
+        let inviteVC = NewInviteViewController.instantiate(delegate: self.delegate,
+                                                           dismissDelegate: self.dismissDelegate)
         advanceTo(vc: inviteVC)
     }
     
     @IBAction func alreadyOnSphinxButtonClicked(_ sender: Any) {
-        let contactVC = NewContactViewController.instantiate(delegate: self.delegate)
+        let contactVC = NewContactViewController.instantiate(delegate: self.delegate,
+                                                             dismissDelegate: self.dismissDelegate)
         advanceTo(vc: contactVC)
     }
     
@@ -38,7 +43,15 @@ class AddFriendViewController: NSViewController {
         AnimationHelper.animateViewWith(duration: 0.3, animationsBlock: {
             self.view.alphaValue = 0.0
         }, completion: {
-            self.view.window?.replaceContentBy(vc: vc)
+            WindowsManager
+                .sharedInstance
+                .showOnCurrentWindow(with: "Contact".localized, 
+                                     identifier: "new-contact-window",
+                                     contentVC: vc,
+                                     hideDivider: true,
+                                     replaceVC: false,
+                                     hideBackButton: false,
+                                     height: 629)
         })
     }
 }

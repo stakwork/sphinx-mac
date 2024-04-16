@@ -112,19 +112,47 @@ class WindowsManager {
         }
     }
     
+    func dismissViewFromCurrentWindow()  {
+        if let keyWindow = NSApplication.shared.keyWindow {
+            if let dashboardVC = keyWindow.contentViewController as? DashboardViewController {
+                dashboardVC.presenterContainerBGView.isHidden = true
+                dashboardVC.presenter?.dismissVC()
+                dashboardVC.presenter?.contentVC = nil
+            }
+        }
+    }
+    
     func showOnCurrentWindow(
         with title: String,
         identifier: String? = nil,
-        contentVC: NSViewController
+        contentVC: NSViewController,
+        hideDivider: Bool = true,
+        replaceVC: Bool = true,
+        hideBackButton: Bool = true,
+        height: CGFloat = 629
     ) {
         if let keyWindow = NSApplication.shared.keyWindow {
             if let dashboardVC = keyWindow.contentViewController as? DashboardViewController {
                 dashboardVC.presenterContainerBGView.isHidden = false
-                
+                dashboardVC.presenterBGView.layer?.cornerRadius = 12
+                dashboardVC.presenterContainerMainView.layer?.cornerRadius = 12
+                dashboardVC.presenterBackButton.isHidden = hideBackButton
+                dashboardVC.presenterViewHeightConstraint.constant = height
+                DispatchQueue.main.async {
+                    dashboardVC.presenterBGView.layoutSubtreeIfNeeded()
+                }
                 if dashboardVC.presenterIdentifier != identifier {
+                    if replaceVC {
+                        dashboardVC.presenter?.dismissVC()
+                        dashboardVC.presenter?.contentVC = nil
+                    } else {
+                        dashboardVC.presenter?.setParentVC()
+                        dashboardVC.presenter?.dismissVC()
+                    }
                     dashboardVC.presenter?.configurePresenterVC(contentVC)
                     dashboardVC.presenterTitleLabel.stringValue = title
                     dashboardVC.presenterIdentifier = identifier
+                    dashboardVC.presenterHeaderDivider.isHidden = hideDivider
                 }
             }
         }
@@ -165,19 +193,22 @@ class WindowsManager {
     func showProfileWindow(vc: NSViewController, window: NSWindow?) {
         showOnCurrentWindow(with: "profile".localized, 
                             identifier: "profile-custom-window",
-                            contentVC: vc)
+                            contentVC: vc,
+                            hideDivider: false)
     }
     
     func showTransationsListWindow(vc: NSViewController, window: NSWindow?) {
         showOnCurrentWindow(with: "transactions".localized, 
                             identifier: "transactions-custom-window",
-                            contentVC: vc)
+                            contentVC: vc,
+                            hideDivider: false)
     }
     
     func showContactWindow(vc: NSViewController, window: NSWindow?, title: String, identifier: String, size: CGSize) {
         showOnCurrentWindow(with: title.localized,
-                            identifier: "\(title)-custom-window",
-                            contentVC: vc)
+                            identifier: "contact-custom-window",
+                            contentVC: vc,
+                            height: 447)
     }
     
     func showInviteCodeWindow(vc: NSViewController, window: NSWindow?) {
@@ -204,7 +235,8 @@ class WindowsManager {
     ) {
         showOnCurrentWindow(with: "Create Tribe".localized, 
                             identifier: "create-tribe-custom-window",
-                            contentVC: vc)
+                            contentVC: vc,
+                            hideDivider: false)
     }
     
     func showWebAppWindow(chat: Chat?, view: NSView, isAppURL: Bool = true) {

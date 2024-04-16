@@ -301,7 +301,7 @@ class ChatListViewController : DashboardSplittedViewController {
     }
     
     @IBAction func addContactButtonClicked(_ sender: Any) {
-        let addFriendVC = AddFriendViewController.instantiate(delegate: self)
+        let addFriendVC = AddFriendViewController.instantiate(delegate: self, dismissDelegate: self)
         
         WindowsManager.sharedInstance.showContactWindow(
             vc: addFriendVC,
@@ -438,6 +438,12 @@ class ChatListViewController : DashboardSplittedViewController {
             vc: TransactionsListViewController.instantiate(),
             window: NSApplication.shared.keyWindow
         )
+    }
+}
+
+extension ChatListViewController: NewContactDismissDelegate {
+    func shouldDismissView() {
+        WindowsManager.sharedInstance.dismissViewFromCurrentWindow()
     }
 }
 
