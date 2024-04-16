@@ -131,47 +131,99 @@ class WindowsManager {
         contentVC: NSViewController,
         hideDivider: Bool = true,
         hideBackButton: Bool = true,
+        replacingVC: Bool = false,
         height: CGFloat? = nil,
         backHandler: (() -> ())? = nil
     ) {
-        if let keyWindow = NSApplication.shared.keyWindow {
-            if let dashboardVC = keyWindow.contentViewController as? DashboardViewController {
-                dashboardVC.presenterContainerBGView.isHidden = false
-                dashboardVC.presenter?.view.isHidden = false
-                
-                dashboardVC.presenterContentBox.layer?.cornerRadius = 12
-                
-                if let height = height {
-                    dashboardVC.presenterViewHeightConstraint.constant = height
-                } else {
-                    dashboardVC.presenterViewHeightConstraint.constant = 2000
-                }
-                
-                dashboardVC.presenterContentBox.layoutSubtreeIfNeeded()
-                
-                if let backHandler = backHandler {
-                    dashboardVC.presenterBackHandler = backHandler
-                    dashboardVC.presenterBackButton.isHidden = hideBackButton
-                } else {
-                    dashboardVC.presenterBackButton.isHidden = true
-                }
-                
-                if let presenter = dashboardVC.presenter {
-                    if let bounds = dashboardVC.presenterContainerView?.bounds {
-                        presenter.view.frame = bounds
-                    }
-                }
-                
-                if dashboardVC.presenterIdentifier != identifier {
-                    dashboardVC.presenter?.dismissVC()
-                    dashboardVC.presenter?.contentVC = nil
-                    dashboardVC.presenter?.configurePresenterVC(contentVC)
-                    dashboardVC.presenterTitleLabel.stringValue = title
-                    dashboardVC.presenterIdentifier = identifier
-                    dashboardVC.presenterHeaderDivider.isHidden = hideDivider
+        guard let keyWindow = NSApplication.shared.keyWindow, let dashboardVC = keyWindow.contentViewController as? DashboardViewController else {
+            return
+        }
+        
+        ///Set title, back button state and divider state
+        dashboardVC.presenterTitleLabel.stringValue = title
+        dashboardVC.presenterHeaderDivider.isHidden = hideDivider
+        
+        if let backHandler = backHandler {
+            dashboardVC.presenterBackHandler = backHandler
+            dashboardVC.presenterBackButton.isHidden = hideBackButton
+        } else {
+            dashboardVC.presenterBackButton.isHidden = true
+        }
+        
+        ///Animate if replacing one VC by another
+        if replacingVC {
+            AnimationHelper.animateViewWith(duration: 0.3, animationsBlock: {
+                dashboardVC.presenter?.view.alphaValue = 0.0
+            }, completion: {
+                self.showVCOnCurrentWindow(
+                    with: title,
+                    identifier: identifier,
+                    contentVC: contentVC,
+                    hideDivider: hideDivider,
+                    hideBackButton: hideBackButton,
+                    height: height,
+                    backHandler: backHandler
+                )
+            })
+        } else {
+            showVCOnCurrentWindow(
+                with: title,
+                identifier: identifier,
+                contentVC: contentVC,
+                hideDivider: hideDivider,
+                hideBackButton: hideBackButton,
+                height: height,
+                backHandler: backHandler
+            )
+        }
+    }
+    
+    func showVCOnCurrentWindow(
+        with title: String,
+        identifier: String? = nil,
+        contentVC: NSViewController,
+        hideDivider: Bool = true,
+        hideBackButton: Bool = true,
+        height: CGFloat? = nil,
+        backHandler: (() -> ())? = nil
+    ) {
+        guard let keyWindow = NSApplication.shared.keyWindow, let dashboardVC = keyWindow.contentViewController as? DashboardViewController else {
+            return
+        }
+        
+        dashboardVC.presenterContainerBGView.isHidden = false
+        dashboardVC.presenter?.view.isHidden = false
+        
+        ///Set corner radius of container
+        dashboardVC.presenterContentBox.layer?.cornerRadius = 12
+        
+        ///Set content height based on VC content size
+        if let height = height {
+            dashboardVC.presenterViewHeightConstraint.constant = height
+        } else {
+            dashboardVC.presenterViewHeightConstraint.constant = 2000
+        }
+        
+        AnimationHelper.animateViewWith(duration: 0.3, animationsBlock: {
+            dashboardVC.presenterContentBox.layoutSubtreeIfNeeded()
+        }, completion: {
+            dashboardVC.presenter?.view.alphaValue = 1.0
+            
+            ///Set content height based on VC content size
+            if let presenter = dashboardVC.presenter {
+                if let bounds = dashboardVC.presenterContainerView?.bounds {
+                    presenter.view.frame = bounds
                 }
             }
-        }
+            
+            ///Present new VC
+            if dashboardVC.presenterIdentifier != identifier {
+                dashboardVC.presenter?.dismissVC()
+                dashboardVC.presenter?.contentVC = nil
+                dashboardVC.presenter?.configurePresenterVC(contentVC)
+                dashboardVC.presenterIdentifier = identifier
+            }
+        })
     }
     
     func backToAddFriend() {
@@ -188,6 +240,8 @@ class WindowsManager {
                     identifier: "contact-custom-window",
                     contentVC: addFriendVC,
                     hideDivider: true,
+                    hideBackButton: true,
+                    replacingVC: true,
                     height: 500,
                     backHandler: backToAddFriend
                 )
@@ -204,7 +258,14 @@ class WindowsManager {
                 
                 dashboardVC.presenterBackButton.isHidden = true
                 
-                showProfileWindow(vc: profileVC)
+                showOnCurrentWindow(
+                    with: "profile".localized,
+                    identifier: "profile-custom-window",
+                    contentVC: profileVC,
+                    hideDivider: false,
+                    hideBackButton: true,
+                    replacingVC: true
+                )
             }
         }
     }

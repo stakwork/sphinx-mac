@@ -248,21 +248,16 @@ class ProfileViewController: NSViewController {
         title: String,
         height: CGFloat? = nil
     ) {
-        AnimationHelper.animateViewWith(duration: 0.3, animationsBlock: {
-            self.view.alphaValue = 0.0
-        }, completion: {
-            WindowsManager
-                .sharedInstance
-                .showOnCurrentWindow(
-                    with: title,
-                    identifier: "enter-restore-pin-window",
-                    contentVC: vc,
-                    hideDivider: true,
-                    hideBackButton: false,
-                    height: height,
-                    backHandler: WindowsManager.sharedInstance.backToProfile
-                )
-        })
+        WindowsManager.sharedInstance.showOnCurrentWindow(
+            with: title,
+            identifier: "enter-restore-pin-window",
+            contentVC: vc,
+            hideDivider: true,
+            hideBackButton: false,
+            replacingVC: true,
+            height: height,
+            backHandler: WindowsManager.sharedInstance.backToProfile
+        )
     }
     
     @IBAction func saveButtonClicked(_ sender: Any) {

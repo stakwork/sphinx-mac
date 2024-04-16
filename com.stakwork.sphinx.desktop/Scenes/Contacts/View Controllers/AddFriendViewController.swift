@@ -49,20 +49,15 @@ class AddFriendViewController: NSViewController {
         vc: NSViewController,
         height: CGFloat? = nil
     ) {
-        AnimationHelper.animateViewWith(duration: 0.3, animationsBlock: {
-            self.view.alphaValue = 0.0
-        }, completion: {
-            WindowsManager
-                .sharedInstance
-                .showOnCurrentWindow(
-                    with: "Contact".localized,
-                    identifier: "new-contact-window",
-                    contentVC: vc,
-                    hideDivider: true,
-                    hideBackButton: false,
-                    height: height,
-                    backHandler: WindowsManager.sharedInstance.backToAddFriend
-                )
-        })
+        WindowsManager.sharedInstance.showOnCurrentWindow(
+            with: "Contact".localized,
+            identifier: "new-contact-window",
+            contentVC: vc,
+            hideDivider: true,
+            hideBackButton: false,
+            replacingVC: true,
+            height: height,
+            backHandler: WindowsManager.sharedInstance.backToAddFriend
+        )
     }
 }
