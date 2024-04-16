@@ -62,37 +62,26 @@ extension ChatListViewController : ChildVCDelegate, ActionsDelegate {
             mode: .Window
         )
         
-        WindowsManager.sharedInstance.showContactWindow(
+        WindowsManager.sharedInstance.showPaymentWindow(
             vc: vc,
-            window: view.window,
-            title: "Payments",
-            identifier: "invoice-management-window",
-            size: CGSize(width: 414, height: 600)
+            title: "create.invoice".localized,
+            height: 500
         )
     }
     
     func handleSentClick() {
-        WindowsManager.sharedInstance.closeIfExists(
-            identifier: "invoice-management-window"
-        )
-        
         let vc = SendPaymentForInvoiceVC.instantiate()
         
         WindowsManager.sharedInstance.showContactWindow(
             vc: vc,
-            window: view.window,
-            title: "Payments",
+            title: "pay.invoice",
             identifier: "invoice-management-window",
-            size: CGSize(width: 450, height: 350)
+            height: 447
         )
     }
     
     
-    func handleInvoiceCreation(invoice:String,amount:Int){
-        WindowsManager.sharedInstance.closeIfExists(
-            identifier: "invoice-management-window"
-        )
-        
+    func handleInvoiceCreation(invoice:String, amount:Int){
         let vc = DisplayInvoiceVC.instantiate(
             qrCodeString: invoice,
             amount: amount
@@ -100,13 +89,13 @@ extension ChatListViewController : ChildVCDelegate, ActionsDelegate {
         
         WindowsManager.sharedInstance.showContactWindow(
             vc: vc,
-            window: view.window,
-            title: "Payments",
+            title: "payment.request".localized,
             identifier: "invoice-management-window",
-            size: CGSize(width: 414, height: 700)
+            height: 629
         )
     }
     
+    func didDismissView() {}
     func didCreateMessage(message: TransactionMessage) {}
     func didFailInvoiceOrPayment() {}
     func shouldCreateCall(mode: VideoCallHelper.CallMode) {}

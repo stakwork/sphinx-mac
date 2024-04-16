@@ -61,7 +61,7 @@ class CreateTribeViewController: NSViewController {
         tribeImageView.layer?.cornerRadius = tribeImageView.frame.height / 2
         
         self.viewModel = CreateTribeViewModel(chat: chat, successCallback: {
-            self.view.window?.close()
+            WindowsManager.sharedInstance.dismissViewFromCurrentWindow()
         }, errorCallback: {
             self.loading = false
         })

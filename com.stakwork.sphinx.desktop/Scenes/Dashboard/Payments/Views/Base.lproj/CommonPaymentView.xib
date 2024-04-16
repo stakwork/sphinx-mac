@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,20 +30,20 @@
             <subviews>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cL6-GK-PGX">
                     <rect key="frame" x="10" y="528" width="60" height="60"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="60" id="KNu-5Y-ji3"/>
-                        <constraint firstAttribute="height" constant="60" id="WpY-Ft-x1T"/>
-                    </constraints>
                     <buttonCell key="cell" type="bevel" title="" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="HNj-fg-1pg">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" size="18" name="MaterialIcons-Regular"/>
                     </buttonCell>
                     <color key="contentTintColor" name="WashedOutReceivedText"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="KNu-5Y-ji3"/>
+                        <constraint firstAttribute="height" constant="60" id="WpY-Ft-x1T"/>
+                    </constraints>
                     <connections>
                         <action selector="backButtonClicked:" target="-2" id="FFW-Pr-crX"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fpd-yK-XfO">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fpd-yK-XfO">
                     <rect key="frame" x="128" y="549" width="142" height="18"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="REQUEST AMOUNT" id="vcW-bp-l1n">
                         <font key="font" size="14" name="Montserrat-SemiBold"/>
@@ -62,7 +62,7 @@
                         <color key="backgroundColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eRR-nJ-Kmh">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eRR-nJ-Kmh">
                     <rect key="frame" x="267" y="366" width="32" height="26"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="sat" id="mOL-CM-Z9X">
                         <font key="font" size="20" name="Roboto-Light"/>
@@ -117,7 +117,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="180" height="50"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dxc-hH-lcC">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dxc-hH-lcC">
                                 <rect key="frame" x="54" y="16" width="72" height="18"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="CONFIRM" id="JGd-US-RnQ">
                                     <font key="font" size="14" name="Montserrat-SemiBold"/>

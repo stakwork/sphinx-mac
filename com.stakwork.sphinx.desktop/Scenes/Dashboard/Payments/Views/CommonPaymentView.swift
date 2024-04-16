@@ -81,6 +81,7 @@ class CommonPaymentView: NSView, LoadableNib {
         
         closeButton.title = (getChat()?.isGroup() ?? false) ? "" : ""
         closeButton.isHidden = mode == .Window
+        titleLabel.isHidden = mode == .Window
         
         amountField.delegate = self
         amountField.formatter = IntegerValueFormatter()

@@ -86,12 +86,13 @@ extension NewChatViewController : ChatHeaderViewDelegate {
             
             let contactVC = NewContactViewController.instantiate(contact: contact)
             
-            WindowsManager.sharedInstance.showContactWindow(
+            WindowsManager.sharedInstance.showChatDetailsWindow(
                 vc: contactVC,
                 window: view.window,
                 title: "contact".localized,
                 identifier: "contact-window",
-                size: CGSize(width: 414, height: 700)
+                size: CGSize(width: 414, height: 629)
+
             )
             
         } else if let chat = chat {
@@ -101,12 +102,13 @@ extension NewChatViewController : ChatHeaderViewDelegate {
                 delegate: self
             )
             
-            WindowsManager.sharedInstance.showContactWindow(
+            WindowsManager.sharedInstance.showChatDetailsWindow(
                 vc: chatDetailsVC,
                 window: view.window,
                 title: "group.details".localized,
                 identifier: "chat-window",
-                size: CGSize(width: 414, height: 600)
+                size: CGSize(width: 414, height: 629)
+
             )
         }
     }
@@ -418,6 +420,10 @@ extension NewChatViewController : ActionsDelegate {
     }
     
     func shouldReloadMuteState() {}
+    
+    func didDismissView() {
+        setMessageFieldActive()
+    }
 }
 
 extension NewChatViewController : NewMessagesIndicatorViewDelegate {

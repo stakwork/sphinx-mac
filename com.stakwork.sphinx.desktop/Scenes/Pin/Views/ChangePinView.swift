@@ -11,7 +11,6 @@ import Cocoa
 class ChangePinView: NSView, LoadableNib {
     
     @IBOutlet var contentView: NSView!
-    @IBOutlet weak var titleLabel: NSTextField!
     @IBOutlet weak var oldPinFieldView: SignupSecureFieldView!
     @IBOutlet weak var newPinFieldView: SignupSecureFieldView!
     @IBOutlet weak var confirmNewPinFieldView: SignupSecureFieldView!
@@ -48,10 +47,8 @@ class ChangePinView: NSView, LoadableNib {
         confirmNewPinFieldView.configureWith(placeHolder: "confirm.new.pin".localized, label: "confirm.new.pin".localized, backgroundColor: NSColor.Sphinx.PinFieldBackground, color: NSColor.Sphinx.Text, placeHolderColor: NSColor.Sphinx.SecondaryText, field: .ConfirmPIN, delegate: self)
     }
     
-    func set(mode: ChangePinViewController.ChangePinMode, and title: String) {
+    func set(mode: ChangePinViewController.ChangePinMode) {
         self.mode = mode
-        
-        titleLabel.stringValue = title.uppercased()
         
         if mode == .SetPrivacy {
             oldPinFieldView.getTextField().isEnabled = false

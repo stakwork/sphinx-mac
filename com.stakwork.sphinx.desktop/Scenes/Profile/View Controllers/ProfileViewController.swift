@@ -193,7 +193,7 @@ class ProfileViewController: NSViewController {
     @IBAction func qrCodeButtonClicked(_ sender: Any) {
         if let profile = UserContact.getOwner(), let address = profile.getAddress(), !address.isEmpty {
             let shareInviteCodeVC = ShareInviteCodeViewController.instantiate(qrCodeString: address, viewMode: .PubKey)
-            WindowsManager.sharedInstance.showPubKeyWindow(vc: shareInviteCodeVC, window: view.window)
+            advanceTo(vc: shareInviteCodeVC, title: "pubkey.upper".localized.localizedCapitalized, height: 600)
         }
     }
     
@@ -231,16 +231,34 @@ class ProfileViewController: NSViewController {
         let pinCodeVC = EnterPinViewController.instantiate(mode: .Export, subtitle: subtitle)
         pinCodeVC.doneCompletion = { pin in
             if let keyJSONString = UserData.sharedInstance.exportKeysJSON(pin: pin) {
-                pinCodeVC.view.window?.close()
-                
                 AlertHelper.showTwoOptionsAlert(title: "export.keys".localized, message: "keys.will.copy.clipboard".localized, confirm: {
                     ClipboardHelper.copyToClipboard(text: keyJSONString, message: "keys.copied.clipboard".localized)
+                    WindowsManager.sharedInstance.backToProfile()
+                }, cancel: {
+                    WindowsManager.sharedInstance.backToProfile()
                 })
             } else {
                 AlertHelper.showAlert(title: "generic.error.title".localized, message: "generic.error.message".localized)
             }
         }
-        WindowsManager.sharedInstance.showEnterPinWindow(vc: pinCodeVC, window: view.window, title: "enter.restore.pin".localized)
+        advanceTo(vc: pinCodeVC, title: "enter.restore.pin".localized, height: 440)
+    }
+    
+    func advanceTo(
+        vc: NSViewController,
+        title: String,
+        height: CGFloat? = nil
+    ) {
+        WindowsManager.sharedInstance.showOnCurrentWindow(
+            with: title,
+            identifier: "enter-restore-pin-window",
+            contentVC: vc,
+            hideDivider: true,
+            hideBackButton: false,
+            replacingVC: true,
+            height: height,
+            backHandler: WindowsManager.sharedInstance.backToProfile
+        )
     }
     
     @IBAction func saveButtonClicked(_ sender: Any) {

@@ -301,14 +301,13 @@ class ChatListViewController : DashboardSplittedViewController {
     }
     
     @IBAction func addContactButtonClicked(_ sender: Any) {
-        let addFriendVC = AddFriendViewController.instantiate(delegate: self)
+        let addFriendVC = AddFriendViewController.instantiate(delegate: self, dismissDelegate: self)
         
         WindowsManager.sharedInstance.showContactWindow(
             vc: addFriendVC,
-            window: view.window,
             title: "new.contact".localized,
             identifier: "new-contact-window",
-            size: CGSize(width: 414, height: 600)
+            height: 500
         )
     }
     
@@ -355,10 +354,9 @@ class ChatListViewController : DashboardSplittedViewController {
                     
                     WindowsManager.sharedInstance.showContactWindow(
                         vc: contactVC,
-                        window: self.view.window,
                         title: "new.contact".localized,
                         identifier: "new-contact-window",
-                        size: CGSize(width: 414, height: 600)
+                        height: 500
                     )
                 }
             }
@@ -389,21 +387,10 @@ class ChatListViewController : DashboardSplittedViewController {
                             tribeInfo: tribeInfo,
                             delegate: self
                         )
-                        
-                        var defaultHeight: CGFloat = 768  // A conservative default height
-                        
-                        if let mainScreen = NSScreen.main {
-                            defaultHeight = min(mainScreen.visibleFrame.height, defaultHeight)
-                        }
-                                                
-                        let initialSize = CGSize(width: 414, height: defaultHeight)
 
-                        WindowsManager.sharedInstance.showContactWindow(
+                        WindowsManager.sharedInstance.showJoinTribeWindow(
                             vc: joinTribeVC,
-                            window: self.view.window,
-                            title: "join.tribe".localized.uppercased(),
-                            identifier: "join-tribe-window",
-                            size: initialSize
+                            title: "join.tribe".localized
                         )
                     }
                 }
@@ -435,9 +422,14 @@ class ChatListViewController : DashboardSplittedViewController {
     
     @IBAction func transactionsButtonClicked(_ sender: Any) {
         WindowsManager.sharedInstance.showTransationsListWindow(
-            vc: TransactionsListViewController.instantiate(),
-            window: NSApplication.shared.keyWindow
+            vc: TransactionsListViewController.instantiate()
         )
+    }
+}
+
+extension ChatListViewController: NewContactDismissDelegate {
+    func shouldDismissView() {
+        WindowsManager.sharedInstance.dismissViewFromCurrentWindow()
     }
 }
 

@@ -454,16 +454,14 @@ import WebKit
     func profileButtonClicked() {
         if let profile = UserContact.getOwner(), profile.id > 0 {
             WindowsManager.sharedInstance.showProfileWindow(
-                vc: ProfileViewController.instantiate(),
-                window: NSApplication.shared.keyWindow
+                vc: ProfileViewController.instantiate()
             )
         }
     }
      
      func transactionsButtonClicked() {
          WindowsManager.sharedInstance.showTransationsListWindow(
-            vc: TransactionsListViewController.instantiate(),
-            window: NSApplication.shared.keyWindow
+            vc: TransactionsListViewController.instantiate()
          )
      }
     
