@@ -116,8 +116,10 @@ class WindowsManager {
         if let keyWindow = NSApplication.shared.keyWindow {
             if let dashboardVC = keyWindow.contentViewController as? DashboardViewController {
                 dashboardVC.presenterContainerBGView.isHidden = true
+                dashboardVC.presenter?.view.isHidden = true
                 dashboardVC.presenter?.dismissVC()
-                dashboardVC.presenter?.contentVC = nil
+                
+                dashboardVC.newDetailViewController?.setMessageFieldActive()
             }
         }
     }
@@ -127,28 +129,40 @@ class WindowsManager {
         identifier: String? = nil,
         contentVC: NSViewController,
         hideDivider: Bool = true,
-        replaceVC: Bool = true,
         hideBackButton: Bool = true,
-        height: CGFloat = 629
+        height: CGFloat? = nil,
+        backHandler: (() -> ())? = nil
     ) {
         if let keyWindow = NSApplication.shared.keyWindow {
             if let dashboardVC = keyWindow.contentViewController as? DashboardViewController {
                 dashboardVC.presenterContainerBGView.isHidden = false
-                dashboardVC.presenterBGView.layer?.cornerRadius = 12
-                dashboardVC.presenterContainerMainView.layer?.cornerRadius = 12
-                dashboardVC.presenterBackButton.isHidden = hideBackButton
-                dashboardVC.presenterViewHeightConstraint.constant = height
-                DispatchQueue.main.async {
-                    dashboardVC.presenterBGView.layoutSubtreeIfNeeded()
+                
+                dashboardVC.presenterContentBox.layer?.cornerRadius = 12
+                
+                if let height = height {
+                    dashboardVC.presenterViewHeightConstraint.constant = height
+                } else {
+                    dashboardVC.presenterViewHeightConstraint.constant = 2000
                 }
-                if dashboardVC.presenterIdentifier != identifier {
-                    if replaceVC {
-                        dashboardVC.presenter?.dismissVC()
-                        dashboardVC.presenter?.contentVC = nil
-                    } else {
-                        dashboardVC.presenter?.setParentVC()
-                        dashboardVC.presenter?.dismissVC()
+                
+                dashboardVC.presenterContentBox.layoutSubtreeIfNeeded()
+                
+                if let backHandler = backHandler {
+                    dashboardVC.presenterBackHandler = backHandler
+                    dashboardVC.presenterBackButton.isHidden = hideBackButton
+                } else {
+                    dashboardVC.presenterBackButton.isHidden = true
+                }
+                
+                if let presenter = dashboardVC.presenter {
+                    if let bounds = dashboardVC.presenterContainerView?.bounds {
+                        presenter.view.frame = bounds
                     }
+                }
+                
+                if dashboardVC.presenterIdentifier != identifier {
+                    dashboardVC.presenter?.dismissVC()
+                    dashboardVC.presenter?.contentVC = nil
                     dashboardVC.presenter?.configurePresenterVC(contentVC)
                     dashboardVC.presenterTitleLabel.stringValue = title
                     dashboardVC.presenterIdentifier = identifier
@@ -158,74 +172,137 @@ class WindowsManager {
         }
     }
     
+    func backToAddFriend() {
+        if let keyWindow = NSApplication.shared.keyWindow {
+            if let dashboardVC = keyWindow.contentViewController as? DashboardViewController {
+                dashboardVC.presenterContainerBGView.isHidden = false
+                
+                let addFriendVC = AddFriendViewController.instantiate(delegate: dashboardVC.listViewController.self, dismissDelegate: dashboardVC)
+                
+                dashboardVC.presenterBackButton.isHidden = true
+                
+                showOnCurrentWindow(
+                    with: "Contact".localized,
+                    identifier: "contact-custom-window",
+                    contentVC: addFriendVC,
+                    hideDivider: true,
+                    height: 500,
+                    backHandler: backToAddFriend
+                )
+            }
+        }
+    }
+    
+    func backToProfile() {
+        if let keyWindow = NSApplication.shared.keyWindow {
+            if let dashboardVC = keyWindow.contentViewController as? DashboardViewController {
+                dashboardVC.presenterContainerBGView.isHidden = false
+                
+                let profileVC = ProfileViewController.instantiate()
+                
+                dashboardVC.presenterBackButton.isHidden = true
+                
+                showProfileWindow(vc: profileVC)
+            }
+        }
+    }
+    
     func showPubKeyWindow(vc: NSViewController, window: NSWindow?) {
-        showNewWindow(with: "pubkey".localized,
-                      size: CGSize(width: 400, height: 600),
-                      centeredIn: window,
-                      identifier: "pubkey-window",
-                      contentVC: vc,
-                      shouldClose: true)
+        showNewWindow(
+            with: "pubkey".localized,
+            size: CGSize(width: 400, height: 600),
+            centeredIn: window,
+            identifier: "pubkey-window",
+            contentVC: vc,
+            shouldClose: true
+        )
     }
     
     func showTribeQRWindow(vc: NSViewController, window: NSWindow?) {
-        showNewWindow(with: "share.group.link".localized,
-                      size: CGSize(width: 400, height: 600),
-                      centeredIn: window,
-                      identifier: "tribe-qr-window",
-                      contentVC: vc,
-                      shouldClose: true)
+        showNewWindow(
+            with: "share.group.link".localized,
+            size: CGSize(width: 400, height: 600),
+            centeredIn: window,
+            identifier: "tribe-qr-window",
+            contentVC: vc,
+            shouldClose: true
+        )
     }
     
-    func showEnterPinWindow(vc: NSViewController, window: NSWindow?, title: String? = nil) {
-        showNewWindow(with: title ?? "pin".localized,
-                      size: CGSize(width: 400, height: 440),
-                      centeredIn: window,
-                      contentVC: vc)
+    func showChatDetailsWindow(vc: NSViewController, window: NSWindow?, title: String, identifier: String, size: CGSize) {
+        showNewWindow(
+            with: title,
+            size: size,
+            centeredIn: window,
+            identifier: identifier,
+            contentVC: vc,
+            shouldClose: true
+        )
     }
     
-    func showChangePinWindow(vc: NSViewController, window: NSWindow?, title: String? = nil) {
-        showNewWindow(with: title ?? "pin".localized,
-                      size: CGSize(width: 400, height: 500),
-                      centeredIn: window,
-                      contentVC: vc)
+    func showProfileWindow(vc: NSViewController) {
+        showOnCurrentWindow(
+            with: "profile".localized,
+            identifier: "profile-custom-window",
+            contentVC: vc,
+            hideDivider: false
+        )
     }
     
-    func showProfileWindow(vc: NSViewController, window: NSWindow?) {
-        showOnCurrentWindow(with: "profile".localized, 
-                            identifier: "profile-custom-window",
-                            contentVC: vc,
-                            hideDivider: false)
+    func showTransationsListWindow(vc: NSViewController) {
+        showOnCurrentWindow(
+            with: "transactions".localized,
+            identifier: "transactions-custom-window",
+            contentVC: vc,
+            hideDivider: false
+        )
     }
     
-    func showTransationsListWindow(vc: NSViewController, window: NSWindow?) {
-        showOnCurrentWindow(with: "transactions".localized, 
-                            identifier: "transactions-custom-window",
-                            contentVC: vc,
-                            hideDivider: false)
+    func showPaymentWindow(vc: NSViewController, title: String, height: CGFloat) {
+        showOnCurrentWindow(
+            with: title.localized,
+            identifier: "payment-window",
+            contentVC: vc,
+            height: height
+        )
     }
     
-    func showContactWindow(vc: NSViewController, window: NSWindow?, title: String, identifier: String, size: CGSize) {
-        showOnCurrentWindow(with: title.localized,
-                            identifier: "contact-custom-window",
-                            contentVC: vc,
-                            height: size.height)
+    func showContactWindow(vc: NSViewController, title: String, identifier: String, height: CGFloat) {
+        showOnCurrentWindow(
+            with: title.localized,
+            identifier: "contact-custom-window",
+            contentVC: vc,
+            height: height
+        )
+    }
+    
+    func showJoinTribeWindow(vc: NSViewController, title: String) {
+        showOnCurrentWindow(
+            with: title.localized,
+            identifier: "join-tribe-window",
+            contentVC: vc
+        )
     }
     
     func showInviteCodeWindow(vc: NSViewController, window: NSWindow?) {
-        showNewWindow(with: "share.invite.code".localized,
-                      size: CGSize(width: 400, height: 600),
-                      centeredIn: window,
-                      styleMask: [.closable, .titled],
-                      contentVC: vc)
+        showNewWindow(
+            with: "share.invite.code".localized,
+            size: CGSize(width: 400, height: 600),
+            centeredIn: window,
+            styleMask: [.closable, .titled],
+            contentVC: vc
+        )
     }
     
     func showInvoiceWindow(vc: NSViewController, window: NSWindow?) {
-        showNewWindow(with: "invoice".localized,
-                      size: CGSize(width: 400, height: 600),
-                      centeredIn: window,
-                      identifier: "invoice-window",
-                      contentVC: vc,
-                      shouldClose: true)
+        showNewWindow(
+            with: "invoice".localized,
+            size: CGSize(width: 400, height: 600),
+            centeredIn: window,
+            identifier: "invoice-window",
+            contentVC: vc,
+            shouldClose: true
+        )
     }
     
     func showCreateTribeWindow(
@@ -233,10 +310,12 @@ class WindowsManager {
         vc: NSViewController,
         window: NSWindow?
     ) {
-        showOnCurrentWindow(with: "Create Tribe".localized, 
-                            identifier: "create-tribe-custom-window",
-                            contentVC: vc,
-                            hideDivider: false)
+        showOnCurrentWindow(
+            with: "Create Tribe".localized,
+            identifier: "create-tribe-custom-window",
+            contentVC: vc,
+            hideDivider: false
+        )
     }
     
     func showWebAppWindow(chat: Chat?, view: NSView, isAppURL: Bool = true) {

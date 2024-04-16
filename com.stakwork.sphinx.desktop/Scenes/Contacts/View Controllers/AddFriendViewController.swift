@@ -28,30 +28,41 @@ class AddFriendViewController: NSViewController {
     }
     
     @IBAction func newToSphinxButtonClicked(_ sender: Any) {
-        let inviteVC = NewInviteViewController.instantiate(delegate: self.delegate,
-                                                           dismissDelegate: self.dismissDelegate)
-        advanceTo(vc: inviteVC)
+        let inviteVC = NewInviteViewController.instantiate(
+            delegate: self.delegate,
+            dismissDelegate: self.dismissDelegate
+        )
+        
+        advanceTo(vc: inviteVC, height: 500)
     }
     
     @IBAction func alreadyOnSphinxButtonClicked(_ sender: Any) {
-        let contactVC = NewContactViewController.instantiate(delegate: self.delegate,
-                                                             dismissDelegate: self.dismissDelegate)
+        let contactVC = NewContactViewController.instantiate(
+            delegate: self.delegate,
+            dismissDelegate: self.dismissDelegate
+        )
+        
         advanceTo(vc: contactVC)
     }
     
-    func advanceTo(vc: NSViewController) {
+    func advanceTo(
+        vc: NSViewController,
+        height: CGFloat? = nil
+    ) {
         AnimationHelper.animateViewWith(duration: 0.3, animationsBlock: {
             self.view.alphaValue = 0.0
         }, completion: {
             WindowsManager
                 .sharedInstance
-                .showOnCurrentWindow(with: "Contact".localized, 
-                                     identifier: "new-contact-window",
-                                     contentVC: vc,
-                                     hideDivider: true,
-                                     replaceVC: false,
-                                     hideBackButton: false,
-                                     height: 629)
+                .showOnCurrentWindow(
+                    with: "Contact".localized,
+                    identifier: "new-contact-window",
+                    contentVC: vc,
+                    hideDivider: true,
+                    hideBackButton: false,
+                    height: height,
+                    backHandler: WindowsManager.sharedInstance.backToAddFriend
+                )
         })
     }
 }

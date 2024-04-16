@@ -10,7 +10,7 @@ import Cocoa
 
 extension ProfileViewController {
     func shouldChangePIN() {
-        let changePinCodeVC = ChangePinViewController.instantiate(mode: .ChangeStandard, titleString: "standard.pin".localized)
+        let changePinCodeVC = ChangePinViewController.instantiate(mode: .ChangeStandard)
         changePinCodeVC.doneCompletion = { pin in
             if pin == UserData.sharedInstance.getPrivacyPin() {
                 AlertHelper.showAlert(title: "generic.error.title".localized, message: "pins.must.be.different".localized)
@@ -21,13 +21,13 @@ extension ProfileViewController {
                 self.newMessageBubbleHelper.showGenericMessageView(text: "pin.changed".localized, in: self.view, delay: 6, backAlpha: 1.0)
             })
         }
-        WindowsManager.sharedInstance.showChangePinWindow(vc: changePinCodeVC, window: view.window, title: "standard.pin".localized)
+        advanceTo(vc: changePinCodeVC, title: "pin.change".localized, height: 500)
     }
     
     func shouldChangePrivacyPIN() {
         let isPrivacyPinSet = GroupsPinManager.sharedInstance.isPrivacyPinSet()
         let mode: ChangePinViewController.ChangePinMode = isPrivacyPinSet ? .ChangePrivacy : .SetPrivacy
-        let changePivacyPinVC = ChangePinViewController.instantiate(mode: mode, titleString: "privacy.pin".localized)
+        let changePivacyPinVC = ChangePinViewController.instantiate(mode: mode)
         changePivacyPinVC.doneCompletion = { pin in
             if pin == UserData.sharedInstance.getAppPin() {
                 AlertHelper.showAlert(title: "generic.error.title".localized, message: "pins.must.be.different".localized)
@@ -40,7 +40,7 @@ extension ProfileViewController {
                 self.newMessageBubbleHelper.showGenericMessageView(text: alertLabel, in: self.view, delay: 6, backAlpha: 1.0)
             })
         }
-        WindowsManager.sharedInstance.showChangePinWindow(vc: changePivacyPinVC, window: view.window, title: "privacy.pin".localized)
+        advanceTo(vc: changePivacyPinVC, title: "pin.change".localized, height: 500)
     }
     
     func updateRelayURL() -> Bool {

@@ -379,6 +379,7 @@
 "set.price.upper" = "SET PRICE";
 "to" = "To";
 "from" = "From";
+"request.amount" = "Request Amount";
 "send.payment.upper" = "SEND PAYMENT";
 "request.amount.upper" = "REQUEST AMOUNT";
 "balance.too.low" = "Balance too low";

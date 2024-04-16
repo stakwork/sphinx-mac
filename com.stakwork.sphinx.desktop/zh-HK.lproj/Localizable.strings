@@ -379,6 +379,7 @@
 "set.price.upper" = "設置價格";
 "to" = "至";
 "from" = "來自";
+"request.amount" = "請求金額";
 "send.payment.upper" = "發送支付";
 "request.amount.upper" = "請求金額";
 "balance.too.low" = "餘額太低";

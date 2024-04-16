@@ -378,6 +378,7 @@
 "set.price.upper" = "価格を設定";
 "to" = "宛先";
 "from" = "送信元";
+"request.amount" = "金額をリクエスト";
 "send.payment.upper" = "支払いを送信";
 "request.amount.upper" = "金額をリクエスト";
 "balance.too.low" = "残高が不足しています";

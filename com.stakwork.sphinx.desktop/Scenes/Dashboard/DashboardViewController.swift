@@ -15,16 +15,20 @@ class DashboardViewController: NSViewController {
     @IBOutlet weak var rightSplittedView: NSView!
     @IBOutlet weak var modalsContainerView: NSView!
     @IBOutlet weak var presenterHeaderView: NSBox!
+    
     @IBOutlet weak var presenterContainerView: NSView!
     @IBOutlet weak var presenterContainerBGView: NSView!
+    @IBOutlet weak var presenterContentBox: NSBox!
     @IBOutlet weak var presenterContainerMainView: NSView!
-    @IBOutlet weak var presenterBGView: NSBox!
     @IBOutlet weak var presenterTitleLabel: NSTextField!
     @IBOutlet weak var presenterHeaderDivider: NSView!
-    weak var presenter: DashboardPresenterViewController?
+    @IBOutlet weak var presenterBackButton: CustomButton!
+    @IBOutlet weak var presenterCloseButton: CustomButton!
     @IBOutlet weak var presenterViewHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var presenterBackButton: NSButton!
+    weak var presenter: DashboardPresenterViewController?
+    var presenterBackHandler: (() -> ())? = nil
+    
     var presenterIdentifier: String?
     
     var mediaFullScreenView: MediaFullScreenView? = nil
@@ -71,13 +75,7 @@ class DashboardViewController: NSViewController {
         DistributedNotificationCenter.default().addObserver(self, selector: #selector(self.themeChangedNotification(notification:)), name: .onInterfaceThemeChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleImageNotification(_:)), name: .webViewImageClicked, object: nil)
         
-        presenter = DashboardPresenterViewController.instantiate()
-        if let presenter {
-            self.addChildVC(child: presenter,
-                            container: self.presenterContainerView)
-            self.presenterContainerBGView.isHidden = true
-            self.presenterBGView.isHidden = false
-        }
+        listenForResize()
     }
     
     override func viewWillAppear() {
@@ -90,6 +88,37 @@ class DashboardViewController: NSViewController {
         super.viewDidAppear()
         
         handleDeepLink()
+        addPresenterVC()
+    }
+    
+    func addPresenterVC() {
+        presenterBackButton.cursor = .pointingHand
+        presenterCloseButton.cursor = .pointingHand
+        
+        if let _ = presenter {
+            return
+        }
+        presenter = DashboardPresenterViewController.instantiate()
+        
+        if let presenter {
+            self.addChildVC(
+                child: presenter,
+                container: self.presenterContainerView
+            )
+            
+            self.presenterContainerBGView.isHidden = true
+        }
+    }
+    
+    fileprivate func listenForResize() {
+        NotificationCenter.default.addObserver(forName: NSWindow.didResizeNotification, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
+            
+            if let presenter = self?.presenter {
+                if let bounds = self?.presenterContainerView?.bounds {
+                    presenter.view.frame = bounds
+                }
+            }
+        }
     }
     
     override func viewWillDisappear() {
@@ -106,6 +135,8 @@ class DashboardViewController: NSViewController {
         NotificationCenter.default.removeObserver(self, name: .onPersonDeepLink, object: nil)
         NotificationCenter.default.removeObserver(self, name: .onSaveProfileDeepLink, object: nil)
         NotificationCenter.default.removeObserver(self, name: .webViewImageClicked, object: nil)
+        
+        NotificationCenter.default.removeObserver(self, name: NSWindow.didResizeNotification, object: nil)
     }
     
     func handleDeepLink() {
@@ -126,23 +157,12 @@ class DashboardViewController: NSViewController {
     }
     
     @IBAction func presenterBackButtonTapped(_ sender: NSButton) {
-        presenterContainerBGView.isHidden = false
-        let addFriendVC = AddFriendViewController.instantiate(delegate: listViewController.self, dismissDelegate: self)
-        presenterBackButton.isHidden = true
-        WindowsManager
-            .sharedInstance
-            .showOnCurrentWindow(with: "Contact".localized,
-                                 identifier: "contact-custom-window",
-                                 contentVC: addFriendVC,
-                                 hideDivider: true,
-                                 replaceVC: true,
-                                 hideBackButton: true,
-                                 height: 447)
+        if let presenterBackHandler = presenterBackHandler {
+            presenterBackHandler()
+        }
     }
     
     @objc func themeChangedNotification(notification: Notification) {
-//        detailViewController?.chatCollectionView.reloadData()
-        
         DelayPerformedHelper.performAfterDelay(seconds: 0.5, completion: {
             NSAppearance.current = self.view.effectiveAppearance
             self.listViewController?.configureHeaderAndBottomBar()
@@ -284,6 +304,7 @@ class DashboardViewController: NSViewController {
             AlertHelper.showAlert(title: "deeplink.issue.title".localized, message: "deeplink.issue.message".localized)
         }
     }
+    
     func createInvoice(n: Notification) {
         if let query = n.userInfo?["query"] as? String {
             if let amountString = query.getLinkValueFor(key: "amount"), let amount = Int(amountString) {

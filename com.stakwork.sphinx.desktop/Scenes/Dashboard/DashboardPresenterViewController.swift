@@ -12,17 +12,32 @@ class DashboardPresenterViewController: NSViewController {
     
     @IBOutlet weak var mainContentView: NSView!
     var contentVC: [NSViewController?]?
-    weak var parentVC: NSViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
-        view.setBackgroundColor(color: NSColor.Sphinx.Body)
+
+        listenForResize()
+    }
+    
+    override func viewWillDisappear() {
+        super.viewWillDisappear()
+        NotificationCenter.default.removeObserver(self, name: NSWindow.didResizeNotification, object: nil)
     }
     
     static func instantiate() -> DashboardPresenterViewController {
         let viewController = StoryboardScene.Dashboard.dashboardPresenterViewController.instantiate()
         return viewController
+    }
+    
+    fileprivate func listenForResize() {
+        NotificationCenter.default.addObserver(forName: NSWindow.didResizeNotification, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
+            
+            for vc in self?.contentVC ?? [] {
+                if let bounds = self?.view.bounds {
+                    vc?.view.frame = bounds
+                }
+            }
+        }
     }
     
     func configurePresenterVC(_ contentVC: NSViewController?) {
@@ -45,28 +60,22 @@ class DashboardPresenterViewController: NSViewController {
             self.removeChildVC(child: vc!)
         }
         self.contentVC?.removeAll()
+        self.contentVC = nil
     }
-    
-    func getParentVC() -> NSViewController? {
-        return parentVC
-    }
-    
-    func setParentVC() {
-        if let contentVC, contentVC.count >= 1 {
-            let parentIndex = contentVC.count - 1
-            self.parentVC = contentVC[parentIndex]
-        }
-    }
-    
 }
 
 class TransparentView: NSView {
     override func hitTest(_ point: NSPoint) -> NSView? {
         let view = super.hitTest(point)
-        return view == self ? nil : view
+        if view == self {
+            print("HIT TEST NIL")
+            return nil
+        }
+        print("HIT TEST VIEW")
+        return view
     }
     
     override func mouseDown(with event: NSEvent) {
-            // Do nothing to intercept the mouse event
-        }
+        // Do nothing to intercept the mouse event
+    }
 }
