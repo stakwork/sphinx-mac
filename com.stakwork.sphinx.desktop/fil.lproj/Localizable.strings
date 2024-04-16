@@ -377,7 +377,8 @@
 "set.price.upper"  = "MAGTAKDA NG PRESYO";
 "to"  = "Para sa/kay";
 "from"  = "Mula sa/kay";
-"request.amount" = "Humiling ng halaga";
+"create.invoice" = "Gumawa ng Invoice";
+"pay.invoice" = "Magbayad ng Invoice";
 "send.payment.upper"  = "MAGPADALA NG BAYAD";
 "request.amount.upper"  = "HUMILING NG HALAGA";
 "balance.too.low"  = "Masyadong mababa ang balanse";

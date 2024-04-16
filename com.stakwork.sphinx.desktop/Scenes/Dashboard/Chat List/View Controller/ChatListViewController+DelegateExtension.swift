@@ -64,7 +64,7 @@ extension ChatListViewController : ChildVCDelegate, ActionsDelegate {
         
         WindowsManager.sharedInstance.showPaymentWindow(
             vc: vc,
-            title: "request.amount".localized,
+            title: "create.invoice".localized,
             height: 500
         )
     }
@@ -74,7 +74,7 @@ extension ChatListViewController : ChildVCDelegate, ActionsDelegate {
         
         WindowsManager.sharedInstance.showContactWindow(
             vc: vc,
-            title: "Payments",
+            title: "pay.invoice",
             identifier: "invoice-management-window",
             height: 447
         )

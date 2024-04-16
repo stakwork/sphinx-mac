@@ -378,7 +378,8 @@
 "set.price.upper" = "设置价格";
 "to" = "到";
 "from" = "从";
-"request.amount" = "请求金额";
+"create.invoice" = "请求金额";
+"pay.invoice" = "支付发票";
 "send.payment.upper" = "发送支付";
 "request.amount.upper" = "请求金额";
 "balance.too.low" = "余额过低";

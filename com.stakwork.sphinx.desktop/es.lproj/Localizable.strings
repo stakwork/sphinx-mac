@@ -378,7 +378,8 @@
 "set.price.upper" = "PRECIO";
 "to" = "A";
 "from" = "De";
-"request.amount" = "Solicitar Pago";
+"create.invoice" = "Crear Solicitud";
+"pay.invoice" = "Pagara Solicitud";
 "send.payment.upper" = "ENVIAR PAGO";
 "request.amount.upper" = "SOLICITAR PAGO";
 "request.payment.create.invoice" = "Solicitar Pago (Crear Pagada)";
