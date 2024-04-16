@@ -14,6 +14,18 @@ class DashboardViewController: NSViewController {
     @IBOutlet weak var leftSplittedView: NSView!
     @IBOutlet weak var rightSplittedView: NSView!
     @IBOutlet weak var modalsContainerView: NSView!
+    @IBOutlet weak var presenterHeaderView: NSBox!
+    @IBOutlet weak var presenterContainerView: NSView!
+    @IBOutlet weak var presenterContainerBGView: NSView!
+    @IBOutlet weak var presenterContainerMainView: NSView!
+    @IBOutlet weak var presenterBGView: NSBox!
+    @IBOutlet weak var presenterTitleLabel: NSTextField!
+    @IBOutlet weak var presenterHeaderDivider: NSView!
+    weak var presenter: DashboardPresenterViewController?
+    @IBOutlet weak var presenterViewHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var presenterBackButton: NSButton!
+    var presenterIdentifier: String?
     
     var mediaFullScreenView: MediaFullScreenView? = nil
     
@@ -58,6 +70,14 @@ class DashboardViewController: NSViewController {
         
         DistributedNotificationCenter.default().addObserver(self, selector: #selector(self.themeChangedNotification(notification:)), name: .onInterfaceThemeChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleImageNotification(_:)), name: .webViewImageClicked, object: nil)
+        
+        presenter = DashboardPresenterViewController.instantiate()
+        if let presenter {
+            self.addChildVC(child: presenter,
+                            container: self.presenterContainerView)
+            self.presenterContainerBGView.isHidden = true
+            self.presenterBGView.isHidden = false
+        }
     }
     
     override func viewWillAppear() {
@@ -93,6 +113,31 @@ class DashboardViewController: NSViewController {
             DeepLinksHandlerHelper.handleLinkQueryFrom(url: url)
             UserDefaults.Keys.linkQuery.removeValue()
         }
+    }
+    
+    @IBAction func closeButtonTapped(_ sender: NSButton) {
+        closePresenter()
+    }
+    
+    func closePresenter() {
+        presenterContainerBGView.isHidden = true
+        presenterIdentifier = nil
+        presenter?.dismissVC()
+    }
+    
+    @IBAction func presenterBackButtonTapped(_ sender: NSButton) {
+        presenterContainerBGView.isHidden = false
+        let addFriendVC = AddFriendViewController.instantiate(delegate: listViewController.self, dismissDelegate: self)
+        presenterBackButton.isHidden = true
+        WindowsManager
+            .sharedInstance
+            .showOnCurrentWindow(with: "Contact".localized,
+                                 identifier: "contact-custom-window",
+                                 contentVC: addFriendVC,
+                                 hideDivider: true,
+                                 replaceVC: true,
+                                 hideBackButton: true,
+                                 height: 447)
     }
     
     @objc func themeChangedNotification(notification: Notification) {
@@ -631,5 +676,11 @@ extension DashboardViewController : RestoreModalViewControllerDelegate {
         modalsContainerView.isHidden = true
         
         listViewController?.finishLoading()
+    }
+}
+
+extension DashboardViewController: NewContactDismissDelegate {
+    func shouldDismissView() {
+        closePresenter()
     }
 }

@@ -83,7 +83,7 @@ extension ChatListViewController : ChildVCDelegate, ActionsDelegate {
             window: view.window,
             title: "Payments",
             identifier: "invoice-management-window",
-            size: CGSize(width: 450, height: 350)
+            size: CGSize(width: 450, height: 447)
         )
     }
     
@@ -103,7 +103,7 @@ extension ChatListViewController : ChildVCDelegate, ActionsDelegate {
             window: view.window,
             title: "Payments",
             identifier: "invoice-management-window",
-            size: CGSize(width: 414, height: 700)
+            size: CGSize(width: 414, height: 629)
         )
     }
     

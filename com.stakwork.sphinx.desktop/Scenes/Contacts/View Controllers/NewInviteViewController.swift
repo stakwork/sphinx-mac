@@ -11,6 +11,7 @@ import Cocoa
 class NewInviteViewController: NSViewController {
     
     weak var delegate: NewContactChatDelegate?
+    weak var dismissDelegate: NewContactDismissDelegate?
     
     @IBOutlet weak var nicknameField: NSTextField!
     @IBOutlet var messageTextView: PlaceHolderTextView!
@@ -23,11 +24,13 @@ class NewInviteViewController: NSViewController {
     let walletBalanceService = WalletBalanceService()
     
     static func instantiate(
-        delegate: NewContactChatDelegate? = nil
+        delegate: NewContactChatDelegate? = nil,
+        dismissDelegate: NewContactDismissDelegate? = nil
     ) -> NewInviteViewController {
         
         let viewController = StoryboardScene.Contacts.newInviteViewController.instantiate()
         viewController.delegate = delegate
+        viewController.dismissDelegate = dismissDelegate
         
         return viewController
     }
@@ -110,7 +113,7 @@ class NewInviteViewController: NSViewController {
                 
                 if let invite = contact["invite"].dictionary, let inviteString = invite["invite_string"]?.string, !inviteString.isEmpty {
                     self.delegate?.shouldReloadContacts()
-                    self.view.window?.close()
+                    self.dismissDelegate?.shouldDismissView()
                 }
             }, errorCallback: {
                 self.loading = false

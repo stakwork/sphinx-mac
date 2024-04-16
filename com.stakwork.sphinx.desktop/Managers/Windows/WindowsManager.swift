@@ -19,7 +19,7 @@ class WindowsManager {
     
     func saveWindowState() {
         if let keyWindow = NSApplication.shared.keyWindow {
-//            let menuCollapsed = (keyWindow.contentViewController as? DashboardViewController)?.isLeftMenuCollapsed() ?? false
+            //            let menuCollapsed = (keyWindow.contentViewController as? DashboardViewController)?.isLeftMenuCollapsed() ?? false
             let menuCollapsed = false
             let windowState = WindowState(frame: keyWindow.frame, minSize: keyWindow.minSize, menuCollapsed: menuCollapsed)
             
@@ -65,7 +65,7 @@ class WindowsManager {
         let initialFrame = CGRect(x: centerPoint.x, y: centerPoint.y, width: size.width, height: size.height)
         return WindowState(frame: initialFrame, minSize: size, menuCollapsed: false)
     }
-
+    
     func showNewWindow(
         with title: String,
         size: CGSize,
@@ -112,6 +112,52 @@ class WindowsManager {
         }
     }
     
+    func dismissViewFromCurrentWindow()  {
+        if let keyWindow = NSApplication.shared.keyWindow {
+            if let dashboardVC = keyWindow.contentViewController as? DashboardViewController {
+                dashboardVC.presenterContainerBGView.isHidden = true
+                dashboardVC.presenter?.dismissVC()
+                dashboardVC.presenter?.contentVC = nil
+            }
+        }
+    }
+    
+    func showOnCurrentWindow(
+        with title: String,
+        identifier: String? = nil,
+        contentVC: NSViewController,
+        hideDivider: Bool = true,
+        replaceVC: Bool = true,
+        hideBackButton: Bool = true,
+        height: CGFloat = 629
+    ) {
+        if let keyWindow = NSApplication.shared.keyWindow {
+            if let dashboardVC = keyWindow.contentViewController as? DashboardViewController {
+                dashboardVC.presenterContainerBGView.isHidden = false
+                dashboardVC.presenterBGView.layer?.cornerRadius = 12
+                dashboardVC.presenterContainerMainView.layer?.cornerRadius = 12
+                dashboardVC.presenterBackButton.isHidden = hideBackButton
+                dashboardVC.presenterViewHeightConstraint.constant = height
+                DispatchQueue.main.async {
+                    dashboardVC.presenterBGView.layoutSubtreeIfNeeded()
+                }
+                if dashboardVC.presenterIdentifier != identifier {
+                    if replaceVC {
+                        dashboardVC.presenter?.dismissVC()
+                        dashboardVC.presenter?.contentVC = nil
+                    } else {
+                        dashboardVC.presenter?.setParentVC()
+                        dashboardVC.presenter?.dismissVC()
+                    }
+                    dashboardVC.presenter?.configurePresenterVC(contentVC)
+                    dashboardVC.presenterTitleLabel.stringValue = title
+                    dashboardVC.presenterIdentifier = identifier
+                    dashboardVC.presenterHeaderDivider.isHidden = hideDivider
+                }
+            }
+        }
+    }
+    
     func showPubKeyWindow(vc: NSViewController, window: NSWindow?) {
         showNewWindow(with: "pubkey".localized,
                       size: CGSize(width: 400, height: 600),
@@ -145,28 +191,24 @@ class WindowsManager {
     }
     
     func showProfileWindow(vc: NSViewController, window: NSWindow?) {
-        showNewWindow(with: "profile".localized,
-                      size: CGSize(width: 400, height: 850),
-                      centeredIn: window,
-                      identifier: "profile-window",
-                      contentVC: vc)
+        showOnCurrentWindow(with: "profile".localized, 
+                            identifier: "profile-custom-window",
+                            contentVC: vc,
+                            hideDivider: false)
     }
     
     func showTransationsListWindow(vc: NSViewController, window: NSWindow?) {
-        showNewWindow(with: "transactions".localized,
-                      size: CGSize(width: 450, height: 750),
-                      centeredIn: window,
-                      identifier: "transactions-window",
-                      contentVC: vc)
+        showOnCurrentWindow(with: "transactions".localized, 
+                            identifier: "transactions-custom-window",
+                            contentVC: vc,
+                            hideDivider: false)
     }
     
     func showContactWindow(vc: NSViewController, window: NSWindow?, title: String, identifier: String, size: CGSize) {
-        showNewWindow(with: title,
-                      size: size,
-                      centeredIn: window,
-                      identifier: identifier,
-                      contentVC: vc,
-                      shouldClose: true)
+        showOnCurrentWindow(with: title.localized,
+                            identifier: "contact-custom-window",
+                            contentVC: vc,
+                            height: size.height)
     }
     
     func showInviteCodeWindow(vc: NSViewController, window: NSWindow?) {
@@ -191,12 +233,10 @@ class WindowsManager {
         vc: NSViewController,
         window: NSWindow?
     ) {
-        showNewWindow(with: title,
-                      size: CGSize(width: 400, height: 700),
-                      centeredIn: window,
-                      identifier: "create-tribe-window",
-                      styleMask: [.closable, .titled],
-                      contentVC: vc)
+        showOnCurrentWindow(with: "Create Tribe".localized, 
+                            identifier: "create-tribe-custom-window",
+                            contentVC: vc,
+                            hideDivider: false)
     }
     
     func showWebAppWindow(chat: Chat?, view: NSView, isAppURL: Bool = true) {
@@ -206,7 +246,7 @@ class WindowsManager {
             let appTitle = chat.name ?? ""
             let screen = NSApplication.shared.keyWindow
             let frame : CGRect = screen?.frame ?? view.frame
-
+            
             let position = (screen?.frame.origin) ?? CGPoint(x: 0.0, y: 0.0)
             
             showNewWindow(with: appTitle,
@@ -228,7 +268,7 @@ class WindowsManager {
             
             let screen = NSApplication.shared.keyWindow
             let frame : CGRect = screen?.frame ?? CGRect(x: 0, y: 0, width: 400, height: 400)
-
+            
             let position = (screen?.frame.origin) ?? CGPoint(x: 0.0, y: 0.0)
             
             showNewWindow(with: appTitle,

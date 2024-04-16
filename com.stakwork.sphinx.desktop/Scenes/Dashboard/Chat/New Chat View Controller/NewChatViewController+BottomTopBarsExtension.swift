@@ -91,7 +91,7 @@ extension NewChatViewController : ChatHeaderViewDelegate {
                 window: view.window,
                 title: "contact".localized,
                 identifier: "contact-window",
-                size: CGSize(width: 414, height: 700)
+                size: CGSize(width: 414, height: 629)
             )
             
         } else if let chat = chat {
