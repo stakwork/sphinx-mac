@@ -19,6 +19,9 @@ extension ProfileViewController {
             AlertHelper.showTwoOptionsAlert(title: "pin.change".localized, message: "confirm.pin.change".localized, confirm: {
                 GroupsPinManager.sharedInstance.didUpdateStandardPin(newPin: pin)
                 self.newMessageBubbleHelper.showGenericMessageView(text: "pin.changed".localized, in: self.view, delay: 6, backAlpha: 1.0)
+                WindowsManager.sharedInstance.backToProfile()
+            }, cancel: {
+                WindowsManager.sharedInstance.backToProfile()
             })
         }
         advanceTo(vc: changePinCodeVC, title: "pin.change".localized, height: 500)
@@ -38,6 +41,9 @@ extension ProfileViewController {
                 self.privacyPinButton.stringValue = "change.privacy.pin".localized
                 let alertLabel = (isPrivacyPinSet ? "privacy.pin.changed" : "privacy.pin.set").localized
                 self.newMessageBubbleHelper.showGenericMessageView(text: alertLabel, in: self.view, delay: 6, backAlpha: 1.0)
+                WindowsManager.sharedInstance.backToProfile()
+            }, cancel: {
+                WindowsManager.sharedInstance.backToProfile()
             })
         }
         advanceTo(vc: changePivacyPinVC, title: "pin.change".localized, height: 500)

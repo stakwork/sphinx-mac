@@ -231,10 +231,11 @@ class ProfileViewController: NSViewController {
         let pinCodeVC = EnterPinViewController.instantiate(mode: .Export, subtitle: subtitle)
         pinCodeVC.doneCompletion = { pin in
             if let keyJSONString = UserData.sharedInstance.exportKeysJSON(pin: pin) {
-                WindowsManager.sharedInstance.backToProfile()
-                
                 AlertHelper.showTwoOptionsAlert(title: "export.keys".localized, message: "keys.will.copy.clipboard".localized, confirm: {
                     ClipboardHelper.copyToClipboard(text: keyJSONString, message: "keys.copied.clipboard".localized)
+                    WindowsManager.sharedInstance.backToProfile()
+                }, cancel: {
+                    WindowsManager.sharedInstance.backToProfile()
                 })
             } else {
                 AlertHelper.showAlert(title: "generic.error.title".localized, message: "generic.error.message".localized)

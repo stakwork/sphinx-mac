@@ -32,7 +32,6 @@ class ChangePinViewController: NSViewController {
         
         changePinView.set(mode: mode)
         changePinView.doneCompletion = { pin in
-            WindowsManager.sharedInstance.backToProfile()
             self.doneCompletion?(pin)
         }
     }
