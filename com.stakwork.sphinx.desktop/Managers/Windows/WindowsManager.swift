@@ -113,16 +113,22 @@ class WindowsManager {
     }
     
     func dismissViewFromCurrentWindow()  {
-        if let keyWindow = NSApplication.shared.keyWindow {
-            if let dashboardVC = keyWindow.contentViewController as? DashboardViewController {
-                dashboardVC.presenterContainerBGView.isHidden = true
-                dashboardVC.presenter?.view.isHidden = true
-                dashboardVC.presenterIdentifier = nil
-                dashboardVC.presenter?.dismissVC()
-                
-                dashboardVC.newDetailViewController?.setMessageFieldActive()
-            }
+        guard let keyWindow = NSApplication.shared.keyWindow, let dashboardVC = keyWindow.contentViewController as? DashboardViewController else {
+            return
         }
+        
+        AnimationHelper.animateViewWith(duration: 0.25, animationsBlock: {
+            DispatchQueue.main.async {
+                dashboardVC.presenterContainerBGView.animator().alphaValue = 0.0
+            }
+        }, completion: {
+            dashboardVC.presenterContainerBGView.isHidden = true
+            dashboardVC.presenter?.view.isHidden = true
+            dashboardVC.presenterIdentifier = nil
+            dashboardVC.presenter?.dismissVC()
+            
+            dashboardVC.newDetailViewController?.setMessageFieldActive()
+        })
     }
     
     func showOnCurrentWindow(
@@ -152,7 +158,7 @@ class WindowsManager {
         
         ///Animate if replacing one VC by another
         if replacingVC {
-            AnimationHelper.animateViewWith(duration: 0.3, animationsBlock: {
+            AnimationHelper.animateViewWith(duration: 0.25, animationsBlock: {
                 dashboardVC.presenter?.view.alphaValue = 0.0
             }, completion: {
                 self.showVCOnCurrentWindow(
@@ -161,6 +167,7 @@ class WindowsManager {
                     contentVC: contentVC,
                     hideDivider: hideDivider,
                     hideBackButton: hideBackButton,
+                    replacingVC: replacingVC,
                     height: height,
                     backHandler: backHandler
                 )
@@ -172,6 +179,7 @@ class WindowsManager {
                 contentVC: contentVC,
                 hideDivider: hideDivider,
                 hideBackButton: hideBackButton,
+                replacingVC: replacingVC,
                 height: height,
                 backHandler: backHandler
             )
@@ -184,6 +192,7 @@ class WindowsManager {
         contentVC: NSViewController,
         hideDivider: Bool = true,
         hideBackButton: Bool = true,
+        replacingVC: Bool = false,
         height: CGFloat? = nil,
         backHandler: (() -> ())? = nil
     ) {
@@ -191,39 +200,80 @@ class WindowsManager {
             return
         }
         
+        if replacingVC {
+            ///show presenter Container since it won't animate
+            dashboardVC.presenterContainerBGView.alphaValue = 1.0
+        } else {
+            ///hide presenter Container since it will animate
+            dashboardVC.presenterContainerBGView.alphaValue = 0.0
+        }
         dashboardVC.presenterContainerBGView.isHidden = false
         dashboardVC.presenter?.view.isHidden = false
         
         ///Set corner radius of container
         dashboardVC.presenterContentBox.layer?.cornerRadius = 12
         
-        ///Set content height based on VC content size
+        ///Set content height based on VC content size. 2000 exceeds the windows height so margins will apply
         if let height = height {
             dashboardVC.presenterViewHeightConstraint.constant = height
         } else {
-            dashboardVC.presenterViewHeightConstraint.constant = 2000
+            dashboardVC.presenterViewHeightConstraint.constant = 3000
         }
         
-        AnimationHelper.animateViewWith(duration: 0.3, animationsBlock: {
+        if !replacingVC {
+            ///show VC content so it's there when animates
             dashboardVC.presenterContentBox.layoutSubtreeIfNeeded()
-        }, completion: {
-            dashboardVC.presenter?.view.alphaValue = 1.0
             
-            ///Set content height based on VC content size
-            if let presenter = dashboardVC.presenter {
-                if let bounds = dashboardVC.presenterContainerView?.bounds {
-                    presenter.view.frame = bounds
+            addVCIntoPopup(
+                dashboardVC: dashboardVC,
+                contentVC: contentVC,
+                identifier: identifier
+            )
+        }
+        
+        AnimationHelper.animateViewWith(duration: 0.25, animationsBlock: {
+            if replacingVC {
+                ///Animates popup height since it's transitioning from one VC to the other
+                dashboardVC.presenterContentBox.layoutSubtreeIfNeeded()
+            } else {
+                DispatchQueue.main.async {
+                    ///Animates popup alpha since it's showing popup
+                    dashboardVC.presenterContainerBGView.animator().alphaValue = 1.0
                 }
             }
-            
-            ///Present new VC
-            if dashboardVC.presenterIdentifier != identifier {
-                dashboardVC.presenter?.dismissVC()
-                dashboardVC.presenter?.contentVC = nil
-                dashboardVC.presenter?.configurePresenterVC(contentVC)
-                dashboardVC.presenterIdentifier = identifier
+        }, completion: {
+            if replacingVC {
+                ///Add destination VC after heigh finnished animating
+                dashboardVC.presenter?.view.alphaValue = 1.0
+                
+                self.addVCIntoPopup(
+                    dashboardVC: dashboardVC,
+                    contentVC: contentVC,
+                    identifier: identifier
+                )
             }
         })
+    }
+    
+    func addVCIntoPopup(
+        dashboardVC: DashboardViewController,
+        contentVC: NSViewController,
+        identifier: String? = nil
+    ) {
+        ///Set content height based on VC content size
+        if let presenter = dashboardVC.presenter {
+            if let bounds = dashboardVC.presenterContainerView?.bounds {
+                presenter.view.frame = bounds
+            }
+        }
+        
+        ///Present new VC
+        if dashboardVC.presenterIdentifier != identifier {
+            dashboardVC.presenter?.dismissVC()
+            dashboardVC.presenter?.contentVC = nil
+            dashboardVC.presenter?.configurePresenterVC(contentVC)
+            dashboardVC.presenterIdentifier = identifier
+        }
     }
     
     func backToAddFriend() {

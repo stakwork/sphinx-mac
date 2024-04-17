@@ -73,13 +73,13 @@
                                     <real value="250"/>
                                 </holdingPriorities>
                             </splitView>
-                            <box hidden="YES" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="aKn-HY-c5B">
+                            <box hidden="YES" boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="aKn-HY-c5B">
                                 <rect key="frame" x="0.0" y="0.0" width="1000" height="499"/>
                                 <view key="contentView" id="von-js-Xt4" customClass="TransparentView" customModule="Sphinx" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="1000" height="499"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <visualEffectView blendingMode="withinWindow" material="popover" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="azq-fz-Gwb">
+                                        <visualEffectView hidden="YES" blendingMode="withinWindow" material="popover" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="azq-fz-Gwb">
                                             <rect key="frame" x="0.0" y="0.0" width="1000" height="499"/>
                                         </visualEffectView>
                                         <box clipsToBounds="YES" boxType="custom" borderType="none" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="7vz-4S-bKU">
@@ -255,6 +255,7 @@
                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7vz-4S-bKU" secondAttribute="bottom" constant="70" id="qbt-jC-LeI"/>
                                     </constraints>
                                 </view>
+                                <color key="fillColor" white="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </box>
                         </subviews>
                         <constraints>
@@ -273,13 +274,12 @@
                         <outlet property="leftSplittedView" destination="TtT-Yv-CaJ" id="1we-Fa-PVs"/>
                         <outlet property="modalsContainerView" destination="dbw-3D-RbV" id="UXb-da-QeH"/>
                         <outlet property="presenterBackButton" destination="Jpp-5d-Yjg" id="b0J-v1-BeV"/>
+                        <outlet property="presenterBlurredBackground" destination="azq-fz-Gwb" id="tS0-o4-Cob"/>
                         <outlet property="presenterCloseButton" destination="lTV-ps-QZy" id="H2V-Vj-Ghu"/>
                         <outlet property="presenterContainerBGView" destination="aKn-HY-c5B" id="r2y-SP-QmM"/>
-                        <outlet property="presenterContainerMainView" destination="JiY-8z-NLk" id="H1l-wR-a4F"/>
                         <outlet property="presenterContainerView" destination="Gmx-38-5rm" id="zfL-6L-zPH"/>
                         <outlet property="presenterContentBox" destination="7vz-4S-bKU" id="7It-nq-DWk"/>
                         <outlet property="presenterHeaderDivider" destination="saa-Qf-nSs" id="8ei-un-IPu"/>
-                        <outlet property="presenterHeaderView" destination="wtU-gL-5tX" id="eVf-iU-YSE"/>
                         <outlet property="presenterTitleLabel" destination="sht-p7-2gS" id="jHb-rC-HnK"/>
                         <outlet property="presenterViewHeightConstraint" destination="Cc6-6n-Pdu" id="Ntd-v2-QCR"/>
                         <outlet property="rightSplittedView" destination="pXC-Wm-9tR" id="QM1-VT-C9Q"/>
