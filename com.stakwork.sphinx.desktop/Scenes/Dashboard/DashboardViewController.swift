@@ -14,11 +14,11 @@ class DashboardViewController: NSViewController {
     @IBOutlet weak var leftSplittedView: NSView!
     @IBOutlet weak var rightSplittedView: NSView!
     @IBOutlet weak var modalsContainerView: NSView!
-    @IBOutlet weak var presenterHeaderView: NSBox!
+    
+    @IBOutlet weak var presenterBlurredBackground: NSVisualEffectView!
     @IBOutlet weak var presenterContainerView: NSView!
     @IBOutlet weak var presenterContainerBGView: NSBox!
     @IBOutlet weak var presenterContentBox: NSBox!
-    @IBOutlet weak var presenterContainerMainView: NSView!
     @IBOutlet weak var presenterTitleLabel: NSTextField!
     @IBOutlet weak var presenterHeaderDivider: NSView!
     @IBOutlet weak var presenterBackButton: CustomButton!
@@ -50,6 +50,7 @@ class DashboardViewController: NSViewController {
     public static let kPodcastPlayerWidth: CGFloat = 350
     
     var resizeTimer : Timer? = nil
+    var escapeMonitor: Any? = nil
     
     static func instantiate() -> DashboardViewController {
         let viewController = StoryboardScene.Dashboard.dashboardViewController.instantiate()
@@ -75,6 +76,7 @@ class DashboardViewController: NSViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(handleImageNotification(_:)), name: .webViewImageClicked, object: nil)
         
         listenForResize()
+        addEscapeMonitor()
     }
     
     override func viewWillAppear() {
@@ -91,6 +93,10 @@ class DashboardViewController: NSViewController {
     }
     
     func addPresenterVC() {
+        presenterBlurredBackground.blendingMode = .withinWindow
+        presenterBlurredBackground.material = .fullScreenUI
+        presenterBlurredBackground.alphaValue = 1
+        
         presenterBackButton.cursor = .pointingHand
         presenterCloseButton.cursor = .pointingHand
         
@@ -385,6 +391,26 @@ class DashboardViewController: NSViewController {
                     appDelegate.setBadge(count: TransactionMessage.getReceivedUnseenMessagesCount())
                 }
             }
+        }
+    }
+    
+    func addEscapeMonitor() {
+        //add event monitor in case user never clicks the textfield
+        if let escapeMonitor = escapeMonitor {
+            NSEvent.removeMonitor(escapeMonitor)
+        }
+    
+        escapeMonitor = nil
+    
+        self.escapeMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (event) in
+            if event.keyCode == 53 { // 53 is the key code for the Escape key
+                // Perform your action when the Escape key is pressed
+                if !self.presenterContainerBGView.isHidden {
+                    WindowsManager.sharedInstance.dismissViewFromCurrentWindow()
+                    return nil
+                }
+            }
+            return event
         }
     }
 }
