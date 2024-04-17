@@ -379,6 +379,8 @@
 "set.price.upper" = "設置價格";
 "to" = "至";
 "from" = "來自";
+"create.invoice" = "請求金額";
+"pay.invoice" = "支付发票";
 "send.payment.upper" = "發送支付";
 "request.amount.upper" = "請求金額";
 "balance.too.low" = "餘額太低";

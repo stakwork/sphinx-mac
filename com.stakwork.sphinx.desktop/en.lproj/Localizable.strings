@@ -379,6 +379,8 @@
 "set.price.upper" = "SET PRICE";
 "to" = "To";
 "from" = "From";
+"create.invoice" = "Create Invoice";
+"pay.invoice" = "Pay Invoice";
 "send.payment.upper" = "SEND PAYMENT";
 "request.amount.upper" = "REQUEST AMOUNT";
 "balance.too.low" = "Balance too low";

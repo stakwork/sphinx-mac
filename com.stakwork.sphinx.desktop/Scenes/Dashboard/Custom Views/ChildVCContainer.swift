@@ -21,6 +21,7 @@ protocol ActionsDelegate: AnyObject {
     func shouldCreateCall(mode: VideoCallHelper.CallMode)
     func shouldSendPaymentFor(paymentObject: PaymentViewModel.PaymentObject, callback: ((Bool) -> ())?)
     func shouldReloadMuteState()
+    func didDismissView()
 }
 
 class ChildVCContainer: NSView, LoadableNib {
@@ -214,6 +215,7 @@ class ChildVCContainer: NSView, LoadableNib {
             self.alphaValue = 0.0
         }, completion: {
             self.isHidden = true
+            self.delegate?.didDismissView()
         })
     }
     

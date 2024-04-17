@@ -15,6 +15,21 @@ class DashboardViewController: NSViewController {
     @IBOutlet weak var rightSplittedView: NSView!
     @IBOutlet weak var modalsContainerView: NSView!
     
+    @IBOutlet weak var presenterBlurredBackground: NSVisualEffectView!
+    @IBOutlet weak var presenterContainerView: NSView!
+    @IBOutlet weak var presenterContainerBGView: NSBox!
+    @IBOutlet weak var presenterContentBox: NSBox!
+    @IBOutlet weak var presenterTitleLabel: NSTextField!
+    @IBOutlet weak var presenterHeaderDivider: NSView!
+    @IBOutlet weak var presenterBackButton: CustomButton!
+    @IBOutlet weak var presenterCloseButton: CustomButton!
+    @IBOutlet weak var presenterViewHeightConstraint: NSLayoutConstraint!
+    
+    weak var presenter: DashboardPresenterViewController?
+    var presenterBackHandler: (() -> ())? = nil
+    
+    var presenterIdentifier: String?
+    
     var mediaFullScreenView: MediaFullScreenView? = nil
     
     var chatListViewModel: ChatListViewModel! = nil
@@ -35,6 +50,7 @@ class DashboardViewController: NSViewController {
     public static let kPodcastPlayerWidth: CGFloat = 350
     
     var resizeTimer : Timer? = nil
+    var escapeMonitor: Any? = nil
     
     static func instantiate() -> DashboardViewController {
         let viewController = StoryboardScene.Dashboard.dashboardViewController.instantiate()
@@ -58,6 +74,9 @@ class DashboardViewController: NSViewController {
         
         DistributedNotificationCenter.default().addObserver(self, selector: #selector(self.themeChangedNotification(notification:)), name: .onInterfaceThemeChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleImageNotification(_:)), name: .webViewImageClicked, object: nil)
+        
+        listenForResize()
+        addEscapeMonitor()
     }
     
     override func viewWillAppear() {
@@ -70,6 +89,41 @@ class DashboardViewController: NSViewController {
         super.viewDidAppear()
         
         handleDeepLink()
+        addPresenterVC()
+    }
+    
+    func addPresenterVC() {
+        presenterBlurredBackground.blendingMode = .withinWindow
+        presenterBlurredBackground.material = .fullScreenUI
+        presenterBlurredBackground.alphaValue = 1
+        
+        presenterBackButton.cursor = .pointingHand
+        presenterCloseButton.cursor = .pointingHand
+        
+        if let _ = presenter {
+            return
+        }
+        presenter = DashboardPresenterViewController.instantiate()
+        
+        if let presenter {
+            self.addChildVC(
+                child: presenter,
+                container: self.presenterContainerView
+            )
+            
+            self.presenterContainerBGView.isHidden = true
+        }
+    }
+    
+    fileprivate func listenForResize() {
+        NotificationCenter.default.addObserver(forName: NSWindow.didResizeNotification, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
+            
+            if let presenter = self?.presenter {
+                if let bounds = self?.presenterContainerView?.bounds {
+                    presenter.view.frame = bounds
+                }
+            }
+        }
     }
     
     override func viewWillDisappear() {
@@ -86,6 +140,8 @@ class DashboardViewController: NSViewController {
         NotificationCenter.default.removeObserver(self, name: .onPersonDeepLink, object: nil)
         NotificationCenter.default.removeObserver(self, name: .onSaveProfileDeepLink, object: nil)
         NotificationCenter.default.removeObserver(self, name: .webViewImageClicked, object: nil)
+        
+        NotificationCenter.default.removeObserver(self, name: NSWindow.didResizeNotification, object: nil)
     }
     
     func handleDeepLink() {
@@ -95,9 +151,21 @@ class DashboardViewController: NSViewController {
         }
     }
     
+    @IBAction func closeButtonTapped(_ sender: NSButton) {
+        closePresenter()
+    }
+    
+    func closePresenter() {
+        WindowsManager.sharedInstance.dismissViewFromCurrentWindow()
+    }
+    
+    @IBAction func presenterBackButtonTapped(_ sender: NSButton) {
+        if let presenterBackHandler = presenterBackHandler {
+            presenterBackHandler()
+        }
+    }
+    
     @objc func themeChangedNotification(notification: Notification) {
-//        detailViewController?.chatCollectionView.reloadData()
-        
         DelayPerformedHelper.performAfterDelay(seconds: 0.5, completion: {
             NSAppearance.current = self.view.effectiveAppearance
             self.listViewController?.configureHeaderAndBottomBar()
@@ -239,6 +307,7 @@ class DashboardViewController: NSViewController {
             AlertHelper.showAlert(title: "deeplink.issue.title".localized, message: "deeplink.issue.message".localized)
         }
     }
+    
     func createInvoice(n: Notification) {
         if let query = n.userInfo?["query"] as? String {
             if let amountString = query.getLinkValueFor(key: "amount"), let amount = Int(amountString) {
@@ -322,6 +391,26 @@ class DashboardViewController: NSViewController {
                     appDelegate.setBadge(count: TransactionMessage.getReceivedUnseenMessagesCount())
                 }
             }
+        }
+    }
+    
+    func addEscapeMonitor() {
+        //add event monitor in case user never clicks the textfield
+        if let escapeMonitor = escapeMonitor {
+            NSEvent.removeMonitor(escapeMonitor)
+        }
+    
+        escapeMonitor = nil
+    
+        self.escapeMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (event) in
+            if event.keyCode == 53 { // 53 is the key code for the Escape key
+                // Perform your action when the Escape key is pressed
+                if !self.presenterContainerBGView.isHidden {
+                    WindowsManager.sharedInstance.dismissViewFromCurrentWindow()
+                    return nil
+                }
+            }
+            return event
         }
     }
 }
@@ -631,5 +720,11 @@ extension DashboardViewController : RestoreModalViewControllerDelegate {
         modalsContainerView.isHidden = true
         
         listViewController?.finishLoading()
+    }
+}
+
+extension DashboardViewController: NewContactDismissDelegate {
+    func shouldDismissView() {
+        closePresenter()
     }
 }

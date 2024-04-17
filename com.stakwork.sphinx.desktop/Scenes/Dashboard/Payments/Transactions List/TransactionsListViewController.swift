@@ -72,6 +72,10 @@ class TransactionsListViewController: NSViewController {
     func checkResultsLimit(count: Int) {
         didReachLimit = count < itemsPerPage
     }
+    
+    deinit {
+        print("here is the TransactionsListViewController going to sleep")
+    }
 }
 
 extension TransactionsListViewController : TransactionsDataSourceDelegate {

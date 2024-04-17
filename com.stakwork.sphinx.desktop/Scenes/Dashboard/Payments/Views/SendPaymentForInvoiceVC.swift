@@ -139,7 +139,7 @@ class SendPaymentForInvoiceVC:NSViewController{
                 AlertHelper.showAlert(title: "generic.success.title".localized, message: "invoice.paid".localized)
             
                 DelayPerformedHelper.performAfterDelay(seconds: 0.25, completion: {
-                    WindowsManager.sharedInstance.closeIfExists(identifier: "invoice-management-window")
+                    WindowsManager.sharedInstance.dismissViewFromCurrentWindow()
                 })
             }, 
             errorCallback: { error in

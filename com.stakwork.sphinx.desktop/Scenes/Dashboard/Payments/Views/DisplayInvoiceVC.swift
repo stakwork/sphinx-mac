@@ -12,7 +12,6 @@ import Cocoa
 class DisplayInvoiceVC : NSViewController{
     
     @IBOutlet weak var qrCodeImageView: NSImageView!
-    @IBOutlet weak var receiveInvoiceTitle: NSTextField!
     @IBOutlet weak var shareInvoiceStringButton: NSView!
     @IBOutlet weak var shareQRImageButton: NSView!
     @IBOutlet weak var invoiceStringDisplay: NSTextField!
@@ -39,7 +38,6 @@ class DisplayInvoiceVC : NSViewController{
             qrCodeImageView.image = NSImage.qrCode(from: qrString, size: qrCodeImageView.frame.size)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
                 self.view.bringSubviewToFront(self.qrCodeImageView)
-                self.view.bringSubviewToFront(self.receiveInvoiceTitle)
                 self.view.bringSubviewToFront(self.shareInvoiceStringButton)
                 self.view.bringSubviewToFront(self.shareQRImageButton)
                 self.shareInvoiceStringButton.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(self.copyInvoiceText)))
@@ -61,7 +59,6 @@ class DisplayInvoiceVC : NSViewController{
     }
     
     func addLocalization(){
-        receiveInvoiceTitle.stringValue = "payment.request".localized
         codeStringLabel.title = "copy.invoice.string".localized
         codeImageLabel.title = "copy.invoice.image".localized
     }

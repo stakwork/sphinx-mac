@@ -12,9 +12,14 @@ protocol NewContactChatDelegate: AnyObject {
     func shouldReloadContacts()
 }
 
+protocol NewContactDismissDelegate: AnyObject {
+    func shouldDismissView()
+}
+
 class NewContactViewController: NSViewController {
     
     weak var delegate: NewContactChatDelegate?
+    weak var dismissDelegate: NewContactDismissDelegate?
 
     @IBOutlet weak var contactAvatarView: ChatAvatarView!
     @IBOutlet weak var fieldsTop: NSLayoutConstraint!
@@ -51,6 +56,7 @@ class NewContactViewController: NSViewController {
     
     static func instantiate(
         delegate: NewContactChatDelegate? = nil,
+        dismissDelegate: NewContactDismissDelegate? = nil,
         contact: UserContact? = nil,
         pubkey: String? = nil
     ) -> NewContactViewController {
@@ -58,6 +64,7 @@ class NewContactViewController: NSViewController {
         let viewController = StoryboardScene.Contacts.newContactViewController.instantiate()
         viewController.contact = contact
         viewController.delegate = delegate
+        viewController.dismissDelegate = dismissDelegate
         viewController.pubkey = pubkey
 
         return viewController
@@ -136,7 +143,6 @@ class NewContactViewController: NSViewController {
     
     @IBAction func saveButtonClicked(_ sender: Any) {
         loading = true
-        
         if let _ = contact {
             updateProfile()
         } else {
@@ -201,7 +207,7 @@ class NewContactViewController: NSViewController {
     
     func closeWindow() {
         CoreDataManager.sharedManager.saveContext()
-        self.view.window?.close()
+        self.dismissDelegate?.shouldDismissView()
     }
 
     func showErrorAlert(message: String) {
