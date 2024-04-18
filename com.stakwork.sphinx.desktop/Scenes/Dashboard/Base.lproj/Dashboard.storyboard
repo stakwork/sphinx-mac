@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
-        <plugIn identifier="com.apple.WebKit2IBPlugin" version="22155"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="22505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -59,12 +59,63 @@
                                                     <segue destination="Pz4-0N-V1w" kind="embed" identifier="ChatViewControllerSegue" id="QPQ-fP-nMH"/>
                                                 </connections>
                                             </containerView>
+                                            <splitView arrangesAllSubviews="NO" dividerStyle="paneSplitter" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MBk-nh-nye">
+                                                <rect key="frame" x="0.0" y="0.0" width="640" height="499"/>
+                                                <subviews>
+                                                    <customView id="kk1-mv-gZj">
+                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="499"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="tYG-E5-Q7o">
+                                                                <rect key="frame" x="0.0" y="0.0" width="317" height="499"/>
+                                                                <connections>
+                                                                    <segue destination="kXm-gj-szD" kind="embed" id="dYj-dA-VwQ"/>
+                                                                </connections>
+                                                            </containerView>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="tYG-E5-Q7o" firstAttribute="leading" secondItem="kk1-mv-gZj" secondAttribute="leading" id="5go-Ua-NV1"/>
+                                                            <constraint firstItem="tYG-E5-Q7o" firstAttribute="top" secondItem="kk1-mv-gZj" secondAttribute="top" id="7aR-aw-8wf"/>
+                                                            <constraint firstAttribute="bottom" secondItem="tYG-E5-Q7o" secondAttribute="bottom" id="KcT-uq-C2G"/>
+                                                            <constraint firstAttribute="trailing" secondItem="tYG-E5-Q7o" secondAttribute="trailing" id="nbR-6v-cH9"/>
+                                                        </constraints>
+                                                    </customView>
+                                                    <customView id="5cv-NJ-L3p">
+                                                        <rect key="frame" x="327" y="0.0" width="313" height="499"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="19x-YZ-MGN">
+                                                                <rect key="frame" x="0.0" y="0.0" width="313" height="499"/>
+                                                                <connections>
+                                                                    <segue destination="EAg-cT-EfO" kind="embed" id="D6j-jJ-9pz"/>
+                                                                </connections>
+                                                            </containerView>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="19x-YZ-MGN" secondAttribute="bottom" id="7Cj-RW-gTC"/>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="DhN-a9-O1h"/>
+                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="K12-UG-WFt"/>
+                                                            <constraint firstAttribute="trailing" secondItem="19x-YZ-MGN" secondAttribute="trailing" id="Pmk-FB-HXn"/>
+                                                            <constraint firstItem="19x-YZ-MGN" firstAttribute="top" secondItem="5cv-NJ-L3p" secondAttribute="top" id="qtk-7w-pEt"/>
+                                                            <constraint firstItem="19x-YZ-MGN" firstAttribute="leading" secondItem="5cv-NJ-L3p" secondAttribute="leading" id="wAi-Iz-go6"/>
+                                                        </constraints>
+                                                    </customView>
+                                                </subviews>
+                                                <holdingPriorities>
+                                                    <real value="250"/>
+                                                    <real value="251"/>
+                                                </holdingPriorities>
+                                            </splitView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="sNN-Zp-F4E" firstAttribute="leading" secondItem="pXC-Wm-9tR" secondAttribute="leading" id="6tP-vQ-TO0"/>
                                             <constraint firstAttribute="trailing" secondItem="sNN-Zp-F4E" secondAttribute="trailing" id="7X3-zf-dtv"/>
                                             <constraint firstAttribute="bottom" secondItem="sNN-Zp-F4E" secondAttribute="bottom" id="DP6-6w-bB6"/>
+                                            <constraint firstItem="MBk-nh-nye" firstAttribute="leading" secondItem="pXC-Wm-9tR" secondAttribute="leading" id="bsO-Pm-aKa"/>
                                             <constraint firstItem="sNN-Zp-F4E" firstAttribute="top" secondItem="pXC-Wm-9tR" secondAttribute="top" id="iUL-Di-EGy"/>
+                                            <constraint firstAttribute="trailing" secondItem="MBk-nh-nye" secondAttribute="trailing" id="j3L-uG-7eq"/>
+                                            <constraint firstItem="MBk-nh-nye" firstAttribute="top" secondItem="pXC-Wm-9tR" secondAttribute="top" id="vtM-wU-dtk"/>
+                                            <constraint firstAttribute="bottom" secondItem="MBk-nh-nye" secondAttribute="bottom" id="xko-mf-byj"/>
                                         </constraints>
                                     </customView>
                                 </subviews>
@@ -270,6 +321,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dashboardRightSplitView" destination="MBk-nh-nye" id="AiS-HN-ZMN"/>
                         <outlet property="dashboardSplitView" destination="PrF-LO-tpi" id="Mc9-G7-SVA"/>
                         <outlet property="leftSplittedView" destination="TtT-Yv-CaJ" id="1we-Fa-PVs"/>
                         <outlet property="modalsContainerView" destination="dbw-3D-RbV" id="UXb-da-QeH"/>
@@ -282,7 +334,8 @@
                         <outlet property="presenterHeaderDivider" destination="saa-Qf-nSs" id="8ei-un-IPu"/>
                         <outlet property="presenterTitleLabel" destination="sht-p7-2gS" id="jHb-rC-HnK"/>
                         <outlet property="presenterViewHeightConstraint" destination="Cc6-6n-Pdu" id="Ntd-v2-QCR"/>
-                        <outlet property="rightSplittedView" destination="pXC-Wm-9tR" id="QM1-VT-C9Q"/>
+                        <outlet property="rightDetailSplittedView" destination="5cv-NJ-L3p" id="aog-r3-zZw"/>
+                        <outlet property="rightSplittedView" destination="kk1-mv-gZj" id="zpQ-On-mJF"/>
                     </connections>
                 </viewController>
                 <customObject id="6tE-iB-pdf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1793,6 +1846,32 @@
                 <customObject id="2BW-Mq-dQo" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1060" y="2456"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="yV4-JH-TKQ">
+            <objects>
+                <viewController id="kXm-gj-szD" sceneMemberID="viewController">
+                    <view key="view" id="ZUZ-mA-Emo">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="Dxb-E7-Ryx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="319" y="-375"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="wYi-r6-qtl">
+            <objects>
+                <viewController id="EAg-cT-EfO" sceneMemberID="viewController">
+                    <view key="view" id="LhQ-V1-J5y">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="YXJ-dv-CVQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-671" y="-375"/>
         </scene>
     </scenes>
     <resources>

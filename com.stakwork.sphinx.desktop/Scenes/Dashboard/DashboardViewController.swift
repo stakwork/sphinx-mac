@@ -11,8 +11,10 @@ import Cocoa
 class DashboardViewController: NSViewController {
     
     @IBOutlet weak var dashboardSplitView: NSSplitView!
+    @IBOutlet weak var dashboardRightSplitView: NSSplitView!
     @IBOutlet weak var leftSplittedView: NSView!
     @IBOutlet weak var rightSplittedView: NSView!
+    @IBOutlet weak var rightDetailSplittedView: NSView!
     @IBOutlet weak var modalsContainerView: NSView!
     
     @IBOutlet weak var presenterBlurredBackground: NSVisualEffectView!
@@ -59,7 +61,7 @@ class DashboardViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        rightDetailSplittedView.isHidden = true
         AttachmentsManager.sharedInstance.runAuthentication(forceAuthenticate: true)
         
         listerForNotifications()
@@ -67,6 +69,8 @@ class DashboardViewController: NSViewController {
         chatListViewModel = ChatListViewModel()
         
         dashboardSplitView.delegate = self
+        dashboardRightSplitView.delegate = self
+        
         SphinxSocketManager.sharedInstance.setDelegate(delegate: self)
         
         let windowState = WindowsManager.sharedInstance.getWindowState()
