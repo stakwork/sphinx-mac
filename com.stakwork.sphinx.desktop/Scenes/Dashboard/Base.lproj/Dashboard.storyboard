@@ -29,21 +29,11 @@
                                                     <segue destination="GLJ-mb-R6q" kind="embed" identifier="ChatListViewControllerSegue" id="q58-SK-bKr"/>
                                                 </connections>
                                             </containerView>
-                                            <containerView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dbw-3D-RbV">
-                                                <rect key="frame" x="-117" y="-68" width="1000" height="499"/>
-                                                <connections>
-                                                    <segue destination="QAD-ym-i0Y" kind="embed" id="l3S-tb-0wV"/>
-                                                </connections>
-                                            </containerView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="1lR-z6-v7i"/>
-                                            <constraint firstItem="dbw-3D-RbV" firstAttribute="leading" secondItem="TtT-Yv-CaJ" secondAttribute="leading" constant="-117" id="34W-wH-IC0"/>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="350" id="44G-0J-jQY"/>
                                             <constraint firstItem="6VL-Tj-Dft" firstAttribute="top" secondItem="TtT-Yv-CaJ" secondAttribute="top" id="6AT-I2-E0m"/>
-                                            <constraint firstItem="dbw-3D-RbV" firstAttribute="top" secondItem="TtT-Yv-CaJ" secondAttribute="top" constant="68" id="Gam-43-qhQ"/>
-                                            <constraint firstAttribute="bottom" secondItem="dbw-3D-RbV" secondAttribute="bottom" constant="-68" id="JNd-WC-VIT"/>
-                                            <constraint firstAttribute="trailing" secondItem="dbw-3D-RbV" secondAttribute="trailing" constant="-533" id="T7Q-wT-SGk"/>
                                             <constraint firstAttribute="trailing" secondItem="6VL-Tj-Dft" secondAttribute="trailing" id="ZwT-jc-Pk1"/>
                                             <constraint firstItem="6VL-Tj-Dft" firstAttribute="leading" secondItem="TtT-Yv-CaJ" secondAttribute="leading" id="eeF-9y-tNo"/>
                                             <constraint firstAttribute="bottom" secondItem="6VL-Tj-Dft" secondAttribute="bottom" id="kVw-q0-RGa"/>
@@ -73,6 +63,12 @@
                                     <real value="250"/>
                                 </holdingPriorities>
                             </splitView>
+                            <containerView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dbw-3D-RbV">
+                                <rect key="frame" x="0.0" y="0.0" width="1000" height="499"/>
+                                <connections>
+                                    <segue destination="QAD-ym-i0Y" kind="embed" id="l3S-tb-0wV"/>
+                                </connections>
+                            </containerView>
                             <box hidden="YES" boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="aKn-HY-c5B">
                                 <rect key="frame" x="0.0" y="0.0" width="1000" height="499"/>
                                 <view key="contentView" id="von-js-Xt4" customClass="TransparentView" customModule="Sphinx" customModuleProvider="target">
@@ -259,13 +255,17 @@
                             </box>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="dbw-3D-RbV" secondAttribute="trailing" id="168-hv-926"/>
                             <constraint firstAttribute="bottom" secondItem="PrF-LO-tpi" secondAttribute="bottom" id="1s2-ZT-Mng"/>
                             <constraint firstAttribute="bottom" secondItem="aKn-HY-c5B" secondAttribute="bottom" id="8l0-Ve-juZ"/>
+                            <constraint firstItem="dbw-3D-RbV" firstAttribute="leading" secondItem="hFQ-Ab-J3C" secondAttribute="leading" id="BPn-7K-thc"/>
                             <constraint firstItem="PrF-LO-tpi" firstAttribute="top" secondItem="hFQ-Ab-J3C" secondAttribute="top" id="K6W-le-LYp"/>
                             <constraint firstItem="aKn-HY-c5B" firstAttribute="top" secondItem="hFQ-Ab-J3C" secondAttribute="top" id="PXg-sV-axh"/>
+                            <constraint firstItem="dbw-3D-RbV" firstAttribute="top" secondItem="hFQ-Ab-J3C" secondAttribute="top" id="RHR-uO-l5M"/>
                             <constraint firstItem="aKn-HY-c5B" firstAttribute="leading" secondItem="hFQ-Ab-J3C" secondAttribute="leading" id="SdW-dy-LyS"/>
                             <constraint firstItem="PrF-LO-tpi" firstAttribute="leading" secondItem="hFQ-Ab-J3C" secondAttribute="leading" id="X5M-A4-iY6"/>
                             <constraint firstAttribute="trailing" secondItem="PrF-LO-tpi" secondAttribute="trailing" id="fgH-IK-Ee4"/>
+                            <constraint firstAttribute="bottom" secondItem="dbw-3D-RbV" secondAttribute="bottom" id="rvZ-nh-V32"/>
                             <constraint firstAttribute="trailing" secondItem="aKn-HY-c5B" secondAttribute="trailing" id="vin-eH-11d"/>
                         </constraints>
                     </view>
@@ -1760,7 +1760,7 @@
                                         <constraint firstItem="6cJ-eE-R77" firstAttribute="centerX" secondItem="zug-hn-Eft" secondAttribute="centerX" id="aac-b6-sSV"/>
                                     </constraints>
                                 </view>
-                                <color key="fillColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="fillColor" white="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </box>
                         </subviews>
                         <constraints>
