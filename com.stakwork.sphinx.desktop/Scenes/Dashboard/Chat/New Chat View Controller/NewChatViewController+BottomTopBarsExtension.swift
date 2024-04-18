@@ -317,6 +317,14 @@ extension NewChatViewController : ChatBottomViewDelegate {
         )
     }
     
+    func hideModals() -> Bool {
+        if !childViewControllerContainer.isHidden {
+            childViewControllerContainer.hideView()
+            return true
+        }
+        return false
+    }
+    
     func shouldUpdateMentionSuggestionsWith(_ object: [MentionOrMacroItem]) {
         chatMentionAutocompleteDataSource?.setViewWidth(viewWidth: self.chatCollectionView.frame.width)
         

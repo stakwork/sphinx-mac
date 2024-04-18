@@ -405,8 +405,20 @@ class DashboardViewController: NSViewController {
         self.escapeMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (event) in
             if event.keyCode == 53 { // 53 is the key code for the Escape key
                 // Perform your action when the Escape key is pressed
+                
+                ///Hide dashboard views popups (Profile, Create Tribe, etc)
                 if !self.presenterContainerBGView.isHidden {
                     WindowsManager.sharedInstance.dismissViewFromCurrentWindow()
+                    return nil
+                ///Hide modals (auth, etc)
+                } else if !self.modalsContainerView.isHidden {
+                    for childVC in self.children {
+                        if let childVC = childVC as? DashboardModalsViewController {
+                            childVC.shouldDismissModals()
+                        }
+                    }
+                ///Hide chat modals (send payment, calls, etc)
+                } else if self.newDetailViewController?.hideModals() == true {
                     return nil
                 }
             }
