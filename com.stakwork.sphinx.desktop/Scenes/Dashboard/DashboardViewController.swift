@@ -621,6 +621,7 @@ extension DashboardViewController : DashboardVCDelegate {
             child: newChatVCController,
             container: rightSplittedView
         )
+        dashboardDetailViewController?.closeButtonTapped()
         
         newDetailViewController = newChatVCController
         newDetailViewController?.setMessageFieldActive()

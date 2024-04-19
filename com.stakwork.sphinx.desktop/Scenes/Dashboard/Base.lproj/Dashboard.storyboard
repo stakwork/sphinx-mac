@@ -94,7 +94,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="19x-YZ-MGN" secondAttribute="bottom" id="7Cj-RW-gTC"/>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="DhN-a9-O1h"/>
-                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="K12-UG-WFt"/>
+                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="448" id="K12-UG-WFt"/>
                                                             <constraint firstAttribute="trailing" secondItem="19x-YZ-MGN" secondAttribute="trailing" id="Pmk-FB-HXn"/>
                                                             <constraint firstItem="19x-YZ-MGN" firstAttribute="top" secondItem="5cv-NJ-L3p" secondAttribute="top" id="qtk-7w-pEt"/>
                                                             <constraint firstItem="19x-YZ-MGN" firstAttribute="leading" secondItem="5cv-NJ-L3p" secondAttribute="leading" id="wAi-Iz-go6"/>

@@ -190,7 +190,6 @@ class WindowsManager {
         with title: String,
         identifier: String? = nil,
         contentVC: NSViewController,
-        hideDivider: Bool = true,
         shouldReplace: Bool = true
     ) {
         guard let keyWindow = NSApplication.shared.keyWindow, 

@@ -52,7 +52,6 @@ class DashboardDetailViewController: NSViewController {
         self.addChildVC(child: vc, container: containerView)
         guard let threadVC = vc as? NewChatViewController else { return }
         threadVC.chatBottomView.messageFieldView.setupForThread()
-//        threadVC.resizeSubviews(frame: containerView.bounds)
     }
     
     func updateVCTitle() {

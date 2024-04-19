@@ -23,13 +23,11 @@ extension NewChatViewController : ChatHeaderViewDelegate {
                 windowSize: self.view.window?.frame.size
             )
           
-            WindowsManager.sharedInstance.showNewWindow(
-                with: "threads-list".localized,
-                size: CGSize(width: 450, height: 700),
-                centeredIn: self.view.window,
-                identifier: "threads-list",
-                contentVC: threadsListVC
-            )
+            WindowsManager.sharedInstance
+                .showVCOnRightmostPanelWindow(with: "threads-list".localized,
+                                              identifier: "threads-list",
+                                              contentVC: threadsListVC,
+                                              shouldReplace: false)
         }
     }
     
