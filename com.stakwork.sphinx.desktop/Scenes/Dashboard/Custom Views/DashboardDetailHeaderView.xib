@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="DashboardDetailHeaderView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="backButton" destination="viw-Ea-oXk" id="FNz-JW-2v6"/>
+                <outlet property="closeButton" destination="4M3-5v-ixa" id="FRu-34-bKe"/>
+                <outlet property="contentView" destination="R65-74-UBK" id="WW5-OF-dbC"/>
+                <outlet property="headerTitle" destination="9oG-zA-O3y" id="8yz-Gb-JAW"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="R65-74-UBK">
+            <rect key="frame" x="0.0" y="0.0" width="490" height="96"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="wdV-xH-YDI">
+                    <rect key="frame" x="0.0" y="0.0" width="490" height="96"/>
+                    <view key="contentView" id="GGz-Dy-M3p">
+                        <rect key="frame" x="1" y="1" width="488" height="94"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="4M3-5v-ixa">
+                                <rect key="frame" x="442" y="31.5" width="28.5" height="32"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="xmark" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="fOE-uK-5M9">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="28" id="WAg-s9-K8d"/>
+                                    <constraint firstAttribute="height" constant="28" id="evp-gy-4Bh"/>
+                                </constraints>
+                            </button>
+                            <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FhQ-xK-Ti1">
+                                <rect key="frame" x="20" y="33" width="402" height="28"/>
+                                <subviews>
+                                    <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="viw-Ea-oXk">
+                                        <rect key="frame" x="0.0" y="17.5" width="28" height="12"/>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="arrow.left" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Frg-0M-gTq">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="28" id="Dk4-RT-h6M"/>
+                                        </constraints>
+                                    </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9oG-zA-O3y">
+                                        <rect key="frame" x="-2" y="4" width="406" height="21"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="uDX-sy-Pfv">
+                                            <font key="font" size="18" name="Roboto-Bold"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="pC5-9M-56p"/>
+                                </constraints>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="4M3-5v-ixa" secondAttribute="trailing" constant="18" id="0Yw-Zk-gzy"/>
+                            <constraint firstItem="FhQ-xK-Ti1" firstAttribute="leading" secondItem="GGz-Dy-M3p" secondAttribute="leading" constant="20" id="Pe5-8R-Sev"/>
+                            <constraint firstItem="FhQ-xK-Ti1" firstAttribute="centerY" secondItem="GGz-Dy-M3p" secondAttribute="centerY" id="Tf3-0n-Xha"/>
+                            <constraint firstItem="4M3-5v-ixa" firstAttribute="leading" secondItem="FhQ-xK-Ti1" secondAttribute="trailing" constant="20" id="rxv-7f-Hgd"/>
+                            <constraint firstItem="4M3-5v-ixa" firstAttribute="centerY" secondItem="GGz-Dy-M3p" secondAttribute="centerY" id="tY1-rD-Aye"/>
+                        </constraints>
+                    </view>
+                    <color key="fillColor" name="HeaderBG"/>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="wdV-xH-YDI" secondAttribute="bottom" id="Qrt-rY-Wzi"/>
+                <constraint firstItem="wdV-xH-YDI" firstAttribute="leading" secondItem="R65-74-UBK" secondAttribute="leading" id="Xtx-Uv-67C"/>
+                <constraint firstAttribute="trailing" secondItem="wdV-xH-YDI" secondAttribute="trailing" id="jrm-dH-tN6"/>
+                <constraint firstItem="wdV-xH-YDI" firstAttribute="top" secondItem="R65-74-UBK" secondAttribute="top" id="lMz-8e-7qr"/>
+            </constraints>
+            <point key="canvasLocation" x="5.5" y="8"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="arrow.left" catalog="system" width="15" height="12"/>
+        <image name="xmark" catalog="system" width="14" height="13"/>
+        <namedColor name="HeaderBG">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
