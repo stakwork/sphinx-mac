@@ -198,7 +198,6 @@ class WindowsManager {
         else {
             return
         }
-        print("Here is the identifier: \(identifier)")
         dashboardVC.rightDetailSplittedView.isHidden = false
         if let detailVC = dashboardVC.dashboardDetailViewController {
             detailVC.displayVC(contentVC, vcTitle: title, shouldReplace: shouldReplace)

@@ -12,4 +12,8 @@ class ThreadVCContainer: NSView {
     
     override func mouseDown(with event: NSEvent) {}
     
+    func resizeSubviews(frame: NSRect) {
+        self.frame = frame
+    }
+    
 }

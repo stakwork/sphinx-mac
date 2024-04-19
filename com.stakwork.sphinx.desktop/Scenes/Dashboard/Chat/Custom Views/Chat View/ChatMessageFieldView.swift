@@ -33,6 +33,9 @@ class ChatMessageFieldView: NSView, LoadableNib {
     
     @IBOutlet weak var messageContainerHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var addDocumentCustomView: NSView!
+    @IBOutlet weak var setPriceCustomView: NSBox!
+    
     let kTextViewVerticalMargins: CGFloat = 41
     let kCharacterLimit = 1000
     let kTextViewLineHeight: CGFloat = 19
@@ -61,6 +64,11 @@ class ChatMessageFieldView: NSView, LoadableNib {
         super.init(frame: frameRect)
         loadViewFromNib()
         setupView()
+    }
+    
+    func setupForThread() {
+        addDocumentCustomView.isHidden = true
+        setPriceCustomView.isHidden = true
     }
     
     func setupView() {

@@ -34,6 +34,10 @@ class DashboardDetailViewController: NSViewController {
     
     func resizeSubviews(frame: NSRect) {
         view.frame = frame
+        guard let currentVC = addedVC?.last else {
+            return
+        }
+        currentVC?.view.frame = containerView.bounds
     }
     
     func displayVC(_ vc: NSViewController, vcTitle: String, shouldReplace: Bool = true) {
@@ -46,6 +50,9 @@ class DashboardDetailViewController: NSViewController {
         updateVCTitle()
         ShowBackButton()
         self.addChildVC(child: vc, container: containerView)
+        guard let threadVC = vc as? NewChatViewController else { return }
+        threadVC.chatBottomView.messageFieldView.setupForThread()
+//        threadVC.resizeSubviews(frame: containerView.bounds)
     }
     
     func updateVCTitle() {
