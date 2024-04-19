@@ -89,7 +89,7 @@ extension NewChatViewController : ChatHeaderViewDelegate {
             WindowsManager.sharedInstance.showChatDetailsWindow(
                 vc: contactVC,
                 window: view.window,
-                title: "contact".localized,
+                title: "contact.info".localized,
                 identifier: "contact-window",
                 size: CGSize(width: 414, height: 629)
 
@@ -105,7 +105,7 @@ extension NewChatViewController : ChatHeaderViewDelegate {
             WindowsManager.sharedInstance.showChatDetailsWindow(
                 vc: chatDetailsVC,
                 window: view.window,
-                title: "group.details".localized,
+                title: "tribe.info".localized,
                 identifier: "chat-window",
                 size: CGSize(width: 414, height: 629)
 

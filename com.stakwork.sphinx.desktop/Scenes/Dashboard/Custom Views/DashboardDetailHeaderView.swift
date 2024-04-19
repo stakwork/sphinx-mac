@@ -31,6 +31,10 @@ class DashboardDetailHeaderView: NSView, LoadableNib {
         hideBackButton(hide: true)
     }
     
+    func setHeaderTitle(_ title: String) {
+        headerTitle.stringValue = title
+    }
+    
     @IBAction func backButtonTapped(_ sender: NSButton) {
         delegate?.backButtonTapped()
     }

@@ -1891,18 +1891,18 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="WBG-zn-Bex" customClass="DashboardDetailHeaderView" customModule="Sphinx" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="818" width="600" height="72"/>
+                                                    <rect key="frame" x="0.0" y="830" width="600" height="60"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="72" id="tMb-ey-vyo"/>
+                                                        <constraint firstAttribute="height" constant="60" id="tMb-ey-vyo"/>
                                                     </constraints>
                                                 </customView>
-                                                <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e6E-8Z-I04" customClass="ThreadVCContainer" customModule="Sphinx" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="890"/>
+                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="e6E-8Z-I04" customClass="ThreadVCContainer" customModule="Sphinx" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="830"/>
                                                     <subviews>
                                                         <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Syu-JH-Oyd">
-                                                            <rect key="frame" x="0.0" y="0.0" width="600" height="890"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="600" height="830"/>
                                                             <view key="contentView" id="JD7-es-ZnE">
-                                                                <rect key="frame" x="0.0" y="0.0" width="600" height="890"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="600" height="830"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             </view>
                                                             <color key="fillColor" name="Body"/>
@@ -1919,7 +1919,7 @@
                                             <constraints>
                                                 <constraint firstItem="WBG-zn-Bex" firstAttribute="leading" secondItem="tZd-td-tjp" secondAttribute="leading" id="1HM-WJ-p4b"/>
                                                 <constraint firstAttribute="trailing" secondItem="e6E-8Z-I04" secondAttribute="trailing" id="3mB-Fe-BQ2"/>
-                                                <constraint firstItem="e6E-8Z-I04" firstAttribute="top" secondItem="tZd-td-tjp" secondAttribute="top" id="H35-ax-401"/>
+                                                <constraint firstItem="e6E-8Z-I04" firstAttribute="top" secondItem="WBG-zn-Bex" secondAttribute="bottom" id="H35-ax-401"/>
                                                 <constraint firstItem="WBG-zn-Bex" firstAttribute="top" secondItem="tZd-td-tjp" secondAttribute="top" id="Jnd-w6-0Uw"/>
                                                 <constraint firstItem="e6E-8Z-I04" firstAttribute="leading" secondItem="tZd-td-tjp" secondAttribute="leading" id="g1h-tf-ED9"/>
                                                 <constraint firstAttribute="bottom" secondItem="e6E-8Z-I04" secondAttribute="bottom" id="iDb-5c-85C"/>
@@ -1945,6 +1945,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="containerView" destination="e6E-8Z-I04" id="V8J-Zu-Fpa"/>
                         <outlet property="headerView" destination="WBG-zn-Bex" id="wKK-Dr-DHS"/>
                     </connections>
                 </viewController>
