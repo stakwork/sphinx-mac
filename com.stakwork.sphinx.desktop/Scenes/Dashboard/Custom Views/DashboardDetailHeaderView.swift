@@ -17,8 +17,8 @@ class DashboardDetailHeaderView: NSView, LoadableNib {
     weak var delegate: DetailHeaderViewDelegate?
     
     @IBOutlet var contentView: NSView!
-    @IBOutlet weak var closeButton: NSButton!
-    @IBOutlet weak var backButton: NSButton!
+    @IBOutlet weak var closeButton: CustomButton!
+    @IBOutlet weak var backButton: CustomButton!
     @IBOutlet weak var headerTitle: NSTextField!
     
     required init?(coder: NSCoder) {
@@ -28,6 +28,9 @@ class DashboardDetailHeaderView: NSView, LoadableNib {
     }
     
     private func setup() {
+        closeButton.cursor = .pointingHand
+        backButton.cursor = .pointingHand
+        
         hideBackButton(hide: true)
     }
     

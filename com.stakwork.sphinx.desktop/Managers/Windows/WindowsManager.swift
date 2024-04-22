@@ -186,18 +186,22 @@ class WindowsManager {
         }
     }
     
-    func showVCOnRightmostPanelWindow(
+    func showVCOnRightPanelWindow(
         with title: String,
         identifier: String? = nil,
         contentVC: NSViewController,
-        shouldReplace: Bool = true
+        shouldReplace: Bool = true,
+        panelFixedWidth: Bool = false
     ) {
-        guard let keyWindow = NSApplication.shared.keyWindow, 
-                let dashboardVC = keyWindow.contentViewController as? DashboardViewController
-        else {
+        guard let keyWindow = NSApplication.shared.keyWindow, let dashboardVC = keyWindow.contentViewController as? DashboardViewController else {
             return
         }
+        
+        dashboardVC.rightDetailViewMinWidth.constant = panelFixedWidth ? DashboardViewController.kRightPanelMaxWidth : DashboardViewController.kRightPanelMinWidth
+        dashboardVC.rightDetailViewMaxWidth.constant = DashboardViewController.kRightPanelMaxWidth
+        
         dashboardVC.rightDetailSplittedView.isHidden = false
+        
         if let detailVC = dashboardVC.dashboardDetailViewController {
             detailVC.displayVC(contentVC, vcTitle: title, shouldReplace: shouldReplace)
         }
@@ -338,21 +342,21 @@ class WindowsManager {
     }
     
     func showPubKeyWindow(vc: NSViewController, window: NSWindow?) {
-        showVCOnRightmostPanelWindow(with: "pubkey".localized, 
+        showVCOnRightPanelWindow(with: "pubkey".localized,
                                      identifier: "pubkey-window",
                                      contentVC: vc,
                                      shouldReplace: false)
     }
     
     func showTribeQRWindow(vc: NSViewController, window: NSWindow?) {
-        showVCOnRightmostPanelWindow(with: "share".localized,
+        showVCOnRightPanelWindow(with: "share".localized,
                                      identifier: "share-window",
                                      contentVC: vc,
                                      shouldReplace: false)
     }
     
     func showChatDetailsWindow(vc: NSViewController, window: NSWindow?, title: String, identifier: String, size: CGSize) {
-        showVCOnRightmostPanelWindow(with: title,
+        showVCOnRightPanelWindow(with: title,
                                      identifier: identifier,
                                      contentVC: vc)
     }

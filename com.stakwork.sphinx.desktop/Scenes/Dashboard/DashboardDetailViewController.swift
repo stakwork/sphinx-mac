@@ -34,6 +34,7 @@ class DashboardDetailViewController: NSViewController {
     
     func resizeSubviews(frame: NSRect) {
         view.frame = frame
+        
         guard let currentVC = addedVC?.last else {
             return
         }
@@ -44,11 +45,13 @@ class DashboardDetailViewController: NSViewController {
         if shouldReplace {
             backButtonTapped()
         }
+        
         containerView.isHidden = false
         addedVC?.append(vc)
         addedTitles?.append(vcTitle)
         updateVCTitle()
-        ShowBackButton()
+        showBackButton()
+        
         self.addChildVC(child: vc, container: containerView)
         guard let threadVC = vc as? NewChatViewController else { return }
         threadVC.chatBottomView.messageFieldView.setupForThread()
@@ -59,7 +62,7 @@ class DashboardDetailViewController: NSViewController {
         headerView.setHeaderTitle(title)
     }
     
-    func ShowBackButton() {
+    func showBackButton() {
         if addedVC?.count ?? 0 > 1 {
             headerView.hideBackButton(hide: false)
         } else {
@@ -70,7 +73,6 @@ class DashboardDetailViewController: NSViewController {
 
 extension DashboardDetailViewController: DetailHeaderViewDelegate {
     func backButtonTapped() {
-        print("Back button clicked")
         if let last = addedVC?.last, let last {
             self.removeChildVC(child: last)
             self.addedTitles?.removeLast()
@@ -81,14 +83,13 @@ extension DashboardDetailViewController: DetailHeaderViewDelegate {
                 updateVCTitle()
             }
             
-            var lastVC = self.addedVC?.removeLast()
-            lastVC = nil
-            ShowBackButton()
+            var _ = self.addedVC?.removeLast()
+            
+            showBackButton()
         }
     }
     
     func closeButtonTapped() {
-        print("Close button clicked")
         guard let addedVC else { return }
         for vc in addedVC {
             if let vc {

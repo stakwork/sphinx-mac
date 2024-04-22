@@ -15,6 +15,9 @@ class DashboardViewController: NSViewController {
     @IBOutlet weak var leftSplittedView: NSView!
     @IBOutlet weak var rightSplittedView: NSView!
     @IBOutlet weak var rightDetailSplittedView: NSView!
+    @IBOutlet weak var rightDetailViewMinWidth: NSLayoutConstraint!
+    @IBOutlet weak var rightDetailViewMaxWidth: NSLayoutConstraint!
+    
     @IBOutlet weak var modalsContainerView: NSView!
     
     @IBOutlet weak var presenterBlurredBackground: NSVisualEffectView!
@@ -52,6 +55,9 @@ class DashboardViewController: NSViewController {
     
     public static let kPodcastPlayerWidth: CGFloat = 350
     
+    public static let kRightPanelMaxWidth: CGFloat = 450
+    public static let kRightPanelMinWidth: CGFloat = 320
+    
     var resizeTimer : Timer? = nil
     var escapeMonitor: Any? = nil
     
@@ -71,6 +77,8 @@ class DashboardViewController: NSViewController {
         
         dashboardSplitView.delegate = self
         dashboardRightSplitView.delegate = self
+        
+        dashboardRightSplitView.dividerStyle = .thin
         
         SphinxSocketManager.sharedInstance.setDelegate(delegate: self)
         
@@ -450,6 +458,10 @@ class DashboardViewController: NSViewController {
                 ///Hide chat modals (send payment, calls, etc)
                 } else if self.newDetailViewController?.hideModals() == true {
                     return nil
+                ///Hide right panel view
+                } else if !self.rightDetailSplittedView.isHidden {
+                    self.dashboardDetailViewController?.closeButtonTapped()
+                    return nil
                 }
             }
             return event
@@ -461,25 +473,6 @@ extension DashboardViewController : NSSplitViewDelegate {
     func splitViewDidResizeSubviews(_ notification: Notification) {
         if let _ = view.window {
             resizeSubviews()
-
-//            let (minWidth, _) = getWindowMinWidth(leftColumnVisible: !leftSplittedView.isHidden)
-//
-//            window.minSize = CGSize(
-//                width: minWidth,
-//                height: kWindowMinHeight
-//            )
-//
-//            if window.frame.width < minWidth {
-//
-//                let newFrame = CGRect(
-//                    x: window.frame.origin.x,
-//                    y: window.frame.origin.y,
-//                    width: minWidth,
-//                    height: window.frame.height
-//                )
-//
-//                view.window?.setFrame(newFrame, display: true)
-//            }
 
             resizeTimer?.invalidate()
             resizeTimer = Timer.scheduledTimer(
@@ -495,6 +488,7 @@ extension DashboardViewController : NSSplitViewDelegate {
     @objc func resizeSubviews() {
         newDetailViewController?.resizeSubviews(frame: rightSplittedView.bounds)
         dashboardDetailViewController?.resizeSubviews(frame: rightDetailSplittedView.bounds)
+        
         listViewController?.view.frame = leftSplittedView.bounds
     }
 }
@@ -774,6 +768,7 @@ extension DashboardViewController: NewContactDismissDelegate {
 
 extension DashboardViewController: DashboardDetailDismissDelegate {
     func closeButtonTapped() {
+        rightDetailViewMaxWidth.constant = 0
         rightDetailSplittedView.isHidden = true
     }
 }

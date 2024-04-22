@@ -221,7 +221,7 @@ extension GroupDetailsViewController : MessageOptionsDelegate {
             case .Edit:
                 let createTribeVC = CreateTribeViewController.instantiate(chat: chat)
                 WindowsManager.sharedInstance
-                    .showVCOnRightmostPanelWindow(with: "edit.tribe".localized,
+                    .showVCOnRightPanelWindow(with: "edit.tribe".localized,
                                                   identifier: "edit-tribe-window",
                                                   contentVC: createTribeVC,
                                                   shouldReplace: false)

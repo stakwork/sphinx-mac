@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
-        <plugIn identifier="com.apple.WebKit2IBPlugin" version="22505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -83,8 +83,8 @@
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="19x-YZ-MGN" secondAttribute="bottom" id="7Cj-RW-gTC"/>
-                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="DhN-a9-O1h"/>
-                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="448" id="K12-UG-WFt"/>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="DhN-a9-O1h"/>
+                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="450" id="K12-UG-WFt"/>
                                                             <constraint firstAttribute="trailing" secondItem="19x-YZ-MGN" secondAttribute="trailing" id="Pmk-FB-HXn"/>
                                                             <constraint firstItem="19x-YZ-MGN" firstAttribute="top" secondItem="5cv-NJ-L3p" secondAttribute="top" id="qtk-7w-pEt"/>
                                                             <constraint firstItem="19x-YZ-MGN" firstAttribute="leading" secondItem="5cv-NJ-L3p" secondAttribute="leading" id="wAi-Iz-go6"/>
@@ -335,6 +335,8 @@
                         <outlet property="presenterTitleLabel" destination="sht-p7-2gS" id="jHb-rC-HnK"/>
                         <outlet property="presenterViewHeightConstraint" destination="Cc6-6n-Pdu" id="Ntd-v2-QCR"/>
                         <outlet property="rightDetailSplittedView" destination="5cv-NJ-L3p" id="aog-r3-zZw"/>
+                        <outlet property="rightDetailViewMaxWidth" destination="K12-UG-WFt" id="d2N-bK-m7M"/>
+                        <outlet property="rightDetailViewMinWidth" destination="DhN-a9-O1h" id="fxh-Sn-ffn"/>
                         <outlet property="rightSplittedView" destination="kk1-mv-gZj" id="zpQ-On-mJF"/>
                     </connections>
                 </viewController>
@@ -1471,14 +1473,14 @@
                                 </view>
                                 <color key="fillColor" name="Body"/>
                             </box>
-                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43I-sd-2AK">
+                            <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43I-sd-2AK">
                                 <rect key="frame" x="0.0" y="0.0" width="450" height="605"/>
                                 <clipView key="contentView" drawsBackground="NO" id="SVt-j8-5dV">
-                                    <rect key="frame" x="1" y="1" width="448" height="603"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="605"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView selectable="YES" id="vC5-Tp-tqG">
-                                            <rect key="frame" x="0.0" y="0.0" width="448" height="158"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="450" height="605"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="q4e-ka-DwX">
                                                 <size key="itemSize" width="50" height="50"/>
@@ -1488,11 +1490,8 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </clipView>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="450" id="Zkp-HV-rMw"/>
-                                </constraints>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="ebP-2Z-5E0">
-                                    <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                    <rect key="frame" x="-100" y="-100" width="233" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="tHt-kb-Oea">
@@ -1525,10 +1524,8 @@
                             <constraint firstAttribute="bottom" secondItem="43I-sd-2AK" secondAttribute="bottom" id="dxU-TA-PUL"/>
                             <constraint firstItem="yQO-k6-xal" firstAttribute="centerX" secondItem="8px-8u-38G" secondAttribute="centerX" id="emr-xg-2io"/>
                             <constraint firstAttribute="trailing" secondItem="OoJ-Iu-jIH" secondAttribute="trailing" id="mDc-uZ-DIf"/>
-                            <constraint firstAttribute="trailing" secondItem="43I-sd-2AK" secondAttribute="trailing" id="mTB-qE-lXy"/>
                             <constraint firstItem="OoJ-Iu-jIH" firstAttribute="top" secondItem="8px-8u-38G" secondAttribute="top" id="raB-8x-d7T"/>
                             <constraint firstItem="yQO-k6-xal" firstAttribute="centerY" secondItem="8px-8u-38G" secondAttribute="centerY" id="tLP-Uz-Ioe"/>
-                            <constraint firstItem="43I-sd-2AK" firstAttribute="leading" secondItem="8px-8u-38G" secondAttribute="leading" id="w0E-HU-xBR"/>
                         </constraints>
                     </view>
                     <connections>

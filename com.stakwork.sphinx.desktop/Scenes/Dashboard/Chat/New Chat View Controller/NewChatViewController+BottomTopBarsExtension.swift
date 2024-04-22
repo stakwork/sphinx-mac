@@ -19,15 +19,16 @@ extension NewChatViewController : ChatHeaderViewDelegate {
         if let chatId = chat?.id {
             let threadsListVC = ThreadsListViewController.instantiate(
                 chatId: chatId,
-                delegate: self,
-                windowSize: self.view.window?.frame.size
+                delegate: self
             )
           
-            WindowsManager.sharedInstance
-                .showVCOnRightmostPanelWindow(with: "threads-list".localized,
-                                              identifier: "threads-list",
-                                              contentVC: threadsListVC,
-                                              shouldReplace: false)
+            WindowsManager.sharedInstance.showVCOnRightPanelWindow(
+                with: "threads-list".localized,
+                identifier: "threads-list",
+                contentVC: threadsListVC,
+                shouldReplace: false,
+                panelFixedWidth: true
+            )
         }
     }
     

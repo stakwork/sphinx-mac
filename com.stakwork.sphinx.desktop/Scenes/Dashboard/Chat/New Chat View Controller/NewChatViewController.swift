@@ -300,11 +300,13 @@ class NewChatViewController: DashboardSplittedViewController {
             return
         }
         
-        WindowsManager.sharedInstance
-            .showVCOnRightmostPanelWindow(with: "thread-chat".localized,
-                                          identifier: "thread-chat-identifier",
-                                          contentVC: threadVC,
-                                          shouldReplace: false)
+        WindowsManager.sharedInstance.showVCOnRightPanelWindow(
+            with: "thread-chat".localized,
+            identifier: "thread-chat-identifier",
+            contentVC: threadVC,
+            shouldReplace: false,
+            panelFixedWidth: true
+        )
     }
     
     func resizeSubviews(frame: NSRect) {
