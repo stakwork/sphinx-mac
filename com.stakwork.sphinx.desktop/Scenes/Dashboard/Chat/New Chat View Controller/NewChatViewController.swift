@@ -299,12 +299,12 @@ class NewChatViewController: DashboardSplittedViewController {
         guard let threadVC = threadVC else {
             return
         }
-
-        addChildVC(child: threadVC, container: threadVCContainer)
-
-        threadVC.setMessageFieldActive()
         
-        threadVCContainer.isHidden = false
+        WindowsManager.sharedInstance
+            .showVCOnRightmostPanelWindow(with: "thread-chat".localized,
+                                          identifier: "thread-chat-identifier",
+                                          contentVC: threadVC,
+                                          shouldReplace: false)
     }
     
     func resizeSubviews(frame: NSRect) {

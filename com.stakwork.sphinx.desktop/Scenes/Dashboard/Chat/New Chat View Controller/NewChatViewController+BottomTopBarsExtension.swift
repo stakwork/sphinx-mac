@@ -23,13 +23,11 @@ extension NewChatViewController : ChatHeaderViewDelegate {
                 windowSize: self.view.window?.frame.size
             )
           
-            WindowsManager.sharedInstance.showNewWindow(
-                with: "threads-list".localized,
-                size: CGSize(width: 450, height: 700),
-                centeredIn: self.view.window,
-                identifier: "threads-list",
-                contentVC: threadsListVC
-            )
+            WindowsManager.sharedInstance
+                .showVCOnRightmostPanelWindow(with: "threads-list".localized,
+                                              identifier: "threads-list",
+                                              contentVC: threadsListVC,
+                                              shouldReplace: false)
         }
     }
     
@@ -89,7 +87,7 @@ extension NewChatViewController : ChatHeaderViewDelegate {
             WindowsManager.sharedInstance.showChatDetailsWindow(
                 vc: contactVC,
                 window: view.window,
-                title: "contact".localized,
+                title: "contact.info".localized,
                 identifier: "contact-window",
                 size: CGSize(width: 414, height: 629)
 
@@ -105,7 +103,7 @@ extension NewChatViewController : ChatHeaderViewDelegate {
             WindowsManager.sharedInstance.showChatDetailsWindow(
                 vc: chatDetailsVC,
                 window: view.window,
-                title: "group.details".localized,
+                title: "tribe.info".localized,
                 identifier: "chat-window",
                 size: CGSize(width: 414, height: 629)
 
