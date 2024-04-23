@@ -207,7 +207,11 @@ class NewContactViewController: NSViewController {
     
     func closeWindow() {
         CoreDataManager.sharedManager.saveContext()
-        self.dismissDelegate?.shouldDismissView()
+        if let dismissDelegate = self.dismissDelegate {
+            dismissDelegate.shouldDismissView()
+        } else {
+            WindowsManager.sharedInstance.dismissViewFromCurrentWindow()
+        }
     }
 
     func showErrorAlert(message: String) {
