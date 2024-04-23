@@ -203,7 +203,12 @@ class WindowsManager {
         dashboardVC.rightDetailSplittedView.isHidden = false
         
         if let detailVC = dashboardVC.dashboardDetailViewController {
-            detailVC.displayVC(contentVC, vcTitle: title, shouldReplace: shouldReplace)
+            detailVC.displayVC(
+                contentVC,
+                vcTitle: title,
+                shouldReplace: shouldReplace,
+                fixedWidth: panelFixedWidth ? DashboardViewController.kRightPanelMaxWidth : nil
+            )
         }
     }
     

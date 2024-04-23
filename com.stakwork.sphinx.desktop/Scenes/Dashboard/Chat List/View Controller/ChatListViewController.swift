@@ -356,7 +356,7 @@ class ChatListViewController : DashboardSplittedViewController {
                         vc: contactVC,
                         title: "new.contact".localized,
                         identifier: "new-contact-window",
-                        height: 500
+                        height: 600
                     )
                 }
             }
