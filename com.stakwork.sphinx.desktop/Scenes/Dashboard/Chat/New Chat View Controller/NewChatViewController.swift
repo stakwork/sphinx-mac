@@ -34,7 +34,6 @@ class NewChatViewController: DashboardSplittedViewController {
     @IBOutlet weak var mentionsScrollViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var childViewControllerContainer: ChildVCContainer!
-    @IBOutlet weak var threadVCContainer: ThreadVCContainer!
     @IBOutlet weak var pinMessageDetailView: PinMessageDetailView!
     @IBOutlet weak var pinMessageNotificationView: PinNotificationView!
     

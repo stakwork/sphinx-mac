@@ -41,9 +41,18 @@ class DashboardDetailViewController: NSViewController {
         currentVC?.view.frame = containerView.bounds
     }
     
-    func displayVC(_ vc: NSViewController, vcTitle: String, shouldReplace: Bool = true) {
+    func displayVC(
+        _ vc: NSViewController,
+        vcTitle: String,
+        shouldReplace: Bool = true,
+        fixedWidth: CGFloat? = nil
+    ) {
         if shouldReplace {
             backButtonTapped()
+        }
+        
+        if let fixedWidth = fixedWidth {
+            containerView.frame.size.width = fixedWidth
         }
         
         containerView.isHidden = false

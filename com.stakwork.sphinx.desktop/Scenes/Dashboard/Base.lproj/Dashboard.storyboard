@@ -1008,7 +1008,7 @@
                                                                             </constraints>
                                                                             <color key="fillColor" name="Divider"/>
                                                                         </box>
-                                                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="hrp-5k-g3S">
+                                                                        <customView clipsToBounds="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hrp-5k-g3S">
                                                                             <rect key="frame" x="0.0" y="60" width="600" height="719"/>
                                                                             <subviews>
                                                                                 <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="X86-z6-O1z">
@@ -1244,31 +1244,8 @@
                                                         <real value="3.4028234663852886e+38"/>
                                                     </customSpacing>
                                                 </stackView>
-                                                <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EJZ-2Q-C30" customClass="ThreadVCContainer" customModule="Sphinx" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="890"/>
-                                                    <subviews>
-                                                        <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="kQj-i6-wDC">
-                                                            <rect key="frame" x="0.0" y="0.0" width="600" height="890"/>
-                                                            <view key="contentView" id="cPA-kt-6cW">
-                                                                <rect key="frame" x="0.0" y="0.0" width="600" height="890"/>
-                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            </view>
-                                                            <color key="fillColor" name="Body"/>
-                                                        </box>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="kQj-i6-wDC" firstAttribute="top" secondItem="EJZ-2Q-C30" secondAttribute="top" id="DMn-UZ-Jo7"/>
-                                                        <constraint firstItem="kQj-i6-wDC" firstAttribute="leading" secondItem="EJZ-2Q-C30" secondAttribute="leading" id="Oko-XX-9fA"/>
-                                                        <constraint firstAttribute="bottom" secondItem="kQj-i6-wDC" secondAttribute="bottom" id="cfZ-bK-QNv"/>
-                                                        <constraint firstAttribute="trailing" secondItem="kQj-i6-wDC" secondAttribute="trailing" id="rau-lZ-ftx"/>
-                                                    </constraints>
-                                                </customView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="EJZ-2Q-C30" secondAttribute="trailing" id="2RZ-KH-2aD"/>
-                                                <constraint firstAttribute="bottom" secondItem="EJZ-2Q-C30" secondAttribute="bottom" id="5e3-Tv-WaJ"/>
-                                                <constraint firstItem="EJZ-2Q-C30" firstAttribute="top" secondItem="fIT-gE-ZaX" secondAttribute="top" id="EOY-cc-7ad"/>
-                                                <constraint firstItem="EJZ-2Q-C30" firstAttribute="leading" secondItem="fIT-gE-ZaX" secondAttribute="leading" id="Q33-fr-geJ"/>
                                                 <constraint firstAttribute="bottom" secondItem="Jge-lT-8sr" secondAttribute="bottom" id="V5F-r6-eYO"/>
                                                 <constraint firstAttribute="trailing" secondItem="Jge-lT-8sr" secondAttribute="trailing" id="cLq-BE-IAz"/>
                                                 <constraint firstItem="Jge-lT-8sr" firstAttribute="top" secondItem="fIT-gE-ZaX" secondAttribute="top" id="fve-4X-igR"/>
@@ -1313,7 +1290,6 @@
                         <outlet property="podcastPlayerView" destination="k2o-Hd-LQD" id="BVc-IC-n0J"/>
                         <outlet property="shimmeringView" destination="00Y-N3-bPz" id="mpz-I2-MeS"/>
                         <outlet property="threadHeaderView" destination="yNm-g6-sMK" id="OFL-i0-KxR"/>
-                        <outlet property="threadVCContainer" destination="EJZ-2Q-C30" id="HSf-V5-L66"/>
                     </connections>
                 </viewController>
                 <customObject id="Bnk-TP-Qxz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

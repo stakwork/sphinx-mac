@@ -225,8 +225,6 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
             
             self.threadVC = nil
             
-            threadVCContainer.isHidden = true
-            
             setMessageFieldActive()
         }
     }
