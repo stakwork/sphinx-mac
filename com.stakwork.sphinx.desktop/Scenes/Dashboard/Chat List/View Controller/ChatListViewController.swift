@@ -12,21 +12,13 @@ class ChatListViewController : DashboardSplittedViewController {
 
     ///IBOutlets
     @IBOutlet weak var headerView: NewChatHeaderView!
-    
-//    @IBOutlet weak var balanceLabel: NSTextField!
-//    @IBOutlet weak var balanceUnitLabel: NSTextField!
     @IBOutlet weak var bottomBar: NSView!
     @IBOutlet weak var searchBarContainer: NSView!
     @IBOutlet weak var searchFieldContainer: NSBox!
     @IBOutlet weak var searchField: NSTextField!
-//    @IBOutlet weak var loadingWheelContainer: NSView!
-//    @IBOutlet weak var loadingWheel: NSProgressIndicator!
     @IBOutlet weak var loadingChatsBox: NSBox!
     @IBOutlet weak var loadingChatsWheel: NSProgressIndicator!
     @IBOutlet weak var searchClearButton: NSButton!
-//    @IBOutlet weak var healthCheckView: HealthCheckView!
-//    @IBOutlet weak var upgradeBox: NSBox!
-//    @IBOutlet weak var upgradeButton: NSButton!
     @IBOutlet weak var chatListVCContainer: NSView!
     @IBOutlet weak var receiveButton: CustomButton!
     @IBOutlet weak var transactionsButton: CustomButton!
@@ -51,13 +43,6 @@ class ChatListViewController : DashboardSplittedViewController {
     var walletBalanceService = WalletBalanceService()
     
     ///Loading
-    var loading = false {
-        didSet {
-//            healthCheckView.isHidden = loading
-//            LoadingWheelHelper.toggleLoadingWheel(loading: loading, loadingWheel: loadingWheel, color: NSColor.white, controls: [])
-        }
-    }
-    
     var loadingChatList = true {
         didSet {
             loadingChatsBox.isHidden = !loadingChatList
@@ -118,9 +103,6 @@ class ChatListViewController : DashboardSplittedViewController {
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        
-        loading = true
-        
         configureHeaderAndBottomBar()
     }
     
@@ -181,7 +163,6 @@ class ChatListViewController : DashboardSplittedViewController {
                         DispatchQueue.main.async {
                             
                             if (restoring) {
-                                self.loading = false
                                 let messagesProgress : Int = Int(Float(progress) * (1.0 - contentProgressShare - contactsProgress))
                                 
                                 if (progress >= 0) {
@@ -230,7 +211,6 @@ class ChatListViewController : DashboardSplittedViewController {
     }
     
     func loadFriendAndReload() {
-        updateBalanceAndCheckVersion()
         
         if chatListViewModel.isRestoring() {
             DispatchQueue.main.async {
@@ -266,24 +246,8 @@ class ChatListViewController : DashboardSplittedViewController {
         }
     }
     
-    func updateBalanceAndCheckVersion() {
-//        updateBalance()
-        shouldCheckAppVersions()
-    }
-    
     func finishLoading() {
         newMessageBubbleHelper.hideLoadingWheel()
-        loading = false
-    }
-    
-    func shouldCheckAppVersions() {        
-//        API.sharedInstance.getAppVersions(callback: { v in
-//            let version = Int(v) ?? 0
-//            let appVersion = Int(Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "0") ?? 0
-//
-//            self.upgradeButton.isHidden = version <= appVersion
-//            self.upgradeBox.isHidden = version <= appVersion
-//        })
     }
     
     func selectRowFor(chatId: Int) {
@@ -293,11 +257,6 @@ class ChatListViewController : DashboardSplittedViewController {
                 contactId: chat.getConversationContact()?.id
             )
         }
-    }
-    
-    @IBAction func refreshButtonClicked(_ sender: Any) {
-        loading = true
-        loadFriendAndReload()
     }
     
     @IBAction func addContactButtonClicked(_ sender: Any) {

@@ -142,7 +142,7 @@ extension ChatListViewController : NSTextFieldDelegate {
 
 extension ChatListViewController : NewContactChatDelegate {
     func shouldReloadContacts() {
-        updateBalanceAndCheckVersion()
+//        updateBalanceAndCheckVersion()
     }
 }
 
