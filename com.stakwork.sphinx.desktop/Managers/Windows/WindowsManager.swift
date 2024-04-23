@@ -186,6 +186,27 @@ class WindowsManager {
         }
     }
     
+    func showVCOnRightPanelWindow(
+        with title: String,
+        identifier: String? = nil,
+        contentVC: NSViewController,
+        shouldReplace: Bool = true,
+        panelFixedWidth: Bool = false
+    ) {
+        guard let keyWindow = NSApplication.shared.keyWindow, let dashboardVC = keyWindow.contentViewController as? DashboardViewController else {
+            return
+        }
+        
+        dashboardVC.rightDetailViewMinWidth.constant = panelFixedWidth ? DashboardViewController.kRightPanelMaxWidth : DashboardViewController.kRightPanelMinWidth
+        dashboardVC.rightDetailViewMaxWidth.constant = DashboardViewController.kRightPanelMaxWidth
+        
+        dashboardVC.rightDetailSplittedView.isHidden = false
+        
+        if let detailVC = dashboardVC.dashboardDetailViewController {
+            detailVC.displayVC(contentVC, vcTitle: title, shouldReplace: shouldReplace)
+        }
+    }
+    
     func showVCOnCurrentWindow(
         with title: String,
         identifier: String? = nil,
@@ -321,36 +342,23 @@ class WindowsManager {
     }
     
     func showPubKeyWindow(vc: NSViewController, window: NSWindow?) {
-        showNewWindow(
-            with: "pubkey".localized,
-            size: CGSize(width: 400, height: 600),
-            centeredIn: window,
-            identifier: "pubkey-window",
-            contentVC: vc,
-            shouldClose: true
-        )
+        showVCOnRightPanelWindow(with: "pubkey".localized,
+                                     identifier: "pubkey-window",
+                                     contentVC: vc,
+                                     shouldReplace: false)
     }
     
     func showTribeQRWindow(vc: NSViewController, window: NSWindow?) {
-        showNewWindow(
-            with: "share.group.link".localized,
-            size: CGSize(width: 400, height: 600),
-            centeredIn: window,
-            identifier: "tribe-qr-window",
-            contentVC: vc,
-            shouldClose: true
-        )
+        showVCOnRightPanelWindow(with: "share".localized,
+                                     identifier: "share-window",
+                                     contentVC: vc,
+                                     shouldReplace: false)
     }
     
     func showChatDetailsWindow(vc: NSViewController, window: NSWindow?, title: String, identifier: String, size: CGSize) {
-        showNewWindow(
-            with: title,
-            size: size,
-            centeredIn: window,
-            identifier: identifier,
-            contentVC: vc,
-            shouldClose: true
-        )
+        showVCOnRightPanelWindow(with: title,
+                                     identifier: identifier,
+                                     contentVC: vc)
     }
     
     func showProfileWindow(vc: NSViewController) {

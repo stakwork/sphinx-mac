@@ -19,16 +19,15 @@ extension NewChatViewController : ChatHeaderViewDelegate {
         if let chatId = chat?.id {
             let threadsListVC = ThreadsListViewController.instantiate(
                 chatId: chatId,
-                delegate: self,
-                windowSize: self.view.window?.frame.size
+                delegate: self
             )
           
-            WindowsManager.sharedInstance.showNewWindow(
+            WindowsManager.sharedInstance.showVCOnRightPanelWindow(
                 with: "threads-list".localized,
-                size: CGSize(width: 450, height: 700),
-                centeredIn: self.view.window,
                 identifier: "threads-list",
-                contentVC: threadsListVC
+                contentVC: threadsListVC,
+                shouldReplace: false,
+                panelFixedWidth: true
             )
         }
     }
@@ -89,7 +88,7 @@ extension NewChatViewController : ChatHeaderViewDelegate {
             WindowsManager.sharedInstance.showChatDetailsWindow(
                 vc: contactVC,
                 window: view.window,
-                title: "contact".localized,
+                title: "contact.info".localized,
                 identifier: "contact-window",
                 size: CGSize(width: 414, height: 629)
 
@@ -105,7 +104,7 @@ extension NewChatViewController : ChatHeaderViewDelegate {
             WindowsManager.sharedInstance.showChatDetailsWindow(
                 vc: chatDetailsVC,
                 window: view.window,
-                title: "group.details".localized,
+                title: "tribe.info".localized,
                 identifier: "chat-window",
                 size: CGSize(width: 414, height: 629)
 
@@ -315,6 +314,14 @@ extension NewChatViewController : ChatBottomViewDelegate {
             delegate: self,
             mode: .Request
         )
+    }
+    
+    func hideModals() -> Bool {
+        if !childViewControllerContainer.isHidden {
+            childViewControllerContainer.hideView()
+            return true
+        }
+        return false
     }
     
     func shouldUpdateMentionSuggestionsWith(_ object: [MentionOrMacroItem]) {

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="DashboardDetailHeaderView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="backButton" destination="viw-Ea-oXk" id="FNz-JW-2v6"/>
+                <outlet property="closeButton" destination="4M3-5v-ixa" id="FRu-34-bKe"/>
+                <outlet property="contentView" destination="R65-74-UBK" id="WW5-OF-dbC"/>
+                <outlet property="headerTitle" destination="9oG-zA-O3y" id="8yz-Gb-JAW"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="R65-74-UBK">
+            <rect key="frame" x="0.0" y="0.0" width="490" height="96"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" borderWidth="0.0" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="wdV-xH-YDI">
+                    <rect key="frame" x="0.0" y="1" width="490" height="95"/>
+                    <view key="contentView" id="GGz-Dy-M3p">
+                        <rect key="frame" x="0.0" y="0.0" width="490" height="95"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FhQ-xK-Ti1">
+                                <rect key="frame" x="20" y="34" width="45" height="28"/>
+                                <subviews>
+                                    <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="viw-Ea-oXk" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="17.5" width="28" height="12"/>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="arrow.left" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Frg-0M-gTq">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <symbolConfiguration key="symbolConfiguration" weight="medium">
+                                            <nil key="locale"/>
+                                        </symbolConfiguration>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="28" id="Dk4-RT-h6M"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="backButtonTapped:" target="-2" id="IZa-KF-loB"/>
+                                        </connections>
+                                    </button>
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9oG-zA-O3y">
+                                        <rect key="frame" x="-2" y="3" width="49" height="21"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="uDX-sy-Pfv">
+                                            <font key="font" size="18" name="Roboto-Bold"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="pC5-9M-56p"/>
+                                </constraints>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                            <box borderType="line" title="Box" titlePosition="noTitle" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JKs-qg-lLO">
+                                <rect key="frame" x="441" y="30" width="34" height="34"/>
+                                <view key="contentView" id="d92-eL-k8s">
+                                    <rect key="frame" x="4" y="5" width="26" height="26"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RQf-Sr-qKJ">
+                                            <rect key="frame" x="7" y="5" width="12" height="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="12" id="HKB-9r-Rn5"/>
+                                                <constraint firstAttribute="width" constant="12" id="uUP-TU-khy"/>
+                                            </constraints>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="xmark" catalog="system" id="Y0h-VW-4g6"/>
+                                            <symbolConfiguration key="symbolConfiguration" weight="heavy">
+                                                <nil key="locale"/>
+                                            </symbolConfiguration>
+                                        </imageView>
+                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="4M3-5v-ixa" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="fOE-uK-5M9">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="26" id="Oor-ed-dTV"/>
+                                                <constraint firstAttribute="height" constant="26" id="kOZ-OU-V97"/>
+                                            </constraints>
+                                            <connections>
+                                                <action selector="closeButtonTapped:" target="-2" id="86z-om-BSN"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="4M3-5v-ixa" firstAttribute="centerY" secondItem="d92-eL-k8s" secondAttribute="centerY" id="bJV-Wt-XTc"/>
+                                        <constraint firstItem="RQf-Sr-qKJ" firstAttribute="centerY" secondItem="d92-eL-k8s" secondAttribute="centerY" id="dcJ-K5-QWr"/>
+                                        <constraint firstItem="4M3-5v-ixa" firstAttribute="centerX" secondItem="d92-eL-k8s" secondAttribute="centerX" id="pDf-L6-9xG"/>
+                                        <constraint firstItem="RQf-Sr-qKJ" firstAttribute="centerX" secondItem="d92-eL-k8s" secondAttribute="centerX" id="wMd-rJ-hUw"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="28" id="ULo-jY-3ND"/>
+                                    <constraint firstAttribute="height" constant="28" id="vp7-yz-3LN"/>
+                                </constraints>
+                            </box>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="FhQ-xK-Ti1" firstAttribute="leading" secondItem="GGz-Dy-M3p" secondAttribute="leading" constant="20" id="Pe5-8R-Sev"/>
+                            <constraint firstItem="JKs-qg-lLO" firstAttribute="centerY" secondItem="GGz-Dy-M3p" secondAttribute="centerY" id="QY3-2B-Xgg"/>
+                            <constraint firstItem="FhQ-xK-Ti1" firstAttribute="centerY" secondItem="GGz-Dy-M3p" secondAttribute="centerY" id="Tf3-0n-Xha"/>
+                            <constraint firstAttribute="trailing" secondItem="JKs-qg-lLO" secondAttribute="trailing" constant="18" id="Zbq-aP-dcx"/>
+                        </constraints>
+                    </view>
+                    <color key="fillColor" name="HeaderBG"/>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="wdV-xH-YDI" secondAttribute="bottom" constant="1" id="Qrt-rY-Wzi"/>
+                <constraint firstItem="wdV-xH-YDI" firstAttribute="leading" secondItem="R65-74-UBK" secondAttribute="leading" id="Xtx-Uv-67C"/>
+                <constraint firstAttribute="trailing" secondItem="wdV-xH-YDI" secondAttribute="trailing" id="jrm-dH-tN6"/>
+                <constraint firstItem="wdV-xH-YDI" firstAttribute="top" secondItem="R65-74-UBK" secondAttribute="top" id="lMz-8e-7qr"/>
+            </constraints>
+            <point key="canvasLocation" x="5.5" y="8"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="arrow.left" catalog="system" width="15" height="12"/>
+        <image name="xmark" catalog="system" width="14" height="13"/>
+        <namedColor name="HeaderBG">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

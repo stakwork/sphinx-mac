@@ -11,8 +11,13 @@ import Cocoa
 class DashboardViewController: NSViewController {
     
     @IBOutlet weak var dashboardSplitView: NSSplitView!
+    @IBOutlet weak var dashboardRightSplitView: NSSplitView!
     @IBOutlet weak var leftSplittedView: NSView!
     @IBOutlet weak var rightSplittedView: NSView!
+    @IBOutlet weak var rightDetailSplittedView: NSView!
+    @IBOutlet weak var rightDetailViewMinWidth: NSLayoutConstraint!
+    @IBOutlet weak var rightDetailViewMaxWidth: NSLayoutConstraint!
+    
     @IBOutlet weak var modalsContainerView: NSView!
     
     @IBOutlet weak var presenterBlurredBackground: NSVisualEffectView!
@@ -27,8 +32,9 @@ class DashboardViewController: NSViewController {
     
     weak var presenter: DashboardPresenterViewController?
     var presenterBackHandler: (() -> ())? = nil
-    
     var presenterIdentifier: String?
+    
+    var dashboardDetailViewController: DashboardDetailViewController?
     
     var mediaFullScreenView: MediaFullScreenView? = nil
     
@@ -49,6 +55,9 @@ class DashboardViewController: NSViewController {
     
     public static let kPodcastPlayerWidth: CGFloat = 350
     
+    public static let kRightPanelMaxWidth: CGFloat = 450
+    public static let kRightPanelMinWidth: CGFloat = 320
+    
     var resizeTimer : Timer? = nil
     var escapeMonitor: Any? = nil
     
@@ -67,6 +76,10 @@ class DashboardViewController: NSViewController {
         chatListViewModel = ChatListViewModel()
         
         dashboardSplitView.delegate = self
+        dashboardRightSplitView.delegate = self
+        
+        dashboardRightSplitView.dividerStyle = .thin
+        
         SphinxSocketManager.sharedInstance.setDelegate(delegate: self)
         
         let windowState = WindowsManager.sharedInstance.getWindowState()
@@ -83,6 +96,7 @@ class DashboardViewController: NSViewController {
         super.viewWillAppear()
         
         listViewController?.delegate = self
+        rightDetailSplittedView.isHidden = true
     }
     
     override func viewDidAppear() {
@@ -90,6 +104,7 @@ class DashboardViewController: NSViewController {
         
         handleDeepLink()
         addPresenterVC()
+        addDetailVCPresenter()
     }
     
     func addPresenterVC() {
@@ -115,12 +130,35 @@ class DashboardViewController: NSViewController {
         }
     }
     
+    func addDetailVCPresenter() {
+        if let _ = dashboardDetailViewController {
+            return
+        }
+        dashboardDetailViewController = DashboardDetailViewController.instantiate(delegate: self)
+        
+        if let dashboardDetailViewController {
+            self.addChildVC(
+                child: dashboardDetailViewController,
+                container: self.rightDetailSplittedView
+            )
+            
+            dashboardDetailViewController.view.frame = rightDetailSplittedView.bounds
+            self.rightDetailSplittedView.isHidden = true
+        }
+    }
+    
     fileprivate func listenForResize() {
         NotificationCenter.default.addObserver(forName: NSWindow.didResizeNotification, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
             
             if let presenter = self?.presenter {
                 if let bounds = self?.presenterContainerView?.bounds {
                     presenter.view.frame = bounds
+                }
+            }
+            
+            if let detailVC = self?.dashboardDetailViewController {
+                if let bounds = self?.rightDetailSplittedView.bounds {
+                    detailVC.view.frame = bounds
                 }
             }
         }
@@ -405,8 +443,24 @@ class DashboardViewController: NSViewController {
         self.escapeMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (event) in
             if event.keyCode == 53 { // 53 is the key code for the Escape key
                 // Perform your action when the Escape key is pressed
+                
+                ///Hide dashboard views popups (Profile, Create Tribe, etc)
                 if !self.presenterContainerBGView.isHidden {
                     WindowsManager.sharedInstance.dismissViewFromCurrentWindow()
+                    return nil
+                ///Hide modals (auth, etc)
+                } else if !self.modalsContainerView.isHidden {
+                    for childVC in self.children {
+                        if let childVC = childVC as? DashboardModalsViewController {
+                            childVC.shouldDismissModals()
+                        }
+                    }
+                ///Hide chat modals (send payment, calls, etc)
+                } else if self.newDetailViewController?.hideModals() == true {
+                    return nil
+                ///Hide right panel view
+                } else if !self.rightDetailSplittedView.isHidden {
+                    self.dashboardDetailViewController?.closeButtonTapped()
                     return nil
                 }
             }
@@ -419,25 +473,6 @@ extension DashboardViewController : NSSplitViewDelegate {
     func splitViewDidResizeSubviews(_ notification: Notification) {
         if let _ = view.window {
             resizeSubviews()
-
-//            let (minWidth, _) = getWindowMinWidth(leftColumnVisible: !leftSplittedView.isHidden)
-//
-//            window.minSize = CGSize(
-//                width: minWidth,
-//                height: kWindowMinHeight
-//            )
-//
-//            if window.frame.width < minWidth {
-//
-//                let newFrame = CGRect(
-//                    x: window.frame.origin.x,
-//                    y: window.frame.origin.y,
-//                    width: minWidth,
-//                    height: window.frame.height
-//                )
-//
-//                view.window?.setFrame(newFrame, display: true)
-//            }
 
             resizeTimer?.invalidate()
             resizeTimer = Timer.scheduledTimer(
@@ -452,6 +487,7 @@ extension DashboardViewController : NSSplitViewDelegate {
 
     @objc func resizeSubviews() {
         newDetailViewController?.resizeSubviews(frame: rightSplittedView.bounds)
+        dashboardDetailViewController?.resizeSubviews(frame: rightDetailSplittedView.bounds)
         
         listViewController?.view.frame = leftSplittedView.bounds
     }
@@ -591,6 +627,7 @@ extension DashboardViewController : DashboardVCDelegate {
             child: newChatVCController,
             container: rightSplittedView
         )
+        dashboardDetailViewController?.closeButtonTapped()
         
         newDetailViewController = newChatVCController
         newDetailViewController?.setMessageFieldActive()
@@ -726,5 +763,12 @@ extension DashboardViewController : RestoreModalViewControllerDelegate {
 extension DashboardViewController: NewContactDismissDelegate {
     func shouldDismissView() {
         closePresenter()
+    }
+}
+
+extension DashboardViewController: DashboardDetailDismissDelegate {
+    func closeButtonTapped() {
+        rightDetailViewMaxWidth.constant = 0
+        rightDetailSplittedView.isHidden = true
     }
 }

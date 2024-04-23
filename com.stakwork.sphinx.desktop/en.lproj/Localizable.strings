@@ -184,6 +184,8 @@
 "confirm.delete.keychain" = "Are you sure you want to permanently delete this node from keychain? Double check you are not connected to this node from other device, since this will remove the info from keychain causing that connection to be lost.";
 "error.restoring.keychain" = "There was an error restoring from Keychain.";
 "share.invite.code.upper" = "SHARE INVITATION CODE";
+"contact.info" = "Contact Info";
+"tribe.info" = "Tribe Info";
 "add.friend" = "Add Friend";
 "invalid.code.pubkey" = "This looks like a pubkey, to sign up you'll need an invite code from https://sphinx.chat";
 "invalid.code.invoice" = "This looks like an invoice, to sign up you'll need an invite code from https://sphinx.chat";
