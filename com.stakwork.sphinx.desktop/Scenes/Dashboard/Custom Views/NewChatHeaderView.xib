@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NewChatHeaderView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="eQ2-UR-nwz" id="W08-36-usI"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="eQ2-UR-nwz">
+            <rect key="frame" x="0.0" y="0.0" width="674" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mO3-nj-4fq">
+                    <rect key="frame" x="0.0" y="0.0" width="674" height="50"/>
+                </customView>
+                <stackView distribution="fillProportionally" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C4h-RH-hTE">
+                    <rect key="frame" x="0.0" y="0.0" width="674" height="50"/>
+                    <subviews>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="iID-6i-zzQ">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <subviews>
+                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hf4-Jl-fE0">
+                                    <rect key="frame" x="2" y="2" width="46" height="46"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="46" id="8lL-3J-D2I"/>
+                                        <constraint firstAttribute="width" constant="46" id="M5U-xd-S6n"/>
+                                    </constraints>
+                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="bFg-Xe-UEs"/>
+                                </imageView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="JyC-j3-DEr"/>
+                                <constraint firstAttribute="height" constant="50" id="SGH-um-wYW"/>
+                                <constraint firstItem="hf4-Jl-fE0" firstAttribute="centerY" secondItem="iID-6i-zzQ" secondAttribute="centerY" id="ary-UK-dlR"/>
+                                <constraint firstItem="hf4-Jl-fE0" firstAttribute="centerX" secondItem="iID-6i-zzQ" secondAttribute="centerX" id="m1X-fz-TnX"/>
+                            </constraints>
+                        </customView>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="IkQ-0J-YtC">
+                            <rect key="frame" x="58" y="0.0" width="500" height="50"/>
+                            <subviews>
+                                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xp4-oG-Cpy">
+                                    <rect key="frame" x="0.0" y="0.0" width="500" height="50"/>
+                                    <subviews>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="QZf-wA-3DA">
+                                            <rect key="frame" x="0.0" y="26" width="500" height="24"/>
+                                            <subviews>
+                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hrB-1f-L1I">
+                                                    <rect key="frame" x="-2" y="4" width="41" height="18"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="e9G-kt-Y5X">
+                                                        <font key="font" size="15" name="Roboto-Medium"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JNz-RF-uB9">
+                                                    <rect key="frame" x="49" y="8" width="7" height="14"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="14" id="DGo-Xt-jlh"/>
+                                                        <constraint firstAttribute="width" constant="7" id="mKT-t9-fNx"/>
+                                                    </constraints>
+                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="lightningTagIcon" id="5hy-4q-a1J"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="hrB-1f-L1I" firstAttribute="leading" secondItem="QZf-wA-3DA" secondAttribute="leading" id="7c8-QS-hL1"/>
+                                                <constraint firstItem="JNz-RF-uB9" firstAttribute="leading" secondItem="hrB-1f-L1I" secondAttribute="trailing" constant="12" id="D5S-Vc-5HF"/>
+                                                <constraint firstAttribute="bottom" secondItem="hrB-1f-L1I" secondAttribute="bottom" constant="4" id="Pfm-Om-l5V"/>
+                                                <constraint firstAttribute="height" constant="24" id="Uhb-Jl-TB4"/>
+                                                <constraint firstItem="hrB-1f-L1I" firstAttribute="top" secondItem="QZf-wA-3DA" secondAttribute="top" constant="2" id="cfZ-6Z-qf5"/>
+                                                <constraint firstItem="JNz-RF-uB9" firstAttribute="top" secondItem="hrB-1f-L1I" secondAttribute="top" id="iVR-1W-yLa"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="WA1-Dl-fbm">
+                                            <rect key="frame" x="0.0" y="0.0" width="500" height="24"/>
+                                        </customView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="QZf-wA-3DA" firstAttribute="width" secondItem="Xp4-oG-Cpy" secondAttribute="width" id="Dza-Yh-3Oq"/>
+                                        <constraint firstItem="WA1-Dl-fbm" firstAttribute="width" secondItem="Xp4-oG-Cpy" secondAttribute="width" id="h2L-2s-n3U"/>
+                                    </constraints>
+                                    <visibilityPriorities>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                    </visibilityPriorities>
+                                    <customSpacing>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                    </customSpacing>
+                                </stackView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="Xp4-oG-Cpy" firstAttribute="leading" secondItem="IkQ-0J-YtC" secondAttribute="leading" id="cH1-Tg-BQR"/>
+                                <constraint firstAttribute="bottom" secondItem="Xp4-oG-Cpy" secondAttribute="bottom" id="elf-eb-zf2"/>
+                                <constraint firstAttribute="height" constant="50" id="o4j-D0-e79"/>
+                                <constraint firstItem="Xp4-oG-Cpy" firstAttribute="top" secondItem="IkQ-0J-YtC" secondAttribute="top" id="y9Q-zn-LvN"/>
+                                <constraint firstAttribute="trailing" secondItem="Xp4-oG-Cpy" secondAttribute="trailing" id="yyM-h9-lfV"/>
+                            </constraints>
+                        </customView>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="bBO-2j-FuN">
+                            <rect key="frame" x="566" y="0.0" width="50" height="50"/>
+                            <subviews>
+                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TyD-9e-qZF">
+                                    <rect key="frame" x="18" y="15" width="14" height="22"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="14" id="QUr-Vf-AvX"/>
+                                        <constraint firstAttribute="width" constant="14" id="orz-9i-BZQ"/>
+                                    </constraints>
+                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="arrow.clockwise" catalog="system" id="5hN-lo-4qN"/>
+                                    <symbolConfiguration key="symbolConfiguration" weight="heavy">
+                                        <nil key="locale"/>
+                                    </symbolConfiguration>
+                                </imageView>
+                                <button translatesAutoresizingMaskIntoConstraints="NO" id="kS7-ZF-6l4">
+                                    <rect key="frame" x="9" y="9" width="32" height="32"/>
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="849-Cg-pYS">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="32" id="AJC-qJ-BfN"/>
+                                        <constraint firstAttribute="width" constant="32" id="Y1B-cx-pei"/>
+                                    </constraints>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="kS7-ZF-6l4" firstAttribute="centerX" secondItem="bBO-2j-FuN" secondAttribute="centerX" id="1zC-UN-OwF"/>
+                                <constraint firstAttribute="width" constant="50" id="Jgh-ev-oXb"/>
+                                <constraint firstAttribute="height" constant="50" id="NQV-od-xr5"/>
+                                <constraint firstItem="TyD-9e-qZF" firstAttribute="centerX" secondItem="bBO-2j-FuN" secondAttribute="centerX" id="Z6w-bv-6zR"/>
+                                <constraint firstItem="TyD-9e-qZF" firstAttribute="centerY" secondItem="bBO-2j-FuN" secondAttribute="centerY" id="ju4-zL-MDe"/>
+                                <constraint firstItem="kS7-ZF-6l4" firstAttribute="centerY" secondItem="bBO-2j-FuN" secondAttribute="centerY" id="yMe-Gx-7Pn"/>
+                            </constraints>
+                        </customView>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="Ubv-L3-aBp">
+                            <rect key="frame" x="624" y="0.0" width="50" height="50"/>
+                            <subviews>
+                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qnl-D6-ocx">
+                                    <rect key="frame" x="17" y="19.5" width="16" height="12"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="16" id="MbW-BW-OJp"/>
+                                        <constraint firstAttribute="height" constant="10" id="xLx-Eu-NGE"/>
+                                    </constraints>
+                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="line.3.horizontal" catalog="system" id="Yxk-BW-8fu"/>
+                                    <symbolConfiguration key="symbolConfiguration" weight="heavy">
+                                        <nil key="locale"/>
+                                    </symbolConfiguration>
+                                </imageView>
+                                <button translatesAutoresizingMaskIntoConstraints="NO" id="55N-4i-UtU">
+                                    <rect key="frame" x="9" y="9" width="32" height="32"/>
+                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="pOp-De-l4l">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="32" id="7MX-HQ-1ef"/>
+                                        <constraint firstAttribute="height" constant="32" id="WSF-JS-tKY"/>
+                                    </constraints>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="Qnl-D6-ocx" firstAttribute="centerY" secondItem="Ubv-L3-aBp" secondAttribute="centerY" id="In9-nP-mWF"/>
+                                <constraint firstItem="55N-4i-UtU" firstAttribute="centerX" secondItem="Ubv-L3-aBp" secondAttribute="centerX" id="aJ8-Kh-lKv"/>
+                                <constraint firstItem="Qnl-D6-ocx" firstAttribute="centerX" secondItem="Ubv-L3-aBp" secondAttribute="centerX" id="bV8-fl-62a"/>
+                                <constraint firstAttribute="width" constant="50" id="qZU-ap-a7t"/>
+                                <constraint firstItem="55N-4i-UtU" firstAttribute="centerY" secondItem="Ubv-L3-aBp" secondAttribute="centerY" id="ygw-18-eU5"/>
+                                <constraint firstAttribute="height" constant="50" id="zGV-KB-MO3"/>
+                            </constraints>
+                        </customView>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="mO3-nj-4fq" firstAttribute="leading" secondItem="eQ2-UR-nwz" secondAttribute="leading" id="AVI-Hf-nkU"/>
+                <constraint firstItem="mO3-nj-4fq" firstAttribute="top" secondItem="eQ2-UR-nwz" secondAttribute="top" id="GPl-cI-UAa"/>
+                <constraint firstAttribute="trailing" secondItem="mO3-nj-4fq" secondAttribute="trailing" id="Iaa-UC-DGq"/>
+                <constraint firstItem="C4h-RH-hTE" firstAttribute="centerY" secondItem="eQ2-UR-nwz" secondAttribute="centerY" id="QmM-vx-r6W"/>
+                <constraint firstAttribute="bottom" secondItem="mO3-nj-4fq" secondAttribute="bottom" id="Rgf-lV-7Gc"/>
+                <constraint firstItem="C4h-RH-hTE" firstAttribute="leading" secondItem="eQ2-UR-nwz" secondAttribute="leading" id="VQ4-3q-tWW"/>
+                <constraint firstAttribute="trailing" secondItem="C4h-RH-hTE" secondAttribute="trailing" id="x0S-S2-2wN"/>
+            </constraints>
+            <point key="canvasLocation" x="128" y="71"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="arrow.clockwise" catalog="system" width="14" height="16"/>
+        <image name="lightningTagIcon" width="44" height="44"/>
+        <image name="line.3.horizontal" catalog="system" width="16" height="9"/>
+    </resources>
+</document>
