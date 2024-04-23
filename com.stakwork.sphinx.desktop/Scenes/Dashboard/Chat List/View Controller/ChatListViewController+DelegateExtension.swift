@@ -22,22 +22,22 @@ extension ChatListViewController {
         searchFieldContainer.layer?.cornerRadius = searchFieldContainer.frame.height / 2
     }
     
-    func listenForNotifications() {
-        healthCheckView.listenForEvents()
-        
-        NotificationCenter.default.addObserver(
-            forName: .onBalanceDidChange,
-            object: nil,
-            queue: OperationQueue.main
-        ) { [weak self] (n: Notification) in
-                self?.updateBalance()
-        }
-    }
-    
-    func updateBalance() {
-        balanceUnitLabel.stringValue = "sat"
-        walletBalanceService.updateBalance(labels: [balanceLabel])
-    }
+//    func listenForNotifications() {
+//        healthCheckView.listenForEvents()
+//        
+//        NotificationCenter.default.addObserver(
+//            forName: .onBalanceDidChange,
+//            object: nil,
+//            queue: OperationQueue.main
+//        ) { [weak self] (n: Notification) in
+//                self?.updateBalance()
+//        }
+//    }
+//    
+//    func updateBalance() {
+//        balanceUnitLabel.stringValue = "sat"
+//        walletBalanceService.updateBalance(labels: [balanceLabel])
+//    }
     
     func resetSearchField() {
         searchField?.stringValue = ""
@@ -137,12 +137,6 @@ extension ChatListViewController : NSTextFieldDelegate {
             searchClearButton.isHidden = currentString.isEmpty
             contactsService.updateChatListWith(term: currentString)
         }
-    }
-}
-
-extension ChatListViewController : HealthCheckDelegate {
-    func shouldShowBubbleWith(_ message: String) {
-        NewMessageBubbleHelper().showGenericMessageView(text:message, in: view, position: .Top, delay: 3)
     }
 }
 

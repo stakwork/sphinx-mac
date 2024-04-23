@@ -11,21 +11,22 @@ import Cocoa
 class ChatListViewController : DashboardSplittedViewController {
 
     ///IBOutlets
-    @IBOutlet weak var headerView: NSView!
-    @IBOutlet weak var balanceLabel: NSTextField!
-    @IBOutlet weak var balanceUnitLabel: NSTextField!
+    @IBOutlet weak var headerView: NewChatHeaderView!
+    
+//    @IBOutlet weak var balanceLabel: NSTextField!
+//    @IBOutlet weak var balanceUnitLabel: NSTextField!
     @IBOutlet weak var bottomBar: NSView!
     @IBOutlet weak var searchBarContainer: NSView!
     @IBOutlet weak var searchFieldContainer: NSBox!
     @IBOutlet weak var searchField: NSTextField!
-    @IBOutlet weak var loadingWheelContainer: NSView!
-    @IBOutlet weak var loadingWheel: NSProgressIndicator!
+//    @IBOutlet weak var loadingWheelContainer: NSView!
+//    @IBOutlet weak var loadingWheel: NSProgressIndicator!
     @IBOutlet weak var loadingChatsBox: NSBox!
     @IBOutlet weak var loadingChatsWheel: NSProgressIndicator!
     @IBOutlet weak var searchClearButton: NSButton!
-    @IBOutlet weak var healthCheckView: HealthCheckView!
-    @IBOutlet weak var upgradeBox: NSBox!
-    @IBOutlet weak var upgradeButton: NSButton!
+//    @IBOutlet weak var healthCheckView: HealthCheckView!
+//    @IBOutlet weak var upgradeBox: NSBox!
+//    @IBOutlet weak var upgradeButton: NSButton!
     @IBOutlet weak var chatListVCContainer: NSView!
     @IBOutlet weak var receiveButton: CustomButton!
     @IBOutlet weak var transactionsButton: CustomButton!
@@ -52,8 +53,8 @@ class ChatListViewController : DashboardSplittedViewController {
     ///Loading
     var loading = false {
         didSet {
-            healthCheckView.isHidden = loading
-            LoadingWheelHelper.toggleLoadingWheel(loading: loading, loadingWheel: loadingWheel, color: NSColor.white, controls: [])
+//            healthCheckView.isHidden = loading
+//            LoadingWheelHelper.toggleLoadingWheel(loading: loading, loadingWheel: loadingWheel, color: NSColor.white, controls: [])
         }
     }
     
@@ -126,7 +127,6 @@ class ChatListViewController : DashboardSplittedViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         
-        listenForNotifications()
         loadFriendAndReload()
         
         DelayPerformedHelper.performAfterDelay(seconds: 0.5, completion: {
@@ -146,7 +146,7 @@ class ChatListViewController : DashboardSplittedViewController {
         searchField.setPlaceHolder(color: NSColor.Sphinx.PlaceholderText, font: NSFont(name: "Roboto-Regular", size: 14.0)!, string: "search".localized)
         searchField.delegate = self
         
-        healthCheckView.delegate = self
+//        healthCheckView.delegate = self
         
         self.view.window?.makeFirstResponder(self)
     }
@@ -267,7 +267,7 @@ class ChatListViewController : DashboardSplittedViewController {
     }
     
     func updateBalanceAndCheckVersion() {
-        updateBalance()
+//        updateBalance()
         shouldCheckAppVersions()
     }
     
@@ -277,13 +277,13 @@ class ChatListViewController : DashboardSplittedViewController {
     }
     
     func shouldCheckAppVersions() {        
-        API.sharedInstance.getAppVersions(callback: { v in
-            let version = Int(v) ?? 0
-            let appVersion = Int(Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "0") ?? 0
-
-            self.upgradeButton.isHidden = version <= appVersion
-            self.upgradeBox.isHidden = version <= appVersion
-        })
+//        API.sharedInstance.getAppVersions(callback: { v in
+//            let version = Int(v) ?? 0
+//            let appVersion = Int(Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "0") ?? 0
+//
+//            self.upgradeButton.isHidden = version <= appVersion
+//            self.upgradeBox.isHidden = version <= appVersion
+//        })
     }
     
     func selectRowFor(chatId: Int) {
