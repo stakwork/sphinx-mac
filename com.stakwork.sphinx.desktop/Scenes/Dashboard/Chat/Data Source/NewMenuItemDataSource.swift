@@ -19,9 +19,9 @@ protocol NewMenuItemDataSourceDelegate: AnyObject {
 
 
 class NewMenuItemDataSource : NSObject {
-    var suggestions : [NewMenuItem] = [NewMenuItem]()
+    var menuItems : [NewMenuItem] = [NewMenuItem]()
     var tableView : NSCollectionView!
-    var scrollView: NSScrollView!
+//    var scrollView: NSScrollView!
     var viewWidth: CGFloat = 0.0
     weak var delegate: NewMenuItemDataSourceDelegate!
     var mentionCellHeight :CGFloat = 50.0
@@ -29,15 +29,16 @@ class NewMenuItemDataSource : NSObject {
     
     init(
         tableView: NSCollectionView,
-        scrollView: NSScrollView,
         viewWidth: CGFloat,
-        delegate: NewMenuItemDataSourceDelegate
+        delegate: NewMenuItemDataSourceDelegate,
+        menuItems: [NewMenuItem]
     ){
         super.init()
         
         self.tableView = tableView
         self.delegate = delegate
-        self.scrollView = scrollView
+        self.menuItems = menuItems
+//        self.scrollView = scrollView
         self.viewWidth = viewWidth
         self.tableView.backgroundColors = [NSColor.Sphinx.HeaderBG]
         
@@ -45,7 +46,8 @@ class NewMenuItemDataSource : NSObject {
         self.tableView.dataSource = self
        
         configureCollectionView()
-        updateMentionSuggestions(suggestions: [])
+        configureTableView()
+        updateMentionSuggestions(items: menuItems)
     }
     
     func setViewWidth(viewWidth: CGFloat) {
@@ -57,21 +59,21 @@ class NewMenuItemDataSource : NSObject {
         }
     }
     
-    func updateMentionSuggestions(suggestions: [NewMenuItem]) {
-        if suggestions.isEmpty == true {
-            self.suggestions = []
-            self.scrollView.isHidden = true
+    func updateMentionSuggestions(items: [NewMenuItem]) {
+        if items.isEmpty == true {
+            self.menuItems = []
+//            self.scrollView.isHidden = true
             return
         }
         
-        self.scrollView.isHidden = false
-        self.suggestions = suggestions
+//        self.scrollView.isHidden = false
+        self.menuItems = items
         
-        selectedRow = suggestions.count - 1
-//        updateMentionTableHeight()
+        selectedRow = items.count - 1
+        updateMentionTableHeight()
         tableView.reloadData()
         
-        if suggestions.isEmpty {
+        if items.isEmpty {
             return
         }
         
@@ -85,14 +87,14 @@ class NewMenuItemDataSource : NSObject {
         })
     }
     
-    func isTableVisible() -> Bool {
-        return suggestions.count > 0 && !self.scrollView.isHidden
-    }
-    
-//    func updateMentionTableHeight() {
-//        let height = min(4 * mentionCellHeight, mentionCellHeight * CGFloat(suggestions.count))
-//        delegate.shouldUpdateTableHeightTo(value: height)
+//    func isTableVisible() -> Bool {
+//        return menuItems.count > 0 && !self.scrollView.isHidden
 //    }
+    
+    func updateMentionTableHeight() {
+//        let height = min(4 * mentionCellHeight, mentionCellHeight * CGFloat(menuItems.count))
+//        delegate.shouldUpdateTableHeightTo(value: height)
+    }
     
     func configureCollectionView() {
         let flowLayout = NSCollectionViewFlowLayout()
@@ -103,6 +105,15 @@ class NewMenuItemDataSource : NSObject {
         flowLayout.itemSize = NSSize(width: self.viewWidth, height: mentionCellHeight)
         flowLayout.headerReferenceSize = NSSize(width: self.viewWidth, height: 0)
         tableView.collectionViewLayout = flowLayout
+    }
+    
+    func configureTableView() {
+        tableView.alphaValue = 0.0
+        
+        tableView.delegate = self
+        tableView.reloadData()
+        
+        tableView.registerItem(NewMenuListItem.self)
     }
     
 //    func getSelectedValue() -> String? {
@@ -121,21 +132,21 @@ class NewMenuItemDataSource : NSObject {
 //        return nil
 //    }
     
-    func moveSelectionDown() {
-        if(selectedRow < suggestions.count - 1){
-            selectedRow+=1
-            tableView.reloadData()
-            tableView.animator().scrollToItems(at: [IndexPath(item: selectedRow, section: 0)], scrollPosition: .bottom)
-        }
-    }
-    
-    func moveSelectionUp() {
-        if(selectedRow > 0){
-            selectedRow-=1
-            tableView.reloadData()
-            tableView.animator().scrollToItems(at: [IndexPath(item: selectedRow, section: 0)], scrollPosition: .top)
-        }
-    }
+//    func moveSelectionDown() {
+//        if(selectedRow < suggestions.count - 1){
+//            selectedRow+=1
+//            tableView.reloadData()
+//            tableView.animator().scrollToItems(at: [IndexPath(item: selectedRow, section: 0)], scrollPosition: .bottom)
+//        }
+//    }
+//    
+//    func moveSelectionUp() {
+//        if(selectedRow > 0){
+//            selectedRow-=1
+//            tableView.reloadData()
+//            tableView.animator().scrollToItems(at: [IndexPath(item: selectedRow, section: 0)], scrollPosition: .top)
+//        }
+//    }
     
 }
 
@@ -145,25 +156,25 @@ extension NewMenuItemDataSource : NSCollectionViewDelegate, NSCollectionViewData
     }
     
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-        return suggestions.count
+        return menuItems.count
     }
     
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-        let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ChatMentionAutocompleteCell"), for: indexPath)
+        let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "NewMenuItemCellID"), for: indexPath)
         
-        guard let mentionItem = item as? ChatMentionAutocompleteCell else {return item}
+        guard let menuItem = item as? NewMenuListItem else {return item}
         
         if (indexPath.item == selectedRow) {
-            mentionItem.view.layer?.backgroundColor = NSColor.Sphinx.ChatListSelected.cgColor
+            menuItem.view.layer?.backgroundColor = NSColor.Sphinx.ChatListSelected.cgColor
         } else{
-            mentionItem.view.layer?.backgroundColor = NSColor.Sphinx.HeaderBG.cgColor
+            menuItem.view.layer?.backgroundColor = NSColor.Sphinx.HeaderBG.cgColor
         }
         
-        return mentionItem
+        return menuItem
     }
     
     func collectionView(_ collectionView: NSCollectionView, willDisplay item: NSCollectionViewItem, forRepresentedObjectAt indexPath: IndexPath) {
-        if let collectionViewItem = item as? ChatMentionAutocompleteCell {
+        if let collectionViewItem = item as? NewMenuListItem {
 //            collectionViewItem.configureWith(
 //                mentionOrMacro: suggestions[indexPath.item],
 //                delegate: delegate
@@ -174,7 +185,7 @@ extension NewMenuItemDataSource : NSCollectionViewDelegate, NSCollectionViewData
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
         if let index = indexPaths.first?.item {
             
-            let suggestion = suggestions[index]
+            let suggestion = menuItems[index]
             delegate.itemSelected(at: index)
 //            if suggestion.type == .mention {
 //                let valid_alias = suggestion.displayText

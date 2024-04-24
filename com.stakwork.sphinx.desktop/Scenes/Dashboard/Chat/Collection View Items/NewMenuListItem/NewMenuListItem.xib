@@ -25,11 +25,11 @@
                         <constraint firstAttribute="width" constant="12" id="2GO-U5-a5x"/>
                         <constraint firstAttribute="height" constant="12" id="US5-rS-mLy"/>
                     </constraints>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="Fim-ud-RaN"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="userAvatar" id="Fim-ud-RaN"/>
                 </imageView>
                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="poT-eZ-s7R">
-                    <rect key="frame" x="32" y="19" width="37" height="16"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="zuv-gC-eSE">
+                    <rect key="frame" x="32" y="19" width="65" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="My Profile" id="zuv-gC-eSE">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -45,4 +45,7 @@
             <point key="canvasLocation" x="-151" y="26.5"/>
         </customView>
     </objects>
+    <resources>
+        <image name="userAvatar" width="128" height="128"/>
+    </resources>
 </document>
