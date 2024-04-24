@@ -41,8 +41,3 @@ class MentionOrMacroItem: NSObject {
     }
 }
 
-struct NewMenuItem {
-    let icon: String
-    let menuTitle: String
-}
-

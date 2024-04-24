@@ -96,6 +96,8 @@ class ChatListViewController : DashboardSplittedViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(dataDidChange), name: .onContactsAndChatsChanged, object: nil)
         
         resetSearchField()
+        menuListView.configureDataSource(delegate: self)
+        bottomBar.isHidden = true
     }
     
     override func viewDidLayout() {
@@ -114,7 +116,6 @@ class ChatListViewController : DashboardSplittedViewController {
         super.viewDidAppear()
         
         loadFriendAndReload()
-        
         DelayPerformedHelper.performAfterDelay(seconds: 0.5, completion: {
             self.loadingChatList = false
         })
@@ -132,7 +133,6 @@ class ChatListViewController : DashboardSplittedViewController {
         searchField.setPlaceHolder(color: NSColor.Sphinx.PlaceholderText, font: NSFont(name: "Roboto-Regular", size: 14.0)!, string: "search".localized)
         searchField.delegate = self
         menuListView.delegate = self
-//        healthCheckView.delegate = self
         
         self.view.window?.makeFirstResponder(self)
     }
@@ -411,6 +411,10 @@ extension ChatListViewController: NewChatHeaderViewDelegate {
 }
 
 extension ChatListViewController: NewMenuListViewDelegate {
+    func buttonClicked(id: Int) {
+        
+    }
+    
     func closeButtonTapped() {
         menuListView.isHidden = true
         menuListBGView.isHidden = true
@@ -420,4 +424,10 @@ extension ChatListViewController: NewMenuListViewDelegate {
     }
     
     
+}
+
+extension ChatListViewController: NewMenuItemDataSourceDelegate {
+    func itemSelected(at index: Int) {
+       
+    }
 }

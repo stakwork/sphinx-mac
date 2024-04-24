@@ -359,16 +359,16 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="ySx-Q7-u4E">
-                                            <rect key="frame" x="0.0" y="60" width="409" height="320"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="409" height="380"/>
                                         </customView>
                                         <box boxType="custom" borderType="none" cornerRadius="4" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="wna-oI-X6X">
-                                            <rect key="frame" x="0.0" y="60" width="409" height="320"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="409" height="380"/>
                                             <view key="contentView" id="VPd-B3-5XY">
-                                                <rect key="frame" x="0.0" y="0.0" width="409" height="320"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="409" height="380"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <progressIndicator maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="q1Y-RN-Kmu">
-                                                        <rect key="frame" x="197" y="152" width="16" height="16"/>
+                                                        <rect key="frame" x="197" y="182" width="16" height="16"/>
                                                     </progressIndicator>
                                                 </subviews>
                                                 <constraints>
@@ -390,9 +390,9 @@
                                                     <color key="fillColor" name="LightBG"/>
                                                 </box>
                                                 <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="PJc-d3-aV6">
-                                                    <rect key="frame" x="6" y="6" width="343" height="38"/>
+                                                    <rect key="frame" x="6" y="6" width="363" height="38"/>
                                                     <view key="contentView" id="0QU-ll-t8P">
-                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="38"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="363" height="38"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HyQ-y9-I5U">
@@ -408,7 +408,7 @@
                                                                 </textFieldCell>
                                                             </textField>
                                                             <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FCC-PE-Y6e">
-                                                                <rect key="frame" x="41" y="11" width="272" height="16"/>
+                                                                <rect key="frame" x="41" y="11" width="292" height="16"/>
                                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" focusRingType="none" alignment="left" placeholderString="Search" drawsBackground="YES" id="rha-Yr-Htc">
                                                                     <font key="font" size="14" name="Roboto-Regular"/>
                                                                     <color key="textColor" name="Text"/>
@@ -416,7 +416,7 @@
                                                                 </textFieldCell>
                                                             </textField>
                                                             <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8fT-Un-yZs">
-                                                                <rect key="frame" x="313" y="1" width="30" height="36"/>
+                                                                <rect key="frame" x="333" y="1" width="30" height="36"/>
                                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSStopProgressFreestandingTemplate" imagePosition="only" alignment="center" inset="2" id="zUU-1i-YDI">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
@@ -443,20 +443,6 @@
                                                     </view>
                                                     <color key="fillColor" name="DashboardSearch"/>
                                                 </box>
-                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fyJ-RN-cJF">
-                                                    <rect key="frame" x="352" y="0.0" width="30" height="50"/>
-                                                    <buttonCell key="cell" type="bevel" title="person_add" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="KYe-xy-Rdn" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
-                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" size="23" name="MaterialIcons-Regular"/>
-                                                    </buttonCell>
-                                                    <color key="contentTintColor" name="MainBottomIcons"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="Yio-B9-2EI"/>
-                                                    </constraints>
-                                                    <connections>
-                                                        <action selector="addContactButtonClicked:" target="GLJ-mb-R6q" id="Tht-9l-WKb"/>
-                                                    </connections>
-                                                </button>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="frd-ic-dqH">
                                                     <rect key="frame" x="375" y="0.0" width="34" height="50"/>
                                                     <buttonCell key="cell" type="bevel" title="navigate_before" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="z2J-2S-9ia" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
@@ -476,15 +462,12 @@
                                                 <constraint firstItem="frd-ic-dqH" firstAttribute="top" secondItem="jDY-5P-PW5" secondAttribute="top" id="6Cl-95-StT"/>
                                                 <constraint firstItem="PJc-d3-aV6" firstAttribute="leading" secondItem="jDY-5P-PW5" secondAttribute="leading" constant="6" id="A7m-0x-7T2"/>
                                                 <constraint firstAttribute="bottom" secondItem="PJc-d3-aV6" secondAttribute="bottom" constant="6" id="LQp-az-9Pp"/>
-                                                <constraint firstItem="frd-ic-dqH" firstAttribute="leading" secondItem="fyJ-RN-cJF" secondAttribute="trailing" constant="-7" id="M4y-GI-RDn"/>
                                                 <constraint firstAttribute="height" constant="50" id="Oqb-pb-Pgu"/>
-                                                <constraint firstItem="fyJ-RN-cJF" firstAttribute="leading" secondItem="PJc-d3-aV6" secondAttribute="trailing" constant="3" id="PFO-iA-RRN"/>
-                                                <constraint firstAttribute="bottom" secondItem="fyJ-RN-cJF" secondAttribute="bottom" id="TJd-xC-hhE"/>
+                                                <constraint firstItem="frd-ic-dqH" firstAttribute="leading" secondItem="PJc-d3-aV6" secondAttribute="trailing" constant="6" id="PFO-iA-RRN"/>
                                                 <constraint firstAttribute="trailing" secondItem="i1k-f6-Bmo" secondAttribute="trailing" id="UvP-RG-SQZ"/>
                                                 <constraint firstAttribute="bottom" secondItem="frd-ic-dqH" secondAttribute="bottom" id="fJD-qk-IOk"/>
                                                 <constraint firstItem="PJc-d3-aV6" firstAttribute="top" secondItem="jDY-5P-PW5" secondAttribute="top" constant="6" id="imD-Tw-UNh"/>
                                                 <constraint firstAttribute="trailing" secondItem="frd-ic-dqH" secondAttribute="trailing" id="n9X-JZ-BYI"/>
-                                                <constraint firstItem="fyJ-RN-cJF" firstAttribute="top" secondItem="jDY-5P-PW5" secondAttribute="top" id="rTa-xZ-v8U"/>
                                             </constraints>
                                         </customView>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="Tn4-P2-Qe9" customClass="ChatsSegmentedControl" customModule="Sphinx" customModuleProvider="target">
@@ -501,12 +484,29 @@
                                                     </constraints>
                                                     <color key="fillColor" name="Divider"/>
                                                 </box>
+                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fyJ-RN-cJF">
+                                                    <rect key="frame" x="374" y="14.5" width="15" height="21"/>
+                                                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="plus" catalog="system" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="KYe-xy-Rdn" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" size="23" name="MaterialIcons-Regular"/>
+                                                    </buttonCell>
+                                                    <color key="contentTintColor" name="MainBottomIcons"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="15" id="IcP-ox-DK2"/>
+                                                        <constraint firstAttribute="width" constant="15" id="Yio-B9-2EI"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="addContactButtonClicked:" target="GLJ-mb-R6q" id="Tht-9l-WKb"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="fyJ-RN-cJF" secondAttribute="trailing" constant="20" id="3My-dt-XOR"/>
                                                 <constraint firstAttribute="trailing" secondItem="JmA-ra-Ram" secondAttribute="trailing" id="Be4-3t-bt4"/>
                                                 <constraint firstItem="JmA-ra-Ram" firstAttribute="leading" secondItem="Tn4-P2-Qe9" secondAttribute="leading" id="Pqy-cv-Xyd"/>
                                                 <constraint firstAttribute="height" constant="48" id="XMD-IW-9hP"/>
                                                 <constraint firstAttribute="bottom" secondItem="JmA-ra-Ram" secondAttribute="bottom" id="kA1-cZ-95b"/>
+                                                <constraint firstItem="fyJ-RN-cJF" firstAttribute="centerY" secondItem="Tn4-P2-Qe9" secondAttribute="centerY" id="oXO-jG-MW9"/>
                                             </constraints>
                                         </customView>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="hky-hJ-L7j" customClass="NewChatHeaderView" customModule="Sphinx" customModuleProvider="target">
@@ -525,7 +525,7 @@
                                                 <constraint firstAttribute="width" constant="292" id="xQz-b2-2Vx"/>
                                             </constraints>
                                         </customView>
-                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="gZo-o6-Yss">
+                                        <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gZo-o6-Yss">
                                             <rect key="frame" x="0.0" y="0.0" width="409" height="60"/>
                                             <subviews>
                                                 <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="eO8-qH-wlL">
@@ -608,7 +608,7 @@
                                     <constraints>
                                         <constraint firstItem="wna-oI-X6X" firstAttribute="leading" secondItem="ySx-Q7-u4E" secondAttribute="leading" id="1pl-Pe-fak"/>
                                         <constraint firstItem="wna-oI-X6X" firstAttribute="bottom" secondItem="ySx-Q7-u4E" secondAttribute="bottom" id="3dX-7f-5o8"/>
-                                        <constraint firstItem="gZo-o6-Yss" firstAttribute="top" secondItem="ySx-Q7-u4E" secondAttribute="bottom" id="5U8-zQ-Oi0"/>
+                                        <constraint firstItem="gZo-o6-Yss" firstAttribute="bottom" secondItem="ySx-Q7-u4E" secondAttribute="bottom" id="5U8-zQ-Oi0"/>
                                         <constraint firstItem="wna-oI-X6X" firstAttribute="trailing" secondItem="ySx-Q7-u4E" secondAttribute="trailing" id="5dv-ru-QKm"/>
                                         <constraint firstItem="oyE-PD-rzx" firstAttribute="top" secondItem="hky-hJ-L7j" secondAttribute="top" constant="24" id="DK2-on-RqT"/>
                                         <constraint firstItem="jDY-5P-PW5" firstAttribute="top" secondItem="hky-hJ-L7j" secondAttribute="bottom" id="E6Y-2r-0Ce"/>
@@ -1860,6 +1860,7 @@
         <image name="bottomBar1" width="25" height="25"/>
         <image name="bottomBar2" width="25" height="25"/>
         <image name="bottomBar4" width="25" height="25"/>
+        <image name="plus" catalog="system" width="14" height="13"/>
         <image name="qrCode" width="21" height="21"/>
         <image name="tapToCopy" width="18.5" height="32"/>
         <image name="xmark" catalog="system" width="14" height="13"/>

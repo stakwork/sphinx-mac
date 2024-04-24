@@ -16,6 +16,14 @@ class NewMenuListItem: NSCollectionViewItem {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
+        self.view.wantsLayer = true
+        self.view.layer?.masksToBounds = false
+    }
+    
+    func render(with item: NewMenuItem) {
+        self.itemIcon.image = NSImage(named: item.icon)
+        self.itemTitle.stringValue = item.menuTitle
+        self.itemTitle.textColor = .white
     }
     
 }
