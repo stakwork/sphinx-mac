@@ -24,6 +24,9 @@ class ChatListViewController : DashboardSplittedViewController {
     @IBOutlet weak var transactionsButton: CustomButton!
     @IBOutlet weak var sendButton: CustomButton!
     
+    @IBOutlet var menuListView: NewMenuListView!
+    @IBOutlet var menuListBGView: TransparentView!
+    
     @IBOutlet weak var dashboardNavigationTabs: ChatsSegmentedControl! {
         didSet {
             dashboardNavigationTabs.configureFromOutlet(
@@ -104,6 +107,7 @@ class ChatListViewController : DashboardSplittedViewController {
     override func viewWillAppear() {
         super.viewWillAppear()
         configureHeaderAndBottomBar()
+        headerView.delegate = self
     }
     
     override func viewDidAppear() {
@@ -127,7 +131,7 @@ class ChatListViewController : DashboardSplittedViewController {
         
         searchField.setPlaceHolder(color: NSColor.Sphinx.PlaceholderText, font: NSFont(name: "Roboto-Regular", size: 14.0)!, string: "search".localized)
         searchField.delegate = self
-        
+        menuListView.delegate = self
 //        healthCheckView.delegate = self
         
         self.view.window?.makeFirstResponder(self)
@@ -392,4 +396,28 @@ extension ChatListViewController: NewContactDismissDelegate {
     }
 }
 
+extension ChatListViewController: NewChatHeaderViewDelegate {
+    func refreshTapped() {
+        print("Here is the refresh tapped")
+    }
+    
+    func menuTapped(_ frame: CGRect) {
+        menuListView.isHidden = false
+        menuListBGView.isHidden = false
+        menuListBGView.setBackgroundColor(color: NSColor.Sphinx.LightBG.withAlphaComponent(0.8))
+    }
+    
+    
+}
 
+extension ChatListViewController: NewMenuListViewDelegate {
+    func closeButtonTapped() {
+        menuListView.isHidden = true
+        menuListBGView.isHidden = true
+        menuListBGView.subviews.forEach { view in
+            view.removeFromSuperview()
+        }
+    }
+    
+    
+}

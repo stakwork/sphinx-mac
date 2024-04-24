@@ -8,12 +8,29 @@
 
 import Cocoa
 
-class NewMenuListView: NSView {
+protocol NewMenuListViewDelegate: AnyObject {
+    func closeButtonTapped()
+}
 
-    override func draw(_ dirtyRect: NSRect) {
-        super.draw(dirtyRect)
-
-        // Drawing code here.
+class NewMenuListView: NSView, LoadableNib {
+    
+    weak var delegate: NewMenuListViewDelegate?
+    
+    @IBOutlet var contentView: NSView!
+    @IBOutlet weak var closeButton: CustomButton!
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        loadViewFromNib()
+        setup()
+    }
+    
+    private func setup() {
+        closeButton.cursor = .pointingHand
+    }
+    
+    @IBAction func closeButtonTapped(_ sender: NSButton) {
+        delegate?.closeButtonTapped()
     }
     
 }

@@ -10,7 +10,7 @@ import Cocoa
 
 protocol NewChatHeaderViewDelegate: AnyObject {
     func refreshTapped()
-    func menuTapped()
+    func menuTapped(_ frame: CGRect)
 }
 
 class NewChatHeaderView: NSView, LoadableNib {
@@ -88,12 +88,12 @@ class NewChatHeaderView: NSView, LoadableNib {
     }
     
     @IBAction func refreshButtonTapped(_ sender: NSButton) {
-//        delegate?.refreshTapped()
+        delegate?.refreshTapped()
         configureProfile()
     }
     
     @IBAction func menuButtonTapped(_ sender: NSButton) {
-        delegate?.menuTapped()
+        delegate?.menuTapped(menuButton.frame)
     }
     
     func shouldCheckAppVersions() {

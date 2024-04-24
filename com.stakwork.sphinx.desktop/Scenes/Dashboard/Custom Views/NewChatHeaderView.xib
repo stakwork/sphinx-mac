@@ -197,6 +197,9 @@
                                         <constraint firstAttribute="height" constant="32" id="AJC-qJ-BfN"/>
                                         <constraint firstAttribute="width" constant="32" id="Y1B-cx-pei"/>
                                     </constraints>
+                                    <connections>
+                                        <action selector="refreshButtonTapped:" target="-2" id="cvj-gj-IhW"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <constraints>
@@ -232,6 +235,9 @@
                                         <constraint firstAttribute="width" constant="32" id="7MX-HQ-1ef"/>
                                         <constraint firstAttribute="height" constant="32" id="WSF-JS-tKY"/>
                                     </constraints>
+                                    <connections>
+                                        <action selector="menuButtonTapped:" target="-2" id="0AJ-mg-TLZ"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <constraints>
