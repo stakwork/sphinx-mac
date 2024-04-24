@@ -515,6 +515,16 @@
                                                 <constraint firstAttribute="height" constant="64" id="spE-iG-TmO"/>
                                             </constraints>
                                         </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="QlW-gz-6xN" customClass="TransparentView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="409" height="542"/>
+                                        </customView>
+                                        <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oyE-PD-rzx" customClass="NewMenuListView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="107" y="-72" width="292" height="590"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="590" id="QvD-oT-2f0"/>
+                                                <constraint firstAttribute="width" constant="292" id="xQz-b2-2Vx"/>
+                                            </constraints>
+                                        </customView>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="gZo-o6-Yss">
                                             <rect key="frame" x="0.0" y="0.0" width="409" height="60"/>
                                             <subviews>
@@ -600,11 +610,13 @@
                                         <constraint firstItem="wna-oI-X6X" firstAttribute="bottom" secondItem="ySx-Q7-u4E" secondAttribute="bottom" id="3dX-7f-5o8"/>
                                         <constraint firstItem="gZo-o6-Yss" firstAttribute="top" secondItem="ySx-Q7-u4E" secondAttribute="bottom" id="5U8-zQ-Oi0"/>
                                         <constraint firstItem="wna-oI-X6X" firstAttribute="trailing" secondItem="ySx-Q7-u4E" secondAttribute="trailing" id="5dv-ru-QKm"/>
+                                        <constraint firstItem="oyE-PD-rzx" firstAttribute="top" secondItem="hky-hJ-L7j" secondAttribute="top" constant="24" id="DK2-on-RqT"/>
                                         <constraint firstItem="jDY-5P-PW5" firstAttribute="top" secondItem="hky-hJ-L7j" secondAttribute="bottom" id="E6Y-2r-0Ce"/>
                                         <constraint firstItem="Tn4-P2-Qe9" firstAttribute="top" secondItem="jDY-5P-PW5" secondAttribute="bottom" id="Kwg-Zg-NLT"/>
                                         <constraint firstItem="ySx-Q7-u4E" firstAttribute="leading" secondItem="hee-Rj-5G9" secondAttribute="leading" id="P56-YK-XLq"/>
                                         <constraint firstAttribute="trailing" secondItem="hky-hJ-L7j" secondAttribute="trailing" id="S1d-d6-EdJ"/>
                                         <constraint firstAttribute="trailing" secondItem="Tn4-P2-Qe9" secondAttribute="trailing" id="TE3-j4-8lC"/>
+                                        <constraint firstAttribute="trailing" secondItem="oyE-PD-rzx" secondAttribute="trailing" constant="10" id="Uh7-2l-g0Z"/>
                                         <constraint firstItem="wna-oI-X6X" firstAttribute="top" secondItem="ySx-Q7-u4E" secondAttribute="top" id="WeZ-X2-dvT"/>
                                         <constraint firstAttribute="trailing" secondItem="jDY-5P-PW5" secondAttribute="trailing" id="WgH-fK-lsv"/>
                                         <constraint firstAttribute="trailing" secondItem="ySx-Q7-u4E" secondAttribute="trailing" id="XLN-5M-UCZ"/>
@@ -624,8 +636,12 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="3WV-CT-ixE" secondAttribute="trailing" id="2SK-rC-dfs"/>
                             <constraint firstAttribute="bottom" secondItem="3WV-CT-ixE" secondAttribute="bottom" id="CPr-VV-ELZ"/>
+                            <constraint firstItem="QlW-gz-6xN" firstAttribute="top" secondItem="Wee-9X-5cV" secondAttribute="top" id="Hkm-4L-jHs"/>
                             <constraint firstItem="3WV-CT-ixE" firstAttribute="leading" secondItem="Wee-9X-5cV" secondAttribute="leading" id="Rcy-Vd-5sj"/>
+                            <constraint firstAttribute="bottom" secondItem="QlW-gz-6xN" secondAttribute="bottom" id="UFI-vT-3sG"/>
+                            <constraint firstAttribute="trailing" secondItem="QlW-gz-6xN" secondAttribute="trailing" id="iQI-mT-x4P"/>
                             <constraint firstItem="3WV-CT-ixE" firstAttribute="top" secondItem="Wee-9X-5cV" secondAttribute="top" id="pqZ-5I-sc4"/>
+                            <constraint firstItem="QlW-gz-6xN" firstAttribute="leading" secondItem="Wee-9X-5cV" secondAttribute="leading" id="wKu-dE-oSG"/>
                         </constraints>
                     </view>
                     <connections>
@@ -635,6 +651,8 @@
                         <outlet property="headerView" destination="hky-hJ-L7j" id="PBU-Ut-AiU"/>
                         <outlet property="loadingChatsBox" destination="wna-oI-X6X" id="WSu-SE-Pcy"/>
                         <outlet property="loadingChatsWheel" destination="q1Y-RN-Kmu" id="dmZ-v6-h8h"/>
+                        <outlet property="menuListBGView" destination="QlW-gz-6xN" id="rZ1-n7-xHb"/>
+                        <outlet property="menuListView" destination="oyE-PD-rzx" id="dNU-LA-qxq"/>
                         <outlet property="receiveButton" destination="fUv-XW-NAV" id="czr-Fc-VD7"/>
                         <outlet property="searchBarContainer" destination="jDY-5P-PW5" id="b7x-8h-QsA"/>
                         <outlet property="searchClearButton" destination="8fT-Un-yZs" id="fYv-CR-6ac"/>
