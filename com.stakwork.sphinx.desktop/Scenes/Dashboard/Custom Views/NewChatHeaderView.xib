@@ -134,6 +134,16 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
+                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="uuY-Dp-2R6">
+                                                    <rect key="frame" x="0.0" y="9" width="32" height="15"/>
+                                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="net-3l-6fA">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="toggleHideBalance:" target="-2" id="Hoa-Md-Pdt"/>
+                                                    </connections>
+                                                </button>
                                                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YTQ-qB-47m">
                                                     <rect key="frame" x="38" y="9" width="36" height="15"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="lvG-u0-seo">
@@ -144,10 +154,14 @@
                                                 </textField>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="uuY-Dp-2R6" firstAttribute="trailing" secondItem="su7-7j-Xer" secondAttribute="trailing" id="4q5-rg-D5I"/>
                                                 <constraint firstItem="su7-7j-Xer" firstAttribute="top" secondItem="WA1-Dl-fbm" secondAttribute="top" id="CjW-89-env"/>
                                                 <constraint firstItem="YTQ-qB-47m" firstAttribute="leading" secondItem="su7-7j-Xer" secondAttribute="trailing" constant="8" id="De7-rh-xYS"/>
+                                                <constraint firstItem="uuY-Dp-2R6" firstAttribute="bottom" secondItem="su7-7j-Xer" secondAttribute="bottom" id="Hx5-Zz-BBp"/>
                                                 <constraint firstItem="su7-7j-Xer" firstAttribute="leading" secondItem="WA1-Dl-fbm" secondAttribute="leading" id="abL-mq-np2"/>
+                                                <constraint firstItem="uuY-Dp-2R6" firstAttribute="top" secondItem="su7-7j-Xer" secondAttribute="top" id="hFb-21-3TC"/>
                                                 <constraint firstItem="YTQ-qB-47m" firstAttribute="top" secondItem="su7-7j-Xer" secondAttribute="top" id="l4o-kB-4Cz"/>
+                                                <constraint firstItem="uuY-Dp-2R6" firstAttribute="leading" secondItem="su7-7j-Xer" secondAttribute="leading" id="oUE-Kh-uvc"/>
                                             </constraints>
                                         </customView>
                                     </subviews>

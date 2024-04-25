@@ -405,7 +405,7 @@ extension ChatListViewController: NewChatHeaderViewDelegate {
     func menuTapped(_ frame: CGRect) {
         menuListView.isHidden = false
         menuListBGView.isHidden = false
-        menuListBGView.setBackgroundColor(color: NSColor.Sphinx.LightBG.withAlphaComponent(0.01))
+        menuListBGView.setBackgroundColor(color: NSColor.Sphinx.LightBG.withAlphaComponent(0))
     }
     
     

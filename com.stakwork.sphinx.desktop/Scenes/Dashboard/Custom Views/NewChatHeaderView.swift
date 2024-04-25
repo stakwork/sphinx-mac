@@ -35,6 +35,7 @@ class NewChatHeaderView: NSView, LoadableNib {
     var walletBalanceService = WalletBalanceService()
     
     let profile = UserContact.getOwner()
+    var hideBalance: Bool = false
     
     var loading = false {
         didSet {
@@ -98,6 +99,19 @@ class NewChatHeaderView: NSView, LoadableNib {
     
     @IBAction func menuButtonTapped(_ sender: NSButton) {
         delegate?.menuTapped(menuButton.frame)
+    }
+    
+    @IBAction func toggleHideBalance(_ sender: NSButton) {
+        hideBalance = !hideBalance
+        hideBalance ? hideAmount() : updateBalance()
+    }
+    
+    func hideAmount() {
+        var hiddenAmount = ""
+        "\(walletBalanceService.balance)".forEach { char in
+            hiddenAmount += "*"
+        }
+        balanceLabel.stringValue = hiddenAmount
     }
     
     func shouldCheckAppVersions() {
