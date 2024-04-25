@@ -97,6 +97,7 @@ class ChatListViewController : DashboardSplittedViewController {
         
         resetSearchField()
         menuListView.configureDataSource(delegate: self)
+        menuListView.addShadow(offset: CGSize.init(width: 1, height: 1), color: NSColor.Sphinx.Body, opacity: 0.5, radius: 16, cornerRadius: 16)
         bottomBar.isHidden = true
     }
     
@@ -404,7 +405,7 @@ extension ChatListViewController: NewChatHeaderViewDelegate {
     func menuTapped(_ frame: CGRect) {
         menuListView.isHidden = false
         menuListBGView.isHidden = false
-        menuListBGView.setBackgroundColor(color: NSColor.Sphinx.LightBG.withAlphaComponent(0.8))
+        menuListBGView.setBackgroundColor(color: NSColor.Sphinx.LightBG.withAlphaComponent(0.01))
     }
     
     

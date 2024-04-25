@@ -25,10 +25,24 @@ class NewMenuItemDataSource : NSObject {
         super.init()
         self.delegate = delegate
         self.collectionView = collectionView
+        configureCollectionView()
+        
+//        updateFrame()
     }
     
     func updateFrame() {
         self.collectionView.collectionViewLayout?.invalidateLayout()
+    }
+    
+    func configureCollectionView() {
+        let flowLayout = NSCollectionViewFlowLayout()
+        flowLayout.sectionInset = NSEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+        flowLayout.minimumInteritemSpacing = 0.0
+        flowLayout.minimumLineSpacing = 0.0
+        flowLayout.sectionHeadersPinToVisibleBounds = true
+//        flowLayout.itemSize = NSSize(width: self.viewWidth, height: mentionCellHeight)
+//        flowLayout.headerReferenceSize = NSSize(width: self.viewWidth, height: 0)
+        collectionView.collectionViewLayout = flowLayout
     }
     
     func setDataAndReload(objects: [NewMenuItem]) {
@@ -71,7 +85,7 @@ extension NewMenuItemDataSource : NSCollectionViewDataSource {
 extension NewMenuItemDataSource : NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
         let object = objects[indexPath.item]
-        return NSSize(width: 200, height: 52)
+        return NSSize(width: collectionView.frame.width, height: 52)
     }
     
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {

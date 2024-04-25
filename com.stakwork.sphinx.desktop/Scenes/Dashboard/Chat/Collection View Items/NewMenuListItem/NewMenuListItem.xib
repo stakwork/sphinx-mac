@@ -16,33 +16,41 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="234" height="53"/>
+            <rect key="frame" x="0.0" y="0.0" width="318" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="1Jq-6f-6AC">
+                    <rect key="frame" x="0.0" y="0.0" width="318" height="44"/>
+                </customView>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FHb-s9-uPP">
-                    <rect key="frame" x="0.0" y="21" width="12" height="12"/>
+                    <rect key="frame" x="0.0" y="13" width="18" height="18"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="12" id="2GO-U5-a5x"/>
-                        <constraint firstAttribute="height" constant="12" id="US5-rS-mLy"/>
+                        <constraint firstAttribute="width" constant="18" id="baW-g3-1Ka"/>
+                        <constraint firstAttribute="height" constant="18" id="r3H-tf-hzO"/>
                     </constraints>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="imageCell:Fim-ud-RaN:image" id="Fim-ud-RaN"/>
                 </imageView>
                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="poT-eZ-s7R">
-                    <rect key="frame" x="32" y="19" width="65" height="16"/>
+                    <rect key="frame" x="32" y="15" width="63" height="15"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="My Profile" id="zuv-gC-eSE">
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="Roboto-Regular"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
             </subviews>
             <constraints>
-                <constraint firstItem="FHb-s9-uPP" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="KVv-gl-lFY"/>
-                <constraint firstItem="poT-eZ-s7R" firstAttribute="leading" secondItem="FHb-s9-uPP" secondAttribute="trailing" constant="22" id="e3k-Gt-wUe"/>
-                <constraint firstItem="FHb-s9-uPP" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="i8Z-Z9-IXt"/>
-                <constraint firstItem="poT-eZ-s7R" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="uq8-3K-oCo"/>
+                <constraint firstItem="FHb-s9-uPP" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="6yP-3U-TIQ"/>
+                <constraint firstItem="FHb-s9-uPP" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="Ckn-AH-DqP"/>
+                <constraint firstItem="poT-eZ-s7R" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="MfU-Tg-epe"/>
+                <constraint firstItem="poT-eZ-s7R" firstAttribute="leading" secondItem="FHb-s9-uPP" secondAttribute="trailing" constant="16" id="Pui-RH-Yff"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="poT-eZ-s7R" secondAttribute="trailing" constant="20" id="ScZ-rJ-Shi"/>
+                <constraint firstItem="1Jq-6f-6AC" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="bR6-Oh-yEa"/>
+                <constraint firstItem="1Jq-6f-6AC" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="lgg-N1-F01"/>
+                <constraint firstAttribute="bottom" secondItem="1Jq-6f-6AC" secondAttribute="bottom" id="vnQ-Oo-Cac"/>
+                <constraint firstAttribute="trailing" secondItem="1Jq-6f-6AC" secondAttribute="trailing" id="zgh-53-G1H"/>
             </constraints>
-            <point key="canvasLocation" x="-151" y="26.5"/>
+            <point key="canvasLocation" x="-193" y="22"/>
         </customView>
         <customObject id="hnT-Vy-Q10" customClass="NewMenuListItem" customModule="Sphinx" customModuleProvider="target"/>
     </objects>
