@@ -411,9 +411,15 @@ extension ChatListViewController: NewChatHeaderViewDelegate {
     
 }
 
+
 extension ChatListViewController: NewMenuListViewDelegate {
     func buttonClicked(id: Int) {
-        
+        let vcInfo = getViewControllerToLoadInfo(vcId: id)
+        navigateToNewVC(vc: vcInfo.0,
+                        title: vcInfo.1,
+                        identifier: vcInfo.2,
+                        hideDivider: vcInfo.3,
+                        height: vcInfo.4)
     }
     
     func closeButtonTapped() {
@@ -429,6 +435,83 @@ extension ChatListViewController: NewMenuListViewDelegate {
 
 extension ChatListViewController: NewMenuItemDataSourceDelegate {
     func itemSelected(at index: Int) {
-       
+        let vcInfo = getViewControllerToLoadInfo(vcId: index)
+        navigateToNewVC(vc: vcInfo.0,
+                        title: vcInfo.1,
+                        identifier: vcInfo.2,
+                        hideDivider: vcInfo.3,
+                        height: vcInfo.4)
+    }
+    
+    func getViewControllerToLoadInfo(vcId: Int) -> (NSViewController, String, String, Bool, CGFloat?){
+        switch vcId {
+        case 0:
+            return (ProfileViewController.instantiate(),
+                    "profile".localized,
+                    "profile-custom-window",
+                    false, nil)
+        case 1:
+            return (AddFriendViewController.instantiate(delegate: self, dismissDelegate: self),
+                    "new.contact".localized,
+                    "new-contact-window",
+                    true,
+                    500)
+        case 2:
+            return (TransactionsListViewController.instantiate(),
+                    "transactions".localized,
+                    "transactions-custom-window",
+                    false,
+                    nil)
+        case 3:
+            return (CreateInvoiceViewController.instantiate(
+                childVCDelegate: self,
+                viewModel: PaymentViewModel(mode: .Request),
+                delegate: self,
+                mode: .Window
+            ),
+                    "create.invoice".localized,
+                    "create-invoice",
+                    true,
+                    500)
+        case 4:
+            return (SendPaymentForInvoiceVC.instantiate(),
+                    "pay.invoice".localized,
+                    "invoice-management-window",
+                    true,
+                    447)
+        case 6:
+            return (AddFriendViewController.instantiate(delegate: self, dismissDelegate: self),
+                    "new.contact".localized,
+                    "new-contact-window",
+                    true,
+                    500)
+        case 7:
+            return (CreateTribeViewController.instantiate(),
+                    "Create Tribe",
+                    "create-tribe-custom-window",
+                    false,
+                    nil)
+        default:
+            return (NSViewController(), "", "", false, nil)
+        }
+    }
+    
+    func navigateToNewVC(vc: NSViewController,
+                         title: String,
+                         identifier: String,
+                         hideDivider: Bool = false,
+                         height: CGFloat? = nil) {
+        closeButtonTapped()
+        WindowsManager.sharedInstance.showOnCurrentWindow(
+            with: title,
+            identifier: identifier,
+            contentVC: vc,
+            hideDivider: hideDivider,
+            hideBackButton: true,
+            replacingVC: true,
+            height: height
+        )
+        
     }
 }
+
