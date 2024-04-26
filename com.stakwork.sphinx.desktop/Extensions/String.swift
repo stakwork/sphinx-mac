@@ -594,7 +594,9 @@ extension String {
         return self
     }
     
-    func getNameStyleString() -> String {
+    func getNameStyleString(
+        lineBreak:  Bool = true
+    ) -> String {
         if self == "" {
             return "Unknown"
         }
@@ -608,7 +610,11 @@ extension String {
                 namesString = "\(name)"
                 namesCount += 1
             } else if namesCount == 1 {
-                namesString = "\(namesString)\n\(name)"
+                if lineBreak {
+                    namesString = "\(namesString)\n\(name)"
+                } else {
+                    namesString = "\(namesString) \(name)"
+                }
                 namesCount += 1
             } else {
                 namesString = "\(namesString) \(name)"

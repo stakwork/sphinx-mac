@@ -149,6 +149,7 @@ extension NSView {
         self.layer?.shadowColor = color.cgColor
         self.layer?.shadowOffset = offset
         self.layer?.shadowRadius = radius
+        self.layer?.masksToBounds = false
         
         if cornerRadius > 0 {
             let shapeRect = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)

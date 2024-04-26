@@ -26,8 +26,6 @@ class NewMenuItemDataSource : NSObject {
         self.delegate = delegate
         self.collectionView = collectionView
         configureCollectionView()
-        
-//        updateFrame()
     }
     
     func updateFrame() {
@@ -37,11 +35,9 @@ class NewMenuItemDataSource : NSObject {
     func configureCollectionView() {
         let flowLayout = NSCollectionViewFlowLayout()
         flowLayout.sectionInset = NSEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
-        flowLayout.minimumInteritemSpacing = 0.0
+        flowLayout.minimumInteritemSpacing = 10.0
         flowLayout.minimumLineSpacing = 0.0
         flowLayout.sectionHeadersPinToVisibleBounds = true
-//        flowLayout.itemSize = NSSize(width: self.viewWidth, height: mentionCellHeight)
-//        flowLayout.headerReferenceSize = NSSize(width: self.viewWidth, height: 0)
         collectionView.collectionViewLayout = flowLayout
     }
     
@@ -68,13 +64,23 @@ extension NewMenuItemDataSource : NSCollectionViewDataSource {
         return objects.count
     }
   
-    func collectionView(_ itemForRepresentedObjectAtcollectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-        let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "NewMenuListItem"), for: indexPath)
-        guard let collectionViewItem = item as? NewMenuListItem else {return item}
+    func collectionView(
+        _ itemForRepresentedObjectAtcollectionView: NSCollectionView,
+        itemForRepresentedObjectAt indexPath: IndexPath
+    ) -> NSCollectionViewItem {
+        let item = collectionView.makeItem(
+            withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "NewMenuListItem"),
+            for: indexPath
+        )
+        guard let _ = item as? NewMenuListItem else {return item}
         return item
     }
     
-    func collectionView(_ collectionView: NSCollectionView, willDisplay item: NSCollectionViewItem, forRepresentedObjectAt indexPath: IndexPath) {
+    func collectionView(
+        _ collectionView: NSCollectionView,
+        willDisplay item: NSCollectionViewItem,
+        forRepresentedObjectAt indexPath: IndexPath
+    ) {
         guard let collectionViewItem = item as? NewMenuListItem else { return }
         
         let object = objects[indexPath.item]
@@ -83,13 +89,19 @@ extension NewMenuItemDataSource : NSCollectionViewDataSource {
 }
 
 extension NewMenuItemDataSource : NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
-        let object = objects[indexPath.item]
-        return NSSize(width: collectionView.frame.width, height: 52)
+    func collectionView(
+        _ collectionView: NSCollectionView,
+        layout collectionViewLayout: NSCollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> NSSize {
+        return NSSize(width: collectionView.frame.width, height: 40)
     }
     
-    func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
-        if let indexPath = indexPaths.first, let item = collectionView.item(at: indexPath) as? NewMenuListItem {
+    func collectionView(
+        _ collectionView: NSCollectionView,
+        didSelectItemsAt indexPaths: Set<IndexPath>
+    ) {
+        if let indexPath = indexPaths.first, let _ = collectionView.item(at: indexPath) as? NewMenuListItem {
             delegate?.itemSelected(at: indexPath.item)
         }
         collectionView.deselectItems(at: indexPaths)

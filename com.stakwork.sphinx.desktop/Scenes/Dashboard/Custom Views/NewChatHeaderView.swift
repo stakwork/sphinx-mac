@@ -11,6 +11,7 @@ import Cocoa
 protocol NewChatHeaderViewDelegate: AnyObject {
     func refreshTapped()
     func menuTapped(_ frame: CGRect)
+    func profileButtonClicked()
 }
 
 class NewChatHeaderView: NSView, LoadableNib {
@@ -28,6 +29,7 @@ class NewChatHeaderView: NSView, LoadableNib {
     
     @IBOutlet weak var reloadButton: CustomButton!
     @IBOutlet weak var menuButton: CustomButton!
+    @IBOutlet weak var balanceButton: CustomButton!
     
     @IBOutlet weak var loadingWheel: NSProgressIndicator!
     @IBOutlet weak var loadingWheelContainer: NSView!
@@ -39,9 +41,8 @@ class NewChatHeaderView: NSView, LoadableNib {
     
     var loading = false {
         didSet {
-            healthCheckView.isHidden = loading
             loadingWheelContainer.isHidden = !loading
-            LoadingWheelHelper.toggleLoadingWheel(loading: loading, loadingWheel: loadingWheel, color: NSColor.white, controls: [])
+            LoadingWheelHelper.toggleLoadingWheel(loading: loading, loadingWheel: loadingWheel, color: NSColor.Sphinx.Text, controls: [])
         }
     }
     
@@ -59,6 +60,7 @@ class NewChatHeaderView: NSView, LoadableNib {
     private func setup() {
         reloadButton.cursor = .pointingHand
         menuButton.cursor = .pointingHand
+        balanceButton.cursor = .pointingHand
     }
     
     func configureProfile() {
@@ -79,7 +81,7 @@ class NewChatHeaderView: NSView, LoadableNib {
             }
             
             let nickname = profile.nickname ?? ""
-            nameLabel.stringValue = nickname.getNameStyleString()
+            nameLabel.stringValue = nickname.getNameStyleString(lineBreak: false)
         }
     }
     
@@ -94,7 +96,6 @@ class NewChatHeaderView: NSView, LoadableNib {
         delegate?.refreshTapped()
         updateBalance()
         shouldCheckAppVersions()
-//        configureProfile()
     }
     
     @IBAction func menuButtonTapped(_ sender: NSButton) {
@@ -104,6 +105,10 @@ class NewChatHeaderView: NSView, LoadableNib {
     @IBAction func toggleHideBalance(_ sender: NSButton) {
         hideBalance = !hideBalance
         hideBalance ? hideAmount() : updateBalance()
+    }
+    
+    @IBAction func profileButtonClicked(_ sender: Any) {
+        delegate?.profileButtonClicked()
     }
     
     func hideAmount() {

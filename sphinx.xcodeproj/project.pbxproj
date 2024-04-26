@@ -560,6 +560,7 @@
 		47F8825D25656CB0002A7E71 /* SocketIOStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F8824325656CB0002A7E71 /* SocketIOStatus.swift */; };
 		47F8825E25656CB0002A7E71 /* SocketAckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F8824525656CB0002A7E71 /* SocketAckManager.swift */; };
 		47F8825F25656CB0002A7E71 /* SocketAckEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F8824625656CB0002A7E71 /* SocketAckEmitter.swift */; };
+		47FB5F3E2BDC1A2B001B762B /* NewMenuListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FB5F402BDC1A2B001B762B /* NewMenuListView.xib */; };
 		47FEE1EF2A61A19E00646C4E /* ChatMessageFieldView+FieldsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE1EE2A61A19E00646C4E /* ChatMessageFieldView+FieldsExtension.swift */; };
 		47FEE1F12A61A1C200646C4E /* ChatMessageFieldView+MentionsMacrosExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE1F02A61A1C200646C4E /* ChatMessageFieldView+MentionsMacrosExtension.swift */; };
 		47FEE1F42A61B1CA00646C4E /* NewChatViewController+FetchControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE1F32A61B1CA00646C4E /* NewChatViewController+FetchControllerExtension.swift */; };
@@ -594,7 +595,6 @@
 		93A06CF52BD7E413003EF2B2 /* NewChatHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93A06CF42BD7E413003EF2B2 /* NewChatHeaderView.xib */; };
 		93A06CF72BD7E43C003EF2B2 /* NewChatHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A06CF62BD7E43C003EF2B2 /* NewChatHeaderView.swift */; };
 		93A06CF92BD82E5B003EF2B2 /* NewMenuListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A06CF82BD82E5B003EF2B2 /* NewMenuListView.swift */; };
-		93A06CFB2BD82E6C003EF2B2 /* NewMenuListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93A06CFA2BD82E6C003EF2B2 /* NewMenuListView.xib */; };
 		93A83E6A2B7FC298005158FB /* SphinxProfileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A83E692B7FC298005158FB /* SphinxProfileUITests.swift */; };
 		93A83E6C2B7FC298005158FB /* SphinxUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A83E6B2B7FC298005158FB /* SphinxUITestsLaunchTests.swift */; };
 		93E479242BD1C80800D0C9AB /* DashboardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E479232BD1C80800D0C9AB /* DashboardDetailViewController.swift */; };
@@ -1498,6 +1498,14 @@
 		47F8824325656CB0002A7E71 /* SocketIOStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOStatus.swift; sourceTree = "<group>"; };
 		47F8824525656CB0002A7E71 /* SocketAckManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckManager.swift; sourceTree = "<group>"; };
 		47F8824625656CB0002A7E71 /* SocketAckEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckEmitter.swift; sourceTree = "<group>"; };
+		47FB5F3F2BDC1A2B001B762B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NewMenuListView.xib; sourceTree = "<group>"; };
+		47FB5F432BDC1A39001B762B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/NewMenuListView.strings; sourceTree = "<group>"; };
+		47FB5F452BDC1A3A001B762B /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/NewMenuListView.strings"; sourceTree = "<group>"; };
+		47FB5F472BDC1A3A001B762B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/NewMenuListView.strings"; sourceTree = "<group>"; };
+		47FB5F492BDC1A3B001B762B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/NewMenuListView.strings"; sourceTree = "<group>"; };
+		47FB5F4B2BDC1A3C001B762B /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/NewMenuListView.strings; sourceTree = "<group>"; };
+		47FB5F4D2BDC1A3C001B762B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/NewMenuListView.strings; sourceTree = "<group>"; };
+		47FB5F4F2BDC1A3D001B762B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/NewMenuListView.strings; sourceTree = "<group>"; };
 		47FEE1EE2A61A19E00646C4E /* ChatMessageFieldView+FieldsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatMessageFieldView+FieldsExtension.swift"; sourceTree = "<group>"; };
 		47FEE1F02A61A1C200646C4E /* ChatMessageFieldView+MentionsMacrosExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatMessageFieldView+MentionsMacrosExtension.swift"; sourceTree = "<group>"; };
 		47FEE1F32A61B1CA00646C4E /* NewChatViewController+FetchControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewChatViewController+FetchControllerExtension.swift"; sourceTree = "<group>"; };
@@ -1534,7 +1542,6 @@
 		93A06CF42BD7E413003EF2B2 /* NewChatHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewChatHeaderView.xib; sourceTree = "<group>"; };
 		93A06CF62BD7E43C003EF2B2 /* NewChatHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatHeaderView.swift; sourceTree = "<group>"; };
 		93A06CF82BD82E5B003EF2B2 /* NewMenuListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMenuListView.swift; sourceTree = "<group>"; };
-		93A06CFA2BD82E6C003EF2B2 /* NewMenuListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewMenuListView.xib; sourceTree = "<group>"; };
 		93A83E672B7FC297005158FB /* SphinxUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SphinxUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93A83E692B7FC298005158FB /* SphinxProfileUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SphinxProfileUITests.swift; sourceTree = "<group>"; };
 		93A83E6B2B7FC298005158FB /* SphinxUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SphinxUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -2820,7 +2827,7 @@
 				93A06CF42BD7E413003EF2B2 /* NewChatHeaderView.xib */,
 				93A06CF62BD7E43C003EF2B2 /* NewChatHeaderView.swift */,
 				93A06CF82BD82E5B003EF2B2 /* NewMenuListView.swift */,
-				93A06CFA2BD82E6C003EF2B2 /* NewMenuListView.xib */,
+				47FB5F402BDC1A2B001B762B /* NewMenuListView.xib */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -3703,7 +3710,7 @@
 				47C7D72527874A67006D2809 /* PeopleTorActionsView.xib in Resources */,
 				477ADCCE2A1E5A46004E74CE /* PinNotificationView.xib in Resources */,
 				474A668D24990193002C2D10 /* MessageOptionView.xib in Resources */,
-				93A06CFB2BD82E6C003EF2B2 /* NewMenuListView.xib in Resources */,
+				47FB5F3E2BDC1A2B001B762B /* NewMenuListView.xib in Resources */,
 				47DE1C2A2A69DC4A0029597B /* NewMessageBoostView.xib in Resources */,
 				4726A43824C628DA005A66B4 /* note.caf in Resources */,
 				478ED5B025D597E500940132 /* connecting.gif in Resources */,
@@ -4980,6 +4987,21 @@
 				334B3B402B8147260003EA63 /* zh-Hant */,
 			);
 			name = PeopleTorActionsView.xib;
+			sourceTree = "<group>";
+		};
+		47FB5F402BDC1A2B001B762B /* NewMenuListView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				47FB5F3F2BDC1A2B001B762B /* Base */,
+				47FB5F432BDC1A39001B762B /* en */,
+				47FB5F452BDC1A3A001B762B /* zh-HK */,
+				47FB5F472BDC1A3A001B762B /* zh-Hans */,
+				47FB5F492BDC1A3B001B762B /* zh-Hant */,
+				47FB5F4B2BDC1A3C001B762B /* fil */,
+				47FB5F4D2BDC1A3C001B762B /* ja */,
+				47FB5F4F2BDC1A3D001B762B /* es */,
+			);
+			name = NewMenuListView.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

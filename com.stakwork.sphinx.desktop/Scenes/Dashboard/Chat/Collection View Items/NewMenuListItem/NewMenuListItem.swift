@@ -23,7 +23,6 @@ class NewMenuListItem: NSCollectionViewItem {
     func render(with item: NewMenuItem) {
         self.itemIcon.image = NSImage(named: item.icon)
         self.itemTitle.stringValue = item.menuTitle
-        self.itemTitle.textColor = .white
     }
     
 }

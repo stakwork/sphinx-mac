@@ -25,29 +25,38 @@ class NewMenuListView: NSView, LoadableNib {
     @IBOutlet weak var closeButton: CustomButton!
     @IBOutlet weak var menuCollectionView: NSCollectionView!
     @IBOutlet weak var menuScrollView: NSScrollView!
+    @IBOutlet weak var menuBoxContainer: NSBox!
+    @IBOutlet weak var versionLabel: NSTextField!
+    @IBOutlet weak var rightLabel: NSTextField!
     
     var menuDataSource: NewMenuItemDataSource? = nil
     
     typealias CollectionViewCell = NewMenuListItem
     
     let menuItems = [
-        NewMenuItem(icon: "person", menuTitle: "My Profile"),
-        NewMenuItem(icon: "contact", menuTitle: "Contacts"),
-        NewMenuItem(icon: "bottomBar2", menuTitle: "Transactions"),
-        NewMenuItem(icon: "bottomBar4", menuTitle: "Request Payment"),
-        NewMenuItem(icon: "bottomBar1", menuTitle: "Pay Invoice"),
-        NewMenuItem(icon: "mail", menuTitle: "Support")
+        NewMenuItem(icon: "person", menuTitle: "profile".localized),
+        NewMenuItem(icon: "contact", menuTitle: "menu.contacts".localized),
+        NewMenuItem(icon: "bottomBar2", menuTitle: "transactions".localized),
+        NewMenuItem(icon: "bottomBar4", menuTitle: "request.payment".localized),
+        NewMenuItem(icon: "bottomBar1", menuTitle: "pay.invoice".localized),
     ]
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         loadViewFromNib()
         setup()
-        menuCollectionView.layer?.backgroundColor = NSColor.Sphinx.Body.cgColor
     }
     
     private func setup() {
         closeButton.cursor = .pointingHand
+        
+        menuBoxContainer.addShadow(
+            offset: CGSize.init(width: 0, height: 0),
+            color: NSColor.black,
+            opacity: 0.8,
+            radius: 35,
+            cornerRadius: 0
+        )
     }
     
     func configureDataSource(delegate: NewMenuItemDataSourceDelegate) {

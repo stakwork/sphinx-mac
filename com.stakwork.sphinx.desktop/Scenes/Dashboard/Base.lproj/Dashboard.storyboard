@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
-        <plugIn identifier="com.apple.WebKit2IBPlugin" version="22505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -359,16 +359,16 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="ySx-Q7-u4E">
-                                            <rect key="frame" x="0.0" y="0.0" width="409" height="380"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="409" height="372"/>
                                         </customView>
                                         <box boxType="custom" borderType="none" cornerRadius="4" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="wna-oI-X6X">
-                                            <rect key="frame" x="0.0" y="0.0" width="409" height="380"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="409" height="372"/>
                                             <view key="contentView" id="VPd-B3-5XY">
-                                                <rect key="frame" x="0.0" y="0.0" width="409" height="380"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="409" height="372"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <progressIndicator maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="q1Y-RN-Kmu">
-                                                        <rect key="frame" x="197" y="182" width="16" height="16"/>
+                                                        <rect key="frame" x="197" y="178" width="16" height="16"/>
                                                     </progressIndicator>
                                                 </subviews>
                                                 <constraints>
@@ -378,8 +378,14 @@
                                             </view>
                                             <color key="fillColor" name="Body"/>
                                         </box>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="hky-hJ-L7j" customClass="NewChatHeaderView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="470" width="409" height="72"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="72" id="spE-iG-TmO"/>
+                                            </constraints>
+                                        </customView>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="jDY-5P-PW5">
-                                            <rect key="frame" x="0.0" y="428" width="409" height="50"/>
+                                            <rect key="frame" x="0.0" y="420" width="409" height="50"/>
                                             <subviews>
                                                 <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="i1k-f6-Bmo">
                                                     <rect key="frame" x="0.0" y="0.0" width="409" height="50"/>
@@ -390,9 +396,9 @@
                                                     <color key="fillColor" name="LightBG"/>
                                                 </box>
                                                 <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="PJc-d3-aV6">
-                                                    <rect key="frame" x="6" y="6" width="385" height="38"/>
+                                                    <rect key="frame" x="16" y="6" width="348" height="38"/>
                                                     <view key="contentView" id="0QU-ll-t8P">
-                                                        <rect key="frame" x="0.0" y="0.0" width="385" height="38"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="348" height="38"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HyQ-y9-I5U">
@@ -408,7 +414,7 @@
                                                                 </textFieldCell>
                                                             </textField>
                                                             <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FCC-PE-Y6e">
-                                                                <rect key="frame" x="41" y="11" width="314" height="16"/>
+                                                                <rect key="frame" x="41" y="11" width="277" height="16"/>
                                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" focusRingType="none" alignment="left" placeholderString="Search" drawsBackground="YES" id="rha-Yr-Htc">
                                                                     <font key="font" size="14" name="Roboto-Regular"/>
                                                                     <color key="textColor" name="Text"/>
@@ -416,7 +422,7 @@
                                                                 </textFieldCell>
                                                             </textField>
                                                             <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8fT-Un-yZs">
-                                                                <rect key="frame" x="355" y="1" width="30" height="36"/>
+                                                                <rect key="frame" x="318" y="1" width="30" height="36"/>
                                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSStopProgressFreestandingTemplate" imagePosition="only" alignment="center" inset="2" id="zUU-1i-YDI">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
@@ -443,15 +449,15 @@
                                                     </view>
                                                     <color key="fillColor" name="DashboardSearch"/>
                                                 </box>
-                                                <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="frd-ic-dqH">
-                                                    <rect key="frame" x="375" y="0.0" width="34" height="50"/>
+                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="frd-ic-dqH">
+                                                    <rect key="frame" x="359" y="0.0" width="50" height="50"/>
                                                     <buttonCell key="cell" type="bevel" title="navigate_before" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="z2J-2S-9ia" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" size="30" name="MaterialIcons-Regular"/>
                                                     </buttonCell>
-                                                    <color key="contentTintColor" name="MainBottomIcons"/>
+                                                    <color key="contentTintColor" name="SecondaryText"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="34" id="YEV-qt-Wc3"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="YEV-qt-Wc3"/>
                                                     </constraints>
                                                     <connections>
                                                         <action selector="hideMenuButtonClicked:" target="GLJ-mb-R6q" id="Unk-Dv-oCK"/>
@@ -463,18 +469,19 @@
                                                 <constraint firstItem="i1k-f6-Bmo" firstAttribute="top" secondItem="jDY-5P-PW5" secondAttribute="top" id="0eX-Jp-ISE"/>
                                                 <constraint firstItem="i1k-f6-Bmo" firstAttribute="leading" secondItem="jDY-5P-PW5" secondAttribute="leading" id="1Ga-jF-Fvb"/>
                                                 <constraint firstItem="frd-ic-dqH" firstAttribute="top" secondItem="jDY-5P-PW5" secondAttribute="top" id="6Cl-95-StT"/>
-                                                <constraint firstItem="PJc-d3-aV6" firstAttribute="leading" secondItem="jDY-5P-PW5" secondAttribute="leading" constant="6" id="A7m-0x-7T2"/>
+                                                <constraint firstItem="PJc-d3-aV6" firstAttribute="leading" secondItem="jDY-5P-PW5" secondAttribute="leading" constant="16" id="A7m-0x-7T2"/>
                                                 <constraint firstAttribute="bottom" secondItem="PJc-d3-aV6" secondAttribute="bottom" constant="6" id="LQp-az-9Pp"/>
                                                 <constraint firstAttribute="height" constant="50" id="Oqb-pb-Pgu"/>
-                                                <constraint firstAttribute="trailing" secondItem="PJc-d3-aV6" secondAttribute="trailing" constant="18" id="PFO-iA-RRN"/>
+                                                <constraint firstAttribute="trailing" secondItem="PJc-d3-aV6" secondAttribute="trailing" constant="45" id="PFO-iA-RRN"/>
                                                 <constraint firstAttribute="trailing" secondItem="i1k-f6-Bmo" secondAttribute="trailing" id="UvP-RG-SQZ"/>
+                                                <constraint firstItem="frd-ic-dqH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jDY-5P-PW5" secondAttribute="leading" constant="20" symbolic="YES" id="Vjx-Ab-jSm"/>
                                                 <constraint firstAttribute="bottom" secondItem="frd-ic-dqH" secondAttribute="bottom" id="fJD-qk-IOk"/>
                                                 <constraint firstItem="PJc-d3-aV6" firstAttribute="top" secondItem="jDY-5P-PW5" secondAttribute="top" constant="6" id="imD-Tw-UNh"/>
                                                 <constraint firstAttribute="trailing" secondItem="frd-ic-dqH" secondAttribute="trailing" id="n9X-JZ-BYI"/>
                                             </constraints>
                                         </customView>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="Tn4-P2-Qe9" customClass="ChatsSegmentedControl" customModule="Sphinx" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="380" width="409" height="48"/>
+                                            <rect key="frame" x="0.0" y="372" width="409" height="48"/>
                                             <subviews>
                                                 <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="JmA-ra-Ram">
                                                     <rect key="frame" x="0.0" y="0.0" width="409" height="2"/>
@@ -487,16 +494,16 @@
                                                     </constraints>
                                                     <color key="fillColor" name="Divider"/>
                                                 </box>
-                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fyJ-RN-cJF">
-                                                    <rect key="frame" x="374" y="14.5" width="15" height="21"/>
-                                                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="plus" catalog="system" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="KYe-xy-Rdn" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
+                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fyJ-RN-cJF" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                                                    <rect key="frame" x="373" y="14" width="20" height="20"/>
+                                                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="plusIcon" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="KYe-xy-Rdn" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" size="23" name="MaterialIcons-Regular"/>
                                                     </buttonCell>
-                                                    <color key="contentTintColor" name="MainBottomIcons"/>
+                                                    <color key="contentTintColor" name="SecondaryText"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="15" id="IcP-ox-DK2"/>
-                                                        <constraint firstAttribute="width" constant="15" id="Yio-B9-2EI"/>
+                                                        <constraint firstAttribute="height" constant="20" id="IcP-ox-DK2"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="Yio-B9-2EI"/>
                                                     </constraints>
                                                     <connections>
                                                         <action selector="addContactButtonClicked:" target="GLJ-mb-R6q" id="Tht-9l-WKb"/>
@@ -504,28 +511,17 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="fyJ-RN-cJF" secondAttribute="trailing" constant="20" id="3My-dt-XOR"/>
+                                                <constraint firstAttribute="trailing" secondItem="fyJ-RN-cJF" secondAttribute="trailing" constant="16" id="3My-dt-XOR"/>
                                                 <constraint firstAttribute="trailing" secondItem="JmA-ra-Ram" secondAttribute="trailing" id="Be4-3t-bt4"/>
+                                                <constraint firstItem="fyJ-RN-cJF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Tn4-P2-Qe9" secondAttribute="leading" constant="20" symbolic="YES" id="FNK-W6-YbC"/>
                                                 <constraint firstItem="JmA-ra-Ram" firstAttribute="leading" secondItem="Tn4-P2-Qe9" secondAttribute="leading" id="Pqy-cv-Xyd"/>
                                                 <constraint firstAttribute="height" constant="48" id="XMD-IW-9hP"/>
                                                 <constraint firstAttribute="bottom" secondItem="JmA-ra-Ram" secondAttribute="bottom" id="kA1-cZ-95b"/>
                                                 <constraint firstItem="fyJ-RN-cJF" firstAttribute="centerY" secondItem="Tn4-P2-Qe9" secondAttribute="centerY" id="oXO-jG-MW9"/>
                                             </constraints>
                                         </customView>
-                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="hky-hJ-L7j" customClass="NewChatHeaderView" customModule="Sphinx" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="478" width="409" height="64"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="64" id="spE-iG-TmO"/>
-                                            </constraints>
-                                        </customView>
-                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="QlW-gz-6xN" customClass="TransparentView" customModule="Sphinx" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="409" height="542"/>
-                                        </customView>
                                         <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oyE-PD-rzx" customClass="NewMenuListView" customModule="Sphinx" customModuleProvider="target">
-                                            <rect key="frame" x="10" y="-64" width="389" height="590"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="590" id="QvD-oT-2f0"/>
-                                            </constraints>
+                                            <rect key="frame" x="0.0" y="0.0" width="409" height="542"/>
                                         </customView>
                                         <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gZo-o6-Yss">
                                             <rect key="frame" x="0.0" y="0.0" width="409" height="60"/>
@@ -612,9 +608,9 @@
                                         <constraint firstItem="wna-oI-X6X" firstAttribute="bottom" secondItem="ySx-Q7-u4E" secondAttribute="bottom" id="3dX-7f-5o8"/>
                                         <constraint firstItem="gZo-o6-Yss" firstAttribute="bottom" secondItem="ySx-Q7-u4E" secondAttribute="bottom" id="5U8-zQ-Oi0"/>
                                         <constraint firstItem="wna-oI-X6X" firstAttribute="trailing" secondItem="ySx-Q7-u4E" secondAttribute="trailing" id="5dv-ru-QKm"/>
-                                        <constraint firstItem="oyE-PD-rzx" firstAttribute="top" secondItem="hky-hJ-L7j" secondAttribute="top" constant="16" id="DK2-on-RqT"/>
+                                        <constraint firstItem="oyE-PD-rzx" firstAttribute="top" secondItem="hky-hJ-L7j" secondAttribute="top" id="DK2-on-RqT"/>
                                         <constraint firstItem="jDY-5P-PW5" firstAttribute="top" secondItem="hky-hJ-L7j" secondAttribute="bottom" id="E6Y-2r-0Ce"/>
-                                        <constraint firstItem="oyE-PD-rzx" firstAttribute="leading" secondItem="hee-Rj-5G9" secondAttribute="leading" constant="10" id="KGQ-nK-aFa"/>
+                                        <constraint firstItem="oyE-PD-rzx" firstAttribute="leading" secondItem="hee-Rj-5G9" secondAttribute="leading" id="KGQ-nK-aFa"/>
                                         <constraint firstItem="Tn4-P2-Qe9" firstAttribute="top" secondItem="jDY-5P-PW5" secondAttribute="bottom" id="Kwg-Zg-NLT"/>
                                         <constraint firstItem="ySx-Q7-u4E" firstAttribute="leading" secondItem="hee-Rj-5G9" secondAttribute="leading" id="P56-YK-XLq"/>
                                         <constraint firstAttribute="trailing" secondItem="hky-hJ-L7j" secondAttribute="trailing" id="S1d-d6-EdJ"/>
@@ -628,8 +624,9 @@
                                         <constraint firstAttribute="trailing" secondItem="gZo-o6-Yss" secondAttribute="trailing" id="eS4-se-sUf"/>
                                         <constraint firstItem="ySx-Q7-u4E" firstAttribute="top" secondItem="Tn4-P2-Qe9" secondAttribute="bottom" id="le3-KD-eFP"/>
                                         <constraint firstAttribute="bottom" secondItem="gZo-o6-Yss" secondAttribute="bottom" id="lfA-rJ-O8C"/>
-                                        <constraint firstAttribute="trailing" secondItem="oyE-PD-rzx" secondAttribute="trailing" constant="10" id="r4w-py-U0G"/>
+                                        <constraint firstAttribute="trailing" secondItem="oyE-PD-rzx" secondAttribute="trailing" id="r4w-py-U0G"/>
                                         <constraint firstItem="gZo-o6-Yss" firstAttribute="leading" secondItem="hee-Rj-5G9" secondAttribute="leading" id="vC7-lC-cGI"/>
+                                        <constraint firstAttribute="bottom" secondItem="oyE-PD-rzx" secondAttribute="bottom" id="wkG-gl-fjH"/>
                                         <constraint firstItem="Tn4-P2-Qe9" firstAttribute="leading" secondItem="hee-Rj-5G9" secondAttribute="leading" id="zmc-zP-fVr"/>
                                     </constraints>
                                 </view>
@@ -639,22 +636,18 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="3WV-CT-ixE" secondAttribute="trailing" id="2SK-rC-dfs"/>
                             <constraint firstAttribute="bottom" secondItem="3WV-CT-ixE" secondAttribute="bottom" id="CPr-VV-ELZ"/>
-                            <constraint firstItem="QlW-gz-6xN" firstAttribute="top" secondItem="Wee-9X-5cV" secondAttribute="top" id="Hkm-4L-jHs"/>
                             <constraint firstItem="3WV-CT-ixE" firstAttribute="leading" secondItem="Wee-9X-5cV" secondAttribute="leading" id="Rcy-Vd-5sj"/>
-                            <constraint firstAttribute="bottom" secondItem="QlW-gz-6xN" secondAttribute="bottom" id="UFI-vT-3sG"/>
-                            <constraint firstAttribute="trailing" secondItem="QlW-gz-6xN" secondAttribute="trailing" id="iQI-mT-x4P"/>
                             <constraint firstItem="3WV-CT-ixE" firstAttribute="top" secondItem="Wee-9X-5cV" secondAttribute="top" id="pqZ-5I-sc4"/>
-                            <constraint firstItem="QlW-gz-6xN" firstAttribute="leading" secondItem="Wee-9X-5cV" secondAttribute="leading" id="wKu-dE-oSG"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addContactButton" destination="fyJ-RN-cJF" id="EVT-zJ-VOZ"/>
                         <outlet property="bottomBar" destination="gZo-o6-Yss" id="uaE-4h-qoc"/>
                         <outlet property="chatListVCContainer" destination="ySx-Q7-u4E" id="n8I-XA-t6A"/>
                         <outlet property="dashboardNavigationTabs" destination="Tn4-P2-Qe9" id="yGZ-Dn-Hbx"/>
                         <outlet property="headerView" destination="hky-hJ-L7j" id="PBU-Ut-AiU"/>
                         <outlet property="loadingChatsBox" destination="wna-oI-X6X" id="WSu-SE-Pcy"/>
                         <outlet property="loadingChatsWheel" destination="q1Y-RN-Kmu" id="dmZ-v6-h8h"/>
-                        <outlet property="menuListBGView" destination="QlW-gz-6xN" id="rZ1-n7-xHb"/>
                         <outlet property="menuListView" destination="oyE-PD-rzx" id="dNU-LA-qxq"/>
                         <outlet property="receiveButton" destination="fUv-XW-NAV" id="czr-Fc-VD7"/>
                         <outlet property="searchBarContainer" destination="jDY-5P-PW5" id="b7x-8h-QsA"/>
@@ -1839,7 +1832,7 @@
         <image name="bottomBar1" width="25" height="25"/>
         <image name="bottomBar2" width="25" height="25"/>
         <image name="bottomBar4" width="25" height="25"/>
-        <image name="plus" catalog="system" width="14" height="13"/>
+        <image name="plusIcon" width="20" height="20"/>
         <image name="qrCode" width="21" height="21"/>
         <image name="tapToCopy" width="18.5" height="32"/>
         <image name="xmark" catalog="system" width="14" height="13"/>

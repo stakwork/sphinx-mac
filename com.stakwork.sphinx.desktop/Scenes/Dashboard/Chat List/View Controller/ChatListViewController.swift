@@ -23,9 +23,9 @@ class ChatListViewController : DashboardSplittedViewController {
     @IBOutlet weak var receiveButton: CustomButton!
     @IBOutlet weak var transactionsButton: CustomButton!
     @IBOutlet weak var sendButton: CustomButton!
+    @IBOutlet weak var addContactButton: CustomButton!
     
     @IBOutlet var menuListView: NewMenuListView!
-    @IBOutlet var menuListBGView: TransparentView!
     
     @IBOutlet weak var dashboardNavigationTabs: ChatsSegmentedControl! {
         didSet {
@@ -96,8 +96,9 @@ class ChatListViewController : DashboardSplittedViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(dataDidChange), name: .onContactsAndChatsChanged, object: nil)
         
         resetSearchField()
+        
         menuListView.configureDataSource(delegate: self)
-        menuListView.addShadow(offset: CGSize.init(width: 1, height: 1), color: NSColor.Sphinx.Body, opacity: 0.5, radius: 16, cornerRadius: 16)
+        
         bottomBar.isHidden = true
     }
     
@@ -130,6 +131,7 @@ class ChatListViewController : DashboardSplittedViewController {
         receiveButton.cursor = .pointingHand
         sendButton.cursor = .pointingHand
         transactionsButton.cursor = .pointingHand
+        addContactButton.cursor = .pointingHand
         
         searchField.setPlaceHolder(color: NSColor.Sphinx.PlaceholderText, font: NSFont(name: "Roboto-Regular", size: 14.0)!, string: "search".localized)
         searchField.delegate = self
@@ -399,16 +401,16 @@ extension ChatListViewController: NewContactDismissDelegate {
 
 extension ChatListViewController: NewChatHeaderViewDelegate {
     func refreshTapped() {
-        print("Here is the refresh tapped")
+        NotificationCenter.default.post(name: .shouldUpdateDashboard, object: nil)
+    }
+    
+    func profileButtonClicked() {
+        WindowsManager.sharedInstance.showProfileWindow(vc: ProfileViewController.instantiate())
     }
     
     func menuTapped(_ frame: CGRect) {
         menuListView.isHidden = false
-        menuListBGView.isHidden = false
-        menuListBGView.setBackgroundColor(color: NSColor.Sphinx.LightBG.withAlphaComponent(0))
     }
-    
-    
 }
 
 
@@ -424,10 +426,6 @@ extension ChatListViewController: NewMenuListViewDelegate {
     
     func closeButtonTapped() {
         menuListView.isHidden = true
-        menuListBGView.isHidden = true
-        menuListBGView.subviews.forEach { view in
-            view.removeFromSuperview()
-        }
     }
     
     

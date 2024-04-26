@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -47,40 +47,14 @@
                                                 <action selector="unhideAllApplications:" target="Ady-hI-5gd" id="Dhg-Le-xox"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Profile" id="tFr-rO-lm5">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="sphinxMenuButtonClicked:" target="Voe-Tx-rLC" id="D9c-bh-Wqz"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Transactions" tag="1" id="4o0-kS-bqR">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="sphinxMenuButtonClicked:" target="Voe-Tx-rLC" id="avm-nu-sia"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="cGR-Eq-SIb"/>
-                                        <menuItem title="New Contact" tag="2" id="RHC-tx-zTM">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="sphinxMenuButtonClicked:" target="Voe-Tx-rLC" id="nZF-rD-nsK"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Create Tribe" tag="3" id="bio-m7-1xh">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="sphinxMenuButtonClicked:" target="Voe-Tx-rLC" id="6yY-It-0Ca"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="FhQ-Da-Fje"/>
-                                        <menuItem title="Logout" tag="4" id="E2p-8a-8x1" userLabel="Logout">
+                                        <menuItem title="Logout" id="E2p-8a-8x1" userLabel="Logout">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="sphinxMenuButtonClicked:" target="Voe-Tx-rLC" id="cGi-Vk-rQL"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Remove account from this computer" tag="5" id="i8q-0O-PQm">
+                                        <menuItem title="Remove account from this computer" tag="1" id="i8q-0O-PQm">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="sphinxMenuButtonClicked:" target="Voe-Tx-rLC" id="pWG-sn-RBX"/>
@@ -879,13 +853,10 @@
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Sphinx" customModuleProvider="target">
                     <connections>
                         <outlet property="appearanceMenu" destination="feM-82-G70" id="uBW-9D-s4T"/>
-                        <outlet property="createTribeMenuItem" destination="bio-m7-1xh" id="jZc-6C-Ncr"/>
                         <outlet property="logoutMenuItem" destination="E2p-8a-8x1" id="x8M-Zm-PYT"/>
                         <outlet property="messagesSizeMenu" destination="16a-nc-PWW" id="2ri-ea-Q1R"/>
-                        <outlet property="newContactMenuItem" destination="RHC-tx-zTM" id="Peo-GS-n8s"/>
                         <outlet property="notificationSoundMenu" destination="XW4-xG-UAh" id="Hvf-Nu-qUy"/>
                         <outlet property="notificationTypeMenu" destination="hLH-rD-Zt1" id="mNY-GK-8t5"/>
-                        <outlet property="profileMenuItem" destination="tFr-rO-lm5" id="Gb2-Qs-Qar"/>
                         <outlet property="removeAccountMenuItem" destination="i8q-0O-PQm" id="WoY-xZ-VzF"/>
                     </connections>
                 </customObject>
@@ -959,7 +930,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="sphinxLabel" width="187" height="22"/>
+        <image name="sphinxLabel" width="187.5" height="22"/>
         <image name="splashBackground" width="414" height="600"/>
         <image name="whiteIcon" width="114" height="114"/>
     </resources>
