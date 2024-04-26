@@ -11,25 +11,21 @@ import Cocoa
 class ChatListViewController : DashboardSplittedViewController {
 
     ///IBOutlets
-    @IBOutlet weak var headerView: NSView!
-    @IBOutlet weak var balanceLabel: NSTextField!
-    @IBOutlet weak var balanceUnitLabel: NSTextField!
+    @IBOutlet weak var headerView: NewChatHeaderView!
     @IBOutlet weak var bottomBar: NSView!
     @IBOutlet weak var searchBarContainer: NSView!
     @IBOutlet weak var searchFieldContainer: NSBox!
     @IBOutlet weak var searchField: NSTextField!
-    @IBOutlet weak var loadingWheelContainer: NSView!
-    @IBOutlet weak var loadingWheel: NSProgressIndicator!
     @IBOutlet weak var loadingChatsBox: NSBox!
     @IBOutlet weak var loadingChatsWheel: NSProgressIndicator!
     @IBOutlet weak var searchClearButton: NSButton!
-    @IBOutlet weak var healthCheckView: HealthCheckView!
-    @IBOutlet weak var upgradeBox: NSBox!
-    @IBOutlet weak var upgradeButton: NSButton!
     @IBOutlet weak var chatListVCContainer: NSView!
     @IBOutlet weak var receiveButton: CustomButton!
     @IBOutlet weak var transactionsButton: CustomButton!
     @IBOutlet weak var sendButton: CustomButton!
+    
+    @IBOutlet var menuListView: NewMenuListView!
+    @IBOutlet var menuListBGView: TransparentView!
     
     @IBOutlet weak var dashboardNavigationTabs: ChatsSegmentedControl! {
         didSet {
@@ -50,13 +46,6 @@ class ChatListViewController : DashboardSplittedViewController {
     var walletBalanceService = WalletBalanceService()
     
     ///Loading
-    var loading = false {
-        didSet {
-            healthCheckView.isHidden = loading
-            LoadingWheelHelper.toggleLoadingWheel(loading: loading, loadingWheel: loadingWheel, color: NSColor.white, controls: [])
-        }
-    }
-    
     var loadingChatList = true {
         didSet {
             loadingChatsBox.isHidden = !loadingChatList
@@ -107,6 +96,9 @@ class ChatListViewController : DashboardSplittedViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(dataDidChange), name: .onContactsAndChatsChanged, object: nil)
         
         resetSearchField()
+        menuListView.configureDataSource(delegate: self)
+        menuListView.addShadow(offset: CGSize.init(width: 1, height: 1), color: NSColor.Sphinx.Body, opacity: 0.5, radius: 16, cornerRadius: 16)
+        bottomBar.isHidden = true
     }
     
     override func viewDidLayout() {
@@ -117,18 +109,14 @@ class ChatListViewController : DashboardSplittedViewController {
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        
-        loading = true
-        
         configureHeaderAndBottomBar()
+        headerView.delegate = self
     }
     
     override func viewDidAppear() {
         super.viewDidAppear()
         
-        listenForNotifications()
         loadFriendAndReload()
-        
         DelayPerformedHelper.performAfterDelay(seconds: 0.5, completion: {
             self.loadingChatList = false
         })
@@ -145,8 +133,7 @@ class ChatListViewController : DashboardSplittedViewController {
         
         searchField.setPlaceHolder(color: NSColor.Sphinx.PlaceholderText, font: NSFont(name: "Roboto-Regular", size: 14.0)!, string: "search".localized)
         searchField.delegate = self
-        
-        healthCheckView.delegate = self
+        menuListView.delegate = self
         
         self.view.window?.makeFirstResponder(self)
     }
@@ -181,7 +168,6 @@ class ChatListViewController : DashboardSplittedViewController {
                         DispatchQueue.main.async {
                             
                             if (restoring) {
-                                self.loading = false
                                 let messagesProgress : Int = Int(Float(progress) * (1.0 - contentProgressShare - contactsProgress))
                                 
                                 if (progress >= 0) {
@@ -230,7 +216,6 @@ class ChatListViewController : DashboardSplittedViewController {
     }
     
     func loadFriendAndReload() {
-        updateBalanceAndCheckVersion()
         
         if chatListViewModel.isRestoring() {
             DispatchQueue.main.async {
@@ -266,24 +251,8 @@ class ChatListViewController : DashboardSplittedViewController {
         }
     }
     
-    func updateBalanceAndCheckVersion() {
-        updateBalance()
-        shouldCheckAppVersions()
-    }
-    
     func finishLoading() {
         newMessageBubbleHelper.hideLoadingWheel()
-        loading = false
-    }
-    
-    func shouldCheckAppVersions() {        
-        API.sharedInstance.getAppVersions(callback: { v in
-            let version = Int(v) ?? 0
-            let appVersion = Int(Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "0") ?? 0
-
-            self.upgradeButton.isHidden = version <= appVersion
-            self.upgradeBox.isHidden = version <= appVersion
-        })
     }
     
     func selectRowFor(chatId: Int) {
@@ -293,11 +262,6 @@ class ChatListViewController : DashboardSplittedViewController {
                 contactId: chat.getConversationContact()?.id
             )
         }
-    }
-    
-    @IBAction func refreshButtonClicked(_ sender: Any) {
-        loading = true
-        loadFriendAndReload()
     }
     
     @IBAction func addContactButtonClicked(_ sender: Any) {
@@ -433,4 +397,121 @@ extension ChatListViewController: NewContactDismissDelegate {
     }
 }
 
+extension ChatListViewController: NewChatHeaderViewDelegate {
+    func refreshTapped() {
+        print("Here is the refresh tapped")
+    }
+    
+    func menuTapped(_ frame: CGRect) {
+        menuListView.isHidden = false
+        menuListBGView.isHidden = false
+        menuListBGView.setBackgroundColor(color: NSColor.Sphinx.LightBG.withAlphaComponent(0))
+    }
+    
+    
+}
+
+
+extension ChatListViewController: NewMenuListViewDelegate {
+    func buttonClicked(id: Int) {
+        let vcInfo = getViewControllerToLoadInfo(vcId: id)
+        navigateToNewVC(vc: vcInfo.0,
+                        title: vcInfo.1,
+                        identifier: vcInfo.2,
+                        hideDivider: vcInfo.3,
+                        height: vcInfo.4)
+    }
+    
+    func closeButtonTapped() {
+        menuListView.isHidden = true
+        menuListBGView.isHidden = true
+        menuListBGView.subviews.forEach { view in
+            view.removeFromSuperview()
+        }
+    }
+    
+    
+}
+
+extension ChatListViewController: NewMenuItemDataSourceDelegate {
+    func itemSelected(at index: Int) {
+        let vcInfo = getViewControllerToLoadInfo(vcId: index)
+        navigateToNewVC(vc: vcInfo.0,
+                        title: vcInfo.1,
+                        identifier: vcInfo.2,
+                        hideDivider: vcInfo.3,
+                        height: vcInfo.4)
+    }
+    
+    func getViewControllerToLoadInfo(vcId: Int) -> (NSViewController, String, String, Bool, CGFloat?){
+        switch vcId {
+        case 0:
+            return (ProfileViewController.instantiate(),
+                    "profile".localized,
+                    "profile-custom-window",
+                    false, nil)
+        case 1:
+            return (AddFriendViewController.instantiate(delegate: self, dismissDelegate: self),
+                    "new.contact".localized,
+                    "new-contact-window",
+                    true,
+                    500)
+        case 2:
+            return (TransactionsListViewController.instantiate(),
+                    "transactions".localized,
+                    "transactions-custom-window",
+                    false,
+                    nil)
+        case 3:
+            return (CreateInvoiceViewController.instantiate(
+                childVCDelegate: self,
+                viewModel: PaymentViewModel(mode: .Request),
+                delegate: self,
+                mode: .Window
+            ),
+                    "create.invoice".localized,
+                    "create-invoice",
+                    true,
+                    500)
+        case 4:
+            return (SendPaymentForInvoiceVC.instantiate(),
+                    "pay.invoice".localized,
+                    "invoice-management-window",
+                    true,
+                    447)
+        case 6:
+            return (AddFriendViewController.instantiate(delegate: self, dismissDelegate: self),
+                    "new.contact".localized,
+                    "new-contact-window",
+                    true,
+                    500)
+        case 7:
+            return (CreateTribeViewController.instantiate(),
+                    "Create Tribe",
+                    "create-tribe-custom-window",
+                    false,
+                    nil)
+        default:
+            return (NSViewController(), "", "", false, nil)
+        }
+    }
+    
+    func navigateToNewVC(vc: NSViewController,
+                         title: String,
+                         identifier: String,
+                         hideDivider: Bool = false,
+                         height: CGFloat? = nil) {
+        closeButtonTapped()
+        WindowsManager.sharedInstance.showOnCurrentWindow(
+            with: title,
+            identifier: identifier,
+            contentVC: vc,
+            hideDivider: hideDivider,
+            hideBackButton: true,
+            replacingVC: true,
+            height: height
+        )
+        
+    }
+}
 

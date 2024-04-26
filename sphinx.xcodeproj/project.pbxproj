@@ -588,6 +588,13 @@
 		47FEE22B2A66F76E00646C4E /* NewOnlyTextMessageCollectionViewitem+DelegateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE22A2A66F76E00646C4E /* NewOnlyTextMessageCollectionViewitem+DelegateExtension.swift */; };
 		47FEE22E2A6710F500646C4E /* NewChatViewController+CollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE22D2A6710F500646C4E /* NewChatViewController+CollectionViewExtension.swift */; };
 		934082792BC8827700FD7E34 /* DashboardPresenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934082782BC8827700FD7E34 /* DashboardPresenterViewController.swift */; };
+		938209E02BD88E3C000A9ED8 /* NewMenuItemDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938209DF2BD88E3C000A9ED8 /* NewMenuItemDataSource.swift */; };
+		938209E42BD88ED0000A9ED8 /* NewMenuListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938209E22BD88ED0000A9ED8 /* NewMenuListItem.swift */; };
+		938209E52BD88ED0000A9ED8 /* NewMenuListItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938209E32BD88ED0000A9ED8 /* NewMenuListItem.xib */; };
+		93A06CF52BD7E413003EF2B2 /* NewChatHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93A06CF42BD7E413003EF2B2 /* NewChatHeaderView.xib */; };
+		93A06CF72BD7E43C003EF2B2 /* NewChatHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A06CF62BD7E43C003EF2B2 /* NewChatHeaderView.swift */; };
+		93A06CF92BD82E5B003EF2B2 /* NewMenuListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A06CF82BD82E5B003EF2B2 /* NewMenuListView.swift */; };
+		93A06CFB2BD82E6C003EF2B2 /* NewMenuListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93A06CFA2BD82E6C003EF2B2 /* NewMenuListView.xib */; };
 		93A83E6A2B7FC298005158FB /* SphinxProfileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A83E692B7FC298005158FB /* SphinxProfileUITests.swift */; };
 		93A83E6C2B7FC298005158FB /* SphinxUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A83E6B2B7FC298005158FB /* SphinxUITestsLaunchTests.swift */; };
 		93E479242BD1C80800D0C9AB /* DashboardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E479232BD1C80800D0C9AB /* DashboardDetailViewController.swift */; };
@@ -1521,6 +1528,13 @@
 		5EA81AB599AD947A8862A100 /* Pods-Sphinx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sphinx.debug.xcconfig"; path = "Target Support Files/Pods-Sphinx/Pods-Sphinx.debug.xcconfig"; sourceTree = "<group>"; };
 		82C242433501D81263FED4C2 /* Pods_Sphinx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sphinx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		934082782BC8827700FD7E34 /* DashboardPresenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenterViewController.swift; sourceTree = "<group>"; };
+		938209DF2BD88E3C000A9ED8 /* NewMenuItemDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMenuItemDataSource.swift; sourceTree = "<group>"; };
+		938209E22BD88ED0000A9ED8 /* NewMenuListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMenuListItem.swift; sourceTree = "<group>"; };
+		938209E32BD88ED0000A9ED8 /* NewMenuListItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewMenuListItem.xib; sourceTree = "<group>"; };
+		93A06CF42BD7E413003EF2B2 /* NewChatHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewChatHeaderView.xib; sourceTree = "<group>"; };
+		93A06CF62BD7E43C003EF2B2 /* NewChatHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatHeaderView.swift; sourceTree = "<group>"; };
+		93A06CF82BD82E5B003EF2B2 /* NewMenuListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMenuListView.swift; sourceTree = "<group>"; };
+		93A06CFA2BD82E6C003EF2B2 /* NewMenuListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewMenuListView.xib; sourceTree = "<group>"; };
 		93A83E672B7FC297005158FB /* SphinxUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SphinxUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93A83E692B7FC298005158FB /* SphinxProfileUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SphinxProfileUITests.swift; sourceTree = "<group>"; };
 		93A83E6B2B7FC298005158FB /* SphinxUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SphinxUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -2803,6 +2817,10 @@
 				47469D5C2ACB6019004F0490 /* NewMessagesIndicatorView.xib */,
 				47469D6E2AD7101C004F0490 /* ThreadVCContainer.swift */,
 				93E479272BD1CCFE00D0C9AB /* DashboardDetailHeaderView.xib */,
+				93A06CF42BD7E413003EF2B2 /* NewChatHeaderView.xib */,
+				93A06CF62BD7E43C003EF2B2 /* NewChatHeaderView.swift */,
+				93A06CF82BD82E5B003EF2B2 /* NewMenuListView.swift */,
+				93A06CFA2BD82E6C003EF2B2 /* NewMenuListView.xib */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -3245,6 +3263,7 @@
 			children = (
 				47FEE1FD2A66D35E00646C4E /* New Chat Data Source */,
 				CE326B4A294295C600821A53 /* ChatMentionAutocompleteDataSource.swift */,
+				938209DF2BD88E3C000A9ED8 /* NewMenuItemDataSource.swift */,
 			);
 			path = "Data Source";
 			sourceTree = "<group>";
@@ -3264,6 +3283,7 @@
 		47E771192472C1E200C9CFEB /* Collection View Items */ = {
 			isa = PBXGroup;
 			children = (
+				938209E12BD88E82000A9ED8 /* NewMenuListItem */,
 				473E1F512AC5EB9200DC1CDC /* Threads List */,
 				47FEE21F2A66F59D00646C4E /* New Chat View */,
 				CE326B4C294A174700821A53 /* ChatMentionAutocompleteCell */,
@@ -3501,6 +3521,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		938209E12BD88E82000A9ED8 /* NewMenuListItem */ = {
+			isa = PBXGroup;
+			children = (
+				938209E22BD88ED0000A9ED8 /* NewMenuListItem.swift */,
+				938209E32BD88ED0000A9ED8 /* NewMenuListItem.xib */,
+			);
+			path = NewMenuListItem;
+			sourceTree = "<group>";
+		};
 		93A83E682B7FC297005158FB /* SphinxUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -3661,6 +3690,7 @@
 				473633F22555DCF9007405F2 /* PodcastSatsView.xib in Resources */,
 				4797E85B24BCD44C00D13270 /* LoadingMoreCollectionViewItem.xib in Resources */,
 				4726A44124C628DA005A66B4 /* popcorn.caf in Resources */,
+				938209E52BD88ED0000A9ED8 /* NewMenuListItem.xib in Resources */,
 				479496412AB3805600C42D1E /* DirectPaymentView.xib in Resources */,
 				474A66862497CB0A002C2D10 /* MessageReplyView.xib in Resources */,
 				4726A43D24C628DA005A66B4 /* tweet.caf in Resources */,
@@ -3673,6 +3703,7 @@
 				47C7D72527874A67006D2809 /* PeopleTorActionsView.xib in Resources */,
 				477ADCCE2A1E5A46004E74CE /* PinNotificationView.xib in Resources */,
 				474A668D24990193002C2D10 /* MessageOptionView.xib in Resources */,
+				93A06CFB2BD82E6C003EF2B2 /* NewMenuListView.xib in Resources */,
 				47DE1C2A2A69DC4A0029597B /* NewMessageBoostView.xib in Resources */,
 				4726A43824C628DA005A66B4 /* note.caf in Resources */,
 				478ED5B025D597E500940132 /* connecting.gif in Resources */,
@@ -3702,6 +3733,7 @@
 				4724BC1A25474BE70012BD76 /* Podcast.storyboard in Resources */,
 				479E7D8925ADD6DD0092595B /* PinTimeoutView.xib in Resources */,
 				4797E87E24BCD69F00D13270 /* CommonPaymentView.xib in Resources */,
+				93A06CF52BD7E413003EF2B2 /* NewChatHeaderView.xib in Resources */,
 				93E479282BD1CCFE00D0C9AB /* DashboardDetailHeaderView.xib in Resources */,
 				474C7A3E28D213E1007A3E17 /* NotificationLevelView.xib in Resources */,
 				4744FAAB2469D1BC00C5FD94 /* Colors.xcassets in Resources */,
@@ -3944,6 +3976,7 @@
 				470396EC2537293E007F9C23 /* PodcastEpisodesDataSource.swift in Sources */,
 				47FEE1F82A61B5F100646C4E /* NewChatViewController+TribeExtension.swift in Sources */,
 				4797E74B2785D2420080B966 /* AuthExternalView.swift in Sources */,
+				93A06CF72BD7E43C003EF2B2 /* NewChatHeaderView.swift in Sources */,
 				47F258DB2541E54000122A5A /* PodcastPaymentsHelper.swift in Sources */,
 				4708C20E2A5884EC00274AD4 /* ChatHeaderView.swift in Sources */,
 				47C1D5FA248EA71E00718B28 /* GroupMembersView.swift in Sources */,
@@ -4007,6 +4040,7 @@
 				4744FA6E2469A47100C5FD94 /* API+GroupsExtension.swift in Sources */,
 				475B680F29915CCA000EF29C /* MessageAction.swift in Sources */,
 				47543C5D2A951836003F8DEE /* Nonce.swift in Sources */,
+				93A06CF92BD82E5B003EF2B2 /* NewMenuListView.swift in Sources */,
 				479E7D8625ADD3E10092595B /* PinTimeoutView.swift in Sources */,
 				4720991B24834E0000426028 /* CryptorRSAKey.swift in Sources */,
 				4744FAA12469CD4D00C5FD94 /* AttachmentObject.swift in Sources */,
@@ -4196,6 +4230,7 @@
 				474F67652486D08800CE6016 /* Notification.Name.swift in Sources */,
 				474A66842497CAFE002C2D10 /* MessageReplyView.swift in Sources */,
 				47DE1C3F2A6AFA070029597B /* ChatShimmeringView.swift in Sources */,
+				938209E42BD88ED0000A9ED8 /* NewMenuListItem.swift in Sources */,
 				CE07F40529D72B7700EB0EC1 /* PodcastDetailSelectionVC.swift in Sources */,
 				47F8825225656CB0002A7E71 /* SocketEnginePollable.swift in Sources */,
 				477ADCCC2A1E5A3B004E74CE /* PinNotificationView.swift in Sources */,
@@ -4277,6 +4312,7 @@
 				475B681829915D01000EF29C /* ContentFeed+Computeds.swift in Sources */,
 				475B681929915D01000EF29C /* ContentFeed+CoreDataProperties.swift in Sources */,
 				4744FA582469905100C5FD94 /* SignupHelper.swift in Sources */,
+				938209E02BD88E3C000A9ED8 /* NewMenuItemDataSource.swift in Sources */,
 				473E1F282AC458E600DC1CDC /* ThreadCollectionViewItem.swift in Sources */,
 				479751EB246DB6D700D2106B /* NSTextField.swift in Sources */,
 				4797F64E2B0E36C800A19C58 /* PaymentTransaction.swift in Sources */,

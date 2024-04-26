@@ -423,7 +423,6 @@ class DashboardViewController: NSViewController {
                 chatId: self.newDetailViewController?.chat?.id,
                 progressCallback: { (_, _) in }
             ) { (_, _) in
-                self.listViewController?.loading = false
 
                 if let appDelegate = NSApplication.shared.delegate as? AppDelegate {
                     appDelegate.setBadge(count: TransactionMessage.getReceivedUnseenMessagesCount())
@@ -490,7 +489,7 @@ extension DashboardViewController : NSSplitViewDelegate {
     @objc func resizeSubviews() {
         newDetailViewController?.resizeSubviews(frame: rightSplittedView.bounds)
         dashboardDetailViewController?.resizeSubviews(frame: rightDetailSplittedView.bounds)
-        
+        listViewController?.menuListView.menuDataSource?.updateFrame()
         listViewController?.view.frame = leftSplittedView.bounds
     }
 }
