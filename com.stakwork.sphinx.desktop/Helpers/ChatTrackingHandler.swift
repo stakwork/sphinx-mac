@@ -18,7 +18,7 @@ class ChatTrackingHandler {
     }
     
     var replyableMessages: [Int: Int] = [:]
-    var ongoingMessages : [Int: String] = [:]
+    var ongoingMessages : [String: String] = [:]
     
     func deleteReplyableMessage(with chatId: Int?) {
         guard let chatId = chatId else { return }
@@ -45,28 +45,50 @@ class ChatTrackingHandler {
         return nil
     }
     
-    func deleteOngoingMessage(with chatId: Int?) {
-        guard let chatId = chatId else { return }
+    func deleteOngoingMessage(
+        with chatId: Int?,
+        threadUUID: String?
+    ) {
+        guard let key = getComposedKeyFor(chatId: chatId, threadUUID: threadUUID) else { return }
         
-        ongoingMessages.removeValue(forKey: chatId)
+        ongoingMessages.removeValue(forKey: key)
     }
     
     func saveOngoingMessage(
         with message: String,
-        chatId: Int?
+        chatId: Int?,
+        threadUUID: String?
     ) {
-        guard let chatId = chatId else { return }
+        guard let key = getComposedKeyFor(chatId: chatId, threadUUID: threadUUID) else { return }
         
-        ongoingMessages[chatId] = message
+        ongoingMessages[key] = message
     }
     
-    func getOngoingMessageFor(chatId: Int?) -> String? {
-        guard let chatId = chatId else { return nil }
+    func getOngoingMessageFor(
+        chatId: Int?,
+        threadUUID: String?
+    ) -> String? {
+        guard let key = getComposedKeyFor(chatId: chatId, threadUUID: threadUUID) else { return nil }
         
-        if let message = ongoingMessages[chatId] {
+        if let message = ongoingMessages[key] {
             return message
         }
         
         return nil
+    }
+    
+    func getComposedKeyFor(
+        chatId: Int?,
+        threadUUID: String?
+    ) -> String? {
+        guard let chatId = chatId else { return nil }
+        
+        var key = "\(chatId)"
+        
+        if let threadUUID = threadUUID {
+            key = "\(key)-\(threadUUID)"
+        }
+        
+        return key
     }
 }
