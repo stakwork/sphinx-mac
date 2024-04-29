@@ -226,6 +226,15 @@ extension GroupDetailsViewController : MessageOptionsDelegate {
                                                   contentVC: createTribeVC,
                                                   shouldReplace: false)
                 break
+            case .TribeMembers:
+                //TODO: Create the New VC and replace it with the VC below (Prof K)-
+                let createTribeVC = CreateTribeViewController.instantiate(chat: chat)
+                WindowsManager.sharedInstance
+                    .showVCOnRightPanelWindow(with: "edit.tribe".localized,
+                                                  identifier: "edit-tribe-window",
+                                                  contentVC: createTribeVC,
+                                                  shouldReplace: false)
+                break
             }
         }
     }
