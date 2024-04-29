@@ -84,6 +84,8 @@ internal enum StoryboardScene {
         
         internal static let joinTribeViewController = SceneType<JoinTribeViewController>(storyboard: Groups.self, identifier: "JoinTribeViewController")
         
+        internal static let tribeMembersViewController = SceneType<TribeMembersViewController>(storyboard: Groups.self, identifier: "TribeMembersViewController")
+        
         internal static let groupDetailsViewController = SceneType<GroupDetailsViewController>(storyboard: Groups.self, identifier: "GroupDetailsViewController")
         
         internal static let createTribeViewController = SceneType<CreateTribeViewController>(storyboard: Groups.self, identifier: "CreateTribeViewController")

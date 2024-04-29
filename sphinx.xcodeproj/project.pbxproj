@@ -588,6 +588,7 @@
 		47FEE2292A66F75800646C4E /* NewOnlyTextMessageCollectionViewitem+LayoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE2282A66F75800646C4E /* NewOnlyTextMessageCollectionViewitem+LayoutExtension.swift */; };
 		47FEE22B2A66F76E00646C4E /* NewOnlyTextMessageCollectionViewitem+DelegateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE22A2A66F76E00646C4E /* NewOnlyTextMessageCollectionViewitem+DelegateExtension.swift */; };
 		47FEE22E2A6710F500646C4E /* NewChatViewController+CollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE22D2A6710F500646C4E /* NewChatViewController+CollectionViewExtension.swift */; };
+		931083BF2BE0271B00D03EC9 /* TribeMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931083BE2BE0271B00D03EC9 /* TribeMembersViewController.swift */; };
 		934082792BC8827700FD7E34 /* DashboardPresenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934082782BC8827700FD7E34 /* DashboardPresenterViewController.swift */; };
 		938209E02BD88E3C000A9ED8 /* NewMenuItemDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938209DF2BD88E3C000A9ED8 /* NewMenuItemDataSource.swift */; };
 		938209E42BD88ED0000A9ED8 /* NewMenuListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938209E22BD88ED0000A9ED8 /* NewMenuListItem.swift */; };
@@ -1535,6 +1536,7 @@
 		47FEE22D2A6710F500646C4E /* NewChatViewController+CollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewChatViewController+CollectionViewExtension.swift"; sourceTree = "<group>"; };
 		5EA81AB599AD947A8862A100 /* Pods-Sphinx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sphinx.debug.xcconfig"; path = "Target Support Files/Pods-Sphinx/Pods-Sphinx.debug.xcconfig"; sourceTree = "<group>"; };
 		82C242433501D81263FED4C2 /* Pods_Sphinx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sphinx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		931083BE2BE0271B00D03EC9 /* TribeMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TribeMembersViewController.swift; sourceTree = "<group>"; };
 		934082782BC8827700FD7E34 /* DashboardPresenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenterViewController.swift; sourceTree = "<group>"; };
 		938209DF2BD88E3C000A9ED8 /* NewMenuItemDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMenuItemDataSource.swift; sourceTree = "<group>"; };
 		938209E22BD88ED0000A9ED8 /* NewMenuListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMenuListItem.swift; sourceTree = "<group>"; };
@@ -2941,6 +2943,7 @@
 				479A03EA2583D2290093DB30 /* JoinTribeViewController.swift */,
 				479E7DA025AF2D0D0092595B /* GroupDetailsViewController.swift */,
 				474274A228EB7616000C3D51 /* CreateTribeViewController.swift */,
+				931083BE2BE0271B00D03EC9 /* TribeMembersViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -4040,6 +4043,7 @@
 				475723A2247E96DF001ADC7E /* LoadingWheelHelper.swift in Sources */,
 				4720991C24834E0000426028 /* CryptorRSA.swift in Sources */,
 				479496282AB33D1200C42D1E /* TribeLinkView.swift in Sources */,
+				931083BF2BE0271B00D03EC9 /* TribeMembersViewController.swift in Sources */,
 				478F07D324E2C7A300EE32A3 /* NSTextView.swift in Sources */,
 				479496562AB88C6200C42D1E /* NewPaidAttachmentView.swift in Sources */,
 				475B683A29915DFE000EF29C /* PodcastDestination+Properties.swift in Sources */,
