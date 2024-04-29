@@ -65,7 +65,8 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
     func textDidChange(_ notification: Notification) {
         ChatTrackingHandler.shared.saveOngoingMessage(
             with: messageTextView.string,
-            chatId: chat?.id
+            chatId: chat?.id,
+            threadUUID: threadUUID
         )
 
         processMention(

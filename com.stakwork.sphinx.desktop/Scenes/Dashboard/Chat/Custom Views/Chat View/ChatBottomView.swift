@@ -77,7 +77,7 @@ class ChatBottomView: NSView, LoadableNib {
     func updateFieldStateFrom(
         _ chat: Chat?,
         contact: UserContact?,
-        isThread: Bool,
+        threadUUID: String?,
         with delegate: ChatBottomViewDelegate?,
         and searchDelegate: ChatSearchResultsBarDelegate? = nil
     ) {
@@ -88,7 +88,7 @@ class ChatBottomView: NSView, LoadableNib {
         messageFieldView.updateFieldStateFrom(
             chat,
             contact: contact,
-            isThread: isThread,
+            threadUUID: threadUUID,
             with: delegate
         )
     }

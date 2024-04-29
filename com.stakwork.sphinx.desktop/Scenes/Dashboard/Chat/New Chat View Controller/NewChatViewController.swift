@@ -272,7 +272,7 @@ class NewChatViewController: DashboardSplittedViewController {
         chatBottomView.updateFieldStateFrom(
             chat,
             contact: contact,
-            isThread: isThread,
+            threadUUID: threadUUID,
             with: self,
             and: self
         )        
