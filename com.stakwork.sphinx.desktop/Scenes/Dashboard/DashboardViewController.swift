@@ -423,7 +423,6 @@ class DashboardViewController: NSViewController {
                 chatId: self.newDetailViewController?.chat?.id,
                 progressCallback: { (_, _) in }
             ) { (_, _) in
-                self.listViewController?.loading = false
 
                 if let appDelegate = NSApplication.shared.delegate as? AppDelegate {
                     appDelegate.setBadge(count: TransactionMessage.getReceivedUnseenMessagesCount())
@@ -443,9 +442,11 @@ class DashboardViewController: NSViewController {
         self.escapeMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (event) in
             if event.keyCode == 53 { // 53 is the key code for the Escape key
                 // Perform your action when the Escape key is pressed
-                
+                if self.mediaFullScreenView?.isHidden == false {
+                    self.mediaFullScreenView?.closeView()
+                    return nil
                 ///Hide dashboard views popups (Profile, Create Tribe, etc)
-                if !self.presenterContainerBGView.isHidden {
+                } else if !self.presenterContainerBGView.isHidden {
                     WindowsManager.sharedInstance.dismissViewFromCurrentWindow()
                     return nil
                 ///Hide modals (auth, etc)
@@ -488,7 +489,7 @@ extension DashboardViewController : NSSplitViewDelegate {
     @objc func resizeSubviews() {
         newDetailViewController?.resizeSubviews(frame: rightSplittedView.bounds)
         dashboardDetailViewController?.resizeSubviews(frame: rightDetailSplittedView.bounds)
-        
+        listViewController?.menuListView.menuDataSource?.updateFrame()
         listViewController?.view.frame = leftSplittedView.bounds
     }
 }

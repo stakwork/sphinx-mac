@@ -28,10 +28,6 @@ import WebKit
     @IBOutlet weak var notificationSoundMenu: NSMenu!
     @IBOutlet weak var messagesSizeMenu: NSMenu!
     
-    @IBOutlet weak var profileMenuItem: NSMenuItem!
-    @IBOutlet weak var transactionsMenuItem: NSMenuItem!
-    @IBOutlet weak var newContactMenuItem: NSMenuItem!
-    @IBOutlet weak var createTribeMenuItem: NSMenuItem!
     @IBOutlet weak var logoutMenuItem: NSMenuItem!
     @IBOutlet weak var removeAccountMenuItem: NSMenuItem!
     
@@ -40,12 +36,8 @@ import WebKit
     let podcastPlayerController = PodcastPlayerController.sharedInstance
     
     public enum SphinxMenuButton: Int {
-        case Profile = 0
-        case Transactions = 1
-        case NewContact = 2
-        case CreateTribe = 3
-        case Logout = 4
-        case RemoveAccount = 5
+        case Logout = 1
+        case RemoveAccount = 2
     }
     
     var lastClearSDMemoryDate: Date? {
@@ -175,10 +167,6 @@ import WebKit
     
     func setAppMenuVisibility(shouldEnableItems: Bool) {
         [
-            profileMenuItem,
-            transactionsMenuItem,
-            newContactMenuItem,
-            createTribeMenuItem,
 //            logoutMenuItem,
             removeAccountMenuItem,
         ]
@@ -395,26 +383,12 @@ import WebKit
     
     @IBAction func sphinxMenuButtonClicked(_ sender: NSMenuItem) {
         switch(sender.tag) {
-        case SphinxMenuButton.Profile.rawValue:
-            profileButtonClicked()
-        case SphinxMenuButton.Transactions.rawValue:
-            transactionsButtonClicked()
-        case SphinxMenuButton.NewContact.rawValue:
-            newContactButtonClicked()
-        case SphinxMenuButton.CreateTribe.rawValue:
-            createTribeButtonClicked()
         case SphinxMenuButton.Logout.rawValue:
             logoutButtonClicked()
         case SphinxMenuButton.RemoveAccount.rawValue:
             removeAccountButtonClicked()
         default:
             break
-        }
-    }
-    
-    func newContactButtonClicked() {
-        if let dashboard = NSApplication.shared.keyWindow?.contentViewController as? DashboardViewController {
-            dashboard.listViewController?.addContactButtonClicked(dashboard.view)
         }
     }
     
@@ -449,30 +423,6 @@ import WebKit
         ContactsService.sharedInstance.reset()
         GroupsPinManager.sharedInstance.logout()
         presentPIN()
-    }
-    
-    func profileButtonClicked() {
-        if let profile = UserContact.getOwner(), profile.id > 0 {
-            WindowsManager.sharedInstance.showProfileWindow(
-                vc: ProfileViewController.instantiate()
-            )
-        }
-    }
-     
-     func transactionsButtonClicked() {
-         WindowsManager.sharedInstance.showTransationsListWindow(
-            vc: TransactionsListViewController.instantiate()
-         )
-     }
-    
-    func createTribeButtonClicked() {
-        let createTribeVC = CreateTribeViewController.instantiate()
-        
-        WindowsManager.sharedInstance.showCreateTribeWindow(
-            title: "Create Tribe",
-            vc: createTribeVC,
-            window: NSApplication.shared.keyWindow
-        )
     }
     
     func selectItemWith(tag: Int, in menu: NSMenu) {

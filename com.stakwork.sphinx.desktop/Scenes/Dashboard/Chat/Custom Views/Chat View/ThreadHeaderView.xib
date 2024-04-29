@@ -149,12 +149,13 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="974" height="120"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" red="0.109803915" green="0.13333332540000001" blue="0.1725490093" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                        <color key="backgroundColor" name="NewHeaderBG"/>
                                                                         <size key="minSize" width="974" height="120"/>
-                                                                        <size key="maxSize" width="974" height="10000000"/>
+                                                                        <size key="maxSize" width="990" height="10000000"/>
                                                                         <color key="insertionPointColor" name="textInsertionPointColor" catalog="System" colorSpace="catalog"/>
                                                                     </textView>
                                                                 </subviews>
+                                                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </clipView>
                                                             <edgeInsets key="contentInsets" left="0.0" right="16" top="0.0" bottom="0.0"/>
                                                             <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="x6L-L0-blS">
@@ -179,7 +180,7 @@
                                                     <textFieldCell key="cell" selectable="YES" title="Label" id="wQx-gQ-7cJ">
                                                         <font key="font" metaFont="system" size="16"/>
                                                         <color key="textColor" name="Text"/>
-                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </textFieldCell>
                                                 </textField>
                                             </subviews>

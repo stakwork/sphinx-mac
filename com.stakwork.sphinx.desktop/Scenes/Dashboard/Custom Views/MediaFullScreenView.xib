@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.AVKitIBPlugin" version="15702"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.AVKitIBPlugin" version="22155"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -74,30 +74,30 @@
                             </avPlayerView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BiT-fh-SEo" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="340" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="Bmo-jj-8xf"/>
-                                    <constraint firstAttribute="height" constant="60" id="jB5-XW-iPT"/>
-                                </constraints>
                                 <buttonCell key="cell" type="bevel" title="close" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="4ym-pZ-YIv">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="25" name="MaterialIcons-Regular"/>
                                 </buttonCell>
-                                <color key="contentTintColor" name="MainBottomIcons"/>
+                                <color key="contentTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="Bmo-jj-8xf"/>
+                                    <constraint firstAttribute="height" constant="60" id="jB5-XW-iPT"/>
+                                </constraints>
                                 <connections>
                                     <action selector="closeButtonClicked:" target="-2" id="WPH-Lj-Ntu"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="h8d-7W-aB1" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                                 <rect key="frame" x="60" y="340" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="9ed-1a-ENy"/>
-                                    <constraint firstAttribute="width" constant="60" id="YPh-WA-u1f"/>
-                                </constraints>
                                 <buttonCell key="cell" type="bevel" title="" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="nok-4h-UWN">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="25" name="MaterialIcons-Regular"/>
                                 </buttonCell>
-                                <color key="contentTintColor" name="MainBottomIcons"/>
+                                <color key="contentTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="9ed-1a-ENy"/>
+                                    <constraint firstAttribute="width" constant="60" id="YPh-WA-u1f"/>
+                                </constraints>
                                 <connections>
                                     <action selector="saveButtonClicked:" target="-2" id="WIG-oB-Kxp"/>
                                 </connections>
@@ -108,7 +108,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="560" height="58"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5v6-cf-GaN">
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5v6-cf-GaN">
                                             <rect key="frame" x="278" y="22" width="4" height="15"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" id="E7m-eE-aTB">
                                                 <font key="font" size="13" name="Roboto-Regular"/>
@@ -136,7 +136,7 @@
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="P9E-2l-Pgd">
                                             <rect key="frame" x="0.0" y="0.0" width="250" height="80"/>
                                             <subviews>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xcv-sE-2F0">
+                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xcv-sE-2F0">
                                                     <rect key="frame" x="18" y="25" width="34" height="30"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="insert_drive_file" id="9FP-PZ-4xt">
                                                         <font key="font" size="30" name="MaterialIcons-Regular"/>
@@ -144,7 +144,7 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Omy-7C-dZH">
+                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Omy-7C-dZH">
                                                     <rect key="frame" x="58" y="40" width="25" height="15"/>
                                                     <textFieldCell key="cell" lineBreakMode="truncatingMiddle" title="File" id="xUE-Vj-UrY">
                                                         <font key="font" size="13" name="Roboto-Medium"/>
@@ -152,7 +152,7 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1OX-S9-FHX">
+                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1OX-S9-FHX">
                                                     <rect key="frame" x="58" y="25" width="25" height="13"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="0 kb" id="fBC-RU-dXE">
                                                         <font key="font" size="11" name="Roboto-Regular"/>
@@ -222,7 +222,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="bCn-BA-Xko" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                                        <button tag="1" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bCn-BA-Xko" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                             <buttonCell key="cell" type="square" title="chevron_right" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="elh-Aa-hhr">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -279,7 +279,7 @@
                             <constraint firstItem="G05-J0-tKl" firstAttribute="top" secondItem="XR9-0P-s4h" secondAttribute="top" id="yMx-aB-8D7"/>
                         </constraints>
                     </view>
-                    <color key="fillColor" name="MediaFullScreenBG"/>
+                    <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                 </box>
             </subviews>
             <constraints>
@@ -293,12 +293,6 @@
     </objects>
     <resources>
         <image name="imageFullScreenShadow" width="414" height="105"/>
-        <namedColor name="MainBottomIcons">
-            <color red="0.37254901960784315" green="0.38823529411764707" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="MediaFullScreenBG">
-            <color red="1" green="1" blue="1" alpha="0.89999997615814209" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="Text">
             <color red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

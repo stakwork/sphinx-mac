@@ -34,7 +34,6 @@ class NewChatViewController: DashboardSplittedViewController {
     @IBOutlet weak var mentionsScrollViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var childViewControllerContainer: ChildVCContainer!
-    @IBOutlet weak var threadVCContainer: ThreadVCContainer!
     @IBOutlet weak var pinMessageDetailView: PinMessageDetailView!
     @IBOutlet weak var pinMessageNotificationView: PinNotificationView!
     
@@ -182,12 +181,11 @@ class NewChatViewController: DashboardSplittedViewController {
                 // Perform your action when the Escape key is pressed
                 if let mediaFullScreenView = self.mediaFullScreenView {
                     mediaFullScreenView.closeView()
+                    return nil
                 } else if self.draggingView.isSendingMedia() {
                     self.draggingView.setup()
-                } else {
-                    self.shouldCloseThread()
+                    return nil
                 }
-                return nil // Discard the event
             } else if event.modifierFlags.contains(.command) && event.characters?.uppercased() == "F" {
                 self.didClickSearchButton()
             }

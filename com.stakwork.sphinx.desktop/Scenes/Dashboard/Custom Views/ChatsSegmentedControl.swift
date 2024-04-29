@@ -36,7 +36,7 @@ class ChatsSegmentedControl: NSView {
     public var selectorViewColor: NSColor = .Sphinx.PrimaryBlue
     public var selectorWidthRatio: CGFloat = 0.667
     
-    let kButtonWidth: CGFloat = 120.0
+    let kButtonWidth: CGFloat = 86.0
     let kButtonHeight: CGFloat = 48.0
     
     

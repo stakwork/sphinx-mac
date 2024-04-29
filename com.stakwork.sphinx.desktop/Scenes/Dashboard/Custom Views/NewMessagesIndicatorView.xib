@@ -27,7 +27,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eT3-Wx-xac">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eT3-Wx-xac">
                                 <rect key="frame" x="-1" y="3" width="43" height="35"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="expand_more" id="sOh-VO-qLM">
                                     <font key="font" size="35" name="MaterialIcons-Regular"/>
@@ -55,11 +55,11 @@
                     </view>
                     <color key="fillColor" name="PrimaryBlue"/>
                 </box>
-                <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EyY-kh-T6r">
+                <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EyY-kh-T6r">
                     <rect key="frame" x="24" y="30" width="17" height="13"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="+1" id="6kp-49-Ufc">
                         <font key="font" size="11" name="Roboto-Medium"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
