@@ -42,7 +42,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="367" height="208"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <collectionView clipsToBounds="YES" selectable="YES" id="gCN-XJ-z0m">
+                                                <collectionView clipsToBounds="YES" selectable="YES" id="gCN-XJ-z0m" customClass="ScrollDisabledCollectionView" customModule="Sphinx" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="367" height="208"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" id="pbs-0K-Nu1">

@@ -21,7 +21,7 @@ class Constants {
     public static var kMargin: CGFloat = 16.0
     
     //Fonts
-    public static var kMessageFont = NSFont(name: "Roboto-Regular", size: 16.0)!
+    public static var kMessageFont = NSFont(name: "Roboto-Light", size: 16.0)!
     public static var kMessageHighlightedFont = NSFont(name: "Roboto-Light", size: 16)!
     public static var kEmojisFont = NSFont(name: "Roboto-Regular", size: 40.0)!
     public static let kAmountFont = NSFont(name: "Roboto-Bold", size: 16.0)!
@@ -76,11 +76,11 @@ class Constants {
     public static var kChatListMessagePosition: CGFloat = 13
     
     public static func setSize() {
-        let size = UserDefaults.Keys.messagesSize.get(defaultValue: 0)
+        let size = UserDefaults.Keys.messagesSize.get(defaultValue: MessagesSize.Medium.rawValue)
         
         switch(size) {
         case MessagesSize.Small.rawValue:
-            kMessageFont = NSFont(name: "Roboto-Regular", size: 13.0)!
+            kMessageFont = NSFont(name: "Roboto-Light", size: 13.0)!
             kMessageHighlightedFont = NSFont(name: "Roboto-Light", size: 13.0)!
             kEmojisFont = NSFont(name: "Roboto-Regular", size: 30.0)!
             kMessagePreviewFont = NSFont(name: "Roboto-Regular", size: 12.0)!
@@ -101,7 +101,7 @@ class Constants {
             kChatListMessagePosition = 10.5
             break
         case MessagesSize.Medium.rawValue:
-            kMessageFont = NSFont(name: "Roboto-Regular", size: 14.0)!
+            kMessageFont = NSFont(name: "Roboto-Light", size: 14.0)!
             kMessageHighlightedFont = NSFont(name: "Roboto-Light", size: 14.0)!
             kEmojisFont = NSFont(name: "Roboto-Regular", size: 35.0)!
             kMessagePreviewFont = NSFont(name: "Roboto-Regular", size: 13.0)!
@@ -122,7 +122,7 @@ class Constants {
             kChatListMessagePosition = 11.5
             break
         case MessagesSize.Big.rawValue:
-            kMessageFont = NSFont(name: "Roboto-Regular", size: 16.0)!
+            kMessageFont = NSFont(name: "Roboto-Light", size: 16.0)!
             kMessageHighlightedFont = NSFont(name: "Roboto-Light", size: 16.0)!
             kEmojisFont = NSFont(name: "Roboto-Regular", size: 40.0)!
             kMessagePreviewFont = NSFont(name: "Roboto-Regular", size: 14.0)!
