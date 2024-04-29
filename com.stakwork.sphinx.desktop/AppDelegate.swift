@@ -160,7 +160,7 @@ import WebKit
         let notificationSoundTag = notificationsHelper.getNotificationSoundTag()
         selectItemWith(tag: notificationSoundTag, in: notificationSoundMenu)
         
-        let messagesSize = UserDefaults.Keys.messagesSize.get(defaultValue: 0)
+        let messagesSize = UserDefaults.Keys.messagesSize.get(defaultValue: MessagesSize.Medium.rawValue)
         setMessagesSizeFrom(value: messagesSize)
     }
     
