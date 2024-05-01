@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="GroupContactListItem" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="contactName" destination="mnx-xI-Rnt" id="3j0-TD-kvX"/>
+                <outlet property="initialName" destination="wwY-zz-Sm1" id="eoH-FJ-UiI"/>
+                <outlet property="profileImage" destination="q0J-G9-zVl" id="ZSW-oe-2PL"/>
+                <outlet property="view" destination="ozY-ve-Yd0" id="7NP-LO-Nc3"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="ozY-ve-Yd0">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="98"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" cornerRadius="4" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="BZ3-S6-dHD">
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="98"/>
+                    <view key="contentView" id="lKF-1q-Xo2">
+                        <rect key="frame" x="1" y="1" width="398" height="96"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3ki-7h-CzN">
+                                <rect key="frame" x="0.0" y="0.0" width="398" height="96"/>
+                                <subviews>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Ama-Yu-cHW">
+                                        <rect key="frame" x="0.0" y="0.0" width="20" height="96"/>
+                                        <subviews>
+                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wwY-zz-Sm1">
+                                                <rect key="frame" x="4" y="40" width="13" height="16"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="A" id="Vmk-Ye-XXd">
+                                                    <font key="font" usesAppearanceFont="YES"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="wwY-zz-Sm1" firstAttribute="centerX" secondItem="Ama-Yu-cHW" secondAttribute="centerX" id="6IW-Jm-PaU"/>
+                                            <constraint firstItem="wwY-zz-Sm1" firstAttribute="centerY" secondItem="Ama-Yu-cHW" secondAttribute="centerY" id="j77-bv-clC"/>
+                                            <constraint firstAttribute="width" constant="20" id="yVr-qz-QQJ"/>
+                                        </constraints>
+                                    </customView>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="5TP-Wd-X8r">
+                                        <rect key="frame" x="32" y="0.0" width="50" height="96"/>
+                                        <subviews>
+                                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q0J-G9-zVl">
+                                                <rect key="frame" x="9" y="32" width="32" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="32" id="pqZ-4v-ZE8"/>
+                                                    <constraint firstAttribute="height" constant="32" id="zu7-Ky-6Ik"/>
+                                                </constraints>
+                                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="FJE-D2-nme"/>
+                                            </imageView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="q0J-G9-zVl" firstAttribute="centerY" secondItem="5TP-Wd-X8r" secondAttribute="centerY" id="8vj-Uw-exF"/>
+                                            <constraint firstAttribute="width" constant="50" id="RKS-Tl-6d2"/>
+                                            <constraint firstItem="q0J-G9-zVl" firstAttribute="centerX" secondItem="5TP-Wd-X8r" secondAttribute="centerX" id="T5l-wT-zUV"/>
+                                        </constraints>
+                                    </customView>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="j9Y-gp-tOK">
+                                        <rect key="frame" x="94" y="0.0" width="304" height="96"/>
+                                        <subviews>
+                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mnx-xI-Rnt">
+                                                <rect key="frame" x="-2" y="41" width="36" height="15"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="Ijc-FR-VMB">
+                                                    <font key="font" size="13" name="Roboto-Regular"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="xMH-rD-xMf">
+                                                <rect key="frame" x="0.0" y="-2" width="304" height="5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="bQZ-Cn-Wlo"/>
+                                                </constraints>
+                                            </box>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="xMH-rD-xMf" firstAttribute="leading" secondItem="j9Y-gp-tOK" secondAttribute="leading" id="1RC-Wu-4Rr"/>
+                                            <constraint firstItem="mnx-xI-Rnt" firstAttribute="centerY" secondItem="j9Y-gp-tOK" secondAttribute="centerY" id="5GU-H9-A7d"/>
+                                            <constraint firstAttribute="trailing" secondItem="xMH-rD-xMf" secondAttribute="trailing" id="6hX-bG-Cn9"/>
+                                            <constraint firstAttribute="bottom" secondItem="xMH-rD-xMf" secondAttribute="bottom" id="XG4-dd-OmY"/>
+                                            <constraint firstItem="mnx-xI-Rnt" firstAttribute="leading" secondItem="j9Y-gp-tOK" secondAttribute="leading" id="kxH-P4-ldw"/>
+                                        </constraints>
+                                    </customView>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="3ki-7h-CzN" secondAttribute="trailing" id="Yp0-eU-UAr"/>
+                            <constraint firstItem="3ki-7h-CzN" firstAttribute="leading" secondItem="lKF-1q-Xo2" secondAttribute="leading" id="bvL-De-YLK"/>
+                            <constraint firstAttribute="bottom" secondItem="3ki-7h-CzN" secondAttribute="bottom" id="cAy-Nx-qr0"/>
+                            <constraint firstItem="3ki-7h-CzN" firstAttribute="top" secondItem="lKF-1q-Xo2" secondAttribute="top" id="rtp-F0-Zen"/>
+                        </constraints>
+                    </view>
+                    <color key="fillColor" name="Body"/>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="BZ3-S6-dHD" secondAttribute="trailing" id="SYU-i0-mZp"/>
+                <constraint firstItem="BZ3-S6-dHD" firstAttribute="top" secondItem="ozY-ve-Yd0" secondAttribute="top" id="aNV-M3-hLA"/>
+                <constraint firstItem="BZ3-S6-dHD" firstAttribute="leading" secondItem="ozY-ve-Yd0" secondAttribute="leading" id="aZB-2v-EzD"/>
+                <constraint firstAttribute="bottom" secondItem="BZ3-S6-dHD" secondAttribute="bottom" id="tUf-VC-Fv2"/>
+            </constraints>
+            <point key="canvasLocation" x="-5" y="38"/>
+        </customView>
+        <customObject id="abU-Zo-e5T" customClass="GroupContactListItem" customModule="Sphinx" customModuleProvider="target"/>
+        <customView id="ddB-nG-k16">
+            <rect key="frame" x="0.0" y="0.0" width="346" height="96"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <point key="canvasLocation" x="-167" y="-124"/>
+        </customView>
+    </objects>
+    <resources>
+        <namedColor name="Body">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
