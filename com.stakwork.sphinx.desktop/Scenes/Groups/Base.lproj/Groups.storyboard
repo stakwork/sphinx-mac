@@ -926,9 +926,46 @@
             <objects>
                 <viewController storyboardIdentifier="TribeMembersViewController" id="f0q-2w-Hhl" customClass="TribeMembersViewController" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="rhW-By-NmE">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="716"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1c-H0-a5x">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="716"/>
+                                <clipView key="contentView" id="dql-Ec-9z3">
+                                    <rect key="frame" x="1" y="1" width="448" height="714"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <collectionView id="a5E-IL-oB2">
+                                            <rect key="frame" x="0.0" y="0.0" width="448" height="158"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="fFo-eN-XKE">
+                                                <size key="itemSize" width="50" height="50"/>
+                                            </collectionViewFlowLayout>
+                                            <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </collectionView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="5zl-hm-yhF">
+                                    <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="JAg-40-4g0">
+                                    <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="x1c-H0-a5x" secondAttribute="trailing" id="Qox-ea-uiw"/>
+                            <constraint firstItem="x1c-H0-a5x" firstAttribute="width" secondItem="rhW-By-NmE" secondAttribute="width" id="Uzl-XO-NSE"/>
+                            <constraint firstItem="x1c-H0-a5x" firstAttribute="top" secondItem="rhW-By-NmE" secondAttribute="top" id="oqT-Xp-DZA"/>
+                            <constraint firstItem="x1c-H0-a5x" firstAttribute="leading" secondItem="rhW-By-NmE" secondAttribute="leading" id="rt4-pe-xcg"/>
+                            <constraint firstAttribute="bottom" secondItem="x1c-H0-a5x" secondAttribute="bottom" id="xIg-Pt-aK3"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tribeMembersCollectionView" destination="a5E-IL-oB2" id="ZB5-vo-b6F"/>
+                    </connections>
                 </viewController>
                 <customObject id="Rx3-8y-tfD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
