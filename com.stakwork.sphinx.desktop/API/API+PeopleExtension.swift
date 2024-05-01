@@ -68,7 +68,7 @@ extension API {
                                   params: [String: AnyObject],
                                   callback: @escaping SuccessCallback) {
         
-        let url = "https://\(host)/verify/\(challenge)?token=\(token)"
+        let url = "http://\(host)/verify/\(challenge)?token=\(token)"
         
         guard let request = createRequest(url, params: params as NSDictionary, method: "POST") else {
             callback(false)

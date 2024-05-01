@@ -89,10 +89,18 @@ class WebAppViewController: NSViewController {
         let configuration = WKWebViewConfiguration()
         configuration.userContentController.add(webAppHelper, name: webAppHelper.messageHandler)
         
+        configuration.preferences.setValue(true, forKey: "fullScreenEnabled")
+        
         let rect = CGRect(x: 0, y: 0, width: 700, height: 500)
         webView = WKWebView(frame: rect, configuration: configuration)
         webView.customUserAgent = "Sphinx"
         webView.isHidden = true
+        if #available(macOS 13.3, *) {
+            webView.isInspectable = true
+        } else {
+            // Fallback on earlier versions
+        }
+        
         webView.navigationDelegate = self
         webView.setBackgroundColor(color: NSColor.clear)
         addLoadingView()
