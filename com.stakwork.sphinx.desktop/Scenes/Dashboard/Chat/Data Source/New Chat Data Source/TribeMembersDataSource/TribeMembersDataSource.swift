@@ -44,7 +44,6 @@ class TribeMembersDataSource : NSObject {
         self.collectionView.allowsMultipleSelection = false
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
-//        loadGroupContacts() // Loading the contacts from Chat Object
         loadTribeContacts() // Loading the contacts from API
         self.collectionView.collectionViewLayout?.invalidateLayout()
         self.collectionView.enclosingScrollView?.contentView.scroll(to: NSPoint(x: 0, y: 0))
@@ -58,7 +57,6 @@ class TribeMembersDataSource : NSObject {
             let (contacts, pendingContacts) = self.getGroupContactsFrom(contacts: c)
             self.objects = (contacts + pendingContacts).sorted(by: {$0.contact.getName().uppercased() > $1.contact.getName().uppercased()})
             self.collectionView.reloadData()
-//            self.messageBubbleHelper.hideLoadingWheel()
         })
     }
     
@@ -89,43 +87,6 @@ class TribeMembersDataSource : NSObject {
             }
         }
         return (groupContacts, groupPendingContacts)
-    }
-    
-    func getGroupContactsFrom(contacts: [UserContact]) -> [GroupContact] {
-        var groupContacts = [GroupContact]()
-        
-        var lastLetter = ""
-        
-        for newContact in  contacts {
-            let contact = newContact
-            
-            let initial = contact.getName()
-            let initialString = String(initial)
-            let firstOnLetter = (initialString != lastLetter)
-            
-            let groupContact = GroupContact(contact: contact,
-                                            selected: false,
-                                            firstOnLetter: firstOnLetter)
-            lastLetter = initialString
-            
-            
-            groupContacts.append(groupContact)
-        }
-        
-        return groupContacts
-    }
-    
-    func loadGroupContacts() {
-        let contacts = chat?.getContacts().sorted { $0.nickname ?? "name.unknown".localized < $1.nickname ?? "name.unknown".localized }
-        let pendingContacts = chat?.getPendingContacts().sorted { $0.nickname ?? "name.unknown".localized < $1.nickname ?? "name.unknown".localized }
-
-        self.objects = (
-            getGroupContactsFrom(contacts: contacts ?? []) +
-            getGroupContactsFrom(contacts: pendingContacts ?? []))
-        .sorted(by: {
-            $0.contact.getName().uppercased() >
-            $1.contact.getName().uppercased()})
-        self.collectionView.reloadData()
     }
 }
 
