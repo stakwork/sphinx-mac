@@ -227,7 +227,6 @@ extension GroupDetailsViewController : MessageOptionsDelegate {
                                                   shouldReplace: false)
                 break
             case .TribeMembers:
-                //TODO: Create the New VC and replace it with the VC below (Prof K)-
                 let tribeMembers = TribeMembersViewController.instantiate(chat: chat)
                 WindowsManager.sharedInstance
                     .showVCOnRightPanelWindow(with: "tribe.member".localized,

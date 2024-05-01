@@ -67,16 +67,13 @@ extension API {
             callback([])
             return
         }
-        print("I am getting url: \(request.url)")
         sphinxRequest(request) { response in
             switch response.result {
             case .success(let data):
                 if let json = data as? NSDictionary {
                     if let success = json["success"] as? Bool, let response = json["response"], success {
-//                        print("I am here with the response: \(response)")
                         let jsonResponse = JSON(response)
                         let contactsArray = JSON(jsonResponse["contacts"]).arrayValue
-                        print("I am here with the response: \(contactsArray)")
                         callback(contactsArray)
                         return
                     }

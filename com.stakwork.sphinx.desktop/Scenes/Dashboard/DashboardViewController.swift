@@ -491,6 +491,7 @@ extension DashboardViewController : NSSplitViewDelegate {
         dashboardDetailViewController?.resizeSubviews(frame: rightDetailSplittedView.bounds)
         listViewController?.menuListView.menuDataSource?.updateFrame()
         listViewController?.view.frame = leftSplittedView.bounds
+        dashboardDetailViewController?.updateCurrentVCFrame()
     }
 }
 

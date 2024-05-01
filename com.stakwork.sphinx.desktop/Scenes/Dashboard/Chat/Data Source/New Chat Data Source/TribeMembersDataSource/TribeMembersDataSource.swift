@@ -7,10 +7,16 @@
 //
 
 import AppKit
+import SwiftyJSON
 
 class TribeMembersDataSource : NSObject {
     
+    var chat: Chat?
     var objects = [GroupContact]()
+    
+    var groupContacts = [GroupContact]()
+    var groupPendingContacts = [GroupContact]()
+    
     var collectionView: NSCollectionView! = nil
     var page = 0
     
@@ -33,16 +39,93 @@ class TribeMembersDataSource : NSObject {
         collectionView.collectionViewLayout = flowLayout
     }
     
-    func setDataAndReload(objects: [GroupContact]) {
-        self.objects.append(contentsOf: objects)
+    func setDataAndReload(objects: Chat) {
+        self.chat = objects
         self.collectionView.allowsMultipleSelection = false
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
-        self.collectionView.reloadData()
-    
+//        loadGroupContacts() // Loading the contacts from Chat Object
+        loadTribeContacts() // Loading the contacts from API
         self.collectionView.collectionViewLayout?.invalidateLayout()
         self.collectionView.enclosingScrollView?.contentView.scroll(to: NSPoint(x: 0, y: 0))
         
+    }
+    
+    
+    func loadTribeContacts() {
+        guard let id = chat?.id else { return }
+        API.sharedInstance.getContactsForChat(chatId: id, callback: { c in
+            let (contacts, pendingContacts) = self.getGroupContactsFrom(contacts: c)
+            self.objects = (contacts + pendingContacts).sorted(by: {$0.contact.getName().uppercased() > $1.contact.getName().uppercased()})
+            self.collectionView.reloadData()
+//            self.messageBubbleHelper.hideLoadingWheel()
+        })
+    }
+    
+    
+    func getGroupContactsFrom(contacts: [JSON]) -> ([GroupContact], [GroupContact]) {
+        var groupContacts = [GroupContact]()
+        var groupPendingContacts = [GroupContact]()
+        
+        var lastLetter = ""
+        
+        for newContact in  contacts {
+            let contact = UserContact.insertContact(contact: newContact)
+            
+            if let initial = contact?.nickname?.first {
+                let initialString = String(initial)
+                let firstOnLetter = (initialString != lastLetter)
+                
+                let groupContact = GroupContact(contact: contact,
+                                                selected: false,
+                                                firstOnLetter: firstOnLetter)
+                lastLetter = initialString
+                
+                if let pending = contact?.isPending(), pending {
+                    groupPendingContacts.append(groupContact)
+                } else {
+                    groupContacts.append(groupContact)
+                }
+            }
+        }
+        return (groupContacts, groupPendingContacts)
+    }
+    
+    func getGroupContactsFrom(contacts: [UserContact]) -> [GroupContact] {
+        var groupContacts = [GroupContact]()
+        
+        var lastLetter = ""
+        
+        for newContact in  contacts {
+            let contact = newContact
+            
+            let initial = contact.getName()
+            let initialString = String(initial)
+            let firstOnLetter = (initialString != lastLetter)
+            
+            let groupContact = GroupContact(contact: contact,
+                                            selected: false,
+                                            firstOnLetter: firstOnLetter)
+            lastLetter = initialString
+            
+            
+            groupContacts.append(groupContact)
+        }
+        
+        return groupContacts
+    }
+    
+    func loadGroupContacts() {
+        let contacts = chat?.getContacts().sorted { $0.nickname ?? "name.unknown".localized < $1.nickname ?? "name.unknown".localized }
+        let pendingContacts = chat?.getPendingContacts().sorted { $0.nickname ?? "name.unknown".localized < $1.nickname ?? "name.unknown".localized }
+
+        self.objects = (
+            getGroupContactsFrom(contacts: contacts ?? []) +
+            getGroupContactsFrom(contacts: pendingContacts ?? []))
+        .sorted(by: {
+            $0.contact.getName().uppercased() >
+            $1.contact.getName().uppercased()})
+        self.collectionView.reloadData()
     }
 }
 

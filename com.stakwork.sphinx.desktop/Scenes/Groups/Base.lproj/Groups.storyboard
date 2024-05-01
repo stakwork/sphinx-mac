@@ -925,32 +925,33 @@
         <scene sceneID="koN-Nz-ggo">
             <objects>
                 <viewController storyboardIdentifier="TribeMembersViewController" id="f0q-2w-Hhl" customClass="TribeMembersViewController" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="rhW-By-NmE">
+                    <view key="view" clipsToBounds="YES" id="rhW-By-NmE">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1c-H0-a5x">
+                            <scrollView clipsToBounds="YES" wantsLayer="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1c-H0-a5x">
                                 <rect key="frame" x="0.0" y="0.0" width="450" height="716"/>
-                                <clipView key="contentView" id="dql-Ec-9z3">
-                                    <rect key="frame" x="1" y="1" width="448" height="714"/>
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="dql-Ec-9z3">
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="716"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <collectionView id="a5E-IL-oB2">
-                                            <rect key="frame" x="0.0" y="0.0" width="448" height="158"/>
+                                        <collectionView clipsToBounds="YES" id="a5E-IL-oB2">
+                                            <rect key="frame" x="0.0" y="0.0" width="450" height="716"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="fFo-eN-XKE">
                                                 <size key="itemSize" width="50" height="50"/>
                                             </collectionViewFlowLayout>
-                                            <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="primaryBackgroundColor" name="Body"/>
                                         </collectionView>
                                     </subviews>
+                                    <color key="backgroundColor" name="Body"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="5zl-hm-yhF">
-                                    <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                    <rect key="frame" x="-100" y="-100" width="233" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="JAg-40-4g0">
-                                    <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="JAg-40-4g0">
+                                    <rect key="frame" x="434" y="0.0" width="16" height="716"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
