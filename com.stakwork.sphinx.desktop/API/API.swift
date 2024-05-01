@@ -191,7 +191,6 @@ class API {
         }
         
         let url = API.getUrl(route: "\(ip)\(route)")
-        print("Here is the url: \(url)")
         return createAuthenticatedRequest(
             url,
             params: params,
@@ -483,7 +482,6 @@ class API {
             ) {
                 request.setValue(value, forHTTPHeaderField: key)
             }
-            print("Here is request url: \(request)")
             return request
         } else {
             return nil
