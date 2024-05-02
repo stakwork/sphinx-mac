@@ -19,12 +19,12 @@
                             <splitView arrangesAllSubviews="NO" dividerStyle="paneSplitter" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PrF-LO-tpi">
                                 <rect key="frame" x="0.0" y="0.0" width="1000" height="499"/>
                                 <subviews>
-                                    <customView misplaced="YES" id="TtT-Yv-CaJ">
+                                    <customView id="TtT-Yv-CaJ">
                                         <rect key="frame" x="0.0" y="0.0" width="350" height="499"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="6VL-Tj-Dft">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="499"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="350" height="499"/>
                                                 <connections>
                                                     <segue destination="GLJ-mb-R6q" kind="embed" identifier="ChatListViewControllerSegue" id="q58-SK-bKr"/>
                                                 </connections>
@@ -32,32 +32,32 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="1lR-z6-v7i"/>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="320" id="44G-0J-jQY"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="350" id="44G-0J-jQY"/>
                                             <constraint firstItem="6VL-Tj-Dft" firstAttribute="top" secondItem="TtT-Yv-CaJ" secondAttribute="top" id="6AT-I2-E0m"/>
                                             <constraint firstAttribute="trailing" secondItem="6VL-Tj-Dft" secondAttribute="trailing" id="ZwT-jc-Pk1"/>
                                             <constraint firstItem="6VL-Tj-Dft" firstAttribute="leading" secondItem="TtT-Yv-CaJ" secondAttribute="leading" id="eeF-9y-tNo"/>
                                             <constraint firstAttribute="bottom" secondItem="6VL-Tj-Dft" secondAttribute="bottom" id="kVw-q0-RGa"/>
                                         </constraints>
                                     </customView>
-                                    <customView misplaced="YES" id="pXC-Wm-9tR">
+                                    <customView id="pXC-Wm-9tR">
                                         <rect key="frame" x="360" y="0.0" width="640" height="499"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="sNN-Zp-F4E">
-                                                <rect key="frame" x="0.0" y="0.0" width="670" height="499"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="640" height="499"/>
                                                 <connections>
                                                     <segue destination="Pz4-0N-V1w" kind="embed" identifier="ChatViewControllerSegue" id="QPQ-fP-nMH"/>
                                                 </connections>
                                             </containerView>
                                             <splitView arrangesAllSubviews="NO" dividerStyle="paneSplitter" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MBk-nh-nye">
-                                                <rect key="frame" x="0.0" y="0.0" width="670" height="499"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="640" height="499"/>
                                                 <subviews>
                                                     <customView id="kk1-mv-gZj">
-                                                        <rect key="frame" x="0.0" y="0.0" width="347" height="499"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="499"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="tYG-E5-Q7o">
-                                                                <rect key="frame" x="0.0" y="0.0" width="347" height="499"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="317" height="499"/>
                                                                 <connections>
                                                                     <segue destination="kXm-gj-szD" kind="embed" id="dYj-dA-VwQ"/>
                                                                 </connections>
@@ -71,7 +71,7 @@
                                                         </constraints>
                                                     </customView>
                                                     <customView id="5cv-NJ-L3p">
-                                                        <rect key="frame" x="357" y="0.0" width="313" height="499"/>
+                                                        <rect key="frame" x="327" y="0.0" width="313" height="499"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="19x-YZ-MGN">

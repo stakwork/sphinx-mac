@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -49,7 +49,7 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY" customClass="ThreadCollectionViewItemContentView" customModule="Sphinx" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="930" height="1658"/>
+            <rect key="frame" x="0.0" y="0.0" width="933" height="1658"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="bCg-hP-Rew">
@@ -63,7 +63,7 @@
                     </constraints>
                 </box>
                 <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="aXK-p2-lS1">
-                    <rect key="frame" x="899" y="0.0" width="3" height="1658"/>
+                    <rect key="frame" x="902" y="0.0" width="3" height="1658"/>
                     <view key="contentView" id="H1V-JT-gY0">
                         <rect key="frame" x="0.0" y="0.0" width="3" height="1658"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -73,7 +73,7 @@
                     </constraints>
                 </box>
                 <box horizontalHuggingPriority="1000" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="8" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="YWa-SY-0um">
-                    <rect key="frame" x="57" y="831" width="400" height="800"/>
+                    <rect key="frame" x="60" y="831" width="400" height="800"/>
                     <view key="contentView" id="XBi-4A-5G5">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -81,7 +81,7 @@
                     <color key="fillColor" name="SentMsgBG"/>
                 </box>
                 <box horizontalHuggingPriority="1000" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="8" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="2Bm-CJ-TFa">
-                    <rect key="frame" x="57" y="831" width="400" height="385"/>
+                    <rect key="frame" x="60" y="831" width="400" height="385"/>
                     <view key="contentView" id="Bpi-kt-bLJ">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="385"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -89,21 +89,21 @@
                     <color key="fillColor" name="ReceivedMsgBG"/>
                 </box>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="Viu-pF-fdW">
-                    <rect key="frame" x="53" y="1623" width="12" height="8"/>
+                    <rect key="frame" x="56" y="1623" width="12" height="8"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="12" id="CL4-X1-flG"/>
                         <constraint firstAttribute="height" constant="8" id="ipr-6q-bHK"/>
                     </constraints>
                 </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="RsB-r9-lHO">
-                    <rect key="frame" x="449" y="1623" width="15" height="8"/>
+                    <rect key="frame" x="452" y="1623" width="15" height="8"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="8" id="NRk-2p-8Ie"/>
                         <constraint firstAttribute="width" constant="15" id="f6B-1d-Fh7"/>
                     </constraints>
                 </customView>
                 <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="itm-5A-n1p">
-                    <rect key="frame" x="16" y="2" width="898" height="1654"/>
+                    <rect key="frame" x="16" y="2" width="901" height="1654"/>
                     <subviews>
                         <customView hidden="YES" horizontalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="9zh-HR-aT5">
                             <rect key="frame" x="0.0" y="1617" width="1700" height="37"/>
@@ -112,32 +112,32 @@
                             </constraints>
                         </customView>
                         <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nVa-wl-PqV">
-                            <rect key="frame" x="0.0" y="0.0" width="448" height="1654"/>
+                            <rect key="frame" x="0.0" y="0.0" width="451" height="1654"/>
                             <subviews>
                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="RAQ-Ej-oyC">
-                                    <rect key="frame" x="0.0" y="1609" width="37" height="37"/>
+                                    <rect key="frame" x="0.0" y="1606" width="40" height="40"/>
                                     <subviews>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="0w7-Od-NJs" customClass="ChatSmallAvatarView" customModule="Sphinx" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="33" height="33"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
                                         </customView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="0w7-Od-NJs" secondAttribute="bottom" id="Cm7-cF-Yex"/>
-                                        <constraint firstAttribute="height" constant="37" id="Dz9-7p-Y8q"/>
-                                        <constraint firstAttribute="width" constant="37" id="LYl-0D-HfM"/>
+                                        <constraint firstAttribute="height" constant="40" id="Dz9-7p-Y8q"/>
+                                        <constraint firstAttribute="width" constant="40" id="LYl-0D-HfM"/>
                                         <constraint firstItem="0w7-Od-NJs" firstAttribute="leading" secondItem="RAQ-Ej-oyC" secondAttribute="leading" id="RtH-dh-wZx"/>
                                         <constraint firstItem="0w7-Od-NJs" firstAttribute="top" secondItem="RAQ-Ej-oyC" secondAttribute="top" constant="4" id="rv0-Ns-kxB"/>
                                         <constraint firstAttribute="trailing" secondItem="0w7-Od-NJs" secondAttribute="trailing" constant="4" id="wj8-gH-ZNV"/>
                                     </constraints>
                                 </customView>
                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="vsA-H9-tk9">
-                                    <rect key="frame" x="37" y="0.0" width="4" height="1654"/>
+                                    <rect key="frame" x="40" y="0.0" width="4" height="1654"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="4" id="n1X-be-6KW"/>
                                     </constraints>
                                 </customView>
                                 <stackView distribution="fill" orientation="vertical" alignment="trailing" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PqZ-pq-8i0">
-                                    <rect key="frame" x="41" y="829" width="400" height="825"/>
+                                    <rect key="frame" x="44" y="829" width="400" height="825"/>
                                     <subviews>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="QIj-fa-qcL">
                                             <rect key="frame" x="0.0" y="800" width="400" height="25"/>
@@ -323,7 +323,7 @@
                                     </customSpacing>
                                 </stackView>
                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="jSe-Zh-QjE">
-                                    <rect key="frame" x="441" y="0.0" width="7" height="1654"/>
+                                    <rect key="frame" x="444" y="0.0" width="7" height="1654"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="7" id="Xq6-ms-5X4"/>
                                     </constraints>
@@ -351,7 +351,7 @@
                             </customSpacing>
                         </stackView>
                         <customView horizontalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="QnT-Cm-qyW">
-                            <rect key="frame" x="448" y="1617" width="450" height="37"/>
+                            <rect key="frame" x="451" y="1617" width="450" height="37"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="37" id="tJ4-D9-fml"/>
                             </constraints>
