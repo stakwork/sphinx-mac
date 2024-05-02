@@ -144,8 +144,8 @@
                                                                 <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="18" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5nv-dX-hhx">
                                                                     <rect key="frame" x="32" y="26" width="314" height="25"/>
                                                                     <subviews>
-                                                                        <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jpp-5d-Yjg" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                                                                            <rect key="frame" x="0.0" y="14.5" width="16" height="12"/>
+                                                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="Jpp-5d-Yjg" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                                                                            <rect key="frame" x="0.0" y="6.5" width="16" height="12"/>
                                                                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="arrow.left" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="ZdT-1S-Tpz">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                 <font key="font" metaFont="system"/>
@@ -161,7 +161,7 @@
                                                                             </connections>
                                                                         </button>
                                                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sht-p7-2gS">
-                                                                            <rect key="frame" x="-2" y="0.0" width="318" height="25"/>
+                                                                            <rect key="frame" x="32" y="0.0" width="284" height="25"/>
                                                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="bPG-34-t5x">
                                                                                 <font key="font" size="22" name="Roboto-Bold"/>
                                                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>

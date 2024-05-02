@@ -745,6 +745,7 @@ public class Chat: NSManagedObject {
             if isMyPublicGroup {
                 options.append((MessageOptionsHelper.ChatActionsItem.Share.rawValue, "share", nil, "share.group".localized))
                 options.append((MessageOptionsHelper.ChatActionsItem.Edit.rawValue, "edit", nil, "edit.tribe".localized))
+                options.append((MessageOptionsHelper.ChatActionsItem.TribeMembers.rawValue, nil, "contact", "tribe.member".localized))
                 options.append((MessageOptionsHelper.ChatActionsItem.Delete.rawValue, "delete", nil, "delete.tribe".localized))
             } else {
                 if self.removedFromGroup() {

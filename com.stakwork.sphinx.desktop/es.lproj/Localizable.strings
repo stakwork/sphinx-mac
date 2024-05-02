@@ -76,7 +76,8 @@
 "member.join.soon" = "Los nuevos miembros se unirán pronto";
 "unknown.group" = "Grupo Desconocido";
 "created.on" = "Creado: %@";
-"group.members.upper" = "MIEMBROS DEL GRUPO";
+"group.members.upper" = "MIEMBROS DE LA TRIBU";
+"tribe.pending.members.upper" = "MIEMBROS PENDIENTES DE LA TRIBU";
 "group.options" = "Opciones del Grupo";
 "edit.group" = "Editar Grupo";
 "delete.group" = "Eliminar Grupo";

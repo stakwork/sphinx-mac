@@ -55,6 +55,7 @@ class MessageOptionsHelper {
         case Edit = 101
         case Share = 102
         case Exit = 103
+        case TribeMembers = 104
     }
     
     public enum FeedTypeItem: Int {

@@ -79,6 +79,7 @@
 "unknown.group" = "未知のグループ";
 "created.on" = "%@に作成";
 "group.members.upper" = "グループメンバー";
+"tribe.pending.members.upper" = "保留中の部族メンバー";
 "group.options" = "グループオプション";
 "edit.group" = "グループを編集";
 "delete.group" = "グループを削除";
