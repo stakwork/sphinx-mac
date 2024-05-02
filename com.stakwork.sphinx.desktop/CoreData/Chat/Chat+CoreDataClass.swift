@@ -186,14 +186,6 @@ public class Chat: NSManagedObject {
         return ids
     }
     
-    public func isOnlyMentions() -> Bool {
-        return self.notify == NotificationLevel.OnlyMentions.rawValue
-    }
-    
-    func willNotifyOnlyMentions() -> Bool {
-        return self.notify == NotificationLevel.OnlyMentions.rawValue
-    }
-    
     func isStatusPending() -> Bool {
         return self.status == ChatStatus.pending.rawValue
     }
