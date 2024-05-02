@@ -226,6 +226,14 @@ extension GroupDetailsViewController : MessageOptionsDelegate {
                                                   contentVC: createTribeVC,
                                                   shouldReplace: false)
                 break
+            case .TribeMembers:
+                let tribeMembers = TribeMembersViewController.instantiate(chat: chat)
+                WindowsManager.sharedInstance
+                    .showVCOnRightPanelWindow(with: "tribe.member".localized,
+                                                  identifier: "tribe-members-window",
+                                                  contentVC: tribeMembers,
+                                                  shouldReplace: false)
+                break
             }
         }
     }

@@ -41,6 +41,16 @@ class DashboardDetailViewController: NSViewController {
         currentVC?.view.frame = containerView.bounds
     }
     
+    func updateCurrentVCFrame() {
+        if let currentVC = addedVC?.last as? TribeMembersViewController {
+            currentVC.groupChatDataSource?.updateFrame()
+        }
+        
+        if let currentVC = addedVC?.last as? NewChatViewController {
+            currentVC.chatTableDataSource?.updateFrame()
+        }
+    }
+    
     func displayVC(
         _ vc: NSViewController,
         vcTitle: String,

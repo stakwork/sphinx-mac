@@ -61,4 +61,54 @@ extension API {
             }
         }
     }
+    
+    func getContactsForChat(chatId: Int, callback: @escaping ChatContactsCallback){
+        guard let request = getURLRequest(route: "/contacts/\(chatId)", method: "GET") else {
+            callback([])
+            return
+        }
+        sphinxRequest(request) { response in
+            switch response.result {
+            case .success(let data):
+                if let json = data as? NSDictionary {
+                    if let success = json["success"] as? Bool, let response = json["response"], success {
+                        let jsonResponse = JSON(response)
+                        let contactsArray = JSON(jsonResponse["contacts"]).arrayValue
+                        callback(contactsArray)
+                        return
+                    }
+                }
+                callback([])
+            case .failure(_):
+                callback([])
+            }
+        }
+    }
+    
+    func kickMember(
+        chatId: Int,
+        contactId: Int,
+        callback: @escaping CreateGroupCallback,
+        errorCallback: @escaping EmptyCallback
+    ) {
+        guard let request = getURLRequest(route: "/kick/\(chatId)/\(contactId)", params: nil, method: "PUT") else {
+            errorCallback()
+            return
+        }
+        
+        sphinxRequest(request) { response in
+            switch response.result {
+            case .success(let data):
+                if let json = data as? NSDictionary {
+                    if let success = json["success"] as? Bool, let response = json["response"] as? NSDictionary, success {
+                        callback(JSON(response))
+                        return
+                    }
+                }
+                errorCallback()
+            case .failure(_):
+                errorCallback()
+            }
+        }
+    }
 }

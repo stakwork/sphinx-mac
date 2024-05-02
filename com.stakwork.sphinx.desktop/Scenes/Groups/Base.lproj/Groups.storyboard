@@ -66,7 +66,7 @@
                                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="nKa-as-B2x">
                                                                             <rect key="frame" x="30" y="1075" width="340" height="75"/>
                                                                             <subviews>
-                                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6eq-Rx-TdP">
+                                                                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6eq-Rx-TdP">
                                                                                     <rect key="frame" x="-2" y="36" width="44" height="14"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Name *" id="oYj-fw-X3k">
                                                                                         <font key="font" size="12" name="Roboto-Regular"/>
@@ -113,7 +113,7 @@
                                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="mFt-Ey-7Gq">
                                                                             <rect key="frame" x="30" y="1000" width="340" height="75"/>
                                                                             <subviews>
-                                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BKD-xx-wc7">
+                                                                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BKD-xx-wc7">
                                                                                     <rect key="frame" x="-2" y="36" width="38" height="14"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Image" id="S5M-do-OMG">
                                                                                         <font key="font" size="12" name="Roboto-Regular"/>
@@ -202,7 +202,7 @@
                                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="zKD-kB-tGP">
                                                                             <rect key="frame" x="30" y="925" width="340" height="75"/>
                                                                             <subviews>
-                                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6dD-V3-g50">
+                                                                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6dD-V3-g50">
                                                                                     <rect key="frame" x="-2" y="36" width="74" height="14"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Description *" id="4xc-dn-4c9">
                                                                                         <font key="font" size="12" name="Roboto-Regular"/>
@@ -249,7 +249,7 @@
                                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="pXj-ld-XR9">
                                                                             <rect key="frame" x="30" y="850" width="340" height="75"/>
                                                                             <subviews>
-                                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b2z-KL-JPe">
+                                                                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b2z-KL-JPe">
                                                                                     <rect key="frame" x="-2" y="36" width="31" height="14"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Tags" id="R9c-DX-E9G">
                                                                                         <font key="font" size="12" name="Roboto-Regular"/>
@@ -310,7 +310,7 @@
                                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="SHL-XW-IJF">
                                                                             <rect key="frame" x="30" y="775" width="340" height="75"/>
                                                                             <subviews>
-                                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rWA-oI-3VU">
+                                                                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rWA-oI-3VU">
                                                                                     <rect key="frame" x="-2" y="36" width="72" height="14"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Price to Join" id="amo-6J-VEd">
                                                                                         <font key="font" size="12" name="Roboto-Regular"/>
@@ -357,7 +357,7 @@
                                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="zoC-La-4CH">
                                                                             <rect key="frame" x="30" y="700" width="340" height="75"/>
                                                                             <subviews>
-                                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ugp-l4-j2t">
+                                                                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ugp-l4-j2t">
                                                                                     <rect key="frame" x="-2" y="36" width="104" height="14"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Price per Message" id="BZI-9s-vtk">
                                                                                         <font key="font" size="12" name="Roboto-Regular"/>
@@ -404,7 +404,7 @@
                                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="O1X-q1-nxK">
                                                                             <rect key="frame" x="30" y="625" width="340" height="75"/>
                                                                             <subviews>
-                                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hdk-NT-LKX">
+                                                                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hdk-NT-LKX">
                                                                                     <rect key="frame" x="-2" y="36" width="94" height="14"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Amount to Stake" id="RfR-WJ-3c7">
                                                                                         <font key="font" size="12" name="Roboto-Regular"/>
@@ -451,7 +451,7 @@
                                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="5Uk-6T-9pN">
                                                                             <rect key="frame" x="30" y="550" width="340" height="75"/>
                                                                             <subviews>
-                                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Je0-5F-jpa">
+                                                                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Je0-5F-jpa">
                                                                                     <rect key="frame" x="-2" y="36" width="121" height="14"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Time to Stake (hours)" id="iio-v7-V2C">
                                                                                         <font key="font" size="12" name="Roboto-Regular"/>
@@ -498,7 +498,7 @@
                                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="WbU-mz-2yw">
                                                                             <rect key="frame" x="30" y="475" width="340" height="75"/>
                                                                             <subviews>
-                                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4As-at-dR2">
+                                                                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4As-at-dR2">
                                                                                     <rect key="frame" x="-2" y="36" width="44" height="14"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="App Url" id="PBt-DD-vJn">
                                                                                         <font key="font" size="12" name="Roboto-Regular"/>
@@ -545,7 +545,7 @@
                                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="MfL-Xj-RO3">
                                                                             <rect key="frame" x="30" y="400" width="340" height="75"/>
                                                                             <subviews>
-                                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8gr-3I-Hdf">
+                                                                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8gr-3I-Hdf">
                                                                                     <rect key="frame" x="-2" y="36" width="94" height="14"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Second Brain Url" id="pdg-dx-btt">
                                                                                         <font key="font" size="12" name="Roboto-Regular"/>
@@ -592,7 +592,7 @@
                                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="IgF-hX-2qO">
                                                                             <rect key="frame" x="30" y="325" width="340" height="75"/>
                                                                             <subviews>
-                                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="14Z-BH-vnS">
+                                                                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="14Z-BH-vnS">
                                                                                     <rect key="frame" x="-2" y="36" width="49" height="14"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Feed Url" id="aYx-6Y-No1">
                                                                                         <font key="font" size="12" name="Roboto-Regular"/>
@@ -639,7 +639,7 @@
                                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="T2h-5L-2RZ">
                                                                             <rect key="frame" x="30" y="250" width="340" height="75"/>
                                                                             <subviews>
-                                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="41E-Gd-u76">
+                                                                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="41E-Gd-u76">
                                                                                     <rect key="frame" x="-2" y="36" width="105" height="14"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Feed Content Type" id="uTl-0t-F3h">
                                                                                         <font key="font" size="12" name="Roboto-Regular"/>
@@ -700,7 +700,7 @@
                                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="3A1-NI-rGy">
                                                                             <rect key="frame" x="30" y="175" width="340" height="75"/>
                                                                             <subviews>
-                                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KxO-1E-KqS">
+                                                                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KxO-1E-KqS">
                                                                                     <rect key="frame" x="-2" y="28" width="205" height="20"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="List on tribes.sphinx.chat?" id="qB7-uk-cfh">
                                                                                         <font key="font" size="17" name="Roboto-Regular"/>
@@ -724,7 +724,7 @@
                                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="HSy-J2-Ent">
                                                                             <rect key="frame" x="30" y="100" width="340" height="75"/>
                                                                             <subviews>
-                                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a1e-9T-yZ0">
+                                                                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a1e-9T-yZ0">
                                                                                     <rect key="frame" x="-2" y="28" width="278" height="20"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Approve each membership request?" id="7zZ-36-zq9">
                                                                                         <font key="font" size="17" name="Roboto-Regular"/>
@@ -921,6 +921,79 @@
             </objects>
             <point key="canvasLocation" x="35" y="1301.5"/>
         </scene>
+        <!--Tribe Members View Controller-->
+        <scene sceneID="koN-Nz-ggo">
+            <objects>
+                <viewController storyboardIdentifier="TribeMembersViewController" id="f0q-2w-Hhl" customClass="TribeMembersViewController" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" clipsToBounds="YES" id="rhW-By-NmE">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="716"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsToBounds="YES" wantsLayer="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1c-H0-a5x">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="716"/>
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="dql-Ec-9z3">
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="716"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <collectionView clipsToBounds="YES" id="a5E-IL-oB2">
+                                            <rect key="frame" x="0.0" y="0.0" width="450" height="716"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="fFo-eN-XKE">
+                                                <size key="itemSize" width="50" height="50"/>
+                                            </collectionViewFlowLayout>
+                                            <color key="primaryBackgroundColor" name="Body"/>
+                                        </collectionView>
+                                    </subviews>
+                                    <color key="backgroundColor" name="Body"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="5zl-hm-yhF">
+                                    <rect key="frame" x="-100" y="-100" width="233" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="JAg-40-4g0">
+                                    <rect key="frame" x="434" y="0.0" width="16" height="716"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="PCp-m4-4YN">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="716"/>
+                                <subviews>
+                                    <progressIndicator maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="tpc-9T-FAR">
+                                        <rect key="frame" x="210" y="343" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="3m9-eI-bEo"/>
+                                            <constraint firstAttribute="height" constant="30" id="whS-xF-U3e"/>
+                                        </constraints>
+                                    </progressIndicator>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="tpc-9T-FAR" firstAttribute="centerY" secondItem="PCp-m4-4YN" secondAttribute="centerY" id="byA-wm-034"/>
+                                    <constraint firstItem="tpc-9T-FAR" firstAttribute="centerX" secondItem="PCp-m4-4YN" secondAttribute="centerX" id="z8t-qa-lej"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="PCp-m4-4YN" secondAttribute="trailing" id="BrJ-ay-vM9"/>
+                            <constraint firstItem="PCp-m4-4YN" firstAttribute="top" secondItem="rhW-By-NmE" secondAttribute="top" id="HCY-Pk-lcW"/>
+                            <constraint firstAttribute="trailing" secondItem="x1c-H0-a5x" secondAttribute="trailing" id="Qox-ea-uiw"/>
+                            <constraint firstItem="x1c-H0-a5x" firstAttribute="width" secondItem="rhW-By-NmE" secondAttribute="width" id="Uzl-XO-NSE"/>
+                            <constraint firstAttribute="bottom" secondItem="PCp-m4-4YN" secondAttribute="bottom" id="VMl-z8-Zzl"/>
+                            <constraint firstItem="PCp-m4-4YN" firstAttribute="leading" secondItem="rhW-By-NmE" secondAttribute="leading" id="eNb-Hc-Jf0"/>
+                            <constraint firstItem="x1c-H0-a5x" firstAttribute="top" secondItem="rhW-By-NmE" secondAttribute="top" id="oqT-Xp-DZA"/>
+                            <constraint firstItem="x1c-H0-a5x" firstAttribute="leading" secondItem="rhW-By-NmE" secondAttribute="leading" id="rt4-pe-xcg"/>
+                            <constraint firstAttribute="bottom" secondItem="x1c-H0-a5x" secondAttribute="bottom" id="xIg-Pt-aK3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="loadingWheel" destination="tpc-9T-FAR" id="H9w-fx-Rcj"/>
+                        <outlet property="loadingWheelContainer" destination="PCp-m4-4YN" id="HpE-e0-hbc"/>
+                        <outlet property="tribeMembersCollectionView" destination="a5E-IL-oB2" id="ZB5-vo-b6F"/>
+                    </connections>
+                </viewController>
+                <customObject id="Rx3-8y-tfD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="553" y="1078"/>
+        </scene>
         <!--Join Tribe View Controller-->
         <scene sceneID="DeP-FS-oaF">
             <objects>
@@ -962,7 +1035,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </imageView>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" mirrorLayoutDirectionWhenInternationalizing="never" translatesAutoresizingMaskIntoConstraints="NO" id="0PR-LG-A1w">
+                                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" mirrorLayoutDirectionWhenInternationalizing="never" translatesAutoresizingMaskIntoConstraints="NO" id="0PR-LG-A1w">
                                                                     <rect key="frame" x="18" y="446" width="380" height="35"/>
                                                                     <textFieldCell key="cell" alignment="center" title="..." id="e8W-tI-OEy">
                                                                         <font key="font" size="30" name="Roboto-Medium"/>
@@ -970,7 +1043,7 @@
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" mirrorLayoutDirectionWhenInternationalizing="never" translatesAutoresizingMaskIntoConstraints="NO" id="rMY-jX-9z8">
+                                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" mirrorLayoutDirectionWhenInternationalizing="never" translatesAutoresizingMaskIntoConstraints="NO" id="rMY-jX-9z8">
                                                                     <rect key="frame" x="18" y="408" width="380" height="18"/>
                                                                     <textFieldCell key="cell" alignment="center" title="..." id="K7j-En-bxK">
                                                                         <font key="font" size="15" name="Roboto-Regular"/>
@@ -987,7 +1060,7 @@
                                                                             <customView focusRingType="none" appearanceType="aqua" translatesAutoresizingMaskIntoConstraints="NO" id="c9v-Wn-fcs">
                                                                                 <rect key="frame" x="0.0" y="150" width="314" height="50"/>
                                                                                 <subviews>
-                                                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SLC-Yw-hwM">
+                                                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SLC-Yw-hwM">
                                                                                         <rect key="frame" x="13" y="18" width="88" height="18"/>
                                                                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Price to join:" id="fC4-f3-yQO">
                                                                                             <font key="font" size="15" name="Roboto-Regular"/>
@@ -995,7 +1068,7 @@
                                                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                         </textFieldCell>
                                                                                     </textField>
-                                                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9wA-Ol-sfu">
+                                                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9wA-Ol-sfu">
                                                                                         <rect key="frame" x="288" y="18" width="13" height="18"/>
                                                                                         <textFieldCell key="cell" lineBreakMode="clipping" title="0" id="eZH-e0-Be5">
                                                                                             <font key="font" size="15" name="Roboto-Regular"/>
@@ -1031,7 +1104,7 @@
                                                                             <customView focusRingType="none" appearanceType="aqua" translatesAutoresizingMaskIntoConstraints="NO" id="bWL-3e-fa7">
                                                                                 <rect key="frame" x="0.0" y="100" width="314" height="50"/>
                                                                                 <subviews>
-                                                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m2T-J1-0pU">
+                                                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m2T-J1-0pU">
                                                                                         <rect key="frame" x="13" y="18" width="133" height="18"/>
                                                                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Price per message:" id="IDt-GP-9ir">
                                                                                             <font key="font" size="15" name="Roboto-Regular"/>
@@ -1039,7 +1112,7 @@
                                                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                         </textFieldCell>
                                                                                     </textField>
-                                                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nGd-av-JcL">
+                                                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nGd-av-JcL">
                                                                                         <rect key="frame" x="288" y="18" width="13" height="18"/>
                                                                                         <textFieldCell key="cell" lineBreakMode="clipping" title="0" id="Sod-RT-GGM">
                                                                                             <font key="font" size="15" name="Roboto-Regular"/>
@@ -1075,7 +1148,7 @@
                                                                             <customView focusRingType="none" appearanceType="aqua" translatesAutoresizingMaskIntoConstraints="NO" id="gDf-h1-EoB">
                                                                                 <rect key="frame" x="0.0" y="50" width="314" height="50"/>
                                                                                 <subviews>
-                                                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i4p-FQ-htn">
+                                                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i4p-FQ-htn">
                                                                                         <rect key="frame" x="13" y="18" width="119" height="18"/>
                                                                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Amount to stake:" id="RlC-nx-gKp">
                                                                                             <font key="font" size="15" name="Roboto-Regular"/>
@@ -1083,7 +1156,7 @@
                                                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                         </textFieldCell>
                                                                                     </textField>
-                                                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2I6-6Z-0hB">
+                                                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2I6-6Z-0hB">
                                                                                         <rect key="frame" x="288" y="18" width="13" height="18"/>
                                                                                         <textFieldCell key="cell" lineBreakMode="clipping" title="0" id="PtV-tc-Kg6">
                                                                                             <font key="font" size="15" name="Roboto-Regular"/>
@@ -1119,7 +1192,7 @@
                                                                             <customView focusRingType="none" appearanceType="aqua" translatesAutoresizingMaskIntoConstraints="NO" id="BTX-FH-WkG">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="314" height="50"/>
                                                                                 <subviews>
-                                                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="y42-CH-12m">
+                                                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="y42-CH-12m">
                                                                                         <rect key="frame" x="13" y="18" width="152" height="18"/>
                                                                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Time to stake: (hours)" id="5Mx-Tg-RiK">
                                                                                             <font key="font" size="15" name="Roboto-Regular"/>
@@ -1127,7 +1200,7 @@
                                                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                         </textFieldCell>
                                                                                     </textField>
-                                                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hgc-34-oRM">
+                                                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hgc-34-oRM">
                                                                                         <rect key="frame" x="288" y="18" width="13" height="18"/>
                                                                                         <textFieldCell key="cell" lineBreakMode="clipping" title="0" id="iyu-tY-SWg">
                                                                                             <font key="font" size="15" name="Roboto-Regular"/>
@@ -1262,7 +1335,7 @@
                                                         </constraints>
                                                         <color key="fillColor" name="PrimaryBlue"/>
                                                     </box>
-                                                    <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ecQ-3L-MRG">
+                                                    <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ecQ-3L-MRG">
                                                         <rect key="frame" x="165" y="16" width="86" height="16"/>
                                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Uploaded 0%" id="tVz-Fy-24p">
                                                             <font key="font" size="14" name="Roboto-Regular"/>
@@ -1306,7 +1379,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="416" height="761"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kyr-7J-tnN">
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kyr-7J-tnN">
                                             <rect key="frame" x="148" y="373" width="120" height="15"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Loading Tribe info..." id="ubU-9I-jji">
                                                 <font key="font" size="13" name="Roboto-Regular"/>
@@ -1404,7 +1477,7 @@
                                                         <constraint firstItem="vEJ-6Z-sUZ" firstAttribute="centerX" secondItem="31k-7H-sVb" secondAttribute="centerX" id="x3P-Kk-hLZ"/>
                                                     </constraints>
                                                 </customView>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHo-IT-i3s">
+                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHo-IT-i3s">
                                                     <rect key="frame" x="88" y="49" width="313" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="309" id="DEW-rc-bs8"/>
@@ -1415,7 +1488,7 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vlo-3g-ZM4">
+                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vlo-3g-ZM4">
                                                     <rect key="frame" x="88" y="33" width="313" height="13"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Created on..." id="QlS-aW-Ovp">
                                                         <font key="font" size="11" name="Roboto-Regular"/>
@@ -1423,7 +1496,7 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Ln-iY-aHf">
+                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Ln-iY-aHf">
                                                     <rect key="frame" x="88" y="20" width="313" height="10"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" id="928-YT-xgX">
                                                         <font key="font" size="9" name="Roboto-Regular"/>
@@ -1536,7 +1609,7 @@
                                             </constraints>
                                             <color key="fillColor" name="PrimaryBlue"/>
                                         </box>
-                                        <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fhA-TS-JQN">
+                                        <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fhA-TS-JQN">
                                             <rect key="frame" x="164" y="14" width="86" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Uploaded 0%" id="Td6-nF-374">
                                                 <font key="font" size="14" name="Roboto-Regular"/>
@@ -1569,7 +1642,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="707"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fTF-wf-L56">
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fTF-wf-L56">
                                             <rect key="frame" x="163" y="346" width="88" height="15"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Loading Info..." id="vz1-9I-udo">
                                                 <font key="font" size="13" name="Roboto-Regular"/>

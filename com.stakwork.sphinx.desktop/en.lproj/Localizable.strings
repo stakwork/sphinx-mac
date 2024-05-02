@@ -108,6 +108,7 @@
 "deleted.tribe.title" = "Deleted Tribe";
 "deleted.tribe.description" = "The admin has deleted this tribe. You won't be able to send or receive messages anymore. Exit and delete tribe from details view.";
 "join.tribe" = "Join Tribe";
+"tribe.member" = "Tribe Members";
 "exit.tribe" = "Exit Tribe";
 "confirm.exit.tribe" = "Are you sure you want to exit tribe?";
 "share.group" = "Share tribe QR code";
