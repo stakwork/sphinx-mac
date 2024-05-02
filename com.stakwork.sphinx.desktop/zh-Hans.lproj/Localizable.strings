@@ -79,6 +79,7 @@
 "unknown.group" = "未知群组";
 "created.on" = "创建于%@";
 "group.members.upper" = "群组成员";
+"tribe.pending.members.upper" = "待定的部落成员";
 "group.options" = "群组选项";
 "edit.group" = "编辑群组";
 "delete.group" = "删除群组";

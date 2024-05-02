@@ -35,7 +35,8 @@ class TribeMembersViewController: NSViewController {
             groupChatDataSource = TribeMembersDataSource(
                 collectionView: tribeMembersCollectionView,
                 loadingWheel: loadingWheel,
-                loadingWheelContainer: loadingWheelContainer)
+                loadingWheelContainer: loadingWheelContainer
+            )
         }
         groupChatDataSource?.setDataAndReload(objects: chat)
     }

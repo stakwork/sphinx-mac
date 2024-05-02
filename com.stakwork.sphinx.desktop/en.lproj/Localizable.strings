@@ -78,7 +78,8 @@
 "member.join.soon" = "New members will join group soon";
 "unknown.group" = "Unknown Group";
 "created.on" = "Created on %@";
-"group.members.upper" = "GROUP MEMBERS";
+"group.members.upper" = "TRIBE MEMBERS";
+"tribe.pending.members.upper" = "PENDING TRIBE MEMBERS";
 "group.options" = "Group Options";
 "edit.group" = "Edit Group";
 "delete.group" = "Delete Group";

@@ -31,25 +31,25 @@ class GroupAddedContactCollectionViewItem: NSCollectionViewItem {
     }
 
     @IBAction func closeButtonClicked(_ sender: Any) {
-        delegate?.didDeleteContact(contact: groupContact.contact, item: self)
+//        delegate?.didDeleteContact(contact: groupContact.contact, item: self)
     }
     
     func configureFor(groupContact: GroupContact) {
-        self.groupContact = groupContact
-        
-        guard let contact = groupContact.contact else {
-            return
-        }
-        
-        if let imageUrl = contact.avatarUrl?.trim(), let nsUrl = URL(string: imageUrl), imageUrl != "" {
-            MediaLoader.asyncLoadImage(imageView: contactImageView, nsUrl: nsUrl, placeHolderImage: NSImage(named: "profileAvatar"), completion: { image in
-                self.contactImageView.image = image
-            }, errorCompletion: { _ in })
-        } else {
-            contactImageView.image = NSImage(named: "profileAvatar")
-        }
-        
-        nameLabel.stringValue = (contact.nickname ?? "").getFirstNameStyleString()
+//        self.groupContact = groupContact
+//        
+//        guard let contact = groupContact.contact else {
+//            return
+//        }
+//        
+//        if let imageUrl = contact.avatarUrl?.trim(), let nsUrl = URL(string: imageUrl), imageUrl != "" {
+//            MediaLoader.asyncLoadImage(imageView: contactImageView, nsUrl: nsUrl, placeHolderImage: NSImage(named: "profileAvatar"), completion: { image in
+//                self.contactImageView.image = image
+//            }, errorCompletion: { _ in })
+//        } else {
+//            contactImageView.image = NSImage(named: "profileAvatar")
+//        }
+//        
+//        nameLabel.stringValue = (contact.nickname ?? "").getFirstNameStyleString()
     }
     
 }
