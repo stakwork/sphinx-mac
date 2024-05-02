@@ -955,16 +955,38 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="PCp-m4-4YN">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="716"/>
+                                <subviews>
+                                    <progressIndicator maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="tpc-9T-FAR">
+                                        <rect key="frame" x="210" y="343" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="3m9-eI-bEo"/>
+                                            <constraint firstAttribute="height" constant="30" id="whS-xF-U3e"/>
+                                        </constraints>
+                                    </progressIndicator>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="tpc-9T-FAR" firstAttribute="centerY" secondItem="PCp-m4-4YN" secondAttribute="centerY" id="byA-wm-034"/>
+                                    <constraint firstItem="tpc-9T-FAR" firstAttribute="centerX" secondItem="PCp-m4-4YN" secondAttribute="centerX" id="z8t-qa-lej"/>
+                                </constraints>
+                            </customView>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="PCp-m4-4YN" secondAttribute="trailing" id="BrJ-ay-vM9"/>
+                            <constraint firstItem="PCp-m4-4YN" firstAttribute="top" secondItem="rhW-By-NmE" secondAttribute="top" id="HCY-Pk-lcW"/>
                             <constraint firstAttribute="trailing" secondItem="x1c-H0-a5x" secondAttribute="trailing" id="Qox-ea-uiw"/>
                             <constraint firstItem="x1c-H0-a5x" firstAttribute="width" secondItem="rhW-By-NmE" secondAttribute="width" id="Uzl-XO-NSE"/>
+                            <constraint firstAttribute="bottom" secondItem="PCp-m4-4YN" secondAttribute="bottom" id="VMl-z8-Zzl"/>
+                            <constraint firstItem="PCp-m4-4YN" firstAttribute="leading" secondItem="rhW-By-NmE" secondAttribute="leading" id="eNb-Hc-Jf0"/>
                             <constraint firstItem="x1c-H0-a5x" firstAttribute="top" secondItem="rhW-By-NmE" secondAttribute="top" id="oqT-Xp-DZA"/>
                             <constraint firstItem="x1c-H0-a5x" firstAttribute="leading" secondItem="rhW-By-NmE" secondAttribute="leading" id="rt4-pe-xcg"/>
                             <constraint firstAttribute="bottom" secondItem="x1c-H0-a5x" secondAttribute="bottom" id="xIg-Pt-aK3"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loadingWheel" destination="tpc-9T-FAR" id="H9w-fx-Rcj"/>
+                        <outlet property="loadingWheelContainer" destination="PCp-m4-4YN" id="HpE-e0-hbc"/>
                         <outlet property="tribeMembersCollectionView" destination="a5E-IL-oB2" id="ZB5-vo-b6F"/>
                     </connections>
                 </viewController>

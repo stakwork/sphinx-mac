@@ -15,6 +15,9 @@ class TribeMembersViewController: NSViewController {
     var groupChatDataSource: TribeMembersDataSource?
     @IBOutlet weak var tribeMembersCollectionView: NSCollectionView!
     
+    @IBOutlet weak var loadingWheel: NSProgressIndicator!
+    @IBOutlet weak var loadingWheelContainer: NSView!
+    
     static func instantiate(chat: Chat) -> TribeMembersViewController {
         let viewController = StoryboardScene.Groups.tribeMembersViewController.instantiate()
         viewController.chat = chat
@@ -29,7 +32,10 @@ class TribeMembersViewController: NSViewController {
     
     func configureDataSource() {
         if groupChatDataSource == nil {
-            groupChatDataSource = TribeMembersDataSource(collectionView: tribeMembersCollectionView)
+            groupChatDataSource = TribeMembersDataSource(
+                collectionView: tribeMembersCollectionView,
+                loadingWheel: loadingWheel,
+                loadingWheelContainer: loadingWheelContainer)
         }
         groupChatDataSource?.setDataAndReload(objects: chat)
     }
