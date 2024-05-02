@@ -95,7 +95,7 @@ extension NewChatListViewController {
         var messageSeen: Bool
         var contactStatus: Int?
         var inviteStatus: Int?
-        var muted: Bool
+        var notify: Int
         var selected: Bool
 
         init(
@@ -104,7 +104,7 @@ extension NewChatListViewController {
             messageSeen: Bool,
             contactStatus: Int?,
             inviteStatus: Int?,
-            muted: Bool,
+            notify: Int,
             selected: Bool
         )
         {
@@ -113,7 +113,7 @@ extension NewChatListViewController {
             self.messageSeen = messageSeen
             self.contactStatus = contactStatus
             self.inviteStatus = inviteStatus
-            self.muted = muted
+            self.notify = notify
             self.selected = selected
         }
         
@@ -124,7 +124,7 @@ extension NewChatListViewController {
                 lhs.messageSeen == rhs.messageSeen &&
                 lhs.contactStatus == rhs.contactStatus &&
                 lhs.inviteStatus == rhs.inviteStatus &&
-                lhs.muted == rhs.muted &&
+                lhs.notify == rhs.notify &&
                 lhs.selected == rhs.selected
             
             return isEqual
@@ -333,7 +333,7 @@ extension NewChatListViewController {
                 messageSeen: element.isSeen(ownerId: owner.id),
                 contactStatus: element.getContactStatus(),
                 inviteStatus: element.getInviteStatus(),
-                muted: element.isMuted(),
+                notify: element.getChat()?.notify ?? Chat.NotificationLevel.SeeAll.rawValue,
                 selected: selectedObjectId == element.getObjectId()
             )
             

@@ -35,7 +35,7 @@ class NewMenuItemDataSource : NSObject {
     func configureCollectionView() {
         let flowLayout = NSCollectionViewFlowLayout()
         flowLayout.sectionInset = NSEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
-        flowLayout.minimumInteritemSpacing = 10.0
+        flowLayout.minimumInteritemSpacing = 0.0
         flowLayout.minimumLineSpacing = 0.0
         flowLayout.sectionHeadersPinToVisibleBounds = true
         collectionView.collectionViewLayout = flowLayout
@@ -94,7 +94,7 @@ extension NewMenuItemDataSource : NSCollectionViewDelegate, NSCollectionViewDele
         layout collectionViewLayout: NSCollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> NSSize {
-        return NSSize(width: collectionView.frame.width, height: 40)
+        return NSSize(width: collectionView.frame.width, height: 50)
     }
     
     func collectionView(

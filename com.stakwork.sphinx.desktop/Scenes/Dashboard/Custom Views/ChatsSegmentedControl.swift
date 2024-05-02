@@ -30,7 +30,7 @@ class ChatsSegmentedControl: NSView {
     
     public var buttonTitleFont = NSFont(
         name: "Roboto-Medium",
-        size: 16.0
+        size: 14.0
     )!
     
     public var selectorViewColor: NSColor = .Sphinx.PrimaryBlue

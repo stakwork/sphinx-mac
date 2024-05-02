@@ -383,7 +383,7 @@ extension SphinxSocketManager {
                 return
             }
             
-            if chat.isOnlyMentions() && !message.push {
+            if chat.willNotifyOnlyMentions() && !message.push {
                 return
             }
             

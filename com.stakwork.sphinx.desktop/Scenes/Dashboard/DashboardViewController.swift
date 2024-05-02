@@ -76,9 +76,12 @@ class DashboardViewController: NSViewController {
         chatListViewModel = ChatListViewModel()
         
         dashboardSplitView.delegate = self
-        dashboardRightSplitView.delegate = self
+        dashboardSplitView.dividerStyle = .thick
+        dashboardSplitView.setValue(NSColor.Sphinx.SplitDividerColor, forKey: "dividerColor")
         
+        dashboardRightSplitView.delegate = self
         dashboardRightSplitView.dividerStyle = .thin
+        dashboardRightSplitView.setValue(NSColor.Sphinx.SplitDividerColor, forKey: "dividerColor")
         
         SphinxSocketManager.sharedInstance.setDelegate(delegate: self)
         
@@ -490,6 +493,7 @@ extension DashboardViewController : NSSplitViewDelegate {
         newDetailViewController?.resizeSubviews(frame: rightSplittedView.bounds)
         dashboardDetailViewController?.resizeSubviews(frame: rightDetailSplittedView.bounds)
         listViewController?.menuListView.menuDataSource?.updateFrame()
+        
         listViewController?.view.frame = leftSplittedView.bounds
     }
 }
