@@ -303,7 +303,7 @@ class NewChatViewController: DashboardSplittedViewController {
             identifier: "thread-chat-identifier",
             contentVC: threadVC,
             shouldReplace: false,
-            panelFixedWidth: false
+            panelFixedWidth: true
         )
     }
     
