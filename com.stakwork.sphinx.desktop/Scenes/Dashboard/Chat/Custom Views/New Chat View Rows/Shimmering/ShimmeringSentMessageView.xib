@@ -41,6 +41,7 @@
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Gvt-QF-qUQ" secondAttribute="trailing" constant="27" id="CKc-4c-Jk1"/>
+                <constraint firstItem="Gvt-QF-qUQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="c22-O7-iKe" secondAttribute="leading" constant="32" id="buy-O0-WKT"/>
                 <constraint firstItem="zIF-FC-vp6" firstAttribute="top" secondItem="Gvt-QF-qUQ" secondAttribute="top" id="e33-Tw-CIr"/>
                 <constraint firstItem="Gvt-QF-qUQ" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="8" id="f01-o7-iBQ"/>
                 <constraint firstItem="zIF-FC-vp6" firstAttribute="trailing" secondItem="Gvt-QF-qUQ" secondAttribute="trailing" constant="7" id="f9V-Tf-l4c"/>

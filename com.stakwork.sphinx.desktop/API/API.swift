@@ -67,6 +67,9 @@ typealias ContentFeedStatusCallback = ((ContentFeedStatus) -> ())
 typealias HardwarePublicKeyCallback = ((String) -> ())
 typealias HardwareSeedCallback = ((Bool) -> ())
 
+//TribeMembers
+typealias ChatContactsCallback = (([JSON]) -> ())
+
 class API {
     
     class var sharedInstance : API {
@@ -188,7 +191,6 @@ class API {
         }
         
         let url = API.getUrl(route: "\(ip)\(route)")
-        
         return createAuthenticatedRequest(
             url,
             params: params,
@@ -480,7 +482,6 @@ class API {
             ) {
                 request.setValue(value, forHTTPHeaderField: key)
             }
-            
             return request
         } else {
             return nil

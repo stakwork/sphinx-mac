@@ -303,13 +303,12 @@ class NewChatViewController: DashboardSplittedViewController {
             identifier: "thread-chat-identifier",
             contentVC: threadVC,
             shouldReplace: false,
-            panelFixedWidth: true
+            panelFixedWidth: false
         )
     }
     
     func resizeSubviews(frame: NSRect) {
         view.frame = frame
-        
         threadVC?.view.frame = frame
     }
     

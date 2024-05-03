@@ -55,6 +55,7 @@
             <constraints>
                 <constraint firstItem="kCJ-Qg-hQ8" firstAttribute="leading" secondItem="R9x-6k-JAx" secondAttribute="leading" constant="-4" id="40U-JA-I3L"/>
                 <constraint firstItem="R9x-6k-JAx" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" symbolic="YES" id="7dO-UZ-nwu"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="R9x-6k-JAx" secondAttribute="trailing" constant="32" id="Oaq-Fi-0Ha"/>
                 <constraint firstItem="Hjp-a1-ujQ" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="8" id="f4m-uI-h44"/>
                 <constraint firstItem="kCJ-Qg-hQ8" firstAttribute="top" secondItem="R9x-6k-JAx" secondAttribute="top" id="ftg-SD-Jpw"/>
                 <constraint firstAttribute="bottom" secondItem="R9x-6k-JAx" secondAttribute="bottom" constant="16" id="gU1-j3-KAe"/>

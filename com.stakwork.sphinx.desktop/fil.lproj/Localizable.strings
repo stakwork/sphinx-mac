@@ -77,7 +77,8 @@
 "member.join.soon"  = "Malapit nang sumali sa grupo ang mga bagong miyembro";
 "unknown.group"  = "HIndi Makilalang Grupo";
 "created.on"  = "Ginawa noong %@";
-"group.members.upper"  = "MGA MIYEMBRO NG GRUPO";
+"group.members.upper"  = "MGA MIYEMBRO NG TRIBE";
+"tribe.pending.members.upper" = "NABIBIBING MIYEMBRO NG TRIBU";
 "group.options"  = "Mga Pagpipilian ng miyembro";
 "edit.group"  = "I-Edit ang Grupo";
 "delete.group"  = "Tanggalin ang Grupo";
