@@ -44,9 +44,10 @@ extension ChatListViewController : ChildVCDelegate, ActionsDelegate {
             mode: .Window
         )
         
-        WindowsManager.sharedInstance.showPaymentWindow(
-            vc: vc,
-            title: "create.invoice".localized,
+        WindowsManager.sharedInstance.showOnCurrentWindow(
+            with: "create.invoice".localized,
+            identifier: "payment-window",
+            contentVC: vc,
             height: 500
         )
     }
@@ -54,10 +55,10 @@ extension ChatListViewController : ChildVCDelegate, ActionsDelegate {
     func handleSentClick() {
         let vc = SendPaymentForInvoiceVC.instantiate()
         
-        WindowsManager.sharedInstance.showContactWindow(
-            vc: vc,
-            title: "pay.invoice",
-            identifier: "invoice-management-window",
+        WindowsManager.sharedInstance.showOnCurrentWindow(
+            with: "pay.invoice".localized,
+            identifier: "send-payment-window",
+            contentVC: vc,
             height: 447
         )
     }
@@ -69,10 +70,10 @@ extension ChatListViewController : ChildVCDelegate, ActionsDelegate {
             amount: amount
         )
         
-        WindowsManager.sharedInstance.showContactWindow(
-            vc: vc,
-            title: "payment.request".localized,
-            identifier: "invoice-management-window",
+        WindowsManager.sharedInstance.showOnCurrentWindow(
+            with: "payment.request".localized,
+            identifier: "create-invoice-window",
+            contentVC: vc,
             height: 629
         )
     }

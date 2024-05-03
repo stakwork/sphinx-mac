@@ -137,7 +137,13 @@ class NewContactViewController: NSViewController {
     @IBAction func qrButtonClicked(_ sender: Any) {
         if let address = contact?.getAddress(), !address.isEmpty {
             let shareInviteCodeVC = ShareInviteCodeViewController.instantiate(qrCodeString: address, viewMode: .PubKey)
-            WindowsManager.sharedInstance.showPubKeyWindow(vc: shareInviteCodeVC, window: view.window)
+            
+            WindowsManager.sharedInstance.showVCOnRightPanelWindow(
+                with: "pubkey".localized,
+                identifier: "pubkey-window",
+                contentVC: shareInviteCodeVC,
+                shouldReplace: false
+            )
         }
     }
     

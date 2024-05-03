@@ -269,10 +269,10 @@ class ChatListViewController : DashboardSplittedViewController {
     @IBAction func addContactButtonClicked(_ sender: Any) {
         let addFriendVC = AddFriendViewController.instantiate(delegate: self, dismissDelegate: self)
         
-        WindowsManager.sharedInstance.showContactWindow(
-            vc: addFriendVC,
-            title: "new.contact".localized,
-            identifier: "new-contact-window",
+        WindowsManager.sharedInstance.showOnCurrentWindow(
+            with: "new.contact".localized,
+            identifier: "add-contact-window",
+            contentVC: addFriendVC,
             height: 500
         )
     }
@@ -318,11 +318,11 @@ class ChatListViewController : DashboardSplittedViewController {
                         pubkey: pubkey
                     )
                     
-                    WindowsManager.sharedInstance.showContactWindow(
-                        vc: contactVC,
-                        title: "new.contact".localized,
-                        identifier: "new-contact-window",
-                        height: 600
+                    WindowsManager.sharedInstance.showOnCurrentWindow(
+                        with: "new.contact".localized,
+                        identifier: "add-contact-window",
+                        contentVC: contactVC,
+                        height: 500
                     )
                 }
             }
@@ -353,10 +353,11 @@ class ChatListViewController : DashboardSplittedViewController {
                             tribeInfo: tribeInfo,
                             delegate: self
                         )
-
-                        WindowsManager.sharedInstance.showJoinTribeWindow(
-                            vc: joinTribeVC,
-                            title: "join.tribe".localized
+                        
+                        WindowsManager.sharedInstance.showOnCurrentWindow(
+                            with: "join.tribe".localized,
+                            identifier: "join-tribe-window",
+                            contentVC: joinTribeVC
                         )
                     }
                 }
@@ -387,9 +388,7 @@ class ChatListViewController : DashboardSplittedViewController {
     }
     
     @IBAction func transactionsButtonClicked(_ sender: Any) {
-        WindowsManager.sharedInstance.showTransationsListWindow(
-            vc: TransactionsListViewController.instantiate()
-        )
+        WindowsManager.sharedInstance.showTransationsListWindow()
     }
 }
 
@@ -405,7 +404,7 @@ extension ChatListViewController: NewChatHeaderViewDelegate {
     }
     
     func profileButtonClicked() {
-        WindowsManager.sharedInstance.showProfileWindow(vc: ProfileViewController.instantiate())
+        WindowsManager.sharedInstance.showProfileWindow()
     }
     
     func menuTapped(_ frame: CGRect) {
@@ -446,47 +445,47 @@ extension ChatListViewController: NewMenuItemDataSourceDelegate {
         case 0:
             return (ProfileViewController.instantiate(),
                     "profile".localized,
-                    "profile-custom-window",
+                    "profile-window",
                     false, nil)
         case 1:
             return (AddFriendViewController.instantiate(delegate: self, dismissDelegate: self),
                     "new.contact".localized,
-                    "new-contact-window",
+                    "add-contact-window",
                     true,
                     500)
         case 2:
             return (TransactionsListViewController.instantiate(),
                     "transactions".localized,
-                    "transactions-custom-window",
+                    "transactions-window",
                     false,
                     nil)
         case 3:
             return (CreateInvoiceViewController.instantiate(
-                childVCDelegate: self,
-                viewModel: PaymentViewModel(mode: .Request),
-                delegate: self,
-                mode: .Window
-            ),
+                        childVCDelegate: self,
+                        viewModel: PaymentViewModel(mode: .Request),
+                        delegate: self,
+                        mode: .Window
+                    ),
                     "create.invoice".localized,
-                    "create-invoice",
+                    "create-invoice-window",
                     true,
                     500)
         case 4:
             return (SendPaymentForInvoiceVC.instantiate(),
                     "pay.invoice".localized,
-                    "invoice-management-window",
+                    "send-payment-window",
                     true,
                     447)
         case 6:
             return (AddFriendViewController.instantiate(delegate: self, dismissDelegate: self),
                     "new.contact".localized,
-                    "new-contact-window",
+                    "add-contact-window",
                     true,
                     500)
         case 7:
             return (CreateTribeViewController.instantiate(),
                     "Create Tribe",
-                    "create-tribe-custom-window",
+                    "create-tribe-window",
                     false,
                     nil)
         default:
@@ -494,12 +493,15 @@ extension ChatListViewController: NewMenuItemDataSourceDelegate {
         }
     }
     
-    func navigateToNewVC(vc: NSViewController,
-                         title: String,
-                         identifier: String,
-                         hideDivider: Bool = false,
-                         height: CGFloat? = nil) {
+    func navigateToNewVC(
+        vc: NSViewController,
+        title: String,
+        identifier: String,
+        hideDivider: Bool = false,
+        height: CGFloat? = nil
+    ) {
         closeButtonTapped()
+        
         WindowsManager.sharedInstance.showOnCurrentWindow(
             with: title,
             identifier: identifier,

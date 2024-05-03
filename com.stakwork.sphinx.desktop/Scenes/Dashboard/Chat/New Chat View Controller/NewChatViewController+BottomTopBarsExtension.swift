@@ -85,13 +85,10 @@ extension NewChatViewController : ChatHeaderViewDelegate {
             
             let contactVC = NewContactViewController.instantiate(contact: contact)
             
-            WindowsManager.sharedInstance.showChatDetailsWindow(
-                vc: contactVC,
-                window: view.window,
-                title: "contact.info".localized,
+            WindowsManager.sharedInstance.showVCOnRightPanelWindow(
+                with: "contact.info".localized,
                 identifier: "contact-window",
-                size: CGSize(width: 414, height: 629)
-
+                contentVC: contactVC
             )
             
         } else if let chat = chat {
@@ -101,13 +98,10 @@ extension NewChatViewController : ChatHeaderViewDelegate {
                 delegate: self
             )
             
-            WindowsManager.sharedInstance.showChatDetailsWindow(
-                vc: chatDetailsVC,
-                window: view.window,
-                title: "tribe.info".localized,
+            WindowsManager.sharedInstance.showVCOnRightPanelWindow(
+                with: "tribe.info".localized,
                 identifier: "chat-window",
-                size: CGSize(width: 414, height: 629)
-
+                contentVC: chatDetailsVC
             )
         }
     }
