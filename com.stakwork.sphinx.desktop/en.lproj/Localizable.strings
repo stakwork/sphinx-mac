@@ -116,6 +116,8 @@
 "delete.tribe" = "Delete Tribe";
 "edit.tribe" = "Edit Tribe";
 "alias.allowed-characters" = "Only letters, numbers and underscore\nare allowed in tribe aliases";
+"kick.member.title" = "Tribe Member";
+"kick.member.message" = "Are you sure you want to remove this member from the triibe?";
 
 //SUBSCRIPTIONS
 "leave.lose.unsaved.changed" = "Are you sure you want to leave and lose any unsaved changes?";

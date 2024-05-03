@@ -114,6 +114,8 @@
 "delete.tribe"  = "Tanggalin ang Tribo";
 "edit.tribe"  = "I-Edit ang Tribo";
 "alias.allowed-characters"  = "Mga titik, numero at underscore lamang ang pinapayagan sa mga alias ng tribo";
+"kick.member.title" = "Miyembro ng Tribo";
+"kick.member.message" = "Sigurado ka bang gusto mong tanggalin ang miyembrong ito sa triibe?";
 
 //SUBSCRIPTIONS
 "leave.lose.unsaved.changed"  = "Sigurado ka bang gusto mong umalis at mawala ang anumang hindi na-save na mga pagbabago?";
