@@ -287,6 +287,10 @@
 		476AAA932A1E5EB20092AC87 /* MaterialIcons.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 476AAA8F2A1E5E670092AC87 /* MaterialIcons.ttf */; };
 		476AAA942A1E5EB20092AC87 /* MaterialIconsOutlined.otf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 476AAA902A1E5E670092AC87 /* MaterialIconsOutlined.otf */; };
 		476AAA962A1E71040092AC87 /* PinMessageDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 476AAA982A1E71040092AC87 /* PinMessageDetailView.xib */; };
+		477158992BE4333D00E2101D /* TribeMemberHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477158982BE4333D00E2101D /* TribeMemberHeaderView.swift */; };
+		4771589B2BE4334600E2101D /* TribeMemberHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4771589A2BE4334600E2101D /* TribeMemberHeaderView.xib */; };
+		4771589E2BE511D200E2101D /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4771589C2BE511D200E2101D /* Roboto-Thin.ttf */; };
+		4771589F2BE511D200E2101D /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4771589D2BE511D200E2101D /* Roboto-Black.ttf */; };
 		477ADCCC2A1E5A3B004E74CE /* PinNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477ADCCB2A1E5A3B004E74CE /* PinNotificationView.swift */; };
 		477ADCCE2A1E5A46004E74CE /* PinNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477ADCCD2A1E5A46004E74CE /* PinNotificationView.xib */; };
 		477ADCD02A1E5A5F004E74CE /* PinMessageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477ADCCF2A1E5A5F004E74CE /* PinMessageDetailView.swift */; };
@@ -1153,6 +1157,10 @@
 		476AAA9A2A1E71080092AC87 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PinMessageDetailView.strings; sourceTree = "<group>"; };
 		476AAA9C2A1E71090092AC87 /* fil */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fil; path = fil.lproj/PinMessageDetailView.strings; sourceTree = "<group>"; };
 		476AAA9E2A1E710A0092AC87 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PinMessageDetailView.strings; sourceTree = "<group>"; };
+		477158982BE4333D00E2101D /* TribeMemberHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TribeMemberHeaderView.swift; sourceTree = "<group>"; };
+		4771589A2BE4334600E2101D /* TribeMemberHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TribeMemberHeaderView.xib; sourceTree = "<group>"; };
+		4771589C2BE511D200E2101D /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		4771589D2BE511D200E2101D /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		477ADCCB2A1E5A3B004E74CE /* PinNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinNotificationView.swift; sourceTree = "<group>"; };
 		477ADCCD2A1E5A46004E74CE /* PinNotificationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PinNotificationView.xib; sourceTree = "<group>"; };
 		477ADCCF2A1E5A5F004E74CE /* PinMessageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinMessageDetailView.swift; sourceTree = "<group>"; };
@@ -1715,6 +1723,8 @@
 		4703F0552481C5F600282186 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				4771589D2BE511D200E2101D /* Roboto-Black.ttf */,
+				4771589C2BE511D200E2101D /* Roboto-Thin.ttf */,
 				476AAA8F2A1E5E670092AC87 /* MaterialIcons.ttf */,
 				476AAA902A1E5E670092AC87 /* MaterialIconsOutlined.otf */,
 				47949C0324AA94DB000D697B /* Roboto-Italic.ttf */,
@@ -3690,6 +3700,7 @@
 				4797E83224BCC10000D13270 /* Pin.storyboard in Resources */,
 				479496542AB4BD6300C42D1E /* SentPaidDetails.xib in Resources */,
 				4794964F2AB4931700C42D1E /* PodcastAudioView.xib in Resources */,
+				4771589F2BE511D200E2101D /* Roboto-Black.ttf in Resources */,
 				4787F8A2247C16C600CCE8B9 /* ChatSmallAvatarView.xib in Resources */,
 				47DE1BF02A67139D0029597B /* NewOnlyTextMessageCollectionViewitem.xib in Resources */,
 				473E1F322AC468DB00DC1CDC /* ThreadLastMessageHeader.xib in Resources */,
@@ -3710,6 +3721,7 @@
 				47C7D72527874A67006D2809 /* PeopleTorActionsView.xib in Resources */,
 				477ADCCE2A1E5A46004E74CE /* PinNotificationView.xib in Resources */,
 				474A668D24990193002C2D10 /* MessageOptionView.xib in Resources */,
+				4771589E2BE511D200E2101D /* Roboto-Thin.ttf in Resources */,
 				47FB5F3E2BDC1A2B001B762B /* NewMenuListView.xib in Resources */,
 				47DE1C2A2A69DC4A0029597B /* NewMessageBoostView.xib in Resources */,
 				4726A43824C628DA005A66B4 /* note.caf in Resources */,
