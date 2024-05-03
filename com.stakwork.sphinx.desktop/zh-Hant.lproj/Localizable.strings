@@ -115,6 +115,8 @@
 "delete.tribe" = "刪除部落";
 "edit.tribe" = "編輯部落";
 "alias.allowed-characters" = "部落別名僅允許字母、數字和下劃線\n允許的字符";
+"kick.member.title" = "部落成員";
+"kick.member.message" = "您確定要從部落中刪除該成員嗎？";
 
 //SUBSCRIPTIONS
 "leave.lose.unsaved.changed" = "您確定要離開並丟失所有未儲存的更改嗎？";

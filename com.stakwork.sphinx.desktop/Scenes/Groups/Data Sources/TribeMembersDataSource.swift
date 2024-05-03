@@ -246,8 +246,8 @@ extension TribeMembersDataSource: GroupContactListItemDelegate {
         guard let index = collectionView.indexPath(for: item)?.item else { return }
         
         AlertHelper.showTwoOptionsAlert(
-            title: "delete.contact".localized,
-            message: "delete.contact.warning".localized,
+            title: "kick.member.title".localized,
+            message: "kick.member.message".localized,
             confirm: {
                 self.loading = true
                 

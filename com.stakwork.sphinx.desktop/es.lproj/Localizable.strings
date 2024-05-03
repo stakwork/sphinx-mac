@@ -113,6 +113,8 @@
 "delete.tribe" = "Eliminar Tribu";
 "edit.tribe" = "Modificar Tribu";
 "alias.allowed-characters" = "Solo se permiten letras, números y\nguiones bajos en el alias de la tribu";
+"kick.member.title" = "Miembro de la Tribu";
+"kick.member.message" = "¿Estás seguro que deseas eliminar a este miembro de la tribu?";
 
 //SUBSCRIPTIONS
 "leave.lose.unsaved.changed" = "¿Estás seguro que deseas salir? Los cambios no guardado se perderán";

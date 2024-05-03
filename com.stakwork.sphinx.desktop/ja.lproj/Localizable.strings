@@ -115,6 +115,8 @@
 "delete.tribe" = "トライブを削除";
 "edit.tribe" = "トライブを編集";
 "alias.allowed-characters" = "トライブのエイリアスには、文字、数字、アンダースコアのみが許可されます";
+"kick.member.title" = "部族のメンバー";
+"kick.member.message" = "このメンバーをトライブから削除してもよろしいですか?";
 
 //SUBSCRIPTIONS
 "leave.lose.unsaved.changed" = "未保存の変更を失うことなく退出してもよろしいですか？";
