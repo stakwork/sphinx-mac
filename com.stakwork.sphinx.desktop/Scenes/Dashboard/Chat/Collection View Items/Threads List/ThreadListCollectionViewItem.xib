@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -57,7 +57,7 @@
                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="e6k-d8-Ow1">
                                     <rect key="frame" x="0.0" y="481" width="372" height="16"/>
                                     <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OEA-sC-Be7">
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OEA-sC-Be7">
                                             <rect key="frame" x="-2" y="0.0" width="41" height="14"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Tomas" id="Kka-Rt-pS9">
                                                 <font key="font" size="12" name="Roboto-Regular"/>
@@ -65,7 +65,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pbn-s3-WYQ">
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pbn-s3-WYQ">
                                             <rect key="frame" x="43" y="0.0" width="51" height="13"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="09:00 AM" id="ZIU-mV-CVT">
                                                 <font key="font" size="11" name="Roboto-Regular"/>
@@ -100,7 +100,7 @@
                                         <constraint firstAttribute="height" constant="60" id="93l-rK-2yF"/>
                                     </constraints>
                                 </customView>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qVI-pX-biy">
+                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qVI-pX-biy">
                                     <rect key="frame" x="-2" y="36" width="376" height="20"/>
                                     <textFieldCell key="cell" truncatesLastVisibleLine="YES" title="Label" id="whG-gi-jLb">
                                         <font key="font" size="17" name="Roboto-Regular"/>
@@ -316,7 +316,7 @@
                                                                             <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
-                                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TKu-yf-Sgs">
+                                                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TKu-yf-Sgs">
                                                                                     <rect key="frame" x="3" y="5" width="17" height="13"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="+1" id="PAa-Sa-evw">
                                                                                         <font key="font" size="11" name="Roboto-Regular"/>
@@ -378,7 +378,7 @@
                                                 <real value="3.4028234663852886e+38"/>
                                             </customSpacing>
                                         </stackView>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jdq-aX-m1f">
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jdq-aX-m1f">
                                             <rect key="frame" x="122" y="6" width="53" height="13"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="57 replies" id="bd3-el-nE7">
                                                 <font key="font" size="11" name="Roboto-Medium"/>
@@ -386,7 +386,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vgm-pT-PVr">
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vgm-pT-PVr">
                                             <rect key="frame" x="187" y="6" width="60" height="13"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="10 min ago" id="8Oy-Af-tdi">
                                                 <font key="font" size="11" name="Roboto-Regular"/>
@@ -409,7 +409,6 @@
                             </subviews>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="e6k-d8-Ow1" secondAttribute="trailing" id="7N0-40-MZi"/>
-                                <constraint firstAttribute="width" constant="372" id="ISf-fp-Pbl"/>
                                 <constraint firstAttribute="trailing" secondItem="JLl-3I-TSr" secondAttribute="trailing" id="PEU-dh-b4B"/>
                                 <constraint firstAttribute="trailing" secondItem="qVI-pX-biy" secondAttribute="trailing" id="QPk-bR-B0u"/>
                                 <constraint firstItem="qVI-pX-biy" firstAttribute="leading" secondItem="JRZ-JT-nF1" secondAttribute="leading" id="QpH-Hr-NID"/>

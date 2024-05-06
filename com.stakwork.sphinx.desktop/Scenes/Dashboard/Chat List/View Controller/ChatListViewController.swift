@@ -11,25 +11,21 @@ import Cocoa
 class ChatListViewController : DashboardSplittedViewController {
 
     ///IBOutlets
-    @IBOutlet weak var headerView: NSView!
-    @IBOutlet weak var balanceLabel: NSTextField!
-    @IBOutlet weak var balanceUnitLabel: NSTextField!
+    @IBOutlet weak var headerView: NewChatHeaderView!
     @IBOutlet weak var bottomBar: NSView!
     @IBOutlet weak var searchBarContainer: NSView!
     @IBOutlet weak var searchFieldContainer: NSBox!
     @IBOutlet weak var searchField: NSTextField!
-    @IBOutlet weak var loadingWheelContainer: NSView!
-    @IBOutlet weak var loadingWheel: NSProgressIndicator!
     @IBOutlet weak var loadingChatsBox: NSBox!
     @IBOutlet weak var loadingChatsWheel: NSProgressIndicator!
     @IBOutlet weak var searchClearButton: NSButton!
-    @IBOutlet weak var healthCheckView: HealthCheckView!
-    @IBOutlet weak var upgradeBox: NSBox!
-    @IBOutlet weak var upgradeButton: NSButton!
     @IBOutlet weak var chatListVCContainer: NSView!
     @IBOutlet weak var receiveButton: CustomButton!
     @IBOutlet weak var transactionsButton: CustomButton!
     @IBOutlet weak var sendButton: CustomButton!
+    @IBOutlet weak var addContactButton: CustomButton!
+    
+    @IBOutlet var menuListView: NewMenuListView!
     
     @IBOutlet weak var dashboardNavigationTabs: ChatsSegmentedControl! {
         didSet {
@@ -50,13 +46,6 @@ class ChatListViewController : DashboardSplittedViewController {
     var walletBalanceService = WalletBalanceService()
     
     ///Loading
-    var loading = false {
-        didSet {
-            healthCheckView.isHidden = loading
-            LoadingWheelHelper.toggleLoadingWheel(loading: loading, loadingWheel: loadingWheel, color: NSColor.white, controls: [])
-        }
-    }
-    
     var loadingChatList = true {
         didSet {
             loadingChatsBox.isHidden = !loadingChatList
@@ -107,6 +96,10 @@ class ChatListViewController : DashboardSplittedViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(dataDidChange), name: .onContactsAndChatsChanged, object: nil)
         
         resetSearchField()
+        
+        menuListView.configureDataSource(delegate: self)
+        
+        bottomBar.isHidden = true
     }
     
     override func viewDidLayout() {
@@ -117,18 +110,14 @@ class ChatListViewController : DashboardSplittedViewController {
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        
-        loading = true
-        
         configureHeaderAndBottomBar()
+        headerView.delegate = self
     }
     
     override func viewDidAppear() {
         super.viewDidAppear()
         
-        listenForNotifications()
         loadFriendAndReload()
-        
         DelayPerformedHelper.performAfterDelay(seconds: 0.5, completion: {
             self.loadingChatList = false
         })
@@ -142,11 +131,11 @@ class ChatListViewController : DashboardSplittedViewController {
         receiveButton.cursor = .pointingHand
         sendButton.cursor = .pointingHand
         transactionsButton.cursor = .pointingHand
+        addContactButton.cursor = .pointingHand
         
         searchField.setPlaceHolder(color: NSColor.Sphinx.PlaceholderText, font: NSFont(name: "Roboto-Regular", size: 14.0)!, string: "search".localized)
         searchField.delegate = self
-        
-        healthCheckView.delegate = self
+        menuListView.delegate = self
         
         self.view.window?.makeFirstResponder(self)
     }
@@ -181,7 +170,6 @@ class ChatListViewController : DashboardSplittedViewController {
                         DispatchQueue.main.async {
                             
                             if (restoring) {
-                                self.loading = false
                                 let messagesProgress : Int = Int(Float(progress) * (1.0 - contentProgressShare - contactsProgress))
                                 
                                 if (progress >= 0) {
@@ -230,7 +218,6 @@ class ChatListViewController : DashboardSplittedViewController {
     }
     
     func loadFriendAndReload() {
-        updateBalanceAndCheckVersion()
         
         if chatListViewModel.isRestoring() {
             DispatchQueue.main.async {
@@ -266,24 +253,8 @@ class ChatListViewController : DashboardSplittedViewController {
         }
     }
     
-    func updateBalanceAndCheckVersion() {
-        updateBalance()
-        shouldCheckAppVersions()
-    }
-    
     func finishLoading() {
         newMessageBubbleHelper.hideLoadingWheel()
-        loading = false
-    }
-    
-    func shouldCheckAppVersions() {        
-        API.sharedInstance.getAppVersions(callback: { v in
-            let version = Int(v) ?? 0
-            let appVersion = Int(Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "0") ?? 0
-
-            self.upgradeButton.isHidden = version <= appVersion
-            self.upgradeBox.isHidden = version <= appVersion
-        })
     }
     
     func selectRowFor(chatId: Int) {
@@ -295,20 +266,14 @@ class ChatListViewController : DashboardSplittedViewController {
         }
     }
     
-    @IBAction func refreshButtonClicked(_ sender: Any) {
-        loading = true
-        loadFriendAndReload()
-    }
-    
     @IBAction func addContactButtonClicked(_ sender: Any) {
-        let addFriendVC = AddFriendViewController.instantiate(delegate: self)
+        let addFriendVC = AddFriendViewController.instantiate(delegate: self, dismissDelegate: self)
         
-        WindowsManager.sharedInstance.showContactWindow(
-            vc: addFriendVC,
-            window: view.window,
-            title: "new.contact".localized,
-            identifier: "new-contact-window",
-            size: CGSize(width: 414, height: 600)
+        WindowsManager.sharedInstance.showOnCurrentWindow(
+            with: "new.contact".localized,
+            identifier: "add-contact-window",
+            contentVC: addFriendVC,
+            height: 500
         )
     }
     
@@ -353,12 +318,11 @@ class ChatListViewController : DashboardSplittedViewController {
                         pubkey: pubkey
                     )
                     
-                    WindowsManager.sharedInstance.showContactWindow(
-                        vc: contactVC,
-                        window: self.view.window,
-                        title: "new.contact".localized,
-                        identifier: "new-contact-window",
-                        size: CGSize(width: 414, height: 600)
+                    WindowsManager.sharedInstance.showOnCurrentWindow(
+                        with: "new.contact".localized,
+                        identifier: "add-contact-window",
+                        contentVC: contactVC,
+                        height: 500
                     )
                 }
             }
@@ -391,20 +355,10 @@ class ChatListViewController : DashboardSplittedViewController {
                             isTribeV2: tribeLink.isTribeV2
                         )
                         
-                        var defaultHeight: CGFloat = 768  // A conservative default height
-                        
-                        if let mainScreen = NSScreen.main {
-                            defaultHeight = min(mainScreen.visibleFrame.height, defaultHeight)
-                        }
-                                                
-                        let initialSize = CGSize(width: 414, height: defaultHeight)
-
-                        WindowsManager.sharedInstance.showContactWindow(
-                            vc: joinTribeVC,
-                            window: self.view.window,
-                            title: "join.tribe".localized.uppercased(),
+                        WindowsManager.sharedInstance.showOnCurrentWindow(
+                            with: "join.tribe".localized,
                             identifier: "join-tribe-window",
-                            size: initialSize
+                            contentVC: joinTribeVC
                         )
                     }
                 }
@@ -435,11 +389,130 @@ class ChatListViewController : DashboardSplittedViewController {
     }
     
     @IBAction func transactionsButtonClicked(_ sender: Any) {
-        WindowsManager.sharedInstance.showTransationsListWindow(
-            vc: TransactionsListViewController.instantiate(),
-            window: NSApplication.shared.keyWindow
-        )
+        WindowsManager.sharedInstance.showTransationsListWindow()
     }
 }
 
+extension ChatListViewController: NewContactDismissDelegate {
+    func shouldDismissView() {
+        WindowsManager.sharedInstance.dismissViewFromCurrentWindow()
+    }
+}
+
+extension ChatListViewController: NewChatHeaderViewDelegate {
+    func refreshTapped() {
+        NotificationCenter.default.post(name: .shouldUpdateDashboard, object: nil)
+    }
+    
+    func profileButtonClicked() {
+        WindowsManager.sharedInstance.showProfileWindow()
+    }
+    
+    func menuTapped(_ frame: CGRect) {
+        menuListView.isHidden = false
+    }
+}
+
+
+extension ChatListViewController: NewMenuListViewDelegate {
+    func buttonClicked(id: Int) {
+        let vcInfo = getViewControllerToLoadInfo(vcId: id)
+        navigateToNewVC(vc: vcInfo.0,
+                        title: vcInfo.1,
+                        identifier: vcInfo.2,
+                        hideDivider: vcInfo.3,
+                        height: vcInfo.4)
+    }
+    
+    func closeButtonTapped() {
+        menuListView.isHidden = true
+    }
+    
+    
+}
+
+extension ChatListViewController: NewMenuItemDataSourceDelegate {
+    func itemSelected(at index: Int) {
+        let vcInfo = getViewControllerToLoadInfo(vcId: index)
+        navigateToNewVC(vc: vcInfo.0,
+                        title: vcInfo.1,
+                        identifier: vcInfo.2,
+                        hideDivider: vcInfo.3,
+                        height: vcInfo.4)
+    }
+    
+    func getViewControllerToLoadInfo(vcId: Int) -> (NSViewController, String, String, Bool, CGFloat?){
+        switch vcId {
+        case 0:
+            return (ProfileViewController.instantiate(),
+                    "profile".localized,
+                    "profile-window",
+                    false, nil)
+        case 1:
+            return (AddFriendViewController.instantiate(delegate: self, dismissDelegate: self),
+                    "new.contact".localized,
+                    "add-contact-window",
+                    true,
+                    500)
+        case 2:
+            return (TransactionsListViewController.instantiate(),
+                    "transactions".localized,
+                    "transactions-window",
+                    false,
+                    nil)
+        case 3:
+            return (CreateInvoiceViewController.instantiate(
+                        childVCDelegate: self,
+                        viewModel: PaymentViewModel(mode: .Request),
+                        delegate: self,
+                        mode: .Window
+                    ),
+                    "create.invoice".localized,
+                    "create-invoice-window",
+                    true,
+                    500)
+        case 4:
+            return (SendPaymentForInvoiceVC.instantiate(),
+                    "pay.invoice".localized,
+                    "send-payment-window",
+                    true,
+                    447)
+        case 6:
+            return (AddFriendViewController.instantiate(delegate: self, dismissDelegate: self),
+                    "new.contact".localized,
+                    "add-contact-window",
+                    true,
+                    500)
+        case 7:
+            return (CreateTribeViewController.instantiate(),
+                    "Create Tribe",
+                    "create-tribe-window",
+                    false,
+                    nil)
+        default:
+            return (NSViewController(), "", "", false, nil)
+        }
+    }
+    
+    func navigateToNewVC(
+        vc: NSViewController,
+        title: String,
+        identifier: String,
+        hideDivider: Bool = false,
+        height: CGFloat? = nil
+    ) {
+        closeButtonTapped()
+        
+        WindowsManager.sharedInstance.showOnCurrentWindow(
+            with: title,
+            identifier: identifier,
+            contentVC: vc,
+            hideDivider: hideDivider,
+            hideBackButton: true,
+            replacingVC: true,
+            height: height
+        )
+        
+    }
+}
 

@@ -12,7 +12,6 @@ class ChangePinViewController: NSViewController {
     
     @IBOutlet weak var changePinView: ChangePinView!
     
-    var titleString = ""
     var mode = ChangePinMode.ChangeStandard
     var doneCompletion: ((String) -> ())? = nil
     
@@ -22,9 +21,8 @@ class ChangePinViewController: NSViewController {
         case ChangePrivacy
     }
     
-    static func instantiate(mode: ChangePinMode, titleString: String = "") -> ChangePinViewController {
+    static func instantiate(mode: ChangePinMode) -> ChangePinViewController {
         let viewController = StoryboardScene.Pin.changePinViewController.instantiate()
-        viewController.titleString = titleString
         viewController.mode = mode
         return viewController
     }
@@ -32,9 +30,8 @@ class ChangePinViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        changePinView.set(mode: mode, and: titleString)
+        changePinView.set(mode: mode)
         changePinView.doneCompletion = { pin in
-            self.view.window?.close()
             self.doneCompletion?(pin)
         }
     }

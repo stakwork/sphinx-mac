@@ -12,9 +12,14 @@ protocol NewContactChatDelegate: AnyObject {
     func shouldReloadContacts()
 }
 
+protocol NewContactDismissDelegate: AnyObject {
+    func shouldDismissView()
+}
+
 class NewContactViewController: NSViewController {
     
     weak var delegate: NewContactChatDelegate?
+    weak var dismissDelegate: NewContactDismissDelegate?
 
     @IBOutlet weak var contactAvatarView: ChatAvatarView!
     @IBOutlet weak var fieldsTop: NSLayoutConstraint!
@@ -51,6 +56,7 @@ class NewContactViewController: NSViewController {
     
     static func instantiate(
         delegate: NewContactChatDelegate? = nil,
+        dismissDelegate: NewContactDismissDelegate? = nil,
         contact: UserContact? = nil,
         pubkey: String? = nil
     ) -> NewContactViewController {
@@ -58,6 +64,7 @@ class NewContactViewController: NSViewController {
         let viewController = StoryboardScene.Contacts.newContactViewController.instantiate()
         viewController.contact = contact
         viewController.delegate = delegate
+        viewController.dismissDelegate = dismissDelegate
         viewController.pubkey = pubkey
 
         return viewController
@@ -130,13 +137,18 @@ class NewContactViewController: NSViewController {
     @IBAction func qrButtonClicked(_ sender: Any) {
         if let address = contact?.getAddress(), !address.isEmpty {
             let shareInviteCodeVC = ShareInviteCodeViewController.instantiate(qrCodeString: address, viewMode: .PubKey)
-            WindowsManager.sharedInstance.showPubKeyWindow(vc: shareInviteCodeVC, window: view.window)
+            
+            WindowsManager.sharedInstance.showVCOnRightPanelWindow(
+                with: "pubkey".localized,
+                identifier: "pubkey-window",
+                contentVC: shareInviteCodeVC,
+                shouldReplace: false
+            )
         }
     }
     
     @IBAction func saveButtonClicked(_ sender: Any) {
         loading = true
-        
         if let _ = contact {
             updateProfile()
         } else if routeHintField.stringValue.isV2RouteHint {
@@ -234,7 +246,11 @@ class NewContactViewController: NSViewController {
     
     func closeWindow() {
         CoreDataManager.sharedManager.saveContext()
-        self.view.window?.close()
+        if let dismissDelegate = self.dismissDelegate {
+            dismissDelegate.shouldDismissView()
+        } else {
+            WindowsManager.sharedInstance.dismissViewFromCurrentWindow()
+        }
     }
 
     func showErrorAlert(message: String) {

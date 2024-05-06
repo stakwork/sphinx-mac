@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner">
+            <connections>
+                <outlet property="contentView" destination="c22-O7-iKe" id="Tcp-ZO-zAW"/>
+                <outlet property="countLabel" destination="m3f-gM-yf6" id="ASm-zT-NBj"/>
+                <outlet property="titleLabel" destination="PaX-0u-E41" id="Eea-fR-0qB"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe" customClass="TribeMemberHeaderView" customModule="Sphinx" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="7kH-bm-DnO">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="30"/>
+                    <view key="contentView" id="8ZU-uq-8xz">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="30"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PaX-0u-E41">
+                                <rect key="frame" x="26" y="7" width="112" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="TRIBE MEMBERS" id="bJv-kr-zhe">
+                                    <font key="font" size="14" name="Roboto-Medium"/>
+                                    <color key="textColor" name="SecondaryText"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m3f-gM-yf6">
+                                <rect key="frame" x="434" y="7" width="24" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="10" id="mln-Hh-7U3">
+                                    <font key="font" size="14" name="Roboto-Regular"/>
+                                    <color key="textColor" name="SecondaryText"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="m3f-gM-yf6" secondAttribute="trailing" constant="24" id="2jK-e4-t3R"/>
+                            <constraint firstItem="PaX-0u-E41" firstAttribute="centerY" secondItem="8ZU-uq-8xz" secondAttribute="centerY" id="5iy-ge-9Qe"/>
+                            <constraint firstItem="PaX-0u-E41" firstAttribute="leading" secondItem="8ZU-uq-8xz" secondAttribute="leading" constant="28" id="YvA-Rv-kqg"/>
+                            <constraint firstItem="m3f-gM-yf6" firstAttribute="centerY" secondItem="8ZU-uq-8xz" secondAttribute="centerY" id="aLE-co-k8M"/>
+                        </constraints>
+                    </view>
+                    <color key="fillColor" name="AddressBookHeader"/>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstItem="7kH-bm-DnO" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="2kX-w0-fjI"/>
+                <constraint firstAttribute="bottom" secondItem="7kH-bm-DnO" secondAttribute="bottom" id="2n5-a7-JtI"/>
+                <constraint firstItem="7kH-bm-DnO" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="MeM-8B-y4F"/>
+                <constraint firstAttribute="trailing" secondItem="7kH-bm-DnO" secondAttribute="trailing" id="QrV-QI-emz"/>
+            </constraints>
+            <connections>
+                <outlet property="countLabel" destination="m3f-gM-yf6" id="UDb-JJ-veX"/>
+                <outlet property="titleLabel" destination="PaX-0u-E41" id="yho-fI-hmu"/>
+            </connections>
+            <point key="canvasLocation" x="55" y="154"/>
+        </customView>
+    </objects>
+    <resources>
+        <namedColor name="AddressBookHeader">
+            <color red="0.95686274509803926" green="0.95686274509803926" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SecondaryText">
+            <color red="0.55686274509803924" green="0.58823529411764708" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

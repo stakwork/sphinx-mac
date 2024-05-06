@@ -23,20 +23,17 @@ class ThreadsListViewController: NSViewController {
     var threadsListDataSource: ThreadsListDataSource? = nil
     
     var chat: Chat?
-    var windowSize: CGSize? = nil
     
     let windowsManager = WindowsManager.sharedInstance
     
     static func instantiate(
         chatId: Int,
-        delegate: ThreadsListViewControllerDelegate?,
-        windowSize: CGSize?
+        delegate: ThreadsListViewControllerDelegate?
     ) -> ThreadsListViewController {
         let viewController = StoryboardScene.Dashboard.threadsListViewController.instantiate()
         
         viewController.chat = Chat.getChatWith(id: chatId)
         viewController.delegate = delegate
-        viewController.windowSize = windowSize
         
         return viewController
     }

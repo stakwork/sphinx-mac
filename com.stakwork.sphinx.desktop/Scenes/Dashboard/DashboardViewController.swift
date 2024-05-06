@@ -11,9 +11,30 @@ import Cocoa
 class DashboardViewController: NSViewController {
     
     @IBOutlet weak var dashboardSplitView: NSSplitView!
+    @IBOutlet weak var dashboardRightSplitView: NSSplitView!
     @IBOutlet weak var leftSplittedView: NSView!
     @IBOutlet weak var rightSplittedView: NSView!
+    @IBOutlet weak var rightDetailSplittedView: NSView!
+    @IBOutlet weak var rightDetailViewMinWidth: NSLayoutConstraint!
+    @IBOutlet weak var rightDetailViewMaxWidth: NSLayoutConstraint!
+    
     @IBOutlet weak var modalsContainerView: NSView!
+    
+    @IBOutlet weak var presenterBlurredBackground: NSVisualEffectView!
+    @IBOutlet weak var presenterContainerView: NSView!
+    @IBOutlet weak var presenterContainerBGView: NSBox!
+    @IBOutlet weak var presenterContentBox: NSBox!
+    @IBOutlet weak var presenterTitleLabel: NSTextField!
+    @IBOutlet weak var presenterHeaderDivider: NSView!
+    @IBOutlet weak var presenterBackButton: CustomButton!
+    @IBOutlet weak var presenterCloseButton: CustomButton!
+    @IBOutlet weak var presenterViewHeightConstraint: NSLayoutConstraint!
+    
+    weak var presenter: DashboardPresenterViewController?
+    var presenterBackHandler: (() -> ())? = nil
+    var presenterIdentifier: String?
+    
+    var dashboardDetailViewController: DashboardDetailViewController?
     
     var mediaFullScreenView: MediaFullScreenView? = nil
     
@@ -34,7 +55,11 @@ class DashboardViewController: NSViewController {
     
     public static let kPodcastPlayerWidth: CGFloat = 350
     
+    public static let kRightPanelMaxWidth: CGFloat = 450
+    public static let kRightPanelMinWidth: CGFloat = 320
+    
     var resizeTimer : Timer? = nil
+    var escapeMonitor: Any? = nil
     
     static func instantiate() -> DashboardViewController {
         let viewController = StoryboardScene.Dashboard.dashboardViewController.instantiate()
@@ -51,6 +76,13 @@ class DashboardViewController: NSViewController {
         chatListViewModel = ChatListViewModel()
         
         dashboardSplitView.delegate = self
+        dashboardSplitView.dividerStyle = .thick
+        dashboardSplitView.setValue(NSColor.Sphinx.SplitDividerColor, forKey: "dividerColor")
+        
+        dashboardRightSplitView.delegate = self
+        dashboardRightSplitView.dividerStyle = .thin
+        dashboardRightSplitView.setValue(NSColor.Sphinx.SplitDividerColor, forKey: "dividerColor")
+        
         SphinxSocketManager.sharedInstance.setDelegate(delegate: self)
         
         let windowState = WindowsManager.sharedInstance.getWindowState()
@@ -58,18 +90,24 @@ class DashboardViewController: NSViewController {
         
         DistributedNotificationCenter.default().addObserver(self, selector: #selector(self.themeChangedNotification(notification:)), name: .onInterfaceThemeChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleImageNotification(_:)), name: .webViewImageClicked, object: nil)
+        
+        listenForResize()
+        addEscapeMonitor()
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
         
         listViewController?.delegate = self
+        rightDetailSplittedView.isHidden = true
     }
     
     override func viewDidAppear() {
         super.viewDidAppear()
         
         handleDeepLink()
+        addPresenterVC()
+        addDetailVCPresenter()
         
         DelayPerformedHelper.performAfterDelay(seconds: 0.5, completion: {
             self.connectToV2Server()
@@ -128,6 +166,63 @@ class DashboardViewController: NSViewController {
         })
     }
     
+    func addPresenterVC() {
+        presenterBlurredBackground.blendingMode = .withinWindow
+        presenterBlurredBackground.material = .fullScreenUI
+        presenterBlurredBackground.alphaValue = 1
+        
+        presenterBackButton.cursor = .pointingHand
+        presenterCloseButton.cursor = .pointingHand
+        
+        if let _ = presenter {
+            return
+        }
+        presenter = DashboardPresenterViewController.instantiate()
+        
+        if let presenter {
+            self.addChildVC(
+                child: presenter,
+                container: self.presenterContainerView
+            )
+            
+            self.presenterContainerBGView.isHidden = true
+        }
+    }
+    
+    func addDetailVCPresenter() {
+        if let _ = dashboardDetailViewController {
+            return
+        }
+        dashboardDetailViewController = DashboardDetailViewController.instantiate(delegate: self)
+        
+        if let dashboardDetailViewController {
+            self.addChildVC(
+                child: dashboardDetailViewController,
+                container: self.rightDetailSplittedView
+            )
+            
+            dashboardDetailViewController.view.frame = rightDetailSplittedView.bounds
+            self.rightDetailSplittedView.isHidden = true
+        }
+    }
+    
+    fileprivate func listenForResize() {
+        NotificationCenter.default.addObserver(forName: NSWindow.didResizeNotification, object: nil, queue: OperationQueue.main) { [weak self] (n: Notification) in
+            
+            if let presenter = self?.presenter {
+                if let bounds = self?.presenterContainerView?.bounds {
+                    presenter.view.frame = bounds
+                }
+            }
+            
+            if let detailVC = self?.dashboardDetailViewController {
+                if let bounds = self?.rightDetailSplittedView.bounds {
+                    detailVC.view.frame = bounds
+                }
+            }
+        }
+    }
+    
     override func viewWillDisappear() {
         super.viewWillDisappear()
         
@@ -142,12 +237,28 @@ class DashboardViewController: NSViewController {
         NotificationCenter.default.removeObserver(self, name: .onPersonDeepLink, object: nil)
         NotificationCenter.default.removeObserver(self, name: .onSaveProfileDeepLink, object: nil)
         NotificationCenter.default.removeObserver(self, name: .webViewImageClicked, object: nil)
+        
+        NotificationCenter.default.removeObserver(self, name: NSWindow.didResizeNotification, object: nil)
     }
     
     func handleDeepLink() {
         if let linkQuery: String = UserDefaults.Keys.linkQuery.get(), let url = URL(string: linkQuery) {
             DeepLinksHandlerHelper.handleLinkQueryFrom(url: url)
             UserDefaults.Keys.linkQuery.removeValue()
+        }
+    }
+    
+    @IBAction func closeButtonTapped(_ sender: NSButton) {
+        closePresenter()
+    }
+    
+    func closePresenter() {
+        WindowsManager.sharedInstance.dismissViewFromCurrentWindow()
+    }
+    
+    @IBAction func presenterBackButtonTapped(_ sender: NSButton) {
+        if let presenterBackHandler = presenterBackHandler {
+            presenterBackHandler()
         }
     }
     
@@ -293,6 +404,7 @@ class DashboardViewController: NSViewController {
             AlertHelper.showAlert(title: "deeplink.issue.title".localized, message: "deeplink.issue.message".localized)
         }
     }
+    
     func createInvoice(n: Notification) {
         if let query = n.userInfo?["query"] as? String {
             if let amountString = query.getLinkValueFor(key: "amount"), let amount = Int(amountString) {
@@ -370,12 +482,49 @@ class DashboardViewController: NSViewController {
                 chatId: self.newDetailViewController?.chat?.id,
                 progressCallback: { (_, _) in }
             ) { (_, _) in
-                self.listViewController?.loading = false
 
                 if let appDelegate = NSApplication.shared.delegate as? AppDelegate {
                     appDelegate.setBadge(count: TransactionMessage.getReceivedUnseenMessagesCount())
                 }
             }
+        }
+    }
+    
+    func addEscapeMonitor() {
+        //add event monitor in case user never clicks the textfield
+        if let escapeMonitor = escapeMonitor {
+            NSEvent.removeMonitor(escapeMonitor)
+        }
+    
+        escapeMonitor = nil
+    
+        self.escapeMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (event) in
+            if event.keyCode == 53 { // 53 is the key code for the Escape key
+                // Perform your action when the Escape key is pressed
+                if self.mediaFullScreenView?.isHidden == false {
+                    self.mediaFullScreenView?.closeView()
+                    return nil
+                ///Hide dashboard views popups (Profile, Create Tribe, etc)
+                } else if !self.presenterContainerBGView.isHidden {
+                    WindowsManager.sharedInstance.dismissViewFromCurrentWindow()
+                    return nil
+                ///Hide modals (auth, etc)
+                } else if !self.modalsContainerView.isHidden {
+                    for childVC in self.children {
+                        if let childVC = childVC as? DashboardModalsViewController {
+                            childVC.shouldDismissModals()
+                        }
+                    }
+                ///Hide chat modals (send payment, calls, etc)
+                } else if self.newDetailViewController?.hideModals() == true {
+                    return nil
+                ///Hide right panel view
+                } else if !self.rightDetailSplittedView.isHidden {
+                    self.dashboardDetailViewController?.closeButtonTapped()
+                    return nil
+                }
+            }
+            return event
         }
     }
 }
@@ -384,25 +533,6 @@ extension DashboardViewController : NSSplitViewDelegate {
     func splitViewDidResizeSubviews(_ notification: Notification) {
         if let _ = view.window {
             resizeSubviews()
-
-//            let (minWidth, _) = getWindowMinWidth(leftColumnVisible: !leftSplittedView.isHidden)
-//
-//            window.minSize = CGSize(
-//                width: minWidth,
-//                height: kWindowMinHeight
-//            )
-//
-//            if window.frame.width < minWidth {
-//
-//                let newFrame = CGRect(
-//                    x: window.frame.origin.x,
-//                    y: window.frame.origin.y,
-//                    width: minWidth,
-//                    height: window.frame.height
-//                )
-//
-//                view.window?.setFrame(newFrame, display: true)
-//            }
 
             resizeTimer?.invalidate()
             resizeTimer = Timer.scheduledTimer(
@@ -417,8 +547,11 @@ extension DashboardViewController : NSSplitViewDelegate {
 
     @objc func resizeSubviews() {
         newDetailViewController?.resizeSubviews(frame: rightSplittedView.bounds)
+        dashboardDetailViewController?.resizeSubviews(frame: rightDetailSplittedView.bounds)
+        listViewController?.menuListView.menuDataSource?.updateFrame()
         
         listViewController?.view.frame = leftSplittedView.bounds
+        dashboardDetailViewController?.updateCurrentVCFrame()
     }
 }
 
@@ -556,6 +689,7 @@ extension DashboardViewController : DashboardVCDelegate {
             child: newChatVCController,
             container: rightSplittedView
         )
+        dashboardDetailViewController?.closeButtonTapped()
         
         newDetailViewController = newChatVCController
         newDetailViewController?.setMessageFieldActive()
@@ -685,5 +819,18 @@ extension DashboardViewController : RestoreModalViewControllerDelegate {
         modalsContainerView.isHidden = true
         
         listViewController?.finishLoading()
+    }
+}
+
+extension DashboardViewController: NewContactDismissDelegate {
+    func shouldDismissView() {
+        closePresenter()
+    }
+}
+
+extension DashboardViewController: DashboardDetailDismissDelegate {
+    func closeButtonTapped() {
+        rightDetailViewMaxWidth.constant = 0
+        rightDetailSplittedView.isHidden = true
     }
 }

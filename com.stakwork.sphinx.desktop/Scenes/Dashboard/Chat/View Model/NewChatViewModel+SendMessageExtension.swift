@@ -212,7 +212,7 @@ extension NewChatViewModel {
         chat: Chat? = nil,
         completion: @escaping (Bool, Chat?) -> ()
     ) {
-        ChatTrackingHandler.shared.deleteOngoingMessage(with: chat?.id)
+        ChatTrackingHandler.shared.deleteOngoingMessage(with: chat?.id, threadUUID: threadUUID)
         
         joinIfCallMessage(message: message)
         showBoostErrorAlert(message: message)

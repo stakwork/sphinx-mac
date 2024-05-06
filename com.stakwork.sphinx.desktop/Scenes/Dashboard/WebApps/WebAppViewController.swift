@@ -24,11 +24,11 @@ class WebAppViewController: NSViewController {
     
     let webAppHelper = WebAppHelper()
     
-    static func instantiate(chat: Chat) -> WebAppViewController? {
+    static func instantiate(chat: Chat, isAppURL: Bool = true) -> WebAppViewController? {
         let viewController = StoryboardScene.Dashboard.webAppViewController.instantiate()
         viewController.chat = chat
         
-        guard let tribeInfo = chat.tribeInfo, let gameURL = tribeInfo.appUrl, !gameURL.isEmpty else {
+        guard let tribeInfo = chat.tribeInfo, let gameURL = isAppURL ? tribeInfo.appUrl : tribeInfo.secondBrainUrl, !gameURL.isEmpty else {
             return nil
         }
         
@@ -88,6 +88,7 @@ class WebAppViewController: NSViewController {
     func addWebView() {
         let configuration = WKWebViewConfiguration()
         configuration.userContentController.add(webAppHelper, name: webAppHelper.messageHandler)
+        configuration.preferences.setValue(true, forKey: "fullScreenEnabled")
         
         let rect = CGRect(x: 0, y: 0, width: 700, height: 500)
         webView = WKWebView(frame: rect, configuration: configuration)

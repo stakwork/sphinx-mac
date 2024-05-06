@@ -11,6 +11,7 @@ import Cocoa
 class NewInviteViewController: NSViewController {
     
     weak var delegate: NewContactChatDelegate?
+    weak var dismissDelegate: NewContactDismissDelegate?
     
     @IBOutlet weak var nicknameField: NSTextField!
     @IBOutlet weak var amountField: NSTextField!
@@ -24,11 +25,13 @@ class NewInviteViewController: NSViewController {
     let walletBalanceService = WalletBalanceService()
     
     static func instantiate(
-        delegate: NewContactChatDelegate? = nil
+        delegate: NewContactChatDelegate? = nil,
+        dismissDelegate: NewContactDismissDelegate? = nil
     ) -> NewInviteViewController {
         
         let viewController = StoryboardScene.Contacts.newInviteViewController.instantiate()
         viewController.delegate = delegate
+        viewController.dismissDelegate = dismissDelegate
         
         return viewController
     }
@@ -110,7 +113,7 @@ class NewInviteViewController: NSViewController {
                 loading = false
                 
                 self.delegate?.shouldReloadContacts()
-                self.view.window?.close()
+                self.dismissDelegate?.shouldDismissView()
                 
                 SphinxOnionManager.sharedInstance.createContactForInvite(code: code, nickname: nickname)
                 ClipboardHelper.copyToClipboard(text: code)

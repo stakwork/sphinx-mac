@@ -220,7 +220,19 @@ extension GroupDetailsViewController : MessageOptionsDelegate {
                 break
             case .Edit:
                 let createTribeVC = CreateTribeViewController.instantiate(chat: chat)
-                WindowsManager.sharedInstance.showCreateTribeWindow(title: "Create Tribe", vc: createTribeVC, window: NSApplication.shared.keyWindow)
+                WindowsManager.sharedInstance
+                    .showVCOnRightPanelWindow(with: "edit.tribe".localized,
+                                                  identifier: "edit-tribe-window",
+                                                  contentVC: createTribeVC,
+                                                  shouldReplace: false)
+                break
+            case .TribeMembers:
+                let tribeMembers = TribeMembersViewController.instantiate(chat: chat)
+                WindowsManager.sharedInstance
+                    .showVCOnRightPanelWindow(with: "tribe.member".localized,
+                                                  identifier: "tribe-members-window",
+                                                  contentVC: tribeMembers,
+                                                  shouldReplace: false)
                 break
             }
         }
@@ -229,7 +241,13 @@ extension GroupDetailsViewController : MessageOptionsDelegate {
     func goToTribeQRCode() {
         if let link = chat.getJoinChatLink() {
             let shareTribeQRVC = ShareInviteCodeViewController.instantiate(qrCodeString: link, viewMode: .TribeQR)
-            WindowsManager.sharedInstance.showTribeQRWindow(vc: shareTribeQRVC, window: view.window)
+            
+            WindowsManager.sharedInstance.showVCOnRightPanelWindow(
+                with: "share".localized,
+                identifier: "share-window",
+                contentVC: shareTribeQRVC,
+                shouldReplace: false
+            )
         }
     }
 }

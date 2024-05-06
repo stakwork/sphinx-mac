@@ -29,7 +29,7 @@
 "name.unknown.initials"  = "UK";
 "today"  = "Ngayon";
 "contact" = "Contact";
-"profile"  = "Profile";
+"profile"  = "My Profile";
 "transactions" = "Transactions";
 "profile.saved" = "Matagumpay na na-save ang mga pagbabago sa profile";
 "search"  = "Search";
@@ -77,7 +77,8 @@
 "member.join.soon"  = "Malapit nang sumali sa grupo ang mga bagong miyembro";
 "unknown.group"  = "HIndi Makilalang Grupo";
 "created.on"  = "Ginawa noong %@";
-"group.members.upper"  = "MGA MIYEMBRO NG GRUPO";
+"group.members.upper"  = "MGA MIYEMBRO NG TRIBE";
+"tribe.pending.members.upper" = "NABIBIBING MIYEMBRO NG TRIBU";
 "group.options"  = "Mga Pagpipilian ng miyembro";
 "edit.group"  = "I-Edit ang Grupo";
 "delete.group"  = "Tanggalin ang Grupo";
@@ -113,6 +114,8 @@
 "delete.tribe"  = "Tanggalin ang Tribo";
 "edit.tribe"  = "I-Edit ang Tribo";
 "alias.allowed-characters"  = "Mga titik, numero at underscore lamang ang pinapayagan sa mga alias ng tribo";
+"kick.member.title" = "Miyembro ng Tribo";
+"kick.member.message" = "Sigurado ka bang gusto mong tanggalin ang miyembrong ito sa triibe?";
 
 //SUBSCRIPTIONS
 "leave.lose.unsaved.changed"  = "Sigurado ka bang gusto mong umalis at mawala ang anumang hindi na-save na mga pagbabago?";
@@ -382,6 +385,8 @@
 "set.price.upper"  = "MAGTAKDA NG PRESYO";
 "to"  = "Para sa/kay";
 "from"  = "Mula sa/kay";
+"create.invoice" = "Gumawa ng Invoice";
+"pay.invoice" = "Magbayad ng Invoice";
 "send.payment.upper"  = "MAGPADALA NG BAYAD";
 "request.amount.upper"  = "HUMILING NG HALAGA";
 "balance.too.low"  = "Masyadong mababa ang balanse";

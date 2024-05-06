@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,8 +12,10 @@
                 <outlet property="arrowView" destination="RJc-Ra-Mir" id="yK8-Sw-azw"/>
                 <outlet property="avatarView" destination="zM8-fQ-tqo" id="xmm-9Y-s1V"/>
                 <outlet property="backgroundBox" destination="kjh-hx-hlp" id="AAw-9a-ar4"/>
+                <outlet property="containerButton" destination="d4h-Ed-xbj" id="aE0-F4-4iB"/>
                 <outlet property="contentView" destination="c22-O7-iKe" id="Zqy-XN-h5A"/>
                 <outlet property="messageLabel" destination="jar-q7-f1c" id="fT1-wO-x39"/>
+                <outlet property="unpinButton" destination="3xG-ft-fDe" id="JYi-mt-2f0"/>
                 <outlet property="unpinButtonContainer" destination="f1P-bM-V4z" id="xLM-qR-0EU"/>
                 <outlet property="usernameLabel" destination="elh-Qz-kyt" id="l8b-JN-wvV"/>
             </connections>
@@ -38,6 +40,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="400" height="249"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="d4h-Ed-xbj" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="249"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" transparent="YES" imageScaling="proportionallyDown" inset="2" id="4x7-p1-5gD">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="containerButtonClicked:" target="-2" id="WZl-fS-UZs"/>
+                                </connections>
+                            </button>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0KC-Lz-fyZ">
                                 <rect key="frame" x="0.0" y="0.0" width="400" height="249"/>
                                 <subviews>
@@ -47,7 +59,7 @@
                                             <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gR9-A4-e5F">
                                                 <rect key="frame" x="132" y="0.0" width="137" height="40"/>
                                                 <subviews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jju-48-tZ2">
+                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jju-48-tZ2">
                                                         <rect key="frame" x="-2" y="10" width="24" height="20"/>
                                                         <textFieldCell key="cell" lineBreakMode="clipping" title="push_pin" id="HSP-ZO-YCh">
                                                             <font key="font" size="20" name="MaterialIcons-Regular"/>
@@ -55,7 +67,7 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jt0-vG-eUF">
+                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jt0-vG-eUF">
                                                         <rect key="frame" x="23" y="11" width="116" height="18"/>
                                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Pinned Message" id="WYy-Mn-DRx">
                                                             <font key="font" size="15" name="Roboto-Bold"/>
@@ -95,7 +107,7 @@
                                                     <constraint firstAttribute="width" constant="32" id="cT0-uW-UEs"/>
                                                 </constraints>
                                             </customView>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="elh-Qz-kyt">
+                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="elh-Qz-kyt">
                                                 <rect key="frame" x="54" y="67" width="59" height="14"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Username" id="tdx-ap-CwX">
                                                     <font key="font" size="12" name="Roboto-Medium"/>
@@ -109,7 +121,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="154" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jar-q7-f1c">
+                                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jar-q7-f1c">
                                                             <rect key="frame" x="14" y="16" width="126" height="18"/>
                                                             <textFieldCell key="cell" title="This is a message" id="kr9-cA-LNR">
                                                                 <font key="font" size="15" name="Roboto-Regular"/>
@@ -162,7 +174,7 @@
                                                         <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="5" horizontalStackHuggingPriority="250" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fqy-dS-qv8">
                                                             <rect key="frame" x="0.0" y="0.0" width="137" height="34"/>
                                                             <subviews>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rBn-IY-4c0">
+                                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rBn-IY-4c0">
                                                                     <rect key="frame" x="14" y="9" width="20" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="push_pin" id="NHg-El-L0l">
                                                                         <font key="font" size="16" name="MaterialIcons-Regular"/>
@@ -170,7 +182,7 @@
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gzu-ZK-NIe">
+                                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gzu-ZK-NIe">
                                                                     <rect key="frame" x="35" y="10" width="88" height="14"/>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Unpin Message" id="UNL-E8-MSQ">
                                                                         <font key="font" size="12" name="Roboto-Bold"/>
@@ -194,7 +206,7 @@
                                                                 <real value="3.4028234663852886e+38"/>
                                                             </customSpacing>
                                                         </stackView>
-                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3xG-ft-fDe">
+                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3xG-ft-fDe" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="137" height="34"/>
                                                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="left" transparent="YES" imageScaling="proportionallyDown" inset="2" id="YHA-al-UgL">
                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -253,8 +265,12 @@
                             </stackView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="d4h-Ed-xbj" firstAttribute="leading" secondItem="69D-Ix-AKD" secondAttribute="leading" id="6jk-ul-gRO"/>
                             <constraint firstAttribute="trailing" secondItem="0KC-Lz-fyZ" secondAttribute="trailing" id="Ltv-5B-tfr"/>
                             <constraint firstItem="0KC-Lz-fyZ" firstAttribute="top" secondItem="69D-Ix-AKD" secondAttribute="top" id="M9F-Ym-35y"/>
+                            <constraint firstAttribute="trailing" secondItem="d4h-Ed-xbj" secondAttribute="trailing" id="Tim-wz-AI3"/>
+                            <constraint firstItem="d4h-Ed-xbj" firstAttribute="top" secondItem="69D-Ix-AKD" secondAttribute="top" id="VBI-PG-vud"/>
+                            <constraint firstAttribute="bottom" secondItem="d4h-Ed-xbj" secondAttribute="bottom" id="Yxi-m4-lqE"/>
                             <constraint firstItem="0KC-Lz-fyZ" firstAttribute="leading" secondItem="69D-Ix-AKD" secondAttribute="leading" id="cZB-Ke-Jp8"/>
                             <constraint firstAttribute="bottom" secondItem="0KC-Lz-fyZ" secondAttribute="bottom" priority="750" id="sCB-Hq-cNE"/>
                         </constraints>

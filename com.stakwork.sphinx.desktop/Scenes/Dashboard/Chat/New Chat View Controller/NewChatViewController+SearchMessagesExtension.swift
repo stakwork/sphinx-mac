@@ -43,6 +43,7 @@ extension NewChatViewController : ChatSearchTextFieldViewDelegate {
         DispatchQueue.main.async {
             self.chatTableDataSource?.shouldEndSearch()
             self.toggleSearchMode(active: false)
+            self.setMessageFieldActive()
         }
     }
 }

@@ -89,7 +89,7 @@ extension UserDefaults {
         let appearance = UserDefaults.Keys.appAppearance.get(defaultValue: 0)
         let notificationType = UserDefaults.Keys.notificationType.get(defaultValue: 0)
         let notificationSound = UserDefaults.Keys.notificationSound.get(defaultValue: "tri-tone.caf")
-        let size = UserDefaults.Keys.messagesSize.get(defaultValue: 0)
+        let size = UserDefaults.Keys.messagesSize.get(defaultValue: MessagesSize.Medium.rawValue)
 
         deleteAllKeys()
 

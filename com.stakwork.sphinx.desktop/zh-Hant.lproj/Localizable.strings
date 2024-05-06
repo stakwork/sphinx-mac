@@ -79,6 +79,7 @@
 "unknown.group" = "未知群組";
 "created.on" = "創建於%@";
 "group.members.upper" = "群組成員";
+"tribe.pending.members.upper" = "待定的部落成員";
 "group.options" = "群組選項";
 "edit.group" = "編輯群組";
 "delete.group" = "刪除群組";
@@ -114,6 +115,8 @@
 "delete.tribe" = "刪除部落";
 "edit.tribe" = "編輯部落";
 "alias.allowed-characters" = "部落別名僅允許字母、數字和下劃線\n允許的字符";
+"kick.member.title" = "部落成員";
+"kick.member.message" = "您確定要從部落中刪除該成員嗎？";
 
 //SUBSCRIPTIONS
 "leave.lose.unsaved.changed" = "您確定要離開並丟失所有未儲存的更改嗎？";
@@ -384,6 +387,8 @@
 "set.price.upper" = "設置價格";
 "to" = "至";
 "from" = "來自";
+"create.invoice" = "請求金額";
+"pay.invoice" = "支付發票";
 "send.payment.upper" = "發送支付";
 "request.amount.upper" = "請求金額";
 "balance.too.low" = "餘額太低";

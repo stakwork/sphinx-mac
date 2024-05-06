@@ -190,14 +190,6 @@ public class Chat: NSManagedObject {
         return ids
     }
     
-    public func isOnlyMentions() -> Bool {
-        return self.notify == NotificationLevel.OnlyMentions.rawValue
-    }
-    
-    func willNotifyOnlyMentions() -> Bool {
-        return self.notify == NotificationLevel.OnlyMentions.rawValue
-    }
-    
     func isStatusPending() -> Bool {
         return self.status == ChatStatus.pending.rawValue
     }
@@ -704,6 +696,10 @@ public class Chat: NSManagedObject {
         return tribeInfo?.appUrl != nil && tribeInfo?.appUrl?.isEmpty == false
     }
     
+    func hasSecondBrainApp() -> Bool {
+        return tribeInfo?.secondBrainUrl != nil && tribeInfo?.secondBrainUrl?.isEmpty == false
+    }
+    
     func syncTribeWithServer() {
         DispatchQueue.global().async {
             let params: [String: AnyObject] = ["name" : self.name as AnyObject, "img": self.photoUrl as AnyObject]
@@ -763,6 +759,7 @@ public class Chat: NSManagedObject {
             if isMyPublicGroup {
                 options.append((MessageOptionsHelper.ChatActionsItem.Share.rawValue, "share", nil, "share.group".localized))
                 options.append((MessageOptionsHelper.ChatActionsItem.Edit.rawValue, "edit", nil, "edit.tribe".localized))
+                options.append((MessageOptionsHelper.ChatActionsItem.TribeMembers.rawValue, nil, "contact", "tribe.member".localized))
                 options.append((MessageOptionsHelper.ChatActionsItem.Delete.rawValue, "delete", nil, "delete.tribe".localized))
             } else {
                 if self.removedFromGroup() {

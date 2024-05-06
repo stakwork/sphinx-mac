@@ -19,16 +19,15 @@ extension NewChatViewController : ChatHeaderViewDelegate {
         if let chatId = chat?.id {
             let threadsListVC = ThreadsListViewController.instantiate(
                 chatId: chatId,
-                delegate: self,
-                windowSize: self.view.window?.frame.size
+                delegate: self
             )
           
-            WindowsManager.sharedInstance.showNewWindow(
+            WindowsManager.sharedInstance.showVCOnRightPanelWindow(
                 with: "threads-list".localized,
-                size: CGSize(width: 450, height: 700),
-                centeredIn: self.view.window,
                 identifier: "threads-list",
-                contentVC: threadsListVC
+                contentVC: threadsListVC,
+                shouldReplace: false,
+                panelFixedWidth: true
             )
         }
     }
@@ -37,6 +36,14 @@ extension NewChatViewController : ChatHeaderViewDelegate {
         WindowsManager.sharedInstance.showWebAppWindow(
             chat: chat,
             view: view
+        )
+    }
+    
+    func didClickSecondBrainAppButton() {
+        WindowsManager.sharedInstance.showWebAppWindow(
+            chat: chat,
+            view: view,
+            isAppURL: false
         )
     }
     
@@ -78,12 +85,10 @@ extension NewChatViewController : ChatHeaderViewDelegate {
             
             let contactVC = NewContactViewController.instantiate(contact: contact)
             
-            WindowsManager.sharedInstance.showContactWindow(
-                vc: contactVC,
-                window: view.window,
-                title: "contact".localized,
+            WindowsManager.sharedInstance.showVCOnRightPanelWindow(
+                with: "contact.info".localized,
                 identifier: "contact-window",
-                size: CGSize(width: 414, height: 700)
+                contentVC: contactVC
             )
             
         } else if let chat = chat {
@@ -93,12 +98,10 @@ extension NewChatViewController : ChatHeaderViewDelegate {
                 delegate: self
             )
             
-            WindowsManager.sharedInstance.showContactWindow(
-                vc: chatDetailsVC,
-                window: view.window,
-                title: "group.details".localized,
+            WindowsManager.sharedInstance.showVCOnRightPanelWindow(
+                with: "tribe.info".localized,
                 identifier: "chat-window",
-                size: CGSize(width: 414, height: 600)
+                contentVC: chatDetailsVC
             )
         }
     }
@@ -314,6 +317,14 @@ extension NewChatViewController : ChatBottomViewDelegate {
         )
     }
     
+    func hideModals() -> Bool {
+        if !childViewControllerContainer.isHidden {
+            childViewControllerContainer.hideView()
+            return true
+        }
+        return false
+    }
+    
     func shouldUpdateMentionSuggestionsWith(_ object: [MentionOrMacroItem]) {
         chatMentionAutocompleteDataSource?.setViewWidth(viewWidth: self.chatCollectionView.frame.width)
         
@@ -417,6 +428,10 @@ extension NewChatViewController : ActionsDelegate {
     }
     
     func shouldReloadMuteState() {}
+    
+    func didDismissView() {
+        setMessageFieldActive()
+    }
 }
 
 extension NewChatViewController : NewMessagesIndicatorViewDelegate {

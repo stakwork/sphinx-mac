@@ -56,6 +56,7 @@ extension NSColor {
         public static let MessageOptionDivider = color("MessageOptionDivider")
         public static let ReplyDividerReceived = color("ReplyDividerReceived")
         public static let ReplyDividerSent = color("ReplyDividerSent")
+        public static let SplitDividerColor = color("SplitDividerColor")
         public static let ReceivedIcon = color("ReceivedIcon")
         public static let ReceivedMsgBG = color("ReceivedMsgBG")
         public static let SentMsgBG = color("SentMsgBG")

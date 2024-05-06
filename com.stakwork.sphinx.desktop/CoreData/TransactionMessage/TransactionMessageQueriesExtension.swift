@@ -100,7 +100,8 @@ extension TransactionMessage {
     static func getPredicate(
         chat: Chat,
         threadUUID: String?,
-        typesToExclude: [Int]
+        typesToExclude: [Int],
+        pinnedMessageId: Int? = nil
     ) -> NSPredicate {
         if let tuid = threadUUID {
             return NSPredicate(
@@ -111,21 +112,31 @@ extension TransactionMessage {
                 tuid,
                 tuid
             )
-        }
-        else{//display general, non-thread results
-            return NSPredicate(
-                format: "chat == %@ AND (NOT (type IN %@) || (type == %d && replyUUID = nil))",
-                chat,
-                typesToExclude,
-                TransactionMessageType.boost.rawValue
-            )
+        } else {
+            if let pinnedMessageId = pinnedMessageId {
+                return NSPredicate(
+                    format: "chat == %@ AND id >= %d AND (NOT (type IN %@) || (type == %d && replyUUID = nil))",
+                    chat,
+                    pinnedMessageId - 200,
+                    typesToExclude,
+                    TransactionMessageType.boost.rawValue
+                )
+            } else {
+                return NSPredicate(
+                    format: "chat == %@ AND (NOT (type IN %@) || (type == %d && replyUUID = nil))",
+                    chat,
+                    typesToExclude,
+                    TransactionMessageType.boost.rawValue
+                )
+            }
         }
     }
     
     static func getChatMessagesFetchRequest(
         for chat: Chat,
         threadUUID: String? = nil,
-        with limit: Int? = nil
+        with limit: Int? = nil,
+        pinnedMessageId: Int? = nil
     ) -> NSFetchRequest<TransactionMessage> {
         
         var typesToExclude = typesToExcludeFromChat
@@ -134,7 +145,8 @@ extension TransactionMessage {
         let predicate = TransactionMessage.getPredicate(
             chat: chat,
             threadUUID: threadUUID,
-            typesToExclude: typesToExclude
+            typesToExclude: typesToExclude,
+            pinnedMessageId: pinnedMessageId
         )
         
         let sortDescriptors = [
@@ -146,7 +158,7 @@ extension TransactionMessage {
         fetchRequest.predicate = predicate
         fetchRequest.sortDescriptors = sortDescriptors
         
-        if let limit = limit {
+        if let limit = limit, pinnedMessageId == nil {
             fetchRequest.fetchLimit = limit
         }
         

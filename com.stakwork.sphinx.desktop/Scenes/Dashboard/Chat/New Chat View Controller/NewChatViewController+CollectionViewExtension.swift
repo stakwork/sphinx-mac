@@ -106,11 +106,7 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
     
     func shouldGoToMediaFullScreenFor(messageId: Int) {
         if let message = TransactionMessage.getMessageWith(id: messageId) {
-            if isThread {
-                shouldShowFullMediaFor(message: message)
-            } else {
-                delegate?.shouldShowFullMediaFor(message: message)
-            }
+            delegate?.shouldShowFullMediaFor(message: message)
         }
         
     }
@@ -269,8 +265,6 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
             removeChildVC(child: threadVC)
             
             self.threadVC = nil
-            
-            threadVCContainer.isHidden = true
             
             setMessageFieldActive()
         }

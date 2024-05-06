@@ -15,28 +15,10 @@ extension ChatListViewController {
     func configureHeaderAndBottomBar() {
         NSAppearance.current = view.effectiveAppearance
         
-        searchBarContainer.addShadow(location: VerticalLocation.bottom, color: NSColor.black, opacity: 0.2, radius: 5.0)
         bottomBar.addShadow(location: VerticalLocation.top, color: NSColor.black, opacity: 0.2, radius: 5.0)
 
         searchFieldContainer.wantsLayer = true
         searchFieldContainer.layer?.cornerRadius = searchFieldContainer.frame.height / 2
-    }
-    
-    func listenForNotifications() {
-        healthCheckView.listenForEvents()
-        
-        NotificationCenter.default.addObserver(
-            forName: .onBalanceDidChange,
-            object: nil,
-            queue: OperationQueue.main
-        ) { [weak self] (n: Notification) in
-                self?.updateBalance()
-        }
-    }
-    
-    func updateBalance() {
-        balanceUnitLabel.stringValue = "sat"
-        walletBalanceService.updateBalance(labels: [balanceLabel])
     }
     
     func resetSearchField() {
@@ -62,51 +44,41 @@ extension ChatListViewController : ChildVCDelegate, ActionsDelegate {
             mode: .Window
         )
         
-        WindowsManager.sharedInstance.showContactWindow(
-            vc: vc,
-            window: view.window,
-            title: "Payments",
-            identifier: "invoice-management-window",
-            size: CGSize(width: 414, height: 600)
+        WindowsManager.sharedInstance.showOnCurrentWindow(
+            with: "create.invoice".localized,
+            identifier: "payment-window",
+            contentVC: vc,
+            height: 500
         )
     }
     
     func handleSentClick() {
-        WindowsManager.sharedInstance.closeIfExists(
-            identifier: "invoice-management-window"
-        )
-        
         let vc = SendPaymentForInvoiceVC.instantiate()
         
-        WindowsManager.sharedInstance.showContactWindow(
-            vc: vc,
-            window: view.window,
-            title: "Payments",
-            identifier: "invoice-management-window",
-            size: CGSize(width: 450, height: 350)
+        WindowsManager.sharedInstance.showOnCurrentWindow(
+            with: "pay.invoice".localized,
+            identifier: "send-payment-window",
+            contentVC: vc,
+            height: 447
         )
     }
     
     
-    func handleInvoiceCreation(invoice:String,amount:Int){
-        WindowsManager.sharedInstance.closeIfExists(
-            identifier: "invoice-management-window"
-        )
-        
+    func handleInvoiceCreation(invoice:String, amount:Int){
         let vc = DisplayInvoiceVC.instantiate(
             qrCodeString: invoice,
             amount: amount
         )
         
-        WindowsManager.sharedInstance.showContactWindow(
-            vc: vc,
-            window: view.window,
-            title: "Payments",
-            identifier: "invoice-management-window",
-            size: CGSize(width: 414, height: 700)
+        WindowsManager.sharedInstance.showOnCurrentWindow(
+            with: "payment.request".localized,
+            identifier: "create-invoice-window",
+            contentVC: vc,
+            height: 629
         )
     }
     
+    func didDismissView() {}
     func didCreateMessage() {}
     func didFailInvoiceOrPayment() {}
     func shouldCreateCall(mode: VideoCallHelper.CallMode) {}
@@ -151,15 +123,9 @@ extension ChatListViewController : NSTextFieldDelegate {
     }
 }
 
-extension ChatListViewController : HealthCheckDelegate {
-    func shouldShowBubbleWith(_ message: String) {
-        NewMessageBubbleHelper().showGenericMessageView(text:message, in: view, position: .Top, delay: 3)
-    }
-}
-
 extension ChatListViewController : NewContactChatDelegate {
     func shouldReloadContacts() {
-        updateBalanceAndCheckVersion()
+//        updateBalanceAndCheckVersion()
     }
 }
 

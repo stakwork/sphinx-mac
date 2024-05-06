@@ -159,7 +159,7 @@ class JoinTribeViewController: NSViewController {
     
     func showErrorAndDismiss() {
         AlertHelper.showAlert(title: "generic.error.title".localized, message: "generic.error.message".localized)
-        self.view.window?.close()
+        WindowsManager.sharedInstance.dismissViewFromCurrentWindow()
     }
     
     @IBAction func joinTribeButtonTouched(_ sender: Any) {
@@ -198,7 +198,7 @@ class JoinTribeViewController: NSViewController {
                     chat.saveChat()
                     
                     self.delegate?.shouldReloadContacts()
-                    self.view.window?.close()
+                    WindowsManager.sharedInstance.dismissViewFromCurrentWindow()
                 } else {
                     self.showErrorAndDismiss()
                 }

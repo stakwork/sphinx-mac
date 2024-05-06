@@ -79,6 +79,7 @@
 "unknown.group" = "未知のグループ";
 "created.on" = "%@に作成";
 "group.members.upper" = "グループメンバー";
+"tribe.pending.members.upper" = "保留中の部族メンバー";
 "group.options" = "グループオプション";
 "edit.group" = "グループを編集";
 "delete.group" = "グループを削除";
@@ -114,6 +115,8 @@
 "delete.tribe" = "トライブを削除";
 "edit.tribe" = "トライブを編集";
 "alias.allowed-characters" = "トライブのエイリアスには、文字、数字、アンダースコアのみが許可されます";
+"kick.member.title" = "部族のメンバー";
+"kick.member.message" = "このメンバーをトライブから削除してもよろしいですか?";
 
 //SUBSCRIPTIONS
 "leave.lose.unsaved.changed" = "未保存の変更を失うことなく退出してもよろしいですか？";
@@ -383,6 +386,8 @@
 "set.price.upper" = "価格を設定";
 "to" = "宛先";
 "from" = "送信元";
+"create.invoice" = "金額をリクエスト";
+"pay.invoice" = "請求書の支払い";
 "send.payment.upper" = "支払いを送信";
 "request.amount.upper" = "金額をリクエスト";
 "balance.too.low" = "残高が不足しています";

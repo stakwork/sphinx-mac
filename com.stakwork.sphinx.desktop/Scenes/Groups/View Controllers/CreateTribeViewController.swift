@@ -23,6 +23,7 @@ class CreateTribeViewController: NSViewController {
     @IBOutlet weak var timeToStakeField: NSTextField!
     @IBOutlet weak var appUrlField: NSTextField!
     @IBOutlet weak var feedUrlField: NSTextField!
+    @IBOutlet weak var secondBrainUrlField: NSTextField!
     @IBOutlet weak var feedTypeField: NSTextField!
     @IBOutlet weak var feedTypeButton: NSButton!
     @IBOutlet weak var listSwitch: NSSwitch!
@@ -60,7 +61,7 @@ class CreateTribeViewController: NSViewController {
         tribeImageView.layer?.cornerRadius = tribeImageView.frame.height / 2
         
         self.viewModel = CreateTribeViewModel(chat: chat, successCallback: {
-            self.view.window?.close()
+            WindowsManager.sharedInstance.dismissViewFromCurrentWindow()
         }, errorCallback: {
             self.loading = false
         })
@@ -109,6 +110,7 @@ class CreateTribeViewController: NSViewController {
             timeToStakeField.stringValue = timeToStake > 0 ? "\(timeToStake)" : ""
             
             appUrlField.stringValue = chatTribeInfo.appUrl ?? ""
+            secondBrainUrlField.stringValue = chatTribeInfo.secondBrainUrl ?? ""
             feedUrlField.stringValue = chatTribeInfo.feedUrl ?? ""
             
             let feedUrl = chatTribeInfo.feedUrl ?? ""
@@ -175,6 +177,7 @@ class CreateTribeViewController: NSViewController {
             amountToStake: Int(amountToStakeField.stringValue),
             timeToStake: Int(timeToStakeField.stringValue),
             appUrl: appUrlField.stringValue,
+            secondBrainUrl: secondBrainUrlField.stringValue,
             feedUrl: feedUrlField.stringValue,
             listInTribes: listSwitch.state == NSControl.StateValue.on,
             privateTribe: approveRequestSwitch.state == NSControl.StateValue.on

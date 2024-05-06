@@ -121,11 +121,15 @@ RustBuffer uniffi_sphinxrs_fn_func_set_network(RustBuffer network, RustCallStatu
 );
 RustBuffer uniffi_sphinxrs_fn_func_set_blockheight(uint32_t blockheight, RustCallStatus *_Nonnull out_status
 );
-RustBuffer uniffi_sphinxrs_fn_func_add_contact(RustBuffer seed, RustBuffer unique_time, RustBuffer state, RustBuffer to_pubkey, RustBuffer route_hint, RustBuffer my_alias, RustBuffer my_img, uint64_t amt_msat, RustBuffer invite_code, RustCallStatus *_Nonnull out_status
+RustBuffer uniffi_sphinxrs_fn_func_add_contact(RustBuffer seed, RustBuffer unique_time, RustBuffer state, RustBuffer to_pubkey, RustBuffer route_hint, RustBuffer my_alias, RustBuffer my_img, uint64_t amt_msat, RustBuffer invite_code, RustBuffer their_alias, RustCallStatus *_Nonnull out_status
 );
 RustBuffer uniffi_sphinxrs_fn_func_get_contact(RustBuffer state, RustBuffer pubkey, RustCallStatus *_Nonnull out_status
 );
 RustBuffer uniffi_sphinxrs_fn_func_list_contacts(RustBuffer state, RustCallStatus *_Nonnull out_status
+);
+RustBuffer uniffi_sphinxrs_fn_func_contact_pubkey_by_child_index(RustBuffer state, uint64_t child_idx, RustCallStatus *_Nonnull out_status
+);
+RustBuffer uniffi_sphinxrs_fn_func_contact_pubkey_by_encrypted_child(RustBuffer seed, RustBuffer state, RustBuffer child, RustCallStatus *_Nonnull out_status
 );
 RustBuffer uniffi_sphinxrs_fn_func_get_subscription_topic(RustBuffer seed, RustBuffer unique_time, RustBuffer state, RustCallStatus *_Nonnull out_status
 );
@@ -181,13 +185,13 @@ RustBuffer uniffi_sphinxrs_fn_func_set_push_token(RustBuffer seed, RustBuffer un
 );
 RustBuffer uniffi_sphinxrs_fn_func_get_msgs_counts(RustBuffer seed, RustBuffer unique_time, RustBuffer state, RustCallStatus *_Nonnull out_status
 );
-RustBuffer uniffi_sphinxrs_fn_func_fetch_msgs_batch(RustBuffer seed, RustBuffer unique_time, RustBuffer state, uint64_t last_msg_idx, RustBuffer limit, RustBuffer reverse, RustBuffer is_restore, RustCallStatus *_Nonnull out_status
+RustBuffer uniffi_sphinxrs_fn_func_fetch_msgs_batch(RustBuffer seed, RustBuffer unique_time, RustBuffer state, uint64_t last_msg_idx, RustBuffer limit, RustBuffer reverse, RustCallStatus *_Nonnull out_status
 );
-RustBuffer uniffi_sphinxrs_fn_func_fetch_msgs_batch_okkey(RustBuffer seed, RustBuffer unique_time, RustBuffer state, uint64_t last_msg_idx, RustBuffer limit, RustBuffer reverse, RustBuffer is_restore, RustCallStatus *_Nonnull out_status
+RustBuffer uniffi_sphinxrs_fn_func_fetch_msgs_batch_okkey(RustBuffer seed, RustBuffer unique_time, RustBuffer state, uint64_t last_msg_idx, RustBuffer limit, RustBuffer reverse, RustCallStatus *_Nonnull out_status
 );
-RustBuffer uniffi_sphinxrs_fn_func_fetch_first_msgs_per_key(RustBuffer seed, RustBuffer unique_time, RustBuffer state, uint64_t last_msg_idx, RustBuffer limit, RustBuffer reverse, RustBuffer is_restore, RustCallStatus *_Nonnull out_status
+RustBuffer uniffi_sphinxrs_fn_func_fetch_first_msgs_per_key(RustBuffer seed, RustBuffer unique_time, RustBuffer state, uint64_t last_msg_idx, RustBuffer limit, RustBuffer reverse, RustCallStatus *_Nonnull out_status
 );
-RustBuffer uniffi_sphinxrs_fn_func_fetch_payments(RustBuffer seed, RustBuffer unique_time, RustBuffer state, RustBuffer last_msg_idx, RustBuffer limit, RustBuffer scid, RustBuffer remote_only, RustBuffer min_msat, RustCallStatus *_Nonnull out_status
+RustBuffer uniffi_sphinxrs_fn_func_fetch_payments(RustBuffer seed, RustBuffer unique_time, RustBuffer state, RustBuffer since, RustBuffer limit, RustBuffer scid, RustBuffer remote_only, RustBuffer min_msat, RustBuffer reverse, RustCallStatus *_Nonnull out_status
 );
 RustBuffer ffi_sphinxrs_rustbuffer_alloc(int32_t size, RustCallStatus *_Nonnull out_status
 );
@@ -291,6 +295,12 @@ uint16_t uniffi_sphinxrs_checksum_func_get_contact(void
     
 );
 uint16_t uniffi_sphinxrs_checksum_func_list_contacts(void
+    
+);
+uint16_t uniffi_sphinxrs_checksum_func_contact_pubkey_by_child_index(void
+    
+);
+uint16_t uniffi_sphinxrs_checksum_func_contact_pubkey_by_encrypted_child(void
     
 );
 uint16_t uniffi_sphinxrs_checksum_func_get_subscription_topic(void

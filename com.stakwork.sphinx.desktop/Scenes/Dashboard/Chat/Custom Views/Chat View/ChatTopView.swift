@@ -47,6 +47,7 @@ class ChatTopView: NSView, LoadableNib {
         setChatInfoOnHeader()
         updateSatsEarnedOnHeader()
         toggleWebAppIcon()
+        toggleSecondBrainAppIcon()
     }
     
     func setChatInfoOnHeader() {
@@ -63,6 +64,10 @@ class ChatTopView: NSView, LoadableNib {
     
     func toggleWebAppIcon() {
         chatHeaderView.toggleWebAppIcon()
+    }
+    
+    func toggleSecondBrainAppIcon() {
+        chatHeaderView.toggleSecondBrainAppIcon()
     }
     
     func checkRoute() {

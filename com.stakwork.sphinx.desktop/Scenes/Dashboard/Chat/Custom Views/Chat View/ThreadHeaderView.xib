@@ -44,7 +44,7 @@
                     <color key="fillColor" name="NewHeaderBG"/>
                 </box>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="rDL-y8-IEm">
-                    <rect key="frame" x="0.0" y="186" width="1174" height="65"/>
+                    <rect key="frame" x="0.0" y="186" width="1220" height="65"/>
                     <subviews>
                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="an0-0c-r6q" customClass="ChatSmallAvatarView" customModule="Sphinx" customModuleProvider="target">
                             <rect key="frame" x="16" y="15" width="36" height="36"/>
@@ -53,7 +53,7 @@
                                 <constraint firstAttribute="width" constant="36" id="ucD-VR-bam"/>
                             </constraints>
                         </customView>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9SH-Z3-1PP">
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9SH-Z3-1PP">
                             <rect key="frame" x="66" y="33" width="44" height="16"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="Tomas" id="Jx9-3T-N61">
                                 <font key="font" metaFont="system"/>
@@ -61,7 +61,7 @@
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pLk-vm-4AH">
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pLk-vm-4AH">
                             <rect key="frame" x="66" y="17" width="54" height="14"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="12:00 PM" id="slQ-kw-9cH">
                                 <font key="font" metaFont="smallSystem"/>
@@ -81,16 +81,16 @@
                     </constraints>
                 </customView>
                 <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6pb-0h-aP6">
-                    <rect key="frame" x="0.0" y="0.0" width="1174" height="186"/>
+                    <rect key="frame" x="0.0" y="0.0" width="1220" height="186"/>
                     <subviews>
                         <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aeV-xz-Szv">
-                            <rect key="frame" x="0.0" y="92" width="1174" height="94"/>
+                            <rect key="frame" x="0.0" y="92" width="1220" height="94"/>
                             <subviews>
                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="6O6-FM-fV0" customClass="FileInfoView" customModule="Sphinx" customModuleProvider="target">
-                                    <rect key="frame" x="16" y="16" width="400" height="62"/>
+                                    <rect key="frame" x="16" y="16" width="204" height="62"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="62" id="DCs-zC-qth"/>
-                                        <constraint firstAttribute="width" constant="400" id="Mbh-W4-07A"/>
+                                        <constraint firstAttribute="width" constant="204" id="Mbh-W4-07A"/>
                                     </constraints>
                                 </customView>
                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="anB-jC-h00" customClass="AudioMessageView" customModule="Sphinx" customModuleProvider="target">
@@ -112,49 +112,50 @@
                             </constraints>
                         </customView>
                         <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WdK-U0-xc0">
-                            <rect key="frame" x="0.0" y="0.0" width="1174" height="186"/>
+                            <rect key="frame" x="0.0" y="0.0" width="1220" height="186"/>
                             <subviews>
                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="Xl7-aO-kUk">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="186"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="220" height="186"/>
                                     <subviews>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="6lH-Ev-Ucz" customClass="MediaMessageView" customModule="Sphinx" customModuleProvider="target">
-                                            <rect key="frame" x="16" y="16" width="384" height="170"/>
+                                            <rect key="frame" x="16" y="16" width="204" height="170"/>
                                         </customView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="186" id="39B-Xz-ILe"/>
                                         <constraint firstAttribute="bottom" secondItem="6lH-Ev-Ucz" secondAttribute="bottom" constant="16" id="Ry7-UP-icW"/>
                                         <constraint firstItem="6lH-Ev-Ucz" firstAttribute="top" secondItem="Xl7-aO-kUk" secondAttribute="top" id="W9u-bz-XUA"/>
-                                        <constraint firstAttribute="width" constant="400" id="dMw-gj-BgD"/>
+                                        <constraint firstAttribute="width" constant="220" id="dMw-gj-BgD"/>
                                         <constraint firstItem="6lH-Ev-Ucz" firstAttribute="leading" secondItem="Xl7-aO-kUk" secondAttribute="leading" constant="16" id="ed4-Px-xqM"/>
                                         <constraint firstAttribute="trailing" secondItem="6lH-Ev-Ucz" secondAttribute="trailing" id="uhl-Up-g1Q"/>
                                     </constraints>
                                 </customView>
                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YlO-at-1xE">
-                                    <rect key="frame" x="400" y="0.0" width="774" height="186"/>
+                                    <rect key="frame" x="220" y="0.0" width="1000" height="186"/>
                                     <subviews>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="oDd-gg-HZ8">
-                                            <rect key="frame" x="0.0" y="50" width="758" height="136"/>
+                                            <rect key="frame" x="0.0" y="50" width="1000" height="136"/>
                                             <subviews>
                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="clM-Wn-u17">
-                                                    <rect key="frame" x="10" y="0.0" width="748" height="136"/>
+                                                    <rect key="frame" x="10" y="0.0" width="990" height="136"/>
                                                     <subviews>
                                                         <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRy-te-G3m" customClass="DisabledScrollView" customModule="Sphinx" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="16" width="748" height="120"/>
+                                                            <rect key="frame" x="0.0" y="16" width="990" height="120"/>
                                                             <clipView key="contentView" drawsBackground="NO" id="aRe-Am-Wey">
-                                                                <rect key="frame" x="0.0" y="0.0" width="748" height="120"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="990" height="120"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
                                                                     <textView wantsLayer="YES" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="8wc-Bi-exs">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="732" height="120"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="974" height="120"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" red="0.109803915" green="0.13333332540000001" blue="0.1725490093" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                        <size key="minSize" width="732" height="120"/>
-                                                                        <size key="maxSize" width="781" height="10000000"/>
+                                                                        <color key="backgroundColor" name="NewHeaderBG"/>
+                                                                        <size key="minSize" width="974" height="120"/>
+                                                                        <size key="maxSize" width="990" height="10000000"/>
                                                                         <color key="insertionPointColor" name="textInsertionPointColor" catalog="System" colorSpace="catalog"/>
                                                                     </textView>
                                                                 </subviews>
+                                                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </clipView>
                                                             <edgeInsets key="contentInsets" left="0.0" right="16" top="0.0" bottom="0.0"/>
                                                             <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="x6L-L0-blS">
@@ -162,7 +163,7 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </scroller>
                                                             <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="1ie-lh-WP7">
-                                                                <rect key="frame" x="716" y="0.0" width="16" height="120"/>
+                                                                <rect key="frame" x="958" y="0.0" width="16" height="120"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </scroller>
                                                         </scrollView>
@@ -174,12 +175,12 @@
                                                         <constraint firstAttribute="bottom" secondItem="yRy-te-G3m" secondAttribute="bottom" constant="16" id="VQw-wF-bKM"/>
                                                     </constraints>
                                                 </customView>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="o0s-gd-MXD" customClass="MessageTextField" customModule="Sphinx" customModuleProvider="target">
-                                                    <rect key="frame" x="14" y="16" width="746" height="120"/>
+                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="o0s-gd-MXD" customClass="MessageTextField" customModule="Sphinx" customModuleProvider="target">
+                                                    <rect key="frame" x="14" y="16" width="988" height="120"/>
                                                     <textFieldCell key="cell" selectable="YES" title="Label" id="wQx-gQ-7cJ">
                                                         <font key="font" metaFont="system" size="16"/>
                                                         <color key="textColor" name="Text"/>
-                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </textFieldCell>
                                                 </textField>
                                             </subviews>
@@ -195,10 +196,10 @@
                                             </constraints>
                                         </customView>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="02m-U3-tfS">
-                                            <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="230" height="50"/>
                                             <subviews>
                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="4BF-xy-htS" customClass="NewMessageBoostView" customModule="Sphinx" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="8" width="250" height="42"/>
+                                                    <rect key="frame" x="0.0" y="8" width="230" height="42"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="42" id="ZVW-5l-b66"/>
                                                     </constraints>
@@ -209,12 +210,12 @@
                                                 <constraint firstAttribute="height" constant="50" id="WdB-db-18z"/>
                                                 <constraint firstItem="4BF-xy-htS" firstAttribute="leading" secondItem="02m-U3-tfS" secondAttribute="leading" id="X1u-g1-qIW"/>
                                                 <constraint firstItem="4BF-xy-htS" firstAttribute="top" secondItem="02m-U3-tfS" secondAttribute="top" id="duE-4A-x4I"/>
-                                                <constraint firstAttribute="width" constant="250" id="ry9-PZ-j5e"/>
+                                                <constraint firstAttribute="width" constant="230" id="ry9-PZ-j5e"/>
                                             </constraints>
                                         </customView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="oDd-gg-HZ8" secondAttribute="trailing" constant="16" id="Xcg-4R-676"/>
+                                        <constraint firstAttribute="trailing" secondItem="oDd-gg-HZ8" secondAttribute="trailing" id="Xcg-4R-676"/>
                                         <constraint firstItem="02m-U3-tfS" firstAttribute="leading" secondItem="YlO-at-1xE" secondAttribute="leading" id="gQk-P0-5e2"/>
                                         <constraint firstItem="oDd-gg-HZ8" firstAttribute="leading" secondItem="YlO-at-1xE" secondAttribute="leading" id="zZA-JB-AAh"/>
                                     </constraints>
@@ -259,7 +260,7 @@
                     </customSpacing>
                 </stackView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="L6P-gE-jRx" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                    <rect key="frame" x="1158" y="115" width="26" height="22"/>
+                    <rect key="frame" x="1204" y="115" width="26" height="22"/>
                     <buttonCell key="cell" type="bevel" title="" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="1lQ-0m-pTW" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" size="22" name="MaterialIcons-Regular"/>
@@ -269,7 +270,7 @@
                         <action selector="optionsButtonClicked:" target="-2" id="FgF-MF-YQH"/>
                     </connections>
                 </button>
-                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xTN-ih-vgo" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xTN-ih-vgo" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                     <rect key="frame" x="1186" y="111" width="34" height="30"/>
                     <buttonCell key="cell" type="square" title="close" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="L95-Hj-Xnu">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -283,14 +284,14 @@
             </subviews>
             <constraints>
                 <constraint firstItem="6pb-0h-aP6" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="79o-Lw-oKL"/>
-                <constraint firstAttribute="trailing" secondItem="rDL-y8-IEm" secondAttribute="trailing" constant="62" id="9Ia-MA-Jrx"/>
+                <constraint firstAttribute="trailing" secondItem="rDL-y8-IEm" secondAttribute="trailing" constant="16" id="9Ia-MA-Jrx"/>
                 <constraint firstItem="rDL-y8-IEm" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="IHi-TV-0qh"/>
                 <constraint firstItem="xTN-ih-vgo" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="Sww-CA-fCC"/>
                 <constraint firstAttribute="bottom" secondItem="6xK-O0-OVb" secondAttribute="bottom" id="U7W-tP-MvG"/>
                 <constraint firstAttribute="bottom" secondItem="6pb-0h-aP6" secondAttribute="bottom" id="WMZ-ai-4Zb"/>
                 <constraint firstItem="L6P-gE-jRx" firstAttribute="trailing" secondItem="6pb-0h-aP6" secondAttribute="trailing" constant="10" id="mXd-gF-8Rb"/>
                 <constraint firstItem="rDL-y8-IEm" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="p2z-lc-yp0"/>
-                <constraint firstAttribute="trailing" secondItem="6pb-0h-aP6" secondAttribute="trailing" constant="62" id="pj3-TF-RfW"/>
+                <constraint firstAttribute="trailing" secondItem="6pb-0h-aP6" secondAttribute="trailing" constant="16" id="pj3-TF-RfW"/>
                 <constraint firstAttribute="trailing" secondItem="xTN-ih-vgo" secondAttribute="trailing" constant="16" id="q48-HG-1px"/>
                 <constraint firstItem="6xK-O0-OVb" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="qjC-my-6XK"/>
                 <constraint firstAttribute="trailing" secondItem="6xK-O0-OVb" secondAttribute="trailing" id="r3s-R6-t2l"/>

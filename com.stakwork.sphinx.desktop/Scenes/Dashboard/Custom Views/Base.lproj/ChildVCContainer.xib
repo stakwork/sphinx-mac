@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,7 +30,7 @@
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="cA0-7f-W87">
                     <rect key="frame" x="0.0" y="0.0" width="700" height="700"/>
                     <subviews>
-                        <box boxType="custom" borderType="none" cornerRadius="4" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="H0T-4y-8Ta">
+                        <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="H0T-4y-8Ta">
                             <rect key="frame" x="0.0" y="0.0" width="700" height="700"/>
                             <view key="contentView" id="6At-fp-C8a">
                                 <rect key="frame" x="0.0" y="0.0" width="700" height="700"/>
@@ -56,7 +56,7 @@
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="left" imageScaling="proportionallyDown" image="bottomBar1" id="3as-Iv-K2Y"/>
                                                                     <color key="contentTintColor" name="Text"/>
                                                                 </imageView>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4T2-BM-LSE">
+                                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4T2-BM-LSE">
                                                                     <rect key="frame" x="43" y="18" width="67" height="20"/>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Request" id="uwE-hz-Zc1">
                                                                         <font key="font" size="17" name="Roboto-Regular"/>
@@ -114,7 +114,7 @@
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="left" imageScaling="proportionallyDown" image="bottomBar4" id="cvf-uT-ayI"/>
                                                                     <color key="contentTintColor" name="Text"/>
                                                                 </imageView>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4N2-Q7-AZO">
+                                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4N2-Q7-AZO">
                                                                     <rect key="frame" x="43" y="18" width="43" height="20"/>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Send" id="6nj-Kc-WVc">
                                                                         <font key="font" size="17" name="Roboto-Regular"/>
@@ -133,7 +133,7 @@
                                                                     </constraints>
                                                                     <color key="fillColor" name="LightDivider"/>
                                                                 </box>
-                                                                <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="FYP-S1-yzo">
+                                                                <button tag="1" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FYP-S1-yzo">
                                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="55"/>
                                                                     <buttonCell key="cell" type="bevel" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="ppb-qk-vu7">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -164,7 +164,7 @@
                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="81m-Ym-HK5">
                                                             <rect key="frame" x="30" y="0.0" width="240" height="50"/>
                                                             <subviews>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sgd-8b-mwd">
+                                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sgd-8b-mwd">
                                                                     <rect key="frame" x="93" y="18" width="54" height="15"/>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="CANCEL" id="DDa-Up-Zo6">
                                                                         <font key="font" size="12" name="Montserrat-Regular"/>
@@ -172,7 +172,7 @@
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <button verticalHuggingPriority="750" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="NlX-jB-tvI">
+                                                                <button tag="4" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NlX-jB-tvI">
                                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
                                                                     <buttonCell key="cell" type="bevel" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="bt8-44-xqS">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -212,7 +212,7 @@
                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="wQU-bV-iwJ">
                                                             <rect key="frame" x="30" y="105" width="240" height="55"/>
                                                             <subviews>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sZ3-3P-mh6">
+                                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sZ3-3P-mh6">
                                                                     <rect key="frame" x="-2" y="15" width="49" height="25"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="45" id="C3x-K6-Au4"/>
@@ -223,7 +223,7 @@
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I7Z-7n-ueY">
+                                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I7Z-7n-ueY">
                                                                     <rect key="frame" x="43" y="18" width="48" height="20"/>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Audio" id="4py-kj-WSc">
                                                                         <font key="font" size="17" name="Roboto-Regular"/>
@@ -242,7 +242,7 @@
                                                                     </constraints>
                                                                     <color key="fillColor" name="LightDivider"/>
                                                                 </box>
-                                                                <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="lot-wl-f0k">
+                                                                <button tag="2" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lot-wl-f0k">
                                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="55"/>
                                                                     <buttonCell key="cell" type="bevel" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="osy-Uh-d7s">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -272,7 +272,7 @@
                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="9l3-T1-PZ9">
                                                             <rect key="frame" x="30" y="50" width="240" height="55"/>
                                                             <subviews>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QD1-mB-iUW">
+                                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QD1-mB-iUW">
                                                                     <rect key="frame" x="-2" y="15" width="49" height="25"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="45" id="0gb-Ek-Vlm"/>
@@ -283,7 +283,7 @@
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eTg-YX-TAP">
+                                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eTg-YX-TAP">
                                                                     <rect key="frame" x="43" y="18" width="116" height="20"/>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Video or Audio" id="jaw-cy-Dda">
                                                                         <font key="font" size="17" name="Roboto-Regular"/>
@@ -302,7 +302,7 @@
                                                                     </constraints>
                                                                     <color key="fillColor" name="LightDivider"/>
                                                                 </box>
-                                                                <button verticalHuggingPriority="750" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="Rg0-gB-0qV">
+                                                                <button tag="3" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rg0-gB-0qV">
                                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="55"/>
                                                                     <buttonCell key="cell" type="bevel" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="Qdu-Vg-fhp">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -332,7 +332,7 @@
                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="Hi7-U7-rCd">
                                                             <rect key="frame" x="30" y="0.0" width="240" height="50"/>
                                                             <subviews>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BjQ-qy-taW">
+                                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BjQ-qy-taW">
                                                                     <rect key="frame" x="93" y="18" width="54" height="15"/>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="CANCEL" id="cgv-4a-Bc8">
                                                                         <font key="font" size="12" name="Montserrat-Regular"/>
@@ -340,7 +340,7 @@
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <button verticalHuggingPriority="750" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="L1U-jC-1Ia">
+                                                                <button tag="4" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="L1U-jC-1Ia">
                                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
                                                                     <buttonCell key="cell" type="bevel" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="2ob-5k-a8Q">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
