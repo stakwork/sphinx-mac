@@ -262,7 +262,8 @@ extension ContactsService : NSFetchedResultsControllerDelegate {
     }
     
     func forceUpdate() {
-        self.contacts = UserContact.chatList()
+        self.allContacts = UserContact.chatList()
+        self.contacts = []
         self.chats = Chat.getAll()
         
         processContactsAndChats()
