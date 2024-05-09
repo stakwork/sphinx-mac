@@ -102,13 +102,13 @@
                             </constraints>
                         </customView>
                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="3" horizontalStackHuggingPriority="248.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="749" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zvz-rW-kZ8">
-                            <rect key="frame" x="62" y="1" width="363" height="44"/>
+                            <rect key="frame" x="62" y="1" width="366" height="44"/>
                             <subviews>
                                 <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tfQ-XL-WAx">
-                                    <rect key="frame" x="0.0" y="21" width="159" height="23"/>
+                                    <rect key="frame" x="0.0" y="21" width="158" height="23"/>
                                     <subviews>
                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DGs-Cx-Khc">
-                                            <rect key="frame" x="-2" y="2" width="146" height="19"/>
+                                            <rect key="frame" x="-2" y="2" width="145" height="19"/>
                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" title="Tomas A Timinskas" id="NOf-kO-8h0">
                                                 <font key="font" size="16" name="Roboto-Medium"/>
                                                 <color key="textColor" name="PrimaryText"/>
@@ -116,10 +116,10 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Zj-Kl-BUt">
-                                            <rect key="frame" x="142" y="4" width="19" height="15"/>
+                                            <rect key="frame" x="141" y="4" width="19" height="15"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="lock" id="B17-Ba-ow7">
                                                 <font key="font" size="15" name="MaterialIcons-Regular"/>
-                                                <color key="textColor" name="SecondaryText"/>
+                                                <color key="textColor" name="PlaceholderText"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
@@ -138,7 +138,7 @@
                                     </customSpacing>
                                 </stackView>
                                 <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yWz-dQ-yMG">
-                                    <rect key="frame" x="0.0" y="0.0" width="305" height="18"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="304" height="18"/>
                                     <subviews>
                                         <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="NbI-90-UUd">
                                             <rect key="frame" x="-2" y="1" width="21" height="16"/>
@@ -149,7 +149,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lXx-aV-dLV">
-                                            <rect key="frame" x="-2" y="1" width="309" height="16"/>
+                                            <rect key="frame" x="-2" y="1" width="308" height="16"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="16" id="fqX-LU-yCr"/>
                                             </constraints>
@@ -197,10 +197,10 @@
                             </customSpacing>
                         </stackView>
                         <stackView distribution="fill" orientation="vertical" alignment="trailing" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="804-BU-vML">
-                            <rect key="frame" x="433" y="1" width="71" height="43"/>
+                            <rect key="frame" x="436" y="1" width="68" height="43"/>
                             <subviews>
-                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hGs-zl-0j0">
-                                    <rect key="frame" x="0.0" y="20" width="71" height="23"/>
+                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hGs-zl-0j0">
+                                    <rect key="frame" x="0.0" y="20" width="68" height="23"/>
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aIg-7o-bsA">
                                             <rect key="frame" x="0.0" y="5" width="14" height="14"/>
@@ -208,11 +208,11 @@
                                                 <constraint firstAttribute="height" constant="14" id="AXU-Rv-Cjv"/>
                                                 <constraint firstAttribute="width" constant="14" id="zFp-Sn-sx8"/>
                                             </constraints>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="muteOnIcon" id="nXD-I6-WO9"/>
-                                            <color key="contentTintColor" name="SecondaryText"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="newMuteIcon" id="nXD-I6-WO9"/>
+                                            <color key="contentTintColor" name="PlaceholderText"/>
                                         </imageView>
                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="lCr-zc-pEk">
-                                            <rect key="frame" x="22" y="5" width="51" height="15"/>
+                                            <rect key="frame" x="20" y="5" width="50" height="13"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="23:05 AM" id="p2k-XL-yj6">
                                                 <font key="font" size="11" name="Roboto-Light"/>
                                                 <color key="textColor" name="SecondaryText"/>
@@ -264,7 +264,7 @@
                                     </customSpacing>
                                 </stackView>
                                 <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kBW-g2-8lk">
-                                    <rect key="frame" x="21" y="0.0" width="50" height="20"/>
+                                    <rect key="frame" x="18" y="0.0" width="50" height="20"/>
                                     <subviews>
                                         <box hidden="YES" boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="AiS-Wu-Ekf">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="20"/>
@@ -390,12 +390,15 @@
         </customView>
     </objects>
     <resources>
-        <image name="muteOnIcon" width="18" height="18"/>
+        <image name="newMuteIcon" width="13" height="13"/>
         <namedColor name="Divider">
             <color red="0.86274509803921573" green="0.8784313725490196" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="HeaderBG">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PlaceholderText">
+            <color red="0.81568627450980391" green="0.83529411764705885" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="PrimaryBlue">
             <color red="0.38039215686274508" green="0.54117647058823526" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

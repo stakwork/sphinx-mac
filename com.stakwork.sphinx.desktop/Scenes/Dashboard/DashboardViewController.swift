@@ -77,11 +77,11 @@ class DashboardViewController: NSViewController {
         
         dashboardSplitView.delegate = self
         dashboardSplitView.dividerStyle = .thick
-        dashboardSplitView.setValue(NSColor.Sphinx.SplitDividerColor, forKey: "dividerColor")
+        dashboardSplitView.setValue(NSColor.Sphinx.Divider2, forKey: "dividerColor")
         
         dashboardRightSplitView.delegate = self
         dashboardRightSplitView.dividerStyle = .thin
-        dashboardRightSplitView.setValue(NSColor.Sphinx.SplitDividerColor, forKey: "dividerColor")
+        dashboardRightSplitView.setValue(NSColor.Sphinx.Divider2, forKey: "dividerColor")
         
         SphinxSocketManager.sharedInstance.setDelegate(delegate: self)
         

@@ -48,10 +48,10 @@
                                                     <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" id="pbs-0K-Nu1">
                                                         <size key="itemSize" width="50" height="50"/>
                                                     </collectionViewFlowLayout>
-                                                    <color key="primaryBackgroundColor" name="LightBG"/>
+                                                    <color key="primaryBackgroundColor" name="HeaderBG"/>
                                                 </collectionView>
                                             </subviews>
-                                            <color key="backgroundColor" name="LightBG"/>
+                                            <color key="backgroundColor" name="HeaderBG"/>
                                         </clipView>
                                         <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="3kt-2Q-F05">
                                             <rect key="frame" x="-100" y="-100" width="393" height="16"/>
@@ -155,7 +155,7 @@
                                 </customSpacing>
                             </stackView>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jgb-o9-nG3">
-                                <rect key="frame" x="23" y="50" width="82" height="14"/>
+                                <rect key="frame" x="23" y="50" width="81" height="14"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Version 1.0.28" id="a9T-h0-eiW">
                                     <font key="font" size="12" name="Roboto-Regular"/>
                                     <color key="textColor" name="PrimaryText"/>
@@ -163,7 +163,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HeN-GF-9bN">
-                                <rect key="frame" x="23" y="32" width="197" height="14"/>
+                                <rect key="frame" x="23" y="32" width="195" height="14"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="© 2024 Stakwork All rights reserved" id="ngJ-Cm-c3a">
                                     <font key="font" size="12" name="Roboto-Regular"/>
                                     <color key="textColor" name="SecondaryText"/>
@@ -190,7 +190,7 @@
                         <constraint firstAttribute="height" constant="472" id="dr2-Ig-3ep"/>
                     </constraints>
                     <color key="borderColor" red="0.082352941176470587" green="0.11764705882352941" blue="0.15294117647058825" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                    <color key="fillColor" name="LightBG"/>
+                    <color key="fillColor" name="HeaderBG"/>
                 </box>
                 <box clipsToBounds="YES" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="6" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="mYi-R7-KIc">
                     <rect key="frame" x="386" y="595" width="32" height="32"/>
@@ -263,8 +263,8 @@
         <namedColor name="GreenBorder">
             <color red="0.18431372549019609" green="0.70196078431372544" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="LightBG">
-            <color red="0.94901960784313721" green="0.95294117647058818" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="HeaderBG">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="PrimaryText">
             <color red="0.16078431372549021" green="0.17254901960784313" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

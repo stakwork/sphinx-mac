@@ -159,8 +159,7 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
         unreadMessageBadgeLabel.stringValue = unreadMCount > 99 ? "99+" : "\(unreadMCount)"
         
         if chatListObject.getChat()?.isMuted() == true || chatListObject.getChat()?.willNotifyOnlyMentions() == true {
-            unreadMessageBadgeContainer.alphaValue = 0.8
-            unreadMessageBadgeContainer.fillColor = .Sphinx.PlaceholderText
+            unreadMessageBadgeContainer.fillColor = .Sphinx.SecondaryText.withAlphaComponent(0.15)
             unreadMessageBadgeLabel.textColor = .Sphinx.SecondaryText
         } else {
             unreadMessageBadgeContainer.alphaValue = 1.0
@@ -170,7 +169,7 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
         
         if chatListObject.getChat()?.isMuted() == true {
             mentionsBadgeContainer.alphaValue = 0.8
-            mentionsBadgeContainer.fillColor = .Sphinx.PlaceholderText
+            mentionsBadgeContainer.fillColor = .Sphinx.SecondaryText.withAlphaComponent(0.15)
             mentionsBadgeLabel.textColor = .Sphinx.SecondaryText
         } else {
             mentionsBadgeContainer.alphaValue = 1.0

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -41,15 +41,15 @@
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LMn-k9-nDx" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                                 <rect key="frame" x="563" y="254" width="30" height="38"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="QRh-DF-w8U"/>
-                                    <constraint firstAttribute="height" constant="38" id="zFY-Mt-PNj"/>
-                                </constraints>
                                 <buttonCell key="cell" type="square" title="close" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="c7E-cB-JyY">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="25" name="MaterialIcons-Regular"/>
                                 </buttonCell>
                                 <color key="contentTintColor" name="MainBottomIcons"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="QRh-DF-w8U"/>
+                                    <constraint firstAttribute="height" constant="38" id="zFY-Mt-PNj"/>
+                                </constraints>
                                 <connections>
                                     <action selector="closeViewButtonClicked:" target="-2" id="D32-3M-1OU"/>
                                 </connections>
@@ -60,7 +60,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="475" height="38"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SCU-hN-vlM">
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SCU-hN-vlM">
                                             <rect key="frame" x="8" y="9" width="25" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="Add-oG-hQJ"/>
@@ -81,16 +81,16 @@
                                             </textFieldCell>
                                         </textField>
                                         <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wlz-73-1VY" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                                            <rect key="frame" x="440" y="4" width="30" height="30"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="30" id="cy5-Ef-fCi"/>
-                                                <constraint firstAttribute="height" constant="30" id="rpX-Fo-dAD"/>
-                                            </constraints>
+                                            <rect key="frame" x="440" y="1" width="30" height="36"/>
                                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSStopProgressFreestandingTemplate" imagePosition="only" alignment="center" inset="2" id="Oi7-Y4-0Zb">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <color key="contentTintColor" name="PlaceholderText"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="30" id="cy5-Ef-fCi"/>
+                                                <constraint firstAttribute="height" constant="30" id="rpX-Fo-dAD"/>
+                                            </constraints>
                                             <connections>
                                                 <action selector="clearFieldButtonClicked:" target="-2" id="9P5-o6-bAn"/>
                                             </connections>
@@ -111,22 +111,11 @@
                                 </constraints>
                                 <color key="fillColor" name="DashboardSearch"/>
                             </box>
-                            <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="ZEX-57-5dq">
-                                <rect key="frame" x="0.0" y="299" width="601" height="1"/>
-                                <view key="contentView" id="SCa-nO-Quc">
-                                    <rect key="frame" x="0.0" y="0.0" width="601" height="1"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="KtX-Ht-uW9"/>
-                                </constraints>
-                                <color key="fillColor" name="Divider"/>
-                            </box>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="Ef5-PN-bQQ">
                                 <rect key="frame" x="491" y="254" width="70" height="38"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TK8-fB-ILX">
-                                        <rect key="frame" x="2" y="23" width="66" height="13"/>
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TK8-fB-ILX">
+                                        <rect key="frame" x="3" y="23" width="65" height="13"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Powered by" id="R0W-ez-1nN">
                                             <font key="font" size="11" name="Roboto-Regular"/>
                                             <color key="textColor" name="Text"/>
@@ -166,7 +155,7 @@
                                             <action selector="modeButtonClicked:" target="-2" id="JCn-Uu-ISE"/>
                                         </connections>
                                     </button>
-                                    <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="BWn-69-p3w">
+                                    <button tag="1" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BWn-69-p3w">
                                         <rect key="frame" x="200" y="0.0" width="200" height="40"/>
                                         <buttonCell key="cell" type="square" title="GIFS" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="ffR-Mh-NVQ">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -177,7 +166,7 @@
                                             <action selector="modeButtonClicked:" target="-2" id="jXM-KT-JIs"/>
                                         </connections>
                                     </button>
-                                    <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="wHU-qK-oZY">
+                                    <button tag="2" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wHU-qK-oZY">
                                         <rect key="frame" x="400" y="0.0" width="201" height="40"/>
                                         <buttonCell key="cell" type="square" title="STICKERS" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="Eb0-68-dEN">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -309,14 +298,12 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="Ef5-PN-bQQ" firstAttribute="leading" secondItem="Sbk-a4-qXf" secondAttribute="trailing" constant="8" id="0ot-9O-jsf"/>
-                            <constraint firstAttribute="trailing" secondItem="ZEX-57-5dq" secondAttribute="trailing" id="2cg-5D-Pyj"/>
                             <constraint firstAttribute="trailing" secondItem="g0v-CP-fLf" secondAttribute="trailing" id="3DS-28-Tda"/>
                             <constraint firstItem="Sbk-a4-qXf" firstAttribute="leading" secondItem="dBI-Kj-a58" secondAttribute="leading" constant="8" id="7Op-rp-9DK"/>
                             <constraint firstAttribute="trailing" secondItem="ErW-8o-07e" secondAttribute="trailing" id="90A-jO-ALl"/>
                             <constraint firstItem="LMn-k9-nDx" firstAttribute="leading" secondItem="Ef5-PN-bQQ" secondAttribute="trailing" constant="2" id="I5s-Bj-gEp"/>
                             <constraint firstItem="qtA-N5-OS6" firstAttribute="top" secondItem="wdZ-3c-PTm" secondAttribute="bottom" id="IZH-GO-gvN"/>
                             <constraint firstItem="wdZ-3c-PTm" firstAttribute="top" secondItem="LMn-k9-nDx" secondAttribute="bottom" constant="8" id="J4j-Wk-pp2"/>
-                            <constraint firstItem="ZEX-57-5dq" firstAttribute="top" secondItem="dBI-Kj-a58" secondAttribute="top" id="LC8-re-MxF"/>
                             <constraint firstAttribute="trailing" secondItem="wdZ-3c-PTm" secondAttribute="trailing" id="Nsz-Qp-Mpa"/>
                             <constraint firstItem="ErW-8o-07e" firstAttribute="leading" secondItem="dBI-Kj-a58" secondAttribute="leading" id="O87-xe-gwc"/>
                             <constraint firstItem="qtA-N5-OS6" firstAttribute="top" secondItem="QGE-44-ZMO" secondAttribute="bottom" id="QD5-lV-ORi"/>
@@ -325,7 +312,6 @@
                             <constraint firstAttribute="bottom" secondItem="qtA-N5-OS6" secondAttribute="bottom" id="bIz-xl-jli"/>
                             <constraint firstAttribute="trailing" secondItem="LMn-k9-nDx" secondAttribute="trailing" constant="8" id="d21-Vf-k8R"/>
                             <constraint firstItem="LMn-k9-nDx" firstAttribute="top" secondItem="dBI-Kj-a58" secondAttribute="top" constant="8" id="fL2-bf-aga"/>
-                            <constraint firstItem="ZEX-57-5dq" firstAttribute="leading" secondItem="dBI-Kj-a58" secondAttribute="leading" id="fTA-xu-9UK"/>
                             <constraint firstAttribute="trailing" secondItem="qtA-N5-OS6" secondAttribute="trailing" id="gg4-rN-AxL"/>
                             <constraint firstItem="ErW-8o-07e" firstAttribute="top" secondItem="LMn-k9-nDx" secondAttribute="bottom" constant="8" id="hVA-OJ-JnW"/>
                             <constraint firstItem="g0v-CP-fLf" firstAttribute="top" secondItem="LMn-k9-nDx" secondAttribute="bottom" constant="8" id="hZW-ln-qEb"/>
@@ -352,13 +338,10 @@
         </customView>
     </objects>
     <resources>
-        <image name="NSStopProgressFreestandingTemplate" width="14" height="14"/>
+        <image name="NSStopProgressFreestandingTemplate" width="20" height="20"/>
         <image name="giphyLogo" width="70" height="21.5"/>
         <namedColor name="DashboardSearch">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Divider">
-            <color red="0.86274509803921573" green="0.8784313725490196" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.95294117647058818" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="HeaderBG">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

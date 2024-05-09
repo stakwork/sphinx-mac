@@ -118,6 +118,7 @@ extension ChatListViewController : NSTextFieldDelegate {
         if (obj.object as? NSTextField) == searchField {
             let currentString = (searchField?.stringValue ?? "")
             searchClearButton.isHidden = currentString.isEmpty
+            searchIcon.isHidden = !currentString.isEmpty
             contactsService.updateChatListWith(term: currentString)
         }
     }

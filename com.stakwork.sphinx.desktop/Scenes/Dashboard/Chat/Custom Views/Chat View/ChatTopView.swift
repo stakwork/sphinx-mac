@@ -35,12 +35,16 @@ class ChatTopView: NSView, LoadableNib {
     }
     
     func setup() {
-        self.addShadow(
-            location: VerticalLocation.bottom,
-            color: NSColor.black,
-            opacity: 0.3,
-            radius: 5.0
-        )
+        if NSAppearance.current.name == .darkAqua {
+            self.removeShadow()
+        } else {
+            self.addShadow(
+                location: VerticalLocation.bottom,
+                color: NSColor.black,
+                opacity: 0.1,
+                radius: 5.0
+            )
+        }
     }
     
     func updateViewOnTribeFetch() {

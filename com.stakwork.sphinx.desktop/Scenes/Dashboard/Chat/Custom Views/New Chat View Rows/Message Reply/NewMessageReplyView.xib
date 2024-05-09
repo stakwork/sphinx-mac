@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -72,7 +72,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="40" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bTm-dB-3Ix">
+                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bTm-dB-3Ix">
                                                         <rect key="frame" x="8" y="15" width="24" height="20"/>
                                                         <textFieldCell key="cell" lineBreakMode="clipping" title="videocam" id="gLe-gv-nPU">
                                                             <font key="font" size="20" name="MaterialIcons-Regular"/>
@@ -101,7 +101,7 @@
                                         <constraint firstItem="73y-wb-kaD" firstAttribute="top" secondItem="Sys-8A-pkK" secondAttribute="top" id="v7Z-o6-wJ5"/>
                                     </constraints>
                                 </customView>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Ni-xh-vxJ">
+                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Ni-xh-vxJ">
                                     <rect key="frame" x="-2" y="10" width="44" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="40" id="E7O-FJ-euQ"/>
@@ -132,18 +132,18 @@
                                 <stackView distribution="equalSpacing" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jwx-pk-wRo">
                                     <rect key="frame" x="0.0" y="2" width="472" height="32"/>
                                     <subviews>
-                                        <textField horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="puL-ef-n3H">
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="puL-ef-n3H">
                                             <rect key="frame" x="-2" y="18" width="476" height="14"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Unknown" id="rRt-hC-3GE">
-                                                <font key="font" size="12" name="Roboto-Bold"/>
+                                                <font key="font" size="12" name="Roboto-Medium"/>
                                                 <color key="textColor" name="SphinxOrange"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LMq-zJ-1iz">
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LMq-zJ-1iz">
                                             <rect key="frame" x="-2" y="0.0" width="476" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" title="Label" id="267-xo-kC9">
-                                                <font key="font" size="14" name="Roboto-Regular"/>
+                                                <font key="font" size="14" name="Roboto-Light"/>
                                                 <color key="textColor" name="Text"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -176,7 +176,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="49" height="39"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gE0-Ke-zf9">
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gE0-Ke-zf9">
                                         <rect key="frame" x="12" y="11" width="25" height="17"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="" id="c4r-gS-U6G">
                                             <font key="font" size="17" name="MaterialIcons-Regular"/>
@@ -239,17 +239,17 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="xkj-jx-uLz"/>
                     </constraints>
-                    <color key="fillColor" name="Body"/>
+                    <color key="fillColor" name="ChatsHeaderDivider"/>
                 </box>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EYy-Fe-TLg" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="605" height="50"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="cet-vK-2bS"/>
-                    </constraints>
                     <buttonCell key="cell" type="bevel" bezelStyle="rounded" alignment="left" transparent="YES" imageScaling="proportionallyDown" inset="2" id="7HA-44-Sas">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="cet-vK-2bS"/>
+                    </constraints>
                     <connections>
                         <action selector="replyButtonClicked:" target="-2" id="KnL-l1-ITP"/>
                     </connections>
@@ -271,8 +271,8 @@
         </customView>
     </objects>
     <resources>
-        <namedColor name="Body">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="ChatsHeaderDivider">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.10000000149011612" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="HeaderBG">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

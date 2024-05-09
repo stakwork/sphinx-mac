@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -72,14 +73,33 @@
                         <real value="3.4028234663852886e+38"/>
                     </customSpacing>
                 </stackView>
+                <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="5xx-m2-FZz">
+                    <rect key="frame" x="0.0" y="59" width="835" height="1"/>
+                    <view key="contentView" id="Jyo-2E-bjd">
+                        <rect key="frame" x="0.0" y="0.0" width="835" height="1"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="Nn6-Pa-n2S"/>
+                    </constraints>
+                    <color key="fillColor" name="ChatsHeaderDivider"/>
+                </box>
             </subviews>
             <constraints>
+                <constraint firstItem="5xx-m2-FZz" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="0ke-af-Bgn"/>
+                <constraint firstAttribute="trailing" secondItem="5xx-m2-FZz" secondAttribute="trailing" id="5C4-gV-2Tw"/>
                 <constraint firstAttribute="trailing" secondItem="pXa-h9-I4V" secondAttribute="trailing" id="5s6-AX-he0"/>
                 <constraint firstItem="pXa-h9-I4V" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="OCA-2Z-nuK"/>
                 <constraint firstItem="pXa-h9-I4V" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="o9h-0F-DvU"/>
                 <constraint firstAttribute="bottom" secondItem="pXa-h9-I4V" secondAttribute="bottom" id="q71-jg-g48"/>
+                <constraint firstItem="5xx-m2-FZz" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="sea-to-sb1"/>
             </constraints>
             <point key="canvasLocation" x="139" y="-36"/>
         </customView>
     </objects>
+    <resources>
+        <namedColor name="ChatsHeaderDivider">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.10000000149011612" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>
