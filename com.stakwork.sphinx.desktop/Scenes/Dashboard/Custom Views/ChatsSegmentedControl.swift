@@ -24,13 +24,13 @@ class ChatsSegmentedControl: NSView {
     private var buttonTitleBadges: [NSView]!
     private var selectorView: NSView!
 
-    public var buttonBackgroundColor: NSColor = .Sphinx.HeaderBG
-    public var buttonTextColor: NSColor = .Sphinx.DashboardWashedOutText
-    public var activeTextColor: NSColor = .Sphinx.PrimaryText
+    public let buttonBackgroundColor: NSColor = .Sphinx.HeaderBG
+    public let buttonTextColor: NSColor = .Sphinx.SecondaryText
+    public let activeTextColor: NSColor = .Sphinx.PrimaryText
     
-    public var buttonTitleFont = NSFont(
+    public let buttonTitleFont = NSFont(
         name: "Roboto-Medium",
-        size: 14.0
+        size: 13.0
     )!
     
     public var selectorViewColor: NSColor = .Sphinx.PrimaryBlue
@@ -158,16 +158,17 @@ extension ChatsSegmentedControl {
     private func configureSelectorView() {
         selectorView = NSView(
             frame: CGRect(
-                x: selectorPosition,
+                x: selectorPosition + (kButtonWidth * 0.2),
                 y: 0,
-                width: kButtonWidth,
-                height: 2
+                width: kButtonWidth * 0.6,
+                height: 3
             )
         )
         
         selectorView.wantsLayer = true
         selectorView.layer?.masksToBounds = true
         selectorView.layer?.backgroundColor = selectorViewColor.cgColor
+        selectorView.layer?.cornerRadius = 1.5
 
         addSubview(selectorView)
     }
@@ -243,7 +244,7 @@ extension ChatsSegmentedControl {
         
         AnimationHelper.animateViewWith(duration: 0.3, animationsBlock: {
             
-            self.selectorView.frame.origin.x = self.selectorPosition
+            self.selectorView.frame.origin.x = self.selectorPosition + (self.kButtonWidth * 0.2)
             
             let selectedButton = self.buttons[self.contactsService.selectedTabIndex]
             

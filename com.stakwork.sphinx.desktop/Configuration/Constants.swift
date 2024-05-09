@@ -28,7 +28,7 @@ class Constants {
     public static let kBoldSmallMessageFont = NSFont(name: "Roboto-Bold", size: 10.0)!
     public static var kMessagePreviewFont = NSFont(name: "Roboto-Light", size: 14.0)!
     public static var kNewMessagePreviewFont = NSFont(name: "Roboto-Bold", size: 14.0)!
-    public static var kChatNameFont = NSFont(name: "Roboto-Light", size: 16.0)!
+    public static var kChatNameFont = NSFont(name: "Roboto-Regular", size: 16.0)!
     public static var kChatNameHighlightedFont = NSFont(name: "Roboto-Bold", size: 16.0)!
     public static var kThreadHeaderFont = NSFont(name: "Roboto-Regular", size: 16.0)!
     public static var kThreadHeaderHighlightedFont = NSFont(name: "Roboto-Light", size: 16.0)!
@@ -86,7 +86,7 @@ class Constants {
             kEmojisFont = NSFont(name: "Roboto-Regular", size: 30.0)!
             kMessagePreviewFont = NSFont(name: "Roboto-Light", size: 12.0)!
             kNewMessagePreviewFont = NSFont(name: "Roboto-Light", size: 12.0)!
-            kChatNameFont = NSFont(name: "Roboto-Light", size: 14.0)!
+            kChatNameFont = NSFont(name: "Roboto-Regular", size: 14.0)!
             kChatNameHighlightedFont = NSFont(name: "Roboto-Bold", size: 14.0)!
             
             kMessageLineHeight = 31
@@ -108,7 +108,7 @@ class Constants {
             kEmojisFont = NSFont(name: "Roboto-Regular", size: 35.0)!
             kMessagePreviewFont = NSFont(name: "Roboto-Light", size: 13.0)!
             kNewMessagePreviewFont = NSFont(name: "Roboto-Light", size: 13.0)!
-            kChatNameFont = NSFont(name: "Roboto-Light", size: 15.0)!
+            kChatNameFont = NSFont(name: "Roboto-Regular", size: 15.0)!
             kChatNameHighlightedFont = NSFont(name: "Roboto-Bold", size: 15.0)!
             
             kMessageLineHeight = 32
@@ -130,7 +130,7 @@ class Constants {
             kEmojisFont = NSFont(name: "Roboto-Regular", size: 40.0)!
             kMessagePreviewFont = NSFont(name: "Roboto-Light", size: 14.0)!
             kNewMessagePreviewFont = NSFont(name: "Roboto-Light", size: 14.0)!
-            kChatNameFont = NSFont(name: "Roboto-Light", size: 16.0)!
+            kChatNameFont = NSFont(name: "Roboto-Regular", size: 16.0)!
             kChatNameHighlightedFont = NSFont(name: "Roboto-Bold", size: 16.0)!
             
             kMessageLineHeight = 35

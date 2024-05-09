@@ -230,6 +230,9 @@ class NewChatViewController: DashboardSplittedViewController {
     }
     
     func setupChatTopView() {
+        view.bringSubviewToFront(chatTopView)
+        view.bringSubviewToFront(threadHeaderView)
+        
         if isThread {
             setupThreadHeaderView()
             

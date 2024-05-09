@@ -101,6 +101,8 @@ extension NSColor {
         public static let HighlightedText = color("HighlightedText")
         public static let HighlightedTextBackground = color("HighlightedTextBackground")
         
+        public static let ChatsHeaderDivider = color("ChatsHeaderDivider")
+        
         private static func color(_ name: String) -> NSColor {
             return NSColor(named: NSColor.Name(name)) ?? NSColor.magenta
         }
