@@ -58,6 +58,12 @@ class EnterPinViewController: NSViewController {
         }
     }
     
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        
+        pinView.makeFieldFirstResponder()
+    }
+    
     // MARK: - For Testing Purpose
     func setViewForTesting() {
         let subViews = [pinView!, pinView.pinFieldView.textField!]

@@ -36,8 +36,8 @@ import WebKit
     let podcastPlayerController = PodcastPlayerController.sharedInstance
     
     public enum SphinxMenuButton: Int {
-        case Logout = 1
-        case RemoveAccount = 2
+        case Logout = 0
+        case RemoveAccount = 1 
     }
     
     var lastClearSDMemoryDate: Date? {
