@@ -19,6 +19,7 @@ extension ChatMessageFieldView {
             cursorPosition: messageTextView.cursorPosition
         ) {
             let initialPosition = messageTextView.cursorPosition
+            let rangeLocation = messageTextView.rangeLocation
             
             let startIndex = text.index(text.startIndex, offsetBy: (initialPosition ?? 0) - typedMentionText.count)
             let endIndex = text.index(text.startIndex, offsetBy: (initialPosition ?? 0))
@@ -34,7 +35,7 @@ extension ChatMessageFieldView {
                 execute: {
                     self.messageTextView.string = self.messageTextView.string.replacingOccurrences(of: "\t", with: "")
                     
-                    let position = (initialPosition ?? 0) + ("@\(autocompleteText) ".count - typedMentionText.count)
+                    let position = (rangeLocation ?? 0) + ("@\(autocompleteText) ".count - typedMentionText.count)
                     self.messageTextView.setSelectedRange(NSRange(location: position, length: 0))
                     self.messageTextView.window?.makeFirstResponder(self.messageTextView)
                 }

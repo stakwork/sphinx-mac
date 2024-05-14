@@ -83,7 +83,9 @@ final class PlaceHolderTextView: NSTextView {
             }
         }
         else if(event.keyCode == tabKey){
-            fieldDelegate?.didTapTab()
+            if (fieldDelegate?.didTapTab() ?? false) {
+                return
+            }
         }
         else if(event.keyCode == escapeKey){
             fieldDelegate?.didTapEscape()
