@@ -621,7 +621,7 @@ extension String {
             }
         }
         
-        return namesString.uppercased()
+        return namesString
     }
     
     func getFirstNameStyleString() -> String {

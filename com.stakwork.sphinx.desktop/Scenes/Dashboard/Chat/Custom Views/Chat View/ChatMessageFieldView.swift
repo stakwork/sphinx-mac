@@ -48,7 +48,14 @@ class ChatMessageFieldView: NSView, LoadableNib {
     
     var chat: Chat? = nil
     var contact: UserContact? = nil
-    var isThread: Bool = false
+    var threadUUID: String? = nil
+    
+    
+    var isThread: Bool {
+        get {
+            return threadUUID != nil
+        }
+    }
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
@@ -173,11 +180,12 @@ class ChatMessageFieldView: NSView, LoadableNib {
     func updateFieldStateFrom(
         _ chat: Chat?,
         contact: UserContact?,
-        isThread: Bool,
+        threadUUID: String?,
         with delegate: ChatBottomViewDelegate?
     ) {
         self.chat = chat
         self.contact = contact
+        self.threadUUID = threadUUID
         self.delegate = delegate
         
         let pending = chat?.isStatusPending() ?? true
@@ -196,7 +204,7 @@ class ChatMessageFieldView: NSView, LoadableNib {
     }
     
     func setOngoingMessage() {
-        if let text = ChatTrackingHandler.shared.getOngoingMessageFor(chatId: chat?.id) {
+        if let text = ChatTrackingHandler.shared.getOngoingMessageFor(chatId: chat?.id, threadUUID: threadUUID) {
             if text.isEmpty {
                 return
             }

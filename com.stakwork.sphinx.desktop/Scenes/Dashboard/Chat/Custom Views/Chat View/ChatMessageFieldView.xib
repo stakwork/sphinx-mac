@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -41,17 +41,6 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
                     <color key="fillColor" name="HeaderBG"/>
-                </box>
-                <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Sun-BX-O1P">
-                    <rect key="frame" x="0.0" y="59" width="853" height="1"/>
-                    <view key="contentView" id="Hxe-CS-d0B">
-                        <rect key="frame" x="0.0" y="0.0" width="853" height="1"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </view>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="1" id="ea3-on-iEP"/>
-                    </constraints>
-                    <color key="fillColor" name="Divider"/>
                 </box>
                 <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pxB-lp-DrO">
                     <rect key="frame" x="16" y="0.0" width="821" height="60"/>
@@ -434,12 +423,9 @@
                 <constraint firstAttribute="trailing" secondItem="pxB-lp-DrO" secondAttribute="trailing" constant="16" id="AS6-mH-h9X"/>
                 <constraint firstAttribute="trailing" secondItem="E67-WX-gYz" secondAttribute="trailing" id="AYv-jD-lI9"/>
                 <constraint firstItem="E5V-UG-0ys" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="Bo1-jr-Fod"/>
-                <constraint firstItem="Sun-BX-O1P" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="GHS-IR-Rod"/>
                 <constraint firstItem="pxB-lp-DrO" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="JkA-Kb-2SQ"/>
                 <constraint firstItem="pxB-lp-DrO" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="16" id="RxV-em-Yv9"/>
-                <constraint firstItem="Sun-BX-O1P" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="Z3M-4R-RTw"/>
                 <constraint firstAttribute="bottom" secondItem="E5V-UG-0ys" secondAttribute="bottom" id="gQI-vF-fdK"/>
-                <constraint firstAttribute="trailing" secondItem="Sun-BX-O1P" secondAttribute="trailing" id="ieG-gJ-6mK"/>
                 <constraint firstItem="E67-WX-gYz" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="k9Z-4X-5oc"/>
                 <constraint firstAttribute="bottom" secondItem="E67-WX-gYz" secondAttribute="bottom" id="o12-0G-tDT"/>
                 <constraint firstItem="E67-WX-gYz" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="vco-cv-4NA"/>
@@ -451,9 +437,6 @@
     <resources>
         <image name="emojiIcon" width="25" height="25"/>
         <image name="giphyIcon" width="19.5" height="25"/>
-        <namedColor name="Divider">
-            <color red="0.86274509803921573" green="0.8784313725490196" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="HeaderBG">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

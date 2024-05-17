@@ -36,8 +36,8 @@ import WebKit
     let podcastPlayerController = PodcastPlayerController.sharedInstance
     
     public enum SphinxMenuButton: Int {
-        case Logout = 1
-        case RemoveAccount = 2
+        case Logout = 0
+        case RemoveAccount = 1 
     }
     
     var lastClearSDMemoryDate: Date? {
@@ -160,7 +160,7 @@ import WebKit
         let notificationSoundTag = notificationsHelper.getNotificationSoundTag()
         selectItemWith(tag: notificationSoundTag, in: notificationSoundMenu)
         
-        let messagesSize = UserDefaults.Keys.messagesSize.get(defaultValue: 0)
+        let messagesSize = UserDefaults.Keys.messagesSize.get(defaultValue: MessagesSize.Medium.rawValue)
         setMessagesSizeFrom(value: messagesSize)
     }
     
@@ -212,11 +212,13 @@ import WebKit
         
         // MARK: - For Testing Purpose
         let view = vc.view
+        
         if let newWindow = window.window {
             newWindow.setAccessibilityEnabled(true)
             newWindow.setAccessibilityRole(.window)
             newWindow.setAccessibilityIdentifier("MainWindow")
         }
+        
         window.window?.setAccessibilityChildren([view])
         view.setAccessibilityRole(.window)
         view.setAccessibilityIdentifier("MainView")
@@ -308,6 +310,7 @@ import WebKit
     func loadDashboard() {
         SplashViewController.runBackgroundProcesses()
         SphinxSocketManager.sharedInstance.connectWebsocket()
+        ContactsService.sharedInstance.forceUpdate()
         
         createKeyWindowWith(
             vc: DashboardViewController.instantiate(),

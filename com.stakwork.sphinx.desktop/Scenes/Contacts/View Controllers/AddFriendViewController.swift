@@ -33,7 +33,11 @@ class AddFriendViewController: NSViewController {
             dismissDelegate: self.dismissDelegate
         )
         
-        advanceTo(vc: inviteVC, height: 500)
+        advanceTo(
+            vc: inviteVC,
+            identifier: "new-invite-window",
+            height: 500
+        )
     }
     
     @IBAction func alreadyOnSphinxButtonClicked(_ sender: Any) {
@@ -42,16 +46,20 @@ class AddFriendViewController: NSViewController {
             dismissDelegate: self.dismissDelegate
         )
         
-        advanceTo(vc: contactVC)
+        advanceTo(
+            vc: contactVC,
+            identifier: "new-contact-window"
+        )
     }
     
     func advanceTo(
         vc: NSViewController,
+        identifier: String,
         height: CGFloat? = nil
     ) {
         WindowsManager.sharedInstance.showOnCurrentWindow(
             with: "Contact".localized,
-            identifier: "new-contact-window",
+            identifier: identifier,
             contentVC: vc,
             hideDivider: true,
             hideBackButton: false,

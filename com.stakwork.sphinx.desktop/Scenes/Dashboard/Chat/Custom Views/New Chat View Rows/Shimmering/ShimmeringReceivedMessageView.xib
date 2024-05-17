@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,19 +22,19 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <box boxType="custom" borderType="none" cornerRadius="16" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Hjp-a1-ujQ">
-                    <rect key="frame" x="16" y="173" width="33" height="33"/>
+                    <rect key="frame" x="16" y="170" width="36" height="36"/>
                     <view key="contentView" id="sl4-oa-i0o">
-                        <rect key="frame" x="0.0" y="0.0" width="33" height="33"/>
+                        <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
                     <constraints>
-                        <constraint firstAttribute="height" constant="33" id="qa6-dt-dVg"/>
-                        <constraint firstAttribute="width" constant="33" id="rTR-Tf-Piq"/>
+                        <constraint firstAttribute="height" constant="36" id="qa6-dt-dVg"/>
+                        <constraint firstAttribute="width" constant="36" id="rTR-Tf-Piq"/>
                     </constraints>
                     <color key="fillColor" name="SecondaryText"/>
                 </box>
                 <box boxType="custom" borderType="none" cornerRadius="8" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="R9x-6k-JAx">
-                    <rect key="frame" x="57" y="16" width="500" height="178"/>
+                    <rect key="frame" x="60" y="16" width="500" height="178"/>
                     <view key="contentView" id="7sp-do-xSR">
                         <rect key="frame" x="0.0" y="0.0" width="500" height="178"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -45,7 +45,7 @@
                     <color key="fillColor" name="SecondaryText"/>
                 </box>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="kCJ-Qg-hQ8">
-                    <rect key="frame" x="53" y="186" width="12" height="8"/>
+                    <rect key="frame" x="56" y="186" width="12" height="8"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="12" id="EfK-hO-wg6"/>
                         <constraint firstAttribute="height" constant="8" id="hwr-8B-ocU"/>
@@ -55,6 +55,7 @@
             <constraints>
                 <constraint firstItem="kCJ-Qg-hQ8" firstAttribute="leading" secondItem="R9x-6k-JAx" secondAttribute="leading" constant="-4" id="40U-JA-I3L"/>
                 <constraint firstItem="R9x-6k-JAx" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" symbolic="YES" id="7dO-UZ-nwu"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="R9x-6k-JAx" secondAttribute="trailing" constant="32" id="Oaq-Fi-0Ha"/>
                 <constraint firstItem="Hjp-a1-ujQ" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="8" id="f4m-uI-h44"/>
                 <constraint firstItem="kCJ-Qg-hQ8" firstAttribute="top" secondItem="R9x-6k-JAx" secondAttribute="top" id="ftg-SD-Jpw"/>
                 <constraint firstAttribute="bottom" secondItem="R9x-6k-JAx" secondAttribute="bottom" constant="16" id="gU1-j3-KAe"/>

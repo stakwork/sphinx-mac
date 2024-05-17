@@ -17,14 +17,14 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="318" height="40"/>
+            <rect key="frame" x="0.0" y="0.0" width="318" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="1Jq-6f-6AC">
-                    <rect key="frame" x="0.0" y="0.0" width="318" height="40"/>
+                    <rect key="frame" x="0.0" y="5" width="318" height="40"/>
                 </customView>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FHb-s9-uPP">
-                    <rect key="frame" x="0.0" y="11" width="18" height="18"/>
+                    <rect key="frame" x="0.0" y="16" width="18" height="18"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="18" id="baW-g3-1Ka"/>
                         <constraint firstAttribute="height" constant="18" id="r3H-tf-hzO"/>
@@ -33,9 +33,9 @@
                     <color key="contentTintColor" name="SecondaryText"/>
                 </imageView>
                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="poT-eZ-s7R">
-                    <rect key="frame" x="32" y="13" width="63" height="15"/>
+                    <rect key="frame" x="32" y="17" width="67" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="My Profile" id="zuv-gC-eSE">
-                        <font key="font" size="13" name="Roboto-Regular"/>
+                        <font key="font" size="14" name="Roboto-Regular"/>
                         <color key="textColor" name="Text"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -48,8 +48,8 @@
                 <constraint firstItem="poT-eZ-s7R" firstAttribute="leading" secondItem="FHb-s9-uPP" secondAttribute="trailing" constant="16" id="Pui-RH-Yff"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="poT-eZ-s7R" secondAttribute="trailing" constant="20" id="ScZ-rJ-Shi"/>
                 <constraint firstItem="1Jq-6f-6AC" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="bR6-Oh-yEa"/>
-                <constraint firstItem="1Jq-6f-6AC" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="lgg-N1-F01"/>
-                <constraint firstAttribute="bottom" secondItem="1Jq-6f-6AC" secondAttribute="bottom" id="vnQ-Oo-Cac"/>
+                <constraint firstItem="1Jq-6f-6AC" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="5" id="lgg-N1-F01"/>
+                <constraint firstAttribute="bottom" secondItem="1Jq-6f-6AC" secondAttribute="bottom" constant="5" id="vnQ-Oo-Cac"/>
                 <constraint firstAttribute="trailing" secondItem="1Jq-6f-6AC" secondAttribute="trailing" id="zgh-53-G1H"/>
             </constraints>
             <point key="canvasLocation" x="-193" y="22"/>

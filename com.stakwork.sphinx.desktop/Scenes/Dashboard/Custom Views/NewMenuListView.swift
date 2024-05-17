@@ -79,3 +79,17 @@ class NewMenuListView: NSView, LoadableNib {
         delegate?.buttonClicked(id: 7)
     }
 }
+
+import Cocoa
+
+class ScrollDisabledCollectionView: NSCollectionView {
+    var disableScroll = true
+
+    override func scrollWheel(with event: NSEvent) {
+        if disableScroll {
+            return
+        } else {
+            super.scrollWheel(with: event)
+        }
+    }
+}

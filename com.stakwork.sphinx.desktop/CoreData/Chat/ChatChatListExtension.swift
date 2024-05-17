@@ -109,6 +109,14 @@ extension Chat : ChatListCommonObject {
         return self.notify == NotificationLevel.MuteChat.rawValue
     }
     
+    public func willNotifyAll() -> Bool {
+        return self.notify == NotificationLevel.SeeAll.rawValue
+    }
+    
+    public func willNotifyOnlyMentions() -> Bool {
+        return self.notify == NotificationLevel.OnlyMentions.rawValue
+    }
+    
     public func isPublicGroup() -> Bool {
         return type == Chat.ChatType.publicGroup.rawValue
     }

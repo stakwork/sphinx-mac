@@ -81,7 +81,6 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
         self.delegate = delegate
         
         backgroundBox.fillColor = selected ? NSColor.Sphinx.ChatListSelected : NSColor.Sphinx.HeaderBG
-        nameLabel.font = Constants.kChatNameFont
         
         let unreadMessagesCount = getUnreadMessagesCount(
             chatListObject: chatListObject,
@@ -92,6 +91,10 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
             chatListObject: chatListObject,
             ownerId: owner.id
         )
+        
+        let isMuted = (chatListObject.getChat()?.isMuted() ?? false)
+        
+        nameLabel.font = (!isMuted && unreadMessagesCount > 0) ? Constants.kChatNameHighlightedFont : Constants.kChatNameFont
         
         if chatListObject.isPending() {
             
@@ -118,12 +121,16 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
         renderLastMessage(
             for: chatListObject,
             owner: owner,
-            hasUnreadMessages: unreadMessagesCount > 0
+            hasUnreadMessages: unreadMessagesCount > 0,
+            hasUnreadMentions: unreadMentionsCount > 0,
+            willNotifyAllMsgs: (chatListObject.getChat()?.willNotifyAll() ?? false),
+            willNotifyOnlyMentions: (chatListObject.getChat()?.willNotifyOnlyMentions() ?? false)
         )
         
         renderBadgeView(
             for: chatListObject,
-            unreadMessagesCount: unreadMessagesCount
+            unreadMessagesCount: unreadMessagesCount,
+            unreadMentionesCount: unreadMentionsCount
         )
         
         renderMentionsView(
@@ -137,31 +144,37 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
     
     private func renderBadgeView(
         for chatListObject: ChatListCommonObject,
-        unreadMessagesCount: Int
+        unreadMessagesCount: Int,
+        unreadMentionesCount: Int
     ) {
-        guard unreadMessagesCount > 0 else {
-            unreadMessageBadgeContainer.isHidden = true
-            return
-        }
-        
         guard chatListObject.isConfirmed() else {
             unreadMessageBadgeContainer.isHidden = true
             return
         }
         
-        unreadMessageBadgeContainer.isHidden = false
+        unreadMessageBadgeContainer.isHidden = unreadMessagesCount == 0
+        mentionsBadgeContainer.isHidden = unreadMentionesCount == 0
         
         let unreadMCount = unreadMessagesCount
         unreadMessageBadgeLabel.stringValue = unreadMCount > 99 ? "99+" : "\(unreadMCount)"
         
-        if chatListObject.getChat()?.isMuted() == true || chatListObject.getChat()?.isOnlyMentions() == true {
-            unreadMessageBadgeContainer.alphaValue = 0.2
-            unreadMessageBadgeContainer.fillColor = .Sphinx.WashedOutReceivedText
-            unreadMessageBadgeLabel.textColor = .Sphinx.Text
+        if chatListObject.getChat()?.isMuted() == true || chatListObject.getChat()?.willNotifyOnlyMentions() == true {
+            unreadMessageBadgeContainer.fillColor = .Sphinx.SecondaryText.withAlphaComponent(0.15)
+            unreadMessageBadgeLabel.textColor = .Sphinx.SecondaryText
         } else {
             unreadMessageBadgeContainer.alphaValue = 1.0
             unreadMessageBadgeContainer.fillColor = .Sphinx.PrimaryBlue
             unreadMessageBadgeLabel.textColor = NSColor.white
+        }
+        
+        if chatListObject.getChat()?.isMuted() == true {
+            mentionsBadgeContainer.alphaValue = 0.8
+            mentionsBadgeContainer.fillColor = .Sphinx.SecondaryText.withAlphaComponent(0.15)
+            mentionsBadgeLabel.textColor = .Sphinx.SecondaryText
+        } else {
+            mentionsBadgeContainer.alphaValue = 1.0
+            mentionsBadgeContainer.fillColor = .Sphinx.PrimaryBlue
+            mentionsBadgeLabel.textColor = NSColor.white
         }
         
         unreadMessageBadgeContainer.wantsLayer = true
@@ -260,7 +273,10 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
     private func renderLastMessage(
         for chatListObject: ChatListCommonObject,
         owner: UserContact,
-        hasUnreadMessages: Bool
+        hasUnreadMessages: Bool,
+        hasUnreadMentions: Bool,
+        willNotifyAllMsgs: Bool,
+        willNotifyOnlyMentions: Bool
     ) {
         if let invite = chatListObject.getInvite(), chatListObject.isPending() {
             
@@ -287,16 +303,18 @@ class ChatListCollectionViewItem: NSCollectionViewItem {
                 
                 let isFailedMessage = lastMessage.failed()
 
-                messageLabel.font = hasUnreadMessages ?
-                    Constants.kNewMessagePreviewFont
-                    : Constants.kMessagePreviewFont
+                messageLabel.font = Constants.kMessagePreviewFont
                 
                 if isFailedMessage {
                     messageLabel.textColor = .Sphinx.PrimaryRed
                 } else {
-                    messageLabel.textColor = hasUnreadMessages ?
-                        .Sphinx.TextMessages
-                        : .Sphinx.SecondaryText
+                    if (hasUnreadMessages && willNotifyAllMsgs) {
+                        messageLabel.textColor = .Sphinx.TextMessages
+                    } else if (willNotifyOnlyMentions && hasUnreadMentions) {
+                        messageLabel.textColor = .Sphinx.TextMessages
+                    } else {
+                        messageLabel.textColor = .Sphinx.SecondaryText
+                    }
                 }
                 
                 messageLabel.stringValue = lastMessage.getMessageContentPreview(

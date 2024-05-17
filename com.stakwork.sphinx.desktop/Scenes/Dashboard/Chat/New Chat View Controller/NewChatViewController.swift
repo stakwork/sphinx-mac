@@ -230,6 +230,9 @@ class NewChatViewController: DashboardSplittedViewController {
     }
     
     func setupChatTopView() {
+        view.bringSubviewToFront(chatTopView)
+        view.bringSubviewToFront(threadHeaderView)
+        
         if isThread {
             setupThreadHeaderView()
             
@@ -272,7 +275,7 @@ class NewChatViewController: DashboardSplittedViewController {
         chatBottomView.updateFieldStateFrom(
             chat,
             contact: contact,
-            isThread: isThread,
+            threadUUID: threadUUID,
             with: self,
             and: self
         )        
@@ -309,7 +312,6 @@ class NewChatViewController: DashboardSplittedViewController {
     
     func resizeSubviews(frame: NSRect) {
         view.frame = frame
-        
         threadVC?.view.frame = frame
     }
     

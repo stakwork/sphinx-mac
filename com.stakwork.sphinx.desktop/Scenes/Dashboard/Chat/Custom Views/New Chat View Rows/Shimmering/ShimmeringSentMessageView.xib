@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -41,6 +41,7 @@
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Gvt-QF-qUQ" secondAttribute="trailing" constant="27" id="CKc-4c-Jk1"/>
+                <constraint firstItem="Gvt-QF-qUQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="c22-O7-iKe" secondAttribute="leading" constant="32" id="buy-O0-WKT"/>
                 <constraint firstItem="zIF-FC-vp6" firstAttribute="top" secondItem="Gvt-QF-qUQ" secondAttribute="top" id="e33-Tw-CIr"/>
                 <constraint firstItem="Gvt-QF-qUQ" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="8" id="f01-o7-iBQ"/>
                 <constraint firstItem="zIF-FC-vp6" firstAttribute="trailing" secondItem="Gvt-QF-qUQ" secondAttribute="trailing" constant="7" id="f9V-Tf-l4c"/>

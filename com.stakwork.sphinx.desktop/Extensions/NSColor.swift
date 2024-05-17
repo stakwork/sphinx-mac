@@ -56,6 +56,7 @@ extension NSColor {
         public static let MessageOptionDivider = color("MessageOptionDivider")
         public static let ReplyDividerReceived = color("ReplyDividerReceived")
         public static let ReplyDividerSent = color("ReplyDividerSent")
+        public static let SplitDividerColor = color("SplitDividerColor")
         public static let ReceivedIcon = color("ReceivedIcon")
         public static let ReceivedMsgBG = color("ReceivedMsgBG")
         public static let SentMsgBG = color("SentMsgBG")
@@ -99,6 +100,9 @@ extension NSColor {
         
         public static let HighlightedText = color("HighlightedText")
         public static let HighlightedTextBackground = color("HighlightedTextBackground")
+        
+        public static let ChatsHeaderDivider = color("ChatsHeaderDivider")
+        public static let InputBG1 = color("InputBG1")
         
         private static func color(_ name: String) -> NSColor {
             return NSColor(named: NSColor.Name(name)) ?? NSColor.magenta

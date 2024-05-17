@@ -65,14 +65,6 @@ class DashboardPresenterViewController: NSViewController {
 }
 
 class TransparentView: NSView {
-    override func hitTest(_ point: NSPoint) -> NSView? {
-        let view = super.hitTest(point)
-        if view == self {
-            return nil
-        }
-        return view
-    }
-    
     override func mouseDown(with event: NSEvent) {
         // Do nothing to intercept the mouse event
     }

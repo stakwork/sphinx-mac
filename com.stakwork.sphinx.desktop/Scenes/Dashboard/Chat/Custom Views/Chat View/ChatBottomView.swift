@@ -66,18 +66,22 @@ class ChatBottomView: NSView, LoadableNib {
     }
     
     func setup() {
-        self.addShadow(
-            location: VerticalLocation.top,
-            color: NSColor.black,
-            opacity: 0.3,
-            radius: 5.0
-        )
+        if NSAppearance.current.name == .darkAqua {
+            self.removeShadow()
+        } else {
+            self.addShadow(
+                location: VerticalLocation.top,
+                color: NSColor.black,
+                opacity: 0.1,
+                radius: 5.0
+            )
+        }
     }
     
     func updateFieldStateFrom(
         _ chat: Chat?,
         contact: UserContact?,
-        isThread: Bool,
+        threadUUID: String?,
         with delegate: ChatBottomViewDelegate?,
         and searchDelegate: ChatSearchResultsBarDelegate? = nil
     ) {
@@ -88,7 +92,7 @@ class ChatBottomView: NSView, LoadableNib {
         messageFieldView.updateFieldStateFrom(
             chat,
             contact: contact,
-            isThread: isThread,
+            threadUUID: threadUUID,
             with: delegate
         )
     }

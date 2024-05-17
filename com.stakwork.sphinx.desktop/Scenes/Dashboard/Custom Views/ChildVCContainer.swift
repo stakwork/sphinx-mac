@@ -66,7 +66,6 @@ class ChildVCContainer: NSView, LoadableNib {
     enum ViewMode: Int {
         case RequestAmount
         case SendAmount
-        case GroupMembers
         case PaymentTemplates
     }
 
@@ -156,15 +155,9 @@ class ChildVCContainer: NSView, LoadableNib {
                 mode: ViewMode.RequestAmount
             )
         case ChildVCOptionsMenuButton.Send:
-            if chat?.isPrivateGroup() ?? false {
-                showChildVC(
-                    mode: ViewMode.GroupMembers
-                )
-            } else {
-                showChildVC(
-                    mode: ViewMode.SendAmount
-                )
-            }
+            showChildVC(
+                mode: ViewMode.SendAmount
+            )
         default:
             break
         }
@@ -242,8 +235,6 @@ class ChildVCContainer: NSView, LoadableNib {
         switch(mode) {
         case ViewMode.RequestAmount, ViewMode.SendAmount:
             return invoicePaymentSize
-        case ViewMode.GroupMembers:
-            return groupMembersSize
         case ViewMode.PaymentTemplates:
             return paymentTemplatesSize
         }
@@ -261,13 +252,6 @@ class ChildVCContainer: NSView, LoadableNib {
             return SendPaymentViewController.instantiate(
                 childVCDelegate: self,
                 viewModel: paymentVM,
-                delegate: delegate
-            )
-        case ViewMode.GroupMembers:
-            return GroupMembersViewController.instantiate(
-                childVCDelegate: self,
-                viewModel: paymentVM,
-                chat: chat!,
                 delegate: delegate
             )
         case ViewMode.PaymentTemplates:
@@ -289,8 +273,8 @@ class ChildVCContainer: NSView, LoadableNib {
     }
 
     func addViewController(for mode: ViewMode) {
-        let contact: UserContact? = (mode == .GroupMembers) ? nil : self.chat?.getContact()
-        let paymentMode: PaymentViewModel.PaymentMode = (mode == .GroupMembers || mode == .SendAmount) ? .Payment : .Request
+        let contact: UserContact? = self.chat?.getContact()
+        let paymentMode: PaymentViewModel.PaymentMode = (mode == .SendAmount) ? .Payment : .Request
         let paymentViewModel = PaymentViewModel(chat: chat, contact: contact, message: message, mode: paymentMode)
         let vc = getVCFor(mode: mode, paymentVM: paymentViewModel)
         addChildVC(vc: vc)
@@ -321,11 +305,7 @@ class ChildVCContainer: NSView, LoadableNib {
                 showChildVC(mode: ViewMode.RequestAmount)
                 break
             case ChildVCOptionsMenuButton.Send.rawValue:
-                if chat?.isPrivateGroup() ?? false {
-                    showChildVC(mode: ViewMode.GroupMembers)
-                } else {
-                    showChildVC(mode: ViewMode.SendAmount)
-                }
+                showChildVC(mode: ViewMode.SendAmount)
                 break
             case ChildVCOptionsMenuButton.Audio.rawValue:
                 delegate?.shouldCreateCall(mode: .Audio)
@@ -353,21 +333,13 @@ extension ChildVCContainer : ChildVCDelegate {
     }
     
     func shouldGoBack(paymentViewModel: PaymentViewModel) {
-        if childVC?.isKind(of: SendPaymentViewController.self) ?? false {
-            replaceChildVCFor(mode: .GroupMembers, paymentViewModel: paymentViewModel)
-        } else if childVC?.isKind(of: PaymentTemplatesViewController.self) ?? false {
+        if childVC?.isKind(of: PaymentTemplatesViewController.self) ?? false {
             replaceChildVCFor(mode: .SendAmount, paymentViewModel: paymentViewModel)
-        } else {
-            replaceChildVCFor(mode: .GroupMembers, paymentViewModel: paymentViewModel)
         }
     }
     
     func shouldGoForward(paymentViewModel: PaymentViewModel) {
-        if childVC?.isKind(of: GroupMembersViewController.self) ?? false {
-            replaceChildVCFor(mode: .SendAmount, paymentViewModel: paymentViewModel)
-        } else {
-            replaceChildVCFor(mode: .PaymentTemplates, paymentViewModel: paymentViewModel)
-        }
+        replaceChildVCFor(mode: .PaymentTemplates, paymentViewModel: paymentViewModel)
     }
     
     func replaceChildVCFor(mode: ViewMode, paymentViewModel: PaymentViewModel) {
