@@ -43,7 +43,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1218" height="72"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
-                    <color key="fillColor" name="HeaderBG"/>
+                    <color key="fillColor" name="Body"/>
                 </box>
                 <stackView distribution="fill" orientation="horizontal" alignment="bottom" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pxB-lp-DrO">
                     <rect key="frame" x="16" y="0.0" width="1186" height="72"/>
@@ -539,6 +539,9 @@
         <image name="newEmojiIcon" width="23.5" height="23.5"/>
         <image name="priceTag" width="20" height="20"/>
         <image name="xmark.circle.fill" catalog="system" width="15" height="15"/>
+        <namedColor name="Body">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="HeaderBG">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
