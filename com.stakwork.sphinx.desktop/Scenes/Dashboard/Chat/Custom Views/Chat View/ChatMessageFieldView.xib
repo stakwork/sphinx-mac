@@ -134,7 +134,7 @@
                                                         <subviews>
                                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7ma-wQ-0Fe" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="9" width="23" height="23"/>
-                                                                <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="giphyIcon" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Cg9-SO-lpL">
+                                                                <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="gifIcon" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Cg9-SO-lpL">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" size="25" name="MaterialIcons-Regular"/>
                                                                 </buttonCell>
@@ -228,8 +228,8 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="Mht-fe-30V">
-                                                            <rect key="frame" x="0.0" y="2" width="20" height="28"/>
-                                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="tag.fill" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="tRv-Yy-DMO">
+                                                            <rect key="frame" x="0.0" y="6" width="20" height="20"/>
+                                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="priceTag" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="tRv-Yy-DMO">
                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
@@ -535,8 +535,8 @@
     </objects>
     <resources>
         <image name="emojiIcon" width="25" height="25"/>
-        <image name="giphyIcon" width="19.5" height="25"/>
-        <image name="tag.fill" catalog="system" width="17" height="17"/>
+        <image name="gifIcon" width="23.5" height="23.5"/>
+        <image name="priceTag" width="20" height="20"/>
         <image name="xmark.circle.fill" catalog="system" width="15" height="15"/>
         <namedColor name="HeaderBG">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
