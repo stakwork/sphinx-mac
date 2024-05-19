@@ -79,7 +79,6 @@ class ChatMessageFieldView: NSView, LoadableNib {
     }
     
     func setupForThread() {
-//        addDocumentCustomView.isHidden = true
         priceContainer.isHidden = true
     }
     
