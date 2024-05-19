@@ -63,6 +63,11 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
     }
     
     func textDidChange(_ notification: Notification) {
+        micButton.isHidden = !messageTextView.string.isEmpty
+        priceContainer.isHidden = messageTextView.string.isEmpty
+        sendButton.isHidden = messageTextView.string.isEmpty
+        priceTextField.stringValue = messageTextView.string.isEmpty ? "" : priceTextField.stringValue
+        updateColor()
         ChatTrackingHandler.shared.saveOngoingMessage(
             with: messageTextView.string,
             chatId: chat?.id,
@@ -87,6 +92,47 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
 //        if chatCollectionView.shouldScrollToBottom() {
 //            chatCollectionView.scrollToBottom(animated: false)
 //        }
+    }
+    
+    func updateColor() {
+        let active: Bool = !priceTextField.stringValue.isEmpty
+        let color = active ?
+        NSColor.Sphinx.GreenBorder.cgColor :
+        NSColor.Sphinx.SecondaryText.cgColor
+        
+        let messageColor = active ?
+        NSColor.Sphinx.TextViewGreenColor :
+        NSColor.Sphinx.TextViewBGColor
+        
+        let sendColor = active ? 
+        NSColor.Sphinx.GreenBorder.cgColor:
+        NSColor.Sphinx.PrimaryBlue.cgColor
+        
+        if let layer = priceContainer.layer  {
+            layer.masksToBounds = true
+            layer.cornerRadius = priceContainer.frame.height / 2
+            layer.backgroundColor = active ? NSColor.Sphinx.TextViewBGColor.cgColor : NSColor.Sphinx.PriceTagBG.cgColor
+            layer.borderWidth = 1
+            layer.borderColor = active ? NSColor.Sphinx.GreenBorder.cgColor : NSColor.clear.cgColor
+            
+        }
+        
+        updateSendButtonColor(color: sendColor)
+        updateBGColor(color: color)
+        updateMessageBGColor(color: messageColor)
+    }
+    
+    func updateBGColor(color: CGColor) {
+        attachmentsButton.layer?.backgroundColor = color
+        emojiButton.layer?.backgroundColor = color
+    }
+    
+    func updateSendButtonColor(color: CGColor) {
+        sendButton.layer?.backgroundColor = color
+    }
+    
+    func updateMessageBGColor(color: NSColor) {
+        stackView.fillColor = color
     }
     
     func didDetectFilePaste(pasteBoard: NSPasteboard) -> Bool {
@@ -115,7 +161,8 @@ extension ChatMessageFieldView : NSTextFieldDelegate {
             text: currentString,
             font: NSFont.systemFont(ofSize: 15, weight: .semibold)
         ).width
-        
+        showPriceButton()
+        updateColor()
         priceTextFieldWidth.constant = (
             width < (kMinimumPriceFieldWidth - kPriceFieldPadding)
         ) ? kMinimumPriceFieldWidth : width + kPriceFieldPadding
