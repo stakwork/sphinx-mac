@@ -26,6 +26,8 @@ class ChatMessageFieldView: NSView, LoadableNib {
     @IBOutlet weak var priceContainer: NSBox!
     @IBOutlet weak var priceTextField: CCTextField!
     @IBOutlet weak var priceTextFieldWidth: NSLayoutConstraint!
+    @IBOutlet weak var priceTag: CustomButton!
+    
     
     @IBOutlet weak var recordingContainer: NSBox!
     @IBOutlet weak var intermitentAlphaView: IntermitentAlphaAnimatedView!
@@ -41,7 +43,7 @@ class ChatMessageFieldView: NSView, LoadableNib {
     let kTextViewVerticalMargins: CGFloat = 41
     let kCharacterLimit = 1000
     let kTextViewLineHeight: CGFloat = 19
-    let kMinimumPriceFieldWidth: CGFloat = 90
+    let kMinimumPriceFieldWidth: CGFloat = 50
     let kPriceFieldPadding: CGFloat = 10
     
     let kFieldPlaceHolder = "message.placeholder".localized
@@ -53,6 +55,7 @@ class ChatMessageFieldView: NSView, LoadableNib {
     var threadUUID: String? = nil
     
     var isThreadClicked: Bool = false
+    var togglePriceTag: Bool = false
     var isThread: Bool {
         get {
             return threadUUID != nil
@@ -301,6 +304,7 @@ class ChatMessageFieldView: NSView, LoadableNib {
     }
     
     @IBAction func tagButtonClicked(_ sender: Any) {
-        priceTextField.isHidden = false
+        togglePriceTag.toggle()
+        priceTextField.isHidden = isThreadClicked && togglePriceTag
     }
 }

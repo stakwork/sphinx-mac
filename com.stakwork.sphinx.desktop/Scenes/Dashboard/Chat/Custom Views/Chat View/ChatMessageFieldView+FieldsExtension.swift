@@ -117,6 +117,10 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
             
         }
         
+        emojiButton.image = active ? NSImage(named: "activeEmoji") : NSImage(named: "newEmojiIcon")
+        giphyButton.image = active ? NSImage(named: "activeGIF") : NSImage(named: "gifIcon")
+        priceTag.image = active ? NSImage(named: "activePriceTag") : NSImage(named: "priceTag")
+        
         updateSendButtonColor(color: sendColor)
         updateBGColor(color: color)
         updateMessageBGColor(color: messageColor)
@@ -124,7 +128,7 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
     
     func updateBGColor(color: CGColor) {
         attachmentsButton.layer?.backgroundColor = color
-        emojiButton.layer?.backgroundColor = color
+//        emojiButton.layer?.backgroundColor = color
     }
     
     func updateSendButtonColor(color: CGColor) {
@@ -163,7 +167,7 @@ extension ChatMessageFieldView : NSTextFieldDelegate {
         ).width
         showPriceButton()
         updateColor()
-        priceTextFieldWidth.constant = (
+        priceTextFieldWidth.constant = priceTextField.stringValue.isEmpty ? 90 : (
             width < (kMinimumPriceFieldWidth - kPriceFieldPadding)
         ) ? kMinimumPriceFieldWidth : width + kPriceFieldPadding
         

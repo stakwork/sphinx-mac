@@ -22,6 +22,7 @@
                 <outlet property="priceCancelButton" destination="HKi-i1-240" id="oVp-hh-Z5K"/>
                 <outlet property="priceCancelButtonWidthConstraint" destination="ddg-Ls-g2g" id="6pU-Sz-iem"/>
                 <outlet property="priceContainer" destination="QmM-Ic-bse" id="OLP-ML-ak9"/>
+                <outlet property="priceTag" destination="Mht-fe-30V" id="frp-H8-pA8"/>
                 <outlet property="priceTextField" destination="QGf-Co-sPB" id="acn-IP-xVB"/>
                 <outlet property="priceTextFieldWidth" destination="g8M-au-ZBp" id="33c-bb-SIf"/>
                 <outlet property="recordingContainer" destination="E5V-UG-0ys" id="zkC-F8-0q0"/>
@@ -158,15 +159,15 @@
                                                         <rect key="frame" x="1109" y="0.0" width="37" height="40"/>
                                                         <subviews>
                                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tlx-Yr-Pwz" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="7" width="25" height="25"/>
-                                                                <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="emojiIcon" imagePosition="only" alignment="center" imageScaling="axesIndependently" inset="2" id="Om5-9a-Kpk">
+                                                                <rect key="frame" x="2" y="9" width="23" height="23"/>
+                                                                <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="newEmojiIcon" imagePosition="only" alignment="center" imageScaling="axesIndependently" inset="2" id="Om5-9a-Kpk">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" size="25" name="MaterialIcons-Regular"/>
                                                                 </buttonCell>
                                                                 <color key="contentTintColor" name="MainBottomIcons"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="25" id="XfY-aE-fbv"/>
-                                                                    <constraint firstAttribute="height" constant="25" id="dv5-B8-0kM"/>
+                                                                    <constraint firstAttribute="width" constant="23" id="XfY-aE-fbv"/>
+                                                                    <constraint firstAttribute="height" constant="23" id="dv5-B8-0kM"/>
                                                                 </constraints>
                                                                 <connections>
                                                                     <action selector="emojiButtonClicked:" target="-2" id="MI6-sz-LqY"/>
@@ -227,7 +228,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="20" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="Mht-fe-30V">
+                                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="Mht-fe-30V" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="6" width="20" height="20"/>
                                                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="priceTag" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="tRv-Yy-DMO">
                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -534,8 +535,8 @@
         </customView>
     </objects>
     <resources>
-        <image name="emojiIcon" width="25" height="25"/>
         <image name="gifIcon" width="23.5" height="23.5"/>
+        <image name="newEmojiIcon" width="23.5" height="23.5"/>
         <image name="priceTag" width="20" height="20"/>
         <image name="xmark.circle.fill" catalog="system" width="15" height="15"/>
         <namedColor name="HeaderBG">
