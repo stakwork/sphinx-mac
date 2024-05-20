@@ -90,6 +90,7 @@ class ChatMessageFieldView: NSView, LoadableNib {
         setupSendButton()
         setupIntermitentAlphaView()
         showPriceButton()
+        togglePriceTag = false
     }
     
     func setupIntermitentAlphaView() {
@@ -303,7 +304,7 @@ class ChatMessageFieldView: NSView, LoadableNib {
     }
     
     @IBAction func tagButtonClicked(_ sender: Any) {
-        togglePriceTag.toggle()
         priceTextField.isHidden = isThreadClicked && togglePriceTag
+        togglePriceTag.toggle()
     }
 }
