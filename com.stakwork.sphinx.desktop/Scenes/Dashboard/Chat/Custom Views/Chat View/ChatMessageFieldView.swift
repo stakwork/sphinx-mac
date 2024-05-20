@@ -90,7 +90,6 @@ class ChatMessageFieldView: NSView, LoadableNib {
         setupSendButton()
         setupIntermitentAlphaView()
         showPriceButton()
-        togglePriceTag = false
     }
     
     func setupIntermitentAlphaView() {
