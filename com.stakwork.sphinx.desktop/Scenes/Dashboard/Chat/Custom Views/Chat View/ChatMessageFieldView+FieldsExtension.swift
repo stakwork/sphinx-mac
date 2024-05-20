@@ -59,6 +59,7 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
         priceTextField.stringValue = ""
         textDidChange(Notification(name: NSControl.textDidChangeNotification))
         
+        updateColor()
         delegate?.shouldMainChatOngoingMessage()
     }
     
