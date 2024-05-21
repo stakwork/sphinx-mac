@@ -43,7 +43,8 @@ class ChatMessageFieldView: NSView, LoadableNib {
     let kTextViewVerticalMargins: CGFloat = 41
     let kCharacterLimit = 1000
     let kTextViewLineHeight: CGFloat = 19
-    let kMinimumPriceFieldWidth: CGFloat = 50
+    let kMinimumPriceFieldWidth: CGFloat = 90
+    let kPriceClearButtonWidth: CGFloat = 20
     let kPriceFieldPadding: CGFloat = 10
     
     let kFieldPlaceHolder = "message.placeholder".localized
@@ -54,8 +55,8 @@ class ChatMessageFieldView: NSView, LoadableNib {
     var contact: UserContact? = nil
     var threadUUID: String? = nil
     
-    var isThreadClicked: Bool = false
-    var togglePriceTag: Bool = false
+    var isThreadOpen: Bool = false
+    
     var isThread: Bool {
         get {
             return threadUUID != nil
@@ -89,7 +90,7 @@ class ChatMessageFieldView: NSView, LoadableNib {
         setupAttachmentButton()
         setupSendButton()
         setupIntermitentAlphaView()
-        showPriceButton()
+        showPriceClearButton()
     }
     
     func setupIntermitentAlphaView() {
@@ -127,12 +128,13 @@ class ChatMessageFieldView: NSView, LoadableNib {
         
         messageTextView.delegate = self
         messageTextView.fieldDelegate = self
-        // Configure the layer
+        
         if let layer = stackView.layer {
             layer.backgroundColor = NSColor.Sphinx.ReceivedMsgBG.cgColor
             layer.cornerRadius = stackView.frame.height / 2
             layer.masksToBounds = true
         }
+        
         if let layer = priceContainer.layer  {
             layer.masksToBounds = true
             layer.cornerRadius = priceContainer.frame.height / 2
@@ -140,6 +142,7 @@ class ChatMessageFieldView: NSView, LoadableNib {
             layer.borderWidth = 1
             layer.borderColor = NSColor.clear.cgColor
         }
+        
         updateColor()
     }
     
@@ -217,15 +220,27 @@ class ChatMessageFieldView: NSView, LoadableNib {
         attachmentsButton.isEnabled = active
         priceTextField.isEditable = active
         updatePriceTagField()
-        self.alphaValue = active ? 1.0 : 0.7
+        
+        alphaValue = active ? 1.0 : 0.7
         
         initializeMacros()
-        
-        self.setOngoingMessage()
+        setOngoingMessage()
     }
     
     func updatePriceTagField() {
-        priceTextField.isHidden = isThreadClicked
+        priceTextField.isHidden = isThreadOpen
+        
+        let style = NSMutableParagraphStyle()
+        style.alignment = NSTextAlignment.center
+        
+        priceTextField.placeholderAttributedString = NSAttributedString(
+            string: isThread ? "" : "Add Price",
+            attributes: [
+                NSAttributedString.Key.font: NSFont(name: "Roboto-Regular", size: 14.0)!,
+                NSAttributedString.Key.foregroundColor: NSColor.Sphinx.SecondaryText,
+                NSAttributedString.Key.paragraphStyle: style
+            ]
+        )
     }
     
     func setOngoingMessage() {
@@ -284,7 +299,7 @@ class ChatMessageFieldView: NSView, LoadableNib {
         updatePriceFieldWidth()
     }
     
-    func showPriceButton() {
+    func showPriceClearButton() {
         priceCancelButton.isHidden = priceTextField.stringValue.isEmpty
     }
     
@@ -303,12 +318,8 @@ class ChatMessageFieldView: NSView, LoadableNib {
     }
     
     @IBAction func tagButtonClicked(_ sender: Any) {
-        if (!togglePriceTag) {
-            priceTextField.placeholderString = isThread ? "" : "Add Price"
-            updatePriceFieldWidth()
-            self.window?.makeFirstResponder(priceTextField)
-        }
-        priceTextField.isHidden = isThreadClicked && togglePriceTag
-        togglePriceTag.toggle()
+        priceTextField.isHidden = false
+        updatePriceFieldWidth()
+        self.window?.makeFirstResponder(priceTextField)
     }
 }

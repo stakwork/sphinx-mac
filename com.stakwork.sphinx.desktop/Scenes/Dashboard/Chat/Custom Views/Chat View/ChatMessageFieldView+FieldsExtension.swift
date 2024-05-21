@@ -65,10 +65,12 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
     
     func textDidChange(_ notification: Notification) {
         micButton.isHidden = !messageTextView.string.isEmpty
-        priceContainer.isHidden = messageTextView.string.isEmpty
+        priceContainer.isHidden = messageTextView.string.isEmpty || isThread
         sendButton.isHidden = messageTextView.string.isEmpty
         priceTextField.stringValue = messageTextView.string.isEmpty ? "" : priceTextField.stringValue
+        
         updateColor()
+        
         ChatTrackingHandler.shared.saveOngoingMessage(
             with: messageTextView.string,
             chatId: chat?.id,
@@ -97,9 +99,14 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
     
     func updateColor() {
         let active: Bool = !priceTextField.stringValue.isEmpty
-        let color = active ?
+        
+        let plusIconColor = active ?
         NSColor.Sphinx.GreenBorder :
         NSColor.Sphinx.SecondaryText
+        
+        let iconsColor = active ?
+        NSColor.Sphinx.GreenBorder :
+        NSColor.Sphinx.PlaceholderText
         
         let messageColor = active ?
         NSColor.Sphinx.TextViewGreenColor :
@@ -119,15 +126,21 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
         }
         
         updateSendButtonColor(color: sendColor)
-        updateBGColor(color: color)
         updateMessageBGColor(color: messageColor)
+        updateIconsColor(
+            plusIconColor: plusIconColor,
+            iconsColor: iconsColor
+        )
     }
     
-    func updateBGColor(color: NSColor) {
-        emojiButton.contentTintColor = color
-        giphyButton.contentTintColor = color
-        priceTag.contentTintColor = color
-        attachmentsButton.contentTintColor = color
+    func updateIconsColor(
+        plusIconColor: NSColor,
+        iconsColor: NSColor
+    ) {
+        emojiButton.contentTintColor = iconsColor
+        giphyButton.contentTintColor = iconsColor
+        priceTag.contentTintColor = iconsColor
+        attachmentsButton.contentTintColor = plusIconColor
     }
     
     func updateSendButtonColor(color: CGColor) {
@@ -162,13 +175,25 @@ extension ChatMessageFieldView : NSTextFieldDelegate {
         
         let width = NSTextField().getStringSize(
             text: currentString,
-            font: NSFont.systemFont(ofSize: 15, weight: .semibold)
+            font: NSFont(name: "Roboto-Regular", size: 14.0)!
         ).width
-        showPriceButton()
+        
+        showPriceClearButton()
         updateColor()
-        priceTextFieldWidth.constant = (priceTextField.placeholderString?.isEmpty ?? true) ? 50 : priceTextField.stringValue.isEmpty ? 90 : (
-            width < (kMinimumPriceFieldWidth - kPriceFieldPadding)
-        ) ? kMinimumPriceFieldWidth : width + kPriceFieldPadding
+        
+        var widthConstant: CGFloat = 0
+        
+        if priceTextField.stringValue.isEmpty {
+            widthConstant = kMinimumPriceFieldWidth
+        } else {
+            if width + kPriceFieldPadding > (kMinimumPriceFieldWidth - kPriceClearButtonWidth) {
+                widthConstant = width + kPriceFieldPadding
+            } else {
+                widthConstant = kMinimumPriceFieldWidth - kPriceClearButtonWidth
+            }
+        }
+        
+        priceTextFieldWidth.constant = widthConstant
         
         priceTextField.superview?.layoutSubtreeIfNeeded()
     }

@@ -300,7 +300,8 @@ class NewChatViewController: DashboardSplittedViewController {
         guard let threadVC = threadVC else {
             return
         }
-        chatBottomView.messageFieldView.isThreadClicked = true
+        
+        chatBottomView.messageFieldView.isThreadOpen = true
         
         WindowsManager.sharedInstance.showVCOnRightPanelWindow(
             with: "thread-chat".localized,

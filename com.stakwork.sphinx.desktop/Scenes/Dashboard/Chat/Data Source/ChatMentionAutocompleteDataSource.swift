@@ -155,9 +155,9 @@ extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate, NSCollec
         guard let mentionItem = item as? ChatMentionAutocompleteCell else {return item}
         
         if (indexPath.item == selectedRow) {
-            mentionItem.view.layer?.backgroundColor = NSColor.Sphinx.ChatListSelected.cgColor
-        } else{
             mentionItem.view.layer?.backgroundColor = NSColor.Sphinx.HeaderBG.cgColor
+        } else{
+            mentionItem.view.layer?.backgroundColor = NSColor.Sphinx.ChatListSelected.cgColor
         }
         
         return mentionItem

@@ -73,8 +73,9 @@ class DashboardDetailViewController: NSViewController {
         
         self.addChildVC(child: vc, container: containerView)
         guard let threadVC = vc as? NewChatViewController else { return }
+        
         threadVC.chatBottomView.messageFieldView.setupForThread()
-        threadVC.chatBottomView.messageFieldView.isThreadClicked = true
+        threadVC.chatBottomView.messageFieldView.isThreadOpen = true
     }
     
     func updateVCTitle() {

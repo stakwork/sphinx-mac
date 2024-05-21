@@ -1,50 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "sentiment_satisfied.png",
+      "filename" : "MSG Input Buttons - Emoji@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "dark"
-        }
-      ],
-      "filename" : "sentiment_satisfied 1.png",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "sentiment_satisfied@2x.png",
+      "filename" : "MSG Input Buttons - Emoji@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "dark"
-        }
-      ],
-      "filename" : "sentiment_satisfied@2x 1.png",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "sentiment_satisfied@3x.png",
-      "idiom" : "universal",
-      "scale" : "3x"
-    },
-    {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "dark"
-        }
-      ],
-      "filename" : "sentiment_satisfied@3x 1.png",
+      "filename" : "MSG Input Buttons - Emoji@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
