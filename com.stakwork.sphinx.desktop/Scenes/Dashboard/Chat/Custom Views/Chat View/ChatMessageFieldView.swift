@@ -123,6 +123,8 @@ class ChatMessageFieldView: NSView, LoadableNib {
             size: 16.0
         )!
         
+        messageTextView.textColor = NSColor.Sphinx.PrimaryText
+        
         messageTextView.delegate = self
         messageTextView.fieldDelegate = self
         // Configure the layer
@@ -144,8 +146,7 @@ class ChatMessageFieldView: NSView, LoadableNib {
     func setupPriceField() {
         priceContainer.wantsLayer = true
         priceContainer.layer?.cornerRadius = priceContainer.frame.height / 2
-        priceTextField.color = NSColor.Sphinx.SphinxWhite
-        priceTextField.setColor(color: NSColor.Sphinx.SphinxWhite)
+        priceTextField.color = priceTextField.stringValue.isEmpty ? NSColor.Sphinx.SecondaryText : NSColor.Sphinx.PrimaryText
         priceTextField.formatter = IntegerValueFormatter()
         priceTextField.delegate = self
         priceTextField.isEditable = false
@@ -154,7 +155,6 @@ class ChatMessageFieldView: NSView, LoadableNib {
     func setupAttachmentButton() {
         attachmentsButton.wantsLayer = true
         attachmentsButton.layer?.cornerRadius = attachmentsButton.frame.height / 2
-        attachmentsButton.layer?.backgroundColor = NSColor.Sphinx.SecondaryText.cgColor
         attachmentsButton.isEnabled = false
     }
     
@@ -303,6 +303,11 @@ class ChatMessageFieldView: NSView, LoadableNib {
     }
     
     @IBAction func tagButtonClicked(_ sender: Any) {
+        if (!togglePriceTag) {
+            priceTextField.placeholderString = isThread ? "" : "Add Price"
+            updatePriceFieldWidth()
+            self.window?.makeFirstResponder(priceTextField)
+        }
         priceTextField.isHidden = isThreadClicked && togglePriceTag
         togglePriceTag.toggle()
     }

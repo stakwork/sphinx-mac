@@ -98,8 +98,8 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
     func updateColor() {
         let active: Bool = !priceTextField.stringValue.isEmpty
         let color = active ?
-        NSColor.Sphinx.GreenBorder.cgColor :
-        NSColor.Sphinx.SecondaryText.cgColor
+        NSColor.Sphinx.GreenBorder :
+        NSColor.Sphinx.SecondaryText
         
         let messageColor = active ?
         NSColor.Sphinx.TextViewGreenColor :
@@ -118,18 +118,16 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
             
         }
         
-        emojiButton.image = active ? NSImage(named: "activeEmoji") : NSImage(named: "newEmojiIcon")
-        giphyButton.image = active ? NSImage(named: "activeGIF") : NSImage(named: "gifIcon")
-        priceTag.image = active ? NSImage(named: "activePriceTag") : NSImage(named: "priceTag")
-        
         updateSendButtonColor(color: sendColor)
         updateBGColor(color: color)
         updateMessageBGColor(color: messageColor)
     }
     
-    func updateBGColor(color: CGColor) {
-        attachmentsButton.layer?.backgroundColor = color
-//        emojiButton.layer?.backgroundColor = color
+    func updateBGColor(color: NSColor) {
+        emojiButton.contentTintColor = color
+        giphyButton.contentTintColor = color
+        priceTag.contentTintColor = color
+        attachmentsButton.contentTintColor = color
     }
     
     func updateSendButtonColor(color: CGColor) {
@@ -168,7 +166,7 @@ extension ChatMessageFieldView : NSTextFieldDelegate {
         ).width
         showPriceButton()
         updateColor()
-        priceTextFieldWidth.constant = priceTextField.stringValue.isEmpty ? 90 : (
+        priceTextFieldWidth.constant = (priceTextField.placeholderString?.isEmpty ?? true) ? 50 : priceTextField.stringValue.isEmpty ? 90 : (
             width < (kMinimumPriceFieldWidth - kPriceFieldPadding)
         ) ? kMinimumPriceFieldWidth : width + kPriceFieldPadding
         
