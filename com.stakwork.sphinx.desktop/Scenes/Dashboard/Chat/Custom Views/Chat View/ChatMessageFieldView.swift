@@ -80,6 +80,7 @@ class ChatMessageFieldView: NSView, LoadableNib {
     }
     
     func setupForThread() {
+        isThreadOpen = true
         priceContainer.isHidden = true
     }
     
@@ -89,6 +90,7 @@ class ChatMessageFieldView: NSView, LoadableNib {
         setupPriceField()
         setupAttachmentButton()
         setupSendButton()
+        setupMicButton()
         setupIntermitentAlphaView()
         showPriceClearButton()
     }
@@ -159,6 +161,13 @@ class ChatMessageFieldView: NSView, LoadableNib {
         attachmentsButton.wantsLayer = true
         attachmentsButton.layer?.cornerRadius = attachmentsButton.frame.height / 2
         attachmentsButton.isEnabled = false
+    }
+    
+    func setupMicButton() {
+        micButton.wantsLayer = true
+        micButton.layer?.cornerRadius = sendButton.frame.height / 2
+        micButton.layer?.backgroundColor = NSColor.Sphinx.PrimaryBlue.cgColor
+        micButton.isEnabled = true
     }
     
     func setupSendButton() {

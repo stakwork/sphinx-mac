@@ -127,6 +127,7 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
         
         updateSendButtonColor(color: sendColor)
         updateMessageBGColor(color: messageColor)
+        
         updateIconsColor(
             plusIconColor: plusIconColor,
             iconsColor: iconsColor

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Voice.png",
+      "filename" : "mic@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Voice@2x.png",
+      "filename" : "mic@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Voice@3x.png",
+      "filename" : "mic@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
