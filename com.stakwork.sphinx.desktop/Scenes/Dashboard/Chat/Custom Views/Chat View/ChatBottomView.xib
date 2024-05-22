@@ -73,7 +73,7 @@
                         <real value="3.4028234663852886e+38"/>
                     </customSpacing>
                 </stackView>
-                <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="5xx-m2-FZz">
+                <box boxType="custom" borderType="none" titlePosition="noTitle" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5xx-m2-FZz">
                     <rect key="frame" x="0.0" y="59" width="835" height="1"/>
                     <view key="contentView" id="Jyo-2E-bjd">
                         <rect key="frame" x="0.0" y="0.0" width="835" height="1"/>

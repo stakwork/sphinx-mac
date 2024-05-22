@@ -301,6 +301,8 @@ class NewChatViewController: DashboardSplittedViewController {
             return
         }
         
+        chatBottomView.messageFieldView.isThreadOpen = true
+        
         WindowsManager.sharedInstance.showVCOnRightPanelWindow(
             with: "thread-chat".localized,
             identifier: "thread-chat-identifier",

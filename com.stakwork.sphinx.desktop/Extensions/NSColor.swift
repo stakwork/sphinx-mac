@@ -104,6 +104,11 @@ extension NSColor {
         public static let ChatsHeaderDivider = color("ChatsHeaderDivider")
         public static let InputBG1 = color("InputBG1")
         
+        public static let PriceTagBG = color("PriceTagBG")
+        public static let TextViewGreenColor = color("TextViewGreenColor")
+        public static let TextViewBGColor = color("TextViewBGColor")
+        public static let ActivePriceTag = color("ActivePriceTag")
+        
         private static func color(_ name: String) -> NSColor {
             return NSColor(named: NSColor.Name(name)) ?? NSColor.magenta
         }
