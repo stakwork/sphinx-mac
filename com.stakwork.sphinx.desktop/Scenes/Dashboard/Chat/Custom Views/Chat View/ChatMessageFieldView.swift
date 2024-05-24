@@ -26,6 +26,8 @@ class ChatMessageFieldView: NSView, LoadableNib {
     @IBOutlet weak var priceContainer: NSBox!
     @IBOutlet weak var priceTextField: CCTextField!
     @IBOutlet weak var priceTextFieldWidth: NSLayoutConstraint!
+    @IBOutlet weak var priceTag: CustomButton!
+    
     
     @IBOutlet weak var recordingContainer: NSBox!
     @IBOutlet weak var intermitentAlphaView: IntermitentAlphaAnimatedView!
@@ -34,12 +36,15 @@ class ChatMessageFieldView: NSView, LoadableNib {
     @IBOutlet weak var messageContainerHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var addDocumentCustomView: NSView!
-    @IBOutlet weak var setPriceCustomView: NSBox!
+    @IBOutlet weak var stackView: NSBox!
+    @IBOutlet weak var priceCancelButton: NSBox!
+    @IBOutlet weak var priceCancelButtonWidthConstraint: NSLayoutConstraint!
     
     let kTextViewVerticalMargins: CGFloat = 41
     let kCharacterLimit = 1000
     let kTextViewLineHeight: CGFloat = 19
-    let kMinimumPriceFieldWidth: CGFloat = 50
+    let kMinimumPriceFieldWidth: CGFloat = 90
+    let kPriceClearButtonWidth: CGFloat = 20
     let kPriceFieldPadding: CGFloat = 10
     
     let kFieldPlaceHolder = "message.placeholder".localized
@@ -50,6 +55,7 @@ class ChatMessageFieldView: NSView, LoadableNib {
     var contact: UserContact? = nil
     var threadUUID: String? = nil
     
+    var isThreadOpen: Bool = false
     
     var isThread: Bool {
         get {
@@ -74,8 +80,8 @@ class ChatMessageFieldView: NSView, LoadableNib {
     }
     
     func setupForThread() {
-        addDocumentCustomView.isHidden = true
-        setPriceCustomView.isHidden = true
+        isThreadOpen = true
+        priceContainer.isHidden = true
     }
     
     func setupView() {
@@ -84,7 +90,9 @@ class ChatMessageFieldView: NSView, LoadableNib {
         setupPriceField()
         setupAttachmentButton()
         setupSendButton()
+        setupMicButton()
         setupIntermitentAlphaView()
+        showPriceClearButton()
     }
     
     func setupIntermitentAlphaView() {
@@ -101,7 +109,9 @@ class ChatMessageFieldView: NSView, LoadableNib {
     
     func setupMessageField() {
         messageTextViewContainer.wantsLayer = true
-        messageTextViewContainer.layer?.cornerRadius = messageTextViewContainer.frame.height / 2
+        stackView.wantsLayer = true
+        priceContainer.wantsLayer = true
+        priceTextField.delegate = self
         
         messageTextView.isEditable = true
         
@@ -116,15 +126,32 @@ class ChatMessageFieldView: NSView, LoadableNib {
             size: 16.0
         )!
         
+        messageTextView.textColor = NSColor.Sphinx.PrimaryText
+        
         messageTextView.delegate = self
         messageTextView.fieldDelegate = self
+        
+        if let layer = stackView.layer {
+            layer.backgroundColor = NSColor.Sphinx.ReceivedMsgBG.cgColor
+            layer.cornerRadius = stackView.frame.height / 2
+            layer.masksToBounds = true
+        }
+        
+        if let layer = priceContainer.layer  {
+            layer.masksToBounds = true
+            layer.cornerRadius = priceContainer.frame.height / 2
+            layer.backgroundColor = NSColor.Sphinx.PriceTagBG.cgColor
+            layer.borderWidth = 1
+            layer.borderColor = NSColor.clear.cgColor
+        }
+        
+        updateColor()
     }
     
     func setupPriceField() {
         priceContainer.wantsLayer = true
         priceContainer.layer?.cornerRadius = priceContainer.frame.height / 2
-        priceTextField.color = NSColor.Sphinx.SphinxWhite
-        priceTextField.setColor(color: NSColor.Sphinx.SphinxWhite)
+        priceTextField.color = priceTextField.stringValue.isEmpty ? NSColor.Sphinx.SecondaryText : NSColor.Sphinx.PrimaryText
         priceTextField.formatter = IntegerValueFormatter()
         priceTextField.delegate = self
         priceTextField.isEditable = false
@@ -133,8 +160,14 @@ class ChatMessageFieldView: NSView, LoadableNib {
     func setupAttachmentButton() {
         attachmentsButton.wantsLayer = true
         attachmentsButton.layer?.cornerRadius = attachmentsButton.frame.height / 2
-        attachmentsButton.layer?.backgroundColor = NSColor.Sphinx.PrimaryBlue.cgColor
         attachmentsButton.isEnabled = false
+    }
+    
+    func setupMicButton() {
+        micButton.wantsLayer = true
+        micButton.layer?.cornerRadius = sendButton.frame.height / 2
+        micButton.layer?.backgroundColor = NSColor.Sphinx.PrimaryBlue.cgColor
+        micButton.isEnabled = true
     }
     
     func setupSendButton() {
@@ -149,7 +182,7 @@ class ChatMessageFieldView: NSView, LoadableNib {
         
         let messageFieldContentHeight = messageTextView.contentSize.height
         let updatedHeight = messageFieldContentHeight + kTextViewVerticalMargins
-        let newFieldHeight = min(updatedHeight, kTextViewLineHeight * 6)
+        let newFieldHeight = min(updatedHeight, kTextViewLineHeight * 11) + 12
         
         if messageContainerHeightConstraint.constant == newFieldHeight {
             scrollMessageTextViewToBottom()
@@ -194,13 +227,29 @@ class ChatMessageFieldView: NSView, LoadableNib {
         
         sendButton.isEnabled = active
         attachmentsButton.isEnabled = active
-        priceTextField.isEditable = active && !isThread
+        priceTextField.isEditable = active
+        updatePriceTagField()
         
-        self.alphaValue = active ? 1.0 : 0.7
+        alphaValue = active ? 1.0 : 0.7
         
         initializeMacros()
+        setOngoingMessage()
+    }
+    
+    func updatePriceTagField() {
+        priceTextField.isHidden = isThreadOpen
         
-        self.setOngoingMessage()
+        let style = NSMutableParagraphStyle()
+        style.alignment = NSTextAlignment.center
+        
+        priceTextField.placeholderAttributedString = NSAttributedString(
+            string: isThread ? "" : "Add Price",
+            attributes: [
+                NSAttributedString.Key.font: NSFont(name: "Roboto-Regular", size: 14.0)!,
+                NSAttributedString.Key.foregroundColor: NSColor.Sphinx.SecondaryText,
+                NSAttributedString.Key.paragraphStyle: style
+            ]
+        )
     }
     
     func setOngoingMessage() {
@@ -254,6 +303,15 @@ class ChatMessageFieldView: NSView, LoadableNib {
         shouldSendMessage()
     }
     
+    @IBAction func priceCancelButtonClicked(_ sender: Any) {
+        priceTextField.stringValue = ""
+        updatePriceFieldWidth()
+    }
+    
+    func showPriceClearButton() {
+        priceCancelButton.isHidden = priceTextField.stringValue.isEmpty
+    }
+    
     @IBAction func micButtonClicked(_ sender: Any) {
         recordingTimeLabel.stringValue = "0:00"
         
@@ -266,5 +324,11 @@ class ChatMessageFieldView: NSView, LoadableNib {
     
     @IBAction func confirmRecordingButtonClicked(_ sender: Any) {
         delegate?.didClickConfirmRecordingButton()
+    }
+    
+    @IBAction func tagButtonClicked(_ sender: Any) {
+        priceTextField.isHidden = false
+        updatePriceFieldWidth()
+        self.window?.makeFirstResponder(priceTextField)
     }
 }

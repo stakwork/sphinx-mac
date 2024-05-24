@@ -36,7 +36,9 @@ class NewChatHeaderView: NSView, LoadableNib {
     
     var walletBalanceService = WalletBalanceService()
     
-    let profile = UserContact.getOwner()
+    var ownerResultsController: NSFetchedResultsController<UserContact>!
+    var profile: UserContact? = nil
+    
     var hideBalance: Bool = false
     
     var loading = false {
@@ -48,6 +50,7 @@ class NewChatHeaderView: NSView, LoadableNib {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        
         loadViewFromNib()
         setup()
         setupViews()
@@ -58,14 +61,35 @@ class NewChatHeaderView: NSView, LoadableNib {
     }
     
     private func setup() {
-        reloadButton.cursor = .pointingHand
-        menuButton.cursor = .pointingHand
-        balanceButton.cursor = .pointingHand
+        configureOwnerFetchResultsController()
+    }
+    
+    func configureOwnerFetchResultsController() {
+        if let _ = ownerResultsController {
+            return
+        }
+        
+        let ownerFetchRequest = UserContact.FetchRequests.owner()
+
+        ownerResultsController = NSFetchedResultsController(
+            fetchRequest: ownerFetchRequest,
+            managedObjectContext: CoreDataManager.sharedManager.persistentContainer.viewContext,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
+        
+        ownerResultsController.delegate = self
+        
+        do {
+            try ownerResultsController.performFetch()
+        } catch {}
     }
     
     func configureProfile() {
         walletBalanceService.updateBalance(labels: [balanceLabel])
         balanceUnitLabel.stringValue = "sat"
+        
+        setupViews()
         
         if let profile = profile {
             if let imageUrl = profile.avatarUrl?.trim(), imageUrl != "" {
@@ -86,6 +110,10 @@ class NewChatHeaderView: NSView, LoadableNib {
     }
     
     func setupViews() {
+        reloadButton.cursor = .pointingHand
+        menuButton.cursor = .pointingHand
+        balanceButton.cursor = .pointingHand
+        
         profileImageView.wantsLayer = true
         profileImageView.rounded = true
         profileImageView.layer?.cornerRadius = profileImageView.frame.height / 2
@@ -95,7 +123,7 @@ class NewChatHeaderView: NSView, LoadableNib {
         loading = true
         delegate?.refreshTapped()
         updateBalance()
-        shouldCheckAppVersions()
+//        shouldCheckAppVersions()
     }
     
     @IBAction func menuButtonTapped(_ sender: NSButton) {
@@ -113,21 +141,23 @@ class NewChatHeaderView: NSView, LoadableNib {
     
     func hideAmount() {
         var hiddenAmount = ""
+        
         "\(walletBalanceService.balance)".forEach { char in
             hiddenAmount += "*"
         }
+        
         balanceLabel.stringValue = hiddenAmount
     }
     
     func shouldCheckAppVersions() {
-        API.sharedInstance.getAppVersions(callback: { v in
-            self.loading = false
-            let version = Int(v) ?? 0
-            let appVersion = Int(Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "0") ?? 0
+//        API.sharedInstance.getAppVersions(callback: { v in
+//            self.loading = false
+//            let version = Int(v) ?? 0
+//            let appVersion = Int(Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "0") ?? 0
 
 //            self.upgradeButton.isHidden = version <= appVersion
 //            self.upgradeBox.isHidden = version <= appVersion
-        })
+//        })
     }
     
     func listenForNotifications() {
@@ -151,5 +181,22 @@ class NewChatHeaderView: NSView, LoadableNib {
 extension NewChatHeaderView : HealthCheckDelegate {
     func shouldShowBubbleWith(_ message: String) {
         NewMessageBubbleHelper().showGenericMessageView(text:message, in: self.contentView, position: .Top, delay: 3)
+    }
+}
+
+extension NewChatHeaderView : NSFetchedResultsControllerDelegate {
+    func controller(
+        _ controller: NSFetchedResultsController<NSFetchRequestResult>,
+        didChangeContentWith snapshot: NSDiffableDataSourceSnapshotReference
+    ) {
+        if
+            let resultController = controller as? NSFetchedResultsController<NSManagedObject>,
+            let firstSection = resultController.sections?.first {
+            
+            if resultController == ownerResultsController {
+                profile = firstSection.objects?.first as? UserContact
+                configureProfile()
+            }
+        }
     }
 }

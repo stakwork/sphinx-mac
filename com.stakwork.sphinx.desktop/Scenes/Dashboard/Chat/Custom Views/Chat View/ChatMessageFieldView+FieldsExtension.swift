@@ -59,10 +59,18 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
         priceTextField.stringValue = ""
         textDidChange(Notification(name: NSControl.textDidChangeNotification))
         
+        updateColor()
         delegate?.shouldMainChatOngoingMessage()
     }
     
     func textDidChange(_ notification: Notification) {
+        micButton.isHidden = !messageTextView.string.isEmpty
+        priceContainer.isHidden = messageTextView.string.isEmpty || isThread
+        sendButton.isHidden = messageTextView.string.isEmpty
+        priceTextField.stringValue = messageTextView.string.isEmpty ? "" : priceTextField.stringValue
+        
+        updateColor()
+        
         ChatTrackingHandler.shared.saveOngoingMessage(
             with: messageTextView.string,
             chatId: chat?.id,
@@ -89,6 +97,61 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
 //        }
     }
     
+    func updateColor() {
+        let active: Bool = !priceTextField.stringValue.isEmpty
+        
+        let plusIconColor = active ?
+        NSColor.Sphinx.GreenBorder :
+        NSColor.Sphinx.SecondaryText
+        
+        let iconsColor = active ?
+        NSColor.Sphinx.GreenBorder :
+        NSColor.Sphinx.PlaceholderText
+        
+        let messageColor = active ?
+        NSColor.Sphinx.TextViewGreenColor :
+        NSColor.Sphinx.TextViewBGColor
+        
+        let sendColor = active ? 
+        NSColor.Sphinx.GreenBorder.cgColor:
+        NSColor.Sphinx.PrimaryBlue.cgColor
+        
+        if let layer = priceContainer.layer  {
+            layer.masksToBounds = true
+            layer.cornerRadius = priceContainer.frame.height / 2
+            layer.backgroundColor = active ? NSColor.Sphinx.TextViewBGColor.cgColor : NSColor.Sphinx.PriceTagBG.cgColor
+            layer.borderWidth = 1
+            layer.borderColor = active ? NSColor.Sphinx.GreenBorder.cgColor : NSColor.clear.cgColor
+            
+        }
+        
+        updateSendButtonColor(color: sendColor)
+        updateMessageBGColor(color: messageColor)
+        
+        updateIconsColor(
+            plusIconColor: plusIconColor,
+            iconsColor: iconsColor
+        )
+    }
+    
+    func updateIconsColor(
+        plusIconColor: NSColor,
+        iconsColor: NSColor
+    ) {
+        emojiButton.contentTintColor = iconsColor
+        giphyButton.contentTintColor = iconsColor
+        priceTag.contentTintColor = iconsColor
+        attachmentsButton.contentTintColor = plusIconColor
+    }
+    
+    func updateSendButtonColor(color: CGColor) {
+        sendButton.layer?.backgroundColor = color
+    }
+    
+    func updateMessageBGColor(color: NSColor) {
+        stackView.fillColor = color
+    }
+    
     func didDetectFilePaste(pasteBoard: NSPasteboard) -> Bool {
         let hasFiles = ClipboardHelper().clipboardHasFiles(pasteBoard: pasteBoard)
         
@@ -113,12 +176,25 @@ extension ChatMessageFieldView : NSTextFieldDelegate {
         
         let width = NSTextField().getStringSize(
             text: currentString,
-            font: NSFont.systemFont(ofSize: 15, weight: .semibold)
+            font: NSFont(name: "Roboto-Regular", size: 14.0)!
         ).width
         
-        priceTextFieldWidth.constant = (
-            width < (kMinimumPriceFieldWidth - kPriceFieldPadding)
-        ) ? kMinimumPriceFieldWidth : width + kPriceFieldPadding
+        showPriceClearButton()
+        updateColor()
+        
+        var widthConstant: CGFloat = 0
+        
+        if priceTextField.stringValue.isEmpty {
+            widthConstant = kMinimumPriceFieldWidth
+        } else {
+            if width + kPriceFieldPadding > (kMinimumPriceFieldWidth - kPriceClearButtonWidth) {
+                widthConstant = width + kPriceFieldPadding
+            } else {
+                widthConstant = kMinimumPriceFieldWidth - kPriceClearButtonWidth
+            }
+        }
+        
+        priceTextFieldWidth.constant = widthConstant
         
         priceTextField.superview?.layoutSubtreeIfNeeded()
     }
