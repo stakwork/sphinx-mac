@@ -91,7 +91,7 @@ class ChatMentionAutocompleteDataSource : NSObject {
     }
     
     func updateMentionTableHeight() {
-        let height = min(4 * mentionCellHeight, mentionCellHeight * CGFloat(suggestions.count))
+        let height = min(3 * mentionCellHeight, mentionCellHeight * CGFloat(suggestions.count))
         delegate.shouldUpdateTableHeightTo(value: height)
     }
     
@@ -155,9 +155,11 @@ extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate, NSCollec
         guard let mentionItem = item as? ChatMentionAutocompleteCell else {return item}
         
         if (indexPath.item == selectedRow) {
-            mentionItem.view.layer?.backgroundColor = NSColor.Sphinx.HeaderBG.cgColor
+            mentionItem.view.layer?.backgroundColor = NSColor.Sphinx.PriceTagBG.cgColor
+            mentionItem.containerBox.fillColor = NSColor.Sphinx.SelectedMenu
         } else{
-            mentionItem.view.layer?.backgroundColor = NSColor.Sphinx.ChatListSelected.cgColor
+            mentionItem.view.layer?.backgroundColor = NSColor.Sphinx.PriceTagBG.cgColor
+            mentionItem.containerBox.fillColor = NSColor.Sphinx.PriceTagBG
         }
         
         return mentionItem
