@@ -17,7 +17,7 @@ protocol ChatBottomViewDelegate : AnyObject {
     func didClickCancelRecordingButton()
     
     ///Mentions and Macros
-    func shouldUpdateMentionSuggestionsWith(_ object: [MentionOrMacroItem])
+    func shouldUpdateMentionSuggestionsWith(_ object: [MentionOrMacroItem], cursorPosition: Int)
     func shouldGetSelectedMention() -> String?
     func shouldGetSelectedMacroAction() -> (() -> ())?
     func didTapUpArrow() -> Bool
