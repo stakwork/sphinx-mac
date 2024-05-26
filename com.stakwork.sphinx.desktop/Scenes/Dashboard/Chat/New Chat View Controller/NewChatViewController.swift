@@ -40,6 +40,9 @@ class NewChatViewController: DashboardSplittedViewController {
     @IBOutlet weak var newMsgsIndicatorView: NewMessagesIndicatorView!
     @IBOutlet weak var expandMenuButtonView: NSView!
     
+    @IBOutlet weak var mentionScrollViewLeadingConstraints: NSLayoutConstraint!
+    @IBOutlet weak var mentionScrollViewTrailingConstraints: NSLayoutConstraint!
+    
     var mediaFullScreenView: MediaFullScreenView? = nil
     
     var newChatViewModel: NewChatViewModel!
@@ -227,6 +230,16 @@ class NewChatViewController: DashboardSplittedViewController {
     
     func setupViews() {
         draggingView.setup()
+        setupCollectionView()
+    }
+    
+    func setupCollectionView() {
+        mentionsScrollView.wantsLayer = true
+        mentionsScrollView.layer?.cornerRadius = 9
+        
+        // Customize the scroll view's border
+        mentionsScrollView.layer?.borderWidth = 1.0
+        mentionsScrollView.layer?.borderColor = NSColor.black.withAlphaComponent(0.15).cgColor
     }
     
     func setupChatTopView() {

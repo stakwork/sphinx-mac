@@ -318,12 +318,34 @@ extension NewChatViewController : ChatBottomViewDelegate {
         return false
     }
     
-    func shouldUpdateMentionSuggestionsWith(_ object: [MentionOrMacroItem]) {
-        chatMentionAutocompleteDataSource?.setViewWidth(viewWidth: self.chatCollectionView.frame.width)
-        
+    func shouldUpdateMentionSuggestionsWith(_ object: [MentionOrMacroItem], cursorPosition: Int) {
+        if (!object.isEmpty) {
+            let leadingPos = getCurrentPosition(cursorPoint: cursorPosition)
+            mentionScrollViewLeadingConstraints.constant = leadingPos
+            mentionScrollViewTrailingConstraints.constant = -(self.chatCollectionView.frame.width - leadingPos - 150)
+            setupCollectionView()
+        }
+        chatMentionAutocompleteDataSource?.setViewWidth(viewWidth: 150)
         chatMentionAutocompleteDataSource?.updateMentionSuggestions(
             suggestions: object
         )
+    }
+    
+    func getCurrentPosition(cursorPoint: Int) -> CGFloat {
+        // Get the layout manager and text container
+        guard let layoutManager = chatBottomView.messageFieldView.messageTextView.layoutManager,
+              let textContainer = chatBottomView.messageFieldView.messageTextView.textContainer else { return 0 }
+                
+                // Get the glyph range for the cursor position
+                let glyphRange = layoutManager.glyphRange(forCharacterRange: NSRange(location: cursorPoint, length: 0), actualCharacterRange: nil)
+                
+                // Get the bounding rectangle for the glyph
+                let glyphRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
+                
+                // Convert the glyph rect to the text view's coordinate system
+                let textRectInView = chatBottomView.messageFieldView.messageTextView.convert(glyphRect, to: chatBottomView.messageFieldView.messageTextView)
+        
+        return CGFloat(28 + textRectInView.origin.x + textRectInView.width)
     }
     
     func shouldGetSelectedMention() -> String? {
