@@ -1178,6 +1178,7 @@
                         <outlet property="childViewControllerContainer" destination="wD4-1y-bkn" id="X43-AB-cYK"/>
                         <outlet property="draggingView" destination="NL7-Ka-pQ0" id="rGI-OE-UPs"/>
                         <outlet property="expandMenuButtonView" destination="dgH-Af-a01" id="0kl-CG-J6E"/>
+                        <outlet property="mentionScrollViewBottomConstraints" destination="0Bg-NF-GOu" id="cPd-0a-gTQ"/>
                         <outlet property="mentionScrollViewLeadingConstraints" destination="MTR-SZ-YyY" id="Kef-mz-Nj4"/>
                         <outlet property="mentionScrollViewTrailingConstraints" destination="aGA-Vi-GFn" id="Lyq-Zh-ei5"/>
                         <outlet property="mentionsCollectionView" destination="llZ-ed-gHt" id="7m9-3j-WqT"/>

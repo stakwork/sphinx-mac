@@ -321,8 +321,9 @@ extension NewChatViewController : ChatBottomViewDelegate {
     func shouldUpdateMentionSuggestionsWith(_ object: [MentionOrMacroItem], cursorPosition: Int) {
         if (!object.isEmpty) {
             let leadingPos = getCurrentPosition(cursorPoint: cursorPosition)
-            mentionScrollViewLeadingConstraints.constant = leadingPos
-            mentionScrollViewTrailingConstraints.constant = -(self.chatCollectionView.frame.width - leadingPos - 150)
+            mentionScrollViewLeadingConstraints.constant = leadingPos.0
+            mentionScrollViewTrailingConstraints.constant = -(self.chatCollectionView.frame.width - leadingPos.0 - 150)
+            mentionScrollViewBottomConstraints.constant = leadingPos.1
             setupCollectionView()
         }
         chatMentionAutocompleteDataSource?.setViewWidth(viewWidth: 150)
@@ -331,10 +332,10 @@ extension NewChatViewController : ChatBottomViewDelegate {
         )
     }
     
-    func getCurrentPosition(cursorPoint: Int) -> CGFloat {
+    func getCurrentPosition(cursorPoint: Int) -> (CGFloat, CGFloat) {
         // Get the layout manager and text container
         guard let layoutManager = chatBottomView.messageFieldView.messageTextView.layoutManager,
-              let textContainer = chatBottomView.messageFieldView.messageTextView.textContainer else { return 0 }
+              let textContainer = chatBottomView.messageFieldView.messageTextView.textContainer else { return (0, 0) }
                 
                 // Get the glyph range for the cursor position
                 let glyphRange = layoutManager.glyphRange(forCharacterRange: NSRange(location: cursorPoint, length: 0), actualCharacterRange: nil)
@@ -345,7 +346,10 @@ extension NewChatViewController : ChatBottomViewDelegate {
                 // Convert the glyph rect to the text view's coordinate system
                 let textRectInView = chatBottomView.messageFieldView.messageTextView.convert(glyphRect, to: chatBottomView.messageFieldView.messageTextView)
         
-        return CGFloat(28 + textRectInView.origin.x + textRectInView.width)
+        return (
+            CGFloat(28 + textRectInView.origin.x + textRectInView.width),
+            CGFloat(22 + textRectInView.origin.y)
+        )
     }
     
     func shouldGetSelectedMention() -> String? {
