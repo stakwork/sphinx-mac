@@ -41,7 +41,6 @@ class NewChatViewController: DashboardSplittedViewController {
     @IBOutlet weak var expandMenuButtonView: NSView!
     
     @IBOutlet weak var mentionScrollViewLeadingConstraints: NSLayoutConstraint!
-    @IBOutlet weak var mentionScrollViewTrailingConstraints: NSLayoutConstraint!
     @IBOutlet weak var mentionScrollViewBottomConstraints: NSLayoutConstraint!
     
     var mediaFullScreenView: MediaFullScreenView? = nil

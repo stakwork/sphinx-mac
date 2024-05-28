@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
-        <plugIn identifier="com.apple.WebKit2IBPlugin" version="22505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -402,7 +402,7 @@
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FCC-PE-Y6e">
-                                                                <rect key="frame" x="16" y="10" width="302" height="19"/>
+                                                                <rect key="frame" x="16" y="11" width="302" height="16"/>
                                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" focusRingType="none" alignment="left" placeholderString="Search" drawsBackground="YES" id="rha-Yr-Htc">
                                                                     <font key="font" size="14" name="Roboto-Light"/>
                                                                     <color key="textColor" name="Text"/>
@@ -725,14 +725,14 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="GTM-5e-6jW" customClass="ChatAvatarView" customModule="Sphinx" customModuleProvider="target">
-                                            <rect key="frame" x="150" y="184" width="100" height="100"/>
+                                            <rect key="frame" x="150" y="182" width="100" height="100"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="2q6-WF-7KQ"/>
                                                 <constraint firstAttribute="height" constant="100" id="rh4-st-D5y"/>
                                             </constraints>
                                         </customView>
                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aNk-mv-UTA">
-                                            <rect key="frame" x="147" y="135" width="107" height="19"/>
+                                            <rect key="frame" x="147" y="133" width="107" height="19"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Contact Name" id="Jwy-W5-tXa">
                                                 <font key="font" size="16" name="Roboto-Medium"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -740,7 +740,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Yp-Ei-wYU">
-                                            <rect key="frame" x="18" y="91" width="324" height="19"/>
+                                            <rect key="frame" x="18" y="92" width="324" height="16"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="320" id="ky2-3i-CUb"/>
                                             </constraints>
@@ -751,7 +751,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="yLY-oN-qAB">
-                                            <rect key="frame" x="148" y="21" width="105" height="40"/>
+                                            <rect key="frame" x="148" y="22" width="105" height="40"/>
                                             <subviews>
                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bVh-QR-8zW">
                                                     <rect key="frame" x="0.0" y="0.0" width="19" height="40"/>
@@ -759,7 +759,7 @@
                                                     <color key="contentTintColor" name="SecondaryText"/>
                                                 </imageView>
                                                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QTD-Rq-Ec3">
-                                                    <rect key="frame" x="25" y="13" width="82" height="13"/>
+                                                    <rect key="frame" x="25" y="14" width="82" height="13"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="CLICK TO COPY" id="JLX-aR-llf">
                                                         <font key="font" metaFont="system" size="10"/>
                                                         <color key="textColor" name="SecondaryText"/>
@@ -979,31 +979,33 @@
                                                                                     </constraints>
                                                                                 </customView>
                                                                                 <scrollView hidden="YES" wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YNj-1S-7Oo">
-                                                                                    <rect key="frame" x="0.0" y="38" width="600" height="240"/>
+                                                                                    <rect key="frame" x="0.0" y="38" width="170" height="136"/>
                                                                                     <clipView key="contentView" drawsBackground="NO" id="8Oj-wf-kqB">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="600" height="240"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="170" height="136"/>
                                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                         <subviews>
                                                                                             <collectionView selectable="YES" id="llZ-ed-gHt">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="600" height="240"/>
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="170" height="136"/>
                                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                                                                 <collectionViewFlowLayout key="collectionViewLayout" id="BX1-RF-jKr">
-                                                                                                    <size key="itemSize" width="200" height="50"/>
+                                                                                                    <size key="itemSize" width="200" height="44"/>
+                                                                                                    <edgeInsets key="sectionInset" left="0.0" right="0.0" top="2" bottom="2"/>
                                                                                                 </collectionViewFlowLayout>
-                                                                                                <color key="primaryBackgroundColor" name="PriceTagBG"/>
+                                                                                                <color key="primaryBackgroundColor" name="ThreadOriginalMsg"/>
                                                                                             </collectionView>
                                                                                         </subviews>
-                                                                                        <color key="backgroundColor" name="PriceTagBG"/>
+                                                                                        <color key="backgroundColor" name="ThreadOriginalMsg"/>
                                                                                     </clipView>
                                                                                     <constraints>
-                                                                                        <constraint firstAttribute="height" constant="240" id="sLd-GY-zc3"/>
+                                                                                        <constraint firstAttribute="height" constant="136" id="sLd-GY-zc3"/>
+                                                                                        <constraint firstAttribute="width" constant="170" id="zdI-hj-eaT"/>
                                                                                     </constraints>
                                                                                     <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="FcS-No-8TS">
                                                                                         <rect key="frame" x="-100" y="-100" width="233" height="15"/>
                                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                                     </scroller>
                                                                                     <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="ivE-9i-8Se">
-                                                                                        <rect key="frame" x="582" y="2" width="16" height="236"/>
+                                                                                        <rect key="frame" x="134" y="0.0" width="16" height="132"/>
                                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                                     </scroller>
                                                                                 </scrollView>
@@ -1063,7 +1065,6 @@
                                                                                 <constraint firstAttribute="bottom" secondItem="NL7-Ka-pQ0" secondAttribute="bottom" id="T87-IE-P4F"/>
                                                                                 <constraint firstItem="wD4-1y-bkn" firstAttribute="leading" secondItem="hrp-5k-g3S" secondAttribute="leading" id="Uwk-B7-iEf"/>
                                                                                 <constraint firstItem="X86-z6-O1z" firstAttribute="top" secondItem="hrp-5k-g3S" secondAttribute="top" id="Xbw-fu-14U"/>
-                                                                                <constraint firstItem="YNj-1S-7Oo" firstAttribute="trailing" secondItem="hrp-5k-g3S" secondAttribute="trailing" id="aGA-Vi-GFn"/>
                                                                                 <constraint firstItem="wD4-1y-bkn" firstAttribute="bottom" secondItem="VsO-VQ-Xhc" secondAttribute="top" constant="10" id="aOw-iS-AZo"/>
                                                                                 <constraint firstAttribute="trailing" secondItem="NL7-Ka-pQ0" secondAttribute="trailing" id="bgH-nl-eNC"/>
                                                                                 <constraint firstItem="wD4-1y-bkn" firstAttribute="top" secondItem="hrp-5k-g3S" secondAttribute="top" id="ijw-Gs-qyw"/>
@@ -1180,7 +1181,6 @@
                         <outlet property="expandMenuButtonView" destination="dgH-Af-a01" id="0kl-CG-J6E"/>
                         <outlet property="mentionScrollViewBottomConstraints" destination="0Bg-NF-GOu" id="cPd-0a-gTQ"/>
                         <outlet property="mentionScrollViewLeadingConstraints" destination="MTR-SZ-YyY" id="Kef-mz-Nj4"/>
-                        <outlet property="mentionScrollViewTrailingConstraints" destination="aGA-Vi-GFn" id="Lyq-Zh-ei5"/>
                         <outlet property="mentionsCollectionView" destination="llZ-ed-gHt" id="7m9-3j-WqT"/>
                         <outlet property="mentionsScrollView" destination="YNj-1S-7Oo" id="Dm4-w9-saU"/>
                         <outlet property="mentionsScrollViewHeightConstraint" destination="sLd-GY-zc3" id="b3D-2u-qRi"/>
@@ -1477,7 +1477,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="coY-Ts-3HW">
-                                <rect key="frame" x="170" y="219" width="110" height="28"/>
+                                <rect key="frame" x="171" y="219" width="109" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="S5J-hE-iFZ"/>
                                 </constraints>
@@ -1868,9 +1868,6 @@
         <namedColor name="NewMessageIndicator">
             <color red="0.90980392156862744" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="PriceTagBG">
-            <color red="0.96862745098039216" green="0.97254901960784312" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="PrimaryGreen">
             <color red="0.28627450980392155" green="0.78823529411764703" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -1879,6 +1876,9 @@
         </namedColor>
         <namedColor name="Text">
             <color red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ThreadOriginalMsg">
+            <color red="0.96862745098039216" green="0.97254901960784312" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

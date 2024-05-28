@@ -318,21 +318,28 @@ extension NewChatViewController : ChatBottomViewDelegate {
         return false
     }
     
-    func shouldUpdateMentionSuggestionsWith(_ object: [MentionOrMacroItem], cursorPosition: Int) {
+    func shouldUpdateMentionSuggestionsWith(
+        _ object: [MentionOrMacroItem],
+        text: String,
+        cursorPosition: Int
+    ) {
         if (!object.isEmpty) {
-            let leadingPos = getCurrentPosition(cursorPoint: cursorPosition)
+            let leadingPos = getCurrentPosition(
+                cursorPoint: cursorPosition - text.count,
+                isMention: object.first?.type == .mention
+            )
             mentionScrollViewLeadingConstraints.constant = leadingPos.0
-            mentionScrollViewTrailingConstraints.constant = -(self.chatCollectionView.frame.width - leadingPos.0 - 150)
             mentionScrollViewBottomConstraints.constant = leadingPos.1
             setupCollectionView()
         }
-        chatMentionAutocompleteDataSource?.setViewWidth(viewWidth: 150)
-        chatMentionAutocompleteDataSource?.updateMentionSuggestions(
-            suggestions: object
-        )
+        chatMentionAutocompleteDataSource?.setViewWidth(viewWidth: 170)
+        chatMentionAutocompleteDataSource?.updateMentionSuggestions(suggestions: object)
     }
     
-    func getCurrentPosition(cursorPoint: Int) -> (CGFloat, CGFloat) {
+    func getCurrentPosition(
+        cursorPoint: Int,
+        isMention: Bool
+    ) -> (CGFloat, CGFloat) {
         // Get the layout manager and text container
         guard let layoutManager = chatBottomView.messageFieldView.messageTextView.layoutManager,
               let textContainer = chatBottomView.messageFieldView.messageTextView.textContainer else { return (0, 0) }
@@ -347,7 +354,7 @@ extension NewChatViewController : ChatBottomViewDelegate {
                 let textRectInView = chatBottomView.messageFieldView.messageTextView.convert(glyphRect, to: chatBottomView.messageFieldView.messageTextView)
         
         return (
-            CGFloat(28 + textRectInView.origin.x + textRectInView.width),
+            CGFloat(isMention ? 58 : 52 + textRectInView.origin.x + textRectInView.width),
             CGFloat(22 + textRectInView.origin.y)
         )
     }

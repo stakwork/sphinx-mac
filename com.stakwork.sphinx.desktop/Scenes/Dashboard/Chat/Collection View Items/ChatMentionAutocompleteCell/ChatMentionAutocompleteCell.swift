@@ -12,7 +12,6 @@ import SDWebImage
 class ChatMentionAutocompleteCell: NSCollectionViewItem {
 
     @IBOutlet weak var mentionTextField: NSTextField!
-//    @IBOutlet weak var dividerLine: NSBox!
     @IBOutlet weak var avatarImage: NSImageView!
     @IBOutlet weak var iconLabel: NSTextField!
     @IBOutlet weak var initialsBox: NSBox!
@@ -28,7 +27,6 @@ class ChatMentionAutocompleteCell: NSCollectionViewItem {
         super.viewDidLoad()
         
         view.wantsLayer = true
-//        dividerLine.layer?.borderColor = NSColor.Sphinx.LightDivider.cgColor
         avatarImage.imageAlignment = .alignCenter
     }
     
