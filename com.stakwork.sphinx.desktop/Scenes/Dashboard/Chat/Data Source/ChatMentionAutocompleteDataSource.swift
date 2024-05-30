@@ -25,7 +25,7 @@ class ChatMentionAutocompleteDataSource : NSObject {
     var scrollView: NSScrollView!
     var viewWidth: CGFloat = 0.0
     weak var delegate: ChatMentionAutocompleteDelegate!
-    var mentionCellHeight :CGFloat = 50.0
+    var mentionCellHeight :CGFloat = 44.0
     var selectedRow : Int = 0
     
     init(
@@ -91,13 +91,13 @@ class ChatMentionAutocompleteDataSource : NSObject {
     }
     
     func updateMentionTableHeight() {
-        let height = min(4 * mentionCellHeight, mentionCellHeight * CGFloat(suggestions.count))
-        delegate.shouldUpdateTableHeightTo(value: height)
+        let height = min(3 * mentionCellHeight, mentionCellHeight * CGFloat(suggestions.count))
+        delegate.shouldUpdateTableHeightTo(value: height + 4)
     }
     
     func configureCollectionView() {
         let flowLayout = NSCollectionViewFlowLayout()
-        flowLayout.sectionInset = NSEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+        flowLayout.sectionInset = NSEdgeInsets(top: 2.0, left: 0.0, bottom: 2.0, right: 0.0)
         flowLayout.minimumInteritemSpacing = 0.0
         flowLayout.minimumLineSpacing = 0.0
         flowLayout.sectionHeadersPinToVisibleBounds = true
@@ -123,16 +123,16 @@ class ChatMentionAutocompleteDataSource : NSObject {
     }
     
     func moveSelectionDown() {
-        if(selectedRow < suggestions.count - 1){
-            selectedRow+=1
+        if (selectedRow < suggestions.count - 1) {
+            selectedRow += 1
             tableView.reloadData()
             tableView.animator().scrollToItems(at: [IndexPath(item: selectedRow, section: 0)], scrollPosition: .bottom)
         }
     }
     
     func moveSelectionUp() {
-        if(selectedRow > 0){
-            selectedRow-=1
+        if (selectedRow > 0) {
+            selectedRow -= 1
             tableView.reloadData()
             tableView.animator().scrollToItems(at: [IndexPath(item: selectedRow, section: 0)], scrollPosition: .top)
         }
@@ -150,14 +150,20 @@ extension ChatMentionAutocompleteDataSource : NSCollectionViewDelegate, NSCollec
     }
     
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-        let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ChatMentionAutocompleteCell"), for: indexPath)
+        
+        let item = collectionView.makeItem(
+            withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ChatMentionAutocompleteCell"),
+            for: indexPath
+        )
         
         guard let mentionItem = item as? ChatMentionAutocompleteCell else {return item}
         
         if (indexPath.item == selectedRow) {
-            mentionItem.view.layer?.backgroundColor = NSColor.Sphinx.HeaderBG.cgColor
+            mentionItem.view.layer?.backgroundColor = NSColor.Sphinx.PriceTagBG.cgColor
+            mentionItem.containerBox.fillColor = NSColor.Sphinx.SelectedMention
         } else{
-            mentionItem.view.layer?.backgroundColor = NSColor.Sphinx.ChatListSelected.cgColor
+            mentionItem.view.layer?.backgroundColor = NSColor.Sphinx.PriceTagBG.cgColor
+            mentionItem.containerBox.fillColor = NSColor.Sphinx.PriceTagBG
         }
         
         return mentionItem

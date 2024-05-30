@@ -108,6 +108,7 @@ extension NSColor {
         public static let TextViewGreenColor = color("TextViewGreenColor")
         public static let TextViewBGColor = color("TextViewBGColor")
         public static let ActivePriceTag = color("ActivePriceTag")
+        public static let SelectedMention = color("SelectedMention")
         
         private static func color(_ name: String) -> NSColor {
             return NSColor(named: NSColor.Name(name)) ?? NSColor.magenta
