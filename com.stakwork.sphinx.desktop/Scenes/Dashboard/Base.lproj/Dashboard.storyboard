@@ -978,7 +978,7 @@
                                                                                         <constraint firstAttribute="height" priority="750" constant="60" id="dsj-Cy-Nos"/>
                                                                                     </constraints>
                                                                                 </customView>
-                                                                                <scrollView hidden="YES" wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YNj-1S-7Oo">
+                                                                                <scrollView hidden="YES" wantsLayer="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YNj-1S-7Oo">
                                                                                     <rect key="frame" x="0.0" y="38" width="170" height="136"/>
                                                                                     <clipView key="contentView" drawsBackground="NO" id="8Oj-wf-kqB">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="170" height="136"/>
@@ -1005,7 +1005,7 @@
                                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                                     </scroller>
                                                                                     <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="ivE-9i-8Se">
-                                                                                        <rect key="frame" x="134" y="0.0" width="16" height="132"/>
+                                                                                        <rect key="frame" x="-100" y="-100" width="16" height="132"/>
                                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                                     </scroller>
                                                                                 </scrollView>

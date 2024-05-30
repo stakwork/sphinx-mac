@@ -96,6 +96,8 @@ class ChatMentionAutocompleteDataSource : NSObject {
     }
     
     func configureCollectionView() {
+        scrollView.scrollerInsets.right = -999999
+        
         let flowLayout = NSCollectionViewFlowLayout()
         flowLayout.sectionInset = NSEdgeInsets(top: 2.0, left: 0.0, bottom: 2.0, right: 0.0)
         flowLayout.minimumInteritemSpacing = 0.0

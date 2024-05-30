@@ -354,7 +354,7 @@ extension NewChatViewController : ChatBottomViewDelegate {
                 let textRectInView = chatBottomView.messageFieldView.messageTextView.convert(glyphRect, to: chatBottomView.messageFieldView.messageTextView)
         
         return (
-            CGFloat(isMention ? 58 : 52 + textRectInView.origin.x + textRectInView.width),
+            CGFloat((isMention ? 38 : 52) + textRectInView.origin.x + textRectInView.width),
             CGFloat(22 + textRectInView.origin.y)
         )
     }
