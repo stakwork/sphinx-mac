@@ -62,6 +62,7 @@ extension TransactionMessage {
         contact: UserContact?
     ) -> String {
         var alias = "name.unknown".localized
+        var replyTo = "reply.to".localized
         
         if let senderAlias = senderAlias {
             alias = senderAlias
@@ -79,7 +80,7 @@ extension TransactionMessage {
             return first
         }
         
-        return alias
+        return replyTo + " " + alias
     }
     
     func getMessageSenderImageUrl(
