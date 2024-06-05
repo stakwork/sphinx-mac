@@ -30,6 +30,17 @@
             <rect key="frame" x="0.0" y="0.0" width="614" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
+                <box boxType="custom" borderWidth="0.0" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="9sl-nT-mL7">
+                    <rect key="frame" x="0.0" y="48" width="614" height="2"/>
+                    <view key="contentView" id="9PT-Po-oiy">
+                        <rect key="frame" x="0.0" y="0.0" width="614" height="2"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="2" id="2kX-VX-Ea2"/>
+                    </constraints>
+                    <color key="fillColor" name="Divider"/>
+                </box>
                 <box boxType="custom" borderWidth="0.0" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="kh4-mk-iG5">
                     <rect key="frame" x="0.0" y="0.0" width="614" height="50"/>
                     <view key="contentView" id="a9J-2G-UBi">
@@ -272,14 +283,17 @@
             <constraints>
                 <constraint firstItem="EYy-Fe-TLg" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="0eh-bS-bFl"/>
                 <constraint firstAttribute="bottom" secondItem="YNt-Zf-UPm" secondAttribute="bottom" constant="6" id="6aK-lj-M1X"/>
+                <constraint firstItem="9sl-nT-mL7" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="AXC-ou-3jb"/>
                 <constraint firstItem="YNt-Zf-UPm" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="5" id="BYy-iO-oEu"/>
                 <constraint firstAttribute="trailing" secondItem="kh4-mk-iG5" secondAttribute="trailing" id="G0J-gP-H6o"/>
+                <constraint firstAttribute="trailing" secondItem="9sl-nT-mL7" secondAttribute="trailing" id="H0R-Yt-Uqg"/>
                 <constraint firstItem="EYy-Fe-TLg" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="IAc-Me-DvG"/>
                 <constraint firstItem="kh4-mk-iG5" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="Xup-Uq-MnK"/>
                 <constraint firstAttribute="bottom" secondItem="kh4-mk-iG5" secondAttribute="bottom" id="aG8-R2-JRR"/>
                 <constraint firstItem="kh4-mk-iG5" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="arQ-BO-JUY"/>
                 <constraint firstAttribute="trailing" secondItem="EYy-Fe-TLg" secondAttribute="trailing" id="chh-wF-47E"/>
                 <constraint firstAttribute="trailing" secondItem="YNt-Zf-UPm" secondAttribute="trailing" id="db7-vE-yP8"/>
+                <constraint firstItem="9sl-nT-mL7" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="uJT-NB-4LQ"/>
                 <constraint firstItem="YNt-Zf-UPm" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="yY6-dU-yLE"/>
             </constraints>
             <point key="canvasLocation" x="-2.5" y="154"/>
@@ -289,6 +303,9 @@
         <image name="clear" width="28" height="28"/>
         <namedColor name="Body">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Divider">
+            <color red="0.92156862745098034" green="0.92941176470588238" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="SphinxOrange">
             <color red="1" green="0.74099999666213989" blue="0.34900000691413879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

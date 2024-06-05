@@ -189,16 +189,16 @@ class NewMessageReplyView: NSView, LoadableNib {
         self.isHidden = false
     }
     
-//    func resetAndHide() {
-//        self.isHidden = true
-//    }
+    func resetAndHide() {
+        self.isHidden = true
+    }
     
-//    @IBAction func replyButtonClicked(_ sender: Any) {
-//        delegate?.didTapMessageReplyView?()
-//    }
+    @IBAction func replyButtonClicked(_ sender: Any) {
+        delegate?.didTapMessageReplyView?()
+    }
     
-//    @IBAction func closeButtonClicked(_ sender: Any) {
-//        delegate?.didCloseReplyView?()
-//    }
+    @IBAction func closeButtonClicked(_ sender: Any) {
+        delegate?.didCloseReplyView?()
+    }
     
 }
