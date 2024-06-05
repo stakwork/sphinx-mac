@@ -25,7 +25,7 @@
                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pXa-h9-I4V">
                     <rect key="frame" x="0.0" y="0.0" width="835" height="60"/>
                     <subviews>
-                        <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Ir-cU-gQ9" customClass="NewMessageReplyView" customModule="Sphinx" customModuleProvider="target">
+                        <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Ir-cU-gQ9" customClass="NewReplyView" customModule="Sphinx" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="10" width="835" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="8pt-lk-BrU"/>

@@ -344,6 +344,7 @@
 "delete.message" = "删除消息";
 "resend.message" = "重发";
 "received" = "已接收";
+"reply.to" = "回复";
 "sent" = "已发送";
 "message.x.deleted" = "消息已删除";
 "payment" = "支付";

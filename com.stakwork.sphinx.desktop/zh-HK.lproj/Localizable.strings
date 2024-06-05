@@ -344,6 +344,7 @@
 "save.file" = "保存檔案";
 "delete.message" = "刪除訊息";
 "resend.message" = "重新發送";
+"reply.to" = "回覆";
 "received" = "已接收";
 "sent" = "已發送";
 "message.x.deleted" = "訊息已刪除";

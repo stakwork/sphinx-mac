@@ -1,19 +1,14 @@
 //
-//  NewMessageReplyView.swift
+//  NewReplyView.swift
 //  Sphinx
 //
-//  Created by Tomas Timinskas on 20/07/2023.
-//  Copyright © 2023 Tomas Timinskas. All rights reserved.
+//  Created by Oko-osi Korede on 05/06/2024.
+//  Copyright © 2024 Tomas Timinskas. All rights reserved.
 //
 
 import Cocoa
 
-@objc protocol NewMessageReplyViewDelegate: AnyObject {
-    @objc optional func didTapMessageReplyView()
-    @objc optional func didCloseReplyView()
-}
-
-class NewMessageReplyView: NSView, LoadableNib {
+class NewReplyView: NSView, LoadableNib {
     
     weak var delegate: NewMessageReplyViewDelegate?
     
@@ -38,6 +33,7 @@ class NewMessageReplyView: NSView, LoadableNib {
     @IBOutlet weak var closeButton: CustomButton!
     
     @IBOutlet weak var viewButton: CustomButton!
+    @IBOutlet weak var replyToLabel: NSTextField!
     
     static let kViewHeight: CGFloat = 50.0
 
@@ -77,6 +73,8 @@ class NewMessageReplyView: NSView, LoadableNib {
         senderLabel.textColor = messageReply.color
         senderLabel.stringValue = messageReply.alias
         messageLabel.stringValue = messageReply.message ?? ""
+        
+        replyToLabel.stringValue = "reply.to".localized
         
         messageLabel.isHidden = (messageReply.message ?? "").isEmpty
         
@@ -189,16 +187,16 @@ class NewMessageReplyView: NSView, LoadableNib {
         self.isHidden = false
     }
     
-//    func resetAndHide() {
-//        self.isHidden = true
-//    }
+    func resetAndHide() {
+        self.isHidden = true
+    }
     
-//    @IBAction func replyButtonClicked(_ sender: Any) {
-//        delegate?.didTapMessageReplyView?()
-//    }
+    @IBAction func replyButtonClicked(_ sender: Any) {
+        delegate?.didTapMessageReplyView?()
+    }
     
-//    @IBAction func closeButtonClicked(_ sender: Any) {
-//        delegate?.didCloseReplyView?()
-//    }
+    @IBAction func closeButtonClicked(_ sender: Any) {
+        delegate?.didCloseReplyView?()
+    }
     
 }
