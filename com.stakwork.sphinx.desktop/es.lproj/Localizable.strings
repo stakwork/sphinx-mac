@@ -345,6 +345,7 @@
 "resend.message" = "Mandar otra vez";
 "received" = "recibido/a";
 "sent" = "enviado/a";
+"reply.to" = "Respondiendo a";
 "message.x.deleted" = "Mensaje eliminado";
 "payment" = "Pago";
 "tribe.payment.sent" = "Pago de %@ enviado a %@";

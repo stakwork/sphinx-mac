@@ -345,6 +345,7 @@
 "resend.message" = "再送";
 "received" = "受信済み";
 "sent" = "送信済み";
+"reply.to" = "に返信する";
 "message.x.deleted" = "メッセージが削除されました";
 "payment" = "支払い";
 "tribe.payment.sent" = "%@に%@の支払いが送信されました";
