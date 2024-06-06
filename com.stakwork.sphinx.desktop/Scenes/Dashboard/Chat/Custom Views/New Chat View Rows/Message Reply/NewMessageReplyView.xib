@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -132,16 +132,16 @@
                                 <stackView distribution="equalSpacing" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jwx-pk-wRo">
                                     <rect key="frame" x="0.0" y="2" width="472" height="32"/>
                                     <subviews>
-                                        <textField focusRingType="none" horizontalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="puL-ef-n3H">
-                                            <rect key="frame" x="-2" y="19" width="476" height="13"/>
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="puL-ef-n3H">
+                                            <rect key="frame" x="-2" y="18" width="476" height="14"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Unknown" id="rRt-hC-3GE">
                                                 <font key="font" size="12" name="Roboto-Medium"/>
                                                 <color key="textColor" name="SphinxOrange"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LMq-zJ-1iz">
-                                            <rect key="frame" x="-2" y="0.0" width="476" height="19"/>
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LMq-zJ-1iz">
+                                            <rect key="frame" x="-2" y="0.0" width="476" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" title="Label" id="267-xo-kC9">
                                                 <font key="font" size="14" name="Roboto-Light"/>
                                                 <color key="textColor" name="Text"/>

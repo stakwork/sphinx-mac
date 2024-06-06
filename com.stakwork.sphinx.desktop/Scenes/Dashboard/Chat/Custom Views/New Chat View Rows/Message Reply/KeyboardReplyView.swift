@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class NewReplyView: NSView, LoadableNib {
+class KeyboardReplyView: NSView, LoadableNib {
     
     weak var delegate: NewMessageReplyViewDelegate?
     
@@ -26,8 +26,6 @@ class NewReplyView: NSView, LoadableNib {
     
     @IBOutlet weak var senderLabel: NSTextField!
     @IBOutlet weak var messageLabel: NSTextField!
-    
-    @IBOutlet weak var replyDivider: NSView!
     
     @IBOutlet weak var closeButtonContainer: NSBox!
     @IBOutlet weak var closeButton: CustomButton!
@@ -54,60 +52,6 @@ class NewReplyView: NSView, LoadableNib {
         viewButton.cursor = .pointingHand
     }
     
-    func configureWith(
-        messageReply: BubbleMessageLayoutState.MessageReply,
-        and bubble: BubbleMessageLayoutState.Bubble,
-        delegate: NewMessageReplyViewDelegate? = nil
-    ) {
-        self.delegate = delegate
-        
-        self.wantsLayer = true
-        self.layer?.backgroundColor = NSColor.clear.cgColor
-        
-        viewButton.isHidden = false
-        closeButtonContainer.isHidden = true
-        
-        messageLabel.textColor = bubble.direction.isIncoming() ? NSColor.Sphinx.WashedOutReceivedText : NSColor.Sphinx.WashedOutSentText
-        
-        coloredLineView.fillColor = messageReply.color
-        senderLabel.textColor = messageReply.color
-        senderLabel.stringValue = messageReply.alias
-        messageLabel.stringValue = messageReply.message ?? ""
-        
-        replyToLabel.stringValue = "reply.to".localized
-        
-        messageLabel.isHidden = (messageReply.message ?? "").isEmpty
-        
-        guard let mediaType = messageReply.mediaType else {
-            mediaContainerView.isHidden = true
-            mediaIconLabel.isHidden = true
-            return
-        }
-        
-        switch(mediaType) {
-        case TransactionMessage.TransactionMessageType.imageAttachment.rawValue:
-            mediaIconLabel.stringValue = "photo_library"
-            break
-        case TransactionMessage.TransactionMessageType.videoAttachment.rawValue:
-            mediaIconLabel.stringValue = "videocam"
-            break
-        case TransactionMessage.TransactionMessageType.audioAttachment.rawValue:
-            mediaIconLabel.stringValue = "mic"
-            break
-        case TransactionMessage.TransactionMessageType.fileAttachment.rawValue:
-            mediaIconLabel.stringValue = "description"
-            break
-        case TransactionMessage.TransactionMessageType.pdfAttachment.rawValue:
-            mediaIconLabel.stringValue = "picture_as_pdf"
-            break
-        default:
-            break
-        }
-        
-        mediaContainerView.isHidden = false
-        mediaIconLabel.isHidden = false
-    }
-    
     func configureForKeyboard(
         with podcastComment: PodcastComment,
         and delegate: NewMessageReplyViewDelegate
@@ -116,6 +60,8 @@ class NewReplyView: NSView, LoadableNib {
         
         self.wantsLayer = true
         self.layer?.backgroundColor = NSColor.Sphinx.HeaderBG.cgColor
+        
+        replyToLabel.isHidden = true
         
         viewButton.isHidden = true
         closeButtonContainer.isHidden = false
@@ -148,6 +94,8 @@ class NewReplyView: NSView, LoadableNib {
         self.wantsLayer = true
         self.layer?.backgroundColor = NSColor.Sphinx.HeaderBG.cgColor
         
+        replyToLabel.isHidden = false
+        
         viewButton.isHidden = true
         closeButtonContainer.isHidden = false
         
@@ -159,7 +107,7 @@ class NewReplyView: NSView, LoadableNib {
         senderLabel.stringValue = message.getMessageSenderNickname(
             owner: owner,
             contact: nil
-        )
+        ).trim()
         messageLabel.stringValue = message.getReplyMessageContent()
         messageLabel.isHidden = message.getReplyMessageContent().isEmpty
         
@@ -189,10 +137,6 @@ class NewReplyView: NSView, LoadableNib {
     
     func resetAndHide() {
         self.isHidden = true
-    }
-    
-    @IBAction func replyButtonClicked(_ sender: Any) {
-        delegate?.didTapMessageReplyView?()
     }
     
     @IBAction func closeButtonClicked(_ sender: Any) {

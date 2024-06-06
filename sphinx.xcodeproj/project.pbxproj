@@ -589,8 +589,8 @@
 		47FEE22E2A6710F500646C4E /* NewChatViewController+CollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FEE22D2A6710F500646C4E /* NewChatViewController+CollectionViewExtension.swift */; };
 		931083BF2BE0271B00D03EC9 /* TribeMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931083BE2BE0271B00D03EC9 /* TribeMembersViewController.swift */; };
 		934082792BC8827700FD7E34 /* DashboardPresenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934082782BC8827700FD7E34 /* DashboardPresenterViewController.swift */; };
-		9367EC452C1039BF0001EC81 /* NewReplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9367EC442C1039BF0001EC81 /* NewReplyView.swift */; };
-		9367EC472C1039DB0001EC81 /* NewReplyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9367EC462C1039DB0001EC81 /* NewReplyView.xib */; };
+		9367EC452C1039BF0001EC81 /* KeyboardReplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9367EC442C1039BF0001EC81 /* KeyboardReplyView.swift */; };
+		9367EC472C1039DB0001EC81 /* KeyboardReplyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9367EC462C1039DB0001EC81 /* KeyboardReplyView.xib */; };
 		938209E02BD88E3C000A9ED8 /* NewMenuItemDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938209DF2BD88E3C000A9ED8 /* NewMenuItemDataSource.swift */; };
 		938209E42BD88ED0000A9ED8 /* NewMenuListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938209E22BD88ED0000A9ED8 /* NewMenuListItem.swift */; };
 		938209E52BD88ED0000A9ED8 /* NewMenuListItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938209E32BD88ED0000A9ED8 /* NewMenuListItem.xib */; };
@@ -1535,8 +1535,8 @@
 		82C242433501D81263FED4C2 /* Pods_Sphinx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sphinx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		931083BE2BE0271B00D03EC9 /* TribeMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TribeMembersViewController.swift; sourceTree = "<group>"; };
 		934082782BC8827700FD7E34 /* DashboardPresenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenterViewController.swift; sourceTree = "<group>"; };
-		9367EC442C1039BF0001EC81 /* NewReplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReplyView.swift; sourceTree = "<group>"; };
-		9367EC462C1039DB0001EC81 /* NewReplyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewReplyView.xib; sourceTree = "<group>"; };
+		9367EC442C1039BF0001EC81 /* KeyboardReplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardReplyView.swift; sourceTree = "<group>"; };
+		9367EC462C1039DB0001EC81 /* KeyboardReplyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeyboardReplyView.xib; sourceTree = "<group>"; };
 		938209DF2BD88E3C000A9ED8 /* NewMenuItemDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMenuItemDataSource.swift; sourceTree = "<group>"; };
 		938209E22BD88ED0000A9ED8 /* NewMenuListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMenuListItem.swift; sourceTree = "<group>"; };
 		938209E32BD88ED0000A9ED8 /* NewMenuListItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewMenuListItem.xib; sourceTree = "<group>"; };
@@ -3239,8 +3239,8 @@
 			children = (
 				47DE1C222A69963E0029597B /* NewMessageReplyView.swift */,
 				47DE1C242A6996480029597B /* NewMessageReplyView.xib */,
-				9367EC442C1039BF0001EC81 /* NewReplyView.swift */,
-				9367EC462C1039DB0001EC81 /* NewReplyView.xib */,
+				9367EC442C1039BF0001EC81 /* KeyboardReplyView.swift */,
+				9367EC462C1039DB0001EC81 /* KeyboardReplyView.xib */,
 			);
 			path = "Message Reply";
 			sourceTree = "<group>";
@@ -3809,7 +3809,7 @@
 				47C1D605248EABEA00718B28 /* GroupAddedContactCollectionViewItem.xib in Resources */,
 				4744FAE2246C2B7400C5FD94 /* KeychainRestoreCollectionViewItem.xib in Resources */,
 				4797E84224BCC14E00D13270 /* Localizable.strings in Resources */,
-				9367EC472C1039DB0001EC81 /* NewReplyView.xib in Resources */,
+				9367EC472C1039DB0001EC81 /* KeyboardReplyView.xib in Resources */,
 				47BDEDE924F46585001688F3 /* Profile.storyboard in Resources */,
 				47469D5D2ACB6019004F0490 /* NewMessagesIndicatorView.xib in Resources */,
 				476A6C42282C2F2000CA213D /* TribeMemberPopupView.xib in Resources */,
@@ -4254,7 +4254,7 @@
 				478ED59025D5522C00940132 /* WelcomeEmptyViewController.swift in Sources */,
 				47FEE2002A66D3B500646C4E /* MessageLayoutState.swift in Sources */,
 				473633E125548E40007405F2 /* BoostButtonView.swift in Sources */,
-				9367EC452C1039BF0001EC81 /* NewReplyView.swift in Sources */,
+				9367EC452C1039BF0001EC81 /* KeyboardReplyView.swift in Sources */,
 				474F67652486D08800CE6016 /* Notification.Name.swift in Sources */,
 				474A66842497CAFE002C2D10 /* MessageReplyView.swift in Sources */,
 				47DE1C3F2A6AFA070029597B /* ChatShimmeringView.swift in Sources */,

@@ -54,7 +54,19 @@ extension NewChatViewController : PodcastPlayerViewDelegate {
     }
     
     func shouldShareClip(comment: PodcastComment) {
+        let isAtBottom = isChatAtBottom()
         
+        newChatViewModel.podcastComment = comment
+        
+        chatBottomView.configureReplyViewFor(
+            podcastComment: comment,
+            owner: self.owner,
+            withDelegate: self
+        )
+        
+        if isAtBottom {
+            shouldScrollToBottom()
+        }
     }
     
     func shouldSendBoost(
