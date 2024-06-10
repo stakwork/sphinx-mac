@@ -46,7 +46,7 @@ class ChatBottomView: NSView, LoadableNib {
 
     @IBOutlet var contentView: NSView!
 
-    @IBOutlet weak var messageReplyView: NewMessageReplyView!
+    @IBOutlet weak var messageReplyView: KeyboardReplyView!
     @IBOutlet weak var giphySearchView: GiphySearchView!
     @IBOutlet weak var messageFieldView: ChatMessageFieldView!
     @IBOutlet weak var chatSearchView: ChatSearchResultsBar!

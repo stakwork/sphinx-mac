@@ -344,6 +344,7 @@
 "copy.pub.key" = "Copy Public Key";
 "copy.call.link" = "Copy Call Link";
 "reply" = "Reply";
+"reply.to" = "Replying to";
 "save.file" = "Save File";
 "delete.message" = "Delete Message";
 "resend.message" = "Resend";
