@@ -33,7 +33,6 @@ class NewChatViewController: DashboardSplittedViewController {
     @IBOutlet weak var mentionsCollectionView: NSCollectionView!
     @IBOutlet weak var mentionsScrollViewHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var childViewControllerContainer: ChildVCContainer!
     @IBOutlet weak var pinMessageDetailView: PinMessageDetailView!
     @IBOutlet weak var pinMessageNotificationView: PinNotificationView!
     
@@ -42,6 +41,8 @@ class NewChatViewController: DashboardSplittedViewController {
     
     @IBOutlet weak var mentionScrollViewLeadingConstraints: NSLayoutConstraint!
     @IBOutlet weak var mentionScrollViewBottomConstraints: NSLayoutConstraint!
+    
+    @IBOutlet weak var dragViewBottomConstraints: NSLayoutConstraint!
     
     var mediaFullScreenView: MediaFullScreenView? = nil
     
@@ -128,6 +129,9 @@ class NewChatViewController: DashboardSplittedViewController {
         setupChatData()
         
         chatTopView.checkRoute()
+        chatBottomView.messageFieldView.childViewControllerContainer.configureDataSource(delegate: self)
+        setupPreviewDelegate()
+        setupChatBottomAttachment()
         NotificationCenter.default.addObserver(self, selector: #selector(handleImagePaste), name: .onFilePaste, object: nil)
     }
     
@@ -142,6 +146,11 @@ class NewChatViewController: DashboardSplittedViewController {
         addEscapeMonitor()
     }
     
+    override func viewWillLayout() {
+        super.viewWillLayout()
+        dragViewBottomConstraints.constant = -(chatBottomView.messageFieldView.messageContainerHeightConstraint.constant)
+    }
+    
     override func viewWillDisappear() {
         super.viewWillDisappear()
         
@@ -151,6 +160,14 @@ class NewChatViewController: DashboardSplittedViewController {
         closeThreadAndResetEscapeMonitor()
         
         NotificationCenter.default.removeObserver(self, name: .onFilePaste, object: nil)
+    }
+    
+    func setupPreviewDelegate() {
+        draggingView.previewDelegate = self
+    }
+    
+    func setupChatBottomAttachment() {
+        chatBottomView.messageFieldView.newChatAttachmentView.attachmentDelegate = self
     }
     
     deinit {
@@ -196,6 +213,29 @@ class NewChatViewController: DashboardSplittedViewController {
         }
     }
     
+    func addNewEscapeMonitor() {
+        //add event monitor in case user never clicks the textfield
+        if let escapeMonitor = escapeMonitor {
+            NSEvent.removeMonitor(escapeMonitor)
+        }
+    
+        escapeMonitor = nil
+    
+        self.escapeMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (event) in
+            if event.keyCode == 53 { // 53 is the key code for the Escape key
+                // Perform your action when the Escape key is pressed
+                if let mediaFullScreenView = self.mediaFullScreenView {
+                    mediaFullScreenView.closeView()
+                    return nil
+                } else if !self.draggingView.isHidden {
+                    self.draggingView.setup()
+                    return nil
+                }
+            }
+            return event
+        }
+    }
+    
     func forceReload() {
         chatTableDataSource?.forceReload()
     }
@@ -207,8 +247,6 @@ class NewChatViewController: DashboardSplittedViewController {
         if let podcastPlayerVC = podcastPlayerVC {
             self.removeChildVC(child: podcastPlayerVC)
         }
-        
-        childViewControllerContainer.removeChildVC()
         
         chatTableDataSource?.stopListeningToResultsController()
         chatTableDataSource?.releaseMemory()

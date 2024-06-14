@@ -147,7 +147,8 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
     
     func shouldShowMemberPopupFor(messageId: Int) {
         if let message = TransactionMessage.getMessageWith(id: messageId) {
-            childViewControllerContainer.showTribeMemberPopupViewOn(parentVC: self, with: message, delegate: self)
+//            chatBottomView.messageFieldView.childViewControllerContainer.showTribeMemberPopupViewOn(parentVC: self, with: message, delegate: self)
+            chatBottomView.messageFieldView.childViewControllerContainer.configureDataSource(delegate: self)
         }
     }
     
@@ -260,5 +261,77 @@ extension NewChatViewController : MediaFullScreenDelegate {
             mediaFullScreenView.removeFromSuperview()
             self.mediaFullScreenView = nil
         }
+    }
+}
+
+extension NewChatViewController: NewMenuItemDataSourceDelegate {
+    func itemSelected(at index: Int) {
+        print("Item at: \(index) is selected - \(chatBottomView.messageFieldView.childViewControllerContainer.menuItems[index].menuTitle)")
+        chatBottomView.messageFieldView.childViewControllerContainer.isHidden = true
+        switch index {
+        case 0:
+//            draggingView.isHidden = false
+//            addEscapeMonitor()
+            self.draggingView.configureDraggingStyle()
+            addNewEscapeMonitor()
+        default:
+            break
+        }
+    }
+}
+
+extension NewChatViewController: AddAttachmentDelegate {
+    func addAttachmentClicked() {
+        self.draggingView.configureDraggingStyle()
+        addNewEscapeMonitor()
+    }
+}
+
+extension NewChatViewController: ShowPreviewDelegate {
+    func showImagePreview(data: Data, image: NSImage) {
+        showPreview(data: data, image: image, type: .image)
+    }
+    
+    func showPDFPreview(data: Data, image: NSImage, url: URL) {
+//        showPreview(data: data, image: image, type: .pdf)
+        showVideoFilePreview(data: data, type: .pdf, url: url)
+    }
+    
+    func showGIFPreview(data: Data, image: NSImage?) {
+        if let image {
+            showPreview(data: data, image: image, type: .gif)
+        }
+    }
+    
+    func showVideoPreview(data: Data, url: URL) {
+        showVideoFilePreview(data: data, type: .video, url: url)
+    }
+    
+    func showFilePreview(data: Data, url: URL) {
+        showVideoFilePreview(data: data, type: .video, url: url)
+    }
+    
+    func showGiphyPreview(data: Data, object: GiphyObject) {
+        
+    }
+    
+    func showPreview(data: Data, image: NSImage, type: AttachmentItemType) {
+        let newItem = NewAttachmentItem(previewImage: image, previewType: type, previewData: data)
+        let currentItems = chatBottomView.messageFieldView.newChatAttachmentView.menuItems + [newItem]
+        print("Items in the preview: \(currentItems.count)")
+        chatBottomView.messageFieldView.newChatAttachmentView.updateCollectionView(menuItems: currentItems)
+        draggingView.resetView()
+        chatBottomView.messageFieldView.newChatAttachmentView.isHidden = false
+        _ = chatBottomView.messageFieldView.updateBottomBarHeight()
+    }
+    
+    func showVideoFilePreview(data: Data, image: NSImage? = nil, type: AttachmentItemType, url: URL) {
+        let newItem = NewAttachmentItem(previewImage: NSImage(data: data) ?? NSImage(), previewType: type, previewData: data, previewURL: url)
+        let currentItems = chatBottomView.messageFieldView.newChatAttachmentView.menuItems + [newItem]
+        print("Items in the preview: \(currentItems.count)")
+        chatBottomView.messageFieldView.newChatAttachmentView.updateCollectionView(menuItems: currentItems)
+        draggingView.resetView()
+        chatBottomView.messageFieldView.newChatAttachmentView.isHidden = false
+        _ = chatBottomView.messageFieldView.updateBottomBarHeight()
     }
 }
