@@ -23,6 +23,7 @@ class NewChatAttachmentListItem: NSCollectionViewItem {
     @IBOutlet weak var mediaImageView: AspectFillNSImageView!
     @IBOutlet weak var gifView: NSView!
     @IBOutlet weak var videoPlayerView: CustomAVPlayerView!
+    @IBOutlet weak var dividerView: NSBox!
     
     @IBOutlet weak var fileDescriptionView: NSBox!
     @IBOutlet weak var fileDescriptionLabel: NSTextField!
@@ -72,6 +73,7 @@ class NewChatAttachmentListItem: NSCollectionViewItem {
         genericFileDescriptionView.isHidden = true
         genericFileNameLabel.isHidden = true
         genericFileSizeLabel.isHidden = true
+        dividerView.isHidden = true
     }
     
     func render(with item: NewAttachmentItem, previewImageDelegate: MediaFullScreenDelegate? = nil) {
@@ -95,6 +97,7 @@ class NewChatAttachmentListItem: NSCollectionViewItem {
             fileDescriptionView.isHidden = false
             fileDescriptionLabel.isHidden = false
             mediaImageView.isHidden = false
+            dividerView.isHidden = false
             showPDFWith(image: item.previewImage, size: CGSize(width: 140, height: 140), data: data, url: url)
         }
     }

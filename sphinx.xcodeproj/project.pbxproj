@@ -606,6 +606,7 @@
 		93A83E6A2B7FC298005158FB /* SphinxProfileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A83E692B7FC298005158FB /* SphinxProfileUITests.swift */; };
 		93A83E6C2B7FC298005158FB /* SphinxUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A83E6B2B7FC298005158FB /* SphinxUITestsLaunchTests.swift */; };
 		93B295DD2C1BE44D0032BBAA /* AttachmentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B295DC2C1BE44D0032BBAA /* AttachmentItem.swift */; };
+		93B295DF2C1BF53A0032BBAA /* RounderBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B295DE2C1BF53A0032BBAA /* RounderBottomView.swift */; };
 		93C67C372C1991BB008D463F /* ChatMenuListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C67C362C1991BB008D463F /* ChatMenuListView.swift */; };
 		93C67C392C19D0CC008D463F /* NewChatMenuItemDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C67C382C19D0CC008D463F /* NewChatMenuItemDataSource.swift */; };
 		93C67C3B2C1A2E0F008D463F /* ChatMenuListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93C67C3A2C1A2E0F008D463F /* ChatMenuListView.xib */; };
@@ -1568,6 +1569,7 @@
 		93A83E692B7FC298005158FB /* SphinxProfileUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SphinxProfileUITests.swift; sourceTree = "<group>"; };
 		93A83E6B2B7FC298005158FB /* SphinxUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SphinxUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		93B295DC2C1BE44D0032BBAA /* AttachmentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentItem.swift; sourceTree = "<group>"; };
+		93B295DE2C1BF53A0032BBAA /* RounderBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RounderBottomView.swift; sourceTree = "<group>"; };
 		93C67C362C1991BB008D463F /* ChatMenuListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMenuListView.swift; sourceTree = "<group>"; };
 		93C67C382C19D0CC008D463F /* NewChatMenuItemDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatMenuItemDataSource.swift; sourceTree = "<group>"; };
 		93C67C3A2C1A2E0F008D463F /* ChatMenuListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatMenuListView.xib; sourceTree = "<group>"; };
@@ -2865,6 +2867,7 @@
 				93A06CF62BD7E43C003EF2B2 /* NewChatHeaderView.swift */,
 				93A06CF82BD82E5B003EF2B2 /* NewMenuListView.swift */,
 				47FB5F402BDC1A2B001B762B /* NewMenuListView.xib */,
+				93B295DE2C1BF53A0032BBAA /* RounderBottomView.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -4078,6 +4081,7 @@
 				479E7D9525AE02F80092595B /* GroupPinView.swift in Sources */,
 				4744FA932469CA2D00C5FD94 /* TransactionMessageMediaExtension.swift in Sources */,
 				478ED5A025D560A300940132 /* SphinxReady.swift in Sources */,
+				93B295DF2C1BF53A0032BBAA /* RounderBottomView.swift in Sources */,
 				478ED5AC25D5730A00940132 /* CCSecureTextField.swift in Sources */,
 				4744FA8A2469C9F800C5FD94 /* Subscription+CoreDataClass.swift in Sources */,
 				479496632AB8A78A00C42D1E /* GroupRemovedView.swift in Sources */,

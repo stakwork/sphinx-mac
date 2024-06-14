@@ -11,6 +11,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="NewChatAttachmentListItem" customModule="Sphinx" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="1Jq-6f-6AC" id="Dby-3a-NdP"/>
+                <outlet property="dividerView" destination="7eF-JI-ByH" id="JzD-R6-tPl"/>
                 <outlet property="fileDescriptionLabel" destination="Cpp-f9-ilo" id="LLP-4Z-qVe"/>
                 <outlet property="fileDescriptionView" destination="oW7-8u-Ny1" id="9xD-uh-28E"/>
                 <outlet property="genericFileDescriptionView" destination="uEx-R0-Cqr" id="B0r-OK-s3P"/>
@@ -19,7 +20,6 @@
                 <outlet property="gifView" destination="8a7-gN-jue" id="NSZ-hV-VW3"/>
                 <outlet property="loadingWheel" destination="pOy-bJ-NsW" id="2PH-il-lQI"/>
                 <outlet property="mediaImageView" destination="gK2-R1-UyB" id="URK-ug-hhi"/>
-                <outlet property="playButton" destination="h51-1d-Fk5" id="Mqd-V0-thc"/>
                 <outlet property="videoPlayerView" destination="n80-B3-iL1" id="Pom-ch-lpc"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
@@ -82,19 +82,20 @@
                             </connections>
                         </button>
                         <box boxType="custom" borderType="line" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="7eF-JI-ByH">
-                            <rect key="frame" x="0.0" y="45" width="250" height="2"/>
+                            <rect key="frame" x="0.0" y="36" width="250" height="12"/>
                             <view key="contentView" id="3Wh-04-ifH">
-                                <rect key="frame" x="1" y="1" width="248" height="0.0"/>
+                                <rect key="frame" x="1" y="1" width="248" height="10"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                             <constraints>
-                                <constraint firstAttribute="height" constant="2" id="fRz-Uw-25t"/>
+                                <constraint firstAttribute="height" constant="12" id="fRz-Uw-25t"/>
                             </constraints>
                             <color key="borderColor" white="0.0" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="fillColor" name="HeaderBG"/>
                         </box>
                         <box hidden="YES" clipsToBounds="YES" boxType="custom" borderType="none" cornerRadius="9" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="oW7-8u-Ny1">
                             <rect key="frame" x="0.0" y="0.0" width="250" height="46"/>
-                            <view key="contentView" clipsToBounds="YES" id="mm3-DG-l54">
+                            <view key="contentView" clipsToBounds="YES" id="mm3-DG-l54" customClass="RoundedBottomCornersView" customModule="Sphinx" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="250" height="46"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
@@ -202,7 +203,7 @@
                         <constraint firstAttribute="bottom" secondItem="oW7-8u-Ny1" secondAttribute="bottom" id="R9I-Cl-8Ww"/>
                         <constraint firstAttribute="trailing" secondItem="oW7-8u-Ny1" secondAttribute="trailing" id="Sor-L9-7o5"/>
                         <constraint firstItem="uq3-8d-J7a" firstAttribute="top" secondItem="1Jq-6f-6AC" secondAttribute="top" constant="4" id="TQ6-JO-sh2"/>
-                        <constraint firstItem="oW7-8u-Ny1" firstAttribute="top" secondItem="7eF-JI-ByH" secondAttribute="bottom" constant="-1" id="Xwt-Mk-j17"/>
+                        <constraint firstItem="oW7-8u-Ny1" firstAttribute="top" secondItem="7eF-JI-ByH" secondAttribute="bottom" constant="-10" id="Xwt-Mk-j17"/>
                         <constraint firstItem="gK2-R1-UyB" firstAttribute="leading" secondItem="1Jq-6f-6AC" secondAttribute="leading" id="aSR-Vx-BiN"/>
                         <constraint firstItem="8a7-gN-jue" firstAttribute="top" secondItem="1Jq-6f-6AC" secondAttribute="top" id="cJf-OA-YcV"/>
                         <constraint firstItem="h51-1d-Fk5" firstAttribute="centerY" secondItem="1Jq-6f-6AC" secondAttribute="centerY" id="f4Y-aH-bVF"/>
