@@ -17,22 +17,22 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView misplaced="YES" id="c22-O7-iKe">
+        <customView clipsToBounds="YES" misplaced="YES" id="c22-O7-iKe">
             <rect key="frame" x="0.0" y="0.0" width="136" height="151"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="cA0-7f-W87">
+                <customView clipsToBounds="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cA0-7f-W87">
                     <rect key="frame" x="0.0" y="0.0" width="136" height="150"/>
                     <subviews>
                         <box clipsToBounds="YES" boxType="custom" borderType="line" borderWidth="0.0" cornerRadius="10" titlePosition="noTitle" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H0T-4y-8Ta">
                             <rect key="frame" x="0.0" y="0.0" width="131" height="150"/>
-                            <view key="contentView" id="6At-fp-C8a">
+                            <view key="contentView" clipsToBounds="YES" id="6At-fp-C8a">
                                 <rect key="frame" x="0.0" y="0.0" width="131" height="150"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <box clipsToBounds="YES" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="10" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="x6S-BP-wOd">
                                         <rect key="frame" x="0.0" y="0.0" width="131" height="150"/>
-                                        <view key="contentView" id="Iz9-zm-QqL">
+                                        <view key="contentView" clipsToBounds="YES" id="Iz9-zm-QqL">
                                             <rect key="frame" x="0.0" y="0.0" width="131" height="150"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -94,6 +94,9 @@
                         <constraint firstItem="H0T-4y-8Ta" firstAttribute="top" secondItem="cA0-7f-W87" secondAttribute="top" id="Qdi-3G-Pfh"/>
                         <constraint firstAttribute="width" constant="136" id="uGb-1o-ICk"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+                    </userDefinedRuntimeAttributes>
                 </customView>
             </subviews>
             <constraints>
@@ -101,6 +104,9 @@
                 <constraint firstItem="cA0-7f-W87" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="SHO-z6-koN"/>
                 <constraint firstItem="cA0-7f-W87" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="rX4-s1-AvC"/>
             </constraints>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+            </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="-1016" y="1893.5"/>
         </customView>
     </objects>

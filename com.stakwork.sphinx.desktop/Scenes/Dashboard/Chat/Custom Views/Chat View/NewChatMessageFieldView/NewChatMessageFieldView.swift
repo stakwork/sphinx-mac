@@ -98,10 +98,18 @@ class NewChatMessageFieldView: NSView, LoadableNib {
         setupIntermitentAlphaView()
         showPriceClearButton()
         setupPreview()
+        setupChildVCContainer()
     }
     
     func setupPreview() {
         newChatAttachmentView.configureDataSource(delegate: self)
+    }
+    
+    func setupChildVCContainer() {
+        childViewControllerContainer.wantsLayer = true
+        childViewControllerContainer.layer?.cornerRadius = 10
+        childViewControllerContainer.clipsToBounds = true
+        childViewControllerContainer.addShadow(offset: CGSize(width: 0, height: 0), color: .black, opacity: 0.1, radius: 35, cornerRadius: 10)
     }
     
     func setupIntermitentAlphaView() {

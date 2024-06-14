@@ -86,6 +86,8 @@ class NewChatAttachmentListItem: NSCollectionViewItem {
             gifView.isHidden = false
         } else if item.previewType == .video {
             videoPlayerView.isHidden = false
+            videoPlayerView.wantsLayer = true
+            videoPlayerView.layer?.cornerRadius = 10
             showVideoWith(data: data, size: CGSize(width: 140, height: 140), autoPlay: false)
         } else if item.previewType == .pdf {
             guard let url = item.previewURL else { return }
