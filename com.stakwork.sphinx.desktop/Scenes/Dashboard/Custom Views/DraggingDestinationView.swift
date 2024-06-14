@@ -12,9 +12,19 @@ protocol DraggingViewDelegate: AnyObject {
     func imageDragged(image: NSImage)
 }
 
+protocol ShowPreviewDelegate: AnyObject {
+    func showImagePreview(data: Data, image: NSImage)
+    func showPDFPreview(data: Data, image: NSImage, url: URL)
+    func showGIFPreview(data: Data, image: NSImage?)
+    func showVideoPreview(data: Data, url: URL)
+    func showFilePreview(data: Data, url: URL)
+    func showGiphyPreview(data: Data, object: GiphyObject)
+}
+
 class DraggingDestinationView: NSView, LoadableNib {
     
     weak var delegate: DraggingViewDelegate?
+    weak var previewDelegate: ShowPreviewDelegate?
     
     @IBOutlet var contentView: NSView!
     @IBOutlet weak var draggingContainer: NSView!
@@ -305,6 +315,7 @@ class DraggingDestinationView: NSView, LoadableNib {
         return false
     }
     
+    //TODO: Improve on this
     func processURLs(pasteBoard:NSPasteboard) -> Bool{
         let filteringOptionsCount = filteringOptions[NSPasteboard.ReadingOptionKey.urlReadingContentsConformToTypes]?.count ?? 0
         let options = filteringOptionsCount > 0 ? filteringOptions : nil
@@ -321,16 +332,21 @@ class DraggingDestinationView: NSView, LoadableNib {
                 
                 if let image = NSImage(contentsOf: url) {
                     if url.isPDF {
-                        showPDFPreview(data: data, image: image, url: url)
+                        previewDelegate?.showPDFPreview(data: data, image: image, url: url)
+//                        showPDFPreview(data: data, image: image, url: url)
                     } else if data.isAnimatedImage() {
-                        showGIFPreview(data: data, image: image)
+//                        showGIFPreview(data: data, image: image)
+                        previewDelegate?.showGIFPreview(data: data, image: image)
                     } else {
-                        showImagePreview(data: data, image: image)
+                        previewDelegate?.showImagePreview(data: data, image: image)
+//                        showImagePreview(data: data, image: image)
                     }
                 } else if url.isVideo {
-                    showVideoPreview(data: data, url: url)
+                    previewDelegate?.showVideoPreview(data: data, url: url)
+//                    showVideoPreview(data: data, url: url)
                 } else {
-                    showFilePreview(data: data, url: url)
+                    previewDelegate?.showFilePreview(data: data, url: url)
+//                    showFilePreview(data: data, url: url)
                 }
                 return true
             }
