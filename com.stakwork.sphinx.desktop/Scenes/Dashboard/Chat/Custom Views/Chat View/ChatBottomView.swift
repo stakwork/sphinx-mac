@@ -48,7 +48,7 @@ class ChatBottomView: NSView, LoadableNib {
 
     @IBOutlet weak var messageReplyView: KeyboardReplyView!
     @IBOutlet weak var giphySearchView: GiphySearchView!
-    @IBOutlet weak var messageFieldView: ChatMessageFieldView!
+    @IBOutlet weak var messageFieldView: NewChatMessageFieldView!
     @IBOutlet weak var chatSearchView: ChatSearchResultsBar!
     
     override func draw(_ dirtyRect: NSRect) {
