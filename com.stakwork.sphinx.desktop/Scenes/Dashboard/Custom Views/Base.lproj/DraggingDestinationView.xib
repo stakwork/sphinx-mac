@@ -36,9 +36,9 @@
                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="dragViewIcon" id="9bY-1B-1s3"/>
                         </imageView>
                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hdv-jC-N2M">
-                            <rect key="frame" x="173" y="128" width="190" height="19"/>
+                            <rect key="frame" x="150" y="123" width="236" height="24"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Drag Image or Video here" id="uax-Vg-Apl">
-                                <font key="font" size="16" name="Roboto-Medium"/>
+                                <font key="font" size="20" name="Roboto-Regular"/>
                                 <color key="textColor" name="SecondaryText"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>

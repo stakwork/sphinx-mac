@@ -37,16 +37,16 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <scrollView clipsToBounds="YES" wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="oks-GY-haZ">
-                                                    <rect key="frame" x="16" y="8" width="99" height="134"/>
+                                                    <rect key="frame" x="16" y="0.0" width="99" height="142"/>
                                                     <clipView key="contentView" clipsToBounds="YES" drawsBackground="NO" id="Sn0-b2-3fc">
-                                                        <rect key="frame" x="0.0" y="0.0" width="99" height="134"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="99" height="142"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <collectionView clipsToBounds="YES" selectable="YES" id="SqR-KD-PAx" customClass="ScrollDisabledCollectionView" customModule="Sphinx" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="99" height="134"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="99" height="142"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" id="Gmn-6t-pfr">
-                                                                    <size key="itemSize" width="50" height="50"/>
+                                                                    <size key="itemSize" width="50" height="40"/>
                                                                 </collectionViewFlowLayout>
                                                                 <color key="primaryBackgroundColor" red="0.18400000035762787" green="0.70200002193450928" blue="0.47499999403953552" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </collectionView>
@@ -64,7 +64,7 @@
                                                 </scrollView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="oks-GY-haZ" secondAttribute="bottom" constant="8" id="BgD-eR-DOj"/>
+                                                <constraint firstAttribute="bottom" secondItem="oks-GY-haZ" secondAttribute="bottom" id="BgD-eR-DOj"/>
                                                 <constraint firstItem="oks-GY-haZ" firstAttribute="leading" secondItem="Iz9-zm-QqL" secondAttribute="leading" constant="16" id="HLs-QP-YPZ"/>
                                                 <constraint firstItem="oks-GY-haZ" firstAttribute="top" secondItem="Iz9-zm-QqL" secondAttribute="top" constant="8" id="HjO-8v-xq6"/>
                                                 <constraint firstAttribute="trailing" secondItem="oks-GY-haZ" secondAttribute="trailing" constant="16" id="M0G-fv-U7P"/>
@@ -94,9 +94,6 @@
                         <constraint firstItem="H0T-4y-8Ta" firstAttribute="top" secondItem="cA0-7f-W87" secondAttribute="top" id="Qdi-3G-Pfh"/>
                         <constraint firstAttribute="width" constant="136" id="uGb-1o-ICk"/>
                     </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
-                    </userDefinedRuntimeAttributes>
                 </customView>
             </subviews>
             <constraints>
@@ -104,9 +101,6 @@
                 <constraint firstItem="cA0-7f-W87" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="SHO-z6-koN"/>
                 <constraint firstItem="cA0-7f-W87" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="rX4-s1-AvC"/>
             </constraints>
-            <userDefinedRuntimeAttributes>
-                <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
-            </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="-1016" y="1893.5"/>
         </customView>
     </objects>
