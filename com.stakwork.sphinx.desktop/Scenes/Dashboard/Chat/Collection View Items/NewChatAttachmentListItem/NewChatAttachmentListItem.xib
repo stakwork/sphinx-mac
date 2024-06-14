@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.AVKitIBPlugin" version="22505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NewChatAttachmentListItem" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="1Jq-6f-6AC" id="Dby-3a-NdP"/>
+                <outlet property="fileDescriptionLabel" destination="Cpp-f9-ilo" id="LLP-4Z-qVe"/>
+                <outlet property="fileDescriptionView" destination="oW7-8u-Ny1" id="9xD-uh-28E"/>
+                <outlet property="genericFileDescriptionView" destination="uEx-R0-Cqr" id="B0r-OK-s3P"/>
+                <outlet property="genericFileNameLabel" destination="w6R-iz-Idw" id="GhK-OL-tZx"/>
+                <outlet property="genericFileSizeLabel" destination="RTA-NG-sKZ" id="j0t-H6-sWj"/>
+                <outlet property="gifView" destination="8a7-gN-jue" id="NSZ-hV-VW3"/>
+                <outlet property="loadingWheel" destination="pOy-bJ-NsW" id="2PH-il-lQI"/>
+                <outlet property="mediaImageView" destination="gK2-R1-UyB" id="URK-ug-hhi"/>
+                <outlet property="playButton" destination="h51-1d-Fk5" id="Mqd-V0-thc"/>
+                <outlet property="videoPlayerView" destination="n80-B3-iL1" id="Pom-ch-lpc"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="166"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView clipsToBounds="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Jq-6f-6AC">
+                    <rect key="frame" x="0.0" y="5" width="250" height="156"/>
+                    <subviews>
+                        <imageView clipsToBounds="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gK2-R1-UyB" customClass="AspectFillNSImageView" customModule="Sphinx" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="250" height="156"/>
+                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" id="OVL-io-YxW"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                    <real key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </imageView>
+                        <progressIndicator wantsLayer="YES" fixedFrame="YES" maxValue="100" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="pOy-bJ-NsW">
+                            <rect key="frame" x="109" y="62" width="32" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        </progressIndicator>
+                        <customView hidden="YES" clipsToBounds="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8a7-gN-jue">
+                            <rect key="frame" x="0.0" y="0.0" width="250" height="156"/>
+                        </customView>
+                        <avPlayerView hidden="YES" clipsToBounds="YES" controlsStyle="inline" showsFrameSteppingButtons="YES" showsFullScreenToggleButton="YES" videoGravity="resizeAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="n80-B3-iL1" customClass="CustomAVPlayerView" customModule="Sphinx" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="250" height="156"/>
+                        </avPlayerView>
+                        <button translatesAutoresizingMaskIntoConstraints="NO" id="uq3-8d-J7a">
+                            <rect key="frame" x="218" y="124" width="28" height="28"/>
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="previewClose" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="fLA-uV-fx1">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="28" id="Fri-AN-wL1"/>
+                                <constraint firstAttribute="width" constant="28" id="HoR-wO-zcX"/>
+                            </constraints>
+                            <connections>
+                                <action selector="closePreviewTapped:" target="-2" id="woP-CA-gXT"/>
+                            </connections>
+                        </button>
+                        <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h51-1d-Fk5" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                            <rect key="frame" x="101" y="54" width="48" height="48"/>
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="previewPlay" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="tJj-hB-o7S">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="LcR-bK-lf4"/>
+                                <constraint firstAttribute="width" constant="48" id="gcN-gL-LEw"/>
+                            </constraints>
+                            <connections>
+                                <action selector="playPreviewTapped:" target="-2" id="3Nd-pJ-Qle"/>
+                            </connections>
+                        </button>
+                        <box boxType="custom" borderType="line" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="7eF-JI-ByH">
+                            <rect key="frame" x="0.0" y="45" width="250" height="2"/>
+                            <view key="contentView" id="3Wh-04-ifH">
+                                <rect key="frame" x="1" y="1" width="248" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </view>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="2" id="fRz-Uw-25t"/>
+                            </constraints>
+                            <color key="borderColor" white="0.0" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </box>
+                        <box hidden="YES" clipsToBounds="YES" boxType="custom" borderType="none" cornerRadius="9" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="oW7-8u-Ny1">
+                            <rect key="frame" x="0.0" y="0.0" width="250" height="46"/>
+                            <view key="contentView" clipsToBounds="YES" id="mm3-DG-l54">
+                                <rect key="frame" x="0.0" y="0.0" width="250" height="46"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cpp-f9-ilo">
+                                        <rect key="frame" x="3" y="16" width="244" height="15"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" id="fdw-He-Wvf">
+                                            <font key="font" size="13" name="Roboto-Regular"/>
+                                            <color key="textColor" name="Text"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Cpp-f9-ilo" firstAttribute="leading" secondItem="mm3-DG-l54" secondAttribute="leading" constant="5" id="LVS-iG-IYa"/>
+                                    <constraint firstItem="Cpp-f9-ilo" firstAttribute="centerX" secondItem="mm3-DG-l54" secondAttribute="centerX" id="WLd-lj-wnS"/>
+                                    <constraint firstItem="Cpp-f9-ilo" firstAttribute="centerY" secondItem="mm3-DG-l54" secondAttribute="centerY" id="X0X-6g-61e"/>
+                                    <constraint firstAttribute="trailing" secondItem="Cpp-f9-ilo" secondAttribute="trailing" constant="5" id="YXd-no-UrH"/>
+                                </constraints>
+                            </view>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="46" id="d6Q-vl-Pbt"/>
+                            </constraints>
+                            <color key="fillColor" name="HeaderBG"/>
+                        </box>
+                        <box hidden="YES" clipsToBounds="YES" boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="uEx-R0-Cqr">
+                            <rect key="frame" x="0.0" y="0.0" width="250" height="46"/>
+                            <view key="contentView" id="aiA-wg-sAf">
+                                <rect key="frame" x="0.0" y="0.0" width="250" height="46"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <customView clipsToBounds="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mCI-P6-g1H">
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="46"/>
+                                        <subviews>
+                                            <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SRh-P3-6AE">
+                                                <rect key="frame" x="18" y="8" width="34" height="30"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="insert_drive_file" id="KKh-Ua-cLY">
+                                                    <font key="font" size="30" name="MaterialIcons-Regular"/>
+                                                    <color key="textColor" name="Text"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4CM-Z8-0Mh">
+                                                <rect key="frame" x="20" y="8" width="30" height="30"/>
+                                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="pdfIcon" id="zyT-QH-RvT"/>
+                                            </imageView>
+                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w6R-iz-Idw">
+                                                <rect key="frame" x="58" y="23" width="25" height="15"/>
+                                                <textFieldCell key="cell" lineBreakMode="truncatingMiddle" title="File" id="eSq-gD-ge0">
+                                                    <font key="font" size="13" name="Roboto-Medium"/>
+                                                    <color key="textColor" name="Text"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RTA-NG-sKZ">
+                                                <rect key="frame" x="58" y="8" width="25" height="13"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="0 kb" id="nqE-P3-jnX">
+                                                    <font key="font" size="11" name="Roboto-Regular"/>
+                                                    <color key="textColor" name="Text"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="4CM-Z8-0Mh" firstAttribute="trailing" secondItem="SRh-P3-6AE" secondAttribute="trailing" id="4Xp-Ic-WXR"/>
+                                            <constraint firstItem="4CM-Z8-0Mh" firstAttribute="bottom" secondItem="SRh-P3-6AE" secondAttribute="bottom" id="59Z-TA-DoB"/>
+                                            <constraint firstItem="SRh-P3-6AE" firstAttribute="centerY" secondItem="mCI-P6-g1H" secondAttribute="centerY" id="GSP-i7-nxY"/>
+                                            <constraint firstItem="4CM-Z8-0Mh" firstAttribute="leading" secondItem="SRh-P3-6AE" secondAttribute="leading" id="VZI-Zt-th2"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="w6R-iz-Idw" secondAttribute="trailing" constant="10" id="dZv-86-0cA"/>
+                                            <constraint firstItem="RTA-NG-sKZ" firstAttribute="leading" secondItem="SRh-P3-6AE" secondAttribute="trailing" constant="10" id="fmF-bI-MPz"/>
+                                            <constraint firstItem="SRh-P3-6AE" firstAttribute="leading" secondItem="mCI-P6-g1H" secondAttribute="leading" constant="20" id="krs-AG-Ciw"/>
+                                            <constraint firstItem="w6R-iz-Idw" firstAttribute="leading" secondItem="SRh-P3-6AE" secondAttribute="trailing" constant="10" id="mgR-lx-EuQ"/>
+                                            <constraint firstItem="w6R-iz-Idw" firstAttribute="centerY" secondItem="mCI-P6-g1H" secondAttribute="centerY" constant="-7" id="omQ-gw-6t5"/>
+                                            <constraint firstItem="RTA-NG-sKZ" firstAttribute="centerY" secondItem="mCI-P6-g1H" secondAttribute="centerY" constant="9" id="r3X-7g-XKx"/>
+                                            <constraint firstItem="4CM-Z8-0Mh" firstAttribute="top" secondItem="SRh-P3-6AE" secondAttribute="top" id="viN-VF-hcI"/>
+                                        </constraints>
+                                    </customView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="mCI-P6-g1H" secondAttribute="bottom" id="Ut1-sb-3YB"/>
+                                    <constraint firstItem="mCI-P6-g1H" firstAttribute="top" secondItem="aiA-wg-sAf" secondAttribute="top" id="Vmg-dY-71I"/>
+                                    <constraint firstAttribute="trailing" secondItem="mCI-P6-g1H" secondAttribute="trailing" id="gjC-Dh-Jv8"/>
+                                    <constraint firstItem="mCI-P6-g1H" firstAttribute="leading" secondItem="aiA-wg-sAf" secondAttribute="leading" id="k64-vg-gp6"/>
+                                </constraints>
+                            </view>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="46" id="aCd-Uh-7WD"/>
+                            </constraints>
+                            <color key="fillColor" name="Body"/>
+                        </box>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="7eF-JI-ByH" firstAttribute="leading" secondItem="1Jq-6f-6AC" secondAttribute="leading" id="0QA-bs-l63"/>
+                        <constraint firstAttribute="bottom" secondItem="gK2-R1-UyB" secondAttribute="bottom" id="4Pe-iU-GfP"/>
+                        <constraint firstItem="oW7-8u-Ny1" firstAttribute="leading" secondItem="1Jq-6f-6AC" secondAttribute="leading" id="6Nq-Sr-c54"/>
+                        <constraint firstAttribute="trailing" secondItem="7eF-JI-ByH" secondAttribute="trailing" id="CMx-hw-tnj"/>
+                        <constraint firstAttribute="trailing" secondItem="8a7-gN-jue" secondAttribute="trailing" id="GEM-G0-48e"/>
+                        <constraint firstItem="n80-B3-iL1" firstAttribute="top" secondItem="1Jq-6f-6AC" secondAttribute="top" id="HqI-xS-aWf"/>
+                        <constraint firstAttribute="trailing" secondItem="gK2-R1-UyB" secondAttribute="trailing" id="IOv-Ah-K2z"/>
+                        <constraint firstAttribute="bottom" secondItem="n80-B3-iL1" secondAttribute="bottom" id="Iba-ha-T4q"/>
+                        <constraint firstAttribute="bottom" secondItem="uEx-R0-Cqr" secondAttribute="bottom" id="L1p-Zf-Ajg"/>
+                        <constraint firstAttribute="trailing" secondItem="n80-B3-iL1" secondAttribute="trailing" id="LHq-ji-fkh"/>
+                        <constraint firstItem="8a7-gN-jue" firstAttribute="leading" secondItem="1Jq-6f-6AC" secondAttribute="leading" id="LdL-Jd-5rm"/>
+                        <constraint firstAttribute="trailing" secondItem="uq3-8d-J7a" secondAttribute="trailing" constant="4" id="Ox8-FB-F7v"/>
+                        <constraint firstItem="h51-1d-Fk5" firstAttribute="centerX" secondItem="1Jq-6f-6AC" secondAttribute="centerX" id="QhX-cL-VDW"/>
+                        <constraint firstAttribute="bottom" secondItem="oW7-8u-Ny1" secondAttribute="bottom" id="R9I-Cl-8Ww"/>
+                        <constraint firstAttribute="trailing" secondItem="oW7-8u-Ny1" secondAttribute="trailing" id="Sor-L9-7o5"/>
+                        <constraint firstItem="uq3-8d-J7a" firstAttribute="top" secondItem="1Jq-6f-6AC" secondAttribute="top" constant="4" id="TQ6-JO-sh2"/>
+                        <constraint firstItem="oW7-8u-Ny1" firstAttribute="top" secondItem="7eF-JI-ByH" secondAttribute="bottom" constant="-1" id="Xwt-Mk-j17"/>
+                        <constraint firstItem="gK2-R1-UyB" firstAttribute="leading" secondItem="1Jq-6f-6AC" secondAttribute="leading" id="aSR-Vx-BiN"/>
+                        <constraint firstItem="8a7-gN-jue" firstAttribute="top" secondItem="1Jq-6f-6AC" secondAttribute="top" id="cJf-OA-YcV"/>
+                        <constraint firstItem="h51-1d-Fk5" firstAttribute="centerY" secondItem="1Jq-6f-6AC" secondAttribute="centerY" id="f4Y-aH-bVF"/>
+                        <constraint firstAttribute="bottom" secondItem="8a7-gN-jue" secondAttribute="bottom" id="l1c-y0-3iQ"/>
+                        <constraint firstItem="n80-B3-iL1" firstAttribute="leading" secondItem="1Jq-6f-6AC" secondAttribute="leading" id="q2P-nr-A5i"/>
+                        <constraint firstAttribute="trailing" secondItem="uEx-R0-Cqr" secondAttribute="trailing" id="to0-Qd-LT2"/>
+                        <constraint firstItem="gK2-R1-UyB" firstAttribute="top" secondItem="1Jq-6f-6AC" secondAttribute="top" id="uxT-UW-dwX"/>
+                        <constraint firstItem="uEx-R0-Cqr" firstAttribute="leading" secondItem="1Jq-6f-6AC" secondAttribute="leading" id="wny-5N-Au1"/>
+                    </constraints>
+                </customView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="1Jq-6f-6AC" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="bR6-Oh-yEa"/>
+                <constraint firstItem="1Jq-6f-6AC" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="5" id="lgg-N1-F01"/>
+                <constraint firstAttribute="bottom" secondItem="1Jq-6f-6AC" secondAttribute="bottom" constant="5" id="vnQ-Oo-Cac"/>
+                <constraint firstAttribute="trailing" secondItem="1Jq-6f-6AC" secondAttribute="trailing" id="zgh-53-G1H"/>
+            </constraints>
+            <point key="canvasLocation" x="-268" y="80"/>
+        </customView>
+        <customObject id="hnT-Vy-Q10" customClass="NewChatAttachmentListItem" customModule="Sphinx" customModuleProvider="target"/>
+    </objects>
+    <resources>
+        <image name="pdfIcon" width="17.5" height="22"/>
+        <image name="previewClose" width="28" height="28"/>
+        <image name="previewPlay" width="48" height="48"/>
+        <namedColor name="Body">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="HeaderBG">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text">
+            <color red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
