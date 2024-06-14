@@ -30,6 +30,9 @@
 "today" = "今天";
 "contact" = "联系人";
 "profile" = "个人资料";
+"file" = "文件";
+"send" = "发送";
+"request" = "请求";
 "transactions" = "交易";
 "profile.saved" = "个人资料更改已成功保存";
 "search" = "搜索";
