@@ -34,6 +34,7 @@
                                 <constraint firstAttribute="width" constant="64" id="x2n-vo-09F"/>
                             </constraints>
                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="dragViewIcon" id="9bY-1B-1s3"/>
+                            <color key="contentTintColor" name="MainBottomIcons"/>
                         </imageView>
                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hdv-jC-N2M">
                             <rect key="frame" x="150" y="123" width="236" height="24"/>
@@ -63,6 +64,9 @@
     </objects>
     <resources>
         <image name="dragViewIcon" width="64" height="64"/>
+        <namedColor name="MainBottomIcons">
+            <color red="0.37254901960784315" green="0.38823529411764707" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="SecondaryText">
             <color red="0.55686274509803924" green="0.58823529411764708" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
