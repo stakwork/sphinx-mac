@@ -23,6 +23,7 @@ class NewChatAttachmentView: NSView, LoadableNib {
     @IBOutlet weak var attachmentsCollectionView: NSCollectionView!
     @IBOutlet weak var attachmentScrollView: NSScrollView!
     @IBOutlet weak var attachmentBoxContainer: NSBox!
+    @IBOutlet weak var addButtonLeadingConstraint: NSLayoutConstraint!
     
     var menuDataSource: NewChatAttachmentDataSource? = nil
     
@@ -38,18 +39,11 @@ class NewChatAttachmentView: NSView, LoadableNib {
     
     private func setup() {
         
-        attachmentBoxContainer.addShadow(
-            offset: CGSize.init(width: 0, height: 0),
-            color: NSColor.black,
-            opacity: 0.1,
-            radius: 10,
-            cornerRadius: 10
-        )
+
         attachmentBoxContainer.layer?.borderWidth = 1
         let bgColor = NSColor.init(red: 0, green: 0, blue: 0, alpha: 0.1)
         attachmentBoxContainer.layer?.borderColor = bgColor.cgColor
         attachmentBoxContainer.layer?.masksToBounds = false
-        
     }
     
     func configureDataSource(delegate: NewChatAttachmentDelegate) {
