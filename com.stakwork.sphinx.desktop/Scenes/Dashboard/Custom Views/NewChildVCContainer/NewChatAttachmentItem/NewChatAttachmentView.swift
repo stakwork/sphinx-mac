@@ -60,6 +60,6 @@ class NewChatAttachmentView: NSView, LoadableNib {
     }
     
     @IBAction func attachmentButtonTapped(_ sender: NSButton) {
-        attachmentDelegate?.addAttachmentClicked()
+//        attachmentDelegate?.addAttachmentClicked()
     }
 }
