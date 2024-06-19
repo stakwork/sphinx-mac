@@ -314,7 +314,7 @@ extension NewChatViewController: ShowPreviewDelegate {
     func showPreview(data: Data, image: NSImage, type: AttachmentItemType) {
         let newItem = NewAttachmentItem(previewImage: image, previewType: type, previewData: data)
         let currentItems = chatBottomView.messageFieldView.newChatAttachmentView.menuItems + [newItem]
-        updateAddButton(currentItems: currentItems)
+        updateAddButton(currentItems: currentItems, hasText: !chatBottomView.messageFieldView.messageTextView.string.isEmpty)
         chatBottomView.messageFieldView.newChatAttachmentView.updateCollectionView(menuItems: currentItems)
         draggingView.resetView()
         chatBottomView.messageFieldView.newChatAttachmentView.isHidden = false
@@ -324,17 +324,17 @@ extension NewChatViewController: ShowPreviewDelegate {
     func showVideoFilePreview(data: Data, image: NSImage? = nil, type: AttachmentItemType, url: URL) {
         let newItem = NewAttachmentItem(previewImage: NSImage(data: data) ?? NSImage(), previewType: type, previewData: data, previewURL: url)
         let currentItems = chatBottomView.messageFieldView.newChatAttachmentView.menuItems + [newItem]
-        updateAddButton(currentItems: currentItems)
+        updateAddButton(currentItems: currentItems, hasText: !chatBottomView.messageFieldView.messageTextView.string.isEmpty)
         chatBottomView.messageFieldView.newChatAttachmentView.updateCollectionView(menuItems: currentItems)
         draggingView.resetView()
         chatBottomView.messageFieldView.newChatAttachmentView.isHidden = false
         _ = chatBottomView.messageFieldView.updateBottomBarHeight()
     }
     
-    func updateAddButton(currentItems: [NewAttachmentItem]) {
+    func updateAddButton(currentItems: [NewAttachmentItem], hasText: Bool = false) {
         let leadingConstant = chatBottomView.messageFieldView.frame.width - CGFloat((currentItems.count * 140)) - 110 - CGFloat((currentItems.count - 1) * 14)
-        if (leadingConstant > 100) {
-            chatBottomView.messageFieldView.newChatAttachmentView.addButtonLeadingConstraint.constant = -(leadingConstant)
+        if (leadingConstant > 170) {
+            chatBottomView.messageFieldView.newChatAttachmentView.addButtonLeadingConstraint.constant = -(leadingConstant + (hasText ? -140 : 0))
         } else {
             chatBottomView.messageFieldView.newChatAttachmentView.addButtonLeadingConstraint.constant = -62
         }

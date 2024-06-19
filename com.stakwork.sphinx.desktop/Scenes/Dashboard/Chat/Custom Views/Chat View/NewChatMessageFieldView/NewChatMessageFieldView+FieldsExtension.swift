@@ -64,13 +64,14 @@ extension NewChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
     }
     
     func textDidChange(_ notification: Notification) {
+        let menuItems = newChatAttachmentView.menuItems
         micButton.isHidden = !messageTextView.string.isEmpty
         priceContainer.isHidden = messageTextView.string.isEmpty || isThread
         sendButton.isHidden = messageTextView.string.isEmpty
         priceTextField.stringValue = messageTextView.string.isEmpty ? "" : priceTextField.stringValue
         
         updateColor()
-        
+        updateAddButton(currentItems: menuItems, hasText: !messageTextView.string.isEmpty)
         ChatTrackingHandler.shared.saveOngoingMessage(
             with: messageTextView.string,
             chatId: chat?.id,

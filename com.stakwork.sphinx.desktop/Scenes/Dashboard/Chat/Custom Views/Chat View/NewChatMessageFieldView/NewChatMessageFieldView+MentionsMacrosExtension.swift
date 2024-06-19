@@ -284,6 +284,8 @@ extension NewChatMessageFieldView: NewChatAttachmentDelegate {
             newChatAttachmentView.isHidden = menuItems.isEmpty
             newChatAttachmentView.updateCollectionView(menuItems: menuItems)
             _ = updateBottomBarHeight()
+            updateAddButton(currentItems: menuItems, hasText: !messageTextView.string.isEmpty)
+            
         }
         
     }
@@ -292,5 +294,14 @@ extension NewChatMessageFieldView: NewChatAttachmentDelegate {
         
     }
     
+    func updateAddButton(currentItems: [NewAttachmentItem], hasText: Bool = false) {
+        let leadingConstant = self.frame.width - CGFloat((currentItems.count * 140)) - 110 - CGFloat((currentItems.count - 1) * 14)
+        if (leadingConstant > 170) {
+            newChatAttachmentView.addButtonLeadingConstraint.constant = -(leadingConstant + (hasText ? -140 : 0))
+        } else {
+            newChatAttachmentView.addButtonLeadingConstraint.constant = -62
+        }
+        
+    }
     
 }
