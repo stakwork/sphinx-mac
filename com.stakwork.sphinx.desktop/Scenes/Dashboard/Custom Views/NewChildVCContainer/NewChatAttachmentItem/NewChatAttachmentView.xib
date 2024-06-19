@@ -3,11 +3,13 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NewChatAttachmentView" customModule="Sphinx" customModuleProvider="target">
             <connections>
+                <outlet property="addButtonLeadingConstraint" destination="kWF-tC-SZV" id="64G-Q4-Hwf"/>
                 <outlet property="attachmentBoxContainer" destination="H0T-4y-8Ta" id="1KE-uD-4B4"/>
                 <outlet property="attachmentScrollView" destination="q3m-uL-h3s" id="ps1-iz-19b"/>
                 <outlet property="attachmentsCollectionView" destination="iCQ-cl-APg" id="iI0-mq-aMP"/>
@@ -43,7 +45,7 @@
                                                         <subviews>
                                                             <collectionView clipsToBounds="YES" selectable="YES" id="iCQ-cl-APg">
                                                                 <rect key="frame" x="0.0" y="0.0" width="502" height="140"/>
-                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                                                <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" scrollDirection="horizontal" id="x6N-o0-CDU">
                                                                     <size key="itemSize" width="50" height="50"/>
                                                                 </collectionViewFlowLayout>
@@ -53,7 +55,7 @@
                                                         <color key="backgroundColor" red="0.10196078431372549" green="0.13725490196078433" blue="0.17647058823529413" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </clipView>
                                                     <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="NTf-kG-9n6">
-                                                        <rect key="frame" x="-100" y="-100" width="393" height="16"/>
+                                                        <rect key="frame" x="0.0" y="124" width="502" height="16"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="GiL-0j-s0x">
@@ -63,7 +65,7 @@
                                                 </scrollView>
                                                 <box borderType="line" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="DFL-V6-eM7">
                                                     <rect key="frame" x="509" y="-4" width="66" height="146"/>
-                                                    <view key="contentView" ambiguous="YES" id="LsY-rh-bYf">
+                                                    <view key="contentView" id="LsY-rh-bYf">
                                                         <rect key="frame" x="4" y="5" width="58" height="138"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
@@ -92,7 +94,6 @@
                                                         <constraints>
                                                             <constraint firstItem="bdw-We-sea" firstAttribute="top" secondItem="LsY-rh-bYf" secondAttribute="top" id="B2z-B5-pLV"/>
                                                             <constraint firstAttribute="bottom" secondItem="bdw-We-sea" secondAttribute="bottom" id="LUn-ZR-o3Y"/>
-                                                            <constraint firstAttribute="trailing" secondItem="bdw-We-sea" secondAttribute="trailing" id="T7e-In-XSU"/>
                                                             <constraint firstItem="bdw-We-sea" firstAttribute="leading" secondItem="LsY-rh-bYf" secondAttribute="leading" id="n0Z-kv-d2e"/>
                                                         </constraints>
                                                     </view>
@@ -106,9 +107,9 @@
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="DFL-V6-eM7" secondAttribute="bottom" id="Qg8-YF-Go2"/>
                                                 <constraint firstItem="q3m-uL-h3s" firstAttribute="top" secondItem="Iz9-zm-QqL" secondAttribute="top" id="WA8-nj-ck9"/>
-                                                <constraint firstItem="DFL-V6-eM7" firstAttribute="leading" secondItem="q3m-uL-h3s" secondAttribute="trailing" constant="10" id="ZA1-mo-8ry"/>
+                                                <constraint firstAttribute="trailing" secondItem="q3m-uL-h3s" secondAttribute="trailing" constant="70" id="ZA1-mo-8ry"/>
                                                 <constraint firstItem="q3m-uL-h3s" firstAttribute="leading" secondItem="Iz9-zm-QqL" secondAttribute="leading" id="b39-zz-wyM"/>
-                                                <constraint firstAttribute="trailing" secondItem="DFL-V6-eM7" secondAttribute="trailing" id="eDK-hm-FF9"/>
+                                                <constraint firstItem="DFL-V6-eM7" firstAttribute="leading" secondItem="Iz9-zm-QqL" secondAttribute="trailing" constant="-60" id="kWF-tC-SZV"/>
                                                 <constraint firstAttribute="bottom" secondItem="q3m-uL-h3s" secondAttribute="bottom" id="mtC-uh-Msl"/>
                                                 <constraint firstItem="DFL-V6-eM7" firstAttribute="top" secondItem="Iz9-zm-QqL" secondAttribute="top" id="yMS-sy-cm8"/>
                                             </constraints>
@@ -137,12 +138,27 @@
                             </view>
                             <color key="borderColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         </box>
+                        <box boxType="custom" borderType="line" borderWidth="0.0" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="eG0-0t-T1a">
+                            <rect key="frame" x="0.0" y="0.0" width="592" height="1"/>
+                            <view key="contentView" id="ulm-BQ-eAN">
+                                <rect key="frame" x="0.0" y="0.0" width="592" height="1"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </view>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="Dgt-3e-M5T"/>
+                            </constraints>
+                            <color key="borderColor" name="Divider2"/>
+                            <color key="fillColor" name="Divider2"/>
+                        </box>
                     </subviews>
                     <constraints>
                         <constraint firstItem="H0T-4y-8Ta" firstAttribute="top" secondItem="cA0-7f-W87" secondAttribute="top" id="GXy-DQ-hSl"/>
                         <constraint firstAttribute="bottom" secondItem="H0T-4y-8Ta" secondAttribute="bottom" id="W8p-mx-iDv"/>
                         <constraint firstAttribute="trailing" secondItem="H0T-4y-8Ta" secondAttribute="trailing" id="XWy-ba-mu9"/>
                         <constraint firstItem="H0T-4y-8Ta" firstAttribute="leading" secondItem="cA0-7f-W87" secondAttribute="leading" id="YBM-7V-eC9"/>
+                        <constraint firstAttribute="trailing" secondItem="eG0-0t-T1a" secondAttribute="trailing" id="Ztc-uA-RKW"/>
+                        <constraint firstAttribute="bottom" secondItem="eG0-0t-T1a" secondAttribute="bottom" id="kbR-bl-45R"/>
+                        <constraint firstItem="eG0-0t-T1a" firstAttribute="leading" secondItem="cA0-7f-W87" secondAttribute="leading" id="mq1-4V-oTK"/>
                     </constraints>
                 </customView>
             </subviews>
@@ -157,5 +173,8 @@
     </objects>
     <resources>
         <image name="add" width="18" height="18"/>
+        <namedColor name="Divider2">
+            <color red="0.8666666666666667" green="0.88235294117647056" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

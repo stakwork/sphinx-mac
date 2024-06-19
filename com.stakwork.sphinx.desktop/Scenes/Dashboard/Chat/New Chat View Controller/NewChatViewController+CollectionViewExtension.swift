@@ -266,12 +266,9 @@ extension NewChatViewController : MediaFullScreenDelegate {
 
 extension NewChatViewController: NewMenuItemDataSourceDelegate {
     func itemSelected(at index: Int) {
-        print("Item at: \(index) is selected - \(chatBottomView.messageFieldView.childViewControllerContainer.menuItems[index].menuTitle)")
         chatBottomView.messageFieldView.childViewControllerContainer.isHidden = true
         switch index {
         case 0:
-//            draggingView.isHidden = false
-//            addEscapeMonitor()
             self.draggingView.configureDraggingStyle()
             addNewEscapeMonitor()
         default:
@@ -293,7 +290,6 @@ extension NewChatViewController: ShowPreviewDelegate {
     }
     
     func showPDFPreview(data: Data, image: NSImage, url: URL) {
-//        showPreview(data: data, image: image, type: .pdf)
         showVideoFilePreview(data: data, type: .pdf, url: url)
     }
     
@@ -318,7 +314,7 @@ extension NewChatViewController: ShowPreviewDelegate {
     func showPreview(data: Data, image: NSImage, type: AttachmentItemType) {
         let newItem = NewAttachmentItem(previewImage: image, previewType: type, previewData: data)
         let currentItems = chatBottomView.messageFieldView.newChatAttachmentView.menuItems + [newItem]
-        print("Items in the preview: \(currentItems.count)")
+        updateAddButton(currentItems: currentItems)
         chatBottomView.messageFieldView.newChatAttachmentView.updateCollectionView(menuItems: currentItems)
         draggingView.resetView()
         chatBottomView.messageFieldView.newChatAttachmentView.isHidden = false
@@ -328,10 +324,20 @@ extension NewChatViewController: ShowPreviewDelegate {
     func showVideoFilePreview(data: Data, image: NSImage? = nil, type: AttachmentItemType, url: URL) {
         let newItem = NewAttachmentItem(previewImage: NSImage(data: data) ?? NSImage(), previewType: type, previewData: data, previewURL: url)
         let currentItems = chatBottomView.messageFieldView.newChatAttachmentView.menuItems + [newItem]
-        print("Items in the preview: \(currentItems.count)")
+        updateAddButton(currentItems: currentItems)
         chatBottomView.messageFieldView.newChatAttachmentView.updateCollectionView(menuItems: currentItems)
         draggingView.resetView()
         chatBottomView.messageFieldView.newChatAttachmentView.isHidden = false
         _ = chatBottomView.messageFieldView.updateBottomBarHeight()
+    }
+    
+    func updateAddButton(currentItems: [NewAttachmentItem]) {
+        let leadingConstant = chatBottomView.messageFieldView.frame.width - CGFloat((currentItems.count * 140)) - 110 - CGFloat((currentItems.count - 1) * 14)
+        if (leadingConstant > 100) {
+            chatBottomView.messageFieldView.newChatAttachmentView.addButtonLeadingConstraint.constant = -(leadingConstant)
+        } else {
+            chatBottomView.messageFieldView.newChatAttachmentView.addButtonLeadingConstraint.constant = -62
+        }
+        
     }
 }
