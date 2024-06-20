@@ -271,6 +271,7 @@ extension NewChatViewController: NewMenuItemDataSourceDelegate {
         case 0:
             self.draggingView.configureDraggingStyle()
             addNewEscapeMonitor()
+            draggingView.bottomMargin.constant = (chatBottomView.messageFieldView.messageContainerHeightConstraint.constant - 50)
         default:
             break
         }
@@ -281,6 +282,7 @@ extension NewChatViewController: AddAttachmentDelegate {
     func addAttachmentClicked() {
         self.draggingView.configureDraggingStyle()
         addNewEscapeMonitor()
+        draggingView.bottomMargin.constant = (chatBottomView.messageFieldView.messageContainerHeightConstraint.constant - 50)
     }
 }
 
