@@ -47,7 +47,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="502" height="140"/>
                                                                 <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" scrollDirection="horizontal" id="x6N-o0-CDU">
-                                                                    <size key="itemSize" width="50" height="50"/>
+                                                                    <size key="itemSize" width="140" height="140"/>
                                                                 </collectionViewFlowLayout>
                                                                 <color key="primaryBackgroundColor" red="0.10196078431372549" green="0.13725490196078433" blue="0.17647058823529413" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </collectionView>
@@ -63,14 +63,14 @@
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>
-                                                <box borderType="line" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="DFL-V6-eM7">
-                                                    <rect key="frame" x="509" y="1" width="66" height="136"/>
+                                                <box clipsToBounds="YES" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="10" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="DFL-V6-eM7">
+                                                    <rect key="frame" x="512" y="5" width="60" height="130"/>
                                                     <view key="contentView" id="LsY-rh-bYf">
-                                                        <rect key="frame" x="4" y="5" width="58" height="128"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="60" height="130"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
-                                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="bdw-We-sea">
-                                                                <rect key="frame" x="0.0" y="0.0" width="60" height="128"/>
+                                                            <button clipsToBounds="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bdw-We-sea">
+                                                                <rect key="frame" x="0.0" y="0.0" width="60" height="130"/>
                                                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="BIx-Rg-Cvw">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system" size="5"/>
@@ -83,7 +83,7 @@
                                                                 </connections>
                                                             </button>
                                                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cnZ-3J-UZY">
-                                                                <rect key="frame" x="20" y="55" width="18" height="18"/>
+                                                                <rect key="frame" x="21" y="56" width="18" height="18"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="18" id="aki-Mc-Ao5"/>
                                                                     <constraint firstAttribute="width" constant="18" id="uWu-jl-tg8"/>
@@ -103,6 +103,7 @@
                                                         <constraint firstAttribute="width" constant="60" id="cIv-tC-MuD"/>
                                                         <constraint firstAttribute="height" constant="130" id="uoW-SE-jbz"/>
                                                     </constraints>
+                                                    <color key="fillColor" red="0.56470588235294117" green="0.60784313725490191" blue="0.66666666666666663" alpha="0.15327504139072848" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </box>
                                             </subviews>
                                             <constraints>

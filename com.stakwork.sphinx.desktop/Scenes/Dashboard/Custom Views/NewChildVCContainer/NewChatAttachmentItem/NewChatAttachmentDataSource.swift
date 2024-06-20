@@ -30,7 +30,7 @@ class NewChatAttachmentDataSource : NSObject {
     func configureCollectionView() {
         let flowLayout = NSCollectionViewFlowLayout()
         flowLayout.sectionInset = NSEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
-        flowLayout.minimumInteritemSpacing = 12.0
+        flowLayout.minimumInteritemSpacing = 0.0
         flowLayout.minimumLineSpacing = 12.0
         flowLayout.sectionHeadersPinToVisibleBounds = true
         flowLayout.scrollDirection = .horizontal
