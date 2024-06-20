@@ -200,9 +200,9 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="1460" height="40"/>
                                                         <subviews>
                                                             <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QeY-Lh-DbX" customClass="NewChatAttachmentView" customModule="Sphinx" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="-140" width="1460" height="180"/>
+                                                                <rect key="frame" x="0.0" y="-130" width="1460" height="170"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="180" id="0Fz-wu-UlW"/>
+                                                                    <constraint firstAttribute="height" constant="170" id="0Fz-wu-UlW"/>
                                                                 </constraints>
                                                             </customView>
                                                             <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NSP-XO-2SX">
