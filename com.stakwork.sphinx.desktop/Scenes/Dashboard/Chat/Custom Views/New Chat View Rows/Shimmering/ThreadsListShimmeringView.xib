@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="ThreadsListShimmeringView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="c22-O7-iKe" id="WZz-qO-9al"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="1149"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" borderType="none" cornerRadius="8" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="efg-gO-8Vy">
+                    <rect key="frame" x="16" y="1003" width="448" height="130"/>
+                    <view key="contentView" id="onw-sR-P4q">
+                        <rect key="frame" x="0.0" y="0.0" width="448" height="130"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="130" id="ntp-lx-DOr"/>
+                    </constraints>
+                    <color key="fillColor" name="SecondaryText"/>
+                </box>
+                <box boxType="custom" borderType="none" cornerRadius="8" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="23s-mg-gf4">
+                    <rect key="frame" x="16" y="857" width="448" height="130"/>
+                    <view key="contentView" id="yjH-oM-eqm">
+                        <rect key="frame" x="0.0" y="0.0" width="448" height="130"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="130" id="Sxc-Se-emQ"/>
+                    </constraints>
+                    <color key="fillColor" name="SecondaryText"/>
+                </box>
+                <box boxType="custom" borderType="none" cornerRadius="8" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="FBX-1Q-ZTC">
+                    <rect key="frame" x="16" y="711" width="448" height="130"/>
+                    <view key="contentView" id="bHm-Lr-o9o">
+                        <rect key="frame" x="0.0" y="0.0" width="448" height="130"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="130" id="tya-N3-U5e"/>
+                    </constraints>
+                    <color key="fillColor" name="SecondaryText"/>
+                </box>
+                <box boxType="custom" borderType="none" cornerRadius="8" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="ghG-Vm-quj">
+                    <rect key="frame" x="16" y="565" width="448" height="130"/>
+                    <view key="contentView" id="Ksd-Jm-Hi1">
+                        <rect key="frame" x="0.0" y="0.0" width="448" height="130"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="130" id="gPd-gW-a0H"/>
+                    </constraints>
+                    <color key="fillColor" name="SecondaryText"/>
+                </box>
+                <box boxType="custom" borderType="none" cornerRadius="8" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="5CI-02-de1">
+                    <rect key="frame" x="16" y="419" width="448" height="130"/>
+                    <view key="contentView" id="0Gc-vC-5HM">
+                        <rect key="frame" x="0.0" y="0.0" width="448" height="130"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="130" id="Aga-ek-qjQ"/>
+                    </constraints>
+                    <color key="fillColor" name="SecondaryText"/>
+                </box>
+                <box boxType="custom" borderType="none" cornerRadius="8" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="J5i-rx-Q9x">
+                    <rect key="frame" x="16" y="273" width="448" height="130"/>
+                    <view key="contentView" id="pU4-Xc-6Rg">
+                        <rect key="frame" x="0.0" y="0.0" width="448" height="130"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="130" id="hC7-ji-Cem"/>
+                    </constraints>
+                    <color key="fillColor" name="SecondaryText"/>
+                </box>
+                <box boxType="custom" borderType="none" cornerRadius="8" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="sHc-OP-btL">
+                    <rect key="frame" x="16" y="127" width="448" height="130"/>
+                    <view key="contentView" id="qEo-Bo-f1q">
+                        <rect key="frame" x="0.0" y="0.0" width="448" height="130"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="130" id="72x-xV-EdP"/>
+                    </constraints>
+                    <color key="fillColor" name="SecondaryText"/>
+                </box>
+                <box boxType="custom" borderType="none" cornerRadius="8" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="dwc-X3-Jw9">
+                    <rect key="frame" x="16" y="-19" width="448" height="130"/>
+                    <view key="contentView" id="B8n-U2-sfo">
+                        <rect key="frame" x="0.0" y="0.0" width="448" height="130"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="130" id="V6N-FD-Hya"/>
+                    </constraints>
+                    <color key="fillColor" name="SecondaryText"/>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="J5i-rx-Q9x" secondAttribute="trailing" constant="16" id="1Hj-3O-bPK"/>
+                <constraint firstAttribute="trailing" secondItem="sHc-OP-btL" secondAttribute="trailing" constant="16" id="2bm-Yv-kml"/>
+                <constraint firstItem="J5i-rx-Q9x" firstAttribute="top" secondItem="5CI-02-de1" secondAttribute="bottom" constant="16" id="8BI-Ww-XX9"/>
+                <constraint firstItem="efg-gO-8Vy" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="16" id="9Rx-9g-ySA"/>
+                <constraint firstAttribute="trailing" secondItem="5CI-02-de1" secondAttribute="trailing" constant="16" id="Bx3-2d-ehf"/>
+                <constraint firstAttribute="trailing" secondItem="FBX-1Q-ZTC" secondAttribute="trailing" constant="16" id="Ewc-Of-ysU"/>
+                <constraint firstAttribute="trailing" secondItem="efg-gO-8Vy" secondAttribute="trailing" constant="16" id="GRt-xi-Ouf"/>
+                <constraint firstItem="23s-mg-gf4" firstAttribute="top" secondItem="efg-gO-8Vy" secondAttribute="bottom" constant="16" id="Iuh-xK-fEK"/>
+                <constraint firstItem="FBX-1Q-ZTC" firstAttribute="top" secondItem="23s-mg-gf4" secondAttribute="bottom" constant="16" id="JbV-Nl-457"/>
+                <constraint firstItem="FBX-1Q-ZTC" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="16" id="JkQ-tl-nfr"/>
+                <constraint firstItem="J5i-rx-Q9x" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="16" id="MIL-g5-f2R"/>
+                <constraint firstItem="efg-gO-8Vy" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="16" id="Ozi-cl-UxU"/>
+                <constraint firstAttribute="trailing" secondItem="dwc-X3-Jw9" secondAttribute="trailing" constant="16" id="Q2f-bb-twu"/>
+                <constraint firstItem="ghG-Vm-quj" firstAttribute="top" secondItem="FBX-1Q-ZTC" secondAttribute="bottom" constant="16" id="aEB-Dl-BGz"/>
+                <constraint firstItem="sHc-OP-btL" firstAttribute="top" secondItem="J5i-rx-Q9x" secondAttribute="bottom" constant="16" id="aX0-8Y-JB0"/>
+                <constraint firstItem="dwc-X3-Jw9" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="16" id="bYi-R9-UX3"/>
+                <constraint firstItem="23s-mg-gf4" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="16" id="edh-cF-jI8"/>
+                <constraint firstItem="sHc-OP-btL" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="16" id="fUW-rJ-o4C"/>
+                <constraint firstItem="5CI-02-de1" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="16" id="gpF-q8-FQ3"/>
+                <constraint firstAttribute="trailing" secondItem="23s-mg-gf4" secondAttribute="trailing" constant="16" id="o6T-LJ-uK1"/>
+                <constraint firstItem="ghG-Vm-quj" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="16" id="pZh-J6-KrI"/>
+                <constraint firstAttribute="trailing" secondItem="ghG-Vm-quj" secondAttribute="trailing" constant="16" id="tMe-WE-8q1"/>
+                <constraint firstItem="5CI-02-de1" firstAttribute="top" secondItem="ghG-Vm-quj" secondAttribute="bottom" constant="16" id="vgb-q3-jIM"/>
+                <constraint firstItem="dwc-X3-Jw9" firstAttribute="top" secondItem="sHc-OP-btL" secondAttribute="bottom" constant="16" id="x3u-ML-kgb"/>
+            </constraints>
+            <point key="canvasLocation" x="99" y="402.5"/>
+        </customView>
+    </objects>
+    <resources>
+        <namedColor name="SecondaryText">
+            <color red="0.55686274509803924" green="0.58823529411764708" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

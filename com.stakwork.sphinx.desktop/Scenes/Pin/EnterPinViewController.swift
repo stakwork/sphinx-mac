@@ -41,6 +41,10 @@ class EnterPinViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // MARK: - Configure View for Testing Purpose
+        setViewForTesting()
+        // MARK: - END
+        
         pinView.setSubtitle(subtitle)
         pinView.doneCompletion = { pin in
             if self.isLaunchMode() && GroupsPinManager.sharedInstance.isValidPin(pin) {
@@ -53,4 +57,18 @@ class EnterPinViewController: NSViewController {
             }
         }
     }
+    
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        
+        pinView.makeFieldFirstResponder()
+    }
+    
+    // MARK: - For Testing Purpose
+    func setViewForTesting() {
+        let subViews = [pinView!, pinView.pinFieldView.textField!]
+        let identifiers = ["PinView", "SecureFields"]
+        configureVCForTesting(subViews, identifiers: identifiers, self.view)
+    }
+    // MARK: - End
 }

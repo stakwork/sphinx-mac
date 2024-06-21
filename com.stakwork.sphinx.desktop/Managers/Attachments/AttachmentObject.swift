@@ -18,15 +18,16 @@ public struct AttachmentObject {
     var price: Int = 0
     var fileName: String? = nil
     
-    init(data: Data,
-         fileName: String? = nil,
-         mediaKey: String? = nil,
-         type: AttachmentsManager.AttachmentType,
-         text: String? = nil,
-         paidMessage: String? = nil,
-         image: NSImage? = nil,
-         price: Int = 0) {
-        
+    init(
+        data: Data,
+        fileName: String? = nil,
+        mediaKey: String? = nil,
+        type: AttachmentsManager.AttachmentType,
+        text: String? = nil,
+        paidMessage: String? = nil,
+        image: NSImage? = nil,
+        price: Int = 0
+    ) {
         self.data = data
         self.fileName = fileName
         self.mediaKey = mediaKey
@@ -41,7 +42,8 @@ public struct AttachmentObject {
         if type == AttachmentsManager.AttachmentType.Audio ||
            type == AttachmentsManager.AttachmentType.Gif ||
            type == AttachmentsManager.AttachmentType.Text ||
-           type == AttachmentsManager.AttachmentType.GenericFile {
+           type == AttachmentsManager.AttachmentType.GenericFile ||
+           type == AttachmentsManager.AttachmentType.PDF {
             return data
         }
         return nil
@@ -55,7 +57,11 @@ public struct AttachmentObject {
     }
     
     func getDecryptedData() -> Data? {
-        if let data = getUploadData(), let mediaKey = mediaKey, let decryptedData = SymmetricEncryptionManager.sharedInstance.decryptData(data: data, key: mediaKey) {
+        if
+            let data = getUploadData(),
+            let mediaKey = mediaKey,
+            let decryptedData = SymmetricEncryptionManager.sharedInstance.decryptData(data: data, key: mediaKey)
+        {
             return decryptedData
         }
         return nil
@@ -87,13 +93,58 @@ public struct AttachmentObject {
     }
     
     func getFileAndMime() -> (String, String) {
-        switch (self.type) {
+        return AttachmentObject.getFileAndMime(type: self.type, fileName: self.fileName)
+    }
+    
+    func isPDFOrFile() -> Bool {
+        return type == AttachmentsManager.AttachmentType.PDF || type == AttachmentsManager.AttachmentType.GenericFile
+    }
+    
+    func isPDF() -> Bool {
+        return type == AttachmentsManager.AttachmentType.PDF
+    }
+    
+    func isAudio() -> Bool {
+        return type == AttachmentsManager.AttachmentType.Audio
+    }
+    
+    func getFileInfo() -> MessageTableCellState.FileInfo? {
+        if !isPDFOrFile() {
+            return nil
+        }
+        
+        let pagesCount = isPDF() ? data.getPDFPagesCount() : 0
+        let previewImage = isPDF() ? data.getPDFThumbnail() : nil
+        
+        return MessageTableCellState.FileInfo(
+            fileSize: getDecryptedData()?.count ?? 0,
+            fileName: getFileName(),
+            pagesCount: pagesCount,
+            previewImage: previewImage
+        )
+    }
+    
+    func getAudioInfo(duration: Double?) -> MessageTableCellState.AudioInfo? {
+        if !isAudio() {
+            return nil
+        }
+        
+        return MessageTableCellState.AudioInfo(
+            loading: false,
+            playing: false,
+            duration: duration ?? 0.0,
+            currentTime: 0.0
+        )
+    }
+    
+    static func getFileAndMime(type: AttachmentsManager.AttachmentType, fileName: String?) -> (String, String) {
+        switch (type) {
             case .Video:
                 return ("video.mov", "video/mov")
             case .Photo:
                 return ("image.jpg", "image/jpg")
             case .Audio:
-                return ("audio.m4a", "audio/m4a")
+                return ("audio.wav", "audio/wav")
             case .Text:
                 return ("message.txt", "sphinx/text")
             case .Gif:

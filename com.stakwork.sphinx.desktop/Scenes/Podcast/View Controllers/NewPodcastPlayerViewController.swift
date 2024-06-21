@@ -17,8 +17,8 @@ class NewPodcastPlayerViewController: NSViewController {
     var newEpisodeView: NewEpisodeAlertView? = nil
     
     var chat: Chat! = nil
-    var playerHelper: PodcastPlayerHelper! = nil
     var collectionViewDS: PodcastEpisodesDataSource! = nil
+    var deepLinkData : DeeplinkData? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,33 +35,64 @@ class NewPodcastPlayerViewController: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         
-        newEpisodeView = NewEpisodeAlertView.checkForNewEpisode(chat: chat, view: self.view)
-        
-        NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification, object: playerCollectionView.enclosingScrollView?.contentView, queue: OperationQueue.main) { [weak self] (n: Notification) in
+        NotificationCenter.default.addObserver(
+            forName: NSView.boundsDidChangeNotification,
+            object: playerCollectionView.enclosingScrollView?.contentView,
+            queue: OperationQueue.main
+        ) { [weak self] (n: Notification) in
             self?.newEpisodeView?.hideView()
         }
     }
     
     override func viewWillDisappear() {
         super.viewWillDisappear()
+        
         NotificationCenter.default.removeObserver(self, name: NSView.boundsDidChangeNotification, object: nil)
     }
     
-    static func instantiate(chat: Chat, playerHelper: PodcastPlayerHelper, delegate: PodcastPlayerViewDelegate) -> NewPodcastPlayerViewController {
+    static func instantiate(
+        chat: Chat,
+        delegate: PodcastPlayerViewDelegate,
+        deepLinkData: DeeplinkData? = nil
+    ) -> NewPodcastPlayerViewController {
         let viewController = StoryboardScene.Podcast.newPodcastPlayerViewController.instantiate()
         viewController.chat = chat
         viewController.delegate = delegate
-        viewController.playerHelper = playerHelper
+        viewController.deepLinkData = deepLinkData
         
         return viewController
     }
     
     func showEpisodesTable() {
-        collectionViewDS = PodcastEpisodesDataSource(collectionView: playerCollectionView,
-                                                     chat: chat,
-                                                     episodes: playerHelper.getEpisodes(),
-                                                     playerHelper: playerHelper,
-                                                     delegate: self)
+        guard let contentFeed = chat.contentFeed else {
+            return
+        }
+        let podcast = PodcastFeed.convertFrom(contentFeed: contentFeed)
+        
+        collectionViewDS = PodcastEpisodesDataSource(
+            collectionView: playerCollectionView,
+            chat: chat,
+            podcastFeed: podcast,
+            delegate: self
+        )
+        
+        newEpisodeView = NewEpisodeAlertView.checkForNewEpisode(
+            podcast: podcast,
+            view: self.view
+        )
+        
+        if let data = deepLinkData,
+           let deeplinkedItem = podcast.episodes?.first(where: {$0.itemID == data.itemID}) {
+            
+            if let playerView = collectionViewDS.collectionView.item(
+                at: IndexPath(item: 0, section: 0)
+            ) as? PodcastPlayerCollectionViewItem {
+                playerView.selectEpisode(
+                    episode: deeplinkedItem,
+                    atTime: data.timestamp
+                )
+            }
+        }
     }
 }
 
@@ -72,5 +103,9 @@ extension NewPodcastPlayerViewController : PodcastEpisodesDSDelegate {
     
     func shouldSendBoost(message: String, amount: Int, animation: Bool) -> TransactionMessage? {
         return delegate?.shouldSendBoost(message: message, amount: amount, animation: animation)
+    }
+    
+    func shouldCopyShareLink(link: String) {
+        ClipboardHelper.copyToClipboard(text: link)
     }
 }

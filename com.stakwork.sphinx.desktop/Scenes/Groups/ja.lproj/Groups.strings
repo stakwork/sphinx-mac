@@ -1,0 +1,68 @@
+
+/* Class = "NSTextFieldCell"; title = "Time to stake: (hours)"; ObjectID = "5Mx-Tg-RiK"; */
+"5Mx-Tg-RiK.title" = "ステーキング時間：(時間)";
+
+/* Class = "NSTextFieldCell"; title = "Price per message:"; ObjectID = "IDt-GP-9ir"; */
+"IDt-GP-9ir.title" = "メッセージあたりの価格：";
+
+/* Class = "NSButtonCell"; title = "JOIN TRIBE"; ObjectID = "PnB-qY-PbV"; */
+"PnB-qY-PbV.title" = "TRIBEに参加";
+
+/* Class = "NSTextFieldCell"; title = "Amount to stake:"; ObjectID = "RlC-nx-gKp"; */
+"RlC-nx-gKp.title" = "ステーキング金額：";
+
+/* Class = "NSTextFieldCell"; title = "Price to join:"; ObjectID = "fC4-f3-yQO"; */
+"fC4-f3-yQO.title" = "参加費用：";
+
+/* Class = "NSTextFieldCell"; title = "Loading Tribe info..."; ObjectID = "ubU-9I-jji"; */
+"ubU-9I-jji.title" = "TRIBE情報を読み込み中...";
+
+/* Class = "NSButtonCell"; title = "SAVE"; ObjectID = "uGH-BU-eSo"; */
+"uGH-BU-eSo.title" = "保存";
+
+/* Class = "NSTextFieldCell"; title = "Loading info..."; ObjectID = "vz1-9I-udo"; */
+"vz1-9I-udo.title" = "情報を読み込み中...";
+
+/* Class = "NSTextFieldCell"; title = "Name *"; ObjectID = "oYj-fw-X3k"; */
+"oYj-fw-X3k.title" = "名前 *";
+
+/* Class = "NSImageCell"; title = ""; ObjectID = "S5M-do-OMG"; */
+"S5M-do-OMG.title" = "画像";
+
+/* Class = "NSTextFieldCell"; title = "Description *"; ObjectID = "4xc-dn-4c9"; */
+"4xc-dn-4c9.title" = "説明 *";
+
+/* Class = "NSTextFieldCell"; title = "Tags"; ObjectID = "R9c-DX-E9G"; */
+"R9c-DX-E9G.title" = "タグ";
+
+/* Class = "NSTextFieldCell"; title = "Price to join"; ObjectID = "amo-6J-VEd"; */
+"amo-6J-VEd.title" = "参加費用";
+
+/* Class = "NSTextFieldCell"; title = "Price per message"; ObjectID = "BZI-9s-vtk"; */
+"BZI-9s-vtk.title" = "メッセージあたりの価格";
+
+/* Class = "NSTextFieldCell"; title = "Amount to stake"; ObjectID = "RfR-WJ-3c7"; */
+"RfR-WJ-3c7.title" = "ステーキング金額";
+
+/* Class = "NSTextFieldCell"; title = "Time to stake (hours)"; ObjectID = "iio-v7-V2C"; */
+"iio-v7-V2C.title" = "ステーキング時間 (時間)";
+
+/* Class = "NSTextFieldCell"; title = "App URL"; ObjectID = "PBt-DD-vJn"; */
+"PBt-DD-vJn.title" = "アプリURL";
+
+"pdg-dx-btt.title" = "Second Brain Url";
+
+/* Class = "NSTextFieldCell"; title = "Feed URL"; ObjectID = "aYx-6Y-No1"; */
+"aYx-6Y-No1.title" = "フィードURL";
+
+/* Class = "NSTextFieldCell"; title = "Feed Content Type"; ObjectID = "uTl-0t-F3h"; */
+"uTl-0t-F3h.title" = "フィードのコンテンツタイプ";
+
+/* Class = "NSButtonCell"; title = "Show on tribes.sphinx.chat?"; ObjectID = "qB7-uk-cfh"; */
+"qB7-uk-cfh.title" = "tribes.sphinx.chatに表示する？";
+
+/* Class = "NSButtonCell"; title = "Approve membership requests?"; ObjectID = "7zZ-36-zq9"; */
+"7zZ-36-zq9.title" = "メンバーシップ申請を承認する？";
+
+/* Class = "NSButtonCell"; title = "SAVE TRIBE"; ObjectID = "MlG-NU-gvK"; */
+"MlG-NU-gvK.title" = "TRIBEを保存"; 

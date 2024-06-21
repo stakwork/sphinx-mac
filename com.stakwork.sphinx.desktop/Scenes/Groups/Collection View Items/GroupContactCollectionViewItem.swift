@@ -9,9 +9,31 @@
 import Cocoa
 
 struct GroupContact {
-    var contact: UserContact! = nil
+    var id: Int! = nil
+    var isOwner: Bool = false
+    var nickname: String? = nil
+    var avatarUrl: String? = nil
     var selected: Bool = false
     var firstOnLetter: Bool = false
+    
+    public func getName() -> String {
+        return getUserName()
+    }
+    
+    func getUserName() -> String {
+        if let nn = nickname, nn != "" {
+            if isOwner {
+                return "\(nn) (\("name.you".localized))"
+            }
+            return nn
+        }
+        return "name.unknown".localized
+    }
+    
+    public func getColor() -> NSColor {
+        let key = "\(self.id!)-color"
+        return NSColor.getColorFor(key: key)
+    }
 }
 
 class GroupContactCollectionViewItem: NSCollectionViewItem {
@@ -25,15 +47,13 @@ class GroupContactCollectionViewItem: NSCollectionViewItem {
         super.viewDidLoad()
     }
     
-    func configureFor(groupContact: GroupContact) {
-        guard let contact = groupContact.contact else {
-            return
-        }
-        
+    func configureFor(
+        groupContact: GroupContact
+    ) {
         contactImageView.radius = contactImageView.frame.height / 2
-        contactNameLabel.stringValue = contact.getName()
+        contactNameLabel.stringValue = groupContact.getName()
         
-        if let imageUrl = contact.avatarUrl?.trim(), let nsUrl = URL(string: imageUrl), imageUrl != "" {
+        if let imageUrl = groupContact.avatarUrl?.trim(), let nsUrl = URL(string: imageUrl), imageUrl != "" {
             MediaLoader.asyncLoadImage(imageView: contactImageView, nsUrl: nsUrl, placeHolderImage: NSImage(named: "profileAvatar"), completion: { image in
                 self.contactImageView.image = image
             }, errorCompletion: { _ in })
@@ -41,7 +61,7 @@ class GroupContactCollectionViewItem: NSCollectionViewItem {
             contactImageView.image = NSImage(named: "profileAvatar")
         }
         
-        configureInitial(nickname: contact.nickname, firstOnLetter: groupContact.firstOnLetter)
+        configureInitial(nickname: groupContact.getName(), firstOnLetter: groupContact.firstOnLetter)
         configureCheckbox(selected: groupContact.selected)
     }
     

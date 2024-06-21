@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NewMessageCollectionViewItem" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="audioMessageView" destination="3st-ai-IfQ" id="OXG-Yx-ILw"/>
+                <outlet property="botResponseView" destination="koM-18-GdR" id="rmk-Bw-4s0"/>
+                <outlet property="botResponseViewHeightConstraint" destination="Cur-Av-0NF" id="7qt-AH-0eV"/>
+                <outlet property="bubbleAllViews" destination="YWa-SY-0um" id="kzG-0O-pRB"/>
+                <outlet property="callLinkView" destination="W93-3l-LhK" id="BBg-Ko-wJn"/>
+                <outlet property="chatAvatarContainerView" destination="RAQ-Ej-oyC" id="k2c-d5-aKh"/>
+                <outlet property="chatAvatarView" destination="0w7-Od-NJs" id="Aqe-yb-NC9"/>
+                <outlet property="contactLinkPreviewView" destination="rdc-Np-v1I" id="XY9-6A-d8Z"/>
+                <outlet property="directPaymentView" destination="q5m-wU-yEJ" id="8ne-DY-WXl"/>
+                <outlet property="fileDetailsView" destination="RIJ-Mw-fdZ" id="Fa4-Xi-erb"/>
+                <outlet property="invoicePaymentView" destination="RrX-yx-9JZ" id="8aI-eu-BiK"/>
+                <outlet property="invoiceView" destination="WPP-eo-Blt" id="U2X-oS-SZ6"/>
+                <outlet property="labelHeightConstraint" destination="hJB-h5-cNj" id="aZd-Jf-EMj"/>
+                <outlet property="leftLineContainer" destination="bCg-hP-Rew" id="2Tw-vf-hv3"/>
+                <outlet property="leftPaymentDot" destination="eMS-4g-VRf" id="O6e-uP-aZo"/>
+                <outlet property="linkPreviewView" destination="Q58-W9-lXF" id="RH2-RJ-jzU"/>
+                <outlet property="mediaMessageView" destination="HWv-ck-qic" id="an5-i6-uYd"/>
+                <outlet property="messageBoostView" destination="pkI-rw-Lfs" id="bdg-Uw-4mJ"/>
+                <outlet property="messageContentStackView" destination="PqZ-pq-8i0" id="vGN-pK-4mw"/>
+                <outlet property="messageLabel" destination="okv-Ag-SIE" id="YZ4-Zp-4yz"/>
+                <outlet property="messageLabelLeadingConstraint" destination="90f-L3-Gf9" id="rSt-TT-gmy"/>
+                <outlet property="messageLabelTrailingConstraint" destination="LFh-fd-Unr" id="9WC-Sa-AvX"/>
+                <outlet property="messageReplyView" destination="tl7-nO-8Xd" id="AtV-6C-onI"/>
+                <outlet property="paidAttachmentView" destination="Nsa-aP-VL4" id="sZu-uU-d1H"/>
+                <outlet property="paidTextMessageView" destination="YHK-d4-1Av" id="OKz-4b-ulG"/>
+                <outlet property="podcastAudioView" destination="gdL-Pr-dHL" id="GcU-UM-50Q"/>
+                <outlet property="podcastBoostView" destination="PfX-EW-tGc" id="EZd-1z-66G"/>
+                <outlet property="receivedArrow" destination="Viu-pF-fdW" id="R48-yp-ejc"/>
+                <outlet property="receivedMessageMarginView" destination="QnT-Cm-qyW" id="shZ-y2-Kpz"/>
+                <outlet property="receivedMessageMenuButton" destination="UQJ-sx-Qvb" id="KC0-02-NMq"/>
+                <outlet property="rightLineContainer" destination="aXK-p2-lS1" id="b74-BE-KZM"/>
+                <outlet property="rightPaymentDot" destination="Mxe-5f-yrE" id="t28-4I-JYI"/>
+                <outlet property="sentArrow" destination="RsB-r9-lHO" id="qRP-NE-i2p"/>
+                <outlet property="sentMessageMargingView" destination="9zh-HR-aT5" id="uT0-Tq-oV0"/>
+                <outlet property="sentMessageMenuButton" destination="kVX-93-0gK" id="oSk-hu-MLg"/>
+                <outlet property="sentPaidDetailsView" destination="99n-FQ-THd" id="Axb-U6-OCT"/>
+                <outlet property="statusHeaderView" destination="Kv2-Gm-iRV" id="dxK-ok-mb8"/>
+                <outlet property="statusHeaderViewContainer" destination="QIj-fa-qcL" id="UMS-Or-U0H"/>
+                <outlet property="textMessageView" destination="4D1-XE-gCv" id="ICY-LD-Di4"/>
+                <outlet property="tribeLinkPreviewView" destination="FJz-jZ-fP6" id="SNz-eq-O1C"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+                <outlet property="widthConstraint" destination="F1G-EE-6r5" id="Q9T-Bs-8Ap"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="1783" height="1658"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="bCg-hP-Rew">
+                    <rect key="frame" x="76" y="0.0" width="3" height="1658"/>
+                    <view key="contentView" id="IJv-BF-bjS">
+                        <rect key="frame" x="0.0" y="0.0" width="3" height="1658"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="3" id="piE-5N-MtT"/>
+                    </constraints>
+                </box>
+                <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="aXK-p2-lS1">
+                    <rect key="frame" x="1752" y="0.0" width="3" height="1658"/>
+                    <view key="contentView" id="H1V-JT-gY0">
+                        <rect key="frame" x="0.0" y="0.0" width="3" height="1658"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="3" id="arg-hK-4iB"/>
+                    </constraints>
+                </box>
+                <box horizontalHuggingPriority="1000" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="8" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="YWa-SY-0um">
+                    <rect key="frame" x="1260" y="2" width="500" height="1629"/>
+                    <view key="contentView" id="XBi-4A-5G5">
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="1629"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="Lhx-Yw-otW"/>
+                    </constraints>
+                    <color key="fillColor" name="SentMsgBG"/>
+                </box>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Viu-pF-fdW">
+                    <rect key="frame" x="1256" y="1623" width="12" height="8"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="8" id="1OH-Cf-PPv"/>
+                        <constraint firstAttribute="width" constant="12" id="TAo-cc-RHx"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="RsB-r9-lHO">
+                    <rect key="frame" x="1752" y="1623" width="15" height="8"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="15" id="1DH-Yc-lzJ"/>
+                        <constraint firstAttribute="height" constant="8" id="D3L-9A-3WJ"/>
+                    </constraints>
+                </customView>
+                <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="itm-5A-n1p">
+                    <rect key="frame" x="16" y="2" width="1751" height="1654"/>
+                    <subviews>
+                        <customView horizontalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="9zh-HR-aT5">
+                            <rect key="frame" x="0.0" y="1617" width="1200" height="37"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="37" id="lmd-Do-sLu"/>
+                            </constraints>
+                        </customView>
+                        <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nVa-wl-PqV">
+                            <rect key="frame" x="1200" y="0.0" width="551" height="1654"/>
+                            <subviews>
+                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="RAQ-Ej-oyC">
+                                    <rect key="frame" x="0.0" y="1606" width="40" height="40"/>
+                                    <subviews>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="0w7-Od-NJs" customClass="ChatSmallAvatarView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
+                                        </customView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="40" id="An8-Qh-2r1"/>
+                                        <constraint firstAttribute="bottom" secondItem="0w7-Od-NJs" secondAttribute="bottom" id="Cm7-cF-Yex"/>
+                                        <constraint firstAttribute="height" constant="40" id="LEf-2v-JLi"/>
+                                        <constraint firstItem="0w7-Od-NJs" firstAttribute="leading" secondItem="RAQ-Ej-oyC" secondAttribute="leading" id="RtH-dh-wZx"/>
+                                        <constraint firstItem="0w7-Od-NJs" firstAttribute="top" secondItem="RAQ-Ej-oyC" secondAttribute="top" constant="4" id="rv0-Ns-kxB"/>
+                                        <constraint firstAttribute="trailing" secondItem="0w7-Od-NJs" secondAttribute="trailing" constant="4" id="wj8-gH-ZNV"/>
+                                    </constraints>
+                                </customView>
+                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="vsA-H9-tk9">
+                                    <rect key="frame" x="40" y="0.0" width="4" height="1654"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="4" id="n1X-be-6KW"/>
+                                    </constraints>
+                                </customView>
+                                <stackView distribution="fill" orientation="vertical" alignment="trailing" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PqZ-pq-8i0">
+                                    <rect key="frame" x="44" y="0.0" width="500" height="1654"/>
+                                    <subviews>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="QIj-fa-qcL">
+                                            <rect key="frame" x="0.0" y="1629" width="500" height="25"/>
+                                            <subviews>
+                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Kv2-Gm-iRV" customClass="StatusHeaderView" customModule="Sphinx" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="500" height="17"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="17" id="q9j-cw-YHg"/>
+                                                    </constraints>
+                                                </customView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="25" id="8ku-qo-6fn"/>
+                                                <constraint firstItem="Kv2-Gm-iRV" firstAttribute="leading" secondItem="QIj-fa-qcL" secondAttribute="leading" id="LUX-4Q-YL4"/>
+                                                <constraint firstAttribute="trailing" secondItem="Kv2-Gm-iRV" secondAttribute="trailing" id="kxE-5P-drU"/>
+                                                <constraint firstAttribute="bottom" secondItem="Kv2-Gm-iRV" secondAttribute="bottom" id="qUQ-43-tA3"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView horizontalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="3Zu-1O-esC">
+                                            <rect key="frame" x="0.0" y="1579" width="500" height="50"/>
+                                            <subviews>
+                                                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FMV-Mi-7ET">
+                                                    <rect key="frame" x="0.0" y="0.0" width="500" height="50"/>
+                                                    <subviews>
+                                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="tl7-nO-8Xd" customClass="NewMessageReplyView" customModule="Sphinx" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="500" height="50"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="50" id="Nt3-yW-vHp"/>
+                                                            </constraints>
+                                                        </customView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="tl7-nO-8Xd" secondAttribute="trailing" id="7ZK-yi-Lwr"/>
+                                                        <constraint firstItem="tl7-nO-8Xd" firstAttribute="leading" secondItem="FMV-Mi-7ET" secondAttribute="leading" id="Wih-rg-7BG"/>
+                                                    </constraints>
+                                                    <visibilityPriorities>
+                                                        <integer value="1000"/>
+                                                    </visibilityPriorities>
+                                                    <customSpacing>
+                                                        <real value="3.4028234663852886e+38"/>
+                                                    </customSpacing>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="FMV-Mi-7ET" firstAttribute="leading" secondItem="3Zu-1O-esC" secondAttribute="leading" id="8qP-rb-vn0"/>
+                                                <constraint firstAttribute="trailing" secondItem="FMV-Mi-7ET" secondAttribute="trailing" id="9Iw-gr-QnN"/>
+                                                <constraint firstItem="FMV-Mi-7ET" firstAttribute="top" secondItem="3Zu-1O-esC" secondAttribute="top" id="Cez-MO-eMp"/>
+                                                <constraint firstAttribute="bottom" secondItem="FMV-Mi-7ET" secondAttribute="bottom" id="Vkp-AY-LuA"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="q5m-wU-yEJ" customClass="DirectPaymentView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="1523" width="500" height="56"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="56" id="jpE-21-QPy"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="RrX-yx-9JZ" customClass="InvoicePaymentView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="1503" width="500" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="it5-8F-dO4"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="WPP-eo-Blt" customClass="InvoiceView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="1403" width="500" height="100"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" priority="750" constant="100" id="cHZ-gh-QnB"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="3st-ai-IfQ" customClass="AudioMessageView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="1343" width="500" height="60"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="60" id="YrW-MO-hT0"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="gdL-Pr-dHL" customClass="PodcastAudioView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="1263" width="500" height="80"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="80" id="mtG-fc-Zw3"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="YHK-d4-1Av">
+                                            <rect key="frame" x="0.0" y="1227" width="500" height="36"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="ykO-hL-CtC"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="HWv-ck-qic" customClass="MediaMessageView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="927" width="500" height="300"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="300" id="Dkj-QF-EDs"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="RIJ-Mw-fdZ" customClass="FileInfoView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="865" width="500" height="62"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="62" id="LBw-3F-gP3"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="W93-3l-LhK" customClass="JoinVideoCallView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="659" width="500" height="206"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" priority="750" constant="206" id="EWG-nR-iYz"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="koM-18-GdR" customClass="BotResponseView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="509" width="500" height="150"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="150" id="Cur-Av-0NF"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="PfX-EW-tGc" customClass="PodcastBoostView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="457" width="500" height="52"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="52" id="cVC-aS-cwR"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="4D1-XE-gCv">
+                                            <rect key="frame" x="0.0" y="409" width="500" height="48"/>
+                                            <subviews>
+                                                <textField focusRingType="none" horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="okv-Ag-SIE" customClass="MessageTextField" customModule="Sphinx" customModuleProvider="target">
+                                                    <rect key="frame" x="14" y="16" width="472" height="16"/>
+                                                    <textFieldCell key="cell" selectable="YES" title="Label" id="XSl-mL-XOC">
+                                                        <font key="font" size="14" name="Roboto-Regular"/>
+                                                        <color key="textColor" name="Text"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="okv-Ag-SIE" firstAttribute="leading" secondItem="4D1-XE-gCv" secondAttribute="leading" constant="16" id="90f-L3-Gf9"/>
+                                                <constraint firstAttribute="trailing" secondItem="okv-Ag-SIE" secondAttribute="trailing" constant="16" id="LFh-fd-Unr"/>
+                                                <constraint firstAttribute="height" constant="48" id="hJB-h5-cNj"/>
+                                                <constraint firstItem="okv-Ag-SIE" firstAttribute="top" secondItem="4D1-XE-gCv" secondAttribute="top" constant="16" id="mZ1-GE-TvO"/>
+                                                <constraint firstItem="okv-Ag-SIE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4D1-XE-gCv" secondAttribute="leading" constant="16" id="rf5-Ci-cmc"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="okv-Ag-SIE" secondAttribute="trailing" constant="16" id="yy8-Bg-mfI"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="pkI-rw-Lfs" customClass="NewMessageBoostView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="368" width="500" height="41"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="41" id="Zb2-6X-FCe"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="Nsa-aP-VL4" customClass="NewPaidAttachmentView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="318" width="500" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="BkJ-or-wk2"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q58-W9-lXF" customClass="NewLinkPreviewView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="1554" width="500" height="100"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="100" id="pHo-u0-zd3"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="rdc-Np-v1I" customClass="ContactLinkView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="159" width="500" height="159"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" priority="750" constant="159" id="yRh-OI-QrG"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="FJz-jZ-fP6" customClass="TribeLinkView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="500" height="159"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" priority="750" constant="159" id="25y-Kf-HOJ"/>
+                                            </constraints>
+                                        </customView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="WPP-eo-Blt" secondAttribute="trailing" id="2MG-Wq-j9K"/>
+                                        <constraint firstItem="pkI-rw-Lfs" firstAttribute="leading" secondItem="PqZ-pq-8i0" secondAttribute="leading" id="7ad-k8-8Qh"/>
+                                        <constraint firstItem="3Zu-1O-esC" firstAttribute="trailing" secondItem="okv-Ag-SIE" secondAttribute="trailing" constant="16" id="9og-MT-fP4"/>
+                                        <constraint firstItem="3Zu-1O-esC" firstAttribute="leading" secondItem="okv-Ag-SIE" secondAttribute="leading" constant="-16" id="AXj-v4-dr0"/>
+                                        <constraint firstItem="RrX-yx-9JZ" firstAttribute="leading" secondItem="PqZ-pq-8i0" secondAttribute="leading" id="Cng-Rh-hJ9"/>
+                                        <constraint firstAttribute="width" constant="500" id="F1G-EE-6r5"/>
+                                        <constraint firstAttribute="trailing" secondItem="rdc-Np-v1I" secondAttribute="trailing" id="Fev-mT-Jlc"/>
+                                        <constraint firstItem="3st-ai-IfQ" firstAttribute="leading" secondItem="PqZ-pq-8i0" secondAttribute="leading" id="FmK-KB-YeN"/>
+                                        <constraint firstAttribute="trailing" secondItem="koM-18-GdR" secondAttribute="trailing" id="Fmb-dy-SKc"/>
+                                        <constraint firstAttribute="trailing" secondItem="pkI-rw-Lfs" secondAttribute="trailing" id="KYE-Gf-4Lb"/>
+                                        <constraint firstItem="gdL-Pr-dHL" firstAttribute="leading" secondItem="PqZ-pq-8i0" secondAttribute="leading" id="LjT-F9-bn8"/>
+                                        <constraint firstItem="WPP-eo-Blt" firstAttribute="leading" secondItem="PqZ-pq-8i0" secondAttribute="leading" id="Nr7-5T-IIS"/>
+                                        <constraint firstItem="Q58-W9-lXF" firstAttribute="leading" secondItem="PqZ-pq-8i0" secondAttribute="leading" id="PXK-wD-TOf"/>
+                                        <constraint firstAttribute="trailing" secondItem="W93-3l-LhK" secondAttribute="trailing" id="RfV-R5-p9E"/>
+                                        <constraint firstItem="koM-18-GdR" firstAttribute="leading" secondItem="PqZ-pq-8i0" secondAttribute="leading" id="UGZ-yU-2x9"/>
+                                        <constraint firstItem="QIj-fa-qcL" firstAttribute="leading" secondItem="PqZ-pq-8i0" secondAttribute="leading" id="Um1-2v-SEQ"/>
+                                        <constraint firstAttribute="trailing" secondItem="HWv-ck-qic" secondAttribute="trailing" id="Vze-nE-ObO"/>
+                                        <constraint firstItem="HWv-ck-qic" firstAttribute="leading" secondItem="PqZ-pq-8i0" secondAttribute="leading" id="WLb-NX-NeG"/>
+                                        <constraint firstItem="YHK-d4-1Av" firstAttribute="leading" secondItem="PqZ-pq-8i0" secondAttribute="leading" id="XmE-r0-QTN"/>
+                                        <constraint firstAttribute="trailing" secondItem="gdL-Pr-dHL" secondAttribute="trailing" id="Y7E-tx-nOb"/>
+                                        <constraint firstAttribute="trailing" secondItem="Nsa-aP-VL4" secondAttribute="trailing" id="YAc-0O-Gs2"/>
+                                        <constraint firstItem="FJz-jZ-fP6" firstAttribute="leading" secondItem="PqZ-pq-8i0" secondAttribute="leading" id="Z0a-Ch-ke8"/>
+                                        <constraint firstItem="rdc-Np-v1I" firstAttribute="leading" secondItem="PqZ-pq-8i0" secondAttribute="leading" id="Z99-V4-h0P"/>
+                                        <constraint firstAttribute="trailing" secondItem="Q58-W9-lXF" secondAttribute="trailing" id="dWt-v0-xTI"/>
+                                        <constraint firstAttribute="trailing" secondItem="FJz-jZ-fP6" secondAttribute="trailing" id="gmv-ND-Sga"/>
+                                        <constraint firstItem="Nsa-aP-VL4" firstAttribute="leading" secondItem="PqZ-pq-8i0" secondAttribute="leading" id="hXz-DI-rif"/>
+                                        <constraint firstItem="q5m-wU-yEJ" firstAttribute="leading" secondItem="PqZ-pq-8i0" secondAttribute="leading" id="kEt-i0-QJI"/>
+                                        <constraint firstItem="W93-3l-LhK" firstAttribute="leading" secondItem="PqZ-pq-8i0" secondAttribute="leading" id="n2k-N8-ZZm"/>
+                                        <constraint firstAttribute="trailing" secondItem="QIj-fa-qcL" secondAttribute="trailing" id="pk2-w5-y5m"/>
+                                        <constraint firstItem="4D1-XE-gCv" firstAttribute="leading" secondItem="PqZ-pq-8i0" secondAttribute="leading" id="puL-4p-Oco"/>
+                                        <constraint firstAttribute="trailing" secondItem="YHK-d4-1Av" secondAttribute="trailing" id="sXI-rt-OVK"/>
+                                        <constraint firstAttribute="trailing" secondItem="3st-ai-IfQ" secondAttribute="trailing" id="vog-hN-d9p"/>
+                                        <constraint firstAttribute="trailing" secondItem="RrX-yx-9JZ" secondAttribute="trailing" id="xUG-0e-8Jd"/>
+                                        <constraint firstAttribute="trailing" secondItem="4D1-XE-gCv" secondAttribute="trailing" id="xau-A1-msa"/>
+                                        <constraint firstAttribute="trailing" secondItem="q5m-wU-yEJ" secondAttribute="trailing" id="z4Z-mi-qg8"/>
+                                    </constraints>
+                                    <visibilityPriorities>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                    </visibilityPriorities>
+                                    <customSpacing>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                    </customSpacing>
+                                </stackView>
+                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="jSe-Zh-QjE">
+                                    <rect key="frame" x="544" y="0.0" width="7" height="1654"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="7" id="Xq6-ms-5X4"/>
+                                    </constraints>
+                                </customView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="vsA-H9-tk9" firstAttribute="top" secondItem="nVa-wl-PqV" secondAttribute="top" id="FSY-bb-o90"/>
+                                <constraint firstAttribute="bottom" secondItem="jSe-Zh-QjE" secondAttribute="bottom" id="Hek-ja-zIE"/>
+                                <constraint firstItem="RAQ-Ej-oyC" firstAttribute="top" secondItem="nVa-wl-PqV" secondAttribute="top" constant="8" id="KvU-0M-7gv"/>
+                                <constraint firstItem="PqZ-pq-8i0" firstAttribute="top" secondItem="nVa-wl-PqV" secondAttribute="top" id="aZw-bB-gyV"/>
+                                <constraint firstItem="jSe-Zh-QjE" firstAttribute="top" secondItem="nVa-wl-PqV" secondAttribute="top" id="hrG-KK-MHk"/>
+                                <constraint firstAttribute="bottom" secondItem="vsA-H9-tk9" secondAttribute="bottom" id="z6Z-ef-fWp"/>
+                            </constraints>
+                            <visibilityPriorities>
+                                <integer value="1000"/>
+                                <integer value="1000"/>
+                                <integer value="1000"/>
+                                <integer value="1000"/>
+                            </visibilityPriorities>
+                            <customSpacing>
+                                <real value="3.4028234663852886e+38"/>
+                                <real value="3.4028234663852886e+38"/>
+                                <real value="3.4028234663852886e+38"/>
+                                <real value="3.4028234663852886e+38"/>
+                            </customSpacing>
+                        </stackView>
+                        <customView hidden="YES" horizontalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="QnT-Cm-qyW">
+                            <rect key="frame" x="0.0" y="1617" width="50" height="37"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="37" id="tJ4-D9-fml"/>
+                            </constraints>
+                        </customView>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="99n-FQ-THd" customClass="SentPaidDetails" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="1260" y="1595" width="500" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="dgw-BR-3PX"/>
+                    </constraints>
+                </customView>
+                <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="3" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="eMS-4g-VRf">
+                    <rect key="frame" x="75" y="1649" width="6" height="6"/>
+                    <view key="contentView" id="bxZ-lh-PfS">
+                        <rect key="frame" x="0.0" y="0.0" width="6" height="6"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="6" id="NbM-cP-5hP"/>
+                        <constraint firstAttribute="width" constant="6" id="b5t-YI-80u"/>
+                    </constraints>
+                    <color key="fillColor" name="WashedOutReceivedText"/>
+                </box>
+                <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="3" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Mxe-5f-yrE">
+                    <rect key="frame" x="1751" y="1649" width="6" height="6"/>
+                    <view key="contentView" id="cyZ-Rq-OvN">
+                        <rect key="frame" x="0.0" y="0.0" width="6" height="6"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="6" id="Kh1-r6-ArW"/>
+                        <constraint firstAttribute="width" constant="6" id="RZD-MU-s1f"/>
+                    </constraints>
+                    <color key="fillColor" name="WashedOutReceivedText"/>
+                </box>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kVX-93-0gK" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="1241" y="1608" width="22" height="18"/>
+                    <buttonCell key="cell" type="bevel" title="" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="qZR-Vk-u5O" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="18" name="MaterialIcons-Regular"/>
+                    </buttonCell>
+                    <color key="contentTintColor" name="WashedOutReceivedText"/>
+                    <connections>
+                        <action selector="messageMenuButtonClicked:" target="-2" id="Wfx-3I-4xp"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UQJ-sx-Qvb" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="1757" y="1608" width="22" height="18"/>
+                    <buttonCell key="cell" type="bevel" title="" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="frj-2V-25x" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="18" name="MaterialIcons-Regular"/>
+                    </buttonCell>
+                    <color key="contentTintColor" name="WashedOutReceivedText"/>
+                    <connections>
+                        <action selector="messageMenuButtonClicked:" target="-2" id="fww-vN-m9R"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="aXK-p2-lS1" secondAttribute="trailing" constant="28" id="4T8-8J-Dqu"/>
+                <constraint firstItem="itm-5A-n1p" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="2" id="5iJ-jL-v58"/>
+                <constraint firstItem="eMS-4g-VRf" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="3" id="7rE-ex-zp1"/>
+                <constraint firstItem="99n-FQ-THd" firstAttribute="trailing" secondItem="3Zu-1O-esC" secondAttribute="trailing" id="8ds-FJ-zDV"/>
+                <constraint firstItem="99n-FQ-THd" firstAttribute="leading" secondItem="3Zu-1O-esC" secondAttribute="leading" id="Brs-fC-Yda"/>
+                <constraint firstItem="kVX-93-0gK" firstAttribute="top" secondItem="YWa-SY-0um" secondAttribute="top" constant="5" id="CmE-SW-h65"/>
+                <constraint firstItem="aXK-p2-lS1" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="Eyn-yG-utD"/>
+                <constraint firstItem="itm-5A-n1p" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="16" id="Gt9-Fc-EQD"/>
+                <constraint firstItem="YWa-SY-0um" firstAttribute="bottom" secondItem="PqZ-pq-8i0" secondAttribute="bottom" id="Gx4-tb-ZP6"/>
+                <constraint firstItem="Viu-pF-fdW" firstAttribute="leading" secondItem="YWa-SY-0um" secondAttribute="leading" constant="-4" id="Gza-sE-GY8"/>
+                <constraint firstItem="YWa-SY-0um" firstAttribute="leading" secondItem="okv-Ag-SIE" secondAttribute="leading" constant="-16" id="KcC-5g-EwU"/>
+                <constraint firstAttribute="bottom" secondItem="aXK-p2-lS1" secondAttribute="bottom" id="Kpk-OM-kNR"/>
+                <constraint firstItem="YWa-SY-0um" firstAttribute="trailing" secondItem="okv-Ag-SIE" secondAttribute="trailing" constant="16" id="O6x-ga-iV6"/>
+                <constraint firstItem="UQJ-sx-Qvb" firstAttribute="trailing" secondItem="YWa-SY-0um" secondAttribute="trailing" constant="19" id="OqP-ff-j0N"/>
+                <constraint firstAttribute="bottom" secondItem="itm-5A-n1p" secondAttribute="bottom" constant="2" id="SMV-35-0Ba"/>
+                <constraint firstItem="bCg-hP-Rew" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="SQq-5d-TBN"/>
+                <constraint firstItem="Mxe-5f-yrE" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="3" id="Wjf-NH-uQl"/>
+                <constraint firstItem="kVX-93-0gK" firstAttribute="leading" secondItem="YWa-SY-0um" secondAttribute="leading" constant="-19" id="YLn-Us-64D"/>
+                <constraint firstItem="Mxe-5f-yrE" firstAttribute="centerX" secondItem="aXK-p2-lS1" secondAttribute="centerX" id="Z9c-T2-d9U"/>
+                <constraint firstAttribute="trailing" secondItem="itm-5A-n1p" secondAttribute="trailing" constant="16" id="aV2-Wc-eBl"/>
+                <constraint firstItem="99n-FQ-THd" firstAttribute="top" secondItem="3Zu-1O-esC" secondAttribute="top" id="c8k-Vg-Fsm"/>
+                <constraint firstItem="UQJ-sx-Qvb" firstAttribute="top" secondItem="YWa-SY-0um" secondAttribute="top" constant="5" id="cyx-WN-GN1"/>
+                <constraint firstItem="RsB-r9-lHO" firstAttribute="top" secondItem="YWa-SY-0um" secondAttribute="top" id="ens-3i-koW"/>
+                <constraint firstItem="RsB-r9-lHO" firstAttribute="trailing" secondItem="YWa-SY-0um" secondAttribute="trailing" constant="7" id="grT-kC-w7S"/>
+                <constraint firstItem="bCg-hP-Rew" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="76" id="mO0-Hr-UcS"/>
+                <constraint firstAttribute="bottom" secondItem="bCg-hP-Rew" secondAttribute="bottom" id="sKM-J9-gJ8"/>
+                <constraint firstItem="Viu-pF-fdW" firstAttribute="top" secondItem="YWa-SY-0um" secondAttribute="top" id="vhW-uG-LUF"/>
+                <constraint firstItem="eMS-4g-VRf" firstAttribute="centerX" secondItem="bCg-hP-Rew" secondAttribute="centerX" id="y0Y-wz-ohh"/>
+                <constraint firstItem="YWa-SY-0um" firstAttribute="top" secondItem="3Zu-1O-esC" secondAttribute="top" id="yfT-ps-Qf9"/>
+            </constraints>
+            <point key="canvasLocation" x="68" y="212.5"/>
+        </customView>
+        <customObject id="AeR-1v-L9M" customClass="NewMessageCollectionViewItem" customModule="Sphinx" customModuleProvider="target"/>
+    </objects>
+    <resources>
+        <namedColor name="SentMsgBG">
+            <color red="0.8666666666666667" green="0.92941176470588238" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text">
+            <color red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="WashedOutReceivedText">
+            <color red="0.69019607843137254" green="0.71764705882352942" blue="0.73725490196078436" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

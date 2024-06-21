@@ -10,12 +10,7 @@ import Foundation
 import SwiftyJSON
 
 @objc protocol SocketManagerDelegate: AnyObject {
-    @objc optional func didReceiveMessage(message: TransactionMessage, onChat: Bool)
-    @objc optional func didReceivePurchaseUpdate(message: TransactionMessage)
-    @objc optional func didReceiveConfirmation(message: TransactionMessage)
-    @objc optional func didUpdateContact(contact: UserContact)
-    @objc optional func didUpdateChat(chat: Chat)
-    @objc optional func didReceiveOrUpdateGroup()
+    @objc optional func didUpdateChatFromMessage(_ chat: Chat)
 }
 
 class SphinxSocketManager {
@@ -37,6 +32,7 @@ class SphinxSocketManager {
     var preventReconnection = false
     
     var newMessageBubbleHelper = NewMessageBubbleHelper()
+    var confirmationIds: [Int] = []
     
     func setDelegate(delegate: SocketManagerDelegate) {
         self.delegate = delegate
@@ -71,7 +67,7 @@ class SphinxSocketManager {
             if let urlString = urlString, let url = url {
                 let secure = urlString.starts(with: "wss")
                 var socketConfiguration : SocketIOClientConfiguration!
-                let headers = EncryptionManager.sharedInstance.getAuthenticationHeader()
+                let headers = UserData.sharedInstance.getAuthenticationHeader()
                 
                 if onionConnector.usingTor() {
                     socketConfiguration = [
@@ -220,21 +216,29 @@ extension SphinxSocketManager {
     }
     
     func didReceiveInvoicePayment(json: JSON) {
-//        if let string = json["invoice"].string {
-//            let prDecoder = PaymentRequestDecoder()
-//            prDecoder.decodePaymentRequest(paymentRequest: string)
-//
-//            if prDecoder.isPaymentRequest() {
-//                let amount = prDecoder.getAmount() ?? 0
-//
-//                var message = "Amount: \(amount)"
-//                if let memo = prDecoder.getMemo() {
-//                    message = message + "\nMemo: \(memo)"
-//                }
-//                newMessageBubbleHelper.showMessageView(title: "Invoice Paid", text: message)
-//                togglePaidInvoiceIfNeeded(string: string)
-//            }
-//        }
+        if let string = json["invoice"].string {
+            
+            let prDecoder = PaymentRequestDecoder()
+            prDecoder.decodePaymentRequest(paymentRequest: string)
+
+            if prDecoder.isPaymentRequest() {
+                let amount = prDecoder.getAmount() ?? 0
+
+                var message = "\("notification.amount".localized) \(amount) sats"
+                
+                if let memo = prDecoder.getMemo() {
+                    message = message + "\n\("notification.memo".localized) \(memo)"
+                }
+                
+                if let appDelegate = NSApplication.shared.delegate as? AppDelegate {
+                    appDelegate.sendNotification(
+                        title: "notification.invoice-payment.title".localized,
+                        subtitle: nil,
+                        text: message
+                    )
+                }
+            }
+        }
     }
     
     func togglePaidInvoiceIfNeeded(string: String) {
@@ -249,58 +253,95 @@ extension SphinxSocketManager {
     }
     
     func didReceivePurchaseMessage(type: String, messageJson: JSON) {
-        if let message = TransactionMessage.insertMessage(m: messageJson).0 {
-            markAsSeenIfNeeded(message: message)
-            delegate?.didReceivePurchaseUpdate?(message: message)
+        let _ = TransactionMessage.insertMessage(
+            m: messageJson,
+            existingMessage: TransactionMessage.getMessageWith(id: messageJson["id"].intValue)
+        )
+    }
+    
+    func didReceiveConfirmationWith(id: Int) {
+        confirmationIds.append(id)
+        
+        if confirmationIds.count > 20 {
+            confirmationIds.removeFirst()
         }
     }
     
     func didReceiveMessage(type: String, messageJson: JSON) {
         let isConfirmation = type == "confirmation"
-        let incoming = messageJson["sender"].intValue != UserData.sharedInstance.getUserId()
-        let messageId = messageJson["id"].intValue
-        let deleted = messageJson["status"].intValue == TransactionMessage.TransactionMessageStatus.deleted.rawValue
-        let existingMessage = TransactionMessage.getMessageWith(id: messageId)
         
-        if incoming && existingMessage != nil && !deleted {
-            return
-        }
+        var delay: Double = 0.0
+        var existingMessages: TransactionMessage? = nil
         
-        if isConfirmation && (existingMessage?.isConfirmedAsReceived() ?? false) {
-            return
-        }
-
-        if let message = TransactionMessage.insertMessage(m: messageJson, existingMessage: existingMessage).0 {
-            message.setPaymentInvoiceAsPaid()
-            markAsSeenIfNeeded(message: message)
+        if isConfirmation {
+            let messageId = messageJson["id"].intValue
             
-            updateBalanceIfNeeded(type: type)
-
-            let onChat = isOnChat(message: message)
-
-            if isConfirmation {
-                delegate?.didReceiveConfirmation?(message: message)
-            } else {
-                if message.isIncoming() && message.chat?.isPublicGroup() ?? false {
-                    debounceMessageNotification(message: message, onChat: onChat)
-                } else {
-                    sendNotification(message: message)
-                    delegate?.didReceiveMessage?(message: message, onChat: onChat)
-                }
+            if confirmationIds.contains(messageId) {
+                return
+            }
+            
+            didReceiveConfirmationWith(id: messageId)
+            
+            existingMessages = TransactionMessage.getMessageWith(id: messageId)
+            
+            if existingMessages == nil {
+                ///Handles case where confirmation of message is received before the send message endpoint returns.
+                ///Adding delay to prevent provisional message not being overwritten (duplicated bubble issue)
+                delay =  1.5
             }
         }
+        
+        if let contactJson = messageJson["contact"].dictionary {
+            let _ = UserContact.getOrCreateContact(contact: JSON(contactJson))
+        }
+
+        DelayPerformedHelper.performAfterDelay(seconds: delay, completion: {
+            if let message = TransactionMessage.insertMessage(
+                m: messageJson,
+                existingMessage: existingMessages ?? TransactionMessage.getMessageWith(id: messageJson["id"].intValue)
+            ).0 {
+                message.setPaymentInvoiceAsPaid()
+                
+                if let chat = message.chat {
+                    self.delegate?.didUpdateChatFromMessage?(chat)
+                }
+                
+                self.setSeen(
+                    message: message,
+                    value: false
+                )
+                
+                self.updateBalanceIfNeeded(type: type)
+
+                let onChat = self.isOnChat(message: message)
+
+                if !isConfirmation {
+                    if message.isIncoming() && message.chat?.isPublicGroup() ?? false {
+                        self.debounceMessageNotification(message: message, onChat: onChat)
+                     } else {
+                         self.sendNotification(message: message)
+                     }
+                }
+            }
+        })
     }
     
     func debounceMessageNotification(message: TransactionMessage, onChat: Bool) {
         incomingMSGTimer?.invalidate()
-        incomingMSGTimer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(shouldUpdateDashboard(timer:)), userInfo: ["message": message, "onChat" : onChat], repeats: false)
+        
+        incomingMSGTimer = Timer.scheduledTimer(
+            timeInterval: 0.3,
+            target: self,
+            selector: #selector(sendDelayedNotification(timer:)),
+            userInfo: ["message": message, "onChat" : onChat],
+            repeats: false
+        )
     }
-   
-    @objc func shouldUpdateDashboard(timer: Timer) {
+    
+    @objc func sendDelayedNotification(timer: Timer) {
         if let userInfo = timer.userInfo as? [String: Any] {
-            if let message = userInfo["message"] as? TransactionMessage, let onChat = userInfo["onChat"] as? Bool {
+            if let message = userInfo["message"] as? TransactionMessage, let _ = userInfo["onChat"] as? Bool {
                 sendNotification(message: message)
-                delegate?.didReceiveMessage?(message: message, onChat: onChat)
             }
         }
     }
@@ -321,10 +362,6 @@ extension SphinxSocketManager {
         if let chat = Chat.insertChat(chat: chatJson) {
             chat.setChatMessagesAsSeen(shouldSync: false, shouldSave: false, forceSeen: true)
             
-            if shouldUpdateObjectsOnView(chat: chat) {
-                delegate?.didUpdateChat?(chat: chat)
-            }
-            
             setAppBadgeCount()
         }
     }
@@ -338,8 +375,22 @@ extension SphinxSocketManager {
                 return
             }
             
-            if let chat = message.chat, chat.isMuted() {
+            guard let chat = message.chat else {
                 return
+            }
+            
+            if chat.isMuted() {
+                return
+            }
+            
+            if chat.willNotifyOnlyMentions() && !message.push {
+                return
+            }
+            
+            if chat.willNotifyOnlyMentions() {
+                if !message.containsMention() {
+                    return
+                }
             }
             
             appDelegate.sendNotification(message: message)
@@ -347,23 +398,17 @@ extension SphinxSocketManager {
     }
     
     func didReceiveContact(contactJson: JSON) {
-        if let contact = UserContact.insertContact(contact: contactJson).0 {
-            if shouldUpdateObjectsOnView(contact: contact) {
-                delegate?.didUpdateContact?(contact: contact)
-            }
-        }
+        let _ = UserContact.insertContact(contact: contactJson)
     }
     
     func didReceiveGroup(groupJson: JSON) {
         if let contacts = groupJson["new_contacts"].array {
             for c in contacts {
-                let (_, _) = UserContact.insertContact(contact: c)
+                let _ = UserContact.insertContact(contact: c)
             }
         }
 
         let _ = Chat.getOrCreateChat(chat: groupJson["chat"])
-
-        delegate?.didReceiveOrUpdateGroup?()
     }
     
     func tribeDeletedOrkickedFromGroup(type: String, json: JSON) {
@@ -381,22 +426,9 @@ extension SphinxSocketManager {
     }
     
     func didJoinOrLeaveGroup(type: String, json: JSON) {
-        var chat : Chat? = nil
-        
         if let _ = json["contact"].dictionary, let chatJson = json["chat"].dictionary {
-            if let chatObject = Chat.insertChat(chat: JSON(chatJson)) {
-                chat = chatObject
-
-                if let chat = chat {
-                    CoreDataManager.sharedManager.saveContext()
-
-                    if shouldUpdateObjectsOnView(chat: chat) {
-                        delegate?.didUpdateChat?(chat: chat)
-                    }
-                }
-            }
+            let _ = Chat.insertChat(chat: JSON(chatJson))
         }
-        delegate?.didReceiveOrUpdateGroup?()
 
         if let message = json["message"].dictionary {
             didReceiveMessage(type: type, messageJson: JSON(message))
@@ -413,9 +445,7 @@ extension SphinxSocketManager {
     func memberRequestResponse(type: String, json: JSON) {
         if let message = json["message"].dictionary {
             
-            if let chat = Chat.insertChat(chat: json["chat"]) {
-                delegate?.didUpdateChat?(chat: chat)
-            }
+            let _ = Chat.insertChat(chat: json["chat"])
             
             didReceiveMessage(type: type, messageJson: JSON(message))
         }
@@ -423,13 +453,7 @@ extension SphinxSocketManager {
 
     
     func didReceiveInvite(inviteJson: JSON) {
-        if let invite = UserInvite.insertInvite(invite: inviteJson) {
-            if let contact = invite.contact {
-                if shouldUpdateObjectsOnView(contact: contact) {
-                    delegate?.didUpdateContact?(contact: contact)
-                }
-            }
-        }
+        let _ = UserInvite.insertInvite(invite: inviteJson)
     }
     
     func shouldUpdateObjectsOnView(contact: UserContact? = nil, chat: Chat? = nil) -> Bool {
@@ -444,7 +468,7 @@ extension SphinxSocketManager {
             return false
         }
 
-        if let del = delegate as? DashboardViewController, let vc = del.detailViewController {
+        if let del = delegate as? DashboardViewController, let vc = del.newDetailViewController {
             if let chat = vc.chat, let messageChatId = message.chat?.id {
                 if chat.id != messageChatId {
                     return false
@@ -460,51 +484,31 @@ extension SphinxSocketManager {
     }
     
     func keysendReceived(json: JSON) {
-        let _ = TransactionMessage.insertMessage(m: json)
+        let _ = TransactionMessage.insertMessage(
+            m: json,
+            existingMessage: TransactionMessage.getMessageWith(id: json["id"].intValue)
+        )
         let amt = json["amount"].intValue
         
         if amt > 0 {
             updateBalanceIfNeeded(type: "keysend")
         }
+        
+        if let appDelegate = NSApplication.shared.delegate as? AppDelegate {
+            appDelegate.sendNotification(
+                title: "notification.keysend.title".localized,
+                subtitle: nil,
+                text: "\("notification.amount".localized) \(amt) sats"
+            )
+        }
     }
     
-    func markAsSeenIfNeeded(message: TransactionMessage) {
-        let outgoing = message.isOutgoing()
-        
-        if outgoing {
-            setChatSeen(message: message, value: true)
-            return
-        }
-        
-        let isSeen = shouldMarkAsSeen(message: message)
-        
-        if isSeen {
-            message.setAsSeen()
-        }
-        
-        setChatSeen(message: message, value: isSeen)
-    }
-    
-    func setChatSeen(message: TransactionMessage, value: Bool) {
+    func setSeen(
+        message: TransactionMessage,
+        value: Bool
+    ) {
+        message.seen = value
         message.chat?.seen = value
-        message.saveMessage()
-    }
-    
-    func shouldMarkAsSeen(message: TransactionMessage) -> Bool {
-        if !NSApplication.shared.isActive {
-            return false
-        }
-
-        if let del = delegate as? DashboardViewController, let vc = del.detailViewController {
-            if let chat = vc.chat, let messageChatId = message.chat?.id {
-                if chat.id == messageChatId {
-                    return true
-                }
-            } else if let contact = vc.contact, message.senderId == contact.id {
-                return true
-            }
-        }
-        return false
     }
     
     func setAppBadgeCount() {

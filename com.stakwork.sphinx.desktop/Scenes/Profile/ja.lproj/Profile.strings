@@ -1,0 +1,57 @@
+
+/* Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "3Qv-80-S8i"; */
+"3Qv-80-S8i.title" = "ユーザー名";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "55s-p9-FFw"; */
+"55s-p9-FFw.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = "Meeting Server"; ObjectID = "BkU-va-T7m"; */
+"BkU-va-T7m.title" = "会議サーバー";
+
+/* Class = "NSTextFieldCell"; title = ""; ObjectID = "Fnv-vP-ePi"; */
+"Fnv-vP-ePi.title" = "";
+
+/* Class = "NSButtonCell"; title = "Setup Signer"; ObjectID = "GQo-KW-3sa"; */
+"GQo-KW-3sa.title" = "署名者設定";
+
+/* Class = "NSButtonCell"; title = "Change Privacy PIN"; ObjectID = "ISn-bT-TNB"; */
+"ISn-bT-TNB.title" = "プライバシーPINを変更";
+
+/* Class = "NSButtonCell"; title = "Change PIN"; ObjectID = "JQz-vv-8Tw"; */
+"JQz-vv-8Tw.title" = "PINを変更";
+
+/* Class = "NSTextFieldCell"; title = "Track actions"; ObjectID = "Pmy-Ba-4bp"; */
+"Pmy-Ba-4bp.title" = "アクションを追跡";
+
+/* Class = "NSTextFieldCell"; title = "Sync more devices"; ObjectID = "RnC-xs-5Nh"; */
+"RnC-xs-5Nh.title" = "さらにデバイスを同期";
+
+/* Class = "NSTextFieldCell"; title = "Default tip amount"; ObjectID = "Tci-hQ-YkV"; */
+"Tci-hQ-YkV.title" = "デフォルトのチップ額";
+
+/* Class = "NSTextFieldCell"; title = "-"; ObjectID = "bzD-P8-zhu"; */
+"bzD-P8-zhu.title" = "-";
+
+/* Class = "NSTextFieldCell"; title = "sat"; ObjectID = "fcV-0k-vw1"; */
+"fcV-0k-vw1.title" = "sat";
+
+/* Class = "NSTextFieldCell"; title = "Address"; ObjectID = "gvM-01-89w"; */
+"gvM-01-89w.title" = "アドレス";
+
+/* Class = "NSButtonCell"; title = "Backup your key"; ObjectID = "hwD-l5-buT"; */
+"hwD-l5-buT.title" = "キーをバックアップ";
+
+/* Class = "NSTextFieldCell"; title = "Route Hint"; ObjectID = "lhX-D8-z6l"; */
+"lhX-D8-z6l.title" = "ルートヒント";
+
+/* Class = "NSButtonCell"; title = "Disconnect MQTT"; ObjectID = "lmK-Cf-g9b"; */
+"lmK-Cf-g9b.title" = "MQTTを切断";
+
+/* Class = "NSTextFieldCell"; title = "Share my profile photo\nwith contacts"; ObjectID = "pmw-w3-a0T"; */
+"pmw-w3-a0T.title" = "プロフィール写真を\n連絡先と共有";
+
+/* Class = "NSButtonCell"; title = "Save changes"; ObjectID = "qhk-bW-FZv"; */
+"qhk-bW-FZv.title" = "変更を保存";
+
+/* Class = "NSTextFieldCell"; title = "Server URL"; ObjectID = "wRd-MN-U8t"; */
+"wRd-MN-U8t.title" = "サーバーURL";

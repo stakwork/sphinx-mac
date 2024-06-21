@@ -12,9 +12,19 @@ protocol DraggingViewDelegate: AnyObject {
     func imageDragged(image: NSImage)
 }
 
+protocol ShowPreviewDelegate: AnyObject {
+    func showImagePreview(data: Data, image: NSImage)
+    func showPDFPreview(data: Data, image: NSImage, url: URL)
+    func showGIFPreview(data: Data, image: NSImage?)
+    func showVideoPreview(data: Data, url: URL)
+    func showFilePreview(data: Data, url: URL)
+    func showGiphyPreview(data: Data, object: GiphyObject)
+}
+
 class DraggingDestinationView: NSView, LoadableNib {
     
     weak var delegate: DraggingViewDelegate?
+    weak var previewDelegate: ShowPreviewDelegate?
     
     @IBOutlet var contentView: NSView!
     @IBOutlet weak var draggingContainer: NSView!
@@ -284,28 +294,71 @@ class DraggingDestinationView: NSView, LoadableNib {
     override func performDragOperation(_ draggingInfo: NSDraggingInfo) -> Bool {
         isReceivingDrag = false
         let pasteBoard = draggingInfo.draggingPasteboard
+        
+        let urlResult = processURLs(pasteBoard: pasteBoard)
+        if(urlResult == true){
+            return true
+        }
+        
+        resetView()
+        return false
+    }
+    
+    func performPasteOperation(pasteBoard:NSPasteboard)->Bool{
+        isReceivingDrag = false
+        
+        let urlResult = processURLs(pasteBoard: pasteBoard)
+        if (urlResult == true) {
+            return true
+        }
+        
+        return false
+    }
+    
+    //TODO: Improve on this
+    func processURLs(pasteBoard:NSPasteboard) -> Bool{
         let filteringOptionsCount = filteringOptions[NSPasteboard.ReadingOptionKey.urlReadingContentsConformToTypes]?.count ?? 0
         let options = filteringOptionsCount > 0 ? filteringOptions : nil
 
         if let urls = pasteBoard.readObjects(forClasses: [NSURL.self], options: options) as? [URL], urls.count == 1 {
             let url = urls[0]
             
+            if !url.absoluteString.starts(with: "file://") {
+                return false
+            }
+            
             if let data = getDataFrom(url: url) {
                 fileName = (url.absoluteString as NSString).lastPathComponent.percentNotEscaped
                 
                 if let image = NSImage(contentsOf: url) {
                     if url.isPDF {
-                        showPDFPreview(data: data, image: image, url: url)
+                        previewDelegate?.showPDFPreview(data: data, image: image, url: url)
+//                        showPDFPreview(data: data, image: image, url: url)
                     } else if data.isAnimatedImage() {
-                        showGIFPreview(data: data, image: image)
+//                        showGIFPreview(data: data, image: image)
+                        previewDelegate?.showGIFPreview(data: data, image: image)
                     } else {
-                        showImagePreview(data: data, image: image)
+                        previewDelegate?.showImagePreview(data: data, image: image)
+//                        showImagePreview(data: data, image: image)
                     }
                 } else if url.isVideo {
-                    showVideoPreview(data: data, url: url)
+                    previewDelegate?.showVideoPreview(data: data, url: url)
+//                    showVideoPreview(data: data, url: url)
                 } else {
-                    showFilePreview(data: data, url: url)
+                    previewDelegate?.showFilePreview(data: data, url: url)
+//                    showFilePreview(data: data, url: url)
                 }
+                return true
+            }
+        }
+        if let images = pasteBoard.readObjects(forClasses: [NSImage.self]),
+            images.count > 0,
+            let image = images[0] as? NSImage,
+            let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil) {
+            
+            let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
+            if let jpegData = bitmapRep.representation(using: NSBitmapImageRep.FileType.jpeg, properties: [:]) {
+                showImagePreview(data: jpegData, image: image)
                 return true
             }
         }

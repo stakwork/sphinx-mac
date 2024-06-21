@@ -1,0 +1,107 @@
+
+/* Class = "NSTextFieldCell"; title = "Group Name"; ObjectID = "3Ml-Gk-kH1"; */
+"3Ml-Gk-kH1.title" = "Group Name";
+
+/* Class = "NSTextFieldCell"; title = "Description *"; ObjectID = "4xc-dn-4c9"; */
+"4xc-dn-4c9.title" = "Description *";
+
+/* Class = "NSTextFieldCell"; title = "Time to stake: (hours)"; ObjectID = "5Mx-Tg-RiK"; */
+"5Mx-Tg-RiK.title" = "Oras sa stake: (oras)";
+
+/* Class = "NSTextFieldCell"; title = "Approve each membership request?"; ObjectID = "7zZ-36-zq9"; */
+"7zZ-36-zq9.title" = "Approve each membership request?";
+
+/* Class = "NSTextFieldCell"; title = "Price per Message"; ObjectID = "BZI-9s-vtk"; */
+"BZI-9s-vtk.title" = "Price per Message";
+
+/* Class = "NSTextFieldCell"; title = "Price per message:"; ObjectID = "IDt-GP-9ir"; */
+"IDt-GP-9ir.title" = "Presyo per mensahe:";
+
+/* Class = "NSTextFieldCell"; title = "..."; ObjectID = "K7j-En-bxK"; */
+"K7j-En-bxK.title" = "...";
+
+/* Class = "NSButtonCell"; title = "SAVE TRIBE"; ObjectID = "MlG-NU-gvK"; */
+"MlG-NU-gvK.title" = "I-SAVE ANG TRIBU";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "N7v-vR-tcQ"; */
+"N7v-vR-tcQ.title" = "Kahon";
+
+/* Class = "NSTextFieldCell"; title = "App Url"; ObjectID = "PBt-DD-vJn"; */
+"PBt-DD-vJn.title" = "App Url";
+
+"pdg-dx-btt.title" = "Second Brain Url";
+
+/* Class = "NSButtonCell"; title = "JOIN TRIBE"; ObjectID = "PnB-qY-PbV"; */
+"PnB-qY-PbV.title" = "JOIN TRIBE";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "PtV-tc-Kg6"; */
+"PtV-tc-Kg6.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = "Created on..."; ObjectID = "QlS-aW-Ovp"; */
+"QlS-aW-Ovp.title" = "Nilikha noong...";
+
+/* Class = "NSTextFieldCell"; title = "Tags"; ObjectID = "R9c-DX-E9G"; */
+"R9c-DX-E9G.title" = "Tags";
+
+/* Class = "NSTextFieldCell"; title = "Amount to Stake"; ObjectID = "RfR-WJ-3c7"; */
+"RfR-WJ-3c7.title" = "Amount to Stake";
+
+/* Class = "NSTextFieldCell"; title = "Amount to stake:"; ObjectID = "RlC-nx-gKp"; */
+"RlC-nx-gKp.title" = "Halaga sa stake:";
+
+/* Class = "NSTextFieldCell"; title = "Image"; ObjectID = "S5M-do-OMG"; */
+"S5M-do-OMG.title" = "Image";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "Sod-RT-GGM"; */
+"Sod-RT-GGM.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = "Uploaded 0%"; ObjectID = "Td6-nF-374"; */
+"Td6-nF-374.title" = "Uploaded 0%";
+
+/* Class = "NSTextFieldCell"; title = "Feed Url"; ObjectID = "aYx-6Y-No1"; */
+"aYx-6Y-No1.title" = "Feed Url";
+
+/* Class = "NSTextFieldCell"; title = "Price to Join"; ObjectID = "amo-6J-VEd"; */
+"amo-6J-VEd.title" = "Price to Join";
+
+/* Class = "NSTextFieldCell"; title = "..."; ObjectID = "e8W-tI-OEy"; */
+"e8W-tI-OEy.title" = "...";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "eKC-UU-qat"; */
+"eKC-UU-qat.title" = "Kahon";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "eZH-e0-Be5"; */
+"eZH-e0-Be5.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = "Price to join:"; ObjectID = "fC4-f3-yQO"; */
+"fC4-f3-yQO.title" = "Price to join:";
+
+/* Class = "NSTextFieldCell"; title = "Time to Stake (hours)"; ObjectID = "iio-v7-V2C"; */
+"iio-v7-V2C.title" = "Time to Stake (hours)";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "iyu-tY-SWg"; */
+"iyu-tY-SWg.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = "Name *"; ObjectID = "oYj-fw-X3k"; */
+"oYj-fw-X3k.title" = "Name *";
+
+/* Class = "NSTextFieldCell"; title = "List on tribes.sphinx.chat?"; ObjectID = "qB7-uk-cfh"; */
+"qB7-uk-cfh.title" = "List on tribes.sphinx.chat?";
+
+/* Class = "NSTextFieldCell"; title = "Uploaded 0%"; ObjectID = "tVz-Fy-24p"; */
+"tVz-Fy-24p.title" = "Uploaded 0%";
+
+/* Class = "NSButtonCell"; title = "SAVE"; ObjectID = "uGH-BU-eSo"; */
+"uGH-BU-eSo.title" = "I-SAVE";
+
+/* Class = "NSTextFieldCell"; title = "Feed Content Type"; ObjectID = "uTl-0t-F3h"; */
+"uTl-0t-F3h.title" = "Feed Content Type";
+
+/* Class = "NSTextFieldCell"; title = "Loading Tribe info..."; ObjectID = "ubU-9I-jji"; */
+"ubU-9I-jji.title" = "Loading Tribe info...";
+
+/* Class = "NSTextFieldCell"; title = "Loading Info..."; ObjectID = "vz1-9I-udo"; */
+"vz1-9I-udo.title" = "Loading Info...";
+
+/* Class = "NSButtonCell"; title = ""; ObjectID = "zIw-tr-9sm"; */
+"zIw-tr-9sm.title" = "";

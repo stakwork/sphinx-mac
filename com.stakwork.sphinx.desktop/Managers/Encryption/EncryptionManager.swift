@@ -21,7 +21,6 @@ class EncryptionManager {
         return Static.instance
     }
     
-    var contactsService = ContactsService()
     let userData = UserData.sharedInstance
     
     var ownPrivateKey: SecKey? {
@@ -176,7 +175,7 @@ class EncryptionManager {
                 return
             }
 
-            contactsService.updateContact(contact: owner, contactKey: base64PublicKey, callback: { _ in
+            UserContactsHelper.updateContact(contact: owner, contactKey: base64PublicKey, callback: { _ in
                 completion?()
             })
         }
@@ -275,7 +274,7 @@ class EncryptionManager {
     }
     
     func encryptToken(token: String, key: CryptorRSA.PublicKey) -> String? {
-        let (encrypted, encryptedToken) = encryptMessage(message: token, key: key)
+        let (encrypted, encryptedToken) = encrypt(token: token, with: key.reference)
         if encrypted {
             return encryptedToken
         }
@@ -309,7 +308,27 @@ class EncryptionManager {
         return encrypt(message: message, with: key.reference)
     }
     
-    public func encrypt(message: String, with key: SecKey) -> (Bool, String) {
+    public func encrypt(
+        token: String,
+        with key: SecKey
+    ) -> (Bool, String) {
+        guard let messageData = token.data(using: String.Encoding.utf8) else {
+            return (false, token)
+        }
+        
+        guard let encryptData = SecKeyCreateEncryptedData(key, SecKeyAlgorithm.rsaEncryptionPKCS1, messageData as CFData, nil) else {
+            return (false, token)
+        }
+
+        let encryptedData = encryptData as Data
+        let encrypted = CryptorRSA.createEncrypted(with: encryptedData)
+        return (true, encrypted.base64String)
+    }
+    
+    public func encrypt(
+        message: String,
+        with key: SecKey
+    ) -> (Bool, String) {
         let blockSize = SecKeyGetBlockSize(key)
         let maxChunkSize: Int = blockSize - 11
         
@@ -381,33 +400,14 @@ class EncryptionManager {
         return decrypt(message: message, with: privateKeyReference)
     }
     
-    func getAuthenticationHeader(
-        token: String? = nil,
-        transportKey: String? = nil
-    ) -> [String: String] {
-
-        let t = token ?? userData.getAuthToken()
-
-        if t.isEmpty {
-            return [:]
-        }
-
-        if let transportK = transportKey ?? userData.getTransportKey(),
-           let transportEncryptionKey = getPublicKeyFromBase64String(base64String: transportK) {
-
-            let time = Int(NSDate().timeIntervalSince1970)
-            let tokenAndTime = "\(t)|\(time)"
-
-            if let encryptedToken = encryptToken(token: tokenAndTime, key: transportEncryptionKey) {
-                return ["x-transport-token": encryptedToken]
-            }
-
-        }
-        return ["X-User-Token": t]
-    }
-    
     public static func randomString(length: Int) -> String {
-        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        return String((0..<length).map{ _ in letters.randomElement()! })
+        let uuidString = UUID().uuidString.replacingOccurrences(of: "-", with: "")
+        
+        return String(
+            Data(uuidString.utf8)
+            .base64EncodedString()
+            .replacingOccurrences(of: "=", with: "")
+            .prefix(length)
+        )
     }
 }

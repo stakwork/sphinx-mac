@@ -32,11 +32,16 @@ typealias SuccessCallback = ((Bool) -> ())
 typealias CreateSubscriptionCallback = ((JSON) -> ())
 typealias GetSubscriptionsCallback = (([JSON]) -> ())
 typealias MuteChatCallback = ((JSON) -> ())
+typealias NotificationLevelCallback = ((JSON) -> ())
 typealias CreateGroupCallback = ((JSON) -> ())
-//typealias GetTransactionsCallback = (([PaymentTransaction]) -> ())
 typealias LogsCallback = ((String) -> ())
 typealias TemplatesCallback = (([ImageTemplate]) -> ())
+typealias GetTransactionsCallback = (([PaymentTransaction]) -> ())
 typealias TransportKeyCallback = ((String) -> ())
+typealias HMACKeyCallback = ((String) -> ())
+typealias GetPersonDataCallback = ((JSON) -> ())
+typealias PinMessageCallback = ((String) -> ())
+typealias ErrorCallback = ((String) -> ())
 
 //HUB calls
 typealias SignupWithCodeCallback = ((JSON, String, String) -> ())
@@ -52,6 +57,19 @@ typealias GiphySearchCallback = (([GiphyObject]) -> ())
 typealias GiphySearchErrorCallback = (() -> ())
 typealias MediaInfoCallback = ((Int, String?, Int?) -> ())
 
+//Feed
+typealias SyncActionsCallback = ((Bool) -> ())
+typealias ContentFeedCallback = ((JSON) -> ())
+typealias AllContentFeedStatusCallback = (([ContentFeedStatus]) -> ())
+typealias ContentFeedStatusCallback = ((ContentFeedStatus) -> ())
+
+//Crypter
+typealias HardwarePublicKeyCallback = ((String) -> ())
+typealias HardwareSeedCallback = ((Bool) -> ())
+
+//TribeMembers
+typealias ChatContactsCallback = (([JSON]) -> ())
+
 class API {
     
     class var sharedInstance : API {
@@ -61,9 +79,9 @@ class API {
         return Static.instance
     }
     
+    let interceptor = SphinxInterceptor()
+    
     var onionConnector = SphinxOnionConnector.sharedInstance
-    var cancellableRequest: DataRequest?
-    var currentRequestType : API.CancellableRequestType = API.CancellableRequestType.messages
     
     var uploadRequest: UploadRequest?
     
@@ -85,6 +103,8 @@ class API {
             UserDefaults.Keys.lastSeenMessagesDate.set(newValue)
         }
     }
+    
+    public static let kTribesServerBaseURL = "https://tribes.sphinx.chat"
     
     public static var kAttachmentsServerUrl : String {
         get {
@@ -123,15 +143,11 @@ class API {
     }
     
     class func getUrl(route: String) -> String {
-        if route.contains("://") {
-            return route
+        if let url = URL(string: route), let _ = url.scheme {
+            return url.absoluteString
         }
+        return "https://\(route)"
         
-        if route.contains("nodl.it") {
-            return "https://\(route)"
-        } else {
-            return "http://\(route)"
-        }
     }
     
     class func getWebsocketUrl(route: String) -> String {
@@ -140,7 +156,7 @@ class API {
                 .replacingOccurrences(of: "https://", with: "wss://")
                 .replacingOccurrences(of: "http://", with: "ws://")
         }
-        return "ws://\(route)"
+        return "wss://\(route)"
     }
     
     func session() -> Alamofire.Session? {
@@ -175,7 +191,6 @@ class API {
         }
         
         let url = API.getUrl(route: "\(ip)\(route)")
-        
         return createAuthenticatedRequest(
             url,
             params: params,
@@ -206,6 +221,8 @@ class API {
     }
     
     var errorCounter = 0
+    
+    let successStatusCode = 200
     let unauthorizedStatusCode = 401
     let notFoundStatusCode = 404
     let badGatewayStatusCode = 502
@@ -221,70 +238,106 @@ class API {
     
     var connectionStatus = ConnectionStatus.Connecting
     
-    func sphinxRequest(_ urlRequest: URLRequestConvertible, completionHandler: @escaping (AFDataResponse<Any>) -> Void) {
-        let _ = unauthorizedHandledRequest(urlRequest, completionHandler: completionHandler)
+    func sphinxRequest(
+        _ urlRequest: URLRequest,
+        completionHandler: @escaping (AFDataResponse<Any>) -> Void
+    ) {
+        unauthorizedHandledRequest(urlRequest, completionHandler: completionHandler)
     }
     
-    func cancellableRequest(_ urlRequest: URLRequestConvertible, type: CancellableRequestType, completionHandler: @escaping (AFDataResponse<Any>) -> Void) {
-        if let cancellableRequest = cancellableRequest, currentRequestType == type {
-            cancellableRequest.cancel()
-        }
-        
-        let request = unauthorizedHandledRequest(urlRequest) { (response) in
+    func cancellableRequest(
+        _ urlRequest: URLRequest,
+        type: CancellableRequestType,
+        completionHandler: @escaping (AFDataResponse<Any>) -> Void
+    ) {
+        unauthorizedHandledRequest(urlRequest) { (response) in
             self.postConnectionStatusChange()
             
             completionHandler(response)
         }
+    }
+    
+    func unauthorizedHandledRequest(
+        _ urlRequest: URLRequest,
+        completionHandler: @escaping (AFDataResponse<Any>) -> Void
+    ) {
         
-        currentRequestType = type
-        cancellableRequest = request
-    }
-    
-    func cleanMessagesRequest() {
-        cancellableRequest?.cancel()
-        cancellableRequest = nil
-    }
-    
-    func unauthorizedHandledRequest(_ urlRequest: URLRequestConvertible, completionHandler: @escaping (AFDataResponse<Any>) -> Void) -> DataRequest? {
         if onionConnector.usingTor() && !onionConnector.isReady() {
             onionConnector.startIfNeeded()
-            return nil
+            return
         }
         
-        let request = session()?.request(urlRequest).responseJSON { (response) in
-            if let _ = response.response {
-                switch response.result {
-                case .success(_):
-                    self.connectionStatus = .Connected
-                case .failure(_):
+        var mutableUrlRequest = urlRequest
+        
+        for (key, value) in UserData.sharedInstance.getAuthenticationHeader() {
+            mutableUrlRequest.setValue(value, forHTTPHeaderField: key)
+        }
+        
+        session()?.request(
+            mutableUrlRequest,
+            interceptor: interceptor
+        ).responseJSON { (response) in
+            
+            let statusCode = (response.response?.statusCode ?? -1)
+            
+            switch statusCode {
+            case self.successStatusCode:
+                self.connectionStatus = .Connected
+            case self.unauthorizedStatusCode:
+//                self.getRelaykeys()
+                
+                self.connectionStatus = .Unauthorize
+            default:
+                if response.response == nil ||
+                    statusCode == self.notFoundStatusCode  ||
+                    statusCode == self.badGatewayStatusCode {
+                    
+                    self.connectionStatus = response.response == nil ?
+                        self.connectionStatus :
+                        .NotConnected
+
+                    if self.errorCounter < 5 {
+                        self.errorCounter = self.errorCounter + 1
+                    } else if response.response != nil {
+//                        self.getIPFromHUB()
+                        return
+                    }
+                    completionHandler(response)
+                    return
+                } else {
                     self.connectionStatus = .NotConnected
                 }
             }
-            
-            let statusCode = response.response?.statusCode ?? -1
-            
-            if statusCode == self.unauthorizedStatusCode {
-                self.connectionStatus = .Unauthorize
-            } else if response.response == nil || statusCode == self.notFoundStatusCode || statusCode == self.badGatewayStatusCode {
-                self.connectionStatus = response.response == nil ? self.connectionStatus : .NotConnected
-                
-                if self.errorCounter < 5 {
-                    self.errorCounter = self.errorCounter + 1
-                } else if response.response != nil {
-                    self.getIPFromHUB()
-                    return
-                }
-                completionHandler(response)
-                return
-            }
+
             self.errorCounter = 0
-            
+
             if let _ = response.response {
                 completionHandler(response)
             }
         }
-        return request
     }
+    
+    func getRelaykeys() {
+        if let appDelegate = NSApplication.shared.delegate as? AppDelegate {
+            appDelegate.getRelayKeys()
+        }
+    }
+    
+//    func getHMACKeyAndRetry(
+//        _ urlRequest: URLRequestConvertible,
+//        completionHandler: @escaping (AFDataResponse<Any>) -> Void
+//    ) -> Bool {
+//        if UserData.sharedInstance.getHmacKey() == nil {
+//            UserData.sharedInstance.getAndSaveHMACKey(completion: {
+//                let _ = self.unauthorizedHandledRequest(
+//                    urlRequest,
+//                    completionHandler: completionHandler
+//                )
+//            })
+//            return true
+//        }
+//        return false
+//    }
     
     func getIPFromHUB() {
         self.errorCounter = 0
@@ -321,9 +374,9 @@ class API {
     }
     
     func retryGettingIPFromHUB() {
-        DelayPerformedHelper.performAfterDelay(seconds: 5, completion: {
-            self.getIPFromHUB()
-        })
+//        DelayPerformedHelper.performAfterDelay(seconds: 5, completion: {
+//            self.getIPFromHUB()
+//        })
     }
     
     func networksConnectionLost() {
@@ -342,7 +395,14 @@ class API {
         NotificationCenter.default.post(name: .shouldUpdateDashboard, object: nil)
     }
     
-    func createRequest(_ url:String, params:NSDictionary?, method:String, contentType: String = "application/json", token: String? = nil) -> URLRequest? {
+    func createRequest(
+        _ url:String,
+        params:NSDictionary?,
+        method:String,
+        contentType: String = "application/json",
+        token: String? = nil
+    ) -> URLRequest? {
+        
         if !ConnectivityHelper.isConnectedToInternet {
             networksConnectionLost()
             return nil
@@ -392,32 +452,52 @@ class API {
         }
         
         if let nsURL = NSURL(string: url) {
-            let headers = EncryptionManager.sharedInstance.getAuthenticationHeader()
-            
             var request = URLRequest(url: nsURL as URL)
             request.httpMethod = method
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             request.setValue("no-cache", forHTTPHeaderField: "Cache-Control")
-            
-            for (key, value) in headers {
-                request.setValue(value, forHTTPHeaderField: key)
-            }
 
             for (key, value) in additionalHeaders {
                 request.setValue(value, forHTTPHeaderField: key)
             }
             
+            var bodyData: Data? = nil
+            
             if let p = params {
                 do {
-                    try request.httpBody = JSONSerialization.data(withJSONObject: p, options: [])
+                    try bodyData = JSONSerialization.data(withJSONObject: p, options: [])
                 } catch let error as NSError {
                     print("Error: " + error.localizedDescription)
                 }
             }
             
+            if let bodyData = bodyData {
+                request.httpBody = bodyData
+            }
+
+            for (key, value) in UserData.sharedInstance.getHMACHeader(
+                url: nsURL as URL,
+                method: method,
+                bodyData: bodyData
+            ) {
+                request.setValue(value, forHTTPHeaderField: key)
+            }
             return request
         } else {
             return nil
         }
+    }
+}
+
+class SphinxInterceptor : RequestInterceptor {
+    public func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
+        completion(.success(urlRequest))
+    }
+
+    public func retry(_ request: Request,
+                      for session: Session,
+                      dueTo error: Error,
+                      completion: @escaping (RetryResult) -> Void) {
+        completion(.doNotRetry)
     }
 }

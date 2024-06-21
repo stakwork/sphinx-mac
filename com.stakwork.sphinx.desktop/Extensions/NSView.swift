@@ -27,6 +27,10 @@ enum CornerRadius: String {
 extension NSView {    
     private static let kRotationAnimationKey = "rotationanimationkey"
     
+    public static let kBubbleLayerName: String = "bubble-layer"
+    public static let kInvoiceDashedLayerName: String = "dashed-line"
+
+    
     func rotate(duration: Double = 1) {
         self.layoutSubtreeIfNeeded()
         self.setAnchorPoint(anchorPoint: CGPoint(x: 0.5, y: 0.5))
@@ -55,6 +59,28 @@ extension NSView {
         NSLayoutConstraint(item: self, attribute: NSLayoutConstraint.Attribute.trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1.0, constant: 0.0).isActive = true
     }
     
+    func getVerticalDottedLine(
+        color: NSColor = NSColor.Sphinx.Body,
+        frame: CGRect
+    ) -> CAShapeLayer {
+        let cgColor = color.cgColor
+
+        let shapeLayer: CAShapeLayer = CAShapeLayer()
+        shapeLayer.frame = CGRect(x: frame.origin.x + 0.5, y: frame.origin.y, width: 1.5, height: frame.height)
+        shapeLayer.fillColor = cgColor
+        shapeLayer.strokeColor = cgColor
+        shapeLayer.lineWidth = 2
+        shapeLayer.lineDashPattern = [0.01, 5]
+        shapeLayer.lineCap = CAShapeLayerLineCap.round
+
+        let path: NSBezierPath = NSBezierPath()
+        path.move(to: CGPoint(x: frame.origin.x + 1, y: frame.origin.y))
+        path.line(to: CGPoint(x: frame.origin.x + 1, y: frame.origin.y + frame.height))
+        shapeLayer.path = path.cgPath
+
+        return shapeLayer
+    }
+    
     func setAnchorPoint(anchorPoint:CGPoint) {
         self.wantsLayer = true
         
@@ -81,16 +107,24 @@ extension NSView {
     func setBackgroundColor(color: NSColor) {
         let backgroundColorBox = NSBox(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
         backgroundColorBox.title = ""
-        backgroundColorBox.borderType = .noBorder
+        backgroundColorBox.borderWidth = 0
+        backgroundColorBox.borderColor = .clear
         backgroundColorBox.boxType = .custom
         backgroundColorBox.fillColor = color
         self.addSubview(backgroundColorBox)
     }
     
-    func addShadow(location: VerticalLocation, color: NSColor = .black, opacity: Float = 0.5, radius: CGFloat = 5.0, bottomhHeight: CGFloat = 3, cornerRadius: CGFloat = 0) {
+    func addShadow(
+        location: VerticalLocation,
+        color: NSColor = .black,
+        opacity: Float = 0.5,
+        radius: CGFloat = 5.0,
+        bottomhHeight: CGFloat = 3,
+        cornerRadius: CGFloat = 0
+    ) {
         switch location {
         case .bottom:
-            addShadow(offset: CGSize(width: 0, height: -bottomhHeight), color: color, opacity: opacity, radius: radius, cornerRadius: cornerRadius)
+            addShadow(offset: CGSize(width: 0, height: bottomhHeight), color: color, opacity: opacity, radius: radius, cornerRadius: cornerRadius)
         case .bottomLeft:
             addShadow(offset: CGSize(width: -1, height: 2), color: color, opacity: opacity, radius: radius, cornerRadius: cornerRadius)
         case .top:
@@ -115,6 +149,7 @@ extension NSView {
         self.layer?.shadowColor = color.cgColor
         self.layer?.shadowOffset = offset
         self.layer?.shadowRadius = radius
+        self.layer?.masksToBounds = false
         
         if cornerRadius > 0 {
             let shapeRect = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
@@ -122,13 +157,15 @@ extension NSView {
         }
     }
     
-    func addDashedBorder(color: NSColor,
-                         size: CGSize,
-                         rect: CGRect? = nil,
-                         lineWidth: CGFloat = 3,
-                         dashPattern: [NSNumber] = [8,4],
-                         radius: CGFloat = 10) {
-        
+    func addDashedBorder(
+        color: NSColor,
+        fillColor: NSColor? = nil,
+        size: CGSize,
+        rect: CGRect? = nil,
+        lineWidth: CGFloat = 3,
+        dashPattern: [NSNumber] = [8,4],
+        radius: CGFloat = 10
+    ) {
         removeDashBorder()
         
         let color = color.cgColor
@@ -139,20 +176,21 @@ extension NSView {
         
         shapeLayer.bounds = shapeRect
         shapeLayer.position = CGPoint(x: shapeRect.origin.x + shapeRect.width/2, y: shapeRect.origin.y + shapeRect.height/2)
-        shapeLayer.fillColor = NSColor.clear.cgColor
+        shapeLayer.fillColor = fillColor?.cgColor ?? NSColor.clear.cgColor
         shapeLayer.strokeColor = color
         shapeLayer.lineWidth = lineWidth
         shapeLayer.lineJoin = .round
         shapeLayer.lineDashPattern = dashPattern
-        shapeLayer.name = CommonBubbleView.kInvoiceDashedLayerName
+        shapeLayer.name = NSView.kInvoiceDashedLayerName
         shapeLayer.path = NSBezierPath(roundedRect: shapeRect, xRadius: radius, yRadius: radius).cgPath
         
+        self.wantsLayer = true
         self.layer?.addSublayer(shapeLayer)
     }
     
     func removeDashBorder() {
         self.layer?.sublayers?.forEach {
-            if $0.name == CommonBubbleView.kInvoiceDashedLayerName {
+            if $0.name == NSView.kInvoiceDashedLayerName {
                 $0.removeFromSuperlayer()
             }
         }
@@ -198,6 +236,60 @@ extension NSView {
 
         self.wantsLayer = true
         self.layer?.insertSublayer(shape, at: 0)
+    }
+    
+    func drawReceivedBubbleArrow(
+        color: NSColor,
+        arrowWidth: CGFloat = 4
+    ) {
+        let arrowBezierPath = NSBezierPath()
+        
+        arrowBezierPath.move(to: CGPoint(x: 0, y: self.frame.height))
+        arrowBezierPath.line(to: CGPoint(x: self.frame.width, y: self.frame.height))
+        arrowBezierPath.line(to: CGPoint(x: self.frame.width, y: 0))
+        arrowBezierPath.line(to: CGPoint(x: arrowWidth, y: 0))
+        arrowBezierPath.line(to: CGPoint(x: 0, y: self.frame.height))
+        arrowBezierPath.close()
+        
+        let messageArrowLayer = CAShapeLayer()
+        messageArrowLayer.path = arrowBezierPath.cgPath
+        
+        messageArrowLayer.frame = self.bounds
+        messageArrowLayer.fillColor = color.cgColor
+        messageArrowLayer.name = "arrow"
+        
+        self.wantsLayer = true
+        self.layer?.addSublayer(messageArrowLayer)
+    }
+    
+    func setArrowColorTo(
+        color: NSColor
+    ) {
+        ((self.layer?.sublayers?.filter { $0.name == "arrow" })?.first as? CAShapeLayer)?.fillColor = color.cgColor
+    }
+    
+    func drawSentBubbleArrow(
+        color: NSColor,
+        arrowWidth: CGFloat = 7
+    ) {
+        let arrowBezierPath = NSBezierPath()
+        
+        arrowBezierPath.move(to: CGPoint(x: 0, y: self.frame.height))
+        arrowBezierPath.line(to: CGPoint(x: self.frame.width, y: self.frame.height))
+        arrowBezierPath.line(to: CGPoint(x: self.frame.width - arrowWidth, y: 0))
+        arrowBezierPath.line(to: CGPoint(x: 0, y: 0))
+        arrowBezierPath.line(to: CGPoint(x: 0, y: self.frame.height))
+        arrowBezierPath.close()
+        
+        let messageArrowLayer = CAShapeLayer()
+        messageArrowLayer.path = arrowBezierPath.cgPath
+        
+        messageArrowLayer.frame = self.bounds
+        messageArrowLayer.fillColor = color.cgColor
+        messageArrowLayer.name = "arrow"
+        
+        self.wantsLayer = true
+        self.layer?.addSublayer(messageArrowLayer)
     }
 }
 

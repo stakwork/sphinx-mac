@@ -23,6 +23,10 @@ extension String {
         }
     }
     
+    var nsRange : NSRange {
+        return NSRange(self.startIndex..., in: self)
+    }
+    
     var length: Int {
       return count
     }
@@ -113,6 +117,18 @@ extension String {
         }
     }
     
+    var shareContactDeepLink : String {
+        get {
+            return "sphinx.chat://?action=share_contact&pubKey=\(self)"
+        }
+    }
+    
+    var callLinkDeepLink : String {
+        get {
+            return "sphinx.chat://?action=call&link=\(self)"
+        }
+    }
+    
     func removeProtocol() -> String {
         return self.replacingOccurrences(of: "http://", with: "").replacingOccurrences(of: "https://", with: "")
     }
@@ -124,6 +140,18 @@ extension String {
     var isRelayQRCode : Bool {
         get {
             return self.base64Decoded?.starts(with: "ip::") ?? false
+        }
+    }
+    
+    var isSwarmConnectCode : Bool {
+        get {
+            return self.contains("connect::")
+        }
+    }
+    
+    var isSwarmClaimCode : Bool {
+        get {
+            return self.contains("claim::")
         }
     }
     
@@ -189,57 +217,152 @@ extension String {
         return NSString(string: self).removingPercentEncoding
     }
     
+    var fixedAlias: String {
+        let ACCEPTABLE_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_"
+        var fixedAlias = ""
+        
+        for ch in self.replacingOccurrences(of: " ", with: "_") {
+            if (ACCEPTABLE_CHARACTERS.contains(ch)) {
+                fixedAlias.append(ch)
+            }
+        }
+        return fixedAlias
+    }
+    
     var stringLinks: [NSTextCheckingResult] {
         if !self.contains(".") {
             return []
         }
+        
+        let textWithoutHightlights = self.replacingHightlightedChars
         let types: NSTextCheckingResult.CheckingType = [.link]
         let detector = try? NSDataDetector(types: types.rawValue)
-        let matches = detector!.matches(in: self, options: .reportCompletion, range: NSMakeRange(0, self.utf16.count))
+        
+        let matches = detector!.matches(
+            in: textWithoutHightlights,
+            options: .reportCompletion,
+            range: NSMakeRange(0, textWithoutHightlights.utf16.count)
+        )
+        
         return matches
 
     }
     
     var pubKeyMatches: [NSTextCheckingResult] {
+        let textWithoutHightlights = self.replacingHightlightedChars
         let pubkeyRegex = try? NSRegularExpression(pattern: "\\b[A-F0-9a-f]{66}\\b")
         let virtualPubkeyRegex = try? NSRegularExpression(pattern: "\\b[A-F0-9a-f]{66}:[A-F0-9a-f]{66}:[0-9]+\\b")
         
-        let virtualPubkeyResults = virtualPubkeyRegex?.matches(in: self, range: NSRange(self.startIndex..., in: self)) ?? []
-        if virtualPubkeyResults.count > 0 { return virtualPubkeyResults }
+        let virtualPubkeyResults = virtualPubkeyRegex?.matches(
+            in: textWithoutHightlights,
+            range: NSRange(textWithoutHightlights.startIndex..., in: textWithoutHightlights)
+        ) ?? []
         
-        let pubkeyResults = pubkeyRegex?.matches(in: self, range: NSRange(self.startIndex..., in: self)) ?? []
-        return pubkeyResults
+        let pubkeyResults = pubkeyRegex?.matches(
+            in: textWithoutHightlights,
+            range: NSRange(textWithoutHightlights.startIndex..., in: textWithoutHightlights)
+        ) ?? []
+        
+        return virtualPubkeyResults + pubkeyResults
     }
     
-    var stringFirstLink : String {
+    var mentionMatches: [NSTextCheckingResult] {
+        let textWithoutHightlights = self.replacingHightlightedChars
+        let mentionRegex = try? NSRegularExpression(pattern: "\\B@[^\\s]+")
+        
+        return mentionRegex?.matches(
+            in: textWithoutHightlights,
+            range: NSRange(textWithoutHightlights.startIndex..., in: textWithoutHightlights)
+        ) ?? []
+    }
+    
+    var highlightedMatches: [NSTextCheckingResult] {
+        let highlightedRegex = try? NSRegularExpression(pattern: "`(.*?)`", options: .dotMatchesLineSeparators)
+        return highlightedRegex?.matches(in: self, range: NSRange(self.startIndex..., in: self)) ?? []
+    }
+    
+    var replacingHightlightedChars: String {
+        if !self.contains("`") {
+            return self
+        }
+        
+        var adaptedString = self
+        let highlightedRegex = try? NSRegularExpression(pattern: "`(.*?)`", options: .dotMatchesLineSeparators)
+        let matches =  highlightedRegex?.matches(in: self, range: NSRange(self.startIndex..., in: self)) ?? []
+        
+        for (index, match) in matches.enumerated() {
+            
+            ///Subtracting the previous matches delimiter characters since they have been removed from the string
+            let substractionNeeded = index * 2
+            let adaptedRange = NSRange(location: match.range.location - substractionNeeded, length: match.range.length)
+            
+            adaptedString = adaptedString.replacingOccurrences(
+                of: "`",
+                with: "",
+                range: Range(adaptedRange, in: adaptedString)
+            )
+        }
+        
+        return adaptedString
+    }
+    
+    var stringFirstWebLink : (String, NSRange)? {
         if let range = self.stringLinks.first?.range {
             let matchString = (self as NSString).substring(with: range) as String
-            return matchString
+            return (matchString, range)
         }
-        return ""
+        return nil
     }
     
-    var stringFirstTribeLink : String {
+    var stringFirstTribeLink : (String, NSRange)? {
         for link in self.stringLinks {
             let range = link.range
             let matchString = (self as NSString).substring(with: range) as String
             if matchString.starts(with: "sphinx.chat://?action=tribe") {
-                return matchString
+                return (matchString, range)
             }
         }
-        return ""
+        return nil
     }
     
-    var stringFirstPubKey : String {
+    var stringFirstPubKey : (String, NSRange)? {
         if let range = self.pubKeyMatches.first?.range {
             let matchString = (self as NSString).substring(with: range) as String
-            return matchString
+            return (matchString, range)
         }
-        return ""
+        return nil
+    }
+    
+    var stringFirstLink: String? {
+        let firstWebLink = stringFirstWebLink
+        let firstContactLink = stringFirstPubKey
+        let firstTribeJoinLink = stringFirstTribeLink
+        
+        var ranges = [NSRange]()
+
+        if let firstWebLinkRange = firstWebLink?.1 {
+            ranges.append(firstWebLinkRange)
+        }
+        
+        if let firstContactLinkRange = firstContactLink?.1 {
+            ranges.append(firstContactLinkRange)
+        }
+        
+        if let firstTribeJoinLinkRange = firstTribeJoinLink?.1 {
+            ranges.append(firstTribeJoinLinkRange)
+        }
+        
+        ranges = ChatHelper.removeDuplicatedContainedFrom(urlRanges: ranges)
+        
+        if let firstLinkRange = ranges.first {
+            return (self as NSString).substring(with: firstLinkRange) as String
+        }
+        
+        return nil
     }
     
     var hasLinks: Bool {
-        if self.isVideoCallLink {
+        if self.isCallLink {
             return false
         }
         
@@ -270,6 +393,12 @@ extension String {
         return pubKeyMatches.count > 0 && !hasTribeLinks
     }
     
+    var isTribeJoinLink : Bool {
+        get {
+            return self.starts(with: "sphinx.chat://?action=tribe")
+        }
+    }
+    
     var isPubKey : Bool {
         get {
             let pubkeyRegex = try? NSRegularExpression(pattern: "^[A-F0-9a-f]{66}$")
@@ -284,24 +413,33 @@ extension String {
          }
      }
      
-     var pubkeyComponents : (String, String) {
-         get {
-             let components = self.components(separatedBy: ":")
-             if components.count >= 3 {
-                 return (components[0], self.replacingOccurrences(of: components[0] + ":", with: ""))
-             }
-             return (self, "")
-         }
-     }
-     
-     func isExistingContactPubkey() -> (Bool, UserContact?) {
-        let pubkey = self.stringFirstPubKey
-        let (pk, _) = pubkey.pubkeyComponents
-        if let contact = UserContact.getContactWith(pubkey: pk), !contact.fromGroup {
-            return (true, contact)
+    var pubkeyComponents : (String, String) {
+        get {
+            let components = self.components(separatedBy: ":")
+            if components.count >= 3 {
+                return (components[0], self.replacingOccurrences(of: components[0] + ":", with: ""))
+            }
+            return (self, "")
         }
-        if let owner = UserContact.getOwner(), owner.publicKey == pk {
-            return (true, owner)
+    }
+    
+    func withProtocol(protocolString: String) -> String {
+        if !self.contains(protocolString) {
+            let linkString = "\(protocolString)://\(self)"
+            return linkString
+        }
+        return self
+    }
+     
+    func isExistingContactPubkey() -> (Bool, UserContact?) {
+        if let pubkey = self.stringFirstPubKey?.0 {
+            let (pk, _) = pubkey.pubkeyComponents
+            if let contact = UserContact.getContactWith(pubkey: pk), !contact.fromGroup {
+                return (true, contact)
+            }
+            if let owner = UserContact.getOwner(), owner.publicKey == pk {
+                return (true, owner)
+            }
         }
         return (false, nil)
     }
@@ -338,6 +476,12 @@ extension String {
         return Data(self.utf8).base64EncodedString()
     }
     
+    var hexEncoded : String {
+        let data = Data(self.utf8)
+        let hexString = data.map{ String(format:"%02x", $0) }.joined()
+        return hexString
+    }
+    
     var dataFromString : Data? {
         return Data(base64Encoded: self.replacingOccurrences(of: "-", with: "+").replacingOccurrences(of: "_", with: "/"))
     }
@@ -356,13 +500,16 @@ extension String {
     
     var callRoom : String {
         if let range = self.lowerClean.range(of: "sphinx.call.") {
-            let room = self.lowerClean[range.lowerBound..<self.endIndex]
+            let endIndex = self.index(of: "#") ?? self.endIndex
+            let roomWithParams = String(self.lowerClean[range.lowerBound..<endIndex])
+            let queryEndIndex = roomWithParams.index(of: "?") ?? roomWithParams.endIndex
+            let room = roomWithParams.lowerClean[roomWithParams.startIndex..<queryEndIndex]
             return String(room)
         }
         return self.lowerClean
     }
     
-    var isVideoCallLink: Bool {
+    var isCallLink: Bool {
         get {
             return self.lowerClean.starts(with: "http") && self.lowerClean.contains(TransactionMessage.kCallRoomName)
         }
@@ -381,14 +528,18 @@ extension String {
     
     var isPodcastComment: Bool {
         get {
-            return self.starts(with: PodcastPlayerHelper.kClipPrefix)
+            return self.starts(with: PodcastFeed.kClipPrefix)
         }
     }
     
     var isPodcastBoost: Bool {
         get {
-            return self.starts(with: PodcastPlayerHelper.kBoostPrefix)
+            return self.starts(with: PodcastFeed.kBoostPrefix)
         }
+    }
+    
+    var isYouTubeRSSFeed: Bool {
+        contains("www.youtube.com")
     }
     
     var podcastId: Int {
@@ -443,7 +594,9 @@ extension String {
         return self
     }
     
-    func getNameStyleString() -> String {
+    func getNameStyleString(
+        lineBreak:  Bool = true
+    ) -> String {
         if self == "" {
             return "Unknown"
         }
@@ -457,14 +610,18 @@ extension String {
                 namesString = "\(name)"
                 namesCount += 1
             } else if namesCount == 1 {
-                namesString = "\(namesString)\n\(name)"
+                if lineBreak {
+                    namesString = "\(namesString)\n\(name)"
+                } else {
+                    namesString = "\(namesString) \(name)"
+                }
                 namesCount += 1
             } else {
                 namesString = "\(namesString) \(name)"
             }
         }
         
-        return namesString.uppercased()
+        return namesString
     }
     
     func getFirstNameStyleString() -> String {
@@ -507,6 +664,14 @@ extension String {
             return defaultValue
         }
         return self
+    }
+    
+    func withURLParam(key: String, value: String) -> String {
+        if self.contains("?") {
+            return "\(self)&\(key)=\(value)"
+        } else {
+            return "\(self)?\(key)=\(value)"
+        }
     }
     
     public static func getAttributedText(string: String,
@@ -578,6 +743,63 @@ extension String {
         }
         return nil
     }
+    
+    func getLinkValueFor(key: String) -> String? {
+        for component in self.components(separatedBy: "&") {
+            let elements = component.components(separatedBy: "=")
+            if elements.count > 1 {
+                let itemKey = elements[0]
+                
+                if itemKey == key {
+                    return component.replacingOccurrences(of: "\(itemKey)=", with: "")
+                }
+            }
+        }
+        return nil
+    }
+    
+    func getLinkComponentWith(key: String) -> String? {
+        let components = self.components(separatedBy: "&")
+        
+        if components.count > 0 {
+            for component in components {
+                let elements = component.components(separatedBy: "=")
+                if elements.count > 1 {
+                    let componentKey = elements[0]
+                    let value = component.replacingOccurrences(of: "\(componentKey)=", with: "")
+                    
+                    switch(componentKey) {
+                    case key:
+                        return value
+                    default:
+                        break
+                    }
+                }
+            }
+        }
+        
+        return nil
+    }
+    
+    func getHostAndPort(
+        defaultPort: UInt16
+    ) -> (String, UInt16, Bool) {
+        
+        var port: UInt16 = defaultPort
+        
+        if let portIndex = self.lastIndex(of: ":") {
+            let portString = String(self[portIndex...]).replacingOccurrences(of: ":", with: "")
+            
+            if let portInt = UInt16(portString) {
+                port = portInt
+            }
+        }
+        
+        let actualHost = self.replacingOccurrences(of: ":\(port)", with: "")
+        let ssl = port == 8883
+        
+        return (actualHost, port, ssl)
+    }
 }
 
 extension Character {
@@ -622,3 +844,84 @@ extension StringProtocol {
         return result
     }
 }
+
+extension String {
+    
+    var attributedStringFromHTML: NSAttributedString? {
+        guard let data = data(using: .utf8) else {
+            return nil
+        }
+        
+        do {
+            return try NSAttributedString(
+                data: data,
+                options: [
+                    .documentType: NSAttributedString.DocumentType.html,
+                    .characterEncoding:String.Encoding.utf8.rawValue,
+                ],
+                documentAttributes: nil
+            )
+        } catch {
+            return nil
+        }
+    }
+    
+    var nonHtmlRawString: String {
+        return self.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+    }
+    
+    func removingPunctuation() -> String {
+        var filteredString = self
+        while true {
+            if let forbiddenCharRange = filteredString.rangeOfCharacter(from: CharacterSet.punctuationCharacters)  {
+                filteredString.removeSubrange(forbiddenCharRange)
+            } else {
+                break
+            }
+        }
+        return filteredString
+    }
+    
+    var personHost: String? {
+        let elements = self.split(separator: "/")
+        if let last = elements.last {
+            return self.replacingOccurrences(of: "/\(String(last))", with: "")
+        }
+        return nil
+    }
+    
+    var personUUID: String? {
+        let elements = self.split(separator: "/")
+        if let last = elements.last {
+            return String(last)
+        }
+        return nil
+    }
+    
+    var tribeMemberProfileValue : String {
+        if self.trim().isEmpty {
+            return "-"
+        }
+        return self
+    }
+    
+    var isEmptyPinnedMessage : Bool {
+        return self.isEmpty || self == "_"
+    }
+    
+    var isNotEmpty: Bool {
+        return !isEmpty
+    }
+    
+    func isNotEmptyString(with placeHolder: String) -> Bool {
+        return !isEmpty && self != placeHolder
+    }
+    
+    func substring(range: NSRange) -> String {
+        let botIndex = self.index(self.startIndex, offsetBy: range.location)
+        let newRange = botIndex..<self.index(botIndex, offsetBy: range.length)
+        return String(self[newRange])
+   }
+}
+
+

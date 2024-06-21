@@ -15,21 +15,33 @@ public enum MessagesSize: Int {
 }
 
 class Constants {
+    
+    public static var kMaxPinTimeoutValue : Int = 25
+    
+    public static var kMargin: CGFloat = 16.0
+    
     //Fonts
-    public static var kMessageFont = NSFont(name: "Roboto-Regular", size: 16.0)!
+    public static var kMessageFont = NSFont(name: "Roboto-Light", size: 16.0)!
+    public static var kMessageHighlightedFont = NSFont(name: "Roboto-Light", size: 16)!
     public static var kEmojisFont = NSFont(name: "Roboto-Regular", size: 40.0)!
     public static let kAmountFont = NSFont(name: "Roboto-Bold", size: 16.0)!
     public static let kBoldSmallMessageFont = NSFont(name: "Roboto-Bold", size: 10.0)!
-    public static var kMessagePreviewFont = NSFont(name: "Roboto-Regular", size: 14.0)!
+    public static var kMessagePreviewFont = NSFont(name: "Roboto-Light", size: 14.0)!
     public static var kNewMessagePreviewFont = NSFont(name: "Roboto-Bold", size: 14.0)!
-    public static var kChatNameFont = NSFont(name: "Roboto-Regular", size: 17.0)!
+    public static var kChatNameFont = NSFont(name: "Roboto-Regular", size: 16.0)!
+    public static var kChatNameHighlightedFont = NSFont(name: "Roboto-Bold", size: 16.0)!
+    public static var kThreadHeaderFont = NSFont(name: "Roboto-Regular", size: 16.0)!
+    public static var kThreadHeaderHighlightedFont = NSFont(name: "Roboto-Light", size: 16.0)!
+    public static var kThreadListFont = NSFont(name: "Roboto-Regular", size: 17.0)!
+    public static var kThreadListHighlightedFont = NSFont(name: "Roboto-Light", size: 17.0)!
     
     //Colors
+    public static var kMessageLineHeight: CGFloat = 35
     public static let kMessageTextColor = NSColor.Sphinx.TextMessages
     public static let kEncryptionMessageColor = NSColor.Sphinx.PrimaryRed
     
     //Sizes
-    public static var kChatListRowHeight: CGFloat = 85
+    public static var kChatListRowHeight: CGFloat = 70
     public static var kPictureBubbleHeight: CGFloat = 250.0
     public static var kPDFBubbleHeight: CGFloat = 150.0
     public static var kFileBubbleHeight: CGFloat = 60.0
@@ -65,17 +77,21 @@ class Constants {
     public static var kChatListMessagePosition: CGFloat = 13
     
     public static func setSize() {
-        let size = UserDefaults.Keys.messagesSize.get(defaultValue: 0)
+        let size = UserDefaults.Keys.messagesSize.get(defaultValue: MessagesSize.Medium.rawValue)
         
         switch(size) {
         case MessagesSize.Small.rawValue:
-            kMessageFont = NSFont(name: "Roboto-Regular", size: 13.0)!
+            kMessageFont = NSFont(name: "Roboto-Light", size: 14.0)!
+            kMessageHighlightedFont = NSFont(name: "Roboto-Light", size: 13.0)!
             kEmojisFont = NSFont(name: "Roboto-Regular", size: 30.0)!
-            kMessagePreviewFont = NSFont(name: "Roboto-Regular", size: 12.0)!
-            kNewMessagePreviewFont = NSFont(name: "Roboto-Bold", size: 12.0)!
-            kChatNameFont = NSFont(name: "Roboto-Regular", size: 15.0)!
+            kMessagePreviewFont = NSFont(name: "Roboto-Light", size: 12.0)!
+            kNewMessagePreviewFont = NSFont(name: "Roboto-Light", size: 12.0)!
+            kChatNameFont = NSFont(name: "Roboto-Regular", size: 14.0)!
+            kChatNameHighlightedFont = NSFont(name: "Roboto-Bold", size: 14.0)!
             
-            kChatListRowHeight = 60
+            kMessageLineHeight = 31
+            
+            kChatListRowHeight = 70
             kPictureBubbleHeight = 210.0
             kBubbleCurveSize = 7
             kLabelMargins = 8
@@ -87,11 +103,15 @@ class Constants {
             kChatListMessagePosition = 10.5
             break
         case MessagesSize.Medium.rawValue:
-            kMessageFont = NSFont(name: "Roboto-Regular", size: 14.0)!
+            kMessageFont = NSFont(name: "Roboto-Light", size: 15.0)!
+            kMessageHighlightedFont = NSFont(name: "Roboto-Light", size: 14.0)!
             kEmojisFont = NSFont(name: "Roboto-Regular", size: 35.0)!
-            kMessagePreviewFont = NSFont(name: "Roboto-Regular", size: 13.0)!
-            kNewMessagePreviewFont = NSFont(name: "Roboto-Bold", size: 13.0)!
-            kChatNameFont = NSFont(name: "Roboto-Regular", size: 16.0)!
+            kMessagePreviewFont = NSFont(name: "Roboto-Light", size: 13.0)!
+            kNewMessagePreviewFont = NSFont(name: "Roboto-Light", size: 13.0)!
+            kChatNameFont = NSFont(name: "Roboto-Regular", size: 15.0)!
+            kChatNameHighlightedFont = NSFont(name: "Roboto-Bold", size: 15.0)!
+            
+            kMessageLineHeight = 32
             
             kChatListRowHeight = 70
             kPictureBubbleHeight = 230.0
@@ -105,13 +125,17 @@ class Constants {
             kChatListMessagePosition = 11.5
             break
         case MessagesSize.Big.rawValue:
-            kMessageFont = NSFont(name: "Roboto-Regular", size: 16.0)!
+            kMessageFont = NSFont(name: "Roboto-Light", size: 16.0)!
+            kMessageHighlightedFont = NSFont(name: "Roboto-Light", size: 16.0)!
             kEmojisFont = NSFont(name: "Roboto-Regular", size: 40.0)!
-            kMessagePreviewFont = NSFont(name: "Roboto-Regular", size: 14.0)!
-            kNewMessagePreviewFont = NSFont(name: "Roboto-Bold", size: 14.0)!
-            kChatNameFont = NSFont(name: "Roboto-Regular", size: 17.0)!
+            kMessagePreviewFont = NSFont(name: "Roboto-Light", size: 14.0)!
+            kNewMessagePreviewFont = NSFont(name: "Roboto-Light", size: 14.0)!
+            kChatNameFont = NSFont(name: "Roboto-Regular", size: 16.0)!
+            kChatNameHighlightedFont = NSFont(name: "Roboto-Bold", size: 16.0)!
             
-            kChatListRowHeight = 85
+            kMessageLineHeight = 35
+            
+            kChatListRowHeight = 70
             kPictureBubbleHeight = 250.0
             kBubbleCurveSize = 10
             kLabelMargins = 20
@@ -126,4 +150,8 @@ class Constants {
             break
         }
     }
+}
+
+extension Constants {
+    static let satoshisInBTC = 100_000_000
 }

@@ -90,6 +90,14 @@ extension TransactionMessage {
         return false
     }
     
+    func getGiphyUrl() -> URL? {
+        if let messageContent = messageContent,
+            let urlString = GiphyHelper.getUrlFrom(message: messageContent, small: false) {
+            return URL(string: urlString)
+        }
+        return nil
+    }
+    
     func getMediaUrl(queryDB: Bool = true) -> URL? {
         let incoming = isIncoming()
         

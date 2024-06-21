@@ -11,43 +11,97 @@ import SwiftyJSON
 
 final class ChatListViewModel: NSObject {
     
-    private var contactsService: ContactsService!
-    
     public static let kMessagesPerPage: Int = 200
     
-    init(contactsService: ContactsService) {
-        self.contactsService = contactsService
+    public static var restoreRunning = false
+    
+    public static func isRestoreRunning() -> Bool {
+        return restoreRunning
     }
     
-    func loadFriends(completion: @escaping () -> ()) {
-        if let contactsService = contactsService {
-            API.sharedInstance.getLatestContacts(date: Date(), callback: {(contacts, chats, subscriptions, invites) -> () in
-                contactsService.insertObjects(contacts: contacts, chats: chats, subscriptions: subscriptions, invites: invites)
+    func loadFriends(
+        progressCompletion: ((Bool) -> ())? = nil,
+        completion: @escaping (Bool) -> ()
+    ) {
+        let restoring = self.isRestoring()
+        
+        ChatListViewModel.restoreRunning = restoring
+
+        restoreContacts(
+            page: 1,
+            restoring: restoring,
+            progressCompletion: progressCompletion,
+            completion: completion
+        )
+    }
+    
+    func restoreContacts(
+        page: Int,
+        restoring: Bool,
+        progressCompletion: ((Bool) -> ())? = nil,
+        completion: @escaping (Bool) -> ()
+    ) {
+        API.sharedInstance.getLatestContacts(
+            page: page,
+            date: Date(),
+            nextPageCallback: {(contacts, chats, subscriptions, invites) -> () in
+                self.saveObjects(
+                    contacts: contacts,
+                    chats: chats,
+                    subscriptions: subscriptions,
+                    invites: invites
+                )
+                
+                self.restoreContacts(
+                    page: page + 1,
+                    restoring: restoring,
+                    progressCompletion: progressCompletion,
+                    completion: completion
+                )
+                
+                progressCompletion?(restoring)
+            },
+            callback: {(contacts, chats, subscriptions, invites) -> () in
+            
+                self.saveObjects(
+                    contacts: contacts,
+                    chats: chats,
+                    subscriptions: subscriptions,
+                    invites: invites
+                )
+                
+                CoreDataManager.sharedManager.persistentContainer.viewContext.saveContext()
+                    
                 self.forceKeychainSync()
-                completion()
-            })
-        }
+                self.authenticateWithMemesServer()
+                
+                completion(restoring)
+            }
+        )
     }
     
-    func getChatListObjectsCount() -> Int {
-        if let contactsService = contactsService {
-            return contactsService.chatListObjects.count
-        }
-        return 0
-    }
-    
-    func updateContactsAndChats() {
-        guard let contactsService = contactsService else {
-            return
-        }
-        contactsService.updateContacts()
-        contactsService.updateChats()
+    func saveObjects(
+        contacts: [JSON],
+        chats: [JSON],
+        subscriptions: [JSON],
+        invites: [JSON]
+    ) {
+        UserContactsHelper.insertObjects(
+            contacts: contacts,
+            chats: chats,
+            subscriptions: subscriptions,
+            invites: invites
+        )
     }
     
     func forceKeychainSync() {
         UserData.sharedInstance.forcePINSyncOnKeychain()
         UserData.sharedInstance.saveNewNodeOnKeychain()
         EncryptionManager.sharedInstance.saveKeysOnKeychain()
+    }
+    
+    func authenticateWithMemesServer() {
+        AttachmentsManager.sharedInstance.runAuthentication()
     }
     
     func isRestoring() -> Bool {
@@ -60,99 +114,68 @@ final class ChatListViewModel: NSObject {
     
     func syncMessages(
         chatId: Int? = nil,
-        progressCallback: @escaping (Int, Bool) -> (),
+        progressCallback: @escaping (Double, Bool) -> (),
         completion: @escaping (Int, Int) -> ()
     ) {
-        if syncMessagesTask != nil {
-            return
-        }
+        UserDefaults.Keys.messagesFetchPage.set(
+            UserDefaults.Keys.messagesFetchPage.get(defaultValue: 1)
+        )
         
-        let restoring = self.isRestoring()
-        
-        if !restoring {
-            UserDefaults.Keys.messagesFetchPage.removeValue()
-        }
-        
-        syncMessagesTask = DispatchWorkItem { [weak self] in
-            guard let self = self else { return }
-            
-            self.newMessagesChatIds = []
-            self.syncMessagesDate = Date()
-        
-            self.getMessagesPaginated(
-                restoring: restoring,
-                prevPageNewMessages: 0,
-                chatId: chatId,
-                date: self.syncMessagesDate,
-                progressCallback: progressCallback,
-                completion: { chatNewMessagesCount, newMessagesCount in
-                    
-                    UserDefaults.Keys.messagesFetchPage.removeValue()
-                    
-                    self.cancelAndResetSyncMessagesTask()
-                    
-                    Chat.updateLastMessageForChats(
-                        self.newMessagesChatIds
-                    )
-                    
-                    completion(chatNewMessagesCount, newMessagesCount)
-                }
-            )
-        }
-        
-        syncMessagesTask?.perform()
+        self.newMessagesChatIds = []
+        self.syncMessagesDate = Date()
+    
+        self.getMessagesPaginated(
+            prevPageNewMessages: 0,
+            chatId: chatId,
+            date: self.syncMessagesDate,
+            progressCallback: progressCallback,
+            completion: { chatNewMessagesCount, newMessagesCount in
+                
+                UserDefaults.Keys.messagesFetchPage.removeValue()
+                
+                completion(chatNewMessagesCount, newMessagesCount)
+            }
+        )
     }
     
     func finishRestoring() {
-        cancelAndResetSyncMessagesTask()
-        
         SignupHelper.completeSignup()
         UserDefaults.Keys.messagesFetchPage.removeValue()
         API.sharedInstance.lastSeenMessagesDate = syncMessagesDate
     }
     
-    func cancelAndResetSyncMessagesTask() {
-        syncMessagesTask?.cancel()
-        syncMessagesTask = nil
-    }
-    
     func getMessagesPaginated(
-        restoring: Bool,
         prevPageNewMessages: Int,
         chatId: Int? = nil,
         date: Date,
-        progressCallback: @escaping (Int, Bool) -> (),
+        retry: Int = 0,
+        progressCallback: @escaping (Double, Bool) -> (),
         completion: @escaping (Int, Int) -> ()
     ) {
         
         let page = UserDefaults.Keys.messagesFetchPage.get(defaultValue: 1)
-        
+
         API.sharedInstance.getMessagesPaginated(
             page: page,
             date: date,
             callback: {(newMessagesTotal, newMessages) -> () in
                 
-                if self.syncMessagesTask == nil || self.syncMessagesTask?.isCancelled == true {
-                    return
-                }
-                
-                progressCallback(
-                    self.getRestoreProgress(
-                        currentPage: page,
-                        newMessagesTotal: newMessagesTotal,
-                        itemsPerPage: ChatListViewModel.kMessagesPerPage
-                    ), restoring
-                )
+                let restoring = self.isRestoring()
                 
                 if newMessages.count > 0 {
+                    
+                    progressCallback(
+                        self.getRestoreProgress(
+                            currentPage: page,
+                            newMessagesTotal: newMessagesTotal,
+                            itemsPerPage: ChatListViewModel.kMessagesPerPage
+                        ), restoring
+                    )
+                    
                     self.addMessages(
                         messages: newMessages,
                         chatId: chatId,
                         completion: { (newChatMessagesCount, newMessagesCount) in
-                            
-                            if self.syncMessagesTask == nil || self.syncMessagesTask?.isCancelled == true {
-                                return
-                            }
                             
                             if newMessages.count < ChatListViewModel.kMessagesPerPage {
                                 
@@ -168,10 +191,10 @@ final class ChatListViewModel: NSObject {
                             } else {
                                 
                                 CoreDataManager.sharedManager.saveContext()
+                                
                                 UserDefaults.Keys.messagesFetchPage.set(page + 1)
                                 
                                 self.getMessagesPaginated(
-                                    restoring: restoring,
                                     prevPageNewMessages: newMessagesCount + prevPageNewMessages,
                                     chatId: chatId,
                                     date: date,
@@ -184,17 +207,18 @@ final class ChatListViewModel: NSObject {
                     completion(0, 0)
                 }
             }, errorCallback: {
-                DelayPerformedHelper.performAfterDelay(seconds: 0.5, completion: {
-                    self.getMessagesPaginated(
-                        restoring: restoring,
-                        prevPageNewMessages: prevPageNewMessages,
-                        chatId: chatId,
-                        date: date,
-                        progressCallback: progressCallback,
-                        completion: completion
-                    )
-                })
-                completion(0, 0)
+                if retry < 5 {
+                    DelayPerformedHelper.performAfterDelay(seconds: 1.0, completion: {
+                        self.getMessagesPaginated(
+                            prevPageNewMessages: prevPageNewMessages,
+                            chatId: chatId,
+                            date: date,
+                            retry: retry + 1,
+                            progressCallback: progressCallback,
+                            completion: completion
+                        )
+                    })
+                }
             })
     }
     
@@ -202,23 +226,53 @@ final class ChatListViewModel: NSObject {
         currentPage: Int,
         newMessagesTotal: Int,
         itemsPerPage: Int
-    ) -> Int {
+    ) -> Double {
         
         if (newMessagesTotal <= 0) {
             return -1
         }
         
-        let pages = (newMessagesTotal <= itemsPerPage) ? 1 : (newMessagesTotal / itemsPerPage)
-        let progress: Int = currentPage * 100 / pages
+        let pages = (newMessagesTotal <= itemsPerPage) ? 1 : (Double(newMessagesTotal) / Double(itemsPerPage))
+        let progress = Double(currentPage) * 100 / pages
 
         return progress
     }
     
-    func addMessages(messages: [JSON], chatId: Int? = nil, completion: @escaping (Int, Int) -> ()) {
+    func getExistingMessagesFor(
+        ids: [Int]
+    ) -> [Int: TransactionMessage] {
+        var messagesMap: [Int: TransactionMessage] = [:]
+        
+        for existingMessage in TransactionMessage.getMessagesWith(ids: ids) {
+            messagesMap[existingMessage.id] = existingMessage
+        }
+        
+        return messagesMap
+    }
+    
+    func addMessages(
+        messages: [JSON],
+        chatId: Int? = nil,
+        completion: @escaping (Int, Int) -> ()
+    ) {
+        
+        let ids: [Int] = messages.map({ $0["id"].intValue })
+        let existingMessagesMap = getExistingMessagesFor(ids: ids)
+        
         var newChatMessagesCount = 0
         
         for messageDictionary in messages {
-            let (message, isNew) = TransactionMessage.insertMessage(m: messageDictionary)
+            var existingMessage: TransactionMessage? = nil
+            
+            if let id = messageDictionary["id"].int {
+                existingMessage = existingMessagesMap[id]
+            }
+            
+            let (message, isNew) = TransactionMessage.insertMessage(
+                m: messageDictionary,
+                existingMessage: existingMessage
+            )
+            
             if let message = message {
                 message.setPaymentInvoiceAsPaid()
                 

@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="TransactionCollectionViewItem" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="addressLabel" destination="NZ4-la-5aN" id="Xmp-Lb-DGC"/>
+                <outlet property="amountLabel" destination="UiL-u1-ssT" id="FSV-zT-FnT"/>
+                <outlet property="backgroundColorBox" destination="bGt-i1-TdG" id="hPK-l3-xDB"/>
+                <outlet property="bottomView" destination="umP-wg-OK0" id="fPZ-o5-iL6"/>
+                <outlet property="dayOfMonthLabel" destination="634-ua-tBF" id="qP8-Fz-XDS"/>
+                <outlet property="dayOfWeekLabel" destination="6LC-4n-MVq" id="zlE-ya-6NG"/>
+                <outlet property="errorMessageLabel" destination="1GA-bK-7s2" id="cxl-Du-ZOT"/>
+                <outlet property="failedPaymentLabel" destination="2Lk-V9-WrF" id="Oec-dz-Kj7"/>
+                <outlet property="paymentIcon" destination="NMk-Q6-Uns" id="2Xz-zf-aSa"/>
+                <outlet property="timeLabel" destination="PDC-dI-UaR" id="7Et-Jw-bgC"/>
+                <outlet property="topView" destination="jM9-xJ-Mqq" id="8VM-Er-D1A"/>
+                <outlet property="view" destination="c22-O7-iKe" id="jpt-U6-b4M"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="450" height="160"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="bGt-i1-TdG">
+                    <rect key="frame" x="0.0" y="0.0" width="450" height="160"/>
+                    <view key="contentView" id="Ifl-7R-8Qo">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="160"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <color key="fillColor" name="TransactionBG"/>
+                </box>
+                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wir-lM-fxv">
+                    <rect key="frame" x="0.0" y="0.0" width="450" height="160"/>
+                    <subviews>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="jM9-xJ-Mqq">
+                            <rect key="frame" x="0.0" y="80" width="450" height="80"/>
+                            <subviews>
+                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="qp7-qn-4DE">
+                                    <rect key="frame" x="0.0" y="0.0" width="55" height="80"/>
+                                    <subviews>
+                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NMk-Q6-Uns">
+                                            <rect key="frame" x="18" y="30" width="20" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="U0h-WS-gmw"/>
+                                                <constraint firstAttribute="width" constant="20" id="smG-eb-059"/>
+                                            </constraints>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="transaction-warning-icon" id="yz8-px-ohb"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="NMk-Q6-Uns" firstAttribute="centerX" secondItem="qp7-qn-4DE" secondAttribute="centerX" id="1GL-W3-jrS"/>
+                                        <constraint firstAttribute="width" constant="55" id="8Nf-EG-cl1"/>
+                                        <constraint firstItem="NMk-Q6-Uns" firstAttribute="centerY" secondItem="qp7-qn-4DE" secondAttribute="centerY" id="dkQ-Co-5bN"/>
+                                    </constraints>
+                                </customView>
+                                <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QEA-Mk-2fI">
+                                    <rect key="frame" x="55" y="22" width="379" height="36"/>
+                                    <subviews>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="yH3-zI-j7h">
+                                            <rect key="frame" x="0.0" y="0.0" width="224" height="36"/>
+                                            <subviews>
+                                                <stackView distribution="equalCentering" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s63-LW-GSi">
+                                                    <rect key="frame" x="0.0" y="0.0" width="224" height="36"/>
+                                                    <subviews>
+                                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="NZ4-la-5aN">
+                                                            <rect key="frame" x="-2" y="20" width="127" height="16"/>
+                                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Jonathan Jonathan" id="1Xq-pr-4OU">
+                                                                <font key="font" size="14" name="Roboto-Regular"/>
+                                                                <color key="textColor" name="MainBottomIcons"/>
+                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2Lk-V9-WrF">
+                                                            <rect key="frame" x="-2" y="0.0" width="87" height="14"/>
+                                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Failed Payment" id="apZ-DY-72B">
+                                                                <font key="font" size="12" name="Roboto-Medium"/>
+                                                                <color key="textColor" name="PrimaryRed"/>
+                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                    </subviews>
+                                                    <visibilityPriorities>
+                                                        <integer value="1000"/>
+                                                        <integer value="1000"/>
+                                                    </visibilityPriorities>
+                                                    <customSpacing>
+                                                        <real value="3.4028234663852886e+38"/>
+                                                        <real value="3.4028234663852886e+38"/>
+                                                    </customSpacing>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="s63-LW-GSi" secondAttribute="trailing" id="OBl-dV-pWw"/>
+                                                <constraint firstItem="s63-LW-GSi" firstAttribute="top" secondItem="yH3-zI-j7h" secondAttribute="top" id="PSh-Dd-1BC"/>
+                                                <constraint firstItem="s63-LW-GSi" firstAttribute="leading" secondItem="yH3-zI-j7h" secondAttribute="leading" id="Q96-6r-apw"/>
+                                                <constraint firstAttribute="bottom" secondItem="s63-LW-GSi" secondAttribute="bottom" id="jfv-oM-xA1"/>
+                                                <constraint firstAttribute="width" constant="224" id="vi1-3L-Bhq"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="MYG-Mw-dQ5">
+                                            <rect key="frame" x="224" y="0.0" width="155" height="36"/>
+                                            <subviews>
+                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2hv-qK-ZH3">
+                                                    <rect key="frame" x="133" y="20" width="24" height="16"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="sat" id="uza-VF-LpA">
+                                                        <font key="font" size="14" name="Roboto-Medium"/>
+                                                        <color key="textColor" name="WashedOutReceivedText"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UiL-u1-ssT">
+                                                    <rect key="frame" x="76" y="20" width="56" height="16"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="250 000" id="BkO-0b-fFh">
+                                                        <font key="font" size="14" name="Roboto-Medium"/>
+                                                        <color key="textColor" name="Text"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PDC-dI-UaR">
+                                                    <rect key="frame" x="106" y="0.0" width="51" height="13"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="02:27 PM" id="afm-KJ-3S0">
+                                                        <font key="font" size="11" name="Roboto-Regular"/>
+                                                        <color key="textColor" name="WashedOutReceivedText"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="RMY-bp-KNq">
+                                                    <rect key="frame" x="96" y="5" width="4" height="4"/>
+                                                    <subviews>
+                                                        <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="2" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="GM7-Na-Y9n">
+                                                            <rect key="frame" x="0.0" y="0.0" width="4" height="4"/>
+                                                            <view key="contentView" id="Zu1-bW-GaH">
+                                                                <rect key="frame" x="0.0" y="0.0" width="4" height="4"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            </view>
+                                                            <color key="fillColor" name="WashedOutReceivedText"/>
+                                                        </box>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="4" id="4ZG-9S-C6e"/>
+                                                        <constraint firstItem="GM7-Na-Y9n" firstAttribute="top" secondItem="RMY-bp-KNq" secondAttribute="top" id="IMy-qK-CC6"/>
+                                                        <constraint firstAttribute="width" constant="4" id="OjU-FQ-3oN"/>
+                                                        <constraint firstAttribute="trailing" secondItem="GM7-Na-Y9n" secondAttribute="trailing" id="S8K-0L-BIB"/>
+                                                        <constraint firstAttribute="bottom" secondItem="GM7-Na-Y9n" secondAttribute="bottom" id="hBq-lT-f4e"/>
+                                                        <constraint firstItem="GM7-Na-Y9n" firstAttribute="leading" secondItem="RMY-bp-KNq" secondAttribute="leading" id="mHy-Vj-ZAi"/>
+                                                    </constraints>
+                                                </customView>
+                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="634-ua-tBF">
+                                                    <rect key="frame" x="49" y="0.0" width="41" height="13"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="May 01" id="ThP-Lj-QXz">
+                                                        <font key="font" size="11" name="Roboto-Regular"/>
+                                                        <color key="textColor" name="WashedOutReceivedText"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="GfR-ZB-uzh">
+                                                    <rect key="frame" x="39" y="5" width="4" height="4"/>
+                                                    <subviews>
+                                                        <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="2" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="XdU-lR-ncA">
+                                                            <rect key="frame" x="0.0" y="0.0" width="4" height="4"/>
+                                                            <view key="contentView" id="N9A-a0-Kmj">
+                                                                <rect key="frame" x="0.0" y="0.0" width="4" height="4"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            </view>
+                                                            <color key="fillColor" name="WashedOutReceivedText"/>
+                                                        </box>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="XdU-lR-ncA" firstAttribute="leading" secondItem="GfR-ZB-uzh" secondAttribute="leading" id="60E-XX-WCS"/>
+                                                        <constraint firstAttribute="trailing" secondItem="XdU-lR-ncA" secondAttribute="trailing" id="DNf-MU-nsK"/>
+                                                        <constraint firstItem="XdU-lR-ncA" firstAttribute="top" secondItem="GfR-ZB-uzh" secondAttribute="top" id="PRL-Ll-Kfv"/>
+                                                        <constraint firstAttribute="bottom" secondItem="XdU-lR-ncA" secondAttribute="bottom" id="c99-Bh-YBy"/>
+                                                        <constraint firstAttribute="width" constant="4" id="dWu-pk-6bA"/>
+                                                        <constraint firstAttribute="height" constant="4" id="eGv-pS-0NM"/>
+                                                    </constraints>
+                                                </customView>
+                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6LC-4n-MVq">
+                                                    <rect key="frame" x="6" y="0.0" width="27" height="13"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Mon" id="HkG-Ok-yyP">
+                                                        <font key="font" size="11" name="Roboto-Regular"/>
+                                                        <color key="textColor" name="WashedOutReceivedText"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="UiL-u1-ssT" firstAttribute="centerY" secondItem="2hv-qK-ZH3" secondAttribute="centerY" id="6mz-Pp-Nuh"/>
+                                                <constraint firstItem="RMY-bp-KNq" firstAttribute="centerY" secondItem="PDC-dI-UaR" secondAttribute="centerY" id="Jie-PW-gS0"/>
+                                                <constraint firstItem="PDC-dI-UaR" firstAttribute="leading" secondItem="RMY-bp-KNq" secondAttribute="trailing" constant="8" id="QYG-1O-2CZ"/>
+                                                <constraint firstItem="GfR-ZB-uzh" firstAttribute="centerY" secondItem="634-ua-tBF" secondAttribute="centerY" id="Tiw-GU-9fS"/>
+                                                <constraint firstItem="2hv-qK-ZH3" firstAttribute="leading" secondItem="UiL-u1-ssT" secondAttribute="trailing" constant="5" id="UTl-fK-bcP"/>
+                                                <constraint firstAttribute="width" constant="155" id="V1x-AL-emo"/>
+                                                <constraint firstItem="GfR-ZB-uzh" firstAttribute="leading" secondItem="6LC-4n-MVq" secondAttribute="trailing" constant="8" id="VKS-RY-dBs"/>
+                                                <constraint firstItem="634-ua-tBF" firstAttribute="centerY" secondItem="PDC-dI-UaR" secondAttribute="centerY" id="WHJ-iF-3Qg"/>
+                                                <constraint firstAttribute="bottom" secondItem="PDC-dI-UaR" secondAttribute="bottom" id="Z8O-wV-vrn"/>
+                                                <constraint firstAttribute="trailing" secondItem="PDC-dI-UaR" secondAttribute="trailing" id="iZl-Bg-sqQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="2hv-qK-ZH3" secondAttribute="trailing" id="kZf-ag-XgG"/>
+                                                <constraint firstItem="RMY-bp-KNq" firstAttribute="leading" secondItem="634-ua-tBF" secondAttribute="trailing" constant="8" id="p1u-4A-I6G"/>
+                                                <constraint firstItem="634-ua-tBF" firstAttribute="leading" secondItem="GfR-ZB-uzh" secondAttribute="trailing" constant="8" id="paj-C1-6ma"/>
+                                                <constraint firstItem="2hv-qK-ZH3" firstAttribute="top" secondItem="MYG-Mw-dQ5" secondAttribute="top" id="r4R-iK-ylG"/>
+                                                <constraint firstItem="6LC-4n-MVq" firstAttribute="centerY" secondItem="634-ua-tBF" secondAttribute="centerY" id="sR2-5u-mG9"/>
+                                            </constraints>
+                                        </customView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="MYG-Mw-dQ5" secondAttribute="bottom" id="Uoi-HQ-qEy"/>
+                                        <constraint firstItem="MYG-Mw-dQ5" firstAttribute="top" secondItem="QEA-Mk-2fI" secondAttribute="top" id="Zvs-no-dai"/>
+                                        <constraint firstItem="yH3-zI-j7h" firstAttribute="top" secondItem="QEA-Mk-2fI" secondAttribute="top" id="bAr-Oz-hAc"/>
+                                        <constraint firstAttribute="bottom" secondItem="yH3-zI-j7h" secondAttribute="bottom" id="kqe-tC-2In"/>
+                                    </constraints>
+                                    <visibilityPriorities>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                    </visibilityPriorities>
+                                    <customSpacing>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                    </customSpacing>
+                                </stackView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="qp7-qn-4DE" firstAttribute="leading" secondItem="jM9-xJ-Mqq" secondAttribute="leading" id="F89-2j-ZHh"/>
+                                <constraint firstItem="QEA-Mk-2fI" firstAttribute="leading" secondItem="qp7-qn-4DE" secondAttribute="trailing" id="QWZ-nA-x1i"/>
+                                <constraint firstAttribute="bottom" secondItem="QEA-Mk-2fI" secondAttribute="bottom" constant="22" id="Y0S-Al-ftO"/>
+                                <constraint firstItem="qp7-qn-4DE" firstAttribute="top" secondItem="jM9-xJ-Mqq" secondAttribute="top" id="ZNX-sz-ibV"/>
+                                <constraint firstAttribute="height" constant="80" id="c2l-Ga-2ml"/>
+                                <constraint firstItem="QEA-Mk-2fI" firstAttribute="top" secondItem="jM9-xJ-Mqq" secondAttribute="top" constant="22" id="jnD-Iv-2av"/>
+                                <constraint firstAttribute="bottom" secondItem="qp7-qn-4DE" secondAttribute="bottom" id="u1z-Zp-yTU"/>
+                                <constraint firstAttribute="trailing" secondItem="QEA-Mk-2fI" secondAttribute="trailing" constant="16" id="xSb-a0-hky"/>
+                            </constraints>
+                        </customView>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="umP-wg-OK0">
+                            <rect key="frame" x="0.0" y="0.0" width="450" height="80"/>
+                            <subviews>
+                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1GA-bK-7s2">
+                                    <rect key="frame" x="53" y="22" width="383" height="58"/>
+                                    <textFieldCell key="cell" id="Ney-In-di7">
+                                        <font key="font" size="14" name="Roboto-Regular"/>
+                                        <string key="title">This is a test to see how it works now This is a test to see how it works now This is a test to see how it works now This is a test to see how it works now This is a test to see how it works now This is a test to see how it works now This is a test to see how it works now This is a test to see how it works now This is a test to see how it works nowLabel</string>
+                                        <color key="textColor" name="MainBottomIcons"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="1GA-bK-7s2" firstAttribute="top" secondItem="umP-wg-OK0" secondAttribute="top" id="1ei-YX-ri9"/>
+                                <constraint firstAttribute="bottom" secondItem="1GA-bK-7s2" secondAttribute="bottom" constant="22" id="Kuj-zx-8Li"/>
+                                <constraint firstAttribute="height" constant="80" id="LRD-EH-YEM"/>
+                                <constraint firstItem="1GA-bK-7s2" firstAttribute="leading" secondItem="umP-wg-OK0" secondAttribute="leading" constant="55" id="X9u-IS-yzr"/>
+                                <constraint firstAttribute="trailing" secondItem="1GA-bK-7s2" secondAttribute="trailing" constant="16" id="qWP-ih-QKw"/>
+                            </constraints>
+                        </customView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="umP-wg-OK0" secondAttribute="trailing" id="J1x-TE-Mzi"/>
+                        <constraint firstItem="umP-wg-OK0" firstAttribute="leading" secondItem="Wir-lM-fxv" secondAttribute="leading" id="MtE-LV-0Rc"/>
+                        <constraint firstItem="jM9-xJ-Mqq" firstAttribute="leading" secondItem="Wir-lM-fxv" secondAttribute="leading" id="c4z-fk-5U6"/>
+                        <constraint firstAttribute="trailing" secondItem="jM9-xJ-Mqq" secondAttribute="trailing" id="nwR-Ad-gI8"/>
+                    </constraints>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+                <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="2Zq-DP-LGA">
+                    <rect key="frame" x="0.0" y="0.0" width="450" height="1"/>
+                    <view key="contentView" id="DeM-sf-EhC">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="1"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="kH2-Qn-I4y"/>
+                    </constraints>
+                    <color key="fillColor" name="Divider"/>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="bGt-i1-TdG" secondAttribute="bottom" id="5sY-4V-HiG"/>
+                <constraint firstAttribute="bottom" secondItem="Wir-lM-fxv" secondAttribute="bottom" id="9WB-R8-7Yy"/>
+                <constraint firstItem="Wir-lM-fxv" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="EVf-WF-dND"/>
+                <constraint firstAttribute="trailing" secondItem="bGt-i1-TdG" secondAttribute="trailing" id="JbN-lU-cvW"/>
+                <constraint firstItem="2Zq-DP-LGA" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="SQb-LC-RBY"/>
+                <constraint firstAttribute="bottom" secondItem="2Zq-DP-LGA" secondAttribute="bottom" id="VrE-s7-M4O"/>
+                <constraint firstItem="Wir-lM-fxv" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="ZeJ-m1-W92"/>
+                <constraint firstItem="bGt-i1-TdG" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="Zet-PP-N1i"/>
+                <constraint firstAttribute="trailing" secondItem="2Zq-DP-LGA" secondAttribute="trailing" id="chM-ZC-VST"/>
+                <constraint firstItem="bGt-i1-TdG" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="pBu-co-ocF"/>
+                <constraint firstAttribute="trailing" secondItem="Wir-lM-fxv" secondAttribute="trailing" id="wD2-Ax-ykv"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="-9.5"/>
+        </customView>
+        <customObject id="3CV-vp-sKZ" customClass="TransactionCollectionViewItem" customModule="Sphinx" customModuleProvider="target"/>
+    </objects>
+    <resources>
+        <image name="transaction-warning-icon" width="20" height="17"/>
+        <namedColor name="Divider">
+            <color red="0.86274509803921573" green="0.8784313725490196" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="MainBottomIcons">
+            <color red="0.37254901960784315" green="0.38823529411764707" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PrimaryRed">
+            <color red="0.92941176470588238" green="0.45490196078431372" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text">
+            <color red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TransactionBG">
+            <color red="0.9649999737739563" green="0.98400002717971802" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="WashedOutReceivedText">
+            <color red="0.69019607843137254" green="0.71764705882352942" blue="0.73725490196078436" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

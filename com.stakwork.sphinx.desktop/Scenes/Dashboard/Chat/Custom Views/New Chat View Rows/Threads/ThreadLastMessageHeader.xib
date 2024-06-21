@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="ThreadLastMessageHeader" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="chatAvatarView" destination="qnA-Z5-zZ1" id="KZR-jL-h72"/>
+                <outlet property="contentView" destination="c22-O7-iKe" id="CTZ-kc-JKO"/>
+                <outlet property="dateLabel" destination="5ch-Pe-iRh" id="hXG-uT-goU"/>
+                <outlet property="nameLabel" destination="FZq-xy-iO0" id="hiX-qi-67c"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="36"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="qnA-Z5-zZ1" customClass="ChatSmallAvatarView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="16" y="11" width="23" height="23"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="23" id="j56-8d-KfZ"/>
+                        <constraint firstAttribute="width" constant="23" id="k0d-XH-bac"/>
+                    </constraints>
+                </customView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FZq-xy-iO0">
+                    <rect key="frame" x="47" y="16" width="41" height="14"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Tomas" id="Kdm-yW-MmZ">
+                        <font key="font" size="12" name="Roboto-Medium"/>
+                        <color key="textColor" name="Text"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5ch-Pe-iRh">
+                    <rect key="frame" x="93" y="17" width="47" height="11"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="09:00 AM" id="XfM-wD-vz8">
+                        <font key="font" size="10" name="Roboto-Regular"/>
+                        <color key="textColor" name="SecondaryText"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstItem="FZq-xy-iO0" firstAttribute="centerY" secondItem="qnA-Z5-zZ1" secondAttribute="centerY" id="3NV-6w-POz"/>
+                <constraint firstItem="qnA-Z5-zZ1" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="16" id="HlG-OB-IVi"/>
+                <constraint firstItem="FZq-xy-iO0" firstAttribute="leading" secondItem="qnA-Z5-zZ1" secondAttribute="trailing" constant="10" id="QYq-QD-r5a"/>
+                <constraint firstItem="5ch-Pe-iRh" firstAttribute="leading" secondItem="FZq-xy-iO0" secondAttribute="trailing" constant="9" id="YK4-6h-zw7"/>
+                <constraint firstItem="5ch-Pe-iRh" firstAttribute="centerY" secondItem="qnA-Z5-zZ1" secondAttribute="centerY" id="moA-Wp-2jH"/>
+                <constraint firstItem="qnA-Z5-zZ1" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="2" id="tHp-L1-VnT"/>
+            </constraints>
+            <point key="canvasLocation" x="4" y="154"/>
+        </customView>
+    </objects>
+    <resources>
+        <namedColor name="SecondaryText">
+            <color red="0.55686274509803924" green="0.58823529411764708" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text">
+            <color red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -1,0 +1,102 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "a9T-h0-eiW.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Version 1.0.28\"; ObjectID = \"a9T-h0-eiW\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Version 1.0.28"
+          }
+        }
+      }
+    },
+    "DfJ-kh-JNP.title" : {
+      "comment" : "Class = \"NSBox\"; title = \"Box\"; ObjectID = \"DfJ-kh-JNP\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Box"
+          }
+        }
+      }
+    },
+    "gUU-Li-kHU.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Create Tribe\"; ObjectID = \"gUU-Li-kHU\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Create Tribe"
+          }
+        }
+      }
+    },
+    "hrv-cF-Vh0.title" : {
+      "comment" : "Class = \"NSBox\"; title = \"Box\"; ObjectID = \"hrv-cF-Vh0\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Box"
+          }
+        }
+      }
+    },
+    "j0I-LL-YwK.title" : {
+      "comment" : "Class = \"NSBox\"; title = \"Box\"; ObjectID = \"j0I-LL-YwK\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Box"
+          }
+        }
+      }
+    },
+    "KMw-lf-2K9.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Add Friend\"; ObjectID = \"KMw-lf-2K9\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Add Friend"
+          }
+        }
+      }
+    },
+    "mYi-R7-KIc.title" : {
+      "comment" : "Class = \"NSBox\"; title = \"Box\"; ObjectID = \"mYi-R7-KIc\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Box"
+          }
+        }
+      }
+    },
+    "ngJ-Cm-c3a.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"© 2024 Stakwork All rights reserved\"; ObjectID = \"ngJ-Cm-c3a\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "© 2024 Stakwork All rights reserved"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

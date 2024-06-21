@@ -1,0 +1,51 @@
+/* Class = "NSTextFieldCell"; title = "Time to stake: (hours)"; ObjectID = "5Mx-Tg-RiK"; */
+"5Mx-Tg-RiK.title" = "抵押時間（小時）：";
+
+/* Class = "NSTextFieldCell"; title = "Price per message:"; ObjectID = "IDt-GP-9ir"; */
+"IDt-GP-9ir.title" = "每條消息的價格：";
+
+/* Class = "NSButtonCell"; title = "JOIN TRIBE"; ObjectID = "PnB-qY-PbV"; */
+"PnB-qY-PbV.title" = "加入部落";
+
+/* Class = "NSTextFieldCell"; title = "Amount to stake:"; ObjectID = "RlC-nx-gKp"; */
+"RlC-nx-gKp.title" = "抵押數量：";
+
+/* Class = "NSTextFieldCell"; title = "Price to join:"; ObjectID = "fC4-f3-yQO"; */
+"fC4-f3-yQO.title" = "加入價格：";
+
+/* Class = "NSTextFieldCell"; title = "Loading Tribe info..."; ObjectID = "ubU-9I-jji"; */
+"ubU-9I-jji.title" = "正在加載部落信息...";
+
+"uGH-BU-eSo.title" = "保存";
+
+"vz1-9I-udo.title" = "加載信息...";
+
+"oYj-fw-X3k.title" = "名字 *";
+
+"S5M-do-OMG.title" = "圖片";
+
+"4xc-dn-4c9.title" = "描述 *";
+
+"R9c-DX-E9G.title" = "標籤";
+
+"amo-6J-VEd.title" = "加入費用";
+
+"BZI-9s-vtk.title" = "每條訊息價格";
+
+"RfR-WJ-3c7.title" = "質押金額";
+
+"iio-v7-V2C.title" = "質押時間（小時）";
+
+"PBt-DD-vJn.title" = "應用程序網址";
+
+"aYx-6Y-No1.title" = "供稿網址";
+
+"pdg-dx-btt.title" = "Second Brain Url";
+
+"uTl-0t-F3h.title" = "Feed 內容類型";
+
+"qB7-uk-cfh.title" = "在 tribes.sphinx.chat 中列出？";
+
+"7zZ-36-zq9.title" = "批准每個會員申請？";
+
+"MlG-NU-gvK.title" = "保存部落";

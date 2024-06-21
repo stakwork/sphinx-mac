@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Display InvoiceVC-->
+        <scene sceneID="PEd-7d-5j0">
+            <objects>
+                <viewController storyboardIdentifier="DisplayInvoiceVC" id="bU7-R8-ocO" customClass="DisplayInvoiceVC" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="tOy-S4-hL0">
+                        <rect key="frame" x="0.0" y="0.0" width="582" height="676"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gc5-Pf-cC8">
+                                <rect key="frame" x="116" y="263" width="350" height="350"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="350" id="6Ch-GV-jHV"/>
+                                    <constraint firstAttribute="width" secondItem="gc5-Pf-cC8" secondAttribute="height" multiplier="1:1" id="x5U-Rh-D6r"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="extraIcon" id="066-dH-VQL"/>
+                            </imageView>
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LId-FC-mhF">
+                                <rect key="frame" x="30" y="232" width="522" height="14"/>
+                                <textFieldCell key="cell" alignment="center" title="Receive Invoice Details" id="wNu-2z-sZt">
+                                    <font key="font" size="12" name="Roboto-Regular"/>
+                                    <color key="textColor" name="TextMessages"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="qkc-tl-sN7">
+                                <rect key="frame" x="32" y="104" width="518" height="60"/>
+                                <subviews>
+                                    <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="30" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="nLs-qO-HLu">
+                                        <rect key="frame" x="0.0" y="0.0" width="518" height="60"/>
+                                        <view key="contentView" id="BB7-Ls-jUL">
+                                            <rect key="frame" x="0.0" y="0.0" width="518" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                        <color key="fillColor" name="PrimaryBlue"/>
+                                    </box>
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lzg-8d-AWU">
+                                        <rect key="frame" x="474" y="19" width="26" height="22"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="photo" id="4Fo-tq-oPZ">
+                                            <font key="font" size="22" name="MaterialIcons-Regular"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2KP-Os-n7a" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="518" height="60"/>
+                                        <buttonCell key="cell" type="square" title="Copy QR Code Image" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="dy9-Sq-zAd" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" size="17" name="Roboto-Regular"/>
+                                        </buttonCell>
+                                        <color key="contentTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="C8q-sB-UVN"/>
+                                        </constraints>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="2KP-Os-n7a" secondAttribute="bottom" id="0HD-BQ-KeN"/>
+                                    <constraint firstAttribute="trailing" secondItem="lzg-8d-AWU" secondAttribute="trailing" constant="20" id="5HJ-3m-aUQ"/>
+                                    <constraint firstItem="lzg-8d-AWU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qkc-tl-sN7" secondAttribute="leading" constant="20" symbolic="YES" id="8RC-Yg-dRg"/>
+                                    <constraint firstAttribute="height" constant="60" id="Cza-sH-rcE"/>
+                                    <constraint firstItem="lzg-8d-AWU" firstAttribute="centerY" secondItem="qkc-tl-sN7" secondAttribute="centerY" id="IKn-1v-2Pt"/>
+                                    <constraint firstItem="nLs-qO-HLu" firstAttribute="leading" secondItem="qkc-tl-sN7" secondAttribute="leading" id="ZQe-cu-mkp"/>
+                                    <constraint firstAttribute="bottom" secondItem="nLs-qO-HLu" secondAttribute="bottom" id="gMk-4D-JfG"/>
+                                    <constraint firstAttribute="trailing" secondItem="2KP-Os-n7a" secondAttribute="trailing" id="hX3-AX-Z4b"/>
+                                    <constraint firstAttribute="trailing" secondItem="nLs-qO-HLu" secondAttribute="trailing" id="kvs-bt-B71"/>
+                                    <constraint firstItem="2KP-Os-n7a" firstAttribute="leading" secondItem="qkc-tl-sN7" secondAttribute="leading" id="oTC-69-H06"/>
+                                    <constraint firstItem="nLs-qO-HLu" firstAttribute="top" secondItem="qkc-tl-sN7" secondAttribute="top" id="qLy-BQ-oeA"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="600" id="uSu-LC-7h8"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="4HU-9Q-GFs">
+                                <rect key="frame" x="32" y="32" width="518" height="60"/>
+                                <subviews>
+                                    <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="30" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="4yu-P3-6nx">
+                                        <rect key="frame" x="0.0" y="0.0" width="518" height="60"/>
+                                        <view key="contentView" id="1c7-Sg-svb">
+                                            <rect key="frame" x="0.0" y="0.0" width="518" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                        <color key="fillColor" name="PrimaryBlue"/>
+                                    </box>
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6FC-1p-n81">
+                                        <rect key="frame" x="474" y="19" width="26" height="22"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="content_copy" id="EGe-As-lHQ">
+                                            <font key="font" size="22" name="MaterialIcons-Regular"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3v4-1V-GE0" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="518" height="60"/>
+                                        <buttonCell key="cell" type="square" title="Copy Invoice String" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="tA6-sn-INu" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" size="17" name="Roboto-Regular"/>
+                                        </buttonCell>
+                                        <color key="contentTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="ZEZ-Ys-4P4"/>
+                                        </constraints>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="4yu-P3-6nx" firstAttribute="leading" secondItem="4HU-9Q-GFs" secondAttribute="leading" id="BtF-ry-TsD"/>
+                                    <constraint firstItem="3v4-1V-GE0" firstAttribute="leading" secondItem="4HU-9Q-GFs" secondAttribute="leading" id="DeK-0m-xNi"/>
+                                    <constraint firstAttribute="height" constant="60" id="M54-JU-ijS"/>
+                                    <constraint firstAttribute="trailing" secondItem="4yu-P3-6nx" secondAttribute="trailing" id="MPx-Qw-UPc"/>
+                                    <constraint firstItem="6FC-1p-n81" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4HU-9Q-GFs" secondAttribute="leading" constant="20" symbolic="YES" id="PKD-ib-0eD"/>
+                                    <constraint firstItem="6FC-1p-n81" firstAttribute="centerY" secondItem="4HU-9Q-GFs" secondAttribute="centerY" id="PYc-6z-rTJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="3v4-1V-GE0" secondAttribute="trailing" id="TTS-p8-X4R"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="600" id="aV3-sh-p9D"/>
+                                    <constraint firstAttribute="bottom" secondItem="3v4-1V-GE0" secondAttribute="bottom" id="cl0-9K-2a5"/>
+                                    <constraint firstAttribute="trailing" secondItem="6FC-1p-n81" secondAttribute="trailing" constant="20" id="lFj-BQ-zd4"/>
+                                    <constraint firstItem="4yu-P3-6nx" firstAttribute="top" secondItem="4HU-9Q-GFs" secondAttribute="top" id="x1z-rj-Bd8"/>
+                                    <constraint firstAttribute="bottom" secondItem="4yu-P3-6nx" secondAttribute="bottom" id="xTW-CX-y4M"/>
+                                </constraints>
+                            </customView>
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="quZ-Sv-9fI">
+                                <rect key="frame" x="225" y="626" width="132" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="dvJ-hs-4I3"/>
+                                </constraints>
+                                <textFieldCell key="cell" alignment="center" title="Receive Invoice Details" id="NXD-Ix-g5w">
+                                    <font key="font" size="12" name="Roboto-Regular"/>
+                                    <color key="textColor" name="TextMessages"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="LId-FC-mhF" secondAttribute="trailing" constant="32" id="3pz-GA-EM8"/>
+                            <constraint firstItem="gc5-Pf-cC8" firstAttribute="centerX" secondItem="tOy-S4-hL0" secondAttribute="centerX" id="4Ok-Nh-K7W"/>
+                            <constraint firstAttribute="bottom" secondItem="4HU-9Q-GFs" secondAttribute="bottom" constant="32" id="HIq-Dk-Bei"/>
+                            <constraint firstItem="quZ-Sv-9fI" firstAttribute="top" secondItem="tOy-S4-hL0" secondAttribute="top" constant="32" id="SVK-JP-Gg0"/>
+                            <constraint firstItem="qkc-tl-sN7" firstAttribute="leading" secondItem="tOy-S4-hL0" secondAttribute="leading" constant="32" id="cLL-t8-SP9"/>
+                            <constraint firstItem="quZ-Sv-9fI" firstAttribute="centerX" secondItem="gc5-Pf-cC8" secondAttribute="centerX" id="ey9-5s-i9j"/>
+                            <constraint firstItem="gc5-Pf-cC8" firstAttribute="leading" secondItem="tOy-S4-hL0" secondAttribute="leading" constant="116" id="ghu-DA-n0n"/>
+                            <constraint firstItem="4HU-9Q-GFs" firstAttribute="top" secondItem="2KP-Os-n7a" secondAttribute="bottom" constant="12" id="jEw-LF-Jbd"/>
+                            <constraint firstItem="4HU-9Q-GFs" firstAttribute="leading" secondItem="qkc-tl-sN7" secondAttribute="leading" id="m1G-uC-0YE"/>
+                            <constraint firstItem="LId-FC-mhF" firstAttribute="top" secondItem="gc5-Pf-cC8" secondAttribute="bottom" constant="17" id="oII-BV-O6G"/>
+                            <constraint firstItem="LId-FC-mhF" firstAttribute="leading" secondItem="tOy-S4-hL0" secondAttribute="leading" constant="32" id="qEE-ck-bAu"/>
+                            <constraint firstItem="qkc-tl-sN7" firstAttribute="centerX" secondItem="tOy-S4-hL0" secondAttribute="centerX" id="trN-sl-Ybg"/>
+                            <constraint firstItem="gc5-Pf-cC8" firstAttribute="top" secondItem="quZ-Sv-9fI" secondAttribute="bottom" constant="13" id="veC-mw-jfH"/>
+                            <constraint firstItem="4HU-9Q-GFs" firstAttribute="trailing" secondItem="qkc-tl-sN7" secondAttribute="trailing" id="ze1-tF-laI"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="amountTextField" destination="quZ-Sv-9fI" id="ZT1-J6-HwU"/>
+                        <outlet property="codeImageLabel" destination="dy9-Sq-zAd" id="xtF-Ke-VLZ"/>
+                        <outlet property="codeStringLabel" destination="tA6-sn-INu" id="CXV-uP-VWc"/>
+                        <outlet property="invoiceStringDisplay" destination="LId-FC-mhF" id="5gR-m7-gEW"/>
+                        <outlet property="qrCodeImageView" destination="gc5-Pf-cC8" id="xLI-pn-ZcM"/>
+                        <outlet property="shareInvoiceStringButton" destination="4HU-9Q-GFs" id="oxL-j8-Xjw"/>
+                        <outlet property="shareQRImageButton" destination="qkc-tl-sN7" id="rtu-xT-I8M"/>
+                    </connections>
+                </viewController>
+                <customObject id="9uD-mB-xHs" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="67" y="129"/>
+        </scene>
+        <!--Transactions List View Controller-->
+        <scene sceneID="1UX-kj-jho">
+            <objects>
+                <viewController storyboardIdentifier="TransactionsListViewController" id="noz-jg-I55" customClass="TransactionsListViewController" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="xH5-Ym-h8V">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="617"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Wf-HX-D0G">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="617"/>
+                                <clipView key="contentView" drawsBackground="NO" id="l5a-Ik-hZ0">
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="617"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <collectionView selectable="YES" id="qt0-wT-FuI">
+                                            <rect key="frame" x="0.0" y="0.0" width="450" height="158"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" id="Af8-dx-yTb">
+                                                <size key="itemSize" width="50" height="50"/>
+                                            </collectionViewFlowLayout>
+                                            <color key="primaryBackgroundColor" name="Body"/>
+                                        </collectionView>
+                                    </subviews>
+                                    <color key="backgroundColor" name="Body"/>
+                                </clipView>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="450" id="Eed-Ya-ohd"/>
+                                </constraints>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Nxx-Dj-cJZ">
+                                    <rect key="frame" x="0.0" y="601" width="400" height="16"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="g9I-Cb-doJ">
+                                    <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xsx-2D-UNw">
+                                <rect key="frame" x="158" y="301" width="135" height="15"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="No transactions found" id="0pr-TK-bNe">
+                                    <font key="font" size="13" name="Roboto-Regular"/>
+                                    <color key="textColor" name="Text"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <progressIndicator maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="Qus-wn-iZF">
+                                <rect key="frame" x="217" y="301" width="16" height="16"/>
+                            </progressIndicator>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="2Wf-HX-D0G" firstAttribute="leading" secondItem="xH5-Ym-h8V" secondAttribute="leading" id="58v-vB-gR1"/>
+                            <constraint firstAttribute="trailing" secondItem="2Wf-HX-D0G" secondAttribute="trailing" id="8xs-EG-qAn"/>
+                            <constraint firstItem="Qus-wn-iZF" firstAttribute="centerX" secondItem="xH5-Ym-h8V" secondAttribute="centerX" id="Aim-W4-ed2"/>
+                            <constraint firstItem="xsx-2D-UNw" firstAttribute="centerX" secondItem="xH5-Ym-h8V" secondAttribute="centerX" id="Vdo-op-VR3"/>
+                            <constraint firstItem="2Wf-HX-D0G" firstAttribute="top" secondItem="xH5-Ym-h8V" secondAttribute="top" id="WBi-U0-nru"/>
+                            <constraint firstAttribute="bottom" secondItem="2Wf-HX-D0G" secondAttribute="bottom" id="Z5s-Rv-FfN"/>
+                            <constraint firstItem="Qus-wn-iZF" firstAttribute="centerY" secondItem="xH5-Ym-h8V" secondAttribute="centerY" id="cDR-xK-rBG"/>
+                            <constraint firstItem="xsx-2D-UNw" firstAttribute="centerY" secondItem="xH5-Ym-h8V" secondAttribute="centerY" id="drt-O6-4Q3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="loadingWheel" destination="Qus-wn-iZF" id="cln-rf-NmL"/>
+                        <outlet property="noResultsLabel" destination="xsx-2D-UNw" id="c4k-64-X1x"/>
+                        <outlet property="transactionsCollectionView" destination="qt0-wT-FuI" id="XHN-f0-FMK"/>
+                    </connections>
+                </viewController>
+                <customObject id="MYb-Fj-jHT" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="67.5" y="930.5"/>
+        </scene>
+        <!--Send Payment For InvoiceVC-->
+        <scene sceneID="K20-aC-P0s">
+            <objects>
+                <viewController storyboardIdentifier="SendPaymentVC" id="wIU-ri-c4b" customClass="SendPaymentForInvoiceVC" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="u72-4T-Thc">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="289"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="4" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="DMU-Rk-c1K">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="289"/>
+                                <view key="contentView" id="NXt-oK-f1G">
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="289"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <color key="fillColor" name="Body"/>
+                            </box>
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iM0-Ip-iyu">
+                                <rect key="frame" x="30" y="205" width="95" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="q40-g6-UgL"/>
+                                </constraints>
+                                <textFieldCell key="cell" alignment="left" title="INVOICE STRING" id="RWs-aR-MeD">
+                                    <font key="font" size="12" name="Roboto-Regular"/>
+                                    <color key="textColor" name="SecondaryText"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tjP-79-yz1">
+                                <rect key="frame" x="32" y="165" width="386" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="eLE-7C-vDh"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" drawsBackground="YES" id="8Qr-X6-67t">
+                                    <font key="font" size="17" name="Roboto-Regular"/>
+                                    <color key="textColor" name="Text"/>
+                                    <color key="backgroundColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                </textFieldCell>
+                            </textField>
+                            <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="HbM-T5-vcT">
+                                <rect key="frame" x="32" y="164" width="386" height="1"/>
+                                <view key="contentView" id="Rt6-Hx-gQY">
+                                    <rect key="frame" x="0.0" y="0.0" width="386" height="1"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="y8n-Ti-uk1"/>
+                                </constraints>
+                                <color key="fillColor" name="LightDivider"/>
+                            </box>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="plp-AS-h1s">
+                                <rect key="frame" x="160" y="32" width="130" height="40"/>
+                                <subviews>
+                                    <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="20" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="3oy-NL-4gL">
+                                        <rect key="frame" x="0.0" y="0.0" width="130" height="40"/>
+                                        <view key="contentView" id="fgB-3D-bc3">
+                                            <rect key="frame" x="0.0" y="0.0" width="130" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                        <color key="fillColor" name="PrimaryBlue"/>
+                                    </box>
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jeP-aW-XNV">
+                                        <rect key="frame" x="101" y="9" width="11" height="22"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title=" " id="cxg-Wu-wXt">
+                                            <font key="font" size="22" name="MaterialIcons-Regular"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DBr-XU-def" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="130" height="40"/>
+                                        <buttonCell key="cell" type="square" title="Verify" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="TPC-Xj-wL1" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" size="14" name="Roboto-Regular"/>
+                                        </buttonCell>
+                                        <color key="contentTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="vl8-md-0uG"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="verifyButtonClicked:" target="wIU-ri-c4b" id="fdB-cW-DVc"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="DBr-XU-def" firstAttribute="leading" secondItem="plp-AS-h1s" secondAttribute="leading" id="4Ei-3e-QMs"/>
+                                    <constraint firstAttribute="height" constant="40" id="6fX-U6-ffc"/>
+                                    <constraint firstAttribute="trailing" secondItem="DBr-XU-def" secondAttribute="trailing" id="7ju-gc-U82"/>
+                                    <constraint firstItem="jeP-aW-XNV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="plp-AS-h1s" secondAttribute="leading" constant="20" symbolic="YES" id="CcO-YB-Q20"/>
+                                    <constraint firstAttribute="bottom" secondItem="DBr-XU-def" secondAttribute="bottom" id="Hyx-Qi-YJW"/>
+                                    <constraint firstAttribute="bottom" secondItem="3oy-NL-4gL" secondAttribute="bottom" id="JPV-2h-QkK"/>
+                                    <constraint firstAttribute="width" constant="130" id="JbJ-iE-hao"/>
+                                    <constraint firstItem="3oy-NL-4gL" firstAttribute="leading" secondItem="plp-AS-h1s" secondAttribute="leading" id="ZYU-bn-ASC"/>
+                                    <constraint firstAttribute="trailing" secondItem="jeP-aW-XNV" secondAttribute="trailing" constant="20" id="ZwG-yJ-oaQ"/>
+                                    <constraint firstItem="jeP-aW-XNV" firstAttribute="centerY" secondItem="plp-AS-h1s" secondAttribute="centerY" id="bPh-XY-XFP"/>
+                                    <constraint firstItem="3oy-NL-4gL" firstAttribute="top" secondItem="plp-AS-h1s" secondAttribute="top" id="cE9-PD-R6v"/>
+                                    <constraint firstAttribute="trailing" secondItem="3oy-NL-4gL" secondAttribute="trailing" id="vbd-jW-w61"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="lDK-bz-j0p">
+                                <rect key="frame" x="0.0" y="-200" width="450" height="200"/>
+                                <subviews>
+                                    <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="4" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="JRX-De-thN">
+                                        <rect key="frame" x="0.0" y="0.0" width="450" height="200"/>
+                                        <view key="contentView" id="duX-It-8KO">
+                                            <rect key="frame" x="0.0" y="0.0" width="450" height="200"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                        <color key="fillColor" name="LightBG"/>
+                                    </box>
+                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AMt-sw-PeH">
+                                        <rect key="frame" x="30" y="152" width="92" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="16" id="oNv-ZZ-pp8"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" alignment="left" title="Invoice Amount:" id="Ea7-H2-7Dh">
+                                            <font key="font" size="12" name="Roboto-Bold"/>
+                                            <color key="textColor" name="TextMessages"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PdM-4D-YUS">
+                                        <rect key="frame" x="126" y="152" width="86" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="16" id="lqf-z5-DMw"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" alignment="left" title="Invalid Amount" id="mJ1-kK-Dwy">
+                                            <font key="font" size="12" name="Roboto-Regular"/>
+                                            <color key="textColor" name="TextMessages"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5XW-Ko-YAi">
+                                        <rect key="frame" x="30" y="120" width="90" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="16" id="dgr-So-ICO"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" alignment="left" title="Expiration Date:" id="LUL-D5-qRg">
+                                            <font key="font" size="12" name="Roboto-Bold"/>
+                                            <color key="textColor" name="TextMessages"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mM6-Or-Bks">
+                                        <rect key="frame" x="124" y="120" width="97" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="16" id="Jsc-bu-Nhq"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" alignment="left" title="Invalid Expiration" id="ic3-5t-TBt">
+                                            <font key="font" size="12" name="Roboto-Regular"/>
+                                            <color key="textColor" name="TextMessages"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w4U-a9-HSp">
+                                        <rect key="frame" x="30" y="88" width="42" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="16" id="C6N-q2-hyq"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" alignment="left" title="Memo:" id="hhh-m3-2w8">
+                                            <font key="font" size="12" name="Roboto-Bold"/>
+                                            <color key="textColor" name="TextMessages"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Tbh-PE-vJj">
+                                        <rect key="frame" x="76" y="88" width="77" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="16" id="Ygp-2U-xYH"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" alignment="left" title="Invalid Memo" id="RUZ-2d-88J">
+                                            <font key="font" size="12" name="Roboto-Regular"/>
+                                            <color key="textColor" name="TextMessages"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="zQr-ov-k4r">
+                                        <rect key="frame" x="165" y="16" width="120" height="36"/>
+                                        <subviews>
+                                            <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="18" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="TNu-cM-CNB">
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="36"/>
+                                                <view key="contentView" id="7P2-jV-Ds9">
+                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="36"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </view>
+                                                <color key="fillColor" name="PrimaryBlue"/>
+                                            </box>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BnU-bY-NLS" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="36"/>
+                                                <buttonCell key="cell" type="square" title="Pay" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="Y0k-xk-ZIY" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" size="14" name="Roboto-Regular"/>
+                                                </buttonCell>
+                                                <color key="contentTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <connections>
+                                                    <action selector="payButtonClicked:" target="wIU-ri-c4b" id="rB9-eF-CMJ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="BnU-bY-NLS" secondAttribute="trailing" id="5bB-ZN-fud"/>
+                                            <constraint firstAttribute="bottom" secondItem="TNu-cM-CNB" secondAttribute="bottom" id="7MU-lV-7vb"/>
+                                            <constraint firstAttribute="trailing" secondItem="BnU-bY-NLS" secondAttribute="trailing" id="IGc-va-Djy"/>
+                                            <constraint firstItem="BnU-bY-NLS" firstAttribute="leading" secondItem="zQr-ov-k4r" secondAttribute="leading" id="IJc-aa-1EU"/>
+                                            <constraint firstAttribute="bottom" secondItem="BnU-bY-NLS" secondAttribute="bottom" id="MCT-Lr-Ma9"/>
+                                            <constraint firstItem="TNu-cM-CNB" firstAttribute="leading" secondItem="zQr-ov-k4r" secondAttribute="leading" id="Noe-nh-Rp4"/>
+                                            <constraint firstAttribute="width" constant="120" id="ZNs-T1-xul"/>
+                                            <constraint firstItem="BnU-bY-NLS" firstAttribute="top" secondItem="zQr-ov-k4r" secondAttribute="top" id="bZk-0P-UyO"/>
+                                            <constraint firstAttribute="bottom" secondItem="BnU-bY-NLS" secondAttribute="bottom" id="c8m-pV-WCv"/>
+                                            <constraint firstItem="TNu-cM-CNB" firstAttribute="top" secondItem="zQr-ov-k4r" secondAttribute="top" id="jVv-Mq-jf2"/>
+                                            <constraint firstAttribute="trailing" secondItem="TNu-cM-CNB" secondAttribute="trailing" id="qaB-Yl-rUP"/>
+                                            <constraint firstItem="BnU-bY-NLS" firstAttribute="leading" secondItem="zQr-ov-k4r" secondAttribute="leading" id="ySV-gt-Q96"/>
+                                            <constraint firstAttribute="height" constant="36" id="z0r-oI-di8"/>
+                                        </constraints>
+                                    </customView>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="grQ-lX-LdM" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                                        <rect key="frame" x="412" y="162" width="30" height="30"/>
+                                        <buttonCell key="cell" type="bevel" title="close" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="GF6-UA-JAl">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" size="18" name="MaterialIcons-Regular"/>
+                                        </buttonCell>
+                                        <color key="contentTintColor" name="DashboardWashedOutText"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="Vib-dH-umk"/>
+                                            <constraint firstAttribute="height" constant="30" id="jg9-ya-cWb"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="closeTapped:" target="wIU-ri-c4b" id="BZ0-VI-TnB"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Tbh-PE-vJj" firstAttribute="leading" secondItem="w4U-a9-HSp" secondAttribute="trailing" constant="8" id="60W-Lv-5X1"/>
+                                    <constraint firstItem="w4U-a9-HSp" firstAttribute="top" secondItem="5XW-Ko-YAi" secondAttribute="bottom" constant="16" id="783-9h-gJQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="JRX-De-thN" secondAttribute="bottom" id="Ayj-5F-7jm"/>
+                                    <constraint firstItem="JRX-De-thN" firstAttribute="leading" secondItem="lDK-bz-j0p" secondAttribute="leading" id="CmC-sj-q3b"/>
+                                    <constraint firstItem="grQ-lX-LdM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PdM-4D-YUS" secondAttribute="trailing" constant="8" symbolic="YES" id="Ebp-M0-6ss"/>
+                                    <constraint firstAttribute="trailing" secondItem="grQ-lX-LdM" secondAttribute="trailing" constant="8" id="HcK-zs-Lr2"/>
+                                    <constraint firstItem="mM6-Or-Bks" firstAttribute="leading" secondItem="5XW-Ko-YAi" secondAttribute="trailing" constant="8" id="ITe-PT-Dtl"/>
+                                    <constraint firstAttribute="height" constant="200" id="Jrs-cb-x6k"/>
+                                    <constraint firstItem="Tbh-PE-vJj" firstAttribute="centerY" secondItem="w4U-a9-HSp" secondAttribute="centerY" id="M45-wI-qlu"/>
+                                    <constraint firstItem="grQ-lX-LdM" firstAttribute="top" secondItem="lDK-bz-j0p" secondAttribute="top" constant="8" id="UaR-Nr-QEk"/>
+                                    <constraint firstItem="mM6-Or-Bks" firstAttribute="centerY" secondItem="5XW-Ko-YAi" secondAttribute="centerY" id="VsB-5h-J00"/>
+                                    <constraint firstItem="5XW-Ko-YAi" firstAttribute="leading" secondItem="AMt-sw-PeH" secondAttribute="leading" id="WLH-To-poO"/>
+                                    <constraint firstItem="JRX-De-thN" firstAttribute="top" secondItem="lDK-bz-j0p" secondAttribute="top" id="YEW-Gr-Cal"/>
+                                    <constraint firstItem="PdM-4D-YUS" firstAttribute="centerY" secondItem="AMt-sw-PeH" secondAttribute="centerY" id="arR-ze-2G6"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mM6-Or-Bks" secondAttribute="trailing" constant="20" symbolic="YES" id="h7I-YV-aLF"/>
+                                    <constraint firstItem="PdM-4D-YUS" firstAttribute="leading" secondItem="AMt-sw-PeH" secondAttribute="trailing" constant="8" id="kWV-FW-8fe"/>
+                                    <constraint firstItem="w4U-a9-HSp" firstAttribute="leading" secondItem="5XW-Ko-YAi" secondAttribute="leading" id="kxL-KC-WQK"/>
+                                    <constraint firstAttribute="trailing" secondItem="JRX-De-thN" secondAttribute="trailing" id="mKu-KT-6O7"/>
+                                    <constraint firstItem="AMt-sw-PeH" firstAttribute="top" secondItem="lDK-bz-j0p" secondAttribute="top" constant="32" id="rGE-MM-4Za"/>
+                                    <constraint firstItem="zQr-ov-k4r" firstAttribute="centerX" secondItem="lDK-bz-j0p" secondAttribute="centerX" id="slY-UV-rfK"/>
+                                    <constraint firstItem="AMt-sw-PeH" firstAttribute="leading" secondItem="lDK-bz-j0p" secondAttribute="leading" constant="32" id="tHO-BB-PVZ"/>
+                                    <constraint firstItem="5XW-Ko-YAi" firstAttribute="top" secondItem="AMt-sw-PeH" secondAttribute="bottom" constant="16" id="vP1-7Y-dI2"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Tbh-PE-vJj" secondAttribute="trailing" constant="20" symbolic="YES" id="xmz-0E-5HF"/>
+                                    <constraint firstAttribute="bottom" secondItem="zQr-ov-k4r" secondAttribute="bottom" constant="16" id="zeA-vf-QRE"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="tjP-79-yz1" secondAttribute="trailing" constant="32" id="2Px-zn-hc9"/>
+                            <constraint firstItem="plp-AS-h1s" firstAttribute="centerX" secondItem="u72-4T-Thc" secondAttribute="centerX" id="334-RP-fF4"/>
+                            <constraint firstAttribute="bottom" secondItem="DMU-Rk-c1K" secondAttribute="bottom" id="52W-jF-EmZ"/>
+                            <constraint firstItem="tjP-79-yz1" firstAttribute="leading" secondItem="u72-4T-Thc" secondAttribute="leading" constant="32" id="BqG-4w-1dN"/>
+                            <constraint firstItem="HbM-T5-vcT" firstAttribute="top" secondItem="tjP-79-yz1" secondAttribute="bottom" id="Ex3-7i-9AL"/>
+                            <constraint firstItem="DMU-Rk-c1K" firstAttribute="top" secondItem="u72-4T-Thc" secondAttribute="top" id="KyJ-x7-uva"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="iM0-Ip-iyu" secondAttribute="trailing" constant="20" symbolic="YES" id="MBs-ib-v9b"/>
+                            <constraint firstItem="tjP-79-yz1" firstAttribute="trailing" secondItem="HbM-T5-vcT" secondAttribute="trailing" id="Nqr-8q-txO"/>
+                            <constraint firstItem="tjP-79-yz1" firstAttribute="leading" secondItem="iM0-Ip-iyu" secondAttribute="leading" id="Pa2-KN-aai"/>
+                            <constraint firstAttribute="bottom" secondItem="plp-AS-h1s" secondAttribute="bottom" constant="32" id="YEw-cR-SBU"/>
+                            <constraint firstItem="tjP-79-yz1" firstAttribute="leading" secondItem="HbM-T5-vcT" secondAttribute="leading" id="YRe-bY-SaX"/>
+                            <constraint firstItem="tjP-79-yz1" firstAttribute="top" secondItem="iM0-Ip-iyu" secondAttribute="bottom" constant="12" id="YvV-t6-RFp"/>
+                            <constraint firstAttribute="bottom" secondItem="lDK-bz-j0p" secondAttribute="bottom" constant="-200" id="bTD-66-MZ5"/>
+                            <constraint firstAttribute="trailing" secondItem="DMU-Rk-c1K" secondAttribute="trailing" id="hkl-QM-yNo"/>
+                            <constraint firstAttribute="trailing" secondItem="lDK-bz-j0p" secondAttribute="trailing" id="pSA-S3-dvb"/>
+                            <constraint firstItem="lDK-bz-j0p" firstAttribute="leading" secondItem="u72-4T-Thc" secondAttribute="leading" id="rVI-np-uy3"/>
+                            <constraint firstItem="DMU-Rk-c1K" firstAttribute="leading" secondItem="u72-4T-Thc" secondAttribute="leading" id="tp6-0m-6TW"/>
+                            <constraint firstItem="iM0-Ip-iyu" firstAttribute="top" secondItem="u72-4T-Thc" secondAttribute="top" constant="64" id="zoI-Cg-h8J"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="addressField" destination="tjP-79-yz1" id="fdz-7y-fTW"/>
+                        <outlet property="closeButton" destination="grQ-lX-LdM" id="05Z-2t-q4Q"/>
+                        <outlet property="confirmButton" destination="plp-AS-h1s" id="t79-mo-RdA"/>
+                        <outlet property="expirationDateTitle" destination="5XW-Ko-YAi" id="kAm-qf-b8I"/>
+                        <outlet property="invoiceAmountTitle" destination="AMt-sw-PeH" id="UNU-Gy-ssZ"/>
+                        <outlet property="invoiceDetailsCloseButton" destination="grQ-lX-LdM" id="B7R-nG-xzH"/>
+                        <outlet property="invoiceStringTitle" destination="iM0-Ip-iyu" id="3fD-Sl-zEY"/>
+                        <outlet property="memoTitle" destination="w4U-a9-HSp" id="Tko-Xu-BIE"/>
+                        <outlet property="payButton" destination="BnU-bY-NLS" id="vho-mA-hry"/>
+                        <outlet property="payInvoiceButton" destination="zQr-ov-k4r" id="8sh-B9-uW5"/>
+                        <outlet property="paymentContainerAmountField" destination="PdM-4D-YUS" id="A3r-cv-s4O"/>
+                        <outlet property="paymentContainerBottomConstraint" destination="bTD-66-MZ5" id="CbE-GB-YyW"/>
+                        <outlet property="paymentContainerExpirationField" destination="mM6-Or-Bks" id="Wn9-B6-ODN"/>
+                        <outlet property="paymentContainerMemoField" destination="Tbh-PE-vJj" id="Edw-W8-KYt"/>
+                        <outlet property="paymentContainerView" destination="lDK-bz-j0p" id="5dD-U7-kgs"/>
+                        <outlet property="verifyButton" destination="DBr-XU-def" id="5NI-rP-5vm"/>
+                    </connections>
+                </viewController>
+                <customObject id="M3e-LK-gFk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="724.5" y="523.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="extraIcon" width="100" height="100"/>
+        <namedColor name="Body">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="DashboardWashedOutText">
+            <color red="0.63921568627450975" green="0.75686274509803919" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightBG">
+            <color red="0.94901960784313721" green="0.95294117647058818" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightDivider">
+            <color red="0.86274509803921573" green="0.8784313725490196" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PrimaryBlue">
+            <color red="0.38039215686274508" green="0.54117647058823526" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SecondaryText">
+            <color red="0.55686274509803924" green="0.58823529411764708" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text">
+            <color red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextMessages">
+            <color red="0.11764705882352941" green="0.12156862745098039" blue="0.14509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="LsatListTableCellView" customModule="Sphinx" customModuleProvider="target"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <tableCellView identifier="LsatListTableCellView" id="eMx-Yg-Cou" customClass="LsatListTableCellView" customModule="Sphinx" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="364" height="139"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="29u-bC-QSV">
+                    <rect key="frame" x="16" y="64" width="184" height="28"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="180" id="Hur-rz-eWh"/>
+                        <constraint firstAttribute="height" constant="28" id="lDS-Q1-lgD"/>
+                    </constraints>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="dET-BU-aEJ">
+                        <font key="font" usesAppearanceFont="YES"/>
+                        <color key="textColor" name="BodyInverted"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="9S0-C3-r2E">
+                    <rect key="frame" x="16" y="28" width="184" height="28"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="180" id="JRM-2D-jU1"/>
+                        <constraint firstAttribute="height" constant="28" id="wZg-hd-Oep"/>
+                    </constraints>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="zxA-zf-YxY">
+                        <font key="font" usesAppearanceFont="YES"/>
+                        <color key="textColor" name="BodyInverted"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="WTc-19-TrM">
+                    <rect key="frame" x="16" y="99" width="184" height="28"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="JTm-tD-L7P"/>
+                        <constraint firstAttribute="width" constant="180" id="Ngg-MM-CuJ"/>
+                    </constraints>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="ID:" id="Qvc-hk-MFS">
+                        <font key="font" metaFont="systemBold"/>
+                        <color key="textColor" name="BodyInverted"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2ME-MD-chx">
+                    <rect key="frame" x="256" y="61" width="36" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="4tK-nq-4vO"/>
+                        <constraint firstAttribute="width" constant="32" id="vcz-vQ-B2F"/>
+                    </constraints>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="content_copy" id="bWC-4T-eRk">
+                        <font key="font" size="24" name="MaterialIcons-Regular"/>
+                        <color key="textColor" name="BodyInverted"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zOy-6t-Fsf">
+                    <rect key="frame" x="300" y="61" width="36" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="1PO-d4-NGA"/>
+                        <constraint firstAttribute="width" constant="32" id="Ha2-1V-Hic"/>
+                    </constraints>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="delete" id="aF3-AI-JjS">
+                        <font key="font" size="24" name="MaterialIcons-Regular"/>
+                        <color key="textColor" name="BadgeRed"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <box boxType="custom" borderType="none" borderWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="x13-2p-d6T">
+                    <rect key="frame" x="72" y="6" width="220" height="1"/>
+                    <view key="contentView" id="HuP-Jq-rtD">
+                        <rect key="frame" x="0.0" y="0.0" width="220" height="1"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="220" id="COj-pd-64e"/>
+                        <constraint firstAttribute="height" constant="1" id="cge-06-4RL"/>
+                    </constraints>
+                    <color key="fillColor" name="SecondaryText"/>
+                </box>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gxE-81-xyM">
+                    <rect key="frame" x="212" y="61" width="36" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="32" id="0HS-iY-7pk"/>
+                        <constraint firstAttribute="height" constant="35" id="ERK-ns-sck"/>
+                    </constraints>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="code" id="XDS-s0-Agg">
+                        <font key="font" size="24" name="MaterialIcons-Regular"/>
+                        <color key="textColor" name="BodyInverted"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstItem="zOy-6t-Fsf" firstAttribute="bottom" secondItem="2ME-MD-chx" secondAttribute="bottom" id="2XC-EB-Qqa"/>
+                <constraint firstItem="29u-bC-QSV" firstAttribute="leading" secondItem="WTc-19-TrM" secondAttribute="leading" id="9fL-wx-L5b"/>
+                <constraint firstItem="9S0-C3-r2E" firstAttribute="leading" secondItem="29u-bC-QSV" secondAttribute="leading" id="FS8-rK-KiG"/>
+                <constraint firstItem="gxE-81-xyM" firstAttribute="leading" secondItem="29u-bC-QSV" secondAttribute="trailing" constant="16" id="Jer-Ro-H71"/>
+                <constraint firstItem="9S0-C3-r2E" firstAttribute="trailing" secondItem="29u-bC-QSV" secondAttribute="trailing" id="KfJ-YY-evu"/>
+                <constraint firstItem="9S0-C3-r2E" firstAttribute="top" secondItem="29u-bC-QSV" secondAttribute="bottom" constant="8" symbolic="YES" id="NSS-qn-r7A"/>
+                <constraint firstAttribute="bottom" secondItem="x13-2p-d6T" secondAttribute="bottom" constant="6" id="RVK-JG-7D9"/>
+                <constraint firstItem="WTc-19-TrM" firstAttribute="top" secondItem="eMx-Yg-Cou" secondAttribute="top" constant="12" id="X0h-E6-XQd"/>
+                <constraint firstItem="29u-bC-QSV" firstAttribute="top" secondItem="WTc-19-TrM" secondAttribute="bottom" constant="7" id="XKz-md-125"/>
+                <constraint firstItem="2ME-MD-chx" firstAttribute="leading" secondItem="gxE-81-xyM" secondAttribute="trailing" constant="12" id="Yvy-QH-6bL"/>
+                <constraint firstItem="zOy-6t-Fsf" firstAttribute="top" secondItem="2ME-MD-chx" secondAttribute="top" id="g2N-pG-GlZ"/>
+                <constraint firstItem="gxE-81-xyM" firstAttribute="centerY" secondItem="2ME-MD-chx" secondAttribute="centerY" id="hMo-Pu-ktB"/>
+                <constraint firstItem="x13-2p-d6T" firstAttribute="centerX" secondItem="eMx-Yg-Cou" secondAttribute="centerX" id="mxV-JA-3fU"/>
+                <constraint firstItem="2ME-MD-chx" firstAttribute="centerY" secondItem="29u-bC-QSV" secondAttribute="centerY" id="p86-eM-PWd"/>
+                <constraint firstItem="29u-bC-QSV" firstAttribute="trailing" secondItem="WTc-19-TrM" secondAttribute="trailing" id="qAx-sb-v8e"/>
+                <constraint firstItem="29u-bC-QSV" firstAttribute="leading" secondItem="eMx-Yg-Cou" secondAttribute="leading" constant="18" id="tlF-kL-ZoJ"/>
+                <constraint firstItem="zOy-6t-Fsf" firstAttribute="leading" secondItem="2ME-MD-chx" secondAttribute="trailing" constant="12" id="xfK-0h-eog"/>
+            </constraints>
+            <connections>
+                <outlet property="cellLabel" destination="29u-bC-QSV" id="tSV-Mx-nhW"/>
+                <outlet property="copyLabel" destination="2ME-MD-chx" id="dbi-q8-vjm"/>
+                <outlet property="deleteLabel" destination="zOy-6t-Fsf" id="9cb-0f-dZa"/>
+                <outlet property="paymentRequestLabel" destination="9S0-C3-r2E" id="fKA-B4-NE7"/>
+                <outlet property="terminalLabel" destination="gxE-81-xyM" id="3gU-jk-EfU"/>
+            </connections>
+            <point key="canvasLocation" x="-89" y="39.5"/>
+        </tableCellView>
+    </objects>
+    <resources>
+        <namedColor name="BadgeRed">
+            <color red="1" green="0.32156862745098042" blue="0.32156862745098042" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="BodyInverted">
+            <color red="0.082352941176470587" green="0.11764705882352941" blue="0.15294117647058825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SecondaryText">
+            <color red="0.55686274509803924" green="0.58823529411764708" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

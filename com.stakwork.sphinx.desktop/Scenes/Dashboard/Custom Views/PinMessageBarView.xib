@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="PinMessageBarView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="c22-O7-iKe" id="ccc-hQ-1zG"/>
+                <outlet property="messageLabel" destination="5U0-hI-nYr" id="hgM-Ph-HrM"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="bmz-tF-ISC">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="50"/>
+                    <view key="contentView" id="ySA-mR-k6l">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="50"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="hMx-7y-hAk">
+                                <rect key="frame" x="0.0" y="49" width="480" height="1"/>
+                                <view key="contentView" id="Vy1-WK-1Zj">
+                                    <rect key="frame" x="0.0" y="0.0" width="480" height="1"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="QOr-1a-NKZ"/>
+                                </constraints>
+                                <color key="fillColor" name="Divider"/>
+                            </box>
+                            <textField horizontalHuggingPriority="252" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cDH-iD-Qm2">
+                                <rect key="frame" x="10" y="15" width="25" height="21"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="push_pin" id="dbv-Zs-hG5">
+                                    <font key="font" size="21" name="MaterialIcons-Regular"/>
+                                    <color key="textColor" name="SecondaryText"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="5U0-hI-nYr">
+                                <rect key="frame" x="43" y="18" width="423" height="14"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" title="This is a test message. Let's see how it works when it goes out of the bounds" id="run-02-evz">
+                                    <font key="font" size="12" name="Roboto-Regular"/>
+                                    <color key="textColor" name="Text"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YG4-qB-b23">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Yr5-kb-Iu5"/>
+                                </constraints>
+                                <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="ysw-Qj-3sl">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="pinBarButtonClicked:" target="-2" id="VrR-pz-Znj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="hMx-7y-hAk" firstAttribute="leading" secondItem="ySA-mR-k6l" secondAttribute="leading" id="3e8-Zf-ftY"/>
+                            <constraint firstItem="YG4-qB-b23" firstAttribute="leading" secondItem="ySA-mR-k6l" secondAttribute="leading" id="4tA-kT-W65"/>
+                            <constraint firstItem="hMx-7y-hAk" firstAttribute="top" secondItem="ySA-mR-k6l" secondAttribute="top" id="7am-up-E6Z"/>
+                            <constraint firstAttribute="trailing" secondItem="YG4-qB-b23" secondAttribute="trailing" id="DOw-Sy-J7b"/>
+                            <constraint firstAttribute="trailing" secondItem="hMx-7y-hAk" secondAttribute="trailing" id="GSA-y4-kkU"/>
+                            <constraint firstAttribute="trailing" secondItem="5U0-hI-nYr" secondAttribute="trailing" priority="750" constant="16" id="LUf-Lc-Llz"/>
+                            <constraint firstItem="5U0-hI-nYr" firstAttribute="leading" secondItem="cDH-iD-Qm2" secondAttribute="trailing" constant="12" id="Msm-fC-GrW"/>
+                            <constraint firstItem="5U0-hI-nYr" firstAttribute="centerY" secondItem="ySA-mR-k6l" secondAttribute="centerY" id="RjC-4M-DxL"/>
+                            <constraint firstItem="cDH-iD-Qm2" firstAttribute="leading" secondItem="ySA-mR-k6l" secondAttribute="leading" constant="12" id="UlM-ZN-1fW"/>
+                            <constraint firstItem="cDH-iD-Qm2" firstAttribute="centerY" secondItem="ySA-mR-k6l" secondAttribute="centerY" id="gzv-pE-mmR"/>
+                            <constraint firstItem="YG4-qB-b23" firstAttribute="top" secondItem="ySA-mR-k6l" secondAttribute="top" id="mri-3e-USt"/>
+                        </constraints>
+                    </view>
+                    <color key="fillColor" name="LightBG"/>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="bmz-tF-ISC" secondAttribute="bottom" id="4f2-X3-6wA"/>
+                <constraint firstItem="bmz-tF-ISC" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="SQR-Qt-mWy"/>
+                <constraint firstItem="bmz-tF-ISC" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="WZW-aN-hVd"/>
+                <constraint firstAttribute="trailing" secondItem="bmz-tF-ISC" secondAttribute="trailing" id="wx4-OG-1FS"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="-36"/>
+        </customView>
+    </objects>
+    <resources>
+        <namedColor name="Divider">
+            <color red="0.86274509803921573" green="0.8784313725490196" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightBG">
+            <color red="0.94901960784313721" green="0.95294117647058818" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SecondaryText">
+            <color red="0.55686274509803924" green="0.58823529411764708" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text">
+            <color red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

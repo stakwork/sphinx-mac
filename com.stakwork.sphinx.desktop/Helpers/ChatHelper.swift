@@ -8,6 +8,12 @@
 
 import Cocoa
 
+struct DeeplinkData{
+    var feedID:String
+    var itemID:String
+    var timestamp:Int
+}
+
 class ChatHelper {
     public static func getSenderColorFor(message: TransactionMessage) -> NSColor {
         var key:String? = nil
@@ -17,362 +23,55 @@ class ChatHelper {
         }
         
         if let senderAlias = message.senderAlias, !senderAlias.isEmpty {
-            key = "\(message.senderId)-\(senderAlias.trim())-color"
+            key = "\(senderAlias.trim())-color"
         }
 
         if let key = key {
             return NSColor.getColorFor(key: key)
         }
-        return NSColor.Sphinx.Text
+        return NSColor.Sphinx.SecondaryText
     }
     
-    func registerCellsForChat(collectionView: NSCollectionView) {
-        collectionView.registerItem(MessageSentCollectionViewItem.self)
-        collectionView.registerItem(MessageReceivedCollectionViewItem.self)
-        collectionView.registerItem(PaymentReceivedCollectionViewItem.self)
-        collectionView.registerItem(PaymentSentCollectionViewItem.self)
-        collectionView.registerItem(InvoiceSentCollectionViewItem.self)
-        collectionView.registerItem(InvoiceReceivedCollectionViewItem.self)
-        collectionView.registerItem(ExpiredInvoiceSentCollectionViewItem.self)
-        collectionView.registerItem(ExpiredInvoiceReceivedCollectionViewItem.self)
-        collectionView.registerItem(PaidInvoiceSentCollectionViewItem.self)
-        collectionView.registerItem(PaidInvoiceReceivedCollectionViewItem.self)
-        collectionView.registerItem(DayHeaderCollectionViewItem.self)
-        collectionView.registerItem(DirectPaymentSentCollectionViewItem.self)
-        collectionView.registerItem(DirectPaymentReceivedCollectionViewItem.self)
-        collectionView.registerItem(PictureSentCollectionViewItem.self)
-        collectionView.registerItem(PictureReceivedCollectionViewItem.self)
-        collectionView.registerItem(VideoSentCollectionViewItem.self)
-        collectionView.registerItem(VideoReceivedCollectionViewItem.self)
-        collectionView.registerItem(AudioSentCollectionViewItem.self)
-        collectionView.registerItem(AudioReceivedCollectionViewItem.self)
-        collectionView.registerItem(GroupActionMessageCollectionViewItem.self)
-        collectionView.registerItem(GroupRemovedCollectionViewItem.self)
-        collectionView.registerItem(GroupRequestCollectionViewItem.self)
-        collectionView.registerItem(LoadingMoreCollectionViewItem.self)
-        collectionView.registerItem(VideoCallSentCollectionViewItem.self)
-        collectionView.registerItem(VideoCallReceivedCollectionViewItem.self)
-        collectionView.registerItem(PaidMessageSentCollectionViewItem.self)
-        collectionView.registerItem(PaidMessageReceivedCollectionViewItem.self)
-        collectionView.registerItem(DeletedMessageSentCollectionViewItem.self)
-        collectionView.registerItem(DeletedMessageReceivedCollectionViewItem.self)
-        collectionView.registerItem(MessageWebViewReceivedCollectionViewItem.self)
-        collectionView.registerItem(FileSentCollectionViewItem.self)
-        collectionView.registerItem(FileReceivedCollectionViewItem.self)
-        collectionView.registerItem(PodcastCommentReceivedCollectionViewItem.self)
-        collectionView.registerItem(PodcastCommentSentCollectionViewItem.self)
-        collectionView.registerItem(PodcastBoostReceivedCollectionViewItem.self)
-        collectionView.registerItem(PodcastBoostSentCollectionViewItem.self)
+    public static func getRecipientColorFor(
+        message: TransactionMessage
+    ) -> NSColor {
+        
+        if let recipientAlias = message.recipientAlias, !recipientAlias.isEmpty {
+            return NSColor.getColorFor(
+                key: "\(recipientAlias.trim())-color"
+            )
+        }
+        return NSColor.Sphinx.SecondaryText
     }
     
-    func getItemFor(messageRow: TransactionMessageRow, indexPath: IndexPath, on collectionView: NSCollectionView) -> NSCollectionViewItem {
-        let isVideoCallLink = messageRow.isVideoCallLink
-        let isGiphy = messageRow.isGiphy
+    public static func removeDuplicatedContainedFrom(
+        urlRanges: [NSRange]
+    ) -> [NSRange] {
+        var ranges = urlRanges
         
-        var cell: NSCollectionViewItem! = nil
+        var indexesToRemove: [Int] = []
         
-        guard let type = messageRow.getType() else {
-            if let _ = messageRow.headerDate {
-                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "DayHeaderCollectionViewItem"), for: indexPath)
-                return cell
-            } else {
-                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "LoadingMoreCollectionViewItem"), for: indexPath)
-                return cell
-            }
-        }
-        
-        guard let message = messageRow.transactionMessage else {
-            return cell
-        }
-        
-        let incoming = messageRow.isIncoming()
-        
-        let messageStatus = TransactionMessage.TransactionMessageStatus(fromRawValue: Int(message.status))
-        if messageStatus == TransactionMessage.TransactionMessageStatus.deleted {
-            if incoming {
-                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "DeletedMessageReceivedCollectionViewItem"), for: indexPath)
-            } else {
-                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "DeletedMessageSentCollectionViewItem"), for: indexPath)
-            }
-            return cell
-        }
-        
-        let messageType = TransactionMessage.TransactionMessageType(fromRawValue: Int(type))
-        switch (messageType) {
-        case TransactionMessage.TransactionMessageType.message:
-            let isPodcastComment = messageRow.isPodcastComment
-            let isPodcastBoost = messageRow.isPodcastBoost
-            
-            if incoming {
-                if isVideoCallLink {
-                    cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "VideoCallReceivedCollectionViewItem"), for: indexPath)
-                } else if isGiphy {
-                    cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PictureReceivedCollectionViewItem"), for: indexPath)
-                } else if isPodcastComment {
-                    cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PodcastCommentReceivedCollectionViewItem"), for: indexPath)
-                } else if isPodcastBoost {
-                    cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PodcastBoostReceivedCollectionViewItem"), for: indexPath)
-                } else {
-                    cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MessageReceivedCollectionViewItem"), for: indexPath)
-                }
-            } else {
-                if isVideoCallLink {
-                     cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "VideoCallSentCollectionViewItem"), for: indexPath)
-                } else if isGiphy {
-                    cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PictureSentCollectionViewItem"), for: indexPath)
-                } else if isPodcastComment {
-                    cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PodcastCommentSentCollectionViewItem"), for: indexPath)
-                } else if isPodcastBoost {
-                    cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PodcastBoostSentCollectionViewItem"), for: indexPath)
-                } else {
-                    cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MessageSentCollectionViewItem"), for: indexPath)
+        for (i, ur) in ranges.enumerated() {
+            for urlRange in ranges {
+                if (
+                    ur.lowerBound >= urlRange.lowerBound && ur.upperBound < urlRange.upperBound ||
+                    ur.lowerBound > urlRange.lowerBound && ur.upperBound <= urlRange.upperBound
+                ) {
+                    indexesToRemove.append(i)
                 }
             }
-            break
-        case TransactionMessage.TransactionMessageType.boost:
-            if incoming {
-                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PodcastBoostReceivedCollectionViewItem"), for: indexPath)
-            } else {
-                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PodcastBoostSentCollectionViewItem"), for: indexPath)
-            }
-        case TransactionMessage.TransactionMessageType.invoice:
-            if incoming {
-                if message.isPaid() {
-                    cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PaidInvoiceReceivedCollectionViewItem"), for: indexPath)
-                } else if message.isExpired() {
-                    cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ExpiredInvoiceReceivedCollectionViewItem"), for: indexPath)
-                } else {
-                    cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "InvoiceReceivedCollectionViewItem"), for: indexPath)
-                }
-            } else {
-                if message.isPaid() {
-                    cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PaidInvoiceSentCollectionViewItem"), for: indexPath)
-                } else if message.isExpired() {
-                    cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ExpiredInvoiceSentCollectionViewItem"), for: indexPath)
-                } else {
-                    cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "InvoiceSentCollectionViewItem"), for: indexPath)
-                }
-            }
-            break
-        case TransactionMessage.TransactionMessageType.payment:
-            if incoming {
-                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PaymentReceivedCollectionViewItem"), for: indexPath)
-            } else {
-                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PaymentSentCollectionViewItem"), for: indexPath)
-            }
-            break
-        case TransactionMessage.TransactionMessageType.confirmation:
-            break
-        case TransactionMessage.TransactionMessageType.cancellation:
-            break
-        case TransactionMessage.TransactionMessageType.directPayment:
-            if incoming {
-                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "DirectPaymentReceivedCollectionViewItem"), for: indexPath)
-            } else {
-                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "DirectPaymentSentCollectionViewItem"), for: indexPath)
-            }
-            break
-        case TransactionMessage.TransactionMessageType.imageAttachment, TransactionMessage.TransactionMessageType.pdfAttachment:
-            if incoming {
-                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PictureReceivedCollectionViewItem"), for: indexPath)
-            } else {
-                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PictureSentCollectionViewItem"), for: indexPath)
-            }
-            break
-        case TransactionMessage.TransactionMessageType.videoAttachment:
-            if incoming {
-                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "VideoReceivedCollectionViewItem"), for: indexPath)
-            } else {
-                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "VideoSentCollectionViewItem"), for: indexPath)
-            }
-            break
-        case TransactionMessage.TransactionMessageType.audioAttachment:
-            if incoming {
-                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AudioReceivedCollectionViewItem"), for: indexPath)
-            } else {
-                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AudioSentCollectionViewItem"), for: indexPath)
-            }
-            break
-        case TransactionMessage.TransactionMessageType.textAttachment:
-            if incoming {
-                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PaidMessageReceivedCollectionViewItem"), for: indexPath)
-            } else {
-                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PaidMessageSentCollectionViewItem"), for: indexPath)
-            }
-            break
-        case TransactionMessage.TransactionMessageType.fileAttachment:
-            if incoming {
-                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "FileReceivedCollectionViewItem"), for: indexPath)
-            } else {
-                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "FileSentCollectionViewItem"), for: indexPath)
-            }
-            break
-        case TransactionMessage.TransactionMessageType.groupLeave, TransactionMessage.TransactionMessageType.groupJoin:
-            cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "GroupActionMessageCollectionViewItem"), for: indexPath)
-            break
-        case TransactionMessage.TransactionMessageType.groupKick, TransactionMessage.TransactionMessageType.groupDelete:
-            cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "GroupRemovedCollectionViewItem"), for: indexPath)
-            break
-        case TransactionMessage.TransactionMessageType.memberApprove:
-            if message.chat?.isMyPublicGroup() ?? false {
-                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "GroupRequestCollectionViewItem"), for: indexPath)
-            } else {
-                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "GroupActionMessageCollectionViewItem"), for: indexPath)
-            }
-            break
-        case TransactionMessage.TransactionMessageType.memberReject:
-            if message.chat?.isMyPublicGroup() ?? false {
-                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "GroupRequestCollectionViewItem"), for: indexPath)
-            } else {
-                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "GroupRemovedCollectionViewItem"), for: indexPath)
-            }
-            break
-        case TransactionMessage.TransactionMessageType.memberRequest:
-            cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "GroupRequestCollectionViewItem"), for: indexPath)
-            break
-        case TransactionMessage.TransactionMessageType.botResponse:
-            if (message.messageContent?.isValidHTML ?? true) {
-                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MessageWebViewReceivedCollectionViewItem"), for: indexPath)
-            } else {
-                cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "MessageReceivedCollectionViewItem"), for: indexPath)
-            }
-            break
-        default:
-            break
         }
         
-        if cell == nil {
-            cell = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "EmptyChatCollectionViewItem"), for: indexPath)
-        }
-        return cell
-    }
-    
-    func getRowHeight(incoming: Bool, messageRow: TransactionMessageRow, chatWidth: CGFloat) -> CGFloat {
-        var  height: CGFloat = 0.0
-        let isVideoCallLink = messageRow.isVideoCallLink
-        let isGiphy = messageRow.isGiphy
+        indexesToRemove = Array(Set(indexesToRemove))
+        indexesToRemove.sort(by: >)
         
-        guard let message = messageRow.transactionMessage else {
-            return height
+        for index in indexesToRemove {
+            if ranges.count > index {
+                ranges.remove(at: index)
+            }
         }
         
-        guard let type = messageRow.getType() else {
-            return height
-        }
-        
-        let status = TransactionMessage.TransactionMessageStatus(fromRawValue: Int(message.status))
-        if status == TransactionMessage.TransactionMessageStatus.deleted {
-            return CommonDeletedMessageCollectionViewItem.getRowHeight()
-        }
-        
-        let messageType = TransactionMessage.TransactionMessageType(fromRawValue: Int(type))
-        switch (messageType) {
-        case TransactionMessage.TransactionMessageType.message, TransactionMessage.TransactionMessageType.boost:
-            let isPodcastComment = messageRow.isPodcastComment
-            let isPodcastBoost = messageRow.isPodcastBoost
-            
-            if isVideoCallLink {
-                height = CommonVideoCallCollectionViewItem.getRowHeight(messageRow: messageRow)
-            } else if isGiphy {
-                height = CommonPictureCollectionViewItem.getRowHeight(messageRow: messageRow)
-            } else if isPodcastComment {
-                height = CommonPodcastCommentCollectionViewItem.getRowHeight(messageRow: messageRow)
-            } else if isPodcastBoost {
-                height = CommonPodcastBoostCollectionViewItem.getRowHeight()
-            } else {
-                if incoming {
-                    height = MessageReceivedCollectionViewItem.getRowHeight(messageRow: messageRow)
-                } else {
-                    height = MessageSentCollectionViewItem.getRowHeight(messageRow: messageRow)
-                }
-            }
-            break
-        case TransactionMessage.TransactionMessageType.invoice:
-            if incoming {
-                if messageRow.transactionMessage.isPaid() {
-                    height = PaidInvoiceReceivedCollectionViewItem.getRowHeight(messageRow: messageRow)
-                } else if messageRow.transactionMessage.isExpired() {
-                    height = CommonExpiredInvoiceCollectionViewItem.getRowHeight()
-                } else {
-                    height = InvoiceReceivedCollectionViewItem.getRowHeight(messageRow: messageRow)
-                }
-            } else {
-                if messageRow.transactionMessage.isPaid() {
-                    height = PaidInvoiceSentCollectionViewItem.getRowHeight(messageRow: messageRow)
-                } else if messageRow.transactionMessage.isExpired() {
-                    height = CommonExpiredInvoiceCollectionViewItem.getRowHeight()
-                } else {
-                    height = InvoiceSentCollectionViewItem.getRowHeight(messageRow: messageRow)
-                }
-            }
-            break
-        case TransactionMessage.TransactionMessageType.payment:
-            height = CommonPaymentCollectionViewItem.getRowHeight()
-            break
-        case TransactionMessage.TransactionMessageType.confirmation:
-            break
-        case TransactionMessage.TransactionMessageType.cancellation:
-            break
-        case TransactionMessage.TransactionMessageType.directPayment:
-            height = CommonDirectPaymentCollectionViewItem.getRowHeight(messageRow: messageRow)
-            break
-        case TransactionMessage.TransactionMessageType.imageAttachment, TransactionMessage.TransactionMessageType.pdfAttachment:
-            height = CommonPictureCollectionViewItem.getRowHeight(messageRow: messageRow)
-            break
-        case TransactionMessage.TransactionMessageType.videoAttachment:
-            height = CommonVideoCollectionViewItem.getRowHeight(messageRow: messageRow)
-            break
-        case TransactionMessage.TransactionMessageType.audioAttachment:
-            height = CommonAudioCollectionViewItem.getRowHeight(messageRow: messageRow)
-            break
-        case TransactionMessage.TransactionMessageType.textAttachment:
-            if incoming {
-                height = PaidMessageReceivedCollectionViewItem.getRowHeight(messageRow: messageRow, chatWidth: chatWidth)
-            } else {
-                height = PaidMessageSentCollectionViewItem.getRowHeight(messageRow: messageRow, chatWidth: chatWidth)
-            }
-            break
-        case TransactionMessage.TransactionMessageType.fileAttachment:
-            height = CommonFileCollectionViewItem.getRowHeight(messageRow: messageRow)
-            break
-        case TransactionMessage.TransactionMessageType.groupLeave, TransactionMessage.TransactionMessageType.groupJoin:
-            height = GroupActionMessageCollectionViewItem.getRowHeight()
-            break
-        case TransactionMessage.TransactionMessageType.groupKick, TransactionMessage.TransactionMessageType.groupDelete:
-            height = GroupRemovedCollectionViewItem.getRowHeight()
-        case TransactionMessage.TransactionMessageType.memberApprove:
-            if message.chat?.isMyPublicGroup() ?? false {
-                 height = GroupRequestCollectionViewItem.getRowHeight()
-            } else {
-                height = GroupActionMessageCollectionViewItem.getRowHeight()
-            }
-            break
-        case TransactionMessage.TransactionMessageType.memberReject:
-            if message.chat?.isMyPublicGroup() ?? false {
-                 height = GroupRequestCollectionViewItem.getRowHeight()
-            } else {
-                height = GroupRemovedCollectionViewItem.getRowHeight()
-            }
-            break
-        case TransactionMessage.TransactionMessageType.memberRequest:
-            height = GroupRequestCollectionViewItem.getRowHeight()
-            break
-        case TransactionMessage.TransactionMessageType.botResponse:
-            if (message.messageContent?.isValidHTML ?? true) {
-                height = MessageWebViewReceivedCollectionViewItem.getRowHeight(messageRow: messageRow)
-            } else {
-                height = MessageReceivedCollectionViewItem.getRowHeight(messageRow: messageRow)
-            }
-            break
-        default:
-            break
-        }
-        
-        let heightToSubstract = getHeightToSubstract(message: messageRow.transactionMessage)
-        if height > 0 && heightToSubstract > 0 {
-            return height - heightToSubstract
-        }
-        return height
+        return ranges
     }
 
     func getHeightToSubstract(message: TransactionMessage) -> CGFloat {
@@ -392,6 +91,7 @@ class ChatHelper {
             }
             
             message.resetNextConsecutiveMessages()
+            
             if message.isUniqueOnChat() { message.resetPreviousConsecutiveMessages() }
             nextMessage?.resetPreviousConsecutiveMessages()
             
@@ -407,7 +107,7 @@ class ChatHelper {
             }
             
             if nextMessage != nil {
-                if message.failed() {
+                if message.failed() || !message.isConfirmedAsReceived() {
                     referenceMessageDate = message.date
                     message.consecutiveMessages.nextMessage = false
                     nextMessage!.consecutiveMessages.previousMessage = false
@@ -440,7 +140,7 @@ class ChatHelper {
         }
         
         if previousMessage != nil && referenceMessageDate!.getMinutesDifference(from: message.messageDate) <= 5 {
-            if previousMessage!.failed() {
+            if previousMessage!.failed() || !previousMessage!.isConfirmedAsReceived() {
                 referenceMessageDate = message.date
                 message.consecutiveMessages.previousMessage = false
                 previousMessage!.consecutiveMessages.nextMessage = false
@@ -453,33 +153,11 @@ class ChatHelper {
         }
     }
     
-    func processGroupedMessagesOnDelete(rowToDelete: TransactionMessageRow, previousRow: TransactionMessageRow?, nextRow: TransactionMessageRow?) -> (Bool, Bool) {
-        let consecutiveMessages = rowToDelete.transactionMessage.consecutiveMessages
-        if let nextRow = nextRow, !nextRow.isDayHeader && !consecutiveMessages.previousMessage && consecutiveMessages.nextMessage {
-            nextRow.transactionMessage.consecutiveMessages.previousMessage = false
-            return (false, true)
-        }
-        if let previousRow = previousRow, !previousRow.isDayHeader && consecutiveMessages.previousMessage && !consecutiveMessages.nextMessage {
-            previousRow.transactionMessage.consecutiveMessages.nextMessage = false
-            return (true, false)
-        }
-        return (false, false)
-    }
-    
-    func processGroupedMessagesOnUpdate(updatedMessageRow: TransactionMessageRow, previousRow: TransactionMessageRow?, nextRow: TransactionMessageRow?) {
-        var consecutiveMessages = updatedMessageRow.transactionMessage.consecutiveMessages
-        consecutiveMessages.previousMessage = false
-        consecutiveMessages.nextMessage = false
-        
-        if let nextRow = nextRow, !nextRow.isDayHeader {
-            nextRow.transactionMessage.consecutiveMessages.previousMessage = false
-        }
-        if let previousRow = previousRow, !previousRow.isDayHeader {
-            previousRow.transactionMessage.consecutiveMessages.nextMessage = false
-        }
-    }
-    
-    func processMessagesReactionsFor(chat: Chat?, messagesArray: [TransactionMessage], boosts: inout [String: TransactionMessage.Reactions]) {
+    func processMessagesReactionsFor(
+        chat: Chat?,
+        messagesArray: [TransactionMessage],
+        boosts: inout [String: TransactionMessage.Reactions]
+    ) {
         guard let chat = chat else {
             return
         }
@@ -487,18 +165,26 @@ class ChatHelper {
         let emptyFilteredUUIDs = messagesUUIDs.filter { !$0.isEmpty }
         
         for message in TransactionMessage.getReactionsOn(chat: chat, for: emptyFilteredUUIDs) {
-            processMessageReaction(message: message, boosts: &boosts)
+            processMessageReaction(
+                message: message,
+                owner: UserContact.getOwner(),
+                contact: chat.getContact(),
+                boosts: &boosts
+            )
         }
     }
     
-    func processMessageReaction(message: TransactionMessage, boosts: inout [String: TransactionMessage.Reactions]) {
-        if let replyUUID = message.replyUUID {
+    func processMessageReaction(
+        message: TransactionMessage,
+        owner: UserContact?,
+        contact: UserContact?,
+        boosts: inout [String: TransactionMessage.Reactions]
+    ) {
+        if let replyUUID = message.replyUUID, let owner = UserContact.getOwner() {
             let outgoing = message.isOutgoing()
-            let isPublicGroup = message.chat?.isPublicGroup() ?? false
+            let senderImageUrl: String? = message.getMessageSenderImageUrl(owner: owner, contact: contact)
             
-            let image = (outgoing || !isPublicGroup) ? message.getMessageSender()?.getCachedImage() : nil
-            
-            let user: (String, NSColor, NSImage?) = (message.getMessageSenderNickname(forceNickname: true), ChatHelper.getSenderColorFor(message: message), image)
+            let user: (String, NSColor, String?) = (message.getMessageSenderNickname(forceNickname: true, owner: owner, contact: nil), ChatHelper.getSenderColorFor(message: message), senderImageUrl)
             let amount = message.amount?.intValue ?? 0
             
             if var reaction = boosts[replyUUID] {
@@ -509,5 +195,474 @@ class ChatHelper {
                 boosts[replyUUID] = TransactionMessage.Reactions(totalSats: amount, users: [user.0: (user.1, user.2)], boosted: outgoing, id: message.id)
             }
         }
+    }
+    
+    public static func getThreadListRowHeightFor(
+        _ tableCellState: ThreadTableCellState
+    ) -> CGFloat {
+        ///No Bubble message views
+        var mutableTableCellState = tableCellState
+        let kTopMargin: CGFloat = 44.0
+        let kBottomMargin: CGFloat = 52.0
+        
+        let kElementMargin: CGFloat = 12.0
+        let kMessageLineHeight: CGFloat = 20
+        let kTextWidth: CGFloat = 376
+        
+        var textHeight: CGFloat = 0
+        var viewsHeight: CGFloat = 0.0
+        
+        
+        if let originalThreadMessage = mutableTableCellState.threadMessagesState?.orignalThreadMessage {
+            
+            if originalThreadMessage.text.isNotEmpty {
+                textHeight = getThreadListTextMessageHeightFor(
+                    originalThreadMessage.text,
+                    width: kTextWidth,
+                    maxHeight: kMessageLineHeight * 2,
+                    font: NSFont.getThreadListFont()
+                ) + kElementMargin
+            }
+        }
+        
+        if let _ = mutableTableCellState.audio {
+            viewsHeight += AudioMessageView.kThreadsListViewHeight
+        }
+        
+        if let _ = mutableTableCellState.messageMedia {
+            viewsHeight += MediaMessageView.kThreadsListViewHeight
+        }
+        
+        if let _ = mutableTableCellState.genericFile {
+            viewsHeight += FileInfoView.kThreadsListViewHeight
+        }
+        
+        return textHeight + viewsHeight + kTopMargin + kBottomMargin
+    }
+    
+    public static func getThreadRowHeightFor(
+        _ tableCellState: MessageTableCellState,
+        linkData: MessageTableCellState.LinkData? = nil,
+        tribeData: MessageTableCellState.TribeData? = nil,
+        botWebViewData: MessageTableCellState.BotWebViewData? = nil,
+        collectionViewWidth: CGFloat
+    ) -> CGFloat {
+        ///No Bubble message views
+        var mutableTableCellState = tableCellState
+        let kGeneralMargin: CGFloat = 2.0
+        
+        let statusHeaderheight: CGFloat = getStatusHeaderHeightFor(tableCellState)
+        
+        var originalMessageTextHeight: CGFloat = 0
+        var lastReplyTextHeight: CGFloat = 0
+        var viewsHeight: CGFloat = 0.0
+        
+        if let threadState = mutableTableCellState.threadMessagesState {
+            let originalMessage = threadState.originalMessage
+            
+            if let text = originalMessage.text, text.isNotEmpty {
+                originalMessageTextHeight = getThreadOriginalTextMessageHeightFor(
+                    text,
+                    collectionViewWidth: collectionViewWidth,
+                    maxHeight: Constants.kMessageLineHeight * 2
+                )
+            }
+            
+            if threadState.moreRepliesCount > 0 {
+                viewsHeight += ThreadRepliesView.kViewHeightSeveralReplies
+            } else if let _ = threadState.secondReplySenderInfo {
+                viewsHeight += ThreadRepliesView.kViewHeight2Replies
+            } else {
+                viewsHeight += ThreadRepliesView.kViewHeight1Reply
+            }
+        }
+        
+        if let _ = mutableTableCellState.audio {
+            viewsHeight += AudioMessageView.kViewHeight
+        }
+        
+        if let _ = mutableTableCellState.messageMedia {
+            viewsHeight += MediaMessageView.kThreadViewHeight
+        }
+        
+        if let _ = mutableTableCellState.genericFile {
+            viewsHeight += FileInfoView.kViewHeight
+        }
+        
+        if let _ = mutableTableCellState.threadOriginalMessageAudio {
+            viewsHeight += AudioMessageView.kViewHeight
+        }
+        
+        if let _ = mutableTableCellState.threadOriginalMessageMedia {
+            viewsHeight += MediaMessageView.kThreadViewHeight
+        }
+        
+        if let _ = mutableTableCellState.threadOriginalMessageGenericFile {
+            viewsHeight += FileInfoView.kViewHeight
+        }
+        
+        if let text = mutableTableCellState.messageContent?.text, text.isNotEmpty {
+            lastReplyTextHeight = getThreadOriginalTextMessageHeightFor(
+                text,
+                collectionViewWidth: collectionViewWidth,
+                highlightedMatches: mutableTableCellState.messageContent?.highlightedMatches
+            )
+        }
+        
+        viewsHeight += ThreadLastMessageHeader.kViewHeight
+        
+        return originalMessageTextHeight + lastReplyTextHeight + (kGeneralMargin * 2) + statusHeaderheight + viewsHeight
+        
+    }
+    
+    public static func getRowHeightFor(
+        _ tableCellState: MessageTableCellState,
+        linkData: MessageTableCellState.LinkData? = nil,
+        tribeData: MessageTableCellState.TribeData? = nil,
+        botWebViewData: MessageTableCellState.BotWebViewData? = nil,
+        collectionViewWidth: CGFloat
+    ) -> CGFloat {
+        var mutableTableCellState = tableCellState
+        
+        if mutableTableCellState.isThread {
+            return ChatHelper.getThreadRowHeightFor(
+                tableCellState,
+                collectionViewWidth: collectionViewWidth
+            )
+        }
+        
+        ///No bubble message views
+        if let _ = mutableTableCellState.dateSeparator {
+            return DateSeparatorView.kViewHeight
+        }
+        
+        if let _ = mutableTableCellState.deleted {
+            return DeletedMessageView.kViewHeight
+        }
+        
+        if let _ = mutableTableCellState.groupMemberNotification {
+            return GroupActionMessageView.kViewHeight
+        }
+        
+        if let _ = mutableTableCellState.groupMemberRequest {
+            return GroupRequestView.kViewHeight
+        }
+        
+        if let _ = mutableTableCellState.groupKickRemovedOrDeclined {
+            return GroupRemovedView.kViewHeight
+        }
+        
+        ///No Bubble message views
+        let kGeneralMargin: CGFloat = 2.0
+        
+        let statusHeaderheight: CGFloat = getStatusHeaderHeightFor(tableCellState)
+        
+        let textHeight: CGFloat = getTextMessageHeightFor(
+            tableCellState,
+            linkData: linkData,
+            tribeData: tribeData,
+            collectionViewWidth: collectionViewWidth
+        )
+        
+        let viewsHeight: CGFloat = getAdditionalViewsHeightFor(
+            tableCellState,
+            linkData: linkData,
+            tribeData: tribeData,
+            botWebViewData: botWebViewData
+        )
+        
+        return textHeight + (kGeneralMargin * 2) + statusHeaderheight + viewsHeight
+        
+    }
+    
+    public static func getStatusHeaderHeightFor(
+        _ tableCellState: MessageTableCellState
+    ) -> CGFloat {
+        var mutableTableCellState = tableCellState
+        var statusHeaderheight: CGFloat = 25.0
+        
+        if let grouping = mutableTableCellState.bubble?.grouping, grouping.isGroupedAtTop() {
+            statusHeaderheight = 0.0
+        }
+        
+        return statusHeaderheight
+    }
+    
+    public static func getTextMessageHeightFor(
+        _ tableCellState: MessageTableCellState,
+        linkData: MessageTableCellState.LinkData? = nil,
+        tribeData: MessageTableCellState.TribeData? = nil,
+        collectionViewWidth: CGFloat
+    ) -> CGFloat {
+        var mutableTableCellState = tableCellState
+        var textHeight: CGFloat = 0.0
+        
+        var maxWidth = min(
+            CommonNewMessageCollectionViewitem.kMaximumLabelBubbleWidth,
+            collectionViewWidth - 80
+        )
+        
+        if let _ = mutableTableCellState.directPayment {
+            if let _ = mutableTableCellState.messageMedia {
+                maxWidth = min(
+                    CommonNewMessageCollectionViewitem.kMaximumDirectPaymentWithMediaBubbleWidth,
+                    collectionViewWidth - 80
+                )
+            } else if let _ = mutableTableCellState.messageContent {
+                maxWidth = min(
+                    CommonNewMessageCollectionViewitem.kMaximumDirectPaymentWithTextBubbleWidth,
+                    collectionViewWidth - 80
+                )
+            } else {
+                maxWidth = min(
+                    CommonNewMessageCollectionViewitem.kMaximumDirectPaymentBubbleWidth,
+                    collectionViewWidth - 80
+                )
+            }
+        } else if let _ = mutableTableCellState.messageMedia {
+            maxWidth = min(
+                CommonNewMessageCollectionViewitem.kMaximumMediaBubbleWidth,
+                collectionViewWidth - 80
+            )
+        } else if let _ = mutableTableCellState.genericFile {
+            maxWidth = min(
+                CommonNewMessageCollectionViewitem.kMaximumFileBubbleWidth,
+                collectionViewWidth - 80
+            )
+        } else if let _ = mutableTableCellState.audio {
+            maxWidth = min(
+                CommonNewMessageCollectionViewitem.kMaximumAudioBubbleWidth,
+                collectionViewWidth - 80
+            )
+        } else if let _ = linkData {
+            maxWidth = min(
+                CommonNewMessageCollectionViewitem.kMaximumLinksBubbleWidth,
+                collectionViewWidth - 80
+            )
+        } else if let _ = tribeData {
+            maxWidth = min(
+                CommonNewMessageCollectionViewitem.kMaximumLinksBubbleWidth,
+                collectionViewWidth - 80
+            )
+        } else if let _ = mutableTableCellState.contactLink {
+            maxWidth = min(
+                CommonNewMessageCollectionViewitem.kMaximumLinksBubbleWidth,
+                collectionViewWidth - 80
+            )
+        } else if let _ = mutableTableCellState.podcastComment {
+            maxWidth = min(
+                CommonNewMessageCollectionViewitem.kMaximumPodcastAudioBubbleWidth,
+                collectionViewWidth - 80
+            )
+        } else if let _ = mutableTableCellState.messageContent, let _ = mutableTableCellState.paidContent {
+            maxWidth = min(
+                CommonNewMessageCollectionViewitem.kMaximumPaidTextViewBubbleWidth,
+                collectionViewWidth - 80
+            )
+        }
+        
+        if let text = mutableTableCellState.messageContent?.text, text.isNotEmpty {
+            
+            textHeight = ChatHelper.getTextHeightFor(
+                text: text,
+                width: maxWidth,
+                highlightedMatches: mutableTableCellState.messageContent?.highlightedMatches
+            )
+        }
+        
+        return textHeight
+    }
+    
+    public static func getThreadOriginalTextMessageHeightFor(
+        _ text: String?,
+        collectionViewWidth: CGFloat,
+        maxHeight: CGFloat? = nil,
+        highlightedMatches: [NSTextCheckingResult]? = []
+    ) -> CGFloat {
+        var textHeight: CGFloat = 0.0
+        
+        let maxWidth = min(
+            CommonNewMessageCollectionViewitem.kMaximumThreadBubbleWidth,
+            collectionViewWidth - 80
+        )
+        
+        if let text = text, text.isNotEmpty {
+            textHeight = ChatHelper.getTextHeightFor(
+                text: text,
+                width: maxWidth,
+                highlightedMatches: highlightedMatches
+            )
+        }
+        
+        if let maxHeight = maxHeight {
+            return min(textHeight, maxHeight)
+        }
+        return textHeight
+    }
+    
+    public static func getThreadListTextMessageHeightFor(
+        _ text: String?,
+        width: CGFloat,
+        maxHeight: CGFloat,
+        font: NSFont? = nil
+    ) -> CGFloat {
+        var textHeight: CGFloat = 0.0
+        
+        if let text = text, text.isNotEmpty {
+            textHeight = ChatHelper.getTextHeightFor(
+                text: text,
+                width: width,
+                font: font,
+                labelMargins: 0
+            )
+        }
+        
+        return min(textHeight, maxHeight)
+    }
+    
+    public static func getAdditionalViewsHeightFor(
+        _ tableCellState: MessageTableCellState,
+        linkData: MessageTableCellState.LinkData? = nil,
+        tribeData: MessageTableCellState.TribeData? = nil,
+        botWebViewData: MessageTableCellState.BotWebViewData? = nil
+    ) -> CGFloat {
+        
+        var mutableTableCellState = tableCellState
+        var viewsHeight: CGFloat = 0.0
+        
+        if let _ = mutableTableCellState.replyingMessage {
+            viewsHeight += NewMessageReplyView.kViewHeight
+        }
+        
+        if let _ = mutableTableCellState.directPayment {
+            viewsHeight += DirectPaymentView.kViewHeight
+        }
+        
+        if let invoice = mutableTableCellState.invoice {
+            if mutableTableCellState.bubble?.direction == .Incoming && !invoice.isPaid {
+                viewsHeight += InvoiceView.kViewIncomingHeight
+            } else {
+                viewsHeight += InvoiceView.kViewOutgoingHeight
+            }
+            
+            if let memo = invoice.memo, memo.isNotEmpty {
+                let textHeight = ChatHelper.getTextHeightFor(
+                    text: memo,
+                    width: CommonNewMessageCollectionViewitem.kMaximumPaidTextViewBubbleWidth
+                ) - 16
+                
+                viewsHeight += textHeight
+            }
+        }
+        
+        if let _ = mutableTableCellState.payment {
+            viewsHeight += InvoicePaymentView.kViewHeight
+        }
+        
+        if let _ = mutableTableCellState.audio {
+            viewsHeight += AudioMessageView.kViewHeight
+        }
+        
+        if let _ = mutableTableCellState.podcastComment {
+            viewsHeight += PodcastAudioView.kViewHeight
+        }
+        
+        if let paidContent = mutableTableCellState.paidContent {
+            if paidContent.shouldAddPadding {
+                viewsHeight += SentPaidDetails.kViewHeight
+            } else if mutableTableCellState.bubble?.direction.isIncoming() == true {
+                viewsHeight += NewPaidAttachmentView.kViewHeight
+            }
+        }
+        
+        if let _ = mutableTableCellState.messageMedia {
+            viewsHeight += MediaMessageView.kViewHeight
+        }
+        
+        if let link = mutableTableCellState.callLink {
+            if link.callMode == VideoCallHelper.CallMode.Audio {
+                viewsHeight += JoinVideoCallView.kViewAudioOnlyHeight
+            } else {
+                viewsHeight += JoinVideoCallView.kViewHeight
+            }
+        }
+        
+        if let _ = mutableTableCellState.podcastBoost {
+            viewsHeight += PodcastBoostView.kViewHeight
+        }
+        
+        if let _ = mutableTableCellState.genericFile {
+            viewsHeight += FileInfoView.kViewHeight
+        }
+        
+        if let contactLink = mutableTableCellState.contactLink {
+            if contactLink.isContact {
+                viewsHeight += ContactLinkView.kViewHeightWithoutButton
+            } else {
+                viewsHeight += ContactLinkView.kViewHeightWithButton
+            }
+        }
+        
+        //        if let _ = mutableTableCellState.webLink {
+        //            viewsHeight += NewLinkPreviewView.kViewHeight
+        //        }
+        
+        if let tribeData = tribeData {
+            if tribeData.showJoinButton {
+                viewsHeight += TribeLinkView.kViewHeightWithButton
+            } else {
+                viewsHeight += TribeLinkView.kViewHeightWithoutButton
+            }
+        }
+        
+        if let _ = mutableTableCellState.boosts {
+            viewsHeight += NewMessageBoostView.kViewHeight
+        }
+        
+        if let botWebViewData = botWebViewData {
+            viewsHeight += botWebViewData.height
+        } else if let _ = mutableTableCellState.botHTMLContent {
+            viewsHeight += BotResponseView.kViewHeight
+        }
+        
+        return viewsHeight
+    }
+    
+    public static func getTextHeightFor(
+        text: String,
+        width: CGFloat,
+        font: NSFont? = nil,
+        highlightedMatches: [NSTextCheckingResult]? = [],
+        labelMargins: CGFloat? = nil
+    ) -> CGFloat {
+        let attrs = [NSAttributedString.Key.font: font ?? Constants.kMessageFont]
+        let attributedString = NSMutableAttributedString(string: text, attributes: attrs)
+        
+        for (index, match) in (highlightedMatches ?? []).enumerated() {
+            
+            ///Subtracting the previous matches delimiter characters since they have been removed from the string
+            ///Subtracting the \` characters from the length since removing the chars caused the range to be 2 less chars
+            let substractionNeeded = index * 2
+            let adaptedRange = NSRange(location: match.range.location - substractionNeeded, length: match.range.length - 2)
+            
+            attributedString.addAttributes(
+                [
+                    NSAttributedString.Key.font: Constants.kMessageHighlightedFont,
+                    NSAttributedString.Key.backgroundColor: NSColor.Sphinx.HighlightedTextBackground
+                ],
+                range: adaptedRange
+            )
+            
+        }
+        
+        let kLabelHorizontalMargins: CGFloat = 32.0
+        let kLabelVerticalMargins: CGFloat = labelMargins ?? 32.0
+        
+        let textHeight = attributedString.boundingRect(
+            with: NSSize(width: width - kLabelHorizontalMargins, height: CGFLOAT_MAX),
+            options: [.usesLineFragmentOrigin, .usesFontLeading]
+        ).height + kLabelVerticalMargins
+        
+        return textHeight
     }
 }

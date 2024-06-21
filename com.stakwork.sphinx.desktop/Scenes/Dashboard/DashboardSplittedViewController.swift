@@ -9,30 +9,20 @@
 import Cocoa
 
 protocol DashboardVCDelegate: AnyObject {
-    func didClickOnChatRow(object: ChatListCommonObject)
-    func didReloadDashboard()
-    func shouldReloadChatList()
-    func shouldShowRestoreModal(progress: Int)
+    func didClickOnChatRow(chatId: Int?, contactId: Int?)
+    func shouldShowRestoreModal(with progress: Int, label: String, buttonEnabled: Bool)
+    func shouldHideRetoreModal()
     func shouldShowFullMediaFor(message: TransactionMessage)
     func shouldToggleLeftView(show: Bool?)
+    func didSwitchToTab()
+    func shouldResetContactView(deletedContactId: Int)
+    func shouldResetTribeView()
 }
 
 class DashboardSplittedViewController: NSViewController {
     
     weak var delegate: DashboardVCDelegate?
     
-    var contactsService : ContactsService! = nil
-    var chatViewModel: ChatViewModel! = nil
-    var chatListViewModel: ChatListViewModel! = nil
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    func setDataModels(contactsService: ContactsService, chatListViewModel: ChatListViewModel, chatViewModel: ChatViewModel) {
-        self.contactsService = contactsService
-        self.chatListViewModel = chatListViewModel
-        self.chatViewModel = chatViewModel
-    }
+    var chatListViewModel = ChatListViewModel()
     
 }

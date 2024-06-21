@@ -23,8 +23,6 @@ class WelcomeLightningViewController: NSViewController {
     @IBOutlet weak var bubbleNameLabel: NSTextField!
     @IBOutlet weak var bubbleArrow: NSView!
     
-    var contactsService: ContactsService! = nil
-    
     public enum FormViewMode: Int {
         case Start
         case NamePin
@@ -35,10 +33,13 @@ class WelcomeLightningViewController: NSViewController {
     var mode : FormViewMode = .Start
     var formView: NSView? = nil
     
-    static func instantiate(mode: FormViewMode = .Start, contactsService: ContactsService) -> WelcomeLightningViewController {
+    static func instantiate(
+        mode: FormViewMode = .Start
+    ) -> WelcomeLightningViewController {
+        
         let viewController = StoryboardScene.Signup.welcomeLightningViewController.instantiate()
         viewController.mode = mode
-        viewController.contactsService = contactsService
+        
         return viewController
     }
 
@@ -76,10 +77,19 @@ class WelcomeLightningViewController: NSViewController {
     func getViewFor(mode: FormViewMode) -> NSView? {
         switch (mode) {
         case .NamePin:
-            formView = NamePinView(frame: NSRect.zero, contactsService: contactsService, delegate: self)
+            formView = NamePinView(
+                frame: NSRect.zero,
+                delegate: self
+            )
         case .Image:
             let nickname = (formView as? NamePinView)?.getNickname() ?? UserContact.getOwner()?.nickname
-            formView = ProfileImageView(frame: NSRect.zero, nickname: nickname ?? "", contactsService: contactsService, delegate: self)
+            
+            formView = ProfileImageView(
+                frame: NSRect.zero,
+                nickname: nickname ?? "",
+                delegate: self
+            )
+            
         case .Ready:
             formView = SphinxReady(frame: NSRect.zero, delegate: self)
         default:

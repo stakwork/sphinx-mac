@@ -9,9 +9,10 @@
 import Cocoa
 import CoreData
 import SDWebImage
+import WebKit
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+ class AppDelegate: NSObject, NSApplicationDelegate {
     
     let notificationsHelper = NotificationsHelper()
     var newMessageBubbleHelper = NewMessageBubbleHelper()
@@ -27,17 +28,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var notificationSoundMenu: NSMenu!
     @IBOutlet weak var messagesSizeMenu: NSMenu!
     
-    @IBOutlet weak var profileMenuItem: NSMenuItem!
-    @IBOutlet weak var newContactMenuItem: NSMenuItem!
     @IBOutlet weak var logoutMenuItem: NSMenuItem!
     @IBOutlet weak var removeAccountMenuItem: NSMenuItem!
     
+    let actionsManager = ActionsManager.sharedInstance
+    let feedsManager = FeedsManager.sharedInstance
+    let podcastPlayerController = PodcastPlayerController.sharedInstance
     
     public enum SphinxMenuButton: Int {
-        case Profile = 0
-        case NewContact = 1
-        case Logout = 2
-        case RemoveAccount = 3
+        case Logout = 0
+        case RemoveAccount = 1 
     }
     
     var lastClearSDMemoryDate: Date? {
@@ -51,30 +51,75 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         setAppSettings()
+        clearWebkitCache()
         
         SDImageCache.shared.clearMemory()
-        SDImageCache.shared.config.maxMemoryCount = 50
+        SDImageCache.shared.config.maxMemoryCount = 100
         
-        addStatusBarItem()
         listenToSleepEvents()
         connectTor()
-        getTransportKey()
+        connectMQTT()
+        getRelayKeys()
         
         setInitialVC()
     }
     
-    func getTransportKey() {
+    func clearWebkitCache() {
+        URLCache.shared.removeAllCachedResponses()
+
+        if let cookies = HTTPCookieStorage.shared.cookies {
+            for cookie in cookies {
+                HTTPCookieStorage.shared.deleteCookie(cookie)
+            }
+        }
+        
+        WKWebsiteDataStore.default().removeData(
+            ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(),
+            modifiedSince: Date(timeIntervalSince1970: 0),
+            completionHandler: {}
+        )
+    }
+    
+    func getRelayKeys() {
         if UserData.sharedInstance.isUserLogged() {
-            UserData.sharedInstance.getAndSaveTransportKey()
+            UserData.sharedInstance.getAndSaveTransportKey(forceGet: true)
+            UserData.sharedInstance.getOrCreateHMACKey(forceGet: true)
         }
     }
     
     func application(_ application: NSApplication, open urls: [URL]) {
         if urls.count > 0 {
-            for url in urls {
-                DeepLinksHandlerHelper.handleLinkQueryFrom(url: url)
+            if let _ = getDashboardWindow() {
+                for url in urls {
+                    DeepLinksHandlerHelper.handleLinkQueryFrom(url: url)
+                }
+            } else {
+                if let url = urls.first {
+                    UserDefaults.Keys.linkQuery.set(url.absoluteString)
+                }
             }
         }
+    }
+     
+    func application(
+        _ application: NSApplication,
+        continue userActivity: NSUserActivity,
+        restorationHandler: @escaping ([NSUserActivityRestoring]) -> Void
+    ) -> Bool {
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb, 
+                let url = userActivity.webpageURL,
+                let _ = URLComponents(url: url, resolvingAgainstBaseURL: true) else
+        {
+            return false
+        }
+        
+        if let _ = getDashboardWindow() {
+            WindowsManager.sharedInstance.showCallWindow(link: url.absoluteString)
+        } else {
+            UserDefaults.Keys.linkQuery.set(url.absoluteString)
+        }
+         
+        return true
     }
     
     func connectTor() {
@@ -85,12 +130,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         onionConnector.startIfNeeded()
     }
+     
+    func connectMQTT() {
+        if let phoneSignerSetup: Bool = UserDefaults.Keys.setupPhoneSigner.get(), phoneSignerSetup {
+            CrypterManager.sharedInstance.startMQTTSetup()
+        }
+    }
 
     
     func addStatusBarItem() {
         let statusBar = NSStatusBar.system
         statusBarItem = statusBar.statusItem(withLength: NSStatusItem.squareLength)
-        statusBarItem.button?.image = NSImage(named: "extraIconBadge")
+        statusBarItem.button?.image = NSImage(named: "extraIcon")
         statusBarItem.button?.imageScaling = .scaleProportionallyDown
         statusBarItem.button?.action = #selector(activateApp)
     }
@@ -109,19 +160,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let notificationSoundTag = notificationsHelper.getNotificationSoundTag()
         selectItemWith(tag: notificationSoundTag, in: notificationSoundMenu)
         
-        let messagesSize = UserDefaults.Keys.messagesSize.get(defaultValue: 0)
+        let messagesSize = UserDefaults.Keys.messagesSize.get(defaultValue: MessagesSize.Medium.rawValue)
         setMessagesSizeFrom(value: messagesSize)
     }
     
     
     func setAppMenuVisibility(shouldEnableItems: Bool) {
         [
-            profileMenuItem,
-            newContactMenuItem,
-            logoutMenuItem,
+//            logoutMenuItem,
             removeAccountMenuItem,
         ]
         .forEach { $0?.isHidden = shouldEnableItems == false }
+        
+        logoutMenuItem.isHidden = true
     }
     
     
@@ -130,6 +181,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             mainWindow.replaceContentBy(vc: DashboardViewController.instantiate())
         } else {
             if UserData.sharedInstance.isUserLogged() {
+                ContactsService.sharedInstance.setSelectedChat()
                 presentPIN()
             } else {
                 let splashVC = SplashViewController.instantiate()
@@ -157,6 +209,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.window?.setFrame(windowState.frame, display: true)
         window.window?.makeKey()
         window.showWindow(self)
+        
+        // MARK: - For Testing Purpose
+        let view = vc.view
+        
+        if let newWindow = window.window {
+            newWindow.setAccessibilityEnabled(true)
+            newWindow.setAccessibilityRole(.window)
+            newWindow.setAccessibilityIdentifier("MainWindow")
+        }
+        
+        window.window?.setAccessibilityChildren([view])
+        view.setAccessibilityRole(.window)
+        view.setAccessibilityIdentifier("MainView")
+        // MARK: - End
+        addStatusBarItem()
     }
     
     func getDashboardWindow() -> NSWindow? {
@@ -167,18 +234,34 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         return nil
     }
+     
+     func getDashboardVC() -> DashboardViewController? {
+         for w in NSApplication.shared.windows {
+             if let vc = w.contentViewController as? DashboardViewController {
+                 return vc
+             }
+         }
+         return nil
+     }
     
     func listenToSleepEvents() {
-        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(sleepListener(aNotification:)), name: NSWorkspace.didWakeNotification, object: nil)
-        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(sleepListener(aNotification:)), name: .screenIsUnlocked, object: nil)
+        NSWorkspace.shared.notificationCenter.addObserver(
+            self,
+            selector: #selector(sleepListener(aNotification:)),
+            name: NSWorkspace.didWakeNotification,
+            object: nil
+        )
     }
     
     @objc func sleepListener(aNotification: NSNotification) {
-        if (aNotification.name == NSWorkspace.didWakeNotification || aNotification.name == .screenIsUnlocked) && UserData.sharedInstance.isUserLogged() {
+        if (aNotification.name == NSWorkspace.didWakeNotification) && UserData.sharedInstance.isUserLogged() {
+            connectMQTT()
             SDImageCache.shared.clearMemory()
             
             unlockTimer?.invalidate()
             unlockTimer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(reloadDataAndConnectSocket), userInfo: nil, repeats: false)
+            
+            getDashboardVC()?.reloadChatListVC()
         }
     }
 
@@ -186,6 +269,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         SphinxSocketManager.sharedInstance.disconnectWebsocket()
         WindowsManager.sharedInstance.saveWindowState()
         CoreDataManager.sharedManager.saveContext()
+        ContactsService.sharedInstance.saveSelectedChat()
     }
     
     func applicationWillBecomeActive(_ notification: Notification) {
@@ -197,8 +281,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         
-        if UserData.sharedInstance.isUserLogged() {
+        if UserData.sharedInstance.isUserLogged() && !ChatListViewModel.isRestoreRunning() {
             reloadDataAndConnectSocket()
+//            feedsManager.restoreContentFeedStatusInBackground()
         }
     }
     
@@ -213,19 +298,38 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.setAppMenuVisibility(shouldEnableItems: true)
             self.loadDashboard()
         }
-        createKeyWindowWith(vc: pinVC, windowState: WindowsManager.sharedInstance.getWindowState(), closeOther: true, hideBar: true)
+        
+        createKeyWindowWith(
+            vc: pinVC,
+            windowState: WindowsManager.sharedInstance.getWindowState(),
+            closeOther: true,
+            hideBar: true
+        )
     }
     
     func loadDashboard() {
         SplashViewController.runBackgroundProcesses()
         SphinxSocketManager.sharedInstance.connectWebsocket()
-        createKeyWindowWith(vc: DashboardViewController.instantiate(), windowState: WindowsManager.sharedInstance.getWindowState(), closeOther: true)
+        ContactsService.sharedInstance.forceUpdate()
+        
+        createKeyWindowWith(
+            vc: DashboardViewController.instantiate(),
+            windowState: WindowsManager.sharedInstance.getWindowState(),
+            closeOther: true
+        )
+        
+        setBadge(count: TransactionMessage.getReceivedUnseenMessagesCount())
     }
     
     func applicationWillResignActive(_ notification: Notification) {
         if UserData.sharedInstance.isUserLogged() {
-            NotificationCenter.default.post(name: .shouldReadChat, object: nil)
+            NotificationCenter.default.post(name: .shouldTrackPosition, object: nil)
+            
             setBadge(count: TransactionMessage.getReceivedUnseenMessagesCount())
+            
+            podcastPlayerController.finishAndSaveContentConsumed()
+            actionsManager.syncActionsInBackground()
+            
             CoreDataManager.sharedManager.saveContext()
         }
     }
@@ -238,6 +342,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func setBadge(count: Int) {
         statusBarItem.button?.image = NSImage(named: count > 0 ? "extraIconBadge" : "extraIcon")
+        
         let title = count > 0 ? "\(count)" : ""
         NSApp.dockTile.badgeLabel = title
     }
@@ -245,8 +350,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func sendNotification(message: TransactionMessage) -> Void {
         notificationsHelper.sendNotification(message: message)
     }
+     
+     func sendNotification(
+        title: String,
+        subtitle: String? = nil,
+        text: String
+     ) -> Void {
+         notificationsHelper.sendNotification(
+            title: title,
+            subtitle: subtitle,
+            text: text
+         )
+     }
     
-    @IBAction func appearenceButtonClicked(_ sender: NSMenuItem) {
+    @IBAction func appearenceButtonClicked(_ sender: NSMenuItem) {        
         setAppearanceFrom(value: sender.tag, shouldUpdate: true)
         UserDefaults.Keys.appAppearance.set(sender.tag)
     }
@@ -259,7 +376,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func notificationSoundButtonClicked(_ sender: NSMenuItem) {
         notificationsHelper.setNotificationSound(tag: sender.tag)
         selectItemWith(tag: sender.tag, in: notificationSoundMenu)
-        PlayAudioHelper().playSound(name: notificationsHelper.getNotificationSoundFile())
+        SoundsPlayer.playSound(name: notificationsHelper.getNotificationSoundFile())
     }
     
     @IBAction func messagesSizeButtonClicked(_ sender: NSMenuItem) {
@@ -269,10 +386,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func sphinxMenuButtonClicked(_ sender: NSMenuItem) {
         switch(sender.tag) {
-        case SphinxMenuButton.Profile.rawValue:
-            profileButtonClicked()
-        case SphinxMenuButton.NewContact.rawValue:
-            newContactButtonClicked()
         case SphinxMenuButton.Logout.rawValue:
             logoutButtonClicked()
         case SphinxMenuButton.RemoveAccount.rawValue:
@@ -282,18 +395,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    func newContactButtonClicked() {
-        if let dashboard = NSApplication.shared.keyWindow?.contentViewController as? DashboardViewController {
-            dashboard.listViewController?.addContactButtonClicked(dashboard.view)
-        }
-    }
-    
     func removeAccountButtonClicked() {
         setBadge(count: 0)
         
         AlertHelper.showTwoOptionsAlert(title: "logout".localized, message: "logout.text".localized, confirm: {
-            UserData.sharedInstance.clearData()
-            SphinxSocketManager.sharedInstance.clearSocket()
+            self.stopListeningToMessages()
             
             let frame = WindowsManager.sharedInstance.getCenteredFrameFor(size: CGSize(width: 800, height: 500))
             let keyWindow = NSApplication.shared.keyWindow
@@ -302,18 +408,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             keyWindow?.titlebarAppearsTransparent = true
             keyWindow?.replaceContentBy(vc: SplashViewController.instantiate())
             keyWindow?.setFrame(frame, display: true, animate: true)
+            
+            ContactsService.sharedInstance.reset()
+            SphinxSocketManager.sharedInstance.clearSocket()
+            UserData.sharedInstance.clearData()
+            SphinxCache().removeAll()
         })
     }
+     
+     func stopListeningToMessages() {
+         if let dashboard = NSApplication.shared.keyWindow?.contentViewController as? DashboardViewController {
+             dashboard.newDetailViewController?.resetVC()
+         }
+     }
     
     func logoutButtonClicked() {
+        ContactsService.sharedInstance.reset()
         GroupsPinManager.sharedInstance.logout()
         presentPIN()
-    }
-    
-    func profileButtonClicked() {
-        if let profile = UserContact.getOwner(), profile.id > 0 {
-            WindowsManager.sharedInstance.showProfileWindow(vc: ProfileViewController.instantiate(), window: NSApplication.shared.keyWindow)
-        }
     }
     
     func selectItemWith(tag: Int, in menu: NSMenu) {

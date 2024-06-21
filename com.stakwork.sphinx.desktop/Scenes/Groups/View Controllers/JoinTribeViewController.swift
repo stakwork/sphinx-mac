@@ -9,6 +9,32 @@
 import Cocoa
 import SwiftyJSON
 
+
+// Used to prevent moving view content during resize
+// unless the scollview becomes larger than the content
+// during which this code will keep the scrollview
+// content vertically centered.
+final class VerticallyCenteringClipView: NSClipView {
+    override func constrainBoundsRect(_ proposedBounds: NSRect) -> NSRect {
+        var constrainedClipViewBounds = super.constrainBoundsRect(proposedBounds)
+
+        guard let documentView else {
+            return constrainedClipViewBounds
+        }
+
+        let documentViewSize = documentView.fittingSize
+        
+        let correctedY = floor((proposedBounds.height - documentViewSize.height) / 2.0)
+        if documentViewSize.height < proposedBounds.height {
+            constrainedClipViewBounds.origin.y = correctedY
+        } else {
+            constrainedClipViewBounds.origin.y = bounds.origin.y
+        }
+
+        return constrainedClipViewBounds
+    }
+}
+
 class JoinTribeViewController: NSViewController {
     
     weak var delegate: NewContactChatDelegate?
@@ -24,6 +50,8 @@ class JoinTribeViewController: NSViewController {
     @IBOutlet weak var loadingWheel: NSProgressIndicator!
     @IBOutlet weak var uploadedLabel: NSTextField!
     @IBOutlet weak var joinTribeButton: NSButton!
+    @IBOutlet weak var joinTribeBox: NSBox!
+    @IBOutlet weak var joinTribeView: NSView!
     
     @IBOutlet weak var loadingTribeContainer: NSBox!
     @IBOutlet weak var loadingTribeLabel: NSTextField!
@@ -62,9 +90,13 @@ class JoinTribeViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tribeImageView.wantsLayer = true
+        tribeImageView.rounded = true
+        tribeImageView.layer?.cornerRadius = tribeImageView.frame.height / 2
+        
         loadGroupDetails()
     }
-    
+        
     func loadGroupDetails() {
         loadingGroup = true
         
@@ -104,16 +136,19 @@ class JoinTribeViewController: NSViewController {
             tribeImageView.image = NSImage(named: "tribePlaceHolder")?.image(withTintColor: NSColor.Sphinx.SecondaryText)
         }
         
-        let alias = owner?.nickname
-        let photoUrl = owner?.getPhotoUrl()
-        tribeMemberInfoView.configureWith(vc: self, alias: alias, picture: photoUrl)
+        tribeMemberInfoView.configureWith(
+            vc: self,
+            alias: owner?.nickname,
+            picture: owner?.getPhotoUrl(),
+            shouldFixAlias: true
+        )
         
         loadingGroup = false
     }
     
     func showErrorAndDismiss() {
         AlertHelper.showAlert(title: "generic.error.title".localized, message: "generic.error.message".localized)
-        self.view.window?.close()
+        WindowsManager.sharedInstance.dismissViewFromCurrentWindow()
     }
     
     @IBAction func joinTribeButtonTouched(_ sender: Any) {
@@ -142,7 +177,7 @@ class JoinTribeViewController: NSViewController {
                     chat.saveChat()
                     
                     self.delegate?.shouldReloadContacts()
-                    self.view.window?.close()
+                    WindowsManager.sharedInstance.dismissViewFromCurrentWindow()
                 } else {
                     self.showErrorAndDismiss()
                 }

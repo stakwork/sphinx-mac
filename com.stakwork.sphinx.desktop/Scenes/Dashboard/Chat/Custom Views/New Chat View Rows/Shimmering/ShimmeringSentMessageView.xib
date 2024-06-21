@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="ShimmeringSentMessageView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="arrowView" destination="zIF-FC-vp6" id="a0M-1a-gg6"/>
+                <outlet property="bubbleBox" destination="Gvt-QF-qUQ" id="1Hw-Hx-zzj"/>
+                <outlet property="contentView" destination="c22-O7-iKe" id="ZJK-FV-PYX"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="718" height="272"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" borderType="none" cornerRadius="8" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Gvt-QF-qUQ">
+                    <rect key="frame" x="191" y="16" width="500" height="248"/>
+                    <view key="contentView" id="7GQ-gZ-ewp">
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="248"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="500" id="1Oa-Xi-mo1"/>
+                    </constraints>
+                    <color key="fillColor" name="SecondaryText"/>
+                </box>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="zIF-FC-vp6">
+                    <rect key="frame" x="683" y="256" width="15" height="8"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="8" id="9in-j6-gNc"/>
+                        <constraint firstAttribute="width" constant="15" id="J2S-AK-kca"/>
+                    </constraints>
+                </customView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Gvt-QF-qUQ" secondAttribute="trailing" constant="27" id="CKc-4c-Jk1"/>
+                <constraint firstItem="Gvt-QF-qUQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="c22-O7-iKe" secondAttribute="leading" constant="32" id="buy-O0-WKT"/>
+                <constraint firstItem="zIF-FC-vp6" firstAttribute="top" secondItem="Gvt-QF-qUQ" secondAttribute="top" id="e33-Tw-CIr"/>
+                <constraint firstItem="Gvt-QF-qUQ" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="8" id="f01-o7-iBQ"/>
+                <constraint firstItem="zIF-FC-vp6" firstAttribute="trailing" secondItem="Gvt-QF-qUQ" secondAttribute="trailing" constant="7" id="f9V-Tf-l4c"/>
+                <constraint firstAttribute="bottom" secondItem="Gvt-QF-qUQ" secondAttribute="bottom" constant="16" id="n3m-pG-V4L"/>
+            </constraints>
+            <point key="canvasLocation" x="258" y="-36"/>
+        </customView>
+    </objects>
+    <resources>
+        <namedColor name="SecondaryText">
+            <color red="0.55686274509803924" green="0.58823529411764708" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

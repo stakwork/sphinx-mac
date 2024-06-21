@@ -12,7 +12,7 @@ import SwiftyJSON
 class PersonModalView: CommonModalView, LoadableNib {
     
     @IBOutlet var contentView: NSView!
-    @IBOutlet weak var imageView: NSImageView!
+    @IBOutlet weak var imageView: AspectFillNSImageView!
     @IBOutlet weak var nicknameLabel: NSTextField!
     @IBOutlet weak var messageLabel: NSTextField!
     @IBOutlet weak var priceLabel: NSTextField!
@@ -20,11 +20,16 @@ class PersonModalView: CommonModalView, LoadableNib {
     
     @IBOutlet weak var loadingWheel: NSProgressIndicator!
     @IBOutlet weak var loadingWheelContainer: NSBox!
+    
+    var contactResultsController: NSFetchedResultsController<UserContact>!
+    var timeOutTimer : Timer? = nil
 
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
         
         imageView.wantsLayer = true
+        imageView.rounded = true
+        imageView.gravity = .resizeAspectFill
         imageView.layer?.cornerRadius = imageView.frame.height / 2
     }
 
@@ -65,9 +70,9 @@ class PersonModalView: CommonModalView, LoadableNib {
         authInfo?.jsonBody = person
         
         if let imageUrl = person["img"].string, let nsUrl = URL(string: imageUrl), imageUrl != "" {
-            MediaLoader.asyncLoadImage(imageView: imageView, nsUrl: nsUrl, placeHolderImage: NSImage(named: "profile_avatar"))
+            MediaLoader.asyncLoadImage(imageView: imageView, nsUrl: nsUrl, placeHolderImage: NSImage(named: "profileAvatar"))
         } else {
-            imageView.image = NSImage(named: "profile_avatar")
+            imageView.image = NSImage(named: "profileAvatar")
         }
         
         nicknameLabel.stringValue = person["owner_alias"].string ?? "Unknown"
@@ -81,6 +86,16 @@ class PersonModalView: CommonModalView, LoadableNib {
     
     override func modalDidShow() {
         super.modalDidShow()
+    }
+    
+    @objc func handleKeyExchangeTimeout() {
+        cleanupKeyExchange()
+        showErrorMessage()
+    }
+    
+    func cleanupKeyExchange() {
+        timeOutTimer?.invalidate()
+        resetFetchedResultsControllers()
     }
     
     override func didTapConfirmButton() {
@@ -103,16 +118,28 @@ class PersonModalView: CommonModalView, LoadableNib {
             let routeHint = authInfo?.jsonBody["owner_route_hint"].string ?? ""
             let contactKey = authInfo?.jsonBody["owner_contact_key"].string ?? ""
             
-            let contactsService = ContactsService()
-            
-            contactsService.createContact(nickname: nickname, pubKey: pubkey, routeHint: routeHint, contactKey: contactKey, callback: { (success) in
-                
-                if success {
-                    self.sendInitialMessage()
-                    return
+            UserContactsHelper.createContact(
+                nickname: nickname,
+                pubKey: pubkey,
+                routeHint: routeHint,
+                contactKey: contactKey,
+                callback: { (success, contactId) in
+                    
+                    if let contactId = contactId, success {
+                        self.configureFetchResultsControllerFor(contactId: contactId)
+                        
+                        self.timeOutTimer = Timer.scheduledTimer(
+                            timeInterval: 30.0,
+                            target: self,
+                            selector: #selector(self.handleKeyExchangeTimeout),
+                            userInfo: nil,
+                            repeats: false
+                        )
+                        return
+                    }
+                    self.showErrorMessage()
                 }
-                self.showErrorMessage()
-            })
+            )
         }
     }
     
@@ -132,7 +159,10 @@ class PersonModalView: CommonModalView, LoadableNib {
             }
             
             API.sharedInstance.sendMessage(params: params, callback: { m in
-                if let _ = TransactionMessage.insertMessage(m: m).0 {
+                if let _ = TransactionMessage.insertMessage(
+                    m: m,
+                    existingMessage: TransactionMessage.getMessageWith(id: m["id"].intValue)
+                ).0 {
                     self.delegate?.shouldDismissModals()
                 }
             }, errorCallback: {
@@ -144,7 +174,7 @@ class PersonModalView: CommonModalView, LoadableNib {
     }
     
     func showErrorMessage() {
-        showMessage(message: "generic.error".localized, color: NSColor.Sphinx.BadgeRed)
+        showMessage(message: "generic.error.message".localized, color: NSColor.Sphinx.BadgeRed)
     }
     
     func showMessage(message: String, color: NSColor) {
@@ -152,4 +182,44 @@ class PersonModalView: CommonModalView, LoadableNib {
         messageBubbleHelper.showGenericMessageView(text: message, delay: 3, textColor: NSColor.white, backColor: color, backAlpha: 1.0)
     }
     
+}
+
+extension PersonModalView: NSFetchedResultsControllerDelegate {
+    func configureFetchResultsControllerFor(
+        contactId: Int
+    ) {
+        let fetchRequest = UserContact.FetchRequests.encryptedContactWith(id: contactId)
+
+        contactResultsController = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: CoreDataManager.sharedManager.persistentContainer.viewContext,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
+        
+        contactResultsController.delegate = self
+        
+        do {
+            try contactResultsController.performFetch()
+        } catch {}
+    }
+    
+    func resetFetchedResultsControllers() {
+        contactResultsController = nil
+    }
+
+    func controller(
+        _ controller: NSFetchedResultsController<NSFetchRequestResult>,
+        didChangeContentWith snapshot: NSDiffableDataSourceSnapshotReference
+    ) {
+        if
+            let resultController = controller as? NSFetchedResultsController<NSManagedObject>,
+            let firstSection = resultController.sections?.first {
+            
+            if let contacts = firstSection.objects as? [UserContact], let _ = contacts.first {
+                sendInitialMessage()
+                cleanupKeyExchange()
+            }
+        }
+    }
 }

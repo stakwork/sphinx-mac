@@ -27,16 +27,26 @@ class ProfileViewController: NSViewController {
     @IBOutlet weak var pinTimeoutBox: NSBox!
     @IBOutlet weak var changePinBox: NSBox!
     @IBOutlet weak var changePrivacyPinBox: NSBox!
+    @IBOutlet weak var setupSignerBox: NSBox!
+    @IBOutlet weak var disconnectMQTTBox: NSBox!
     
     @IBOutlet weak var userNameField: NSTextField!
     @IBOutlet weak var addressField: NSTextField!
     @IBOutlet weak var routeHintField: NSTextField!
     @IBOutlet weak var qrButton: CustomButton!
+    
     @IBOutlet weak var sharePhotoSwitchContainer: NSBox!
     @IBOutlet weak var sharePhotoSwitchCircle: NSBox!
     @IBOutlet weak var sharePhotoSwitchCircleLeading: NSLayoutConstraint!
     @IBOutlet weak var sharePhotoSwitchButton: CustomButton!
+    
+    @IBOutlet weak var trackActionsSwitchContainer: NSBox!
+    @IBOutlet weak var trackActionsSwitchCircle: NSBox!
+    @IBOutlet weak var trackActionsSwitchCircleLeading: NSLayoutConstraint!
+    @IBOutlet weak var trackActionsSwitchButton: CustomButton!
+    
     @IBOutlet weak var meetingServerField: NSTextField!
+    @IBOutlet weak var meetingAmountField: NSTextField!
     @IBOutlet weak var serverURLField: NSTextField!
     @IBOutlet weak var exportKeysButton: CustomButton!
     @IBOutlet weak var privacyPinButton: CustomButton!
@@ -46,10 +56,9 @@ class ProfileViewController: NSViewController {
     @IBOutlet weak var saveButton: CustomButton!
     @IBOutlet weak var loadingWheel: NSProgressIndicator!
     
-    let kPhotoSwitchOnLeading: CGFloat = 25
-    let kPhotoSwitchOffLeading: CGFloat = 2
+    let kSwitchOnLeading: CGFloat = 25
+    let kSwitchOffLeading: CGFloat = 2
     
-    var contactsService = ContactsService()
     var walletBalanceService = WalletBalanceService()
     let newMessageBubbleHelper = NewMessageBubbleHelper()
     let urlUpdateHelper = RelayURLUpdateHelper()
@@ -88,6 +97,10 @@ class ProfileViewController: NSViewController {
         
         qrButton.cursor = .pointingHand
         
+        profileImageView.wantsLayer = true
+        profileImageView.rounded = true
+        profileImageView.layer?.cornerRadius = profileImageView.frame.height / 2
+        
         profilePictureDraggingView.configureForProfilePicture()
         profilePictureDraggingView.delegate = self
         profilePictureDraggingView.setup()
@@ -107,13 +120,20 @@ class ProfileViewController: NSViewController {
         sharePhotoSwitchContainer.layer?.cornerRadius = sharePhotoSwitchContainer.frame.size.height / 2
         sharePhotoSwitchCircle.layer?.cornerRadius = sharePhotoSwitchCircle.frame.size.height / 2
         
+        trackActionsSwitchContainer.wantsLayer = true
+        trackActionsSwitchCircle.wantsLayer = true
+        trackActionsSwitchContainer.layer?.cornerRadius = trackActionsSwitchContainer.frame.size.height / 2
+        trackActionsSwitchCircle.layer?.cornerRadius = trackActionsSwitchCircle.frame.size.height / 2
+        
         sharePhotoSwitchButton.cursor = .pointingHand
+        trackActionsSwitchButton.cursor = .pointingHand
         exportKeysButton.cursor = .pointingHand
         saveButton.cursor = .pointingHand
         privacyPinButton.cursor = .pointingHand
         
         userNameField.delegate = self
         meetingServerField.delegate = self
+        meetingAmountField.delegate = self
         serverURLField.delegate = self
     }
     
@@ -136,7 +156,8 @@ class ProfileViewController: NSViewController {
                 profileImageView.image = NSImage(named: "profileAvatar")
             }
             
-            toggleSwitch(on: !profile.privatePhoto)
+            toggleSharePhotoSwitch(on: !profile.privatePhoto)
+            toggleActionsTrackingSwitch(on: UserDefaults.Keys.shouldTrackActions.get(defaultValue: false))
             
             let nickname = profile.nickname ?? ""
             nameLabel.stringValue = nickname.getNameStyleString()
@@ -153,6 +174,7 @@ class ProfileViewController: NSViewController {
             }
             
             meetingServerField.stringValue = API.kVideoCallServer
+            meetingAmountField.stringValue = "\(UserContact.kTipAmount)"
             privacyPinButton.stringValue = (GroupsPinManager.sharedInstance.isPrivacyPinSet() ? "change.privacy.pin" : "set.privacy.pin").localized
         }
         
@@ -164,38 +186,43 @@ class ProfileViewController: NSViewController {
         self.view.window?.makeFirstResponder(nil)
     }
     
-    func toggleSwitch(on: Bool) {
-        sharePhotoSwitchCircleLeading.constant = on ? kPhotoSwitchOnLeading : kPhotoSwitchOffLeading
-        sharePhotoSwitchContainer.fillColor = on ? NSColor.Sphinx.PrimaryBlue : NSColor.Sphinx.MainBottomIcons
-    }
-    
-    func isPhotoSwitchOn() -> Bool {
-        return sharePhotoSwitchCircleLeading.constant == kPhotoSwitchOnLeading
-    }
-    
     func shouldEnableSaveButton() -> Bool {
-        if let profile = UserContact.getOwner() {
-            let nameUpdated = userNameField.stringValue != profile.nickname
-            let meetingServerUpdated = meetingServerField.stringValue != API.kVideoCallServer
-            let serverUrlUpdated = serverURLField.stringValue != UserData.sharedInstance.getNodeIP()
-            let photoSharingUpdated = isPhotoSwitchOn() != !profile.privatePhoto
-            let profilePic = profileImage != nil
-            
-            return nameUpdated || meetingServerUpdated || serverUrlUpdated || photoSharingUpdated || profilePic
-        }
-        return false
+        return didUpdateProfile()
     }
     
     @IBAction func qrCodeButtonClicked(_ sender: Any) {
         if let profile = UserContact.getOwner(), let address = profile.getAddress(), !address.isEmpty {
             let shareInviteCodeVC = ShareInviteCodeViewController.instantiate(qrCodeString: address, viewMode: .PubKey)
-            WindowsManager.sharedInstance.showPubKeyWindow(vc: shareInviteCodeVC, window: view.window)
+            advanceTo(vc: shareInviteCodeVC, title: "pubkey.upper".localized.localizedCapitalized, height: 600)
         }
     }
     
     @IBAction func sharePhotoSwitchButtonClicked(_ sender: Any) {
-        toggleSwitch(on: !isPhotoSwitchOn())
+        toggleSharePhotoSwitch(on: !isPhotoSwitchOn())
         saveEnabled = shouldEnableSaveButton()
+    }
+    
+    func toggleSharePhotoSwitch(on: Bool) {
+        sharePhotoSwitchCircleLeading.constant = on ? kSwitchOnLeading : kSwitchOffLeading
+        sharePhotoSwitchContainer.fillColor = on ? NSColor.Sphinx.PrimaryBlue : NSColor.Sphinx.MainBottomIcons
+    }
+    
+    func isPhotoSwitchOn() -> Bool {
+        return sharePhotoSwitchCircleLeading.constant == kSwitchOnLeading
+    }
+    
+    @IBAction func trackActionsSwitchButtonClicked(_ sender: Any) {
+        toggleActionsTrackingSwitch(on: !isTrackActionsSwitchOn())
+        saveEnabled = shouldEnableSaveButton()
+    }
+    
+    func toggleActionsTrackingSwitch(on: Bool) {
+        trackActionsSwitchCircleLeading.constant = on ? kSwitchOnLeading : kSwitchOffLeading
+        trackActionsSwitchContainer.fillColor = on ? NSColor.Sphinx.PrimaryBlue : NSColor.Sphinx.MainBottomIcons
+    }
+    
+    func isTrackActionsSwitchOn() -> Bool {
+        return trackActionsSwitchCircleLeading.constant == kSwitchOnLeading
     }
     
     @IBAction func exportKeysButtonClicked(_ sender: Any) {
@@ -204,16 +231,34 @@ class ProfileViewController: NSViewController {
         let pinCodeVC = EnterPinViewController.instantiate(mode: .Export, subtitle: subtitle)
         pinCodeVC.doneCompletion = { pin in
             if let keyJSONString = UserData.sharedInstance.exportKeysJSON(pin: pin) {
-                pinCodeVC.view.window?.close()
-                
                 AlertHelper.showTwoOptionsAlert(title: "export.keys".localized, message: "keys.will.copy.clipboard".localized, confirm: {
                     ClipboardHelper.copyToClipboard(text: keyJSONString, message: "keys.copied.clipboard".localized)
+                    WindowsManager.sharedInstance.backToProfile()
+                }, cancel: {
+                    WindowsManager.sharedInstance.backToProfile()
                 })
             } else {
                 AlertHelper.showAlert(title: "generic.error.title".localized, message: "generic.error.message".localized)
             }
         }
-        WindowsManager.sharedInstance.showEnterPinWindow(vc: pinCodeVC, window: view.window, title: "enter.restore.pin".localized)
+        advanceTo(vc: pinCodeVC, title: "enter.restore.pin".localized, height: 440)
+    }
+    
+    func advanceTo(
+        vc: NSViewController,
+        title: String,
+        height: CGFloat? = nil
+    ) {
+        WindowsManager.sharedInstance.showOnCurrentWindow(
+            with: title,
+            identifier: "enter-restore-pin-window",
+            contentVC: vc,
+            hideDivider: true,
+            hideBackButton: false,
+            replacingVC: true,
+            height: height,
+            backHandler: WindowsManager.sharedInstance.backToProfile
+        )
     }
     
     @IBAction func saveButtonClicked(_ sender: Any) {
@@ -261,17 +306,20 @@ class ProfileViewController: NSViewController {
             return
         }
         
-        if !shouldUpdateProfile() {
+        if !didUpdateProfile() {
             configureProfile()
             return
         }
         
-        UserData.sharedInstance.setPINHours(hours: pinTimeoutView.getPinHours())
+        updatePinSettings()
+        UserDefaults.Keys.shouldTrackActions.set(isTrackActionsSwitchOn())
         
         var parameters = [String : AnyObject]()
         parameters["alias"] = userNameField.stringValue as AnyObject?
         parameters["private_photo"] = !isPhotoSwitchOn() as AnyObject?
         parameters["route_hint"] = routeHintField.stringValue as AnyObject?
+        
+        let tempTip = self.meetingAmountField.integerValue
         
         if let photoUrl = profileImageUrl, !photoUrl.isEmpty {
             parameters["photo_url"] = photoUrl as AnyObject?
@@ -279,25 +327,40 @@ class ProfileViewController: NSViewController {
         
         API.sharedInstance.updateUser(id: profile.id, params: parameters, callback: { contact in
             API.kVideoCallServer = self.meetingServerField.stringValue
-            self.contactsService.insertContact(contact: contact)
+            let _ = UserContactsHelper.insertContact(contact: contact)
+            UserContact.kTipAmount = tempTip
             self.saveFinished(success: true)
         }, errorCallback: {
             self.saveFinished(success: false)
         })
     }
     
-    func shouldUpdateProfile() -> Bool {
+    func updatePinSettings(){
+        UserData.sharedInstance.setPINHours(hours: pinTimeoutView.getPinHours())
+    }
+    
+    func didUpdateProfile() -> Bool {
         let didChangeName = userNameField.stringValue != (profile?.nickname ?? "")
         let didChangeRouteHint = routeHintField.stringValue != (profile?.routeHint ?? "")
         let didUpdatePrivatePhoto = !isPhotoSwitchOn() != profile?.privatePhoto
         let didUpdatePhoto = profileImageUrl != nil
         let didChangePinTimeout = UserData.sharedInstance.getPINHours() != pinTimeoutView.getPinHours()
+        let actionsTrackingUpdated = isTrackActionsSwitchOn() != UserDefaults.Keys.shouldTrackActions.get(defaultValue: false)
+        let didChangeTipAmount = meetingAmountField.integerValue != UserContact.kTipAmount
         
-        return didChangeName || didChangeRouteHint || didUpdatePrivatePhoto || didUpdatePhoto || didChangePinTimeout
+        return didChangeName || didChangeRouteHint || didUpdatePrivatePhoto || didUpdatePhoto || didChangePinTimeout || actionsTrackingUpdated || didChangeTipAmount
     }
     
     func saveFinished(success: Bool) {
         self.configureProfile()
         self.newMessageBubbleHelper.showGenericMessageView(text: success ? "profile.saved".localized : "generic.error.message".localized, in: self.view, position: .Top)
+    }
+    
+    @IBAction func setupSignerButtonClicked(_ sender: Any) {
+        CrypterManager.sharedInstance.startSetup()
+    }
+    
+    @IBAction func disconnectMQTTButtonClicked(_ sender: Any) {
+        CrypterManager.sharedInstance.resetMQTTConnection()
     }
 }

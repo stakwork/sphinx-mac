@@ -33,10 +33,17 @@ class CommonModalView: NSView, ModalViewInterface {
     var messageBubbleHelper = NewMessageBubbleHelper()
     
     struct AuthInfo {
+        var action: String? = nil
+        
+        var id : String? = nil
         var host : String? = nil
         var challenge : String? = nil
+        var sig : String? = nil
         var token : String? = nil
         var pubkey : String? = nil
+        var routeHint : String? = nil
+        var name : String? = nil
+        var amount : Int? = nil
         var verificationSignature : String? = nil
         var ts : Int? = nil
         var info : [String: AnyObject] = [:]
@@ -92,8 +99,14 @@ class CommonModalView: NSView, ModalViewInterface {
                     let value = component.replacingOccurrences(of: "\(key)=", with: "")
                     
                     switch(key) {
+                    case "action":
+                        authInfo?.action = value
+                        break
                     case "host":
                         authInfo?.host = value
+                        break
+                    case "id":
+                        authInfo?.id = value
                         break
                     case "challenge":
                         authInfo?.challenge = value
@@ -103,6 +116,17 @@ class CommonModalView: NSView, ModalViewInterface {
                         break
                     case "key":
                         authInfo?.key = value
+                        break
+                    case "name":
+                        authInfo?.name = value
+                        break
+                    case "token":
+                        authInfo?.token = value
+                        break
+                    case "amount":
+                        if let intValue = Int(value) {
+                            authInfo?.amount = intValue
+                        }
                         break
                     default:
                         break

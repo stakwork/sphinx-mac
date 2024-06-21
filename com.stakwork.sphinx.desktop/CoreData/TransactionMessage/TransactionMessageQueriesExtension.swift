@@ -33,28 +33,172 @@ extension TransactionMessage {
         return message
     }
     
-    static func getAllMessagesFor(chat: Chat,
-                                  limit: Int? = nil,
-                                  messagesIdsToExclude: [Int] = [],
-                                  lastMessage: TransactionMessage? = nil) -> [TransactionMessage] {
+    static func getMessagesWith(uuids: [String]) -> [TransactionMessage] {
+        let predicate = NSPredicate(format: "uuid IN %@", uuids)
+        let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
         
-        var predicate : NSPredicate!
-        if messagesIdsToExclude.count > 0 {
-            if let m = lastMessage {
-                predicate = NSPredicate(format: "chat == %@ AND (NOT id IN %@) AND (date <= %@) AND NOT (type IN %@)", chat, messagesIdsToExclude, m.messageDate as NSDate, typesToExcludeFromChat)
-            } else {
-                predicate = NSPredicate(format: "chat == %@ AND (NOT id IN %@) AND NOT (type IN %@)", chat, messagesIdsToExclude, typesToExcludeFromChat)
-            }
-        } else {
-            if let m = lastMessage {
-                predicate = NSPredicate(format: "chat == %@ AND (date <= %@) AND NOT (type IN %@)", chat, m.messageDate as NSDate, typesToExcludeFromChat)
-            } else {
-                predicate = NSPredicate(format: "chat == %@ AND NOT (type IN %@)", chat, typesToExcludeFromChat)
+        let messages: [TransactionMessage] = CoreDataManager.sharedManager.getObjectsOfTypeWith(
+            predicate: predicate,
+            sortDescriptors: sortDescriptors,
+            entityName: "TransactionMessage"
+        )
+        
+        return messages
+    }
+    
+    static func getMessagesWith(ids: [Int]) -> [TransactionMessage] {
+        let predicate = NSPredicate(format: "id IN %@", ids)
+        let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+        
+        let messages: [TransactionMessage] = CoreDataManager.sharedManager.getObjectsOfTypeWith(
+            predicate: predicate,
+            sortDescriptors: sortDescriptors,
+            entityName: "TransactionMessage"
+        )
+        
+        return messages
+    }
+    
+    static func getAllMessagesFor(
+        chat: Chat,
+        limit: Int? = nil,
+        context: NSManagedObjectContext? = nil
+    ) -> [TransactionMessage] {
+        
+        let fetchRequest = getChatMessagesFetchRequest(
+            for: chat,
+            with: limit
+        )
+        
+        var messages: [TransactionMessage] = []
+        let context = context ?? CoreDataManager.sharedManager.persistentContainer.viewContext
+        
+        context.performAndWait {
+            do {
+                try messages = context.fetch(fetchRequest)
+            } catch let error as NSError {
+                print("Error: " + error.localizedDescription)
             }
         }
-        let sortDescriptors = [NSSortDescriptor(key: "date", ascending: false), NSSortDescriptor(key: "id", ascending: false)]
-        let messages: [TransactionMessage] = CoreDataManager.sharedManager.getObjectsOfTypeWith(predicate: predicate, sortDescriptors: sortDescriptors, entityName: "TransactionMessage", fetchLimit: limit)
-        return messages.reversed()
+        
+        return messages
+    }
+    
+    static func getPredicate(
+        chat: Chat,
+        threadUUID: String?,
+        typesToExclude: [Int],
+        pinnedMessageId: Int? = nil
+    ) -> NSPredicate {
+        if let tuid = threadUUID {
+            return NSPredicate(
+                format: "chat == %@ AND (NOT (type IN %@) || (type == %d && replyUUID = nil)) AND threadUUID == %@",
+                chat,
+                typesToExclude,
+                TransactionMessageType.boost.rawValue,
+                tuid,
+                tuid
+            )
+        } else {
+            if let pinnedMessageId = pinnedMessageId {
+                return NSPredicate(
+                    format: "chat == %@ AND id >= %d AND (NOT (type IN %@) || (type == %d && replyUUID = nil))",
+                    chat,
+                    pinnedMessageId - 200,
+                    typesToExclude,
+                    TransactionMessageType.boost.rawValue
+                )
+            } else {
+                return NSPredicate(
+                    format: "chat == %@ AND (NOT (type IN %@) || (type == %d && replyUUID = nil))",
+                    chat,
+                    typesToExclude,
+                    TransactionMessageType.boost.rawValue
+                )
+            }
+        }
+    }
+    
+    static func getChatMessagesFetchRequest(
+        for chat: Chat,
+        threadUUID: String? = nil,
+        with limit: Int? = nil,
+        pinnedMessageId: Int? = nil
+    ) -> NSFetchRequest<TransactionMessage> {
+        
+        var typesToExclude = typesToExcludeFromChat
+        typesToExclude.append(TransactionMessageType.boost.rawValue)
+        
+        let predicate = TransactionMessage.getPredicate(
+            chat: chat,
+            threadUUID: threadUUID,
+            typesToExclude: typesToExclude,
+            pinnedMessageId: pinnedMessageId
+        )
+        
+        let sortDescriptors = [
+            NSSortDescriptor(key: "date", ascending: false),
+            NSSortDescriptor(key: "id", ascending: false)
+        ]
+        
+        let fetchRequest = NSFetchRequest<TransactionMessage>(entityName: "TransactionMessage")
+        fetchRequest.predicate = predicate
+        fetchRequest.sortDescriptors = sortDescriptors
+        
+        if let limit = limit, pinnedMessageId == nil {
+            fetchRequest.fetchLimit = limit
+        }
+        
+        return fetchRequest
+    }
+    
+    static func getBoostsAndPurchaseMessagesFetchRequestOn(
+        chat: Chat
+    ) -> NSFetchRequest<TransactionMessage> {
+        
+        let types = [
+            TransactionMessageType.boost.rawValue,
+            TransactionMessageType.purchase.rawValue,
+            TransactionMessageType.purchaseAccept.rawValue,
+            TransactionMessageType.purchaseDeny.rawValue
+        ]
+        
+        let predicate = NSPredicate(
+            format: "chat == %@ AND type IN %@",
+            chat,
+            types
+        )
+        
+        let sortDescriptors = [
+            NSSortDescriptor(key: "date", ascending: false),
+            NSSortDescriptor(key: "id", ascending: false)
+        ]
+        
+        let fetchRequest = NSFetchRequest<TransactionMessage>(entityName: "TransactionMessage")
+        fetchRequest.predicate = predicate
+        fetchRequest.sortDescriptors = sortDescriptors
+        
+        return fetchRequest
+    }
+    
+    static func getThreadsFetchRequestOn(
+        chat: Chat
+    ) -> NSFetchRequest<TransactionMessage> {
+        
+        let predicate = NSPredicate(
+            format: "chat == %@ AND threadUUID != nil",
+            chat
+        )
+        
+        let sortDescriptors = [
+            NSSortDescriptor(key: "id", ascending: true)
+        ]
+        
+        let fetchRequest = NSFetchRequest<TransactionMessage>(entityName: "TransactionMessage")
+        fetchRequest.predicate = predicate
+        fetchRequest.sortDescriptors = sortDescriptors
+        
+        return fetchRequest
     }
     
     static func getAllMessagesCountFor(chat: Chat, lastMessageId: Int? = nil) -> Int {
@@ -99,8 +243,23 @@ extension TransactionMessage {
     
     static func getReceivedUnseenMessagesCount() -> Int {
         let userId = UserData.sharedInstance.getUserId()
-        let predicate = NSPredicate(format: "senderId != %d AND seen == %@ AND chat != null AND id >= 0 AND chat.seen == %@ AND chat.muted == %@", userId, NSNumber(booleanLiteral: false), NSNumber(booleanLiteral: false), NSNumber(booleanLiteral: false))
-        let messagesCount = CoreDataManager.sharedManager.getObjectsCountOfTypeWith(predicate: predicate, entityName: "TransactionMessage")
+        
+        let predicate = NSPredicate(
+            format:
+                "senderId != %d AND seen == %@ AND chat != nil AND id >= 0 AND chat.seen == %@ AND (chat.notify == %d OR (chat.notify == %d AND push == %@))",
+            userId,
+            NSNumber(booleanLiteral: false),
+            NSNumber(booleanLiteral: false),
+            Chat.NotificationLevel.SeeAll.rawValue,
+            Chat.NotificationLevel.OnlyMentions.rawValue,
+            NSNumber(booleanLiteral: true)
+        )
+        
+        let messagesCount = CoreDataManager.sharedManager.getObjectsCountOfTypeWith(
+            predicate: predicate,
+            entityName: "TransactionMessage"
+        )
+
         return messagesCount
     }
     
@@ -129,7 +288,7 @@ extension TransactionMessage {
         return messages
     }
     
-    static func getPaymentsFor(feedId: Int) -> [TransactionMessage] {
+    static func getPaymentsFor(feedId: String) -> [TransactionMessage] {
         let feedIDString1 = "{\"feedID\":\"\(feedId)"
         let feedIDString2 = "{\"feedID\":\(feedId)"
         let predicate = NSPredicate(format: "chat == nil && (messageContent BEGINSWITH[c] %@ OR messageContent BEGINSWITH[c] %@)", feedIDString1, feedIDString2)
@@ -139,10 +298,10 @@ extension TransactionMessage {
         return payments
     }
     
-    static func getLiveMessagesFor(chat: Chat, episodeId: Int) -> [TransactionMessage] {
+    static func getLiveMessagesFor(chat: Chat, episodeId: String) -> [TransactionMessage] {
         let episodeString = "\"itemID\":\(episodeId)"
         let episodeString2 = "\"itemID\" : \(episodeId)"
-        let predicate = NSPredicate(format: "chat == %@ && ((type == %d && (messageContent BEGINSWITH[c] %@ OR messageContent BEGINSWITH[c] %@)) || (type == %d && replyUUID == nil)) && (messageContent CONTAINS[c] %@ || messageContent CONTAINS[c] %@)", chat, TransactionMessageType.message.rawValue, PodcastPlayerHelper.kClipPrefix, PodcastPlayerHelper.kBoostPrefix, TransactionMessageType.boost.rawValue, episodeString, episodeString2)
+        let predicate = NSPredicate(format: "chat == %@ && ((type == %d && (messageContent BEGINSWITH[c] %@ OR messageContent BEGINSWITH[c] %@)) || (type == %d && replyUUID == nil)) && (messageContent CONTAINS[c] %@ || messageContent CONTAINS[c] %@)", chat, TransactionMessageType.message.rawValue, PodcastFeed.kClipPrefix, PodcastFeed.kBoostPrefix, TransactionMessageType.boost.rawValue, episodeString, episodeString2)
         let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
         let boostAndClips: [TransactionMessage] = CoreDataManager.sharedManager.getObjectsOfTypeWith(predicate: predicate, sortDescriptors: sortDescriptors, entityName: "TransactionMessage")
         
@@ -156,5 +315,89 @@ extension TransactionMessage {
         let reactions: [TransactionMessage] = CoreDataManager.sharedManager.getObjectsOfTypeWith(predicate: predicate, sortDescriptors: sortDescriptors, entityName: "TransactionMessage")
         
         return reactions
+    }
+    
+    static func getBoostMessagesFor(
+        _ messages: [String],
+        on chat: Chat
+    ) -> [TransactionMessage] {
+        let boostType = TransactionMessageType.boost.rawValue
+        let failedStatus = TransactionMessage.TransactionMessageStatus.failed.rawValue
+        
+        let predicate = NSPredicate(
+            format: "chat == %@ AND type == %d AND replyUUID != nil AND (replyUUID IN %@) AND status != %d",
+            chat,
+            boostType,
+            messages,
+            failedStatus
+        )
+        let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+        let reactions: [TransactionMessage] = CoreDataManager.sharedManager.getObjectsOfTypeWith(predicate: predicate, sortDescriptors: sortDescriptors, entityName: "TransactionMessage")
+        
+        return reactions
+    }
+    
+    static func getThreadMessagesFor(
+        _ messages: [String],
+        on chat: Chat
+    ) -> [TransactionMessage] {
+        let boostType = TransactionMessageType.boost.rawValue
+        
+        let deletedStatus = TransactionMessage.TransactionMessageStatus.deleted.rawValue
+
+        let predicate = NSPredicate(
+            format: "chat == %@ AND type != %d AND (threadUUID != nil AND (threadUUID IN %@)) AND status != %d AND id > -1",
+            chat,
+            boostType,
+            messages,
+            deletedStatus
+        )
+        
+        let sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
+        
+        let threadMessages: [TransactionMessage] = CoreDataManager.sharedManager.getObjectsOfTypeWith(
+            predicate: predicate,
+            sortDescriptors: sortDescriptors,
+            entityName: "TransactionMessage"
+        )
+        
+        return threadMessages
+    }
+    
+    static func getOriginalMessagesFor(
+        _ threadMessages: [String],
+        on chat: Chat
+    ) -> [TransactionMessage] {
+        let deletedStatus = TransactionMessage.TransactionMessageStatus.deleted.rawValue
+        let predicate = NSPredicate(format: "chat == %@ AND uuid != nil AND (uuid IN %@) AND status != %d", chat, threadMessages, deletedStatus)
+        let sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+        let reactions: [TransactionMessage] = CoreDataManager.sharedManager.getObjectsOfTypeWith(predicate: predicate, sortDescriptors: sortDescriptors, entityName: "TransactionMessage")
+        
+        return reactions
+    }
+    
+    static func getPurchaseItemsFor(
+        _ muids: [String],
+        on chat: Chat
+    ) -> [TransactionMessage] {
+
+        let attachmentType = TransactionMessageType.attachment.rawValue
+        
+        let predicate = NSPredicate(
+            format: "chat == %@ AND (muid IN %@ || originalMuid IN %@) AND type != %d",
+            chat,
+            muids,
+            muids,
+            attachmentType
+        )
+        let sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+        
+        let messages: [TransactionMessage] = CoreDataManager.sharedManager.getObjectsOfTypeWith(
+            predicate: predicate,
+            sortDescriptors: sortDescriptors,
+            entityName: "TransactionMessage"
+        )
+        
+        return messages
     }
 }

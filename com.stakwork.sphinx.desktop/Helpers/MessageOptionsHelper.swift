@@ -8,11 +8,15 @@
 
 import Cocoa
 
-protocol MessageOptionsDelegate: AnyObject {
-    func shouldDeleteMessage(message: TransactionMessage)
-    func shouldReplyToMessage(message: TransactionMessage)
-    func shouldBoostMessage(message: TransactionMessage)
-    func shouldPerformChatAction(action: TransactionMessage.MessageActionsItem)
+@objc protocol MessageOptionsDelegate: AnyObject {
+    @objc optional func shouldDeleteMessage(message: TransactionMessage)
+    @objc optional func shouldReplyToMessage(message: TransactionMessage)
+    @objc optional func shouldResendMessage(message:TransactionMessage)
+    @objc optional func shouldBoostMessage(message: TransactionMessage)
+    @objc optional func shouldTogglePinState(message: TransactionMessage, pin: Bool)
+    @objc optional func shouldPerformChatAction(action: Int)
+    @objc optional func shouldSetFeedType(type: Int)
+    @objc optional func willHideMenu()
 }
 
 class MessageOptionsHelper {
@@ -46,7 +50,27 @@ class MessageOptionsHelper {
         case Right
     }
     
-    func showMenuFor(message: TransactionMessage? = nil, chat: Chat? = nil, in view: NSView, from button: NSButton, with delegate: MessageOptionsDelegate) {
+    public enum ChatActionsItem: Int {
+        case Delete = 100
+        case Edit = 101
+        case Share = 102
+        case Exit = 103
+        case TribeMembers = 104
+    }
+    
+    public enum FeedTypeItem: Int {
+        case Podcast = 200
+        case Video = 201
+        case Newsletter = 202
+    }
+    
+    func showMenuFor(
+        message: TransactionMessage? = nil,
+        chat: Chat? = nil,
+        in view: NSView,
+        from button: NSButton,
+        with delegate: MessageOptionsDelegate
+    ) {
         
         if let m = self.message, m.id == message?.id{
             hideMenu()
@@ -71,6 +95,11 @@ class MessageOptionsHelper {
         let hPosition: HorizontalPosition = (frameInView.origin.x > (view.frame.width - (menuOptionsWidth / 2) - 12)) ? .Right : .Center
         
         let messageOptions = getActionsMenuOptions()
+        
+        if messageOptions.isEmpty {
+            return
+        }
+        
         let optionsCount = messageOptions.count
         let bubbleColor = getBubbleColor(message: message)
         
@@ -82,6 +111,32 @@ class MessageOptionsHelper {
             addMenuOptions(options: messageOptions, on: menuView)
             
             view.addSubview(menuView)
+        }
+    }
+    
+    func showMenuForFeedContent(in container: NSView, from origin: NSView, with delegate: MessageOptionsDelegate) {
+        hideMenu()
+        menuOptionsWidth = 140
+        
+        self.delegate = delegate
+        
+        let frameInView = origin.superview!.convert(origin.frame, to: container)
+        let windowHeight = NSApplication.shared.keyWindow?.frame.size.height ?? 735
+        let vPosition: VerticalPosition = (frameInView.origin.y < windowHeight / 2) ? .Top : .Bottom
+        let hPosition: HorizontalPosition = (frameInView.origin.x > (container.frame.width - (menuOptionsWidth / 2) - 12)) ? .Right : .Center
+        
+        let messageOptions = getFeedContentMenuOptions()
+        let optionsCount = messageOptions.count
+        let bubbleColor = NSColor.Sphinx.OldReceivedMsgBG
+        
+        let menuFrame = getMenuFrame(vPosition: vPosition, hPosition: hPosition, buttonFrame: frameInView, optionsCount: optionsCount)
+        menuView = MenuOptionsView(frame: menuFrame)
+        
+        if let menuView = menuView {
+            addBackLayer(on: menuView, frame: menuView.bounds, backColor: bubbleColor, vPosition: vPosition, hPosition: hPosition)
+            addMenuOptions(options: messageOptions, on: menuView)
+            
+            container.addSubview(menuView)
         }
     }
     
@@ -120,7 +175,7 @@ class MessageOptionsHelper {
         return NSRect(x: x, y: y, width: menuOptionsWidth, height: height)
     }
     
-    func addMenuOptions(options: [(tag: TransactionMessage.MessageActionsItem, icon: String?, iconImage: String?, label: String)], on view: NSView) {
+    func addMenuOptions(options: [(tag: Int, icon: String?, iconImage: String?, label: String)], on view: NSView) {
         var index = 0
         for (tag, icon, iconImage, label) in options {
             let y = menuVerticalMargin + CGFloat(index) * optionsHeight
@@ -129,7 +184,7 @@ class MessageOptionsHelper {
             let optionView = MessageOptionView(frame: CGRect(x: 0, y: y, width: view.frame.size.width, height: optionsHeight))
 
             let color = getColorFor(tag)
-            let option = MessageOptionView.Option(icon: icon, iconImage: iconImage, title: label, tag: tag.rawValue, color: color, showLine: shouldShowSeparator)
+            let option = MessageOptionView.Option(icon: icon, iconImage: iconImage, title: label, tag: tag, color: color, showLine: shouldShowSeparator)
             optionView.configure(option: option, delegate: self)
             
             view.addSubview(optionView)
@@ -138,16 +193,16 @@ class MessageOptionsHelper {
         }
     }
     
-    func getColorFor(_ tag: TransactionMessage.MessageActionsItem) -> NSColor {
+    func getColorFor(_ tag: Int) -> NSColor {
         switch(tag) {
-        case .Delete:
+        case TransactionMessage.MessageActionsItem.Delete.rawValue, ChatActionsItem.Delete.rawValue:
             return NSColor.Sphinx.BadgeRed
         default:
             return NSColor.Sphinx.Text
         }
     }
     
-    func getActionsMenuOptions() -> [(tag: TransactionMessage.MessageActionsItem, icon: String?, iconImage: String?, label: String)] {
+    func getActionsMenuOptions() -> [(tag: Int, icon: String?, iconImage: String?, label: String)] {
         if let message = message {
             return message.getActionsMenuOptions()
         }
@@ -157,10 +212,19 @@ class MessageOptionsHelper {
         return []
     }
     
-    func getGroupOptions() -> [(tag: TransactionMessage.MessageActionsItem, icon: String?, iconImage: String?, label: String)] {
-        var options = [(tag: TransactionMessage.MessageActionsItem, icon: String?, iconImage: String?, label: String)]()
-        options.append((TransactionMessage.MessageActionsItem.Copy, "", nil, "copy.text".localized))
-        options.append((TransactionMessage.MessageActionsItem.CopyLink, "link", nil, "copy.link".localized))
+    func getFeedContentMenuOptions() -> [(tag: Int, icon: String?, iconImage: String?, label: String)] {
+        var options = [(tag: Int, icon: String?, iconImage: String?, label: String)]()
+        options.append((FeedTypeItem.Podcast.rawValue, nil, nil, "Podcast"))
+        options.append((FeedTypeItem.Video.rawValue, nil, nil, "Video"))
+        options.append((FeedTypeItem.Newsletter.rawValue, nil, nil, "Newsletter"))
+        
+        return options
+    }
+    
+    func getGroupOptions() -> [(tag: Int, icon: String?, iconImage: String?, label: String)] {
+        var options = [(tag: Int, icon: String?, iconImage: String?, label: String)]()
+        options.append((TransactionMessage.MessageActionsItem.Copy.rawValue, "", nil, "copy.text".localized))
+        options.append((TransactionMessage.MessageActionsItem.CopyLink.rawValue, "link", nil, "copy.link".localized))
         return options
     }
     
@@ -252,49 +316,62 @@ class MessageOptionsHelper {
 
 extension MessageOptionsHelper : MessageOptionViewDelegate {
     func didTapButton(tag: Int) {
-        guard let option = TransactionMessage.MessageActionsItem(rawValue: tag) else {
-            return
+        if let option = TransactionMessage.MessageActionsItem(rawValue: tag) {
+            guard let message = message else {
+                return
+            }
+            
+            let bubbleContainer = menuView?.superview
+            
+            switch(option) {
+            case .Copy:
+                ClipboardHelper.copyToClipboard(text: message.bubbleMessageContentString ?? "", message: "text.copied.clipboard".localized, bubbleContainer: bubbleContainer)
+                break
+            case .CopyLink:
+                ClipboardHelper.copyToClipboard(text: message.messageContent?.replacingHightlightedChars.stringFirstLink ?? "", message: "link.copied.clipboard".localized, bubbleContainer: bubbleContainer)
+                break
+            case .CopyPubKey:
+                ClipboardHelper.copyToClipboard(text: message.messageContent?.replacingHightlightedChars.stringFirstPubKey?.0 ?? "", message: "pub.key.copied.clipboard".localized, bubbleContainer: bubbleContainer)
+                break
+            case .CopyCallLink:
+                if let link = message.messageContent {
+                    let linkUrl = VoIPRequestMessage.getFromString(link)?.link ?? link
+                    ClipboardHelper.copyToClipboard(text: linkUrl, message: "call.link.copied.clipboard".localized, bubbleContainer: bubbleContainer)
+                }
+                break
+            case .Delete:
+                delegate?.shouldDeleteMessage?(message: message)
+                break
+            case .Reply:
+                delegate?.shouldReplyToMessage?(message: message)
+                break
+            case .Save:
+                shouldSaveFile(message: message, bubbleContainer: bubbleContainer)
+                break
+            case .Boost:
+                delegate?.shouldBoostMessage?(message: message)
+                break
+            case .Resend:
+                delegate?.shouldResendMessage?(message: message)
+                break
+            case .Pin:
+                delegate?.shouldTogglePinState?(message: message, pin: true)
+                break
+            case .Unpin:
+                delegate?.shouldTogglePinState?(message: message, pin: false)
+                break
+            }
         }
         
-        if let _ = chat {
-            delegate?.shouldPerformChatAction(action: option)
-            return
+        if let option = ChatActionsItem(rawValue: tag) {
+            delegate?.shouldPerformChatAction?(action: option.rawValue)
         }
         
-        guard let message = message else {
-            return
+        if let feedType = FeedTypeItem(rawValue: tag) {
+            delegate?.shouldSetFeedType?(type: feedType.rawValue)
         }
         
-        let bubbleContainer = menuView?.superview
-        
-        switch(option) {
-        case .Copy:
-            ClipboardHelper.copyToClipboard(text: message.getMessageContent(), message: "text.copied.clipboard".localized, bubbleContainer: bubbleContainer)
-            break
-        case .CopyLink:
-            ClipboardHelper.copyToClipboard(text: message.messageContent?.stringFirstLink ?? "", message: "link.copied.clipboard".localized, bubbleContainer: bubbleContainer)
-            break
-        case .CopyPubKey:
-            ClipboardHelper.copyToClipboard(text: message.messageContent?.stringFirstPubKey ?? "", message: "pub.key.copied.clipboard".localized, bubbleContainer: bubbleContainer)
-            break
-        case .CopyCallLink:
-            ClipboardHelper.copyToClipboard(text: message.messageContent ?? "", message: "call.link.copied.clipboard".localized, bubbleContainer: bubbleContainer)
-            break
-        case .Delete:
-            delegate?.shouldDeleteMessage(message: message)
-            break
-        case .Reply:
-            delegate?.shouldReplyToMessage(message: message)
-            break
-        case .Save:
-            shouldSaveFile(message: message, bubbleContainer: bubbleContainer)
-            break
-        case .Boost:
-            delegate?.shouldBoostMessage(message: message)
-            break
-        default:
-            break
-        }
+        delegate?.willHideMenu?()
         hideMenu()
     }
     

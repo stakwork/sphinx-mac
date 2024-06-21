@@ -34,10 +34,15 @@ extension TransactionMessage {
     @NSManaged public var encrypted: Bool
     @NSManaged public var senderAlias: String?
     @NSManaged public var senderPic: String?
+    @NSManaged public var recipientAlias: String?
+    @NSManaged public var recipientPic: String?
     @NSManaged public var uuid: String?
     @NSManaged public var replyUUID: String?
+    @NSManaged public var threadUUID: String?
     @NSManaged public var originalMuid: String?
     @NSManaged public var chat: Chat?
+    @NSManaged public var push: Bool
+    @NSManaged public var errorMessage: String?
     
     @NSManaged public var mediaKey: String?
     @NSManaged public var mediaType: String?

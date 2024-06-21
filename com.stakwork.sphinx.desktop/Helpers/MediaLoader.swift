@@ -159,7 +159,6 @@ class MediaLoader {
                     if str != "" {
                         DispatchQueue.main.async {
                             message.messageContent = str
-                            message.saveMessage()
                             completion(messageId, str)
                         }
                         return
@@ -332,10 +331,10 @@ class MediaLoader {
         }
     }
     
-    class func getDataFromUrl(videoURL: URL) -> Data? {
+    class func getDataFromUrl(url: URL) -> Data? {
         var videoData: Data?
         do {
-            videoData = try Data(contentsOf: videoURL as URL, options: Data.ReadingOptions.alwaysMapped)
+            videoData = try Data(contentsOf: url as URL, options: Data.ReadingOptions.alwaysMapped)
         } catch _ {
             videoData = nil
         }
@@ -419,5 +418,344 @@ class MediaLoader {
         } catch {
             
         }
+    }
+}
+
+extension MediaLoader {
+    class func loadPaymentTemplateImage(
+        url: URL,
+        message: TransactionMessage,
+        completion: @escaping (Int, NSImage) -> (), errorCompletion: @escaping (Int) -> ()
+    ) {
+        if let cachedImage = getImageFromCachedUrl(url: url.absoluteString) {
+            completion(message.id, cachedImage)
+        } else {
+            loadDataFrom(URL: url, includeToken: true, completion: { (data, _) in
+                if let image = NSImage(data: data) {
+                    self.storeImageInCache(
+                        img: image,
+                        url: url.absoluteString
+                    )
+                    
+                    DispatchQueue.main.async {
+                        completion(message.id, image)
+                    }
+                    return
+                }
+            }, errorCompletion: {})
+        }
+    }
+    
+    class func loadImage(
+        url: URL,
+        message: TransactionMessage,
+        mediaKey: String?,
+        completion: @escaping (Int, NSImage?, Data?) -> (),
+        errorCompletion: @escaping (Int) -> ()
+    ) {
+        let messageId = message.id
+        let isGif = message.isGif()
+        
+        if message.isMediaExpired() {
+            clearImageCacheFor(url: url.absoluteString)
+            errorCompletion(messageId)
+            return
+        } else if let cachedImage = getImageFromCachedUrl(url: url.absoluteString), !isGif {
+            DispatchQueue.main.async {
+                completion(messageId, cachedImage, nil)
+            }
+            return
+        } else if let cachedData = getMediaDataFromCachedUrl(url: url.absoluteString), isGif {
+            DispatchQueue.main.async {
+                completion(messageId, nil, cachedData)
+            }
+            return
+        }
+        
+        loadDataFrom(URL: url, completion: { (data, fileName) in
+            message.saveFileName(fileName)
+            
+            DispatchQueue.main.async {
+                loadImageFromData(
+                    data: data,
+                    url: url,
+                    message: message,
+                    mediaKey: mediaKey,
+                    completion: completion,
+                    errorCompletion: errorCompletion
+                )
+            }
+        }, errorCompletion: {
+            DispatchQueue.main.async {
+                errorCompletion(messageId)
+            }
+        })
+    }
+    
+    class func loadImageFromData(
+        data: Data,
+        url: URL,
+        message: TransactionMessage,
+        mediaKey: String?,
+        completion: @escaping (Int, NSImage?, Data?) -> (),
+        errorCompletion: @escaping (Int) -> ()
+    ) {
+        let messageId = message.id
+        let isGif = message.isGif()
+        let isPDF = message.isPDF()
+        var decryptedImage:NSImage? = nil
+        
+        if let image = NSImage(data: data) {
+            decryptedImage = image
+        } else if let mediaKey = mediaKey, mediaKey != "" {
+            if let decryptedData = SymmetricEncryptionManager.sharedInstance.decryptData(data: data, key: mediaKey) {
+                message.saveFileSize(decryptedData.count)
+                
+                if isGif || isPDF {
+                    storeMediaDataInCache(data: decryptedData, url: url.absoluteString)
+                }
+                decryptedImage = getImageFromData(decryptedData, isPdf: isPDF)
+            }
+        }
+        
+        if let decryptedImage = decryptedImage {
+            storeImageInCache(
+                img: decryptedImage,
+                url: url.absoluteString
+            )
+            
+            DispatchQueue.main.async {
+                completion(messageId, decryptedImage, nil)
+            }
+        } else {
+            DispatchQueue.main.async {
+                errorCompletion(messageId)
+            }
+        }
+    }
+    
+    class func loadFileData(
+        url: URL,
+        message: TransactionMessage,
+        mediaKey: String?,
+        completion: @escaping (Int, Data) -> (),
+        errorCompletion: @escaping (Int) -> ()
+    ) {
+        let messageId = message.id
+        
+        if message.isMediaExpired() {
+            clearMediaDataCacheFor(url: url.absoluteString)
+            errorCompletion(messageId)
+        } else if let data = getMediaDataFromCachedUrl(url: url.absoluteString) {
+            DispatchQueue.main.async {
+                completion(messageId, data)
+            }
+        } else {
+            loadDataFrom(URL: url, completion: { (data, fileName) in
+                message.saveFileName(fileName)
+                
+                self.loadMediaFromData(
+                    data: data,
+                    url: url,
+                    message: message,
+                    mediaKey: mediaKey,
+                    completion: { data in
+                        DispatchQueue.main.async {
+                            completion(messageId, data)
+                        }
+                    },
+                    errorCompletion: errorCompletion
+                )
+            }, errorCompletion: {
+                DispatchQueue.main.async {
+                    errorCompletion(messageId)
+                }
+            })
+        }
+    }
+    
+    class func loadFileData(
+        url: URL,
+        isPdf: Bool,
+        message: TransactionMessage,
+        mediaKey: String?,
+        completion: @escaping (Int, Data, MessageTableCellState.FileInfo) -> (),
+        errorCompletion: @escaping (Int) -> ()
+    ) {
+        let messageId = message.id
+        
+        if message.isMediaExpired() {
+            clearMediaDataCacheFor(url: url.absoluteString)
+            errorCompletion(messageId)
+        } else if let data = getMediaDataFromCachedUrl(url: url.absoluteString) {
+            
+            let fileInfo = MessageTableCellState.FileInfo(
+                fileSize: message.mediaFileSize,
+                fileName: message.mediaFileName ?? "",
+                pagesCount: isPdf ? data.getPDFPagesCount() : nil,
+                previewImage: isPdf ? data.getPDFThumbnail() : nil
+            )
+            
+            DispatchQueue.main.async {
+                completion(
+                    messageId,
+                    data,
+                    fileInfo
+                )
+            }
+        } else {
+            loadDataFrom(URL: url, completion: { (data, fileName) in
+                message.saveFileName(fileName)
+                
+                self.loadMediaFromData(
+                    data: data,
+                    url: url,
+                    message: message,
+                    mediaKey: mediaKey,
+                    completion: { data in
+                        let fileInfo = MessageTableCellState.FileInfo(
+                            fileSize: message.mediaFileSize,
+                            fileName: message.mediaFileName ?? "",
+                            pagesCount: isPdf ? data.getPDFPagesCount() : nil,
+                            previewImage: isPdf ? data.getPDFThumbnail() : nil
+                        )
+                        
+                        DispatchQueue.main.async {
+                            completion(messageId, data, fileInfo)
+                        }
+                    },
+                    errorCompletion: errorCompletion
+                )
+            }, errorCompletion: {
+                DispatchQueue.main.async {
+                    errorCompletion(messageId)
+                }
+            })
+        }
+    }
+    
+    class func loadMediaFromData(
+        data: Data,
+        url: URL, message: TransactionMessage,
+        mediaKey: String? = nil,
+        isVideo: Bool = false,
+        completion: @escaping (Data) -> (),
+        errorCompletion: @escaping (Int) -> ()
+    ) {
+        if let mediaKey = mediaKey, mediaKey != "" {
+            
+            if let decryptedData = SymmetricEncryptionManager.sharedInstance.decryptData(
+                data: data,
+                key: mediaKey
+            ) {
+                message.saveFileSize(decryptedData.count)
+
+                storeMediaDataInCache(
+                    data: decryptedData,
+                    url: url.absoluteString
+                )
+
+                DispatchQueue.main.async {
+                    completion(decryptedData)
+                }
+                return
+            }
+        } else {
+            storeMediaDataInCache(
+                data: data,
+                url: url.absoluteString
+            )
+            
+            DispatchQueue.main.async {
+                completion(data)
+            }
+        }
+    }
+    
+    class func loadVideo(
+        url: URL,
+        message: TransactionMessage,
+        mediaKey: String?,
+        completion: @escaping (Int, Data, NSImage?) -> (),
+        errorCompletion: @escaping (Int) -> ()
+    ) {
+        let messageId = message.id
+        
+        if message.isMediaExpired() {
+            clearImageCacheFor(url: url.absoluteString)
+            clearMediaDataCacheFor(url: url.absoluteString)
+            errorCompletion(messageId)
+        } else if let data = getMediaDataFromCachedUrl(url: url.absoluteString) {
+            let image = self.getImageFromCachedUrl(url: url.absoluteString) ?? nil
+            if image == nil {
+                self.getThumbnailImageFromVideoData(data: data, videoUrl: url.absoluteString, completion: { image in
+                    DispatchQueue.main.async {
+                        completion(messageId, data, image)
+                    }
+                })
+            } else {
+                DispatchQueue.main.async {
+                    completion(messageId, data, image)
+                }
+            }
+        } else {
+            loadDataFrom(URL: url, completion: { (data, fileName) in
+                message.saveFileName(fileName)
+                
+                self.loadMediaFromData(
+                    data: data,
+                    url: url,
+                    message: message,
+                    mediaKey: mediaKey,
+                    isVideo: true,
+                    completion: { data in
+                        self.getThumbnailImageFromVideoData(data: data, videoUrl: url.absoluteString, completion: { image in
+                            DispatchQueue.main.async {
+                                completion(messageId, data, image)
+                            }
+                        })
+                    },
+                    errorCompletion: errorCompletion
+                )
+            }, errorCompletion: {
+                DispatchQueue.main.async {
+                    errorCompletion(messageId)
+                }
+            })
+        }
+    }
+    
+    class func loadMessageData(
+        url: URL,
+        message: TransactionMessage,
+        mediaKey: String?,
+        completion: @escaping (Int, String) -> (),
+        errorCompletion: @escaping (Int) -> ()
+    ) {
+        loadDataFrom(URL: url, completion: { (data, _) in
+            if let mediaKey = mediaKey, mediaKey.isNotEmpty {
+                if let data = SymmetricEncryptionManager.sharedInstance.decryptData(data: data, key: mediaKey) {
+                    let str = String(decoding: data, as: UTF8.self)
+                    if str != "" {
+                        DispatchQueue.main.async {
+                            message.messageContent = str
+                            
+                            completion(
+                                message.id,
+                                str
+                            )
+                        }
+                        return
+                    }
+                }
+            }
+            DispatchQueue.main.async {
+                errorCompletion(message.id)
+            }
+        }, errorCompletion: {
+            DispatchQueue.main.async {
+                errorCompletion(message.id)
+            }
+        })
     }
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +16,6 @@
                 <outlet property="confirmButtonContainer" destination="W5c-Eg-Azw" id="QG8-Lw-oZs"/>
                 <outlet property="confirmButtonLabel" destination="Dxc-hH-lcC" id="utJ-nH-irb"/>
                 <outlet property="contentView" destination="kXt-Oz-rk9" id="QBJ-ep-LXX"/>
-                <outlet property="groupTotalLabel" destination="cFK-xt-PyC" id="08f-ZS-uTW"/>
                 <outlet property="loadingWheel" destination="KjG-3Y-hW3" id="qVV-DD-DWC"/>
                 <outlet property="messageTextView" destination="sKr-Ew-ec5" id="Bl8-0S-fBG"/>
                 <outlet property="messageTextViewHeight" destination="wW9-MN-smg" id="Pvb-5F-4Q5"/>
@@ -31,20 +30,20 @@
             <subviews>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cL6-GK-PGX">
                     <rect key="frame" x="10" y="528" width="60" height="60"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="60" id="KNu-5Y-ji3"/>
-                        <constraint firstAttribute="height" constant="60" id="WpY-Ft-x1T"/>
-                    </constraints>
                     <buttonCell key="cell" type="bevel" title="" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="HNj-fg-1pg">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" size="18" name="MaterialIcons-Regular"/>
                     </buttonCell>
                     <color key="contentTintColor" name="WashedOutReceivedText"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="KNu-5Y-ji3"/>
+                        <constraint firstAttribute="height" constant="60" id="WpY-Ft-x1T"/>
+                    </constraints>
                     <connections>
                         <action selector="backButtonClicked:" target="-2" id="FFW-Pr-crX"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fpd-yK-XfO">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fpd-yK-XfO">
                     <rect key="frame" x="128" y="549" width="142" height="18"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="REQUEST AMOUNT" id="vcW-bp-l1n">
                         <font key="font" size="14" name="Montserrat-SemiBold"/>
@@ -52,7 +51,7 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RVa-1A-CAd">
+                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RVa-1A-CAd" customClass="CCTextField" customModule="Sphinx" customModuleProvider="target">
                     <rect key="frame" x="149" y="350" width="100" height="58"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="Ljp-Ho-VcF"/>
@@ -63,15 +62,7 @@
                         <color key="backgroundColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cFK-xt-PyC">
-                    <rect key="frame" x="197" y="329" width="4" height="16"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" id="TrG-fj-pJ2">
-                        <font key="font" size="14" name="Roboto-Regular"/>
-                        <color key="textColor" name="Text"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eRR-nJ-Kmh">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eRR-nJ-Kmh">
                     <rect key="frame" x="267" y="366" width="32" height="26"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="sat" id="mOL-CM-Z9X">
                         <font key="font" size="20" name="Roboto-Light"/>
@@ -126,7 +117,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="180" height="50"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dxc-hH-lcC">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dxc-hH-lcC">
                                 <rect key="frame" x="54" y="16" width="72" height="18"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="CONFIRM" id="JGd-US-RnQ">
                                     <font key="font" size="14" name="Montserrat-SemiBold"/>
@@ -170,11 +161,9 @@
                 <constraint firstItem="eRR-nJ-Kmh" firstAttribute="centerY" secondItem="RVa-1A-CAd" secondAttribute="centerY" id="8uC-pU-qfR"/>
                 <constraint firstAttribute="trailing" secondItem="aYX-P4-zse" secondAttribute="trailing" constant="40" id="B9V-Tu-uPW"/>
                 <constraint firstItem="Fpd-yK-XfO" firstAttribute="centerX" secondItem="kXt-Oz-rk9" secondAttribute="centerX" id="E6k-XL-1hO"/>
-                <constraint firstItem="cFK-xt-PyC" firstAttribute="centerX" secondItem="RVa-1A-CAd" secondAttribute="centerX" id="Io7-kM-Ip8"/>
                 <constraint firstItem="Fpd-yK-XfO" firstAttribute="centerY" secondItem="cL6-GK-PGX" secondAttribute="centerY" id="Jmi-DZ-4Hc"/>
                 <constraint firstItem="bso-u2-6Oz" firstAttribute="top" secondItem="RVa-1A-CAd" secondAttribute="bottom" constant="60" id="Lrw-od-Btd"/>
                 <constraint firstItem="aYX-P4-zse" firstAttribute="trailing" secondItem="bso-u2-6Oz" secondAttribute="trailing" id="MZK-Qh-e5x"/>
-                <constraint firstItem="cFK-xt-PyC" firstAttribute="top" secondItem="RVa-1A-CAd" secondAttribute="bottom" constant="5" id="Osp-wO-20P"/>
                 <constraint firstItem="aYX-P4-zse" firstAttribute="leading" secondItem="bso-u2-6Oz" secondAttribute="leading" id="PMm-gA-YLv"/>
                 <constraint firstItem="W5c-Eg-Azw" firstAttribute="centerX" secondItem="kXt-Oz-rk9" secondAttribute="centerX" id="SBx-sR-SOJ"/>
                 <constraint firstItem="cL6-GK-PGX" firstAttribute="top" secondItem="kXt-Oz-rk9" secondAttribute="top" constant="10" id="bYo-BV-pxf"/>

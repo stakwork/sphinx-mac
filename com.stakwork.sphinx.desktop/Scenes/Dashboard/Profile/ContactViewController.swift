@@ -30,7 +30,7 @@ class ContactViewController: NSViewController {
         copyButton.cursor = .pointingHand
         qrButton.cursor = .pointingHand
         contactAvatarView.configureSize(width: 100, height: 100, fontSize: 25)
-        contactAvatarView.setImages(object: contact)
+        contactAvatarView.loadWith(contact)
         contactName.stringValue = contact.getName()
         contactPubKey.stringValue = contact.publicKey ?? ""
     }

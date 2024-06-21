@@ -31,6 +31,8 @@ class AspectFillNSImageView: NSImageView {
     var imageName: String = ""
     
     func customizeLayer() {
+        self.wantsLayer = true
+        
         if rounded {
             if self.radius > 0 {
                 self.layer?.cornerRadius = self.radius
@@ -46,7 +48,6 @@ class AspectFillNSImageView: NSImageView {
             self.layer?.borderWidth = 0
         }
         
-        self.wantsLayer = true
         self.layer?.contentsGravity = gravity
     }
     

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,33 +25,48 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mq5-ak-RAU">
-                    <rect key="frame" x="30" y="30" width="540" height="340"/>
+                    <rect key="frame" x="32" y="19" width="536" height="349"/>
                     <subviews>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hdv-jC-N2M">
-                            <rect key="frame" x="175" y="161" width="190" height="19"/>
+                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZNZ-S4-lSz">
+                            <rect key="frame" x="236" y="183" width="64" height="64"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="64" id="R1J-Pk-kyh"/>
+                                <constraint firstAttribute="width" constant="64" id="x2n-vo-09F"/>
+                            </constraints>
+                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="dragViewIcon" id="9bY-1B-1s3"/>
+                            <color key="contentTintColor" name="MainBottomIcons"/>
+                        </imageView>
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hdv-jC-N2M">
+                            <rect key="frame" x="150" y="123" width="236" height="24"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Drag Image or Video here" id="uax-Vg-Apl">
-                                <font key="font" size="16" name="Roboto-Medium"/>
+                                <font key="font" size="20" name="Roboto-Regular"/>
                                 <color key="textColor" name="SecondaryText"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="hdv-jC-N2M" firstAttribute="centerY" secondItem="mq5-ak-RAU" secondAttribute="centerY" id="bOq-At-QSo"/>
+                        <constraint firstItem="hdv-jC-N2M" firstAttribute="top" secondItem="ZNZ-S4-lSz" secondAttribute="bottom" constant="36" id="5ay-ZX-Hb2"/>
+                        <constraint firstItem="ZNZ-S4-lSz" firstAttribute="centerX" secondItem="mq5-ak-RAU" secondAttribute="centerX" id="NSy-fh-Xms"/>
+                        <constraint firstItem="ZNZ-S4-lSz" firstAttribute="centerY" secondItem="mq5-ak-RAU" secondAttribute="centerY" constant="-40" id="Nxh-vl-YcY"/>
                         <constraint firstItem="hdv-jC-N2M" firstAttribute="centerX" secondItem="mq5-ak-RAU" secondAttribute="centerX" id="ftH-D0-ptf"/>
                     </constraints>
                 </customView>
             </subviews>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="mq5-ak-RAU" secondAttribute="bottom" constant="30" id="9jR-jl-nGP"/>
-                <constraint firstItem="mq5-ak-RAU" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="30" id="Ard-5a-fsG"/>
-                <constraint firstAttribute="trailing" secondItem="mq5-ak-RAU" secondAttribute="trailing" constant="30" id="XjM-no-NkX"/>
-                <constraint firstItem="mq5-ak-RAU" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="30" id="bNs-U3-06B"/>
+                <constraint firstAttribute="bottom" secondItem="mq5-ak-RAU" secondAttribute="bottom" constant="19" id="9jR-jl-nGP"/>
+                <constraint firstItem="mq5-ak-RAU" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="32" id="Ard-5a-fsG"/>
+                <constraint firstAttribute="trailing" secondItem="mq5-ak-RAU" secondAttribute="trailing" constant="32" id="XjM-no-NkX"/>
+                <constraint firstItem="mq5-ak-RAU" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="32" id="bNs-U3-06B"/>
             </constraints>
             <point key="canvasLocation" x="139" y="154"/>
         </customView>
     </objects>
     <resources>
+        <image name="dragViewIcon" width="64" height="64"/>
+        <namedColor name="MainBottomIcons">
+            <color red="0.37254901960784315" green="0.38823529411764707" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="SecondaryText">
             <color red="0.55686274509803924" green="0.58823529411764708" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

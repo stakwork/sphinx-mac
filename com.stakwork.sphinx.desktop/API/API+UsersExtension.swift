@@ -38,27 +38,32 @@ extension API {
                         let subscriptionsArray = JSON(jsonResponse["subscriptions"]).arrayValue
                         
                         if contactsArray.count > 0 || chatsArray.count > 0 {
-                            self.cancellableRequest = nil
                             callback(contactsArray, chatsArray, subscriptionsArray, [])
                             return
                         }
                     }
                 }
-                self.cancellableRequest = nil
                 callback([], [], [], [])
             case .failure(_):
-                self.cancellableRequest = nil
                 callback([], [], [], [])
             }
         }
     }
     
-    func getLatestContacts(date: Date, callback: @escaping ContactsResultsCallback){
+    func getLatestContacts(
+        page: Int,
+        date: Date,
+        nextPageCallback: @escaping ContactsResultsCallback,
+        callback: @escaping ContactsResultsCallback
+    ){
+        let itemsPerPage = 500
         var route = "/latest_contacts"
+        let offset = (page - 1) * itemsPerPage
+        let limit = itemsPerPage
         
         let lastSeenDate = lastSeenContactsDate ?? Date(timeIntervalSince1970: 0)
         if let dateString = lastSeenDate.getStringFromDate(format:"yyyy-MM-dd HH:mm:ss").percentEscaped {
-            route = "\(route)?date=\(dateString)"
+            route = "\(route)?date=\(dateString)&offset=\(offset)&limit=\(limit)"
         }
         
         guard let request = getURLRequest(route: route, method: "GET") else {
@@ -78,21 +83,19 @@ extension API {
                         let chatsArray = JSON(jsonResponse["chats"]).arrayValue
                         let subscriptionsArray = JSON(jsonResponse["subscriptions"]).arrayValue
                         
-                        if contactsArray.count > 0 || chatsArray.count > 0 || invitesArray.count > 0 || subscriptionsArray.count > 0 {
-                            
-                            self.cancellableRequest = nil
+                        if contactsArray.count == itemsPerPage || chatsArray.count == itemsPerPage {
+                            nextPageCallback(contactsArray, chatsArray, subscriptionsArray, invitesArray)
+                        } else {
                             self.lastSeenContactsDate = date
                             
                             callback(contactsArray, chatsArray, subscriptionsArray, invitesArray)
-                            
-                            return
                         }
+                        
+                        return
                     }
                 }
-                self.cancellableRequest = nil
                 callback([], [], [], [])
             case .failure(_):
-                self.cancellableRequest = nil
                 callback([], [], [], [])
             }
         }
@@ -252,7 +255,7 @@ extension API {
         }
         
         var httpHeaders = HTTPHeaders()
-        let headers = EncryptionManager.sharedInstance.getAuthenticationHeader()
+        let headers = UserData.sharedInstance.getAuthenticationHeader()
 
         for (key, value) in headers {
             httpHeaders.add(name: key, value: value)

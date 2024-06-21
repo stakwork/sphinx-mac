@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="GroupRequestView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="cancelButton" destination="yyw-Kn-QaE" id="QgE-To-N0b"/>
+                <outlet property="contentView" destination="c22-O7-iKe" id="MV9-Ip-Yc1"/>
+                <outlet property="doneButton" destination="1hu-ep-hyh" id="905-9w-hh8"/>
+                <outlet property="messageLabel" destination="eIt-pr-mnz" id="Eja-tL-F4d"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="65"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" borderType="line" cornerRadius="8" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="I2n-XH-tWV">
+                    <rect key="frame" x="136" y="10" width="209" height="45"/>
+                    <view key="contentView" id="0se-lC-KhG">
+                        <rect key="frame" x="1" y="1" width="207" height="43"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eIt-pr-mnz">
+                                <rect key="frame" x="10" y="8" width="97" height="26"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" id="Y3Y-HL-uiT">
+                                    <font key="font" size="11" name="Roboto-Regular"/>
+                                    <string key="title">Tomas T wants to
+join the group</string>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <box boxType="custom" borderType="none" cornerRadius="14" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="krK-wi-8xJ">
+                                <rect key="frame" x="162" y="7" width="27" height="27"/>
+                                <view key="contentView" id="i5R-t7-99G">
+                                    <rect key="frame" x="0.0" y="0.0" width="27" height="27"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yyw-Kn-QaE" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="27" height="27"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="27" id="RJs-q4-tzv"/>
+                                                <constraint firstAttribute="width" constant="27" id="uMv-mg-1ZJ"/>
+                                            </constraints>
+                                            <buttonCell key="cell" type="square" title="close" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="IRw-ya-HKw">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" size="20" name="MaterialIcons-Regular"/>
+                                            </buttonCell>
+                                            <color key="contentTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="cancelButtonClicked:" target="-2" id="aLR-0l-sYC"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="yyw-Kn-QaE" firstAttribute="centerX" secondItem="i5R-t7-99G" secondAttribute="centerX" id="5oE-kK-6q9"/>
+                                        <constraint firstItem="yyw-Kn-QaE" firstAttribute="centerY" secondItem="i5R-t7-99G" secondAttribute="centerY" id="Jra-FD-QlB"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="27" id="7ei-sZ-ciY"/>
+                                    <constraint firstAttribute="height" constant="27" id="jvn-On-4As"/>
+                                </constraints>
+                                <color key="fillColor" name="BadgeRed"/>
+                            </box>
+                            <box boxType="custom" borderType="none" cornerRadius="14" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="A22-Mm-Zy2">
+                                <rect key="frame" x="125" y="7" width="27" height="27"/>
+                                <view key="contentView" id="OS7-3W-WUL">
+                                    <rect key="frame" x="0.0" y="0.0" width="27" height="27"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1hu-ep-hyh" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="27" height="27"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="27" id="DqO-z8-Vpl"/>
+                                                <constraint firstAttribute="height" constant="27" id="Lab-6o-jwI"/>
+                                            </constraints>
+                                            <buttonCell key="cell" type="square" title="done" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="2UV-0f-Jvc">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" size="20" name="MaterialIcons-Regular"/>
+                                            </buttonCell>
+                                            <color key="contentTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="doneButtonClicked:" target="-2" id="cHu-Pd-CHM"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="1hu-ep-hyh" firstAttribute="centerY" secondItem="OS7-3W-WUL" secondAttribute="centerY" id="HIj-D4-fOv"/>
+                                        <constraint firstItem="1hu-ep-hyh" firstAttribute="centerX" secondItem="OS7-3W-WUL" secondAttribute="centerX" id="HPh-Xt-UrG"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="27" id="ETI-x1-9S5"/>
+                                    <constraint firstAttribute="height" constant="27" id="uaC-Mb-V78"/>
+                                </constraints>
+                                <color key="fillColor" name="PrimaryGreen"/>
+                            </box>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="A22-Mm-Zy2" firstAttribute="centerY" secondItem="0se-lC-KhG" secondAttribute="centerY" id="684-z2-f7d"/>
+                            <constraint firstItem="A22-Mm-Zy2" firstAttribute="leading" secondItem="eIt-pr-mnz" secondAttribute="trailing" constant="20" id="VLb-8T-CQf"/>
+                            <constraint firstItem="krK-wi-8xJ" firstAttribute="centerY" secondItem="0se-lC-KhG" secondAttribute="centerY" id="eEU-cm-MFz"/>
+                            <constraint firstItem="eIt-pr-mnz" firstAttribute="centerY" secondItem="0se-lC-KhG" secondAttribute="centerY" id="nbl-Vm-dRb"/>
+                            <constraint firstItem="krK-wi-8xJ" firstAttribute="leading" secondItem="A22-Mm-Zy2" secondAttribute="trailing" constant="10" id="uBH-aR-9Zj"/>
+                            <constraint firstAttribute="trailing" secondItem="krK-wi-8xJ" secondAttribute="trailing" constant="20" id="vga-aX-vOg"/>
+                            <constraint firstItem="eIt-pr-mnz" firstAttribute="leading" secondItem="0se-lC-KhG" secondAttribute="leading" constant="12" id="y6c-oy-76g"/>
+                        </constraints>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="UCc-Ft-ahk"/>
+                    </constraints>
+                    <color key="borderColor" name="LightDivider"/>
+                    <color key="fillColor" name="ReceivedMsgBG"/>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstItem="I2n-XH-tWV" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="CMe-51-Ggr"/>
+                <constraint firstItem="I2n-XH-tWV" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="gvY-xN-RXM"/>
+            </constraints>
+            <point key="canvasLocation" x="83" y="-36"/>
+        </customView>
+    </objects>
+    <resources>
+        <namedColor name="BadgeRed">
+            <color red="1" green="0.32156862745098042" blue="0.32156862745098042" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightDivider">
+            <color red="0.86274509803921573" green="0.8784313725490196" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PrimaryGreen">
+            <color red="0.28627450980392155" green="0.78823529411764703" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ReceivedMsgBG">
+            <color red="0.94901960784313721" green="0.95294117647058818" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

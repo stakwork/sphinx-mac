@@ -11,6 +11,7 @@ import Cocoa
 class NewInviteViewController: NSViewController {
     
     weak var delegate: NewContactChatDelegate?
+    weak var dismissDelegate: NewContactDismissDelegate?
     
     @IBOutlet weak var nicknameField: NSTextField!
     @IBOutlet var messageTextView: PlaceHolderTextView!
@@ -20,13 +21,17 @@ class NewInviteViewController: NSViewController {
     @IBOutlet weak var saveButton: CustomButton!
     @IBOutlet weak var loadingWheel: NSProgressIndicator!
     
-    var contactsService : ContactsService!
     let walletBalanceService = WalletBalanceService()
     
-    static func instantiate(contactsService: ContactsService, delegate: NewContactChatDelegate? = nil) -> NewInviteViewController {
+    static func instantiate(
+        delegate: NewContactChatDelegate? = nil,
+        dismissDelegate: NewContactDismissDelegate? = nil
+    ) -> NewInviteViewController {
+        
         let viewController = StoryboardScene.Contacts.newInviteViewController.instantiate()
-        viewController.contactsService = contactsService
         viewController.delegate = delegate
+        viewController.dismissDelegate = dismissDelegate
+        
         return viewController
     }
     
@@ -104,11 +109,11 @@ class NewInviteViewController: NSViewController {
             loading = true
             
             API.sharedInstance.createUserInvite(parameters: parameters, callback: { contact in
-                self.contactsService.insertContact(contact: contact)
+                let _ = UserContactsHelper.insertContact(contact: contact)
                 
                 if let invite = contact["invite"].dictionary, let inviteString = invite["invite_string"]?.string, !inviteString.isEmpty {
                     self.delegate?.shouldReloadContacts()
-                    self.view.window?.close()
+                    self.dismissDelegate?.shouldDismissView()
                 }
             }, errorCallback: {
                 self.loading = false

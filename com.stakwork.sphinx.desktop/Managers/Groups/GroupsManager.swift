@@ -20,6 +20,7 @@ class GroupsManager {
     
     var contactIds : [Int] = []
     var name : String? = nil
+    private var chatLastReadLookup : [Int:(Int, CGFloat)] = [:]
     
     func resetData() {
         contactIds = [Int]()
@@ -32,6 +33,18 @@ class GroupsManager {
     
     func setContactIds(contactIds: [Int]) {
         self.contactIds = contactIds
+    }
+    
+    //chat scroll retention
+    func setChatLastRead(chatID: Int, tablePosition: (Int, CGFloat)){
+        chatLastReadLookup[chatID] = tablePosition
+    }
+    
+    func getChatLastRead(chatID: Int?) -> (TransactionMessage?, CGFloat)? {
+        if let chatID = chatID, let result = chatLastReadLookup[chatID]{
+            return (TransactionMessage.getMessageWith(id: result.0), result.1)
+        }
+        return nil
     }
     
     func getGroupParams() -> (Bool, [String: AnyObject]) {
@@ -91,19 +104,36 @@ class GroupsManager {
         newGroupInfo.tags = getGroupTags()
     }
     
-    func setInfo(name: String? = nil,
-                 description: String? = nil,
-                 img: String? = nil,
-                 tags: [Tag]? = nil,
-                 priceToJoin: Int? = nil,
-                 pricePerMessage: Int? = nil) {
-     
+    func setInfo(
+        name: String? = nil,
+        description: String? = nil,
+        img: String? = nil,
+        tags: [Tag]? = nil,
+        priceToJoin: Int? = nil,
+        pricePerMessage: Int? = nil,
+        amountToStake: Int? = nil,
+        timeToStake: Int? = nil,
+        appUrl: String? = nil,
+        secondBrainUrl: String? = nil,
+        feedUrl: String? = nil,
+        feedType: FeedContentType? = nil,
+        listInTribes: Bool,
+        privateTribe: Bool
+    ) {
         newGroupInfo.name = name ?? newGroupInfo.name
         newGroupInfo.description = description ?? newGroupInfo.description
         newGroupInfo.img = img ?? newGroupInfo.img
         newGroupInfo.tags = tags ?? newGroupInfo.tags
         newGroupInfo.priceToJoin = priceToJoin ?? newGroupInfo.priceToJoin
         newGroupInfo.pricePerMessage = pricePerMessage ?? newGroupInfo.pricePerMessage
+        newGroupInfo.amountToStake = amountToStake ?? newGroupInfo.amountToStake
+        newGroupInfo.timeToStake = timeToStake ?? newGroupInfo.timeToStake
+        newGroupInfo.appUrl = appUrl ?? newGroupInfo.appUrl
+        newGroupInfo.secondBrainUrl = secondBrainUrl ?? newGroupInfo.secondBrainUrl
+        newGroupInfo.feedUrl = feedUrl ?? newGroupInfo.feedUrl
+        newGroupInfo.feedContentType = feedType ?? newGroupInfo.feedContentType
+        newGroupInfo.unlisted = !listInTribes
+        newGroupInfo.privateTribe = privateTribe
     }
     
     func isGroupInfoValid() -> Bool {
@@ -117,6 +147,7 @@ class GroupsManager {
         var groupKey : String? = nil
         var ownerPubkey : String? = nil
         var ownerAlias : String? = nil
+        var pin : String? = nil
         var host : String! = nil
         var uuid : String! = nil
         var tags : [Tag] = []
@@ -129,6 +160,8 @@ class GroupsManager {
         var deleted : Bool = false
         var appUrl : String? = nil
         var feedUrl : String? = nil
+        var secondBrainUrl : String? = nil
+        var feedContentType : FeedContentType? = nil
         var ownerRouteHint : String? = nil
         var bots : [Bot] = []
     }
@@ -191,8 +224,9 @@ class GroupsManager {
         let techTag = Tag(image: "techTagIcon", description: "Tech")
         let altcoinsTag = Tag(image: "altcoinsTagIcon", description: "Altcoins")
         let musicTag = Tag(image: "musicTagIcon", description: "Music")
+        let podcastTag = Tag(image: "podcastTagIcon", description: "Podcast")
         
-        return [bitcoingTag, lightningTag, sphinxTag, cryptoTag, techTag, altcoinsTag, musicTag]
+        return [bitcoingTag, lightningTag, sphinxTag, cryptoTag, techTag, altcoinsTag, musicTag, podcastTag]
     }
     
     func getGroupInfo(query: String) -> TribeInfo? {
@@ -250,7 +284,15 @@ class GroupsManager {
         
         parameters["tags"] = tagsParams as AnyObject
         parameters["is_tribe"] = true as AnyObject
-        parameters["is_listed"] = true as AnyObject
+        parameters["unlisted"] = newGroupInfo.unlisted as AnyObject
+        parameters["private"] = newGroupInfo.privateTribe as AnyObject
+        parameters["app_url"] = newGroupInfo.appUrl as AnyObject
+        parameters["feed_url"] = newGroupInfo.feedUrl as AnyObject
+        parameters["second_brain_url"] = newGroupInfo.secondBrainUrl as AnyObject
+        
+        if let feedContentType = newGroupInfo.feedContentType {
+            parameters["feed_type"] = feedContentType.id as AnyObject
+        }
         
         return parameters
     }
@@ -302,6 +344,7 @@ class GroupsManager {
         tribeInfo.name = json["name"].string ?? tribeInfo.name
         tribeInfo.description = json["description"].string ?? tribeInfo.description
         tribeInfo.img = json["img"].string ?? tribeInfo.img
+        tribeInfo.pin = json["pin"].string ?? tribeInfo.pin
         tribeInfo.groupKey = json["group_key"].string ?? tribeInfo.groupKey
         tribeInfo.ownerPubkey = json["owner_pubkey"].string ?? tribeInfo.ownerPubkey
         tribeInfo.ownerAlias = json["owner_alias"].string ?? tribeInfo.ownerAlias
@@ -313,7 +356,9 @@ class GroupsManager {
         tribeInfo.privateTribe = json["private"].boolValue
         tribeInfo.deleted = json["deleted"].boolValue
         tribeInfo.appUrl = json["app_url"].string ?? tribeInfo.appUrl
+        tribeInfo.secondBrainUrl = json["second_brain_url"].string ?? tribeInfo.secondBrainUrl
         tribeInfo.feedUrl = json["feed_url"].string ?? tribeInfo.feedUrl
+        tribeInfo.feedContentType = json["feed_type"].int?.toFeedContentType ?? tribeInfo.feedContentType
         tribeInfo.ownerRouteHint = json["owner_route_hint"].string ?? tribeInfo.ownerRouteHint
         
         var tags = getGroupTags()
@@ -350,14 +395,14 @@ class GroupsManager {
     }
     
     func calculateBotPrice(chat: Chat?, text: String) -> (Int, String?) {
-        guard let tribesInfo = chat?.tribesInfo, text.starts(with: "/") else {
+        guard let tribeInfo = chat?.tribeInfo, text.starts(with: "/") else {
             return (0, nil)
         }
         
         var price = 0
         var failureMessage: String? = nil
     
-        for b in tribesInfo.bots {
+        for b in tribeInfo.bots {
             if !text.starts(with: b.prefix) { continue }
             if b.price > 0 {
                 price = b.price
@@ -429,5 +474,35 @@ class GroupsManager {
         }, errorCallback: {
             completion()
         })
+    }
+    
+    func respondToRequest(
+        message: TransactionMessage,
+        action: String,
+        completion: @escaping (Chat, TransactionMessage) -> (),
+        errorCompletion: @escaping () -> ()
+    ) {
+        API.sharedInstance.requestAction(messageId: message.id, contactId: message.senderId, action: action, callback: { json in
+            if let chat = Chat.insertChat(chat: json["chat"]),
+                let message = TransactionMessage.insertMessage(
+                    m: json["message"],
+                    existingMessage: TransactionMessage.getMessageWith(id: json["message"]["id"].intValue)
+                ).0 {
+                
+                CoreDataManager.sharedManager.saveContext()
+                
+                completion(chat, message)
+                return
+            }
+            errorCompletion()
+        }, errorCallback: {
+            errorCompletion()
+        })
+    }
+}
+
+extension Int {
+    var toFeedContentType: FeedContentType? {
+        return FeedContentType.allCases.filter { $0.id == self }.first
     }
 }

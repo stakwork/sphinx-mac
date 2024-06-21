@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="PodcastDetailActionCell" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="actionIconImage" destination="DYz-FH-2qx" id="8I2-ZB-eHT"/>
+                <outlet property="actionLabel" destination="jbI-X3-TlI" id="Q3h-p7-VAR"/>
+                <outlet property="divider" destination="8qE-xa-ZeC" id="5af-6W-Xme"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="322" height="64"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jbI-X3-TlI">
+                    <rect key="frame" x="45" y="22" width="263" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="qFZ-de-Zbl"/>
+                    </constraints>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Download" id="0BI-7H-exb">
+                        <font key="font" size="17" name="Roboto-Regular"/>
+                        <color key="textColor" name="Text"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DYz-FH-2qx">
+                    <rect key="frame" x="0.0" y="22" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="9bO-a0-R25"/>
+                        <constraint firstAttribute="width" secondItem="DYz-FH-2qx" secondAttribute="height" multiplier="1:1" id="9l1-KE-Wcf"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="sn5-Ie-yc6"/>
+                </imageView>
+                <box boxType="custom" borderType="none" borderWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="8qE-xa-ZeC">
+                    <rect key="frame" x="0.0" y="0.0" width="322" height="1"/>
+                    <view key="contentView" id="bO5-c0-Kq2">
+                        <rect key="frame" x="0.0" y="0.0" width="322" height="1"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="7hq-QP-6H8"/>
+                    </constraints>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="jbI-X3-TlI" secondAttribute="trailing" constant="16" id="CF0-ag-ieh"/>
+                <constraint firstItem="8qE-xa-ZeC" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="HDD-BI-Y1W"/>
+                <constraint firstAttribute="trailing" secondItem="8qE-xa-ZeC" secondAttribute="trailing" id="NKn-oh-dq5"/>
+                <constraint firstItem="jbI-X3-TlI" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="NSD-MV-X8X"/>
+                <constraint firstItem="DYz-FH-2qx" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="Y5a-qO-swT"/>
+                <constraint firstItem="jbI-X3-TlI" firstAttribute="leading" secondItem="DYz-FH-2qx" secondAttribute="trailing" constant="27" id="hqQ-N9-HcF"/>
+                <constraint firstItem="8qE-xa-ZeC" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="63" id="wqa-xQ-knb"/>
+                <constraint firstItem="DYz-FH-2qx" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="zNc-R0-1In"/>
+            </constraints>
+            <point key="canvasLocation" x="-82" y="135.5"/>
+        </customView>
+        <customObject id="KTH-yy-T6h" customClass="PodcastDetailActionCell" customModule="Sphinx" customModuleProvider="target"/>
+    </objects>
+    <resources>
+        <namedColor name="Text">
+            <color red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

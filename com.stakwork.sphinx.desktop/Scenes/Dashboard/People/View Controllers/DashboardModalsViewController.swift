@@ -47,18 +47,22 @@ class DashboardModalsViewController: NSViewController {
     }
     
     func showProgressViewWith(
-        progress: Int,
+        with progress: Int,
+        label: String,
+        buttonEnabled: Bool,
         delegate: RestoreModalViewControllerDelegate?
     ) {
         restoreModalsDelegate = delegate
         
-        if (progress == 100) {
+        if (progress >= 100) {
             delegate?.didFinishRestoring()
             return
         }
         
         restoreProgressView.setProgress(
-            progress: progress,
+            with: progress,
+            label: label,
+            buttonEnabled: buttonEnabled,
             delegate: delegate
         )
         
@@ -67,6 +71,10 @@ class DashboardModalsViewController: NSViewController {
         }
         
         showProgressModalAnimated()
+    }
+    
+    func setFinishingRestore() {
+        restoreProgressView.setFinishingRestore()
     }
     
     func showProgressModalAnimated() {
@@ -115,7 +123,7 @@ class DashboardModalsViewController: NSViewController {
     func getModal() -> ModalViewInterface? {
         if let query = query, let action = query.getLinkAction() {
             switch(action) {
-            case "auth":
+            case "auth", "challenge", "redeem_sats":
                 return authExternalView
             case "person":
                 return personModalView
@@ -127,6 +135,9 @@ class DashboardModalsViewController: NSViewController {
         }
         return nil
     }
+    
+    override func mouseDown(with event: NSEvent) {}
+    override func scrollWheel(with event: NSEvent) {}
 }
 
 extension DashboardModalsViewController : ModalViewDelegate {

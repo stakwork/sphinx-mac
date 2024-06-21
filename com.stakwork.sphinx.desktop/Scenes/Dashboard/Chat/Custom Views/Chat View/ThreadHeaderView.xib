@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="ThreadHeaderView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="audioFileContainer" destination="aeV-xz-Szv" id="FnT-F8-DEF"/>
+                <outlet property="audioMessageView" destination="anB-jC-h00" id="yrS-2F-wYA"/>
+                <outlet property="chatAvatarView" destination="an0-0c-r6q" id="FIi-Lt-Pc8"/>
+                <outlet property="closeButton" destination="xTN-ih-vgo" id="Mag-Qa-Hho"/>
+                <outlet property="contentView" destination="c22-O7-iKe" id="qRz-cx-MGB"/>
+                <outlet property="dateLabel" destination="pLk-vm-4AH" id="pMF-Ae-Luw"/>
+                <outlet property="fileInfoView" destination="6O6-FM-fV0" id="lJW-Yu-PSM"/>
+                <outlet property="mediaTextContainer" destination="WdK-U0-xc0" id="ngx-iA-oVU"/>
+                <outlet property="messageBoostView" destination="4BF-xy-htS" id="j1b-wK-Aw7"/>
+                <outlet property="messageBoostViewContainer" destination="02m-U3-tfS" id="6en-mJ-tTZ"/>
+                <outlet property="messageLabel" destination="o0s-gd-MXD" id="Pu0-oy-q0M"/>
+                <outlet property="messageMediaContainer" destination="Xl7-aO-kUk" id="53n-89-SG8"/>
+                <outlet property="messageMediaView" destination="6lH-Ev-Ucz" id="CM8-q7-LBp"/>
+                <outlet property="newMessageLabel" destination="8wc-Bi-exs" id="yLD-SM-vHG"/>
+                <outlet property="newMessageLabelScrollView" destination="yRy-te-G3m" id="tc7-Jy-gBA"/>
+                <outlet property="optionsButton" destination="L6P-gE-jRx" id="asx-9p-HNl"/>
+                <outlet property="textContainer" destination="oDd-gg-HZ8" id="9cG-Gn-1iY"/>
+                <outlet property="userNameLabel" destination="9SH-Z3-1PP" id="9qx-H8-tLr"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="1236" height="251"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="6xK-O0-OVb">
+                    <rect key="frame" x="0.0" y="0.0" width="1236" height="251"/>
+                    <view key="contentView" id="4bb-PJ-5Pq">
+                        <rect key="frame" x="0.0" y="0.0" width="1236" height="251"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <color key="fillColor" name="NewHeaderBG"/>
+                </box>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="rDL-y8-IEm">
+                    <rect key="frame" x="0.0" y="186" width="1220" height="65"/>
+                    <subviews>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="an0-0c-r6q" customClass="ChatSmallAvatarView" customModule="Sphinx" customModuleProvider="target">
+                            <rect key="frame" x="16" y="15" width="36" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="Fgm-b4-1Tt"/>
+                                <constraint firstAttribute="width" constant="36" id="ucD-VR-bam"/>
+                            </constraints>
+                        </customView>
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9SH-Z3-1PP">
+                            <rect key="frame" x="66" y="33" width="44" height="16"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Tomas" id="Jx9-3T-N61">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="Text"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pLk-vm-4AH">
+                            <rect key="frame" x="66" y="17" width="54" height="14"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="12:00 PM" id="slQ-kw-9cH">
+                                <font key="font" metaFont="smallSystem"/>
+                                <color key="textColor" name="SecondaryText"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="an0-0c-r6q" firstAttribute="leading" secondItem="rDL-y8-IEm" secondAttribute="leading" constant="16" id="42o-aj-rLp"/>
+                        <constraint firstAttribute="height" constant="65" id="EhV-nk-ZJB"/>
+                        <constraint firstItem="an0-0c-r6q" firstAttribute="centerY" secondItem="rDL-y8-IEm" secondAttribute="centerY" id="WFN-1X-fsA"/>
+                        <constraint firstItem="9SH-Z3-1PP" firstAttribute="top" secondItem="an0-0c-r6q" secondAttribute="top" constant="2" id="WiR-KH-ajX"/>
+                        <constraint firstItem="pLk-vm-4AH" firstAttribute="bottom" secondItem="an0-0c-r6q" secondAttribute="bottom" constant="-2" id="q1w-fa-3Yb"/>
+                        <constraint firstItem="pLk-vm-4AH" firstAttribute="leading" secondItem="an0-0c-r6q" secondAttribute="trailing" constant="16" id="vGQ-Ei-clp"/>
+                        <constraint firstItem="9SH-Z3-1PP" firstAttribute="leading" secondItem="an0-0c-r6q" secondAttribute="trailing" constant="16" id="wWz-W9-sgm"/>
+                    </constraints>
+                </customView>
+                <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6pb-0h-aP6">
+                    <rect key="frame" x="0.0" y="0.0" width="1220" height="186"/>
+                    <subviews>
+                        <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aeV-xz-Szv">
+                            <rect key="frame" x="0.0" y="92" width="1220" height="94"/>
+                            <subviews>
+                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="6O6-FM-fV0" customClass="FileInfoView" customModule="Sphinx" customModuleProvider="target">
+                                    <rect key="frame" x="16" y="16" width="204" height="62"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="62" id="DCs-zC-qth"/>
+                                        <constraint firstAttribute="width" constant="204" id="Mbh-W4-07A"/>
+                                    </constraints>
+                                </customView>
+                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="anB-jC-h00" customClass="AudioMessageView" customModule="Sphinx" customModuleProvider="target">
+                                    <rect key="frame" x="16" y="16" width="300" height="62"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="62" id="7nY-rf-6ro"/>
+                                        <constraint firstAttribute="width" constant="300" id="fv8-5N-YbB"/>
+                                    </constraints>
+                                </customView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="anB-jC-h00" firstAttribute="leading" secondItem="aeV-xz-Szv" secondAttribute="leading" constant="16" id="2xm-1V-OzX"/>
+                                <constraint firstAttribute="bottom" secondItem="6O6-FM-fV0" secondAttribute="bottom" constant="16" id="7h8-hJ-yuS"/>
+                                <constraint firstAttribute="bottom" secondItem="anB-jC-h00" secondAttribute="bottom" constant="16" id="DmD-yh-zAZ"/>
+                                <constraint firstItem="6O6-FM-fV0" firstAttribute="leading" secondItem="aeV-xz-Szv" secondAttribute="leading" constant="16" id="jr7-Jf-qJB"/>
+                                <constraint firstAttribute="height" constant="94" id="kDZ-Fz-jve"/>
+                                <constraint firstItem="6O6-FM-fV0" firstAttribute="top" secondItem="aeV-xz-Szv" secondAttribute="top" constant="16" id="qS1-XC-dxy"/>
+                                <constraint firstItem="anB-jC-h00" firstAttribute="top" secondItem="aeV-xz-Szv" secondAttribute="top" constant="16" id="r7r-lP-xx9"/>
+                            </constraints>
+                        </customView>
+                        <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WdK-U0-xc0">
+                            <rect key="frame" x="0.0" y="0.0" width="1220" height="186"/>
+                            <subviews>
+                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Xl7-aO-kUk">
+                                    <rect key="frame" x="0.0" y="0.0" width="220" height="186"/>
+                                    <subviews>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="6lH-Ev-Ucz" customClass="MediaMessageView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="16" y="16" width="204" height="170"/>
+                                        </customView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="186" id="39B-Xz-ILe"/>
+                                        <constraint firstAttribute="bottom" secondItem="6lH-Ev-Ucz" secondAttribute="bottom" constant="16" id="Ry7-UP-icW"/>
+                                        <constraint firstItem="6lH-Ev-Ucz" firstAttribute="top" secondItem="Xl7-aO-kUk" secondAttribute="top" id="W9u-bz-XUA"/>
+                                        <constraint firstAttribute="width" constant="220" id="dMw-gj-BgD"/>
+                                        <constraint firstItem="6lH-Ev-Ucz" firstAttribute="leading" secondItem="Xl7-aO-kUk" secondAttribute="leading" constant="16" id="ed4-Px-xqM"/>
+                                        <constraint firstAttribute="trailing" secondItem="6lH-Ev-Ucz" secondAttribute="trailing" id="uhl-Up-g1Q"/>
+                                    </constraints>
+                                </customView>
+                                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YlO-at-1xE">
+                                    <rect key="frame" x="220" y="0.0" width="1000" height="186"/>
+                                    <subviews>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="oDd-gg-HZ8">
+                                            <rect key="frame" x="0.0" y="50" width="1000" height="136"/>
+                                            <subviews>
+                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="clM-Wn-u17">
+                                                    <rect key="frame" x="10" y="0.0" width="990" height="136"/>
+                                                    <subviews>
+                                                        <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRy-te-G3m" customClass="DisabledScrollView" customModule="Sphinx" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="16" width="990" height="120"/>
+                                                            <clipView key="contentView" drawsBackground="NO" id="aRe-Am-Wey">
+                                                                <rect key="frame" x="0.0" y="0.0" width="990" height="120"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                <subviews>
+                                                                    <textView wantsLayer="YES" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="8wc-Bi-exs">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="974" height="120"/>
+                                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="NewHeaderBG"/>
+                                                                        <size key="minSize" width="974" height="120"/>
+                                                                        <size key="maxSize" width="990" height="10000000"/>
+                                                                        <color key="insertionPointColor" name="textInsertionPointColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textView>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </clipView>
+                                                            <edgeInsets key="contentInsets" left="0.0" right="16" top="0.0" bottom="0.0"/>
+                                                            <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="x6L-L0-blS">
+                                                                <rect key="frame" x="-100" y="-100" width="240" height="16"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                            </scroller>
+                                                            <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="1ie-lh-WP7">
+                                                                <rect key="frame" x="958" y="0.0" width="16" height="120"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                            </scroller>
+                                                        </scrollView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="yRy-te-G3m" secondAttribute="trailing" id="5CE-YO-JV3"/>
+                                                        <constraint firstItem="yRy-te-G3m" firstAttribute="top" secondItem="clM-Wn-u17" secondAttribute="top" id="7MG-sv-Ok7"/>
+                                                        <constraint firstItem="yRy-te-G3m" firstAttribute="leading" secondItem="clM-Wn-u17" secondAttribute="leading" id="BPW-Gh-LLi"/>
+                                                        <constraint firstAttribute="bottom" secondItem="yRy-te-G3m" secondAttribute="bottom" constant="16" id="VQw-wF-bKM"/>
+                                                    </constraints>
+                                                </customView>
+                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="o0s-gd-MXD" customClass="MessageTextField" customModule="Sphinx" customModuleProvider="target">
+                                                    <rect key="frame" x="14" y="16" width="988" height="120"/>
+                                                    <textFieldCell key="cell" selectable="YES" title="Label" id="wQx-gQ-7cJ">
+                                                        <font key="font" metaFont="system" size="16"/>
+                                                        <color key="textColor" name="Text"/>
+                                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="o0s-gd-MXD" firstAttribute="leading" secondItem="oDd-gg-HZ8" secondAttribute="leading" constant="16" id="2Mb-Zo-EjO"/>
+                                                <constraint firstAttribute="trailing" secondItem="o0s-gd-MXD" secondAttribute="trailing" id="6oX-0I-Cv6"/>
+                                                <constraint firstItem="o0s-gd-MXD" firstAttribute="top" secondItem="oDd-gg-HZ8" secondAttribute="top" id="KwG-lv-xgB"/>
+                                                <constraint firstAttribute="bottom" secondItem="o0s-gd-MXD" secondAttribute="bottom" constant="16" id="cX0-DG-YiD"/>
+                                                <constraint firstItem="clM-Wn-u17" firstAttribute="top" secondItem="oDd-gg-HZ8" secondAttribute="top" id="oAn-rN-olt"/>
+                                                <constraint firstAttribute="bottom" secondItem="clM-Wn-u17" secondAttribute="bottom" id="oxc-6y-cak"/>
+                                                <constraint firstItem="clM-Wn-u17" firstAttribute="leading" secondItem="oDd-gg-HZ8" secondAttribute="leading" constant="10" id="taq-97-Ibp"/>
+                                                <constraint firstAttribute="trailing" secondItem="clM-Wn-u17" secondAttribute="trailing" id="zzp-AG-dqc"/>
+                                            </constraints>
+                                        </customView>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="02m-U3-tfS">
+                                            <rect key="frame" x="0.0" y="0.0" width="230" height="50"/>
+                                            <subviews>
+                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="4BF-xy-htS" customClass="NewMessageBoostView" customModule="Sphinx" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="8" width="230" height="42"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="42" id="ZVW-5l-b66"/>
+                                                    </constraints>
+                                                </customView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="4BF-xy-htS" secondAttribute="trailing" id="2hD-li-wCb"/>
+                                                <constraint firstAttribute="height" constant="50" id="WdB-db-18z"/>
+                                                <constraint firstItem="4BF-xy-htS" firstAttribute="leading" secondItem="02m-U3-tfS" secondAttribute="leading" id="X1u-g1-qIW"/>
+                                                <constraint firstItem="4BF-xy-htS" firstAttribute="top" secondItem="02m-U3-tfS" secondAttribute="top" id="duE-4A-x4I"/>
+                                                <constraint firstAttribute="width" constant="230" id="ry9-PZ-j5e"/>
+                                            </constraints>
+                                        </customView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="oDd-gg-HZ8" secondAttribute="trailing" id="Xcg-4R-676"/>
+                                        <constraint firstItem="02m-U3-tfS" firstAttribute="leading" secondItem="YlO-at-1xE" secondAttribute="leading" id="gQk-P0-5e2"/>
+                                        <constraint firstItem="oDd-gg-HZ8" firstAttribute="leading" secondItem="YlO-at-1xE" secondAttribute="leading" id="zZA-JB-AAh"/>
+                                    </constraints>
+                                    <visibilityPriorities>
+                                        <integer value="1000"/>
+                                        <integer value="1000"/>
+                                    </visibilityPriorities>
+                                    <customSpacing>
+                                        <real value="3.4028234663852886e+38"/>
+                                        <real value="3.4028234663852886e+38"/>
+                                    </customSpacing>
+                                </stackView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="YlO-at-1xE" firstAttribute="top" secondItem="WdK-U0-xc0" secondAttribute="top" id="RKs-Pq-tRq"/>
+                                <constraint firstItem="Xl7-aO-kUk" firstAttribute="top" secondItem="WdK-U0-xc0" secondAttribute="top" id="ZPc-5R-RIb"/>
+                                <constraint firstAttribute="bottom" secondItem="YlO-at-1xE" secondAttribute="bottom" id="uLQ-gQ-wN4"/>
+                            </constraints>
+                            <visibilityPriorities>
+                                <integer value="1000"/>
+                                <integer value="1000"/>
+                            </visibilityPriorities>
+                            <customSpacing>
+                                <real value="3.4028234663852886e+38"/>
+                                <real value="3.4028234663852886e+38"/>
+                            </customSpacing>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="aeV-xz-Szv" secondAttribute="trailing" id="YbR-BO-b0H"/>
+                        <constraint firstAttribute="trailing" secondItem="WdK-U0-xc0" secondAttribute="trailing" id="eZl-wv-OfT"/>
+                        <constraint firstItem="WdK-U0-xc0" firstAttribute="leading" secondItem="6pb-0h-aP6" secondAttribute="leading" id="lTy-Cc-J76"/>
+                        <constraint firstItem="aeV-xz-Szv" firstAttribute="leading" secondItem="6pb-0h-aP6" secondAttribute="leading" id="sFU-dH-BMB"/>
+                    </constraints>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="L6P-gE-jRx" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="1204" y="115" width="26" height="22"/>
+                    <buttonCell key="cell" type="bevel" title="" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="1lQ-0m-pTW" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="22" name="MaterialIcons-Regular"/>
+                    </buttonCell>
+                    <color key="contentTintColor" name="WashedOutReceivedText"/>
+                    <connections>
+                        <action selector="optionsButtonClicked:" target="-2" id="FgF-MF-YQH"/>
+                    </connections>
+                </button>
+                <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xTN-ih-vgo" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="1186" y="111" width="34" height="30"/>
+                    <buttonCell key="cell" type="square" title="close" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="L95-Hj-Xnu">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="30" name="MaterialIcons-Regular"/>
+                    </buttonCell>
+                    <color key="contentTintColor" name="Text"/>
+                    <connections>
+                        <action selector="closeButtonClicked:" target="-2" id="qpQ-F2-bP8"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="6pb-0h-aP6" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="79o-Lw-oKL"/>
+                <constraint firstAttribute="trailing" secondItem="rDL-y8-IEm" secondAttribute="trailing" constant="16" id="9Ia-MA-Jrx"/>
+                <constraint firstItem="rDL-y8-IEm" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="IHi-TV-0qh"/>
+                <constraint firstItem="xTN-ih-vgo" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="Sww-CA-fCC"/>
+                <constraint firstAttribute="bottom" secondItem="6xK-O0-OVb" secondAttribute="bottom" id="U7W-tP-MvG"/>
+                <constraint firstAttribute="bottom" secondItem="6pb-0h-aP6" secondAttribute="bottom" id="WMZ-ai-4Zb"/>
+                <constraint firstItem="L6P-gE-jRx" firstAttribute="trailing" secondItem="6pb-0h-aP6" secondAttribute="trailing" constant="10" id="mXd-gF-8Rb"/>
+                <constraint firstItem="rDL-y8-IEm" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="p2z-lc-yp0"/>
+                <constraint firstAttribute="trailing" secondItem="6pb-0h-aP6" secondAttribute="trailing" constant="16" id="pj3-TF-RfW"/>
+                <constraint firstAttribute="trailing" secondItem="xTN-ih-vgo" secondAttribute="trailing" constant="16" id="q48-HG-1px"/>
+                <constraint firstItem="6xK-O0-OVb" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="qjC-my-6XK"/>
+                <constraint firstAttribute="trailing" secondItem="6xK-O0-OVb" secondAttribute="trailing" id="r3s-R6-t2l"/>
+                <constraint firstItem="6pb-0h-aP6" firstAttribute="top" secondItem="rDL-y8-IEm" secondAttribute="bottom" id="yOa-oe-jsF"/>
+                <constraint firstItem="L6P-gE-jRx" firstAttribute="centerY" secondItem="xTN-ih-vgo" secondAttribute="centerY" id="zM8-1q-bwc"/>
+                <constraint firstItem="6xK-O0-OVb" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="zdO-El-pGa"/>
+            </constraints>
+            <point key="canvasLocation" x="-11" y="153.5"/>
+        </customView>
+    </objects>
+    <resources>
+        <namedColor name="NewHeaderBG">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SecondaryText">
+            <color red="0.55686274509803924" green="0.58823529411764708" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text">
+            <color red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="WashedOutReceivedText">
+            <color red="0.69019607843137254" green="0.71764705882352942" blue="0.73725490196078436" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

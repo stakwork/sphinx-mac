@@ -27,6 +27,8 @@ class PaymentTemplatesDataSource : NSObject {
     init(collectionView: NSCollectionView, delegate: PaymentTemplatesDSDelegate, images: [ImageTemplate]) {
         super.init()
         
+        collectionView.isSelectable = true
+        
         self.delegate = delegate
         self.collectionView = collectionView
         self.images = images
@@ -43,7 +45,18 @@ class PaymentTemplatesDataSource : NSObject {
 
 extension PaymentTemplatesDataSource : NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
-        return CGSize(width: PaymentTemplatesDataSource.kCellWidth, height: PaymentTemplatesDataSource.kCellHeight)
+        
+        if indexPath.item == 0 {
+            let sideInset = self.collectionView.bounds.width / 2 - PaymentTemplatesDataSource.kCellWidth / 2
+            return CGSize(width: sideInset, height: PaymentTemplatesDataSource.kCellHeight)
+        } else if indexPath.item == images.count + 2 {
+            let sideInset = self.collectionView.bounds.width / 2 - PaymentTemplatesDataSource.kCellWidth / 2
+            return CGSize(width: sideInset, height: PaymentTemplatesDataSource.kCellHeight)
+        } else if indexPath.item > 0 {
+            return CGSize(width: PaymentTemplatesDataSource.kCellWidth, height: PaymentTemplatesDataSource.kCellHeight)
+        } else {
+            return CGSize(width: PaymentTemplatesDataSource.kCellWidth, height: PaymentTemplatesDataSource.kCellHeight)
+        }
     }
 }
 
@@ -53,21 +66,36 @@ extension PaymentTemplatesDataSource : NSCollectionViewDataSource {
     }
  
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count + 1
+        return images.count + 3
     }
     
     func collectionView(_ collectionView: NSCollectionView, willDisplay item: NSCollectionViewItem, forRepresentedObjectAt indexPath: IndexPath) {
         if let item = item as? TemplateCollectionViewItem {
-            if indexPath.item > 0 {
-                item.configure(itemIndex: indexPath.item, imageTemplate: images[indexPath.item - 1])
-            } else {
+            if indexPath.item == 0 {
+                item.configureAsMargin()
+            } else if indexPath.item == images.count + 2 {
+                item.configureAsMargin()
+            } else if indexPath.item == 1 {
                 item.configure(itemIndex: indexPath.item, imageTemplate: nil)
+            } else {
+                item.configure(itemIndex: indexPath.item, imageTemplate: images[indexPath.item - 2])
             }
         }
     }
  
     func collectionView(_ itemForRepresentedObjectAtcollectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
         return collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "TemplateCollectionViewItem"), for: indexPath)
+    }
+    
+    func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
+        if let firstIndexPath = indexPaths.first {
+            collectionView.scrollToIndex(targetIndex: firstIndexPath.item + 1, animated: true, position: .centeredHorizontally)
+            
+            selectedRow = firstIndexPath.item
+
+            let image = (selectedRow > 1 && selectedRow - 2 < images.count) ? images[selectedRow - 2] : nil
+            delegate?.didSelectImage(image: image)
+        }
     }
 }
 
@@ -80,14 +108,14 @@ extension PaymentTemplatesDataSource {
 
             selectedRow = centerIndexPath.item
 
-            let image = (selectedRow > 0) ? images[selectedRow - 1] : nil
+            let image = (selectedRow > 1 && selectedRow - 2 < images.count) ? images[selectedRow - 2] : nil
             delegate?.didSelectImage(image: image)
         }
     }
     
     func didFinishScrolling() {
         if let indexPath = getCenterClosestIndexPath() {
-            collectionView.scrollToItems(at: [indexPath], scrollPosition: .centeredHorizontally)
+            collectionView.scrollToIndex(targetIndex: indexPath.item + 1, animated: true, position: .centeredHorizontally)
         }
     }
     

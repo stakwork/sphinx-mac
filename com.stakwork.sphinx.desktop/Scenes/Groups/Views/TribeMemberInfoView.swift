@@ -38,14 +38,33 @@ class TribeMemberInfoView: NSView, LoadableNib {
         draggingDestinationView.configureForTribeImage()
         draggingDestinationView.delegate = self
         draggingDestinationView.setup()
+        
+        setupViews()
     }
     
-    func configureWith(vc: NSViewController, alias: String?, picture: String? = nil) {
+    func setupViews() {
+        pictureImageView.wantsLayer = true
+        pictureImageView.rounded = true
+        pictureImageView.layer?.cornerRadius = pictureImageView.frame.height / 2
+        
+        pictureTextField.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(handleCopy)))
+    }
+    
+    @objc func handleCopy() {
+        ClipboardHelper.copyToClipboard(text: pictureTextField.stringValue, message: "text.copied.clipboard".localized)
+    }
+    
+    func configureWith(
+        vc: NSViewController,
+        alias: String?,
+        picture: String? = nil,
+        shouldFixAlias: Bool = false
+    ) {
         if let vc = vc as? TribeMemberInfoDelegate {
             self.delegate = vc
         }
         
-        aliasTextField.stringValue = alias ?? ""
+        aliasTextField.stringValue = (shouldFixAlias ? alias?.fixedAlias : alias) ?? ""
         pictureTextField.stringValue = picture ?? ""
         
         aliasTextField.delegate = self
@@ -96,8 +115,26 @@ class TribeMemberInfoView: NSView, LoadableNib {
 extension TribeMemberInfoView : NSTextFieldDelegate {
     func controlTextDidChange(_ notification: Notification) {
         if let textField = notification.object as? NSTextField, textField == aliasTextField {
-            delegate?.didChangeName?(newValue: textField.stringValue)
+            
+            let fixedAlias = textField.stringValue.fixedAlias
+            allowedCharactersToast(fixedAlias != textField.stringValue)
+            
+            aliasTextField.stringValue = textField.stringValue.fixedAlias
+            delegate?.didChangeName?(newValue: fixedAlias)
         }
+    }
+    
+    func controlTextDidBeginEditing(_ notification: Notification) {
+        if let textField = notification.object as? NSTextField, textField == aliasTextField {
+            aliasTextField.stringValue = textField.stringValue.fixedAlias
+        }
+    }
+    
+    func allowedCharactersToast(_ show: Bool) {
+        guard show else {
+            return
+        }
+        NewMessageBubbleHelper().showGenericMessageView(text: "alias.allowed-characters".localized)
     }
 }
 

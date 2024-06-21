@@ -12,9 +12,14 @@ protocol NewContactChatDelegate: AnyObject {
     func shouldReloadContacts()
 }
 
+protocol NewContactDismissDelegate: AnyObject {
+    func shouldDismissView()
+}
+
 class NewContactViewController: NSViewController {
     
     weak var delegate: NewContactChatDelegate?
+    weak var dismissDelegate: NewContactDismissDelegate?
 
     @IBOutlet weak var contactAvatarView: ChatAvatarView!
     @IBOutlet weak var fieldsTop: NSLayoutConstraint!
@@ -32,7 +37,6 @@ class NewContactViewController: NSViewController {
     @IBOutlet weak var saveButton: CustomButton!
     @IBOutlet weak var groupPinView: GroupPinView!
     
-    var contactsService : ContactsService!
     var contact: UserContact? = nil
     var pubkey: String? = nil
     var messageBubbleHelper = NewMessageBubbleHelper()
@@ -50,16 +54,19 @@ class NewContactViewController: NSViewController {
         }
     }
     
-    static func instantiate(contactsService: ContactsService,
-                            delegate: NewContactChatDelegate? = nil,
-                            contact: UserContact? = nil,
-                            pubkey: String? = nil) -> NewContactViewController {
+    static func instantiate(
+        delegate: NewContactChatDelegate? = nil,
+        dismissDelegate: NewContactDismissDelegate? = nil,
+        contact: UserContact? = nil,
+        pubkey: String? = nil
+    ) -> NewContactViewController {
         
         let viewController = StoryboardScene.Contacts.newContactViewController.instantiate()
         viewController.contact = contact
         viewController.delegate = delegate
+        viewController.dismissDelegate = dismissDelegate
         viewController.pubkey = pubkey
-        viewController.contactsService = contactsService
+
         return viewController
     }
     
@@ -88,7 +95,7 @@ class NewContactViewController: NSViewController {
         if let contact = contact {
             qrButton.cursor = .pointingHand
             contactAvatarView.configureSize(width: 100, height: 100, fontSize: 25)
-            contactAvatarView.setImages(object: contact)
+            contactAvatarView.loadWith(contact)
             userNameLabel.stringValue = userNameLabel.stringValue.replacingOccurrences(of: " *", with: "")
             addressLabel.stringValue = addressLabel.stringValue.replacingOccurrences(of: " *", with: "")
             userNameField.stringValue = contact.getName()
@@ -130,13 +137,18 @@ class NewContactViewController: NSViewController {
     @IBAction func qrButtonClicked(_ sender: Any) {
         if let address = contact?.getAddress(), !address.isEmpty {
             let shareInviteCodeVC = ShareInviteCodeViewController.instantiate(qrCodeString: address, viewMode: .PubKey)
-            WindowsManager.sharedInstance.showPubKeyWindow(vc: shareInviteCodeVC, window: view.window)
+            
+            WindowsManager.sharedInstance.showVCOnRightPanelWindow(
+                with: "pubkey".localized,
+                identifier: "pubkey-window",
+                contentVC: shareInviteCodeVC,
+                shouldReplace: false
+            )
         }
     }
     
     @IBAction func saveButtonClicked(_ sender: Any) {
         loading = true
-        
         if let _ = contact {
             updateProfile()
         } else {
@@ -153,18 +165,22 @@ class NewContactViewController: NSViewController {
         let pin = groupPinView.getPin()
         
         if contact.id > 0 && (nicknameDidChange || routeHintDidChange || groupPinView.didChangePin) {
-            contactsService.updateContact(contact: contact, nickname: userNameField.stringValue, routeHint: routeHintField.stringValue, pin: pin, callback: { success in
-                self.loading = false
-                
-                NotificationCenter.default.post(name: .shouldReloadChatsList, object: nil)
-
-                if success {
-                    self.delegate?.shouldReloadContacts()
-                    self.closeWindow()
-                } else {
-                    self.showErrorAlert(message: "generic.error.message".localized)
+            UserContactsHelper.updateContact(
+                contact: contact,
+                nickname: userNameField.stringValue,
+                routeHint: routeHintField.stringValue,
+                pin: pin,
+                callback: { success in
+                    self.loading = false
+                    
+                    if success {
+                        self.delegate?.shouldReloadContacts()
+                        self.closeWindow()
+                    } else {
+                        self.showErrorAlert(message: "generic.error.message".localized)
+                    }
                 }
-            })
+            )
         } else {
             loading = false
             userNameField.stringValue = contact.getName()
@@ -181,12 +197,8 @@ class NewContactViewController: NSViewController {
             showErrorAlert(message: "invalid.pubkey".localized)
         } else if nickname.isEmpty || pubkey.isEmpty {
             showErrorAlert(message: "nickname.address.required".localized)
-        } else if contactsService.contacts.contains(where: { $0.publicKey == pubkey }) {
-            showErrorAlert(message: "new.contact.error.alreadyExists".localized)
-        } else if contactsService.chats.contains(where: { $0.conversationContact?.publicKey == pubkey }) {
-            showErrorAlert(message: "new.contact.error.alreadyExists".localized)
         } else {
-            contactsService.createContact(nickname: nickname, pubKey: pubkey, routeHint: routeHint, pin: pin, callback: { success in
+            UserContactsHelper.createContact(nickname: nickname, pubKey: pubkey, routeHint: routeHint, pin: pin, callback: { (success, _) in
                 self.loading = false
 
                 if success {
@@ -200,7 +212,12 @@ class NewContactViewController: NSViewController {
     }
     
     func closeWindow() {
-        self.view.window?.close()
+        CoreDataManager.sharedManager.saveContext()
+        if let dismissDelegate = self.dismissDelegate {
+            dismissDelegate.shouldDismissView()
+        } else {
+            WindowsManager.sharedInstance.dismissViewFromCurrentWindow()
+        }
     }
 
     func showErrorAlert(message: String) {

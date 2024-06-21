@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="PodcastPlayerCollectionViewItem" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="audioLoadingWheel" destination="tj6-2r-uMr" id="oY6-Cn-ORE"/>
+                <outlet property="boostButtonView" destination="cvm-EV-YVC" id="H8o-mQ-66i"/>
+                <outlet property="currentTimeDot" destination="Gje-cP-dDc" id="3ot-Dz-GHF"/>
+                <outlet property="currentTimeLabel" destination="j3a-5W-Ger" id="AxP-7T-Lsx"/>
+                <outlet property="durationLabel" destination="aCz-Sz-VhK" id="LhT-Ea-oEv"/>
+                <outlet property="durationLine" destination="du4-Uv-efo" id="ivC-ch-9FC"/>
+                <outlet property="episodeImageView" destination="NHp-dV-cDu" id="1t5-Hd-pwq"/>
+                <outlet property="episodeLabel" destination="u4B-WC-vJh" id="hcT-sq-NdZ"/>
+                <outlet property="liveCollectionView" destination="MFz-Dp-jBt" id="ufj-h3-KeE"/>
+                <outlet property="liveScrollView" destination="35Y-CZ-In6" id="ad6-uO-h8r"/>
+                <outlet property="mouseDraggableView" destination="uyu-EV-v3y" id="02B-cp-NDS"/>
+                <outlet property="playPauseButton" destination="una-Hn-RvR" id="BpD-4R-Tc1"/>
+                <outlet property="podcastSatsView" destination="k5A-VQ-0lA" id="XTB-W1-bus"/>
+                <outlet property="progressLine" destination="jXX-Qx-eeZ" id="v0x-Em-E1p"/>
+                <outlet property="progressLineWidth" destination="ikH-wB-Y1V" id="hPg-LC-v13"/>
+                <outlet property="speedButton" destination="EfV-pV-zKD" id="Vyq-02-7GW"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="670"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NHp-dV-cDu">
+                    <rect key="frame" x="0.0" y="320" width="400" height="350"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="350" id="pRh-XP-ws7"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" id="0xQ-FE-iyG"/>
+                </imageView>
+                <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="35Y-CZ-In6" customClass="DisabledScrollView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="320" width="400" height="350"/>
+                    <clipView key="contentView" drawsBackground="NO" id="VGL-6o-u3K">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="350"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView id="MFz-Dp-jBt">
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="158"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" id="NX6-bl-pLY">
+                                    <size key="itemSize" width="50" height="50"/>
+                                </collectionViewFlowLayout>
+                                <color key="primaryBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.65000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    </clipView>
+                    <edgeInsets key="scrollerInsets" left="0.0" right="-20" top="0.0" bottom="0.0"/>
+                    <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="zfR-7f-uf1">
+                        <rect key="frame" x="-100" y="-100" width="233" height="15"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                    <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="zxZ-7B-CBr">
+                        <rect key="frame" x="-100" y="-100" width="15" height="143"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                </scrollView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="k5A-VQ-0lA" customClass="PodcastSatsView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="244" width="400" height="76"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="76" id="mcu-AB-GA9"/>
+                    </constraints>
+                </customView>
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" mirrorLayoutDirectionWhenInternationalizing="never" translatesAutoresizingMaskIntoConstraints="NO" id="u4B-WC-vJh">
+                    <rect key="frame" x="30" y="194" width="340" height="26"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="xfc-8c-N9L"/>
+                    </constraints>
+                    <textFieldCell key="cell" alignment="center" title="..." id="Ype-xF-qpo">
+                        <font key="font" metaFont="system" size="22"/>
+                        <color key="textColor" name="Text"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="du4-Uv-efo">
+                    <rect key="frame" x="32" y="145" width="336" height="4"/>
+                    <view key="contentView" id="QM1-h6-dRs">
+                        <rect key="frame" x="0.0" y="0.0" width="336" height="4"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="4" id="9Ws-hD-6uJ"/>
+                    </constraints>
+                    <color key="fillColor" name="WashedOutSentText"/>
+                </box>
+                <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="jXX-Qx-eeZ">
+                    <rect key="frame" x="32" y="145" width="0.0" height="4"/>
+                    <view key="contentView" id="ByD-NO-JYi">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="4"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="4" id="Vx9-dT-Jka"/>
+                        <constraint firstAttribute="width" id="ikH-wB-Y1V"/>
+                    </constraints>
+                    <color key="fillColor" name="ReceivedIcon"/>
+                </box>
+                <box boxType="custom" borderType="none" cornerRadius="9" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Gje-cP-dDc">
+                    <rect key="frame" x="23" y="138" width="18" height="18"/>
+                    <view key="contentView" id="kRu-UV-dLF">
+                        <rect key="frame" x="0.0" y="0.0" width="18" height="18"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="18" id="5BH-AA-HdS"/>
+                        <constraint firstAttribute="width" constant="18" id="O37-bz-IDN"/>
+                    </constraints>
+                    <color key="fillColor" name="ReceivedIcon"/>
+                </box>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="uyu-EV-v3y" customClass="MouseDraggableView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="32" y="127" width="336" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="H7c-bA-FKF"/>
+                    </constraints>
+                </customView>
+                <progressIndicator hidden="YES" wantsLayer="YES" maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="tj6-2r-uMr">
+                    <rect key="frame" x="294" y="122" width="16" height="16"/>
+                </progressIndicator>
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="j3a-5W-Ger">
+                    <rect key="frame" x="30" y="122" width="57" height="15"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="00:00:00" id="RzW-4K-am1">
+                        <font key="font" metaFont="cellTitle"/>
+                        <color key="textColor" name="ReceivedIcon"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aCz-Sz-VhK">
+                    <rect key="frame" x="313" y="122" width="57" height="15"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="00:00:00" id="p6h-tj-Fjl">
+                        <font key="font" metaFont="cellTitle"/>
+                        <color key="textColor" name="SecondaryText"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="epe-yP-uMg" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="32" y="20" width="28" height="58"/>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="clipIcon" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="wew-Xo-uZm">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system" size="40"/>
+                    </buttonCell>
+                    <color key="contentTintColor" name="MainBottomIcons"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="58" id="0cN-8g-fhg"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="28" id="Yic-lH-qeX"/>
+                    </constraints>
+                    <connections>
+                        <action selector="controlButtonTouched:" target="-2" id="eYU-B8-1n9"/>
+                    </connections>
+                </button>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="wkU-Xv-7th">
+                    <rect key="frame" x="60" y="20" width="111" height="57"/>
+                    <subviews>
+                        <button tag="1" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZIV-Ih-Thl">
+                            <rect key="frame" x="31" y="4" width="50" height="50"/>
+                            <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="back15Icon" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="1dS-Vb-dDq">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <color key="contentTintColor" name="MainBottomIcons"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="KtE-Sf-601"/>
+                                <constraint firstAttribute="height" constant="50" id="X50-Pw-IUG"/>
+                            </constraints>
+                            <connections>
+                                <action selector="controlButtonTouched:" target="-2" id="olk-NF-OpZ"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="ZIV-Ih-Thl" firstAttribute="centerY" secondItem="wkU-Xv-7th" secondAttribute="centerY" id="XpR-gm-wi6"/>
+                        <constraint firstItem="ZIV-Ih-Thl" firstAttribute="centerX" secondItem="wkU-Xv-7th" secondAttribute="centerX" id="hQR-AJ-Xkl"/>
+                    </constraints>
+                </customView>
+                <box boxType="custom" borderType="none" cornerRadius="29" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Ye5-bz-UmZ">
+                    <rect key="frame" x="171" y="20" width="58" height="57"/>
+                    <view key="contentView" id="Dad-i1-YWL">
+                        <rect key="frame" x="0.0" y="0.0" width="58" height="57"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="57" id="abN-bL-Ly4"/>
+                    </constraints>
+                    <color key="fillColor" name="ReceivedIcon"/>
+                </box>
+                <button tag="3" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="una-Hn-RvR" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="171" y="20" width="58" height="57"/>
+                    <buttonCell key="cell" type="square" title="pause" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="gbR-Nf-Cou" customClass="VerticallyCenteredButtonCell" customModule="Sphinx" customModuleProvider="target">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" size="40" name="MaterialIcons-Regular"/>
+                    </buttonCell>
+                    <color key="contentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="57" id="kN5-bE-bYt"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="58" id="ktH-Ya-Q3K"/>
+                    </constraints>
+                    <connections>
+                        <action selector="controlButtonTouched:" target="-2" id="wdt-BH-ySk"/>
+                    </connections>
+                </button>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="zXx-n0-mtn">
+                    <rect key="frame" x="229" y="20" width="106" height="57"/>
+                    <subviews>
+                        <button tag="2" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hLr-fc-ffX">
+                            <rect key="frame" x="28" y="4" width="50" height="50"/>
+                            <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="forw30Icon" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="udi-Jo-tOU">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <color key="contentTintColor" name="MainBottomIcons"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="4cl-4m-9aC"/>
+                                <constraint firstAttribute="height" constant="50" id="uo8-JA-pbq"/>
+                            </constraints>
+                            <connections>
+                                <action selector="controlButtonTouched:" target="-2" id="OA2-UB-U1b"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="hLr-fc-ffX" firstAttribute="centerY" secondItem="zXx-n0-mtn" secondAttribute="centerY" id="5ez-n7-xyz"/>
+                        <constraint firstItem="hLr-fc-ffX" firstAttribute="centerX" secondItem="zXx-n0-mtn" secondAttribute="centerX" id="ggx-hZ-4jP"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="cvm-EV-YVC" customClass="BoostButtonView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="327" y="20" width="50" height="58"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="58" id="579-fk-b5o"/>
+                        <constraint firstAttribute="width" constant="50" id="7TK-th-N0o"/>
+                    </constraints>
+                </customView>
+                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EfV-pV-zKD">
+                    <rect key="frame" x="170" y="83" width="62" height="25"/>
+                    <popUpButtonCell key="cell" type="push" title="1.5x" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="vvz-nS-T2e" id="nWR-JK-nFl">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" id="uZk-bc-9N6">
+                            <items>
+                                <menuItem title="1.5x" state="on" id="vvz-nS-T2e"/>
+                                <menuItem title="Item 2" id="1B3-uA-bqc"/>
+                                <menuItem title="Item 3" id="Gcx-yz-JME"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="55" id="qCk-Sy-k6W"/>
+                    </constraints>
+                    <connections>
+                        <action selector="speedValueChanged:" target="-2" id="nLs-pO-r0R"/>
+                    </connections>
+                </popUpButton>
+            </subviews>
+            <constraints>
+                <constraint firstItem="wkU-Xv-7th" firstAttribute="top" secondItem="EfV-pV-zKD" secondAttribute="bottom" constant="10" id="1sW-t9-eYt"/>
+                <constraint firstItem="uyu-EV-v3y" firstAttribute="leading" secondItem="du4-Uv-efo" secondAttribute="leading" id="2Sq-Ro-Z6d"/>
+                <constraint firstItem="35Y-CZ-In6" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="31c-DO-TzT"/>
+                <constraint firstItem="wkU-Xv-7th" firstAttribute="leading" secondItem="epe-yP-uMg" secondAttribute="trailing" id="48k-Es-Gls"/>
+                <constraint firstItem="aCz-Sz-VhK" firstAttribute="trailing" secondItem="du4-Uv-efo" secondAttribute="trailing" id="4yM-ec-P0b"/>
+                <constraint firstItem="j3a-5W-Ger" firstAttribute="leading" secondItem="du4-Uv-efo" secondAttribute="leading" id="51q-bz-H8a"/>
+                <constraint firstItem="k5A-VQ-0lA" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="6Lu-tK-FRC"/>
+                <constraint firstItem="Gje-cP-dDc" firstAttribute="centerY" secondItem="jXX-Qx-eeZ" secondAttribute="centerY" id="6zZ-Ae-dYU"/>
+                <constraint firstAttribute="trailing" secondItem="35Y-CZ-In6" secondAttribute="trailing" id="9t8-k1-jdk"/>
+                <constraint firstItem="k5A-VQ-0lA" firstAttribute="top" secondItem="NHp-dV-cDu" secondAttribute="bottom" id="9vf-Wm-810"/>
+                <constraint firstItem="k5A-VQ-0lA" firstAttribute="top" secondItem="35Y-CZ-In6" secondAttribute="bottom" id="BA8-wc-6N3"/>
+                <constraint firstItem="du4-Uv-efo" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="32" id="FSP-Jc-mti"/>
+                <constraint firstItem="35Y-CZ-In6" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="G0J-jI-Agd"/>
+                <constraint firstItem="Ye5-bz-UmZ" firstAttribute="trailing" secondItem="una-Hn-RvR" secondAttribute="trailing" id="GrB-Jp-w2K"/>
+                <constraint firstItem="aCz-Sz-VhK" firstAttribute="leading" secondItem="tj6-2r-uMr" secondAttribute="trailing" constant="5" id="Ha2-dS-Dt8"/>
+                <constraint firstItem="jXX-Qx-eeZ" firstAttribute="leading" secondItem="du4-Uv-efo" secondAttribute="leading" id="IWP-Rj-Fqj"/>
+                <constraint firstItem="zXx-n0-mtn" firstAttribute="leading" secondItem="Ye5-bz-UmZ" secondAttribute="trailing" id="IsM-zY-XXY"/>
+                <constraint firstItem="una-Hn-RvR" firstAttribute="top" secondItem="uyu-EV-v3y" secondAttribute="bottom" constant="50" id="JjU-dC-f0g"/>
+                <constraint firstAttribute="trailing" secondItem="du4-Uv-efo" secondAttribute="trailing" constant="32" id="M6d-Ms-vXk"/>
+                <constraint firstItem="aCz-Sz-VhK" firstAttribute="top" secondItem="du4-Uv-efo" secondAttribute="bottom" constant="8" id="SSl-xO-1do"/>
+                <constraint firstItem="u4B-WC-vJh" firstAttribute="top" secondItem="k5A-VQ-0lA" secondAttribute="bottom" constant="24" id="SsT-gw-7g2"/>
+                <constraint firstItem="jXX-Qx-eeZ" firstAttribute="top" secondItem="du4-Uv-efo" secondAttribute="top" id="UBH-PT-m2M"/>
+                <constraint firstItem="wkU-Xv-7th" firstAttribute="top" secondItem="Ye5-bz-UmZ" secondAttribute="top" id="V9J-Sw-pyC"/>
+                <constraint firstItem="j3a-5W-Ger" firstAttribute="centerY" secondItem="aCz-Sz-VhK" secondAttribute="centerY" id="Vea-Il-Cuf"/>
+                <constraint firstItem="cvm-EV-YVC" firstAttribute="leading" secondItem="zXx-n0-mtn" secondAttribute="trailing" constant="-8.5" id="XD1-uM-wSY"/>
+                <constraint firstAttribute="trailing" secondItem="u4B-WC-vJh" secondAttribute="trailing" constant="32" id="Z7y-QM-CEA"/>
+                <constraint firstItem="NHp-dV-cDu" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="akh-Wg-bLN"/>
+                <constraint firstItem="una-Hn-RvR" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="ans-qD-ejU"/>
+                <constraint firstItem="u4B-WC-vJh" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="32" id="apb-BM-cIp"/>
+                <constraint firstItem="jXX-Qx-eeZ" firstAttribute="bottom" secondItem="du4-Uv-efo" secondAttribute="bottom" id="asZ-Pt-we1"/>
+                <constraint firstItem="tj6-2r-uMr" firstAttribute="centerY" secondItem="aCz-Sz-VhK" secondAttribute="centerY" id="bxj-aO-Riv"/>
+                <constraint firstItem="wkU-Xv-7th" firstAttribute="bottom" secondItem="Ye5-bz-UmZ" secondAttribute="bottom" id="drz-UT-XyR"/>
+                <constraint firstItem="uyu-EV-v3y" firstAttribute="trailing" secondItem="du4-Uv-efo" secondAttribute="trailing" id="elN-vW-Kqw"/>
+                <constraint firstItem="Ye5-bz-UmZ" firstAttribute="centerY" secondItem="una-Hn-RvR" secondAttribute="centerY" id="fCH-74-rf1"/>
+                <constraint firstItem="epe-yP-uMg" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="32" id="fJ2-yh-JWZ"/>
+                <constraint firstItem="zXx-n0-mtn" firstAttribute="bottom" secondItem="Ye5-bz-UmZ" secondAttribute="bottom" id="jRD-bn-mgG"/>
+                <constraint firstItem="Ye5-bz-UmZ" firstAttribute="leading" secondItem="wkU-Xv-7th" secondAttribute="trailing" id="krf-R2-yto"/>
+                <constraint firstAttribute="trailing" secondItem="cvm-EV-YVC" secondAttribute="trailing" constant="23.5" id="kyK-F1-qXT"/>
+                <constraint firstItem="epe-yP-uMg" firstAttribute="centerY" secondItem="Ye5-bz-UmZ" secondAttribute="centerY" id="mEP-xb-hg4"/>
+                <constraint firstItem="NHp-dV-cDu" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="mmD-xR-hqF"/>
+                <constraint firstItem="zXx-n0-mtn" firstAttribute="top" secondItem="Ye5-bz-UmZ" secondAttribute="top" id="pam-dJ-f5m"/>
+                <constraint firstAttribute="bottom" secondItem="una-Hn-RvR" secondAttribute="bottom" constant="20" id="pb9-zE-kFa"/>
+                <constraint firstAttribute="trailing" secondItem="k5A-VQ-0lA" secondAttribute="trailing" id="qJr-TP-ZAm"/>
+                <constraint firstItem="Gje-cP-dDc" firstAttribute="leading" secondItem="jXX-Qx-eeZ" secondAttribute="trailing" constant="-9" id="sTF-F7-0Vo"/>
+                <constraint firstItem="uyu-EV-v3y" firstAttribute="centerY" secondItem="du4-Uv-efo" secondAttribute="centerY" id="skl-jR-hHm"/>
+                <constraint firstItem="Ye5-bz-UmZ" firstAttribute="leading" secondItem="una-Hn-RvR" secondAttribute="leading" id="uHH-vu-y9j"/>
+                <constraint firstAttribute="trailing" secondItem="NHp-dV-cDu" secondAttribute="trailing" id="uQF-DK-vrg"/>
+                <constraint firstItem="EfV-pV-zKD" firstAttribute="centerX" secondItem="una-Hn-RvR" secondAttribute="centerX" id="umP-hR-IaB"/>
+                <constraint firstItem="cvm-EV-YVC" firstAttribute="centerY" secondItem="Ye5-bz-UmZ" secondAttribute="centerY" id="zBN-cc-bob"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+        <customObject id="Eh0-7V-7nj" customClass="PodcastPlayerCollectionViewItem" customModule="Sphinx" customModuleProvider="target"/>
+    </objects>
+    <resources>
+        <image name="back15Icon" width="27" height="30"/>
+        <image name="clipIcon" width="28" height="28"/>
+        <image name="forw30Icon" width="27" height="30"/>
+        <namedColor name="MainBottomIcons">
+            <color red="0.37254901960784315" green="0.38823529411764707" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ReceivedIcon">
+            <color red="0.50980392156862742" green="0.70588235294117652" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SecondaryText">
+            <color red="0.55686274509803924" green="0.58823529411764708" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text">
+            <color red="0.23529411764705882" green="0.24705882352941178" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="WashedOutSentText">
+            <color red="0.69019607843137254" green="0.71764705882352942" blue="0.73725490196078436" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

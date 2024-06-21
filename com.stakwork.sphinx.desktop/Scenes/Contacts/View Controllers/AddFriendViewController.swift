@@ -10,13 +10,16 @@ import Cocoa
 
 class AddFriendViewController: NSViewController {
     
-    var contactsService : ContactsService!
     weak var delegate: NewContactChatDelegate?
+    weak var dismissDelegate: NewContactDismissDelegate?
     
-    static func instantiate(contactsService: ContactsService, delegate: NewContactChatDelegate? = nil) -> AddFriendViewController {
+    static func instantiate(
+        delegate: NewContactChatDelegate? = nil,
+        dismissDelegate: NewContactDismissDelegate? = nil
+    ) -> AddFriendViewController {
         let viewController = StoryboardScene.Contacts.addFriendViewController.instantiate()
-        viewController.contactsService = contactsService
         viewController.delegate = delegate
+        viewController.dismissDelegate = dismissDelegate
         return viewController
     }
 
@@ -25,20 +28,44 @@ class AddFriendViewController: NSViewController {
     }
     
     @IBAction func newToSphinxButtonClicked(_ sender: Any) {
-        let inviteVC = NewInviteViewController.instantiate(contactsService: self.contactsService, delegate: self.delegate)
-        advanceTo(vc: inviteVC)
+        let inviteVC = NewInviteViewController.instantiate(
+            delegate: self.delegate,
+            dismissDelegate: self.dismissDelegate
+        )
+        
+        advanceTo(
+            vc: inviteVC,
+            identifier: "new-invite-window",
+            height: 500
+        )
     }
     
     @IBAction func alreadyOnSphinxButtonClicked(_ sender: Any) {
-        let contactVC = NewContactViewController.instantiate(contactsService: self.contactsService, delegate: self.delegate)
-        advanceTo(vc: contactVC)
+        let contactVC = NewContactViewController.instantiate(
+            delegate: self.delegate,
+            dismissDelegate: self.dismissDelegate
+        )
+        
+        advanceTo(
+            vc: contactVC,
+            identifier: "new-contact-window"
+        )
     }
     
-    func advanceTo(vc: NSViewController) {
-        AnimationHelper.animateViewWith(duration: 0.3, animationsBlock: {
-            self.view.alphaValue = 0.0
-        }, completion: {
-            self.view.window?.replaceContentBy(vc: vc)
-        })
+    func advanceTo(
+        vc: NSViewController,
+        identifier: String,
+        height: CGFloat? = nil
+    ) {
+        WindowsManager.sharedInstance.showOnCurrentWindow(
+            with: "Contact".localized,
+            identifier: identifier,
+            contentVC: vc,
+            hideDivider: true,
+            hideBackButton: false,
+            replacingVC: true,
+            height: height,
+            backHandler: WindowsManager.sharedInstance.backToAddFriend
+        )
     }
 }

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="DateSeparatorView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="c22-O7-iKe" id="WTG-Nc-NL1"/>
+                <outlet property="dateLabel" destination="bcV-0b-pMN" id="waJ-WC-sat"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="koh-Eg-iHX">
+                    <rect key="frame" x="16" y="7" width="186" height="1"/>
+                    <view key="contentView" id="0k3-v1-Z35">
+                        <rect key="frame" x="0.0" y="0.0" width="186" height="1"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="Zvr-KZ-e4U"/>
+                    </constraints>
+                    <color key="fillColor" name="LightDivider"/>
+                </box>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bcV-0b-pMN">
+                    <rect key="frame" x="216" y="0.0" width="48" height="14"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Monday" id="PnJ-dj-y7N">
+                        <font key="font" size="12" name="Roboto-Regular"/>
+                        <color key="textColor" name="SecondaryText"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="yuT-1O-KGM">
+                    <rect key="frame" x="278" y="7" width="186" height="1"/>
+                    <view key="contentView" id="eBH-O8-ivf">
+                        <rect key="frame" x="0.0" y="0.0" width="186" height="1"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="RNu-rz-kf8"/>
+                    </constraints>
+                    <color key="fillColor" name="LightDivider"/>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstItem="bcV-0b-pMN" firstAttribute="leading" secondItem="koh-Eg-iHX" secondAttribute="trailing" constant="16" id="8XX-vC-JTc"/>
+                <constraint firstAttribute="bottom" secondItem="bcV-0b-pMN" secondAttribute="bottom" id="AEe-O9-1Xz"/>
+                <constraint firstItem="bcV-0b-pMN" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="DoN-uz-NQM"/>
+                <constraint firstAttribute="trailing" secondItem="yuT-1O-KGM" secondAttribute="trailing" constant="16" id="LYi-Mb-rIg"/>
+                <constraint firstItem="koh-Eg-iHX" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="16" id="dmh-KK-9rM"/>
+                <constraint firstItem="yuT-1O-KGM" firstAttribute="leading" secondItem="bcV-0b-pMN" secondAttribute="trailing" constant="16" id="nlW-Dv-xkQ"/>
+                <constraint firstItem="yuT-1O-KGM" firstAttribute="centerY" secondItem="bcV-0b-pMN" secondAttribute="centerY" id="rDd-n7-1ZS"/>
+                <constraint firstItem="koh-Eg-iHX" firstAttribute="centerY" secondItem="bcV-0b-pMN" secondAttribute="centerY" id="tc4-C1-fRT"/>
+            </constraints>
+            <point key="canvasLocation" x="89" y="-36"/>
+        </customView>
+    </objects>
+    <resources>
+        <namedColor name="LightDivider">
+            <color red="0.86274509803921573" green="0.8784313725490196" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SecondaryText">
+            <color red="0.55686274509803924" green="0.58823529411764708" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

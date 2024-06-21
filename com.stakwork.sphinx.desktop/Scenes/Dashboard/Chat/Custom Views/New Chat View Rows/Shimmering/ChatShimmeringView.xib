@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="ChatShimmeringView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="c22-O7-iKe" id="48j-v6-ZhU"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="752" height="1268"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="HeW-YQ-Iwc" customClass="ShimmeringReceivedMessageView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="1198" width="752" height="70"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="vSa-1y-AV1"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Ggv-tD-vTR" customClass="ShimmeringSentMessageView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="860" width="752" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="HqC-cm-zy8"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="8lD-jU-zxZ" customClass="ShimmeringReceivedMessageView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="616" width="752" height="90"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="90" id="PSy-Sk-Y0R"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="dLV-nP-iOP" customClass="ShimmeringSentMessageView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="554" width="752" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="Oa6-KC-n1d"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="7pp-28-719" customClass="ShimmeringReceivedMessageView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="432" width="752" height="120"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="120" id="XoW-0d-zF5"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="sPU-JI-9Zk" customClass="ShimmeringSentMessageView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="1044" width="752" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="nEK-xI-uFf"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="480-Lb-XzH" customClass="ShimmeringReceivedMessageView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="1106" width="752" height="90"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="90" id="Thw-JP-AhV"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="KBU-bW-3c0" customClass="ShimmeringSentMessageView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="708" width="752" height="150"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="150" id="nVL-i7-lKV"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="VVs-0k-7hM" customClass="ShimmeringReceivedMessageView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="52" width="752" height="378"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="378" id="60q-zW-5Sz"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="jEh-ab-cS7" customClass="ShimmeringReceivedMessageView" customModule="Sphinx" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="922" width="752" height="120"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="120" id="F8T-79-Mfh"/>
+                    </constraints>
+                </customView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="8lD-jU-zxZ" secondAttribute="trailing" id="5TI-Tb-iPF"/>
+                <constraint firstAttribute="trailing" secondItem="sPU-JI-9Zk" secondAttribute="trailing" id="BZq-9K-jeq"/>
+                <constraint firstItem="sPU-JI-9Zk" firstAttribute="top" secondItem="480-Lb-XzH" secondAttribute="bottom" constant="2" id="FeU-1w-XHQ"/>
+                <constraint firstItem="HeW-YQ-Iwc" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="JrQ-nU-Qrd"/>
+                <constraint firstItem="Ggv-tD-vTR" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="MFM-ek-p41"/>
+                <constraint firstItem="KBU-bW-3c0" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="PUx-mf-iGy"/>
+                <constraint firstAttribute="trailing" secondItem="jEh-ab-cS7" secondAttribute="trailing" id="QdE-Ht-WX3"/>
+                <constraint firstItem="VVs-0k-7hM" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="SfM-qg-idx"/>
+                <constraint firstAttribute="trailing" secondItem="HeW-YQ-Iwc" secondAttribute="trailing" id="VmN-4r-L0Q"/>
+                <constraint firstItem="8lD-jU-zxZ" firstAttribute="top" secondItem="KBU-bW-3c0" secondAttribute="bottom" constant="2" id="Wco-4u-Y60"/>
+                <constraint firstItem="480-Lb-XzH" firstAttribute="top" secondItem="HeW-YQ-Iwc" secondAttribute="bottom" constant="2" id="boA-Zc-xM2"/>
+                <constraint firstItem="jEh-ab-cS7" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="ekD-Te-4G6"/>
+                <constraint firstItem="dLV-nP-iOP" firstAttribute="top" secondItem="8lD-jU-zxZ" secondAttribute="bottom" constant="2" id="etD-AX-IIw"/>
+                <constraint firstAttribute="trailing" secondItem="480-Lb-XzH" secondAttribute="trailing" id="gzI-C6-kmw"/>
+                <constraint firstAttribute="trailing" secondItem="dLV-nP-iOP" secondAttribute="trailing" id="hz0-YI-J6N"/>
+                <constraint firstItem="sPU-JI-9Zk" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="ijg-5M-t80"/>
+                <constraint firstItem="KBU-bW-3c0" firstAttribute="top" secondItem="Ggv-tD-vTR" secondAttribute="bottom" constant="2" id="j5R-9b-FmA"/>
+                <constraint firstAttribute="trailing" secondItem="Ggv-tD-vTR" secondAttribute="trailing" id="lH7-Ch-bm2"/>
+                <constraint firstItem="VVs-0k-7hM" firstAttribute="top" secondItem="7pp-28-719" secondAttribute="bottom" constant="2" id="mYJ-PK-GbT"/>
+                <constraint firstItem="HeW-YQ-Iwc" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="nEN-OP-zeV"/>
+                <constraint firstItem="8lD-jU-zxZ" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="qe3-E7-vrK"/>
+                <constraint firstItem="Ggv-tD-vTR" firstAttribute="top" secondItem="jEh-ab-cS7" secondAttribute="bottom" constant="2" id="qk0-P6-YYo"/>
+                <constraint firstAttribute="trailing" secondItem="7pp-28-719" secondAttribute="trailing" id="sia-Va-vYS"/>
+                <constraint firstItem="7pp-28-719" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="tJe-cv-IBX"/>
+                <constraint firstItem="480-Lb-XzH" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="tqd-81-FIg"/>
+                <constraint firstAttribute="trailing" secondItem="KBU-bW-3c0" secondAttribute="trailing" id="uWq-dT-QuY"/>
+                <constraint firstItem="jEh-ab-cS7" firstAttribute="top" secondItem="sPU-JI-9Zk" secondAttribute="bottom" constant="2" id="ycQ-AU-5zb"/>
+                <constraint firstAttribute="trailing" secondItem="VVs-0k-7hM" secondAttribute="trailing" id="yhX-fR-Dff"/>
+                <constraint firstItem="dLV-nP-iOP" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="yhf-gM-1iE"/>
+                <constraint firstItem="7pp-28-719" firstAttribute="top" secondItem="dLV-nP-iOP" secondAttribute="bottom" constant="2" id="zYr-OX-RrR"/>
+            </constraints>
+            <point key="canvasLocation" x="50" y="512"/>
+        </customView>
+    </objects>
+</document>

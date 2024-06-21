@@ -40,7 +40,7 @@ extension SphinxCache {
     
     func getFromDisk(forKey key: String, using fileManager: FileManager = .default) -> Data? {
         if let fileURL = getFileUrlFrom(key: key) {
-            return MediaLoader.getDataFromUrl(videoURL: fileURL)
+            return MediaLoader.getDataFromUrl(url: fileURL)
         }
         return nil
     }
@@ -73,6 +73,28 @@ extension SphinxCache {
         }
         
         return nil
+    }
+    
+    func removeAll(using fileManager: FileManager = .default) {
+        let folderURLs = fileManager.urls (
+            for: .cachesDirectory,
+            in: .userDomainMask
+        )
+        
+        if folderURLs.count > 0 {
+            do {
+                let fileURLs = try FileManager.default.contentsOfDirectory(
+                    at: folderURLs[0],
+                    includingPropertiesForKeys: nil,
+                    options: .skipsHiddenFiles
+                )
+                
+                for fileURL in fileURLs {
+                    try FileManager.default.removeItem(at: fileURL)
+                }
+                
+            } catch  { print(error) }
+        }
     }
 }
 

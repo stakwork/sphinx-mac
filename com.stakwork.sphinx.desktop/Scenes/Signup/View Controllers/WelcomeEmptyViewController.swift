@@ -38,13 +38,26 @@ class WelcomeEmptyViewController: WelcomeTorConnectionViewController {
         }
     }
     
+    var isSwarmClaimUser : Bool{
+        get {
+            return mode == .SwarmClaimUser
+        }
+    }
+    
+    var token: String? = nil
+    
     var subView: NSView? = nil
     var doneCompletion: ((String?) -> ())? = nil
     
-    static func instantiate(mode: SignupHelper.SignupMode, viewMode: WelcomeViewMode) -> WelcomeEmptyViewController {
+    static func instantiate(
+        mode: SignupHelper.SignupMode,
+        viewMode: WelcomeViewMode,
+        token: String? = nil
+    ) -> WelcomeEmptyViewController {
         let viewController = StoryboardScene.Signup.welcomeEmptyViewController.instantiate()
         viewController.mode = mode
         viewController.viewMode = viewMode
+        viewController.token = token
         return viewController
     }
 
@@ -61,7 +74,7 @@ class WelcomeEmptyViewController: WelcomeTorConnectionViewController {
         case .Welcome:
             subView = WelcomeView(frame: NSRect.zero, delegate: self)
         case .FriendMessage:
-            subView = FriendMessageView(frame: NSRect.zero, contactsService: contactsService, delegate: self)
+            subView = FriendMessageView(frame: NSRect.zero, delegate: self)
         }
         
         self.view.addSubview(subView!)
@@ -72,16 +85,34 @@ class WelcomeEmptyViewController: WelcomeTorConnectionViewController {
         if viewMode == .Connecting {
             if isNewUser {
                 continueSignup()
-            } else {
+            }
+            else if isSwarmClaimUser {
+                continueWithToken()
+            }
+            else {
                 continueRestore()
             }
         }
     }
     
     func continueRestore() {
-        DelayPerformedHelper.performAfterDelay(seconds: 1.5, completion: {
-            self.shouldContinueTo(mode: WelcomeEmptyViewController.WelcomeViewMode.Welcome.rawValue)
-        })
+        userData.getAndSaveTransportKey(forceGet: true) { [weak self] _ in
+            guard let self = self else { return }
+            
+            self.userData.getOrCreateHMACKey(forceGet: true) { [weak self] in
+                
+                API.sharedInstance.getWalletLocalAndRemote(callback: { local, remote in
+                    guard let self = self else { return }
+                    
+                    self.shouldContinueTo(mode: WelcomeEmptyViewController.WelcomeViewMode.Welcome.rawValue)
+                }, errorCallback: {
+                    guard let self = self else { return }
+                    
+                    self.shouldGoBackToWelcome()
+                })
+                
+            }
+        }
     }
     
     func continueSignup() {
@@ -89,6 +120,39 @@ class WelcomeEmptyViewController: WelcomeTorConnectionViewController {
             return
         }
         generateTokenAndProceed(password: userData.getPassword())
+    }
+    
+    func continueWithToken() {
+        if let token = self.token {
+            userData.continueWithToken(
+                token: token,
+                completion: { [weak self] in
+                    guard let self = self else { return }
+                    
+                    SignupHelper.step = SignupHelper.SignupStep.IPAndTokenSet.rawValue
+                    self.shouldContinueTo(mode: WelcomeViewMode.FriendMessage.rawValue)
+                },
+                errorCompletion: {
+                    claimQRError()
+                }
+            )
+        } else {
+            claimQRError()
+        }
+        
+        func claimQRError() {
+            let errorMessage = ("invalid.code.claim").localized
+            
+            self.messageBubbleHelper.showGenericMessageView(
+                text: errorMessage,
+                position: .Bottom,
+                delay: 7,
+                textColor: NSColor.white,
+                backColor: NSColor.Sphinx.BadgeRed,
+                backAlpha: 1.0,
+                withLink: "https://sphinx.chat"
+            )
+        }
     }
     
     func generateTokenAndProceed(password: String? = nil) {
@@ -126,6 +190,15 @@ class WelcomeEmptyViewController: WelcomeTorConnectionViewController {
             return
         }
         shouldGoBack()
+    }
+    
+    func shouldGoBackToWelcome() {
+        UserDefaults.Keys.ownerPubKey.removeValue()
+        messageBubbleHelper.showGenericMessageView(text: "generic.error.message".localized)
+        
+        DelayPerformedHelper.performAfterDelay(seconds: 1.5, completion: {
+            self.view.window?.replaceContentBy(vc: WelcomeCodeViewController.instantiate(mode: .ExistingUser))
+        })
     }
     
     func shouldGoBack() {
@@ -168,7 +241,7 @@ extension WelcomeEmptyViewController : WelcomeEmptyViewDelegate {
         }
 
         if isNewUser {
-            view.window?.replaceContentBy(vc: WelcomeLightningViewController.instantiate(contactsService: contactsService))
+            view.window?.replaceContentBy(vc: WelcomeLightningViewController.instantiate())
         } else {
             GroupsPinManager.sharedInstance.loginPin()
             SignupHelper.completeSignup()

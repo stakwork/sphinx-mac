@@ -8,9 +8,13 @@
 
 import Cocoa
 
+protocol GiphySearchViewDelegate: AnyObject {
+    func didSelectGiphy(object: GiphyObject, data: Data)
+}
+
 class GiphySearchView: NSView, LoadableNib {
     
-    weak var delegate: SearchTopViewDelegate?
+    weak var delegate: GiphySearchViewDelegate?
     
     @IBOutlet var contentView: NSView!
     @IBOutlet weak var searchFieldContainer: NSBox!
@@ -90,8 +94,9 @@ class GiphySearchView: NSView, LoadableNib {
         return isHidden ? 0 : kGiphySearchHeight
     }
     
-    func loadGiphySearch(delegate: SearchTopViewDelegate) {
+    func loadGiphySearch(delegate: GiphySearchViewDelegate) {
         self.delegate = delegate
+        
         self.isHidden = false
 
         setupSearchField()
@@ -204,7 +209,6 @@ class GiphySearchView: NSView, LoadableNib {
         recentDataSource?.setDataAndReload(objects: [])
         
         isHidden = true
-        delegate?.didCloseGiphyView?()
     }
 }
 
@@ -234,7 +238,7 @@ extension GiphySearchView : NSTextFieldDelegate {
 
 extension GiphySearchView : GiphySearchDataSourceDelegate {
     func didSelectGiphy(object: GiphyObject, data: Data) {
-        delegate?.didSelectGiphy?(object: object, data: data)
+        delegate?.didSelectGiphy(object: object, data: data)
         closeViewButtonClicked(closeViewButton!)
     }
     
