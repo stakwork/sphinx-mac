@@ -30,6 +30,9 @@
 "today"  = "Ngayon";
 "contact" = "Contact";
 "profile"  = "My Profile";
+"file" = "Aklat";
+"send" = "Ipadala";
+"request" = "Kahilingan";
 "transactions" = "Transactions";
 "profile.saved" = "Matagumpay na na-save ang mga pagbabago sa profile";
 "search"  = "Search";

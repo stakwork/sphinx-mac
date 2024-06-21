@@ -30,6 +30,9 @@
 "today" = "Hoy";
 "contact" = "Contacto";
 "profile" = "Mi Perfil";
+"file" = "Archivo";
+"send" = "Enviar";
+"request" = "Solicitud";
 "transactions" = "Transacciones";
 "profile.saved" = "Los cambios en el perfil han sido guardados con éxito";
 "search" = "Buscar";

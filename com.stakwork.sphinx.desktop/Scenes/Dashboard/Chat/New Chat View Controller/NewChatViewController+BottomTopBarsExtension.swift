@@ -53,11 +53,11 @@ extension NewChatViewController : ChatHeaderViewDelegate {
         }
 
         if chat.isPublicGroup() {
-            childViewControllerContainer.showNotificaionLevelViewOn(
-                parentVC: self,
-                with: chat,
-                delegate: self
-            )
+//            chatBottomView.messageFieldView.childViewControllerContainer.showNotificaionLevelViewOn(
+//                parentVC: self,
+//                with: chat,
+//                delegate: self
+//            )
         } else {
             newChatViewModel.toggleVolume(
                 completion: { chat in
@@ -73,11 +73,11 @@ extension NewChatViewController : ChatHeaderViewDelegate {
     }
     
     func didClickCallButton() {
-        childViewControllerContainer.showCallOptionsMenuOn(
-            parentVC: self,
-            with: self.chat,
-            delegate: self
-        )
+//        chatBottomView.messageFieldView.childViewControllerContainer.showCallOptionsMenuOn(
+//            parentVC: self,
+//            with: self.chat,
+//            delegate: self
+//        )
     }
     
     func didClickHeaderButton() {
@@ -262,11 +262,14 @@ extension NewChatViewController : ChatBottomViewDelegate {
                 delay: 2.5
             )
         } else {
-            childViewControllerContainer.showPmtOptionsMenuOn(
-                parentVC: self,
-                with: chat,
-                delegate: self
-            )
+            chatBottomView.messageFieldView.childViewControllerContainer.configureDataSource(delegate: self)
+            
+//
+//            chatBottomView.messageFieldView.childViewControllerContainer.showPmtOptionsMenuOn(
+//                parentVC: self,
+//                with: chat,
+//                delegate: self
+//            )
         }
     }
     
@@ -293,26 +296,26 @@ extension NewChatViewController : ChatBottomViewDelegate {
     }
     
     func didSelectSendPaymentMacro() {
-        childViewControllerContainer.showPaymentModeWith(
-            parentVC: self,
-            with: chat,
-            delegate: self,
-            mode: .Send
-        )
+//        chatBottomView.messageFieldView.childViewControllerContainer.showPaymentModeWith(
+//            parentVC: self,
+//            with: chat,
+//            delegate: self,
+//            mode: .Send
+//        )
     }
     
     func didSelectReceivePaymentMacro() {
-        childViewControllerContainer.showPaymentModeWith(
-            parentVC: self,
-            with: chat,
-            delegate: self,
-            mode: .Request
-        )
+//        chatBottomView.messageFieldView.childViewControllerContainer.showPaymentModeWith(
+//            parentVC: self,
+//            with: chat,
+//            delegate: self,
+//            mode: .Request
+//        )
     }
     
     func hideModals() -> Bool {
-        if !childViewControllerContainer.isHidden {
-            childViewControllerContainer.hideView()
+        if !chatBottomView.messageFieldView.childViewControllerContainer.isHidden {
+//            chatBottomView.messageFieldView.childViewControllerContainer.hideView()
             return true
         }
         return false
@@ -390,6 +393,11 @@ extension NewChatViewController : ChatBottomViewDelegate {
     }
     
     func isChatAtBottom() -> Bool {
+        if !draggingView.draggingContainer.isHidden {
+            self.draggingView.configureDraggingStyle()
+            draggingView.bottomMargin.constant = (chatBottomView.messageFieldView.messageContainerHeightConstraint.constant - 50)
+        }
+        
         return chatCollectionView.isAtBottom()
     }
     

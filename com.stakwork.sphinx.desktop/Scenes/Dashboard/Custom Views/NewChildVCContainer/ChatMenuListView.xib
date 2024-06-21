@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="ChatMenuListView" customModule="Sphinx" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="c22-O7-iKe" id="Swf-kD-Wb6"/>
+                <outlet property="menuBoxContainer" destination="x6S-BP-wOd" id="CXB-cV-XrP"/>
+                <outlet property="menuCollectionView" destination="SqR-KD-PAx" id="gRk-YF-YWR"/>
+                <outlet property="menuScrollView" destination="oks-GY-haZ" id="3an-xY-4x6"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView clipsToBounds="YES" misplaced="YES" id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="136" height="151"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView clipsToBounds="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cA0-7f-W87">
+                    <rect key="frame" x="0.0" y="0.0" width="136" height="150"/>
+                    <subviews>
+                        <box clipsToBounds="YES" boxType="custom" borderType="line" borderWidth="0.0" cornerRadius="10" titlePosition="noTitle" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H0T-4y-8Ta">
+                            <rect key="frame" x="0.0" y="0.0" width="131" height="150"/>
+                            <view key="contentView" clipsToBounds="YES" id="6At-fp-C8a">
+                                <rect key="frame" x="0.0" y="0.0" width="131" height="150"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <box clipsToBounds="YES" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="10" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="x6S-BP-wOd">
+                                        <rect key="frame" x="0.0" y="0.0" width="131" height="150"/>
+                                        <view key="contentView" clipsToBounds="YES" id="Iz9-zm-QqL">
+                                            <rect key="frame" x="0.0" y="0.0" width="131" height="150"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <scrollView clipsToBounds="YES" wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="oks-GY-haZ">
+                                                    <rect key="frame" x="16" y="0.0" width="99" height="142"/>
+                                                    <clipView key="contentView" clipsToBounds="YES" drawsBackground="NO" id="Sn0-b2-3fc">
+                                                        <rect key="frame" x="0.0" y="0.0" width="99" height="142"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <subviews>
+                                                            <collectionView clipsToBounds="YES" selectable="YES" id="SqR-KD-PAx" customClass="ScrollDisabledCollectionView" customModule="Sphinx" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="99" height="142"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                                                <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" id="Gmn-6t-pfr">
+                                                                    <size key="itemSize" width="50" height="40"/>
+                                                                </collectionViewFlowLayout>
+                                                                <color key="primaryBackgroundColor" red="0.18400000035762787" green="0.70200002193450928" blue="0.47499999403953552" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </collectionView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" name="HeaderBG"/>
+                                                    </clipView>
+                                                    <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="rJt-cK-lHM">
+                                                        <rect key="frame" x="-100" y="-100" width="393" height="16"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                    </scroller>
+                                                    <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="HNb-k5-12r">
+                                                        <rect key="frame" x="83" y="0.0" width="16" height="134"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                    </scroller>
+                                                </scrollView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="oks-GY-haZ" secondAttribute="bottom" id="BgD-eR-DOj"/>
+                                                <constraint firstItem="oks-GY-haZ" firstAttribute="leading" secondItem="Iz9-zm-QqL" secondAttribute="leading" constant="16" id="HLs-QP-YPZ"/>
+                                                <constraint firstItem="oks-GY-haZ" firstAttribute="top" secondItem="Iz9-zm-QqL" secondAttribute="top" constant="8" id="HjO-8v-xq6"/>
+                                                <constraint firstAttribute="trailing" secondItem="oks-GY-haZ" secondAttribute="trailing" constant="16" id="M0G-fv-U7P"/>
+                                            </constraints>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="8WE-iA-c5J"/>
+                                            <constraint firstAttribute="width" constant="131" id="iqB-5g-Ht4"/>
+                                        </constraints>
+                                        <color key="fillColor" name="HeaderBG"/>
+                                    </box>
+                                </subviews>
+                            </view>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="150" id="4e7-Yj-a6g"/>
+                                <constraint firstAttribute="width" constant="131" id="61d-5S-Zfa"/>
+                                <constraint firstItem="x6S-BP-wOd" firstAttribute="centerY" secondItem="H0T-4y-8Ta" secondAttribute="centerY" id="7tg-7s-wKg"/>
+                                <constraint firstItem="x6S-BP-wOd" firstAttribute="centerX" secondItem="H0T-4y-8Ta" secondAttribute="centerX" id="aYS-k8-Bf0"/>
+                            </constraints>
+                            <color key="borderColor" red="0.0" green="0.0" blue="0.0" alpha="0.10267487582781457" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="fillColor" name="HeaderBG"/>
+                        </box>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="H0T-4y-8Ta" firstAttribute="leading" secondItem="cA0-7f-W87" secondAttribute="leading" id="9wO-dM-HSi"/>
+                        <constraint firstAttribute="bottom" secondItem="H0T-4y-8Ta" secondAttribute="bottom" id="NEk-UG-nDJ"/>
+                        <constraint firstItem="H0T-4y-8Ta" firstAttribute="top" secondItem="cA0-7f-W87" secondAttribute="top" id="Qdi-3G-Pfh"/>
+                        <constraint firstAttribute="width" constant="136" id="uGb-1o-ICk"/>
+                    </constraints>
+                </customView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="cA0-7f-W87" secondAttribute="bottom" id="ETH-fQ-eV1"/>
+                <constraint firstItem="cA0-7f-W87" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="SHO-z6-koN"/>
+                <constraint firstItem="cA0-7f-W87" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="rX4-s1-AvC"/>
+            </constraints>
+            <point key="canvasLocation" x="-1016" y="1893.5"/>
+        </customView>
+    </objects>
+    <resources>
+        <namedColor name="HeaderBG">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

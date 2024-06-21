@@ -147,7 +147,8 @@ extension NewChatViewController : NewChatTableDataSourceDelegate {
     
     func shouldShowMemberPopupFor(messageId: Int) {
         if let message = TransactionMessage.getMessageWith(id: messageId) {
-            childViewControllerContainer.showTribeMemberPopupViewOn(parentVC: self, with: message, delegate: self)
+//            chatBottomView.messageFieldView.childViewControllerContainer.showTribeMemberPopupViewOn(parentVC: self, with: message, delegate: self)
+            chatBottomView.messageFieldView.childViewControllerContainer.configureDataSource(delegate: self)
         }
     }
     
@@ -260,5 +261,85 @@ extension NewChatViewController : MediaFullScreenDelegate {
             mediaFullScreenView.removeFromSuperview()
             self.mediaFullScreenView = nil
         }
+    }
+}
+
+extension NewChatViewController: NewMenuItemDataSourceDelegate {
+    func itemSelected(at index: Int) {
+        chatBottomView.messageFieldView.childViewControllerContainer.isHidden = true
+        switch index {
+        case 0:
+            self.draggingView.configureDraggingStyle()
+            addNewEscapeMonitor()
+            draggingView.bottomMargin.constant = (chatBottomView.messageFieldView.messageContainerHeightConstraint.constant - 50)
+        default:
+            break
+        }
+    }
+}
+
+extension NewChatViewController: AddAttachmentDelegate {
+    func addAttachmentClicked() {
+        self.draggingView.configureDraggingStyle()
+        addNewEscapeMonitor()
+        draggingView.bottomMargin.constant = (chatBottomView.messageFieldView.messageContainerHeightConstraint.constant - 50)
+    }
+}
+
+extension NewChatViewController: ShowPreviewDelegate {
+    func showImagePreview(data: Data, image: NSImage) {
+        showPreview(data: data, image: image, type: .image)
+    }
+    
+    func showPDFPreview(data: Data, image: NSImage, url: URL) {
+        showVideoFilePreview(data: data, type: .pdf, url: url)
+    }
+    
+    func showGIFPreview(data: Data, image: NSImage?) {
+        if let image {
+            showPreview(data: data, image: image, type: .gif)
+        }
+    }
+    
+    func showVideoPreview(data: Data, url: URL) {
+        showVideoFilePreview(data: data, type: .video, url: url)
+    }
+    
+    func showFilePreview(data: Data, url: URL) {
+        showVideoFilePreview(data: data, type: .video, url: url)
+    }
+    
+    func showGiphyPreview(data: Data, object: GiphyObject) {
+        
+    }
+    
+    func showPreview(data: Data, image: NSImage, type: AttachmentItemType) {
+        let newItem = NewAttachmentItem(previewImage: image, previewType: type, previewData: data)
+        let currentItems = chatBottomView.messageFieldView.newChatAttachmentView.menuItems + [newItem]
+        updateAddButton(currentItems: currentItems, hasText: !chatBottomView.messageFieldView.messageTextView.string.isEmpty)
+        chatBottomView.messageFieldView.newChatAttachmentView.updateCollectionView(menuItems: currentItems)
+        draggingView.resetView()
+        chatBottomView.messageFieldView.newChatAttachmentView.isHidden = false
+        _ = chatBottomView.messageFieldView.updateBottomBarHeight()
+    }
+    
+    func showVideoFilePreview(data: Data, image: NSImage? = nil, type: AttachmentItemType, url: URL) {
+        let newItem = NewAttachmentItem(previewImage: NSImage(data: data) ?? NSImage(), previewType: type, previewData: data, previewURL: url)
+        let currentItems = chatBottomView.messageFieldView.newChatAttachmentView.menuItems + [newItem]
+        updateAddButton(currentItems: currentItems, hasText: !chatBottomView.messageFieldView.messageTextView.string.isEmpty)
+        chatBottomView.messageFieldView.newChatAttachmentView.updateCollectionView(menuItems: currentItems)
+        draggingView.resetView()
+        chatBottomView.messageFieldView.newChatAttachmentView.isHidden = false
+        _ = chatBottomView.messageFieldView.updateBottomBarHeight()
+    }
+    
+    func updateAddButton(currentItems: [NewAttachmentItem], hasText: Bool = false) {
+        let leadingConstant = chatBottomView.messageFieldView.frame.width - CGFloat((currentItems.count * 140)) - 110 - CGFloat((currentItems.count - 1) * 14)
+        if (leadingConstant > 170) {
+            chatBottomView.messageFieldView.newChatAttachmentView.addButtonLeadingConstraint.constant = -(leadingConstant + (hasText ? -140 : 0))
+        } else {
+            chatBottomView.messageFieldView.newChatAttachmentView.addButtonLeadingConstraint.constant = -62
+        }
+        
     }
 }

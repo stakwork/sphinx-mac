@@ -31,6 +31,9 @@
 "contact" = "連絡先";
 "profile" = "プロファイル";
 "transactions" = "取引";
+"file" = "ファイル";
+"send" = "送信";
+"request" = "リクエスト";
 "profile.saved" = "プロファイルの変更が正常に保存されました";
 "search" = "検索";
 "submit" = "提出";

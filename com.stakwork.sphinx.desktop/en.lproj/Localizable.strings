@@ -30,6 +30,9 @@
 "today" = "Today";
 "contact" = "Contact";
 "profile" = "Profile";
+"file" = "File";
+"send" = "Send";
+"request" = "Request";
 "transactions" = "Transactions";
 "profile.saved" = "Profile changes successfully saved";
 "search" = "Search";
