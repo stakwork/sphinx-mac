@@ -67,6 +67,8 @@ class NewChatMessageFieldView: NSView, LoadableNib {
         }
     }
     
+    var fileDroppedCounter: Int = 0 // Count the number of files dropped
+    
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
     }

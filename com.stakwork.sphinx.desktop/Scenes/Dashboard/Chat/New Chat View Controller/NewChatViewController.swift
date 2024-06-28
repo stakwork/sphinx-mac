@@ -81,6 +81,8 @@ class NewChatViewController: DashboardSplittedViewController {
     var podcastPlayerVC: NewPodcastPlayerViewController? = nil
     var threadVC: NewChatViewController? = nil
     
+    let totalFileDroppable = 9 // Set the maximum number of files that can be dropped
+    
     static func instantiate(
         contactId: Int? = nil,
         chatId: Int? = nil,

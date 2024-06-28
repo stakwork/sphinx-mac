@@ -314,23 +314,38 @@ extension NewChatViewController: ShowPreviewDelegate {
     }
     
     func showPreview(data: Data, image: NSImage, type: AttachmentItemType) {
-        let newItem = NewAttachmentItem(previewImage: image, previewType: type, previewData: data)
-        let currentItems = chatBottomView.messageFieldView.newChatAttachmentView.menuItems + [newItem]
-        updateAddButton(currentItems: currentItems, hasText: !chatBottomView.messageFieldView.messageTextView.string.isEmpty)
-        chatBottomView.messageFieldView.newChatAttachmentView.updateCollectionView(menuItems: currentItems)
-        draggingView.resetView()
-        chatBottomView.messageFieldView.newChatAttachmentView.isHidden = false
-        _ = chatBottomView.messageFieldView.updateBottomBarHeight()
+        if chatBottomView.messageFieldView.fileDroppedCounter <= totalFileDroppable {
+            chatBottomView.messageFieldView.fileDroppedCounter += 1
+            let newItem = NewAttachmentItem(previewImage: image, previewType: type, previewData: data)
+            let currentItems = chatBottomView.messageFieldView.newChatAttachmentView.menuItems + [newItem]
+            updateAddButton(currentItems: currentItems, hasText: !chatBottomView.messageFieldView.messageTextView.string.isEmpty)
+            chatBottomView.messageFieldView.newChatAttachmentView.updateCollectionView(menuItems: currentItems)
+            draggingView.resetView()
+            chatBottomView.messageFieldView.newChatAttachmentView.isHidden = false
+            _ = chatBottomView.messageFieldView.updateBottomBarHeight()
+        } else {
+            AlertHelper.showAlert(title: "Failed To Upload", message: "Unable to attach the file")
+            draggingView.resetView()
+        }
+        
     }
     
     func showVideoFilePreview(data: Data, image: NSImage? = nil, type: AttachmentItemType, url: URL) {
-        let newItem = NewAttachmentItem(previewImage: NSImage(data: data) ?? NSImage(), previewType: type, previewData: data, previewURL: url)
-        let currentItems = chatBottomView.messageFieldView.newChatAttachmentView.menuItems + [newItem]
-        updateAddButton(currentItems: currentItems, hasText: !chatBottomView.messageFieldView.messageTextView.string.isEmpty)
-        chatBottomView.messageFieldView.newChatAttachmentView.updateCollectionView(menuItems: currentItems)
-        draggingView.resetView()
-        chatBottomView.messageFieldView.newChatAttachmentView.isHidden = false
-        _ = chatBottomView.messageFieldView.updateBottomBarHeight()
+        
+        if chatBottomView.messageFieldView.fileDroppedCounter <= totalFileDroppable {
+            chatBottomView.messageFieldView.fileDroppedCounter += 1
+            let newItem = NewAttachmentItem(previewImage: NSImage(data: data) ?? NSImage(), previewType: type, previewData: data, previewURL: url)
+            let currentItems = chatBottomView.messageFieldView.newChatAttachmentView.menuItems + [newItem]
+            updateAddButton(currentItems: currentItems, hasText: !chatBottomView.messageFieldView.messageTextView.string.isEmpty)
+            chatBottomView.messageFieldView.newChatAttachmentView.updateCollectionView(menuItems: currentItems)
+            draggingView.resetView()
+            chatBottomView.messageFieldView.newChatAttachmentView.isHidden = false
+            _ = chatBottomView.messageFieldView.updateBottomBarHeight()
+        } else {
+            AlertHelper.showAlert(title: "Failed To Upload", message: "Unable to attach the file")
+            draggingView.resetView()
+        }
+        
     }
     
     func updateAddButton(currentItems: [NewAttachmentItem], hasText: Bool = false) {
