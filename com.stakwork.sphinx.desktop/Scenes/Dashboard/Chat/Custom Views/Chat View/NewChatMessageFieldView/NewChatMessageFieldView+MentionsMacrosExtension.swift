@@ -278,6 +278,7 @@ extension NewChatMessageFieldView {
 
 extension NewChatMessageFieldView: NewChatAttachmentDelegate {
     func closePreview(at index: Int?) {
+        fileDroppedCounter -= 1
         var menuItems = newChatAttachmentView.menuItems
         if let index, menuItems.count > index {
             menuItems.remove(at: index)
