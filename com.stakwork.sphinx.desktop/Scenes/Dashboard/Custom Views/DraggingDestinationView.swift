@@ -320,48 +320,65 @@ class DraggingDestinationView: NSView, LoadableNib {
         let filteringOptionsCount = filteringOptions[NSPasteboard.ReadingOptionKey.urlReadingContentsConformToTypes]?.count ?? 0
         let options = filteringOptionsCount > 0 ? filteringOptions : nil
 
-        if let urls = pasteBoard.readObjects(forClasses: [NSURL.self], options: options) as? [URL], urls.count == 1 {
-            let url = urls[0]
-            
-            if !url.absoluteString.starts(with: "file://") {
-                return false
-            }
-            
-            if let data = getDataFrom(url: url) {
-                fileName = (url.absoluteString as NSString).lastPathComponent.percentNotEscaped
+        if let urls = pasteBoard.readObjects(forClasses: [NSURL.self], options: options) as? [URL], urls.count <= 10 {
+            for url in urls {
+//                let url = urls[0]
                 
-                if let image = NSImage(contentsOf: url) {
-                    if url.isPDF {
-                        previewDelegate?.showPDFPreview(data: data, image: image, url: url)
-//                        showPDFPreview(data: data, image: image, url: url)
-                    } else if data.isAnimatedImage() {
-//                        showGIFPreview(data: data, image: image)
-                        previewDelegate?.showGIFPreview(data: data, image: image)
-                    } else {
-                        previewDelegate?.showImagePreview(data: data, image: image)
-//                        showImagePreview(data: data, image: image)
-                    }
-                } else if url.isVideo {
-                    previewDelegate?.showVideoPreview(data: data, url: url)
-//                    showVideoPreview(data: data, url: url)
-                } else {
-                    previewDelegate?.showFilePreview(data: data, url: url)
-//                    showFilePreview(data: data, url: url)
+                if !url.absoluteString.starts(with: "file://") {
+                    return false
                 }
-                return true
+                
+                if let data = getDataFrom(url: url) {
+                    fileName = (url.absoluteString as NSString).lastPathComponent.percentNotEscaped
+                    
+                    if let image = NSImage(contentsOf: url) {
+                        if url.isPDF {
+                            previewDelegate?.showPDFPreview(data: data, image: image, url: url)
+    //                        showPDFPreview(data: data, image: image, url: url)
+                        } else if data.isAnimatedImage() {
+    //                        showGIFPreview(data: data, image: image)
+                            previewDelegate?.showGIFPreview(data: data, image: image)
+                        } else {
+                            previewDelegate?.showImagePreview(data: data, image: image)
+    //                        showImagePreview(data: data, image: image)
+                        }
+                    } else if url.isVideo {
+                        previewDelegate?.showVideoPreview(data: data, url: url)
+    //                    showVideoPreview(data: data, url: url)
+                    } else {
+                        previewDelegate?.showFilePreview(data: data, url: url)
+    //                    showFilePreview(data: data, url: url)
+                    }
+                    
+                }
             }
+            return true
         }
         if let images = pasteBoard.readObjects(forClasses: [NSImage.self]),
-            images.count > 0,
-            let image = images[0] as? NSImage,
-            let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil) {
-            
-            let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
-            if let jpegData = bitmapRep.representation(using: NSBitmapImageRep.FileType.jpeg, properties: [:]) {
-                showImagePreview(data: jpegData, image: image)
-                return true
+           images.count > 0 {
+            for pos in 0 ..< images.count {
+                if let image = images[pos] as? NSImage,
+                   let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil) {
+                    
+                    let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
+                    if let jpegData = bitmapRep.representation(using: NSBitmapImageRep.FileType.jpeg, properties: [:]) {
+                        showImagePreview(data: jpegData, image: image)
+                        return true
+                    }
+                }
             }
         }
+//        if let images = pasteBoard.readObjects(forClasses: [NSImage.self]),
+//            images.count > 0,
+//            let image = images[0] as? NSImage,
+//            let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil) {
+//            
+//            let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
+//            if let jpegData = bitmapRep.representation(using: NSBitmapImageRep.FileType.jpeg, properties: [:]) {
+//                showImagePreview(data: jpegData, image: image)
+//                return true
+//            }
+//        }
         return false
     }
     
