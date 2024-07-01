@@ -405,6 +405,19 @@ extension ChatListViewController: NewContactDismissDelegate {
 }
 
 extension ChatListViewController: NewChatHeaderViewDelegate {
+    func qrButtonTapped() {
+        guard let shareInviteCodeVC = getQRCodeVC() else {
+            return
+        }
+        navigateToNewVC(vc: shareInviteCodeVC,
+                        title: "",
+                        identifier: "create-tribe-window",
+                        hideDivider: true,
+                        height: 496,
+                        width: 312,
+                        hideHeaderView: true)
+    }
+    
     func refreshTapped() {
         NotificationCenter.default.post(name: .shouldUpdateDashboard, object: nil)
     }
@@ -499,13 +512,9 @@ extension ChatListViewController: NewMenuItemDataSourceDelegate {
                     false,
                     nil, nil, false)
         case 8:
-            print("Here is the vc: button clicked")
-            guard let profile = UserContact.getOwner(), let address = profile.getAddress(), !address.isEmpty else {
+            guard let shareInviteCodeVC = getQRCodeVC() else {
                 return (NSViewController(), "pubkey.upper".localized.localizedCapitalized, "", true, nil, nil, false)
             }
-            
-            let shareInviteCodeVC = NewShareInviteCodeViewController.instantiate(profile: profile, delegate: self)
-            print("Here is the vc: \(shareInviteCodeVC)")
             return (shareInviteCodeVC,
                     "",
                     "create-tribe-window",
@@ -516,6 +525,15 @@ extension ChatListViewController: NewMenuItemDataSourceDelegate {
         default:
             return (NSViewController(), "", "", false, nil, nil, false)
         }
+    }
+    
+    func getQRCodeVC() -> NewShareInviteCodeViewController? {
+        guard let profile = UserContact.getOwner(), let address = profile.getAddress(), !address.isEmpty else {
+            return nil
+        }
+        
+        let shareInviteCodeVC = NewShareInviteCodeViewController.instantiate(profile: profile, delegate: self)
+        return shareInviteCodeVC
     }
     
     func navigateToNewVC(

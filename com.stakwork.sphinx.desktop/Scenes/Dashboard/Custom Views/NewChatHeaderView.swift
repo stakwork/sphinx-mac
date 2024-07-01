@@ -12,6 +12,7 @@ protocol NewChatHeaderViewDelegate: AnyObject {
     func refreshTapped()
     func menuTapped(_ frame: CGRect)
     func profileButtonClicked()
+    func qrButtonTapped()
 }
 
 class NewChatHeaderView: NSView, LoadableNib {
@@ -128,6 +129,10 @@ class NewChatHeaderView: NSView, LoadableNib {
     
     @IBAction func menuButtonTapped(_ sender: NSButton) {
         delegate?.menuTapped(menuButton.frame)
+    }
+    
+    @IBAction func qrcodeButtonTapped(_ sender: NSButton) {
+        delegate?.qrButtonTapped()
     }
     
     @IBAction func toggleHideBalance(_ sender: NSButton) {
