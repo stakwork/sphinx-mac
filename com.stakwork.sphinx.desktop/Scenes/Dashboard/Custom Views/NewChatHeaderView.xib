@@ -79,7 +79,7 @@
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="QZf-wA-3DA">
                                             <rect key="frame" x="0.0" y="26" width="811" height="20"/>
                                             <subviews>
-                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hrB-1f-L1I">
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hrB-1f-L1I">
                                                     <rect key="frame" x="-2" y="0.0" width="71" height="18"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Label test" id="e9G-kt-Y5X">
                                                         <font key="font" size="15" name="Roboto-Medium"/>
@@ -106,7 +106,7 @@
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="WA1-Dl-fbm">
                                             <rect key="frame" x="0.0" y="0.0" width="811" height="20"/>
                                             <subviews>
-                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="su7-7j-Xer">
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="su7-7j-Xer">
                                                     <rect key="frame" x="-2" y="5" width="36" height="15"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="Cyw-tE-unJ">
                                                         <font key="font" size="13" name="Roboto-Regular"/>
@@ -114,7 +114,7 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YTQ-qB-47m">
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YTQ-qB-47m">
                                                     <rect key="frame" x="38" y="5" width="36" height="15"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="lvG-u0-seo">
                                                         <font key="font" size="13" name="Roboto-Regular"/>

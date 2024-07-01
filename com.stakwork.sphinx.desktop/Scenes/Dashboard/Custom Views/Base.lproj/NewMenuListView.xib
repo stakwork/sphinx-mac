@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -34,16 +34,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="QTE-ud-592">
-                                <rect key="frame" x="22" y="249" width="367" height="258"/>
+                                <rect key="frame" x="22" y="250" width="367" height="257"/>
                                 <subviews>
                                     <scrollView clipsToBounds="YES" wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="iCg-uw-ipX">
-                                        <rect key="frame" x="0.0" y="0.0" width="367" height="258"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="367" height="257"/>
                                         <clipView key="contentView" clipsToBounds="YES" drawsBackground="NO" id="q98-ge-oR9">
-                                            <rect key="frame" x="0.0" y="0.0" width="367" height="258"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="367" height="257"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <collectionView clipsToBounds="YES" selectable="YES" id="gCN-XJ-z0m" customClass="ScrollDisabledCollectionView" customModule="Sphinx" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="367" height="258"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="367" height="257"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" id="pbs-0K-Nu1">
                                                         <size key="itemSize" width="50" height="50"/>
@@ -58,7 +58,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="epR-Wn-hp1">
-                                            <rect key="frame" x="351" y="0.0" width="16" height="207"/>
+                                            <rect key="frame" x="351" y="0.0" width="16" height="257"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
@@ -71,56 +71,36 @@
                                 </constraints>
                             </customView>
                             <stackView distribution="fillEqually" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e6s-qK-E8z">
-                                <rect key="frame" x="22" y="98" width="180" height="135"/>
+                                <rect key="frame" x="22" y="98" width="180" height="136"/>
                                 <subviews>
                                     <box boxType="custom" cornerRadius="16" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="QpP-Lp-dGu">
-                                        <rect key="frame" x="0.0" y="104" width="180" height="31"/>
+                                        <rect key="frame" x="0.0" y="104" width="180" height="32"/>
                                         <view key="contentView" id="zoG-HM-rUD">
-                                            <rect key="frame" x="1" y="1" width="178" height="29"/>
+                                            <rect key="frame" x="1" y="1" width="178" height="30"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1DO-xE-nqc">
-                                                    <rect key="frame" x="10" y="6" width="16" height="16"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="9zA-Gu-pVp"/>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="16" id="F6d-dc-qts"/>
-                                                        <constraint firstAttribute="height" constant="16" id="KuK-f5-dcT"/>
-                                                        <constraint firstAttribute="width" constant="16" id="v4e-RH-0Wo"/>
-                                                    </constraints>
-                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="qr_code" id="jIl-DW-lap"/>
-                                                    <color key="contentTintColor" name="TextViewBGColor"/>
-                                                </imageView>
-                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BXu-gl-nPY">
-                                                    <rect key="frame" x="32" y="6" width="130" height="16"/>
-                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Connect with Friend" id="y3e-XQ-oCg">
-                                                        <font key="font" size="14" name="Roboto-Medium"/>
-                                                        <color key="textColor" name="TextViewBGColor"/>
-                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fcm-iy-uRi">
-                                                    <rect key="frame" x="10" y="0.0" width="168" height="29"/>
-                                                    <buttonCell key="cell" type="inline" bezelStyle="inline" imagePosition="left" alignment="left" inset="2" id="fnW-hy-0dg">
+                                                    <rect key="frame" x="10" y="0.0" width="168" height="30"/>
+                                                    <buttonCell key="cell" type="inline" title="  Connect with Friend" bezelStyle="inline" image="qr_code" imagePosition="left" alignment="left" inset="2" id="fnW-hy-0dg">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" size="14" name="Roboto-Regular"/>
                                                     </buttonCell>
-                                                    <color key="contentTintColor" name="TextViewBGColor"/>
+                                                    <color key="contentTintColor" name="TextInverted"/>
                                                     <connections>
                                                         <action selector="connectWithFriend:" target="-2" id="5u3-yM-wpe"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="1DO-xE-nqc" firstAttribute="centerY" secondItem="zoG-HM-rUD" secondAttribute="centerY" id="KUw-S9-re4"/>
-                                                <constraint firstItem="BXu-gl-nPY" firstAttribute="leading" secondItem="1DO-xE-nqc" secondAttribute="trailing" constant="8" id="MQY-It-8j5"/>
                                                 <constraint firstAttribute="trailing" secondItem="fcm-iy-uRi" secondAttribute="trailing" id="PQO-Fg-oBK"/>
                                                 <constraint firstItem="fcm-iy-uRi" firstAttribute="top" secondItem="zoG-HM-rUD" secondAttribute="top" id="VLd-1R-9fn"/>
                                                 <constraint firstItem="fcm-iy-uRi" firstAttribute="leading" secondItem="zoG-HM-rUD" secondAttribute="leading" constant="10" id="cqu-no-zco"/>
-                                                <constraint firstItem="BXu-gl-nPY" firstAttribute="centerY" secondItem="zoG-HM-rUD" secondAttribute="centerY" id="diE-V3-ukV"/>
-                                                <constraint firstItem="1DO-xE-nqc" firstAttribute="leading" secondItem="zoG-HM-rUD" secondAttribute="leading" constant="10" id="r9z-ir-Jii"/>
                                                 <constraint firstAttribute="bottom" secondItem="fcm-iy-uRi" secondAttribute="bottom" id="s9f-Rc-vyE"/>
                                             </constraints>
                                         </view>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="9YJ-EQ-5gt"/>
+                                        </constraints>
                                         <color key="borderColor" name="Body"/>
                                         <color key="fillColor" name="BodyInverted"/>
                                     </box>
@@ -130,29 +110,9 @@
                                             <rect key="frame" x="1" y="1" width="178" height="30"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X5y-4H-gzt">
-                                                    <rect key="frame" x="10" y="5" width="16" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="16" id="BmY-NW-BQ2"/>
-                                                        <constraint firstAttribute="width" constant="16" id="Np5-Gi-lym"/>
-                                                    </constraints>
-                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="plus" catalog="system" id="Z7c-k3-hts"/>
-                                                    <color key="contentTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <symbolConfiguration key="symbolConfiguration" scale="medium" weight="bold">
-                                                        <nil key="locale"/>
-                                                    </symbolConfiguration>
-                                                </imageView>
-                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hBu-oh-wdf">
-                                                    <rect key="frame" x="32" y="7" width="72" height="16"/>
-                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Add Friend" id="gSW-7c-aOj">
-                                                        <font key="font" size="14" name="Roboto-Medium"/>
-                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QEB-rM-6Ox">
                                                     <rect key="frame" x="10" y="0.0" width="168" height="30"/>
-                                                    <buttonCell key="cell" type="inline" bezelStyle="inline" imagePosition="left" alignment="left" inset="2" id="KMw-lf-2K9">
+                                                    <buttonCell key="cell" type="inline" title="Add Friend" bezelStyle="inline" image="plusIcon" imagePosition="left" alignment="left" inset="2" id="KMw-lf-2K9">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" size="14" name="Roboto-Regular"/>
                                                     </buttonCell>
@@ -164,13 +124,9 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="QEB-rM-6Ox" firstAttribute="top" secondItem="PC5-3r-16s" secondAttribute="top" id="117-bt-gtO"/>
-                                                <constraint firstItem="hBu-oh-wdf" firstAttribute="centerY" secondItem="PC5-3r-16s" secondAttribute="centerY" id="2H6-IN-RIY"/>
-                                                <constraint firstItem="hBu-oh-wdf" firstAttribute="leading" secondItem="X5y-4H-gzt" secondAttribute="trailing" constant="8" id="U0y-UK-ht8"/>
                                                 <constraint firstItem="QEB-rM-6Ox" firstAttribute="leading" secondItem="PC5-3r-16s" secondAttribute="leading" constant="10" id="Wu7-nt-kVs"/>
                                                 <constraint firstAttribute="trailing" secondItem="QEB-rM-6Ox" secondAttribute="trailing" id="YP8-Jq-6CY"/>
                                                 <constraint firstAttribute="bottom" secondItem="QEB-rM-6Ox" secondAttribute="bottom" id="de7-f5-mmF"/>
-                                                <constraint firstItem="X5y-4H-gzt" firstAttribute="leading" secondItem="PC5-3r-16s" secondAttribute="leading" constant="10" id="h0I-bd-dKm"/>
-                                                <constraint firstItem="X5y-4H-gzt" firstAttribute="centerY" secondItem="PC5-3r-16s" secondAttribute="centerY" id="kmS-DH-IiT"/>
                                             </constraints>
                                         </view>
                                         <constraints>
@@ -186,31 +142,9 @@
                                             <rect key="frame" x="1" y="1" width="178" height="30"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LeQ-9C-6XX">
-                                                    <rect key="frame" x="10" y="5" width="16" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="16" id="VKB-dU-vyn"/>
-                                                        <constraint firstAttribute="width" constant="16" id="hTu-uC-ytr"/>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="o0O-vQ-hkb"/>
-                                                        <constraint firstAttribute="height" constant="16" id="wta-K6-l0k"/>
-                                                    </constraints>
-                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="plus" catalog="system" id="A0X-Dx-32R"/>
-                                                    <color key="contentTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <symbolConfiguration key="symbolConfiguration" scale="medium" weight="bold">
-                                                        <nil key="locale"/>
-                                                    </symbolConfiguration>
-                                                </imageView>
-                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="keE-dH-D0W">
-                                                    <rect key="frame" x="32" y="7" width="80" height="16"/>
-                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Create Tribe" id="trS-jM-Hai">
-                                                        <font key="font" size="14" name="Roboto-Medium"/>
-                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4qp-hh-IZz">
                                                     <rect key="frame" x="10" y="0.0" width="168" height="30"/>
-                                                    <buttonCell key="cell" type="inline" bezelStyle="inline" imagePosition="left" alignment="left" inset="2" id="gUU-Li-kHU">
+                                                    <buttonCell key="cell" type="inline" title="Create Tribe" bezelStyle="inline" image="plusIcon" imagePosition="left" alignment="left" inset="2" id="gUU-Li-kHU">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" size="14" name="Roboto-Regular"/>
                                                     </buttonCell>
@@ -224,12 +158,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="4qp-hh-IZz" secondAttribute="bottom" id="Fp9-pi-fLt"/>
                                                 <constraint firstItem="4qp-hh-IZz" firstAttribute="leading" secondItem="67V-uY-ike" secondAttribute="leading" constant="10" id="GXN-4T-4hq"/>
                                                 <constraint firstItem="4qp-hh-IZz" firstAttribute="top" secondItem="67V-uY-ike" secondAttribute="top" id="RXX-e1-oIf"/>
-                                                <constraint firstItem="LeQ-9C-6XX" firstAttribute="leading" secondItem="67V-uY-ike" secondAttribute="leading" constant="10" id="daE-d9-nko"/>
-                                                <constraint firstItem="LeQ-9C-6XX" firstAttribute="centerY" secondItem="67V-uY-ike" secondAttribute="centerY" id="eMX-fy-g76"/>
-                                                <constraint firstItem="keE-dH-D0W" firstAttribute="leading" secondItem="LeQ-9C-6XX" secondAttribute="trailing" constant="8" id="kuL-qf-tbY"/>
                                                 <constraint firstAttribute="trailing" secondItem="4qp-hh-IZz" secondAttribute="trailing" id="ueu-1W-T1a"/>
-                                                <constraint firstItem="keE-dH-D0W" firstAttribute="leading" secondItem="LeQ-9C-6XX" secondAttribute="trailing" constant="8" id="v4K-ta-vTz"/>
-                                                <constraint firstItem="keE-dH-D0W" firstAttribute="centerY" secondItem="67V-uY-ike" secondAttribute="centerY" id="zfp-NZ-Efv"/>
                                             </constraints>
                                         </view>
                                         <color key="borderColor" name="Body"/>
@@ -238,7 +167,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="j0I-LL-YwK" firstAttribute="width" secondItem="hrv-cF-Vh0" secondAttribute="width" id="KdK-GG-4jw"/>
-                                    <constraint firstAttribute="height" constant="135" id="Lru-3f-QNh"/>
+                                    <constraint firstAttribute="height" constant="136" id="bNM-yb-4QC"/>
                                     <constraint firstItem="hrv-cF-Vh0" firstAttribute="width" secondItem="e6s-qK-E8z" secondAttribute="width" id="eP7-RS-5N1"/>
                                     <constraint firstItem="QpP-Lp-dGu" firstAttribute="width" secondItem="hrv-cF-Vh0" secondAttribute="width" id="zWQ-eW-eGK"/>
                                 </constraints>
@@ -254,7 +183,7 @@
                                 </customSpacing>
                             </stackView>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jgb-o9-nG3">
-                                <rect key="frame" x="23" y="50" width="82" height="14"/>
+                                <rect key="frame" x="23" y="50" width="81" height="14"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Version 1.0.28" id="a9T-h0-eiW">
                                     <font key="font" size="12" name="Roboto-Regular"/>
                                     <color key="textColor" name="PrimaryText"/>
@@ -262,7 +191,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HeN-GF-9bN">
-                                <rect key="frame" x="23" y="32" width="197" height="14"/>
+                                <rect key="frame" x="23" y="32" width="195" height="14"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="© 2024 Stakwork All rights reserved" id="ngJ-Cm-c3a">
                                     <font key="font" size="12" name="Roboto-Regular"/>
                                     <color key="textColor" name="SecondaryText"/>
@@ -351,7 +280,7 @@
         </customView>
     </objects>
     <resources>
-        <image name="plus" catalog="system" width="14" height="13"/>
+        <image name="plusIcon" width="20" height="20"/>
         <image name="qr_code" width="16" height="16"/>
         <image name="xmark" catalog="system" width="14" height="13"/>
         <namedColor name="BlueTextAccent">
@@ -378,8 +307,8 @@
         <namedColor name="SecondaryText">
             <color red="0.55686274509803924" green="0.58823529411764708" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="TextViewBGColor">
-            <color red="0.94901960784313721" green="0.95294117647058818" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="TextInverted">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

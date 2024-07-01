@@ -1,8 +1,10 @@
 /* Class = "NSButtonCell"; title = "Add Friend"; ObjectID = "KMw-lf-2K9"; */
-"KMw-lf-2K9.title" = "Magdagdag ng Kaibigan";
+"KMw-lf-2K9.title" = "  Magdagdag ng Kaibigan";
 
 /* Class = "NSButtonCell"; title = "Create Tribe"; ObjectID = "gUU-Li-kHU"; */
-"gUU-Li-kHU.title" = "Lumikha ng Tribo";
+"gUU-Li-kHU.title" = "  Lumikha ng Tribo";
+
+"fnW-hy-0dg.title" = "  Kumonekta sa Kaibigan";
 
 /* Class = "NSTextFieldCell"; title = "© 2024 Stakwork All rights reserved"; ObjectID = "ngJ-Cm-c3a"; */
 "ngJ-Cm-c3a.title" = "© 2024 Stakwork All rights reserved";

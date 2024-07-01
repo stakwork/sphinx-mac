@@ -457,6 +457,7 @@ extension ChatListViewController: NewMenuListViewDelegate {
 extension ChatListViewController: NewMenuItemDataSourceDelegate {
     func itemSelected(at index: Int) {
         let vcInfo = getViewControllerToLoadInfo(vcId: index)
+        
         navigateToNewVC(vc: vcInfo.0,
                         title: vcInfo.1,
                         identifier: vcInfo.2,

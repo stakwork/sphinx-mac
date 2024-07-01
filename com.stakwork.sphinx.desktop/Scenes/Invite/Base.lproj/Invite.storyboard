@@ -73,7 +73,7 @@
                                 </view>
                                 <color key="fillColor" name="Body"/>
                             </box>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WXj-PR-03x">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WXj-PR-03x">
                                 <rect key="frame" x="107" y="552" width="186" height="18"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="SHARE INVITATION CODE" id="Zyb-tS-AOZ">
                                     <font key="font" size="14" name="Montserrat-SemiBold"/>
@@ -89,7 +89,7 @@
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="tapToCopy" id="XdY-UJ-ecj"/>
                                         <color key="contentTintColor" name="SecondaryText"/>
                                     </imageView>
-                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rk8-rx-55Q">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rk8-rx-55Q">
                                         <rect key="frame" x="26" y="14" width="81" height="13"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="CLICK TO COPY" id="AYv-M7-noR">
                                             <font key="font" size="10" name="Montserrat-Regular"/>
@@ -116,7 +116,7 @@
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="K3j-Mz-e5x"/>
                             </imageView>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7Wd-0q-UgP">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7Wd-0q-UgP">
                                 <rect key="frame" x="63" y="114" width="274" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="270" id="PP4-Wy-lU9"/>
@@ -195,7 +195,30 @@
                                 </view>
                                 <color key="fillColor" name="Body"/>
                             </box>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7J1-aI-VnJ">
+                            <box clipsToBounds="YES" boxType="custom" borderWidth="4" cornerRadius="42" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="KFu-P6-XEO">
+                                <rect key="frame" x="158" y="416" width="84" height="84"/>
+                                <view key="contentView" id="Lsq-pA-JDe">
+                                    <rect key="frame" x="4" y="4" width="76" height="76"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="Fqj-bx-6zY" customClass="AspectFillNSImageView" customModule="Sphinx" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="76" height="76"/>
+                                        </customView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="Fqj-bx-6zY" secondAttribute="trailing" id="3Qv-Do-DZ9"/>
+                                        <constraint firstItem="Fqj-bx-6zY" firstAttribute="leading" secondItem="Lsq-pA-JDe" secondAttribute="leading" id="4uh-aQ-xf9"/>
+                                        <constraint firstAttribute="bottom" secondItem="Fqj-bx-6zY" secondAttribute="bottom" id="ShL-CY-Bnz"/>
+                                        <constraint firstItem="Fqj-bx-6zY" firstAttribute="top" secondItem="Lsq-pA-JDe" secondAttribute="top" id="Z6f-7F-YR2"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="84" id="eAG-u4-VSe"/>
+                                    <constraint firstAttribute="height" constant="84" id="wzH-sO-bbg"/>
+                                </constraints>
+                                <color key="borderColor" name="Body"/>
+                            </box>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7J1-aI-VnJ">
                                 <rect key="frame" x="148" y="372" width="104" height="24"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="User Name" id="DV8-CW-aM3">
                                     <font key="font" size="20" name="Roboto-Bold"/>
@@ -211,7 +234,7 @@
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="fDg-NU-GWJ"/>
                             </imageView>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DgN-2i-AHg">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DgN-2i-AHg">
                                 <rect key="frame" x="98" y="106" width="204" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" alignment="center" title="asdjhsad6jhaskjsad78asd7dsjhasjhsd78as" id="YV8-pf-gqb">
                                     <font key="font" size="14" name="Roboto-Regular"/>
@@ -234,7 +257,7 @@
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="itemDetailsCopy" id="BSz-9W-oU0"/>
                                             <color key="contentTintColor" name="MainBottomIcons"/>
                                         </imageView>
-                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="U0Q-Kr-Ci1">
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="U0Q-Kr-Ci1">
                                             <rect key="frame" x="91" y="9" width="34" height="15"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Copy" id="p98-k3-EYt">
                                                 <font key="font" size="13" name="Roboto-Regular"/>
@@ -284,29 +307,6 @@
                                     <action selector="dismissButtonTapped:" target="8j4-Hs-DEc" id="2n6-VC-Fms"/>
                                 </connections>
                             </button>
-                            <box clipsToBounds="YES" boxType="custom" borderWidth="4" cornerRadius="42" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="KFu-P6-XEO">
-                                <rect key="frame" x="158" y="416" width="84" height="84"/>
-                                <view key="contentView" id="Lsq-pA-JDe">
-                                    <rect key="frame" x="4" y="4" width="76" height="76"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="Fqj-bx-6zY" customClass="AspectFillNSImageView" customModule="Sphinx" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="76" height="76"/>
-                                        </customView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="Fqj-bx-6zY" secondAttribute="trailing" id="3Qv-Do-DZ9"/>
-                                        <constraint firstItem="Fqj-bx-6zY" firstAttribute="leading" secondItem="Lsq-pA-JDe" secondAttribute="leading" id="4uh-aQ-xf9"/>
-                                        <constraint firstAttribute="bottom" secondItem="Fqj-bx-6zY" secondAttribute="bottom" id="ShL-CY-Bnz"/>
-                                        <constraint firstItem="Fqj-bx-6zY" firstAttribute="top" secondItem="Lsq-pA-JDe" secondAttribute="top" id="Z6f-7F-YR2"/>
-                                    </constraints>
-                                </view>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="84" id="eAG-u4-VSe"/>
-                                    <constraint firstAttribute="height" constant="84" id="wzH-sO-bbg"/>
-                                </constraints>
-                                <color key="borderColor" name="Body"/>
-                            </box>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Nax-Nj-A6S" firstAttribute="top" secondItem="RyV-37-F48" secondAttribute="top" id="0uL-a0-dft"/>
