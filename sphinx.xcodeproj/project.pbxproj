@@ -591,6 +591,7 @@
 		934082792BC8827700FD7E34 /* DashboardPresenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934082782BC8827700FD7E34 /* DashboardPresenterViewController.swift */; };
 		9367EC452C1039BF0001EC81 /* KeyboardReplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9367EC442C1039BF0001EC81 /* KeyboardReplyView.swift */; };
 		9367EC472C1039DB0001EC81 /* KeyboardReplyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9367EC462C1039DB0001EC81 /* KeyboardReplyView.xib */; };
+		93724FD62C3186F1000DD109 /* NewShareInviteCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93724FD52C3186F1000DD109 /* NewShareInviteCodeViewController.swift */; };
 		938209E02BD88E3C000A9ED8 /* NewMenuItemDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938209DF2BD88E3C000A9ED8 /* NewMenuItemDataSource.swift */; };
 		938209E42BD88ED0000A9ED8 /* NewMenuListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938209E22BD88ED0000A9ED8 /* NewMenuListItem.swift */; };
 		938209E52BD88ED0000A9ED8 /* NewMenuListItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938209E32BD88ED0000A9ED8 /* NewMenuListItem.xib */; };
@@ -1537,6 +1538,7 @@
 		934082782BC8827700FD7E34 /* DashboardPresenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenterViewController.swift; sourceTree = "<group>"; };
 		9367EC442C1039BF0001EC81 /* KeyboardReplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardReplyView.swift; sourceTree = "<group>"; };
 		9367EC462C1039DB0001EC81 /* KeyboardReplyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeyboardReplyView.xib; sourceTree = "<group>"; };
+		93724FD52C3186F1000DD109 /* NewShareInviteCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewShareInviteCodeViewController.swift; sourceTree = "<group>"; };
 		938209DF2BD88E3C000A9ED8 /* NewMenuItemDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMenuItemDataSource.swift; sourceTree = "<group>"; };
 		938209E22BD88ED0000A9ED8 /* NewMenuListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMenuListItem.swift; sourceTree = "<group>"; };
 		938209E32BD88ED0000A9ED8 /* NewMenuListItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewMenuListItem.xib; sourceTree = "<group>"; };
@@ -2223,6 +2225,7 @@
 				4797E82D24BCC0F200D13270 /* Invite.storyboard */,
 				4744FADB246C234D00C5FD94 /* Collection View Items */,
 				4744FAD6246B2FDE00C5FD94 /* KeychainRestoreViewController.swift */,
+				93724FD52C3186F1000DD109 /* NewShareInviteCodeViewController.swift */,
 				4702BCEF248FE5C400EE9394 /* ShareInviteCodeViewController.swift */,
 			);
 			path = Invite;
@@ -3914,6 +3917,7 @@
 				47DE1BFC2A681EE80029597B /* String+Geometrics.h in Sources */,
 				47B5508724895D51000514BF /* SplashViewController.swift in Sources */,
 				47DE1BFB2A681D8C0029597B /* String+Geometrics.m in Sources */,
+				93724FD62C3186F1000DD109 /* NewShareInviteCodeViewController.swift in Sources */,
 				47D76E6B27F12B1C000DC021 /* API+AuthenticationExtension.swift in Sources */,
 				47DE1C042A68813B0029597B /* MessageNoBubbleCollectionViewItem.swift in Sources */,
 				47308E2325083FCF00FFAC6F /* API+GiphyExtension.swift in Sources */,
