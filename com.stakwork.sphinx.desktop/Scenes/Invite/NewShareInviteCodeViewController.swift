@@ -18,6 +18,8 @@ class NewShareInviteCodeViewController: NSViewController {
     @IBOutlet weak var viewTitle: NSTextField!
     @IBOutlet weak var copyButton: CustomButton!
     @IBOutlet weak var profileImageView: AspectFillNSImageView!
+    @IBOutlet weak var closeButton: CustomButton!
+    
     var copiedStrind = "code.copied.clipboard".localized
     var profile: UserContact? = nil
     weak var delegate: NewContactDismissDelegate?
@@ -34,8 +36,11 @@ class NewShareInviteCodeViewController: NSViewController {
         super.viewDidLoad()
         
         copyButton.cursor = .pointingHand
+        closeButton.cursor = .pointingHand
+        
         qrCodeImageView.image = NSImage.qrCode(from: qrCodeString, size: qrCodeImageView.frame.size)
         inviteCodeLabel.stringValue = qrCodeString
+        
         configureProfile()
         view.wantsLayer = true
         view.layer?.backgroundColor = .clear

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,22 +19,23 @@
                 <outlet property="menuButton" destination="55N-4i-UtU" id="24q-2D-eVa"/>
                 <outlet property="nameLabel" destination="hrB-1f-L1I" id="aHL-xT-rZB"/>
                 <outlet property="profileImageView" destination="hf4-Jl-fE0" id="kp0-Th-hQ7"/>
+                <outlet property="qrCodeButton" destination="tw1-YB-Lx5" id="q9b-0c-yAo"/>
                 <outlet property="reloadButton" destination="kS7-ZF-6l4" id="ERP-yN-yX5"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="eQ2-UR-nwz">
-            <rect key="frame" x="0.0" y="0.0" width="1025" height="72"/>
+            <rect key="frame" x="0.0" y="0.0" width="1035" height="72"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="mO3-nj-4fq">
-                    <rect key="frame" x="0.0" y="0.0" width="1025" height="72"/>
+                    <rect key="frame" x="0.0" y="0.0" width="1035" height="72"/>
                     <subviews>
                         <box boxType="custom" borderWidth="0.0" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="wpZ-w8-ekT">
-                            <rect key="frame" x="0.0" y="0.0" width="1025" height="72"/>
+                            <rect key="frame" x="0.0" y="0.0" width="1035" height="72"/>
                             <view key="contentView" id="I7N-dH-URx">
-                                <rect key="frame" x="0.0" y="0.0" width="1025" height="72"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1035" height="72"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                             <color key="fillColor" name="HeaderBG"/>
@@ -70,13 +71,13 @@
                             </constraints>
                         </customView>
                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="IkQ-0J-YtC">
-                            <rect key="frame" x="66" y="2" width="787" height="46"/>
+                            <rect key="frame" x="66" y="2" width="811" height="46"/>
                             <subviews>
                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xp4-oG-Cpy">
-                                    <rect key="frame" x="0.0" y="0.0" width="787" height="46"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="811" height="46"/>
                                     <subviews>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="QZf-wA-3DA">
-                                            <rect key="frame" x="0.0" y="26" width="787" height="20"/>
+                                            <rect key="frame" x="0.0" y="26" width="811" height="20"/>
                                             <subviews>
                                                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hrB-1f-L1I">
                                                     <rect key="frame" x="-2" y="0.0" width="71" height="18"/>
@@ -103,7 +104,7 @@
                                             </constraints>
                                         </customView>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="WA1-Dl-fbm">
-                                            <rect key="frame" x="0.0" y="0.0" width="787" height="20"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="811" height="20"/>
                                             <subviews>
                                                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="su7-7j-Xer">
                                                     <rect key="frame" x="-2" y="5" width="36" height="15"/>
@@ -154,10 +155,10 @@
                             </constraints>
                         </customView>
                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="trM-0m-zLD">
-                            <rect key="frame" x="869" y="0.0" width="140" height="50"/>
+                            <rect key="frame" x="893" y="0.0" width="116" height="50"/>
                             <subviews>
-                                <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uph-uI-CCE">
-                                    <rect key="frame" x="0.0" y="0.0" width="140" height="50"/>
+                                <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uph-uI-CCE">
+                                    <rect key="frame" x="0.0" y="0.0" width="116" height="50"/>
                                     <subviews>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="wWy-Mq-ym0">
                                             <rect key="frame" x="0.0" y="9" width="32" height="32"/>
@@ -185,53 +186,21 @@
                                                         <action selector="qrcodeButtonTapped:" target="-2" id="kjb-ET-XgA"/>
                                                     </connections>
                                                 </button>
-                                                <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pm1-0K-egd">
-                                                    <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
-                                                    <subviews>
-                                                        <box boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="1h2-1R-4iO">
-                                                            <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
-                                                            <view key="contentView" id="8YI-e8-Qsb">
-                                                                <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
-                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            </view>
-                                                            <color key="fillColor" name="HeaderBG"/>
-                                                        </box>
-                                                        <progressIndicator maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="QAa-9g-SHP">
-                                                            <rect key="frame" x="8" y="8" width="16" height="16"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="16" id="0Wu-MJ-zEQ"/>
-                                                                <constraint firstAttribute="height" constant="16" id="93f-jc-SLB"/>
-                                                            </constraints>
-                                                        </progressIndicator>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="QAa-9g-SHP" firstAttribute="centerY" secondItem="pm1-0K-egd" secondAttribute="centerY" id="896-mS-Urw"/>
-                                                        <constraint firstItem="1h2-1R-4iO" firstAttribute="top" secondItem="pm1-0K-egd" secondAttribute="top" id="TFg-uc-dii"/>
-                                                        <constraint firstAttribute="trailing" secondItem="1h2-1R-4iO" secondAttribute="trailing" id="dSh-7C-Gf4"/>
-                                                        <constraint firstItem="QAa-9g-SHP" firstAttribute="centerX" secondItem="pm1-0K-egd" secondAttribute="centerX" id="fuq-Eg-Ql4"/>
-                                                        <constraint firstAttribute="bottom" secondItem="1h2-1R-4iO" secondAttribute="bottom" id="nnh-hz-E3x"/>
-                                                        <constraint firstItem="1h2-1R-4iO" firstAttribute="leading" secondItem="pm1-0K-egd" secondAttribute="leading" id="r6y-ck-Nug"/>
-                                                    </constraints>
-                                                </customView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="tw1-YB-Lx5" secondAttribute="bottom" id="2hG-Yj-61C"/>
                                                 <constraint firstItem="XtG-aR-pIL" firstAttribute="centerY" secondItem="wWy-Mq-ym0" secondAttribute="centerY" id="L3t-6f-1ur"/>
                                                 <constraint firstItem="tw1-YB-Lx5" firstAttribute="top" secondItem="wWy-Mq-ym0" secondAttribute="top" id="MGY-CB-szU"/>
                                                 <constraint firstItem="XtG-aR-pIL" firstAttribute="centerX" secondItem="tw1-YB-Lx5" secondAttribute="centerX" id="SJZ-Ms-s1m"/>
-                                                <constraint firstItem="pm1-0K-egd" firstAttribute="leading" secondItem="wWy-Mq-ym0" secondAttribute="leading" id="VpK-20-fD4"/>
                                                 <constraint firstItem="tw1-YB-Lx5" firstAttribute="leading" secondItem="wWy-Mq-ym0" secondAttribute="leading" id="byO-9M-CGC"/>
                                                 <constraint firstAttribute="width" constant="32" id="hOa-Nn-MRs"/>
                                                 <constraint firstAttribute="height" constant="32" id="hkH-9N-pzS"/>
-                                                <constraint firstItem="pm1-0K-egd" firstAttribute="top" secondItem="wWy-Mq-ym0" secondAttribute="top" id="jSw-Pt-IOB"/>
-                                                <constraint firstAttribute="trailing" secondItem="pm1-0K-egd" secondAttribute="trailing" id="rRx-d4-HQP"/>
                                                 <constraint firstItem="XtG-aR-pIL" firstAttribute="centerX" secondItem="wWy-Mq-ym0" secondAttribute="centerX" id="t0V-d4-nIS"/>
-                                                <constraint firstAttribute="bottom" secondItem="pm1-0K-egd" secondAttribute="bottom" id="vwB-wE-VYa"/>
                                                 <constraint firstAttribute="trailing" secondItem="tw1-YB-Lx5" secondAttribute="trailing" id="zVz-YS-gpk"/>
                                             </constraints>
                                         </customView>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="bBO-2j-FuN">
-                                            <rect key="frame" x="44" y="9" width="32" height="32"/>
+                                            <rect key="frame" x="42" y="9" width="32" height="32"/>
                                             <subviews>
                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TyD-9e-qZF">
                                                     <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
@@ -302,10 +271,10 @@
                                             </constraints>
                                         </customView>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="Ubv-L3-aBp">
-                                            <rect key="frame" x="88" y="9" width="50" height="32"/>
+                                            <rect key="frame" x="84" y="9" width="32" height="32"/>
                                             <subviews>
                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qnl-D6-ocx">
-                                                    <rect key="frame" x="9" y="0.0" width="32" height="32"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="32" id="MbW-BW-OJp"/>
                                                         <constraint firstAttribute="height" constant="32" id="xLx-Eu-NGE"/>
@@ -314,7 +283,7 @@
                                                     <color key="contentTintColor" name="SecondaryText"/>
                                                 </imageView>
                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="55N-4i-UtU" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="32"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
                                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="pOp-De-l4l">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -354,7 +323,6 @@
                                 <constraint firstAttribute="height" constant="50" id="PbZ-pE-dFm"/>
                                 <constraint firstItem="Uph-uI-CCE" firstAttribute="leading" secondItem="trM-0m-zLD" secondAttribute="leading" id="ZFe-C4-3OU"/>
                                 <constraint firstAttribute="trailing" secondItem="Uph-uI-CCE" secondAttribute="trailing" id="ewV-Mf-GN2"/>
-                                <constraint firstAttribute="width" constant="140" id="k89-xA-YLf"/>
                             </constraints>
                         </customView>
                     </subviews>
@@ -370,7 +338,7 @@
                     </customSpacing>
                 </stackView>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="nRL-0K-uBC" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                    <rect key="frame" x="16" y="8" width="853" height="50"/>
+                    <rect key="frame" x="16" y="8" width="877" height="50"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="huD-Z3-WBf">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -404,7 +372,7 @@
                 <constraint firstItem="uuY-Dp-2R6" firstAttribute="bottom" secondItem="su7-7j-Xer" secondAttribute="bottom" constant="2" id="mRe-u4-EJm"/>
                 <constraint firstItem="uuY-Dp-2R6" firstAttribute="top" secondItem="su7-7j-Xer" secondAttribute="top" constant="-2" id="rZy-6o-pC7"/>
                 <constraint firstItem="nRL-0K-uBC" firstAttribute="trailing" secondItem="IkQ-0J-YtC" secondAttribute="trailing" id="tXR-2n-HCd"/>
-                <constraint firstAttribute="trailing" secondItem="C4h-RH-hTE" secondAttribute="trailing" id="x0S-S2-2wN"/>
+                <constraint firstAttribute="trailing" secondItem="C4h-RH-hTE" secondAttribute="trailing" constant="10" id="x0S-S2-2wN"/>
                 <constraint firstItem="nRL-0K-uBC" firstAttribute="top" secondItem="iID-6i-zzQ" secondAttribute="top" id="x4M-Dt-Xhi"/>
             </constraints>
             <point key="canvasLocation" x="128" y="71"/>

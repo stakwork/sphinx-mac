@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -176,35 +176,35 @@
                 <customObject id="99d-X2-TqX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="NewShareInviteCodeViewController" id="8j4-Hs-DEc" customClass="NewShareInviteCodeViewController" customModule="Sphinx" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="RyV-37-F48">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="484"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="500"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box boxType="custom" borderType="none" titlePosition="noTitle" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nax-Nj-A6S">
-                                <rect key="frame" x="0.0" y="0.0" width="400" height="484"/>
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="500"/>
                                 <view key="contentView" id="orN-ud-tfq">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="484"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="500"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <color key="fillColor" name="Body"/>
                             </box>
                             <box boxType="custom" borderType="none" cornerRadius="12" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="eLW-6c-jsa">
-                                <rect key="frame" x="0.0" y="0.0" width="400" height="444"/>
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="460"/>
                                 <view key="contentView" id="RLG-zp-oY3">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="444"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="460"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <color key="fillColor" name="Body"/>
                             </box>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7J1-aI-VnJ">
-                                <rect key="frame" x="107" y="366" width="186" height="18"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="SHARE INVITATION CODE" id="DV8-CW-aM3">
-                                    <font key="font" size="14" name="Montserrat-SemiBold"/>
+                                <rect key="frame" x="148" y="372" width="104" height="24"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="User Name" id="DV8-CW-aM3">
+                                    <font key="font" size="20" name="Roboto-Bold"/>
                                     <color key="textColor" name="Text"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aBk-Nb-xq7">
-                                <rect key="frame" x="100" y="142" width="200" height="200"/>
+                                <rect key="frame" x="100" y="150" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="diI-4x-dKX"/>
                                     <constraint firstAttribute="width" secondItem="aBk-Nb-xq7" secondAttribute="height" multiplier="1:1" id="kPc-2A-X2O"/>
@@ -212,15 +212,15 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="fDg-NU-GWJ"/>
                             </imageView>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DgN-2i-AHg">
-                                <rect key="frame" x="98" y="98" width="204" height="16"/>
+                                <rect key="frame" x="98" y="106" width="204" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" alignment="center" title="asdjhsad6jhaskjsad78asd7dsjhasjhsd78as" id="YV8-pf-gqb">
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" size="14" name="Roboto-Regular"/>
                                     <color key="textColor" name="SecondaryText"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <box boxType="custom" borderWidth="0.0" cornerRadius="6" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="nCz-3j-eCp">
-                                <rect key="frame" x="100" y="38" width="200" height="32"/>
+                                <rect key="frame" x="100" y="46" width="200" height="32"/>
                                 <view key="contentView" id="fl1-HB-Dzf">
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="32"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -235,19 +235,20 @@
                                             <color key="contentTintColor" name="MainBottomIcons"/>
                                         </imageView>
                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="U0Q-Kr-Ci1">
-                                            <rect key="frame" x="91" y="8" width="36" height="16"/>
+                                            <rect key="frame" x="91" y="9" width="34" height="15"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Copy" id="p98-k3-EYt">
-                                                <font key="font" metaFont="system"/>
+                                                <font key="font" size="13" name="Roboto-Regular"/>
                                                 <color key="textColor" name="MainBottomIcons"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="U0Q-Kr-Ci1" secondAttribute="trailing" constant="77" id="017-Q1-zdb"/>
                                         <constraint firstItem="LC9-L1-XIo" firstAttribute="centerY" secondItem="fl1-HB-Dzf" secondAttribute="centerY" id="6DC-Gt-k2i"/>
                                         <constraint firstItem="LC9-L1-XIo" firstAttribute="leading" secondItem="fl1-HB-Dzf" secondAttribute="leading" constant="69" id="D2N-Dk-uWA"/>
                                         <constraint firstItem="U0Q-Kr-Ci1" firstAttribute="centerY" secondItem="fl1-HB-Dzf" secondAttribute="centerY" id="Icd-rf-83X"/>
-                                        <constraint firstItem="U0Q-Kr-Ci1" firstAttribute="leading" secondItem="LC9-L1-XIo" secondAttribute="trailing" constant="8" id="VDT-uh-Ofc"/>
+                                        <constraint firstItem="U0Q-Kr-Ci1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LC9-L1-XIo" secondAttribute="trailing" constant="8" symbolic="YES" id="VDT-uh-Ofc"/>
                                     </constraints>
                                 </view>
                                 <constraints>
@@ -256,21 +257,21 @@
                                 <color key="fillColor" name="ReceivedMsgBG"/>
                             </box>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aq1-Zr-peT" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
-                                <rect key="frame" x="100" y="42" width="200" height="300"/>
+                                <rect key="frame" x="100" y="50" width="200" height="300"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="RxA-hH-f4L">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" size="13" name="Roboto-Regular"/>
                                 </buttonCell>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="6gP-K3-doZ"/>
-                                    <constraint firstAttribute="width" constant="200" id="GqE-g1-Bu8"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="GqE-g1-Bu8"/>
                                 </constraints>
                                 <connections>
                                     <action selector="copyButtonClicked:" target="8j4-Hs-DEc" id="seP-Rc-geA"/>
                                 </connections>
                             </button>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="h8o-Yp-KnX">
-                                <rect key="frame" x="366" y="410" width="24" height="24"/>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="h8o-Yp-KnX" customClass="CustomButton" customModule="Sphinx" customModuleProvider="target">
+                                <rect key="frame" x="366" y="426" width="24" height="24"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="buttonCell:70v-5s-qfZ:image" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="70v-5s-qfZ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -283,14 +284,14 @@
                                     <action selector="dismissButtonTapped:" target="8j4-Hs-DEc" id="2n6-VC-Fms"/>
                                 </connections>
                             </button>
-                            <box clipsToBounds="YES" boxType="custom" borderWidth="4" cornerRadius="40" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="KFu-P6-XEO">
-                                <rect key="frame" x="160" y="404" width="80" height="80"/>
+                            <box clipsToBounds="YES" boxType="custom" borderWidth="4" cornerRadius="42" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="KFu-P6-XEO">
+                                <rect key="frame" x="158" y="416" width="84" height="84"/>
                                 <view key="contentView" id="Lsq-pA-JDe">
-                                    <rect key="frame" x="4" y="4" width="72" height="72"/>
+                                    <rect key="frame" x="4" y="4" width="76" height="76"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="Fqj-bx-6zY" customClass="AspectFillNSImageView" customModule="Sphinx" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="72" height="72"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="76" height="76"/>
                                         </customView>
                                     </subviews>
                                     <constraints>
@@ -301,8 +302,8 @@
                                     </constraints>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="eAG-u4-VSe"/>
-                                    <constraint firstAttribute="height" constant="80" id="wzH-sO-bbg"/>
+                                    <constraint firstAttribute="width" constant="84" id="eAG-u4-VSe"/>
+                                    <constraint firstAttribute="height" constant="84" id="wzH-sO-bbg"/>
                                 </constraints>
                                 <color key="borderColor" name="Body"/>
                             </box>
@@ -316,7 +317,7 @@
                             <constraint firstItem="Nax-Nj-A6S" firstAttribute="leading" secondItem="RyV-37-F48" secondAttribute="leading" id="EXI-L3-sdQ"/>
                             <constraint firstItem="h8o-Yp-KnX" firstAttribute="top" secondItem="RyV-37-F48" secondAttribute="top" constant="50" id="Eek-lV-hQ4"/>
                             <constraint firstItem="nCz-3j-eCp" firstAttribute="width" secondItem="aBk-Nb-xq7" secondAttribute="width" id="IDw-3Z-vfc"/>
-                            <constraint firstItem="aq1-Zr-peT" firstAttribute="top" secondItem="7J1-aI-VnJ" secondAttribute="bottom" constant="24" id="KDi-2w-ydR"/>
+                            <constraint firstItem="aq1-Zr-peT" firstAttribute="top" secondItem="7J1-aI-VnJ" secondAttribute="bottom" constant="22" id="KDi-2w-ydR"/>
                             <constraint firstItem="eLW-6c-jsa" firstAttribute="leading" secondItem="RyV-37-F48" secondAttribute="leading" id="NZE-hU-fnf"/>
                             <constraint firstItem="aBk-Nb-xq7" firstAttribute="top" secondItem="aq1-Zr-peT" secondAttribute="top" id="O0u-qh-cC8"/>
                             <constraint firstItem="nCz-3j-eCp" firstAttribute="top" secondItem="DgN-2i-AHg" secondAttribute="bottom" constant="28" id="PRi-hf-r99"/>
@@ -336,6 +337,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="closeButton" destination="h8o-Yp-KnX" id="bS4-0y-T5K"/>
                         <outlet property="copyButton" destination="aq1-Zr-peT" id="mn8-9f-zWf"/>
                         <outlet property="inviteCodeLabel" destination="DgN-2i-AHg" id="67f-mj-XHp"/>
                         <outlet property="profileImageView" destination="Fqj-bx-6zY" id="xP6-Pg-4bP"/>

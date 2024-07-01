@@ -409,13 +409,16 @@ extension ChatListViewController: NewChatHeaderViewDelegate {
         guard let shareInviteCodeVC = getQRCodeVC() else {
             return
         }
-        navigateToNewVC(vc: shareInviteCodeVC,
-                        title: "",
-                        identifier: "create-tribe-window",
-                        hideDivider: true,
-                        height: 496,
-                        width: 312,
-                        hideHeaderView: true)
+        
+        navigateToNewVC(
+            vc: shareInviteCodeVC,
+            title: "",
+            identifier: "share-pub-key-window",
+            hideDivider: true,
+            height: 496,
+            width: 312,
+            hideHeaderView: true
+        )
     }
     
     func refreshTapped() {
@@ -553,7 +556,7 @@ extension ChatListViewController: NewMenuItemDataSourceDelegate {
             contentVC: vc,
             hideDivider: hideDivider,
             hideBackButton: true,
-            replacingVC: true,
+            replacingVC: false,
             height: height,
             width: width,
             hideHeaderView: hideHeaderView

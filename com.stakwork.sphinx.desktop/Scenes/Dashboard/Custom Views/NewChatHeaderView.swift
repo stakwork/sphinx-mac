@@ -31,6 +31,7 @@ class NewChatHeaderView: NSView, LoadableNib {
     @IBOutlet weak var reloadButton: CustomButton!
     @IBOutlet weak var menuButton: CustomButton!
     @IBOutlet weak var balanceButton: CustomButton!
+    @IBOutlet weak var qrCodeButton: CustomButton!
     
     @IBOutlet weak var loadingWheel: NSProgressIndicator!
     @IBOutlet weak var loadingWheelContainer: NSView!
@@ -114,6 +115,7 @@ class NewChatHeaderView: NSView, LoadableNib {
         reloadButton.cursor = .pointingHand
         menuButton.cursor = .pointingHand
         balanceButton.cursor = .pointingHand
+        qrCodeButton.cursor = .pointingHand
         
         profileImageView.wantsLayer = true
         profileImageView.rounded = true
