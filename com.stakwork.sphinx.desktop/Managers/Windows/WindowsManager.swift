@@ -76,7 +76,7 @@ class WindowsManager {
         replacingVC: Bool = false,
         height: CGFloat? = nil,
         width: CGFloat? = nil,
-        hideHeaderView: Bool? = false,
+        hideHeaderView: Bool = false,
         backHandler: (() -> ())? = nil
     ) {
         guard let keyWindow = NSApplication.shared.keyWindow, let dashboardVC = keyWindow.contentViewController as? DashboardViewController else {
@@ -137,7 +137,7 @@ class WindowsManager {
         replacingVC: Bool = false,
         height: CGFloat? = nil,
         width: CGFloat? = nil,
-        hideHeaderView: Bool? = false,
+        hideHeaderView: Bool = false,
         backHandler: (() -> ())? = nil
     ) {
         guard let keyWindow = NSApplication.shared.keyWindow, let dashboardVC = keyWindow.contentViewController as? DashboardViewController else {
@@ -163,20 +163,19 @@ class WindowsManager {
         } else {
             dashboardVC.presenterViewHeightConstraint.constant = 3000
         }
+        
         if let width {
             dashboardVC.presenterViewWidthConstraint.constant = width
         } else {
             dashboardVC.presenterViewWidthConstraint.constant = 400
         }
-        dashboardVC.presenterContainerBGView.wantsLayer = true
-        dashboardVC.presenterContentBox.wantsLayer = true
-        dashboardVC.presenterContentBox.layer?.backgroundColor = .clear
-        dashboardVC.presenterContainerBGView.layer?.backgroundColor = .clear
-        if let hideHeaderView {
-            dashboardVC.presenterHeaderView.isHidden = hideHeaderView
-//            dashboardVC.presenterContainerBGView.layer?.backgroundColor = .clear
+        
+        if hideHeaderView {
+            dashboardVC.presenterHeaderView.isHidden = true
+            dashboardVC.presenterContentBox.fillColor = .clear
         } else {
             dashboardVC.presenterHeaderView.isHidden = false
+            dashboardVC.presenterContentBox.fillColor = NSColor.Sphinx.Body
         }
         
         if !replacingVC {

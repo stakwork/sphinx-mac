@@ -546,7 +546,7 @@ extension ChatListViewController: NewMenuItemDataSourceDelegate {
         hideDivider: Bool = false,
         height: CGFloat? = nil,
         width: CGFloat? = nil,
-        hideHeaderView: Bool? = nil
+        hideHeaderView: Bool = false
     ) {
         closeButtonTapped()
         
