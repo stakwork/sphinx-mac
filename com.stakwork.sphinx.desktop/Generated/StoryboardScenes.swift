@@ -30,6 +30,8 @@ internal enum StoryboardScene {
         internal static let keychainRestoreViewController = SceneType<KeychainRestoreViewController>(storyboard: Invite.self, identifier: "KeychainRestoreViewController")
         
         internal static let shareInviteCodeViewController = SceneType<ShareInviteCodeViewController>(storyboard: Invite.self, identifier: "ShareInviteCodeViewController")
+        
+        internal static let newShareInviteCodeViewController = SceneType<NewShareInviteCodeViewController>(storyboard: Invite.self, identifier: "NewShareInviteCodeViewController")
     }
     
     internal enum Payments : StoryboardType{
