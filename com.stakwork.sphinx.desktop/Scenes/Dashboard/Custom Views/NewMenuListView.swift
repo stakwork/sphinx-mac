@@ -78,6 +78,10 @@ class NewMenuListView: NSView, LoadableNib {
     @IBAction func createTribeButtonTapped(_ sender: NSButton) {
         delegate?.buttonClicked(id: 7)
     }
+    
+    @IBAction func connectWithFriend(_ sender: NSButton) {
+        delegate?.buttonClicked(id: 8)
+    }
 }
 
 import Cocoa
