@@ -75,6 +75,8 @@ class WindowsManager {
         hideBackButton: Bool = true,
         replacingVC: Bool = false,
         height: CGFloat? = nil,
+        width: CGFloat? = nil,
+        hideHeaderView: Bool = false,
         backHandler: (() -> ())? = nil
     ) {
         guard let keyWindow = NSApplication.shared.keyWindow, let dashboardVC = keyWindow.contentViewController as? DashboardViewController else {
@@ -105,6 +107,8 @@ class WindowsManager {
                     hideBackButton: hideBackButton,
                     replacingVC: replacingVC,
                     height: height,
+                    width: width,
+                    hideHeaderView: hideHeaderView,
                     backHandler: backHandler
                 )
             })
@@ -117,6 +121,8 @@ class WindowsManager {
                 hideBackButton: hideBackButton,
                 replacingVC: replacingVC,
                 height: height,
+                width: width,
+                hideHeaderView: hideHeaderView,
                 backHandler: backHandler
             )
         }
@@ -130,6 +136,8 @@ class WindowsManager {
         hideBackButton: Bool = true,
         replacingVC: Bool = false,
         height: CGFloat? = nil,
+        width: CGFloat? = nil,
+        hideHeaderView: Bool = false,
         backHandler: (() -> ())? = nil
     ) {
         guard let keyWindow = NSApplication.shared.keyWindow, let dashboardVC = keyWindow.contentViewController as? DashboardViewController else {
@@ -154,6 +162,20 @@ class WindowsManager {
             dashboardVC.presenterViewHeightConstraint.constant = height
         } else {
             dashboardVC.presenterViewHeightConstraint.constant = 3000
+        }
+        
+        if let width {
+            dashboardVC.presenterViewWidthConstraint.constant = width
+        } else {
+            dashboardVC.presenterViewWidthConstraint.constant = 400
+        }
+        
+        if hideHeaderView {
+            dashboardVC.presenterHeaderView.isHidden = true
+            dashboardVC.presenterContentBox.fillColor = .clear
+        } else {
+            dashboardVC.presenterHeaderView.isHidden = false
+            dashboardVC.presenterContentBox.fillColor = NSColor.Sphinx.Body
         }
         
         if !replacingVC {

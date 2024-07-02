@@ -28,22 +28,22 @@
                     <rect key="frame" x="0.0" y="0.0" width="428" height="650"/>
                 </customView>
                 <box clipsToBounds="YES" boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="12" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="DfJ-kh-JNP">
-                    <rect key="frame" x="16" y="103" width="402" height="472"/>
+                    <rect key="frame" x="16" y="52" width="402" height="523"/>
                     <view key="contentView" id="pSi-6R-fXe">
-                        <rect key="frame" x="0.0" y="0.0" width="402" height="472"/>
+                        <rect key="frame" x="0.0" y="0.0" width="402" height="523"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="QTE-ud-592">
-                                <rect key="frame" x="22" y="198" width="367" height="258"/>
+                                <rect key="frame" x="22" y="250" width="367" height="257"/>
                                 <subviews>
                                     <scrollView clipsToBounds="YES" wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="iCg-uw-ipX">
-                                        <rect key="frame" x="0.0" y="0.0" width="367" height="258"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="367" height="257"/>
                                         <clipView key="contentView" clipsToBounds="YES" drawsBackground="NO" id="q98-ge-oR9">
-                                            <rect key="frame" x="0.0" y="0.0" width="367" height="258"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="367" height="257"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <collectionView clipsToBounds="YES" selectable="YES" id="gCN-XJ-z0m" customClass="ScrollDisabledCollectionView" customModule="Sphinx" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="367" height="258"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="367" height="257"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" id="pbs-0K-Nu1">
                                                         <size key="itemSize" width="50" height="50"/>
@@ -58,7 +58,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="epR-Wn-hp1">
-                                            <rect key="frame" x="351" y="0.0" width="16" height="206"/>
+                                            <rect key="frame" x="351" y="0.0" width="16" height="257"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
@@ -70,25 +70,53 @@
                                     <constraint firstItem="iCg-uw-ipX" firstAttribute="leading" secondItem="QTE-ud-592" secondAttribute="leading" id="iSy-Hg-Acf"/>
                                 </constraints>
                             </customView>
-                            <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e6s-qK-E8z">
-                                <rect key="frame" x="22" y="98" width="124" height="84"/>
+                            <stackView distribution="fillEqually" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e6s-qK-E8z">
+                                <rect key="frame" x="22" y="98" width="180" height="136"/>
                                 <subviews>
+                                    <box boxType="custom" cornerRadius="16" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="QpP-Lp-dGu">
+                                        <rect key="frame" x="0.0" y="104" width="180" height="32"/>
+                                        <view key="contentView" id="zoG-HM-rUD">
+                                            <rect key="frame" x="1" y="1" width="178" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fcm-iy-uRi">
+                                                    <rect key="frame" x="10" y="0.0" width="168" height="30"/>
+                                                    <buttonCell key="cell" type="inline" title="  Connect with Friend" bezelStyle="inline" image="qr_code" imagePosition="left" alignment="left" inset="2" id="fnW-hy-0dg">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" size="14" name="Roboto-Regular"/>
+                                                    </buttonCell>
+                                                    <color key="contentTintColor" name="TextInverted"/>
+                                                    <connections>
+                                                        <action selector="connectWithFriend:" target="-2" id="5u3-yM-wpe"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="fcm-iy-uRi" secondAttribute="trailing" id="PQO-Fg-oBK"/>
+                                                <constraint firstItem="fcm-iy-uRi" firstAttribute="top" secondItem="zoG-HM-rUD" secondAttribute="top" id="VLd-1R-9fn"/>
+                                                <constraint firstItem="fcm-iy-uRi" firstAttribute="leading" secondItem="zoG-HM-rUD" secondAttribute="leading" constant="10" id="cqu-no-zco"/>
+                                                <constraint firstAttribute="bottom" secondItem="fcm-iy-uRi" secondAttribute="bottom" id="s9f-Rc-vyE"/>
+                                            </constraints>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="9YJ-EQ-5gt"/>
+                                        </constraints>
+                                        <color key="borderColor" name="Body"/>
+                                        <color key="fillColor" name="BodyInverted"/>
+                                    </box>
                                     <box boxType="custom" cornerRadius="16" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="hrv-cF-Vh0">
-                                        <rect key="frame" x="0.0" y="52" width="124" height="32"/>
+                                        <rect key="frame" x="0.0" y="52" width="180" height="32"/>
                                         <view key="contentView" id="PC5-3r-16s">
-                                            <rect key="frame" x="1" y="1" width="122" height="30"/>
+                                            <rect key="frame" x="1" y="1" width="178" height="30"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QEB-rM-6Ox">
-                                                    <rect key="frame" x="10" y="0.0" width="112" height="30"/>
-                                                    <buttonCell key="cell" type="inline" title="Add Friend" bezelStyle="inline" image="plus" catalog="system" imagePosition="leading" alignment="center" state="on" inset="2" id="KMw-lf-2K9">
+                                                    <rect key="frame" x="10" y="0.0" width="168" height="30"/>
+                                                    <buttonCell key="cell" type="inline" title="Add Friend" bezelStyle="inline" image="plusIcon" imagePosition="left" alignment="left" inset="2" id="KMw-lf-2K9">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" size="14" name="Roboto-Regular"/>
                                                     </buttonCell>
                                                     <color key="contentTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <symbolConfiguration key="symbolConfiguration" weight="bold">
-                                                        <nil key="locale"/>
-                                                    </symbolConfiguration>
                                                     <connections>
                                                         <action selector="addFriendButtonTapped:" target="-2" id="DNv-Ru-MxM"/>
                                                     </connections>
@@ -103,27 +131,24 @@
                                         </view>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="Dfy-gp-EXj"/>
-                                            <constraint firstAttribute="width" constant="124" id="rmF-Ht-dDp"/>
+                                            <constraint firstAttribute="width" constant="180" id="rmF-Ht-dDp"/>
                                         </constraints>
                                         <color key="borderColor" name="Body"/>
                                         <color key="fillColor" name="GreenBorder"/>
                                     </box>
                                     <box boxType="custom" cornerRadius="16" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="j0I-LL-YwK">
-                                        <rect key="frame" x="0.0" y="0.0" width="124" height="32"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="32"/>
                                         <view key="contentView" id="67V-uY-ike">
-                                            <rect key="frame" x="1" y="1" width="122" height="30"/>
+                                            <rect key="frame" x="1" y="1" width="178" height="30"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4qp-hh-IZz">
-                                                    <rect key="frame" x="10" y="0.0" width="112" height="30"/>
-                                                    <buttonCell key="cell" type="inline" title="Create Tribe" bezelStyle="inline" image="plus" catalog="system" imagePosition="left" alignment="center" inset="2" id="gUU-Li-kHU">
+                                                    <rect key="frame" x="10" y="0.0" width="168" height="30"/>
+                                                    <buttonCell key="cell" type="inline" title="Create Tribe" bezelStyle="inline" image="plusIcon" imagePosition="left" alignment="left" inset="2" id="gUU-Li-kHU">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" size="14" name="Roboto-Regular"/>
                                                     </buttonCell>
                                                     <color key="contentTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <symbolConfiguration key="symbolConfiguration" weight="bold">
-                                                        <nil key="locale"/>
-                                                    </symbolConfiguration>
                                                     <connections>
                                                         <action selector="createTribeButtonTapped:" target="-2" id="o5I-1e-Ynv"/>
                                                     </connections>
@@ -142,14 +167,17 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="j0I-LL-YwK" firstAttribute="width" secondItem="hrv-cF-Vh0" secondAttribute="width" id="KdK-GG-4jw"/>
-                                    <constraint firstAttribute="height" constant="84" id="Lru-3f-QNh"/>
+                                    <constraint firstAttribute="height" constant="136" id="bNM-yb-4QC"/>
                                     <constraint firstItem="hrv-cF-Vh0" firstAttribute="width" secondItem="e6s-qK-E8z" secondAttribute="width" id="eP7-RS-5N1"/>
+                                    <constraint firstItem="QpP-Lp-dGu" firstAttribute="width" secondItem="hrv-cF-Vh0" secondAttribute="width" id="zWQ-eW-eGK"/>
                                 </constraints>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
+                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
@@ -187,7 +215,7 @@
                         </constraints>
                     </view>
                     <constraints>
-                        <constraint firstAttribute="height" constant="472" id="dr2-Ig-3ep"/>
+                        <constraint firstAttribute="height" constant="523" id="dr2-Ig-3ep"/>
                     </constraints>
                     <color key="borderColor" red="0.082352941176470587" green="0.11764705882352941" blue="0.15294117647058825" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     <color key="fillColor" name="HeaderBG"/>
@@ -252,13 +280,17 @@
         </customView>
     </objects>
     <resources>
-        <image name="plus" catalog="system" width="14" height="13"/>
+        <image name="plusIcon" width="20" height="20"/>
+        <image name="qr_code" width="16" height="16"/>
         <image name="xmark" catalog="system" width="14" height="13"/>
         <namedColor name="BlueTextAccent">
             <color red="0.36470588235294116" green="0.5607843137254902" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Body">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="BodyInverted">
+            <color red="0.082352941176470587" green="0.11764705882352941" blue="0.15294117647058825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="GreenBorder">
             <color red="0.18431372549019609" green="0.70196078431372544" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -274,6 +306,9 @@
         </namedColor>
         <namedColor name="SecondaryText">
             <color red="0.55686274509803924" green="0.58823529411764708" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextInverted">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
