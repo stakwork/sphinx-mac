@@ -13,12 +13,12 @@ protocol DraggingViewDelegate: AnyObject {
 }
 
 protocol ShowPreviewDelegate: AnyObject {
-    func showImagePreview(data: Data, image: NSImage)
-    func showPDFPreview(data: Data, image: NSImage, url: URL)
-    func showGIFPreview(data: Data, image: NSImage?)
-    func showVideoPreview(data: Data, url: URL)
-    func showFilePreview(data: Data, url: URL)
-    func showGiphyPreview(data: Data, object: GiphyObject)
+    func showImagePreview(data: Data, image: NSImage, fileName: String)
+    func showPDFPreview(data: Data, image: NSImage, url: URL, fileName: String)
+    func showGIFPreview(data: Data, image: NSImage?, fileName: String)
+    func showVideoPreview(data: Data, url: URL, fileName: String)
+    func showFilePreview(data: Data, url: URL, fileName: String)
+    func showGiphyPreview(data: Data, object: GiphyObject, fileName: String)
 }
 
 class DraggingDestinationView: NSView, LoadableNib {
@@ -84,7 +84,7 @@ class DraggingDestinationView: NSView, LoadableNib {
         configureFilteringOptions(types: NSImage.imageTypes)
         dragLabel.stringValue = ""
     }
-
+    
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
         
@@ -158,6 +158,36 @@ class DraggingDestinationView: NSView, LoadableNib {
     
     func getMediaData() -> Data? {
         return mediaData
+    }
+    
+    func openFileExplorer() {
+        let dialog = NSOpenPanel()
+        
+        dialog.title = "Choose files"
+        dialog.showsResizeIndicator = true
+        dialog.showsHiddenFiles = false
+        dialog.canChooseDirectories = false
+        dialog.canChooseFiles = true
+        dialog.allowsMultipleSelection = true
+        
+        if (dialog.runModal() == NSApplication.ModalResponse.OK) {
+            let results = dialog.urls // Array of URLs of the selected files
+            if results.count > 10 {
+                let alert = NSAlert()
+                alert.messageText = "Selection Limit Exceeded"
+                alert.informativeText = "You can only select up to 10 files."
+                alert.alertStyle = .warning
+                alert.runModal()
+            } else {
+                // Process the selected files
+                for url in results {
+                    _ = attachItem(url: url)
+                    
+                }
+            }
+        } else {
+            return
+        }
     }
     
     func configureDraggingStyle() {
@@ -263,7 +293,7 @@ class DraggingDestinationView: NSView, LoadableNib {
     func shouldAllowDrag(_ draggingInfo: NSDraggingInfo) -> Bool {
         var shouldAccept = false
         let pasteBoard = draggingInfo.draggingPasteboard
-
+        
         let filteringOptionsCount = filteringOptions[NSPasteboard.ReadingOptionKey.urlReadingContentsConformToTypes]?.count ?? 0
         let options = filteringOptionsCount > 0 ? filteringOptions : nil
         
@@ -272,7 +302,7 @@ class DraggingDestinationView: NSView, LoadableNib {
         }
         return shouldAccept
     }
-
+    
     override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
         reset()
         
@@ -319,67 +349,50 @@ class DraggingDestinationView: NSView, LoadableNib {
     func processURLs(pasteBoard:NSPasteboard) -> Bool{
         let filteringOptionsCount = filteringOptions[NSPasteboard.ReadingOptionKey.urlReadingContentsConformToTypes]?.count ?? 0
         let options = filteringOptionsCount > 0 ? filteringOptions : nil
-
+        
         if let urls = pasteBoard.readObjects(forClasses: [NSURL.self], options: options) as? [URL], urls.count <= 10 {
             for url in urls {
-//                let url = urls[0]
-                
-                if !url.absoluteString.starts(with: "file://") {
+                let result = attachItem(url: url)
+                if (!result) {
                     return false
-                }
-                
-                if let data = getDataFrom(url: url) {
-                    fileName = (url.absoluteString as NSString).lastPathComponent.percentNotEscaped
-                    
-                    if let image = NSImage(contentsOf: url) {
-                        if url.isPDF {
-                            previewDelegate?.showPDFPreview(data: data, image: image, url: url)
-    //                        showPDFPreview(data: data, image: image, url: url)
-                        } else if data.isAnimatedImage() {
-    //                        showGIFPreview(data: data, image: image)
-                            previewDelegate?.showGIFPreview(data: data, image: image)
-                        } else {
-                            previewDelegate?.showImagePreview(data: data, image: image)
-    //                        showImagePreview(data: data, image: image)
-                        }
-                    } else if url.isVideo {
-                        previewDelegate?.showVideoPreview(data: data, url: url)
-    //                    showVideoPreview(data: data, url: url)
-                    } else {
-                        previewDelegate?.showFilePreview(data: data, url: url)
-    //                    showFilePreview(data: data, url: url)
-                    }
-                    
                 }
             }
             return true
         }
-        if let images = pasteBoard.readObjects(forClasses: [NSImage.self]),
-           images.count > 0 {
-            for pos in 0 ..< images.count {
-                if let image = images[pos] as? NSImage,
-                   let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil) {
-                    
-                    let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
-                    if let jpegData = bitmapRep.representation(using: NSBitmapImageRep.FileType.jpeg, properties: [:]) {
-                        showImagePreview(data: jpegData, image: image)
-                        return true
+        return false
+    }
+    
+    func attachItem(url: URL) -> Bool {
+        if !url.absoluteString.starts(with: "file://") {
+            return false
+        }
+        
+        if let data = getDataFrom(url: url) {
+            if let fileName = (url.absoluteString as NSString).lastPathComponent.percentNotEscaped {
+                //            allMediaData.append(data)
+                
+                if let image = NSImage(contentsOf: url) {
+                    if url.isPDF {
+                        previewDelegate?.showPDFPreview(data: data, image: image, url: url, fileName: fileName)
+                        //                        showPDFPreview(data: data, image: image, url: url)
+                    } else if data.isAnimatedImage() {
+                        //                        showGIFPreview(data: data, image: image)
+                        previewDelegate?.showGIFPreview(data: data, image: image, fileName: fileName)
+                    } else {
+                        previewDelegate?.showImagePreview(data: data, image: image, fileName: fileName)
+                        //                        showImagePreview(data: data, image: image)
                     }
+                } else if url.isVideo {
+                    previewDelegate?.showVideoPreview(data: data, url: url, fileName: fileName)
+                    //                    showVideoPreview(data: data, url: url)
+                } else {
+                    previewDelegate?.showFilePreview(data: data, url: url, fileName: fileName)
+                    //                    showFilePreview(data: data, url: url)
                 }
             }
+            
         }
-//        if let images = pasteBoard.readObjects(forClasses: [NSImage.self]),
-//            images.count > 0,
-//            let image = images[0] as? NSImage,
-//            let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil) {
-//            
-//            let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
-//            if let jpegData = bitmapRep.representation(using: NSBitmapImageRep.FileType.jpeg, properties: [:]) {
-//                showImagePreview(data: jpegData, image: image)
-//                return true
-//            }
-//        }
-        return false
+        return true
     }
     
     func getDataFrom(url: URL) -> Data? {

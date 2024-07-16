@@ -37,28 +37,38 @@ extension NewChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
     
     func shouldSendMessage() {
         if sendButton.isEnabled {
-            delegate?.shouldSendMessage(
-                text: messageTextView.string.trim(),
-                price: Int(priceTextField.stringValue) ?? 0,
-                completion: { success in
-                    if !success {
-                        AlertHelper.showAlert(
-                            title: "generic.error.title".localized,
-                            message: "generic.message.error".localized
-                        )
-                    }
-                }
-            )
-            
-            clearMessage()
+            sendAllAttachedMessage(times: newChatAttachmentView.allMediaData.count)
         }
+    }
+    
+    func sendAllAttachedMessage(times: Int, currentCount: Int = 0) {
+        guard currentCount < times else {
+            clearPreview()
+            return
+        }
+        delegate?.shouldSendMessage(
+            text: currentCount == 0 ? messageTextView.string.trim() : "",
+            price: currentCount == 0 ? (Int(priceTextField.stringValue) ?? 0) : 0,
+            mediaObject: newChatAttachmentView.allMediaData.count > currentCount ? newChatAttachmentView.allMediaData[currentCount] : nil,
+            completion: { [self] success in
+                if !success {
+                    AlertHelper.showAlert(
+                        title: "generic.error.title".localized,
+                        message: "generic.message.error".localized
+                    )
+                    sendAllAttachedMessage(times: newChatAttachmentView.allMediaData.count, currentCount: currentCount + 1)
+                } else {
+                    sendAllAttachedMessage(times: newChatAttachmentView.allMediaData.count, currentCount: currentCount + 1)
+                }
+            }
+        )
     }
     
     func clearMessage() {
         messageTextView.string = ""
         priceTextField.stringValue = ""
         textDidChange(Notification(name: NSControl.textDidChangeNotification))
-        
+        clearPreview()
         updateColor()
         delegate?.shouldMainChatOngoingMessage()
     }
