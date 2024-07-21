@@ -37,7 +37,18 @@ extension NewChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
     
     func shouldSendMessage() {
         if sendButton.isEnabled {
-            sendAllAttachedMessage(times: newChatAttachmentView.allMediaData.count)
+            if newChatAttachmentView.allMediaData.count == 0 {
+                delegate?.shouldSendMessage(text: messageTextView.string.trim(), price: Int(priceTextField.stringValue) ?? 0, mediaObject: nil, completion: { [weak self] success in
+                    if !success {
+                        AlertHelper.showAlert(
+                            title: "generic.error.title".localized,
+                            message: "generic.message.error".localized
+                        )
+                    }
+                })
+            } else {
+                sendAllAttachedMessage(times: newChatAttachmentView.allMediaData.count)
+            }
         }
     }
     

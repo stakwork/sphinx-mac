@@ -175,6 +175,7 @@ extension NewChatViewController : ChatBottomViewDelegate {
         mediaObject:  MediaObjectInfo? = nil,
         completion: @escaping (Bool) -> ()
     ) {
+        self.chatBottomView.clearMessage()
         chatBottomView.resetReplyView()
         ChatTrackingHandler.shared.deleteReplyableMessage(with: chat?.id)
         
