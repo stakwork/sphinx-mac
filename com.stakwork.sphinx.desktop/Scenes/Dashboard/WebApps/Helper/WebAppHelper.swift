@@ -17,7 +17,6 @@ protocol WebAppHelperDelegate : NSObject{
 
 class WebAppHelper : NSObject {
     
-    
     public let messageHandler = "sphinx"
     
     var webView : WKWebView! = nil
@@ -383,13 +382,17 @@ extension WebAppHelper : WKScriptMessageHandler {
     
     func saveGraphData(_ dict: [String: AnyObject]) {
         if let data = dict["data"] {
-            if let type = data["type"] as? Int, let metaData = data["metaData"] as? AnyObject {
+            let typeInt = data["type"] as? Int
+            let typeString = data["type"] as? String
+            if let metaData = data["metaData"] as? AnyObject, (typeInt != nil || typeString != nil) {
                 
-            
-                let params = [
-                    "type": type as AnyObject,
-                    "meta_data": metaData as AnyObject
-                ]
+                var params: [String: AnyObject] = ["meta_data": metaData as AnyObject]
+                
+                if let typeInt = typeInt {
+                    params["type"] = typeInt as AnyObject
+                } else if let typeString = typeString {
+                    params["type"] = typeString as AnyObject
+                }
                 
                 API.sharedInstance.saveGraphData(parameters: params, callback: { graphData in
                     let newDict = dict
@@ -471,14 +474,12 @@ extension WebAppHelper : WKScriptMessageHandler {
             newDict["identifier"] = identifier as AnyObject
             newDict["preimage"] = preimage as AnyObject
             newDict["paymentRequest"] = paymentRequest as AnyObject
-            
-            
             newDict["issuer"] = issuer as AnyObject
             newDict["status"] = status as AnyObject
+            
             if let paths = lsat["paths"].string {
                 newDict["paths"] = paths as AnyObject
-            }
-            else {
+            } else {
                 newDict["paths"] = "" as AnyObject
             }
         }
@@ -487,7 +488,7 @@ extension WebAppHelper : WKScriptMessageHandler {
     
     func getActiveLsat(_ dict: [String: AnyObject]) {
         if let issuer = dict["issuer"] as? String {
-            API.sharedInstance.getActiveLsat(issuer: issuer,callback: { lsat in
+            API.sharedInstance.getActiveLsat(issuer: issuer, callback: { lsat in
                 let newDict = self.decodeLsat(lsat: lsat, dict: dict)
                 self.getLsatResponse(dict: newDict, success: true)
             }, errorCallback: {

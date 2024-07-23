@@ -72,9 +72,12 @@ extension ChatListViewController : ChildVCDelegate, ActionsDelegate {
         
         WindowsManager.sharedInstance.showOnCurrentWindow(
             with: "payment.request".localized,
-            identifier: "create-invoice-window",
+            identifier: "show-invoice-window",
             contentVC: vc,
-            height: 629
+            hideDivider: true,
+            hideBackButton: true,
+            replacingVC: true,
+            height: 766
         )
     }
     
