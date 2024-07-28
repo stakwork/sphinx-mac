@@ -47,13 +47,13 @@ extension NewChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
                     }
                 })
             } else {
-                sendAllAttachedMessage(times: newChatAttachmentView.allMediaData.count)
+                sendAllAttachedMessage(totalCount: newChatAttachmentView.allMediaData.count)
             }
         }
     }
     
-    func sendAllAttachedMessage(times: Int, currentCount: Int = 0) {
-        guard currentCount < times else {
+    func sendAllAttachedMessage(totalCount: Int, currentCount: Int = 0) {
+        guard currentCount < totalCount else {
             clearPreview()
             return
         }
@@ -67,12 +67,13 @@ extension NewChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
                         title: "generic.error.title".localized,
                         message: "generic.message.error".localized
                     )
-                    sendAllAttachedMessage(times: newChatAttachmentView.allMediaData.count, currentCount: currentCount + 1)
+                    sendAllAttachedMessage(totalCount: newChatAttachmentView.allMediaData.count, currentCount: currentCount + 1)
                 } else {
-                    sendAllAttachedMessage(times: newChatAttachmentView.allMediaData.count, currentCount: currentCount + 1)
+                    sendAllAttachedMessage(totalCount: newChatAttachmentView.allMediaData.count, currentCount: currentCount + 1)
                 }
             }
         )
+        initialClearPreview()
     }
     
     func clearMessage() {

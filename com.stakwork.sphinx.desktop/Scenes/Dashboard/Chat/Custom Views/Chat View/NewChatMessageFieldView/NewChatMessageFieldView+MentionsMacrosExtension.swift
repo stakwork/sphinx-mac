@@ -297,9 +297,7 @@ extension NewChatMessageFieldView: NewChatAttachmentDelegate {
     }
     
     func clearPreview() {
-        fileDroppedCounter = 0
-        messageTextView.string = ""
-        priceTextField.stringValue = ""
+        attachmentsButton.isEnabled = true
         var menuItems = newChatAttachmentView.menuItems
             menuItems.removeAll()
             newChatAttachmentView.allMediaData.removeAll()
@@ -312,6 +310,15 @@ extension NewChatMessageFieldView: NewChatAttachmentDelegate {
             } else {
                 updateChatBottomView()
             }
+    }
+    
+    func initialClearPreview() {
+        fileDroppedCounter = 0
+        messageTextView.string = ""
+        priceTextField.stringValue = ""
+        newChatAttachmentView.isHidden = true
+        attachmentsButton.isEnabled = false
+        textDidChange(Notification(name: NSControl.textDidChangeNotification))
     }
     
     func playPreview(of data: Data?) {
