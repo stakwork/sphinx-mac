@@ -46,6 +46,7 @@ extension NewChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
                         )
                     }
                 })
+                clearMessage()
             } else {
                 sendAllAttachedMessage(totalCount: newChatAttachmentView.allMediaData.count)
             }
