@@ -6,7 +6,7 @@
 //  Copyright © 2023 Tomas Timinskas. All rights reserved.
 //
 
-import Foundation
+import Cocoa
 
 extension NewChatViewController {
     func setMessageFieldActive() {
@@ -172,29 +172,25 @@ extension NewChatViewController : ChatBottomViewDelegate {
     func shouldSendMessage(
         text: String,
         price: Int,
+        mediaObject:  MediaObjectInfo? = nil,
         completion: @escaping (Bool) -> ()
     ) {
         chatBottomView.resetReplyView()
         ChatTrackingHandler.shared.deleteReplyableMessage(with: chat?.id)
         
-        if shouldUploadMedia() {
+        if mediaObject != nil {
             
-            let attachmentObject = getAttachmentObject(
-                text: text,
-                price: price
-            )
-            
-            draggingView.setup()
-            
-            if let attachmentObject = attachmentObject {
+            if let mediaObject,
+               let attachmentObject = getData(price: price, text: text, mediaObjectInfo: mediaObject) {
                 newChatViewModel.insertProvisionalAttachmentMessageAndUpload(
-                    attachmentObject: attachmentObject, chat: chat
+                    attachmentObject: attachmentObject, chat: chat, completion: completion
                 )
             } else {
                 messageBubbleHelper.showGenericMessageView(
                     text: "generic.error.message".localized, in: view
                 )
             }
+            draggingView.setup()
         } else if let text = giphyText(text: text), let data = draggingView.getMediaData() {
             
             draggingView.setup()
@@ -311,6 +307,19 @@ extension NewChatViewController : ChatBottomViewDelegate {
 //            delegate: self,
 //            mode: .Request
 //        )
+    }
+    
+    func getData(price: Int,
+                 text: String,
+                 mediaObjectInfo: MediaObjectInfo) -> AttachmentObject? {
+        if let data = mediaObjectInfo.mediaData, let type = mediaObjectInfo.mediaType {
+            let (key, encryptedData) = SymmetricEncryptionManager.sharedInstance.encryptData(data: data)
+            if let encryptedData = encryptedData {
+                let attachmentObject = AttachmentObject(data: encryptedData, fileName: mediaObjectInfo.fileName, mediaKey: key, type: type, text: text, image: mediaObjectInfo.image, price: price)
+                return attachmentObject
+            }
+        }
+        return nil
     }
     
     func hideModals() -> Bool {
@@ -484,4 +493,11 @@ extension NewChatViewController : ThreadsListViewControllerDelegate {
     func didSelectThreadWith(uuid: String) {
         showThread(threadID: uuid)
     }
+}
+
+struct MediaObjectInfo {
+    let mediaData: Data?
+    let mediaType: AttachmentsManager.AttachmentType?//AttachmentItemType?
+    let fileName: String
+    let image: NSImage?
 }

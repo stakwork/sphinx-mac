@@ -13,7 +13,8 @@ extension NewChatViewModel: AttachmentsManagerDelegate {
     func insertProvisionalAttachmentMessageAndUpload(
         attachmentObject: AttachmentObject,
         chat: Chat?,
-        audioDuration: Double? = nil
+        audioDuration: Double? = nil,
+        completion: @escaping (Bool) -> ()
     ) {
         let attachmentsManager = AttachmentsManager.sharedInstance
 
@@ -47,8 +48,11 @@ extension NewChatViewModel: AttachmentsManagerDelegate {
             attachmentsManager.uploadAndSendAttachment(
                 attachmentObject: attachmentObject,
                 replyingMessage: replyingTo,
-                threadUUID: threadUUID ?? replyingTo?.threadUUID ?? replyingTo?.uuid
+                threadUUID: threadUUID ?? replyingTo?.threadUUID ?? replyingTo?.uuid,
+                completion: completion
             )
+        } else {
+            completion(false)
         }
 
         resetReply()
@@ -146,7 +150,7 @@ extension NewChatViewModel {
                     attachmentObject: attachmentObject,
                     chat: chat,
                     audioDuration: audioData.1
-                )
+                ) { _ in }
             }
         }
     }

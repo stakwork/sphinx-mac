@@ -282,20 +282,65 @@ extension NewChatMessageFieldView: NewChatAttachmentDelegate {
         var menuItems = newChatAttachmentView.menuItems
         if let index, menuItems.count > index {
             menuItems.remove(at: index)
+            newChatAttachmentView.allMediaData.remove(at: index)
             newChatAttachmentView.isHidden = menuItems.isEmpty
             newChatAttachmentView.updateCollectionView(menuItems: menuItems)
             _ = updateBottomBarHeight()
-            updateAddButton(currentItems: menuItems, hasText: !messageTextView.string.isEmpty)
-            
+            updateAddButton(currentItems: menuItems)
+            if menuItems.isEmpty {
+                updateEmptyAttachmentChatBottomView()
+            } else {
+                updateChatBottomView()
+            }
         }
         
+    }
+    
+    func clearPreview() {
+        attachmentsButton.isEnabled = true
+        var menuItems = newChatAttachmentView.menuItems
+            menuItems.removeAll()
+            newChatAttachmentView.allMediaData.removeAll()
+            newChatAttachmentView.isHidden = menuItems.isEmpty
+            newChatAttachmentView.updateCollectionView(menuItems: menuItems)
+            _ = updateBottomBarHeight()
+            updateAddButton(currentItems: menuItems)
+            if menuItems.isEmpty {
+                updateEmptyAttachmentChatBottomView()
+            } else {
+                updateChatBottomView()
+            }
+    }
+    
+    func initialClearPreview() {
+        fileDroppedCounter = 0
+        messageTextView.string = ""
+        priceTextField.stringValue = ""
+        newChatAttachmentView.isHidden = true
+        attachmentsButton.isEnabled = false
+        textDidChange(Notification(name: NSControl.textDidChangeNotification))
     }
     
     func playPreview(of data: Data?) {
         
     }
     
-    func updateAddButton(currentItems: [NewAttachmentItem], hasText: Bool = false) {
+    func updateChatBottomView() {
+        micButton.isHidden = !newChatAttachmentView.menuItems.isEmpty
+        
+        priceContainer.isHidden = newChatAttachmentView.menuItems.isEmpty
+        
+        sendButton.isHidden = newChatAttachmentView.menuItems.isEmpty
+    }
+    
+    func updateEmptyAttachmentChatBottomView() {
+        micButton.isHidden = !messageTextView.string.isEmpty
+        priceContainer.isHidden = messageTextView.string.isEmpty || isThread
+        sendButton.isHidden = messageTextView.string.isEmpty
+        priceTextField.stringValue = messageTextView.string.isEmpty ? "" : priceTextField.stringValue
+    }
+    
+    func updateAddButton(currentItems: [NewAttachmentItem], hasText: Bool = true) {
         let leadingConstant = self.frame.width - CGFloat((currentItems.count * 140)) - 110 - CGFloat((currentItems.count - 1) * 14)
         if (leadingConstant > 170) {
             newChatAttachmentView.addButtonLeadingConstraint.constant = -(leadingConstant + (hasText ? -140 : 0))

@@ -80,20 +80,19 @@ class NewChatAttachmentListItem: NSCollectionViewItem {
         self.previewItem = item
         resetViews()
         guard let data = item.previewData else { return }
-        if (item.previewType == .image) {
+        if (item.previewType == .Photo) {
             addImagePreviewView()
             mediaImageView.isHidden = false
-        } else if (item.previewType == .gif) {
+        } else if (item.previewType == .Gif) {
             showGifWith(data: data, size: CGSize(width: 140, height: 140))
             gifView.isHidden = false
-        } else if item.previewType == .video {
+        } else if item.previewType == .Video {
             videoPlayerView.isHidden = false
             videoPlayerView.wantsLayer = true
             videoPlayerView.layer?.cornerRadius = 10
             showVideoWith(data: data, size: CGSize(width: 140, height: 140), autoPlay: false)
-        } else if item.previewType == .pdf {
+        } else if item.previewType == .PDF {
             guard let url = item.previewURL else { return }
-            
             fileDescriptionView.isHidden = false
             fileDescriptionLabel.isHidden = false
             mediaImageView.isHidden = false

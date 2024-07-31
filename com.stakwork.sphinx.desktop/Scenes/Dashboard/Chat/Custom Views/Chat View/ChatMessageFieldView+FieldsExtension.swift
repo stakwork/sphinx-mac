@@ -36,22 +36,22 @@ extension ChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
     }
     
     func shouldSendMessage() {
-        if sendButton.isEnabled {
-            delegate?.shouldSendMessage(
-                text: messageTextView.string.trim(),
-                price: Int(priceTextField.stringValue) ?? 0,
-                completion: { success in
-                    if !success {
-                        AlertHelper.showAlert(
-                            title: "generic.error.title".localized,
-                            message: "generic.message.error".localized
-                        )
-                    }
-                }
-            )
-            
-            clearMessage()
-        }
+//        if sendButton.isEnabled {
+//            delegate?.shouldSendMessage(
+//                text: messageTextView.string.trim(),
+//                price: Int(priceTextField.stringValue) ?? 0,
+//                completion: { success in
+//                    if !success {
+//                        AlertHelper.showAlert(
+//                            title: "generic.error.title".localized,
+//                            message: "generic.message.error".localized
+//                        )
+//                    }
+//                }
+//            )
+//            
+//            clearMessage()
+//        }
     }
     
     func clearMessage() {

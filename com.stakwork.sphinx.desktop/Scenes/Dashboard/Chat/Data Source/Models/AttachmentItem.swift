@@ -13,7 +13,7 @@ enum AttachmentItemType {
 }
 struct NewAttachmentItem {
     let previewImage: NSImage
-    let previewType: AttachmentItemType
+    let previewType: AttachmentsManager.AttachmentType
     let previewData: Data?
     var previewURL: URL? = nil
 }

@@ -30,6 +30,7 @@ class NewChatAttachmentView: NSView, LoadableNib {
     typealias CollectionViewCell = NewMenuListItem
     
     var menuItems: [NewAttachmentItem] = []
+    var allMediaData: [MediaObjectInfo] = []
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -60,6 +61,6 @@ class NewChatAttachmentView: NSView, LoadableNib {
     }
     
     @IBAction func attachmentButtonTapped(_ sender: NSButton) {
-//        attachmentDelegate?.addAttachmentClicked()
+        attachmentDelegate?.addAttachmentClicked()
     }
 }

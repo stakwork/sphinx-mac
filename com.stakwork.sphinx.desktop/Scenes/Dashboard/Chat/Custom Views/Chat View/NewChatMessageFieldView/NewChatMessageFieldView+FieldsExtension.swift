@@ -37,28 +37,51 @@ extension NewChatMessageFieldView : NSTextViewDelegate, MessageFieldDelegate {
     
     func shouldSendMessage() {
         if sendButton.isEnabled {
-            delegate?.shouldSendMessage(
-                text: messageTextView.string.trim(),
-                price: Int(priceTextField.stringValue) ?? 0,
-                completion: { success in
+            if newChatAttachmentView.allMediaData.count == 0 {
+                delegate?.shouldSendMessage(text: messageTextView.string.trim(), price: Int(priceTextField.stringValue) ?? 0, mediaObject: nil, completion: { [weak self] success in
                     if !success {
                         AlertHelper.showAlert(
                             title: "generic.error.title".localized,
                             message: "generic.message.error".localized
                         )
                     }
-                }
-            )
-            
-            clearMessage()
+                })
+                clearMessage()
+            } else {
+                sendAllAttachedMessage(totalCount: newChatAttachmentView.allMediaData.count)
+            }
         }
+    }
+    
+    func sendAllAttachedMessage(totalCount: Int, currentCount: Int = 0) {
+        guard currentCount < totalCount else {
+            clearPreview()
+            return
+        }
+        delegate?.shouldSendMessage(
+            text: currentCount == 0 ? messageTextView.string.trim() : "",
+            price: currentCount == 0 ? (Int(priceTextField.stringValue) ?? 0) : 0,
+            mediaObject: newChatAttachmentView.allMediaData.count > currentCount ? newChatAttachmentView.allMediaData[currentCount] : nil,
+            completion: { [self] success in
+                if !success {
+                    AlertHelper.showAlert(
+                        title: "generic.error.title".localized,
+                        message: "generic.message.error".localized
+                    )
+                    sendAllAttachedMessage(totalCount: newChatAttachmentView.allMediaData.count, currentCount: currentCount + 1)
+                } else {
+                    sendAllAttachedMessage(totalCount: newChatAttachmentView.allMediaData.count, currentCount: currentCount + 1)
+                }
+            }
+        )
+        initialClearPreview()
     }
     
     func clearMessage() {
         messageTextView.string = ""
         priceTextField.stringValue = ""
         textDidChange(Notification(name: NSControl.textDidChangeNotification))
-        
+        clearPreview()
         updateColor()
         delegate?.shouldMainChatOngoingMessage()
     }

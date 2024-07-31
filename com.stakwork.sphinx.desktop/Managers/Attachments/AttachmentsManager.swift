@@ -159,7 +159,8 @@ class AttachmentsManager {
     func uploadAndSendAttachment(
         attachmentObject: AttachmentObject,
         replyingMessage: TransactionMessage? = nil,
-        threadUUID: String? = nil
+        threadUUID: String? = nil,
+        completion: @escaping (Bool) -> ()
     ) {
         uploading = true
         
@@ -173,11 +174,13 @@ class AttachmentsManager {
                 self.uploadAndSendAttachment(
                     attachmentObject: attachmentObject,
                     replyingMessage: replyingMessage,
-                    threadUUID: threadUUID
+                    threadUUID: threadUUID,
+                    completion: completion
                 )
             }, errorCompletion: {
                 UserDefaults.Keys.attachmentsToken.removeValue()
                 self.uploadFailed()
+                completion(false)
             })
             return
         }
@@ -188,15 +191,18 @@ class AttachmentsManager {
         )
         
         if let _ = attachmentObject.data {
-            uploadData(attachmentObject: attachmentObject, token: token) { fileJSON, AttachmentObject in
-                self.sendAttachment(
+            uploadData(attachmentObject: attachmentObject, token: token) { [weak self] fileJSON, AttachmentObject in
+                self?.sendAttachment(
                     file: fileJSON,
                     attachmentObject: attachmentObject,
                     replyingMessage: replyingMessage,
-                    threadUUID: threadUUID
+                    threadUUID: threadUUID,
+                    completion: completion
                     
                 )
             }
+        } else {
+            completion(false)
         }
     }
     
@@ -221,7 +227,8 @@ class AttachmentsManager {
         file: NSDictionary,
         attachmentObject: AttachmentObject,
         replyingMessage: TransactionMessage? = nil,
-        threadUUID: String? = nil
+        threadUUID: String? = nil,
+        completion: @escaping (Bool) -> ()
     ) {
         guard let params = TransactionMessage.getMessageParams(
             contact: contact,
@@ -234,6 +241,7 @@ class AttachmentsManager {
             threadUUID: threadUUID
         ) else {
             uploadFailed()
+            completion(false)
             return
         }
         
@@ -243,8 +251,10 @@ class AttachmentsManager {
                 provisionalMessageId: self.provisionalMessage?.id ?? -1
             )
             self.createLocalMessage(message: message, attachmentObject: attachmentObject)
+            completion(true)
         }, errorCallback: {
             self.uploadFailed()
+            completion(false)
         })
     }
     

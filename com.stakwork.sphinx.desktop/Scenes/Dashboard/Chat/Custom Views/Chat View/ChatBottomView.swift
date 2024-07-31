@@ -36,7 +36,8 @@ protocol ChatBottomViewDelegate : AnyObject {
     func shouldScrollToBottom()
     
     ///Sending message
-    func shouldSendMessage(text: String, price: Int, completion: @escaping (Bool) -> ())
+//    func shouldSendMessage(text: String, price: Int, completion: @escaping (Bool) -> ())
+    func shouldSendMessage(text: String, price: Int, mediaObject:  MediaObjectInfo?, completion: @escaping (Bool) -> ())
     func shouldMainChatOngoingMessage()
 }
 

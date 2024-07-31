@@ -269,9 +269,7 @@ extension NewChatViewController: NewMenuItemDataSourceDelegate {
         chatBottomView.messageFieldView.childViewControllerContainer.isHidden = true
         switch index {
         case 0:
-            self.draggingView.configureDraggingStyle()
-            addNewEscapeMonitor()
-            draggingView.bottomMargin.constant = (chatBottomView.messageFieldView.messageContainerHeightConstraint.constant - 50)
+            self.draggingView.openFileExplorer()
         default:
             break
         }
@@ -280,40 +278,38 @@ extension NewChatViewController: NewMenuItemDataSourceDelegate {
 
 extension NewChatViewController: AddAttachmentDelegate {
     func addAttachmentClicked() {
-        self.draggingView.configureDraggingStyle()
-        addNewEscapeMonitor()
-        draggingView.bottomMargin.constant = (chatBottomView.messageFieldView.messageContainerHeightConstraint.constant - 50)
+        draggingView.openFileExplorer()
     }
 }
 
 extension NewChatViewController: ShowPreviewDelegate {
-    func showImagePreview(data: Data, image: NSImage) {
-        showPreview(data: data, image: image, type: .image)
+    func showImagePreview(data: Data, image: NSImage, fileName: String) {
+        showPreview(data: data, image: image, type: .Photo, fileName: fileName)
     }
     
-    func showPDFPreview(data: Data, image: NSImage, url: URL) {
-        showVideoFilePreview(data: data, type: .pdf, url: url)
+    func showPDFPreview(data: Data, image: NSImage, url: URL, fileName: String) {
+        showVideoFilePreview(data: data, type: .PDF, url: url, fileName: fileName)
     }
     
-    func showGIFPreview(data: Data, image: NSImage?) {
+    func showGIFPreview(data: Data, image: NSImage?, fileName: String) {
         if let image {
-            showPreview(data: data, image: image, type: .gif)
+            showPreview(data: data, image: image, type: .Gif, fileName: fileName)
         }
     }
     
-    func showVideoPreview(data: Data, url: URL) {
-        showVideoFilePreview(data: data, type: .video, url: url)
+    func showVideoPreview(data: Data, url: URL, fileName: String) {
+        showVideoFilePreview(data: data, type: .Video, url: url, fileName: fileName)
     }
     
-    func showFilePreview(data: Data, url: URL) {
-        showVideoFilePreview(data: data, type: .video, url: url)
+    func showFilePreview(data: Data, url: URL, fileName: String) {
+        showVideoFilePreview(data: data, type: .GenericFile, url: url, fileName: fileName)
     }
     
-    func showGiphyPreview(data: Data, object: GiphyObject) {
+    func showGiphyPreview(data: Data, object: GiphyObject, fileName: String) {
         
     }
     
-    func showPreview(data: Data, image: NSImage, type: AttachmentItemType) {
+    func showPreview(data: Data, image: NSImage, type: AttachmentsManager.AttachmentType, fileName: String) {
         if chatBottomView.messageFieldView.fileDroppedCounter <= totalFileDroppable {
             chatBottomView.messageFieldView.fileDroppedCounter += 1
             let newItem = NewAttachmentItem(previewImage: image, previewType: type, previewData: data)
@@ -322,15 +318,17 @@ extension NewChatViewController: ShowPreviewDelegate {
             chatBottomView.messageFieldView.newChatAttachmentView.updateCollectionView(menuItems: currentItems)
             draggingView.resetView()
             chatBottomView.messageFieldView.newChatAttachmentView.isHidden = false
+            let mediaInfo = MediaObjectInfo(mediaData: data, mediaType: type, fileName: fileName, image: image)
+            chatBottomView.messageFieldView.newChatAttachmentView.allMediaData.append(mediaInfo)
             _ = chatBottomView.messageFieldView.updateBottomBarHeight()
         } else {
             AlertHelper.showAlert(title: "Failed To Upload", message: "Unable to attach the file")
             draggingView.resetView()
         }
-        
+        chatBottomView.messageFieldView.updateChatBottomView()
     }
     
-    func showVideoFilePreview(data: Data, image: NSImage? = nil, type: AttachmentItemType, url: URL) {
+    func showVideoFilePreview(data: Data, image: NSImage? = nil, type: AttachmentsManager.AttachmentType, url: URL, fileName: String) {
         
         if chatBottomView.messageFieldView.fileDroppedCounter <= totalFileDroppable {
             chatBottomView.messageFieldView.fileDroppedCounter += 1
@@ -340,18 +338,20 @@ extension NewChatViewController: ShowPreviewDelegate {
             chatBottomView.messageFieldView.newChatAttachmentView.updateCollectionView(menuItems: currentItems)
             draggingView.resetView()
             chatBottomView.messageFieldView.newChatAttachmentView.isHidden = false
+            let mediaInfo = MediaObjectInfo(mediaData: data, mediaType: type, fileName: fileName, image: image)
+            chatBottomView.messageFieldView.newChatAttachmentView.allMediaData.append(mediaInfo)
             _ = chatBottomView.messageFieldView.updateBottomBarHeight()
         } else {
             AlertHelper.showAlert(title: "Failed To Upload", message: "Unable to attach the file")
             draggingView.resetView()
         }
-        
+        chatBottomView.messageFieldView.updateChatBottomView()
     }
     
-    func updateAddButton(currentItems: [NewAttachmentItem], hasText: Bool = false) {
+    func updateAddButton(currentItems: [NewAttachmentItem], hasText: Bool = true) {
         let leadingConstant = chatBottomView.messageFieldView.frame.width - CGFloat((currentItems.count * 140)) - 110 - CGFloat((currentItems.count - 1) * 14)
         if (leadingConstant > 170) {
-            chatBottomView.messageFieldView.newChatAttachmentView.addButtonLeadingConstraint.constant = -(leadingConstant + (hasText ? -140 : 0))
+            chatBottomView.messageFieldView.newChatAttachmentView.addButtonLeadingConstraint.constant = -(leadingConstant - 140)
         } else {
             chatBottomView.messageFieldView.newChatAttachmentView.addButtonLeadingConstraint.constant = -62
         }
